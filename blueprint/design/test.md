@@ -44,7 +44,7 @@ test/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:**
+- **Open:** keeps what is specific to code: the failing test first, the fix, and the test that guards against its return; the method of finding a cause is understand's analyze, which it calls when the cause is not obvious (D59, D128).
 
 ### browser
 

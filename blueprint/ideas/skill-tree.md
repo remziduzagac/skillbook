@@ -147,13 +147,17 @@ skills/skillbook/                 skillbook, the main skill and the only skill l
 │   │                             candidates, weighed through weigh, recorded with the rejected words; and the
 │   │                             vocabulary kept to one word per concept in the project's glossary, a term used two
 │   │                             ways flagged (D67, D125)
-│   └── research/                 understand-research: finding out from sources: the question, the sources, then
-│       │                         findings handed back with where each came from, whether read or inferred, what was not
-│       │                         found and what comes next (D59)
-│       ├── survey/               understand-research-survey: what exists on a subject, compared; subagents search in
-│       │                         parallel → conduct-delegate
-│       └── analyze/              understand-research-analyze: symptoms broken down into a tree of root causes before
-│                                 building, for any problem; test-debug asks for it when the cause is not obvious (D59)
+│   └── research/                 understand-research: finding out from sources: the question stated, every finding with
+│       │                         its source and strength, what was not found, matched to its version and date,
+│       │                         disagreements shown; chooses the part; a reference file per kind of source (D59, D128)
+│       ├── fact/                 understand-research-fact: one question answered, or one claim checked both ways, with
+│       │                         a verdict weighed by the strength of the evidence (D128)
+│       ├── survey/               understand-research-survey: what exists on a subject, found widely and compared on the
+│       │                         same terms, the screened-out named, coverage and date stated; weigh chooses →
+│       │                         conduct-delegate (D128)
+│       └── analyze/              understand-research-analyze: why something happens: the symptom stated, one testable
+│                                 cause at a time, the chain traced back to its trigger, the fix left to the caller;
+│                                 test-debug asks for it when the cause is not obvious (D59, D128)
 │
 ├── design/                       design: how to design anything: the design flow and its principles, and the sub-skills
 │   │                             each step calls; with a blueprint, its steps record and track the design (D46, D47)
@@ -344,7 +348,7 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 | Root | Skills | with material | ideas |
 | --- | --- | --- | --- |
 | conduct | 22 | 22 | 0 |
-| understand | 12 | 12 | 0 |
+| understand | 13 | 13 | 0 |
 | design | 16 | 16 | 0 |
 | plan | 3 | 3 | 0 |
 | implement | 14 | 8 | 6 |
@@ -355,7 +359,7 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 | author | 10 | 5 | 5 |
 | rigs | 1 | 0 | 1 |
 
-99 skills in conduct and the ten roots, and the main skill above; their reference files are not named yet. A part's row counts the part itself. Only the main skill costs context every turn (D56).
+100 skills in conduct and the ten roots, and the main skill above; their reference files are not named yet. A part's row counts the part itself. Only the main skill costs context every turn (D56).
 
 ## The shape
 
@@ -382,12 +386,12 @@ Where an activity and a subject meet ("review my essay"), the rule is still open
 
 Calls between skills, beyond each skill loading its own sub-skills.
 
-- **conduct-delegate** ← design-consolidate, design-parallel, design-review, implement-plan, understand-research-survey, test-experiment, conduct-delegate-council.
+- **conduct-delegate** ← design-consolidate, design-parallel, design-review, implement-plan, understand-research (survey above all), test-experiment, conduct-delegate-council.
 - **author-markdown** ← conduct-respond, for every response (D95). **author-markdown** and each **implement-code** language skill ← conduct-act, before every file of their type is written (D67, D68); markdown also ← maintain-repo.
 - **conduct-instruct** ← conduct-setup, when it writes into an instruction document (D94).
 - **test-tdd** ← implement-plan, test-debug. **review-code** and **conduct-verify** ← implement-plan.
 - **understand** (clarify deep, brainstorm, research) ← design; other roots reach understand's skills through the main skill (D51, D56).
-- **understand-research** ← test-experiment. **understand-research-analyze** ← test-debug, when the cause is not obvious.
+- **understand-research** ← test-experiment; understand's frame, brainstorm, weigh, challenge and naming, for a fact. **understand-research-analyze** ← test-debug, when the cause is not obvious, and ship, for an incident's cause.
 - **design** ← conduct-learn, to record decisions. **design-architecture** ← test-tdd, for the deep-module vocabulary.
 - **understand-naming** ← design, for unclear terms. **conduct-verify** ← conduct-delegate, for verifiers.
 - **implement-git** ← maintain-repo.
@@ -404,7 +408,7 @@ Draft descriptions. Since the main skill is the only one listed (D56), these are
 - **main skill:** *"Load this first for any piece of work, before answering: it holds the rules every answer follows and routes to the skill for the job. Covers designing, planning, implementing, git commits, branches and pull requests, testing or debugging, reviewing code, releasing, deploying, keeping a repository healthy; writing documents, notes, status updates or agent instructions; clarifying a request, brainstorming options, explaining; researching and comparing tools or sources; capturing notes for later, meetings, daily or weekly reviews, personal tasks; delegating, handing work to another agent, verifying work, making skills."*
 
 - **author** (was write, D67): *"Writing work for people. Use when writing a blueprint document (an idea, a note, a decision, a design), documentation for users, a document for stakeholders (a status update, report, proposal or memo), or an article, or when editing a text."*
-- **understand:** understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-naming (md, mp); understand-research; understand-research-survey (ts, an, own); understand-research-analyze (ws).
+- **understand:** *"Understanding before acting, with the person and from sources. Use when a request is unclear, a question needs someone else's answer, the person wants options or a brainstorm, asks what you think, a plan should be questioned before work starts, or a question needs facts: researching across sources, comparing tools or prior work, finding the cause of a problem."*
 - **research** (now under understand, D59): *"Finding out. Use when researching a question across sources, surveying tools or prior art, analysing causes, or writing up findings with their sources."*
 - **conduct** (with what was agents, D67): *"How the agent acts. Use when setting up an agent's files, delegating to subagents, handing work to another agent, verifying work, or reviewing what a session taught."*
 
@@ -423,7 +427,7 @@ The parts keep their drafts, now read by the root that routes to them and by the
 For each skill, the sources that already hold material for it: read them before writing it (D30). sk is skillbook's first design; mp mattpocock/skills, sp superpowers, an Anthropic's skills, cc Claude Code's official plugins, gs gstack, ar alirezarezvani/claude-skills, vc vercel's agent skills; own the person's current skills; and the person's projects: ws workslate and rig, vo VaultOps and the agent specs, oc OpenCode customisations, lc loomcraft and infoloom, sb slipbox, ts trailscout, hs herdsman, md meddah.
 
 - **conduct:** conduct-respond (own, md, mp); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-organize (vo); conduct-organize-split (vo); conduct-organize-merge (vo); conduct-organize-compose (vo); conduct-organize-normalize (vo); conduct-organize-cluster (vo); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-cleanup (own); conduct-instruct (mp, sp, ws, oc); conduct-setup (cc, lc); conduct-learn (ws, mp, gs, cc); conduct-delegate (own, ts, md, sp, vo); conduct-delegate-council (ws); conduct-delegate-fanout (own, ts); conduct-delegate-crew (md); conduct-handoff (ws, mp, oc, gs, ar).
-- **understand:** understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-brainstorm (oc, sp, vo); understand-naming (md, mp); understand-research; understand-research-survey (ts, an, own); understand-research-analyze (ws).
+- **understand:** understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
 - **design:** design-architecture (mp, hs); design-review (ts, mp); design-start (sk); design-discuss (sk, mp); design-research (sk, ts); design-decide (sk, mp); design-evidence (sk); design-write (sk); design-workstream (sk); design-tasks (sk, mp); design-work (sk); design-sync (sk); design-consolidate (sk); design-parallel (sk); design-check (sk); design-publish (sk).
 - **plan:** plan-breakdown (vo, mp, sp); plan-slices (mp); plan-sequence (mp, sp).
 - **implement:** implement-prototype (mp); implement-plan (sp, mp); implement-git (ws, hs, sp, mp); implement-git-worktree (sp); implement-git-commit (ws, hs); implement-git-finish (sp); implement-web (an, vc); implement-agent-tools (sb, ws, ts, an); implement-code; implement-code-python (sk); implement-code-typescript (sk); implement-code-bash (sk); implement-code-go (sk); implement-code-rust (sk).

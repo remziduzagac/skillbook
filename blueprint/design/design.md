@@ -84,7 +84,7 @@ design/
 
 ### research
 
-- **Purpose:**
+- **Purpose:** the filing only: understand's research finds out, and this step files its result in the blueprint's research strand as a note on its topic, in the form author's blueprint skill holds; a decision that rests on it links to it (D59, D128).
 - **Description:**
 - **Callers:**
 - **Flow:**
@@ -92,7 +92,7 @@ design/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:**
+- **Open:** its name is to settle, since research also names understand's skill (D128).
 
 ### decide
 

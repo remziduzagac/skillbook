@@ -397,7 +397,7 @@ conduct/
 - **Files:** `SKILL.md` only, the table included (D89).
 - **Material:** superpowers' `verification-before-completion` (its substance, not its capitals); meddah (prove invariants by diff, distrust confident findings); workslate (choose the verifier; the four upward checks); mattpocock's retro (a mechanical rule gets a mechanical check).
 - **Tests** (D89): a fix that did not work, reported as still failing with its output; a subagent that reports success but changed nothing, caught; "requirements met", shown with its checklist; a merge, its inventory shown before the person is asked to confirm; a page's wording, a matter of taste: checked by the person, not the agent (D115).
-- **Open:** who checks points to stakes once it is designed (D121). Widened from evidence before saying done to how strong evidence is for any claim, ranked roughly: seen or measured, read at its source, inferred, only said ("interest is not demand" is the last kind); research, fanout and challenge point to it (D123).
+- **Open:** who checks points to stakes once it is designed (D121). Widened from evidence before saying done to how strong evidence is for any claim, ranked roughly: seen or measured, read at its source, inferred, only said ("interest is not demand" is the last kind); research, fanout and challenge point to it (D123). research ranks what the agent recalls, "from memory", as only said until checked at a source (D128).
 
 ## guardrails
 
@@ -647,10 +647,10 @@ conduct/
 
 - **Purpose:** the work split into parts, each agent with a part the others do not have, a different place to look or a different sub-question such as one review lens, and the findings combined (D99, D107, D115). A council, by contrast, asks every member the same question.
 - **Description:** "Several agents search or read different places; their findings, each with its source, combined, checked against the sources and validated." A draft (D107).
-- **Callers:** delegate; understand's survey; any wide, light reading.
+- **Callers:** delegate; understand's research and its parts, survey above all; any wide, light reading.
 - **Flow** (D99, D107):
   1. **Split by part, not by count:** each agent gets a part the others do not have: a place (official sources, code, issue trackers; a folder, a symbol, a date range) or a sub-question (for a review, one lens) (D115).
-  2. **Search or read:** each returns its findings in one format: the claim, its source (a path and line, or a link), the quoted words, and whether it was read there or inferred; and what it could not find. This is the findings format's one home; delegate and other harnesses use it (D115).
+  2. **Search or read:** each returns its findings in the findings format, whose one home is understand's research, and what it could not find; how its agents write them so the script can read them is fanout's, and delegate and other harnesses use it (D115, D128).
   3. **Consolidate** with `scripts/consolidate`, not by an agent, from findings in step 2's format: duplicates merged, nothing dropped; the script also checks that each quote exists at its source and marks the ones that do not.
   4. **Validate adversarially:** a validator at the strong tier, since nothing checks after it, tries to refute each finding and defaults to "refuted" when unsure, since an unchecked finding is plausible, not true.
   5. **Synthesize** the answer, by the main agent, saying what was skipped.
@@ -660,7 +660,7 @@ conduct/
 - **Files:** `SKILL.md`; `scripts/consolidate` (D107).
 - **Material:** the person's `delegation-routing` (sweep, consolidate, validate, synthesize); trailscout.
 - **Tests** (D107): a finding quoting words not at its source: marked by the script; a finding with a real quote but a wrong claim: refuted by the validator; an agent that found nothing: its "not found" kept in the answer; "review this change for security, performance and correctness": a fanout, three sub-questions (D115).
-- **Open:** Its "read there or inferred" points to verify's strength of evidence once verify is widened (D123).
+- **Open:** its findings' strength points to verify's ranking once verify is widened (D123); the form its agents write the findings format in, for `scripts/consolidate`, is to define (D128).
 
 ### crew
 

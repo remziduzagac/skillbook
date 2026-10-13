@@ -44,6 +44,10 @@ Proposed on 2026-10-12, to take up once the sub-skills are designed; not decided
 
 ### research
 
+- Decided (D128).
+
+#### fact
+
 #### survey
 
 #### analyze
