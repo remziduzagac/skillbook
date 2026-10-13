@@ -1,0 +1,66 @@
+# Evidence
+
+Claims that matter beyond the conversation, each with the evidence that it is true (D90): a task finished, a requirement met, a decision tested, a release checked, the person's confirmation of meaning. Entries are numbered and never rewritten; a later check is a new entry. Each says what was claimed, what was run or seen, who verified it, and what it supports.
+
+## E1: One visible main skill routes at least as well as visible roots (2026-10-11)
+
+- **Claim:** a single main skill, listed to the model, reaches the right skill at least as often as six or thirteen listed roots, and applies its rules whenever it loads.
+- **Evidence:** 192 runs over the sample tree, four top-level shapes, ten requests and two that need nothing, twice per agent: right answers 13 of 20 in Claude Code and 18 in Codex with one main skill, against 11 and 18 with six roots; the rule applied in every run that loaded the main skill ([research/skill-loading.md](research/skill-loading.md), "Top-level shapes").
+- **Verified by:** the agent, by running both agents.
+- **Supports:** D56.
+
+## E2: A description and a pointer make the main skill load (2026-10-11)
+
+- **Claim:** a description telling the agent to load the main skill first, or a sentence in `AGENTS.md`, ends answers given without any skill.
+- **Evidence:** 108 runs, three variants, seven requests and two trivial ones, twice per agent: answers without any skill in Claude Code fell from 6 of 14 to 0 with either fix ([research/skill-loading.md](research/skill-loading.md), "Making the main skill load").
+- **Verified by:** the agent, by running both agents.
+- **Supports:** D57.
+
+## E3: A skill read once is reused for the rest of the conversation (2026-10-11)
+
+- **Claim:** neither agent loads a skill again after reading it, after compaction too, without being told.
+- **Evidence:** eight conversations of seven turns: on the second use of a skill no file was read, 8 of 8; after compaction the skills were still followed, numbering rule included, 8 of 8 ([research/skill-loading.md](research/skill-loading.md), "Loading once, using many times").
+- **Verified by:** the agent, by running both agents.
+- **Supports:** D72.
+
+## E4: act's rule stops Claude Code searching the skill folders (2026-10-11)
+
+- **Claim:** with the rule to follow a skill's route and read its whole file, Claude Code no longer finds skills by searching their folders.
+- **Evidence:** the commit-message turn, three times per variant: searched 3 of 3 without the rule, 0 of 3 with it, the commit skill read whole each time ([research/skill-loading.md](research/skill-loading.md), "Following routes, not searching").
+- **Verified by:** the agent, by running both agents.
+- **Supports:** D72.
+
+## E5: Installed copies update as described (2026-10-11)
+
+- **Claim:** Claude Code reads a local plugin in place and updates a Git-installed one only when its version rises, after refreshing the marketplace; Codex copies a local plugin and refreshes a Git-installed one by itself.
+- **Evidence:** a small plugin with a code word changed at its source after each step, from a local folder, from a Git repository served on the same machine, and from a throwaway public GitHub repository, since deleted ([research/skill-loading.md](research/skill-loading.md), "Picking up a changed plugin").
+- **Verified by:** the agent, by running both agents; the person deleted the GitHub repository.
+- **Supports:** D74, D75.
+
+## E6: The pointer's narrow exception keeps real work loading the main skill (2026-10-11)
+
+- **Claim:** with "except a one-line answer that needs no tool and no file", every real request still loads the main skill, and Claude Code skips it for trivial ones.
+- **Evidence:** 72 runs, six real requests and three trivial ones, twice per agent: the main skill loaded for 12 of 12 real requests in each agent; Claude Code skipped it for 6 of 6 trivial ones, Codex for 1 of 6 ([research/skill-loading.md](research/skill-loading.md), "The pointer's exception").
+- **Verified by:** the agent, by running both agents.
+- **Supports:** D78.
+
+## E7: Claude Code reads CLAUDE.local.md in addition to CLAUDE.md (2026-10-12)
+
+- **Claim:** a project's `CLAUDE.local.md` is loaded together with its `CLAUDE.md`, not instead of it.
+- **Evidence:** one run in an empty configuration folder, with a different word in each file and the question asked without reading any file: both words were reported, each from its file ([research/skill-loading.md](research/skill-loading.md), "Instruction files").
+- **Verified by:** the agent, by running Claude Code 2.1.296.
+- **Supports:** D93.
+
+## E8: Delegating searchable reading costs more than searching (2026-10-12)
+
+- **Claim:** when a search can find what is asked for, the main agent searching alone is cheaper than delegating the reading to subagents, light or standard, and as accurate.
+- **Evidence:** nine runs over fifty documents: all found 12 of 12; the main agent alone cost US$0.21 on average, with five haiku subagents US$0.43, with five sonnet subagents US$1.02; the main agent's context grew from about 28,000 to about 40,000 tokens when it delegated ([research/skill-loading.md](research/skill-loading.md), "Delegating wide reading").
+- **Verified by:** the agent, by running Claude Code.
+- **Supports:** D105.
+
+## E9: A five-subagent fanout costs the main agent about US$0.40 (2026-10-12)
+
+- **Claim:** with opus as the main agent, briefing five haiku subagents, taking in their reports and consolidating costs about US$0.35 to US$0.45, while the subagents' reading of about 60,000 words costs about US$0.03.
+- **Evidence:** six delegated runs over two generated corpora, the cost split by model in each run ([research/skill-loading.md](research/skill-loading.md), "Delegating wide reading"). The second test's comparison with the main agent alone is not evidence for real documents: generated filler let it find the answers by counting repeated sentences.
+- **Verified by:** the agent, by running Claude Code.
+- **Supports:** D105.

@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+.lycheecache
+
+# Blueprint attachments stay out of git; only their index is committed.
+**/attachments/*
+!**/attachments/README.md

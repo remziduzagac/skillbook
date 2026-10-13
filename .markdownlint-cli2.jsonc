@@ -1,0 +1,48 @@
+// markdownlint-cli2 configuration for skillbook: the person's shared rules, plus the files to lint.
+{
+  // Design intent:
+  //   - Prose is never wrapped: a renderer or editor reflows it, so paragraphs and list items have no length limit.
+  //   - What cannot reflow keeps within 120 characters: code blocks and headings (MD013), and table rows
+  //     (scripts/table-width.cjs, since MD013 checks tables at the prose length).
+  //   - Enforce all real error-catchers (bad syntax, broken links, inconsistent formatting).
+  //   - Disable pure-preference rules (style of bullets, HR style, * vs _ for emphasis, etc.).
+  "config": {
+    // ─── Rules with tuned parameters ─────────────────────────────
+    "MD013": {
+      "line_length": 100000,                   // prose is not wrapped
+      "heading_line_length": 120,
+      "code_block_line_length": 120,
+      "code_blocks": true,
+      "tables": false,                         // checked by table-width
+      "headings": true
+    },
+    "MD009": { "br_spaces": 2 },              // allow ..  (2 trailing spaces = <br>)
+    "MD012": { "maximum": 2 },                 // up to 2 consecutive blank lines
+    "MD024": { "siblings_only": true },        // duplicate headings OK if under different parents
+    "MD029": { "style": "one_or_ordered" },    // allow both 1.1.1 and 1.2.3 numbering
+
+    // ─── Rules disabled — pure preference / arbitrary style ──────
+    "MD004": false,   // unordered list style (- vs *)
+    "MD007": false,   // unordered list indent depth
+    "MD014": false,   // $ shown before shell commands
+    "MD026": false,   // trailing punctuation in heading
+    "MD028": false,   // blank line inside blockquote
+    "MD033": false,   // inline HTML (we use <details>, <br>, etc.)
+    "MD035": false,   // horizontal rule style (--- vs ***)
+    "MD036": false,   // emphasis used instead of heading
+    "MD041": false,   // first line must be top-level heading
+    "MD043": false,   // required heading structure (template-only)
+    "MD044": false,   // proper-name capitalization (needs config)
+    "MD046": false,   // code block style (fenced vs indented)
+    "MD048": false,   // code fence style (``` vs ~~~)
+    "MD049": false,   // emphasis style (* vs _)
+    "MD050": false,   // strong style (** vs __)
+    "MD054": false,   // link/image style
+    "MD055": false,   // table pipe style (leading/trailing |)
+    "MD059": false,   // descriptive link text
+    "MD060": false    // table column style
+  },
+  "customRules": ["./scripts/table-width.cjs"],
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules/**", ".claude/skills/**"]   // .claude/skills is a link to .agents/skills
+}

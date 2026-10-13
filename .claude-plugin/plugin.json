@@ -1,0 +1,13 @@
+{
+  "name": "skillbook",
+  "version": "0.0.0",
+  "description": "Agent skills for keeping projects well: blueprint for a project's thinking, greenrepo for healthy repositories, and the writing rules they follow.",
+  "author": {
+    "name": "Remzi Duzagac",
+    "url": "https://github.com/remziduzagac"
+  },
+  "repository": "https://github.com/remziduzagac/skillbook",
+  "license": "MIT",
+  "keywords": ["skills", "blueprint", "greenrepo", "design", "repository-health"],
+  "skills": []
+}

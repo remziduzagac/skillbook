@@ -1,0 +1,42 @@
+name: A skill misbehaved
+description: Something went wrong when an agent used a skill in a real session.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Reports describe an observed failure, not a wished-for improvement; see SCOPE.md.
+  - type: input
+    id: skill
+    attributes:
+      label: Skill
+      description: Which skill, and the file if you know it.
+    validations:
+      required: true
+  - type: input
+    id: agent
+    attributes:
+      label: Agent and version
+      description: For example Claude Code 2.1.300 or Codex 0.170.
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce

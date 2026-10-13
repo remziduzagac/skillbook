@@ -1,0 +1,55 @@
+# Ideas: open questions
+
+By topic. The first design's ideas, as they stood, are in [../notes/first-design/ideas.md](../notes/first-design/ideas.md); those still open are carried here.
+
+## skillbook as a whole
+
+- **Guidance, not a script** (raised by the person 2026-10-12): settled (D112): main skills hold rules, advice and when to use each skill, with if-then-else only where an order must be imposed, and restrictions only where something real is at risk, each with its reason. Numbers are advice unless a rule cannot apply without them, and advice has a stronger level (D116); conduct was reviewed against it with skillbook-tree (D115) and is reshaped with the flows. The topic as it was raised: skillbook does not give the agent a full course of action; the agent still does the reasoning, and a skill guides it to do things in order. Skills may recommend actions. A wording proposed, not adopted: "A skill guides; the agent reasons. A skill gives the order of the work, what matters at each step, and when a step is done; how to do each step is left to the agent's judgment. It goes into detail only where agents are known to go wrong without it, and says why." To discuss: how it narrows "one full flow, as clear procedures" (D38), and whether conduct's design is checked against it: fixed numbers stated as rules (three failed attempts, the delegation threshold), act's eleven rules, read on every request, and step-level detail such as fanout's findings format; guardrails' detail guards real risks. To revisit with the flows (D108); the checks of conduct still stand.
+- **The main skill (D55, D56, D71, D78):** whether it also maps the roots for the person; a test of the pointer in the person's own instruction files, which D57 relies on but no run has covered. (2026-10-11)
+- **The group layers:** settled: none; engineering's stages are roots (D76), productivity is set aside (D64). (2026-10-11)
+- **Loading a skill once, using it many times:** settled (D72): both agents reuse what they read, and act's rule stops Claude Code searching the skill folders (tested). Still open: a long skill after compaction. (2026-10-11)
+- **Evaluation first:** Anthropic's skill-creator loop, `claude plugin eval` and this repository's loading harness make automated checks of skills possible ([../research/skill-writing-guides.md](../research/skill-writing-guides.md)). (2026-10-11)
+- **Calls between skills by full name,** `skillbook:<name>`, so a personal skill with the same name never catches the call ([../research/skill-loading.md](../research/skill-loading.md)). (2026-10-10)
+- **Sub-skill names and folders:** each skill a folder named by its full name, `<parent>-<what it does>`, inside its parent's folder (`skills/design/design-start/`). The name then matches its folder as the specification asks, stays unique in the one-level namespace, and sorts under its parent in the slash menu. Nested folders need no flattening for the plugin; the symlink route would have to link each skill under its name. (2026-10-11) Settled differently: short folders, and the name is the path joined by dashes (D43).
+- **`plugin.json` with nested folders:** list every skill folder, and check that the list matches every `SKILL.md`; unlisted, Claude Code misses nested skills while Codex registers them. (2026-10-11) Chosen (D43).
+- **Machines where skills are edited:** settled (D74, D75): the working copy is installed as a local plugin; Codex needs it added again after an edit. Installing from GitHub is tested; not yet without SSH keys. (2026-10-10)
+- **Partial installation:** only some skills on a machine or for a project; each option must handle a skill that calls one not installed. (2026-10-10)
+- **Scope:** topics beyond keeping projects well widen `SCOPE.md`. (2026-10-10)
+- **The person's earlier projects** hold ideas for the tree's content and functionality ([../notes/draft-ideas.md](../notes/draft-ideas.md)); sources to learn from, not decisions. (2026-10-10)
+
+## The project folder
+
+Explored, not decided. (2026-10-11)
+
+- **One folder per project that every skill uses:** the `blueprint/` folder becomes where all skills keep their results, each in its own strand, and later also holds the knowledge base, so skillbook works on a chosen folder. Continued in [../notes/knowledge-and-routines.md](../notes/knowledge-and-routines.md), "Discussed, not decided".
+- **A blueprint root:** the folder's layout and the sub-skills that start, record, check, sync and publish it, in a root every skill can call by name; design's recording steps would move there from design (D47).
+- **Always, or only where a blueprint exists:** settled (D117): always; setup starts it, and for a project the person does not own, asks where it lives.
+- **Personal and project folders:** daily notes, meetings and reading belong to the person rather than to one project; a personal folder with the same layout would replace a vault.
+- **Private strands:** skillbook's blueprint is public (D25); meetings and notes on people are not.
+- **Renaming skillbook to blueprint,** if the folder becomes the centre: one name for one idea, against one word for the plugin, the folder and the skill, and a common word more likely to clash.
+
+## Calls between roots
+
+- **A sub-skill of another root:** settled (D56, D106, D107): a skill reaches another root's sub-skill by asking the main skill, which routes through that root; a sibling within a root is read by its path. (2026-10-12)
+- **Codex's `agents/openai.yaml`:** settled (D79): in every hidden skill's folder, written from `SKILL.md` and checked; the main skill without one is to be confirmed with a run. (2026-10-11)
+
+## rigs, the root for the programs agents drive
+
+Named `rigs` (D103); its contents are to discuss. Raised 2026-10-12: a root for skills about using specific programs: git and the GitHub CLI, other agent programs (Codex, Gemini, Claude Code's own CLI, for delegation), herdr, nvim, containers. git now sits under implement, and delegate's per-harness reference files would move here, so delegate, council and setup point to one home for each program. "tools" was set aside, since it collides with an agent's own tools.
+
+## design, from the first design's blueprint
+
+- Writing guidelines for each kind of document a blueprint holds. (2026-10-10) Placed: author-blueprint (D69).
+- The exact procedures beyond the first design's outline: the commands, what the person is asked, how each tracker is synced. (2026-10-09)
+- How attachment files are stored beyond their committed index (D9). (2026-10-09)
+- design's flow, drafted in [skill-tree.md](skill-tree.md). (2026-10-10)
+- An export mode that renders a workstream's design as one document, for readers who expect a PRD (D31). Placed: author-business (D69). (2026-10-10)
+
+## maintain, from the first design's greenrepo
+
+- Verify the platform limits in greenrepo's "When the platform does not offer a feature" against GitHub's current plans. (2026-10-10)
+- A first manual run of the health workflow, which answers its open platform questions. (2026-10-10)
+- Read the OpenSSF OSPS Baseline scanner before writing the settings comparison. (2026-10-10)
+- An account-wide `.github` repository holding shared community files. (2026-10-10)
+- Versioned user docs, after herdr: `docs/next/`, `docs/preview/`, `docs/versions/<version>/`. (2026-10-08)
+- A project template made with copier, and a script that sets a new repository's settings. (2026-10-08)
