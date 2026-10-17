@@ -38,7 +38,7 @@ The full tree, every skill with its one-line description, is in [skill-tree.md](
 - **The lifecycle is no longer general:** essentials holds design and plan, which any work needs; doing, checking and delivering are each set's, softeng's for software and authoring's for writing; with no such set installed, the work is done under act's rules. act sends every file written to the skill for its type, code or markdown, where that set is installed (D35, D67, D68, D76, D154).
 - **Later:** rigs, a set for the programs agents drive, git and the GitHub CLI, other agent programs, herdr, nvim, containers, each program with one home that other skills point to (D103, D154); a knowledge base, the person's notes and sources, once called vaultops, and routines, their daily work ([../notes/knowledge-and-routines.md](../notes/knowledge-and-routines.md), D64, D152).
 
-**Project skills.** Skills that only skillbook itself needs, such as skillbook-tree for making a skill (the general craft of descriptions, rules, instructions and tests; this tree's rules for naming, placing and checking it; and the checks of a skill for overlaps, contradictions, gaps and restrictions that are not needed) (D77, D112), live in this repository's project skill folders (`.agents/skills/`, linked from `.claude/skills/`) and are never shipped in any set (D67, D152). skillbook-tree is built first with its review checklist; making a skill is added later (D113).
+**Project skills.** Skills that only skillbook itself needs live in this repository's project skill folders (`.agents/skills/`, linked from `.claude/skills/`) and are never shipped in any set (D67, D152): skillbook-tree, for placing, naming, designing and reviewing a skill (D77, D112, D181), and skillbook-write, for writing a skill's files, written when the first skill is built (D181).
 
 What each root holds is drafted in [skill-tree.md](skill-tree.md), each root marked with its set.
 
@@ -50,27 +50,18 @@ What each root holds is drafted in [skill-tree.md](skill-tree.md), each root mar
 - **Sub-skill:** invoked by the person only, so it costs nothing until used. The skill that needs it loads it by its path, from inside the same set, and the person can type it by the name its install route gives it (D152). A sub-skill may have sub-skills of its own (D38).
 - **File:** inside a skill's folder, only `SKILL.md` sits at the top. What the skill reads goes in `references/`, what it runs in `scripts/`, what it copies out in `assets/`; each file is linked directly from the skill that uses it (D38, D44). A hidden skill's folder also holds `agents/openai.yaml`, Codex's setting that hides it, written by a script from the hidden flag in `SKILL.md` (D79). Those four folder names are never used for a sub-skill.
 
-Depth comes from sub-skills, each with its own `SKILL.md`, never from chains of reference files. A skill lives with the knowledge it needs and where the flow that calls it most runs; other skills point to it (D39).
+Depth comes from sub-skills, each with its own `SKILL.md`, never from chains of reference files (D39).
 
 ## How a skill is written
 
-- A main skill (the main skill, a group's or root's own skill, or any skill with sub-skills of its own) holds, in this order (D112):
-  1. **Rules, at the top:** the musts and must-nots for its whole scope. Each rule has one home: here, or a skill of its own that this section tells the agent to follow. A rule appears twice only for a clear variation, which names the rule it changes; a restriction only where something real is at risk, with its reason.
-  2. **Advice:** the shoulds, apart from the musts, left to the agent's judgment. Strong advice is followed unless the case gives a reason not to, and the agent says so when it departs. A number is advice, "about N" with its reason, unless a rule cannot be applied without it (D116).
-  3. **Instructions, in the order the work happens:** for each skill it uses, when to use it, when not, and what it gives back. If-then-else only where an order must be imposed. A gap is stated where it falls, with where to go: another skill or the agent's own judgment. Several skills may serve one request. It never says how a sub-skill works inside.
-  4. **The last instruction:** what is done before anything is returned.
-- **Level by level** (D177): every skill with children, a set's main skill or a group's own skill, opens like a node of a tree: at its top, only the rules and advice that hold for everything under it and have no skill of their own; then one line per direct child, in the order the work happens, saying when to load it; then the last instruction. A child is loaded only when its step comes, and its own skill does the same for its children, so the skills open level by level and nothing is read before it is needed. A parent's own lines introduce only its direct children, never a grandchild; an exception is stated with its reason, as respond is loaded for every response. This is about how a parent opens, not a limit on use: any skill may use any other skill or sub-skill, by name, when a step needs it, which makes the whole a graph, while loading still goes level by level.
-- Every skill, leaf skills too: each instruction names the skill it needs; nothing ambiguous or contradictory, no gap left unstated; comprehensive and exclusive, every case covered or named as a gap, each rule and concern with one home. skillbook-tree checks this (D112).
-- Across sets, each skill says only its own part: its word on where its result is kept, or in what form, is a one-line default, and a call to a skill in another set carries a one-line fallback, as "Sets complement each other" under [What it is](#what-it-is) says (D156).
-- A simple text diagram shows a loop, a decision that is easy to miss, or what an operation does to its items, before and after; a long flow offers a checklist the agent copies and ticks off (D38, D88).
-- When an instruction grows complicated, its logic becomes a sub-skill, which may call other sub-skills (D38).
-- The writing rules come from mattpocock/skills, superpowers and Anthropic's guidance ([../research/skill-writing-guides.md](../research/skill-writing-guides.md); D22). Where an outside skill maps to one of ours, it is read before ours is written, and what fits is adapted, never copied: rewritten for skillbook's case inside the skill, in a reference file of its own where needed, or as a new skill where it is a concern other skills need too; no outside file is used as it is (D30, D120).
+- **Placing, naming, designing and reviewing a skill:** skillbook-tree, this repository's project skill, holds the shape every skill's design takes, level by level and actions, not tools among it, and the checklist each design is reviewed against (D112, D177, D180, D181).
+- **Writing a skill's files:** skillbook-write, a second project skill, written when the first skill is built: the harness's own skill-writing skill, `skill-creator` in both Claude Code and Codex, for the general craft, with only skillbook's extras added, and Anthropic's skill authoring best practices where it is not installed (D181). The two lines below wait for it:
+  - a simple text diagram shows a loop, a decision that is easy to miss, or what an operation does to its items, before and after; a long flow offers a checklist the agent copies and ticks off (D38, D88);
+  - the three guides compared, mattpocock/skills, superpowers and Anthropic's, are in [../research/skill-writing-guides.md](../research/skill-writing-guides.md) (D22).
 
 ## Names
 
-Skills you do are bare verbs; skills about something, the groups among them, are nouns (D40, D48). Leaf skills take short verbs or nouns, and a name is coined only where a plain word will not do; the folder a project's design lives in stays `blueprint/` (D33).
-
-Each set's main skill is named after its set: `essentials`, `blueprint`, `softeng`, `authoring` (D152, D153). Inside a set, every other skill is a short folder inside its parent's, and its name is the path below its set's main skill joined by dashes (`coordinate-delegate-fanout`) (D43, D71). The same name may appear in two sets, told apart by their set. Where the sets' folders sit, what lists them, and the names on a route without a namespace wait for the install routes (D152).
+How skills are named, and where each goes in the tree, is skillbook-tree's (D181). The folder a project's design lives in stays `blueprint/` (D33).
 
 ## design, blueprint, understand and maintain
 

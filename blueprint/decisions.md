@@ -728,6 +728,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 > **Amended by D112 (2026-10-13):** skillbook-tree writes skills in D112's shape rather than as a main flow over sub-skills, and checks each for overlaps, contradictions, gaps and restrictions that are not needed.
 >
 > **Amended by D113 (2026-10-13):** skillbook-tree is built first, with only the review; making a skill is added later.
+>
+> **Amended by D181 (2026-10-18):** skill-making is split between two project skills: skillbook-tree places, names, designs and reviews a skill; skillbook-write writes its files.
 
 **Decision:** conduct's skill-maker leaves the plugin. skillbook-tree, the project skill in this repository, holds skill-making whole: the general craft of a good skill (a description comprehensive and exclusive, a main flow over sub-skills with steps that end on "done when", tests that the skill fires), learned from Anthropic's skill-creator, superpowers and mattpocock's writing skills (D30), and this tree's own rules (names from folder paths, placement, the manifest). setup adds existing skills to a project and makes none. learn's promotion of a lesson into a skill is future work. Someone using skillbook who wants to write their own skills uses an outside skill-maker until a need for skillbook's own shows.
 
@@ -1047,6 +1049,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 ## D103: A root named rigs, for the programs agents drive (2026-10-12)
 
 > **Amended by D154 (2026-10-17):** rigs becomes a set of its own, designed later.
+>
+> **Amended by D180 (2026-10-18):** rigs is the one set whose skills name a program, and the home of how to drive each; other skills name the action.
 
 **Decision:** A root named rigs will hold skills for using specific programs: git and the GitHub CLI, other agent programs used for delegation, herdr, nvim, containers, each program with one home that delegate, council and setup point to. It stands in the tree as a placeholder; its contents are designed later.
 
@@ -1211,6 +1215,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D131 (2026-10-14):** understand's own skill is designed in this shape, its instructions under five headings.
 >
 > **Amended by D136 (2026-10-15):** the flows are revisited: conduct's own skill, act, respond, ask, clarify, author's markdown and the main skill take the shape (D134, D135).
+>
+> **Amended by D181 (2026-10-18):** the shape a skill takes is stated once, as skillbook-tree's checklist, no longer in how-it-works.
 
 **Decision:** How a main skill is written: the main skill, each root's own skill, and any skill with sub-skills of its own, such as clarify. Its sections, in this order:
 
@@ -1228,6 +1234,8 @@ For the main skill: it holds rules and advice of its own again, among them follo
 ## D113: skillbook-tree is built first, with the review (2026-10-13)
 
 > **Amended by D116 (2026-10-13):** check 5 says numbers are advice unless a rule needs them, and strong advice is marked.
+>
+> **Amended by D181 (2026-10-18):** designing a skill joins the review in skillbook-tree now; writing its files goes to skillbook-write, written when the first skill is built.
 
 **Decision:** The project skill skillbook-tree is built now, in `.agents/skills/skillbook-tree/`, with `.claude/skills/` a link to `.agents/skills/`; it is never shipped in the plugin. It holds the review first: ten checks drawn from how skills are written (D112). For every skill: each instruction names the skill it needs; nothing ambiguous or contradictory, no gap left unstated; comprehensive and exclusive; no restriction without a reason; musts apart from advice; a description that does not overlap a sibling's; a test for each when and when not. For a skill with sub-skills, also: the sections in order, each sub-skill's when, when not and result, and staying at its own level. A review reads the whole skill with the decisions it cites, reports each finding with its file and line, and changes nothing. Making a skill and placing it in the tree are named in it as gaps that point to how-it-works until they are added. `AGENTS.md` sends any skill's design, writing or review to it. The skills designed so far are reviewed with it, one reviewer per root, and the findings checked before they reach the person; brainstorm continues after.
 
@@ -1536,6 +1544,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Why:** The person works this way: tasks go to agents and the main chat is kept for tracking and other work. A main session that does every task fills with tool output and loses the person's thread; asking before each delegation would make the person approve a stream of small yeses, so only the uncertain case of size goes to them.
 
 ## D139: Skills stay generic, and the harness's limits hold (2026-10-17)
+
+> **Amended by D180 (2026-10-18):** tools a skill truly needs are settled: a skill names the action, never the tool, and declares a capability it needs, such as version control, in its `compatibility` field.
 
 **Decision:** skillbook's skills impose no outside tool where they can avoid it: no terminal multiplexer or similar tool is named in a skill's rules, advice or reference files; a tool the person names is used through that tool's own skill or documentation, the skill's own rules still holding. Tools a skill truly needs, such as git, are a separate subject, to be discussed. The harness's limits, what it permits, what needs the person's opt-in and how its tools must be used, hold above skillbook, which never asks the agent to break them; its defaults, such as style and working habits, are what skillbook's skills refine. act's rule on which instruction wins holds this, and delegate's rule on the harness's limits on delegating is a variation of it.
 
@@ -1861,3 +1871,15 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Decision:** conduct's own skill merges with act: act becomes the group for how the agent works, its own skill holding act's rules for everything under it and one line for each of its tools, stakes, guardrails, cleanup, verify and rightsize with lean and enrich, each loaded when a step needs it. respond becomes a group at the top for everything said to the person: its own skill holds respond's rules, and its children are layout, always loaded, ask, when anything is asked of the person, and explain, when the person did not follow; other steps call them by name. The name conduct goes. Weighed: act alone at the top with conduct kept for the rest, which left a group with no step of its own; ask under understand, though it is used far beyond understanding; layout, ask and explain under act, until the person pointed out that all three produce what is said to the person.
 
 **Why:** The person's level-by-level main skill names act and respond as steps; with conduct between them and the main skill, it would have reached two levels down. Each group now answers one question, and each of the main skill's steps loads one group.
+
+## D180: actions, not tools (2026-10-18)
+
+**Decision:** a skill names the action, never the tool that does it: commit, branch, checkpoint, dry run, version control, a preview of what would change, never git, a command or a product. Tests may name a tool where the request or the project does, since a test is a concrete case; Material keeps its sources' names; rigs, a later set whose skills are each about one program, is the one exception. A skill needs a kind of capability, such as version control, rather than a tool: it declares it in the skill format's optional `compatibility` field and in its design's Files line; without it, the skill says so in one line and stops that step, offering a fallback where one exists, and never installs anything itself, since installing is a proposal under guardrails. How to drive a particular program, its commands, flags and gotchas, belongs to rigs (D103); until rigs exists, a skill says what to do, and the agent's own knowledge and the program's help say how. The rule holds for every set: essentials' text is changed now, git, Docker, `git clean -n`, `rsync`, `rm -rf`, `pkill`, `.git/info/exclude` and `node_modules` replaced by the action or the concept; the other sets' designs follow it when each is designed, softeng's git skills renamed by their action. "Pull request" stays the everyday word for a review request on any hosting site, explained in the glossary. The rule lives in "How a skill is written" in `blueprint/design/how-it-works.md`, and skillbook-tree's check 2 catches a named tool. Weighed: naming git where it is present, each use with its fallback without it, as essentials did; the person ruled that the action is named instead.
+
+**Why:** The person asked that essentials specify no tool for a job: "commit", not "commit via git". A named tool ties a skill to one program where the action is the same with another, and essentials works in every project; naming the action keeps every skill generic, as D139 wants, while the know-how for a program has one home in rigs.
+
+## D181: skillbook-tree for the tree and designing, skillbook-write for writing (2026-10-18)
+
+**Decision:** two project skills, never shipped. skillbook-tree holds skillbook's skill tree and how a skill in it is placed, named, designed and reviewed: "Names" and the design rules of "How a skill is written" move into it from `blueprint/design/how-it-works.md`, merged with its checklist so each rule of a skill's shape is stated once, designs written to the list and reviews checking against it; "actions, not tools" becomes its check 12, the numbers of checks 1 to 11 kept. Its clutter goes: decision numbers, pointers to how-it-works, a repeated line, check 1's route "through the main skill across groups", and a report line that restated its rules. skillbook-write writes a skill's files: the harness's own skill-writing skill, `skill-creator`, which Codex ships built in and Claude Code offers in its official plugin marketplace, for the general craft and its evaluation loop, with only skillbook's extras added, such as a design's shape carried into `SKILL.md`, the settings that keep a skill hidden, Codex's `agents/openai.yaml` and tests through the harness; Anthropic's skill authoring best practices where `skill-creator` is not installed. Both make rightsizing a main feature, in rules of their own rather than pointing to essentials' rightsize, guardrails or delegate: skillbook-tree's first rule says what a skill, design and review must hold for its reader, its advice lists what is usually extra and usually missing in a skill, and it trims or fills an existing skill on request. skillbook-write is written when the first skill is built, since its extras depend on the install routes; until then, the two writing lines left in how-it-works wait for it. how-it-works keeps one line pointing to each, and `AGENTS.md` names both. Weighed: one skill, skillbook-tree, pointing to `skill-creator` for the writing; it would carry writing rules into every design step, where they are not needed until building starts.
+
+**Why:** Asked to recall what skillbook-tree holds, the person saw clutter in it, pointers to how-it-works among them, and the checklist repeated how-it-works' rules, so every change was made twice. The person proposed that skillbook-tree focus on building the tree and designing skills, and that writing go to another skill leaning on an existing skill-writing skill, adding only extras. Design and writing happen at different times, so each loads only when its step comes; the outside skill changes on its own schedule, and one small skill limits what a change upstream reaches. The person asked that rightsizing be a main feature of both, with similar rules of their own instead of references to skillbook's own skills; they are the tools that build those skills, so they work without them.

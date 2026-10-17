@@ -47,6 +47,8 @@ The words skillbook uses, one per concept. Use them as written, in skills, docs 
 - **Pointer:** a sentence in instruction files telling the agent to load a set's main skill. Essentials' pointer goes where the skills are installed: the person's own files for a personal install, a project's local file by default, its shared file when the team commits the skills, added by setup when the install route has not written it (D165); it says to load essentials' main skill before answering, except a one-line answer that needs no tool and no file. Blueprint's pointer is in a project's files, added by blueprint's start step, blueprint's main skill, which is what says the project uses blueprint (D156).
 - **Context pointer:** a line that names out-of-context material and the condition for reading it: a description, a routing line to a sub-skill, the pointer.
 - **Context load:** what sits in the agent's window every turn. **Cognitive load:** what the person must remember.
+- **Capability:** a kind of thing a skill needs from the machine, such as version control, named instead of the tool that provides it and declared in the skill's `compatibility` field (D180). _Avoid:_ naming a tool, such as git, outside rigs.
+- **Pull request:** the everyday word for a request to review and merge changes, on any hosting site, a merge request included (D180).
 
 ## Act and respond
 

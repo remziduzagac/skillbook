@@ -39,8 +39,8 @@ coordinate/
   - **carryover:** when work is carried over for later, to a later session or another agent, or picked up from a carryover; offered by the wrap-up offer and at a task's, milestone's or phase's end, with compaction after it when the work continues (D160, D161), never written unasked; not for work given to an agent now (brief, delegate) or what a session taught (learn); it gives back the carryover written, or the state checked and the work continued (D147).
 
   **Every session:**
-  - **instruct:** when a rule in an instruction document, `AGENTS.md`, `CLAUDE.md`, `CLAUDE.local.md` or the person's own, is added, tidied or cut down, or which file a rule belongs in is decided; not for setting skillbook up (setup), skill files (skillbook-tree) or a carryover (carryover); it gives back the change proposed, in the file it belongs in.
-  - **setup:** when skillbook is set up on a machine or in a project, or its pointer is moved between a project's local and shared files; not for writing a rule into an instruction document (instruct) or making a skill (skillbook-tree, in this repository); it gives back the install checked, the pointer added, the blueprint started, the instruction files checked and skills recommended.
+  - **instruct:** when a rule in an instruction document, `AGENTS.md`, `CLAUDE.md`, `CLAUDE.local.md` or the person's own, is added, tidied or cut down, or which file a rule belongs in is decided; not for setting skillbook up (setup), skill files (skillbook-tree and skillbook-write, in this repository) or a carryover (carryover); it gives back the change proposed, in the file it belongs in.
+  - **setup:** when skillbook is set up on a machine or in a project, or its pointer is moved between a project's local and shared files; not for writing a rule into an instruction document (instruct) or making a skill (skillbook-tree and skillbook-write, in this repository); it gives back the install checked, the pointer added, the blueprint started, the instruction files checked and skills recommended.
   - **learn:** when the person asks what a session taught, or accepts it from the wrap-up offer, and never unasked; not for recording a design decision as it is made (design) or writing the state down for later (carryover); it gives back the highlights judged, each made into a rule, a decision or an insight with the person's approval, or dropped.
 
   A request about working with other agents that fits no line is done with the agent's own judgment, under act's rules (D115).
@@ -294,7 +294,7 @@ coordinate/
   7. uncertain: open questions, and what was assumed but not confirmed;
   8. references: files, decisions, branches, by path, never pasted, by brief's rule, and what was kept on purpose, with where it is and why, as act's cleanup reports it (D129);
   9. the first next step, concrete enough to start without asking, by brief's rule on the first step;
-  10. written against: the date; in git, the branch, its last commit and any uncommitted changes; without git, the files changed and when (D115).
+  10. written against: the date; under version control, the branch, its last commit and any uncommitted changes; without it, the files changed and when (D115, D180).
 
   Each carryover stands alone: it never sends the reader to an earlier one, and its done part covers only what came since the last (D169).
 
@@ -324,7 +324,7 @@ coordinate/
   4. a carryover for another agent: no tool name that only one agent has;
   5. "I'm stopping for today" with steps left: one question offering learn, then carryover, by the main skill's wrap-up offer; nothing written unasked (D115);
   6. resuming when the branch moved and the first next step depends on it: asked before continuing (D115);
-  7. a project without git: part 10 lists the files changed and when (D115);
+  7. a project without version control: part 10 lists the files changed and when (D115);
   8. a batch committed at the end of a long session, the next item needing only what fits in a page: one question offering a carryover and a fresh session (D147);
   9. the next item depends on the discussion just had: a carryover, then compaction, its focus naming the note and that discussion, not a fresh session (D147, D160, D161);
   10. a short session at a phase's end: no offer (D147);
@@ -348,7 +348,7 @@ coordinate/
 
 ## instruct
 
-- **Purpose:** writing and updating instruction documents: a project's `AGENTS.md` and `CLAUDE.md`, a `CLAUDE.local.md`, the person's own instruction files (D94). Skill files are not instruct's: they are skillbook-tree's, in this repository (D77).
+- **Purpose:** writing and updating instruction documents: a project's `AGENTS.md` and `CLAUDE.md`, a `CLAUDE.local.md`, the person's own instruction files (D94). Skill files are not instruct's: they are skillbook-tree's and skillbook-write's, in this repository (D77, D181).
 - **Description:** "Writing or updating instruction documents for agents: AGENTS.md, CLAUDE.md, CLAUDE.local.md and the person's own. Use when adding a rule, tidying or cutting one down, or deciding which file something belongs in; setting skillbook up is setup's." A draft (D115).
 - **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D172). Its other callers: the person, at any time ("add a rule to our `CLAUDE.md`", "this `AGENTS.md` has grown too long"); setup, when it writes into an instruction document (D94); learn, promoting a lesson into a rule (D98).
 - **Flow** (D94):
@@ -399,7 +399,7 @@ coordinate/
   2. start its blueprint through blueprint's main skill when it has none and that set is installed; where it is not, nothing is started or said about it, and each skill's result goes where its default says (D152, D156, D163). Where a blueprint lives in a project the person does not own is asked by blueprint's start step (D117, D163);
   3. check its instruction files through instruct: keep the facts, propose what is missing, such as how to build, test and check. What repeats a skillbook rule is proposed for removal from a shared file only when the whole team uses skillbook; the agent does not ask, counts the team as not using it, and says so in one line, inviting a correction; otherwise it stays, and the person is told why (D107, D115, D149);
   4. recommend what fits: the skillbook sets and skills that will matter there, each named with the reason, such as a language's code skill or maintain's repository standard; outside skills only from sources the person already uses. Installing any of them is an action through guardrails (D107);
-  5. where the skills are installed in the project, check the install and add the pointer to the project's local file, kept out of git, by the rule on where it goes below, unless the install route already wrote it (D165);
+  5. where the skills are installed in the project, check the install and add the pointer to the project's local file, kept out of version control, by the rule on where it goes below, unless the install route already wrote it (D165);
   6. propose everything as one list, and apply what the person approves.
 
   **Moving the pointer,** when the person asks, such as from a project's local file to its shared file once the team commits the skills: the pointer moved through instruct, never left in both, then checked as a machine's step 4 checks it (D165).
@@ -408,7 +408,7 @@ coordinate/
 
   Decided content:
   - the pointer sentence: "before answering any request, load the essentials skill and follow it, except a one-line answer that needs no tool and no file" (D78, D152, D153). The exception is the pointer's: once the main skill is loaded, act's and respond's rules hold for every request (D115);
-  - **where it goes** (D165): where the skills are installed: installed for the person, across projects, their own instruction files, such as `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`; installed in a project and not committed, the project's local file, such as `CLAUDE.local.md`, kept out of git through `.git/info/exclude`, the default for a project; committed for the team, the project's shared `AGENTS.md` or `CLAUDE.md`, since every contributor then has the skills. Which file each harness reads, and whether an install route writes the pointer itself, are its reference file's, settled with the install routes (D165);
+  - **where it goes** (D165): where the skills are installed: installed for the person, across projects, their own instruction files, such as `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`; installed in a project and not committed, the project's local file, such as `CLAUDE.local.md`, kept out of version control, the default for a project; committed for the team, the project's shared `AGENTS.md` or `CLAUDE.md`, since every contributor then has the skills. Which file each harness reads, and whether an install route writes the pointer itself, are its reference file's, settled with the install routes (D165);
   - **Codex's local file:** as far as known, Codex has none that adds to `AGENTS.md`: its `AGENTS.override.md` replaces the shared file in that folder, so Codex's local file is settled with the install routes, its personal file meanwhile (D93, D165);
   - **a project's shared `AGENTS.md` or `CLAUDE.md`** changes only when the person asks, as a proposal; the pointer goes there when the team commits the skills, and, asked for while they are not committed, it is proposed with a warning that contributors without skillbook would be told to load a skill they lack (D165); beside the pointer, it holds only the facts any tool needs: what the project is, where things are, the commands, the project's conventions (D78, D93).
 - **Result:** what was done, reported: the install checked, the pointer added or moved, the blueprint started, the instruction files checked, skills recommended; instruction files are changed only with the person's approval (D63, D137).

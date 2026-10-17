@@ -4,7 +4,7 @@ How skillbook works, as decided. The initial design is open (D27): changes go st
 
 ## Where to start
 
-- [how-it-works.md](how-it-works.md): skillbook as a whole: its sets and groups, its kinds of skill, how skills are written, named and loaded.
+- [how-it-works.md](how-it-works.md): skillbook as a whole: its sets and groups, its kinds of skill and how they are loaded; how a skill is placed, named, designed and reviewed is the project skill skillbook-tree's.
 - [skill-tree.md](skill-tree.md): the full tree of skills, by set, rendered from `tree/`.
 
 ## A folder per set
