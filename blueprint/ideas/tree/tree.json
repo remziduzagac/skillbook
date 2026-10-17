@@ -1,0 +1,1384 @@
+{
+ "tree": [
+  {
+   "path": [
+    "conduct"
+   ],
+   "mark": "●",
+   "src": "",
+   "tail": [],
+   "kids": [
+    {
+     "path": [
+      "conduct",
+      "respond"
+     ],
+     "mark": "●",
+     "short": "",
+     "src": "own md mp",
+     "tail": [],
+     "kids": [],
+     "desc": "how every response is prepared before it is returned: necessary and sufficient, things named in words, top-down when explaining, plain words, outcomes as they happened, no guardrail broken; questions through ask; the main skill checks each response against it (D60, D81, D95, D107, D114, D115)"
+    },
+    {
+     "path": [
+      "conduct",
+      "act"
+     ],
+     "mark": "●",
+     "src": "own vo sp",
+     "tail": [],
+     "kids": [],
+     "desc": "how to act, read first: clarify before acting, through clarify; an opinion is not a task; a concern that would change the work asked and waited on, then exactly what was asked; evidence before any claim, through verify; guardrails before a risky action; the skill for a file's type; a skill by its route; stop when attempts keep failing; which instruction wins; running as a delegated agent (D58, D63, D72, D84, D107, D115, D116)"
+    },
+    {
+     "path": [
+      "conduct",
+      "ask"
+     ],
+     "mark": "●",
+     "src": "own mp",
+     "tail": [],
+     "kids": [],
+     "desc": "how the agent asks the person anything: numbered questions under their own headings, each with a recommended answer; one round or one by one; go ahead, parked and assumed; proposals put the same way (D114)"
+    },
+    {
+     "path": [
+      "conduct",
+      "organize"
+     ],
+     "mark": "●",
+     "src": "vo",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "conduct",
+        "organize",
+        "split"
+       ],
+       "mark": "●",
+       "src": "vo",
+       "tail": [],
+       "kids": [],
+       "desc": "one item, written or still planned, into several parts that do not overlap and cover it; each part readable on its own and sized to how it is read; VaultOps' decompose (D85, D148)"
+      },
+      {
+       "path": [
+        "conduct",
+        "organize",
+        "merge"
+       ],
+       "mark": "●",
+       "src": "vo",
+       "tail": [],
+       "kids": [],
+       "desc": "several redundant items fused into one survivor, links pointing at the others updated (D85)"
+      },
+      {
+       "path": [
+        "conduct",
+        "organize",
+        "compose"
+       ],
+       "mark": "●",
+       "src": "vo",
+       "tail": [],
+       "kids": [],
+       "desc": "a new parent added above items that stay whole: their generalization (D85)"
+      },
+      {
+       "path": [
+        "conduct",
+        "organize",
+        "normalize"
+       ],
+       "mark": "●",
+       "src": "vo",
+       "tail": [],
+       "kids": [],
+       "desc": "the part several items share taken out into one place they all use (D85)"
+      },
+      {
+       "path": [
+        "conduct",
+        "organize",
+        "cluster"
+       ],
+       "mark": "●",
+       "src": "vo",
+       "tail": [],
+       "kids": [],
+       "desc": "a view added for finding items, the items unchanged: an index, grouping for navigation; a map pays for items agents read often (D85, D148)"
+      }
+     ],
+     "desc": "arranging things, written or still planned: rules (one dividing principle, each boundary in one sentence, meaning preserved, the person verifying plan and result, retiring, code through implement; the middle three only when something existing changes), the check of existing parts, then one routing line per operation; units of any kind, examples across writing, code and design (D61, D85, D86, D107, D141, D148)"
+    },
+    {
+     "path": [
+      "conduct",
+      "explain"
+     ],
+     "mark": "●",
+     "desc": "something the agent itself said that did not land, explained top-down: where we are, the point, what it rests on in words, an example; stops once it is clear; explaining something new is understand's (D54, D63, D96, D107)",
+     "src": "mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "verify"
+     ],
+     "mark": "●",
+     "desc": "evidence before claiming work is done, fixed, passing or meets its requirements: the check chosen, run fresh, and who checks; four further checks for a plan's task, a commit or a pull request (D89, D107)",
+     "src": "sp md ws",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "guardrails"
+     ],
+     "mark": "●",
+     "desc": "risky actions in eight kinds (irreversible, wide, outward, outside the task, costly, others' text and code, weaker checks, secrets): proposed with their scope, approved, applied exactly, checked; which text is an instruction and which is data; trivial cost, the project's own commands, safe writes, the network, proportion, the never-rules (D91, D92, D107, D115)",
+     "src": "vo sb lc gs ts",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "stakes"
+     ],
+     "mark": "●",
+     "desc": "how much care something deserves, judged from facts: Undo, Reach, Catch and Cost, and one level, low, medium or high, the higher when unsure and never below a rule; it judges and the caller acts: guardrails, delegate, verify, weigh and understand map it (D121, D133)",
+     "src": "own",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "rightsize"
+     ],
+     "mark": "●",
+     "desc": "nothing missing and nothing extra for the reader, parts comprehensive and exclusive, the point first, and the work rightsized; a five-question check that respond, author, organize, brief, carryover, instruct and act run (D145)",
+     "src": "own mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "cleanup"
+     ],
+     "mark": "●",
+     "desc": "what the agent itself created and no longer needs, removed by exact path or ID: its own without asking, the rest proposed; what is kept said with why; act names it before \"done\" (D126, D129)",
+     "src": "own sp ar an",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "instruct"
+     ],
+     "mark": "●",
+     "desc": "writing and updating instruction documents: AGENTS.md, CLAUDE.md, CLAUDE.local.md and the person's own; called by setup, or asked for at any time (D94)",
+     "src": "mp sp ws oc",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "setup"
+     ],
+     "mark": "●",
+     "desc": "setting skillbook up on a machine (the install, the pointer in the person's own files) or in a project (its blueprint started, its instruction files checked, skills recommended); adds existing skills, makes none (D93, D97, D117)",
+     "src": "cc lc",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "learn"
+     ],
+     "mark": "●",
+     "desc": "what a session taught, when asked: highlights collected, judged and, with approval, made into a rule, a decision or a note in the blueprint, or dropped; skill promotion and where highlights wait are future work (D66, D98, D107) → instruct, design",
+     "src": "ws mp gs cc",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "delegate"
+     ],
+     "mark": "●",
+     "desc": "work given to other agents, the default for any task that is not too small: the type first, after a cost check, then fork or fresh by what the task needs from the conversation and how long it is, then the tier, and the effort apart from it, tiers never named as models; the cost, a running list while the conversation goes on, the work checked; one routing line each for council, fanout and crew; within the harness's limits and its own means (D65, D99, D107, D115, D138, D139, D142, D143, D144, D147); what the agent is told is brief's",
+     "src": "own ts md sp vo",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "conduct",
+        "delegate",
+        "council"
+       ],
+       "mark": "●",
+       "desc": "several agents, about three, answer the same question on the same material independently; a summary keeping disagreements; the person decides (D99, D101, D107, D115)",
+       "src": "ws",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "conduct",
+        "delegate",
+        "fanout"
+       ],
+       "mark": "●",
+       "src": "own ts",
+       "tail": [],
+       "kids": [],
+       "desc": "the work split into parts, each agent with a place or a sub-question the others do not have; findings with their sources consolidated by a script, which checks each quote, then validated and synthesized (D99, D107, D115)"
+      },
+      {
+       "path": [
+        "conduct",
+        "delegate",
+        "crew"
+       ],
+       "mark": "●",
+       "src": "md",
+       "tail": [],
+       "kids": [],
+       "desc": "several agents each change their own items of one job; a shared item has one owner, who applies the others' proposals; then one pass in sequence (D99, D107, D115)"
+      }
+     ]
+    },
+    {
+     "path": [
+      "conduct",
+      "brief"
+     ],
+     "mark": "●",
+     "desc": "what an agent that was not in the conversation is told when it starts: what it needs to start without asking, decisions and constraints not in the files, what was ruled out, the first step and when it is done, references by path, no tool only the writer has; a line or two for a fork, findings for a fresh agent, and the report it asks back; carryover builds on it (D138, D146, D147)",
+     "src": "own mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
+      "carryover"
+     ],
+     "mark": "●",
+     "desc": "work carried over to a later session or agent, built on brief's rules: a page of done, remaining, decisions, uncertain, references, the first next step and what it was written against; offered at a phase's end when a long session's next work fits in it; on resuming, checked against what changed before acting (D65, D104, D107, D147)",
+     "src": "ws mp oc gs ar",
+     "tail": [],
+     "kids": []
+    }
+   ],
+   "desc": "how the agent acts: how it behaves in every root, sets skillbook up, learns from sessions and works with other agents; its own SKILL.md holds the wrap-up offer and one routing line per sub-skill under six headings, and the main skill reads respond and act directly, first, once per conversation (D63, D67, D77, D106, D134)"
+  },
+  {
+   "path": [
+    "understand"
+   ],
+   "mark": "●",
+   "desc": "understanding before acting, with the person and from sources: its own skill holds the rules for the whole scope (keeps nothing, one result shape, guesses marked, facts first, who decides, nothing changed for good) and one routing line per sub-skill under five headings; other roots reach it through the main skill (D50, D56, D112, D130, D131)",
+   "short": "thinking with the person before acting",
+   "src": "",
+   "tail": [],
+   "kids": [
+    {
+     "path": [
+      "understand",
+      "discuss"
+     ],
+     "mark": "●",
+     "desc": "a topic worked through with the person, item by item: the whole first, one item per turn, the agent proposing and the person deciding, every item closed, side topics placed (D130)",
+     "src": "own oc sp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "understand",
+      "clarify"
+     ],
+     "mark": "●",
+     "desc": "what the person means, before acting: shared rules (facts found first, only questions that change the work, each with a recommended answer, nothing acted on before the answers), then the part chosen: shallow first, deep where a part needs it, a questionnaire for someone else's questions (D45, D49, D109)",
+     "src": "oc mp",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "understand",
+        "clarify",
+        "shallow"
+       ],
+       "mark": "●",
+       "desc": "the full picture of a level: one round of questions across all of it, each with a default, then \"going with: …\" (D45, D109)",
+       "src": "oc",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "understand",
+        "clarify",
+        "deep"
+       ],
+       "mark": "●",
+       "desc": "a part or a whole plan questioned until nothing is left assumed: numbered rounds, each question with a recommended answer; one by one on request, without losing the round; a summary confirmed before acting (D58, D109)",
+       "src": "mp",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "understand",
+        "clarify",
+        "questionnaire"
+       ],
+       "mark": "●",
+       "desc": "questions only someone else can answer, written so they can be answered without the conversation; never sent by the agent; the answers are input the person decides on (D49, D50, D109)",
+       "src": "mp",
+       "tail": [],
+       "kids": []
+      }
+     ]
+    },
+    {
+     "path": [
+      "understand",
+      "frame"
+     ],
+     "mark": "●",
+     "desc": "a question or problem stated in a few sentences, with its goal, what is out of scope, its constraints and what a good answer looks like; guesses marked, unknowns handed to clarify; shown to the person before work builds on it; the lenses' one home (D118, D119)",
+     "src": "oc vo",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "understand",
+      "brainstorm"
+     ],
+     "mark": "●",
+     "desc": "options for one open question: framed through frame, options listed before any is judged and differing in kind, the promising ones developed and challenged, weighed through weigh, then decided through conduct's ask or parked; keeps nothing, design's discuss step records it (D53, D118)",
+     "src": "oc sp vo",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "understand",
+      "weigh"
+     ],
+     "mark": "●",
+     "desc": "options compared on terms stated before any is scored, frame's \"a good answer\" where there is one: what each gives, costs, could get wrong and leaves unknown, a real downside each; a recommendation with its reasoning, or no clear winner and what would settle it (D118, D122)",
+     "src": "oc vo",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "understand",
+      "challenge"
+     ],
+     "mark": "●",
+     "desc": "an idea, plan or decision attacked before it is relied on, measured against its frame: stated at its strongest, its assumptions named, each weakness with its seriousness and what would address it, then an honest verdict; it changes nothing itself (D118, D124)",
+     "src": "vo",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "understand",
+      "argue"
+     ],
+     "mark": "●",
+     "desc": "the strongest honest case for a position, challenge's mirror: the position stated through frame, every reason with its evidence or marked as an assumption, the strongest objections found through challenge and met, weaknesses admitted, the case rated and labelled one-sided; it decides nothing (D132)",
+     "src": "gs ar",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "understand",
+      "naming"
+     ],
+     "mark": "●",
+     "desc": "names people will read and rely on: chosen from brainstorm's candidates, weighed through weigh, recorded with the rejected words; and the vocabulary kept to one word per concept in the project's glossary, a term used two ways flagged (D67, D125)",
+     "src": "md mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "understand",
+      "research"
+     ],
+     "mark": "●",
+     "desc": "finding out from sources: the question stated, every finding with its source and strength, what was not found, matched to its version and date, disagreements shown; chooses the part; a reference file per kind of source (D59, D128)",
+     "short": "finding out, with sources",
+     "src": "mp ar own",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "understand",
+        "research",
+        "fact"
+       ],
+       "mark": "●",
+       "desc": "one question answered, or one claim checked both ways, with a verdict weighed by the strength of the evidence (D128)",
+       "src": "ar mp gs",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "understand",
+        "research",
+        "survey"
+       ],
+       "mark": "●",
+       "desc": "what exists on a subject, found widely and compared on the same terms, the screened-out named, coverage and date stated; weigh chooses → conduct-delegate (D128)",
+       "src": "ts an own ar",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "understand",
+        "research",
+        "analyze"
+       ],
+       "mark": "●",
+       "desc": "why something happens: the symptom stated, one testable cause at a time, the chain traced back to its trigger, the fix left to the caller; test-debug asks for it when the cause is not obvious (D59, D128)",
+       "src": "ws gs sp ar",
+       "tail": [],
+       "kids": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "path": [
+    "design"
+   ],
+   "mark": "●",
+   "desc": "how to design anything: the design flow and its principles, and the sub-skills each step calls; with a blueprint, its steps record and track the design (D46, D47)",
+   "short": "shaping what to make, before and while making it",
+   "src": "",
+   "tail": [],
+   "kids": [
+    {
+     "path": [
+      "design",
+      "architecture"
+     ],
+     "mark": "●",
+     "desc": "software's design knowledge: deep modules, seams, contracts, hot paths",
+     "src": "mp hs",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "review"
+     ],
+     "mark": "●",
+     "desc": "a design reviewed through lenses: consistency, lean, model check, architecture; review points here (D39)",
+     "src": "ts mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "start"
+     ],
+     "mark": "●",
+     "desc": "a blueprint started, or an existing project described into one",
+     "src": "sk",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "discuss"
+     ],
+     "mark": "●",
+     "desc": "ideas and session notes recorded",
+     "src": "sk mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "research"
+     ],
+     "mark": "●",
+     "desc": "research notes recorded with their sources",
+     "src": "sk ts",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "decide"
+     ],
+     "mark": "●",
+     "desc": "decisions recorded with their reasons, and notes under earlier ones",
+     "src": "sk mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "evidence"
+     ],
+     "mark": "●",
+     "src": "sk",
+     "tail": [],
+     "kids": [],
+     "desc": "an evidence entry recorded: the claim, what was run or seen, who verified it, what it supports (D90)"
+    },
+    {
+     "path": [
+      "design",
+      "write"
+     ],
+     "mark": "●",
+     "desc": "requirements and design updated, in the root or a workstream",
+     "src": "sk",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "workstream"
+     ],
+     "mark": "●",
+     "desc": "a workstream opened for a change, with its key and status",
+     "src": "sk",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "tasks"
+     ],
+     "mark": "●",
+     "desc": "roadmap steps and tasks written from the plan",
+     "src": "sk mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "work"
+     ],
+     "mark": "●",
+     "desc": "the design kept in step while a task is implemented",
+     "src": "sk",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "sync"
+     ],
+     "mark": "●",
+     "desc": "the design brought up to date with code changed elsewhere",
+     "src": "sk",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "consolidate"
+     ],
+     "mark": "●",
+     "desc": "a finished workstream folded into its parent, then reviewed",
+     "src": "sk",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "parallel"
+     ],
+     "mark": "●",
+     "desc": "several agents at once: staged mode, pending files",
+     "src": "sk",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "check"
+     ],
+     "mark": "●",
+     "desc": "the folder's health; maintain points here (D39)",
+     "src": "sk",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "design",
+      "publish"
+     ],
+     "mark": "●",
+     "desc": "a private blueprint made public (D39)",
+     "src": "sk",
+     "tail": [],
+     "kids": []
+    }
+   ]
+  },
+  {
+   "path": [
+    "plan"
+   ],
+   "mark": "●",
+   "desc": "planning any work before acting: a plan when order matters, an approach must be chosen, stakes are medium or higher, or the work is long or wide; one line or a full plan; approved when it holds the person's choice; revised when a step fails (D151)",
+   "short": "planning any work before acting: a plan when order matters, an approach must be chosen, stakes are medium or higher, or the work is long or wide; one line or a full plan; approved when it holds the person's choice; revised when a step fails (D151)",
+   "src": "",
+   "tail": [
+    "with a blueprint, the plan is written into its roadmap and tasks"
+   ],
+   "kids": []
+  },
+  {
+   "path": [
+    "implement"
+   ],
+   "mark": "●",
+   "desc": "making it, by carrying out the design",
+   "short": "making it, by carrying out the design",
+   "src": "",
+   "tail": [],
+   "kids": [
+    {
+     "path": [
+      "implement",
+      "prototype"
+     ],
+     "mark": "●",
+     "desc": "throwaway work that answers one design question → cited by design",
+     "src": "mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "implement",
+      "plan"
+     ],
+     "mark": "●",
+     "desc": "a plan carried out task by task → test, review, conduct-verify, conduct-delegate",
+     "src": "sp mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "implement",
+      "git"
+     ],
+     "mark": "●",
+     "desc": "git work by the house rules; routes to its sub-skills",
+     "src": "ws hs sp mp",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "implement",
+        "git",
+        "worktree"
+       ],
+       "mark": "●",
+       "desc": "a task in its own worktree",
+       "src": "sp",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "implement",
+        "git",
+        "commit"
+       ],
+       "mark": "●",
+       "desc": "a commit message proposed in the house style",
+       "src": "ws hs",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "implement",
+        "git",
+        "finish"
+       ],
+       "mark": "●",
+       "desc": "merge, pull request or discard",
+       "src": "sp",
+       "tail": [],
+       "kids": []
+      }
+     ]
+    },
+    {
+     "path": [
+      "implement",
+      "web"
+     ],
+     "mark": "○",
+     "desc": "frontend design and React practice",
+     "src": "an vc",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "implement",
+      "agent-tools"
+     ],
+     "mark": "●",
+     "desc": "tools that agents drive: CLI contracts, MCP servers, packaging",
+     "src": "sb ws ts an",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "implement",
+      "code"
+     ],
+     "mark": "●",
+     "src": "",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "implement",
+        "code",
+        "python"
+       ],
+       "mark": "○",
+       "src": "sk",
+       "tail": [],
+       "kids": [],
+       "desc": "Python written to the house style; its checks come from the repository profile"
+      },
+      {
+       "path": [
+        "implement",
+        "code",
+        "typescript"
+       ],
+       "mark": "○",
+       "src": "sk",
+       "tail": [],
+       "kids": [],
+       "desc": "TypeScript written to the house style; its checks come from the repository profile"
+      },
+      {
+       "path": [
+        "implement",
+        "code",
+        "bash"
+       ],
+       "mark": "○",
+       "src": "sk",
+       "tail": [],
+       "kids": [],
+       "desc": "Bash written to the house style; its checks come from the repository profile"
+      },
+      {
+       "path": [
+        "implement",
+        "code",
+        "go"
+       ],
+       "mark": "○",
+       "src": "sk",
+       "tail": [],
+       "kids": [],
+       "desc": "Go written to the house style; its checks come from the repository profile"
+      },
+      {
+       "path": [
+        "implement",
+        "code",
+        "rust"
+       ],
+       "mark": "○",
+       "src": "sk",
+       "tail": [],
+       "kids": [],
+       "desc": "Rust written to the house style; its checks come from the repository profile"
+      }
+     ],
+     "desc": "how to write code in each language well; act sends every file written to its language's skill; each shares one source with the repository profile for that language in maintain-repo (D67, D68)"
+    }
+   ]
+  },
+  {
+   "path": [
+    "test"
+   ],
+   "mark": "●",
+   "desc": "checking that it works",
+   "short": "checking that it works",
+   "src": "",
+   "tail": [],
+   "kids": [
+    {
+     "path": [
+      "test",
+      "tdd"
+     ],
+     "mark": "●",
+     "desc": "test first; characterisation tests before a risky refactor",
+     "src": "mp sp hs",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "test",
+      "debug"
+     ],
+     "mark": "●",
+     "desc": "a loop that goes red, the root cause, one change at a time → test-tdd, understand-research-analyze",
+     "src": "mp sp hs gs",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "test",
+      "browser"
+     ],
+     "mark": "○",
+     "desc": "a web app tested in a real browser",
+     "src": "an",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "test",
+      "experiment"
+     ],
+     "mark": "●",
+     "desc": "a product tested by fleets of agents, profiles, sweeps (D41)",
+     "src": "md ts own",
+     "tail": [],
+     "kids": []
+    }
+   ]
+  },
+  {
+   "path": [
+    "review"
+   ],
+   "mark": "●",
+   "desc": "judging a change before it lands",
+   "short": "judging a change before it lands",
+   "src": "",
+   "tail": [
+    "design reviews: design-review, under design, because its findings become decisions (D39)"
+   ],
+   "kids": [
+    {
+     "path": [
+      "review",
+      "code"
+     ],
+     "mark": "●",
+     "desc": "review a change; receive a review",
+     "src": "mp sp ws",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "review",
+      "pr"
+     ],
+     "mark": "●",
+     "desc": "a pull request that shows the change and the evidence it works",
+     "src": "mp",
+     "tail": [],
+     "kids": []
+    }
+   ]
+  },
+  {
+   "path": [
+    "ship"
+   ],
+   "mark": "●",
+   "desc": "getting it to people, within maintain-repo's release rules",
+   "short": "getting it to people, within maintain-repo's release rules",
+   "src": "",
+   "tail": [],
+   "kids": [
+    {
+     "path": [
+      "ship",
+      "build"
+     ],
+     "mark": "○",
+     "desc": "compiling and packaging what ships",
+     "src": "",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "ship",
+      "release"
+     ],
+     "mark": "●",
+     "desc": "cut a release: notes, CI on the exact commit, rehearsal, promotion",
+     "src": "hs ws",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "ship",
+      "deploy"
+     ],
+     "mark": "○",
+     "desc": "through a protected environment; previews; a check after each deploy",
+     "src": "",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "ship",
+      "rollback"
+     ],
+     "mark": "○",
+     "desc": "a written, tested way back, and running it",
+     "src": "",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "ship",
+      "infra"
+     ],
+     "mark": "○",
+     "desc": "environments, infrastructure as code, containers, secrets in place",
+     "src": "",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "ship",
+      "wizard"
+     ],
+     "mark": "●",
+     "desc": "steps only a person can take, as an interactive script",
+     "src": "mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "ship",
+      "monitor"
+     ],
+     "mark": "○",
+     "desc": "watching what runs; alerts without fatigue",
+     "src": "ws",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "ship",
+      "incident"
+     ],
+     "mark": "○",
+     "desc": "responding when it breaks, and the review after",
+     "src": "",
+     "tail": [],
+     "kids": []
+    }
+   ]
+  },
+  {
+   "path": [
+    "maintain"
+   ],
+   "mark": "●",
+   "desc": "keeping it healthy over time",
+   "short": "keeping it healthy over time",
+   "src": "",
+   "tail": [],
+   "kids": [
+    {
+     "path": [
+      "maintain",
+      "repo"
+     ],
+     "mark": "●",
+     "desc": "the repository standard: files, checks, CI, settings, upkeep (D37)",
+     "src": "sk",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "maintain",
+        "repo",
+        "setup"
+       ],
+       "mark": "●",
+       "desc": "a project's scope recorded: its conditions and profiles",
+       "src": "sk",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "maintain",
+        "repo",
+        "create"
+       ],
+       "mark": "●",
+       "desc": "a new repository created to the standard",
+       "src": "sk",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "maintain",
+        "repo",
+        "audit"
+       ],
+       "mark": "●",
+       "desc": "a repository checked against every rule in its scope",
+       "src": "sk",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "maintain",
+        "repo",
+        "close-gaps"
+       ],
+       "mark": "●",
+       "desc": "what the audit found, fixed or recorded as accepted",
+       "src": "sk",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "maintain",
+        "repo",
+        "keep"
+       ],
+       "mark": "●",
+       "desc": "upkeep: the health workflow, renewals, settings drift",
+       "src": "sk",
+       "tail": [],
+       "kids": []
+      }
+     ]
+    },
+    {
+     "path": [
+      "maintain",
+      "fork"
+     ],
+     "mark": "●",
+     "desc": "a long-lived fork kept mergeable",
+     "src": "hs",
+     "tail": [],
+     "kids": []
+    }
+   ]
+  },
+  {
+   "path": [
+    "author"
+   ],
+   "mark": "●",
+   "desc": "writing work for people, sorted by reader: the project's record, users, stakeholders, the public; editing; markdown, the format (D67, D69)",
+   "short": "writing for any reader, people or agents",
+   "src": "",
+   "tail": [],
+   "kids": [
+    {
+     "path": [
+      "author",
+      "blueprint"
+     ],
+     "mark": "●",
+     "src": "sk mp ts",
+     "tail": [],
+     "kids": [],
+     "desc": "the form of each kind of blueprint document: idea, session note, research note, decision record, evidence entry, requirements, design document, roadmap and tasks, workstream; design's recording steps call it, and keep the filing and tracking themselves (D69)"
+    },
+    {
+     "path": [
+      "author",
+      "docs"
+     ],
+     "mark": "○",
+     "desc": "documentation for the people who use what was built: docs pages, guides, READMEs; co-writing a document with the person (D69)",
+     "src": "an hs mp md",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "author",
+      "business"
+     ],
+     "mark": "○",
+     "desc": "documents for stakeholders: status update, report, proposal, one-pager, memo, email; a design rendered as one PRD-style document; office formats through Anthropic's document skills (D69)",
+     "src": "ws an",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "author",
+      "articles"
+     ],
+     "mark": "○",
+     "desc": "articles built from fragments, beats and shape",
+     "src": "mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "author",
+      "edit"
+     ],
+     "mark": "●",
+     "desc": "a written text improved in passes, each asking one checkable question, structure before sentences before words; as many passes as the text needs; in one call, passes can run as parallel agents whose proposed changes are consolidated (D70) → conduct-delegate",
+     "src": "md",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "author",
+      "issue"
+     ],
+     "mark": "●",
+     "desc": "an issue written for whoever was not in the conversation: posting through guardrails, the project's templates winning, a security problem never public (D127)",
+     "src": "mp sk",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "author",
+        "issue",
+        "bug"
+       ],
+       "mark": "○",
+       "desc": "what happened against what was expected, steps to reproduce, environment, evidence with secrets removed (D127)",
+       "src": "",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "author",
+        "issue",
+        "feature"
+       ],
+       "mark": "○",
+       "desc": "the problem first, the proposal, alternatives, what is out of scope (D127)",
+       "src": "",
+       "tail": [],
+       "kids": []
+      }
+     ]
+    },
+    {
+     "path": [
+      "author",
+      "reader"
+     ],
+     "mark": "●",
+     "desc": "a document read as its intended reader would, with only the document, often by a fresh agent: can a builder build, an implementer start, an agent resume or act, a user follow; name to settle (D123)",
+     "src": "sp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "author",
+      "markdown"
+     ],
+     "mark": "●",
+     "desc": "how markdown is laid out: seven structure rules for every response and document (headings for sections, tables only when they fit in 120 characters, prose unwrapped, code fenced), and the file rules a linter checks, a project's own configuration winning; the main skill reads it at the start (D68, D95, D110, D111)",
+     "src": "own",
+     "tail": [],
+     "kids": []
+    }
+   ]
+  },
+  {
+   "path": [
+    "rigs"
+   ],
+   "mark": "○",
+   "src": "",
+   "tail": [],
+   "kids": [],
+   "desc": "the programs agents drive: git and the GitHub CLI, other agent programs for delegation, herdr, nvim, containers; one home per program for delegate, council and setup; to design (D103)"
+  }
+ ],
+ "rename": {
+  "design": "design",
+  "design-architecture": "design-architecture",
+  "design-review": "design-review",
+  "design-start": "design-start",
+  "design-discuss": "design-discuss",
+  "design-research": "design-research",
+  "design-decide": "design-decide",
+  "design-write": "design-write",
+  "design-workstream": "design-workstream",
+  "design-tasks": "design-tasks",
+  "design-work": "design-work",
+  "design-sync": "design-sync",
+  "design-consolidate": "design-consolidate",
+  "design-parallel": "design-parallel",
+  "design-check": "design-check",
+  "design-publish": "design-publish",
+  "plan": "plan",
+  "plan-breakdown": "plan-breakdown",
+  "plan-slices": "plan-slices",
+  "plan-sequence": "plan-sequence",
+  "implement": "implement",
+  "implement-prototype": "implement-prototype",
+  "implement-plan": "implement-plan",
+  "implement-git": "implement-git",
+  "implement-git-worktree": "implement-git-worktree",
+  "implement-git-commit": "implement-git-commit",
+  "implement-git-finish": "implement-git-finish",
+  "implement-web": "implement-web",
+  "implement-agent-tools": "implement-agent-tools",
+  "test": "test",
+  "test-tdd": "test-tdd",
+  "test-debug": "test-debug",
+  "test-browser": "test-browser",
+  "test-experiment": "test-experiment",
+  "review": "review",
+  "review-code": "review-code",
+  "review-pr": "review-pr",
+  "ship": "ship",
+  "ship-build": "ship-build",
+  "ship-release": "ship-release",
+  "ship-deploy": "ship-deploy",
+  "ship-rollback": "ship-rollback",
+  "ship-infra": "ship-infra",
+  "ship-wizard": "ship-wizard",
+  "ship-monitor": "ship-monitor",
+  "ship-incident": "ship-incident",
+  "maintain": "maintain",
+  "maintain-repo": "maintain-repo",
+  "maintain-repo-setup": "maintain-repo-setup",
+  "maintain-repo-create": "maintain-repo-create",
+  "maintain-repo-audit": "maintain-repo-audit",
+  "maintain-repo-close-gaps": "maintain-repo-close-gaps",
+  "maintain-repo-keep": "maintain-repo-keep",
+  "maintain-fork": "maintain-fork",
+  "write": "write",
+  "write-markdown": "languages-markdown",
+  "write-agents": "write-for-agents",
+  "write-updates": "author-updates",
+  "write-docs": "author-docs",
+  "write-edit": "author-edit",
+  "write-naming": "understand-naming",
+  "write-articles": "author-articles",
+  "think": "understand",
+  "think-clarify": "understand-clarify",
+  "think-clarify-shallow": "understand-clarify-shallow",
+  "think-clarify-deep": "understand-clarify-deep",
+  "think-ideate": "understand-brainstorm",
+  "think-discuss": "understand",
+  "think-questionnaire": "understand-clarify-questionnaire",
+  "think-explain": "understand-explain",
+  "research": "understand-research",
+  "research-survey": "understand-research-survey",
+  "research-analyze": "understand-research-analyze",
+  "research-write-up": "understand-research",
+  "knowledge": "productivity-knowledge",
+  "knowledge-capture": "productivity-knowledge-capture",
+  "knowledge-ingest": "productivity-knowledge-ingest",
+  "knowledge-distill": "productivity-knowledge-distill",
+  "knowledge-find": "productivity-knowledge-find",
+  "knowledge-tidy": "productivity-knowledge-tidy",
+  "knowledge-vault": "productivity-knowledge-vault",
+  "knowledge-teach": "productivity-knowledge-teach",
+  "routines": "productivity-routines",
+  "routines-meetings": "productivity-routines-meetings",
+  "routines-reflect": "productivity-routines-reflect",
+  "routines-close-out": "productivity-routines-close-out",
+  "routines-tasks": "productivity-routines-tasks",
+  "routines-triage": "productivity-routines-triage",
+  "routines-focus": "productivity-routines-focus",
+  "routines-people": "productivity-routines-people",
+  "agents": "agents",
+  "agents-skills": "conduct-skills",
+  "agents-setup": "conduct-setup",
+  "agents-learn": "conduct-learn",
+  "agents-delegate": "conduct-delegate",
+  "agents-handoff": "conduct-handoff",
+  "agents-council": "agents-delegate-council",
+  "agents-verify": "conduct-verify",
+  "agents-guardrails": "conduct-guardrails",
+  "understand-organize": "conduct-organize",
+  "understand-explain": "conduct-explain",
+  "answer": "conduct-answer",
+  "write-for-agents": "conduct-instruct",
+  "agents-delegate-council": "conduct-delegate-council",
+  "author-updates": "author-business",
+  "conduct-answer": "conduct-respond"
+ },
+ "main": "skillbook, the main skill and the only skill listed to the model: its rules hold in every case (follow act's rules, lay out every response and markdown file with author's markdown), so it reads act, respond and author's markdown first; for now it routes to understand, author's markdown and conduct, several for one request where the work needs them, and other work is done under act's rules until its root is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143)"
+}

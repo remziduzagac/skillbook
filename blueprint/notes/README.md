@@ -9,3 +9,4 @@ How skillbook's design was discussed, the ideas gathered for it, and the first d
 - [knowledge-and-routines.md](knowledge-and-routines.md): what was known about knowledge and routines when they were set aside as future work (D64). Names private projects: review before publishing.
 - [skill-review.md](skill-review.md): the review of the skills designed by 2026-10-13 with skillbook-tree, every finding and what became of it (D113–D116).
 - [hierarchical-skills.md](hierarchical-skills.md): guideline for the skill that teaches hierarchical skills: platform facts and skillbook conventions apart, a worked slice, a review checklist.
+- [carryover.md](carryover.md): where the design work stands for the next session: done, remaining, open questions, the first next step.
