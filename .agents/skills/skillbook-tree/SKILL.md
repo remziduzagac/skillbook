@@ -21,7 +21,7 @@ How skills are made and reviewed in this repository; a project skill, never ship
 
 ## Instructions
 
-- **Reviewing a skill:** run checks 1 to 7 over it. For a skill with sub-skills of its own, run checks 8 to 10 as well, then review each sub-skill the same way. Several skills can be reviewed in one pass; report each separately.
+- **Reviewing a skill:** run checks 1 to 7 and 11 over it. For a skill with sub-skills of its own, run checks 8 to 10 as well, then review each sub-skill the same way. Several skills can be reviewed in one pass; report each separately.
 - **Reviewing several roots at once:** one reviewer per root, each loading this skill, so findings stay independent; the findings are then checked before they reach the person.
 - **Outside material:** adapted, never copied. What a skill takes from another collection or an earlier project is rewritten for skillbook's case, inside the skill, in a reference file of its own, or as a new skill where other skills need it too; no outside file is used as it is, and its licence is checked first (D30, D120).
 - **Making or changing a skill:** not covered here yet. Follow "How a skill is written" in `blueprint/design/how-it-works.md`, then review the result with this checklist.
@@ -29,7 +29,7 @@ How skills are made and reviewed in this repository; a project skill, never ship
 
 ## The checklist
 
-Checks 1 to 7 hold for every skill, leaf skills too; checks 8 to 10 also for a skill with sub-skills of its own.
+Checks 1 to 7 and 11 hold for every skill, leaf skills too; checks 8 to 10 also for a skill with sub-skills of its own.
 
 1. **Every instruction names the skill it needs:** by its path within a root, through the main skill across roots.
 2. **Nothing ambiguous, nothing contradictory, no unstated gap:** no instruction can be read two ways; none contradicts another skill's; every case the skill does not cover is named, with where to go: another skill, or the agent's own judgment.
@@ -41,6 +41,14 @@ Checks 1 to 7 hold for every skill, leaf skills too; checks 8 to 10 also for a s
 8. **The sections, in order:** rules at the top, advice, instructions in the order the work happens, and the last instruction, what is done before anything is returned.
 9. **Each sub-skill:** when to use it, when not, and what it gives back.
 10. **Its own level:** if-then-else only where an order must be imposed, and nothing about how a sub-skill works inside.
+11. **Cost:** every turn carries the whole context again, so the skill spends no tokens that do not buy quality (D142, D149):
+    - **reading:** only what is needed, by searching first, reading parts and following pointers; nothing read twice;
+    - **turns:** independent calls go together, and skills named for the same step are read in one turn; no check repeated without need;
+    - **writing:** outputs rightsized, by conduct's rightsize; pointers where pasted content would do; no question to the person that is not truly open;
+    - **delegation:** a step that should go to an agent goes through conduct's delegate; no fanout where a search would do;
+    - **loading:** other skills reached only at the moment they are needed; the skill's own file short, with what only some work needs in a linked file;
+    - **the main context:** no step pours large output into the main session; bulk goes to a named file;
+    - **checks:** the cheapest evidence that would fail if the claim were false.
 
 ## The report
 

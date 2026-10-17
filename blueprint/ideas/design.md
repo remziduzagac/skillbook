@@ -4,6 +4,8 @@ Ideas and open questions for design, not decided. What is decided is in [../desi
 
 ## design
 
+- When design plans a system's parts, or an idea document's sub-documents, it calls conduct's organize, whose split takes what the planned whole must cover, its requirements, as the items (D148).
+
 ### architecture
 
 - Engineering practice and design patterns kept when designing and implementing, raised after a file of about 11,000 lines was found: see [open.md](open.md), engineering practice.

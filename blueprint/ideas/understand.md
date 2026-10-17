@@ -5,6 +5,7 @@ Ideas and open questions for understand, not decided. What is decided is in [../
 ## understand
 
 - Decided (D131), with the discussion as a sub-skill of its own, discuss (D130). The proposals below are kept as they were.
+- Decided (D149): the result shape says where to find a part and is not a form to fill.
 
 Proposed on 2026-10-12, to take up once the sub-skills are designed; not decided:
 
@@ -43,6 +44,7 @@ Proposed on 2026-10-12, to take up once the sub-skills are designed; not decided
 ### challenge
 
 - Decided (D124).
+- Decided (D150). Raised by the person 2026-10-17: a critique after deciding or before suggesting. challenge already attacks an idea before it is relied on; it gains a trigger in conduct's ask, before a recommendation is put and after a decision made without or against one, its depth following stakes.
 
 ### argue
 
@@ -56,6 +58,7 @@ Proposed on 2026-10-12, to take up once the sub-skills are designed; not decided
 
 - Decided (D128).
 - Reshaped (D140), as the baseline review found (D137): one routing line per part; sources and fanning out as research's advice, ranking as its rule 3, which the parts point to.
+- Decided (D149): a kind of source's reference file read when that kind is first searched; with many findings, those the answer rests on given and the full list in a named file; survey fans out only when delegate's test for splitting holds.
 
 #### fact
 

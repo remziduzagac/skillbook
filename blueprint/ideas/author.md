@@ -4,6 +4,9 @@ Ideas and open questions for author, not decided. What is decided is in [../desi
 
 ## author
 
+- When author plans a document not yet written, its sections are planned through conduct's organize, whose split takes the topics the document must cover as the items; to design with author's own skill (D148).
+- Decided (D149): markdown with no linter is checked by a search for the mechanical rules rather than a read-back; with a linter, it runs once after the last file.
+
 ### blueprint
 
 - The decision format carries weigh's comparison: the options weighed and why the chosen one won; to design with author's blueprint skill (D121).

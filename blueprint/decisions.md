@@ -393,6 +393,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D130 (2026-10-14):** discuss is understand's sub-skill again, the method of a discussion over several items; design's discuss step stays for now.
 >
 > **Amended by D131 (2026-10-14):** keeping nothing and the one result shape are understand's own rules, their one home.
+>
+> **Amended by D149 (2026-10-17):** the shape says where to find a part and is not a form to fill: an empty field is left out, except Not found, and a field the reader already has is not shown to the person.
 
 **Decision:** think holds thinking methods that design, knowledge and any other skill can use. Its skills have no tools, folders or files of their own: the conventions they carried from earlier tools (discuss's anchor, scribble and final notes, ideation's thread map, a vault's layout) are dropped. Each think skill ends on a short result in one shape: what was decided and why, what was parked and why, and what comes next. Used alone, the result stays in the conversation; called from another skill, it goes back to that skill, which keeps it where it belongs, such as design in the blueprint. think's discuss is the method of a discussion over several threads; design's discuss records one. questionnaire still writes a document, because the document is what is handed over, but where it goes is the caller's or the person's choice.
 
@@ -447,6 +449,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D58 (2026-10-11):** a second rule: ask before acting on what is not understood.
 >
 > **Amended by D60 (2026-10-11):** the rule on naming things in words moves to the answer skill.
+>
+> **Amended by D146 (2026-10-17):** naming things in words gains its test: a reference stays as it is when its reader can tell what it is from the reference itself, on the spot; otherwise a few words first, the number in brackets after.
 
 **Decision:** One main skill sits above the six roots and holds the rules every skill follows. The first rule: name things in words; never use a reference the person cannot resolve on the spot, such as a bare decision number, a source code or a name from earlier in a long session, and when a number helps for looking something up, put it in brackets after the words. Its name, its folder, whether it is listed every turn or read by each root first, and how it relates to the always-on principles in `AGENTS.md` (D41) are still open.
 
@@ -483,6 +487,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D109 (2026-10-12):** deep no longer maps a tree of decisions: each round asks what can be answered now. It ends with a summary of decided, parked and assumed that the person confirms, and offers to record decisions in long sessions.
 >
 > **Amended by D114 (2026-10-13):** how questions are put, laid out and answered moves to conduct's ask; deep keeps finding them.
+>
+> **Amended by D150 (2026-10-17):** a recommended answer is challenged first, through understand's challenge, at a depth set by stakes.
 
 **Decision:** The behaviour first known as grilling lives in three places, each holding one part:
 
@@ -510,6 +516,10 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D81 (2026-10-11):** answer is renamed respond, with more rules, and checked before every response.
 >
 > **Amended by D83 (2026-10-11):** for responses the rule is named "necessary and sufficient".
+>
+> **Amended by D145 (2026-10-17):** the rules that every output shares, nothing missing, nothing extra and top-down, live in conduct's rightsize; respond keeps their uses for a response.
+>
+> **Amended by D146 (2026-10-17):** respond's rule on things named in words gains its test and its examples; a delegated agent's report to the main agent may use numbers, turned into words for the person.
 
 **Decision:** A skill named answer, directly under the main skill, holds every rule about how the agent's answers are written; the main skill loads it first on every request, and once loaded it stays in the conversation for the answers that follow. Its first rules: an answer covers everything the question needs and nothing it does not, with no missing part, no padding and no side topic the person did not ask for (comprehensive and exclusive, the "efradını câmi, ağyarını mâni" of a good definition); things are named in words, never by a reference the person cannot resolve (moved from the main skill, D55); an explanation goes top-down (D54); plain words. The main skill keeps the rules of behaviour, such as asking before acting on what is not understood (D58), and the routing. write's skills point to answer for the plain-writing rules they share.
 
@@ -554,6 +564,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D67 (2026-10-11):** agents merges into conduct; for-agents becomes instruct, for lasting instructions only.
 >
 > **Amended by D94 and D97 (2026-10-12):** instruct writes and updates instruction documents; setup sets skillbook up on a machine and in a project, with the pointer in the person's own instruction files.
+>
+> **Amended by D147 (2026-10-17):** handoff is renamed carryover and builds on brief, a new skill beside delegate for what an agent starting now is told.
 
 **Decision:** Within agents: council becomes a sub-skill of delegate. delegate covers work given to other agents now (one question, many in parallel, several on the same question), and handoff covers work passed to an agent later (the state written down, and resuming from it); together they hold the cooperation patterns of the person's earlier project workslate (handoff, inquiry, fan-out, multi-inquiry, discussion). learn decides where a session's lesson goes (a skill, a rule in `AGENTS.md`, a decision, a note, or nothing) and calls skills when the lesson is a skill; skills drops its "from a session" mode. setup owns the agent files of a project and of the person: `AGENTS.md` kept short and pointing to skills, the sentence pointing to the main skill (D57), hooks, skills to add. write's sub-skill for writing for agents moves from `write/agents/` to `write/for-agents/`, since Codex keeps a skill's settings in an `agents/` folder inside it. Like understand's (D50), agents' skills drop the folders, formats and tools of the earlier projects they came from; where each keeps what it produces is designed skill by skill.
 
@@ -580,6 +592,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D94 (2026-10-12):** instruct writes and updates instruction documents only, not skill files.
 >
 > **Amended by D125 (2026-10-13):** naming is designed.
+>
+> **Amended by D147 (2026-10-17):** handoff is renamed carryover; its rules stay its own, not instruct's.
 
 **Decision:**
 
@@ -634,6 +648,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 ## D72: Skills are read once per conversation; routes are followed, not searched (2026-10-11)
 
 > **Tested (2026-10-11):** with act's rule, Claude Code stopped searching the skill folders and followed the route, 3 of 3. Evidence: [E3, E4](evidence.md).
+>
+> **Amended by D149 (2026-10-17):** skills a route names for the same step are read together, in one turn; the main skill's first read adds conduct's rightsize.
 
 **Decision:** skillbook adds no mechanism and no instruction for reusing a skill already loaded: both agents reuse what they read for the rest of the conversation, after compaction too. act gains a rule: reach a skill by following its route and read its whole file; never search the skill folders for keywords. Whether a long skill whose details never showed in an answer survives compaction is tested once a real long skill exists.
 
@@ -662,6 +678,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 ## D76: No group layers; the stages are roots (2026-10-11)
 
 > **Amended by D115 (2026-10-13):** the stages' order is advice with its reason; the work decides where it starts and which stages it skips.
+>
+> **Amended by D151 (2026-10-17):** plan becomes the root for planning any work before acting; its software-engineering parts, breakdown, slices and sequence, are kept in plan's ideas for the person's software-engineering skills.
 
 **Decision:** engineering is dissolved: design, plan, implement, test, review, ship and maintain sit directly under the main skill, beside conduct, understand and author. The main skill's routing holds the stages' order, design → plan → implement → test → review → ship → maintain, and each stage says what comes next. Names lose the prefix (`design-start`, `implement-code-python`). With productivity set aside (D64), no group layer is left.
 
@@ -708,6 +726,10 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 > **Amended by D114 (2026-10-13):** respond's rules on putting questions and on a question at the end move to conduct's ask; respond names ask.
 >
 > **Amended by D134 (2026-10-15):** respond gains a rule against flattery, advice to state the person's view at its strongest first, and a last instruction; a comparison is shown only when it helps decide, as its first rule.
+>
+> **Amended by D145 (2026-10-17):** respond's first rule points to conduct's rightsize, and its fourth keeps only the shape of an explanation; its last instruction runs rightsize's check.
+>
+> **Amended by D149 (2026-10-17):** a one-line response gets a glance; the full pass runs for longer responses and for any that touch a secret, an irreversible action, a reference or a failure.
 
 **Decision:** conduct's answer is renamed respond: how every response is prepared, whether an answer, a report of work done, a question back or a summary. The main skill reads it first on every request, with act, and checks each response against it before returning it. Beside its earlier rules (complete and nothing extra, things named in words, top-down when explaining, plain words), it gains: the length follows the question; a decision is asked as numbered questions, each with a recommended answer worded so that "yes" accepts it, while understand's deep clarify keeps how the questions are found; outcomes are reported as they happened, what was done, skipped or failed, and a verified result plainly; a response ends on a question only when something is truly open. Each rule carries one short example and must hold with the example deleted; everything sits in `SKILL.md`. Five tests check it: a decision named in words, a short answer to a short question, an explanation's top-down order, a choice asked as numbered questions, a failure reported.
 
@@ -720,6 +742,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 **Why:** The response is the last point before anything leaves the agent, so a guardrail checked there catches what the work missed; reading guardrails' details only when a response touches them keeps every other response at the cost of respond alone.
 
 ## D83: A response is necessary and sufficient; a boundary is comprehensive and exclusive (2026-10-11)
+
+> **Amended by D145 (2026-10-17):** necessary and sufficient is now conduct's rightsize's, for anything given back or made, and respond's first rule points there; comprehensive and exclusive stays the name, rightsize checking it for any parts and organize's boundary rule serving it.
 
 **Decision:** respond's first rule is named "necessary and sufficient": every part of a response is necessary, and the whole is sufficient to understand or act without asking again; before returning, the agent asks both questions of the response. "Comprehensive and exclusive" stays the name for a boundary: a skill's description (D62) and the parts organize makes (D61). Both terms, and MECE, are defined in the glossary.
 
@@ -736,6 +760,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 > **Amended by D129 (2026-10-14):** act's rule 12: before saying a task is done, follow conduct's cleanup.
 >
 > **Amended by D134 (2026-10-15):** four rules gain their reasons, and "about three attempts" becomes advice.
+>
+> **Amended by D145 (2026-10-17):** act gains a thirteenth rule, the work rightsized by conduct's rightsize; doing exactly what was asked stays its third.
 
 **Decision:** act holds eight rules, each with one short example, all in `SKILL.md`: clarify before acting, through understand's clarify, leaning towards it (when in doubt whether to ask, ask; when in doubt how deep, go deep); an opinion is not a task (asked what the agent thinks, or told the person wants to explore, it gives a view and a plan, then waits); concerns first, then exactly what was asked, with follow-ups named rather than done; evidence before any claim (the file and line for what is said to exist, the result before "done"); propose before anything that cannot be undone; nothing from the conversation goes into the project (comments, commits, pull requests); follow the skill for a file's type before writing it; reach a skill by its route. guardrails holds the details behind the proposing rule: never delete without confirmation, ask before changes across many files, an edit scope, plan then apply for bulk edits, a checkpoint first. Six tests check it.
 
@@ -748,6 +774,10 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 > **Amended by D115 (2026-10-13):** organize's chooser says which operation fits when items move, stay under a new parent, or only gain a view; a request that fits none is not organize's.
 >
 > **Amended by D141 (2026-10-17):** organize takes the full shape: its shared rules with their reasons, the check as an instruction, one routing line per operation, and a last instruction.
+>
+> **Amended by D145 (2026-10-17):** organize's boundary rule points to conduct's rightsize for parts that are comprehensive and exclusive.
+>
+> **Amended by D148 (2026-10-17):** organize and split also plan wholes not yet written, the items being what the whole must cover; split and cluster gain advice on parts read on their own and sized to how they are read.
 
 **Decision:** organize holds the shared rules and the check, with five sub-skills sorted by what happens to the items: split (one into several; also grouping loose items), merge (several into one survivor, links updated), compose (a new parent above items that stay whole), normalize (the shared part taken out into one place the items use), cluster (a view added for finding items, the items unchanged). The shared rules: one dividing principle at a time; each boundary in one sentence, comprehensive and exclusive; every change proposed and applied only after approval; warning signs (an "other" part, parts at different levels, more than about seven at one level). The check, given existing parts, reports overlaps, gaps and mixed levels or terms. split's flow: frame, list the items, choose the principle, draw boundaries, place every item, resolve, check; done when every item has one home or the exceptions are named. Results go back to the caller with the principle, the parts and their boundaries, each item's place and the exceptions. `SKILL.md` only, to start. merge, compose, normalize and cluster get their flows later.
 
@@ -756,6 +786,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 ## D86: organize works on any unit, preserves meaning, and the person verifies (2026-10-11)
 
 > **Amended by D107 (2026-10-12):** the person's two approvals apply only when something changes, and hold even where guardrails' proportion would skip a proposal.
+>
+> **Amended by D148 (2026-10-17):** the units are listed once, in organize's first step, from sentences to a system's components; the inventory is done by a script or a light fresh agent, never by reading everything twice in the main session; meaning preserved and the two approvals apply only when something existing changes.
 
 **Decision:** organize's rules speak of items, parts and boundaries, so they apply to any unit the agent chooses: sentences, paragraphs, sections, files, folders, skills, code modules, packages; examples span text, files, skills and code. Every operation preserves meaning: nothing lost, nothing added, nothing altered; for text, files and skills this is checked by an inventory, every statement before found after with the same meaning, and for code, whose meaning is its behaviour, by tests. The person verifies twice: before applying, the plan, shown as a map of where every item goes; after applying, the result, shown with the inventory or the test results. For code and packages, organize proposes the arrangement, consulting design's architecture skill, and implement makes the change under tests.
 
@@ -793,6 +825,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D123 (2026-10-13):** verify is to widen to how strong evidence is for any claim.
 >
 > **Amended by D133 (2026-10-15):** who checks takes whether something can be undone, and how much rides on it, from conduct's stakes.
+>
+> **Amended by D149 (2026-10-17):** verify reads the exit code, the failure count and the failing lines, the full output only on failure; its four extra checks search and read the hits, a fresh agent doing large readings.
 
 **Decision:** verify names the claim about to be made, chooses the evidence that would fail if it were false, chooses who checks (the agent for what a command or file shows; the person for meaning, taste, the irreversible and what no check sees), runs the check fresh and whole and reads the full result, then states the claim with its evidence or the actual status. Done when every claim has its evidence beside it or is marked unverified. A table in `SKILL.md` pairs common claims with the evidence each needs and what is not enough. Larger work gets four more checks before it is called done: contradiction, duplication, drift, coverage. A check repeated by hand is proposed to the person as a script or lint rule. `SKILL.md` only; four tests.
 
@@ -843,6 +877,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D107 (2026-10-12):** tool names are kept neutral only in `AGENTS.md` and other shared files.
 >
 > **Amended by D115 (2026-10-13):** a rule repeating skillbook's is left out only where the whole team uses skillbook, as setup says; about 200 lines is advice (D116).
+>
+> **Amended by D145 (2026-10-17):** instruct's reader and prune steps point to conduct's rightsize, keeping a document read on every turn short.
 
 **Decision:** instruct writes and updates instruction documents: a project's `AGENTS.md` and `CLAUDE.md`, a `CLAUDE.local.md`, the person's own instruction files. The person asks for it at any time, and setup calls it when it writes into one. Skill files are not instruct's; their craft is skillbook-tree's, in this repository. Its flow: reader and cost; what the document must let an agent answer, written first as its tests; when updating, the current document read first; draft; prune; check; propose for approval. Its rules: pointers with the key word first; steps that end; reasons instead of capitals, positive wording, one example per rule, the project's terms, nothing unresolved, no tool name one agent alone has; shape that keeps in the document only what every session needs; which file holds what (D93); under about 200 lines, nothing repeating a skillbook rule, never inside a folder copied into other projects. `SKILL.md` only; five tests.
 
@@ -873,6 +909,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D107 (2026-10-12):** setup checks each agent the person uses, writes the allow-list of other harnesses, checks loading with a request that needs a file, proposes removing repeated skillbook rules from shared files only when the whole team uses skillbook, and keeps each agent's paths in reference files.
 >
 > **Amended by D117 (2026-10-13):** setup's project flow starts the blueprint when a project has none, and asks where it lives in a project the person does not own.
+>
+> **Amended by D149 (2026-10-17):** setup asks nothing about other agent programs, whose default stays none, and states its default on whether the team uses skillbook rather than asking.
 
 **Decision:** setup has two ways in. A machine, once per computer: check the skillbook plugin is installed in both agents, showing how if not; add the pointer to the person's own instruction files through instruct, unless it is there; check a fresh session loads the main skill. A project, once per project: read what it is and what files it has; check its instruction files through instruct, keeping the facts, proposing to remove what repeats a skillbook rule and to add what is missing; recommend the skillbook skills and outside skills that fit; propose everything as one list and apply what is approved. Running either again changes nothing that is right. Hooks are proposed only when a rule keeps being broken despite the skills. `SKILL.md` only; five tests.
 
@@ -907,6 +945,14 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D137 (2026-10-17):** delegate's result carries what each agent left behind; when verify starts the agent, its report goes back to verify as the check; two restrictions gain their reasons.
 >
 > **Amended by D138 (2026-10-17):** delegation is the default for any task that is not too small; the three reasons become advice for choosing the agent and the kind; delegate takes the full shape, with routing lines for council, fanout and crew.
+>
+> **Amended by D142 (2026-10-17):** the type is chosen first, after a cost check: several agents only when the parts are large, independence or different lenses improve the result, time matters and the person accepts the cost, or one agent's context would fill up.
+>
+> **Amended by D143 (2026-10-17):** the tier table gains an effort column, decided by the same question.
+>
+> **Amended by D144 (2026-10-17):** the tier table goes back to the tier alone; effort is chosen apart from it, by how much reasoning the step needs.
+>
+> **Amended by D149 (2026-10-17):** delegate reads stakes only when the tier's row is not plain and guardrails only when several agents or a long job are planned; fanout's agents write their findings to files, and its validator checks the findings the answer rests on and any that contradict.
 
 **Decision:** delegate holds what every kind of delegation shares: whether to delegate, for one of two reasons (hard work to a stronger model; or wide, light work to a lighter one, worth it only when the reading is many times larger than a subagent's start-up and the brief, returning compact findings with exact sources and what was not found, judgment kept by the main agent); checking the obstacle before escalating; choosing the tier by what happens if the agent is wrong; a brief of findings, not files; checking the work through verify; stating the cost. Tiers map to model names per agent in `references/claude.md` and `references/codex.md`. Three sub-skills hold the kinds with flows of their own: council (one question, independent answers, a summary keeping disagreements, the person decides), fanout (split by angle, findings with sources, consolidated in code, validated adversarially, synthesized, the skipped named), crew (one agent per part, re-read after writing, one pass in sequence afterwards). The wide, light reason is tested before it is relied on.
 
@@ -931,6 +977,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 ## D102: Delegation may use other harnesses, on an allow-list (2026-10-12)
 
 > **Amended by D107 (2026-10-12):** the cost follows guardrails' rule on cost.
+>
+> **Amended by D149 (2026-10-17):** the rules for other harnesses move to delegate's `references/other-harnesses.md`, read only when one is named.
 
 **Decision:** delegate, and council with it, may run another agent program, such as Codex or Gemini's command-line agent, but only those on an allow-list in the person's own instruction file, which setup can write. Five rules hold: the person approves sending a project's files to another company, per project and per harness; the other harness runs read-only by default and writes only as a crew member with an approved scope; the cost is stated first; its findings come back in the same shape and are checked through verify; a harness started by delegation never delegates further. Each harness has a reference file. A first test delegates one fanout task to `codex exec`.
 
@@ -951,6 +999,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D117 (2026-10-13):** outside any project, a handoff goes to a file the person names.
 >
 > **Amended by D129 (2026-10-14):** a handoff's references include what was kept on purpose, with where it is and why.
+>
+> **Amended by D147 (2026-10-17):** handoff becomes carryover; its shared parts follow brief's rules, and it is offered at a phase's end when a long session's next work fits in it.
 
 **Decision:** handoff writes and resumes. Writing makes a document of about a page, in markdown following author's markdown skill, with six parts: done with evidence; remaining in order; decisions made and where each is recorded; what is uncertain or assumed; references by path; the first next step. Resuming reads it, checks it is still true (files changed, a branch moved, new commits), reports any difference before acting, and continues from the first step. It is written when the person asks; the agent proposes one when a long session with much unfinished work nears compaction. It is kept in the blueprint's notes where a project keeps one, otherwise in a file the person names or in the response. `SKILL.md` only; four tests.
 
@@ -983,6 +1033,10 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D116 (2026-10-13):** act's three failed attempts become a rule to stop, report and ask, with about three as advice; a council has about three members, as advice.
 >
 > **Amended by D128 (2026-10-14):** the findings format's one home moves to understand's research; fanout keeps how its agents write it for its script.
+>
+> **Amended by D144 (2026-10-17):** skills name tiers, never a model; the Claude mapping, fable only after opus fell short, lives in delegate's reference file for Claude, beside each model's price and price step.
+>
+> **Amended by D147 (2026-10-17):** the wrap-up offer offers learn, then carryover, handoff's new name, and gains the reason for a break: resuming a long conversation after the cache expires writes it all again.
 
 **Decision:** An outside agent reviewed conduct's design as a builder would; these changes close what it found. The detail is in [design/conduct.md](design/conduct.md).
 
@@ -1058,6 +1112,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D135 (2026-10-15):** markdown gains reasons, instructions in order, a last instruction and a routing line with when not.
 >
 > **Amended by D137 (2026-10-17):** rule 2 no longer repeats rule 1, and rule 3 leaves the width to the strong advice.
+>
+> **Amended by D149 (2026-10-17):** with no linter, a search for the mechanical rules replaces reading a file back; with one, it runs once after the last file.
 
 **Decision:** author's markdown skill is designed ([design/author.md](design/author.md)).
 
@@ -1102,6 +1158,8 @@ For the main skill: it holds rules and advice of its own again, among them follo
 > **Amended by D134 (2026-10-15):** the first rule gains its reason, and a last instruction checks each round.
 >
 > **Amended by D137 (2026-10-17):** a proposal to approve is never assumed when the person stops; it stays parked, and nothing it covers is applied.
+>
+> **Amended by D150 (2026-10-17):** ask's rule on recommended answers points to challenge's trigger: a recommendation is challenged before it is put, and a decision made without or against one before it is relied on.
 
 **Decision:** conduct gains a sub-skill, ask: how the agent asks the person anything, a question, a round of questions or a proposal to approve, and how it takes the answers ([design/conduct.md](design/conduct.md)). Its rules:
 
@@ -1123,6 +1181,8 @@ Which questions to ask and how deep stay clarify's; when a proposal is needed an
 > **Amended by D136 (2026-10-15):** markdown's rule in the main skill covers every response and every markdown file; other files follow act's rule on a file's type.
 >
 > **Amended by D139 (2026-10-17):** the harness's limits hold above skillbook, which never asks the agent to break them; the harness's defaults are what skillbook refines.
+>
+> **Amended by D147 (2026-10-17):** what this settled for handoff holds for carryover, its new name; the brief it settled for delegate is conduct's brief.
 
 **Decision:** The skills designed so far were reviewed with skillbook-tree (D113): four reviewers, about 130 findings, each recorded with its outcome in [notes/skill-review.md](notes/skill-review.md). Decided with the person:
 
@@ -1143,6 +1203,8 @@ Fixed as proposed: each gap now says where to go, the missing tests are added, r
 **Why:** Contradictions and restated rules let two skills give an agent different answers to the same question, and a reason kept only in the decisions log is invisible to whoever builds or follows the skill.
 
 ## D116: Numbers are advice; strong advice (2026-10-13)
+
+> **Amended by D148 (2026-10-17):** organize's warning signs gain a part readers mostly read in order to skip.
 
 **Decision:** A number in a skill is advice, written "about N" with its reason; it is a rule only when the rule cannot be applied without it. Advice gains a stronger level, strong advice: followed unless the case gives a reason not to, and the agent says so when it departs. Applied:
 
@@ -1232,6 +1294,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 ## D124: challenge attacks an idea before it is relied on (2026-10-13)
 
 > **Amended by D132 (2026-10-14):** argue is challenge's mirror, the case for a position; the case against stays challenge's, and argue uses challenge for its objections, taking only the weaknesses.
+>
+> **Amended by D150 (2026-10-17):** challenge gains a trigger in conduct's ask, before a recommendation is put and after a decision made without or against one, its depth following stakes; nothing is challenged twice.
 
 **Decision:** understand's challenge is designed ([design/understand.md](design/understand.md)): an idea, a plan or a decision attacked before it is relied on, measured against its frame. Its rules: the idea stated at its strongest first; the assumptions it rests on named, checked or unchecked; each weakness with how serious it is, what shows it and what would address it; an honest verdict, holds, holds with changes, or does not hold, with "nothing found" said plainly; and it changes nothing itself. Its advice covers failure in advance, scenarios, gaps, claims pushed to evidence, fresh eyes through conduct's delegate when the stakes are high, and few strong weaknesses over many weak ones. Its result has one short shape, kept by the caller: in a project, the session notes, a decision's "why", and a weakness left open as an open question. The review root judges finished work; design's review uses challenge for its adversarial part; verify and fanout's validator check claims against evidence.
 
@@ -1260,12 +1324,18 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 ## D128: research designed, with fact, survey and analyze (2026-10-14)
 
 > **Amended by D140 (2026-10-17):** research's instructions are the question, one routing line per part and the last instruction; sources and fanning out are its advice and ranking its rule 3, which the parts point to.
+>
+> **Amended by D149 (2026-10-17):** a kind of source's reference file is read when that kind is first searched; with many findings, those the answer rests on are given and the full list goes to a named file; survey fans out only when delegate's test for splitting holds.
 
 **Decision:** research's own skill holds what its three parts share and chooses among them; it answers nothing itself. Its shared rules: the question stated first, through frame; every finding with its source, exact enough to check; every finding with its strength in verify's ranking, what the agent recalls marked "from memory" and ranked as only said until checked at a source; what was looked for and not found reported; a finding matched to the version, platform and date it applies to; findings that disagree shown side by side, with which is stronger and why. The part is chosen by what the answer looks like. fact answers one question or checks one claim: the claim searched both ways, the verdict (supported, mixed, unsupported or unknown) following the strength of the evidence, not the count. survey finds what exists on a subject and compares it on the same terms: scope and terms set first, wide before deep, every cell with its evidence or "not found", the screened-out named, the person's own option treated like the rest, the coverage and date stated, the choice left to weigh, and, as strong advice, a wide survey's plan shown first. analyze finds why something happens: the symptom stated exactly, one testable cause at a time, a cause confirmed by evidence rather than fit, traced back to its trigger as a chain, one per contributing cause, the fix left to the caller, and a stop when hypotheses keep failing. The kinds of source (code, documentation, the web, papers, products) are reference files in research, not parts; a full literature review becomes a part only if tests show the papers file is not enough. research holds the findings format (the claim, its source, the quoted words, its strength, what it applies to), moved from fanout, which keeps how its agents write it for its script. The result is understand's shape extended with the question, the answer or verdict, the findings, what was not found and what was not covered. In a project, design's research step only files it, in the research strand, which holds what was learned from sources; the evidence log keeps the project's own claims checked by verify. The harness's search tools do the searching. test's debug keeps what is specific to code, the method of finding a cause being analyze's.
 
 **Why:** A part exists only where the steps differ: a sub-skill per kind of search would repeat one flow, while how a kind of source is read and trusted is the same whatever the question. Giving the single question its own part leaves research's rules truly shared, as clarify's are. analyze's material traces a chain from symptom to trigger, and a required tree pushes agents to invent branches, as deep clarify's tree did.
 
 ## D129: cleanup designed (2026-10-14)
+
+> **Amended by D147 (2026-10-17):** the leftovers a handoff named are named in a carryover, its new name; delegate's brief, which asks for cleanup's three fields, is now conduct's brief.
+>
+> **Amended by D149 (2026-10-17):** cleanup is read at a task's end only when the task created or started something; a read-only agent reports "left behind: nothing".
 
 **Decision:** cleanup removes only the agent's own leftovers, never tidying the person's work. In scope is whatever the agent created or started in the task: temporary files, copies, processes, containers, worktrees, branches and stashes, agents and panes, scheduled work, temporary edits in the work, and things outside the machine, whose removal is always proposed. Its rules: only its own is cleaned without asking, meaning what sits in a temporary or scratch place, its own temporary edits, and the local branches and worktrees it made with nothing uncommitted or unmerged, and everything else is proposed through guardrails; what it makes is tracked as it goes; removal is by exact path or ID, never a pattern; a thing is cleaned once no longer needed, at the latest before the task is said to be done; what is kept on purpose is said with where and why; "cleaned" is checked through verify. Strong advice keeps all temporary material in one place; the harness's own means are preferred, and a server's life is tied to the command that needs it. The report has three fields, cleaned, kept and proposed, said not at all, in one line or in full depending on what happened, and delegated agents report the same fields. act gains rule 12, naming cleanup before a task is said to be done; delegate's brief asks each agent to clean up after itself; a handoff names what is kept; the wrap-up offer runs it before work stops; the skills that make temporary things name it where those things end. It keeps the name cleanup, its routing line separating it from tidying the person's work.
 
@@ -1301,6 +1371,10 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D134: conduct's own skill, its routing lines, and act, respond and ask in the shape (2026-10-15)
 
+> **Amended by D145 (2026-10-17):** conduct gains rightsize, its routing line under "Before saying done", beside verify.
+>
+> **Amended by D147 (2026-10-17):** conduct's routing lines gain brief under "While working", and handoff's line becomes carryover's under "When stopping".
+
 **Decision:** conduct's own skill takes the shape every main skill takes: its one rule, the wrap-up offer; no advice of its own, since that several sub-skills can serve one request is the main skill's rule; one routing line per sub-skill read on demand, saying when to use it, when not and what it gives back, under six headings in the order the work happens (with the person: ask, explain; before acting: stakes, guardrails; while working: organize, delegate, cleanup; before saying done: verify; setting up: setup, instruct; when stopping: learn, handoff); and the last instruction. The lines replace its table, since they do not fit a 120-character row, and each sub-skill's Callers field carries its line. Its description names stakes and cleanup and says when to use it. act, respond and ask, which route to nothing, hold rules each with its reason, advice apart, and a last instruction where something is checked before returning. act's rules on clarifying, evidence, a file's type and which instruction wins gain their reasons, and "about three attempts" becomes advice. respond gains a rule against flattery, agreement and praise only when earned and disagreement said plainly, and advice to state the person's view at its strongest first, through understand's argue, when disagreeing on something that matters; showing a comparison only when it helps decide is its first rule applied. ask's first rule gains its reason, and a last instruction checks each round. delegate's line is updated after the delegate discussion.
 
 **Why:** A table row could say when to read a sub-skill but not when not, or what comes back, so neighbouring rows overlapped unseen; lines in the order the work happens let the agent find the right one. The three skills read on every request were already rules; giving each its reason and keeping advice apart lets the agent apply them with judgment, and respond's open questions each fit a rule or advice it already had.
@@ -1316,6 +1390,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 > **Amended by D137 (2026-10-17):** the author line says what it adds, the file rules and the linter check, with markdown's own when-not; act's rule on a file's type points to the main skill's markdown rule.
 >
 > **Amended by D138 (2026-10-17):** the main skill's first advice is delegation by default, as strong advice.
+>
+> **Amended by D145 (2026-10-17):** the main skill gains a rule that everything given back, made or done is rightsized for its reader, by conduct's rightsize.
 
 **Decision:** The main skill is designed ([design/skillbook.md](design/skillbook.md)). For now it routes only to what is designed: understand, author with its markdown skill, and conduct. Each other root, and the stage-order advice, is added when that root is designed; until then the work they will cover is done directly under act's rules. Its rules are the four decided, with markdown's rule now for every response and every markdown file, since other files follow the project's conventions by act's rule. Its description stays the broad one tested, since it decides whether the main skill loads and so whether act's and respond's rules hold for any work; a change is re-run through the test harness. The baseline therefore holds the main skill, all of conduct, all of understand and author's markdown.
 
@@ -1323,11 +1399,21 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D137: The baseline review's fixes (2026-10-17)
 
+> **Amended by D147 (2026-10-17):** handoff's rule against naming a tool only one agent has becomes brief's rule, which carryover follows.
+
 **Decision:** The baseline, the main skill, conduct, understand and author's markdown, was reviewed with skillbook-tree by three fresh agents, one per root, and every finding was checked against its lines. Seventeen small fixes are applied. A proposal to approve is never assumed when the person stops. understand's callers no longer say delegate uses weigh for a council's summary, or that the review root uses challenge; design and plan use challenge. understand's routing line for weigh no longer says how weigh works inside. verify's routing line no longer promises ranking evidence before verify is widened. stakes' high reads "nothing would catch it in time, and any one of". The wrap-up offer has one trigger. delegate's and setup's results match their routing lines; setup's reference files hold the allow-list form. crew lists its plan first and waits only where guardrails' other kinds apply, and its re-read after writing is its own rule. handoff names no tool only one agent has, as its own rule. When verify starts an agent, the report comes back to verify. guardrails' never-rules, two of delegate's restrictions and the numbers in fact and analyze gain their reasons. act's rule on a file's type points to the main skill's markdown rule; the main skill's author line says what it adds; markdown's rules 2 and 3 no longer repeat rule 1 or the strong advice; tests are added for the uncovered when-nots. brainstorm's and survey's descriptions, and split's, no longer overlap. Explaining how project code works goes to research's fact when it needs reading across files. Three larger reshapes, research's parts, organize and delegate, and step-by-step flows that do not say why, are left to the person.
 
 **Why:** The reviewers could not see the conversation that made the design, so they read it as a builder would; each fix removes a place where a builder would have to guess, or where two skills said different things.
 
 ## D138: Delegation by default, and delegate in the shape (2026-10-17)
+
+> **Amended by D142 (2026-10-17):** too small means short, the change or answer already known, and leaving little behind; delegate chooses the type, then fork or fresh, then the model; fork or fresh is judged from the list of what the agent needs from the conversation and how long the task is, so a long conversation favours a fresh agent for a long task, not a small one.
+>
+> **Amended by D143 (2026-10-17):** delegation by default carries its cost reason; a third exception, content the main agent needs to continue the conversation; when the agent cannot tell whether a task is too small, it forks without asking, which replaces the question to the person.
+>
+> **Amended by D146 (2026-10-17):** delegate's brief asks for the report back rightsized for the main agent, its parts named, longer material in a named file.
+>
+> **Amended by D147 (2026-10-17):** delegate's advice on the brief moves to conduct's brief, and delegate's step points to it.
 
 **Decision:** Delegation is the default: every task goes to an agent, a fork or a fresh one, so the main session keeps the conversation, the tracking and the person's decisions; the main agent does a task itself only when it is too small, costing less than an agent's start-up and report, or when it needs the person's decisions as it goes, and when it cannot tell whether a task is too small it asks the person. This is strong advice in the main skill, the one place read every conversation; delegate holds how. No other approval is asked for delegating; guardrails' cost rule still applies to large delegations, with usage limits counting as cost, and delegation never widens what is allowed. A fork serves work the conversation has decided; a fresh agent serves independence, which a review, fresh eyes, verify's second agent and a council's members need, or another tier, or a small task in a long conversation; the rule against delegating once the files are read holds only for fresh agents. The main session keeps a running list, says one line when a task starts and when it comes back, waits for the harness's notice, checks each result through verify and reports it in a few lines. delegate takes the full shape: rules, advice, one routing line each for council, fanout and crew, so that a review with one lens per agent is a fanout, and a last instruction; the three earlier reasons become advice for choosing the agent and the kind.
 
@@ -1347,6 +1433,84 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D141: organize in the shape (2026-10-17)
 
+> **Amended by D148 (2026-10-17):** the note on how organize is written becomes: each rule generic and clear without its example, its examples spanning writing, code and design, a kind named in a rule only where the rule differs for it.
+
 **Decision:** organize's own skill takes the full shape. Its rules, each with its reason: one dividing principle at a time; each part's boundary in one sentence; meaning preserved, checked by an inventory or by tests; the person verifies the plan and the result whenever something changes; retired items marked and kept; for code, organize proposes and implement makes the change. The warning signs are its advice. Its instructions, in order: find the dividing principle and the unit; check existing parts without asking for approval, since nothing changes; choose the operation by one routing line each for split, merge, compose, normalize and cluster, saying when to use it, when not and what it gives back, which replaces the table, with renaming, reordering, deleting or moving one item named as not organize's; plan; apply; check meaning; and the last instruction. That its rules speak of items rather than one kind of unit becomes a note on how its `SKILL.md` is written. Its description says when to use it, and each operation's Callers field carries its line.
 
 **Why:** The baseline review found organize's rules, advice and routing mixed in one list, and its table naming each operation but not when not to use it or what it gives back; in the shape, a builder can write it from the design alone.
+
+## D142: What delegating costs, and how delegate chooses (2026-10-17)
+
+> **Amended by D147 (2026-10-17):** the offer at a phase's end when the window is over about half full is designed in carryover, with signs for harnesses that do not show the window.
+
+**Decision:** What an agent's work costs rests on four facts, explained in a research note ([research/token-cost.md](research/token-cost.md)): every turn pays for the whole context again; the cache makes that cheaper, not free; output costs several times input; the model sets the price of every token. Each skill carries only a short reason drawn from it; a harness's specifics, whether it can fork, how its fork uses the cache and what context use it shows the agent, go in delegate's reference file for that harness; no new skill is made before the lean discussion. delegate chooses in this order: the type, used as named when the caller names one, otherwise after a cost check, several agents only when the parts are large, independence or different lenses improve the result, time matters and the person accepts the cost, or one agent's context would fill up, with a search before any reading fanout; then fork or fresh for each agent; then the model for each fresh agent. Fork or fresh is judged from signs, never counted tokens: the list of what the agent needs from the conversation, short or long; whether the task's answer is already known or has to be found; whether it reads or produces a lot; whether a lighter model fits. Independence still needs a fresh agent. delegate's advice holds this as a sample of how its `SKILL.md` puts it, each line with an example. The window's fullness is used only where the harness shows it to the agent without extra work, and only to give a fresh agent the list in a file instead of a fork when the window is nearly full, and to offer a handoff at the end of a phase when it is over about half full; a session's transcript is read for measuring, never for routine choices. The main skill's too-small test becomes: short, and it leaves little behind. The two assumptions behind the worked figures were measured by running Claude Code with the lightest model: a fork's first call read the parent's whole conversation from cache while it was warm (E10), and a fresh agent's start-up is about 14,700 tokens for the general-purpose agent and 12,600 for Explore (E11). The order of the work that follows: delegate, handoff, organize, a sweep of the other skills and skillbook's own files, then the lean skill.
+
+**Why:** The person wants skillbook to cost fewer tokens. The earlier fork-or-fresh advice had it backwards: a long conversation is cheap to carry for a few turns and costly for many. Most harnesses do not show an agent its context size, and the crossover depends on the task's length, the start-up and the models' prices, so thresholds in tokens would go unused or force guesses; the list is something the agent writes for a brief anyway.
+
+## D143: Effort beside the model, and delegation by default with its cost (2026-10-17)
+
+> **Amended by D144 (2026-10-17):** model and effort are chosen separately: the tier table loses its effort column, and effort follows how much reasoning the step needs; the rest of D143's lines on effort hold.
+>
+> **Amended by D146 (2026-10-17):** the report back, left provisional, is settled.
+
+**Decision:** delegate's tier table gains an effort column, decided by the same question, what happens if the agent is wrong: low where a later step catches it or the work is mechanical; the harness's default where nothing catches it but one commit undoes it; high in both rows where nothing catches it and shared contracts, production, data, schemas, public interfaces, auth or security are touched. A wide fanout never inherits the main session's effort, since its cost multiplies by its agents; a fork keeps the main session's effort and model; the main session's own effort is the person's choice and is never changed. Effort is set only where the harness lets a skill set it: in Claude Code a fresh agent's effort may be set when the person, their instruction file or a skill asks, and delegate's table is that ask; the reference files map the levels to each harness's names. Delegation by default stays the main skill's strong advice, now with its cost reason: a fork costs about what doing the task in the main session would and then saves on every later call, since what it reads stays out of the main context, and a fresh agent is cheaper still for long or light work. It gains a third exception: the main agent does work itself when it needs the content to continue the conversation, such as reading what is being discussed. When the agent cannot tell whether a task is too small, it forks without asking, which replaces the question to the person; the one-line start notice still lets the person stop it. The research note gains this session's own costs as a finding, what effort costs, and the inference that a fork always starts with the cache warm. The shape of a delegated agent's report back was agreed provisionally and is settled after the lean discussion, which moves up to come next.
+
+**Why:** Thinking is paid at output price, so how hard an agent thinks costs as much as how much it writes, and effort answers the same question as the model. This session's own figures show that long sessions dominate the cost: carrying the context and writing it to cache were about four-fifths of it. Where the too-small call is hard, doing the task and forking cost about the same, so a question costs the person a turn and settles little. Delegating content the main agent needs for the conversation means reading the report and then the content anyway.
+
+## D144: Models named only per harness, and effort chosen apart from the model (2026-10-17)
+
+> **Amended by D149 (2026-10-17):** prices and price steps move out of each harness's mapping file into one `references/prices.md`, read only when a cost is stated.
+>
+> **Amended by D150 (2026-10-17):** decisions that other work builds on take the strong tier and high effort, judged by what is built on them; the strongest model only after the strong tier falls short.
+
+**Decision:** Skills name tiers and effort levels only, never a model. Each harness's reference file in delegate maps the tiers to the names that harness takes, with each model's price, any price step and the date read, and, where the person picks models from several providers, says how to find the ones available; Claude's and Codex's come first, others when needed. The person's own instruction file can set or override the mapping; with no mapping, neither a reference file nor the person's, every agent runs on the session's model. fanout's advice sizes a light agent's part so its context stays under its model's price step, and the step itself is in the reference file: for Claude, Haiku 5.5's price rises five times once a prompt passes 100,000 tokens. The main skill's page for people will say, without naming models, that a session of mostly mechanical work can run on a lighter model, since the main session's model is the person's. Model and effort are chosen separately, which amends D143: the model by the tier table, what happens if the agent is wrong, light only if mechanical, whose effort column is removed; the effort by how much reasoning the step needs: low when the step only carries something out, such as known edits, searching, reading for a fact or a sweep; the harness's default for ordinary work; high for judgment that nothing after it checks, such as validating, an unclear failure, a design choice or a final synthesis. A step a later one checks can think less. Kept from D143: a wide fanout never inherits the main session's effort, a fork keeps both the main agent's model and effort, the main session's own effort is the person's, and effort is set only where the harness lets a skill set it.
+
+**Why:** Model names belong to each harness, and skills stay generic (D139); guessing another provider's names could start an agent that does not exist, or one that costs more than meant. The light tier holds most of the saving: on today's prices Haiku 5.5 costs a twentieth of Sonnet 5.5, which costs half of Opus 5.5. Capability and deliberation are different dials, as the person's own delegation-routing material treats them: a sweep with a validator behind it needs neither a strong model nor deep thought, while a tricky function that tests will check needs thought but not the strongest model; one row for both forced them to move together.
+
+## D145: rightsize, nothing missing and nothing extra for the reader (2026-10-17)
+
+> **Amended by D149 (2026-10-17):** rightsize is read with act, respond and author's markdown in the main skill's first read, not reached later through respond.
+
+**Decision:** What the person asked of everything an agent gives back, makes or does, comprehensive enough to cover what is necessary and sufficient to give back or do only what is needed, top-down, becomes conduct's rightsize, a skill beside stakes. Its rules, each with its reason: the reader first, who reads it and what for; nothing missing, the reader can understand or act without asking again; nothing extra, a part whose removal loses nothing goes; parts that cover everything with no two overlapping, one home for each thing, how to divide being organize's; top-down, the point first, then what it rests on, then the detail; never below a rule, nothing a rule requires cut; and the work rightsized, only what the task needs read, independent calls sent together, stopping once the result is enough, while doing exactly what was asked stays act's. Its advice lists what is usually extra and what is usually missing, and length follows the reader and the question, never a word count. Its last instruction is a five-question check, run before anything is returned or written: who reads it and what for; what could go without loss; what the reader would still have to ask; whether it is top-down with its parts comprehensive and exclusive; whether anything a rule requires was cut. It is triggered by the main skill's one-line rule, respond's last instruction before every response, author's markdown before a file is returned, organize, delegate's brief for the report back, handoff's write, instruct and act, and later by implement and design; its routing line in conduct sits under "Before saying done", beside verify. Each skill that makes something keeps only what is specific to its output: respond keeps the length of a response and the shape of an explanation, its first rule pointing to rightsize; organize keeps the one-sentence boundary; instruct keeps a document read on every turn short. The optimize idea merges into it as its work half. It is named rightsize, not lean.
+
+**Why:** The person's principle holds for responses, files, code, systems and the work itself. A rule that lives only in the main skill is read once and fades as a session grows, and cannot be triggered, while a skill can be named at the moment it is needed; the main skill is carried on every turn, so it stays short. stakes is the precedent: one judgment many skills need, called rather than restated. "Lean" reads as "less", the nothing-extra half only, and a one-sided name could lead agents to cut what is needed.
+
+## D146: The report back rightsized for the main agent, and references named in words (2026-10-17)
+
+> **Amended by D147 (2026-10-17):** the report's parts move with the brief advice to conduct's brief.
+
+**Decision:** A delegated agent's report is rightsized for its reader, the main agent, by conduct's rightsize, and delegate's brief sets its parts: the outcome, worded to name the task, such as "the effort decision recorded: …" rather than "Done: …"; what needs the person's decision, with any proposal; where the evidence is, by path, never pasted; what was not found or not done; what was left behind, in cleanup's three fields. Anything longer goes to a named file in the scratch place, and the main agent reads only the part it needs. A line or two of context, what was asked and why, is included when the brief asks for it, which it does when several delegated tasks run at once, when the job is long and the conversation may move on or be compacted, or when the report is kept for a later reader, a file, a handoff or the person. A task that was changed or narrowed is said first, always. The brief carries all of this, since a fresh agent may never load rightsize. respond's paragraph on delegated agents says only that the reader is the main agent and the parts are delegate's brief's; the report to the person is unchanged. respond's rule on things named in words gains its test: a reference stays as it is when this reader can tell what it is from the reference itself, right now, without looking it up, such as a file name or path, a link, a command, a function name, a name the reader knows or a number from the current round; otherwise a few words say what it is, with the number in brackets after, as for decision, evidence, test and note numbers, question numbers from an earlier round, commit hashes, IDs and abbreviations the reader has not used. A delegated agent's report to the main agent may use numbers, and the main agent turns them into words when it tells the person.
+
+**Why:** Every line of a report stays in the main context for the rest of the session, and a report kept or read later needs to say what it answers. The rule on references said what to avoid but not how to tell a reference that needs words from one that does not; whether this reader can tell what it is on the spot settles both, and keeps paths and links as they are, since words around them would only add.
+
+## D147: brief and carryover, the two halves of writing for a reader who was not there (2026-10-17)
+
+> **Amended by D149 (2026-10-17):** a fresh agent's brief tells it not to load the main skill and names any skill it needs.
+
+**Decision:** Writing for a reader who was not in the conversation has two halves, each a skill in conduct. brief, beside delegate, is for an agent starting now. Its rules, each with its reason: the reader can start without asking; decisions and constraints that are not in the files are stated; what was ruled out or already tried is said; the first step is given, with how the reader knows it is done; references are by path, never pasted; no tool only the writer has is named. Its advice holds what a delegation needs: a line or two for a fork, findings rather than files for a fresh agent, and what to ask back, the report's parts set in D146, the three cases for a line of context and a changed task said first, with act's rule on delegated agents carried. Its last instruction checks that the reader could start without asking, nothing is pasted, the report is asked for and rightsize's check passes. delegate's advice on the brief and the report back moves to brief, and delegate's step becomes "Brief, by conduct's brief". carryover, renamed from handoff, is for a later session or agent and builds on brief: brief's rules hold for its shared parts, decisions with where they are recorded, references by path and the first next step; it keeps what is done with its evidence, what remains in order, what is uncertain, what it was written against, where it is kept and the resume steps. It is offered with one question, through ask, at a phase's end, such as a batch committed, an item recorded or a topic finished, when the session has been long, many turns and files read or the harness showing the window over about half full, and the next work needs only what fits in the carryover; not when the next work needs the conversation or the session is short, and at most once per phase. conduct's wrap-up offer gains the reason for a break, that resuming a long conversation after the cache expires writes it all again, and points to carryover; conduct's routing lines put brief under "While working" and carryover under "When stopping".
+
+**Why:** Both write for a reader who was not in the conversation, one now and one later, so most of what makes either good is shared. Delegation is frequent and a carryover rare, so they are separate skills, and building carryover on brief keeps one home for each rule without a parent level. "Handoff" reads as a brief too, since handing work to an agent now is also a handoff; "resume" reads as a CV; "checkpoint" is taken by guardrails and by Claude Code's own feature; carryover means into a later period. Long sessions dominate the cost, and a carryover at a boundary beats the harness's compaction, which comes late, costs a call over the whole context and decides for itself what to keep.
+
+## D148: organize while creating, and parts sized to how they are read (2026-10-17)
+
+**Decision:** organize covers wholes not yet written as well as written ones: for a planned whole, the items are what it must cover, such as a planned report's topics, a planned program's responsibilities or a planned system's requirements. Its routing line and split's say so, split's with examples across kinds: a long document into sections, a report not yet written into the topics it must cover, a large module into smaller ones, a folder of mixed files into groups, a planned system into components. author, implement, design and instruct call organize when they plan parts. Rules 3 to 5, meaning preserved, the two approvals and retiring, do not apply when nothing existing changes, since they are worded for when something changes; the creating skill's approvals apply instead. split gains advice, while creating and when rearranging: each part readable on its own, saying what it is and needing no sibling; a part's size following how it is read, short when read whole or on every turn, with headings or a map when searched. organize's warning signs gain a part readers mostly read in order to skip. cluster gains advice: for items agents read often, a map pays, since readers open only the part they need. The inventory behind meaning preserved is done by a script where one can do it and through delegate by a light fresh agent where judgment is needed, never by reading everything twice in the main session. Code is unchanged; the 11,000-line file waits for implement. organize is worded generically: each rule clear without its example, its examples spanning writing, code and design, a kind named in a rule only where the rule differs for it; the unit step lists the range once: sentences, paragraphs, sections, topics; files, folders; skills; functions, modules, packages; a system's components.
+
+**Why:** Most parts are made, not rearranged: a document, a program or a system is divided as it is planned, and the same principle, boundaries and warning signs hold, while nothing exists yet whose meaning could be lost. What a reader opens costs attention and, for an agent, tokens on every later turn, so a part's size follows how it is read. Examples drawn from one kind make a rule look as if it held only for that kind.
+
+## D149: the cost sweep's fixes (2026-10-17)
+
+**Decision:** A fresh agent reviewed the baseline designs against seven cost checks, and the person accepted its fixes with the main agent's changes. Skills a route names for the same step are read together, in one turn, by act's rule on routes, and the main skill's first read becomes act, respond, author's markdown and rightsize together. A fresh agent's brief tells it not to load the main skill and names any skill it needs. cleanup is read at a task's end only when something was created or started, and a read-only agent reports "left behind: nothing". delegate reads stakes only when it is not plain which row of the tier table applies, and guardrails for the cost only when several agents or a long job are planned; it reads only the current harness's reference file; prices and price steps move to one prices file read only when a cost is stated, which amends D144; the rules for other harnesses move to their own reference file; the reason for delegating stays in the skill as one line, since the blueprint does not ship. research reads a kind of source's reference file when that kind is first searched. fanout's agents write their findings to files and report the path and count, and its validator checks the findings the answer rests on and any that contradict each other, the rest marked "not validated". verify reads the exit code, the failure count and the failing lines, the full output only on failure, and its four extra checks search and read the hits, a fresh agent at the standard tier doing large readings. understand's result shape is not a form to fill. organize's map is shown in full when it fits on a screen and otherwise written to a named file. Three restatements in files carried every session become pointers: the main skill's cost reasoning, delegate's too-small line and act's work rule. A one-line response gets a glance rather than the full check, except where it touches a secret, an irreversible action, a reference or a failure. Markdown with no linter is checked by a search rather than a read-back. setup does not ask which other agent programs may run, and states its default on the team rather than asking; carryover keeps asking where it goes outside a project. survey fans out only when delegate's test for splitting holds. skillbook-tree's checklist gains check 11, cost, from the seven questions, and the baseline's start-up is measured once it is built and kept small by a figure set then, as advice.
+
+**Why:** Every turn carries the whole context again, so reads, turns, outputs and loaded skills that buy no quality cost on every later turn; the sweep found where the baseline paid for them. Where a fix would trade quality for cost, the person decided: the validator's narrower scope was accepted with the rest marked, and writing a carryover to an unchosen place outside a project was rejected, since where it goes matters to the person. A check in skillbook-tree carries the same review to every skill designed later.
+
+## D150: decisions others build on, and challenge before suggesting (2026-10-17)
+
+**Decision:** Decisions that other work builds on, such as a design, an architecture, a plan or an interface, are judged in delegate's tier rule by what would be built on them, not by how easily their file is reverted: the strong tier and high effort, since a wrong decision costs more than the model; the strongest model, which each reference file names, only after the strong tier has tried and fallen short. The note for the main skill's docs page adds that design and planning sessions deserve a capable model at higher effort. understand's challenge gains a trigger: before a recommendation is put to the person, at a depth that follows stakes: low, none; medium, the strongest one or two objections thought through, shown only if one holds, changing the recommendation or adding a caveat; high, or any design or plan decision, a full challenge, its verdict in one line beside the recommendation. A decision the person makes without a recommendation, or against one, is challenged the same way before it is relied on. Nothing is challenged twice. The trigger lives in challenge's callers, and ask's rule on recommended answers points to it.
+
+**Why:** The person asked that work needing reasoning, such as design and planning, use capable models and higher effort, since accuracy there matters more than cost; the tier table, written for changes to code, read a design's easily reverted file as the cheap row while everything later is built on its decisions. The person also asked for a critique after deciding or before suggesting; challenge already attacks an idea before it is relied on, but nothing made the agent challenge its own recommendation. This session's corrections show the cost: effort and model tied into one row, model names only Claude has, "lean" naming one half, and "resume" reading as a CV, the first and the last of which a challenge would likely have caught.
+
+## D151: plan, planning any work before acting (2026-10-17)
+
+**Decision:** plan becomes the root for planning any work before acting, whether writing, research, design or code. A plan is needed when any of these holds: order matters, there is a real choice of approach, stakes are medium or higher, or the work is long or wide; not when the work is short and its answer known, when the person gave the steps, or for a question or an exploration; when unsure, a one-line plan is stated and the work starts. It is one line, or a full plan: the goal and how it is known to be done, the steps in order with their checks, what is out of scope, the risks and what catches each, what goes to agents. It waits for approval when it holds the person's choice, stakes are high or the person asked; otherwise it is shown in a line and the work starts. The harness's plan mode is used where it exists and approval is needed, no skill naming it; a plan is revised, and approved again where it needed approval, when a step fails or a fact it rests on changes; a full plan is challenged before it is shown (D150). Its software-engineering parts, breakdown, slices and sequence, are kept, not dropped: their descriptions, word for word, their material and their caller are moved to plan's ideas under a heading saying they are kept for the person's software-engineering skills, where they will be used, and the tree, its graph, its sources and plan's design point there. The main skill routes to plan once its full design is done, which explains further when a plan is needed and how deep it goes, as the person asked.
+
+**Why:** Most harnesses have a plan mode, but nothing said when to plan; the pieces were scattered across act, guardrails, crew and organize. A plan costs a turn or two, while going the wrong way costs the rework, and a plan gives each part a boundary for delegating and carrying over. The person has their own idea for software-engineering skills, so planning a program's work waits for it, and its parts are kept for it.

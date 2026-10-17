@@ -64,3 +64,17 @@ Claims that matter beyond the conversation, each with the evidence that it is tr
 - **Evidence:** six delegated runs over two generated corpora, the cost split by model in each run ([research/skill-loading.md](research/skill-loading.md), "Delegating wide reading"). The second test's comparison with the main agent alone is not evidence for real documents: generated filler let it find the answers by counting repeated sentences.
 - **Verified by:** the agent, by running Claude Code.
 - **Supports:** D105.
+
+## E10: A fork's first call reads the parent's conversation from cache (2026-10-17)
+
+- **Claim:** in Claude Code, a fork started while the parent's cache is warm reads the parent's whole conversation from cache on its first call, writing only the few tokens that start it.
+- **Evidence:** one run with the parent at about 176,700 tokens: the parent's call that started the fork read 176,654 tokens from cache and wrote 78; the fork's first call read 176,654 and wrote 78, so 99.96% came from cache; its second call read 176,732 and wrote 487. The fork started seconds after the parent's turn; a cold cache was not tested ([research/token-cost.md](research/token-cost.md), "Measured").
+- **Verified by:** the agent, by running Claude Code 2.1.302 with `claude-haiku-5-5` as the main agent.
+- **Supports:** D142.
+
+## E11: A fresh subagent's start-up is about 14,700 tokens (2026-10-17)
+
+- **Claim:** in Claude Code, a fresh general-purpose subagent starts with about 14,700 tokens, and an Explore subagent with about 12,600, in a folder with no instruction files; each type's start-up is shared from cache only with agents of the same type started after it was written.
+- **Evidence:** three runs: two general-purpose agents started in one message each wrote 14,675 tokens to the cache, neither reading the other's; two Explore agents started in one message each wrote 12,609; two general-purpose agents started one after the other each read 14,675 from cache, written by an earlier run about 40 seconds before ([research/token-cost.md](research/token-cost.md), "Measured").
+- **Verified by:** the agent, by running Claude Code 2.1.302 with `claude-haiku-5-5` as the main agent.
+- **Supports:** D142.

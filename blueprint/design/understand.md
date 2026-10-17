@@ -32,7 +32,7 @@ understand/
   - the person, typing understand or one of its skills.
 - **Flow** (D131). Rules, each with its reason:
   1. **Understanding keeps nothing:** every result is handed back. Outside any project, it stays in the response (D117); called by a skill, it goes back to that skill; in a project, design keeps it, reached through the main skill. Each sub-skill keeps only what is its own, such as which strand its result goes to. A method tied to where results are stored cannot serve every caller (D50).
-  2. **One result shape:** what was decided and why, what was parked and why, and what comes next; each sub-skill adds its own part. A caller can then keep any result without knowing which skill made it (D50).
+  2. **One result shape:** what was decided and why, what was parked and why, and what comes next; each sub-skill adds its own part. A caller can then keep any result without knowing which skill made it (D50). The shape says where to find a part, and is not a form to fill: a field with nothing to say is left out, except Not found when something was looked for, and a field the reader already has, such as the question, is left out of what the person sees (D149).
   3. **Guesses and assumptions are marked, and an unknown that would change the result is named with what would settle it.** An unmarked guess gets relied on as a fact.
   4. **Facts first:** what can be read is read before the person is asked. Asking what the files already say wastes the person's time and hides what only they know.
   5. **Who decides:** a choice that would change what the person gets is theirs, put through conduct's ask with a recommended answer; the agent's own choices are made quietly, with the reason said. It sets where the agent's judgment stops.
@@ -96,7 +96,8 @@ understand/
   22. a rename: no frame and no discussion, in proportion;
   23. a request about understanding that fits no line: the agent's own judgment, under understand's rules;
   24. "make the case for a monorepo": argue;
-  25. "debate Postgres versus SQLite": weigh.
+  25. "debate Postgres versus SQLite": weigh;
+  26. a result with nothing parked: no Parked field shown; the question not repeated back to the person who asked it (D149).
 - **Open:** none known.
 
 ### discuss
@@ -145,7 +146,7 @@ understand/
   Next:         what comes next
   ```
 
-  Each turn's agreed line carries the result so far, so the summary at the end only gathers it. discuss keeps nothing, by understand's rule: in a project, what is agreed goes to design through the main skill, and design's own steps file each part in its strand, decisions, notes, ideas and design sections; discuss names none of those steps, so design can reshape them without touching discuss. Outside any project, continuing later is a handoff, offered by conduct's wrap-up offer (D117). It is recorded when the person says so, such as "write it down"; the agent offers when a topic within the discussion is complete, and sooner in a long discussion, so that compaction cannot lose decisions held only in the conversation. After recording, a short report says what was written where; a commit stays the person's call.
+  Each turn's agreed line carries the result so far, so the summary at the end only gathers it. discuss keeps nothing, by understand's rule: in a project, what is agreed goes to design through the main skill, and design's own steps file each part in its strand, decisions, notes, ideas and design sections; discuss names none of those steps, so design can reshape them without touching discuss. Outside any project, continuing later is a carryover, offered by conduct's wrap-up offer (D117, D147). It is recorded when the person says so, such as "write it down"; the agent offers when a topic within the discussion is complete, and sooner in a long discussion, so that compaction cannot lose decisions held only in the conversation. After recording, a short report says what was written where; a commit stays the person's call.
 - **Files:** `SKILL.md` only.
 - **Material** (D130), adapted, never copied (D120): this session's own way of working, the main source (the whole first, then one item at a time; suggestions with reasons; numbered questions under headings, each with a recommended answer; "Remaining" at the end of each turn; side topics placed so none is forgotten; "write it down" recording across the blueprint; one commit per batch of work); the person's preferences for this project (headings for sections, no unexplained references, lists over wide tables, prose not wrapped), which belong to respond and author's markdown; understand's earlier discussion flow (D53); the person's OpenCode discuss mode (no code changed while discussing; a note of current understanding; a discussion closed when every thread has its final note; routing to clarify or ideation by intent); rig (an open question needs a thread of its own); superpowers' brainstorming, MIT (several independent topics said, an order agreed, each taken in turn; a topic that grows midway said and stepped up a size; the most important points reported and the rest offered). Left out: superpowers' one open question per message, since the person's way is numbered questions with recommended answers in each item.
 - **Tests** (D130):
@@ -162,7 +163,7 @@ understand/
   11. "agreed, clean them" midway: done through act and guardrails, then back to the discussion;
   12. in a project, "write it down": handed to design, a short report of what was written where; no commit unless the person asks;
   13. a long discussion: recording offered before decisions could be lost;
-  14. stopping with items left, outside any project: conduct's wrap-up offer, then a handoff;
+  14. stopping with items left, outside any project: conduct's wrap-up offer, then a carryover;
   15. a parked item: its reason and what would reopen it, in the end summary;
   16. the person asks to see all remaining items at once: shown, since their instruction wins;
   17. an item going in circles: reframed through frame;
@@ -491,9 +492,10 @@ understand/
   - understand's own skill, by its routing line: before relying on an idea, a plan or a decision; a single option to test; "what could go wrong?", "poke holes in this", "play devil's advocate"; not for several options (weigh), finished work about to land (the review root), a claim that work is done (conduct's verify), an idea not yet clear (frame, or clarify), a doubt a fact settles (research, or a test), or the case for a position (argue); it gives back the weaknesses, each with how serious it is and what would address it, and the verdict;
   - its siblings, by path: brainstorm, in its developing step; weigh, which sends a single option here, and each option in a debate; argue, for the strongest objections to its case, taking only the weaknesses (D132);
   - design's review, for its adversarial part, plan, checking a plan before work starts, and design's decide step, for a decision before it is taken, through the main skill;
+  - conduct's ask, before a recommended answer is put to the person, and after the person decides without a recommendation or against one, before the decision is relied on (D150). The depth follows stakes, as conduct's stakes judges them: low, none; medium, the strongest one or two objections thought through, shown only if one holds, changing the recommendation or adding a caveat; high, or any design or plan decision, a full challenge, its verdict in one line beside the recommendation. Nothing is challenged twice: a recommendation already challenged is not challenged again when the person accepts it, since a second pass would find what the first did;
   - the person, typing it.
 
-  It uses frame, by path: an attack is measured against the frame's goal, constraints and "a good answer". How high the stakes are is conduct's stakes' judgment; whether that calls for a challenge, and for fresh eyes, is the caller's (D121, D133).
+  It uses frame, by path: an attack is measured against the frame's goal, constraints and "a good answer". How high the stakes are is conduct's stakes' judgment; whether that calls for a challenge, and for fresh eyes, is the caller's (D121, D133); for ask's trigger, the depth above (D150).
 - **Flow** (D124). Rules, each with its reason:
   1. **Measured against the frame:** a weakness counts when it would stop the idea reaching its goal within its constraints; otherwise every flaw counts and the list never ends.
   2. **The idea is stated fairly first,** at its strongest, as its author would put it: attacking a weak version finds weaknesses the idea does not have.
@@ -539,7 +541,12 @@ understand/
   12. a decision that is hard to undo and reaches far: fresh eyes offered through conduct's delegate;
   13. in a project: the challenge in the session notes; a decision's "why" naming the weaknesses considered and how each was met; a weakness left open in the design's Open field or the topic's ideas file;
   14. the agent's own idea challenged quietly: only the verdict and the serious weaknesses said, each with its reason;
-  15. "make the case for X": argue, which uses challenge for its objections (D132).
+  15. "make the case for X": argue, which uses challenge for its objections (D132);
+  16. a recommendation on a medium-stakes choice: the strongest objection thought through, and shown only because it holds (D150);
+  17. a design decision put to the person: a full challenge, its verdict in one line beside the recommendation (D150);
+  18. the person accepts a recommendation already challenged: not challenged again (D150);
+  19. the person chooses against the recommendation on a high-stakes matter: challenged before it is relied on (D150);
+  20. a low-stakes recommendation, such as a file name in a scratch folder: no challenge (D150).
 - **Open:** none known.
 
 ### argue
@@ -715,7 +722,7 @@ understand/
   - a snippet is a lead: the source is opened before the finding is relied on;
   - for a finding others will rely on, about two independent sources; independent means different origins, so copies of one source count once;
   - nearest and cheapest first: the project's files, then the documentation for the version in use, then the wider web and papers;
-  - each kind of source is read through its reference file, which says how it is searched and how far it is trusted (D128, D140);
+  - each kind of source is read through its reference file, which says how it is searched and how far it is trusted, read when that kind is first searched, never all five at once (D128, D140, D149);
   - when there is a lot to read and a search cannot narrow it, conduct's delegate, as a fanout (D99, D140);
   - search terms varied: synonyms, the exact error message, the words the other side uses;
   - a small experiment can be a source: when running something settles a fact more surely than reading, it is run, within what conduct's act and guardrails allow;
@@ -745,7 +752,7 @@ understand/
   Next:         what comes next
   ```
 
-  survey and analyze add a part of their own and keep the rest. The findings format, whose one home moved here from conduct's fanout: each finding has the claim, in one sentence; its source, a path and line, a link or a reference; the quoted words, where it rests on them; its strength, with "from memory" for what the agent recalled; and what it applies to, a version, a platform or a date, where that matters. research holds the fields; the text is what the person sees, and fanout defines the form its agents write so its script can merge and check them. Advice: the answer first, then the findings, those the answer rests on at the top; every finding stays in, since the sources are the point.
+  survey and analyze add a part of their own and keep the rest. The findings format, whose one home moved here from conduct's fanout: each finding has the claim, in one sentence; its source, a path and line, a link or a reference; the quoted words, where it rests on them; its strength, with "from memory" for what the agent recalled; and what it applies to, a version, a platform or a date, where that matters. research holds the fields; the text is what the person sees, and fanout defines the form its agents write so its script can merge and check them. Advice: the answer first, then the findings, those the answer rests on at the top; every finding stays in, since the sources are the point, but with many findings the response gives the ones the answer rests on and the full list goes to a named file, in the scratch place or the project's research note, named by its path (D149).
 
   research keeps nothing, by understand's rule: in a project, design's research step files it in the blueprint's research strand as a note on its topic, in the form author's blueprint skill holds, and a decision that rests on it links to it; turned into a document for others, author does that. The research strand holds what was learned from sources, a claim about the world included; the evidence log holds the project's own claims checked by verify (D90). A small experiment run during research stays with its research note.
 - **Files** (D128): `SKILL.md`; in `references/`, one file per kind of source: `code.md`, reading code as a source; `documentation.md`, official documentation, changelogs and release notes, for the version in use; `web.md`, pages, forums and social media; `papers.md`, academic literature; `products.md`, other products and competitors. No scripts: the merging script stays with fanout. A full literature review, with search terms, criteria for including a paper and a record of what was screened, becomes a part only if tests show agents get it wrong with the papers file alone.
@@ -772,7 +779,9 @@ understand/
   19. new sources stop changing the answer: research stops and says what was not covered;
   20. repeated tool failures: research stops and shares what it collected;
   21. in a project: filed by design's research step in the research strand as a note on its topic; outside any project: kept in the response;
-  22. a task's own claim to be done: verify and the evidence log, not the research strand.
+  22. a task's own claim to be done: verify and the evidence log, not the research strand;
+  23. a search of code only: the code reference file read, the other four not (D149);
+  24. forty findings: the response gives those the answer rests on, the full list in a named file (D149).
 - **Open:** none known.
 
 #### fact
@@ -834,7 +843,7 @@ understand/
 
   Instructions, in the order the work happens:
   1. **Scope and terms:** from frame, or from the caller; when choosing the terms is the person's, clarify asks them.
-  2. **Search,** wide before deep, as research's advice says, a fanout included when the field is wide.
+  2. **Search,** wide before deep, as research's advice says; a fanout only when conduct's delegate's test for splitting holds, the parts large and a search unable to narrow them, otherwise one agent searches (D149).
   3. **Screen:** each candidate in or out against the scope, with why.
   4. **Compare** on the terms, with evidence in every cell.
   5. **When a choice is wanted:** weigh, by path, takes the comparison as its options and terms.
@@ -860,7 +869,7 @@ understand/
   5. the person's own product among competitors: compared on the same terms, competitors' strengths shown;
   6. a candidate outside the scope: listed under screened out, with why;
   7. a theme from a single review thread: marked as an anecdote;
-  8. a wide field: the plan shown first, then a fanout through delegate;
+  8. a wide field whose parts are large and cannot be narrowed by a search: the plan shown first, then a fanout through delegate; a field a search narrows: one agent searches (D149);
   9. new searches return only candidates already found: the search stops and coverage is stated;
   10. refreshing last quarter's survey: what changed since its date;
   11. "what do papers say about X?": the papers reference file, repeat hits, citations per year;
