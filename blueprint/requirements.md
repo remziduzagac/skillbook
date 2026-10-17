@@ -5,7 +5,7 @@ skillbook holds the person's agent skills as sets, each installed on its own, so
 ## Goals
 
 - **Install what is needed:** each set, essentials, blueprint, softeng and authoring, installs on its own and works alone; how is decided later (D20, D152).
-- **Any kind of project:** essentials for any work: how the agent behaves (conduct), understands (understand, research included), arranges (organize), works with other agents (coordinate), and designs and plans (devise); sets for kinds of work: blueprint for a project's design record, softeng for software, authoring for writing; rigs, a knowledge base and routines later (D35, D36, D40, D64, D67, D76, D154).
+- **Any kind of project:** essentials for any work: how the agent works (act), understands (understand, research included), arranges (organize), works with other agents (coordinate), designs and plans (devise), and responds (respond); sets for kinds of work: blueprint for a project's design record, softeng for software, authoring for writing; rigs, a knowledge base and routines later (D35, D36, D40, D64, D67, D76, D154).
 - **Cheap to use:** only each installed set's main skill sits in the agent's context every turn; everything else loads when a flow reaches it (D38; [research/skill-loading.md](research/skill-loading.md)).
 - **Easy to build and to grow:** every skill is a plain procedure over its sub-skills, and a new case becomes a new sub-skill rather than a longer file (D38).
 - **Held to its own standards:** skillbook keeps its design in this public blueprint and meets its own repository standard (D25, D37).

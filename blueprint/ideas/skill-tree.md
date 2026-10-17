@@ -64,7 +64,7 @@ every decision carries its reasons; the person agrees before anything is decided
 is built, and follows the code back.
 ```
 
-Daily routines stay outside it (D31); learning from a session lives in conduct.
+Daily routines stay outside it (D31); learning from a session lives in coordinate's learn.
 
 ## The shape
 
@@ -92,21 +92,21 @@ Where an activity and a subject meet ("review my essay"), the rule is still open
 Calls between skills, beyond each skill loading its own sub-skills.
 
 - **coordinate-delegate** ← design-consolidate, design-parallel, design-review, implement-plan, understand-research (survey above all), test-experiment, coordinate-delegate-council.
-- **conduct-layout** ← the main skill at its first read, conduct-respond, for every response, conduct-act, for every markdown file, coordinate-brief, and authoring-markdown, for structure (D158). **authoring-markdown** and each **implement-code** language skill ← conduct-act, before every file of their type is written (D67, D68); markdown also ← maintain-repo.
+- **respond-layout** ← respond, for every response, act, for every markdown file, coordinate-brief, and authoring-markdown, for structure (D158). **authoring-markdown** and each **implement-code** language skill ← act, before every file of their type is written (D67, D68); markdown also ← maintain-repo.
 - **coordinate-instruct** ← coordinate-setup, when it writes into an instruction document (D94).
-- **test-tdd** ← implement-plan, test-debug. **review-code** and **conduct-verify** ← implement-plan.
+- **test-tdd** ← implement-plan, test-debug. **review-code** and **act-verify** ← implement-plan.
 - **understand** (discuss, clarify deep, brainstorm, research) ← design; other roots reach understand's skills through the main skill (D51, D56).
 - **understand-research** ← test-experiment; understand's frame, brainstorm, weigh, challenge, argue and naming, for a fact. **understand-research-analyze** ← test-debug, when the cause is not obvious, and ship, for an incident's cause.
 - **design** ← coordinate-learn, to record decisions. **design-architecture** ← test-tdd, for the deep-module vocabulary.
-- **understand-naming** ← design, for unclear terms. **conduct-verify** ← coordinate-delegate, for verifiers.
-- **understand-argue** ← understand-weigh, for each option in a debate; understand-discuss; conduct-respond, for the person's view at its strongest; authoring, for a proposal's case. **understand-challenge** ← understand-argue, for its objections.
+- **understand-naming** ← design, for unclear terms. **act-verify** ← coordinate-delegate, for verifiers.
+- **understand-argue** ← understand-weigh, for each option in a debate; understand-discuss; respond, for the person's view at its strongest; authoring, for a proposal's case. **understand-challenge** ← understand-argue, for its objections.
 - **implement-git** ← maintain-repo.
 - **maintain-repo's release rules** ← ship-release, ship-deploy, ship-rollback: the contract shipping works within.
 - **ship-wizard** ← ship-infra, ship-release.
-- **conduct-respond** and **conduct-act** ← the main skill, first, once per conversation; respond again before each response is returned (D63, D81).
+- **respond** and **act** ← the main skill, by its steps, once per conversation; respond again before each response is returned (D63, D81, D178).
 - **authoring-blueprint** ← design's recording steps (discuss, research, decide, write, workstream, tasks), for each document's form (D69). **coordinate-delegate** ← authoring-edit, for passes run in parallel (D70).
 - **organize** ← design (an idea document split into sub-documents), plan (dividing a plan's work; the former plan-breakdown is kept in [plan's ideas](plan.md), D151), authoring-docs, and skillbook-tree for placing a skill (D61, D77).
-- **conduct-rightsize-lean** ← coordinate-instruct's prune step on an existing document, skillbook-tree's cost check, design-review's lean lens and authoring-edit, for removing whole parts; **authoring-reader** ← conduct-rightsize-enrich, for what the reader would still ask (D157).
+- **act-rightsize-lean** ← coordinate-instruct's prune step on an existing document, skillbook-tree's cost check, design-review's lean lens and authoring-edit, for removing whole parts; **authoring-reader** ← act-rightsize-enrich, for what the reader would still ask (D157).
 
 ## The roots, provisional
 

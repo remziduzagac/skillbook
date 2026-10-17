@@ -6,9 +6,9 @@ The tree of skills, by set, as decided; a skill marked (an idea) is placed but n
 
 - **Each skill is a short folder** inside its parent's; its name, shown before its description, is the folder path joined by dashes: `design/start/` is `design-start` (D43, D71). Inside, only `SKILL.md` sits at the top, with `references/`, `scripts/` and `assets/` beside the sub-skills, and in a hidden skill `agents/`, Codex's settings (D44, D79); the sample below shows it once.
 - **Each set's main skill** is model-invoked, its description in the agent's context every turn (D56, D152). Every other skill, the roots included, is a **sub-skill**: invoked by the person only, costs nothing until used, and is loaded by its path from the skill that needs it, inside its set; the person can type it by the name its install route gives it.
-- **essentials' main skill,** on the `essentials/` line, sits above the roots: its rules come first, among them following conduct's act and laying out every response by its rule on layout; its instructions say when to use each root; and every response is checked against respond before it is returned (D56, D63, D81, D112). Beside the roots, **conduct** holds how the agent behaves in every root.
+- **essentials' main skill,** on the `essentials/` line, sits above the roots: its rules and advice come first; its instructions say when to use each root, in the order the work happens; and every response is checked against respond before it is returned (D56, D63, D81, D112, D178). Beside the roots, **act** holds how the agent works and **respond** everything said to the person, in every root (D179).
 - **(an idea)** marks a skill with no worked-out material anywhere yet; **→** marks a skill it calls.
-- **The roots:** the stages, named by bare verbs (D35, D36, D76): softeng's are implement, test, review, ship and maintain, with its own design and plan; essentials' design and plan sit under devise, not at the top (D154, D164); understand is a verb too, and conduct, coordinate, organize and authoring, groups, are nouns or set names (D40, D67, D154). A knowledge base and routines are later sets (D64, D152), their skills ideas in [../ideas/later.md](../ideas/later.md) (D167).
+- **The roots:** the stages, named by bare verbs (D35, D36, D76): softeng's are implement, test, review, ship and maintain, with its own design and plan; essentials' design and plan sit under devise, not at the top (D154, D164); understand is a verb too, and act, respond, coordinate, organize and authoring, groups, are nouns or set names (D40, D67, D154). A knowledge base and routines are later sets (D64, D152), their skills ideas in [../ideas/later.md](../ideas/later.md) (D167).
 
 ## The tree
 
@@ -29,72 +29,12 @@ The tree shows only the skill folders. Its folder paths are provisional until th
 
 ```text
 essentials/                       essentials, essentials' main skill, listed to the model like every set's main skill
-│                                 and the one loaded first for any work: its rules hold in every case (follow act's
-│                                 rules, lay out every response and file by its rule on layout), so it reads act,
-│                                 respond, rightsize and layout first; for now it routes to understand, devise for plan
-│                                 and design, organize, coordinate and conduct, and to authoring's markdown through
-│                                 authoring's main skill where that set is installed, several for one request where the
-│                                 work needs them, and other work is done under act's rules until its root or set is
-│                                 designed; strong advice: delegation by default, done directly only when too small,
-│                                 when it needs the person's decisions as it goes, or when the content is needed for the
-│                                 conversation; it holds the wrap-up offer; every response is checked against respond
-│                                 before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152,
-│                                 D153, D154, D155, D158, D164, D168)
-│
-├── conduct/                      conduct: how the agent behaves in every response: responding, laying out, acting,
-│   │                             asking, explaining, judging stakes, guardrails, verifying, rightsizing and cleaning
-│   │                             up; the main skill reads respond, act, rightsize and layout directly, first, once per
-│   │                             conversation, and conduct's own SKILL.md holds one routing line for each of the rest
-│   │                             (D63, D106, D134, D149, D158, D164)
-│   ├── respond/                  conduct-respond: how every response is prepared before it is returned: necessary and
-│   │                             sufficient, things named in words, top-down when explaining, plain words, outcomes as
-│   │                             they happened, no guardrail broken; questions through ask; the main skill checks each
-│   │                             response against it (D60, D81, D95, D107, D114, D115)
-│   ├── layout/                   conduct-layout: how anything written in markdown is laid out: six structure rules
-│   │                             (headings for sections, bold only for labels, tables only for short values, prose
-│   │                             unwrapped, numbers where things are referred to by number, code fenced), lists over
-│   │                             tables as strong advice; read first with act, respond and rightsize; authoring's
-│   │                             markdown adds the file rules (D111, D158)
-│   ├── act/                      conduct-act: how to act, read first: clarify before acting, through clarify; an
-│   │                             opinion is not a task; a concern that would change the work asked and waited on, then
-│   │                             exactly what was asked; evidence before any claim, through verify; guardrails before a
-│   │                             risky action; the skill for a file's type; a skill by its route; stop when attempts
-│   │                             keep failing; which instruction wins; running as a delegated agent (D58, D63, D72,
-│   │                             D84, D107, D115, D116)
-│   ├── ask/                      conduct-ask: how the agent asks the person anything: numbered questions under their
-│   │                             own headings, each with a recommended answer; one round or one by one; go ahead,
-│   │                             parked and assumed; proposals put the same way; the harness's question tool for a few
-│   │                             closed choices (D114, D159)
-│   ├── explain/                  conduct-explain: something the agent itself said that did not land, explained
-│   │                             top-down: where we are, the point, what it rests on in words, an example; stops once
-│   │                             it is clear; explaining something new is understand's (D54, D63, D96, D107)
-│   ├── verify/                   conduct-verify: evidence before claiming work is done, fixed, passing or meets its
-│   │                             requirements: the check chosen, run fresh, and who checks; four further checks for a
-│   │                             plan's task, a commit or a pull request (D89, D107)
-│   ├── guardrails/               conduct-guardrails: risky actions in eight kinds (irreversible, wide, outward, outside
-│   │                             the task, costly, others' text and code, weaker checks, secrets): proposed with their
-│   │                             scope, approved, applied exactly, checked; which text is an instruction and which is
-│   │                             data; trivial cost, the project's own commands, safe writes, the network, proportion,
-│   │                             the never-rules (D91, D92, D107, D115)
-│   ├── stakes/                   conduct-stakes: how much care something deserves, judged from facts: Undo, Reach,
-│   │                             Catch and Cost, and one level, low, medium or high, the higher when unsure and never
-│   │                             below a rule; it judges and the caller acts: guardrails, delegate, verify, weigh and
-│   │                             understand map it (D121, D133)
-│   ├── rightsize/                conduct-rightsize: nothing missing and nothing extra for the reader, parts
-│   │   │                         comprehensive and exclusive, the point first, and the work rightsized; a five-question
-│   │   │                         check that respond, authoring, organize, brief, carryover, instruct and act run; its
-│   │   │                         two parts rework what already exists (D145, D157)
-│   │   ├── lean/                 conduct-rightsize-lean: something that exists, its extra parts removed: each part
-│   │   │                         judged by what it does for its reader, what does nothing cut, pasted content turned
-│   │   │                         into pointers, repeats through organize's merge, nothing a rule requires lost; the
-│   │   │                         list approved where others' work changes; code under tests (D157)
-│   │   └── enrich/               conduct-rightsize-enrich: something that exists, its missing parts added: what its
-│   │                             reader would still ask, answered from the project, the person or research, each
-│   │                             addition sourced and checked, never invented, what cannot be found marked as a gap
-│   │                             (D157)
-│   └── cleanup/                  conduct-cleanup: what the agent itself created and no longer needs, removed by exact
-│                                 path or ID: its own without asking, the rest proposed; what is kept said with why; act
-│                                 names it before "done" (D126, D129)
+│                                 and the one loaded first for any work: three rules for every request (every skill a
+│                                 request needs is used, delegation by default, the wrap-up offer), then seven steps,
+│                                 each loading its group when its step comes: understand the request, act's rules
+│                                 throughout, devise, organize and coordinate when needed, do it through another set's
+│                                 main skill or directly, respond always; of the other sets, authoring's markdown for
+│                                 now (D56, D152, D153, D171, D177, D178, D179)
 │
 ├── understand/                   understand: understanding before acting, with the person and from sources: its own
 │   │                             skill holds the rules for the whole scope (keeps nothing, one result shape, guesses
@@ -122,7 +62,7 @@ essentials/                       essentials, essentials' main skill, listed to 
 │   │                             one home (D118, D119)
 │   ├── brainstorm/               understand-brainstorm: options for one open question: framed through frame, options
 │   │                             listed before any is judged and differing in kind, the promising ones developed and
-│   │                             challenged, weighed through weigh, then decided through conduct's ask or parked; keeps
+│   │                             challenged, weighed through weigh, then decided through respond's ask or parked; keeps
 │   │                             nothing, a keeper records it (D53, D118, D163)
 │   ├── weigh/                    understand-weigh: options compared on terms stated before any is scored, frame's "a
 │   │                             good answer" where there is one: what each gives, costs, could get wrong and leaves
@@ -151,6 +91,40 @@ essentials/                       essentials, essentials' main skill, listed to 
 │       └── analyze/              understand-research-analyze: why something happens: the symptom stated, one testable
 │                                 cause at a time, the chain traced back to its trigger, the fix left to the caller;
 │                                 test-debug asks for it when the cause is not obvious (D59, D128)
+│
+├── act/                          act: how the agent works, its rules holding for all the work and its tools loaded when
+│   │                             a step needs them: clarify before acting, through clarify; an opinion is not a task; a
+│   │                             concern that would change the work asked and waited on, then exactly what was asked;
+│   │                             evidence before any claim, through verify; guardrails before a risky action; the skill
+│   │                             for a file's type; a skill by its route; stop when attempts keep failing; which
+│   │                             instruction wins; running as a delegated agent (D58, D63, D72, D84, D107, D115, D116,
+│   │                             D177, D179)
+│   ├── stakes/                   act-stakes: how much care something deserves, judged from facts: Undo, Reach, Catch
+│   │                             and Cost, and one level, low, medium or high, the higher when unsure and never below a
+│   │                             rule; it judges and the caller acts: guardrails, delegate, verify, weigh and
+│   │                             understand map it (D121, D133)
+│   ├── guardrails/               act-guardrails: risky actions in eight kinds (irreversible, wide, outward, outside the
+│   │                             task, costly, others' text and code, weaker checks, secrets): proposed with their
+│   │                             scope, approved, applied exactly, checked; which text is an instruction and which is
+│   │                             data; trivial cost, the project's own commands, safe writes, the network, proportion,
+│   │                             the never-rules (D91, D92, D107, D115)
+│   ├── cleanup/                  act-cleanup: what the agent itself created and no longer needs, removed by exact path
+│   │                             or ID: its own without asking, the rest proposed; what is kept said with why; act
+│   │                             names it before "done" (D126, D129)
+│   ├── verify/                   act-verify: evidence before claiming work is done, fixed, passing or meets its
+│   │                             requirements: the check chosen, run fresh, and who checks; four further checks for a
+│   │                             plan's task, a commit or a pull request (D89, D107)
+│   └── rightsize/                act-rightsize: nothing missing and nothing extra for the reader, parts comprehensive
+│       │                         and exclusive, the point first, and the work rightsized; a five-question check that
+│       │                         respond, authoring, organize, brief, carryover, instruct and act run; its two parts
+│       │                         rework what already exists (D145, D157)
+│       ├── lean/                 act-rightsize-lean: something that exists, its extra parts removed: each part judged
+│       │                         by what it does for its reader, what does nothing cut, pasted content turned into
+│       │                         pointers, repeats through organize's merge, nothing a rule requires lost; the list
+│       │                         approved where others' work changes; code under tests (D157)
+│       └── enrich/               act-rightsize-enrich: something that exists, its missing parts added: what its reader
+│                                 would still ask, answered from the project, the person or research, each addition
+│                                 sourced and checked, never invented, what cannot be found marked as a gap (D157)
 │
 ├── organize/                     organize: arranging things, written or still planned: rules (one dividing principle,
 │   │                             each boundary in one sentence, meaning preserved, the person verifying plan and
@@ -213,6 +187,24 @@ essentials/                       essentials, essentials' main skill, listed to 
 │                                 keeper, or dropped; skill promotion and where highlights wait are future work (D66,
 │                                 D98, D107, D163) → instruct
 │
+├── respond/                      respond: everything said to the person, the last step of every request: how every
+│   │                             response is prepared before it is returned: necessary and sufficient, things named in
+│   │                             words, top-down when explaining, plain words, outcomes as they happened, no guardrail
+│   │                             broken; questions through ask; the main skill checks each response against it (D60,
+│   │                             D81, D95, D107, D114, D115, D179)
+│   ├── layout/                   respond-layout: how anything written in markdown is laid out: six structure rules
+│   │                             (headings for sections, bold only for labels, tables only for short values, prose
+│   │                             unwrapped, numbers where things are referred to by number, code fenced), lists over
+│   │                             tables as strong advice; loaded by respond for every response; authoring's markdown
+│   │                             adds the file rules (D111, D158)
+│   ├── ask/                      respond-ask: how the agent asks the person anything: numbered questions under their
+│   │                             own headings, each with a recommended answer; one round or one by one; go ahead,
+│   │                             parked and assumed; proposals put the same way; the harness's question tool for a few
+│   │                             closed choices (D114, D159)
+│   └── explain/                  respond-explain: something the agent itself said that did not land, explained
+│                                 top-down: where we are, the point, what it rests on in words, an example; stops once
+│                                 it is clear; explaining something new is understand's (D54, D63, D96, D107)
+│
 └── devise/                       devise: deciding what the work will be and its steps: design, how to design anything,
     │                             and plan, planning multipart work and following it; its own SKILL.md routes to each
     │                             (D164)
@@ -270,7 +262,7 @@ softeng/                          softeng, the softeng set's main skill: how goo
 │
 ├── implement/                    implement: making it, by carrying out the design
 │   ├── prototype/                implement-prototype: throwaway work that answers one design question → cited by design
-│   ├── plan/                     implement-plan: a plan carried out task by task → test, review, conduct-verify,
+│   ├── plan/                     implement-plan: a plan carried out task by task → test, review, act-verify,
 │   │                             coordinate-delegate
 │   ├── git/                      implement-git: git work by the house rules; routes to its sub-skills
 │   │   ├── worktree/             implement-git-worktree: a task in its own worktree
@@ -367,10 +359,11 @@ authoring/                        authoring: author renamed (D154): writing work
 
 | Set / root | Skills | with material | ideas |
 | --- | --- | --- | --- |
-| essentials / conduct | 12 | 12 | 0 |
 | essentials / understand | 15 | 15 | 0 |
+| essentials / act | 7 | 7 | 0 |
 | essentials / organize | 5 | 5 | 0 |
 | essentials / coordinate | 9 | 9 | 0 |
+| essentials / respond | 3 | 3 | 0 |
 | essentials / devise | 3 | 3 | 0 |
 | blueprint / steps and forms | 15 | 15 | 0 |
 | softeng / design | 1 | 1 | 0 |
@@ -383,16 +376,17 @@ authoring/                        authoring: author renamed (D154): writing work
 | authoring / authoring | 9 | 4 | 5 |
 | later / rigs | 1 | 0 | 1 |
 
-106 skills in conduct and the other roots, design and plan counted in each set that has a part of them, and the main skills above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
+104 skills under essentials' groups and the other sets' roots, design and plan counted in each set that has a part of them, and the main skills above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
 
 ## Where the material comes from
 
 For each skill, the sources that already hold material for it: read them before writing it (D30). sk is skillbook's first design; mp mattpocock/skills, sp superpowers, an Anthropic's skills, cc Claude Code's official plugins, gs gstack, ar alirezarezvani/claude-skills, vc vercel's agent skills; own the person's current skills; and the person's projects: ws workslate and rig, vo VaultOps and the agent specs, oc OpenCode customisations, lc loomcraft and infoloom, sb slipbox, ts trailscout, hs herdsman, md meddah.
 
-- **conduct:** conduct-respond (own, md, mp); conduct-layout (own); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-rightsize (own, mp); conduct-rightsize-lean (own, mp); conduct-rightsize-enrich (own); conduct-cleanup (own, sp, ar, an).
 - **understand:** understand-discuss (own, oc, sp); understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-argue (gs, ar); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
+- **act:** act-stakes (own); act-guardrails (vo, sb, lc, gs, ts); act-cleanup (own, sp, ar, an); act-verify (sp, md, ws); act-rightsize (own, mp); act-rightsize-lean (own, mp); act-rightsize-enrich (own).
 - **organize:** organize-split (vo); organize-merge (vo); organize-compose (vo); organize-normalize (vo); organize-cluster (vo).
 - **coordinate:** coordinate-delegate (own, ts, md, sp, vo); coordinate-delegate-council (ws); coordinate-delegate-fanout (own, ts); coordinate-delegate-crew (md); coordinate-brief (own, mp); coordinate-carryover (ws, mp, oc, gs, ar); coordinate-instruct (mp, sp, ws, oc); coordinate-setup (cc, lc); coordinate-learn (ws, mp, gs, cc).
+- **respond:** respond-layout (own); respond-ask (own, mp); respond-explain (mp).
 - **devise:** devise-design; devise-design-review (ts, mp); devise-plan (none yet).
 - **steps and forms:** design-start (sk); design-discuss (sk, mp); design-research (sk, ts); design-decide (sk, mp); design-evidence (sk); design-write (sk); design-workstream (sk); design-tasks (sk, mp); design-work (sk); design-sync (sk); design-consolidate (sk); design-parallel (sk); design-check (sk); design-publish (sk); authoring-blueprint (sk, mp, ts).
 - **softeng-design:** design-architecture (mp, hs).

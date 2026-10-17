@@ -40,13 +40,13 @@ Checks 1 to 7 and 11 hold for every skill, leaf skills too; checks 8 to 10 also 
 7. **Tests:** each "when to use" and each "when not" has a test that can tell them apart.
 8. **The sections, in order:** rules at the top, advice, instructions in the order the work happens, and the last instruction, what is done before anything is returned.
 9. **Each sub-skill:** when to use it, when not, and what it gives back.
-10. **Its own level:** if-then-else only where an order must be imposed, and nothing about how a sub-skill works inside.
+10. **Its own level, level by level:** at its top, only rules and advice that hold for everything under it and have no skill of their own; one line per direct child, loaded when its step comes; no grandchild introduced in its own lines, an exception stated with its reason, while using any other skill or sub-skill by name when a step needs it stays open; if-then-else only where an order must be imposed, and nothing about how a sub-skill works inside (D177).
 11. **Cost:** every turn carries the whole context again, so the skill spends no tokens that do not buy quality (D142, D149):
     - **reading:** only what is needed, by searching first, reading parts and following pointers; nothing read twice;
     - **turns:** independent calls go together, and skills named for the same step are read in one turn; no check repeated without need;
-    - **writing:** outputs rightsized, by conduct's rightsize; pointers where pasted content would do; no question to the person that is not truly open;
+    - **writing:** outputs rightsized, by act's rightsize; pointers where pasted content would do; no question to the person that is not truly open;
     - **delegation:** a step that should go to an agent goes through coordinate's delegate; no fanout where a search would do;
-    - **loading:** other skills reached only at the moment they are needed; the skill's own file short, with what only some work needs in a linked file, and a file that has grown trimmed through conduct's rightsize's lean (D157);
+    - **loading:** other skills reached only at the moment they are needed; the skill's own file short, with what only some work needs in a linked file, and a file that has grown trimmed through act's rightsize's lean (D157);
     - **the main context:** no step pours large output into the main session; bulk goes to a named file;
     - **checks:** the cheapest evidence that would fail if the claim were false.
 

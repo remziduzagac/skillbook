@@ -3,154 +3,6 @@
   {
    "set": "essentials",
    "path": [
-    "conduct"
-   ],
-   "mark": "●",
-   "src": "",
-   "tail": [],
-   "kids": [
-    {
-     "path": [
-      "conduct",
-      "respond"
-     ],
-     "mark": "●",
-     "short": "",
-     "src": "own md mp",
-     "tail": [],
-     "kids": [],
-     "desc": "how every response is prepared before it is returned: necessary and sufficient, things named in words, top-down when explaining, plain words, outcomes as they happened, no guardrail broken; questions through ask; the main skill checks each response against it (D60, D81, D95, D107, D114, D115)"
-    },
-    {
-     "path": [
-      "conduct",
-      "layout"
-     ],
-     "mark": "●",
-     "src": "own",
-     "tail": [],
-     "desc": "how anything written in markdown is laid out: six structure rules (headings for sections, bold only for labels, tables only for short values, prose unwrapped, numbers where things are referred to by number, code fenced), lists over tables as strong advice; read first with act, respond and rightsize; authoring's markdown adds the file rules (D111, D158)",
-     "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "act"
-     ],
-     "mark": "●",
-     "src": "own vo sp",
-     "tail": [],
-     "kids": [],
-     "desc": "how to act, read first: clarify before acting, through clarify; an opinion is not a task; a concern that would change the work asked and waited on, then exactly what was asked; evidence before any claim, through verify; guardrails before a risky action; the skill for a file's type; a skill by its route; stop when attempts keep failing; which instruction wins; running as a delegated agent (D58, D63, D72, D84, D107, D115, D116)"
-    },
-    {
-     "path": [
-      "conduct",
-      "ask"
-     ],
-     "mark": "●",
-     "src": "own mp",
-     "tail": [],
-     "kids": [],
-     "desc": "how the agent asks the person anything: numbered questions under their own headings, each with a recommended answer; one round or one by one; go ahead, parked and assumed; proposals put the same way; the harness's question tool for a few closed choices (D114, D159)"
-    },
-    {
-     "path": [
-      "conduct",
-      "explain"
-     ],
-     "mark": "●",
-     "desc": "something the agent itself said that did not land, explained top-down: where we are, the point, what it rests on in words, an example; stops once it is clear; explaining something new is understand's (D54, D63, D96, D107)",
-     "src": "mp",
-     "tail": [],
-     "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "verify"
-     ],
-     "mark": "●",
-     "desc": "evidence before claiming work is done, fixed, passing or meets its requirements: the check chosen, run fresh, and who checks; four further checks for a plan's task, a commit or a pull request (D89, D107)",
-     "src": "sp md ws",
-     "tail": [],
-     "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "guardrails"
-     ],
-     "mark": "●",
-     "desc": "risky actions in eight kinds (irreversible, wide, outward, outside the task, costly, others' text and code, weaker checks, secrets): proposed with their scope, approved, applied exactly, checked; which text is an instruction and which is data; trivial cost, the project's own commands, safe writes, the network, proportion, the never-rules (D91, D92, D107, D115)",
-     "src": "vo sb lc gs ts",
-     "tail": [],
-     "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "stakes"
-     ],
-     "mark": "●",
-     "desc": "how much care something deserves, judged from facts: Undo, Reach, Catch and Cost, and one level, low, medium or high, the higher when unsure and never below a rule; it judges and the caller acts: guardrails, delegate, verify, weigh and understand map it (D121, D133)",
-     "src": "own",
-     "tail": [],
-     "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "rightsize"
-     ],
-     "mark": "●",
-     "desc": "nothing missing and nothing extra for the reader, parts comprehensive and exclusive, the point first, and the work rightsized; a five-question check that respond, authoring, organize, brief, carryover, instruct and act run; its two parts rework what already exists (D145, D157)",
-     "src": "own mp",
-     "tail": [],
-     "kids": [
-      {
-       "path": [
-        "conduct",
-        "rightsize",
-        "lean"
-       ],
-       "mark": "●",
-       "src": "own mp",
-       "tail": [],
-       "kids": [],
-       "desc": "something that exists, its extra parts removed: each part judged by what it does for its reader, what does nothing cut, pasted content turned into pointers, repeats through organize's merge, nothing a rule requires lost; the list approved where others' work changes; code under tests (D157)"
-      },
-      {
-       "path": [
-        "conduct",
-        "rightsize",
-        "enrich"
-       ],
-       "mark": "●",
-       "src": "own",
-       "tail": [],
-       "kids": [],
-       "desc": "something that exists, its missing parts added: what its reader would still ask, answered from the project, the person or research, each addition sourced and checked, never invented, what cannot be found marked as a gap (D157)"
-      }
-     ]
-    },
-    {
-     "path": [
-      "conduct",
-      "cleanup"
-     ],
-     "mark": "●",
-     "desc": "what the agent itself created and no longer needs, removed by exact path or ID: its own without asking, the rest proposed; what is kept said with why; act names it before \"done\" (D126, D129)",
-     "src": "own sp ar an",
-     "tail": [],
-     "kids": []
-    }
-   ],
-   "desc": "how the agent behaves in every response: responding, laying out, acting, asking, explaining, judging stakes, guardrails, verifying, rightsizing and cleaning up; the main skill reads respond, act, rightsize and layout directly, first, once per conversation, and conduct's own SKILL.md holds one routing line for each of the rest (D63, D106, D134, D149, D158, D164)"
-  },
-  {
-   "set": "essentials",
-   "path": [
     "understand"
    ],
    "mark": "●",
@@ -235,7 +87,7 @@
       "brainstorm"
      ],
      "mark": "●",
-     "desc": "options for one open question: framed through frame, options listed before any is judged and differing in kind, the promising ones developed and challenged, weighed through weigh, then decided through conduct's ask or parked; keeps nothing, a keeper records it (D53, D118, D163)",
+     "desc": "options for one open question: framed through frame, options listed before any is judged and differing in kind, the promising ones developed and challenged, weighed through weigh, then decided through respond's ask or parked; keeps nothing, a keeper records it (D53, D118, D163)",
      "src": "oc sp vo",
      "tail": [],
      "kids": []
@@ -330,6 +182,98 @@
        "src": "ws gs sp ar",
        "tail": [],
        "kids": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set": "essentials",
+   "path": [
+    "act"
+   ],
+   "mark": "●",
+   "src": "own vo sp",
+   "tail": [],
+   "desc": "how the agent works, its rules holding for all the work and its tools loaded when a step needs them: clarify before acting, through clarify; an opinion is not a task; a concern that would change the work asked and waited on, then exactly what was asked; evidence before any claim, through verify; guardrails before a risky action; the skill for a file's type; a skill by its route; stop when attempts keep failing; which instruction wins; running as a delegated agent (D58, D63, D72, D84, D107, D115, D116, D177, D179)",
+   "kids": [
+    {
+     "path": [
+      "act",
+      "stakes"
+     ],
+     "mark": "●",
+     "desc": "how much care something deserves, judged from facts: Undo, Reach, Catch and Cost, and one level, low, medium or high, the higher when unsure and never below a rule; it judges and the caller acts: guardrails, delegate, verify, weigh and understand map it (D121, D133)",
+     "src": "own",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "act",
+      "guardrails"
+     ],
+     "mark": "●",
+     "desc": "risky actions in eight kinds (irreversible, wide, outward, outside the task, costly, others' text and code, weaker checks, secrets): proposed with their scope, approved, applied exactly, checked; which text is an instruction and which is data; trivial cost, the project's own commands, safe writes, the network, proportion, the never-rules (D91, D92, D107, D115)",
+     "src": "vo sb lc gs ts",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "act",
+      "cleanup"
+     ],
+     "mark": "●",
+     "desc": "what the agent itself created and no longer needs, removed by exact path or ID: its own without asking, the rest proposed; what is kept said with why; act names it before \"done\" (D126, D129)",
+     "src": "own sp ar an",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "act",
+      "verify"
+     ],
+     "mark": "●",
+     "desc": "evidence before claiming work is done, fixed, passing or meets its requirements: the check chosen, run fresh, and who checks; four further checks for a plan's task, a commit or a pull request (D89, D107)",
+     "src": "sp md ws",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "act",
+      "rightsize"
+     ],
+     "mark": "●",
+     "desc": "nothing missing and nothing extra for the reader, parts comprehensive and exclusive, the point first, and the work rightsized; a five-question check that respond, authoring, organize, brief, carryover, instruct and act run; its two parts rework what already exists (D145, D157)",
+     "src": "own mp",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "act",
+        "rightsize",
+        "lean"
+       ],
+       "mark": "●",
+       "src": "own mp",
+       "tail": [],
+       "kids": [],
+       "desc": "something that exists, its extra parts removed: each part judged by what it does for its reader, what does nothing cut, pasted content turned into pointers, repeats through organize's merge, nothing a rule requires lost; the list approved where others' work changes; code under tests (D157)"
+      },
+      {
+       "path": [
+        "act",
+        "rightsize",
+        "enrich"
+       ],
+       "mark": "●",
+       "src": "own",
+       "tail": [],
+       "kids": [],
+       "desc": "something that exists, its missing parts added: what its reader would still ask, answered from the project, the person or research, each addition sourced and checked, never invented, what cannot be found marked as a gap (D157)"
       }
      ]
     }
@@ -512,6 +456,51 @@
      "mark": "●",
      "desc": "what a session taught, when asked: highlights collected, judged and, with approval, made into a rule through instruct, or a decision or an insight for the keeper, or dropped; skill promotion and where highlights wait are future work (D66, D98, D107, D163) → instruct",
      "src": "ws mp gs cc",
+     "tail": [],
+     "kids": []
+    }
+   ]
+  },
+  {
+   "set": "essentials",
+   "path": [
+    "respond"
+   ],
+   "mark": "●",
+   "src": "own md mp",
+   "tail": [],
+   "desc": "everything said to the person, the last step of every request: how every response is prepared before it is returned: necessary and sufficient, things named in words, top-down when explaining, plain words, outcomes as they happened, no guardrail broken; questions through ask; the main skill checks each response against it (D60, D81, D95, D107, D114, D115, D179)",
+   "kids": [
+    {
+     "path": [
+      "respond",
+      "layout"
+     ],
+     "mark": "●",
+     "src": "own",
+     "tail": [],
+     "desc": "how anything written in markdown is laid out: six structure rules (headings for sections, bold only for labels, tables only for short values, prose unwrapped, numbers where things are referred to by number, code fenced), lists over tables as strong advice; loaded by respond for every response; authoring's markdown adds the file rules (D111, D158)",
+     "kids": []
+    },
+    {
+     "path": [
+      "respond",
+      "ask"
+     ],
+     "mark": "●",
+     "src": "own mp",
+     "tail": [],
+     "kids": [],
+     "desc": "how the agent asks the person anything: numbered questions under their own headings, each with a recommended answer; one round or one by one; go ahead, parked and assumed; proposals put the same way; the harness's question tool for a few closed choices (D114, D159)"
+    },
+    {
+     "path": [
+      "respond",
+      "explain"
+     ],
+     "mark": "●",
+     "desc": "something the agent itself said that did not land, explained top-down: where we are, the point, what it rests on in words, an example; stops once it is clear; explaining something new is understand's (D54, D63, D96, D107)",
+     "src": "mp",
      "tail": [],
      "kids": []
     }
@@ -804,7 +793,7 @@
       "plan"
      ],
      "mark": "●",
-     "desc": "a plan carried out task by task → test, review, conduct-verify, coordinate-delegate",
+     "desc": "a plan carried out task by task → test, review, act-verify, coordinate-delegate",
      "src": "sp mp",
      "tail": [],
      "kids": []
@@ -1484,17 +1473,17 @@
   "agents-delegate": "conduct-delegate",
   "agents-handoff": "conduct-handoff",
   "agents-council": "agents-delegate-council",
-  "agents-verify": "conduct-verify",
-  "agents-guardrails": "conduct-guardrails",
+  "agents-verify": "act-verify",
+  "agents-guardrails": "act-guardrails",
   "understand-organize": "conduct-organize",
-  "understand-explain": "conduct-explain",
+  "understand-explain": "respond-explain",
   "answer": "conduct-answer",
   "write-for-agents": "conduct-instruct",
   "agents-delegate-council": "conduct-delegate-council",
   "author-updates": "author-business",
   "conduct-answer": "conduct-respond"
  },
- "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: its rules hold in every case (follow act's rules, lay out every response and file by its rule on layout), so it reads act, respond, rightsize and layout first; for now it routes to understand, devise for plan and design, organize, coordinate and conduct, and to authoring's markdown through authoring's main skill where that set is installed, several for one request where the work needs them, and other work is done under act's rules until its root or set is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; it holds the wrap-up offer; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154, D155, D158, D164, D168)",
+ "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: three rules for every request (every skill a request needs is used, delegation by default, the wrap-up offer), then seven steps, each loading its group when its step comes: understand the request, act's rules throughout, devise, organize and coordinate when needed, do it through another set's main skill or directly, respond always; of the other sets, authoring's markdown for now (D56, D152, D153, D171, D177, D178, D179)",
  "sets": [
   {
    "name": "essentials",

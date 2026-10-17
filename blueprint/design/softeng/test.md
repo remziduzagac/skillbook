@@ -70,4 +70,4 @@ test/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:** names conduct's cleanup where a run's home and processes are no longer needed (D129).
+- **Open:** names act's cleanup where a run's home and processes are no longer needed (D129).

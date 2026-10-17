@@ -167,4 +167,7 @@ How skillbook's initial design was discussed, from 2026-10-07 to 2026-10-10, in 
 - 111, organize's check covers new items, compose may move items, and delegate chooses the agent, the person noting that delegation is delegate's (D174).
 - 112, verify can choose a fresh agent to check (D175).
 - 113, devise in one file, a README per set folder, and the ideas split: the person asked why plan was not in devise and where the essentials README was (D176).
+- 114, skills open level by level: the person found the main skill unnecessarily complex and described a tree that opens one level at a time, children loaded when needed (D177).
+- 115, the main skill as three rules and seven steps, from the person's sketch (D178).
+- 116, conduct becomes act, and respond a group at the top for everything said to the person; the person moved ask, explain and layout to respond, since all three produce what is said to the person (D179).
 - **Open:** [../ideas/open.md](../ideas/open.md) and the questions in [../ideas/skill-tree.md](../ideas/skill-tree.md).
