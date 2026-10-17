@@ -284,7 +284,7 @@ conduct/
 
   Done when every claim in the response has its evidence beside it, or is marked unverified.
 
-  For a plan's task, a commit or a pull request, before it is called done, four more checks: contradiction (with a decision or another part), duplication (something that already exists), drift (from the design and the plan), coverage (every requirement met, shown with the checklist in the table below). They are done by searching for the item's names and its decision's terms and reading the hits in parts, not whole designs; when the reading is large, a fresh agent at the standard tier does it, through delegate, since contradiction and drift are judgments (D149). Advice: a check done by hand about three times is proposed to the person as a script or a lint rule, never added unasked (D89, D107, D116).
+  For a plan's task, a commit or a pull request, before it is called done, four more checks: contradiction (with a decision or another part, as design's review's consistency lens defines it, D168), duplication (something that already exists, as organize's check finds overlaps, D168), drift (from the design and the plan), coverage (every requirement met, shown with the checklist in the table below). They are done by searching for the item's names and its decision's terms and reading the hits in parts, not whole designs; when the reading is large, a fresh agent at the standard tier does it, through delegate, since contradiction and drift are judgments (D149). Advice: a check done by hand about three times is proposed to the person as a script or a lint rule, never added unasked (D89, D107, D116).
 - **Claims and their evidence** (D89), in `SKILL.md`:
 
   | Claim | Evidence | Not enough |

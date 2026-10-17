@@ -31,15 +31,15 @@ The tree shows only the skill folders. Its folder paths are provisional until th
 essentials/                       essentials, essentials' main skill, listed to the model like every set's main skill
 │                                 and the one loaded first for any work: its rules hold in every case (follow act's
 │                                 rules, lay out every response and file by its rule on layout), so it reads act,
-│                                 respond, rightsize and layout first; for now it routes to understand, devise for plan,
-│                                 organize, coordinate and conduct, and to authoring's markdown through authoring's main
-│                                 skill where that set is installed, several for one request where the work needs them,
-│                                 and other work is done under act's rules until its root or set is designed; strong
-│                                 advice: delegation by default, done directly only when too small, when it needs the
-│                                 person's decisions as it goes, or when the content is needed for the conversation; it
-│                                 holds the wrap-up offer; every response is checked against respond before it is
-│                                 returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154,
-│                                 D155, D158, D164)
+│                                 respond, rightsize and layout first; for now it routes to understand, devise for plan
+│                                 and design, organize, coordinate and conduct, and to authoring's markdown through
+│                                 authoring's main skill where that set is installed, several for one request where the
+│                                 work needs them, and other work is done under act's rules until its root or set is
+│                                 designed; strong advice: delegation by default, done directly only when too small,
+│                                 when it needs the person's decisions as it goes, or when the content is needed for the
+│                                 conversation; it holds the wrap-up offer; every response is checked against respond
+│                                 before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152,
+│                                 D153, D154, D155, D158, D164, D168)
 │
 ├── conduct/                      conduct: how the agent behaves in every response: responding, laying out, acting,
 │   │                             asking, explaining, judging stakes, guardrails, verifying, rightsizing and cleaning
@@ -215,12 +215,16 @@ essentials/                       essentials, essentials' main skill, listed to 
 └── devise/                       devise: deciding what the work will be and its steps: design, how to design anything,
     │                             and plan, planning multipart work and following it; its own SKILL.md routes to each
     │                             (D164)
-    ├── design/                   devise-design: how to design anything: the design flow and its principles, and the
-    │   │                         sub-skills each step calls; where a keeper is loaded, such as blueprint, it records
-    │   │                         and tracks the design (D46, D47, D163)
-    │   └── review/               devise-design-review: a design reviewed through lenses: consistency, lean, model
-    │                             check, architecture, that lens being softeng's design's; review points here (D39,
-    │                             D154)
+    ├── design/                   devise-design: how to design anything: what something will be, decided before it is
+    │   │                         made; three checks (settled, given, short or full); frame, analyse, divide through
+    │   │                         organize, discuss and decide through understand, write, review, approve, then plan,
+    │   │                         the design changed first when building shows it wrong; a full design's eight parts;
+    │   │                         kept in the response or a file, a keeper saying where (D46, D47, D163, D168)
+    │   └── review/               devise-design-review: a design checked before approval through six lenses: consistency
+    │                             and a builder walk-through, its own; coverage and overlap (organize's check),
+    │                             challenge, lean, and architecture where softeng is installed; findings ranked with
+    │                             fixes, the reviewer only proposing, a fresh agent reviewing a full design (D39, D154,
+    │                             D168)
     └── plan/                     devise-plan: planning multipart work before acting, and following it step by step:
                                   none for single-step work; given steps followed and enhanced where not obvious, by the
                                   obvious test; one line, or a full plan, divided through organize and challenged, when

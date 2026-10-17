@@ -158,4 +158,5 @@ How skillbook's initial design was discussed, from 2026-10-07 to 2026-10-10, in 
 - 102, setup explained, and the pointer: the person pointed out that where the pointer goes is an installation question; it follows the install, local by default for a project, shared when the team commits the skills, and setup runs on request (D165).
 - 103, softeng waits: essentials is completed first (D166).
 - 104, the design folder by set: the person asked for a folder per set, a README and a better view of the tree; design.md was split three ways, the tree moved to design with its open parts left in ideas, and the later sets' skills, which had left the tree when they were set aside, were listed in ideas, as the person asked (D167).
+- 105, essentials' design, gone through in five items: what it is for and when a design is needed, its flow, what a written design holds, its review, and where it is kept, with its tests; the checks that overlapped got one home each (D168).
 - **Open:** [../ideas/open.md](../ideas/open.md) and the questions in [../ideas/skill-tree.md](../ideas/skill-tree.md).
