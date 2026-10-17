@@ -514,7 +514,7 @@ conduct/
   | another agent's work done | its changes, seen | its own report of success |
   | nothing lost (organize) | the inventory | "looks complete" |
 
-- **Result:** each claim with its evidence, or the actual status, handed back to the caller. Where it matters beyond the conversation, the caller files it in the blueprint's evidence log through design's evidence step (D90, D107).
+- **Result:** each claim with its evidence, or the actual status, handed back to the caller. Where it matters beyond the conversation, the keeper where one is loaded keeps it, and with none it stays in the response (D90, D107, D163).
 - **Files:** `SKILL.md` only, the table included (D89).
 - **Material:** superpowers' `verification-before-completion` (its substance, not its capitals); meddah (prove invariants by diff, distrust confident findings); workslate (choose the verifier; the four upward checks); mattpocock's retro (a mechanical rule gets a mechanical check).
 - **Tests** (D89): a fix that did not work, reported as still failing with its output; a subagent that reports success but changed nothing, caught; "requirements met", shown with its checklist; a merge, its inventory shown before the person is asked to confirm; a page's wording, a matter of taste: checked by the person, not the agent (D115); a passing test run: its exit code and failure count read, not the whole log; a failing one: the failing lines, then the output (D149); a commit's drift check: the decision's terms searched and the hits read, not the whole design (D149).
@@ -892,7 +892,7 @@ conduct/
 
 ## setup
 
-- **Purpose:** skillbook set up: on a machine, the install checked and the pointer added to the person's own instruction files; in a project, its blueprint started when it has none, its instruction files checked and skills recommended (D93, D97, D107, D117). It recommends existing skills and makes none (D77).
+- **Purpose:** skillbook set up: on a machine, the install checked and the pointer added to the person's own instruction files; in a project, its blueprint started when it has none and the blueprint set is installed, its instruction files checked and skills recommended (D93, D97, D107, D117, D163). It recommends existing skills and makes none (D77).
 - **Description:** "Setting skillbook up on a machine or in a project: the install checked, the pointer added to the person's own instruction files, a project's blueprint started, its instruction files checked, skills recommended." A draft (D117).
 - **Callers:** conduct's own skill, by its routing line (D134): when skillbook is set up on a machine or in a project; not for writing a rule into an instruction document (instruct) or making a skill (skillbook-tree); it gives back the install checked, the pointer added, the blueprint started, the instruction files checked and skills recommended. Its other callers: the person, setting skillbook up on a machine or in a project.
 - **Flow:** two ways in (D97).
@@ -907,7 +907,7 @@ conduct/
 
   **A project,** once per project:
   1. read the project: what it is, its languages and tools, its instruction files and project skills;
-  2. start its blueprint through the blueprint set's start step when it has none and that set is installed; what happens where it is not installed is open (D117, D152). For a project the person does not own, where a `blueprint/` folder cannot be committed, ask where it lives: in the person's own folder for that project, or in the checkout, kept out of git through `.git/info/exclude` (D117);
+  2. start its blueprint through blueprint's main skill when it has none and that set is installed; where it is not, nothing is started or said about it, and each skill's result goes where its default says (D152, D156, D163). Where a blueprint lives in a project the person does not own is asked by blueprint's start step (D117, D163);
   3. check its instruction files through instruct: keep the facts, propose what is missing, such as how to build, test and check. What repeats a skillbook rule is proposed for removal from a shared file only when the whole team uses skillbook; the agent does not ask, counts the team as not using it, and says so in one line, inviting a correction; otherwise it stays, and the person is told why (D107, D115, D149);
   4. recommend what fits: the skillbook sets and skills that will matter there, each named with the reason, such as a language's code skill or maintain's repository standard; outside skills only from sources the person already uses. Installing any of them is an action through guardrails (D107);
   5. propose everything as one list, and apply what the person approves.
@@ -930,7 +930,7 @@ conduct/
   5. "add the pointer to our shared `AGENTS.md`": proposed with a warning about contributors without skillbook;
   6. a machine where the person uses only Claude Code: Codex not checked, and not reported as missing (D107);
   7. a project where a skill does not fit, such as a language it does not use: not recommended (D115);
-  8. a project with no blueprint: one started through design's start step; someone else's repository: asked where it lives (D117);
+  8. a project with no blueprint, that set installed: one started through blueprint's main skill; the set not installed: nothing started and nothing said about it (D163);
   9. a machine set up: no question about other agent programs, no allow-list written, delegation runs none, and the result says how to allow one (D137, D149).
 
   The pointer in the person's own instruction files is not tested yet; Claude Code reading `CLAUDE.local.md` with `CLAUDE.md` is ([../evidence.md](../evidence.md), E7).
@@ -943,8 +943,7 @@ conduct/
 - **Callers:** conduct's own skill, by its routing line (D134): when the person asks what a session taught, or accepts it from the wrap-up offer; not for recording a design decision as it is made (design) or writing the state down for later (carryover); it gives back the highlights judged, each made into a rule, a decision or a note with approval, or dropped. Its other callers: the person, asking what was learned; conduct's wrap-up offer, when work stops with steps left; never run by itself unasked (D98, D107, D115).
 - **Flow:** decided (D66): collect highlights, the moments in the conversation that changed the work: a correction from the person, a mistake found, a decision taken, a method that worked or failed (D115); judge each one, whether it is reusable, meaning it would apply beyond this session, and where it belongs; promote it with the person's approval, or drop it; record what went where. Where each kind goes (D98):
   - a rule, into an instruction document, through instruct;
-  - a decision, into the blueprint, through design's decide step;
-  - an insight, into the blueprint's notes, through design's discuss step, until the knowledge folder exists; outside any project, it stays in the response (D117).
+  - a decision or an insight, to the keeper where one is loaded, which says where it goes; with none, listed in the response, with the offer of a file the person names (D163).
 
   Done when every highlight is promoted with approval or dropped, and the record says where each went (D107). Promoting a lesson into a skill, and where highlights wait, are future work (D66, D77).
 - **Result:** the promotions, and their record: a list in the response of each highlight and where it went, or why it was dropped; each promotion is also recorded where it lands (D107).

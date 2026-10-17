@@ -234,7 +234,7 @@
       "setup"
      ],
      "mark": "●",
-     "desc": "setting skillbook up on a machine (the install, the pointer in the person's own files) or in a project (its blueprint started, its instruction files checked, skills recommended); adds existing skills, makes none (D93, D97, D117)",
+     "desc": "setting skillbook up on a machine (the install, the pointer in the person's own files) or in a project (its blueprint started where that set is installed, its instruction files checked, skills recommended); adds existing skills, makes none (D93, D97, D117, D163)",
      "src": "cc lc",
      "tail": [],
      "kids": []
@@ -245,7 +245,7 @@
       "learn"
      ],
      "mark": "●",
-     "desc": "what a session taught, when asked: highlights collected, judged and, with approval, made into a rule, a decision or a note in the blueprint, or dropped; skill promotion and where highlights wait are future work (D66, D98, D107) → instruct, design",
+     "desc": "what a session taught, when asked: highlights collected, judged and, with approval, made into a rule through instruct, or a decision or an insight for the keeper, or dropped; skill promotion and where highlights wait are future work (D66, D98, D107, D163) → instruct",
      "src": "ws mp gs cc",
      "tail": [],
      "kids": []

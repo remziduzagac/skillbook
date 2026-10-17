@@ -116,12 +116,13 @@ essentials/                       essentials, essentials' main skill, listed to 
 │   ├── instruct/                 conduct-instruct: writing and updating instruction documents: AGENTS.md, CLAUDE.md,
 │   │                             CLAUDE.local.md and the person's own; called by setup, or asked for at any time (D94)
 │   ├── setup/                    conduct-setup: setting skillbook up on a machine (the install, the pointer in the
-│   │                             person's own files) or in a project (its blueprint started, its instruction files
-│   │                             checked, skills recommended); adds existing skills, makes none (D93, D97, D117)
+│   │                             person's own files) or in a project (its blueprint started where that set is
+│   │                             installed, its instruction files checked, skills recommended); adds existing skills,
+│   │                             makes none (D93, D97, D117, D163)
 │   ├── learn/                    conduct-learn: what a session taught, when asked: highlights collected, judged and,
-│   │                             with approval, made into a rule, a decision or a note in the blueprint, or dropped;
-│   │                             skill promotion and where highlights wait are future work (D66, D98, D107) → instruct,
-│   │                             design
+│   │                             with approval, made into a rule through instruct, or a decision or an insight for the
+│   │                             keeper, or dropped; skill promotion and where highlights wait are future work (D66,
+│   │                             D98, D107, D163) → instruct
 │   ├── delegate/                 conduct-delegate: work given to other agents, the default for any task that is not too
 │   │   │                         small: the type first, after a cost check, then fork or fresh by what the task needs
 │   │   │                         from the conversation and how long it is, then the tier, and the effort apart from it,

@@ -33,7 +33,7 @@ understand/
   - other roots, through the main skill: design (discuss, deep clarify, brainstorm, research, frame, and challenge in its review and decide step); plan (clarify, for an unclear goal or done; frame, for a full plan's goal; research, for something a step needs found out; challenge, checking a full plan before it is shown) (D155); implement (research's fact, for how a library behaves); test (analyze in debug, research in experiments); review (discuss, for findings gone through together); ship (analyze, for an incident); maintain (survey, for tools); the main agent after conduct's delegate runs a council (weigh, only when the person asks for a recommendation on the members' answers) (D137); conduct's respond (argue, for the person's view at its strongest); authoring (argue, for a proposal's case);
   - the person, typing understand or one of its skills.
 - **Flow** (D131). Rules, each with its reason:
-  1. **Understanding keeps nothing:** every result is handed back. Outside any project, it stays in the response (D117); called by a skill, it goes back to that skill; in a project, design keeps it, reached through the main skill. Each sub-skill keeps only what is its own, such as which strand its result goes to. A method tied to where results are stored cannot serve every caller (D50).
+  1. **Understanding keeps nothing:** every result is handed back: called by a skill, to that skill; used directly, to the keeper where the project's instruction files point to one, such as blueprint's main skill, which says where it goes and in what form; with none, it stays in the response, and a long result, or one the person wants kept, is offered as a file they name (D156, D163). Each sub-skill says only what a keeper needs from it and names none of a keeper's steps or files. A method tied to where results are stored cannot serve every caller (D50).
   2. **One result shape:** what was decided and why, what was parked and why, and what comes next; each sub-skill adds its own part. A caller can then keep any result without knowing which skill made it (D50). The shape says where to find a part, and is not a form to fill: a field with nothing to say is left out, except Not found when something was looked for, and a field the reader already has, such as the question, is left out of what the person sees (D149).
   3. **Guesses and assumptions are marked, and an unknown that would change the result is named with what would settle it.** An unmarked guess gets relied on as a fact.
   4. **Facts first:** what can be read is read before the person is asked. Asking what the files already say wastes the person's time and hides what only they know.
@@ -90,7 +90,7 @@ understand/
   14. "I don't follow": conduct's explain;
   15. "rename `foo` to `bar`": nothing to understand; the work done;
   16. "should we use X? check its limits first": research, then weigh, combined into one result;
-  17. outside any project: the result in the response; in a project: kept by design;
+  17. a keeper loaded: the result handed to it, none of its steps named; none: the result in the response (D163);
   18. a frame part inferred: marked as a guess; an unknown that would change weigh's recommendation: named, with what would settle it;
   19. the framework's version: read in the configuration, not asked;
   20. a choice that changes what the person gets: put through ask with a recommended answer; the agent's own choice, such as how to lay out a scratch script: made quietly, its reason said;
@@ -111,7 +111,7 @@ understand/
   - through the main skill: design's discuss step, for a design's open parts; any other root when the person wants to go through something with it, such as plan for a plan's open parts or review for findings gone through together;
   - the person, asking to discuss.
 
-  It uses frame, by path, for the topic and any item that is not crisp; clarify, research, brainstorm, weigh, challenge, argue and naming, by path, as each item needs; conduct's organize, to split the topic where that helps; conduct's ask, for every question and every answer; conduct's respond, for laying out each turn; conduct's explain, when the person did not follow; conduct's delegate, for work that comes up and does not need the person, so the discussion goes on while it runs; and, in a project, design, to record. Nothing in discuss limits which skills a discussion uses: any skill can serve an item, such as organize's merge, verify for a claim or authoring's reader test for a document.
+  It uses frame, by path, for the topic and any item that is not crisp; clarify, research, brainstorm, weigh, challenge, argue and naming, by path, as each item needs; conduct's organize, to split the topic where that helps; conduct's ask, for every question and every answer; conduct's respond, for laying out each turn; conduct's explain, when the person did not follow; conduct's delegate, for work that comes up and does not need the person, so the discussion goes on while it runs; and the keeper, where one is loaded, to record (D163). Nothing in discuss limits which skills a discussion uses: any skill can serve an item, such as organize's merge, verify for a claim or authoring's reader test for a document.
 - **Flow** (D130). Rules, each with its reason:
   1. **The whole comes first:** the topic is framed and split into items, shown before the first item. An item decided without the whole in view can be undone by a later one, and the list lets the person reorder or drop items.
   2. **One item per turn,** with "Remaining" at the end. Several items at once blur which answer belongs to which, and lose the person on where things stand. When the person asks to see more at once, their instruction wins, as act's rule on which instruction wins says.
@@ -148,7 +148,7 @@ understand/
   Next:         what comes next
   ```
 
-  Each turn's agreed line carries the result so far, so the summary at the end only gathers it. discuss keeps nothing, by understand's rule: in a project, what is agreed goes to design through the main skill, and design's own steps file each part in its strand, decisions, notes, ideas and design sections; discuss names none of those steps, so design can reshape them without touching discuss. Outside any project, continuing later is a carryover, offered by conduct's wrap-up offer (D117, D147). It is recorded when the person says so, such as "write it down"; the agent offers when a topic within the discussion is complete, and sooner in a long discussion, so that compaction cannot lose decisions held only in the conversation. After recording, a short report says what was written where; a commit stays the person's call.
+  Each turn's agreed line carries the result so far, so the summary at the end only gathers it. discuss keeps nothing, by understand's rule: what is agreed goes to the keeper where one is loaded, which files each part where it says; discuss names none of its steps, so the keeper can reshape them without touching discuss. With none, it stays in the response, and continuing later is a carryover, offered by conduct's wrap-up offer (D147, D163). It is recorded when the person says so, such as "write it down"; the agent offers when a topic within the discussion is complete, and sooner in a long discussion, so that compaction cannot lose decisions held only in the conversation. After recording, a short report says what was written where; a commit stays the person's call.
 - **Files:** `SKILL.md` only.
 - **Material** (D130), adapted, never copied (D120): this session's own way of working, the main source (the whole first, then one item at a time; suggestions with reasons; numbered questions under headings, each with a recommended answer; "Remaining" at the end of each turn; side topics placed so none is forgotten; "write it down" recording across the blueprint; one commit per batch of work); the person's preferences for this project (headings for sections, no unexplained references, lists over wide tables, prose not wrapped), which belong to respond and authoring's markdown; understand's earlier discussion flow (D53); the person's OpenCode discuss mode (no code changed while discussing; a note of current understanding; a discussion closed when every thread has its final note; routing to clarify or ideation by intent); rig (an open question needs a thread of its own); superpowers' brainstorming, MIT (several independent topics said, an order agreed, each taken in turn; a topic that grows midway said and stepped up a size; the most important points reported and the rest offered). Left out: superpowers' one open question per message, since the person's way is numbered questions with recommended answers in each item.
 - **Tests** (D130):
@@ -163,9 +163,9 @@ understand/
   9. an item that hinges on a fact: research inside the item; long reading goes to delegate while the discussion goes on;
   10. an item that changes an earlier decision: the earlier one named and marked as changed;
   11. "agreed, clean them" midway: done through act and guardrails, then back to the discussion;
-  12. in a project, "write it down": handed to design, a short report of what was written where; no commit unless the person asks;
+  12. a keeper loaded, "write it down": handed to it, a short report of what was written where; no commit unless the person asks;
   13. a long discussion: recording offered before decisions could be lost;
-  14. stopping with items left, outside any project: conduct's wrap-up offer, then a carryover;
+  14. stopping with items left: conduct's wrap-up offer, then a carryover;
   15. a parked item: its reason and what would reopen it, in the end summary;
   16. the person asks to see all remaining items at once: shown, since their instruction wins;
   17. an item going in circles: reframed through frame;
@@ -197,7 +197,7 @@ understand/
   Gaps: the person not following the agent goes to conduct's explain; a topic to decide together, to understand's discuss; options, to brainstorm; "what do you think?", to act's rule that an opinion is not a task.
 
   **Last instruction, before anything is acted on:** every question that would change the work answered, taken with its recommended answer by the person's acceptance, parked, or in a questionnaire; "going with" said or the summary confirmed; understand's rules hold.
-- **Result** (D50, D109): understand's shape, what was decided and why, what was parked and why, what comes next; plus what was assumed, when anything was left unconfirmed. Each part's own form is in its section. clarify keeps nothing, by understand's rule; design, calling it, keeps it in the blueprint (D135).
+- **Result** (D50, D109): understand's shape, what was decided and why, what was parked and why, what comes next; plus what was assumed, when anything was left unconfirmed. Each part's own form is in its section. clarify keeps nothing, by understand's rule; a caller such as design gets it back (D135, D163).
 - **Files:** `SKILL.md` only.
 - **Material:** OpenCode customisations; mattpocock's skills.
 - **Tests** (D109, D115):
@@ -265,7 +265,7 @@ understand/
 
   Advice:
   - the answers shape the next round;
-  - in a long session, recording the decisions so far is offered where the caller keeps them, so that compaction cannot lose them; used directly, with no caller, the offer is the blueprint's notes through design's discuss step in a project, and a file the person names outside any project (D117).
+  - in a long session, recording the decisions so far is offered where the caller keeps them, so that compaction cannot lose them; used directly, with no caller, the offer is where the loaded keeper says, and with none, a file the person names (D163).
 
   **Last instruction, before anything is acted on:** the summary confirmed by the person.
 
@@ -283,7 +283,7 @@ understand/
   7. "go ahead" after the first round: the open questions' recommended answers accepted, listed as accepted in the summary;
   8. "question me on this plan": clarify sends it to deep from the start;
   9. a part with sub-parts of its own: that level seen whole before going down;
-  10. used directly in a long session: recording offered, in the blueprint's notes in a project and in a file the person names outside one, never written unasked (D117).
+  10. used directly in a long session: recording offered where the loaded keeper says, or with none in a file the person names, never written unasked (D163).
 - **Open:** none known.
 
 #### questionnaire
@@ -360,7 +360,7 @@ understand/
   Unknown:       what could not be stated, handed to clarify
   ```
 
-  frame keeps nothing, by understand's rule: brainstorm and research open with it; weigh takes "a good answer" as its terms; in a project, design's discuss step records it with the discussion it opens, and design carries it into the design's purpose. When it changes, because an unknown is answered or the work is reframed, the new frame replaces the old one where it is kept and the change is said once, since two frames for one problem would let work aim at the old one.
+  frame keeps nothing, by understand's rule: brainstorm and research open with it; weigh takes "a good answer" as its terms; design, calling it, carries it into the design's purpose; what a keeper needs from it is the frame, with the discussion it opens (D163). When it changes, because an unknown is answered or the work is reframed, the new frame replaces the old one where it is kept and the change is said once, since two frames for one problem would let work aim at the old one.
 - **Files:** `SKILL.md` only, the form inside it (D119).
 - **Material:** the person's OpenCode ideation ("frame the problem": statement, goals, non-goals, constraints, success criteria, the statement short and the criteria testable; the altitude guard); VaultOps' "init"; superpowers' ground to cover (goals, non-goals, anti-goals, why now, prior art, current state; a guess the person can correct often beats a question); gstack's office-hours diagnostic (specificity, the status quo, undefined terms made precise; its pushback patterns are also challenge's material); clarify's shallow, whose lenses moved here.
 - **Tests** (D119):
@@ -375,7 +375,7 @@ understand/
   9. an unknown answered later: the frame updated where it is kept, the change said once;
   10. a fact beyond the project's files, such as a provider's rate limit: understand's research;
   11. a good answer for a performance problem: checkable, a number to reach or a test that passes;
-  12. in a project: recorded by design's discuss step with the discussion it opens; outside any project: kept in the response.
+  12. a keeper loaded: handed to it with the discussion it opens, none of its steps named; none: kept in the response (D163).
 - **Open:** none known.
 
 ### brainstorm
@@ -396,7 +396,7 @@ understand/
 
   Advice:
   - the order: frame, generate, develop, weigh, decide or park;
-  - start from what exists: options already proposed on the question, in the project's ideas and earlier notes, are listed first and marked as earlier;
+  - start from what exists: options already proposed on the question, wherever the project keeps them, are listed first and marked as earlier;
   - about three to seven options (D116), stopping when new ones only repeat, with the ones easy to miss: doing nothing, or changing the question;
   - options steer: when the person likely has a picture of their own, they are asked to describe it before any option is offered;
   - developing: the one or two promising options made concrete, their strengths combined, and tested through understand's challenge;
@@ -404,7 +404,7 @@ understand/
   - a new topic that comes up is named and parked, not followed.
 
   Gaps: an option that hinges on a fact goes to understand's research; a question that is not clear goes to clarify. Done when the question is decided or parked, with the options weighed.
-- **Result:** the question, the options weighed, and the decision or the park and why. brainstorm keeps nothing, by understand's rule: in a project, design's discuss step records it: the brainstorm as it went in the session notes, the options left open or parked in the topic's ideas file, the decision in the decisions log and the design; a large brainstorm becomes the topic's ideas file, not a new kind of document. Outside any project, for a long one the agent offers a file the person names (D117, D118).
+- **Result:** the question, the options weighed, and the decision or the park and why. brainstorm keeps nothing, by understand's rule; what a keeper needs from it: the brainstorm as it went, the options left open or parked, and the decision. With none, for a long one the agent offers a file the person names (D118, D163).
 - **Files:** `SKILL.md` only, with no template: whoever records the result writes it (D118).
 - **Material:** the person's OpenCode ideation skill (frame, diverge, intensify, compare tradeoffs, the thread check, decide or park with the next evidence); VaultOps' thinking moves, whose critique, simulate and gap detection are now challenge's; superpowers' brainstorming, a design dialogue, used for four points only: options steer, think wide privately, show the comparison only when it helps decide, mark guesses; the blueprint method's split of ideas and notes.
 - **Tests** (D118):
@@ -414,13 +414,13 @@ understand/
   4. options that are rewordings of one idea: folded into one;
   5. a choice inside the task that changes nothing the person would see: decided by the agent, which option and why said in one line;
   6. "show me all the options": every option shown, not only the comparison;
-  7. a question whose ideas file already holds proposals: those options listed first, marked as earlier;
+  7. a question with options already proposed where the project keeps them: those options listed first, marked as earlier;
   8. a new topic raised in the middle: named and parked, not followed;
   9. an option that hinges on a fact: understand's research;
   10. "make it better": clarify first, since the question is not clear;
   11. "shape this product idea": design, with brainstorm only for single questions inside it;
   12. "a name for this module": naming, which uses brainstorm for its candidates;
-  13. in a project: the brainstorm in the session notes, the open options in the topic's ideas file, the decision in the decisions log; outside any project: kept in the response, with the offer of a file;
+  13. a keeper loaded: handed the brainstorm, the open options and the decision, none of its files named; none: kept in the response, with the offer of a file for a long one (D163);
   14. "let's brainstorm onboarding", holding several questions: discuss, with brainstorm inside the items that need options (D130).
 - **Open:** none known.
 
@@ -466,7 +466,7 @@ understand/
   Would change:   the unknown that could flip it, and what would settle it
   ```
 
-  Where its rows fit in 120 characters, a table with options as rows and terms as columns serves too, as conduct's layout's strong advice on lists and tables says (D158). weigh keeps nothing, by understand's rule: in a project, design's decide step records it, the decision's "why" naming the options weighed and why the chosen one beat the next best, the full comparison in the session notes with the discussion, and an option set aside for later in the topic's ideas file. For the agent's own choice weighed quietly, only the "Recommended" line is said, with its reasoning, unless the person asks for the rest.
+  Where its rows fit in 120 characters, a table with options as rows and terms as columns serves too, as conduct's layout's strong advice on lists and tables says (D158). weigh keeps nothing, by understand's rule; what a keeper needs from it: the options weighed and why the chosen one beat the next best, as the decision's reason; the full comparison; and any option set aside for later (D163). For the agent's own choice weighed quietly, only the "Recommended" line is said, with its reasoning, unless the person asks for the rest.
 - **Files:** `SKILL.md` only, the shape inside it (D122).
 - **Material:** the person's OpenCode ideation (intensify, picking the directions that win and saying why; comparing benefits, costs, risks and unknowns, a non-obvious downside each, "what could go wrong" and "what will be annoying later"); VaultOps' "converge", whose recording side is design's decide step (D121); the person's delegation-routing skill, choosing by what happens if the choice is wrong; superpowers' "show the comparison only when it helps decide", whose home is still to settle (D121); the blueprint's decision format; reversibility as a general method; alirezarezvani's roast, MIT, whose panel cites research on dialectical inquiry and devil's advocacy, not checked, for the debate advice (D132).
 - **Tests** (D122):
@@ -482,7 +482,7 @@ understand/
   10. two options failing on different terms: a combination offered, sent back to brainstorm to develop;
   11. a comparison whose rows fit in 120 characters: a table; one that does not: a list per option;
   12. "7 out of 10" scores with no meaning behind them: replaced by words;
-  13. in a project: the decision's "why" names the options weighed and why the chosen one won; the full comparison in the session notes; options set aside in the topic's ideas file;
+  13. a keeper loaded: handed the options weighed and why the chosen one won, the full comparison and the options set aside, none of its files named (D163);
   14. "debate Postgres versus SQLite" for a choice hard to undo: each option argued through argue and attacked through challenge, to the same depth, then compared and a recommendation made (D132).
 - **Open:** none known.
 
@@ -525,7 +525,7 @@ understand/
   Verdict:       holds, holds with changes (which), or doesn't hold (why)
   ```
 
-  challenge keeps nothing, by understand's rule: in a project, design's steps record it, the challenge as it went in the session notes, a decision's "why" naming the weaknesses considered and how each was met, fixed or accepted as a risk with the reason, and a weakness left open as an open question in the design's Open field or the topic's ideas file. For the agent's own idea challenged quietly, only the verdict and the serious weaknesses are said, each with its reason, unless the person asks for the rest.
+  challenge keeps nothing, by understand's rule; what a keeper needs from it: the challenge as it went; the weaknesses considered and how each was met, fixed or accepted as a risk with the reason, as a decision's reason; and a weakness left open, as an open question (D163). For the agent's own idea challenged quietly, only the verdict and the serious weaknesses are said, each with its reason, unless the person asks for the rest.
 - **Files:** `SKILL.md` only, the shape inside it (D124).
 - **Material:** VaultOps' critique (assumptions, contradictions, failure modes), simulate (scale, time, drift, change in the organisation) and gap detection (missing evidence, definitions, constraints, dependencies); gstack's office-hours diagnostic (pushback patterns, vague claims pushed to evidence, "interest is not demand", no flattery during a critique); the person's delegation-routing skill (attack to refute, a distinct lens for each challenger); the person's OpenCode ideation ("what could go wrong", "what will be annoying later"); superpowers' builder check, for the fresh-eyes advice; the pre-mortem and stating the other side at its strongest, as general methods. Its contradictions are among the consistency checks still to give one home (D123).
 - **Tests** (D124):
@@ -541,7 +541,7 @@ understand/
   10. a plan that works with one change: "holds with changes", the change named;
   11. after a challenge: the plan itself unchanged, the verdict handed back to the caller;
   12. a decision that is hard to undo and reaches far: fresh eyes offered through conduct's delegate;
-  13. in a project: the challenge in the session notes; a decision's "why" naming the weaknesses considered and how each was met; a weakness left open in the design's Open field or the topic's ideas file;
+  13. a keeper loaded: handed the challenge, the weaknesses considered and how each was met, and any left open as an open question, none of its files named (D163);
   14. the agent's own idea challenged quietly: only the verdict and the serious weaknesses said, each with its reason;
   15. "make the case for X": argue, which uses challenge for its objections (D132);
   16. a recommendation on a medium-stakes choice: the strongest objection thought through, and shown only because it holds (D150);
@@ -603,7 +603,7 @@ understand/
   One-sided:   the case for, not a verdict
   ```
 
-  Strength rates the case on its evidence, not the choice, so a weak case and a strong one never look alike. How much is said is the caller's: asked directly, the full shape; weigh shows each option's strongest reasons and weaknesses inside its comparison; respond shows the person's view at its strongest in a line or two before the reply; authoring turns the case into a document's argument, keeping the weaknesses where the reader needs them. argue keeps nothing, by understand's rule: outside any project, the case stays in the response (D117); called by a skill, it goes back to that skill; in a project, design records it, the case for the chosen option in the decision's "why" and a weakness left open as an open question where it belongs.
+  Strength rates the case on its evidence, not the choice, so a weak case and a strong one never look alike. How much is said is the caller's: asked directly, the full shape; weigh shows each option's strongest reasons and weaknesses inside its comparison; respond shows the person's view at its strongest in a line or two before the reply; authoring turns the case into a document's argument, keeping the weaknesses where the reader needs them. argue keeps nothing, by understand's rule; what a keeper needs from it: the case for the chosen option, as the decision's reason, and a weakness left open, as an open question (D163).
 - **Files:** `SKILL.md` only, the shape inside it (D132).
 - **Material** (D132), adapted, never copied (D120): challenge's design, mirrored (the idea stated at its strongest first; each weakness with what shows it; "nothing found" said plainly); gstack's office-hours, MIT (an independent second opinion stating the strongest version of what the person is trying to build in two or three sentences, before naming a premise it thinks is wrong; its diagnostic challenging the strongest version of a claim, not a strawman); alirezarezvani's roast, MIT (a panel of distinct lenses whose Champion makes the bull case and looks for under-ambition, the bigger version left on the table; it cites research on dialectical inquiry and devil's advocacy, not checked, which belongs to weigh's debate advice); alirezarezvani's stock-analysis epistemics, MIT (whether a position survives if every checkable fact in the other side's case is true; facts checked, interpretation argued, rhetoric discounted; a forecast checked against base rates, since the inside view runs optimistic); the steelman and the parts of an argument, a claim, its grounds, its qualifier and the objections it answers, as general methods, from memory; respond's open note on stating the person's view at its strongest (D123).
 - **Tests** (D132):
@@ -621,7 +621,7 @@ understand/
   12. high stakes: the objections from an agent that did not build the case, through conduct's delegate;
   13. an objection whose checkable facts are all true: the case says whether the position still stands;
   14. a case resting on a forecast: checked against how often such things succeed;
-  15. outside any project: the case in the response; in a project: the case for the chosen option in the decision's "why", and a weakness left open as an open question;
+  15. no keeper loaded: the case in the response; a keeper loaded: handed the case for the chosen option and any weakness left open, none of its files named (D163);
   16. in a discussion, "make the case for keeping it" on one item: argue inside that item, then the item put to the person through conduct's ask, as discuss says.
 - **Open:** none known.
 
@@ -678,7 +678,7 @@ understand/
   Example:     where one is needed
   ```
 
-  A term used two ways and not yet resolved is listed under "flagged ambiguities", with its two meanings. naming keeps nothing, by understand's rule: in a project, a naming decision goes in the decisions log through design's decide step, the rejected words in its "why"; a glossary entry is written by the work that asked for it, and used directly, the agent writes what the person approved, as act says. The glossary lives where the project already keeps one; with none, `GLOSSARY.md` at the project's root, created when there is something to write in it, since code, docs and contributors share it, not only the design; in a project the person does not own, in the blueprint, wherever setup placed it.
+  A term used two ways and not yet resolved is listed under "flagged ambiguities", with its two meanings. naming keeps nothing, by understand's rule; what a keeper needs from it: the naming decision, with the rejected words as its reason (D163). A glossary entry is written by the work that asked for it, and used directly, the agent writes what the person approved, as act says. The glossary lives where the project already keeps one; with none, `GLOSSARY.md` at the project's root, created when there is something to write in it, since code, docs and contributors share it, not only the design; in a project the person does not own, where the loaded keeper says, or with none, where the person says (D163).
 - **Files:** `SKILL.md` only, both shapes and what makes a good name inside it (D125).
 - **Material:** meddah's naming decisions (the rejected words, the chosen one and why; a part named after its whole, a word borrowed from a nearby meaning); mattpocock's domain modelling, MIT (the glossary with words to avoid, flagged ambiguities, terms checked against the glossary and the code, a file created only when there is something to write); skillbook's own naming decisions (D33, D40, D48, D100); this repository's `GLOSSARY.md`.
 - **Tests** (D125):
@@ -693,8 +693,8 @@ understand/
   9. a variable's name inside a function: the code skill's conventions, not naming;
   10. a definition copied in four files: organize's normalize, the glossary as its home;
   11. "is this name free on npm?": research;
-  12. a project with no glossary: `GLOSSARY.md` at the root, created when there is something to write in it; a project the person does not own: in the blueprint;
-  13. in a project: the naming decision in the decisions log through design's decide step, the rejected words in its "why";
+  12. a project with no glossary: `GLOSSARY.md` at the root, created when there is something to write in it; a project the person does not own: where the keeper says, or with none, asked (D163);
+  13. a keeper loaded: handed the naming decision with the rejected words, none of its files named (D163);
   14. a word rejected earlier, proposed again: the earlier rejection and its reason found and said.
 - **Open:** none known.
 
@@ -756,7 +756,7 @@ understand/
 
   survey and analyze add a part of their own and keep the rest. The findings format, whose one home moved here from conduct's fanout: each finding has the claim, in one sentence; its source, a path and line, a link or a reference; the quoted words, where it rests on them; its strength, with "from memory" for what the agent recalled; and what it applies to, a version, a platform or a date, where that matters. research holds the fields; the text is what the person sees, and fanout defines the form its agents write so its script can merge and check them. Advice: the answer first, then the findings, those the answer rests on at the top; every finding stays in, since the sources are the point, but with many findings the response gives the ones the answer rests on and the full list goes to a named file, in the scratch place or the project's research note, named by its path (D149).
 
-  research keeps nothing, by understand's rule: in a project, design's research step files it in the blueprint's research strand as a note on its topic, in the form the blueprint set holds for it, and a decision that rests on it links to it; turned into a document for others, authoring does that. The research strand holds what was learned from sources, a claim about the world included; the evidence log holds the project's own claims checked by verify (D90). A small experiment run during research stays with its research note.
+  research keeps nothing, by understand's rule; what a keeper needs from it: a note on its topic, the findings with their sources and strength, for a decision that rests on it to link to (D163); turned into a document for others, authoring does that. What was learned from sources, a claim about the world included, is research's; the project's own claims checked are verify's (D90). A small experiment run during research stays with its result.
 - **Files** (D128): `SKILL.md`; in `references/`, one file per kind of source: `code.md`, reading code as a source; `documentation.md`, official documentation, changelogs and release notes, for the version in use; `web.md`, pages, forums and social media; `papers.md`, academic literature; `products.md`, other products and competitors. No scripts: the merging script stays with fanout. A full literature review, with search terms, criteria for including a paper and a record of what was screened, becomes a part only if tests show agents get it wrong with the papers file alone.
 - **Material** (D128), all MIT, adapted and never copied (D120): mattpocock's research (primary sources; every claim followed back to the source that owns it; the reading given to a background agent); alirezarezvani's research suite: research (recalled knowledge in a labelled block; thin results reported, never dropped; a stop after repeated tool failures), deep-research (a page that fails to load gives no finding, never an invented link), deepread, for documentation and papers (an author's central claim recorded as a statement; an example never promoted to evidence; reasoning faults: correlation taken as cause, one case generalised, no baseline, shifting terms; repeated evidence is not independent support), litreview, for papers (repeat hits across separate searches; recurring authors; citations per year; older and newer work searched apart; term drift; zero results meaning niche terms or a genuine gap), pulse, for the web (each platform's bias; the notably absent; the same word is not always the same claim; never cite from a snippet), and its product and market skills, for products (use the product; current pricing and hidden costs; reviews; public data only, each site's terms respected; two independent estimates and how far apart they are); the person's `delegation-routing` (provenance; negative results are results). Left out: numeric scores and 1–10 confidences, which are false precision; keyword routing; fixed choices of tools.
 - **Tests** (D128):
@@ -780,7 +780,7 @@ understand/
   18. "which is faster on our data?": a small experiment run as a source, within what act and guardrails allow;
   19. new sources stop changing the answer: research stops and says what was not covered;
   20. repeated tool failures: research stops and shares what it collected;
-  21. in a project: filed by design's research step in the research strand as a note on its topic; outside any project: kept in the response;
+  21. a keeper loaded: handed to it as a note on its topic, none of its files named; none: kept in the response (D163);
   22. a task's own claim to be done: verify and the evidence log, not the research strand;
   23. a search of code only: the code reference file read, the other four not (D149);
   24. forty findings: the response gives those the answer rests on, the full list in a named file (D149).
@@ -875,7 +875,7 @@ understand/
   9. new searches return only candidates already found: the search stops and coverage is stated;
   10. refreshing last quarter's survey: what changed since its date;
   11. "what do papers say about X?": the papers reference file, repeat hits, citations per year;
-  12. in a project: filed in the research strand by design's research step.
+  12. a keeper loaded: handed to it as a note on its topic, none of its files named (D163).
 - **Open:** none known.
 
 #### analyze
