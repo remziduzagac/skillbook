@@ -148,11 +148,11 @@ conduct/
 ## act
 
 - **Purpose:** how the agent acts, read first, once per conversation; its rules hold for every request (D63, D72).
-- **Description:** "How the agent acts on every request: clarify before acting, an opinion is not a task, evidence before any claim, guardrails before a risky action, do exactly what was asked, and read and do only what the task needs." A draft; hidden, so read by the person in the slash menu (D107).
+- **Description:** "How the agent acts on every request: clarify before acting, an opinion is not a task, plan before multipart work, evidence before any claim, guardrails before a risky action, do exactly what was asked, and read and do only what the task needs." A draft; hidden, so read by the person in the slash menu (D107).
 - **Callers:** the main skill, first, by path, once per conversation; its rules hold for every request (D63, D72).
 - **Flow:** rules, not steps, each with one short example that the rule must survive losing (D84):
   1. **Clarify before acting:** do not act on what is not understood, since acting on a guess makes the person undo it; use understand's clarify, which decides what to ask and how deep (D58, D84, D115).
-  2. **An opinion is not a task:** when the person asks what the agent thinks, or says they want to explore, give a view and a plan, then wait; change nothing, since a change made now would decide for the person (D84).
+  2. **An opinion is not a task:** when the person asks what the agent thinks, or says they want to explore, give a view and a plan, the plan made by plan and only shown, then wait; change nothing, since a change made now would decide for the person (D84, D155).
   3. **Concerns first, then exactly what was asked:** if a request looks wrong or risky, say so before starting. A concern that would change what is done, such as a request that seems based on a mistake, is put to the person as a question through conduct's ask, and the work waits for the answer; one that would not change it gets one line, and the work goes on; a risky action follows conduct's guardrails. Then do what was asked and no more, since work not asked for is work the person must review; name follow-ups, one line each, instead of doing them (D84, D115).
   4. **Evidence before any claim:** name the file and line for anything said to exist, since a claim nobody can check cannot be trusted; a claim that work is done, fixed, passing or meets its requirements goes through conduct's verify (D63, D84, D107).
   5. **Before a risky action, follow conduct's guardrails:** it says which actions need a proposal and a wait, and which text is an instruction and which is data (D63, D78, D84, D107, D115).
@@ -160,10 +160,11 @@ conduct/
   7. **Before writing a file, follow the skill for its type,** since each type has conventions its skill holds: markdown, by the main skill's rule on layout; code, implement's skill for its language once it exists; any other type, such as shell, YAML or configuration, the project's conventions and the agent's own judgment (D67, D68, D115).
   8. **Reach a skill by its route** and read its whole file, never by searching the skill folders: a search finds matching lines and misses the rest of the skill (D72). When a route names several skills for the same step, they are read together, in one turn, since each separate read is a turn that carries the whole context again (D149).
   9. **When attempts at the same step keep failing, stop,** report what was tried and what failed, and ask, since repeating variations burns time and hides the real obstacle. The same step means the same goal by the same means; a clearly different approach is offered to the person, not tried unasked (D107, D116).
-  10. **Which instruction wins:** the person's explicit instruction in this conversation, then the project's instruction files, then skillbook's defaults, so a conflict is settled the same way every time; guardrails' never-rules hold whatever is said. The harness's limits, what it permits, what needs the person's opt-in and how its tools must be used, hold above skillbook, which never asks the agent to break them; the harness's defaults, such as its style and working habits, are what skillbook's skills refine (D139). The person's own instruction files rank above skillbook's defaults; where they conflict with the project's files, the agent names the conflict and asks (D115). For example, a project rule to propose every commit message holds even where proportion would skip the proposal (D107).
+  10. **Which instruction wins:** the person's explicit instruction in this conversation, then the project's instruction files, then skillbook's defaults, so a conflict is settled the same way every time; guardrails' never-rules hold whatever is said. The harness's limits, what it permits, what needs the person's opt-in and how its tools must be used, hold above skillbook, which never asks the agent to break them; the harness's defaults, such as its style and working habits, are what skillbook's skills refine (D139). The person's own instruction files rank above skillbook's defaults; where they conflict with the project's files, the agent names the conflict and asks (D115). For example, a project rule to propose every commit message holds even where proportion would skip the proposal (D107). A skill's word on where its result is kept, or in what form, is written as a default and counts among skillbook's defaults, so it gives way to any loaded instruction for the same case, such as another set's skill that the project's instruction files point to; skills are designed so that this rarely arises, each saying only its own part (D156).
   11. **Running as a delegated agent,** with no person present: questions and proposals go back in the report, nothing outward is done, the work stays inside the brief, and it never delegates further, since nobody would see what a further agent did. This is the one home of these rules; conduct's brief carries them (D107, D115, D147).
   12. **Before saying a task is done, when it created or started anything, follow conduct's cleanup:** what the agent created and no longer needs is removed, kept with its reason or proposed, since leftovers keep holding disk, memory and CPU after the task ends (D126, D129). A task that created and started nothing does not read cleanup, which would only say so (D149).
   13. **The work, rightsized, by conduct's rightsize,** whose rule on the work is its one home; doing exactly what was asked stays rule 3 (D145, D149).
+  14. **Multipart work goes through plan,** essentials' root for planning, which says whether a plan is needed, how deep it goes, whether it waits for the person, and how given steps are followed; this is the rule's one home, since going the wrong way costs the rework (D155).
 
   Advice (D116, D134): about three attempts at the same step before stopping, enough to rule out a slip while catching a loop early.
 - **Result:** none; it shapes every action.
@@ -190,7 +191,9 @@ conduct/
   18. a permission the harness requires: asked for as the harness says, never worked around (D139);
   19. a question a search can answer in a large folder: searched, not read in full, by rule 13 (D145);
   20. a vague request, whose route names clarify's shallow part, frame and ask: the three read together, in one turn (D149);
-  21. a read-only task, such as answering a question from one file: cleanup not read, nothing said about leftovers (D149).
+  21. a read-only task, such as answering a question from one file: cleanup not read, nothing said about leftovers (D149);
+  22. "migrate the user data to the new database": plan read, a full plan, waiting for approval (D155);
+  23. a skill's default place for its result, and a loaded skill of another set saying where for the same case: the loaded skill's place (D156).
 - **Open:** none known.
 
 ## ask
@@ -972,7 +975,7 @@ conduct/
 - **Description:** "Several agents each change their own items of one job; a shared item has one owner, who applies the others' proposals; then one pass over the whole." A draft (D107).
 - **Callers:** delegate, by its routing line (D138): when several agents each change their own items of one job in parallel; not when every change lands in one file, or for reading only (fanout); it gives back the changes made and one pass over the whole. Its other callers: design's parallel staged mode, when several agents work in one blueprint; authoring's edit, for parallel passes over one document (D70, D107).
 - **Flow** (D99, D107):
-  1. **Plan the parts:** each agent's part and scope, and which items are shared; the plan listed first, as guardrails' rule for wide changes says, waiting for approval only where guardrails' other kinds apply (D137).
+  1. **Plan the parts,** through plan, which divides the work through organize (D155): each agent's part and scope, and which items are shared; the plan listed first, as guardrails' rule for wide changes says, waiting for approval only where guardrails' other kinds apply (D137).
   2. **One owner per item:** no item is written by two agents, since parallel writes to one item overwrite each other; a shared item, such as an index or a changelog the others' changes touch, has one owner, and the others send it their changes as proposals that the owner applies, or it waits for the pass in sequence (D115).
   3. **Run in parallel;** each re-reads its file from disk after writing, since another agent may have written beside it; this is crew's own rule, beside guardrails' safe writes, which check before writing (D137).
   4. **One pass in sequence** over the whole, by the main agent, to join what the parallel pass left separate (D115).
@@ -1052,7 +1055,7 @@ conduct/
 
   Done when the differences are reported and the first next step is under way (D107).
 - **Result:** the carryover; on resuming, the differences found and the work continued.
-- **Where it is kept** (D104): in the blueprint's notes, through design's discuss step, since every project using skillbook has one (D117); outside any project, a file the person names; when they name none, the agent asks, recommending a file, since a carryover in the response alone is lost with the conversation (D115); the project folder settles its home later (D64).
+- **Where it is kept** (D104, D156): carryover says what goes in, and where it is kept only by default: a file the person names; when they name none, the agent asks, recommending a file, since a carryover in the response alone is lost with the conversation (D115). Where the project's instruction files point to a keeper, such as blueprint's main skill, the keeper says where it lives and in what form, and carryover's own text names none; the project folder settles its home later (D64).
 - **Files:** `SKILL.md` only (D104).
 - **Material:** workslate and rig (four fields: done, remaining, decisions, uncertain; sender and receiver); mattpocock's `handoff` (references by path); OpenCode's final note; gstack's `context-save`; alirezarezvani's `handoff`.
 - **Tests** (D104, D107):
@@ -1067,5 +1070,7 @@ conduct/
   9. the next item depends on the discussion just had: no offer (D147);
   10. a short session at a phase's end: no offer (D147);
   11. the offer declined: not made again until the next phase ends (D147);
-  12. a carryover's decisions, references and first next step: written by brief's rules, not restated here (D147).
+  12. a carryover's decisions, references and first next step: written by brief's rules, not restated here (D147);
+  13. a project whose instruction files point to blueprint: the seven parts written in the place and form blueprint says (D156);
+  14. no keeper loaded and no file named: the agent asks, recommending a file (D115, D156).
 - **Open:** none known.

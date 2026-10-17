@@ -34,13 +34,13 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │                                 and the one loaded first for any work: its rules hold in every case (follow act's
 │                                 rules, lay out every response and file by its rule on layout), so it reads act,
 │                                 respond, rightsize and, once designed, essentials' output-format skill first; for now
-│                                 it routes to understand and conduct, and to authoring's markdown through authoring's
-│                                 main skill where that set is installed, several for one request where the work needs
-│                                 them, and other work is done under act's rules until its root or set is designed;
-│                                 strong advice: delegation by default, done directly only when too small, when it needs
-│                                 the person's decisions as it goes, or when the content is needed for the conversation;
-│                                 every response is checked against respond before it is returned (D56, D63, D71, D81,
-│                                 D111, D112, D136, D138, D143, D149, D152, D153, D154)
+│                                 it routes to understand, plan and conduct, and to authoring's markdown through
+│                                 authoring's main skill where that set is installed, several for one request where the
+│                                 work needs them, and other work is done under act's rules until its root or set is
+│                                 designed; strong advice: delegation by default, done directly only when too small,
+│                                 when it needs the person's decisions as it goes, or when the content is needed for the
+│                                 conversation; every response is checked against respond before it is returned (D56,
+│                                 D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154, D155)
 ├── conduct/                      conduct: [essentials] how the agent acts: how it behaves in every root, sets skillbook
 │   │                             up, learns from sessions and works with other agents; its own SKILL.md holds the
 │   │                             wrap-up offer and one routing line per sub-skill under six headings, and the main
@@ -216,11 +216,13 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │   ├── check/                    design-check: [blueprint] the folder's health; maintain points here (D39)
 │   └── publish/                  design-publish: [blueprint] a private blueprint made public (D39)
 │
-├── plan/                         plan: [essentials; its software parts softeng's] planning any work before acting: a
-│                                 plan when order matters, an approach must be chosen, stakes are medium or higher, or
-│                                 the work is long or wide; one line or a full plan; approved when it holds the person's
-│                                 choice; revised when a step fails (D151) (with a blueprint, the plan is written into
-│                                 its roadmap and tasks)
+├── plan/                         plan: [essentials; its software parts softeng's] planning multipart work before
+│                                 acting, and following it step by step: none for single-step work; given steps followed
+│                                 and enhanced where not obvious, by the obvious test; one line, or a full plan, divided
+│                                 through organize and challenged, when stakes are high or the work is long or wide;
+│                                 approval when stakes are high, asked for, or a question is in it; revised when a step
+│                                 fails (D151, D155) (kept in the response or a file; a keeper the project points to,
+│                                 such as blueprint, says which file (D156))
 │
 ├── implement/                    implement: [softeng] making it, by carrying out the design
 │   ├── prototype/                implement-prototype: throwaway work that answers one design question → cited by design
@@ -451,7 +453,7 @@ Draft descriptions. Since only each set's main skill is listed (D56, D152), thes
 The parts keep their drafts, now read by the root that routes to them and by the person in the slash menu:
 
 - **design:** *"Design: shaping what to make. Use when an idea needs a design, a project has a blueprint, or a design needs reviewing or updating from the code."*
-- **plan:** *"Plan: deciding the steps of any piece of work before acting. Use when order matters, an approach must be chosen, stakes are medium or higher, or the work is long or wide."* (D151; the former description is kept in [plan's ideas](plan.md))
+- **plan:** *"Planning multipart work before acting, and following it step by step: whether a plan is needed, given items enhanced where they are not obvious, one line or a full plan, whose approval it waits for, and revising it when the work shows it wrong. Use before any work with more than one step or part, or when given steps to follow."* (D155; the D151 draft gave way to it; the former description is kept in [plan's ideas](plan.md))
 - **implement:** *"Implement: making it. Use when carrying out a plan or a task, prototyping to answer a question, working with git, building a web front end, or a tool agents drive."*
 - **test:** *"Test: checking that it works. Use when writing tests, testing first, debugging a failure, or testing in a browser."*
 - **review:** *"Review: judging a change before it lands. Use when reviewing code or a pull request, answering a review, or writing a pull request."*

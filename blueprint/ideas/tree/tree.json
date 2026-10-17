@@ -665,11 +665,11 @@
     "plan"
    ],
    "mark": "●",
-   "desc": "[essentials; its software parts softeng's] planning any work before acting: a plan when order matters, an approach must be chosen, stakes are medium or higher, or the work is long or wide; one line or a full plan; approved when it holds the person's choice; revised when a step fails (D151)",
-   "short": "planning any work before acting: a plan when order matters, an approach must be chosen, stakes are medium or higher, or the work is long or wide; one line or a full plan; approved when it holds the person's choice; revised when a step fails (D151)",
+   "desc": "[essentials; its software parts softeng's] planning multipart work before acting, and following it step by step: none for single-step work; given steps followed and enhanced where not obvious, by the obvious test; one line, or a full plan, divided through organize and challenged, when stakes are high or the work is long or wide; approval when stakes are high, asked for, or a question is in it; revised when a step fails (D151, D155)",
+   "short": "planning multipart work before acting, and following it step by step: none for single-step work; given steps followed and enhanced where not obvious, by the obvious test; one line, or a full plan, divided through organize and challenged, when stakes are high or the work is long or wide; approval when stakes are high, asked for, or a question is in it; revised when a step fails (D151, D155)",
    "src": "",
    "tail": [
-    "with a blueprint, the plan is written into its roadmap and tasks"
+    "kept in the response or a file; a keeper the project points to, such as blueprint, says which file (D156)"
    ],
    "kids": []
   },
@@ -1380,5 +1380,5 @@
   "author-updates": "author-business",
   "conduct-answer": "conduct-respond"
  },
- "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: its rules hold in every case (follow act's rules, lay out every response and file by its rule on layout), so it reads act, respond, rightsize and, once designed, essentials' output-format skill first; for now it routes to understand and conduct, and to authoring's markdown through authoring's main skill where that set is installed, several for one request where the work needs them, and other work is done under act's rules until its root or set is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154)"
+ "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: its rules hold in every case (follow act's rules, lay out every response and file by its rule on layout), so it reads act, respond, rightsize and, once designed, essentials' output-format skill first; for now it routes to understand, plan and conduct, and to authoring's markdown through authoring's main skill where that set is installed, several for one request where the work needs them, and other work is done under act's rules until its root or set is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154, D155)"
 }
