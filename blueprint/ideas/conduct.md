@@ -46,7 +46,7 @@ Ideas and open questions for conduct, not decided. What is decided is in [../des
 
 ## rightsize
 
-- Decided (D145): nothing missing and nothing extra for the reader, parts comprehensive and exclusive, the point first, and the work rightsized; a five-question check as its last instruction, triggered by the main skill's rule, respond, author, organize, delegate, handoff, instruct and act. Raised by the person 2026-10-14 as a lean skill and an optimize skill; renamed, since "lean" names only one half.
+- Decided (D145): nothing missing and nothing extra for the reader, parts comprehensive and exclusive, the point first, and the work rightsized; a five-question check as its last instruction, triggered by the main skill's rule, respond, authoring, organize, delegate, handoff, instruct and act. Raised by the person 2026-10-14 as a lean skill and an optimize skill; renamed, since "lean" names only one half.
 
 ## cleanup
 

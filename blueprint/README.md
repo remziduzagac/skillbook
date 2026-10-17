@@ -1,11 +1,11 @@
 # skillbook blueprint
 
-skillbook's own design, kept with its own blueprint method. skillbook is a public repository of the person's agent skills, used in every project and organised as one tree of skills. Status on 2026-10-11: the initial design is open (D27), and skillbook is being designed as a whole, from the top; no skill is built.
+skillbook's own design, kept with its own blueprint method. skillbook is a public repository of the person's agent skills, used in every project and organised as sets of skills, each installed on its own. Status on 2026-10-11: the initial design is open (D27), and skillbook is being designed as a whole, from the top; no skill is built.
 
 ## Where to start
 
 1. [roadmap.md](roadmap.md): where the design stands and what comes next.
-2. [design/how-it-works.md](design/how-it-works.md): skillbook as a whole: its roots, its kinds of skill, how skills are written, named and loaded.
+2. [design/how-it-works.md](design/how-it-works.md): skillbook as a whole: its sets and roots, its kinds of skill, how skills are written, named and loaded.
 3. [ideas/skill-tree.md](ideas/skill-tree.md): the tree of skills, still being shaped.
 
 ## The strands

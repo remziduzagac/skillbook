@@ -30,13 +30,15 @@ The words skillbook uses, one per concept. Use them as written, in skills, docs 
 
 ## Skills
 
-- **Main skill:** `skillbook`, the one skill the model is shown: its description is always in the agent's context; it holds the rules for every request and says when to use each root. A root's own skill, and any skill with sub-skills, is written the same way.
+- **Set:** a group of skills installed on its own, with one main skill named after it: essentials, blueprint, softeng and authoring, more later; each works alone, and reaches another set's skills only through that set's main skill (D152). _Avoid:_ package, bundle, skillset.
+- **Essentials:** the set any work needs, which makes the agent careful, efficient and organized: the main skill loaded first, conduct, understand, design and plan (D153, D154). _Avoid:_ core, which is greenrepo's word; base.
+- **Main skill:** a set's one skill the model is shown, named after the set, such as `essentials`: its description is always in the agent's context; it holds its set's rules and says when to use each root. essentials' main skill is loaded first for any work and holds the rules every response follows. A root's own skill, and any skill with sub-skills, is written the same way.
 - **Rule:** a must or must-not for a skill's whole scope, at the top of its file, or in a skill of its own that the file says to follow; each rule has one home. **Advice:** a should, left to the agent's judgment. **Instruction:** when to use a skill, when not, and what it gives back, in the order the work happens. **Strong advice:** advice followed unless the case gives a reason not to, the departure said; a number is advice unless a rule cannot apply without it.
-- **Root:** a sub-skill of the main skill with sub-skills of its own, such as conduct or design; its own skill holds the rules of its scope and says when to use each of them.
-- **Sub-skill:** any skill below the main skill: a folder with its own `SKILL.md`, hidden, read by its path when the work reaches it. Its name is its folder path below the main skill joined by dashes, such as `conduct-delegate-fanout`, and each folder's name is one word. _Avoid:_ nested skill, child skill.
-- **Hidden:** a skill the model is not shown; the agent reads it by its path, and the person can type it as `/skillbook:<name>`. _Avoid:_ user-invoked.
-- **Model-invoked:** a skill the agent is shown and may start on its own; in skillbook, only the main skill.
-- **Pointer:** the sentence in the person's own instruction files telling the agent to load the main skill before answering, except a one-line answer that needs no tool and no file.
+- **Root:** a sub-skill of a set's main skill with sub-skills of its own, such as conduct or design; its own skill holds the rules of its scope and says when to use each of them.
+- **Sub-skill:** any skill below a set's main skill: a folder with its own `SKILL.md`, hidden, read by its path from inside its set when the work reaches it. Its name is its folder path below its set's main skill joined by dashes, such as `conduct-delegate-fanout`, and each folder's name is one word. _Avoid:_ nested skill, child skill.
+- **Hidden:** a skill the model is not shown; the agent reads it by its path, and the person can type it by the name its install route gives it. _Avoid:_ user-invoked.
+- **Model-invoked:** a skill the agent is shown and may start on its own; in skillbook, only each set's main skill.
+- **Pointer:** the sentence in the person's own instruction files telling the agent to load essentials' main skill before answering, except a one-line answer that needs no tool and no file.
 - **Context pointer:** a line that names out-of-context material and the condition for reading it: a description, a routing line to a sub-skill, the pointer.
 - **Context load:** what sits in the agent's window every turn. **Cognitive load:** what the person must remember.
 

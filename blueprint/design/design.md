@@ -2,6 +2,8 @@
 
 What a builder needs for design and its sub-skills; ideas not yet decided are in [../ideas/design.md](../ideas/design.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
+Its parts belong to three sets (D152, D154): the general design, how to design anything, is essentials' design; the recording steps (start, discuss, research, decide, evidence, write, workstream, tasks, work, sync, consolidate, parallel, check, publish) belong to the blueprint set, the spec-to-dev flow, its own thing rather than a part of design; architecture, and review's architecture lens, belong to softeng's design. Each stays in this file until its set is designed.
+
 ```text
 design/
 ├── architecture/
@@ -32,7 +34,7 @@ design/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:** a skill's flow may use other skills as its own steps. Steps that use another skill, such as discuss (understand's discuss), research (understand's research), review, parallel (conduct's delegate) and write (author's blueprint), may become steps in design's own flow rather than sub-skills; one with rules of its own stays a sub-skill, and one that does while another skill has its name, such as discuss, gets another name. Raised by the person 2026-10-14, settled when design is designed ([../ideas/open.md](../ideas/open.md)).
+- **Open:** a skill's flow may use other skills as its own steps. Steps that use another skill, such as discuss (understand's discuss), research (understand's research), review, parallel (conduct's delegate) and write (the blueprint set's document forms), may become steps in design's own flow rather than sub-skills; one with rules of its own stays a sub-skill, and one that does while another skill has its name, such as discuss, gets another name. Raised by the person 2026-10-14, settled when design is designed ([../ideas/open.md](../ideas/open.md)).
 
 ### architecture
 
@@ -84,7 +86,7 @@ design/
 
 ### research
 
-- **Purpose:** the filing only: understand's research finds out, and this step files its result in the blueprint's research strand as a note on its topic, in the form author's blueprint skill holds; a decision that rests on it links to it (D59, D128).
+- **Purpose:** the filing only: understand's research finds out, and this step files its result in the blueprint's research strand as a note on its topic, in the form the blueprint set holds for each document; a decision that rests on it links to it (D59, D128).
 - **Description:**
 - **Callers:**
 - **Flow:**

@@ -139,6 +139,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 ## D23: Two install routes, release-please, two folders (2026-10-10)
 
 > **Amended by D74 (2026-10-11):** the symlink script gives way to installing the working copy as a local plugin.
+>
+> **Amended by D152 (2026-10-17):** skillbook becomes separately installable sets; how each is installed, and the folder layout, are decided later.
 
 **Decision:** A plugin for everyday use and a symlink script for editing, never both on one machine; release-please for releases; shipped skills in `skills/`, skills being tried in `beta/`.
 
@@ -239,12 +241,16 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D37 (2026-10-11):** greenrepo, under maintain, is renamed repo.
 >
 > **Amended by D48 (2026-10-11):** the seven activities sit under an engineering root; the lifecycle view stands.
+>
+> **Amended by D154 (2026-10-17):** the lifecycle is no longer general: essentials holds design and plan; implement, test, review, ship and maintain are softeng's, and writing's own are authoring's.
 
 **Decision:** The top of the tree holds six activities that any project goes through: design, implement, test, review, ship and maintain. engineering is no longer a root; software becomes one specialisation inside each activity, beside those for other kinds of work, to be designed later. blueprint sits under design, greenrepo under maintain. The subject roots stay beside the activities; writing keeps a place of its own. The description budget is set aside until the roots settle.
 
 **Why:** The same lifecycle runs through a program, a book or a research project, with sub-skills tailored to each. Testing and reviewing are their own iterative steps beside making, so each needs its own triggers and its own callers.
 
 ## D36: plan is an activity root; prototype sits under implement (2026-10-11)
+
+> **Amended by D154 (2026-10-17):** plan stays general, in essentials; its software parts, breakdown, slices and sequence, are softeng's.
 
 **Decision:** plan becomes a root between design and implement: breaking work into deliverables, slices and an order of work, for any kind of project. plan owns how to plan; in a project with a blueprint, the plan is written into its roadmap and tasks. prototype moves from design to implement: it makes something, throwaway, to answer a design question, and design cites its result. Root count is not a constraint; roots may be grouped later.
 
@@ -311,6 +317,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D74 (2026-10-11):** no link script; every machine installs the plugin.
 >
 > **Amended by D79 (2026-10-11):** the check script also verifies each skill's Codex settings.
+>
+> **Amended by D152 (2026-10-17):** names count within each set, the same name may appear in two sets, and the folder layout and the names on a route without a namespace wait for the install routes.
 
 **Decision:** In the repository, a skill's folder has a short name inside its parent's folder (`skills/design/start/`), and its `name` is the folder path below `skills/` with the slashes turned into dashes (`design-start`; `skills/implement/git/worktree/` is `implement-git-worktree`). `plugin.json` lists every skill folder. The check script verifies that each name equals its path joined by dashes and that `plugin.json` lists exactly the folders that hold a `SKILL.md`. The link script installs each skill flat under its name (`~/.claude/skills/design-start`).
 
@@ -345,6 +353,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D112 (2026-10-13):** design's own skill takes the shape every main skill takes: design's rules, its advice, and when to use each sub-skill, with a flow only where an order must be imposed.
 >
 > **Amended by D117 (2026-10-13):** every project using skillbook has a blueprint; the flow runs without one only for work outside any project.
+>
+> **Amended by D154 (2026-10-17):** the recording steps belong to the blueprint set, the spec-to-dev flow, its own thing rather than a part of design; essentials' design is how to design anything, and softeng has its own.
 
 **Decision:** design's main skill shows how to design anything: its flow from an idea to a written design, the hand-over to implementation and the adjustments that come back, the principles that hold throughout, and which sub-skill each step needs. Where a project keeps a blueprint, a step that produces something worth keeping calls design's blueprint sub-skill, which records and tracks it in the `blueprint/` folder; without a blueprint, the flow runs the same and nothing is filed. design's other sub-skills are general methods (architecture for software, review lenses). The same split, general work at a root and a specific system beneath it, is to be weighed for the other roots as they are discussed.
 
@@ -353,6 +363,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 ## D47: design's steps are its own sub-skills; no blueprint sub-skill (2026-10-11)
 
 > **Amended by D117 (2026-10-13):** the recording steps are never skipped in a project, since every project using skillbook has a blueprint.
+>
+> **Amended by D154 (2026-10-17):** the recording steps are the blueprint set's, with the form of each document.
 
 **Decision:** blueprint is no longer a sub-skill. Its steps (start, discuss, research, decide, write, workstream, tasks, work, sync, consolidate, parallel, check, publish) become design's own sub-skills, beside architecture and review. design's main skill stays the flow and its principles (D46) and names the sub-skill each step calls; the steps that record file their result in a project's `blueprint/` folder, whose name stays (D33), and are skipped where a project has none.
 
@@ -463,6 +475,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D63 (2026-10-11):** the main skill only routes; its rules live in conduct, loaded first.
 >
 > **Evidence:** [E1](evidence.md).
+>
+> **Amended by D152 (2026-10-17):** each set's main skill is listed to the model; a skill reaches another set's skill through that set's main skill, by name.
 
 **Decision:** The main skill is the one model-invoked skill in skillbook. The six roots and everything below them are sub-skills the person can type but the model does not see; a request reaches any of them through the main skill, which routes, and a skill that needs another root's skill asks the main skill for it. The main skill's rules apply whenever it loads. Whether the group layers (engineering, productivity) stay is the person's decision, to be made later; the main skill's name and folder are still open.
 
@@ -475,6 +489,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Evidence:** [E2](evidence.md).
 >
 > **Amended by D93 (2026-10-12):** the pointer goes into the person's own instruction files by default.
+>
+> **Amended by D152 (2026-10-17):** the description and the pointer are essentials' main skill's, the one loaded first for any work.
 
 **Decision:** The main skill's description opens by telling the agent to load it first for any piece of work, before answering, then names the kinds of work it covers; each routing line names the work it routes, git commits and pull requests under engineering included. Setting skillbook up adds a pointer, one sentence in the instruction file the agent reads at the start of every session: "Before answering any request in this project, load skillbook's main skill and follow it." agents' setup skill writes it into a project's `AGENTS.md`, which `CLAUDE.md` includes, and the person's own instruction files for every project (`~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`) carry it too.
 
@@ -594,6 +610,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D125 (2026-10-13):** naming is designed.
 >
 > **Amended by D147 (2026-10-17):** handoff is renamed carryover; its rules stay its own, not instruct's.
+>
+> **Amended by D154 (2026-10-17):** author is renamed authoring, a set of its own; author's blueprint skill goes to the blueprint set.
 
 **Decision:**
 
@@ -640,6 +658,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 ## D71: The main skill is skillbook, in skills/skillbook/ (2026-10-11)
 
 > **Amended by D76 (2026-10-11):** with no engineering layer, the example is now `design-start`.
+>
+> **Amended by D153 (2026-10-17):** the main skill is essentials' main skill, named `essentials`; where its folder sits waits for the layout (D152).
 
 **Decision:** The main skill lives in `skills/skillbook/SKILL.md` and is named `skillbook`; every other skill is nested inside its folder, and a skill's name is its folder path below `skills/skillbook/` joined by dashes (`skills/skillbook/engineering/design/start/` is `engineering-design-start`).
 
@@ -663,6 +683,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 
 ## D74: Development machines install the working copy as a local plugin (2026-10-11)
 
+> **Amended by D152 (2026-10-17):** how each set is installed is decided later; this holds for the plugin route if it is kept.
+
 **Decision:** Every machine installs skillbook as a plugin. Where skillbook is only used, it is the published plugin from skillbook's marketplace; where skillbook itself is developed, it is the working copy of this repository, installed as a local plugin, never both on one machine. The link script that installed each skill flat under its name is dropped.
 
 **Why:** With the tree, the link script would turn about ninety skills into personal skills without the `skillbook:` prefix, open to clashes with the person's other skills, and duplicate the main skill's own tree. A local plugin keeps the namespace and behaves as the published one does; Claude Code reads a local plugin in place, so edits take effect at once ([research/skill-loading.md](research/skill-loading.md), "Namespaces and plugins"). Whether Codex, which copies the plugin, picks up an edit without reinstalling, and installing from GitHub, are still to test.
@@ -670,6 +692,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 ## D75: Every release raises the version; how installed copies update (2026-10-11)
 
 > **Tested on GitHub (2026-10-11):** a throwaway public repository gave the same results as the local stand-in. Evidence: [E5](evidence.md).
+>
+> **Amended by D152 (2026-10-17):** with separate sets, how each is versioned and updated is decided with the install routes.
 
 **Decision:** Every release raises the plugin's version in `plugin.json`, which release-please does (D23). Someone using skillbook updates it in Claude Code with `claude plugin marketplace update` followed by `claude plugin update`; Codex refreshes a Git marketplace by itself at the next session. On a development machine, Claude Code reads the working copy in place, so an edit takes effect at the next session; Codex copies it, so after an edit the plugin is added again (`codex plugin add`).
 
@@ -680,6 +704,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 > **Amended by D115 (2026-10-13):** the stages' order is advice with its reason; the work decides where it starts and which stages it skips.
 >
 > **Amended by D151 (2026-10-17):** plan becomes the root for planning any work before acting; its software-engineering parts, breakdown, slices and sequence, are kept in plan's ideas for the person's software-engineering skills.
+>
+> **Amended by D154 (2026-10-17):** design and plan are essentials'; the stages after plan are softeng's, so the main skill's stage order runs design → plan, then the set for the kind of work.
 
 **Decision:** engineering is dissolved: design, plan, implement, test, review, ship and maintain sit directly under the main skill, beside conduct, understand and author. The main skill's routing holds the stages' order, design → plan → implement → test → review → ship → maintain, and each stage says what comes next. Names lose the prefix (`design-start`, `implement-code-python`). With productivity set aside (D64), no group layer is left.
 
@@ -986,6 +1012,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D103: A root named rigs, for the programs agents drive (2026-10-12)
 
+> **Amended by D154 (2026-10-17):** rigs becomes a set of its own, designed later.
+
 **Decision:** A root named rigs will hold skills for using specific programs: git and the GitHub CLI, other agent programs used for delegation, herdr, nvim, containers, each program with one home that delegate, council and setup point to. It stands in the tree as a placeholder; its contents are designed later.
 
 **Why:** These skills are about a program, used from many roots, rather than a kind of work. "tools" collides with an agent's own tools; a rig is the equipment one works with.
@@ -1068,6 +1096,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D115 (2026-10-13):** a request for a root not built yet is done directly under act's rules until it exists.
 >
 > **Amended by D136 (2026-10-15):** the main skill routes to understand, author's markdown and conduct for now, and the baseline holds all of understand, now designed.
+>
+> **Amended by D154 (2026-10-17):** the baseline's markdown part becomes essentials' output-format skill, designed before the baseline is built; author's markdown is authoring's.
 
 **Decision:** The first thing built and tested is a baseline: the main skill with a draft flow, all of conduct, understand's clarify, and author's markdown skill. Before it, understand is designed, then author's markdown skill, then the flows are revisited. The baseline is built and tested, with the harness and in use, while the rest of the tree is still being designed. The main skill's flow is a draft, an initial idea: read act and respond, take the request in under act, route to conduct or understand or do the work directly, and check the response against respond. Routing to more than one root, and guidance rather than a script, are open questions to take up with the flows.
 
@@ -1114,8 +1144,10 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D137 (2026-10-17):** rule 2 no longer repeats rule 1, and rule 3 leaves the width to the strong advice.
 >
 > **Amended by D149 (2026-10-17):** with no linter, a search for the mechanical rules replaces reading a file back; with one, it runs once after the last file.
+>
+> **Amended by D154 (2026-10-17):** markdown is authoring's; the main skill's first read takes essentials' output-format skill in its place, once designed.
 
-**Decision:** author's markdown skill is designed ([design/author.md](design/author.md)).
+**Decision:** author's markdown skill is designed ([design/author.md](design/authoring.md)).
 
 - **Two layers, split by what a renderer reflows:** structure, for all markdown, responses included, at the top of `SKILL.md`; file rules, for markdown files only, in `references/files.md`. Wording, order and length stay respond's.
 - **The structure layer, one line per rule:** headings for sections, never bold lines, and each question of a round under its own heading; bold only for a label or key phrase; tables when their rows fit in 120 characters with short cells, a list with sub-items for content that would not; prose never wrapped; numbers for what is referred to by number; nesting at most two levels of sub-items; code, commands and text diagrams fenced with the language named and their lines within 120. Only the table rule carries an example.
@@ -1218,6 +1250,8 @@ skillbook-tree's check 5 says so.
 **Why:** A fixed number stated as a rule turns guidance into a script, and most numbers are rules of thumb that a case can rightly break. A firm line stays where the rule needs it to be checkable and a soft one could cost the person, as with money.
 
 ## D117: Every project using skillbook has a blueprint (2026-10-13)
+
+> **Amended by D152 (2026-10-17):** blueprint is a set of its own, so a project has a blueprint where that set is installed; what the other sets do with their results without it is open, to settle with blueprint's design.
 
 **Decision:** A project that uses skillbook has a blueprint; "only where a project keeps one" ends. setup's project flow starts it, through design's start step, when the project has none. For a project the person does not own, where a `blueprint/` folder cannot be committed, setup asks where it lives: in the person's own folder for that project, outside the repository, or in the checkout, kept out of git through `.git/info/exclude`. What was written for a project without a blueprint now covers work outside any project, such as a question asked from the home folder: learn's destinations, handoff's place, deep clarify's recording, brainstorm's result, and design's recording steps, which are never skipped in a project.
 
@@ -1392,8 +1426,10 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 > **Amended by D138 (2026-10-17):** the main skill's first advice is delegation by default, as strong advice.
 >
 > **Amended by D145 (2026-10-17):** the main skill gains a rule that everything given back, made or done is rightsized for its reader, by conduct's rightsize.
+>
+> **Amended by D154 (2026-10-17):** markdown is authoring's, reached through authoring's main skill when that set is installed; essentials' output-format skill, once designed, holds the layout rule's generic part.
 
-**Decision:** The main skill is designed ([design/skillbook.md](design/skillbook.md)). For now it routes only to what is designed: understand, author with its markdown skill, and conduct. Each other root, and the stage-order advice, is added when that root is designed; until then the work they will cover is done directly under act's rules. Its rules are the four decided, with markdown's rule now for every response and every markdown file, since other files follow the project's conventions by act's rule. Its description stays the broad one tested, since it decides whether the main skill loads and so whether act's and respond's rules hold for any work; a change is re-run through the test harness. The baseline therefore holds the main skill, all of conduct, all of understand and author's markdown.
+**Decision:** The main skill is designed ([design/skillbook.md](design/essentials.md)). For now it routes only to what is designed: understand, author with its markdown skill, and conduct. Each other root, and the stage-order advice, is added when that root is designed; until then the work they will cover is done directly under act's rules. Its rules are the four decided, with markdown's rule now for every response and every markdown file, since other files follow the project's conventions by act's rule. Its description stays the broad one tested, since it decides whether the main skill loads and so whether act's and respond's rules hold for any work; a change is re-run through the test harness. The baseline therefore holds the main skill, all of conduct, all of understand and author's markdown.
 
 **Why:** The person asked that the main skill name only what is complete, so the agent is never routed to a skill that does not exist yet; keeping the description broad still brings every piece of work under act's and respond's rules.
 
@@ -1499,6 +1535,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D149: the cost sweep's fixes (2026-10-17)
 
+> **Amended by D154 (2026-10-17):** the first read becomes act, respond, rightsize and essentials' output-format skill once designed.
+
 **Decision:** A fresh agent reviewed the baseline designs against seven cost checks, and the person accepted its fixes with the main agent's changes. Skills a route names for the same step are read together, in one turn, by act's rule on routes, and the main skill's first read becomes act, respond, author's markdown and rightsize together. A fresh agent's brief tells it not to load the main skill and names any skill it needs. cleanup is read at a task's end only when something was created or started, and a read-only agent reports "left behind: nothing". delegate reads stakes only when it is not plain which row of the tier table applies, and guardrails for the cost only when several agents or a long job are planned; it reads only the current harness's reference file; prices and price steps move to one prices file read only when a cost is stated, which amends D144; the rules for other harnesses move to their own reference file; the reason for delegating stays in the skill as one line, since the blueprint does not ship. research reads a kind of source's reference file when that kind is first searched. fanout's agents write their findings to files and report the path and count, and its validator checks the findings the answer rests on and any that contradict each other, the rest marked "not validated". verify reads the exit code, the failure count and the failing lines, the full output only on failure, and its four extra checks search and read the hits, a fresh agent at the standard tier doing large readings. understand's result shape is not a form to fill. organize's map is shown in full when it fits on a screen and otherwise written to a named file. Three restatements in files carried every session become pointers: the main skill's cost reasoning, delegate's too-small line and act's work rule. A one-line response gets a glance rather than the full check, except where it touches a secret, an irreversible action, a reference or a failure. Markdown with no linter is checked by a search rather than a read-back. setup does not ask which other agent programs may run, and states its default on the team rather than asking; carryover keeps asking where it goes outside a project. survey fans out only when delegate's test for splitting holds. skillbook-tree's checklist gains check 11, cost, from the seven questions, and the baseline's start-up is measured once it is built and kept small by a figure set then, as advice.
 
 **Why:** Every turn carries the whole context again, so reads, turns, outputs and loaded skills that buy no quality cost on every later turn; the sweep found where the baseline paid for them. Where a fix would trade quality for cost, the person decided: the validator's narrower scope was accepted with the rest marked, and writing a carryover to an unchosen place outside a project was rejected, since where it goes matters to the person. A check in skillbook-tree carries the same review to every skill designed later.
@@ -1511,6 +1549,34 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D151: plan, planning any work before acting (2026-10-17)
 
+> **Amended by D154 (2026-10-17):** plan is essentials'; its software parts are softeng's.
+
 **Decision:** plan becomes the root for planning any work before acting, whether writing, research, design or code. A plan is needed when any of these holds: order matters, there is a real choice of approach, stakes are medium or higher, or the work is long or wide; not when the work is short and its answer known, when the person gave the steps, or for a question or an exploration; when unsure, a one-line plan is stated and the work starts. It is one line, or a full plan: the goal and how it is known to be done, the steps in order with their checks, what is out of scope, the risks and what catches each, what goes to agents. It waits for approval when it holds the person's choice, stakes are high or the person asked; otherwise it is shown in a line and the work starts. The harness's plan mode is used where it exists and approval is needed, no skill naming it; a plan is revised, and approved again where it needed approval, when a step fails or a fact it rests on changes; a full plan is challenged before it is shown (D150). Its software-engineering parts, breakdown, slices and sequence, are kept, not dropped: their descriptions, word for word, their material and their caller are moved to plan's ideas under a heading saying they are kept for the person's software-engineering skills, where they will be used, and the tree, its graph, its sources and plan's design point there. The main skill routes to plan once its full design is done, which explains further when a plan is needed and how deep it goes, as the person asked.
 
 **Why:** Most harnesses have a plan mode, but nothing said when to plan; the pieces were scattered across act, guardrails, crew and organize. A plan costs a turn or two, while going the wrong way costs the rework, and a plan gives each part a boundary for delegating and carrying over. The person has their own idea for software-engineering skills, so planning a program's work waits for it, and its parts are kept for it.
+
+## D152: skillbook as separately installable sets (2026-10-17)
+
+**Decision:** skillbook becomes a collection of sets in one repository, each installed on its own: essentials, blueprint, softeng and authoring; later rigs, a knowledge base (once vaultops) and routines. Each set works alone. Each has its own main skill, listed to the model and named after the set; its other skills stay hidden. A skill that needs another set's skill goes through that set's main skill, by name, and the agent tells whether the set is installed from its skill list; when it is not, a short fallback or hint written where it is used, a rule or two that matter for that case naming the skill it stands in for, keeps the set whole: a variation, not a second home. A hidden skill of another set is never read by its path. No set depends on another, so none declares a dependency. essentials' main skill is the one loaded first for any work and holds the rules every response follows. The same skill name may appear in two sets, told apart by their set. How each set is installed, a plugin from a marketplace, `npx skills add` through skills.sh, or both, the folder layout, and a naming rule for a route without a namespace, such as names prefixed with their set, are decided later.
+
+**Why:** People install only what they need: someone with their own engineering skills can use blueprint alone. Splitting saves no tokens, since a hidden skill costs nothing until it is used; its gains are choice and clear boundaries, and each set's main skill adds one description to the listing, where six or thirteen listed roots routed as well as one. A dependency on essentials was considered and dropped, since a short fallback keeps each set whole without it. The tests fix the mechanism: a namespace has one level, the plugin's name; only a listed skill can be called by name from another package; a hidden skill is read by its path only inside its own package; Codex ignores a plugin's dependencies ([research/skill-loading.md](research/skill-loading.md)).
+
+## D153: The core set is named essentials (2026-10-17)
+
+**Decision:** The set any work needs, holding conduct, understand, design and plan, is named essentials, and its main skill `essentials`. The set's description where it is offered for install carries what it does, such as "skillbook essentials: the working habits that make your agent careful, efficient and organized"; the main skill's own description keeps telling the agent to load it first for any work.
+
+**Why:** The name says install this first, and the description says why. Rejected: tame, which treats agents as wild animals, the person's own concern; habits, recommended, which the person set aside for essentials; manners, politeness more than efficiency or organization; groundwork, the base but not behaviour; conduct, already a root inside the set, so a part and its whole would share a name; core, which says nothing to someone installing it and is already greenrepo's word; baseline, already the word for the first build, and it reads as the minimum; discipline, as strict as tame; playbook, Ansible's central term and command, security automation tools' workflows and incident response's procedures, and a second "book" beside skillbook; standards and practice, already maintain's repository standard and engineering practice; handbook, two books beside skillbook; coach and mentor, which name a person; mindset, a buzzword and vague.
+
+## D154: What each set holds (2026-10-17)
+
+**Decision:**
+
+- **essentials:** the main skill, conduct, understand, design and plan. Its design is how to design anything: its flow, its principles and design review's general lenses. Its plan is planning any work before acting. A small output-format skill with generic layout rules for its outputs is designed later, before the baseline is built; respond already prepares every response, so whether it sits in respond or beside it is decided then.
+- **blueprint:** the spec-to-dev flow and its records, keeping its files, folders and procedures intact and running: start, discuss, research, decide, evidence, write, workstream, tasks, work, sync, consolidate, parallel, check and publish, and the form of each document, once author's blueprint skill. It requires no design or engineering skill and uses whatever the person has; where its topics touch others, such as splitting design files, which touches organize and modularity, it gives a hint pointing to the skill that holds the topic.
+- **softeng:** its own design, how good software is designed, with architecture and design review's architecture lens; plan's software parts, breakdown, slices and sequence, kept in [ideas/plan.md](ideas/plan.md); implement, test, review, ship and maintain.
+- **authoring:** author renamed: docs, business, articles, edit, issue, reader and markdown, which stays here.
+- **rigs:** a set of its own, designed later.
+
+The lifecycle is no longer general: essentials holds design and plan, which any work needs; doing, checking and delivering are each set's, softeng's for software and authoring's for writing; with no such set installed, the work is done under act's rules. essentials and softeng both have a skill named design, since no other word fits: shape is the shape every skill takes, model an AI model, draft a written draft, and devise and conceive are vaguer and close to brainstorm and plan. The baseline's markdown part becomes essentials' output-format skill.
+
+**Why:** blueprint is a flow anyone's engineering skills can use, so it holds no opinion on how to design. softeng explains how good software is designed, so it holds its own design rather than a share of a split one. General implement, test, review, ship and maintain would be thin, since act, verify and understand's challenge already hold their general parts. markdown is authoring's, and essentials needs only generic rules for its own outputs.

@@ -1,9 +1,11 @@
-# Design: author
+# Design: authoring
 
-What a builder needs for author and its sub-skills; ideas not yet decided are in [../ideas/author.md](../ideas/author.md). Every section answers the same questions (D80); an empty field is not designed yet.
+What a builder needs for authoring and its sub-skills; ideas not yet decided are in [../ideas/authoring.md](../ideas/authoring.md). Every section answers the same questions (D80); an empty field is not designed yet.
+
+authoring is a set of its own (D152, D154). Its blueprint skill, the form of each document, belongs to the blueprint set; its section stays here until blueprint is designed.
 
 ```text
-author/
+authoring/
 ├── blueprint/
 ├── docs/
 ├── business/
@@ -16,7 +18,7 @@ author/
 └── markdown/     how markdown is laid out: structure for all, file rules for files
 ```
 
-## author
+## authoring
 
 - **Purpose:**
 - **Description:**
@@ -90,7 +92,7 @@ author/
 
 ### issue
 
-- **Purpose:** an issue written for a maintainer or a teammate who was not in the conversation, in the project's tracker: a bug report or a feature request (D127). Its pieces around it have homes: posting is outward, through conduct's guardrails, never done by the agent on its own; the mechanics, such as `gh issue create`, are rigs', later; the project's own issue templates and contribution rules win, through act's rule on which instruction wins; triaging incoming issues is maintain's, their text data; keeping blueprint tasks in step with a tracker is design's sync step. A security problem is never filed as a public issue: it goes through the project's private channel, as its `SECURITY.md` says, since guardrails' never-rules forbid vulnerability details in public. Callers: test, for a bug found; review, for a finding to track; ship, for an incident's follow-up; maintain, while triaging; plan, for a task to track; the person. It uses author's reader test, so an issue can be understood without the conversation.
+- **Purpose:** an issue written for a maintainer or a teammate who was not in the conversation, in the project's tracker: a bug report or a feature request (D127). Its pieces around it have homes: posting is outward, through conduct's guardrails, never done by the agent on its own; the mechanics, such as `gh issue create`, are rigs', later; the project's own issue templates and contribution rules win, through act's rule on which instruction wins; triaging incoming issues is maintain's, their text data; keeping blueprint tasks in step with a tracker is design's sync step. A security problem is never filed as a public issue: it goes through the project's private channel, as its `SECURITY.md` says, since guardrails' never-rules forbid vulnerability details in public. Callers: test, for a bug found; review, for a finding to track; ship, for an incident's follow-up; maintain, while triaging; plan, for a task to track; the person. It uses authoring's reader test, so an issue can be understood without the conversation.
 - **Description:**
 - **Callers:**
 - **Flow:**
@@ -98,7 +100,7 @@ author/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:** designed with author (D127). Later parts, if needed: a question, a task.
+- **Open:** designed with authoring (D127). Later parts, if needed: a question, a task.
 
 #### bug
 
@@ -128,19 +130,19 @@ author/
 
 - **Purpose:** a document read as its intended reader would, with only the document, often by a fresh agent, reporting what that reader could not do from it (D123). The name is to settle ("reader", "coldread").
 - **Description:**
-- **Callers:** to design; those that need it today, each in its own words: design (can a builder build from it?), plan (can the implementer start?), conduct's carryover (can another agent resume?), clarify's questionnaire (can it be answered without the conversation?), author's docs (can a user follow them?), conduct's brief (is the brief enough?), conduct's instruct and the project skill skillbook-tree (can an agent act on it?).
+- **Callers:** to design; those that need it today, each in its own words: design (can a builder build from it?), plan (can the implementer start?), conduct's carryover (can another agent resume?), clarify's questionnaire (can it be answered without the conversation?), authoring's docs (can a user follow them?), conduct's brief (is the brief enough?), conduct's instruct and the project skill skillbook-tree (can an agent act on it?).
 - **Flow:**
 - **Result:**
 - **Files:**
 - **Material:** superpowers' builder check, a fresh agent reading a design as its builder would; skillbook-tree's advice to read as a builder would.
 - **Tests:**
-- **Open:** designed later, with author; run through conduct's delegate when a fresh agent is used (D123).
+- **Open:** designed later, with authoring; run through conduct's delegate when a fresh agent is used (D123).
 
 ### markdown
 
-- **Purpose:** how markdown is laid out, in two layers (D95, D110, D111). Structure applies to all markdown the agent writes: responses, markdown files (`SKILL.md` included), and markdown written for pull requests, issues and briefs to agents; not to commit messages, which follow git's and the project's conventions, nor to comments in code (D115). File rules apply to markdown files only: the defaults a linter checks in a saved file. Wording, order and length are respond's; how a question is put and laid out is conduct's ask's (D114); content is the other author skills'. It began as the person's markdown-style, with the person's own tooling left out (D68, D111).
-- **Description:** "How markdown is laid out: headings for sections, tables only when they fit, prose unwrapped, code fenced; plus the file rules a linter checks in markdown files. Use when writing any response or markdown file; wording and content belong to respond and the other author skills." A draft (D111, D115).
-- **Callers:** the main skill reads it directly at the start, with respond and act, since respond needs its structure layer on every response (D111); act, before any markdown file is written, for the file rules too (D67, D68); every skill that writes markdown, such as carryover, questionnaire, docs and the blueprint, through act's rule; the person, typing it. Its routing line in author's file (D111, D135): when how markdown is laid out, in a response or a file; not for wording, order and length (respond), how a question is laid out (conduct's ask), content (the other author skills), commit messages (git's and the project's conventions, through implement's git) or comments in code (implement's skill for that language); it gives back nothing of its own: the response or file, laid out.
+- **Purpose:** how markdown is laid out, in two layers (D95, D110, D111). Structure applies to all markdown the agent writes: responses, markdown files (`SKILL.md` included), and markdown written for pull requests, issues and briefs to agents; not to commit messages, which follow git's and the project's conventions, nor to comments in code (D115). File rules apply to markdown files only: the defaults a linter checks in a saved file. Wording, order and length are respond's; how a question is put and laid out is conduct's ask's (D114); content is the other authoring skills'. It began as the person's markdown-style, with the person's own tooling left out (D68, D111).
+- **Description:** "How markdown is laid out: headings for sections, tables only when they fit, prose unwrapped, code fenced; plus the file rules a linter checks in markdown files. Use when writing any response or markdown file; wording and content belong to respond and the other authoring skills." A draft (D111, D115).
+- **Callers:** essentials' main skill, by its rule on layout, for a markdown file, and by its authoring line, through authoring's main skill, where this set is installed; it is no longer read at the start, where essentials' output-format skill takes its place once designed (D111, D152, D154); act, before any markdown file is written, for the file rules too (D67, D68); every skill that writes markdown, such as carryover, questionnaire, docs and the blueprint, through act's rule; the person, typing it. Its routing line in authoring's file (D111, D135): when how markdown is laid out, in a response or a file; not for wording, order and length (respond), how a question is laid out (conduct's ask), content (the other authoring skills), commit messages (git's and the project's conventions, through implement's git) or comments in code (implement's skill for that language); it gives back nothing of its own: the response or file, laid out.
 - **Flow:** rules, then instructions (D111, D135). **Which rules win** follows act's rule on which instruction wins; markdown's own variation: a project's lint configuration counts among its rules and wins in its files, the prose rule included, while responses stay unwrapped whatever a project's files say; the person's instruction in the conversation wins over both (D115, D135).
 
   **The structure layer,** at the top of `SKILL.md`, one line per rule:
@@ -192,8 +194,8 @@ author/
   15. a linter failing on lines the agent did not write: reported, not fixed;
   16. "tighten this paragraph": respond's rules, not markdown's (D137);
   17. "ask me three questions": laid out as conduct's ask says (D137);
-  18. a docs page to write: its content by the other author skills, done directly under act's rules for now, its layout by markdown (D137);
+  18. a docs page to write: its content by the other authoring skills, done directly under act's rules for now, its layout by markdown (D137);
   19. a pull-request description: the structure layer, without the file rules (D137);
   20. a comment in code: the language's conventions, not markdown's (D137);
   21. three files written in a project with a linter: the linter run once, after the third; with none: a search for the mechanical rules, not a read-back (D149).
-- **Open:** none known.
+- **Open:** how its structure layer, written for every response, divides the work with essentials' output-format skill, which now lays out every response; settled when that skill is designed (D154).

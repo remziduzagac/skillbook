@@ -1,23 +1,23 @@
 # skillbook
 
-Agent skills for any kind of project, organised as one tree: the stages a project goes through, from design to maintenance, beside writing, thinking, research and the work around them. Built for Claude Code and Codex, written so other agents that read skills work too.
+Agent skills for any kind of project, organised as sets you install separately: essentials, for how any work is done, and sets for keeping a project's design record, engineering software and writing for people. Built for Claude Code and Codex, written so other agents that read skills work too.
 
 **Status:** the design is under way; no skill is built yet. Nothing here is installable today.
 
 ## The plan
 
-| Roots | What they cover |
+| Sets | What they cover |
 | --- | --- |
-| conduct | how the agent acts and responds: organizing, verifying, setting up agent files, delegating |
-| understand | understanding before acting: clarifying, brainstorming, naming, research |
-| design, plan, implement, test, review, ship, maintain | the stages any project goes through |
-| author | writing for people: blueprint documents, user docs, business documents, articles; editing |
+| essentials | how the agent acts, understands, designs and plans: careful, efficient and organized |
+| blueprint | the spec-to-dev flow: a project's design record, decisions and tasks, kept in step |
+| softeng | how good software is designed, built, tested, reviewed, shipped and maintained |
+| authoring | writing for people: user docs, business documents, articles, issues; editing |
 
-Only one main skill sits in an agent's context; every other skill loads when a flow reaches it, so the tree can grow without filling the context.
+Only each set's main skill sits in an agent's context; every other skill loads when a flow reaches it, so a set can grow without filling the context. Each set works alone, and uses another when it is installed.
 
 ## Installing
 
-Coming with the first release: a plugin for Claude Code and Codex. Machines where skillbook itself is developed install the working copy of this repository as a local plugin.
+Coming with the first release, each set on its own, for Claude Code and Codex; how they are installed is still being decided.
 
 ## How it is organised
 

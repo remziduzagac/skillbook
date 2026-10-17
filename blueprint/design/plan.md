@@ -2,6 +2,8 @@
 
 What a builder needs for plan; ideas not yet decided are in [../ideas/plan.md](../ideas/plan.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
+plan belongs to the essentials set; its software parts, breakdown, slices and sequence, kept in [../ideas/plan.md](../ideas/plan.md), belong to softeng (D152, D154).
+
 ```text
 plan/
 ```

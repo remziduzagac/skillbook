@@ -2,6 +2,8 @@
 
 What a builder needs for test and its sub-skills; ideas not yet decided are in [../ideas/test.md](../ideas/test.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
+test belongs to the softeng set (D152, D154).
+
 ```text
 test/
 ├── tdd/

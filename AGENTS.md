@@ -1,6 +1,6 @@
 # AGENTS.md
 
-skillbook is a public repository of agent skills, organised as one tree of skills for any kind of project. Its initial design is open (blueprint D27) and being designed as a whole, from the top; no skill is built yet. Start with [blueprint/README.md](blueprint/README.md).
+skillbook is a public repository of agent skills, organised as sets of skills, each installed on its own, for any kind of project. Its initial design is open (blueprint D27) and being designed as a whole, from the top; no skill is built yet. Start with [blueprint/README.md](blueprint/README.md).
 
 ## Where things are
 

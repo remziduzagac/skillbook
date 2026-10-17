@@ -1,6 +1,6 @@
 # Carryover
 
-Where the design work stands, for the next session to pick up without asking. Written 2026-10-17 at the end of the cost batch. Check it against "Written against" before acting on it.
+Where the design work stands, for the next session to pick up without asking. Written 2026-10-17 at the end of the cost batch, updated the same day after the sets item. Check it against "Written against" before acting on it.
 
 ## Done
 
@@ -15,27 +15,36 @@ Where the design work stands, for the next session to pick up without asking. Wr
   - decisions others build on taking the strong tier and high effort, and challenge before suggesting (D150);
   - plan as the root for planning any work (D151).
 - **Evidence:** markdownlint and the link checker passed on all files before the commit.
+- **The sets, D152–D154,** recorded but not yet committed:
+  - skillbook becomes sets installed on their own, each working alone, with its own main skill named after it; a reference to another set goes through that set's main skill, with a short fallback where it is not installed (D152);
+  - the core set is named essentials, with the rejected names and why (D153);
+  - what each set holds: essentials (main skill, conduct, understand, design, plan, an output-format skill to design), blueprint (the spec-to-dev flow and its records), softeng (its own design, plan's software parts, implement, test, review, ship, maintain), authoring (author renamed; markdown stays here); rigs a later set; the lifecycle no longer general (D154);
+  - the main skill's design and ideas files renamed `essentials.md`, author's renamed `authoring.md`; each root's design file names its set; the tree marks each root's set.
 
 ## Remaining, in order
 
 1. **plan's full design** ([../design/plan.md](../design/plan.md)): its shape, whether it has parts, its tests. The person asked that **when a plan is needed** and **how deep it goes** be explained further than D151 does. They accepted D151's direction but found those two parts thin.
 2. **lean and enrich,** rightsize's two parts, designed together with plan. The direction is agreed in [../ideas/open.md](../ideas/open.md), in the entry under "A lean skill". Once lean names this part, it comes off the glossary's avoid list.
-3. **Then the open topics** in [../ideas/open.md](../ideas/open.md):
+3. **essentials' output-format skill,** before the baseline is built: generic layout rules, in respond or beside it, and how it divides the work with authoring's markdown (D154; [../ideas/open.md](../ideas/open.md)).
+4. **Then the open topics** in [../ideas/open.md](../ideas/open.md):
    - the person's software-engineering skills, where breakdown, slices and sequence are kept ([../ideas/plan.md](../ideas/plan.md));
    - engineering practice, now rightsize applied to code, for implement;
    - which tools a skill may require, such as git;
-   - analysing aigorahub/elves, with its licence checked first.
-4. **Building and testing the baseline,** per the roadmap: the main skill, conduct, understand and author's markdown, with the start-up measured.
+   - analysing aigorahub/elves, with its licence checked first;
+   - a project without the blueprint set: what learn, carryover, clarify's recording, brainstorm and design do with their results there, settled with blueprint's design;
+   - later: the install routes and the folder layout, with a test that skills.sh copies nested folders whole, and the naming rule where there is no namespace.
+5. **Building and testing the baseline,** per the roadmap: essentials' main skill, conduct, understand and the output-format skill, with the start-up measured.
 
 ## Decisions made
 
-D142–D151, each in [../decisions.md](../decisions.md), with amended-by notes under the earlier decisions they change. Notes 79–88 in [initial-design.md](initial-design.md) tell how each was reached.
+D142–D154, each in [../decisions.md](../decisions.md), with amended-by notes under the earlier decisions they change. Notes 79–91 in [initial-design.md](initial-design.md) tell how each was reached.
 
 ## Uncertain
 
 - The worked fork-or-fresh figures assume 20,000 tokens read again and a 1,500-token brief. Only the start-up and the fork's cache read were measured.
 - Whether a fresh agent loads skills from their descriptions inside a subagent is untested. D149 has the brief tell it not to load the main skill either way.
 - Codex's reference file is unwritten: its models, effort levels, forks and limits are still unknown.
+- Calling another set's main skill and then its hidden skill was tested only in halves: a listed skill called by name across packages, and a hidden skill read by its path inside its own.
 
 ## How the person works
 
@@ -56,5 +65,5 @@ Read [../design/plan.md](../design/plan.md) and D151. Then put plan's full desig
 ## Written against
 
 - **Date:** 2026-10-17.
-- **Branch:** `main`, after `6e671c1`, in the commit that adds this note.
-- **Uncommitted:** nothing. This note, its line in the notes README and the tree's data and renderer are in the commit after `6e671c1`.
+- **Branch:** `main`, after `76acd06`.
+- **Uncommitted:** the sets item, D152–D154, and this update, across the blueprint, the glossary, the READMEs, `AGENTS.md` and the project skill skillbook-tree.

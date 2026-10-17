@@ -1,15 +1,15 @@
-# Ideas: author
+# Ideas: authoring
 
-Ideas and open questions for author, not decided. What is decided is in [../design/author.md](../design/author.md).
+Ideas and open questions for authoring, not decided. What is decided is in [../design/authoring.md](../design/authoring.md).
 
-## author
+## authoring
 
-- When author plans a document not yet written, its sections are planned through conduct's organize, whose split takes the topics the document must cover as the items; to design with author's own skill (D148).
+- When authoring plans a document not yet written, its sections are planned through conduct's organize, whose split takes the topics the document must cover as the items; to design with authoring's own skill (D148).
 - Decided (D149): markdown with no linter is checked by a search for the mechanical rules rather than a read-back; with a linter, it runs once after the last file.
 
 ### blueprint
 
-- The decision format carries weigh's comparison: the options weighed and why the chosen one won; to design with author's blueprint skill (D121).
+- The decision format carries weigh's comparison: the options weighed and why the chosen one won; to design with the blueprint set's document forms (D121, D154).
 
 ### docs
 

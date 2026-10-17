@@ -2,6 +2,8 @@
 
 What a builder needs for implement and its sub-skills; ideas not yet decided are in [../ideas/implement.md](../ideas/implement.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
+implement belongs to the softeng set (D152, D154).
+
 ```text
 implement/
 ├── prototype/

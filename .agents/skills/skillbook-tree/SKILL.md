@@ -5,7 +5,7 @@ description: "How a skill is made and reviewed in the skillbook repository: the 
 
 # skillbook-tree
 
-How skills are made and reviewed in this repository; a project skill, never shipped in the plugin. It holds the review now; making a skill is added later (D77, D112).
+How skills are made and reviewed in this repository; a project skill, never shipped in any set. It holds the review now; making a skill is added later (D77, D112).
 
 ## Rules
 
@@ -31,7 +31,7 @@ How skills are made and reviewed in this repository; a project skill, never ship
 
 Checks 1 to 7 and 11 hold for every skill, leaf skills too; checks 8 to 10 also for a skill with sub-skills of its own.
 
-1. **Every instruction names the skill it needs:** by its path within a root, through the main skill across roots.
+1. **Every instruction names the skill it needs:** by its path within a root, through the main skill across roots, and through the other set's main skill, by name, across sets, with a short fallback where that set is not installed (D152).
 2. **Nothing ambiguous, nothing contradictory, no unstated gap:** no instruction can be read two ways; none contradicts another skill's; every case the skill does not cover is named, with where to go: another skill, or the agent's own judgment.
 3. **Comprehensive and exclusive:** every case in the skill's scope is covered or named as a gap; each rule and each concern has one home. A rule stated a second time is allowed only as a clear variation that names the rule it changes.
 4. **No restriction without a reason:** "never", "only", "must not" appear only where something real is at risk, and say why. Nothing stops the agent from using several skills for one request.

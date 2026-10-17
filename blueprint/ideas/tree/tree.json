@@ -164,7 +164,7 @@
       "rightsize"
      ],
      "mark": "●",
-     "desc": "nothing missing and nothing extra for the reader, parts comprehensive and exclusive, the point first, and the work rightsized; a five-question check that respond, author, organize, brief, carryover, instruct and act run (D145)",
+     "desc": "nothing missing and nothing extra for the reader, parts comprehensive and exclusive, the point first, and the work rightsized; a five-question check that respond, authoring, organize, brief, carryover, instruct and act run (D145)",
      "src": "own mp",
      "tail": [],
      "kids": []
@@ -284,14 +284,14 @@
      "kids": []
     }
    ],
-   "desc": "how the agent acts: how it behaves in every root, sets skillbook up, learns from sessions and works with other agents; its own SKILL.md holds the wrap-up offer and one routing line per sub-skill under six headings, and the main skill reads respond and act directly, first, once per conversation (D63, D67, D77, D106, D134)"
+   "desc": "[essentials] how the agent acts: how it behaves in every root, sets skillbook up, learns from sessions and works with other agents; its own SKILL.md holds the wrap-up offer and one routing line per sub-skill under six headings, and the main skill reads respond and act directly, first, once per conversation (D63, D67, D77, D106, D134)"
   },
   {
    "path": [
     "understand"
    ],
    "mark": "●",
-   "desc": "understanding before acting, with the person and from sources: its own skill holds the rules for the whole scope (keeps nothing, one result shape, guesses marked, facts first, who decides, nothing changed for good) and one routing line per sub-skill under five headings; other roots reach it through the main skill (D50, D56, D112, D130, D131)",
+   "desc": "[essentials] understanding before acting, with the person and from sources: its own skill holds the rules for the whole scope (keeps nothing, one result shape, guesses marked, facts first, who decides, nothing changed for good) and one routing line per sub-skill under five headings; other roots reach it through the main skill (D50, D56, D112, D130, D131)",
    "short": "thinking with the person before acting",
    "src": "",
    "tail": [],
@@ -477,7 +477,7 @@
     "design"
    ],
    "mark": "●",
-   "desc": "how to design anything: the design flow and its principles, and the sub-skills each step calls; with a blueprint, its steps record and track the design (D46, D47)",
+   "desc": "[essentials; its recording steps the blueprint set's, architecture softeng's] how to design anything: the design flow and its principles, and the sub-skills each step calls; with a blueprint, its steps record and track the design (D46, D47)",
    "short": "shaping what to make, before and while making it",
    "src": "",
    "tail": [],
@@ -488,7 +488,7 @@
       "architecture"
      ],
      "mark": "●",
-     "desc": "software's design knowledge: deep modules, seams, contracts, hot paths",
+     "desc": "[softeng] software's design knowledge: deep modules, seams, contracts, hot paths",
      "src": "mp hs",
      "tail": [],
      "kids": []
@@ -499,7 +499,7 @@
       "review"
      ],
      "mark": "●",
-     "desc": "a design reviewed through lenses: consistency, lean, model check, architecture; review points here (D39)",
+     "desc": "[essentials; its architecture lens softeng's] a design reviewed through lenses: consistency, lean, model check, architecture; review points here (D39)",
      "src": "ts mp",
      "tail": [],
      "kids": []
@@ -510,7 +510,7 @@
       "start"
      ],
      "mark": "●",
-     "desc": "a blueprint started, or an existing project described into one",
+     "desc": "[blueprint] a blueprint started, or an existing project described into one",
      "src": "sk",
      "tail": [],
      "kids": []
@@ -521,7 +521,7 @@
       "discuss"
      ],
      "mark": "●",
-     "desc": "ideas and session notes recorded",
+     "desc": "[blueprint] ideas and session notes recorded",
      "src": "sk mp",
      "tail": [],
      "kids": []
@@ -532,7 +532,7 @@
       "research"
      ],
      "mark": "●",
-     "desc": "research notes recorded with their sources",
+     "desc": "[blueprint] research notes recorded with their sources",
      "src": "sk ts",
      "tail": [],
      "kids": []
@@ -543,7 +543,7 @@
       "decide"
      ],
      "mark": "●",
-     "desc": "decisions recorded with their reasons, and notes under earlier ones",
+     "desc": "[blueprint] decisions recorded with their reasons, and notes under earlier ones",
      "src": "sk mp",
      "tail": [],
      "kids": []
@@ -557,7 +557,7 @@
      "src": "sk",
      "tail": [],
      "kids": [],
-     "desc": "an evidence entry recorded: the claim, what was run or seen, who verified it, what it supports (D90)"
+     "desc": "[blueprint] an evidence entry recorded: the claim, what was run or seen, who verified it, what it supports (D90)"
     },
     {
      "path": [
@@ -565,7 +565,7 @@
       "write"
      ],
      "mark": "●",
-     "desc": "requirements and design updated, in the root or a workstream",
+     "desc": "[blueprint] requirements and design updated, in the root or a workstream",
      "src": "sk",
      "tail": [],
      "kids": []
@@ -576,7 +576,7 @@
       "workstream"
      ],
      "mark": "●",
-     "desc": "a workstream opened for a change, with its key and status",
+     "desc": "[blueprint] a workstream opened for a change, with its key and status",
      "src": "sk",
      "tail": [],
      "kids": []
@@ -587,7 +587,7 @@
       "tasks"
      ],
      "mark": "●",
-     "desc": "roadmap steps and tasks written from the plan",
+     "desc": "[blueprint] roadmap steps and tasks written from the plan",
      "src": "sk mp",
      "tail": [],
      "kids": []
@@ -598,7 +598,7 @@
       "work"
      ],
      "mark": "●",
-     "desc": "the design kept in step while a task is implemented",
+     "desc": "[blueprint] the design kept in step while a task is implemented",
      "src": "sk",
      "tail": [],
      "kids": []
@@ -609,7 +609,7 @@
       "sync"
      ],
      "mark": "●",
-     "desc": "the design brought up to date with code changed elsewhere",
+     "desc": "[blueprint] the design brought up to date with code changed elsewhere",
      "src": "sk",
      "tail": [],
      "kids": []
@@ -620,7 +620,7 @@
       "consolidate"
      ],
      "mark": "●",
-     "desc": "a finished workstream folded into its parent, then reviewed",
+     "desc": "[blueprint] a finished workstream folded into its parent, then reviewed",
      "src": "sk",
      "tail": [],
      "kids": []
@@ -631,7 +631,7 @@
       "parallel"
      ],
      "mark": "●",
-     "desc": "several agents at once: staged mode, pending files",
+     "desc": "[blueprint] several agents at once: staged mode, pending files",
      "src": "sk",
      "tail": [],
      "kids": []
@@ -642,7 +642,7 @@
       "check"
      ],
      "mark": "●",
-     "desc": "the folder's health; maintain points here (D39)",
+     "desc": "[blueprint] the folder's health; maintain points here (D39)",
      "src": "sk",
      "tail": [],
      "kids": []
@@ -653,7 +653,7 @@
       "publish"
      ],
      "mark": "●",
-     "desc": "a private blueprint made public (D39)",
+     "desc": "[blueprint] a private blueprint made public (D39)",
      "src": "sk",
      "tail": [],
      "kids": []
@@ -665,7 +665,7 @@
     "plan"
    ],
    "mark": "●",
-   "desc": "planning any work before acting: a plan when order matters, an approach must be chosen, stakes are medium or higher, or the work is long or wide; one line or a full plan; approved when it holds the person's choice; revised when a step fails (D151)",
+   "desc": "[essentials; its software parts softeng's] planning any work before acting: a plan when order matters, an approach must be chosen, stakes are medium or higher, or the work is long or wide; one line or a full plan; approved when it holds the person's choice; revised when a step fails (D151)",
    "short": "planning any work before acting: a plan when order matters, an approach must be chosen, stakes are medium or higher, or the work is long or wide; one line or a full plan; approved when it holds the person's choice; revised when a step fails (D151)",
    "src": "",
    "tail": [
@@ -678,7 +678,7 @@
     "implement"
    ],
    "mark": "●",
-   "desc": "making it, by carrying out the design",
+   "desc": "[softeng] making it, by carrying out the design",
    "short": "making it, by carrying out the design",
    "src": "",
    "tail": [],
@@ -854,7 +854,7 @@
     "test"
    ],
    "mark": "●",
-   "desc": "checking that it works",
+   "desc": "[softeng] checking that it works",
    "short": "checking that it works",
    "src": "",
    "tail": [],
@@ -910,7 +910,7 @@
     "review"
    ],
    "mark": "●",
-   "desc": "judging a change before it lands",
+   "desc": "[softeng] judging a change before it lands",
    "short": "judging a change before it lands",
    "src": "",
    "tail": [
@@ -946,7 +946,7 @@
     "ship"
    ],
    "mark": "●",
-   "desc": "getting it to people, within maintain-repo's release rules",
+   "desc": "[softeng] getting it to people, within maintain-repo's release rules",
    "short": "getting it to people, within maintain-repo's release rules",
    "src": "",
    "tail": [],
@@ -1046,7 +1046,7 @@
     "maintain"
    ],
    "mark": "●",
-   "desc": "keeping it healthy over time",
+   "desc": "[softeng] keeping it healthy over time",
    "short": "keeping it healthy over time",
    "src": "",
    "tail": [],
@@ -1138,28 +1138,28 @@
   },
   {
    "path": [
-    "author"
+    "authoring"
    ],
    "mark": "●",
-   "desc": "writing work for people, sorted by reader: the project's record, users, stakeholders, the public; editing; markdown, the format (D67, D69)",
+   "desc": "[authoring] author renamed (D154): writing work for people, sorted by reader: the project's record, users, stakeholders, the public; editing; markdown, the format (D67, D69)",
    "short": "writing for any reader, people or agents",
    "src": "",
    "tail": [],
    "kids": [
     {
      "path": [
-      "author",
+      "authoring",
       "blueprint"
      ],
      "mark": "●",
      "src": "sk mp ts",
      "tail": [],
      "kids": [],
-     "desc": "the form of each kind of blueprint document: idea, session note, research note, decision record, evidence entry, requirements, design document, roadmap and tasks, workstream; design's recording steps call it, and keep the filing and tracking themselves (D69)"
+     "desc": "[blueprint] the form of each kind of blueprint document: idea, session note, research note, decision record, evidence entry, requirements, design document, roadmap and tasks, workstream; design's recording steps call it, and keep the filing and tracking themselves (D69)"
     },
     {
      "path": [
-      "author",
+      "authoring",
       "docs"
      ],
      "mark": "○",
@@ -1170,7 +1170,7 @@
     },
     {
      "path": [
-      "author",
+      "authoring",
       "business"
      ],
      "mark": "○",
@@ -1181,7 +1181,7 @@
     },
     {
      "path": [
-      "author",
+      "authoring",
       "articles"
      ],
      "mark": "○",
@@ -1192,7 +1192,7 @@
     },
     {
      "path": [
-      "author",
+      "authoring",
       "edit"
      ],
      "mark": "●",
@@ -1203,7 +1203,7 @@
     },
     {
      "path": [
-      "author",
+      "authoring",
       "issue"
      ],
      "mark": "●",
@@ -1213,7 +1213,7 @@
      "kids": [
       {
        "path": [
-        "author",
+        "authoring",
         "issue",
         "bug"
        ],
@@ -1225,7 +1225,7 @@
       },
       {
        "path": [
-        "author",
+        "authoring",
         "issue",
         "feature"
        ],
@@ -1239,7 +1239,7 @@
     },
     {
      "path": [
-      "author",
+      "authoring",
       "reader"
      ],
      "mark": "●",
@@ -1250,7 +1250,7 @@
     },
     {
      "path": [
-      "author",
+      "authoring",
       "markdown"
      ],
      "mark": "●",
@@ -1269,7 +1269,7 @@
    "src": "",
    "tail": [],
    "kids": [],
-   "desc": "the programs agents drive: git and the GitHub CLI, other agent programs for delegation, herdr, nvim, containers; one home per program for delegate, council and setup; to design (D103)"
+   "desc": "[a later set] the programs agents drive: git and the GitHub CLI, other agent programs for delegation, herdr, nvim, containers; one home per program for delegate, council and setup; to design (D103)"
   }
  ],
  "rename": {
@@ -1380,5 +1380,5 @@
   "author-updates": "author-business",
   "conduct-answer": "conduct-respond"
  },
- "main": "skillbook, the main skill and the only skill listed to the model: its rules hold in every case (follow act's rules, lay out every response and markdown file with author's markdown), so it reads act, respond and author's markdown first; for now it routes to understand, author's markdown and conduct, several for one request where the work needs them, and other work is done under act's rules until its root is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143)"
+ "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: its rules hold in every case (follow act's rules, lay out every response and file by its rule on layout), so it reads act, respond, rightsize and, once designed, essentials' output-format skill first; for now it routes to understand and conduct, and to authoring's markdown through authoring's main skill where that set is installed, several for one request where the work needs them, and other work is done under act's rules until its root or set is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154)"
 }
