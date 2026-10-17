@@ -8,7 +8,7 @@ Drafted from 2026-10-10 from [draft-ideas.md](../notes/draft-ideas.md), the rese
 
 - **Each skill is a short folder** inside its parent's; its name, shown before its description, is the folder path joined by dashes: `design/start/` is `design-start` (D43, D71). Inside, only `SKILL.md` sits at the top, with `references/`, `scripts/` and `assets/` beside the sub-skills, and in a hidden skill `agents/`, Codex's settings (D44, D79); the sample below shows it once.
 - **Each set's main skill** is model-invoked, its description in the agent's context every turn (D56, D152). Every other skill, the roots included, is a **sub-skill**: invoked by the person only, costs nothing until used, and is loaded by its path from the skill that needs it, inside its set; the person can type it by the name its install route gives it.
-- **essentials' main skill,** on the `skills/skillbook/` line, sits above the roots: its rules come first, among them following conduct's act and laying out every response by its rule on layout; its instructions say when to use each root; and every response is checked against respond before it is returned (D56, D63, D81, D112). Beside the roots, **conduct** holds how the agent behaves in every root.
+- **essentials' main skill,** on the `essentials/` line, sits above the roots: its rules come first, among them following conduct's act and laying out every response by its rule on layout; its instructions say when to use each root; and every response is checked against respond before it is returned (D56, D63, D81, D112). Beside the roots, **conduct** holds how the agent behaves in every root.
 - **(an idea)** marks a skill with no worked-out material anywhere yet; **→** marks a skill it calls.
 - **The roots:** the stages, named by bare verbs (D35, D36, D76): design and plan are essentials', the rest softeng's, and the lifecycle is no longer general (D154); understand is a verb too, and conduct and authoring, groups, are nouns (D40, D67, D154). A knowledge base and routines are later sets (D64, D152).
 
@@ -27,10 +27,10 @@ design/                         its name: design
     └── SKILL.md
 ```
 
-The tree shows only the skill folders. Its folder paths are provisional until the layout is decided with the install routes; the `skills/skillbook/` line stands for essentials' main skill, and each root's set is marked in square brackets, as is each part whose set differs from its root's (D152, D154).
+The tree shows only the skill folders. Its folder paths are provisional until the layout is decided with the install routes; the tree is one block per set, each starting with a line for the set's main skill, and a part whose set differs from its root's stands in its own set's block, design's recording steps in blueprint's, design's architecture in softeng's (D152, D154).
 
 ```text
-skills/skillbook/                 essentials, essentials' main skill, listed to the model like every set's main skill
+essentials/                       essentials, essentials' main skill, listed to the model like every set's main skill
 │                                 and the one loaded first for any work: its rules hold in every case (follow act's
 │                                 rules, lay out every response and file by its rule on layout), so it reads act,
 │                                 respond, rightsize and layout first; for now it routes to understand, plan and
@@ -41,11 +41,12 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │                                 goes, or when the content is needed for the conversation; every response is checked
 │                                 against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138,
 │                                 D143, D149, D152, D153, D154, D155, D158)
-├── conduct/                      conduct: [essentials] how the agent acts: how it behaves in every root, sets skillbook
-│   │                             up, learns from sessions and works with other agents; its own SKILL.md holds the
-│   │                             wrap-up offer and one routing line per sub-skill under six headings, and the main
-│   │                             skill reads respond, act, rightsize and layout directly, first, once per conversation
-│   │                             (D63, D67, D77, D106, D134, D149, D158)
+│
+├── conduct/                      conduct: how the agent acts: how it behaves in every root, sets skillbook up, learns
+│   │                             from sessions and works with other agents; its own SKILL.md holds the wrap-up offer
+│   │                             and one routing line per sub-skill under six headings, and the main skill reads
+│   │                             respond, act, rightsize and layout directly, first, once per conversation (D63, D67,
+│   │                             D77, D106, D134, D149, D158)
 │   ├── respond/                  conduct-respond: how every response is prepared before it is returned: necessary and
 │   │                             sufficient, things named in words, top-down when explaining, plain words, outcomes as
 │   │                             they happened, no guardrail broken; questions through ask; the main skill checks each
@@ -148,11 +149,11 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │                                 next work fits in it; on resuming, checked against what changed before acting (D65,
 │                                 D104, D107, D147)
 │
-├── understand/                   understand: [essentials] understanding before acting, with the person and from
-│   │                             sources: its own skill holds the rules for the whole scope (keeps nothing, one result
-│   │                             shape, guesses marked, facts first, who decides, nothing changed for good) and one
-│   │                             routing line per sub-skill under five headings; other roots reach it through the main
-│   │                             skill (D50, D56, D112, D130, D131)
+├── understand/                   understand: understanding before acting, with the person and from sources: its own
+│   │                             skill holds the rules for the whole scope (keeps nothing, one result shape, guesses
+│   │                             marked, facts first, who decides, nothing changed for good) and one routing line per
+│   │                             sub-skill under five headings; other roots reach it through the main skill (D50, D56,
+│   │                             D112, D130, D131)
 │   ├── discuss/                  understand-discuss: a topic worked through with the person, item by item: the whole
 │   │                             first, one item per turn, the agent proposing and the person deciding, every item
 │   │                             closed, side topics placed (D130)
@@ -204,42 +205,54 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │                                 cause at a time, the chain traced back to its trigger, the fix left to the caller;
 │                                 test-debug asks for it when the cause is not obvious (D59, D128)
 │
-├── design/                       design: [essentials; its recording steps the blueprint set's, architecture softeng's]
-│   │                             how to design anything: the design flow and its principles, and the sub-skills each
-│   │                             step calls; with a blueprint, its steps record and track the design (D46, D47)
-│   ├── architecture/             design-architecture: [softeng] software's design knowledge: deep modules, seams,
-│   │                             contracts, hot paths
-│   ├── review/                   design-review: [essentials; its architecture lens softeng's] a design reviewed through
-│   │                             lenses: consistency, lean, model check, architecture; review points here (D39)
-│   ├── start/                    design-start: [blueprint] a blueprint started, or an existing project described into
-│   │                             one
-│   ├── discuss/                  design-discuss: [blueprint] ideas and session notes recorded
-│   ├── research/                 design-research: [blueprint] research notes recorded with their sources
-│   ├── decide/                   design-decide: [blueprint] decisions recorded with their reasons, and notes under
-│   │                             earlier ones
-│   ├── evidence/                 design-evidence: [blueprint] an evidence entry recorded: the claim, what was run or
-│   │                             seen, who verified it, what it supports (D90)
-│   ├── write/                    design-write: [blueprint] requirements and design updated, in the root or a workstream
-│   ├── workstream/               design-workstream: [blueprint] a workstream opened for a change, with its key and
-│   │                             status
-│   ├── tasks/                    design-tasks: [blueprint] roadmap steps and tasks written from the plan
-│   ├── work/                     design-work: [blueprint] the design kept in step while a task is implemented
-│   ├── sync/                     design-sync: [blueprint] the design brought up to date with code changed elsewhere
-│   ├── consolidate/              design-consolidate: [blueprint] a finished workstream folded into its parent, then
-│   │                             reviewed
-│   ├── parallel/                 design-parallel: [blueprint] several agents at once: staged mode, pending files
-│   ├── check/                    design-check: [blueprint] the folder's health; maintain points here (D39)
-│   └── publish/                  design-publish: [blueprint] a private blueprint made public (D39)
+├── design/                       design: how to design anything: the design flow and its principles, and the sub-skills
+│   │                             each step calls; with a blueprint, its steps record and track the design (D46, D47)
+│   └── review/                   design-review: a design reviewed through lenses: consistency, lean, model check,
+│                                 architecture, that lens being softeng's design's; review points here (D39, D154)
 │
-├── plan/                         plan: [essentials; its software parts softeng's] planning multipart work before
-│                                 acting, and following it step by step: none for single-step work; given steps followed
-│                                 and enhanced where not obvious, by the obvious test; one line, or a full plan, divided
-│                                 through organize and challenged, when stakes are high or the work is long or wide;
-│                                 approval when stakes are high, asked for, or a question is in it; revised when a step
-│                                 fails (D151, D155) (kept in the response or a file; a keeper the project points to,
-│                                 such as blueprint, says which file (D156))
+└── plan/                         plan: planning multipart work before acting, and following it step by step: none for
+                                  single-step work; given steps followed and enhanced where not obvious, by the obvious
+                                  test; one line, or a full plan, divided through organize and challenged, when stakes
+                                  are high or the work is long or wide; approval when stakes are high, asked for, or a
+                                  question is in it; revised when a step fails (D151, D155) (kept in the response or a
+                                  file; a keeper the project points to, such as blueprint, says which file (D156))
+
+blueprint/                        blueprint, the blueprint set's main skill: a project's spec-to-dev flow and its
+│                                 records, from the idea to the hand-over to code, its files and folders, the procedures
+│                                 that keep them intact, and the form of each document (D46, D47, D154)
 │
-├── implement/                    implement: [softeng] making it, by carrying out the design
+├── start/                        design-start: a blueprint started, or an existing project described into one
+├── discuss/                      design-discuss: ideas and session notes recorded
+├── research/                     design-research: research notes recorded with their sources
+├── decide/                       design-decide: decisions recorded with their reasons, and notes under earlier ones
+├── evidence/                     design-evidence: an evidence entry recorded: the claim, what was run or seen, who
+│                                 verified it, what it supports (D90)
+├── write/                        design-write: requirements and design updated, in the root or a workstream
+├── workstream/                   design-workstream: a workstream opened for a change, with its key and status
+├── tasks/                        design-tasks: roadmap steps and tasks written from the plan
+├── work/                         design-work: the design kept in step while a task is implemented
+├── sync/                         design-sync: the design brought up to date with code changed elsewhere
+├── consolidate/                  design-consolidate: a finished workstream folded into its parent, then reviewed
+├── parallel/                     design-parallel: several agents at once: staged mode, pending files
+├── check/                        design-check: the folder's health; maintain points here (D39)
+├── publish/                      design-publish: a private blueprint made public (D39)
+└── forms/                        authoring-blueprint: the form of each kind of blueprint document: idea, session note,
+                                  research note, decision record, evidence entry, requirements, design document, roadmap
+                                  and tasks, workstream; design's recording steps call it, and keep the filing and
+                                  tracking themselves (D69) (name provisional)
+
+softeng/                          softeng, the softeng set's main skill: how good software is designed and made: its own
+│                                 design, architecture among it, planning's software parts, implement, test, review,
+│                                 ship and maintain (D36, D67, D68, D154)
+│
+├── design/                       how good software is designed (D154)
+│   └── architecture/             design-architecture: software's design knowledge: deep modules, seams, contracts, hot
+│                                 paths
+│
+├── plan/                         plan's software parts: breakdown, slices and sequence, kept in plan.md, beside this
+│                                 file, for the person's own software-engineering skills (D151, D154)
+│
+├── implement/                    implement: making it, by carrying out the design
 │   ├── prototype/                implement-prototype: throwaway work that answers one design question → cited by design
 │   ├── plan/                     implement-plan: a plan carried out task by task → test, review, conduct-verify,
 │   │                             conduct-delegate
@@ -263,19 +276,19 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │       └── rust/                 implement-code-rust: Rust written to the house style; its checks come from the
 │                                 repository profile (an idea)
 │
-├── test/                         test: [softeng] checking that it works
+├── test/                         test: checking that it works
 │   ├── tdd/                      test-tdd: test first; characterisation tests before a risky refactor
 │   ├── debug/                    test-debug: a loop that goes red, the root cause, one change at a time → test-tdd,
 │   │                             understand-research-analyze
 │   ├── browser/                  test-browser: a web app tested in a real browser (an idea)
 │   └── experiment/               test-experiment: a product tested by fleets of agents, profiles, sweeps (D41)
 │
-├── review/                       review: [softeng] judging a change before it lands (design reviews: design-review,
-│   │                             under design, because its findings become decisions (D39))
+├── review/                       review: judging a change before it lands (design reviews: design-review, under design,
+│   │                             because its findings become decisions (D39))
 │   ├── code/                     review-code: review a change; receive a review
 │   └── pr/                       review-pr: a pull request that shows the change and the evidence it works
 │
-├── ship/                         ship: [softeng] getting it to people, within maintain-repo's release rules
+├── ship/                         ship: getting it to people, within maintain-repo's release rules
 │   ├── build/                    ship-build: compiling and packaging what ships (an idea)
 │   ├── release/                  ship-release: cut a release: notes, CI on the exact commit, rehearsal, promotion
 │   ├── deploy/                   ship-deploy: through a protected environment; previews; a check after each deploy (an
@@ -287,50 +300,51 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │   ├── monitor/                  ship-monitor: watching what runs; alerts without fatigue (an idea)
 │   └── incident/                 ship-incident: responding when it breaks, and the review after (an idea)
 │
-├── maintain/                     maintain: [softeng] keeping it healthy over time
-│   ├── repo/                     maintain-repo: the repository standard: files, checks, CI, settings, upkeep (D37)
-│   │   ├── setup/                maintain-repo-setup: a project's scope recorded: its conditions and profiles
-│   │   ├── create/               maintain-repo-create: a new repository created to the standard
-│   │   ├── audit/                maintain-repo-audit: a repository checked against every rule in its scope
-│   │   ├── close-gaps/           maintain-repo-close-gaps: what the audit found, fixed or recorded as accepted
-│   │   └── keep/                 maintain-repo-keep: upkeep: the health workflow, renewals, settings drift
-│   └── fork/                     maintain-fork: a long-lived fork kept mergeable
+└── maintain/                     maintain: keeping it healthy over time
+    ├── repo/                     maintain-repo: the repository standard: files, checks, CI, settings, upkeep (D37)
+    │   ├── setup/                maintain-repo-setup: a project's scope recorded: its conditions and profiles
+    │   ├── create/               maintain-repo-create: a new repository created to the standard
+    │   ├── audit/                maintain-repo-audit: a repository checked against every rule in its scope
+    │   ├── close-gaps/           maintain-repo-close-gaps: what the audit found, fixed or recorded as accepted
+    │   └── keep/                 maintain-repo-keep: upkeep: the health workflow, renewals, settings drift
+    └── fork/                     maintain-fork: a long-lived fork kept mergeable
+
+authoring/                        authoring: author renamed (D154): writing work for people, sorted by reader: the
+│                                 project's record, users, stakeholders, the public; editing; markdown, the format (D67,
+│                                 D69)
 │
-├── authoring/                    authoring: [authoring] author renamed (D154): writing work for people, sorted by
-│   │                             reader: the project's record, users, stakeholders, the public; editing; markdown, the
-│   │                             format (D67, D69)
-│   ├── blueprint/                authoring-blueprint: [blueprint] the form of each kind of blueprint document: idea,
-│   │                             session note, research note, decision record, evidence entry, requirements, design
-│   │                             document, roadmap and tasks, workstream; design's recording steps call it, and keep
-│   │                             the filing and tracking themselves (D69)
-│   ├── docs/                     authoring-docs: documentation for the people who use what was built: docs pages,
-│   │                             guides, READMEs; co-writing a document with the person (D69) (an idea)
-│   ├── business/                 authoring-business: documents for stakeholders: status update, report, proposal,
-│   │                             one-pager, memo, email; a design rendered as one PRD-style document; office formats
-│   │                             through Anthropic's document skills (D69) (an idea)
-│   ├── articles/                 authoring-articles: articles built from fragments, beats and shape (an idea)
-│   ├── edit/                     authoring-edit: a written text improved in passes, each asking one checkable question,
-│   │                             structure before sentences before words; as many passes as the text needs; in one
-│   │                             call, passes can run as parallel agents whose proposed changes are consolidated (D70)
-│   │                             → conduct-delegate
-│   ├── issue/                    authoring-issue: an issue written for whoever was not in the conversation: posting
-│   │   │                         through guardrails, the project's templates winning, a security problem never public
-│   │   │                         (D127)
-│   │   ├── bug/                  authoring-issue-bug: what happened against what was expected, steps to reproduce,
-│   │   │                         environment, evidence with secrets removed (D127) (an idea)
-│   │   └── feature/              authoring-issue-feature: the problem first, the proposal, alternatives, what is out of
-│   │                             scope (D127) (an idea)
-│   ├── reader/                   authoring-reader: a document read as its intended reader would, with only the
-│   │                             document, often by a fresh agent: can a builder build, an implementer start, an agent
-│   │                             resume or act, a user follow; name to settle (D123)
-│   └── markdown/                 authoring-markdown: the file rules a linter checks in markdown files, a project's own
-│                                 configuration winning, and the linter run; structure comes from essentials' layout,
-│                                 with a one-line fallback where essentials is not installed (D68, D95, D110, D111,
-│                                 D158)
+├── docs/                         authoring-docs: documentation for the people who use what was built: docs pages,
+│                                 guides, READMEs; co-writing a document with the person (D69) (an idea)
+├── business/                     authoring-business: documents for stakeholders: status update, report, proposal,
+│                                 one-pager, memo, email; a design rendered as one PRD-style document; office formats
+│                                 through Anthropic's document skills (D69) (an idea)
+├── articles/                     authoring-articles: articles built from fragments, beats and shape (an idea)
+├── edit/                         authoring-edit: a written text improved in passes, each asking one checkable question,
+│                                 structure before sentences before words; as many passes as the text needs; in one
+│                                 call, passes can run as parallel agents whose proposed changes are consolidated (D70)
+│                                 → conduct-delegate
 │
-└── rigs/                         rigs: [a later set] the programs agents drive: git and the GitHub CLI, other agent
-                                  programs for delegation, herdr, nvim, containers; one home per program for delegate,
-                                  council and setup; to design (D103) (an idea)
+├── issue/                        authoring-issue: an issue written for whoever was not in the conversation: posting
+│   │                             through guardrails, the project's templates winning, a security problem never public
+│   │                             (D127)
+│   ├── bug/                      authoring-issue-bug: what happened against what was expected, steps to reproduce,
+│   │                             environment, evidence with secrets removed (D127) (an idea)
+│   └── feature/                  authoring-issue-feature: the problem first, the proposal, alternatives, what is out of
+│                                 scope (D127) (an idea)
+│
+├── reader/                       authoring-reader: a document read as its intended reader would, with only the
+│                                 document, often by a fresh agent: can a builder build, an implementer start, an agent
+│                                 resume or act, a user follow; name to settle (D123)
+└── markdown/                     authoring-markdown: the file rules a linter checks in markdown files, a project's own
+                                  configuration winning, and the linter run; structure comes from essentials' layout,
+                                  with a one-line fallback where essentials is not installed (D68, D95, D110, D111,
+                                  D158)
+
+├── rigs/                         rigs: the programs agents drive: git and the GitHub CLI, other agent programs for
+│                                 delegation, herdr, nvim, containers; one home per program for delegate, council and
+│                                 setup; to design (D103) (an idea)
+├── (no folder)                   a knowledge base, once vaultops (D152)
+└── (no folder)                   routines (D152)
 ```
 
 ## design's flow
@@ -397,21 +411,24 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 
 ## Counts
 
-| Root | Skills | with material | ideas |
+| Set / root | Skills | with material | ideas |
 | --- | --- | --- | --- |
-| conduct | 27 | 27 | 0 |
-| understand | 15 | 15 | 0 |
-| design | 16 | 16 | 0 |
-| plan | 1 | 1 | 0 |
-| implement | 14 | 8 | 6 |
-| test | 4 | 3 | 1 |
-| review | 2 | 2 | 0 |
-| ship | 8 | 2 | 6 |
-| maintain | 7 | 7 | 0 |
-| authoring | 10 | 5 | 5 |
-| rigs | 1 | 0 | 1 |
+| essentials / conduct | 27 | 27 | 0 |
+| essentials / understand | 15 | 15 | 0 |
+| essentials / design | 1 | 1 | 0 |
+| essentials / plan | 1 | 1 | 0 |
+| blueprint / steps and forms | 15 | 15 | 0 |
+| softeng / design | 1 | 1 | 0 |
+| softeng / plan | 1 | 0 | 1 |
+| softeng / implement | 14 | 8 | 6 |
+| softeng / test | 4 | 3 | 1 |
+| softeng / review | 2 | 2 | 0 |
+| softeng / ship | 8 | 2 | 6 |
+| softeng / maintain | 7 | 7 | 0 |
+| authoring / authoring | 9 | 4 | 5 |
+| later / rigs | 1 | 0 | 1 |
 
-105 skills in conduct and the ten roots, and the main skill above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
+106 skills in conduct and the other roots, design and plan counted in each set that has a part of them, and the main skills above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
 
 ## The shape
 
@@ -482,14 +499,17 @@ For each skill, the sources that already hold material for it: read them before 
 
 - **conduct:** conduct-respond (own, md, mp); conduct-layout (own); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-organize (vo); conduct-organize-split (vo); conduct-organize-merge (vo); conduct-organize-compose (vo); conduct-organize-normalize (vo); conduct-organize-cluster (vo); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-rightsize (own, mp); conduct-rightsize-lean (own, mp); conduct-rightsize-enrich (own); conduct-cleanup (own, sp, ar, an); conduct-instruct (mp, sp, ws, oc); conduct-setup (cc, lc); conduct-learn (ws, mp, gs, cc); conduct-delegate (own, ts, md, sp, vo); conduct-delegate-council (ws); conduct-delegate-fanout (own, ts); conduct-delegate-crew (md); conduct-brief (own, mp); conduct-carryover (ws, mp, oc, gs, ar).
 - **understand:** understand-discuss (own, oc, sp); understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-argue (gs, ar); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
-- **design:** design-architecture (mp, hs); design-review (ts, mp); design-start (sk); design-discuss (sk, mp); design-research (sk, ts); design-decide (sk, mp); design-evidence (sk); design-write (sk); design-workstream (sk); design-tasks (sk, mp); design-work (sk); design-sync (sk); design-consolidate (sk); design-parallel (sk); design-check (sk); design-publish (sk).
+- **design:** design-review (ts, mp).
 - **plan:** plan (none yet).
+- **steps and forms:** design-start (sk); design-discuss (sk, mp); design-research (sk, ts); design-decide (sk, mp); design-evidence (sk); design-write (sk); design-workstream (sk); design-tasks (sk, mp); design-work (sk); design-sync (sk); design-consolidate (sk); design-parallel (sk); design-check (sk); design-publish (sk); authoring-blueprint (sk, mp, ts).
+- **softeng-design:** design-architecture (mp, hs).
+- **softeng-plan:** softeng-plan (none yet).
 - **implement:** implement-prototype (mp); implement-plan (sp, mp); implement-git (ws, hs, sp, mp); implement-git-worktree (sp); implement-git-commit (ws, hs); implement-git-finish (sp); implement-web (an, vc); implement-agent-tools (sb, ws, ts, an); implement-code; implement-code-python (sk); implement-code-typescript (sk); implement-code-bash (sk); implement-code-go (sk); implement-code-rust (sk).
 - **test:** test-tdd (mp, sp, hs); test-debug (mp, sp, hs, gs); test-browser (an); test-experiment (md, ts, own).
 - **review:** review-code (mp, sp, ws); review-pr (mp).
 - **ship:** ship-build (none yet); ship-release (hs, ws); ship-deploy (none yet); ship-rollback (none yet); ship-infra (none yet); ship-wizard (mp); ship-monitor (ws); ship-incident (none yet).
 - **maintain:** maintain-repo (sk); maintain-repo-setup (sk); maintain-repo-create (sk); maintain-repo-audit (sk); maintain-repo-close-gaps (sk); maintain-repo-keep (sk); maintain-fork (hs).
-- **authoring:** authoring-blueprint (sk, mp, ts); authoring-docs (an, hs, mp, md); authoring-business (ws, an); authoring-articles (mp); authoring-edit (md); authoring-issue (mp, sk); authoring-issue-bug (none yet); authoring-issue-feature (none yet); authoring-reader (sp); authoring-markdown (own).
+- **authoring:** authoring-docs (an, hs, mp, md); authoring-business (ws, an); authoring-articles (mp); authoring-edit (md); authoring-issue (mp, sk); authoring-issue-bug (none yet); authoring-issue-feature (none yet); authoring-reader (sp); authoring-markdown (own).
 - **rigs:** rigs (none yet).
 
 ## Compared with mattpocock/skills

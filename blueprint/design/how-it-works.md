@@ -16,11 +16,11 @@ Four sets, each with its main skill, the only skill of the set listed to the mod
 
 ```text
 essentials     the main skill loaded first for any work
-  conduct      respond · act · ask · organize · explain · verify · guardrails · stakes · rightsize · cleanup ·
-               instruct · setup · learn · delegate · brief · carryover
+  conduct      respond · layout · act · ask · organize · explain · verify · guardrails · stakes ·
+               rightsize (lean · enrich) · cleanup · instruct · setup · learn · delegate · brief · carryover
   understand   discuss · clarify · frame · brainstorm · weigh · challenge · argue · naming · research
   design       how to design anything: its flow, its principles, design review
-  plan         planning any work before acting
+  plan         planning multipart work, and following it
 blueprint      the spec-to-dev flow and its records: start · discuss · research · decide · evidence · write ·
                workstream · tasks · work · sync · consolidate · parallel · check · publish · document forms
 softeng        design · plan's software parts · implement (with code) · test · review · ship · maintain
