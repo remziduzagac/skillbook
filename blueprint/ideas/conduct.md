@@ -11,10 +11,18 @@ Ideas and open questions for conduct, not decided. What is decided is in [../des
 - Settled (D146): things named in words gains its test: a reference stays as it is when this reader can tell what it is from the reference itself, right now; otherwise words first, the number in brackets after; a delegated agent's report may use numbers, turned into words for the person.
 - Decided (D149): a one-line response gets a glance rather than the full check, except where it touches a secret, an irreversible action, a reference or a failure.
 
+## layout
+
+- Decided (D158): authoring's markdown's structure layer, moved into its own skill beside respond, with lists over tables as strong advice; markdown keeps the file layer.
+
 ## act
 
 - No open ideas; decided (D84, D107).
 - Decided (D149): skills a route names for the same step are read together, in one turn; cleanup read at a task's end only when something was created or started; rule 13 a pointer to rightsize's work rule.
+
+## ask
+
+- Decided (D159): the harness's question tool for a few closed choices, numbered questions in text otherwise; the person's own instruction file can set a preference; each harness's reference file says how. Whether Codex has a question tool is still to find out.
 
 ## organize
 

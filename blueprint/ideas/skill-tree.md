@@ -33,23 +33,28 @@ The tree shows only the skill folders. Its folder paths are provisional until th
 skills/skillbook/                 essentials, essentials' main skill, listed to the model like every set's main skill
 │                                 and the one loaded first for any work: its rules hold in every case (follow act's
 │                                 rules, lay out every response and file by its rule on layout), so it reads act,
-│                                 respond, rightsize and, once designed, essentials' output-format skill first; for now
-│                                 it routes to understand, plan and conduct, and to authoring's markdown through
-│                                 authoring's main skill where that set is installed, several for one request where the
-│                                 work needs them, and other work is done under act's rules until its root or set is
-│                                 designed; strong advice: delegation by default, done directly only when too small,
-│                                 when it needs the person's decisions as it goes, or when the content is needed for the
-│                                 conversation; every response is checked against respond before it is returned (D56,
-│                                 D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154, D155)
+│                                 respond, rightsize and layout first; for now it routes to understand, plan and
+│                                 conduct, and to authoring's markdown through authoring's main skill where that set is
+│                                 installed, several for one request where the work needs them, and other work is done
+│                                 under act's rules until its root or set is designed; strong advice: delegation by
+│                                 default, done directly only when too small, when it needs the person's decisions as it
+│                                 goes, or when the content is needed for the conversation; every response is checked
+│                                 against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138,
+│                                 D143, D149, D152, D153, D154, D155, D158)
 ├── conduct/                      conduct: [essentials] how the agent acts: how it behaves in every root, sets skillbook
 │   │                             up, learns from sessions and works with other agents; its own SKILL.md holds the
 │   │                             wrap-up offer and one routing line per sub-skill under six headings, and the main
-│   │                             skill reads respond and act directly, first, once per conversation (D63, D67, D77,
-│   │                             D106, D134)
+│   │                             skill reads respond, act, rightsize and layout directly, first, once per conversation
+│   │                             (D63, D67, D77, D106, D134, D149, D158)
 │   ├── respond/                  conduct-respond: how every response is prepared before it is returned: necessary and
 │   │                             sufficient, things named in words, top-down when explaining, plain words, outcomes as
 │   │                             they happened, no guardrail broken; questions through ask; the main skill checks each
 │   │                             response against it (D60, D81, D95, D107, D114, D115)
+│   ├── layout/                   conduct-layout: how anything written in markdown is laid out: six structure rules
+│   │                             (headings for sections, bold only for labels, tables only for short values, prose
+│   │                             unwrapped, numbers where things are referred to by number, code fenced), lists over
+│   │                             tables as strong advice; read first with act, respond and rightsize; authoring's
+│   │                             markdown adds the file rules (D111, D158)
 │   ├── act/                      conduct-act: how to act, read first: clarify before acting, through clarify; an
 │   │                             opinion is not a task; a concern that would change the work asked and waited on, then
 │   │                             exactly what was asked; evidence before any claim, through verify; guardrails before a
@@ -58,7 +63,8 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │   │                             D84, D107, D115, D116)
 │   ├── ask/                      conduct-ask: how the agent asks the person anything: numbered questions under their
 │   │                             own headings, each with a recommended answer; one round or one by one; go ahead,
-│   │                             parked and assumed; proposals put the same way (D114)
+│   │                             parked and assumed; proposals put the same way; the harness's question tool for a few
+│   │                             closed choices (D114, D159)
 │   ├── organize/                 conduct-organize: arranging things, written or still planned: rules (one dividing
 │   │   │                         principle, each boundary in one sentence, meaning preserved, the person verifying plan
 │   │   │                         and result, retiring, code through implement; the middle three only when something
@@ -317,10 +323,10 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │   ├── reader/                   authoring-reader: a document read as its intended reader would, with only the
 │   │                             document, often by a fresh agent: can a builder build, an implementer start, an agent
 │   │                             resume or act, a user follow; name to settle (D123)
-│   └── markdown/                 authoring-markdown: how markdown is laid out: seven structure rules for every response
-│                                 and document (headings for sections, tables only when they fit in 120 characters,
-│                                 prose unwrapped, code fenced), and the file rules a linter checks, a project's own
-│                                 configuration winning; the main skill reads it at the start (D68, D95, D110, D111)
+│   └── markdown/                 authoring-markdown: the file rules a linter checks in markdown files, a project's own
+│                                 configuration winning, and the linter run; structure comes from essentials' layout,
+│                                 with a one-line fallback where essentials is not installed (D68, D95, D110, D111,
+│                                 D158)
 │
 └── rigs/                         rigs: [a later set] the programs agents drive: git and the GitHub CLI, other agent
                                   programs for delegation, herdr, nvim, containers; one home per program for delegate,
@@ -393,7 +399,7 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 
 | Root | Skills | with material | ideas |
 | --- | --- | --- | --- |
-| conduct | 26 | 26 | 0 |
+| conduct | 27 | 27 | 0 |
 | understand | 15 | 15 | 0 |
 | design | 16 | 16 | 0 |
 | plan | 1 | 1 | 0 |
@@ -405,7 +411,7 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 | authoring | 10 | 5 | 5 |
 | rigs | 1 | 0 | 1 |
 
-104 skills in conduct and the ten roots, and the main skill above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
+105 skills in conduct and the ten roots, and the main skill above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
 
 ## The shape
 
@@ -433,7 +439,7 @@ Where an activity and a subject meet ("review my essay"), the rule is still open
 Calls between skills, beyond each skill loading its own sub-skills.
 
 - **conduct-delegate** ← design-consolidate, design-parallel, design-review, implement-plan, understand-research (survey above all), test-experiment, conduct-delegate-council.
-- **authoring-markdown** ← conduct-respond, for every response (D95). **authoring-markdown** and each **implement-code** language skill ← conduct-act, before every file of their type is written (D67, D68); markdown also ← maintain-repo.
+- **conduct-layout** ← the main skill at its first read, conduct-respond, for every response, conduct-act, for every markdown file, conduct-brief, and authoring-markdown, for structure (D158). **authoring-markdown** and each **implement-code** language skill ← conduct-act, before every file of their type is written (D67, D68); markdown also ← maintain-repo.
 - **conduct-instruct** ← conduct-setup, when it writes into an instruction document (D94).
 - **test-tdd** ← implement-plan, test-debug. **review-code** and **conduct-verify** ← implement-plan.
 - **understand** (discuss, clarify deep, brainstorm, research) ← design; other roots reach understand's skills through the main skill (D51, D56).
@@ -474,7 +480,7 @@ The parts keep their drafts, now read by the root that routes to them and by the
 
 For each skill, the sources that already hold material for it: read them before writing it (D30). sk is skillbook's first design; mp mattpocock/skills, sp superpowers, an Anthropic's skills, cc Claude Code's official plugins, gs gstack, ar alirezarezvani/claude-skills, vc vercel's agent skills; own the person's current skills; and the person's projects: ws workslate and rig, vo VaultOps and the agent specs, oc OpenCode customisations, lc loomcraft and infoloom, sb slipbox, ts trailscout, hs herdsman, md meddah.
 
-- **conduct:** conduct-respond (own, md, mp); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-organize (vo); conduct-organize-split (vo); conduct-organize-merge (vo); conduct-organize-compose (vo); conduct-organize-normalize (vo); conduct-organize-cluster (vo); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-rightsize (own, mp); conduct-rightsize-lean (own, mp); conduct-rightsize-enrich (own); conduct-cleanup (own, sp, ar, an); conduct-instruct (mp, sp, ws, oc); conduct-setup (cc, lc); conduct-learn (ws, mp, gs, cc); conduct-delegate (own, ts, md, sp, vo); conduct-delegate-council (ws); conduct-delegate-fanout (own, ts); conduct-delegate-crew (md); conduct-brief (own, mp); conduct-carryover (ws, mp, oc, gs, ar).
+- **conduct:** conduct-respond (own, md, mp); conduct-layout (own); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-organize (vo); conduct-organize-split (vo); conduct-organize-merge (vo); conduct-organize-compose (vo); conduct-organize-normalize (vo); conduct-organize-cluster (vo); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-rightsize (own, mp); conduct-rightsize-lean (own, mp); conduct-rightsize-enrich (own); conduct-cleanup (own, sp, ar, an); conduct-instruct (mp, sp, ws, oc); conduct-setup (cc, lc); conduct-learn (ws, mp, gs, cc); conduct-delegate (own, ts, md, sp, vo); conduct-delegate-council (ws); conduct-delegate-fanout (own, ts); conduct-delegate-crew (md); conduct-brief (own, mp); conduct-carryover (ws, mp, oc, gs, ar).
 - **understand:** understand-discuss (own, oc, sp); understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-argue (gs, ar); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
 - **design:** design-architecture (mp, hs); design-review (ts, mp); design-start (sk); design-discuss (sk, mp); design-research (sk, ts); design-decide (sk, mp); design-evidence (sk); design-write (sk); design-workstream (sk); design-tasks (sk, mp); design-work (sk); design-sync (sk); design-consolidate (sk); design-parallel (sk); design-check (sk); design-publish (sk).
 - **plan:** plan (none yet).

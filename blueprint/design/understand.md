@@ -299,7 +299,7 @@ understand/
   Advice:
   - guidance rather than a template: who it is for and why they are asked; the context they need, in plain words; the questions, numbered, each with why it matters; what is needed back, and by when if the person says;
   - a recommended answer only where the person has one, a variation of conduct's ask, since its reader is not the person (D114);
-  - its format follows where it goes, a file, an issue or an email; markdown by default, through authoring's markdown skill.
+  - its format follows where it goes, a file, an issue or an email; markdown by default, laid out by conduct's layout, and by authoring's markdown as well for a file where that set is installed (D158).
 
   Instructions, in the order the work happens:
   1. **Ask only** who it is for, what is needed back, and where it goes, after looking for them in the conversation, as understand's rules say; it goes in the response by default, for the person to send.
@@ -466,7 +466,7 @@ understand/
   Would change:   the unknown that could flip it, and what would settle it
   ```
 
-  Where its rows fit in 120 characters, a table with options as rows and terms as columns serves too, as authoring's markdown's table advice says. weigh keeps nothing, by understand's rule: in a project, design's decide step records it, the decision's "why" naming the options weighed and why the chosen one beat the next best, the full comparison in the session notes with the discussion, and an option set aside for later in the topic's ideas file. For the agent's own choice weighed quietly, only the "Recommended" line is said, with its reasoning, unless the person asks for the rest.
+  Where its rows fit in 120 characters, a table with options as rows and terms as columns serves too, as conduct's layout's strong advice on lists and tables says (D158). weigh keeps nothing, by understand's rule: in a project, design's decide step records it, the decision's "why" naming the options weighed and why the chosen one beat the next best, the full comparison in the session notes with the discussion, and an option set aside for later in the topic's ideas file. For the agent's own choice weighed quietly, only the "Recommended" line is said, with its reasoning, unless the person asks for the rest.
 - **Files:** `SKILL.md` only, the shape inside it (D122).
 - **Material:** the person's OpenCode ideation (intensify, picking the directions that win and saying why; comparing benefits, costs, risks and unknowns, a non-obvious downside each, "what could go wrong" and "what will be annoying later"); VaultOps' "converge", whose recording side is design's decide step (D121); the person's delegation-routing skill, choosing by what happens if the choice is wrong; superpowers' "show the comparison only when it helps decide", whose home is still to settle (D121); the blueprint's decision format; reversibility as a general method; alirezarezvani's roast, MIT, whose panel cites research on dialectical inquiry and devil's advocacy, not checked, for the debate advice (D132).
 - **Tests** (D122):

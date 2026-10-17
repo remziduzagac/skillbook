@@ -23,6 +23,17 @@
     {
      "path": [
       "conduct",
+      "layout"
+     ],
+     "mark": "●",
+     "src": "own",
+     "tail": [],
+     "desc": "how anything written in markdown is laid out: six structure rules (headings for sections, bold only for labels, tables only for short values, prose unwrapped, numbers where things are referred to by number, code fenced), lists over tables as strong advice; read first with act, respond and rightsize; authoring's markdown adds the file rules (D111, D158)",
+     "kids": []
+    },
+    {
+     "path": [
+      "conduct",
       "act"
      ],
      "mark": "●",
@@ -40,7 +51,7 @@
      "src": "own mp",
      "tail": [],
      "kids": [],
-     "desc": "how the agent asks the person anything: numbered questions under their own headings, each with a recommended answer; one round or one by one; go ahead, parked and assumed; proposals put the same way (D114)"
+     "desc": "how the agent asks the person anything: numbered questions under their own headings, each with a recommended answer; one round or one by one; go ahead, parked and assumed; proposals put the same way; the harness's question tool for a few closed choices (D114, D159)"
     },
     {
      "path": [
@@ -309,7 +320,7 @@
      "kids": []
     }
    ],
-   "desc": "[essentials] how the agent acts: how it behaves in every root, sets skillbook up, learns from sessions and works with other agents; its own SKILL.md holds the wrap-up offer and one routing line per sub-skill under six headings, and the main skill reads respond and act directly, first, once per conversation (D63, D67, D77, D106, D134)"
+   "desc": "[essentials] how the agent acts: how it behaves in every root, sets skillbook up, learns from sessions and works with other agents; its own SKILL.md holds the wrap-up offer and one routing line per sub-skill under six headings, and the main skill reads respond, act, rightsize and layout directly, first, once per conversation (D63, D67, D77, D106, D134, D149, D158)"
   },
   {
    "path": [
@@ -1279,7 +1290,7 @@
       "markdown"
      ],
      "mark": "●",
-     "desc": "how markdown is laid out: seven structure rules for every response and document (headings for sections, tables only when they fit in 120 characters, prose unwrapped, code fenced), and the file rules a linter checks, a project's own configuration winning; the main skill reads it at the start (D68, D95, D110, D111)",
+     "desc": "the file rules a linter checks in markdown files, a project's own configuration winning, and the linter run; structure comes from essentials' layout, with a one-line fallback where essentials is not installed (D68, D95, D110, D111, D158)",
      "src": "own",
      "tail": [],
      "kids": []
@@ -1405,5 +1416,5 @@
   "author-updates": "author-business",
   "conduct-answer": "conduct-respond"
  },
- "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: its rules hold in every case (follow act's rules, lay out every response and file by its rule on layout), so it reads act, respond, rightsize and, once designed, essentials' output-format skill first; for now it routes to understand, plan and conduct, and to authoring's markdown through authoring's main skill where that set is installed, several for one request where the work needs them, and other work is done under act's rules until its root or set is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154, D155)"
+ "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: its rules hold in every case (follow act's rules, lay out every response and file by its rule on layout), so it reads act, respond, rightsize and layout first; for now it routes to understand, plan and conduct, and to authoring's markdown through authoring's main skill where that set is installed, several for one request where the work needs them, and other work is done under act's rules until its root or set is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154, D155, D158)"
 }

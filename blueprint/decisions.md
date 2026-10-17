@@ -923,6 +923,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D110 (2026-10-12):** the line rule moves to structure: prose is never wrapped, in files or responses; table rows and code lines keep within 120 characters; tables are few.
 >
 > **Amended by D111 (2026-10-12):** the structure layer holds seven rules; the file rules sit in the skill's references, and a project's own lint configuration wins over them.
+>
+> **Amended by D158 (2026-10-17):** the structure for all markdown is essentials' layout, a conduct skill beside respond; respond points to it for every response, and authoring's markdown keeps the file rules.
 
 **Decision:** respond gains a tenth rule: a response is written in markdown, following author's markdown skill. author's markdown skill holds two layers: structure, for all markdown, responses included (sections marked with headings, bold only for labels inside a section, tables only for values scanned across, code fenced with its language named); and file rules for markdown files only (the lint rules, such as lines of at most 120 characters). act sends every markdown file to it, and respond every response.
 
@@ -1138,6 +1140,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D111 (2026-10-12):** tables are fine when their rows fit in 120 characters with short cells; only content that would make a wider table becomes a list with sub-items.
 >
 > **Amended by D115 (2026-10-13):** prose in responses is never wrapped, since the harness wraps it and unwrapped text copies cleanly; in files, the project's own rules win. The 120-character limit is strong advice in skillbook's skill (D116), and this repository's linter makes it a rule here.
+>
+> **Amended by D158 (2026-10-17):** the rule sits in essentials' layout; lists over tables is strong advice, a table only for short values compared across items and fitting within 120 characters.
 
 **Decision:** Prose, paragraphs and list items, is never wrapped by hand to fit a line length, in markdown files and in the agent's responses alike: the screen or editor reflows it. What cannot reflow keeps within 120 characters: table rows and code lines; headings stay short. Tables are not the default: a list with sub-items is, and a table holds only a few short values compared across the same attributes. The rule belongs to author's markdown skill's structure layer, which applies to every response. This repository follows it: its wrapped prose was joined, with every file's rendering checked unchanged; `AGENTS.md` says so; the lint configuration no longer limits prose, keeps MD013 for code blocks and headings, and adds a rule, `scripts/table-width.cjs`, for table rows, since MD013 checks tables at the prose length.
 
@@ -1154,6 +1158,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D149 (2026-10-17):** with no linter, a search for the mechanical rules replaces reading a file back; with one, it runs once after the last file.
 >
 > **Amended by D154 (2026-10-17):** markdown is authoring's; the main skill's first read takes essentials' output-format skill in its place, once designed.
+>
+> **Amended by D158 (2026-10-17):** the structure layer moves to essentials' layout; markdown keeps the file rules, a project's lint configuration winning in its files, the advice for fitting a table and the linter check, with a one-line fallback for structure where essentials is not installed.
 
 **Decision:** author's markdown skill is designed ([design/author.md](design/authoring.md)).
 
@@ -1200,6 +1206,8 @@ For the main skill: it holds rules and advice of its own again, among them follo
 > **Amended by D137 (2026-10-17):** a proposal to approve is never assumed when the person stops; it stays parked, and nothing it covers is applied.
 >
 > **Amended by D150 (2026-10-17):** ask's rule on recommended answers points to challenge's trigger: a recommendation is challenged before it is put, and a decision made without or against one before it is relied on.
+>
+> **Amended by D159 (2026-10-17):** ask gains a rule on the harness's question tool: used for at most four questions, each a choice among a few short options, with the reasoning in the text above; numbered questions in text otherwise; the person's own instruction file can set a preference; each harness's reference file says how.
 
 **Decision:** conduct gains a sub-skill, ask: how the agent asks the person anything, a question, a round of questions or a proposal to approve, and how it takes the answers ([design/conduct.md](design/conduct.md)). Its rules:
 
@@ -1425,6 +1433,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D135: clarify, understand's pointers and author's markdown in the shape (2026-10-15)
 
+> **Amended by D158 (2026-10-17):** markdown's routing line covers a markdown file's rules and linter; how a response is laid out is essentials' layout.
+
 **Decision:** clarify takes the shape every skill with parts takes: two rules of its own, asking only what would change the work, and nothing acted on until the answers are in, a stricter variation of understand's rule; pointers to understand's rules and conduct's ask for the rest; advice on choosing the part, shallow first, depth triggered by dependence and, when unsure, deep; one routing line per part with when, when not and what it gives back; and the last instruction. Its description says when to use it. shallow, deep and questionnaire split their musts from their advice, each with a last instruction, and their routing lines become their when-not lines. understand's sub-skills point to understand's rules instead of restating them: each "keeps nothing" passage keeps only where its own result goes; frame's guesses keep only their "(guess)" mark; weigh's unknowns only what settles each kind; challenge's "changes nothing" only who acts on its verdict. author's markdown follows act's rule on which instruction wins, with its own variation for lint configuration and responses; three of its rules gain reasons; its work is set in order as instructions, ending with checking a file; it gains a last instruction and a routing line with when not.
 
 **Why:** Each of these mixed rules, advice and routing, or stated understand's shared rules again in its own words; in the shape, each rule has one home and each part says when not to use it.
@@ -1550,6 +1560,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 > **Amended by D154 (2026-10-17):** the first read becomes act, respond, rightsize and essentials' output-format skill once designed.
 >
 > **Amended by D157 (2026-10-17):** skillbook-tree's cost check trims a skill file that has grown through rightsize's lean.
+>
+> **Amended by D158 (2026-10-17):** the first read is act, respond, rightsize and layout.
 
 **Decision:** A fresh agent reviewed the baseline designs against seven cost checks, and the person accepted its fixes with the main agent's changes. Skills a route names for the same step are read together, in one turn, by act's rule on routes, and the main skill's first read becomes act, respond, author's markdown and rightsize together. A fresh agent's brief tells it not to load the main skill and names any skill it needs. cleanup is read at a task's end only when something was created or started, and a read-only agent reports "left behind: nothing". delegate reads stakes only when it is not plain which row of the tier table applies, and guardrails for the cost only when several agents or a long job are planned; it reads only the current harness's reference file; prices and price steps move to one prices file read only when a cost is stated, which amends D144; the rules for other harnesses move to their own reference file; the reason for delegating stays in the skill as one line, since the blueprint does not ship. research reads a kind of source's reference file when that kind is first searched. fanout's agents write their findings to files and report the path and count, and its validator checks the findings the answer rests on and any that contradict each other, the rest marked "not validated". verify reads the exit code, the failure count and the failing lines, the full output only on failure, and its four extra checks search and read the hits, a fresh agent at the standard tier doing large readings. understand's result shape is not a form to fill. organize's map is shown in full when it fits on a screen and otherwise written to a named file. Three restatements in files carried every session become pointers: the main skill's cost reasoning, delegate's too-small line and act's work rule. A one-line response gets a glance rather than the full check, except where it touches a secret, an irreversible action, a reference or a failure. Markdown with no linter is checked by a search rather than a read-back. setup does not ask which other agent programs may run, and states its default on the team rather than asking; carryover keeps asking where it goes outside a project. survey fans out only when delegate's test for splitting holds. skillbook-tree's checklist gains check 11, cost, from the seven questions, and the baseline's start-up is measured once it is built and kept small by a figure set then, as advice.
 
@@ -1587,6 +1599,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D154: What each set holds (2026-10-17)
 
+> **Amended by D158 (2026-10-17):** the output-format skill is conduct's layout, holding markdown's structure layer; markdown keeps the file layer.
+
 **Decision:**
 
 - **essentials:** the main skill, conduct, understand, design and plan. Its design is how to design anything: its flow, its principles and design review's general lenses. Its plan is planning any work before acting. A small output-format skill with generic layout rules for its outputs is designed later, before the baseline is built; respond already prepares every response, so whether it sits in respond or beside it is decided then.
@@ -1623,3 +1637,15 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 - **Callers:** rightsize, by one routing line each; instruct's prune step, calling lean, so removing has one home; skillbook-tree's cost check, calling lean; design's review, whose lean lens finds what lean would remove; authoring's edit, for removing whole parts, where that set is installed; the person. enrich uses authoring's reader where it is loaded, with a one-line fallback. "lean" comes off the glossary's avoid list and names the removing part.
 
 **Why:** The person's idea: rightsize shapes things as they are made, but things that already exist drift long or thin, and reworking them needs its own steps in each direction. lean, the word the person first chose for the principle, now names exactly the removing half; enrich names the adding half. Approval follows whose work it is, and code stays under tests, as organize's change to code does.
+
+## D158: layout, essentials' skill for laying out outputs (2026-10-17)
+
+**Decision:** essentials gains a conduct skill, layout, beside respond rather than inside it, since files, briefs to agents, and pull-request and issue text use it too, while respond is about responses: how anything the agent writes in markdown is laid out ([design/conduct.md](design/conduct.md)). It is the small skill with generic rules that the sets left to design, and its rules are authoring's markdown's structure layer, moved, not copied: sections get headings, not bold lines; bold for a label or a key phrase inside a section; tables for short values, lists for big ones; prose not wrapped by hand; numbers where things are referred to by number, bullets otherwise; code, commands and text diagrams fenced with the language named. Its strong advice adds the person's rule, lists over tables: a list by default, a table only for short values compared across items and fitting within 120 characters; and table rows, code lines and headings stay within 120 characters. Its advice: nesting stops at about two levels, and a response's sections start at `##`. essentials' main skill reads it with act, respond and rightsize, together in one turn, and its rule on layout points here; respond's layout rule, act for any markdown file, brief and authoring's markdown point here too; how a round of questions is laid out stays ask's. authoring's markdown keeps the file layer: the file rules, a project's lint configuration winning in its files, the advice for fitting a table and the linter check, added where authoring is installed; where essentials is not installed, markdown carries a one-line fallback: headings for sections, lists over wide tables, prose unwrapped, code fenced. Without authoring, a markdown file gets layout and the project's linter through verify. It is named layout: plain, saying what it does, and not already a term. Rejected: format, which reads as code formatters and file formats; style, writing style and the harness's own style; presentation, long; shape, the shape every skill takes.
+
+**Why:** The person did not want markdown moved into essentials, and asked for a small skill with generic rules instead. markdown's two layers split cleanly along the contract between sets (D156): the structure layer was written for every response and is generic, the file layer is specific to files; so essentials lays out every output, authoring adds the file rules, and nothing is said twice.
+
+## D159: the question tool, in ask (2026-10-17)
+
+**Decision:** Whether to use the harness's question tool, which puts questions as options to click, is conduct's ask's call; layout points to ask for questions ([design/conduct.md](design/conduct.md)). The tool is used when all three hold: at most four questions; each a choice among a few short options; the reasoning fits in the text above it. Otherwise the questions are numbered in text, as ask's other rules say: when a question needs explaining option by option, a free answer is likely, there are more than four questions, or the person works item by item and accepts with "ok". The person's own instruction file can set a preference, always the tool, always text, or this default, and it wins. A delegated agent never uses it, since its questions go in its report. In the tool, ask's other rules hold in its form: the recommended option first and marked, partial answers named back. No skill names a harness's tool: ask says when, each harness's reference file says how, and where a harness has none, text is used. ask gains `references/claude.md`, holding Claude Code's question tool and its limits: one to four questions per call, two to four options each, short labels, a header of at most 12 characters, "Other" always there for a free answer, several options selectable, previews for comparing drafts, the recommended option first with "(Recommended)"; and `references/codex.md`, where whether Codex has one is still to find out, text until then.
+
+**Why:** Raised by the person with layout. The tool saves keystrokes and cannot be misread for a closed choice; text keeps the explanation, "ok" accepting every question at once, and the person's refinements, such as "ok, but…". The plan-mode pattern (D155) keeps skills portable, as mattpocock keeps questioning in plain chat for the same reason ([research/mattpocock-skills.md](research/mattpocock-skills.md)).

@@ -15,7 +15,7 @@ authoring/
 │   ├── bug/
 │   └── feature/
 ├── reader/       a document read as its reader would, with only the document (name to settle)
-└── markdown/     how markdown is laid out: structure for all, file rules for files
+└── markdown/     the file rules a linter checks in markdown files; structure is essentials' layout
 ```
 
 ## authoring
@@ -140,24 +140,14 @@ authoring/
 
 ### markdown
 
-- **Purpose:** how markdown is laid out, in two layers (D95, D110, D111). Structure applies to all markdown the agent writes: responses, markdown files (`SKILL.md` included), and markdown written for pull requests, issues and briefs to agents; not to commit messages, which follow git's and the project's conventions, nor to comments in code (D115). File rules apply to markdown files only: the defaults a linter checks in a saved file. Wording, order and length are respond's; how a question is put and laid out is conduct's ask's (D114); content is the other authoring skills'. It began as the person's markdown-style, with the person's own tooling left out (D68, D111).
-- **Description:** "How markdown is laid out: headings for sections, tables only when they fit, prose unwrapped, code fenced; plus the file rules a linter checks in markdown files. Use when writing any response or markdown file; wording and content belong to respond and the other authoring skills." A draft (D111, D115).
-- **Callers:** essentials' main skill, by its rule on layout, for a markdown file, and by its authoring line, through authoring's main skill, where this set is installed; it is no longer read at the start, where essentials' output-format skill takes its place once designed (D111, D152, D154); act, before any markdown file is written, for the file rules too (D67, D68); every skill that writes markdown, such as carryover, questionnaire, docs and the blueprint, through act's rule; the person, typing it. Its routing line in authoring's file (D111, D135): when how markdown is laid out, in a response or a file; not for wording, order and length (respond), how a question is laid out (conduct's ask), content (the other authoring skills), commit messages (git's and the project's conventions, through implement's git) or comments in code (implement's skill for that language); it gives back nothing of its own: the response or file, laid out.
-- **Flow:** rules, then instructions (D111, D135). **Which rules win** follows act's rule on which instruction wins; markdown's own variation: a project's lint configuration counts among its rules and wins in its files, the prose rule included, while responses stay unwrapped whatever a project's files say; the person's instruction in the conversation wins over both (D115, D135).
+- **Purpose:** the file rules for markdown files: the defaults a linter checks in a saved file, a project's own lint configuration winning in its files, and running the linter (D95, D110, D111, D158). How anything written in markdown is laid out, responses included, is essentials' layout, which this skill builds on where essentials is installed, by the contract between sets; where it is not, a one-line fallback holds the structure (D156, D158). Not for commit messages, which follow git's and the project's conventions, nor comments in code (D115). Wording, order and length are respond's; how a question is put and laid out is conduct's ask's (D114); content is the other authoring skills'. It began as the person's markdown-style, with the person's own tooling left out (D68, D111); its structure layer, written for every response, moved to essentials' layout (D158).
+- **Description:** "The file rules a linter checks in markdown files, a project's own lint configuration winning, and running the linter; structure comes from essentials' layout. Use when writing or fixing a markdown file; how responses are laid out, wording and content belong to essentials' layout, respond and the other authoring skills." A draft (D111, D115, D158).
+- **Callers:** essentials' main skill, by its rule on layout, for a markdown file, and by its authoring line, through authoring's main skill, where this set is installed; it is not read at the start, where essentials' layout is (D111, D152, D154, D158); act, before any markdown file is written, for the file rules (D67, D68); every skill that writes a markdown file, such as carryover, questionnaire, docs and the blueprint, through act's rule; the person, typing it. Its routing line in authoring's file (D111, D135, D158): when a markdown file is written or checked, its file rules and the linter; not for how anything written in markdown is laid out, responses included (essentials' layout), wording, order and length (respond), how a question is laid out (conduct's ask), content (the other authoring skills), commit messages (git's and the project's conventions, through implement's git) or comments in code (implement's skill for that language); it gives back nothing of its own: the file, its rules met and its linter passed.
+- **Flow:** rules, then instructions (D111, D135). **Which rules win** follows act's rule on which instruction wins; markdown's own variation: a project's lint configuration counts among its rules and wins in its files, the prose rule included, while responses, which are layout's, stay unwrapped whatever a project's files say; the person's instruction in the conversation wins over both (D115, D135, D158).
 
-  **The structure layer,** at the top of `SKILL.md`, one line per rule:
-  1. **Sections get headings, not bold lines:** levels in order, a heading naming its section in a few words. A bold line looks like a heading but cannot be navigated or linked to. How a round of questions is laid out is conduct's ask's (D114).
-  2. **Bold is for a label or a key phrase inside a section;** a section's title is a heading, by rule 1 (D137).
-  3. **Tables for short values, lists for big ones:** a table holds short cells; content that would make a wide table becomes a list with sub-items, and how wide is too wide is the strong advice below (D137). The one rule with an example, since "short cells" is easy to stretch.
-  4. **Prose is not wrapped by hand:** one line per paragraph or list item. In a response, never: the harness wraps prose to its window, and unwrapped text copies and pastes cleanly. In a file, not unless the project's own rules say otherwise (D110, D115).
-  5. **Numbers when things are referred to by number,** such as steps or questions; bullets otherwise, so the person can answer or point by number.
-  6. **Code, commands and text diagrams are fenced with the language named,** `text` for a diagram; file names, commands and identifiers inline go in backticks, so they render, highlight and copy cleanly.
+  **Structure** (D156, D158): essentials' layout, read through essentials' main skill where essentials is installed; the file rules below add to it and repeat none of it. Where essentials is not installed, a one-line fallback: headings for sections, lists over wide tables, prose unwrapped, code fenced.
 
-  **Strong advice** (D116): table rows, code lines and headings stay within 120 characters, since a renderer cannot reflow them; followed unless the case gives a reason not to, and said when departed from. A project whose linter enforces it makes it a rule there.
-
-  **Advice** (D116): nesting stops at about two levels of sub-items, since deeper levels lose the reader and render badly in a terminal; deeper detail becomes a new section. A response's sections start at `##`.
-
-  **The file rules,** in `references/`, read when a markdown file is written: the defaults a linter checks, which is why they are rules; a project's own rules win, as above. They state only what the structure layer does not:
+  **The file rules,** in `references/`, read when a markdown file is written: the defaults a linter checks, which is why they are rules; a project's own rules win, as above. They state only what layout does not:
   - headings in `#` style, one top-level heading, a blank line before and after;
   - lists with blank lines around, and markers, numbering style and indent consistent within a list;
   - code blocks with blank lines around;
@@ -168,34 +158,23 @@ authoring/
 
   **Advice for fitting a table** (D116): borders cost 3N+1 characters for N columns, so with four or more columns a cell holds a phrase; a formatter that pads cells can push a row over 120, so widths are checked after formatting.
 
-  **Instructions,** in the order the work happens (D135):
-  1. **Any response or markdown:** the structure layer.
-  2. **A markdown file:** the file rules in `references/files.md` as well.
+  **Instructions,** in the order the work happens (D135, D158):
+  1. **Structure:** essentials' layout, or the fallback above where essentials is not installed.
+  2. **The file rules** in `references/files.md`.
   3. **Checking a file** (D115): writing a file is done when the project's markdown linter passes on it, a claim that goes through conduct's verify. A linter that has to be downloaded is fetched code, proposed first as conduct's guardrails says. With no linter, a search for the mechanical rules, such as lines over 120 characters in tables and headings, trailing spaces, tabs and bare links, replaces reading the file back; with a linter, it runs once, after the last file written (D149). A linter that cannot run is said so. Failures on lines the agent did not write are reported, not fixed, as act's rule on doing exactly what was asked says.
-  4. **Last instruction, before a response or file is returned:** the structure layer holds; for a file, conduct's rightsize's check run and the linter passed, or why it could not run is said (D145).
-- **Result:** none of its own; it shapes every response and markdown file.
-- **Files:** `SKILL.md`, the structure layer, the strong advice, the advice and a pointer to the file rules; `references/files.md`, the file rules and the advice for fitting a table (D107, D111).
+  4. **Last instruction, before a file is returned:** the structure holds, by layout or the fallback; conduct's rightsize's check run; the linter passed, or why it could not run is said (D145, D158).
+- **Result:** none of its own; it shapes every markdown file.
+- **Files:** `SKILL.md`: the pointer to essentials' layout with its fallback, which rules win, the instructions and a pointer to the file rules; `references/files.md`: the file rules and the advice for fitting a table (D107, D111, D158).
 - **Material:** the person's markdown-style skill; this repository's lint configuration and its table-width rule (D110).
-- **Tests** (D111, D115):
-  1. a response with several sections: headings, not bold lines, starting at `##`;
-  2. a label inside a section: bold, and never a bold line as a section's title;
-  3. three options compared on two short attributes: a table, every row within 120 characters;
-  4. options compared with a long description each: a list with sub-items, not a wide table;
-  5. a long explanation: each paragraph on one line;
-  6. steps the person will refer to by number: numbered; loose points: bullets;
-  7. a command to run: fenced, its language named;
-  8. detail three levels deep: a new section instead of a third level of sub-items;
-  9. a markdown file in a project with its own lint configuration: it passes that linter, the claim checked through verify;
-  10. a project without one: the defaults hold, checked by reading, and prose is unwrapped;
-  11. a project whose instruction files or lint configuration wrap prose at 80 characters: the project's rule wins in its files, and responses stay unwrapped;
-  12. a bare URL in a file: made a link;
-  13. a commit message: no markdown layout; the project's commit conventions;
-  14. a project whose linter has to be downloaded: running it proposed first;
-  15. a linter failing on lines the agent did not write: reported, not fixed;
-  16. "tighten this paragraph": respond's rules, not markdown's (D137);
-  17. "ask me three questions": laid out as conduct's ask says (D137);
-  18. a docs page to write: its content by the other authoring skills, done directly under act's rules for now, its layout by markdown (D137);
-  19. a pull-request description: the structure layer, without the file rules (D137);
-  20. a comment in code: the language's conventions, not markdown's (D137);
-  21. three files written in a project with a linter: the linter run once, after the third; with none: a search for the mechanical rules, not a read-back (D149).
-- **Open:** how its structure layer, written for every response, divides the work with essentials' output-format skill, which now lays out every response; settled when that skill is designed (D154).
+- **Tests** (D111, D115, D158); the structure tests moved to essentials' layout:
+  1. a markdown file in a project with its own lint configuration: it passes that linter, the claim checked through verify;
+  2. a project without one: the defaults hold, checked by reading, and prose is unwrapped;
+  3. a project whose instruction files or lint configuration wrap prose at 80 characters: the project's rule wins in its files, and responses stay unwrapped;
+  4. a bare URL in a file: made a link;
+  5. a project whose linter has to be downloaded: running it proposed first;
+  6. a linter failing on lines the agent did not write: reported, not fixed;
+  7. a docs page to write: its content by the other authoring skills, done directly under act's rules for now, its structure by essentials' layout and its file rules here (D137, D158);
+  8. three files written in a project with a linter: the linter run once, after the third; with none: a search for the mechanical rules, not a read-back (D149);
+  9. a response, or a pull-request description: essentials' layout, not this skill (D158);
+  10. authoring installed without essentials: the fallback line holds the structure, with the file rules and the linter (D156, D158).
+- **Open:** none known.

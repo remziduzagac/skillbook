@@ -33,4 +33,4 @@ Ideas and open questions for authoring, not decided. What is decided is in [../d
 
 ### markdown
 
-- Decided (D111); reshaped (D135).
+- Decided (D111); reshaped (D135); its structure layer moved to essentials' layout, markdown keeping the file layer with a one-line fallback for structure (D158).
