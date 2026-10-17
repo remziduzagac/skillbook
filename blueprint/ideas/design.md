@@ -6,6 +6,8 @@ Ideas and open questions for design, not decided. What is decided is in [../desi
 
 ### architecture
 
+- Engineering practice and design patterns kept when designing and implementing, raised after a file of about 11,000 lines was found: see [open.md](open.md), engineering practice.
+
 ### review
 
 - One home for consistency checks, contradictions, duplication, gaps and drift, which verify's four checks, organize's check, design's review, skillbook-tree's checklist and challenge each hold today: to settle with design's review (D123).

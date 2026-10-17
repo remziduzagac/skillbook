@@ -31,15 +31,16 @@ The tree shows only the skill folders.
 
 ```text
 skills/skillbook/                 skillbook, the main skill and the only skill listed to the model: its rules hold in
-│                                 every case (follow act's rules, lay out every response with author's markdown), so it
-│                                 reads act, respond and author's markdown first; its instructions say when to use each
-│                                 root, several for one request where the work needs them, and project work follows the
-│                                 stages design → plan → implement → test → review → ship → maintain; every response is
-│                                 checked against respond before it is returned (D56, D63, D71, D76, D81, D111, D112)
+│                                 every case (follow act's rules, lay out every response and markdown file with author's
+│                                 markdown), so it reads act, respond and author's markdown first; for now it routes to
+│                                 understand, author's markdown and conduct, several for one request where the work
+│                                 needs them, and other work is done under act's rules until its root is designed; every
+│                                 response is checked against respond before it is returned (D56, D63, D71, D81, D111,
+│                                 D112, D136)
 ├── conduct/                      conduct: how the agent acts: how it behaves in every root, sets skillbook up, learns
-│   │                             from sessions and works with other agents; its own SKILL.md is a router, and the main
-│   │                             skill reads respond and act directly, first, once per conversation (D63, D67, D77,
-│   │                             D106)
+│   │                             from sessions and works with other agents; its own SKILL.md holds the wrap-up offer
+│   │                             and one routing line per sub-skill under six headings, and the main skill reads
+│   │                             respond and act directly, first, once per conversation (D63, D67, D77, D106, D134)
 │   ├── respond/                  conduct-respond: how every response is prepared before it is returned: necessary and
 │   │                             sufficient, things named in words, top-down when explaining, plain words, outcomes as
 │   │                             they happened, no guardrail broken; questions through ask; the main skill checks each
@@ -53,10 +54,10 @@ skills/skillbook/                 skillbook, the main skill and the only skill l
 │   ├── ask/                      conduct-ask: how the agent asks the person anything: numbered questions under their
 │   │                             own headings, each with a recommended answer; one round or one by one; go ahead,
 │   │                             parked and assumed; proposals put the same way (D114)
-│   ├── organize/                 conduct-organize: arranging things: the shared rules (one dividing principle,
-│   │   │                         boundaries comprehensive and exclusive, meaning preserved), the check (no overlap, no
-│   │   │                         gap, same level, same terms), which operation fits, and the person's approval of the
-│   │   │                         plan and the result when something changes (D61, D85, D86, D107)
+│   ├── organize/                 conduct-organize: arranging things: rules (one dividing principle, each boundary in
+│   │   │                         one sentence, meaning preserved, the person verifying plan and result, retiring, code
+│   │   │                         through implement), the check of existing parts, then one routing line per operation;
+│   │   │                         units of any kind (D61, D85, D86, D107, D141)
 │   │   ├── split/                conduct-organize-split: one item into several parts that do not overlap and cover it;
 │   │   │                         VaultOps' decompose (D85)
 │   │   ├── merge/                conduct-organize-merge: several redundant items fused into one survivor, links
@@ -78,12 +79,13 @@ skills/skillbook/                 skillbook, the main skill and the only skill l
 │   │                             scope, approved, applied exactly, checked; which text is an instruction and which is
 │   │                             data; trivial cost, the project's own commands, safe writes, the network, proportion,
 │   │                             the never-rules (D91, D92, D107, D115)
-│   ├── stakes/                   conduct-stakes: how much care something deserves: whether it can be undone, how far it
-│   │                             reaches, what would catch a mistake, what one would cost; guardrails, delegate, verify
-│   │                             and weigh map it to approval, tier, who checks and how much weighing (D121)
-│   ├── cleanup/                  conduct-cleanup: what the agent created and no longer needs, removed: temporary files,
-│   │                             copies, processes, servers, containers, worktrees, agents; tracked as it goes, its own
-│   │                             cleaned without asking and reported, anything else proposed (D126)
+│   ├── stakes/                   conduct-stakes: how much care something deserves, judged from facts: Undo, Reach,
+│   │                             Catch and Cost, and one level, low, medium or high, the higher when unsure and never
+│   │                             below a rule; it judges and the caller acts: guardrails, delegate, verify, weigh and
+│   │                             understand map it (D121, D133)
+│   ├── cleanup/                  conduct-cleanup: what the agent itself created and no longer needs, removed by exact
+│   │                             path or ID: its own without asking, the rest proposed; what is kept said with why; act
+│   │                             names it before "done" (D126, D129)
 │   ├── instruct/                 conduct-instruct: writing and updating instruction documents: AGENTS.md, CLAUDE.md,
 │   │                             CLAUDE.local.md and the person's own; called by setup, or asked for at any time (D94)
 │   ├── setup/                    conduct-setup: setting skillbook up on a machine (the install, the pointer in the
@@ -93,10 +95,10 @@ skills/skillbook/                 skillbook, the main skill and the only skill l
 │   │                             with approval, made into a rule, a decision or a note in the blueprint, or dropped;
 │   │                             skill promotion and where highlights wait are future work (D66, D98, D107) → instruct,
 │   │                             design
-│   ├── delegate/                 conduct-delegate: work given to other agents now: whether (hard work to a stronger
-│   │   │                         model, wide light work to a lighter one after searching, independent views or parallel
-│   │   │                         changes), which tier, the cost, the brief, the work checked; carried out with the
-│   │   │                         harness's own means where it has them (D65, D99, D105, D107, D115)
+│   ├── delegate/                 conduct-delegate: work given to other agents, the default for any task that is not too
+│   │   │                         small: fork or fresh agent, its tier, the cost, the brief, a running list while the
+│   │   │                         conversation goes on, the work checked; one routing line each for council, fanout and
+│   │   │                         crew; within the harness's limits and its own means (D65, D99, D107, D115, D138, D139)
 │   │   ├── council/              conduct-delegate-council: several agents, about three, answer the same question on the
 │   │   │                         same material independently; a summary keeping disagreements; the person decides (D99,
 │   │   │                         D101, D107, D115)
@@ -111,10 +113,13 @@ skills/skillbook/                 skillbook, the main skill and the only skill l
 │                                 resuming, checked against what changed before acting (D65, D104, D107)
 │
 ├── understand/                   understand: understanding before acting, with the person and from sources: its own
-│   │                             skill says when to use each sub-skill, in the order a discussion runs (frame, clarify,
-│   │                             research or brainstorm, weigh, challenge, then the decision through conduct's ask); it
-│   │                             hands back what was decided, what was parked and what comes next; no folders of its
-│   │                             own; other roots reach it through the main skill (D50, D53, D56, D59, D112, D118)
+│   │                             skill holds the rules for the whole scope (keeps nothing, one result shape, guesses
+│   │                             marked, facts first, who decides, nothing changed for good) and one routing line per
+│   │                             sub-skill under five headings; other roots reach it through the main skill (D50, D56,
+│   │                             D112, D130, D131)
+│   ├── discuss/                  understand-discuss: a topic worked through with the person, item by item: the whole
+│   │                             first, one item per turn, the agent proposing and the person deciding, every item
+│   │                             closed, side topics placed (D130)
 │   ├── clarify/                  understand-clarify: what the person means, before acting: shared rules (facts found
 │   │   │                         first, only questions that change the work, each with a recommended answer, nothing
 │   │   │                         acted on before the answers), then the part chosen: shallow first, deep where a part
@@ -143,6 +148,10 @@ skills/skillbook/                 skillbook, the main skill and the only skill l
 │   │                             measured against its frame: stated at its strongest, its assumptions named, each
 │   │                             weakness with its seriousness and what would address it, then an honest verdict; it
 │   │                             changes nothing itself (D118, D124)
+│   ├── argue/                    understand-argue: the strongest honest case for a position, challenge's mirror: the
+│   │                             position stated through frame, every reason with its evidence or marked as an
+│   │                             assumption, the strongest objections found through challenge and met, weaknesses
+│   │                             admitted, the case rated and labelled one-sided; it decides nothing (D132)
 │   ├── naming/                   understand-naming: names people will read and rely on: chosen from brainstorm's
 │   │                             candidates, weighed through weigh, recorded with the rejected words; and the
 │   │                             vocabulary kept to one word per concept in the project's glossary, a term used two
@@ -348,7 +357,7 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 | Root | Skills | with material | ideas |
 | --- | --- | --- | --- |
 | conduct | 22 | 22 | 0 |
-| understand | 13 | 13 | 0 |
+| understand | 15 | 15 | 0 |
 | design | 16 | 16 | 0 |
 | plan | 3 | 3 | 0 |
 | implement | 14 | 8 | 6 |
@@ -359,7 +368,7 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 | author | 10 | 5 | 5 |
 | rigs | 1 | 0 | 1 |
 
-100 skills in conduct and the ten roots, and the main skill above; their reference files are not named yet. A part's row counts the part itself. Only the main skill costs context every turn (D56).
+102 skills in conduct and the ten roots, and the main skill above; their reference files are not named yet. A part's row counts the part itself. Only the main skill costs context every turn (D56).
 
 ## The shape
 
@@ -378,7 +387,7 @@ Where an activity and a subject meet ("review my essay"), the rule is still open
 
 ## Not placed
 
-- **Skills that ship with their tools:** herdr and herdsman (agents in panes), slipbox (its notes CLI), the person's `nvim-remote`; skillbook points to them rather than copying them.
+- **Skills that ship with their tools:** herdr and herdsman (agents in panes), slipbox (its notes CLI), the person's `nvim-remote`; skillbook leaves them to the person, who names one when wanted, since skills stay generic (D139).
 - **Installed elsewhere:** Anthropic's document skills (pdf, docx, pptx, xlsx) are proprietary and already installed; their deep-research skill overlaps survey.
 - **Parked:** Anthropic's `discernment-nudge` (check questions after an answer), the official `math-proof/solo` (long work with a notes file and safe resume), gstack's `office-hours`.
 
@@ -390,10 +399,11 @@ Calls between skills, beyond each skill loading its own sub-skills.
 - **author-markdown** ← conduct-respond, for every response (D95). **author-markdown** and each **implement-code** language skill ← conduct-act, before every file of their type is written (D67, D68); markdown also ← maintain-repo.
 - **conduct-instruct** ← conduct-setup, when it writes into an instruction document (D94).
 - **test-tdd** ← implement-plan, test-debug. **review-code** and **conduct-verify** ← implement-plan.
-- **understand** (clarify deep, brainstorm, research) ← design; other roots reach understand's skills through the main skill (D51, D56).
-- **understand-research** ← test-experiment; understand's frame, brainstorm, weigh, challenge and naming, for a fact. **understand-research-analyze** ← test-debug, when the cause is not obvious, and ship, for an incident's cause.
+- **understand** (discuss, clarify deep, brainstorm, research) ← design; other roots reach understand's skills through the main skill (D51, D56).
+- **understand-research** ← test-experiment; understand's frame, brainstorm, weigh, challenge, argue and naming, for a fact. **understand-research-analyze** ← test-debug, when the cause is not obvious, and ship, for an incident's cause.
 - **design** ← conduct-learn, to record decisions. **design-architecture** ← test-tdd, for the deep-module vocabulary.
 - **understand-naming** ← design, for unclear terms. **conduct-verify** ← conduct-delegate, for verifiers.
+- **understand-argue** ← understand-weigh, for each option in a debate; understand-discuss; conduct-respond, for the person's view at its strongest; author, for a proposal's case. **understand-challenge** ← understand-argue, for its objections.
 - **implement-git** ← maintain-repo.
 - **maintain-repo's release rules** ← ship-release, ship-deploy, ship-rollback: the contract shipping works within.
 - **ship-wizard** ← ship-infra, ship-release.
@@ -408,7 +418,7 @@ Draft descriptions. Since the main skill is the only one listed (D56), these are
 - **main skill:** *"Load this first for any piece of work, before answering: it holds the rules every answer follows and routes to the skill for the job. Covers designing, planning, implementing, git commits, branches and pull requests, testing or debugging, reviewing code, releasing, deploying, keeping a repository healthy; writing documents, notes, status updates or agent instructions; clarifying a request, brainstorming options, explaining; researching and comparing tools or sources; capturing notes for later, meetings, daily or weekly reviews, personal tasks; delegating, handing work to another agent, verifying work, making skills."*
 
 - **author** (was write, D67): *"Writing work for people. Use when writing a blueprint document (an idea, a note, a decision, a design), documentation for users, a document for stakeholders (a status update, report, proposal or memo), or an article, or when editing a text."*
-- **understand:** *"Understanding before acting, with the person and from sources. Use when a request is unclear, a question needs someone else's answer, the person wants options or a brainstorm, asks what you think, a plan should be questioned before work starts, or a question needs facts: researching across sources, comparing tools or prior work, finding the cause of a problem."*
+- **understand:** *"Understanding before acting, with the person and from sources: a topic discussed item by item, what the person means clarified, facts found out, options explored, a problem framed, a choice weighed, an idea challenged, a case made for a position, a name chosen. Use when a request is unclear, the person wants to discuss something or be questioned, options or a choice are wanted, an idea should be tested before it's relied on, a position should be argued at its strongest, a question needs facts from sources, or something needs a name."* (D131, D132)
 - **research** (now under understand, D59): *"Finding out. Use when researching a question across sources, surveying tools or prior art, analysing causes, or writing up findings with their sources."*
 - **conduct** (with what was agents, D67): *"How the agent acts. Use when setting up an agent's files, delegating to subagents, handing work to another agent, verifying work, or reviewing what a session taught."*
 
@@ -426,8 +436,8 @@ The parts keep their drafts, now read by the root that routes to them and by the
 
 For each skill, the sources that already hold material for it: read them before writing it (D30). sk is skillbook's first design; mp mattpocock/skills, sp superpowers, an Anthropic's skills, cc Claude Code's official plugins, gs gstack, ar alirezarezvani/claude-skills, vc vercel's agent skills; own the person's current skills; and the person's projects: ws workslate and rig, vo VaultOps and the agent specs, oc OpenCode customisations, lc loomcraft and infoloom, sb slipbox, ts trailscout, hs herdsman, md meddah.
 
-- **conduct:** conduct-respond (own, md, mp); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-organize (vo); conduct-organize-split (vo); conduct-organize-merge (vo); conduct-organize-compose (vo); conduct-organize-normalize (vo); conduct-organize-cluster (vo); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-cleanup (own); conduct-instruct (mp, sp, ws, oc); conduct-setup (cc, lc); conduct-learn (ws, mp, gs, cc); conduct-delegate (own, ts, md, sp, vo); conduct-delegate-council (ws); conduct-delegate-fanout (own, ts); conduct-delegate-crew (md); conduct-handoff (ws, mp, oc, gs, ar).
-- **understand:** understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
+- **conduct:** conduct-respond (own, md, mp); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-organize (vo); conduct-organize-split (vo); conduct-organize-merge (vo); conduct-organize-compose (vo); conduct-organize-normalize (vo); conduct-organize-cluster (vo); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-cleanup (own, sp, ar, an); conduct-instruct (mp, sp, ws, oc); conduct-setup (cc, lc); conduct-learn (ws, mp, gs, cc); conduct-delegate (own, ts, md, sp, vo); conduct-delegate-council (ws); conduct-delegate-fanout (own, ts); conduct-delegate-crew (md); conduct-handoff (ws, mp, oc, gs, ar).
+- **understand:** understand-discuss (own, oc, sp); understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-argue (gs, ar); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
 - **design:** design-architecture (mp, hs); design-review (ts, mp); design-start (sk); design-discuss (sk, mp); design-research (sk, ts); design-decide (sk, mp); design-evidence (sk); design-write (sk); design-workstream (sk); design-tasks (sk, mp); design-work (sk); design-sync (sk); design-consolidate (sk); design-parallel (sk); design-check (sk); design-publish (sk).
 - **plan:** plan-breakdown (vo, mp, sp); plan-slices (mp); plan-sequence (mp, sp).
 - **implement:** implement-prototype (mp); implement-plan (sp, mp); implement-git (ws, hs, sp, mp); implement-git-worktree (sp); implement-git-commit (ws, hs); implement-git-finish (sp); implement-web (an, vc); implement-agent-tools (sb, ws, ts, an); implement-code; implement-code-python (sk); implement-code-typescript (sk); implement-code-bash (sk); implement-code-go (sk); implement-code-rust (sk).

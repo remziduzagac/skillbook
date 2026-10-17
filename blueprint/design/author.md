@@ -140,16 +140,16 @@ author/
 
 - **Purpose:** how markdown is laid out, in two layers (D95, D110, D111). Structure applies to all markdown the agent writes: responses, markdown files (`SKILL.md` included), and markdown written for pull requests, issues and briefs to agents; not to commit messages, which follow git's and the project's conventions, nor to comments in code (D115). File rules apply to markdown files only: the defaults a linter checks in a saved file. Wording, order and length are respond's; how a question is put and laid out is conduct's ask's (D114); content is the other author skills'. It began as the person's markdown-style, with the person's own tooling left out (D68, D111).
 - **Description:** "How markdown is laid out: headings for sections, tables only when they fit, prose unwrapped, code fenced; plus the file rules a linter checks in markdown files. Use when writing any response or markdown file; wording and content belong to respond and the other author skills." A draft (D111, D115).
-- **Callers:** the main skill reads it directly at the start, with respond and act, since respond needs its structure layer on every response (D111); act, before any markdown file is written, for the file rules too (D67, D68); every skill that writes markdown, such as handoff, questionnaire, docs and the blueprint, through act's rule; the person, typing it. Its routing line in author's file: "how markdown is laid out, in a response or a file" (D111).
-- **Flow:** rules, not steps (D111). **Which rules win:** in a file, the project's own rules, in its instruction files or its lint configuration, win over this skill's, the prose rule included, as act's rule on which instruction wins says; the person's instruction in the conversation wins over both (D115).
+- **Callers:** the main skill reads it directly at the start, with respond and act, since respond needs its structure layer on every response (D111); act, before any markdown file is written, for the file rules too (D67, D68); every skill that writes markdown, such as handoff, questionnaire, docs and the blueprint, through act's rule; the person, typing it. Its routing line in author's file (D111, D135): when how markdown is laid out, in a response or a file; not for wording, order and length (respond), how a question is laid out (conduct's ask), content (the other author skills), commit messages (git's and the project's conventions, through implement's git) or comments in code (implement's skill for that language); it gives back nothing of its own: the response or file, laid out.
+- **Flow:** rules, then instructions (D111, D135). **Which rules win** follows act's rule on which instruction wins; markdown's own variation: a project's lint configuration counts among its rules and wins in its files, the prose rule included, while responses stay unwrapped whatever a project's files say; the person's instruction in the conversation wins over both (D115, D135).
 
   **The structure layer,** at the top of `SKILL.md`, one line per rule:
   1. **Sections get headings, not bold lines:** levels in order, a heading naming its section in a few words. A bold line looks like a heading but cannot be navigated or linked to. How a round of questions is laid out is conduct's ask's (D114).
-  2. **Bold is for a label or a key phrase inside a section,** never a section's title.
-  3. **Tables that fit, lists for big ones:** a table is fine when its rows fit the 120-character line below, with short cells; content that would make a wider table becomes a list with sub-items. The one rule with an example, since "short cells" is easy to stretch.
+  2. **Bold is for a label or a key phrase inside a section;** a section's title is a heading, by rule 1 (D137).
+  3. **Tables for short values, lists for big ones:** a table holds short cells; content that would make a wide table becomes a list with sub-items, and how wide is too wide is the strong advice below (D137). The one rule with an example, since "short cells" is easy to stretch.
   4. **Prose is not wrapped by hand:** one line per paragraph or list item. In a response, never: the harness wraps prose to its window, and unwrapped text copies and pastes cleanly. In a file, not unless the project's own rules say otherwise (D110, D115).
-  5. **Numbers when things are referred to by number,** such as steps or questions; bullets otherwise.
-  6. **Code, commands and text diagrams are fenced with the language named,** `text` for a diagram; file names, commands and identifiers inline go in backticks.
+  5. **Numbers when things are referred to by number,** such as steps or questions; bullets otherwise, so the person can answer or point by number.
+  6. **Code, commands and text diagrams are fenced with the language named,** `text` for a diagram; file names, commands and identifiers inline go in backticks, so they render, highlight and copy cleanly.
 
   **Strong advice** (D116): table rows, code lines and headings stay within 120 characters, since a renderer cannot reflow them; followed unless the case gives a reason not to, and said when departed from. A project whose linter enforces it makes it a rule there.
 
@@ -166,7 +166,11 @@ author/
 
   **Advice for fitting a table** (D116): borders cost 3N+1 characters for N columns, so with four or more columns a cell holds a phrase; a formatter that pads cells can push a row over 120, so widths are checked after formatting.
 
-  **Checking a file** (D115): writing a file is done when the project's markdown linter passes on it, a claim that goes through conduct's verify. A linter that has to be downloaded is fetched code, proposed first as conduct's guardrails says. With no linter, the defaults are checked by reading. A linter that cannot run is said so. Failures on lines the agent did not write are reported, not fixed, as act's rule on doing exactly what was asked says.
+  **Instructions,** in the order the work happens (D135):
+  1. **Any response or markdown:** the structure layer.
+  2. **A markdown file:** the file rules in `references/files.md` as well.
+  3. **Checking a file** (D115): writing a file is done when the project's markdown linter passes on it, a claim that goes through conduct's verify. A linter that has to be downloaded is fetched code, proposed first as conduct's guardrails says. With no linter, the defaults are checked by reading. A linter that cannot run is said so. Failures on lines the agent did not write are reported, not fixed, as act's rule on doing exactly what was asked says.
+  4. **Last instruction, before a response or file is returned:** the structure layer holds; for a file, the linter passed, or why it could not run is said.
 - **Result:** none of its own; it shapes every response and markdown file.
 - **Files:** `SKILL.md`, the structure layer, the strong advice, the advice and a pointer to the file rules; `references/files.md`, the file rules and the advice for fitting a table (D107, D111).
 - **Material:** the person's markdown-style skill; this repository's lint configuration and its table-width rule (D110).
@@ -185,5 +189,10 @@ author/
   12. a bare URL in a file: made a link;
   13. a commit message: no markdown layout; the project's commit conventions;
   14. a project whose linter has to be downloaded: running it proposed first;
-  15. a linter failing on lines the agent did not write: reported, not fixed.
-- **Open:** at the reshape (D112): the rules, the strong advice and the advice placed in their sections, and a when-not line added.
+  15. a linter failing on lines the agent did not write: reported, not fixed;
+  16. "tighten this paragraph": respond's rules, not markdown's (D137);
+  17. "ask me three questions": laid out as conduct's ask says (D137);
+  18. a docs page to write: its content by the other author skills, done directly under act's rules for now, its layout by markdown (D137);
+  19. a pull-request description: the structure layer, without the file rules (D137);
+  20. a comment in code: the language's conventions, not markdown's (D137).
+- **Open:** none known.

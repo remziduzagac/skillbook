@@ -32,7 +32,7 @@ design/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:**
+- **Open:** a skill's flow may use other skills as its own steps. Steps that use another skill, such as discuss (understand's discuss), research (understand's research), review, parallel (conduct's delegate) and write (author's blueprint), may become steps in design's own flow rather than sub-skills; one with rules of its own stays a sub-skill, and one that does while another skill has its name, such as discuss, gets another name. Raised by the person 2026-10-14, settled when design is designed ([../ideas/open.md](../ideas/open.md)).
 
 ### architecture
 

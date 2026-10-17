@@ -42,7 +42,7 @@ implement/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:**
+- **Open:** names conduct's cleanup when a prototype has answered its question (D129).
 
 ### plan
 
@@ -78,7 +78,7 @@ implement/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:**
+- **Open:** prefers the harness's own worktree tool, and names conduct's cleanup for a worktree it made (D129).
 
 #### commit
 
@@ -102,7 +102,7 @@ implement/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:**
+- **Open:** names conduct's cleanup for the branch and worktree once the work is merged or discarded (D129).
 
 ### web
 

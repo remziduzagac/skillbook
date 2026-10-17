@@ -13,7 +13,7 @@ Ten roots and the conduct group under one main skill, which is the only skill li
 ```text
 conduct        respond · act · ask · organize · explain · verify · guardrails · stakes · cleanup · instruct ·
                setup · learn · delegate · handoff
-understand     clarify · frame · brainstorm · weigh · challenge · naming · research
+understand     discuss · clarify · frame · brainstorm · weigh · challenge · argue · naming · research
 lifecycle      design → plan → implement (with code) → test → review → ship → maintain
 author         blueprint · docs · business · articles · edit · issue · reader · markdown
 rigs           the programs agents drive; contents to design (D103)
@@ -59,7 +59,7 @@ In the repository the main skill is `skills/skillbook/`, named `skillbook`, and 
 ## design, understand and maintain
 
 - **design** holds how to design anything, from an idea to a design, the hand-over to implementation, and the design adjusted from what implementation shows (D29, D31, D46); its own skill takes the shape every main skill takes, design's rules and when to use each of its sub-skills (D112). Its result is design, never a PRD. Its sub-skills are general methods such as architecture and review, and the steps that record (start, discuss, decide, write, and the rest), which file their result in the project's `blueprint/` folder, which every project using skillbook has (D46, D47, D117). plan breaks the design into tasks (D36). Daily routines stay outside it (D31).
-- **understand** holds thinking methods any skill can use. Its own skill takes the shape every main skill takes and is designed after its sub-skills; the first idea for it, a discussion with the person that takes the open questions one at a time and closes each with a decision or a park, is weighed then (D53, D109, D112). Its sub-skills are clarify, frame, brainstorm, weigh, challenge, naming and research (D59, D67, D118); organize and explain, which it once held, moved to conduct (D63). explain explains top-down whatever the agent said that did not land (D54). They keep nothing themselves; each ends on what was decided, what was parked and what comes next, and the caller keeps it (D50). Other roots reach them through the main skill (D51, D56).
+- **understand** holds thinking methods any skill can use. Its own skill takes the shape every main skill takes and is designed after its sub-skills; it holds the shared rules and which part to choose, the discussion with the person being a sub-skill of its own, discuss (D53, D109, D112, D130, D131). Its sub-skills are discuss, clarify, frame, brainstorm, weigh, challenge, argue, naming and research (D59, D67, D118, D130, D132); organize and explain, which it once held, moved to conduct (D63). explain explains top-down whatever the agent said that did not land (D54). They keep nothing themselves; each ends on what was decided, what was parked and what comes next, and the caller keeps it (D50). Other roots reach them through the main skill (D51, D56).
 - **maintain** holds the repository standard, first designed as greenrepo and now named repo (D37); ship works within its release rules (D34, D35).
 
 ## Installing

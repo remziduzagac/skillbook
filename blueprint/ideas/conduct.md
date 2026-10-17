@@ -5,8 +5,8 @@ Ideas and open questions for conduct, not decided. What is decided is in [../des
 ## respond
 
 - No open ideas; the rules first gathered here are decided (D81).
-- To settle (D123): no flattery, agreement and praise only when earned, with the reason, and disagreement said plainly; when disagreeing with the person, their view stated at its strongest first.
-- "Show the comparison only when it helps decide" (superpowers): whether respond or ask holds it, with brainstorm's and weigh's "shown or quiet" pointing there (D121).
+- Settled (D134): no flattery is a rule, agreement and praise only when earned and disagreement said plainly; the person's view at its strongest first, when disagreeing on something that matters, is advice, through understand's argue (D123, D132).
+- Settled (D134): "show the comparison only when it helps decide" (superpowers) is respond's first rule applied; brainstorm's and weigh's "shown or quiet" point there (D121).
 
 ## act
 
@@ -15,6 +15,7 @@ Ideas and open questions for conduct, not decided. What is decided is in [../des
 ## organize
 
 - The shared rules, the check, the chooser and all five operations are decided (D85, D86, D87, D107).
+- Reshaped (D141), as the baseline review found (D137): rules with their reasons, the check as an instruction, one routing line per operation.
 - One home for consistency checks, contradictions, duplication, gaps and drift, which verify's four checks, organize's check, design's review, skillbook-tree's checklist and challenge each hold today: to settle with design's review (D123).
 
 ## explain
@@ -25,7 +26,7 @@ Ideas and open questions for conduct, not decided. What is decided is in [../des
 
 - The flow, the table, who checks, the upward checks and automatic checks are decided (D89, D107).
 - The evidence log is decided (D90).
-- Widened from evidence before saying done to how strong evidence is for any claim, ranked roughly: seen or measured, read at its source, inferred, only said ("interest is not demand" is the last kind); research, fanout and challenge point to it (D123).
+- Not widened (D140): how strong evidence is for any claim, ranked from seen or measured to only said ("interest is not demand" is the last kind), lives in understand's research, beside the findings format; fanout and challenge point there (D123).
 
 ## guardrails
 
@@ -33,11 +34,12 @@ Ideas and open questions for conduct, not decided. What is decided is in [../des
 
 ## stakes
 
+- Decided (D133): four answers, Undo, Reach, Catch and Cost, and one level, low, medium or high; act does not name it; guardrails, delegate, verify, weigh and understand point to it.
 - Raised with weigh (D121): one judgment of how much care something deserves, reversibility, reach, what catches a mistake, its cost, for guardrails, delegate, verify, weigh, and later review and ship. To settle: its scale (a few levels, or the four judgments reported as they are), and whether act names it.
 
 ## cleanup
 
-- Raised 2026-10-13 (D126): the person told an agent to leave no unused temporary file or idle process behind. To settle when designed: how the agent tracks what it created, where each harness lists background tasks (rigs), and whether verify's "done" checks it.
+- Decided (D129). Raised 2026-10-13 (D126). What was to settle: tracking is a record kept as the agent goes, in a file in the scratch place for a long task; how each harness lists its background tasks waits for rigs; "cleaned" is checked through verify.
 
 ## instruct
 
@@ -57,9 +59,11 @@ Ideas and open questions for conduct, not decided. What is decided is in [../des
 ## delegate
 
 - Decided (D99): the two reasons, the tiers, the brief, council, fanout and crew.
+- Reshaped (D138), as the baseline review found (D137).
 - Supervisor and experts with "stuck" and "stale" timers (AgentCrew, AgentTree): whether a long delegated job needs them.
 - Codex's subagents and models, for its reference file.
-- **The person's way of working, to discuss** (raised 2026-10-13): the person usually forks sub-agents to do the tasks and keeps the main session for conversation, coordination and discussion. delegate's reasons today are hard work, wide light work, and independent views or parallel changes; keeping the main session free for the person is another, and a fork inherits the conversation, so its brief costs little. To discuss: when it applies, how a fork reports back, how the person follows it, and how it meets the rule against delegating when the files are already read.
+- Decided (D138): delegation is the default for any task that is not too small, the person asked only when the agent cannot tell; the main session keeps the conversation, the tracking and the person's decisions; a fork for decided work, a fresh agent for independence or another tier; a running list; delegate reshaped, with routing lines for council, fanout and crew. Raised by the person 2026-10-13 and 2026-10-14. Skills name no outside tool for running agents, and the harness's limits hold (D139).
+- Agents debating in rounds, one arguing each side, for weigh's debate (D132): whether it helps is recalled from memory, not checked; to research before delegate takes it up. If it helps and brings rules of its own, it may become a debate part of weigh; until then a debate is weigh's, with argue and challenge, and no skill of its own.
 
 ## handoff
 

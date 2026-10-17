@@ -4,6 +4,7 @@ What a builder needs for understand and its sub-skills; ideas not yet decided ar
 
 ```text
 understand/
+├── discuss/               a topic worked through with the person, item by item, each decided, parked or handed on
 ├── clarify/               what the person means, before acting; chooses the part
 │   ├── shallow/           the full picture of a level
 │   ├── deep/              a part questioned until nothing is left assumed
@@ -12,45 +13,188 @@ understand/
 ├── brainstorm/            options for one open question, decided or parked
 ├── weigh/                 options compared on the same terms, with a recommendation
 ├── challenge/             an idea, plan or decision attacked: assumptions, failures, scenarios, gaps
-├── naming/               names people rely on, chosen; the vocabulary kept to one word per concept
-└── research/             finding out from sources, each finding with its source and strength; chooses the part
-    ├── fact/             one question answered, or one claim checked, with a verdict
-    ├── survey/           what exists on a subject, compared on the same terms
-    └── analyze/          why something happens, traced back to its trigger
+├── argue/                 the strongest honest case for a position, labelled one-sided
+├── naming/                names people rely on, chosen; the vocabulary kept to one word per concept
+└── research/              finding out from sources, each finding with its source and strength; chooses the part
+    ├── fact/              one question answered, or one claim checked, with a verdict
+    ├── survey/            what exists on a subject, compared on the same terms
+    └── analyze/           why something happens, traced back to its trigger
 ```
 
 ## understand
 
-- **Purpose:**
-- **Description:**
-- **Callers:**
-- **Flow:**
-- **Result:**
-- **Files:**
-- **Material:**
-- **Tests:**
-- **Open:** designed after its sub-skills, in the shape every main skill takes (D112); the proposals so far are in the ideas document (D109).
+- **Purpose:** understanding before acting, with the person and from sources (D50, D131). Its own `SKILL.md` holds the rules for its whole scope, advice, one instruction per sub-skill and the last instruction; it understands nothing itself, as clarify's and research's own skills choose rather than do, and it never does the work (D112, D130, D131). Its instructions sit under five headings: with the person (discuss, clarify); from sources (research); exploring options (brainstorm); thinking it through (frame, weigh, challenge, argue); names (naming). The order in which an item uses them lives in discuss and brainstorm; understand's file only routes, so its headings follow this grouping (D131).
+- **Description:** "Understanding before acting, with the person and from sources: a topic discussed item by item, what the person means clarified, facts found out, options explored, a problem framed, a choice weighed, an idea challenged, a case made for a position, a name chosen. Use when a request is unclear, the person wants to discuss something or be questioned, options or a choice are wanted, an idea should be tested before it's relied on, a position should be argued at its strongest, a question needs facts from sources, or something needs a name." A draft (D131, D132); it replaces the first, whose "asks what you think" is act's rule.
+- **Callers** (D131):
+  - the main skill, by its instruction for understand: when understanding is needed before acting, a topic to discuss, a request not yet clear, a fact to find, options or a choice, an idea to test, a case to make, a name; not for doing the work, "what do you think?" (act's rule) or the person not following the agent (conduct's explain); it gives back what was decided, what was parked and what comes next. The line is in the main skill (D136);
+  - act's first rule, for clarify, through the main skill and this file (D115);
+  - other roots, through the main skill: design (discuss, deep clarify, brainstorm, research, frame, and challenge in its review and decide step); plan (frame, for a task's goal, and challenge, checking a plan before work starts); implement (research's fact, for how a library behaves); test (analyze in debug, research in experiments); review (discuss, for findings gone through together); ship (analyze, for an incident); maintain (survey, for tools); the main agent after conduct's delegate runs a council (weigh, only when the person asks for a recommendation on the members' answers) (D137); conduct's respond (argue, for the person's view at its strongest); author (argue, for a proposal's case);
+  - the person, typing understand or one of its skills.
+- **Flow** (D131). Rules, each with its reason:
+  1. **Understanding keeps nothing:** every result is handed back. Outside any project, it stays in the response (D117); called by a skill, it goes back to that skill; in a project, design keeps it, reached through the main skill. Each sub-skill keeps only what is its own, such as which strand its result goes to. A method tied to where results are stored cannot serve every caller (D50).
+  2. **One result shape:** what was decided and why, what was parked and why, and what comes next; each sub-skill adds its own part. A caller can then keep any result without knowing which skill made it (D50).
+  3. **Guesses and assumptions are marked, and an unknown that would change the result is named with what would settle it.** An unmarked guess gets relied on as a fact.
+  4. **Facts first:** what can be read is read before the person is asked. Asking what the files already say wastes the person's time and hides what only they know.
+  5. **Who decides:** a choice that would change what the person gets is theirs, put through conduct's ask with a recommended answer; the agent's own choices are made quietly, with the reason said. It sets where the agent's judgment stops.
+  6. **Nothing in the work is changed for good while understanding:** reading, asking and searching change nothing; probes and experiments are temporary, in a scratch place or reverted through conduct's cleanup; acting on the result is the caller's, or waits for the person. A change made while understanding decides for the person.
+
+  Advice:
+  - several skills can serve one request, and nothing limits combining them, such as research inside a discussion's item, or frame and then challenge;
+  - in proportion: as much understanding as the decision deserves; a rename needs none, a plan more; conduct's stakes judges it (D121, D133);
+  - the question itself may be wrong: reframing through frame is always an option;
+  - what the person would want to correct is shown, such as a frame or the assumptions made; the agent's own choices stay quiet.
+
+  Instructions, each sub-skill's agreed routing line, shortened; the full line stays in its section:
+
+  **With the person:**
+  - **discuss:** when a topic with several open parts is gone through together, such as "let's discuss X", or a "brainstorm" holds several questions; not for one open question, which goes to its own sub-skill, or when what the person means is unclear (clarify); it gives back each item decided, parked or handed on, the side topics and what comes next.
+  - **clarify:** when what the person means is not clear yet, or they ask to be questioned; act's first rule sends every request not understood here; not for what the files already say (rule 4), a topic to decide together (discuss), or the person not following the agent (conduct's explain); it gives back the "going with" line and what was assumed, or a questionnaire for whoever holds the answers.
+
+  **From sources:**
+  - **research:** when a question or claim needs facts from several sources or from outside the project, what exists on a subject is wanted, or why something happens; "explain how this module loads plugins" goes here when it needs reading across files; not for a quick look inside the task, which the agent just reads, options (brainstorm), a choice (weigh) or whether work is done (conduct's verify); it gives back findings with their sources and strength, a verdict, a comparison or a cause, what was not found and what comes next.
+
+  **Exploring options:**
+  - **brainstorm:** when options are wanted for one open question, or a choice in the work has several plausible answers and matters; not for several questions (discuss), a fact (research), a name (naming) or a whole product (design); it gives back the decision, or the park and why, with the options weighed.
+
+  **Thinking it through:**
+  - **frame:** when a question or problem is not stated crisply, work loops or drifts, or the person asks what is actually being solved; not when it is already crisp, for what only the person knows (clarify), or for several problems at once (conduct's organize, its split); it gives back the frame and what is still unknown.
+  - **weigh:** when there are two or more options and a choice to make, such as "X or Y?" or "debate X versus Y"; not for one option (challenge), no options yet (brainstorm), a fact that settles it (research, or a test), or independent judgments from several agents (conduct's delegate, a council); it gives back the comparison and the recommendation, or "no clear winner" and what would settle it.
+  - **challenge:** before relying on an idea, a plan or a decision, or when asked "what could go wrong?" or "poke holes in this"; not for several options (weigh), finished work about to land (review), a claim that work is done (conduct's verify), an idea not yet clear (frame, or clarify), a doubt a fact settles (research), or the case for a position (argue); it gives back the weaknesses, each with how serious it is and what would address it, and the verdict.
+  - **argue:** when a position is wanted at its strongest, such as "argue for X" or "make the case for X"; not for the case against (challenge), a choice, "debate X versus Y" included (weigh), whether a claim is true (research's fact), options (brainstorm) or the persuasive document itself (author); it gives back the case, its reasons with their evidence, the objections met, the weaknesses, its strength and the one-sided label.
+
+  **Names:**
+  - **naming:** when something people will rely on needs a name, a term is used two ways, or the glossary needs tending; not for a local name in code (the code skill), whether a public name is free (research) or wording (respond, or author's edit); it gives back the chosen name with its reasons and the rejected words, or the glossary changes proposed.
+
+  Gaps: "what do you think?" is act's rule, a view and a plan; the person not following the agent is conduct's explain; doing the work is the other roots'; a whole design is design's; anything else about understanding that fits no line is the agent's own judgment, under understand's rules.
+
+  **Last instruction, before anything is returned:** understand's rules hold, the result in its shape, guesses marked, unknowns named with what would settle them, nothing in the work changed for good; the sub-skill's own last instruction holds too.
+- **Result** (D50, D131): the sub-skill's own result, in understand's shape by rule 2; understand adds nothing of its own. When several sub-skills serve one request, their results are combined into one shape, each part's own additions kept, such as research's findings or weigh's comparison, so a caller always gets one result back. Where it is kept follows rule 1.
+- **Files:** `SKILL.md` only (D131).
+- **Material:** understand's earlier proposals in its ideas document (the discussion as an order to follow, now discuss; one at a time or in rounds, now conduct's ask; what reaches understand; the first description and tests); the early decisions that its skills keep nothing and share one result shape, and that the discussion was its own flow (D50, D53); the shape every main skill takes (D112); the sub-skills' own designs, whose routing lines its instructions shorten; the person's OpenCode discuss mode, routing to clarify or ideation by intent.
+- **Tests** (D131):
+  1. "let's discuss splitting the repository": discuss;
+  2. "add caching", unclear: act's first rule, then clarify;
+  3. "question me on this plan": clarify, deep;
+  4. "how does library X handle retries in version 3?": research's fact;
+  5. "explain how this module loads plugins": research's fact, with files and lines;
+  6. "what tools exist for X?": research's survey;
+  7. "why does the build fail on CI?": research's analyze;
+  8. "give me options for onboarding": brainstorm;
+  9. "Postgres or SQLite?": weigh;
+  10. "poke holes in this plan": challenge;
+  11. "what are we actually solving?": frame;
+  12. "a name for this module": naming;
+  13. "what do you think about X?": act's rule, a view and a plan, not understand;
+  14. "I don't follow": conduct's explain;
+  15. "rename `foo` to `bar`": nothing to understand; the work done;
+  16. "should we use X? check its limits first": research, then weigh, combined into one result;
+  17. outside any project: the result in the response; in a project: kept by design;
+  18. a frame part inferred: marked as a guess; an unknown that would change weigh's recommendation: named, with what would settle it;
+  19. the framework's version: read in the configuration, not asked;
+  20. a choice that changes what the person gets: put through ask with a recommended answer; the agent's own choice, such as how to lay out a scratch script: made quietly, its reason said;
+  21. a probe added while analyzing: removed through cleanup, no edit left;
+  22. a rename: no frame and no discussion, in proportion;
+  23. a request about understanding that fits no line: the agent's own judgment, under understand's rules;
+  24. "make the case for a monorepo": argue;
+  25. "debate Postgres versus SQLite": weigh.
+- **Open:** none known.
+
+### discuss
+
+- **Purpose:** working through a topic with the person, item by item, until each item is decided, parked or handed on (D130). The topic is framed and split into items and the whole is shown first; then one item at a time, each using what it needs; the person decides each item through conduct's ask; it ends with what was decided, what was parked and what comes next. Any topic with several open parts, in a project or outside one: a design, a plan, a decision with several parts, a proposal gone through together, a skill's design. It is set apart from clarify, which draws out what the person already means, the person holding the answers: discuss works out what is not decided yet, the agent proposing and the person deciding. It is set apart from brainstorm by the number of open questions, not the word the person uses: one open question is brainstorm's; a topic with several is discuss's, which uses brainstorm for the items that need options.
+- **Description:** "Working through a topic with the person, item by item: the whole shown first, then one item at a time, each using what it needs (clarify, research, brainstorm, weigh, challenge, argue or naming), and each decided by the person, parked or handed on. Use when the person wants to discuss or go through a topic with several open parts, such as a design, a plan or a proposal." A draft (D130).
+- **Callers** (D130):
+  - understand's own skill, by its routing line: "let's discuss X", "let's go through this"; a topic with several open questions decided together; a plan or proposal gone through item by item; a "brainstorm" that turns out to hold several questions, which is said when the topic is split. Not for one open question, which goes to its sub-skill: brainstorm for options, weigh for a choice, research for a fact, naming for a name, challenge for an idea to attack, argue for a case; not when what the person means is unclear, "question me on this" included (clarify); not for "what do you think about X?", which is act's rule, a view and a plan; not for the agent's own choices (weigh, quietly, its reason said); not when the person did not follow the agent (conduct's explain); not for doing the work (the other roots). It gives back each item decided, parked or handed on, with why; the side topics and where each went; what comes next;
+  - through the main skill: design's discuss step, for a design's open parts; any other root when the person wants to go through something with it, such as plan for a plan's open parts or review for findings gone through together;
+  - the person, asking to discuss.
+
+  It uses frame, by path, for the topic and any item that is not crisp; clarify, research, brainstorm, weigh, challenge, argue and naming, by path, as each item needs; conduct's organize, to split the topic where that helps; conduct's ask, for every question and every answer; conduct's respond, for laying out each turn; conduct's explain, when the person did not follow; conduct's delegate, for work that comes up and does not need the person, so the discussion goes on while it runs; and, in a project, design, to record. Nothing in discuss limits which skills a discussion uses: any skill can serve an item, such as organize's merge, verify for a claim or author's reader test for a document.
+- **Flow** (D130). Rules, each with its reason:
+  1. **The whole comes first:** the topic is framed and split into items, shown before the first item. An item decided without the whole in view can be undone by a later one, and the list lets the person reorder or drop items.
+  2. **One item per turn,** with "Remaining" at the end. Several items at once blur which answer belongs to which, and lose the person on where things stand. When the person asks to see more at once, their instruction wins, as act's rule on which instruction wins says.
+  3. **The agent proposes; the person decides:** every item comes with the agent's suggestions and reasons, and a recommended answer for each question, put through conduct's ask; nothing counts as decided until the person agrees. Without proposals the person does all the thinking; without the person's agreement it is not a decision.
+  4. **Every item is closed:** decided, parked with why, or handed on to another skill, a questionnaire or later; never left silently open, since an open item gets silently assumed later.
+  5. **Side topics are not lost:** one raised midway is taken now when it is small or blocks the current item, and otherwise recorded as an open question where it belongs; then the discussion returns to where it was and says so. Side topics bring good ideas and forgotten decisions alike.
+  6. **A decision that changes an earlier one names it,** so the earlier one is marked as changed. Two decisions that disagree let work follow the old one.
+
+  Advice:
+  - items in order of dependence, what others depend on first;
+  - each turn opens with one line on what was agreed in the person's last answer, then the item;
+  - a few questions per item; "ok" accepts every recommended answer, and a partial answer is named back, as ask says;
+  - when an answer adds, merges or splits items, the list is updated and the change said;
+  - the agent's view stays its own when the person disagrees: it says why and leaves the decision to the person;
+  - a discussion going in circles is reframed through frame;
+  - a topic that turns out to be one question goes to that question's sub-skill.
+
+  Instructions, in the order the work happens:
+  1. **Frame the topic** with frame, split it into items, through conduct's organize where that helps, and show them with the first item.
+  2. **For each item, what it needs:** frame, when it is not crisp; clarify, when what the person means is unclear; research, for a fact; brainstorm, for options; weigh, for a choice; challenge, for an idea about to be relied on; argue, for a case the person asks for; naming, for a name; any other skill the item needs; otherwise the agent's view with its reasons. Then it is put to the person through ask.
+  3. **Close the item** and update "Remaining".
+  4. **A side topic:** taken now, or recorded as open where it belongs; then back.
+  5. **Work that comes up and does not need the person:** conduct's delegate, so the discussion goes on while it runs.
+  6. **An action the person asks for midway,** such as "agreed, clean them": done through act and guardrails, then back to the discussion.
+  7. **Recording:** offered when a topic within the discussion is complete, or sooner in a long discussion, and done when the person says so, as the result says.
+  8. **Last instruction:** before each turn is returned, the agreed line, one item, its questions with recommended answers, and "Remaining"; before the discussion ends, every item closed, every side topic placed, and what comes next said.
+- **Result** (D50, D130): understand's shape:
+
+  ```text
+  Decided:      each item, its decision and why
+  Parked:       each item, why, and what would reopen it
+  Handed on:    each item, and where it went
+  Side topics:  each, and where it was placed
+  Next:         what comes next
+  ```
+
+  Each turn's agreed line carries the result so far, so the summary at the end only gathers it. discuss keeps nothing, by understand's rule: in a project, what is agreed goes to design through the main skill, and design's own steps file each part in its strand, decisions, notes, ideas and design sections; discuss names none of those steps, so design can reshape them without touching discuss. Outside any project, continuing later is a handoff, offered by conduct's wrap-up offer (D117). It is recorded when the person says so, such as "write it down"; the agent offers when a topic within the discussion is complete, and sooner in a long discussion, so that compaction cannot lose decisions held only in the conversation. After recording, a short report says what was written where; a commit stays the person's call.
+- **Files:** `SKILL.md` only.
+- **Material** (D130), adapted, never copied (D120): this session's own way of working, the main source (the whole first, then one item at a time; suggestions with reasons; numbered questions under headings, each with a recommended answer; "Remaining" at the end of each turn; side topics placed so none is forgotten; "write it down" recording across the blueprint; one commit per batch of work); the person's preferences for this project (headings for sections, no unexplained references, lists over wide tables, prose not wrapped), which belong to respond and author's markdown; understand's earlier discussion flow (D53); the person's OpenCode discuss mode (no code changed while discussing; a note of current understanding; a discussion closed when every thread has its final note; routing to clarify or ideation by intent); rig (an open question needs a thread of its own); superpowers' brainstorming, MIT (several independent topics said, an order agreed, each taken in turn; a topic that grows midway said and stepped up a size; the most important points reported and the rest offered). Left out: superpowers' one open question per message, since the person's way is numbered questions with recommended answers in each item.
+- **Tests** (D130):
+  1. "let's discuss splitting this repository": the topic framed, the items shown with the first one, one item per turn with suggestions and recommended answers, "Remaining" at the end, every item closed, and the summary at the end;
+  2. "ok" to an item with three questions: every recommended answer taken, and the next turn opens with the agreed line;
+  3. a partial answer: the questions left named back, as ask says;
+  4. a side topic raised midway: taken now if small, otherwise recorded as open where it belongs; then back to the item, saying so;
+  5. "let's brainstorm onboarding", holding several questions: said so, the topic split, discussed with brainstorm inside the items that need options;
+  6. "give me name options for X": naming, which uses brainstorm, not discuss;
+  7. "question me on this design": deep clarify, not discuss;
+  8. "what do you think about X?": a view and a plan, under act's rule, not discuss;
+  9. an item that hinges on a fact: research inside the item; long reading goes to delegate while the discussion goes on;
+  10. an item that changes an earlier decision: the earlier one named and marked as changed;
+  11. "agreed, clean them" midway: done through act and guardrails, then back to the discussion;
+  12. in a project, "write it down": handed to design, a short report of what was written where; no commit unless the person asks;
+  13. a long discussion: recording offered before decisions could be lost;
+  14. stopping with items left, outside any project: conduct's wrap-up offer, then a handoff;
+  15. a parked item: its reason and what would reopen it, in the end summary;
+  16. the person asks to see all remaining items at once: shown, since their instruction wins;
+  17. an item going in circles: reframed through frame;
+  18. an item that needs two documents merged: organize's merge, since discuss does not limit which skills an item uses.
+- **Open:** none known.
 
 ### clarify
 
-- **Purpose:** finding out what the person means before acting (D45, D109). Its own `SKILL.md` holds what its three parts share and chooses among them: shallow, the full picture of a level; deep, a part questioned until nothing is assumed; questionnaire, questions only someone else can answer (D45, D49, D109). It is the one home for what to ask and how deep; act's rule on clarifying names it rather than restating it (D115). It mirrors conduct's explain: clarify is for when the agent does not yet understand the person, explain for when the person did not follow the agent.
-- **Description:** "Finding out what the person means before acting: the big picture first, in one round of questions with recommended answers; then a deep dive where a part needs it; or a questionnaire for whoever holds the answer." A draft (D109, D114).
-- **Callers:** act, whenever a request is not understood, through the main skill and understand's file: act's rule names clarify, which decides what to ask and how deep (D84, D107, D115); understand's discussion, at its restate step, by path; design's flow, through the main skill; the person, asking to be questioned ("question me on this plan") or typing it. Its routing line in understand's file: "what the person means is not clear yet, or they ask to be questioned" (D109).
-- **Flow** (D109, D115), the shared rules first:
-  - **Find facts first:** read or search before asking; ask only what is the person's to decide, or what only they know.
-  - **Ask only what would change the work:** when every answer leads to the same work, the agent decides.
-  - **Every question carries a recommended answer,** put as conduct's ask says (D114).
-  - **Nothing is acted on until the answers are in;** "go ahead" accepts the recommended answers, as conduct's ask says. This rule is firm: it is the person's own wish (D58).
+- **Purpose:** finding out what the person means before acting (D45, D109). Its own `SKILL.md` takes the shape every skill with parts takes: its rules, advice, one routing line per part and the last instruction, and it asks nothing itself (D112, D135). Its parts: shallow, the full picture of a level; deep, a part questioned until nothing is assumed; questionnaire, questions only someone else can answer (D45, D49, D109). It is the one home for what to ask and how deep; act's rule on clarifying names it rather than restating it (D115). It mirrors conduct's explain: clarify is for when the agent does not yet understand the person, explain for when the person did not follow the agent.
+- **Description:** "Finding out what the person means before acting: the whole level first, in one round of questions with recommended answers; then deeper where a part needs it; or a questionnaire for whoever else holds the answers. Use when a request is not clear yet, or the person asks to be questioned." A draft (D109, D114, D135).
+- **Callers:** act, whenever a request is not understood, through the main skill and understand's file: act's rule names clarify, which decides what to ask and how deep (D84, D107, D115); understand's discuss, when what the person means is unclear in an item, by path; design's flow, through the main skill; the person, asking to be questioned ("question me on this plan") or typing it. Its routing line in understand's file: "what the person means is not clear yet, or they ask to be questioned" (D109).
+- **Flow** (D109, D115, D135). Rules, each with its reason:
+  1. **Ask only what would change the work:** when every answer leads to the same work, the agent decides, as understand's rule on who decides says. An unneeded question costs the person a turn.
+  2. **Nothing is acted on until the answers are in;** "go ahead" accepts the recommended answers, as conduct's ask says. It is stricter than understand's rule that nothing is changed for good while understanding, and a variation of it: it is the person's own wish (D58).
 
-  **Choosing the part,** recommendations the agent weighs; clarify is their one home (D115):
-  - **shallow first,** unless the person asks to be questioned: which part needs depth shows only once the whole level is seen, and one round costs little; many small tasks end there;
-  - **deep where a part needs it:** the trigger is dependence, never the number of questions: an answer that opens questions that would change the work. A plan or a design usually has parts that depend on each other, so it usually goes deep after the shallow round; when the person asks to be questioned, deep from the start;
-  - **when, after the shallow round, it is unclear whether a part needs depth, deep;**
-  - **questionnaire** for the questions only someone else can answer, after the person answers theirs. The agent may recognise such a question itself, but asks the person whether someone else holds the answer rather than deciding alone (D115);
-  - **while a questionnaire is out,** its questions are parked until the answers return, and what depends on them waits; the person decides, through conduct's ask, whether work that does not depend on them goes ahead (D115).
+  Facts first, who decides, keeping nothing, the result shape and marking guesses are understand's rules (D131); how a question is put, with its recommended answer, is conduct's ask's (D114).
 
-  Done when every question that would change the work is answered, taken with its recommended answer by the person's acceptance, parked, or in a questionnaire.
-- **Result** (D50, D109): understand's shape, what was decided and why, what was parked and why, what comes next; plus what was assumed, when anything was left unconfirmed. Each part's own form is in its section. clarify keeps nothing: used directly, the result stays in the conversation; called by a skill, it goes back to that skill, which keeps it where it belongs, as design does in the blueprint.
+  Advice (D115):
+  - shallow first, unless the person asks to be questioned: which part needs depth shows only once the whole level is seen, and one round costs little; many small tasks end there;
+  - the trigger for deep is dependence, never the number of questions: an answer that opens questions that would change the work; a plan or a design usually has parts that depend on each other, so it usually goes deep after the shallow round;
+  - when, after the shallow round, it is unclear whether a part needs depth, deep.
+
+  Instructions, one routing line per part (D135):
+  - **shallow:** when a level is not yet seen whole: the start of most clarifying, and each new level inside a part, for deep; not when the person asks to be questioned or for a part whose answers depend on each other (deep), or for questions only someone else can answer (questionnaire); it gives back the "going with" line, or a part handed to deep.
+  - **deep:** when a part's answers open questions that would change the work, for a plan or a design after the shallow round, or from the start when the person asks to be questioned ("question me on this plan"); not for a level not yet seen whole (shallow first), a topic still to decide together (understand's discuss), or questions only someone else can answer (questionnaire); it gives back the summary the person confirmed: decided, parked, accepted and assumed.
+  - **questionnaire:** when questions only someone other than the person can answer, after the person answers theirs: the person says so, or the agent sees it and asks the person whether someone else holds the answer rather than deciding alone (D115); not for anything the person can answer, or anything the files say; it gives back the document, in the response by default for the person to send, and later its answers, taken back into clarify.
+  - **While a questionnaire is out:** its questions are parked until the answers return, and what depends on them waits; the person decides, through conduct's ask, whether work that does not depend on them goes ahead (D115).
+
+  Gaps: the person not following the agent goes to conduct's explain; a topic to decide together, to understand's discuss; options, to brainstorm; "what do you think?", to act's rule that an opinion is not a task.
+
+  **Last instruction, before anything is acted on:** every question that would change the work answered, taken with its recommended answer by the person's acceptance, parked, or in a questionnaire; "going with" said or the summary confirmed; understand's rules hold.
+- **Result** (D50, D109): understand's shape, what was decided and why, what was parked and why, what comes next; plus what was assumed, when anything was left unconfirmed. Each part's own form is in its section. clarify keeps nothing, by understand's rule; design, calling it, keeps it in the blueprint (D135).
 - **Files:** `SKILL.md` only.
 - **Material:** OpenCode customisations; mattpocock's skills.
 - **Tests** (D109, D115):
@@ -67,23 +211,31 @@ understand/
   11. "give me options for X": understand's brainstorm, not clarify;
   12. after the shallow round, unclear whether a part needs depth: deep on that part;
   13. a question the agent sees only someone else can answer: the person asked whether someone else holds it, no questionnaire written unasked;
-  14. a questionnaire still out: what depends on it waits, and the person is asked whether the rest goes ahead.
-- **Open:** checked against the shape every skill with sub-skills takes (rules, advice, when to use each part, a last instruction) when the flows are revisited (D112).
+  14. a questionnaire still out: what depends on it waits, and the person is asked whether the rest goes ahead;
+  15. "let's discuss this design": understand's discuss, which works out what is not decided yet, not clarify, which draws out what the person already means (D130).
+- **Open:** none known.
 
 #### shallow
 
 - **Purpose:** the full picture of the level being analysed: every part of that level seen, and nothing at it left unknown, before any part is explored further (D45, D109). The level is the request's top level when clarify starts, and a level inside a part when deep reaches one (D115).
 - **Description:** "The full picture of a level before going further: one round of questions across all of it, each with a recommended answer; then 'going with' what was answered." A draft (D109, D114).
-- **Callers:** clarify; deep, at each new level inside a part, by path (D115).
-- **Flow** (D109, D115):
-  1. **Look across the whole level** through understand's frame, whose parts are the lenses' one home, and what the other answers depend on; the questions are for what the frame could not fill (D119).
-  2. **Leave out** what clarify's shared rules say not to ask.
-  3. **Ask in one round,** the questions others depend on first, each with a recommended answer and a short reason, put as conduct's ask says (D114); no fixed number.
+- **Callers:** clarify, by its routing line: when a level is not yet seen whole; not when the person asks to be questioned or for a part whose answers depend on each other (deep), or for questions only someone else can answer (questionnaire); it gives back the "going with" line, or a part handed to deep (D135); deep, at each new level inside a part, by path (D115).
+- **Flow** (D109, D115, D135). Rules, each with its reason:
+  1. **The whole level first,** through understand's frame, whose parts are the lenses' one home, before any part goes deeper: which part needs depth shows only once the whole is seen (D119).
+  2. **One round,** put as conduct's ask says (D114): the person answers it at once and sees the level whole.
+  3. **"Going with: …" before work starts:** every answer and recommended answer taken is said, so the person sees what the work rests on.
+
+  Advice: the questions others depend on first; no fixed number of questions.
+
+  Instructions, in the order the work happens:
+  1. **Look across the whole level** through frame; the questions are for what the frame could not fill.
+  2. **Leave out** what clarify's rules say not to ask; if nothing needs asking, nothing is asked.
+  3. **Ask in one round,** each question with a recommended answer and a short reason.
   4. **Wait.** "Go ahead" accepts the recommended answers for the questions left; when only some are answered, the rest are named back with what will be taken, as conduct's ask says (D114).
   5. **Hand over:** an answer that opens dependent questions that would change the work ends shallow for that part, and clarify sends the part to deep.
-  6. **Say "going with: …"** for the rest before starting: every answer and recommended answer taken.
+  6. **Last instruction, before work starts:** "going with: …" said for the rest, every answer and recommended answer taken.
 
-  If nothing needs asking, nothing is asked. Done when every question at the level has an answer or an accepted recommended answer, or its part has gone to deep.
+  Done when every question at the level has an answer or an accepted recommended answer, or its part has gone to deep.
 - **Result:** the "going with" line, handed back to clarify; what comes next is the work, or deep on a part.
 - **Files:** `SKILL.md` only.
 - **Material:** OpenCode customisations.
@@ -93,22 +245,26 @@ understand/
   3. which framework the project uses: looked up in the code, not asked;
   4. "rename this variable to X": nothing asked;
   5. an answer that opens dependent questions: that part handed to deep through clarify, then "going with" said for the rest.
-- **Open:** at the reshape, its musts and advice are split and a when-not line is added (D112).
+- **Open:** none known.
 
 #### deep
 
 - **Purpose:** a part, or a whole plan, questioned until nothing in it is left assumed (D45, D58, D109). Where shallow sees all of one level, deep goes down through a part until no level is left.
 - **Description:** "Questioning a part, or a whole plan, until nothing is left assumed: numbered rounds, each question with a recommended answer; one by one on request, without losing the round." A draft (D109).
-- **Callers:** clarify, including when the person asks to be questioned.
-- **Flow** (D58, D109, D115):
-  - **Rounds,** put as conduct's ask says, one by one on request without losing the round (D114).
-  - **Each round asks what can be answered now;** a question whose answer depends on another waits until that one is answered. It is an order to ask in, with nothing to draw or keep.
-  - **The answers shape the next round.**
-  - **Level by level:** at each new level inside the part, deep first sees that level whole, as understand's clarify-shallow does, then goes down (D115).
-  - **Facts and decisions** as clarify's shared rules say: the agent finds the facts; the decisions are the person's.
-  - **Long sessions:** deep offers to record the decisions so far where the caller keeps them, so that compaction cannot lose them; used directly, with no caller, it offers the blueprint's notes through design's discuss step in a project, and a file the person names outside any project (D117). Never unasked: recording writes to the project, and act's rule is to do exactly what was asked (D115).
-  - **"Go ahead" before the end** accepts the recommended answers for the open questions; the summary lists them as accepted (D114, D115).
-  - **The end:** a short summary of what is decided, parked, accepted and assumed, parked and assumed as conduct's ask defines them, confirmed by the person before anything is acted on. If the person stops early, every open question goes into it as an assumption, and the person still confirms it before anything is acted on.
+- **Callers:** clarify, by its routing line: when a part's answers open questions that would change the work, for a plan or a design after the shallow round, or from the start when the person asks to be questioned; not for a level not yet seen whole (shallow), a topic still to decide together (understand's discuss) or questions only someone else can answer (questionnaire); it gives back the summary the person confirmed (D135).
+- **Flow** (D58, D109, D115, D135). Rules, each with its reason:
+  1. **A question that depends on an unanswered one waits** for a later round, since that answer may change it; each round asks what can be answered now, an order to ask in, with nothing to draw or keep.
+  2. **Level by level:** at each new level inside the part, deep first sees that level whole, as clarify's shallow does, then goes down (D115); a level skipped leaves its parts assumed.
+  3. **The summary is confirmed before anything is acted on:** what is decided, parked, accepted and assumed, parked and assumed as conduct's ask defines them; if the person stops early, every open question goes into it as an assumption, and the person still confirms it. Nothing assumed is acted on unseen (D58).
+  4. **Recording is never done unasked:** recording writes to the project, and act's rule is to do exactly what was asked (D115).
+
+  Facts and decisions as understand's rules say: the agent finds the facts; the decisions are the person's. Rounds are put as conduct's ask says, one by one on request without losing the round, and "go ahead" before the end accepts the recommended answers for the open questions, listed as accepted in the summary (D114, D115).
+
+  Advice:
+  - the answers shape the next round;
+  - in a long session, recording the decisions so far is offered where the caller keeps them, so that compaction cannot lose them; used directly, with no caller, the offer is the blueprint's notes through design's discuss step in a project, and a file the person names outside any project (D117).
+
+  **Last instruction, before anything is acted on:** the summary confirmed by the person.
 
   Done when no level is left with anything assumed that would change the work, and the person has confirmed the summary.
 - **Result:** understand's shape, with the confirmed summary.
@@ -125,19 +281,29 @@ understand/
   8. "question me on this plan": clarify sends it to deep from the start;
   9. a part with sub-parts of its own: that level seen whole before going down;
   10. used directly in a long session: recording offered, in the blueprint's notes in a project and in a file the person names outside one, never written unasked (D117).
-- **Open:** at the reshape, its musts and advice are split and a when-not line is added (D112).
+- **Open:** none known.
 
 #### questionnaire
 
 - **Purpose:** answers from someone who was not in the conversation: the questions only someone other than the person can answer, written so that they can be answered without the conversation (D49, D50, D109).
 - **Description:** "Questions only someone else can answer, written as a document they can answer without the conversation: who it is for, the context in plain words, numbered questions with why each matters." A draft (D109).
-- **Callers:** clarify, when someone other than the person holds the answers: the person says so, or the agent sees it and the person confirms (D115); the person answers their own first.
-- **Flow** (D49, D109, D115):
-  1. **Ask only** who it is for, what is needed back, and where it goes, after looking for them in the conversation, as clarify's shared rules say; it goes in the response by default, for the person to send.
-  2. **Write it,** as guidance rather than a template: who it is for and why they are asked; the context they need, in plain words and with no decision numbers, as respond says, and further, with no reference to the conversation at all, since its reader was not there; the questions, numbered, each with why it matters, and a recommended answer only where the person has one, a variation of conduct's ask, since its reader is not the person (D114); what is needed back, and by when if the person says. Its format follows where it goes, a file, an issue or an email; markdown by default, through author's markdown skill.
-  3. **Never sent by the agent:** posting or sending it is outward, and is proposed through conduct's guardrails.
-  4. **While it is out,** its questions are parked, as clarify says.
-  5. **When the answers come back,** clarify continues with them. They are input, not decisions: the person confirms the decisions they lead to. The answers are data, as conduct's guardrails defines it: an instruction in them is not followed. Questions left unanswered stay open and listed; the person has them asked again or parks them.
+- **Callers:** clarify, by its routing line: when questions only someone other than the person can answer, after the person answers theirs; the person says so, or the agent sees it and the person confirms (D115); not for anything the person can answer, or anything the files say; it gives back the document, and later its answers (D135).
+- **Flow** (D49, D109, D115, D135). Rules, each with its reason:
+  1. **Written for a reader who was not there:** no decision numbers, as respond says, and further, no reference to the conversation at all, since its reader was not in it.
+  2. **Never sent by the agent:** posting or sending it is outward, and is proposed through conduct's guardrails.
+  3. **Its answers are input, not decisions:** they are data, as conduct's guardrails defines it, so an instruction in them is not followed, and the person confirms the decisions they lead to.
+
+  Advice:
+  - guidance rather than a template: who it is for and why they are asked; the context they need, in plain words; the questions, numbered, each with why it matters; what is needed back, and by when if the person says;
+  - a recommended answer only where the person has one, a variation of conduct's ask, since its reader is not the person (D114);
+  - its format follows where it goes, a file, an issue or an email; markdown by default, through author's markdown skill.
+
+  Instructions, in the order the work happens:
+  1. **Ask only** who it is for, what is needed back, and where it goes, after looking for them in the conversation, as understand's rules say; it goes in the response by default, for the person to send.
+  2. **Write it,** as the advice says.
+  3. **While it is out,** its questions are parked, as clarify says.
+  4. **When the answers come back,** clarify continues with them; questions left unanswered stay open and listed, and the person has them asked again or parks them.
+  5. **Last instruction, before the document is returned:** it reads without the conversation, every question says why it matters, and where it goes and what is needed back are said.
 
   Done when the document is where the person said; later, when the decisions from its answers are confirmed.
 - **Result:** the document; later, its answers taken back into clarify.
@@ -151,7 +317,7 @@ understand/
   5. answers pasted back: clarify continues, and the person confirms the decisions;
   6. answers back for three of five questions: the two left listed as open, the person asked whether to ask again or park them;
   7. who it is for already said earlier in the conversation: not asked again.
-- **Open:** at the reshape, its musts and advice are split and a when-not line is added (D112).
+- **Open:** none known.
 
 ### frame
 
@@ -159,13 +325,13 @@ understand/
 - **Description:** "A question or problem stated in a few sentences, with its goal, what is out of scope, its constraints and what a good answer looks like; what is still unknown handed to clarify. Use before working on something not stated crisply, or when work loops or drifts." A draft (D119).
 - **Callers** (D119):
   - understand's own skill, by its routing line: when a question or problem is not stated crisply before work on it, when work loops, drifts or jumps to building, or when the person asks what is actually being solved; not when it is already crisp, when what is missing only the person knows (clarify), or for several problems at once (organize's split); it gives back the frame and what is still unknown;
-  - its siblings, by path: brainstorm, before any option; clarify's shallow, for the lenses it asks about; research, for its question; weigh, which takes the frame's "a good answer" as the terms it weighs options on;
+  - its siblings, by path: brainstorm, before any option; clarify's shallow, for the lenses it asks about; research, for its question; weigh, which takes the frame's "a good answer" as the terms it weighs options on; argue, for the position it makes the case for;
   - design, for the problem a design starts from, and plan, for a task's goal, through the main skill;
   - the person, typing it.
 - **Flow** (D119). Rules, each with its reason:
-  1. **Stated from what is known first,** as clarify's shared rules say: the request, the conversation and the project's files are read before anything is asked.
-  2. **Every part filled or marked unknown:** the statement, the goal, what is out of scope, the constraints, what a good answer looks like. An empty part gets silently assumed, and that is how work heads the wrong way.
-  3. **A guess is marked as a guess:** anything inferred rather than read or said is labelled, so the person can correct it.
+  1. **Stated from what is known first,** as understand's rules say: the request, the conversation and the project's files are read before anything is asked.
+  2. **Every part filled or marked unknown,** understand's rule on unknowns applied to the frame's parts: the statement, the goal, what is out of scope, the constraints, what a good answer looks like. An empty part gets silently assumed, and that is how work heads the wrong way.
+  3. **Guesses are marked, as understand's rule says, with "(guess)" where they stand,** so the person can correct them.
   4. **Unknowns go to clarify,** which decides what is worth asking.
   5. **One problem per frame:** a second problem found while framing is named and handed back, since two problems cannot share one good answer.
   6. **The person's question or problem is shown framed before work builds on it,** so they can correct it, since a wrong frame wastes everything after it. When frame serves the agent's own choice, it may stay quiet, as in brainstorm.
@@ -191,7 +357,7 @@ understand/
   Unknown:       what could not be stated, handed to clarify
   ```
 
-  frame keeps nothing (D50): brainstorm and research open with it; weigh takes "a good answer" as its terms; in a project, design's discuss step records it with the discussion it opens, and design carries it into the design's purpose; outside any project, it stays in the response (D117). When it changes, because an unknown is answered or the work is reframed, the new frame replaces the old one where it is kept and the change is said once, since two frames for one problem would let work aim at the old one.
+  frame keeps nothing, by understand's rule: brainstorm and research open with it; weigh takes "a good answer" as its terms; in a project, design's discuss step records it with the discussion it opens, and design carries it into the design's purpose. When it changes, because an unknown is answered or the work is reframed, the new frame replaces the old one where it is kept and the change is said once, since two frames for one problem would let work aim at the old one.
 - **Files:** `SKILL.md` only, the form inside it (D119).
 - **Material:** the person's OpenCode ideation ("frame the problem": statement, goals, non-goals, constraints, success criteria, the statement short and the criteria testable; the altitude guard); VaultOps' "init"; superpowers' ground to cover (goals, non-goals, anti-goals, why now, prior art, current state; a guess the person can correct often beats a question); gstack's office-hours diagnostic (specificity, the status quo, undefined terms made precise; its pushback patterns are also challenge's material); clarify's shallow, whose lenses moved here.
 - **Tests** (D119):
@@ -212,9 +378,9 @@ understand/
 ### brainstorm
 
 - **Purpose:** options for one open question whose answer is not known yet and could go several ways, narrowed to one, or parked (D53, D118).
-- **Description:** "Options for one open question: framed, a few distinct options, the promising ones developed, weighed, then decided or parked. Use when ideas or alternatives are wanted, or a choice has several plausible answers and matters." A draft (D118).
+- **Description:** "Options for one open question: framed, a few distinct options, the promising ones developed, weighed, then decided or parked. Use when new options are to be thought up, or a choice has several plausible answers and matters." A draft (D118).
 - **Callers** (D118):
-  - understand's own skill, by its routing line: when options are wanted for one question, or a choice in the work has several plausible answers and the choice matters; not when the question is not clear yet (clarify), the answer is a fact (research), a whole idea or product is being shaped (design, which uses brainstorm for one question at a time), or a name is wanted (naming, which uses brainstorm for its candidates); it gives back the decision, or the park and why, with the options weighed;
+  - understand's own skill, by its routing line: when options are wanted for one question, or a choice in the work has several plausible answers and the choice matters; not when the question is not clear yet (clarify), the answer is a fact (research), a whole idea or product is being shaped (design, which uses brainstorm for one question at a time), a topic with several open questions (discuss, which uses brainstorm for the items that need options; the number of open questions decides, not the word, D130), or a name is wanted (naming, which uses brainstorm for its candidates); it gives back the decision, or the park and why, with the options weighed;
   - naming, its sibling, by path, for candidate names;
   - design, and any other root that meets a choice, such as plan or implement choosing an approach, through the main skill;
   - the person, typing it.
@@ -223,7 +389,7 @@ understand/
   2. **Options are listed before any is judged:** judging early narrows everything to the first idea, the failure brainstorm exists to prevent.
   3. **Options differ in kind, not in wording:** three phrasings of one idea are one option.
   4. **Every option is weighed through understand's weigh,** on the same terms.
-  5. **Who decides follows clarify's shared rule:** a choice that would change what the person gets is theirs, put through conduct's ask with the recommended option as the recommended answer, or parked with why and what would settle it; a choice that changes nothing the person would see is the agent's, which says in one line which option it took and why.
+  5. **Who decides follows understand's rule:** a choice that would change what the person gets is theirs, put through conduct's ask with the recommended option as the recommended answer, or parked with why and what would settle it; a choice that changes nothing the person would see is the agent's, which says in one line which option it took and why.
 
   Advice:
   - the order: frame, generate, develop, weigh, decide or park;
@@ -231,11 +397,11 @@ understand/
   - about three to seven options (D116), stopping when new ones only repeat, with the ones easy to miss: doing nothing, or changing the question;
   - options steer: when the person likely has a picture of their own, they are asked to describe it before any option is offered;
   - developing: the one or two promising options made concrete, their strengths combined, and tested through understand's challenge;
-  - shown or quiet: for its own choices the agent may weigh quietly and show only the comparison and its recommendation; every option is shown when the person asks;
+  - shown or quiet: for its own choices the agent may weigh quietly and show only the comparison and its recommendation; every option is shown when the person asks, as respond's first rule says (D134);
   - a new topic that comes up is named and parked, not followed.
 
   Gaps: an option that hinges on a fact goes to understand's research; a question that is not clear goes to clarify. Done when the question is decided or parked, with the options weighed.
-- **Result:** brainstorm keeps nothing (D50): the question, the options weighed, and the decision or the park and why, handed back. In a project, design's discuss step records it: the brainstorm as it went in the session notes, the options left open or parked in the topic's ideas file, the decision in the decisions log and the design; a large brainstorm becomes the topic's ideas file, not a new kind of document. Outside any project, it stays in the response, and for a long one the agent offers a file the person names (D117, D118).
+- **Result:** the question, the options weighed, and the decision or the park and why. brainstorm keeps nothing, by understand's rule: in a project, design's discuss step records it: the brainstorm as it went in the session notes, the options left open or parked in the topic's ideas file, the decision in the decisions log and the design; a large brainstorm becomes the topic's ideas file, not a new kind of document. Outside any project, for a long one the agent offers a file the person names (D117, D118).
 - **Files:** `SKILL.md` only, with no template: whoever records the result writes it (D118).
 - **Material:** the person's OpenCode ideation skill (frame, diverge, intensify, compare tradeoffs, the thread check, decide or park with the next evidence); VaultOps' thinking moves, whose critique, simulate and gap detection are now challenge's; superpowers' brainstorming, a design dialogue, used for four points only: options steer, think wide privately, show the comparison only when it helps decide, mark guesses; the blueprint method's split of ideas and notes.
 - **Tests** (D118):
@@ -251,37 +417,39 @@ understand/
   10. "make it better": clarify first, since the question is not clear;
   11. "shape this product idea": design, with brainstorm only for single questions inside it;
   12. "a name for this module": naming, which uses brainstorm for its candidates;
-  13. in a project: the brainstorm in the session notes, the open options in the topic's ideas file, the decision in the decisions log; outside any project: kept in the response, with the offer of a file.
-- **Open:** frame, weigh and challenge, which it names, are designed next (D118).
+  13. in a project: the brainstorm in the session notes, the open options in the topic's ideas file, the decision in the decisions log; outside any project: kept in the response, with the offer of a file;
+  14. "let's brainstorm onboarding", holding several questions: discuss, with brainstorm inside the items that need options (D130).
+- **Open:** none known.
 
 ### weigh
 
 - **Purpose:** options compared side by side on the same terms, then a recommendation (D118, D122). The terms come from frame's "a good answer" where there is one, otherwise from what matters to the question; each option is set out by what it gives, what it costs, what could go wrong and what is not known, with at least one real downside; it ends in a recommendation with its reasoning, or in "no clear winner" with what would settle it. A council's summary compares judgments and keeps the disagreements for the person, so it does not use weigh; the main agent weighs the members' answers only when the person asks for a recommendation. design's decide step records what weigh recommends and the person chooses.
 - **Description:** "Options compared side by side on the same terms, what each gives, costs, could get wrong and leaves unknown, then a recommendation, or what would settle it. Use when there are two or more options and a choice to make." A draft (D122).
 - **Callers** (D122):
-  - understand's own skill, by its routing line: when there are two or more options and a choice to make, such as "X or Y?", a design decision, or choosing a tool, a library or an approach; not for one option (challenge), no options yet (brainstorm), a fact that settles it (research, or a test), a choice already made, or independent judgments from several agents (conduct's delegate, as a council); it gives back the comparison and the recommendation, or "no clear winner" and what would settle it;
+  - understand's own skill, by its routing line: when there are two or more options and a choice to make, such as "X or Y?" or "debate X versus Y", a design decision, or choosing a tool, a library or an approach; not for one option (challenge), no options yet (brainstorm), a fact that settles it (research, or a test), a choice already made, or independent judgments from several agents (conduct's delegate, as a council); it gives back the comparison and the recommendation, or "no clear winner" and what would settle it;
   - its siblings, by path: brainstorm, for every option; naming, for candidate names against what makes a good name;
   - design's decide step, and plan or implement choosing an approach, through the main skill;
   - the main agent after a council, when the person asks for a recommendation on the members' answers;
   - the person, typing it.
 
-  It uses frame's "a good answer" as its terms, by path, when a frame exists.
+  It uses frame's "a good answer" as its terms, by path, when a frame exists, and argue and challenge, by path, for each option in a debate (D132).
 - **Flow** (D122). Rules, each with its reason:
   1. **The terms are stated before any option is scored:** terms chosen afterwards tend to fit the favourite.
   2. **Every option is weighed on every term,** since options judged on different terms cannot be compared.
   3. **For each option, what it gives, what it costs, what could go wrong and what is not known,** with at least one real downside: an option with no downside has not been looked at.
-  4. **An unknown that would change the recommendation is named, with what would settle it:** a fact, through understand's research or a test; the person's preference, through clarify.
+  4. **An unknown that would change the recommendation is named, as understand's rule says, with what settles it here:** a fact, through understand's research or a test; the person's preference, through clarify.
   5. **It ends in a recommendation, with why it beats the next best, or in "no clear winner"** with what would settle it: a comparison with no call leaves the decision undone, and a forced call hides a tie.
-  6. **Who decides follows clarify's shared rule:** the person's choice is put through conduct's ask, with the recommended option as the recommended answer; the agent's own choice is said in one line, the option taken and why it beat the next best, never the choice alone.
+  6. **Who decides follows understand's rule:** the person's choice is put through conduct's ask, with the recommended option as the recommended answer; the agent's own choice is said in one line, the option taken and why it beat the next best, never the choice alone.
 
   Advice:
   - screen first: an option that breaks a constraint is dropped before weighing, with the reason;
-  - reversibility: a choice easy to undo needs less weighing than one that is not, and the comparison says which kind it is (conduct's stakes, once designed, holds this judgment, D121);
+  - reversibility: a choice easy to undo needs less weighing than one that is not, and the comparison says which kind it is (conduct's stakes holds this judgment, D121, D133);
   - the cost of being wrong: what happens if the recommendation turns out wrong;
+  - a debate: when the stakes are high, or the person asks to debate the options, each option is put at its strongest through argue and attacked through challenge, every option to the same depth, before the comparison; agents arguing each side through conduct's delegate is still open there (D132);
   - what will be annoying later, the cost that shows only with time;
   - no false precision: scores and weights only where they mean something; words usually say more than "7 out of 10";
   - combining: when two options fail on different terms, a combination may beat both, and it goes back to brainstorm to be developed;
-  - shown or quiet: for the person's choice the comparison is shown; for the agent's own choice it may stay quiet, shown when asked.
+  - shown or quiet: for the person's choice the comparison is shown; for the agent's own choice it may stay quiet, shown when asked, as respond's first rule says (D134).
 
   Gaps: a fact that decides goes to understand's research or a test; only one option, to challenge; options that need developing, to brainstorm. Done when every option is weighed on the same terms and there is a recommendation, or "no clear winner" with what would settle it.
 - **Result** (D122), in one short shape:
@@ -295,9 +463,9 @@ understand/
   Would change:   the unknown that could flip it, and what would settle it
   ```
 
-  Where its rows fit in 120 characters, a table with options as rows and terms as columns serves too, as author's markdown's table advice says. weigh keeps nothing (D50): in a project, design's decide step records it, the decision's "why" naming the options weighed and why the chosen one beat the next best, the full comparison in the session notes with the discussion, and an option set aside for later in the topic's ideas file; outside any project, it stays in the response (D117). For the agent's own choice weighed quietly, only the "Recommended" line is said, with its reasoning, unless the person asks for the rest.
+  Where its rows fit in 120 characters, a table with options as rows and terms as columns serves too, as author's markdown's table advice says. weigh keeps nothing, by understand's rule: in a project, design's decide step records it, the decision's "why" naming the options weighed and why the chosen one beat the next best, the full comparison in the session notes with the discussion, and an option set aside for later in the topic's ideas file. For the agent's own choice weighed quietly, only the "Recommended" line is said, with its reasoning, unless the person asks for the rest.
 - **Files:** `SKILL.md` only, the shape inside it (D122).
-- **Material:** the person's OpenCode ideation (intensify, picking the directions that win and saying why; comparing benefits, costs, risks and unknowns, a non-obvious downside each, "what could go wrong" and "what will be annoying later"); VaultOps' "converge", whose recording side is design's decide step (D121); the person's delegation-routing skill, choosing by what happens if the choice is wrong; superpowers' "show the comparison only when it helps decide", whose home is still to settle (D121); the blueprint's decision format; reversibility as a general method.
+- **Material:** the person's OpenCode ideation (intensify, picking the directions that win and saying why; comparing benefits, costs, risks and unknowns, a non-obvious downside each, "what could go wrong" and "what will be annoying later"); VaultOps' "converge", whose recording side is design's decide step (D121); the person's delegation-routing skill, choosing by what happens if the choice is wrong; superpowers' "show the comparison only when it helps decide", whose home is still to settle (D121); the blueprint's decision format; reversibility as a general method; alirezarezvani's roast, MIT, whose panel cites research on dialectical inquiry and devil's advocacy, not checked, for the debate advice (D132).
 - **Tests** (D122):
   1. "Postgres or SQLite for this tool?": the terms stated first, from the frame; each option on every term, each with a real downside; a recommendation, with why it beats the next best, put through conduct's ask;
   2. an option that breaks a constraint: dropped before weighing, with the reason;
@@ -311,7 +479,8 @@ understand/
   10. two options failing on different terms: a combination offered, sent back to brainstorm to develop;
   11. a comparison whose rows fit in 120 characters: a table; one that does not: a list per option;
   12. "7 out of 10" scores with no meaning behind them: replaced by words;
-  13. in a project: the decision's "why" names the options weighed and why the chosen one won; the full comparison in the session notes; options set aside in the topic's ideas file.
+  13. in a project: the decision's "why" names the options weighed and why the chosen one won; the full comparison in the session notes; options set aside in the topic's ideas file;
+  14. "debate Postgres versus SQLite" for a choice hard to undo: each option argued through argue and attacked through challenge, to the same depth, then compared and a recommendation made (D132).
 - **Open:** none known.
 
 ### challenge
@@ -319,25 +488,25 @@ understand/
 - **Purpose:** an idea, a plan or a decision attacked before it is relied on, to find where it breaks: its assumptions, how it fails, scenarios such as ten times the size, a year later or the main assumption wrong, and what is missing; ending in a verdict, holds, holds with changes, or does not hold (D118, D124). The review root judges finished work about to land, and challenge attacks what is not yet relied on; design's review uses challenge for its adversarial part and keeps its own lenses; conduct's verify asks whether a claim of done is true, and fanout's validator, refuting findings against their sources, is a check of that kind and stays fanout's.
 - **Description:** "An idea, a plan or a decision attacked before it is relied on: its assumptions, how it fails, scenarios and what is missing, ending in a verdict. Use before relying on a plan or a decision, or when asked what could go wrong." A draft (D124).
 - **Callers** (D124):
-  - understand's own skill, by its routing line: before relying on an idea, a plan or a decision; a single option to test; "what could go wrong?", "poke holes in this", "play devil's advocate"; not for several options (weigh), finished work about to land (the review root), a claim that work is done (conduct's verify), an idea not yet clear (frame, or clarify), or a doubt a fact settles (research, or a test); it gives back the weaknesses, each with how serious it is and what would address it, and the verdict;
-  - its siblings, by path: brainstorm, in its developing step; weigh, which sends a single option here;
+  - understand's own skill, by its routing line: before relying on an idea, a plan or a decision; a single option to test; "what could go wrong?", "poke holes in this", "play devil's advocate"; not for several options (weigh), finished work about to land (the review root), a claim that work is done (conduct's verify), an idea not yet clear (frame, or clarify), a doubt a fact settles (research, or a test), or the case for a position (argue); it gives back the weaknesses, each with how serious it is and what would address it, and the verdict;
+  - its siblings, by path: brainstorm, in its developing step; weigh, which sends a single option here, and each option in a debate; argue, for the strongest objections to its case, taking only the weaknesses (D132);
   - design's review, for its adversarial part, plan, checking a plan before work starts, and design's decide step, for a decision before it is taken, through the main skill;
   - the person, typing it.
 
-  It uses frame, by path: an attack is measured against the frame's goal, constraints and "a good answer". Whether conduct's stakes recommends a challenge when the stakes are high is for stakes' design (D121).
+  It uses frame, by path: an attack is measured against the frame's goal, constraints and "a good answer". How high the stakes are is conduct's stakes' judgment; whether that calls for a challenge, and for fresh eyes, is the caller's (D121, D133).
 - **Flow** (D124). Rules, each with its reason:
   1. **Measured against the frame:** a weakness counts when it would stop the idea reaching its goal within its constraints; otherwise every flaw counts and the list never ends.
   2. **The idea is stated fairly first,** at its strongest, as its author would put it: attacking a weak version finds weaknesses the idea does not have.
   3. **The assumptions it rests on are named,** each marked checked or unchecked: an unchecked assumption is where most ideas break.
   4. **Each weakness comes with how serious it is (stops it, costs, minor), what shows it, and what would address it:** a weakness without these cannot be acted on.
   5. **The verdict is honest:** holds, holds with changes, or does not hold; nothing softened to please, nothing invented to look thorough, and "nothing found" said plainly. A challenge that flatters is worse than none.
-  6. **challenge changes nothing itself:** the verdict and the weaknesses go back to the caller; brainstorm develops, design revises, the person decides.
+  6. **Who acts on the verdict:** challenge changes nothing, by understand's rules; brainstorm develops, design revises, the person decides.
 
   Advice:
   - failure in advance: imagine it failed a year from now, and explain why;
   - scenarios: ten times the size, a year later, the main assumption wrong, a dependency changed, the person who knows it gone;
   - gaps: missing evidence, undefined terms, unstated constraints, unnamed dependencies;
-  - a claim without evidence, such as "users want this", is treated as an assumption and pushed to evidence (conduct's verify, once widened, ranks evidence, D123);
+  - a claim without evidence, such as "users want this", is treated as an assumption and pushed to evidence (understand's research ranks evidence, D140);
   - fresh eyes: when the stakes are high, the challenge goes to an agent that did not make the idea, through conduct's delegate, since the author shares its own blind spots;
   - few strong weaknesses over many weak ones, the most serious first, grouped by cause.
 
@@ -352,7 +521,7 @@ understand/
   Verdict:       holds, holds with changes (which), or doesn't hold (why)
   ```
 
-  challenge keeps nothing (D50): in a project, design's steps record it, the challenge as it went in the session notes, a decision's "why" naming the weaknesses considered and how each was met, fixed or accepted as a risk with the reason, and a weakness left open as an open question in the design's Open field or the topic's ideas file; outside any project, it stays in the response (D117). For the agent's own idea challenged quietly, only the verdict and the serious weaknesses are said, each with its reason, unless the person asks for the rest.
+  challenge keeps nothing, by understand's rule: in a project, design's steps record it, the challenge as it went in the session notes, a decision's "why" naming the weaknesses considered and how each was met, fixed or accepted as a risk with the reason, and a weakness left open as an open question in the design's Open field or the topic's ideas file. For the agent's own idea challenged quietly, only the verdict and the serious weaknesses are said, each with its reason, unless the person asks for the rest.
 - **Files:** `SKILL.md` only, the shape inside it (D124).
 - **Material:** VaultOps' critique (assumptions, contradictions, failure modes), simulate (scale, time, drift, change in the organisation) and gap detection (missing evidence, definitions, constraints, dependencies); gstack's office-hours diagnostic (pushback patterns, vague claims pushed to evidence, "interest is not demand", no flattery during a critique); the person's delegation-routing skill (attack to refute, a distinct lens for each challenger); the person's OpenCode ideation ("what could go wrong", "what will be annoying later"); superpowers' builder check, for the fresh-eyes advice; the pre-mortem and stating the other side at its strongest, as general methods. Its contradictions are among the consistency checks still to give one home (D123).
 - **Tests** (D124):
@@ -369,7 +538,82 @@ understand/
   11. after a challenge: the plan itself unchanged, the verdict handed back to the caller;
   12. a decision that is hard to undo and reaches far: fresh eyes offered through conduct's delegate;
   13. in a project: the challenge in the session notes; a decision's "why" naming the weaknesses considered and how each was met; a weakness left open in the design's Open field or the topic's ideas file;
-  14. the agent's own idea challenged quietly: only the verdict and the serious weaknesses said, each with its reason.
+  14. the agent's own idea challenged quietly: only the verdict and the serious weaknesses said, each with its reason;
+  15. "make the case for X": argue, which uses challenge for its objections (D132).
+- **Open:** none known.
+
+### argue
+
+- **Purpose:** the strongest honest case for a position: the position stated precisely, its best reasons with their evidence, the strongest objections met, its weaknesses admitted, and the result labelled one-sided (D132). It is challenge's mirror: challenge makes the case against an idea, argue the case for it. It builds a case and decides nothing, which is weigh's or the person's. Whether a claim is true is research's fact, which searches both ways for a verdict; argue builds one side on purpose, and says so. A debate, "debate X versus Y", is weigh's, which puts each option through argue and challenge when the stakes are high or the person asks for a debate.
+- **Description:** "The strongest honest case for a position: the position stated, its best reasons with evidence, the strongest objections answered, its weaknesses admitted, and the result labelled as one-sided. Use when asked to argue for something, make the case for it, or state a view at its strongest." A draft (D132).
+- **Callers** (D132):
+  - understand's own skill, by its routing line: "argue for X", "make the case for X", "what's the strongest argument for this?"; not for the case against, "play devil's advocate" included (challenge); choosing between options, "debate X versus Y" included (weigh); whether a claim is true (research's fact); finding options (brainstorm); or writing the persuasive document itself (author, which uses argue for the case). It gives back the case: the position, its reasons with their evidence, the objections and how each was met, the weaknesses, how strong the case is, what would change it, and the one-sided label;
+  - its siblings, by path: weigh, for each option at its strongest before a high-stakes choice; discuss, for an item where the person asks for a case;
+  - through the main skill: conduct's respond, for the person's view at its strongest when the agent disagrees with it; author, for a proposal's case, such as issue's feature;
+  - the person, typing it.
+
+  It uses frame, by path, for the position, its goal, constraints and audience; research, mostly fact, for the evidence behind each reason; challenge, for the strongest objections, taking only its weaknesses, not its verdict, since a verdict inside argue would turn the case into a judgment; and conduct's delegate, for objections from an agent that did not build the case when the stakes are high.
+- **Flow** (D132). Rules, each with its reason:
+  1. **The position is stated precisely first,** through frame: what is claimed, what it is for, under which constraints, and for whom. A vague position can be defended against anything, so its case proves nothing.
+  2. **Every reason rests on evidence, or is marked as an assumption,** in research's findings format with its strength; "from memory" counts as only said; nothing is false or overstated. A case built on a false claim fails when someone relies on it.
+  3. **The strongest objections are met, not the weakest:** found through challenge, each answered with evidence, conceded, or met by narrowing the position, such as "X is always faster" narrowed to "X is faster for reads under this load", the case saying from what it was narrowed and why. A case that answers only weak objections is a strawman turned around.
+  4. **Weaknesses are admitted:** an objection that still stands, or a reason that is thin, is said. A hidden weakness is found later by someone else, at a worse time.
+  5. **The result is labelled one-sided:** the case for, not a verdict; the choice stays with weigh or the person. Unlabelled, a case reads as a recommendation.
+
+  Keeping nothing, marking guesses and unknowns and changing nothing in the work are understand's rules (D131).
+
+  Advice:
+  - the strongest reasons first, a few strong ones over many weak ones, each tied to the position's goal;
+  - the audience's concerns, from frame, decide which reasons lead; author relies on this;
+  - the strongest objections are the best-informed opponent's; when the stakes are high, they come from an agent that did not build the case, through conduct's delegate;
+  - against an objection, whether the position stands even if every checkable fact in it is true: its facts checked, its interpretation argued, its rhetoric set aside;
+  - a forecast in the case is checked against how often such things succeed, the outside view, since a case built from the inside tends to be too optimistic;
+  - a stronger version of the position, when found, is said alongside the case, not argued unasked, since which position is argued is the caller's;
+  - the person's own view, for respond, stated as they would put it, and checked with them when it matters;
+  - for weigh, every option argued to the same depth, so none looks stronger from effort alone.
+
+  Instructions, in the order the work happens:
+  1. **State the position** with frame.
+  2. **Gather the reasons,** each with its evidence through research, mostly fact; a reason not checked is marked as an assumption.
+  3. **Find the strongest objections** with challenge.
+  4. **Meet each objection:** answer it, concede it, or narrow the position.
+  5. **Admit what is left** as weaknesses, and rate the case.
+  6. **Last instruction, before the case is returned:** the position stated; every reason with its evidence or marked; the strongest objections met; the weaknesses named; the case rated; the one-sided label present; understand's rules hold.
+
+  Gaps: the case against goes to challenge; a choice, to weigh; whether a claim is true, to research's fact. When no honest case exists, the best found is shown and rated weak, and nothing is invented, as challenge says "nothing found" plainly.
+- **Result** (D132): understand's shape, with argue's own part:
+
+  ```text
+  Position:    stated precisely; if narrowed, from what and why
+  Argued for:  the goal, constraints and audience
+  Reasons:     strongest first, each with its evidence and strength, or marked as an assumption
+  Objections:  the strongest, each answered, conceded, or met by narrowing
+  Weaknesses:  what still stands against it
+  Strength:    strong, moderate or weak, from the evidence, and why
+  Next:        the evidence that would strengthen or break the case
+  One-sided:   the case for, not a verdict
+  ```
+
+  Strength rates the case on its evidence, not the choice, so a weak case and a strong one never look alike. How much is said is the caller's: asked directly, the full shape; weigh shows each option's strongest reasons and weaknesses inside its comparison; respond shows the person's view at its strongest in a line or two before the reply; author turns the case into a document's argument, keeping the weaknesses where the reader needs them. argue keeps nothing, by understand's rule: outside any project, the case stays in the response (D117); called by a skill, it goes back to that skill; in a project, design records it, the case for the chosen option in the decision's "why" and a weakness left open as an open question where it belongs.
+- **Files:** `SKILL.md` only, the shape inside it (D132).
+- **Material** (D132), adapted, never copied (D120): challenge's design, mirrored (the idea stated at its strongest first; each weakness with what shows it; "nothing found" said plainly); gstack's office-hours, MIT (an independent second opinion stating the strongest version of what the person is trying to build in two or three sentences, before naming a premise it thinks is wrong; its diagnostic challenging the strongest version of a claim, not a strawman); alirezarezvani's roast, MIT (a panel of distinct lenses whose Champion makes the bull case and looks for under-ambition, the bigger version left on the table; it cites research on dialectical inquiry and devil's advocacy, not checked, which belongs to weigh's debate advice); alirezarezvani's stock-analysis epistemics, MIT (whether a position survives if every checkable fact in the other side's case is true; facts checked, interpretation argued, rhetoric discounted; a forecast checked against base rates, since the inside view runs optimistic); the steelman and the parts of an argument, a claim, its grounds, its qualifier and the objections it answers, as general methods, from memory; respond's open note on stating the person's view at its strongest (D123).
+- **Tests** (D132):
+  1. "make the case for a monorepo": the position stated through frame; reasons strongest first, each with its evidence; the strongest objections found through challenge and each met; weaknesses admitted; Strength and Next given; labelled one-sided;
+  2. "argue that X is always faster", when it is only faster for reads: the position narrowed, saying from what and why;
+  3. no honest case exists: the best found shown and rated weak, nothing invented;
+  4. a reason recalled from memory: checked through research's fact, or ranked as only said;
+  5. "play devil's advocate on this plan": challenge, not argue;
+  6. "Postgres or SQLite?": weigh; "debate Postgres versus SQLite": weigh too, which uses argue and challenge for each option, since a debate was asked for, each option argued to the same depth;
+  7. "is it true that X?": research's fact;
+  8. "write a proposal for X": author, which uses argue for the case;
+  9. "give me options for X": brainstorm;
+  10. respond disagreeing with the person: their view at its strongest in a line or two before the reply, checked with them when it matters;
+  11. challenge inside argue: only its weaknesses taken as objections; no verdict shown;
+  12. high stakes: the objections from an agent that did not build the case, through conduct's delegate;
+  13. an objection whose checkable facts are all true: the case says whether the position still stands;
+  14. a case resting on a forecast: checked against how often such things succeed;
+  15. outside any project: the case in the response; in a project: the case for the chosen option in the decision's "why", and a weakness left open as an open question;
+  16. in a discussion, "make the case for keeping it" on one item: argue inside that item, then the item put to the person through conduct's ask, as discuss says.
 - **Open:** none known.
 
 ### naming
@@ -425,7 +669,7 @@ understand/
   Example:     where one is needed
   ```
 
-  A term used two ways and not yet resolved is listed under "flagged ambiguities", with its two meanings. naming keeps nothing (D50): in a project, a naming decision goes in the decisions log through design's decide step, the rejected words in its "why"; a glossary entry is written by the work that asked for it, and used directly, the agent writes what the person approved, as act says; outside any project, it stays in the response (D117). The glossary lives where the project already keeps one; with none, `GLOSSARY.md` at the project's root, created when there is something to write in it, since code, docs and contributors share it, not only the design; in a project the person does not own, in the blueprint, wherever setup placed it.
+  A term used two ways and not yet resolved is listed under "flagged ambiguities", with its two meanings. naming keeps nothing, by understand's rule: in a project, a naming decision goes in the decisions log through design's decide step, the rejected words in its "why"; a glossary entry is written by the work that asked for it, and used directly, the agent writes what the person approved, as act says. The glossary lives where the project already keeps one; with none, `GLOSSARY.md` at the project's root, created when there is something to write in it, since code, docs and contributors share it, not only the design; in a project the person does not own, in the blueprint, wherever setup placed it.
 - **Files:** `SKILL.md` only, both shapes and what makes a good name inside it (D125).
 - **Material:** meddah's naming decisions (the rejected words, the chosen one and why; a part named after its whole, a word borrowed from a nearby meaning); mattpocock's domain modelling, MIT (the glossary with words to avoid, flagged ambiguities, terms checked against the glossary and the code, a file created only when there is something to write); skillbook's own naming decisions (D33, D40, D48, D100); this repository's `GLOSSARY.md`.
 - **Tests** (D125):
@@ -450,16 +694,16 @@ understand/
 - **Purpose:** finding out from sources: the project's code and files, documentation, the web, papers and other products (D59, D128). Its own `SKILL.md` holds what its three parts share and chooses among them, answering nothing itself, as clarify's does: fact, one question answered or one claim checked; survey, what exists on a subject, compared; analyze, why something happens. A part exists only where the steps differ. How each kind of source is read and trusted is the same whatever the question, so the kinds of source are reference files, not parts (D128). research is the one home of the findings format.
 - **Description:** "Finding out from sources, such as the project's code and files, documentation, the web, papers and other products: a question answered, a claim checked, what exists on a subject compared, or why something happens. Every finding comes with its source, whether it was read or inferred, and how strong it is, and what was not found is listed. Use when a question or claim needs facts from several sources or from outside the project, an overview of what exists, or a cause that is not obvious." A draft (D128).
 - **Callers** (D128):
-  - understand's own skill, by its routing line, for the person's requests and as a discussion's research step: when a question or claim needs facts from several sources or from outside the project; a finding others will rely on, so where it came from matters; what exists on a subject, such as tools, alternatives, competitors, prior art or papers; why something happens, when the cause is not obvious; a fact an option or a weakness hinges on. Not for a quick look inside the task, which the agent just reads, as clarify's shared rules say; what the person means (clarify); what only someone else knows (clarify's questionnaire); new options to invent (brainstorm, since survey finds only what exists); a choice between options (weigh); whether work is done (conduct's verify). It gives back the findings with their sources; for a claim, the verdict and how strong the evidence is; for a survey, the comparison; for an analysis, the cause; and in every case what was not found and what comes next;
-  - its siblings, by path: frame, for a fact beyond the project's files; brainstorm, for prior art through survey and for a fact an option hinges on; weigh and challenge, for a fact an option or a weakness hinges on; naming, for whether a public name is free;
+  - understand's own skill, by its routing line, for the person's requests and for an item in discuss: when a question or claim needs facts from several sources or from outside the project, how something in the project works included, when that needs reading across files (D137); a finding others will rely on, so where it came from matters; what exists on a subject, such as tools, alternatives, competitors, prior art or papers; why something happens, when the cause is not obvious; a fact an option or a weakness hinges on. Not for a quick look inside the task, which the agent just reads, as understand's rules say; what the person means (clarify); what only someone else knows (clarify's questionnaire); new options to invent (brainstorm, since survey finds only what exists); a choice between options (weigh); whether work is done (conduct's verify). It gives back the findings with their sources; for a claim, the verdict and how strong the evidence is; for a survey, the comparison; for an analysis, the cause; and in every case what was not found and what comes next;
+  - its siblings, by path: frame, for a fact beyond the project's files; brainstorm, for prior art through survey and for a fact an option hinges on; weigh and challenge, for a fact an option or a weakness hinges on; argue, for the evidence behind each reason; naming, for whether a public name is free;
   - through the main skill: design's research step, which files the result in the blueprint; test's debug, which uses analyze when a cause is not obvious (D59); implement, for how a library or an interface behaves; maintain, for a survey of tools or dependencies; ship, for an incident's cause, through analyze;
   - the person, asking for it by name.
 
-  It uses frame, by path, to state its question; conduct's verify, for how strong each piece of evidence is, once verify is widened (D123); conduct's delegate, as a fanout, when there is a lot to read and a search cannot narrow it (D99); and the harness's own search tools, such as a web search or a deep-research mode, which do the searching: research is the guideline and they are the implementation, as with delegate (D115).
+  It uses frame, by path, to state its question; conduct's delegate, as a fanout, when there is a lot to read and a search cannot narrow it (D99); and the harness's own search tools, such as a web search or a deep-research mode, which do the searching: research is the guideline and they are the implementation, as with delegate (D115).
 - **Flow** (D128). Rules, each with its reason:
   1. **The question is stated before searching,** through frame; for a single crisp question, one line is enough. Without a stated question, a search drifts and cannot tell when it is done.
   2. **Every finding carries its source, exact enough to check:** a path and line, a link or a paper's reference, and the quoted words where the finding rests on them. This is act's evidence rule applied to findings: a finding nobody can trace cannot be trusted or rechecked.
-  3. **Every finding says how strong it is,** in verify's ranking: seen or measured, read at its source, inferred (from a snippet, a summary or reasoning), only said. What the agent recalls from its own knowledge is marked "from memory", ranked as only said, and checked at a source before anything relies on it, since it can be out of date or wrong. A snippet or a memory passed off as read is how wrong facts spread.
+  3. **Every finding says how strong it is,** in this ranking, whose one home is here, beside the findings format (D140): seen or measured, read at its source, inferred (from a snippet, a summary or reasoning), only said. What the agent recalls from its own knowledge is marked "from memory", ranked as only said, and checked at a source before anything relies on it, since it can be out of date or wrong. A snippet or a memory passed off as read is how wrong facts spread.
   4. **What was looked for and not found is reported,** with where it was looked. Negative results are results: an agent told to find things otherwise invents them, and silence reads as full coverage.
   5. **A finding is matched to the case it is used for:** the version, the platform and the date it applies to are checked against the question's. A true fact about another version is a wrong answer.
   6. **Findings that disagree are shown side by side,** with which is stronger and why, never silently resolved. A silent choice hides the doubt the person needs to see.
@@ -471,6 +715,8 @@ understand/
   - a snippet is a lead: the source is opened before the finding is relied on;
   - for a finding others will rely on, about two independent sources; independent means different origins, so copies of one source count once;
   - nearest and cheapest first: the project's files, then the documentation for the version in use, then the wider web and papers;
+  - each kind of source is read through its reference file, which says how it is searched and how far it is trusted (D128, D140);
+  - when there is a lot to read and a search cannot narrow it, conduct's delegate, as a fanout (D99, D140);
   - search terms varied: synonyms, the exact error message, the words the other side uses;
   - a small experiment can be a source: when running something settles a fact more surely than reading, it is run, within what conduct's act and guardrails allow;
   - when new sources stop changing the answer, stop, and say what was not covered;
@@ -478,11 +724,13 @@ understand/
 
   Instructions, in the order the work happens:
   1. **State the question** with frame, by path.
-  2. **Choose the part by what the answer looks like:** a single answer, or a verdict on a claim: fact; a list of what exists, compared: survey; a cause: analyze. A request that needs several, such as "why do users leave, and what do competitors do?", takes each part for its own question, and the parts call each other: survey and analyze use fact for a candidate's claim or a single fact.
-  3. **Choose the sources,** reading the reference file for each kind used; the harness's search tools do the searching.
-  4. **When there is a lot to read** and a search cannot narrow it: conduct's delegate, as a fanout.
-  5. **Rank each finding** with conduct's verify.
-  6. **Last instruction, before anything is returned:** each finding has its source and its strength; what was not found is listed; findings that disagree are shown side by side; the answer meets frame's "a good answer", or what is still open is named.
+  2. **Route to the part** (D140):
+     - **fact:** when the answer is a single answer to a question or a verdict on one claim, such as how a library behaves, whether a claim holds, or how something in the project works when that needs reading across files; not for what exists on a subject (survey), why something happens (analyze), or a quick look inside the task, which the agent just reads; it gives back the answer, or the verdict, supported, mixed, unsupported or unknown, with the findings for and against;
+     - **survey:** when what exists on a subject is wanted, compared on the same terms: tools, libraries, alternatives, competitors, prior art, papers; not for inventing new options (brainstorm), choosing among them (weigh), or one claim about a candidate (fact); it gives back the candidates compared on the same terms, the screened-out with why, and the coverage and date;
+     - **analyze:** when why something happens is not obvious, such as a failure, a behaviour or an incident; not for the fix, which is the caller's, test's debug, implement or ship, or a single fact (fact); it gives back the cause traced back to its trigger, what was ruled out, and where a fix belongs.
+
+     A request that needs several, such as "why do users leave, and what do competitors do?", takes each part for its own question, and the parts call each other: survey and analyze use fact for a candidate's claim or a single fact.
+  3. **Last instruction, before anything is returned:** each finding has its source and its strength; what was not found is listed; findings that disagree are shown side by side; the answer meets frame's "a good answer", or what is still open is named.
 
   Done when the question is answered as framed, or when more searching would not change the answer.
 - **Result** (D50, D59, D128): understand's shape, extended:
@@ -499,7 +747,7 @@ understand/
 
   survey and analyze add a part of their own and keep the rest. The findings format, whose one home moved here from conduct's fanout: each finding has the claim, in one sentence; its source, a path and line, a link or a reference; the quoted words, where it rests on them; its strength, with "from memory" for what the agent recalled; and what it applies to, a version, a platform or a date, where that matters. research holds the fields; the text is what the person sees, and fanout defines the form its agents write so its script can merge and check them. Advice: the answer first, then the findings, those the answer rests on at the top; every finding stays in, since the sources are the point.
 
-  research keeps nothing (D50). Used directly outside any project, the result stays in the response (D117); called by a skill, it goes back to that skill; in a project, design's research step files it in the blueprint's research strand as a note on its topic, in the form author's blueprint skill holds, and a decision that rests on it links to it; turned into a document for others, author does that. The research strand holds what was learned from sources, a claim about the world included; the evidence log holds the project's own claims checked by verify (D90). A small experiment run during research stays with its research note.
+  research keeps nothing, by understand's rule: in a project, design's research step files it in the blueprint's research strand as a note on its topic, in the form author's blueprint skill holds, and a decision that rests on it links to it; turned into a document for others, author does that. The research strand holds what was learned from sources, a claim about the world included; the evidence log holds the project's own claims checked by verify (D90). A small experiment run during research stays with its research note.
 - **Files** (D128): `SKILL.md`; in `references/`, one file per kind of source: `code.md`, reading code as a source; `documentation.md`, official documentation, changelogs and release notes, for the version in use; `web.md`, pages, forums and social media; `papers.md`, academic literature; `products.md`, other products and competitors. No scripts: the merging script stays with fanout. A full literature review, with search terms, criteria for including a paper and a record of what was screened, becomes a part only if tests show agents get it wrong with the papers file alone.
 - **Material** (D128), all MIT, adapted and never copied (D120): mattpocock's research (primary sources; every claim followed back to the source that owns it; the reading given to a background agent); alirezarezvani's research suite: research (recalled knowledge in a labelled block; thin results reported, never dropped; a stop after repeated tool failures), deep-research (a page that fails to load gives no finding, never an invented link), deepread, for documentation and papers (an author's central claim recorded as a statement; an example never promoted to evidence; reasoning faults: correlation taken as cause, one case generalised, no baseline, shifting terms; repeated evidence is not independent support), litreview, for papers (repeat hits across separate searches; recurring authors; citations per year; older and newer work searched apart; term drift; zero results meaning niche terms or a genuine gap), pulse, for the web (each platform's bias; the notably absent; the same word is not always the same claim; never cite from a snippet), and its product and market skills, for products (use the product; current pricing and hidden costs; reviews; public data only, each site's terms respected; two independent estimates and how far apart they are); the person's `delegation-routing` (provenance; negative results are results). Left out: numeric scores and 1–10 confidences, which are false precision; keyword routing; fixed choices of tools.
 - **Tests** (D128):
@@ -525,27 +773,27 @@ understand/
   20. repeated tool failures: research stops and shares what it collected;
   21. in a project: filed by design's research step in the research strand as a note on its topic; outside any project: kept in the response;
   22. a task's own claim to be done: verify and the evidence log, not the research strand.
-- **Open:** checked against the shape every skill with sub-skills takes when the flows are revisited (D112). Its ranking of evidence waits on verify's widening; if verify is not widened, the ranking moves into research's shared rules (D123, D128).
+- **Open:** none known.
 
 #### fact
 
 - **Purpose:** one question answered or one claim checked from sources: the answer, or a verdict with the evidence for and against (D128). Typical cases: how something behaves in a given version, a provider's limit, whether a name is free, whether a claim holds.
 - **Description:** "One question answered or one claim checked from sources: the answer with its findings, or a verdict (supported, mixed, unsupported or unknown) with the evidence for and against. Use when a single fact matters enough to need sources, such as how something behaves, a limit, whether a name is free, or whether a claim is true." A draft (D128).
-- **Callers** (D128): research, when the answer is a single answer or a verdict, which is how frame, brainstorm, weigh, challenge and naming reach it; survey, to test a candidate's claim; analyze, for a single fact among its evidence; the person.
+- **Callers** (D128): research, by its routing line: when the answer is a single answer or a verdict; not for what exists on a subject (survey), why something happens (analyze) or a quick look inside the task; it gives back the answer or the verdict, with the findings for and against (D140). Research is how frame, brainstorm, weigh, challenge, argue and naming reach it; survey, to test a candidate's claim; analyze, for a single fact among its evidence; the person.
 - **Flow** (D128), under research's shared rules. Rules, each with its reason:
   1. **A claim is tested both ways:** evidence against is searched for as hard as evidence for. Searching only for support always finds it.
   2. **The verdict follows the strength of the evidence, not the number of findings:** one official statement can outweigh ten posts repeating each other. Counting copies rewards whatever has spread most.
 
   Advice:
   - for a claim, the hypothesis stated first, and the searches against it built from named patterns: the opposite term, a counter-example, the negation, a comparison, a later date, the other side's view;
-  - about a third of the searching aimed against it;
+  - about a third of the searching aimed against it, enough that the claim is tested rather than only confirmed (D137);
   - "X can't do this" without the error, the documented statement or a probe counts as only said;
   - the answer as short as the question allows.
 
   Instructions, in the order the work happens:
   1. **State the question or claim** by research's first rule; for a claim, the hypothesis.
   2. **Search,** nearest sources first, as research's advice says; for a claim, both ways.
-  3. **Rank the findings by strength** with conduct's verify.
+  3. **Rank the findings by strength,** by research's rule 3.
   4. **Last instruction, before anything is returned:** an answer or a verdict; for a claim, evidence both for and against searched for; research's own last instruction holds as well.
 - **Result:** research's result, with no part of its own: the Answer is the answer or the verdict, and for a claim the findings are grouped under For and Against.
 - **Files:** `SKILL.md` only.
@@ -564,8 +812,8 @@ understand/
 #### survey
 
 - **Purpose:** what exists on a subject, found widely and compared on the same terms: tools, libraries, approaches, products and competitors, prior art or papers (D59, D128). survey finds what exists: it does not invent options (brainstorm) and does not choose (weigh).
-- **Description:** "What exists on a subject, found widely and compared on the same terms, such as tools, libraries, approaches, products, prior art or papers, with what was screened out and what was not covered. Use when asked what's out there, for alternatives or competitors, or for an overview of a field." A draft (D128).
-- **Callers** (D128): research, when the answer is a list of what exists; brainstorm, for prior art before or beside its own options; weigh, when the options themselves have to be found first; through the main skill, design for prior art and competitors, maintain for tools and dependencies, author's business writing for a market; the person.
+- **Description:** "What exists on a subject, found widely and compared on the same terms, such as tools, libraries, approaches, products, prior art or papers, with what was screened out and what was not covered. Use when asked what's out there, for existing alternatives or competitors, or for an overview of a field." A draft (D128).
+- **Callers** (D128): research, by its routing line: when the answer is what exists on a subject, compared; not for inventing options (brainstorm), choosing among them (weigh) or one claim about a candidate (fact); it gives back the candidates compared, the screened-out with why, and the coverage and date (D140); brainstorm, for prior art before or beside its own options; weigh, when the options themselves have to be found first; through the main skill, design for prior art and competitors, maintain for tools and dependencies, author's business writing for a market; the person.
 - **Flow** (D128), under research's shared rules. Rules, each with its reason:
   1. **The scope and the terms are set before searching:** what counts as in, and what each candidate is compared on, from frame's "a good answer" or the caller's criteria. Without them, candidates are compared on whatever each happens to show.
   2. **Wide before deep:** candidates are gathered from several kinds of source before any is examined closely. The first ones found are the most visible, not the best.
@@ -586,7 +834,7 @@ understand/
 
   Instructions, in the order the work happens:
   1. **Scope and terms:** from frame, or from the caller; when choosing the terms is the person's, clarify asks them.
-  2. **Search:** the reference file for each kind of source; conduct's delegate, as a fanout, when the field is wide.
+  2. **Search,** wide before deep, as research's advice says, a fanout included when the field is wide.
   3. **Screen:** each candidate in or out against the scope, with why.
   4. **Compare** on the terms, with evidence in every cell.
   5. **When a choice is wanted:** weigh, by path, takes the comparison as its options and terms.
@@ -623,7 +871,7 @@ understand/
 
 - **Purpose:** why something happens, worked back from what is seen to its cause, the cause tested before it is called one (D59, D128). Any problem: code, a build, a process, a product's numbers, an incident. It finds the cause; fixing it is the caller's. It traces a chain from the symptom back to the trigger, one chain per contributing cause, rather than a tree of root causes, which pushes agents to invent branches (D128).
 - **Description:** "Why something happens: the symptom stated exactly, one testable cause at a time, and the chain traced back to its trigger, with each link's evidence and what was ruled out. Use when the cause of a problem is not obvious, or when asked why something happens." A draft (D128).
-- **Callers** (D128): research, when the answer is a cause; test's debug, when a failure's cause is not obvious (D59); ship, for an incident's cause; the person, asking why something happens, in code or anywhere else.
+- **Callers** (D128): research, by its routing line: when why something happens is not obvious; not for the fix, which is the caller's, or a single fact (fact); it gives back the cause traced to its trigger, what was ruled out and where a fix belongs (D140); test's debug, when a failure's cause is not obvious (D59); ship, for an incident's cause; the person, asking why something happens, in code or anywhere else.
 - **Flow** (D128), under research's shared rules. Rules, each with its reason:
   1. **The symptom is stated exactly first:** what is seen, where, since when, how often, with the exact error. A vague symptom fits many causes.
   2. **One testable cause at a time,** stated as "X because Y" and tested by changing one thing at a time. Changes stacked together hide which one mattered.
@@ -633,7 +881,7 @@ understand/
   6. **When hypotheses keep failing, it stops and says so:** the problem may lie in the design, or in how the question was framed.
 
   Advice:
-  - after about three failed hypotheses, stop (rule 6);
+  - after about three failed hypotheses, stop (rule 6), since by then the framing or the evidence is usually what is wrong (D137);
   - first what changed recently, since a regression's cause is usually in the change; then the path the failure takes; then a reproduction;
   - compare with a working case and list every difference;
   - check what goes in and comes out at each boundary between components, run once, and see where it breaks;
@@ -648,11 +896,11 @@ understand/
 
   Instructions, in the order the work happens:
   1. **State the symptom,** with frame for the question.
-  2. **Gather evidence:** recent changes, the path, logs, a reproduction, through the reference file for each kind of source; probes and experiments run within what conduct's act and guardrails allow.
+  2. **Gather evidence:** recent changes, the path, logs, a reproduction, as research's advice says; probes and experiments run within what conduct's act and guardrails allow.
   3. **Test causes** one at a time, by the rules above.
   4. **Trace back** from the confirmed cause to its trigger.
   5. **When hypotheses keep failing:** stop and put it to the person through conduct's ask: continue, instrument further, or reframe through frame.
-  6. **Hand back:** the fix is the caller's, test's debug for code, implement for a change, ship for an incident; called directly, analyze names the fix as the next step.
+  6. **Hand back:** its probes removed through conduct's cleanup once the cause is confirmed; the fix is the caller's, test's debug for code, implement for a change, ship for an incident; called directly, analyze names the fix as the next step (D129).
   7. **Last instruction, before anything is returned:** the symptom is stated; every link in the chain has its evidence and is marked confirmed or hypothesis; the ruled-out causes are listed; research's own last instruction holds as well.
 - **Result:** research's result, plus:
 
@@ -670,7 +918,7 @@ understand/
   2. "Why do users drop off at the second screen?": analyze on product data, not code; correlation not taken as cause;
   3. a fix that seems obvious before any cause is confirmed: not given as the answer, the cause tested first;
   4. an error that shows in module A but starts in B: traced back to B;
-  5. three hypotheses fail: it stops and asks whether to continue, instrument further or reframe;
+  5. about three hypotheses fail with no new lead: it stops and asks whether to continue, instrument further or reframe;
   6. something that used to work: recent changes looked at first, then bisected;
   7. a cause that fits but has not been tested: labelled hypothesis;
   8. two contributing causes: both chains listed;

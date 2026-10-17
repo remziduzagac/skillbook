@@ -22,6 +22,8 @@ Ideas and open questions for implement, not decided. What is decided is in [../d
 
 ### code
 
+- Engineering practice and design patterns kept when implementing, raised after a file of about 11,000 lines was found: see [open.md](open.md), engineering practice.
+
 #### python
 
 #### typescript

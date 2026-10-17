@@ -29,3 +29,5 @@ Ideas and open questions for author, not decided. What is decided is in [../desi
 - Raised with challenge (D123): superpowers' builder check generalised to any document and its reader; the users are listed in the design. To settle: its name; a fresh agent or the same agent reading cold; how it reports.
 
 ### markdown
+
+- Decided (D111); reshaped (D135).

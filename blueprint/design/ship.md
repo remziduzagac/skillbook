@@ -60,7 +60,7 @@ ship/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:**
+- **Open:** names conduct's cleanup for a preview deployment, its removal proposed through guardrails (D129).
 
 ### rollback
 
