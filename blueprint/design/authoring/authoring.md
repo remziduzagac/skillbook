@@ -1,12 +1,11 @@
 # Design: authoring
 
-What a builder needs for authoring and its sub-skills; ideas not yet decided are in [../ideas/authoring.md](../ideas/authoring.md). Every section answers the same questions (D80); an empty field is not designed yet.
+What a builder needs for authoring and its sub-skills; ideas not yet decided are in [../../ideas/authoring.md](../../ideas/authoring.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
-authoring is a set of its own (D152, D154). Its blueprint skill, the form of each document, belongs to the blueprint set; its section stays here until blueprint is designed.
+authoring is a set of its own (D152, D154). The form of each kind of blueprint document belongs to the blueprint set, in [../blueprint/blueprint.md](../blueprint/blueprint.md) (D154, D167).
 
 ```text
 authoring/
-├── blueprint/
 ├── docs/
 ├── business/
 ├── articles/
@@ -29,18 +28,6 @@ authoring/
 - **Material:**
 - **Tests:**
 - **Open:**
-
-### blueprint
-
-- **Purpose:**
-- **Description:**
-- **Callers:**
-- **Flow:**
-- **Result:**
-- **Files:**
-- **Material:**
-- **Tests:**
-- **Open:** the decision format, "Decision" and "Why", carries weigh's comparison: the options weighed and why the chosen one won (D121).
 
 ### docs
 

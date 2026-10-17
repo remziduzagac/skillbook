@@ -1,6 +1,6 @@
 # Ideas: plan
 
-Ideas and open questions for plan, not decided. What is decided is in [../design/plan.md](../design/plan.md).
+Ideas and open questions for plan, not decided. What is decided is in [../design/essentials/plan.md](../design/essentials/plan.md).
 
 ## plan
 

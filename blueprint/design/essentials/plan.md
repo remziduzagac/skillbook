@@ -1,8 +1,8 @@
 # Design: plan
 
-What a builder needs for plan; ideas not yet decided are in [../ideas/plan.md](../ideas/plan.md). Every section answers the same questions (D80); an empty field is not designed yet.
+What a builder needs for plan; ideas not yet decided are in [../../ideas/plan.md](../../ideas/plan.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
-plan belongs to the essentials set; its software parts, breakdown, slices and sequence, kept in [../ideas/plan.md](../ideas/plan.md), belong to softeng (D152, D154).
+plan belongs to the essentials set; its software parts, breakdown, slices and sequence, kept in [../../ideas/plan.md](../../ideas/plan.md), belong to softeng (D152, D154).
 
 ```text
 plan/
@@ -10,7 +10,7 @@ plan/
 └── references/      claude.md, codex.md: where each harness has a plan mode and a task list
 ```
 
-Its former software-engineering parts, breakdown, slices and sequence, are kept, word for word, in [../ideas/plan.md](../ideas/plan.md), "Kept for the person's software-engineering skills", for the person's own software-engineering skills (D151).
+Its former software-engineering parts, breakdown, slices and sequence, are kept, word for word, in [../../ideas/plan.md](../../ideas/plan.md), "Kept for the person's software-engineering skills", for the person's own software-engineering skills (D151).
 
 ## plan
 
@@ -76,7 +76,7 @@ Its former software-engineering parts, breakdown, slices and sequence, are kept,
   ```
 
 - **Files:** `SKILL.md`; `references/claude.md` and `references/codex.md`, saying where each harness has a plan mode and a task list, as each harness's reference file maps what a skill leaves generic (D144, D155).
-- **Material:** superpowers' writing-plans ([../research/skill-collections.md](../research/skill-collections.md)); the harnesses' own plan modes and task lists.
+- **Material:** superpowers' writing-plans ([../../research/skill-collections.md](../../research/skill-collections.md)); the harnesses' own plan modes and task lists.
 - **Tests** (D155):
   1. "fix the typo in the README": single-step, no plan, done directly; "delete the old folder": a proposal under guardrails, not a plan; a single-step change whose two options give the person different results: asked through conduct's ask;
   2. "add dark mode and release it": the person's two items kept at the top; a test that both themes render added and marked; "add dark mode" expanded, its parts found and "follow the system setting, or a switch in the app?" asked; "release it" left as it is where the project keeps release steps; the checklist followed;

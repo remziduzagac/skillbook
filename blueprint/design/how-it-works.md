@@ -29,6 +29,8 @@ authoring      docs · business · articles · edit · issue · reader · markdo
 later          rigs · a knowledge base · routines
 ```
 
+The full tree, every skill with its one-line description, is in [skill-tree.md](skill-tree.md) (D167).
+
 - **essentials** is what any work needs (D63, D153, D154, D164). conduct holds how the agent behaves in every response: respond and act, which the main skill loads first with layout, how anything written in markdown is laid out, and rightsize, nothing missing and nothing extra for the reader; ask, how it asks the person anything, the harness's question tool included; explain, stakes, how much care something deserves, guardrails, verify, and cleanup, what it created and no longer needs (D65, D67, D94, D145, D158, D159). understand is understanding before acting, with the person and from sources. organize arranges anything with boundaries (D85). coordinate is working with agents not in this conversation: another agent now (delegate, brief), a later session (carryover), and every session, through the instruction documents it reads (instruct), skillbook set up in them (setup) and a session's lessons (learn) (D77, D97, D147). devise is deciding what the work will be and its steps: design, how to design anything, and plan, planning multipart work before acting (D59, D151). The main skill holds the wrap-up offer, which offers learn, then a carryover, when work stops with steps left (D164). layout, beside respond, holds the structure for every response and anything written in markdown; authoring's markdown adds the file rules where that set is installed (D154, D158).
 - **blueprint** keeps the spec-to-dev flow running: a project's design record from the idea to the hand-over to code, its files and folders, and the procedures that keep them intact, with the form of each document. It requires no design or engineering skill and uses whatever the person has, ours or their own; where its topics touch others, such as splitting a design file, which touches organize and modularity, it gives a hint pointing to the skill that holds the topic (D46, D47, D154).
 - **softeng** explains how good software is designed and made: its own design, architecture among it; planning's software parts, breakdown, slices and sequence; implement, which holds code, how to write each programming language well; test, review, ship and maintain (D36, D67, D68, D154).
@@ -38,7 +40,7 @@ later          rigs · a knowledge base · routines
 
 **Project skills.** Skills that only skillbook itself needs, such as skillbook-tree for making a skill (the general craft of descriptions, rules, instructions and tests; this tree's rules for naming, placing and checking it; and the checks of a skill for overlaps, contradictions, gaps and restrictions that are not needed) (D77, D112), live in this repository's project skill folders (`.agents/skills/`, linked from `.claude/skills/`) and are never shipped in any set (D67, D152). skillbook-tree is built first with its review checklist; making a skill is added later (D113).
 
-What each root holds is drafted in [../ideas/skill-tree.md](../ideas/skill-tree.md), each root marked with its set.
+What each root holds is drafted in [skill-tree.md](skill-tree.md), each root marked with its set.
 
 ## Kinds of skill
 

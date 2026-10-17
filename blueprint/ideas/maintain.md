@@ -1,6 +1,6 @@
 # Ideas: maintain
 
-Ideas and open questions for maintain, not decided. What is decided is in [../design/maintain.md](../design/maintain.md).
+Ideas and open questions for maintain, not decided. What is decided is in [../design/softeng/maintain.md](../design/softeng/maintain.md).
 
 ## maintain
 

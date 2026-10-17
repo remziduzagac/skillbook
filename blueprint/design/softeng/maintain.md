@@ -1,6 +1,6 @@
 # Design: maintain
 
-What a builder needs for maintain and its sub-skills; ideas not yet decided are in [../ideas/maintain.md](../ideas/maintain.md). Every section answers the same questions (D80); an empty field is not designed yet.
+What a builder needs for maintain and its sub-skills; ideas not yet decided are in [../../ideas/maintain.md](../../ideas/maintain.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
 maintain belongs to the softeng set (D152, D154).
 

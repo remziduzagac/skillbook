@@ -6,7 +6,7 @@ skillbook's own design, kept with its own blueprint method. skillbook is a publi
 
 1. [roadmap.md](roadmap.md): where the design stands and what comes next.
 2. [design/how-it-works.md](design/how-it-works.md): skillbook as a whole: its sets and roots, its kinds of skill, how skills are written, named and loaded.
-3. [ideas/skill-tree.md](ideas/skill-tree.md): the tree of skills, still being shaped.
+3. [design/skill-tree.md](design/skill-tree.md): the tree of skills, by set.
 
 ## The strands
 
@@ -18,7 +18,7 @@ skillbook's own design, kept with its own blueprint method. skillbook is a publi
 - [decisions.md](decisions.md): every decision with its reasons, D1 onward.
 - [evidence.md](evidence.md): every claim that was checked, with its evidence, E1 onward.
 - [requirements.md](requirements.md): what skillbook must do and be.
-- [design/](design/README.md): how skillbook works.
+- [design/](design/README.md): how skillbook works, a folder per set.
 
 ## How things are recorded
 

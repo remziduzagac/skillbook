@@ -1,6 +1,6 @@
 # Design: devise
 
-What a builder needs for devise, essentials' group for deciding what the work will be and its steps (D164); ideas not yet decided are in [../ideas/design.md](../ideas/design.md) and [../ideas/plan.md](../ideas/plan.md). Its two sub-skills have their own design files: [design.md](design.md), whose general part is devise's design, and [plan.md](plan.md). Every section answers the same questions (D80); an empty field is not designed yet.
+What a builder needs for devise, essentials' group for deciding what the work will be and its steps (D164); ideas not yet decided are in [../../ideas/design.md](../../ideas/design.md) and [../../ideas/plan.md](../../ideas/plan.md). Its two sub-skills have their own design files: [design.md](design.md), whose general part is devise's design, and [plan.md](plan.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
 devise belongs to the essentials set (D152, D154, D164).
 

@@ -1,6 +1,6 @@
 # Ideas: authoring
 
-Ideas and open questions for authoring, not decided. What is decided is in [../design/authoring.md](../design/authoring.md).
+Ideas and open questions for authoring, not decided. What is decided is in [../design/authoring/authoring.md](../design/authoring/authoring.md).
 
 ## authoring
 

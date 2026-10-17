@@ -1,6 +1,6 @@
 # Design: understand
 
-What a builder needs for understand and its sub-skills; ideas not yet decided are in [../ideas/understand.md](../ideas/understand.md). Every section answers the same questions (D80); an empty field is not designed yet.
+What a builder needs for understand and its sub-skills; ideas not yet decided are in [../../ideas/understand.md](../../ideas/understand.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
 understand belongs to the essentials set (D152, D154).
 

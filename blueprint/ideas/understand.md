@@ -1,6 +1,6 @@
 # Ideas: understand
 
-Ideas and open questions for understand, not decided. What is decided is in [../design/understand.md](../design/understand.md).
+Ideas and open questions for understand, not decided. What is decided is in [../design/essentials/understand.md](../design/essentials/understand.md).
 
 ## understand
 

@@ -25,7 +25,7 @@ How skills are made and reviewed in this repository; a project skill, never ship
 - **Reviewing several roots at once:** one reviewer per root, each loading this skill, so findings stay independent; the findings are then checked before they reach the person.
 - **Outside material:** adapted, never copied. What a skill takes from another collection or an earlier project is rewritten for skillbook's case, inside the skill, in a reference file of its own, or as a new skill where other skills need it too; no outside file is used as it is, and its licence is checked first (D30, D120).
 - **Making or changing a skill:** not covered here yet. Follow "How a skill is written" in `blueprint/design/how-it-works.md`, then review the result with this checklist.
-- **A skill's name, folder and place in the tree:** not covered here yet. Follow "Names" in `blueprint/design/how-it-works.md` and the tree in `blueprint/ideas/skill-tree.md`.
+- **A skill's name, folder and place in the tree:** not covered here yet. Follow "Names" in `blueprint/design/how-it-works.md` and the tree in `blueprint/design/skill-tree.md`.
 
 ## The checklist
 

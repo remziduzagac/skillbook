@@ -1,6 +1,6 @@
 # Ideas: implement
 
-Ideas and open questions for implement, not decided. What is decided is in [../design/implement.md](../design/implement.md).
+Ideas and open questions for implement, not decided. What is decided is in [../design/softeng/implement.md](../design/softeng/implement.md).
 
 ## implement
 

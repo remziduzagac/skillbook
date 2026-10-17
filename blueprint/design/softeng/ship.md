@@ -1,6 +1,6 @@
 # Design: ship
 
-What a builder needs for ship and its sub-skills; ideas not yet decided are in [../ideas/ship.md](../ideas/ship.md). Every section answers the same questions (D80); an empty field is not designed yet.
+What a builder needs for ship and its sub-skills; ideas not yet decided are in [../../ideas/ship.md](../../ideas/ship.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
 ship belongs to the softeng set (D152, D154).
 

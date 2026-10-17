@@ -1,6 +1,6 @@
 """Render the skill tree in ../skill-tree.md from tree.json.
 
-Usage: python3 blueprint/ideas/tree/render.py <out-dir>
+Usage: python3 blueprint/design/tree/render.py <out-dir>
 
 Writes three files into <out-dir>, to be pasted into their places in skill-tree.md:
 folders.txt (the tree, one block per set in the order of tree.json's "sets", to the closing fence),

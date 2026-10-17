@@ -1,6 +1,6 @@
 # Ideas: conduct
 
-Ideas and open questions for conduct, not decided. What is decided is in [../design/conduct.md](../design/conduct.md). Names the person's private projects: review before publishing.
+Ideas and open questions for conduct, not decided. What is decided is in [../design/essentials/conduct.md](../design/essentials/conduct.md). Names the person's private projects: review before publishing.
 
 ## respond
 

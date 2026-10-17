@@ -1,6 +1,6 @@
 # Ideas: essentials, the main skill
 
-Ideas and open questions for essentials' main skill, not decided. What is decided is in [../design/essentials.md](../design/essentials.md).
+Ideas and open questions for essentials' main skill, not decided. What is decided is in [../design/essentials/essentials.md](../design/essentials/essentials.md).
 
 ## essentials
 

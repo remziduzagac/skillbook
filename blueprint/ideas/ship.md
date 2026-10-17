@@ -1,6 +1,6 @@
 # Ideas: ship
 
-Ideas and open questions for ship, not decided. What is decided is in [../design/ship.md](../design/ship.md).
+Ideas and open questions for ship, not decided. What is decided is in [../design/softeng/ship.md](../design/softeng/ship.md).
 
 ## ship
 

@@ -1,6 +1,6 @@
 # Design: essentials, the main skill
 
-What a builder needs for essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work (D56, D71, D152, D153); ideas not yet decided are in [../ideas/essentials.md](../ideas/essentials.md). It is designed last, once the roots it routes to are designed (D80). Every section answers the same questions (D80); an empty field is not designed yet.
+What a builder needs for essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work (D56, D71, D152, D153); ideas not yet decided are in [../../ideas/essentials.md](../../ideas/essentials.md). It is designed last, once the roots it routes to are designed (D80). Every section answers the same questions (D80); an empty field is not designed yet.
 
 ## essentials
 
@@ -31,7 +31,7 @@ What a builder needs for essentials' main skill, listed to the model like every 
   The earlier draft, a diagram of steps routing to one root, gave way to this shape (D108, D112).
 - **Result:** none of its own; its rules shape every response (D136).
 - **Files:** `SKILL.md` only (D136).
-- **Material:** the pointer and description tests, and how Claude Code and Codex load skills ([../research/skill-loading.md](../research/skill-loading.md)); superpowers' start-of-session skill and hyperframes' entry skill with its routing table ([../research/skill-collections.md](../research/skill-collections.md)), adapted, never copied (D120).
+- **Material:** the pointer and description tests, and how Claude Code and Codex load skills ([../../research/skill-loading.md](../../research/skill-loading.md)); superpowers' start-of-session skill and hyperframes' entry skill with its routing table ([../../research/skill-collections.md](../../research/skill-collections.md)), adapted, never copied (D120).
 - **Tests** (D136):
   1. any request in a new session: the main skill loaded first, and act, respond, rightsize and layout read once, together in one turn (D149, D154, D158);
   2. a second request in the same conversation: none of the four read again;
