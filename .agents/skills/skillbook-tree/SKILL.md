@@ -46,7 +46,7 @@ Checks 1 to 7 and 11 hold for every skill, leaf skills too; checks 8 to 10 also 
     - **turns:** independent calls go together, and skills named for the same step are read in one turn; no check repeated without need;
     - **writing:** outputs rightsized, by conduct's rightsize; pointers where pasted content would do; no question to the person that is not truly open;
     - **delegation:** a step that should go to an agent goes through conduct's delegate; no fanout where a search would do;
-    - **loading:** other skills reached only at the moment they are needed; the skill's own file short, with what only some work needs in a linked file;
+    - **loading:** other skills reached only at the moment they are needed; the skill's own file short, with what only some work needs in a linked file, and a file that has grown trimmed through conduct's rightsize's lean (D157);
     - **the main context:** no step pours large output into the main session; bulk goes to a named file;
     - **checks:** the cheapest evidence that would fail if the claim were false.
 

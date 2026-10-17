@@ -164,10 +164,35 @@
       "rightsize"
      ],
      "mark": "●",
-     "desc": "nothing missing and nothing extra for the reader, parts comprehensive and exclusive, the point first, and the work rightsized; a five-question check that respond, authoring, organize, brief, carryover, instruct and act run (D145)",
+     "desc": "nothing missing and nothing extra for the reader, parts comprehensive and exclusive, the point first, and the work rightsized; a five-question check that respond, authoring, organize, brief, carryover, instruct and act run; its two parts rework what already exists (D145, D157)",
      "src": "own mp",
      "tail": [],
-     "kids": []
+     "kids": [
+      {
+       "path": [
+        "conduct",
+        "rightsize",
+        "lean"
+       ],
+       "mark": "●",
+       "src": "own mp",
+       "tail": [],
+       "kids": [],
+       "desc": "something that exists, its extra parts removed: each part judged by what it does for its reader, what does nothing cut, pasted content turned into pointers, repeats through organize's merge, nothing a rule requires lost; the list approved where others' work changes; code under tests (D157)"
+      },
+      {
+       "path": [
+        "conduct",
+        "rightsize",
+        "enrich"
+       ],
+       "mark": "●",
+       "src": "own",
+       "tail": [],
+       "kids": [],
+       "desc": "something that exists, its missing parts added: what its reader would still ask, answered from the project, the person or research, each addition sourced and checked, never invented, what cannot be found marked as a gap (D157)"
+      }
+     ]
     },
     {
      "path": [

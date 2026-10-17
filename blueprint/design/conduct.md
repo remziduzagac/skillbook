@@ -23,6 +23,9 @@ conduct/
 ├── verify/      evidence before "done"
 ├── guardrails/  propose, approve, apply
 ├── stakes/      how much care something deserves
+├── rightsize/   nothing missing, nothing extra for the reader
+│   ├── lean/       what exists, its extra parts removed
+│   └── enrich/     what exists, its missing parts added
 ├── cleanup/     what the agent created and no longer needs, removed
 ├── instruct/    instruction documents written and updated
 ├── setup/       skillbook set up on a machine or in a project
@@ -64,7 +67,7 @@ conduct/
 
   **Before saying done:**
   - **verify:** before claiming that work is done, fixed, passing or meets its requirements; not for approving a risky action before it is taken (guardrails), reviewing finished work about to land (the review root), or whether an idea holds (understand's challenge); it gives back each claim with its evidence beside it, confirmed or not, and who checked.
-  - **rightsize:** before a response, a report, a file, code or a design is returned or written, and when deciding how much to read or do; not for whether it is correct or done (verify), how to divide something into parts (organize) or how careful to be (stakes); it gives back the output, or the plan of the work, with nothing missing and nothing extra for its reader, the point first (D145).
+  - **rightsize:** before a response, a report, a file, code or a design is returned or written, and when deciding how much to read or do; and, through its lean and enrich, when something that already exists is to have its extra parts removed or its missing parts added; not for whether it is correct or done (verify), how to divide something into parts (organize) or how careful to be (stakes); it gives back the output, or the plan of the work, with nothing missing and nothing extra for its reader, the point first, or the thing reworked with its list of changes (D145, D157).
 
   **Setting up:**
   - **setup:** when skillbook is set up on a machine or in a project; not for writing a rule into an instruction document (instruct) or making a skill (skillbook-tree, in this repository); it gives back the install checked, the pointer added, the blueprint started, the instruction files checked and skills recommended.
@@ -97,7 +100,8 @@ conduct/
   13. a request about the agent's own work that fits no row: done under act's rules, no row forced (D115);
   14. "how risky is this migration?": stakes; "is it safe to do this without asking?": stakes, then guardrails (D133);
   15. "check this report has nothing missing and nothing extra for whoever reads it": rightsize; "is it correct?": verify (D145);
-  16. "write the brief for this agent": brief; "who should do this, and at which tier?": delegate (D147).
+  16. "write the brief for this agent": brief; "who should do this, and at which tier?": delegate (D147);
+  17. "this report has grown too long, trim it": rightsize, then lean; "what is this README missing?": rightsize, then enrich; "this `AGENTS.md` has grown too long": instruct, whose prune step goes through lean (D157).
 - **Open:** none known.
 
 ## respond
@@ -590,12 +594,12 @@ conduct/
 
 ## rightsize
 
-- **Purpose:** what anything given back, made or done needs for its reader: nothing missing, nothing extra, parts that cover everything without overlap, the point first; and for the work, only what the task needs read and done (D145). It is one judgment that many skills need, like stakes, so they call it rather than restate it; each skill that makes something keeps only what is specific to its output. It is named rightsize rather than lean, since "lean" names only the nothing-extra half.
-- **Description:** "Rightsizing anything given back, made or done: nothing missing and nothing extra for its reader, parts that cover everything without overlap, the point first. Use before returning a response or report, writing a file, code or a design, and when deciding how much to read or do." A draft (D145).
+- **Purpose:** what anything given back, made or done needs for its reader: nothing missing, nothing extra, parts that cover everything without overlap, the point first; and for the work, only what the task needs read and done (D145). It is one judgment that many skills need, like stakes, so they call it rather than restate it; each skill that makes something keeps only what is specific to its output. It is named rightsize rather than lean, since "lean" names only the nothing-extra half; lean now names its removing part. Its two sub-skills rework what already exists: lean removes what is extra, enrich adds what is missing; rightsize itself shapes what is being made now, and the line between them is whether the thing existed before this task (D157).
+- **Description:** "Rightsizing anything given back, made or done: nothing missing and nothing extra for its reader, parts that cover everything without overlap, the point first. Use before returning a response or report, writing a file, code or a design, and when deciding how much to read or do; its parts lean and enrich rework what already exists." A draft (D145, D157).
 - **Callers** (D145):
-  - conduct's own skill, by its routing line: before a response, a report, a file, code or a design is returned or written, and when deciding how much to read or do; not for whether it is correct or done (verify), how to divide something into parts (organize) or how careful to be (stakes); it gives back the output, or the plan of the work, with nothing missing and nothing extra for its reader, the point first;
+  - conduct's own skill, by its routing line (D157): before a response, a report, a file, code or a design is returned or written, and when deciding how much to read or do; and, through its lean and enrich, when something that already exists is to have its extra parts removed or its missing parts added; not for whether it is correct or done (verify), how to divide something into parts (organize) or how careful to be (stakes); it gives back the output, or the plan of the work, with nothing missing and nothing extra for its reader, the point first, or the thing reworked with its list of changes;
   - the main skill, by its one-line rule, the principle's pointer at the top of the tree, and by its first read (D149);
-  - its siblings in conduct, by path: respond, whose last instruction runs the check before every response; organize, whose boundary rule it serves; brief, for what an agent is told and the report it asks back; carryover, when the carryover is written; instruct, for its reader and prune steps; act, for the work;
+  - its siblings in conduct, by path: respond, whose last instruction runs the check before every response; organize, whose boundary rule it serves; brief, for what an agent is told and the report it asks back; carryover, when the carryover is written; instruct, for its reader step and, through lean, its prune step on an existing document (D157); act, for the work;
   - other roots and sets, through the main skill: authoring's markdown, before a file is returned, where that set is installed; later, implement for code and design for systems;
   - the person.
 
@@ -614,6 +618,12 @@ conduct/
   - usually missing: the reason behind a recommendation; what failed or was skipped; the next step; where the evidence is; the assumption the result rests on; the error path in code; the requirement each part of a design serves;
   - length follows the reader and the question, never a word count (D116).
 
+  Instructions (D157), for something that already exists; what is being made now takes only the last instruction below:
+  - **lean:** when something that exists carries parts that do nothing for its reader, such as an instruction file grown to 400 lines, reached through instruct, whose prune step comes here, a report that repeats itself, a skill file at build time, since it is carried every turn, an option in code nobody uses, or a component in a design no requirement needs; not for rewording within a sentence (respond, or authoring's edit), dividing or merging across files (organize, whose merge lean uses for repeats), the agent's own leftovers (cleanup) or deleting whole files (guardrails); it gives back the thing with its extra parts removed, and a list of what went and why;
+  - **enrich:** when something that exists leaves its reader asking, such as a README that does not say how to install, a design that does not say which requirement each part serves, a report without its evidence or its next step, or a skill missing its "when not" cases; not for writing from scratch (the skill that makes that thing), finding out for its own sake (understand's research) or whether it is correct (verify); it gives back the thing with what was missing added, each addition with its source, and what could not be found marked as a gap.
+
+  Each is used on request, or proposed when noticed; never done unasked on anything beyond the task, by act's rule to do exactly what was asked.
+
   **Last instruction, before anything is returned or written:**
   1. Who reads it, and what for?
   2. What could go without losing anything they need? It goes.
@@ -621,9 +631,9 @@ conduct/
   4. Is it top-down, and do its parts cover everything without overlap?
   5. Was anything a rule requires cut? It is put back.
 
-  Gaps: whether something is correct or done goes to verify; how to divide, to organize; how careful to be, to stakes; how a response is worded, to respond.
-- **Result:** none of its own; it shapes every output and the work. Its check is silent: the person sees only the result.
-- **Files:** `SKILL.md` only (D145).
+  Gaps: whether something is correct or done goes to verify; how to divide, to organize; how careful to be, to stakes; how a response is worded, to respond; reworking what already exists, to lean and enrich, above (D157).
+- **Result:** none of its own; it shapes every output and the work. Its check is silent: the person sees only the result. lean and enrich give back their own (D157).
+- **Files:** `SKILL.md`, with its two sub-skills, `lean/` and `enrich/`, each holding a `SKILL.md` (D145, D157).
 - **Material** (D145), adapted, never copied (D120): the person's definition, given 2026-10-17; respond's former first and fourth rules, necessary and sufficient and top-down (D60, D81, D83); instruct's prune step; mattpocock's no-op test for each sentence ([../research/mattpocock-skills.md](../research/mattpocock-skills.md), item 18); the cost mechanism ([../research/token-cost.md](../research/token-cost.md)).
 - **Tests** (D145):
   1. a one-line factual question: a one-line answer, no preamble, no closing offer;
@@ -635,7 +645,82 @@ conduct/
   7. an explanation: the point first;
   8. a question a search can answer: searched, not read in full;
   9. a draft that restates the question and summarises what was just said: both removed;
-  10. a safety note a rule requires, in a short answer: kept.
+  10. a safety note a rule requires, in a short answer: kept;
+  11. "trim this report", which exists: lean; "what's missing here?" about an existing README: enrich; a response being written: rightsize's own check (D157).
+- **Open:** none known.
+
+### lean
+
+- **Purpose:** something that already exists, reworked by removing what is extra: each part judged by what it does for its reader, what does nothing cut, pasted content turned into pointers, repeats merged, nothing a rule requires lost (D157). It is rightsize's removing part; what is being made now is rightsize's own check, and the line between them is whether the thing existed before this task.
+- **Description:** "Removing what is extra from something that exists: each part judged by what it does for its reader, what does nothing cut, pasted content turned into pointers, repeats merged, nothing a rule requires lost. Use when a file, document, design or code carries more than its reader needs, or a file carried every turn is to be trimmed." A draft (D157).
+- **Callers** (D157):
+  - rightsize, by its routing line: when something that exists carries parts that do nothing for its reader, such as an instruction file grown to 400 lines, reached through instruct, whose prune step comes here, a report that repeats itself, a skill file at build time, since it is carried every turn, an option in code nobody uses, or a component in a design no requirement needs; not for rewording within a sentence (respond, or authoring's edit), dividing or merging across files (organize, whose merge lean uses for repeats), the agent's own leftovers (cleanup) or deleting whole files (guardrails); it gives back the thing with its extra parts removed, and a list of what went and why;
+  - instruct, in conduct, by path: its prune step on an existing document comes here, so removing from what exists has one home;
+  - the project skill skillbook-tree, whose cost check trims a skill file that has grown;
+  - design's review, whose lean lens finds what lean would remove;
+  - authoring's edit, for removing whole parts, through essentials' main skill, where that set is installed;
+  - the person: "trim this", "this has grown too long".
+
+  Used on request, or proposed when noticed; never done unasked on anything beyond the task, by act's rule to do exactly what was asked.
+- **Flow** (D157). Rules, each with its reason:
+  1. **Each part is judged by what it does for its reader,** by rightsize's first rule, since what is extra depends on who reads it and what for.
+  2. **What does nothing goes:** a part whose removal loses nothing is cut; pasted content where a pointer would do becomes a pointer; a repeat goes through conduct's organize, its merge. An extra part costs the reader's attention and, for an agent, tokens on every later turn.
+  3. **Never below a rule:** anything a rule requires stays, by rightsize's sixth rule, since what a rule requires is needed by definition.
+  4. **The person approves first** when the thing was written by the person or by others: the list of changes, each part to go or become a pointer with why, before anything is applied; the result is reported with its check. The agent's own draft in this conversation needs none, being rightsize's ground. One approval, not organize's two, since the list shows every change exactly and the check after is evidence enough.
+  5. **Code is proposed, and changed under tests:** lean proposes, such as an unused option, dead code or needless duplication; the change is made by softeng's implement where it is loaded, by the contract between sets (D156), otherwise directly, with the project's tests run before and after. For code, nothing needed lost means the tests still pass.
+
+  Instructions, in the order the work happens:
+  1. **The reader,** and what the thing is for.
+  2. **List each part** with what it does for that reader: by a script, or through conduct's delegate by a light agent when the thing is large, never by reading everything twice in the main session.
+  3. **Mark what goes,** by rules 2 and 3.
+  4. **Apply,** after the approval rule 4 asks for; for code, by rule 5.
+  5. **Check:** every needed part still there or reachable by its pointer, and every pointer resolving; for code, the tests passing.
+  6. **Last instruction, before anything is returned:** nothing a rule requires was cut; every pointer resolves; the list of what went, with why, is ready; where the person's or others' work changed, the list was approved; for code, the tests pass.
+- **Result:** the thing reworked, plus each part removed or turned into a pointer, with why (D157).
+- **Files:** `SKILL.md` only (D157).
+- **Material:** rightsize's advice on what is usually extra; instruct's prune step; mattpocock's no-op test for each sentence ([../research/mattpocock-skills.md](../research/mattpocock-skills.md), item 18).
+- **Tests** (D157):
+  1. a 400-line instruction file, through instruct's prune step: each part listed with what it does, the parts that do nothing cut, a rule's requirement kept, the list approved before anything is applied;
+  2. pasted content in a document: turned into a pointer that resolves;
+  3. the same paragraph in two files: organize's merge;
+  4. "reword this sentence": respond, or authoring's edit, not lean;
+  5. an unused option in code: proposed, then changed under tests, by implement where it is loaded, otherwise with the tests run before and after;
+  6. the agent's own draft in this conversation: rightsize's own check, no approval;
+  7. extra parts noticed in a file edited for another task: proposed, not done.
+- **Open:** none known.
+
+### enrich
+
+- **Purpose:** something that already exists, reworked by adding what is missing: what its reader would still ask, answered from the project, the person or research, each addition sourced and checked, what cannot be found marked as a gap (D157). It is rightsize's adding part; what is being made now is rightsize's own check.
+- **Description:** "Adding what is missing to something that exists: what its reader would still ask, answered from the project, the person or research, each addition sourced and checked, what cannot be found marked as a gap. Use when a file, document, design or code leaves its reader asking." A draft (D157).
+- **Callers** (D157):
+  - rightsize, by its routing line: when something that exists leaves its reader asking, such as a README that does not say how to install, a design that does not say which requirement each part serves, a report without its evidence or its next step, or a skill missing its "when not" cases; not for writing from scratch (the skill that makes that thing), finding out for its own sake (understand's research) or whether it is correct (verify); it gives back the thing with what was missing added, each addition with its source, and what could not be found marked as a gap;
+  - the person: "what's missing here?", "this leaves me asking".
+
+  It uses authoring's reader, through essentials' main skill, where that set is installed; where it is not, its one-line fallback: list the questions a newcomer would ask (D156). Used on request, or proposed when noticed; never done unasked on anything beyond the task, by act's rule to do exactly what was asked.
+- **Flow** (D157). Rules, each with its reason:
+  1. **What the reader would still ask decides what is missing,** by rightsize's second rule, since a missing part costs a question or a redo.
+  2. **Never invented:** each addition comes from the project's files, from the person when only they know, or from understand's research for outside facts; what is not found is marked as a gap, since an invented answer reads as true.
+  3. **Each addition is checked true,** through conduct's verify, **and nothing is added that the reader would not ask for,** by rightsize's check, so enriching does not become padding.
+  4. **The person approves first** when the thing was written by the person or by others: the list of additions, each with its source and why, before anything is applied; the result is reported with each addition's source and the gaps. The agent's own draft in this conversation needs none.
+  5. **Code is proposed, and changed under tests:** such as a missing error path or test; made by softeng's implement where it is loaded, by the contract between sets (D156), otherwise directly, with the project's tests run before and after.
+
+  Instructions, in the order the work happens:
+  1. **The reader,** and what the thing is for.
+  2. **What the reader would still ask:** found by reading as that reader would, through authoring's reader where it is loaded; otherwise, by its fallback, the questions a newcomer would ask, listed.
+  3. **Find each answer,** by rule 2: the project's files first; the person, through conduct's ask, when only they know, such as which versions are supported; understand's research for outside facts. What is not found is marked as a gap.
+  4. **Apply,** after the approval rule 4 asks for, each addition with its source; for code, by rule 5.
+  5. **Check,** by rule 3.
+  6. **Last instruction, before anything is returned:** nothing invented; every addition has its source and was checked; nothing the reader would not ask for; the gaps are listed; where the person's or others' work changed, the list was approved; for code, the tests pass.
+- **Result:** the thing reworked, each addition with its source, plus the gaps (D157).
+- **Files:** `SKILL.md` only (D157).
+- **Material:** rightsize's advice on what is usually missing; authoring's reader, once designed.
+- **Tests** (D157):
+  1. a README without install steps: a newcomer's questions listed, answered from the project's files, added with their sources;
+  2. a fact no source gives: marked as a gap, not invented;
+  3. a choice only the person can make, such as which versions are supported: asked;
+  4. an addition nobody would ask for: left out by rightsize's check;
+  5. "write a README": the skill that writes it, not enrich.
 - **Open:** none known.
 
 ## cleanup
@@ -726,7 +811,7 @@ conduct/
   2. **What it must let an agent answer:** the questions and requests it serves, written first; they are its tests.
   3. **When updating, read the current document first** and keep what is still true.
   4. **Draft,** by the rules below; a new document's parts are planned through conduct's organize, whose split takes what the document must cover as its items (D148).
-  5. **Prune,** by conduct's rightsize's check: every line that changes nothing removed; what only some work needs moved into a skill or a linked file (D145).
+  5. **Prune:** a new document by conduct's rightsize's check; an existing one through rightsize's lean, the one home for removing from what exists; every line that changes nothing removed; what only some work needs moved into a skill or a linked file (D145, D157).
   6. **Check** against step 2.
   7. **Propose:** the person approves before it is saved; an instruction document changes every later session.
 
@@ -743,7 +828,7 @@ conduct/
 - **Material:** mattpocock's `writing-for-agents`; superpowers' `writing-skills`; workslate's and OpenCode's rules for principles files; meddah; the writing guides compared in [../research/skill-writing-guides.md](../research/skill-writing-guides.md).
 - **Tests** (D94):
   1. "add a rule": added to the right file, with its reason, without repeating a skillbook rule where the team uses skillbook;
-  2. a bloated `AGENTS.md` full of procedures: cut down to the facts, with the procedures proposed elsewhere;
+  2. a bloated `AGENTS.md` full of procedures: cut down to the facts through rightsize's lean, with the procedures proposed elsewhere (D157);
   3. "ALWAYS" and "NEVER" in capitals: rewritten with reasons;
   4. a tool name only one agent has, in a shared `AGENTS.md`: made neutral (D107);
   5. a personal preference to add: placed in the person's own file, not the shared one.

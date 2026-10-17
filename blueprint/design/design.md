@@ -58,7 +58,7 @@ design/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:** One home for consistency checks, contradictions, duplication, gaps and drift, which verify's four checks, organize's check, design's review, skillbook-tree's checklist and challenge each hold today: to settle with design's review (D123).
+- **Open:** One home for consistency checks, contradictions, duplication, gaps and drift, which verify's four checks, organize's check, design's review, skillbook-tree's checklist and challenge each hold today: to settle with design's review (D123). Its lean lens finds what conduct's rightsize's lean would remove, and the removing is lean's (D157).
 
 ### start
 

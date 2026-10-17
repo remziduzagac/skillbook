@@ -92,8 +92,17 @@ skills/skillbook/                 essentials, essentials' main skill, listed to 
 │   │                             below a rule; it judges and the caller acts: guardrails, delegate, verify, weigh and
 │   │                             understand map it (D121, D133)
 │   ├── rightsize/                conduct-rightsize: nothing missing and nothing extra for the reader, parts
-│   │                             comprehensive and exclusive, the point first, and the work rightsized; a five-question
-│   │                             check that respond, authoring, organize, brief, carryover, instruct and act run (D145)
+│   │   │                         comprehensive and exclusive, the point first, and the work rightsized; a five-question
+│   │   │                         check that respond, authoring, organize, brief, carryover, instruct and act run; its
+│   │   │                         two parts rework what already exists (D145, D157)
+│   │   ├── lean/                 conduct-rightsize-lean: something that exists, its extra parts removed: each part
+│   │   │                         judged by what it does for its reader, what does nothing cut, pasted content turned
+│   │   │                         into pointers, repeats through organize's merge, nothing a rule requires lost; the
+│   │   │                         list approved where others' work changes; code under tests (D157)
+│   │   └── enrich/               conduct-rightsize-enrich: something that exists, its missing parts added: what its
+│   │                             reader would still ask, answered from the project, the person or research, each
+│   │                             addition sourced and checked, never invented, what cannot be found marked as a gap
+│   │                             (D157)
 │   ├── cleanup/                  conduct-cleanup: what the agent itself created and no longer needs, removed by exact
 │   │                             path or ID: its own without asking, the rest proposed; what is kept said with why; act
 │   │                             names it before "done" (D126, D129)
@@ -384,7 +393,7 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 
 | Root | Skills | with material | ideas |
 | --- | --- | --- | --- |
-| conduct | 24 | 24 | 0 |
+| conduct | 26 | 26 | 0 |
 | understand | 15 | 15 | 0 |
 | design | 16 | 16 | 0 |
 | plan | 1 | 1 | 0 |
@@ -396,7 +405,7 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 | authoring | 10 | 5 | 5 |
 | rigs | 1 | 0 | 1 |
 
-102 skills in conduct and the ten roots, and the main skill above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
+104 skills in conduct and the ten roots, and the main skill above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
 
 ## The shape
 
@@ -438,6 +447,7 @@ Calls between skills, beyond each skill loading its own sub-skills.
 - **conduct-respond** and **conduct-act** ← the main skill, first, once per conversation; respond again before each response is returned (D63, D81).
 - **authoring-blueprint** ← design's recording steps (discuss, research, decide, write, workstream, tasks), for each document's form (D69). **conduct-delegate** ← authoring-edit, for passes run in parallel (D70).
 - **conduct-organize** ← design (an idea document split into sub-documents), plan (dividing a plan's work; the former plan-breakdown is kept in [plan's ideas](plan.md), D151), authoring-docs, and skillbook-tree for placing a skill (D61, D77).
+- **conduct-rightsize-lean** ← conduct-instruct's prune step on an existing document, skillbook-tree's cost check, design-review's lean lens and authoring-edit, for removing whole parts; **authoring-reader** ← conduct-rightsize-enrich, for what the reader would still ask (D157).
 
 ## The roots, provisional
 
@@ -464,7 +474,7 @@ The parts keep their drafts, now read by the root that routes to them and by the
 
 For each skill, the sources that already hold material for it: read them before writing it (D30). sk is skillbook's first design; mp mattpocock/skills, sp superpowers, an Anthropic's skills, cc Claude Code's official plugins, gs gstack, ar alirezarezvani/claude-skills, vc vercel's agent skills; own the person's current skills; and the person's projects: ws workslate and rig, vo VaultOps and the agent specs, oc OpenCode customisations, lc loomcraft and infoloom, sb slipbox, ts trailscout, hs herdsman, md meddah.
 
-- **conduct:** conduct-respond (own, md, mp); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-organize (vo); conduct-organize-split (vo); conduct-organize-merge (vo); conduct-organize-compose (vo); conduct-organize-normalize (vo); conduct-organize-cluster (vo); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-rightsize (own, mp); conduct-cleanup (own, sp, ar, an); conduct-instruct (mp, sp, ws, oc); conduct-setup (cc, lc); conduct-learn (ws, mp, gs, cc); conduct-delegate (own, ts, md, sp, vo); conduct-delegate-council (ws); conduct-delegate-fanout (own, ts); conduct-delegate-crew (md); conduct-brief (own, mp); conduct-carryover (ws, mp, oc, gs, ar).
+- **conduct:** conduct-respond (own, md, mp); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-organize (vo); conduct-organize-split (vo); conduct-organize-merge (vo); conduct-organize-compose (vo); conduct-organize-normalize (vo); conduct-organize-cluster (vo); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-rightsize (own, mp); conduct-rightsize-lean (own, mp); conduct-rightsize-enrich (own); conduct-cleanup (own, sp, ar, an); conduct-instruct (mp, sp, ws, oc); conduct-setup (cc, lc); conduct-learn (ws, mp, gs, cc); conduct-delegate (own, ts, md, sp, vo); conduct-delegate-council (ws); conduct-delegate-fanout (own, ts); conduct-delegate-crew (md); conduct-brief (own, mp); conduct-carryover (ws, mp, oc, gs, ar).
 - **understand:** understand-discuss (own, oc, sp); understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-argue (gs, ar); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
 - **design:** design-architecture (mp, hs); design-review (ts, mp); design-start (sk); design-discuss (sk, mp); design-research (sk, ts); design-decide (sk, mp); design-evidence (sk); design-write (sk); design-workstream (sk); design-tasks (sk, mp); design-work (sk); design-sync (sk); design-consolidate (sk); design-parallel (sk); design-check (sk); design-publish (sk).
 - **plan:** plan (none yet).

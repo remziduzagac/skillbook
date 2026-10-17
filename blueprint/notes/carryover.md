@@ -1,6 +1,6 @@
 # Carryover
 
-Where the design work stands, for the next session to pick up without asking. Written 2026-10-17 at the end of the cost batch, updated the same day after the sets item and after plan's full design. Check it against "Written against" before acting on it.
+Where the design work stands, for the next session to pick up without asking. Written 2026-10-17 at the end of the cost batch, updated the same day after the sets item, after plan's full design and after lean and enrich. Check it against "Written against" before acting on it.
 
 ## Done
 
@@ -20,26 +20,26 @@ Where the design work stands, for the next session to pick up without asking. Wr
   - the core set is named essentials, with the rejected names and why (D153);
   - what each set holds: essentials (main skill, conduct, understand, design, plan, an output-format skill to design), blueprint (the spec-to-dev flow and its records), softeng (its own design, plan's software parts, implement, test, review, ship, maintain), authoring (author renamed; markdown stays here); rigs a later set; the lifecycle no longer general (D154);
   - the main skill's design and ideas files renamed `essentials.md`, author's renamed `authoring.md`; each root's design file names its set; the tree marks each root's set.
-- **plan and the sets' contract, D155–D156,** recorded but not yet committed:
+- **plan and the sets' contract, D155–D156,** committed as `adea789` ("docs(blueprint): design plan in full and how sets complement each other"):
   - plan's full design: making a plan and following one; three checks, whether the work is multipart, whether the steps are given, one line or a full plan; the obvious test for what to expand and how deep to go; following as a checklist at about three steps; approval when stakes are high, asked for, or a question is in it; kept in the response or a file; no parts; the main skill routes to it (D155; [../design/plan.md](../design/plan.md));
   - sets complement each other: a project's pointer loads blueprint; each part of a piece of work has one owner, the caller, the doer and the keeper, each saying only its own part; a caller's one-line fallback and a doer's one-line default, written down; a default gives way to a loaded instruction for the same case, only as a safety net (D156).
+- **lean and enrich, D157,** recorded but not yet committed: rightsize's two sub-skills for what already exists, lean removing what is extra and enrich adding what is missing, each with its steps; used on request or proposed when noticed; one approval of the list of changes where the person's or others' work changes; code proposed and changed under tests; instruct's prune step and skillbook-tree's cost check call lean; "lean" off the glossary's avoid list (D157; [../design/conduct.md](../design/conduct.md)).
 
 ## Remaining, in order
 
-1. **lean and enrich,** rightsize's two parts. The direction is agreed in [../ideas/open.md](../ideas/open.md), in the entry "lean and enrich, rightsize's two parts, to design". Once lean names this part, it comes off the glossary's avoid list.
-2. **essentials' output-format skill,** before the baseline is built: generic layout rules, in respond or beside it, and how it divides the work with authoring's markdown, by the contract between sets (D154, D156; [../ideas/open.md](../ideas/open.md)).
-3. **Then the open topics** in [../ideas/open.md](../ideas/open.md):
+1. **essentials' output-format skill,** before the baseline is built: generic layout rules, in respond or beside it, and how it divides the work with authoring's markdown, by the contract between sets (D154, D156; [../ideas/open.md](../ideas/open.md)).
+2. **Then the open topics** in [../ideas/open.md](../ideas/open.md):
    - the person's software-engineering skills, where breakdown, slices and sequence are kept ([../ideas/plan.md](../ideas/plan.md));
    - engineering practice, now rightsize applied to code, for implement;
    - which tools a skill may require, such as git;
    - analysing aigorahub/elves, with its licence checked first;
    - each skill's default where no keeper is loaded: learn's destinations, clarify's recording, brainstorm's result; how it works is settled (D156);
    - later: the install routes and the folder layout, with a test that skills.sh copies nested folders whole, and the naming rule where there is no namespace.
-4. **Building and testing the baseline,** per the roadmap: essentials' main skill, conduct, understand and the output-format skill, with the start-up measured.
+3. **Building and testing the baseline,** per the roadmap: essentials' main skill, conduct, understand and the output-format skill, with the start-up measured.
 
 ## Decisions made
 
-D142–D156, each in [../decisions.md](../decisions.md), with amended-by notes under the earlier decisions they change. Notes 79–93 in [initial-design.md](initial-design.md) tell how each was reached.
+D142–D157, each in [../decisions.md](../decisions.md), with amended-by notes under the earlier decisions they change. Notes 79–94 in [initial-design.md](initial-design.md) tell how each was reached.
 
 ## Uncertain
 
@@ -63,10 +63,10 @@ These aren't in the files, except as noted:
 
 ## First next step
 
-Read the entry "lean and enrich, rightsize's two parts, to design" in [../ideas/open.md](../ideas/open.md) and conduct's rightsize in [../design/conduct.md](../design/conduct.md). Then put lean and enrich to the person as one item: what each reworks and in which direction, when each is used, and how they divide the work with rightsize's own check. Ask with recommended answers.
+Read the entry on essentials' output-format skill in [../ideas/open.md](../ideas/open.md), respond in [../design/conduct.md](../design/conduct.md) and authoring's markdown in [../design/authoring.md](../design/authoring.md). Then put the output-format skill to the person as one item: what generic layout rules it holds, whether it sits in respond or beside it, and how it divides the work with authoring's markdown by the contract between sets (caller, doer, keeper). Ask with recommended answers.
 
 ## Written against
 
 - **Date:** 2026-10-17.
-- **Branch:** `main`, after `3dcb46b`.
-- **Uncommitted:** plan's full design and the sets' contract, D155–D156, and this update, across the blueprint, the glossary and the project skill skillbook-tree.
+- **Branch:** `main`, after `adea789`.
+- **Uncommitted:** lean and enrich, D157, and this update, across the blueprint, the glossary and the project skill skillbook-tree.
