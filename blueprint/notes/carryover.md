@@ -1,6 +1,6 @@
 # Carryover
 
-Where the design work stands, for the next session to pick up without asking. Written 2026-10-17 at the end of the cost batch, updated the same day after the sets item, after plan's full design, after lean and enrich, and after layout. Check it against "Written against" before acting on it.
+Where the design work stands, for the next session to pick up without asking. Written 2026-10-17 at the end of the cost batch, updated the same day after the sets item, after plan's full design, after lean and enrich, after layout, and after the tree's regrouping and the compaction offer. Check it against "Written against" before acting on it.
 
 ## Done
 
@@ -24,9 +24,13 @@ Where the design work stands, for the next session to pick up without asking. Wr
   - plan's full design: making a plan and following one; three checks, whether the work is multipart, whether the steps are given, one line or a full plan; the obvious test for what to expand and how deep to go; following as a checklist at about three steps; approval when stakes are high, asked for, or a question is in it; kept in the response or a file; no parts; the main skill routes to it (D155; [../design/plan.md](../design/plan.md));
   - sets complement each other: a project's pointer loads blueprint; each part of a piece of work has one owner, the caller, the doer and the keeper, each saying only its own part; a caller's one-line fallback and a doer's one-line default, written down; a default gives way to a loaded instruction for the same case, only as a safety net (D156).
 - **lean and enrich, D157,** committed as `b0fecfc` ("docs(blueprint): design lean and enrich as rightsize's two parts"): rightsize's two sub-skills for what already exists, lean removing what is extra and enrich adding what is missing, each with its steps; used on request or proposed when noticed; one approval of the list of changes where the person's or others' work changes; code proposed and changed under tests; instruct's prune step and skillbook-tree's cost check call lean; "lean" off the glossary's avoid list (D157; [../design/conduct.md](../design/conduct.md)).
-- **layout and the question tool, D158–D159,** recorded but not yet committed:
+- **layout and the question tool, D158–D159,** committed as `805c243` ("docs(blueprint): design layout and the question tool in ask"):
   - essentials' layout, a conduct skill beside respond, holding authoring's markdown's structure layer, moved, with lists over tables as strong advice; read first with act, respond and rightsize; markdown keeps the file layer, with a one-line fallback for structure where essentials is not installed (D158);
   - ask uses the harness's question tool for at most four short closed choices, numbered questions in text otherwise; the person's own instruction file can set a preference; each harness's reference file says how (D159; [../design/conduct.md](../design/conduct.md)).
+- **The tree by set, and compaction offered, D160,** committed as `6a6204b` ("docs(blueprint): group the skill tree by set and offer compaction"):
+  - [../ideas/skill-tree.md](../ideas/skill-tree.md) now shows one block per set, essentials, blueprint, softeng, authoring and later, rendered from `tree.json`, where each node carries its set; 106 skills; the compact view in [../design/how-it-works.md](../design/how-it-works.md) matches;
+  - carryover offers, at a task's, milestone's or phase's end in a long session, to compact with a suggested focus when the work continues, or a carryover and a fresh session when new work follows; once per boundary; the person does it (D160);
+  - a carryover is written first in both cases, so compaction is followed by continuing from the note (D161); this note is the first one written that way.
 
 ## Remaining, in order
 
@@ -41,13 +45,13 @@ Where the design work stands, for the next session to pick up without asking. Wr
 
 ## Decisions made
 
-D142–D159, each in [../decisions.md](../decisions.md), with amended-by notes under the earlier decisions they change. Notes 79–96 in [initial-design.md](initial-design.md) tell how each was reached.
+D142–D161, each in [../decisions.md](../decisions.md), with amended-by notes under the earlier decisions they change. Notes 79–98 in [initial-design.md](initial-design.md) tell how each was reached.
 
 ## Uncertain
 
 - The worked fork-or-fresh figures assume 20,000 tokens read again and a 1,500-token brief. Only the start-up and the fork's cache read were measured.
 - Whether a fresh agent loads skills from their descriptions inside a subagent is untested. D149 has the brief tell it not to load the main skill either way.
-- Codex's reference file is unwritten: its models, effort levels, forks and limits, and whether it has a plan mode, a task list and a question tool, are still unknown.
+- Codex's reference file is unwritten: its models, effort levels, forks and limits, and whether it has a plan mode, a task list, a question tool and compaction with a focus, are still unknown.
 - Calling another set's main skill and then its hidden skill was tested only in halves: a listed skill called by name across packages, and a hidden skill read by its path inside its own.
 - Two skills in context complementing each other, a doer in one set and a keeper in another, each saying only its own part, is untested (D156).
 
@@ -59,9 +63,9 @@ These aren't in the files, except as noted:
 - **No bare decision numbers or codes to the person:** words first, the number in brackets.
 - **Prose is never wrapped.**
 - **Lists over wide tables.**
-- **Recording goes to a fork** after the person accepts an item: the design section, the decision with its notes, ideas, the tree (edit [../ideas/tree/tree.json](../ideas/tree/tree.json), render with `python3 blueprint/ideas/tree/render.py <out-dir>`, and paste the outputs into [../ideas/skill-tree.md](../ideas/skill-tree.md), as the script's header says), the roadmap and the session notes, then lint. The main agent checks the fork's work before reporting.
+- **Recording goes to a fresh agent at the standard tier,** not a fork, after the person accepts an item, with a self-contained brief: findings, paths and the exact wording to record, since forks of a long session cost several times more (the person's usage report, 2026-10-17). What it records: the design section, the decision with its notes, ideas, the tree (edit [../ideas/tree/tree.json](../ideas/tree/tree.json), render with `python3 blueprint/ideas/tree/render.py <out-dir>`, and paste the outputs into [../ideas/skill-tree.md](../ideas/skill-tree.md), as the script's header says), the roadmap and the session notes, then lint. The main agent checks its work before reporting; a few lines it can write directly.
 - **Commits come in batches,** with the message agreed first: lowercase Conventional Commits, no AI attribution (AGENTS.md).
-- **Several of these are also in the agent's memory folder:** headings, lists over tables, prose not wrapped, commits in batches, skills stay generic.
+- **Several of these are also in the agent's memory folder:** headings, lists over tables, prose not wrapped, commits in batches, skills stay generic, recording with fresh agents.
 
 ## First next step
 
@@ -70,5 +74,5 @@ Read the open topics in [../ideas/open.md](../ideas/open.md), and put them to th
 ## Written against
 
 - **Date:** 2026-10-17.
-- **Branch:** `main`, after `b0fecfc`.
-- **Uncommitted:** layout and the question tool, D158–D159, and this update, across the blueprint and the glossary.
+- **Branch:** `main`, after `6a6204b`, in the commit that adds this update.
+- **Uncommitted:** nothing; D161 and this update are in the commit after `6a6204b`.

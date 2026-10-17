@@ -1654,6 +1654,14 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D160: compaction offered at a boundary (2026-10-17)
 
+> **Amended by D161 (2026-10-17):** a carryover is written first in both cases; when the work continues, compaction follows it, its focus naming the note.
+
 **Decision:** carryover's offer comes when a boundary has been reached, a task, a milestone or a phase completed with nothing in flight, and the session has been long; it offers the one of two that fits: to compact, with a suggested focus such as "keep the open questions and the decisions in progress", when the next work continues this one; or a carryover and a fresh session when it is new work that needs only what fits in the carryover. It is offered once per boundary; compacting and starting fresh are the person's to do; no skill names a harness's command, and carryover's reference files say how for each harness, Codex's still to find out ([design/conduct.md](design/conduct.md)).
 
 **Why:** The person's usage report showed most cost at long contexts in long sessions, and its advice was to compact mid-task and clear when switching tasks. The person asked that compaction at least be suggested, and that it come when a milestone or task is completed. A compaction chosen at a boundary with a focus keeps what matters, where the harness's own comes late and chooses for itself.
+
+## D161: a carryover before compaction (2026-10-17)
+
+**Decision:** carryover's offer writes a carryover first in both cases: when the work continues, "write a carryover, then compact and continue from it?", the suggested focus naming the note; when it is new work, a carryover and a fresh session. Two approvals: the offer, then the note, whose outline (done, remaining, the first next step) is shown together with its commit where the project commits its notes, and, in the same message, the exact command for the person to type, since the agent cannot compact or start a session itself; after the compaction, the agent re-reads the note and checks it before continuing ([design/conduct.md](design/conduct.md)).
+
+**Why:** The person's refinement: compaction keeps the conversation going but summarises it in its own way, so a page written first lets the work resume from exact state; the note costs a page, and also serves if the person chooses a fresh session after all. As far as known, Claude Code gives the agent no way to compact: the person types the command, or the harness compacts by itself near a full window; the person asked that the flow say so.
