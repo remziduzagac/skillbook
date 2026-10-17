@@ -4,7 +4,7 @@ Ideas and open questions for design, not decided. What is decided is in [../desi
 
 ## design
 
-- When design plans a system's parts, or an idea document's sub-documents, it calls conduct's organize, whose split takes what the planned whole must cover, its requirements, as the items (D148).
+- When design plans a system's parts, or an idea document's sub-documents, it calls organize, whose split takes what the planned whole must cover, its requirements, as the items (D148).
 
 ### architecture
 

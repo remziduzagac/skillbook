@@ -130,13 +130,13 @@ authoring/
 
 - **Purpose:** a document read as its intended reader would, with only the document, often by a fresh agent, reporting what that reader could not do from it (D123). The name is to settle ("reader", "coldread").
 - **Description:**
-- **Callers:** to design; those that need it today, each in its own words: design (can a builder build from it?), plan (can the implementer start?), conduct's carryover (can another agent resume?), clarify's questionnaire (can it be answered without the conversation?), authoring's docs (can a user follow them?), conduct's brief (is the brief enough?), conduct's instruct and the project skill skillbook-tree (can an agent act on it?), conduct's rightsize's enrich (what would the reader still ask?), through essentials' main skill, with its own fallback where this set is not installed (D157).
+- **Callers:** to design; those that need it today, each in its own words: design (can a builder build from it?), plan (can the implementer start?), coordinate's carryover (can another agent resume?), clarify's questionnaire (can it be answered without the conversation?), authoring's docs (can a user follow them?), coordinate's brief (is the brief enough?), coordinate's instruct and the project skill skillbook-tree (can an agent act on it?), conduct's rightsize's enrich (what would the reader still ask?), through essentials' main skill, with its own fallback where this set is not installed (D157).
 - **Flow:**
 - **Result:**
 - **Files:**
 - **Material:** superpowers' builder check, a fresh agent reading a design as its builder would; skillbook-tree's advice to read as a builder would.
 - **Tests:**
-- **Open:** designed later, with authoring; run through conduct's delegate when a fresh agent is used (D123).
+- **Open:** designed later, with authoring; run through coordinate's delegate when a fresh agent is used (D123).
 
 ### markdown
 

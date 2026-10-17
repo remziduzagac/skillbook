@@ -15,12 +15,13 @@ A collection of sets in one repository, for Claude Code and Codex, each set inst
 Four sets, each with its main skill, the only skill of the set listed to the model; more later (D56, D63, D67, D103, D152, D154):
 
 ```text
-essentials     the main skill loaded first for any work
-  conduct      respond · layout · act · ask · organize · explain · verify · guardrails · stakes ·
-               rightsize (lean · enrich) · cleanup · instruct · setup · learn · delegate · brief · carryover
+essentials     the main skill loaded first for any work; it holds the wrap-up offer
+  conduct      respond · layout · act · ask · explain · stakes · guardrails · verify ·
+               rightsize (lean · enrich) · cleanup
   understand   discuss · clarify · frame · brainstorm · weigh · challenge · argue · naming · research
-  design       how to design anything: its flow, its principles, design review
-  plan         planning multipart work, and following it
+  organize     split · merge · compose · normalize · cluster
+  coordinate   delegate · brief · carryover · instruct · setup · learn
+  devise       design (how to design anything, design review) · plan (multipart work, and following it)
 blueprint      the spec-to-dev flow and its records: start · discuss · research · decide · evidence · write ·
                workstream · tasks · work · sync · consolidate · parallel · check · publish · document forms
 softeng        design · plan's software parts · implement (with code) · test · review · ship · maintain
@@ -28,7 +29,7 @@ authoring      docs · business · articles · edit · issue · reader · markdo
 later          rigs · a knowledge base · routines
 ```
 
-- **essentials** is what any work needs. conduct holds how the agent acts: how it behaves in every root (respond and act, which the main skill loads first, with layout, how anything written in markdown is laid out; ask, how it asks the person anything, the harness's question tool included; organize, explain, verify, guardrails, stakes, how much care something deserves, rightsize, nothing missing and nothing extra for the reader, and cleanup, what it created and no longer needs), the instruction documents it writes and updates (instruct), how it sets skillbook up (setup), how it learns from sessions (learn), and how it works with other agents (delegate, brief, carryover) (D63, D65, D67, D77, D94, D97, D147, D158, D159). understand is understanding before acting, with the person and from sources; design is how to design anything; plan is planning any work before acting (D59, D151, D154). layout, beside respond, holds the structure for every response and anything written in markdown; authoring's markdown adds the file rules where that set is installed (D154, D158).
+- **essentials** is what any work needs (D63, D153, D154, D164). conduct holds how the agent behaves in every response: respond and act, which the main skill loads first with layout, how anything written in markdown is laid out, and rightsize, nothing missing and nothing extra for the reader; ask, how it asks the person anything, the harness's question tool included; explain, stakes, how much care something deserves, guardrails, verify, and cleanup, what it created and no longer needs (D65, D67, D94, D145, D158, D159). understand is understanding before acting, with the person and from sources. organize arranges anything with boundaries (D85). coordinate is working with agents not in this conversation: another agent now (delegate, brief), a later session (carryover), and every session, through the instruction documents it reads (instruct), skillbook set up in them (setup) and a session's lessons (learn) (D77, D97, D147). devise is deciding what the work will be and its steps: design, how to design anything, and plan, planning multipart work before acting (D59, D151). The main skill holds the wrap-up offer, which offers learn, then a carryover, when work stops with steps left (D164). layout, beside respond, holds the structure for every response and anything written in markdown; authoring's markdown adds the file rules where that set is installed (D154, D158).
 - **blueprint** keeps the spec-to-dev flow running: a project's design record from the idea to the hand-over to code, its files and folders, and the procedures that keep them intact, with the form of each document. It requires no design or engineering skill and uses whatever the person has, ours or their own; where its topics touch others, such as splitting a design file, which touches organize and modularity, it gives a hint pointing to the skill that holds the topic (D46, D47, D154).
 - **softeng** explains how good software is designed and made: its own design, architecture among it; planning's software parts, breakdown, slices and sequence; implement, which holds code, how to write each programming language well; test, review, ship and maintain (D36, D67, D68, D154).
 - **authoring** is writing work for people, sorted by reader: docs for users, business documents for stakeholders, articles for the public and issues for whoever was not there, with edit, reader and markdown serving them all (D40, D67, D68, D69, D70, D154).
@@ -66,7 +67,7 @@ Depth comes from sub-skills, each with its own `SKILL.md`, never from chains of 
 
 Skills you do are bare verbs; skills about something, the groups among them, are nouns (D40, D48). Leaf skills take short verbs or nouns, and a name is coined only where a plain word will not do; the folder a project's design lives in stays `blueprint/` (D33).
 
-Each set's main skill is named after its set: `essentials`, `blueprint`, `softeng`, `authoring` (D152, D153). Inside a set, every other skill is a short folder inside its parent's, and its name is the path below its set's main skill joined by dashes (`conduct-delegate-fanout`) (D43, D71). The same name may appear in two sets, told apart by their set. Where the sets' folders sit, what lists them, and the names on a route without a namespace wait for the install routes (D152).
+Each set's main skill is named after its set: `essentials`, `blueprint`, `softeng`, `authoring` (D152, D153). Inside a set, every other skill is a short folder inside its parent's, and its name is the path below its set's main skill joined by dashes (`coordinate-delegate-fanout`) (D43, D71). The same name may appear in two sets, told apart by their set. Where the sets' folders sit, what lists them, and the names on a route without a namespace wait for the install routes (D152).
 
 ## design, blueprint, understand and maintain
 

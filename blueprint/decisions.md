@@ -564,6 +564,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D81 (2026-10-11):** answer is renamed respond.
 >
 > **Amended by D112 (2026-10-13):** the main skill holds rules and advice of its own again; act and respond stay skills, and its rules tell the agent to follow them.
+>
+> **Amended by D164 (2026-10-17):** conduct holds how the agent behaves in every response; organize, and coordinate's six skills, are groups of their own.
 
 **Decision:** A group named conduct sits under the main skill beside the five roots and holds the behaviours that hold in every root: answer (how answers are written) and act (how the agent acts: ask before acting on what is not understood, evidence before saying done, propose before anything that cannot be undone and wait for approval), both loaded on every request; and organize, explain, verify and guardrails, called when needed. explain and organize move from understand, verify and guardrails from agents. The main skill keeps only the routing: it loads conduct's answer and act first, reading them by path so the group adds no load, then routes to a root. understand keeps clarify, brainstorm and research; agents keeps making skills, setup, learning from sessions, delegating, handoff and council.
 
@@ -808,6 +810,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 > **Amended by D145 (2026-10-17):** organize's boundary rule points to conduct's rightsize for parts that are comprehensive and exclusive.
 >
 > **Amended by D148 (2026-10-17):** organize and split also plan wholes not yet written, the items being what the whole must cover; split and cluster gain advice on parts read on their own and sized to how they are read.
+>
+> **Amended by D164 (2026-10-17):** organize is a group of its own in essentials, no longer under conduct.
 
 **Decision:** organize holds the shared rules and the check, with five sub-skills sorted by what happens to the items: split (one into several; also grouping loose items), merge (several into one survivor, links updated), compose (a new parent above items that stay whole), normalize (the shared part taken out into one place the items use), cluster (a view added for finding items, the items unchanged). The shared rules: one dividing principle at a time; each boundary in one sentence, comprehensive and exclusive; every change proposed and applied only after approval; warning signs (an "other" part, parts at different levels, more than about seven at one level). The check, given existing parts, reports overlaps, gaps and mixed levels or terms. split's flow: frame, list the items, choose the principle, draw boundaries, place every item, resolve, check; done when every item has one home or the exceptions are named. Results go back to the caller with the principle, the parts and their boundaries, each item's place and the exceptions. `SKILL.md` only, to start. merge, compose, normalize and cluster get their flows later.
 
@@ -898,6 +902,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D93: setup writes to the person's own files by default (2026-10-12)
 
+> **Amended by D165 (2026-10-17):** the pointer goes where the skills are installed: the person's own files for a personal install, a project's local file by default, its shared file when the team commits the skills.
+
 **Decision:** setup puts the pointer in the person's own instruction files, `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`, which both agents read in every project on top of the project's files; no project file is touched by default. Project-only personal instructions, when asked for, go into `CLAUDE.local.md` for Claude Code, which is read in addition to `CLAUDE.md`, kept out of git through `.git/info/exclude` so the project's `.gitignore` is not changed either; for Codex nothing is offered unless asked, and then with a warning, because its `AGENTS.override.md` is read instead of the shared `AGENTS.md` in that folder. A project's shared `AGENTS.md` or `CLAUDE.md` changes only when the person asks, as a proposal, for example in a team that adopts skillbook.
 
 **Why:** A pointer in shared files imposes skillbook on everyone working on a project, and tells the agents of people without it to load a skill that does not exist. The person's own files reach every project without touching any. Claude Code read `CLAUDE.local.md` alongside `CLAUDE.md` ([evidence.md](evidence.md), E7); Codex's source reads, in each folder, only the first of `AGENTS.override.md` and `AGENTS.md` ([research/skill-loading.md](research/skill-loading.md), "Instruction files").
@@ -945,6 +951,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D117 (2026-10-13):** setup's project flow starts the blueprint when a project has none, and asks where it lives in a project the person does not own.
 >
 > **Amended by D149 (2026-10-17):** setup asks nothing about other agent programs, whose default stays none, and states its default on whether the team uses skillbook rather than asking.
+>
+> **Amended by D165 (2026-10-17):** setup runs only on request; a third way in moves the pointer between a project's local and shared files.
 
 **Decision:** setup has two ways in. A machine, once per computer: check the skillbook plugin is installed in both agents, showing how if not; add the pointer to the person's own instruction files through instruct, unless it is there; check a fresh session loads the main skill. A project, once per project: read what it is and what files it has; check its instruction files through instruct, keeping the facts, proposing to remove what repeats a skillbook rule and to add what is missing; recommend the skillbook skills and outside skills that fit; propose everything as one list and apply what is approved. Running either again changes nothing that is right. Hooks are proposed only when a rule keeps being broken despite the skills. `SKILL.md` only; five tests.
 
@@ -1065,6 +1073,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D115 (2026-10-13):** conduct's own skill holds one rule, the wrap-up offer, and routes a request that fits no row to the agent's judgment under act; ask gets a routing line (D114).
 >
 > **Amended by D134 (2026-10-15):** conduct's routing table becomes routing lines under six headings, each with when, when not and what it gives back.
+>
+> **Amended by D164 (2026-10-17):** conduct's own skill routes only to its remaining sub-skills; organize's and coordinate's lines are in the main skill and in coordinate's own skill.
 
 **Decision:** conduct's `SKILL.md` holds one paragraph on what conduct is, a note that respond and act are already loaded (read again only when their rules are unclear), and one routing line per on-demand sub-skill, each comprehensive and exclusive; no rules of its own. respond and act are never reached through it: the main skill reads them directly by path on every request. Other skills reach conduct's sub-skills by asking the main skill, which routes through this file. Description: "How the agent acts in every root: responding, acting, organizing, explaining, verifying, guardrails, instruction documents, setup, learning, delegating, handoffs." `SKILL.md` only; six routing tests, one checking that "explain this function" is turned away from explain.
 
@@ -1436,6 +1446,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 > **Amended by D145 (2026-10-17):** conduct gains rightsize, its routing line under "Before saying done", beside verify.
 >
 > **Amended by D147 (2026-10-17):** conduct's routing lines gain brief under "While working", and handoff's line becomes carryover's under "When stopping".
+>
+> **Amended by D164 (2026-10-17):** the wrap-up offer moves to the main skill; the routing lines for organize, delegate, brief, carryover, instruct, setup and learn move to the main skill and coordinate's own skill.
 
 **Decision:** conduct's own skill takes the shape every main skill takes: its one rule, the wrap-up offer; no advice of its own, since that several sub-skills can serve one request is the main skill's rule; one routing line per sub-skill read on demand, saying when to use it, when not and what it gives back, under six headings in the order the work happens (with the person: ask, explain; before acting: stakes, guardrails; while working: organize, delegate, cleanup; before saying done: verify; setting up: setup, instruct; when stopping: learn, handoff); and the last instruction. The lines replace its table, since they do not fit a 120-character row, and each sub-skill's Callers field carries its line. Its description names stakes and cleanup and says when to use it. act, respond and ask, which route to nothing, hold rules each with its reason, advice apart, and a last instruction where something is checked before returning. act's rules on clarifying, evidence, a file's type and which instruction wins gain their reasons, and "about three attempts" becomes advice. respond gains a rule against flattery, agreement and praise only when earned and disagreement said plainly, and advice to state the person's view at its strongest first, through understand's argue, when disagreeing on something that matters; showing a comparison only when it helps decide is its first rule applied. ask's first rule gains its reason, and a last instruction checks each round. delegate's line is updated after the delegate discussion.
 
@@ -1458,6 +1470,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 > **Amended by D145 (2026-10-17):** the main skill gains a rule that everything given back, made or done is rightsized for its reader, by conduct's rightsize.
 >
 > **Amended by D154 (2026-10-17):** markdown is authoring's, reached through authoring's main skill when that set is installed; essentials' output-format skill, once designed, holds the layout rule's generic part.
+>
+> **Amended by D164 (2026-10-17):** the main skill routes to understand, devise for plan, organize, coordinate and conduct, and holds the wrap-up offer.
 
 **Decision:** The main skill is designed ([design/skillbook.md](design/essentials.md)). For now it routes only to what is designed: understand, author with its markdown skill, and conduct. Each other root, and the stage-order advice, is added when that root is designed; until then the work they will cover is done directly under act's rules. Its rules are the four decided, with markdown's rule now for every response and every markdown file, since other files follow the project's conventions by act's rule. Its description stays the broad one tested, since it decides whether the main skill loads and so whether act's and respond's rules hold for any work; a change is re-run through the test harness. The baseline therefore holds the main skill, all of conduct, all of understand and author's markdown.
 
@@ -1590,6 +1604,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 > **Amended by D154 (2026-10-17):** plan is essentials'; its software parts are softeng's.
 >
 > **Amended by D155 (2026-10-17):** the four signs give way to one indicator, multipart work, and a full plan when stakes are high or the work is long or wide; the person's choice moves from depth to approval; given steps are followed and enhanced where they are not obvious, by the obvious test; the main skill routes to plan.
+>
+> **Amended by D164 (2026-10-17):** plan sits under devise, with design.
 
 **Decision:** plan becomes the root for planning any work before acting, whether writing, research, design or code. A plan is needed when any of these holds: order matters, there is a real choice of approach, stakes are medium or higher, or the work is long or wide; not when the work is short and its answer known, when the person gave the steps, or for a question or an exploration; when unsure, a one-line plan is stated and the work starts. It is one line, or a full plan: the goal and how it is known to be done, the steps in order with their checks, what is out of scope, the risks and what catches each, what goes to agents. It waits for approval when it holds the person's choice, stakes are high or the person asked; otherwise it is shown in a line and the work starts. The harness's plan mode is used where it exists and approval is needed, no skill naming it; a plan is revised, and approved again where it needed approval, when a step fails or a fact it rests on changes; a full plan is challenged before it is shown (D150). Its software-engineering parts, breakdown, slices and sequence, are kept, not dropped: their descriptions, word for word, their material and their caller are moved to plan's ideas under a heading saying they are kept for the person's software-engineering skills, where they will be used, and the tree, its graph, its sources and plan's design point there. The main skill routes to plan once its full design is done, which explains further when a plan is needed and how deep it goes, as the person asked.
 
@@ -1612,6 +1628,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 ## D154: What each set holds (2026-10-17)
 
 > **Amended by D158 (2026-10-17):** the output-format skill is conduct's layout, holding markdown's structure layer; markdown keeps the file layer.
+>
+> **Amended by D164 (2026-10-17):** essentials holds its main skill, conduct, understand, organize, coordinate and devise, which holds design and plan.
 
 **Decision:**
 
@@ -1687,3 +1705,21 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Decision:** The contract between sets (D156) holds for every essentials skill, not only plan and carryover. No skill splits its results by "in a project" and "outside any project". Each result is handed back to its caller; used directly, it goes to the keeper where the project's instruction files point to one, such as blueprint's main skill, which says where it goes and in what form; with none, the skill's default holds: in the response, a long result or one the person wants kept offered as a file they name. understand's first rule holds that default for all its sub-skills; each says only what a keeper needs from it, such as weigh's options weighed and why the chosen one won, and names no keeper's steps or files. learn's decisions and insights go to the keeper, or with none are listed in the response with the offer of a file; its rules still go through instruct. verify's evidence goes to the keeper where one is loaded. setup starts a blueprint only where that set is installed and says nothing of it otherwise; where a blueprint lives in a project the person does not own is blueprint's start step's to ask. What essentials' design said about how blueprint files each result moves to blueprint's side, in its design file, so nothing is lost. A result that is not a record, such as naming's glossary, keeps its own default. essentials' general design sets its default when it is designed.
 
 **Why:** The person pointed out that the rule settled for plan and blueprint applies to all: essentials and blueprint complement each other, each saying only its own part, so essentials works fully alone and blueprint adds where things are kept. The split by project came from every project having a blueprint (D117), which ended when blueprint became a set of its own.
+
+## D164: essentials regrouped into conduct, understand, organize, coordinate and devise (2026-10-17)
+
+**Decision:** essentials' main skill routes to five groups, each with its boundary in one sentence. conduct holds how the agent behaves in every response: respond, layout, act, ask, explain, stakes, guardrails, verify, rightsize with lean and enrich, and cleanup; it has no rule of its own any more. understand is unchanged. organize becomes a group of its own, with split, merge, compose, normalize and cluster. coordinate, new, holds working with agents not in this conversation, now, later and in every session: delegate with council, fanout and crew, brief, carryover, instruct, setup and learn. devise, new, holds deciding what the work will be and its steps: design, with review, and plan. The wrap-up offer, which offers learn and then carryover, moves from conduct's own skill to the main skill, since both now sit in coordinate and the offer is made whatever the request. This settles which group holds which skill; folders and names follow with the install routes, the tree's names meanwhile built from the path, such as organize-split and devise-plan. organize.md and coordinate.md hold the sections moved from conduct.md, and devise.md routes to design.md and plan.md. Names weighed for coordinate: instruct, which would have renamed instruct's own skill; equip, vague; relay and steer, weak for setup and delegate; onboard, which pulls in requests about onboarding people; orchestrate, a music word like conduct and suggesting many agents at once; direct, an adjective as a prefix; agents, not a verb; handoff, on the glossary's avoid list; context, the context window; crew and team, crew being delegate's part. For devise: prepare, since understanding prepares too. design and plan stay out of conduct, which holds behaviour, not pieces of work.
+
+**Why:** Once essentials became a set of its own, its grouping could be its own. conduct had become a catch-all: its boundary was how the agent acts in every root, while organize changes things for other roots, delegate, brief and carryover hand work to other agents and sessions, and setup, instruct and learn set the agent up. The person asked to merge the agents group and the setup group, since all six write for an agent not in this conversation, and to put design and plan under one folder, named devise.
+
+## D165: the pointer follows the install, and setup runs on request (2026-10-17)
+
+**Decision:** The pointer goes where the skills are installed: installed for the person, across projects, their own instruction files; installed in a project and not committed, the project's local file, such as `CLAUDE.local.md`, kept out of git, the default for a project; committed for the team, the project's shared `AGENTS.md` or `CLAUDE.md`, since every contributor then has the skills. setup runs only on request: the first set-up where the install route has not written the pointer, moving the pointer between a project's local and shared files, and checking that a fresh session loads the main skill; its project steps stay. Which file each harness reads, Codex's local file, since its `AGENTS.override.md` replaces the shared file rather than adding to it, and whether an install route can write the pointer itself are settled with the install routes.
+
+**Why:** The person pointed out that where the pointer goes is an installation question, and that the agent ignores skills unless an instruction file tells it to load them. Placing it with the install settles the worry about teammates: where the team commits the skills, every contributor has them, so a pointer in the shared file cannot fail for them.
+
+## D166: essentials is completed before softeng (2026-10-17)
+
+**Decision:** essentials' remaining design comes before softeng's: the person's software-engineering skills, engineering practice for implement, and the rest of softeng wait until essentials is complete.
+
+**Why:** The person's order: essentials is the set every other set builds on, and the baseline built and tested first is essentials.

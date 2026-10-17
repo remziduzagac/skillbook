@@ -4,7 +4,7 @@ Ideas and open questions for authoring, not decided. What is decided is in [../d
 
 ## authoring
 
-- When authoring plans a document not yet written, its sections are planned through conduct's organize, whose split takes the topics the document must cover as the items; to design with authoring's own skill (D148).
+- When authoring plans a document not yet written, its sections are planned through organize, whose split takes the topics the document must cover as the items; to design with authoring's own skill (D148).
 - Decided (D149): markdown with no linter is checked by a search for the mechanical rules rather than a read-back; with a linter, it runs once after the last file.
 
 ### blueprint

@@ -4,7 +4,7 @@ Ideas and open questions for implement, not decided. What is decided is in [../d
 
 ## implement
 
-- When implement plans a program's modules, it calls conduct's organize, whose split takes the responsibilities the planned program must cover as the items; changing existing code stays implement's, under tests (D86, D148). The 11,000-line file waits for implement: see [open.md](open.md), engineering practice.
+- When implement plans a program's modules, it calls organize, whose split takes the responsibilities the planned program must cover as the items; changing existing code stays implement's, under tests (D86, D148). The 11,000-line file waits for implement: see [open.md](open.md), engineering practice.
 
 ### prototype
 

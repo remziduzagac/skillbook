@@ -33,20 +33,21 @@ The tree shows only the skill folders. Its folder paths are provisional until th
 essentials/                       essentials, essentials' main skill, listed to the model like every set's main skill
 │                                 and the one loaded first for any work: its rules hold in every case (follow act's
 │                                 rules, lay out every response and file by its rule on layout), so it reads act,
-│                                 respond, rightsize and layout first; for now it routes to understand, plan and
-│                                 conduct, and to authoring's markdown through authoring's main skill where that set is
-│                                 installed, several for one request where the work needs them, and other work is done
-│                                 under act's rules until its root or set is designed; strong advice: delegation by
-│                                 default, done directly only when too small, when it needs the person's decisions as it
-│                                 goes, or when the content is needed for the conversation; every response is checked
-│                                 against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138,
-│                                 D143, D149, D152, D153, D154, D155, D158)
+│                                 respond, rightsize and layout first; for now it routes to understand, devise for plan,
+│                                 organize, coordinate and conduct, and to authoring's markdown through authoring's main
+│                                 skill where that set is installed, several for one request where the work needs them,
+│                                 and other work is done under act's rules until its root or set is designed; strong
+│                                 advice: delegation by default, done directly only when too small, when it needs the
+│                                 person's decisions as it goes, or when the content is needed for the conversation; it
+│                                 holds the wrap-up offer; every response is checked against respond before it is
+│                                 returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154,
+│                                 D155, D158, D164)
 │
-├── conduct/                      conduct: how the agent acts: how it behaves in every root, sets skillbook up, learns
-│   │                             from sessions and works with other agents; its own SKILL.md holds the wrap-up offer
-│   │                             and one routing line per sub-skill under six headings, and the main skill reads
-│   │                             respond, act, rightsize and layout directly, first, once per conversation (D63, D67,
-│   │                             D77, D106, D134, D149, D158)
+├── conduct/                      conduct: how the agent behaves in every response: responding, laying out, acting,
+│   │                             asking, explaining, judging stakes, guardrails, verifying, rightsizing and cleaning
+│   │                             up; the main skill reads respond, act, rightsize and layout directly, first, once per
+│   │                             conversation, and conduct's own SKILL.md holds one routing line for each of the rest
+│   │                             (D63, D106, D134, D149, D158, D164)
 │   ├── respond/                  conduct-respond: how every response is prepared before it is returned: necessary and
 │   │                             sufficient, things named in words, top-down when explaining, plain words, outcomes as
 │   │                             they happened, no guardrail broken; questions through ask; the main skill checks each
@@ -66,23 +67,6 @@ essentials/                       essentials, essentials' main skill, listed to 
 │   │                             own headings, each with a recommended answer; one round or one by one; go ahead,
 │   │                             parked and assumed; proposals put the same way; the harness's question tool for a few
 │   │                             closed choices (D114, D159)
-│   ├── organize/                 conduct-organize: arranging things, written or still planned: rules (one dividing
-│   │   │                         principle, each boundary in one sentence, meaning preserved, the person verifying plan
-│   │   │                         and result, retiring, code through implement; the middle three only when something
-│   │   │                         existing changes), the check of existing parts, then one routing line per operation;
-│   │   │                         units of any kind, examples across writing, code and design (D61, D85, D86, D107,
-│   │   │                         D141, D148)
-│   │   ├── split/                conduct-organize-split: one item, written or still planned, into several parts that do
-│   │   │                         not overlap and cover it; each part readable on its own and sized to how it is read;
-│   │   │                         VaultOps' decompose (D85, D148)
-│   │   ├── merge/                conduct-organize-merge: several redundant items fused into one survivor, links
-│   │   │                         pointing at the others updated (D85)
-│   │   ├── compose/              conduct-organize-compose: a new parent added above items that stay whole: their
-│   │   │                         generalization (D85)
-│   │   ├── normalize/            conduct-organize-normalize: the part several items share taken out into one place they
-│   │   │                         all use (D85)
-│   │   └── cluster/              conduct-organize-cluster: a view added for finding items, the items unchanged: an
-│   │                             index, grouping for navigation; a map pays for items agents read often (D85, D148)
 │   ├── explain/                  conduct-explain: something the agent itself said that did not land, explained
 │   │                             top-down: where we are, the point, what it rests on in words, an example; stops once
 │   │                             it is clear; explaining something new is understand's (D54, D63, D96, D107)
@@ -110,46 +94,9 @@ essentials/                       essentials, essentials' main skill, listed to 
 │   │                             reader would still ask, answered from the project, the person or research, each
 │   │                             addition sourced and checked, never invented, what cannot be found marked as a gap
 │   │                             (D157)
-│   ├── cleanup/                  conduct-cleanup: what the agent itself created and no longer needs, removed by exact
-│   │                             path or ID: its own without asking, the rest proposed; what is kept said with why; act
-│   │                             names it before "done" (D126, D129)
-│   ├── instruct/                 conduct-instruct: writing and updating instruction documents: AGENTS.md, CLAUDE.md,
-│   │                             CLAUDE.local.md and the person's own; called by setup, or asked for at any time (D94)
-│   ├── setup/                    conduct-setup: setting skillbook up on a machine (the install, the pointer in the
-│   │                             person's own files) or in a project (its blueprint started where that set is
-│   │                             installed, its instruction files checked, skills recommended); adds existing skills,
-│   │                             makes none (D93, D97, D117, D163)
-│   ├── learn/                    conduct-learn: what a session taught, when asked: highlights collected, judged and,
-│   │                             with approval, made into a rule through instruct, or a decision or an insight for the
-│   │                             keeper, or dropped; skill promotion and where highlights wait are future work (D66,
-│   │                             D98, D107, D163) → instruct
-│   ├── delegate/                 conduct-delegate: work given to other agents, the default for any task that is not too
-│   │   │                         small: the type first, after a cost check, then fork or fresh by what the task needs
-│   │   │                         from the conversation and how long it is, then the tier, and the effort apart from it,
-│   │   │                         tiers never named as models; the cost, a running list while the conversation goes on,
-│   │   │                         the work checked; one routing line each for council, fanout and crew; within the
-│   │   │                         harness's limits and its own means (D65, D99, D107, D115, D138, D139, D142, D143,
-│   │   │                         D144, D147); what the agent is told is brief's
-│   │   ├── council/              conduct-delegate-council: several agents, about three, answer the same question on the
-│   │   │                         same material independently; a summary keeping disagreements; the person decides (D99,
-│   │   │                         D101, D107, D115)
-│   │   ├── fanout/               conduct-delegate-fanout: the work split into parts, each agent with a place or a
-│   │   │                         sub-question the others do not have; findings with their sources consolidated by a
-│   │   │                         script, which checks each quote, then validated and synthesized (D99, D107, D115)
-│   │   └── crew/                 conduct-delegate-crew: several agents each change their own items of one job; a shared
-│   │                             item has one owner, who applies the others' proposals; then one pass in sequence (D99,
-│   │                             D107, D115)
-│   ├── brief/                    conduct-brief: what an agent that was not in the conversation is told when it starts:
-│   │                             what it needs to start without asking, decisions and constraints not in the files,
-│   │                             what was ruled out, the first step and when it is done, references by path, no tool
-│   │                             only the writer has; a line or two for a fork, findings for a fresh agent, and the
-│   │                             report it asks back; carryover builds on it (D138, D146, D147)
-│   └── carryover/                conduct-carryover: work carried over to a later session or agent, built on brief's
-│                                 rules: a page of done, remaining, decisions, uncertain, references, the first next
-│                                 step and what it was written against; offered at a task's, milestone's or phase's end
-│                                 in a long session, before compaction or a fresh session; one file each, named by the
-│                                 date and time it was written, the newest resumed; on resuming, checked against what
-│                                 changed before acting (D65, D104, D107, D147, D160, D161, D162)
+│   └── cleanup/                  conduct-cleanup: what the agent itself created and no longer needs, removed by exact
+│                                 path or ID: its own without asking, the rest proposed; what is kept said with why; act
+│                                 names it before "done" (D126, D129)
 │
 ├── understand/                   understand: understanding before acting, with the person and from sources: its own
 │   │                             skill holds the rules for the whole scope (keeps nothing, one result shape, guesses
@@ -178,7 +125,7 @@ essentials/                       essentials, essentials' main skill, listed to 
 │   ├── brainstorm/               understand-brainstorm: options for one open question: framed through frame, options
 │   │                             listed before any is judged and differing in kind, the promising ones developed and
 │   │                             challenged, weighed through weigh, then decided through conduct's ask or parked; keeps
-│   │                             nothing, design's discuss step records it (D53, D118)
+│   │                             nothing, a keeper records it (D53, D118, D163)
 │   ├── weigh/                    understand-weigh: options compared on terms stated before any is scored, frame's "a
 │   │                             good answer" where there is one: what each gives, costs, could get wrong and leaves
 │   │                             unknown, a real downside each; a recommendation with its reasoning, or no clear winner
@@ -202,22 +149,86 @@ essentials/                       essentials, essentials' main skill, listed to 
 │       │                         a verdict weighed by the strength of the evidence (D128)
 │       ├── survey/               understand-research-survey: what exists on a subject, found widely and compared on the
 │       │                         same terms, the screened-out named, coverage and date stated; weigh chooses →
-│       │                         conduct-delegate (D128)
+│       │                         coordinate-delegate (D128)
 │       └── analyze/              understand-research-analyze: why something happens: the symptom stated, one testable
 │                                 cause at a time, the chain traced back to its trigger, the fix left to the caller;
 │                                 test-debug asks for it when the cause is not obvious (D59, D128)
 │
-├── design/                       design: how to design anything: the design flow and its principles, and the sub-skills
-│   │                             each step calls; with a blueprint, its steps record and track the design (D46, D47)
-│   └── review/                   design-review: a design reviewed through lenses: consistency, lean, model check,
-│                                 architecture, that lens being softeng's design's; review points here (D39, D154)
+├── organize/                     organize: arranging things, written or still planned: rules (one dividing principle,
+│   │                             each boundary in one sentence, meaning preserved, the person verifying plan and
+│   │                             result, retiring, code through implement; the middle three only when something
+│   │                             existing changes), the check of existing parts, then one routing line per operation;
+│   │                             units of any kind, examples across writing, code and design (D61, D85, D86, D107,
+│   │                             D141, D148, D164)
+│   ├── split/                    organize-split: one item, written or still planned, into several parts that do not
+│   │                             overlap and cover it; each part readable on its own and sized to how it is read;
+│   │                             VaultOps' decompose (D85, D148)
+│   ├── merge/                    organize-merge: several redundant items fused into one survivor, links pointing at the
+│   │                             others updated (D85)
+│   ├── compose/                  organize-compose: a new parent added above items that stay whole: their generalization
+│   │                             (D85)
+│   ├── normalize/                organize-normalize: the part several items share taken out into one place they all use
+│   │                             (D85)
+│   └── cluster/                  organize-cluster: a view added for finding items, the items unchanged: an index,
+│                                 grouping for navigation; a map pays for items agents read often (D85, D148)
 │
-└── plan/                         plan: planning multipart work before acting, and following it step by step: none for
-                                  single-step work; given steps followed and enhanced where not obvious, by the obvious
-                                  test; one line, or a full plan, divided through organize and challenged, when stakes
-                                  are high or the work is long or wide; approval when stakes are high, asked for, or a
-                                  question is in it; revised when a step fails (D151, D155) (kept in the response or a
-                                  file; a keeper the project points to, such as blueprint, says which file (D156))
+├── coordinate/                   coordinate: working with agents not in this conversation, now, later and in every
+│   │                             session: work given to other agents and what they are told, work carried over to a
+│   │                             later session, the instruction documents every session reads, skillbook set up, and
+│   │                             what a session taught; its own SKILL.md holds one routing line per sub-skill (D164)
+│   ├── delegate/                 coordinate-delegate: work given to other agents, the default for any task that is not
+│   │   │                         too small: the type first, after a cost check, then fork or fresh by what the task
+│   │   │                         needs from the conversation and how long it is, then the tier, and the effort apart
+│   │   │                         from it, tiers never named as models; the cost, a running list while the conversation
+│   │   │                         goes on, the work checked; one routing line each for council, fanout and crew; within
+│   │   │                         the harness's limits and its own means (D65, D99, D107, D115, D138, D139, D142, D143,
+│   │   │                         D144, D147); what the agent is told is brief's
+│   │   ├── council/              coordinate-delegate-council: several agents, about three, answer the same question on
+│   │   │                         the same material independently; a summary keeping disagreements; the person decides
+│   │   │                         (D99, D101, D107, D115)
+│   │   ├── fanout/               coordinate-delegate-fanout: the work split into parts, each agent with a place or a
+│   │   │                         sub-question the others do not have; findings with their sources consolidated by a
+│   │   │                         script, which checks each quote, then validated and synthesized (D99, D107, D115)
+│   │   └── crew/                 coordinate-delegate-crew: several agents each change their own items of one job; a
+│   │                             shared item has one owner, who applies the others' proposals; then one pass in
+│   │                             sequence (D99, D107, D115)
+│   ├── brief/                    coordinate-brief: what an agent that was not in the conversation is told when it
+│   │                             starts: what it needs to start without asking, decisions and constraints not in the
+│   │                             files, what was ruled out, the first step and when it is done, references by path, no
+│   │                             tool only the writer has; a line or two for a fork, findings for a fresh agent, and
+│   │                             the report it asks back; carryover builds on it (D138, D146, D147)
+│   ├── carryover/                coordinate-carryover: work carried over to a later session or agent, built on brief's
+│   │                             rules: a page of done, remaining, decisions, uncertain, references, the first next
+│   │                             step and what it was written against; offered at a task's, milestone's or phase's end
+│   │                             in a long session, before compaction or a fresh session; one file each, named by the
+│   │                             date and time it was written, the newest resumed; on resuming, checked against what
+│   │                             changed before acting (D65, D104, D107, D147, D160, D161, D162)
+│   ├── instruct/                 coordinate-instruct: writing and updating instruction documents: AGENTS.md, CLAUDE.md,
+│   │                             CLAUDE.local.md and the person's own; called by setup, or asked for at any time (D94)
+│   ├── setup/                    coordinate-setup: setting skillbook up on a machine (the install, the pointer in the
+│   │                             person's own files) or in a project (its blueprint started where that set is
+│   │                             installed, its instruction files checked, skills recommended); adds existing skills,
+│   │                             makes none (D93, D97, D117, D163)
+│   └── learn/                    coordinate-learn: what a session taught, when asked: highlights collected, judged and,
+│                                 with approval, made into a rule through instruct, or a decision or an insight for the
+│                                 keeper, or dropped; skill promotion and where highlights wait are future work (D66,
+│                                 D98, D107, D163) → instruct
+│
+└── devise/                       devise: deciding what the work will be and its steps: design, how to design anything,
+    │                             and plan, planning multipart work and following it; its own SKILL.md routes to each
+    │                             (D164)
+    ├── design/                   devise-design: how to design anything: the design flow and its principles, and the
+    │   │                         sub-skills each step calls; where a keeper is loaded, such as blueprint, it records
+    │   │                         and tracks the design (D46, D47, D163)
+    │   └── review/               devise-design-review: a design reviewed through lenses: consistency, lean, model
+    │                             check, architecture, that lens being softeng's design's; review points here (D39,
+    │                             D154)
+    └── plan/                     devise-plan: planning multipart work before acting, and following it step by step:
+                                  none for single-step work; given steps followed and enhanced where not obvious, by the
+                                  obvious test; one line, or a full plan, divided through organize and challenged, when
+                                  stakes are high or the work is long or wide; approval when stakes are high, asked for,
+                                  or a question is in it; revised when a step fails (D151, D155) (kept in the response
+                                  or a file; a keeper the project points to, such as blueprint, says which file (D156))
 
 blueprint/                        blueprint, the blueprint set's main skill: a project's spec-to-dev flow and its
 │                                 records, from the idea to the hand-over to code, its files and folders, the procedures
@@ -257,7 +268,7 @@ softeng/                          softeng, the softeng set's main skill: how goo
 ├── implement/                    implement: making it, by carrying out the design
 │   ├── prototype/                implement-prototype: throwaway work that answers one design question → cited by design
 │   ├── plan/                     implement-plan: a plan carried out task by task → test, review, conduct-verify,
-│   │                             conduct-delegate
+│   │                             coordinate-delegate
 │   ├── git/                      implement-git: git work by the house rules; routes to its sub-skills
 │   │   ├── worktree/             implement-git-worktree: a task in its own worktree
 │   │   ├── commit/               implement-git-commit: a commit message proposed in the house style
@@ -324,7 +335,7 @@ authoring/                        authoring: author renamed (D154): writing work
 ├── edit/                         authoring-edit: a written text improved in passes, each asking one checkable question,
 │                                 structure before sentences before words; as many passes as the text needs; in one
 │                                 call, passes can run as parallel agents whose proposed changes are consolidated (D70)
-│                                 → conduct-delegate
+│                                 → coordinate-delegate
 │
 ├── issue/                        authoring-issue: an issue written for whoever was not in the conversation: posting
 │   │                             through guardrails, the project's templates winning, a security problem never public
@@ -415,10 +426,11 @@ Daily routines stay outside it (D31); learning from a session lives in conduct.
 
 | Set / root | Skills | with material | ideas |
 | --- | --- | --- | --- |
-| essentials / conduct | 27 | 27 | 0 |
+| essentials / conduct | 12 | 12 | 0 |
 | essentials / understand | 15 | 15 | 0 |
-| essentials / design | 1 | 1 | 0 |
-| essentials / plan | 1 | 1 | 0 |
+| essentials / organize | 5 | 5 | 0 |
+| essentials / coordinate | 9 | 9 | 0 |
+| essentials / devise | 3 | 3 | 0 |
 | blueprint / steps and forms | 15 | 15 | 0 |
 | softeng / design | 1 | 1 | 0 |
 | softeng / plan | 1 | 0 | 1 |
@@ -457,22 +469,22 @@ Where an activity and a subject meet ("review my essay"), the rule is still open
 
 Calls between skills, beyond each skill loading its own sub-skills.
 
-- **conduct-delegate** ← design-consolidate, design-parallel, design-review, implement-plan, understand-research (survey above all), test-experiment, conduct-delegate-council.
-- **conduct-layout** ← the main skill at its first read, conduct-respond, for every response, conduct-act, for every markdown file, conduct-brief, and authoring-markdown, for structure (D158). **authoring-markdown** and each **implement-code** language skill ← conduct-act, before every file of their type is written (D67, D68); markdown also ← maintain-repo.
-- **conduct-instruct** ← conduct-setup, when it writes into an instruction document (D94).
+- **coordinate-delegate** ← design-consolidate, design-parallel, design-review, implement-plan, understand-research (survey above all), test-experiment, coordinate-delegate-council.
+- **conduct-layout** ← the main skill at its first read, conduct-respond, for every response, conduct-act, for every markdown file, coordinate-brief, and authoring-markdown, for structure (D158). **authoring-markdown** and each **implement-code** language skill ← conduct-act, before every file of their type is written (D67, D68); markdown also ← maintain-repo.
+- **coordinate-instruct** ← coordinate-setup, when it writes into an instruction document (D94).
 - **test-tdd** ← implement-plan, test-debug. **review-code** and **conduct-verify** ← implement-plan.
 - **understand** (discuss, clarify deep, brainstorm, research) ← design; other roots reach understand's skills through the main skill (D51, D56).
 - **understand-research** ← test-experiment; understand's frame, brainstorm, weigh, challenge, argue and naming, for a fact. **understand-research-analyze** ← test-debug, when the cause is not obvious, and ship, for an incident's cause.
-- **design** ← conduct-learn, to record decisions. **design-architecture** ← test-tdd, for the deep-module vocabulary.
-- **understand-naming** ← design, for unclear terms. **conduct-verify** ← conduct-delegate, for verifiers.
+- **design** ← coordinate-learn, to record decisions. **design-architecture** ← test-tdd, for the deep-module vocabulary.
+- **understand-naming** ← design, for unclear terms. **conduct-verify** ← coordinate-delegate, for verifiers.
 - **understand-argue** ← understand-weigh, for each option in a debate; understand-discuss; conduct-respond, for the person's view at its strongest; authoring, for a proposal's case. **understand-challenge** ← understand-argue, for its objections.
 - **implement-git** ← maintain-repo.
 - **maintain-repo's release rules** ← ship-release, ship-deploy, ship-rollback: the contract shipping works within.
 - **ship-wizard** ← ship-infra, ship-release.
 - **conduct-respond** and **conduct-act** ← the main skill, first, once per conversation; respond again before each response is returned (D63, D81).
-- **authoring-blueprint** ← design's recording steps (discuss, research, decide, write, workstream, tasks), for each document's form (D69). **conduct-delegate** ← authoring-edit, for passes run in parallel (D70).
-- **conduct-organize** ← design (an idea document split into sub-documents), plan (dividing a plan's work; the former plan-breakdown is kept in [plan's ideas](plan.md), D151), authoring-docs, and skillbook-tree for placing a skill (D61, D77).
-- **conduct-rightsize-lean** ← conduct-instruct's prune step on an existing document, skillbook-tree's cost check, design-review's lean lens and authoring-edit, for removing whole parts; **authoring-reader** ← conduct-rightsize-enrich, for what the reader would still ask (D157).
+- **authoring-blueprint** ← design's recording steps (discuss, research, decide, write, workstream, tasks), for each document's form (D69). **coordinate-delegate** ← authoring-edit, for passes run in parallel (D70).
+- **organize** ← design (an idea document split into sub-documents), plan (dividing a plan's work; the former plan-breakdown is kept in [plan's ideas](plan.md), D151), authoring-docs, and skillbook-tree for placing a skill (D61, D77).
+- **conduct-rightsize-lean** ← coordinate-instruct's prune step on an existing document, skillbook-tree's cost check, design-review's lean lens and authoring-edit, for removing whole parts; **authoring-reader** ← conduct-rightsize-enrich, for what the reader would still ask (D157).
 
 ## The roots, provisional
 
@@ -499,10 +511,11 @@ The parts keep their drafts, now read by the root that routes to them and by the
 
 For each skill, the sources that already hold material for it: read them before writing it (D30). sk is skillbook's first design; mp mattpocock/skills, sp superpowers, an Anthropic's skills, cc Claude Code's official plugins, gs gstack, ar alirezarezvani/claude-skills, vc vercel's agent skills; own the person's current skills; and the person's projects: ws workslate and rig, vo VaultOps and the agent specs, oc OpenCode customisations, lc loomcraft and infoloom, sb slipbox, ts trailscout, hs herdsman, md meddah.
 
-- **conduct:** conduct-respond (own, md, mp); conduct-layout (own); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-organize (vo); conduct-organize-split (vo); conduct-organize-merge (vo); conduct-organize-compose (vo); conduct-organize-normalize (vo); conduct-organize-cluster (vo); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-rightsize (own, mp); conduct-rightsize-lean (own, mp); conduct-rightsize-enrich (own); conduct-cleanup (own, sp, ar, an); conduct-instruct (mp, sp, ws, oc); conduct-setup (cc, lc); conduct-learn (ws, mp, gs, cc); conduct-delegate (own, ts, md, sp, vo); conduct-delegate-council (ws); conduct-delegate-fanout (own, ts); conduct-delegate-crew (md); conduct-brief (own, mp); conduct-carryover (ws, mp, oc, gs, ar).
+- **conduct:** conduct-respond (own, md, mp); conduct-layout (own); conduct-act (own, vo, sp); conduct-ask (own, mp); conduct-explain (mp); conduct-verify (sp, md, ws); conduct-guardrails (vo, sb, lc, gs, ts); conduct-stakes (own); conduct-rightsize (own, mp); conduct-rightsize-lean (own, mp); conduct-rightsize-enrich (own); conduct-cleanup (own, sp, ar, an).
 - **understand:** understand-discuss (own, oc, sp); understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-argue (gs, ar); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
-- **design:** design-review (ts, mp).
-- **plan:** plan (none yet).
+- **organize:** organize-split (vo); organize-merge (vo); organize-compose (vo); organize-normalize (vo); organize-cluster (vo).
+- **coordinate:** coordinate-delegate (own, ts, md, sp, vo); coordinate-delegate-council (ws); coordinate-delegate-fanout (own, ts); coordinate-delegate-crew (md); coordinate-brief (own, mp); coordinate-carryover (ws, mp, oc, gs, ar); coordinate-instruct (mp, sp, ws, oc); coordinate-setup (cc, lc); coordinate-learn (ws, mp, gs, cc).
+- **devise:** devise-design; devise-design-review (ts, mp); devise-plan (none yet).
 - **steps and forms:** design-start (sk); design-discuss (sk, mp); design-research (sk, ts); design-decide (sk, mp); design-evidence (sk); design-write (sk); design-workstream (sk); design-tasks (sk, mp); design-work (sk); design-sync (sk); design-consolidate (sk); design-parallel (sk); design-check (sk); design-publish (sk); authoring-blueprint (sk, mp, ts).
 - **softeng-design:** design-architecture (mp, hs).
 - **softeng-plan:** softeng-plan (none yet).
@@ -523,9 +536,9 @@ In [mattpocock-comparison.md](../notes/mattpocock-comparison.md): where each of 
 1. **understand, in detail:** each skill stripped of its old tools' conventions (D50); its root's flow is the discussion and design's discuss the record (D53).
 2. **How each activity specialises** for kinds of work other than software (D35), and how a lifecycle activity meets authoring and understand ("review my essay"). Settled in part (D154): the lifecycle is no longer general, and each set holds its own stages.
 3. **shipping's reach:** whether running what was shipped (monitor, incident) stays in ship or becomes its own part.
-4. **Listed besides the roots,** settled: markdown-style became author-markdown, reached through act's rule for every file written; agent-writing became conduct-instruct, with skillbook's own conventions in the project skill skillbook-tree (D67). Was: markdown-style fires on every markdown edit; agent-writing is called from `AGENTS.md`.
+4. **Listed besides the roots,** settled: markdown-style became author-markdown, reached through act's rule for every file written; agent-writing became coordinate-instruct, with skillbook's own conventions in the project skill skillbook-tree (D67). Was: markdown-style fires on every markdown edit; agent-writing is called from `AGENTS.md`.
 5. **The thin branches:** ship's, authoring's and code's ideas: placeholders, or left out until needed.
-6. **Moving in:** `delegation-routing`, which lives in the person's dotfiles today, into conduct-delegate.
+6. **Moving in:** `delegation-routing`, which lives in the person's dotfiles today, into coordinate-delegate.
 7. **Names under a group,** settled: there is no group layer left; names start at the stage (`design-start`, D76).
 8. **Scope:** topics beyond keeping projects well widen skillbook's requirements and `SCOPE.md`.
 9. **Flows:** the other routes (a bug, a source, a meeting, a question) drawn like design's; and Matt's gap still open, phase boundaries.

@@ -8,7 +8,7 @@ Agent skills for any kind of project, organised as sets you install separately: 
 
 | Sets | What they cover |
 | --- | --- |
-| essentials | how the agent acts, understands, designs and plans: careful, efficient and organized |
+| essentials | how the agent behaves, understands, arranges, coordinates, designs and plans, with care |
 | blueprint | the spec-to-dev flow: a project's design record, decisions and tasks, kept in step |
 | softeng | how good software is designed, built, tested, reviewed, shipped and maintained |
 | authoring | writing for people: user docs, business documents, articles, issues; editing |

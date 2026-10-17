@@ -38,7 +38,7 @@ design/
 - **Files:**
 - **Material:**
 - **Tests:**
-- **Open:** a skill's flow may use other skills as its own steps. Steps that use another skill, such as discuss (understand's discuss), research (understand's research), review, parallel (conduct's delegate) and write (the blueprint set's document forms), may become steps in design's own flow rather than sub-skills; one with rules of its own stays a sub-skill, and one that does while another skill has its name, such as discuss, gets another name. Raised by the person 2026-10-14, settled when design is designed ([../ideas/open.md](../ideas/open.md)). Where its result goes when no keeper is loaded is set when design is designed (D163).
+- **Open:** a skill's flow may use other skills as its own steps. Steps that use another skill, such as discuss (understand's discuss), research (understand's research), review, parallel (coordinate's delegate) and write (the blueprint set's document forms), may become steps in design's own flow rather than sub-skills; one with rules of its own stays a sub-skill, and one that does while another skill has its name, such as discuss, gets another name. Raised by the person 2026-10-14, settled when design is designed ([../ideas/open.md](../ideas/open.md)). Where its result goes when no keeper is loaded is set when design is designed (D163).
 
 ### architecture
 

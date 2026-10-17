@@ -57,78 +57,6 @@
     {
      "path": [
       "conduct",
-      "organize"
-     ],
-     "mark": "●",
-     "src": "vo",
-     "tail": [],
-     "kids": [
-      {
-       "path": [
-        "conduct",
-        "organize",
-        "split"
-       ],
-       "mark": "●",
-       "src": "vo",
-       "tail": [],
-       "kids": [],
-       "desc": "one item, written or still planned, into several parts that do not overlap and cover it; each part readable on its own and sized to how it is read; VaultOps' decompose (D85, D148)"
-      },
-      {
-       "path": [
-        "conduct",
-        "organize",
-        "merge"
-       ],
-       "mark": "●",
-       "src": "vo",
-       "tail": [],
-       "kids": [],
-       "desc": "several redundant items fused into one survivor, links pointing at the others updated (D85)"
-      },
-      {
-       "path": [
-        "conduct",
-        "organize",
-        "compose"
-       ],
-       "mark": "●",
-       "src": "vo",
-       "tail": [],
-       "kids": [],
-       "desc": "a new parent added above items that stay whole: their generalization (D85)"
-      },
-      {
-       "path": [
-        "conduct",
-        "organize",
-        "normalize"
-       ],
-       "mark": "●",
-       "src": "vo",
-       "tail": [],
-       "kids": [],
-       "desc": "the part several items share taken out into one place they all use (D85)"
-      },
-      {
-       "path": [
-        "conduct",
-        "organize",
-        "cluster"
-       ],
-       "mark": "●",
-       "src": "vo",
-       "tail": [],
-       "kids": [],
-       "desc": "a view added for finding items, the items unchanged: an index, grouping for navigation; a map pays for items agents read often (D85, D148)"
-      }
-     ],
-     "desc": "arranging things, written or still planned: rules (one dividing principle, each boundary in one sentence, meaning preserved, the person verifying plan and result, retiring, code through implement; the middle three only when something existing changes), the check of existing parts, then one routing line per operation; units of any kind, examples across writing, code and design (D61, D85, D86, D107, D141, D148)"
-    },
-    {
-     "path": [
-      "conduct",
       "explain"
      ],
      "mark": "●",
@@ -216,112 +144,9 @@
      "src": "own sp ar an",
      "tail": [],
      "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "instruct"
-     ],
-     "mark": "●",
-     "desc": "writing and updating instruction documents: AGENTS.md, CLAUDE.md, CLAUDE.local.md and the person's own; called by setup, or asked for at any time (D94)",
-     "src": "mp sp ws oc",
-     "tail": [],
-     "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "setup"
-     ],
-     "mark": "●",
-     "desc": "setting skillbook up on a machine (the install, the pointer in the person's own files) or in a project (its blueprint started where that set is installed, its instruction files checked, skills recommended); adds existing skills, makes none (D93, D97, D117, D163)",
-     "src": "cc lc",
-     "tail": [],
-     "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "learn"
-     ],
-     "mark": "●",
-     "desc": "what a session taught, when asked: highlights collected, judged and, with approval, made into a rule through instruct, or a decision or an insight for the keeper, or dropped; skill promotion and where highlights wait are future work (D66, D98, D107, D163) → instruct",
-     "src": "ws mp gs cc",
-     "tail": [],
-     "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "delegate"
-     ],
-     "mark": "●",
-     "desc": "work given to other agents, the default for any task that is not too small: the type first, after a cost check, then fork or fresh by what the task needs from the conversation and how long it is, then the tier, and the effort apart from it, tiers never named as models; the cost, a running list while the conversation goes on, the work checked; one routing line each for council, fanout and crew; within the harness's limits and its own means (D65, D99, D107, D115, D138, D139, D142, D143, D144, D147); what the agent is told is brief's",
-     "src": "own ts md sp vo",
-     "tail": [],
-     "kids": [
-      {
-       "path": [
-        "conduct",
-        "delegate",
-        "council"
-       ],
-       "mark": "●",
-       "desc": "several agents, about three, answer the same question on the same material independently; a summary keeping disagreements; the person decides (D99, D101, D107, D115)",
-       "src": "ws",
-       "tail": [],
-       "kids": []
-      },
-      {
-       "path": [
-        "conduct",
-        "delegate",
-        "fanout"
-       ],
-       "mark": "●",
-       "src": "own ts",
-       "tail": [],
-       "kids": [],
-       "desc": "the work split into parts, each agent with a place or a sub-question the others do not have; findings with their sources consolidated by a script, which checks each quote, then validated and synthesized (D99, D107, D115)"
-      },
-      {
-       "path": [
-        "conduct",
-        "delegate",
-        "crew"
-       ],
-       "mark": "●",
-       "src": "md",
-       "tail": [],
-       "kids": [],
-       "desc": "several agents each change their own items of one job; a shared item has one owner, who applies the others' proposals; then one pass in sequence (D99, D107, D115)"
-      }
-     ]
-    },
-    {
-     "path": [
-      "conduct",
-      "brief"
-     ],
-     "mark": "●",
-     "desc": "what an agent that was not in the conversation is told when it starts: what it needs to start without asking, decisions and constraints not in the files, what was ruled out, the first step and when it is done, references by path, no tool only the writer has; a line or two for a fork, findings for a fresh agent, and the report it asks back; carryover builds on it (D138, D146, D147)",
-     "src": "own mp",
-     "tail": [],
-     "kids": []
-    },
-    {
-     "path": [
-      "conduct",
-      "carryover"
-     ],
-     "mark": "●",
-     "desc": "work carried over to a later session or agent, built on brief's rules: a page of done, remaining, decisions, uncertain, references, the first next step and what it was written against; offered at a task's, milestone's or phase's end in a long session, before compaction or a fresh session; one file each, named by the date and time it was written, the newest resumed; on resuming, checked against what changed before acting (D65, D104, D107, D147, D160, D161, D162)",
-     "src": "ws mp oc gs ar",
-     "tail": [],
-     "kids": []
     }
    ],
-   "desc": "how the agent acts: how it behaves in every root, sets skillbook up, learns from sessions and works with other agents; its own SKILL.md holds the wrap-up offer and one routing line per sub-skill under six headings, and the main skill reads respond, act, rightsize and layout directly, first, once per conversation (D63, D67, D77, D106, D134, D149, D158)"
+   "desc": "how the agent behaves in every response: responding, laying out, acting, asking, explaining, judging stakes, guardrails, verifying, rightsizing and cleaning up; the main skill reads respond, act, rightsize and layout directly, first, once per conversation, and conduct's own SKILL.md holds one routing line for each of the rest (D63, D106, D134, D149, D158, D164)"
   },
   {
    "set": "essentials",
@@ -410,7 +235,7 @@
       "brainstorm"
      ],
      "mark": "●",
-     "desc": "options for one open question: framed through frame, options listed before any is judged and differing in kind, the promising ones developed and challenged, weighed through weigh, then decided through conduct's ask or parked; keeps nothing, design's discuss step records it (D53, D118)",
+     "desc": "options for one open question: framed through frame, options listed before any is judged and differing in kind, the promising ones developed and challenged, weighed through weigh, then decided through conduct's ask or parked; keeps nothing, a keeper records it (D53, D118, D163)",
      "src": "oc sp vo",
      "tail": [],
      "kids": []
@@ -489,7 +314,7 @@
         "survey"
        ],
        "mark": "●",
-       "desc": "what exists on a subject, found widely and compared on the same terms, the screened-out named, coverage and date stated; weigh chooses → conduct-delegate (D128)",
+       "desc": "what exists on a subject, found widely and compared on the same terms, the screened-out named, coverage and date stated; weigh chooses → coordinate-delegate (D128)",
        "src": "ts an own ar",
        "tail": [],
        "kids": []
@@ -513,11 +338,244 @@
   {
    "set": "essentials",
    "path": [
-    "design"
+    "organize"
    ],
    "mark": "●",
-   "desc": "how to design anything: the design flow and its principles, and the sub-skills each step calls; with a blueprint, its steps record and track the design (D46, D47)",
-   "short": "shaping what to make, before and while making it",
+   "src": "vo",
+   "tail": [],
+   "kids": [
+    {
+     "path": [
+      "organize",
+      "split"
+     ],
+     "mark": "●",
+     "src": "vo",
+     "tail": [],
+     "kids": [],
+     "desc": "one item, written or still planned, into several parts that do not overlap and cover it; each part readable on its own and sized to how it is read; VaultOps' decompose (D85, D148)"
+    },
+    {
+     "path": [
+      "organize",
+      "merge"
+     ],
+     "mark": "●",
+     "src": "vo",
+     "tail": [],
+     "kids": [],
+     "desc": "several redundant items fused into one survivor, links pointing at the others updated (D85)"
+    },
+    {
+     "path": [
+      "organize",
+      "compose"
+     ],
+     "mark": "●",
+     "src": "vo",
+     "tail": [],
+     "kids": [],
+     "desc": "a new parent added above items that stay whole: their generalization (D85)"
+    },
+    {
+     "path": [
+      "organize",
+      "normalize"
+     ],
+     "mark": "●",
+     "src": "vo",
+     "tail": [],
+     "kids": [],
+     "desc": "the part several items share taken out into one place they all use (D85)"
+    },
+    {
+     "path": [
+      "organize",
+      "cluster"
+     ],
+     "mark": "●",
+     "src": "vo",
+     "tail": [],
+     "kids": [],
+     "desc": "a view added for finding items, the items unchanged: an index, grouping for navigation; a map pays for items agents read often (D85, D148)"
+    }
+   ],
+   "desc": "arranging things, written or still planned: rules (one dividing principle, each boundary in one sentence, meaning preserved, the person verifying plan and result, retiring, code through implement; the middle three only when something existing changes), the check of existing parts, then one routing line per operation; units of any kind, examples across writing, code and design (D61, D85, D86, D107, D141, D148, D164)"
+  },
+  {
+   "set": "essentials",
+   "path": [
+    "coordinate"
+   ],
+   "mark": "●",
+   "src": "",
+   "tail": [],
+   "desc": "working with agents not in this conversation, now, later and in every session: work given to other agents and what they are told, work carried over to a later session, the instruction documents every session reads, skillbook set up, and what a session taught; its own SKILL.md holds one routing line per sub-skill (D164)",
+   "kids": [
+    {
+     "path": [
+      "coordinate",
+      "delegate"
+     ],
+     "mark": "●",
+     "desc": "work given to other agents, the default for any task that is not too small: the type first, after a cost check, then fork or fresh by what the task needs from the conversation and how long it is, then the tier, and the effort apart from it, tiers never named as models; the cost, a running list while the conversation goes on, the work checked; one routing line each for council, fanout and crew; within the harness's limits and its own means (D65, D99, D107, D115, D138, D139, D142, D143, D144, D147); what the agent is told is brief's",
+     "src": "own ts md sp vo",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "coordinate",
+        "delegate",
+        "council"
+       ],
+       "mark": "●",
+       "desc": "several agents, about three, answer the same question on the same material independently; a summary keeping disagreements; the person decides (D99, D101, D107, D115)",
+       "src": "ws",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "coordinate",
+        "delegate",
+        "fanout"
+       ],
+       "mark": "●",
+       "src": "own ts",
+       "tail": [],
+       "kids": [],
+       "desc": "the work split into parts, each agent with a place or a sub-question the others do not have; findings with their sources consolidated by a script, which checks each quote, then validated and synthesized (D99, D107, D115)"
+      },
+      {
+       "path": [
+        "coordinate",
+        "delegate",
+        "crew"
+       ],
+       "mark": "●",
+       "src": "md",
+       "tail": [],
+       "kids": [],
+       "desc": "several agents each change their own items of one job; a shared item has one owner, who applies the others' proposals; then one pass in sequence (D99, D107, D115)"
+      }
+     ]
+    },
+    {
+     "path": [
+      "coordinate",
+      "brief"
+     ],
+     "mark": "●",
+     "desc": "what an agent that was not in the conversation is told when it starts: what it needs to start without asking, decisions and constraints not in the files, what was ruled out, the first step and when it is done, references by path, no tool only the writer has; a line or two for a fork, findings for a fresh agent, and the report it asks back; carryover builds on it (D138, D146, D147)",
+     "src": "own mp",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "coordinate",
+      "carryover"
+     ],
+     "mark": "●",
+     "desc": "work carried over to a later session or agent, built on brief's rules: a page of done, remaining, decisions, uncertain, references, the first next step and what it was written against; offered at a task's, milestone's or phase's end in a long session, before compaction or a fresh session; one file each, named by the date and time it was written, the newest resumed; on resuming, checked against what changed before acting (D65, D104, D107, D147, D160, D161, D162)",
+     "src": "ws mp oc gs ar",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "coordinate",
+      "instruct"
+     ],
+     "mark": "●",
+     "desc": "writing and updating instruction documents: AGENTS.md, CLAUDE.md, CLAUDE.local.md and the person's own; called by setup, or asked for at any time (D94)",
+     "src": "mp sp ws oc",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "coordinate",
+      "setup"
+     ],
+     "mark": "●",
+     "desc": "setting skillbook up on a machine (the install, the pointer in the person's own files) or in a project (its blueprint started where that set is installed, its instruction files checked, skills recommended); adds existing skills, makes none (D93, D97, D117, D163)",
+     "src": "cc lc",
+     "tail": [],
+     "kids": []
+    },
+    {
+     "path": [
+      "coordinate",
+      "learn"
+     ],
+     "mark": "●",
+     "desc": "what a session taught, when asked: highlights collected, judged and, with approval, made into a rule through instruct, or a decision or an insight for the keeper, or dropped; skill promotion and where highlights wait are future work (D66, D98, D107, D163) → instruct",
+     "src": "ws mp gs cc",
+     "tail": [],
+     "kids": []
+    }
+   ]
+  },
+  {
+   "set": "essentials",
+   "path": [
+    "devise"
+   ],
+   "mark": "●",
+   "src": "",
+   "tail": [],
+   "desc": "deciding what the work will be and its steps: design, how to design anything, and plan, planning multipart work and following it; its own SKILL.md routes to each (D164)",
+   "kids": [
+    {
+     "path": [
+      "devise",
+      "design"
+     ],
+     "mark": "●",
+     "desc": "how to design anything: the design flow and its principles, and the sub-skills each step calls; where a keeper is loaded, such as blueprint, it records and tracks the design (D46, D47, D163)",
+     "short": "shaping what to make, before and while making it",
+     "src": "",
+     "tail": [],
+     "kids": [
+      {
+       "path": [
+        "devise",
+        "design",
+        "review"
+       ],
+       "mark": "●",
+       "desc": "a design reviewed through lenses: consistency, lean, model check, architecture, that lens being softeng's design's; review points here (D39, D154)",
+       "src": "ts mp",
+       "tail": [],
+       "kids": []
+      }
+     ]
+    },
+    {
+     "path": [
+      "devise",
+      "plan"
+     ],
+     "mark": "●",
+     "desc": "planning multipart work before acting, and following it step by step: none for single-step work; given steps followed and enhanced where not obvious, by the obvious test; one line, or a full plan, divided through organize and challenged, when stakes are high or the work is long or wide; approval when stakes are high, asked for, or a question is in it; revised when a step fails (D151, D155)",
+     "short": "planning multipart work before acting, and following it step by step: none for single-step work; given steps followed and enhanced where not obvious, by the obvious test; one line, or a full plan, divided through organize and challenged, when stakes are high or the work is long or wide; approval when stakes are high, asked for, or a question is in it; revised when a step fails (D151, D155)",
+     "src": "",
+     "tail": [
+      "kept in the response or a file; a keeper the project points to, such as blueprint, says which file (D156)"
+     ],
+     "kids": []
+    }
+   ]
+  },
+  {
+   "set": "softeng",
+   "path": [
+    "design"
+   ],
+   "id": "softeng-design",
+   "bare": true,
+   "mark": "●",
    "src": "",
    "tail": [],
    "kids": [
@@ -530,17 +588,6 @@
      "mark": "●",
      "desc": "software's design knowledge: deep modules, seams, contracts, hot paths",
      "src": "mp hs",
-     "tail": [],
-     "kids": []
-    },
-    {
-     "path": [
-      "design",
-      "review"
-     ],
-     "mark": "●",
-     "desc": "a design reviewed through lenses: consistency, lean, model check, architecture, that lens being softeng's design's; review points here (D39, D154)",
-     "src": "ts mp",
      "tail": [],
      "kids": []
     },
@@ -712,33 +759,7 @@
      "tail": [],
      "kids": []
     }
-   ]
-  },
-  {
-   "set": "essentials",
-   "path": [
-    "plan"
    ],
-   "mark": "●",
-   "desc": "planning multipart work before acting, and following it step by step: none for single-step work; given steps followed and enhanced where not obvious, by the obvious test; one line, or a full plan, divided through organize and challenged, when stakes are high or the work is long or wide; approval when stakes are high, asked for, or a question is in it; revised when a step fails (D151, D155)",
-   "short": "planning multipart work before acting, and following it step by step: none for single-step work; given steps followed and enhanced where not obvious, by the obvious test; one line, or a full plan, divided through organize and challenged, when stakes are high or the work is long or wide; approval when stakes are high, asked for, or a question is in it; revised when a step fails (D151, D155)",
-   "src": "",
-   "tail": [
-    "kept in the response or a file; a keeper the project points to, such as blueprint, says which file (D156)"
-   ],
-   "kids": []
-  },
-  {
-   "set": "softeng",
-   "path": [
-    "design"
-   ],
-   "id": "softeng-design",
-   "bare": true,
-   "mark": "●",
-   "src": "",
-   "tail": [],
-   "kids": [],
    "desc": "how good software is designed (D154)"
   },
   {
@@ -783,7 +804,7 @@
       "plan"
      ],
      "mark": "●",
-     "desc": "a plan carried out task by task → test, review, conduct-verify, conduct-delegate",
+     "desc": "a plan carried out task by task → test, review, conduct-verify, coordinate-delegate",
      "src": "sp mp",
      "tail": [],
      "kids": []
@@ -1288,7 +1309,7 @@
       "edit"
      ],
      "mark": "●",
-     "desc": "a written text improved in passes, each asking one checkable question, structure before sentences before words; as many passes as the text needs; in one call, passes can run as parallel agents whose proposed changes are consolidated (D70) → conduct-delegate",
+     "desc": "a written text improved in passes, each asking one checkable question, structure before sentences before words; as many passes as the text needs; in one call, passes can run as parallel agents whose proposed changes are consolidated (D70) → coordinate-delegate",
      "src": "md",
      "tail": [],
      "kids": []
@@ -1473,7 +1494,7 @@
   "author-updates": "author-business",
   "conduct-answer": "conduct-respond"
  },
- "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: its rules hold in every case (follow act's rules, lay out every response and file by its rule on layout), so it reads act, respond, rightsize and layout first; for now it routes to understand, plan and conduct, and to authoring's markdown through authoring's main skill where that set is installed, several for one request where the work needs them, and other work is done under act's rules until its root or set is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154, D155, D158)",
+ "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: its rules hold in every case (follow act's rules, lay out every response and file by its rule on layout), so it reads act, respond, rightsize and layout first; for now it routes to understand, devise for plan, organize, coordinate and conduct, and to authoring's markdown through authoring's main skill where that set is installed, several for one request where the work needs them, and other work is done under act's rules until its root or set is designed; strong advice: delegation by default, done directly only when too small, when it needs the person's decisions as it goes, or when the content is needed for the conversation; it holds the wrap-up offer; every response is checked against respond before it is returned (D56, D63, D71, D81, D111, D112, D136, D138, D143, D149, D152, D153, D154, D155, D158, D164)",
  "sets": [
   {
    "name": "essentials",
