@@ -1742,6 +1742,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D164: essentials regrouped into conduct, understand, organize, coordinate and devise (2026-10-17)
 
+> **Amended by D176 (2026-10-17):** design and plan are sections of devise.md, not files of their own.
+
 **Decision:** essentials' main skill routes to five groups, each with its boundary in one sentence. conduct holds how the agent behaves in every response: respond, layout, act, ask, explain, stakes, guardrails, verify, rightsize with lean and enrich, and cleanup; it has no rule of its own any more. understand is unchanged. organize becomes a group of its own, with split, merge, compose, normalize and cluster. coordinate, new, holds working with agents not in this conversation, now, later and in every session: delegate with council, fanout and crew, brief, carryover, instruct, setup and learn. devise, new, holds deciding what the work will be and its steps: design, with review, and plan. The wrap-up offer, which offers learn and then carryover, moves from conduct's own skill to the main skill, since both now sit in coordinate and the offer is made whatever the request. This settles which group holds which skill; folders and names follow with the install routes, the tree's names meanwhile built from the path, such as organize-split and devise-plan. organize.md and coordinate.md hold the sections moved from conduct.md, and devise.md routes to design.md and plan.md. Names weighed for coordinate: instruct, which would have renamed instruct's own skill; equip, vague; relay and steer, weak for setup and delegate; onboard, which pulls in requests about onboarding people; orchestrate, a music word like conduct and suggesting many agents at once; direct, an adjective as a prefix; agents, not a verb; handoff, on the glossary's avoid list; context, the context window; crew and team, crew being delegate's part. For devise: prepare, since understanding prepares too. design and plan stay out of conduct, which holds behaviour, not pieces of work.
 
 **Why:** Once essentials became a set of its own, its grouping could be its own. conduct had become a catch-all: its boundary was how the agent acts in every root, while organize changes things for other roots, delegate, brief and carryover hand work to other agents and sessions, and setup, instruct and learn set the agent up. The person asked to merge the agents group and the setup group, since all six write for an agent not in this conversation, and to put design and plan under one folder, named devise.
@@ -1759,6 +1761,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** The person's order: essentials is the set every other set builds on, and the baseline built and tested first is essentials.
 
 ## D167: the design folder by set, and one home for the tree (2026-10-17)
+
+> **Amended by D176 (2026-10-17):** each set's folder has a README, and the design README links to them.
 
 **Decision:** `blueprint/design/` holds a folder per set, essentials, blueprint, softeng and authoring, each with its main skill's design and one design document per group or root; `how-it-works.md`, `skill-tree.md` and a README stay at the top. design.md is split by set: essentials' general design and its review in `essentials/design.md`, softeng's own design with architecture in `softeng/design.md`, and the blueprint set's main skill, recording steps and document forms, the forms moved from authoring.md, in `blueprint/blueprint.md`. The tree has one home: the full tree, with how to read it, its counts and its sources, in `design/skill-tree.md`, rendered from `design/tree/`; how-it-works keeps the short view and links to it; `ideas/skill-tree.md` keeps only what is open. The later sets get no design folder until their design starts; their skills, the knowledge base's and routines' among them, are listed as ideas in `ideas/later.md`, from the note kept when they were set aside. The ideas folder stays flat. The design README says what is where.
 
@@ -1813,3 +1817,9 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Decision:** verify's choice of who checks adds a third: a fresh agent, through coordinate's delegate, when the person asks for one, when delegate's table calls for a second check, or when the check needs judgment the writer cannot give its own work.
 
 **Why:** coordinate, conduct's tests and stakes all relied on verify choosing a second agent, which verify's own choice did not offer.
+
+## D176: devise in one file, a README per set folder, and organize's and coordinate's ideas in their own files (2026-10-17)
+
+**Decision:** devise's design file holds its sub-skills as sections, design with its review and plan, as every group's file does; design.md and plan.md are merged into devise.md. Each set's folder under `blueprint/design/` has a short README saying what the set is, its files and where its ideas are, and the design README links to them. organize's and coordinate's ideas move out of `ideas/conduct.md` into `ideas/organize.md` and `ideas/coordinate.md`; the ideas folder stays flat.
+
+**Why:** The person asked why plan was not in devise and suggested putting it in devise.md, devise being small; design followed, so that every group keeps one file. The person asked where the essentials folder's README was. organize's and coordinate's ideas had stayed in conduct's file after the regrouping.

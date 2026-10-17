@@ -265,8 +265,8 @@ softeng/                          softeng, the softeng set's main skill: how goo
 │   └── architecture/             design-architecture: software's design knowledge: deep modules, seams, contracts, hot
 │                                 paths
 │
-├── plan/                         plan's software parts: breakdown, slices and sequence, kept in plan.md, beside this
-│                                 file, for the person's own software-engineering skills (D151, D154)
+├── plan/                         plan's software parts: breakdown, slices and sequence, kept in ideas/plan.md, for the
+│                                 person's own software-engineering skills (D151, D154)
 │
 ├── implement/                    implement: making it, by carrying out the design
 │   ├── prototype/                implement-prototype: throwaway work that answers one design question → cited by design

@@ -1,6 +1,6 @@
 # Design: organize
 
-What a builder needs for organize and its five operations, essentials' group for arranging anything with boundaries (D164); ideas not yet decided are in [../../ideas/conduct.md](../../ideas/conduct.md), kept with conduct's until they are split. Every section answers the same questions (D80): purpose, description, callers, flow, result, files, material, tests, open. "Open" means not designed yet.
+What a builder needs for organize and its five operations, essentials' group for arranging anything with boundaries (D164); ideas not yet decided are in [../../ideas/organize.md](../../ideas/organize.md). Every section answers the same questions (D80): purpose, description, callers, flow, result, files, material, tests, open. "Open" means not designed yet.
 
 organize belongs to the essentials set (D152, D154, D164).
 

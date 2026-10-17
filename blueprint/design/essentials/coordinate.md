@@ -1,6 +1,6 @@
 # Design: coordinate
 
-What a builder needs for coordinate and its sub-skills, essentials' group for working with agents not in this conversation, now, later and in every session (D164); ideas not yet decided are in [../../ideas/conduct.md](../../ideas/conduct.md), kept with conduct's until they are split. Every section answers the same questions (D80): purpose, description, callers, flow, result, files, material, tests, open. "Open" means not designed yet.
+What a builder needs for coordinate and its sub-skills, essentials' group for working with agents not in this conversation, now, later and in every session (D164); ideas not yet decided are in [../../ideas/coordinate.md](../../ideas/coordinate.md). Every section answers the same questions (D80): purpose, description, callers, flow, result, files, material, tests, open. "Open" means not designed yet.
 
 coordinate belongs to the essentials set (D152, D154, D164).
 

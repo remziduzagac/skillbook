@@ -166,4 +166,5 @@ How skillbook's initial design was discussed, from 2026-10-07 to 2026-10-10, in 
 - 110, plan and design: the person asked why they should be sequential or bounded; each owns its question and calls the other (D173).
 - 111, organize's check covers new items, compose may move items, and delegate chooses the agent, the person noting that delegation is delegate's (D174).
 - 112, verify can choose a fresh agent to check (D175).
+- 113, devise in one file, a README per set folder, and the ideas split: the person asked why plan was not in devise and where the essentials README was (D176).
 - **Open:** [../ideas/open.md](../ideas/open.md) and the questions in [../ideas/skill-tree.md](../ideas/skill-tree.md).

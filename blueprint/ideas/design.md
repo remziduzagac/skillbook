@@ -1,6 +1,6 @@
 # Ideas: design
 
-Ideas and open questions for design, not decided. What is decided is in [../design/essentials/design.md](../design/essentials/design.md).
+Ideas and open questions for design, not decided. What is decided is in [../design/essentials/devise.md](../design/essentials/devise.md#design).
 
 ## design
 

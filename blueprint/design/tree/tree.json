@@ -774,7 +774,7 @@
    "src": "",
    "tail": [],
    "kids": [],
-   "desc": "plan's software parts: breakdown, slices and sequence, kept in plan.md, beside this file, for the person's own software-engineering skills (D151, D154)"
+   "desc": "plan's software parts: breakdown, slices and sequence, kept in ideas/plan.md, for the person's own software-engineering skills (D151, D154)"
   },
   {
    "set": "softeng",
