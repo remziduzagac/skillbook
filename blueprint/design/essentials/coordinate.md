@@ -4,7 +4,7 @@ What a builder needs for coordinate and its sub-skills, essentials' group for wo
 
 coordinate belongs to the essentials set (D152, D154, D164).
 
-How skills reach each other here (D107): a sibling within coordinate is read by its path, such as carryover building on brief; a skill in another group is reached through the main skill (D56).
+How skills reach each other here (D107): a sibling within coordinate is read by its path, such as carryover building on brief; a skill in another group is reached through the main skill, and a skill in another set through that set's main skill, by name; where that set is not installed, the one-line fallback written where it is used holds, and a request pointed to it is done directly under act's rules, as the main skill says (D56, D152).
 
 ```text
 coordinate/
@@ -23,12 +23,16 @@ coordinate/
 ## coordinate
 
 - **Purpose:** working with agents not in this conversation: another agent now (delegate, brief), a later session (carryover), and every session, through the instruction documents it reads (instruct), skillbook set up in them (setup) and a session's lessons kept (learn) (D164). Its own `SKILL.md` takes the shape every skill with parts takes: no rules or advice of its own, one routing line per sub-skill read on demand, under three headings (D112, D164).
-- **Description:** "Working with agents not in this conversation: work handed to another agent and what it is told, work carried over to a later session, the instruction documents every session reads, skillbook set up, and what a session taught." A draft (D164).
-- **Callers:** the main skill, by its routing line (D164); other skills needing one of its sub-skills, through the main skill, such as conduct's verify starting a second agent to check (delegate) (D56, D106); the main skill's wrap-up offer, for learn and carryover; the person, typing it.
-- **Flow:** instructions, one routing line per sub-skill read on demand, moved from conduct's own skill (D134, D164):
+- **Description:** "Working with agents not in this conversation: work handed to another agent and what it is told, work carried over to a later session, the instruction documents every session reads, skillbook set up, and what a session taught. Use when work goes to an agent not in this conversation, now, later or in every session, or another skill needs one of these." A draft (D164).
+- **Callers:** the main skill, by its routing line (D164, D171, D172); other skills needing one of its sub-skills, through the main skill, such as conduct's verify starting a second agent to check (delegate) (D56, D106); the main skill's wrap-up offer, for learn and carryover; the person, typing it.
+- **Flow** (D134, D164).
+
+  **Scope:** when work goes to an agent not in this conversation, now, later or in every session: delegating, briefing, a carryover, an instruction document, setting skillbook up or moving its pointer, or what a session taught, or another group needs one of these; not for the person's own work (the other groups) or how the agent behaves in a response (conduct); it gives back what its sub-skill returns (D164, D171).
+
+  Instructions, one routing line per sub-skill read on demand, moved from conduct's own skill:
 
   **Now:**
-  - **delegate:** when a task goes to an agent, the default for any task that is not too small, as the main skill's advice says, or several agents should answer, search or change things in parallel; not for what an agent is told (brief), passing work on for later (carryover), or checking work with a second agent, which starts in verify and uses delegate to start the agent; it gives back the delegated work checked, with its cost and what each agent left behind.
+  - **delegate:** when a task goes to an agent, the default for any task that is not too small, as the main skill's advice says, or several agents should answer, search or change things in parallel; not for what an agent is told (brief), passing work on for later (carryover), or checking work with a second agent, which starts in verify and uses delegate to start the agent; it gives back the delegated work checked, with its cost where one is stated and what each agent left behind.
   - **brief:** when a task is handed to an agent, fork or fresh, and what it is told is written; not for who gets the work, its type, tier or cost (delegate), or the state written down for a later session (carryover); it gives back the brief, with the report it asks for (D147).
 
   **Later:**
@@ -37,9 +41,11 @@ coordinate/
   **Every session:**
   - **instruct:** when a rule in an instruction document, `AGENTS.md`, `CLAUDE.md`, `CLAUDE.local.md` or the person's own, is added, tidied or cut down, or which file a rule belongs in is decided; not for setting skillbook up (setup), skill files (skillbook-tree) or a carryover (carryover); it gives back the change proposed, in the file it belongs in.
   - **setup:** when skillbook is set up on a machine or in a project, or its pointer is moved between a project's local and shared files; not for writing a rule into an instruction document (instruct) or making a skill (skillbook-tree, in this repository); it gives back the install checked, the pointer added, the blueprint started, the instruction files checked and skills recommended.
-  - **learn:** when the person asks what a session taught, or accepts it from the wrap-up offer, and never unasked; not for recording a design decision as it is made (design) or writing the state down for later (carryover); it gives back the highlights judged, each made into a rule, a decision or a note with the person's approval, or dropped.
+  - **learn:** when the person asks what a session taught, or accepts it from the wrap-up offer, and never unasked; not for recording a design decision as it is made (design) or writing the state down for later (carryover); it gives back the highlights judged, each made into a rule, a decision or an insight with the person's approval, or dropped.
 
   A request about working with other agents that fits no line is done with the agent's own judgment, under act's rules (D115).
+
+  **Last instruction, before anything is returned:** the sub-skill's own last instruction holds (D134).
 - **Result:** whatever the sub-skill returns.
 - **Files:** `SKILL.md` only (D164).
 - **Material:** none of its own.
@@ -50,16 +56,18 @@ coordinate/
   4. "review this change with three agents, one lens each": delegate, then fanout; "ask three agents whether to use X or Y": delegate, then council (D107);
   5. "add a rule to our `CLAUDE.md`": instruct, not setup (D107);
   6. "write the state down so another agent can continue tomorrow": carryover, not delegate or brief (D107, D147);
-  7. "check my work with another agent": verify, which chooses who checks, and delegate to start the second agent; two rows serve one request (D115);
+  7. "check my work with another agent": verify, which chooses who checks, and delegate to start the second agent; two lines serve one request (D115);
   8. "write the brief for this agent": brief; "who should do this, and at which tier?": delegate (D147);
   9. "this `AGENTS.md` has grown too long": instruct, whose prune step goes through lean (D157);
+  10. "what did this session teach?": learn, not carryover (D98);
+  11. "move the pointer to our shared `AGENTS.md`": setup, not instruct (D165).
 - **Open:** none known.
 
 ## delegate
 
 - **Purpose:** work given to other agents, the default for any task that is not too small, as the main skill's advice says (D65, D99, D138). Its own `SKILL.md` takes the shape every skill with parts takes: its rules, advice, one routing line per kind of delegation, council, fanout and crew, and the last instruction; a single delegated task needs only delegate's own steps (D99, D112, D138). The main session keeps the conversation, the tracking and the person's decisions; the tasks go to agents, forks or fresh ones.
 - **Description:** "Giving work to other agents, the default for any task that isn't too small: one agent, a council, a fanout or a crew; fork or fresh agent and its tier, by what the task needs and what it costs; tracking it while the conversation goes on, and checking the work; what the agent is told is brief's. Use for any task handed to an agent, or when several agents should answer, search or change things in parallel." A draft (D138, D142, D147).
-- **Callers:** coordinate's own skill, by its routing line (D134, D138, D164): when a task goes to an agent, the default for any task that is not too small, or several agents should answer, search or change things in parallel; not for what an agent is told (brief), passing work on for later (carryover), or checking work with a second agent, which starts in verify; it gives back the delegated work checked, with its cost and what each agent left behind. Its other callers: the main skill's advice on delegating by default (D138); design (consolidating, parallel work, review), implement's plan, understand's survey, test's experiment, authoring's edit for parallel passes (D70); verify, when a second agent checks the work (D115).
+- **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D172). Its other callers: the main skill's advice on delegating by default (D138); design's review, one agent per lens for a large design (D168), devise's plan, handing parts to agents (D155), understand's survey, test's experiment, authoring's edit for parallel passes (D70); verify, when a second agent checks the work (D115).
 - **Flow** (D99, D107, D138). Rules, each with its reason:
   1. **The main session keeps the conversation, the tracking and the person's decisions; tasks go to agents.** A main session filled with every task's output loses the person's thread and its own context.
   2. **Independence needs a fresh agent:** a review, fresh eyes, verify's second agent or a council's member is never a fork, since a fork shares the main agent's reasons and blind spots.
@@ -84,9 +92,9 @@ coordinate/
   5. **Delegation never widens what is allowed:** a risky action inside the delegated work comes back as a proposal in the agent's report, as act's rule on delegated agents says, and the main agent puts it to the person (D138).
   6. **The work is checked through verify,** since an agent's report of success is not evidence (D89). When verify itself started the agent, to check work, the report goes back to verify as that check, not through verify again (D137).
   7. **A question or approval prompt shown inside a delegated agent is reported to the person, never answered for them,** since the answer is theirs (D138).
-  8. **The harness's limits on delegating hold,** a variation of act's rule on which instruction wins: a mode that needs the person's opt-in, limits on agents starting agents, how many run at once, which kinds of agent exist. delegate guides within them; the harness's habits about when to delegate are what delegate refines; and no tool is brought in that neither the harness nor the person chose (D139).
+  8. **The harness's limits on delegating hold,** a variation of act's rule on which instruction wins: a mode that needs the person's opt-in, limits on agents starting agents, how many run at once, which kinds of agent exist. delegate guides within them; the harness's habits about when to delegate are what delegate refines; and no tool is brought in that neither the harness nor the person chose, since skills stay generic and impose no outside tool (D139).
 
-  The cost is guardrails' rule: a large delegation, many agents or a long job, above the trivial cost and not already accepted for that kind of work, is proposed with its cost first, and on a plan with usage limits, usage counts as cost, stated in those terms where the harness shows it; a single fork or fresh agent is never asked about, so guardrails is read for the cost only when several agents or a long job are planned (D92, D107, D138, D149). What an agent is told, with act's rule on delegated agents and the report it asks back, is coordinate's brief (D107, D129, D147).
+  The cost is guardrails' rule: a large delegation, many agents or a long job, above the trivial cost and not already accepted for that kind of work, is proposed with its cost first, and on a plan with usage limits, usage counts as cost, stated in those terms where the harness shows it; a single fork or fresh agent on anything but a long job is never asked about, so guardrails is read for the cost only when several agents or a long job are planned (D92, D107, D138, D149). What an agent is told, with act's rule on delegated agents and the report it asks back, is coordinate's brief (D107, D129, D147).
 
   Advice (D138):
   - **fork or fresh,** a sample of how the `SKILL.md` puts it (D142): before delegating, list what the agent needs from this conversation to do the task well: decisions made, files already read, constraints, what the person wants. Then judge two things:
@@ -122,8 +130,8 @@ coordinate/
   9. **Report** in a few lines; any proposal from it goes to the person through conduct's ask.
   10. **Last instruction, before the work is reported done:** every delegated task checked, or reported as failed, and marked done on the running list; its leftovers through conduct's cleanup, when an agent created or started anything (D149); its cost stated where guardrails asks.
 
-  Done when the work is checked through verify and reported with its cost (D107).
-- **Result:** the delegated work, checked, with its cost and what each agent left behind, in cleanup's three fields (D129, D137).
+  Done when the work is checked through verify and reported with its cost where guardrails asks (D107).
+- **Result:** the delegated work, checked, with its cost where one is stated and what each agent left behind, in cleanup's three fields (D129, D137).
 - **Files:** `SKILL.md`; `references/claude.md` and `references/codex.md`, of which delegate reads only the current harness's (D149), mapping the tiers to the model names that harness takes, and the efforts to its effort levels, saying whether a skill may set an agent's effort, naming its own tools for subagents, whether it can fork, its limits on delegating, and, where the person picks models from several providers, how to find the ones available (D99, D138, D139, D143, D144); how its fork uses the cache, and what context use it shows the agent, such as a warning near the limit, which delegate uses only where it is shown without extra work; reading a session's transcript for its token counts is for measuring, never for routine choices (D142). For Claude: light, standard and strong are haiku, sonnet and opus, the short names Claude Code takes; fable only after opus has been tried on the same work and fallen short, since it costs more (D107); Haiku 5.5's price step, every token five times dearer once a prompt passes 100,000 tokens, kept in `references/prices.md` (D144, D149). Claude Code lets a fresh agent's effort be set when the person, their instruction file or a skill asks for it, and delegate's effort lines are that ask; a fork keeps the session's (D143). Codex's file maps the tiers to OpenAI's models, checked when it is written (D144). The person's own instruction file can set or override the mapping; with no mapping, neither a reference file nor the person's, every agent runs on the session's model, since a guessed name could start an agent that does not exist, or one that costs more than meant (D144). The reference files are interim: how to drive each agent program moves to rigs once rigs is designed (D107). `references/prices.md` holds each model's price, any price step and the date read, read only when a cost is stated, since choosing a tier needs only the names; `references/other-harnesses.md` holds the rules for other harnesses below, read only when one is named (D149).
 - **Material:** the person's `delegation-routing`; trailscout; meddah; superpowers' subagent-driven development; VaultOps' supervisor and experts.
 - **Tests** (D107):
@@ -176,9 +184,9 @@ coordinate/
 ### council
 
 - **Purpose:** several agents answer the same question about the same material independently; one sums up, the person decides (D65, D99). It compares independent judgments of one question over the same material; fanout splits the work into parts, a different place or a different sub-question each, and combines the findings, so a review with one lens per agent is a fanout (D107, D115).
-- **Description:** "Several agents answer the same question independently, about three; the answers compared, disagreements kept, the person decides." A draft (D107).
-- **Callers:** delegate, by its routing line (D138): when several agents should answer the same question independently; not for splitting the work (fanout), parallel changes (crew) or a recommendation; it gives back the answers compared, the disagreements kept.
-- **Flow** (D99, D101, D107): the question scoped; the members chosen, about three, as advice: enough to see disagreement while staying cheap (D116); mixing models and agents where it helps (different models; a Codex agent beside a Claude one), since answers from one model share its blind spots, and none at the light tier, since each answer is a judgment (D115); each member briefed with the question and the material only, never the main agent's own view; each answers on its own; a summary that keeps the disagreements and says which member said what; every answer kept visible; the person decides or asks for more. How to start another agent is in delegate's reference file for it; the cost follows guardrails' rule on cost.
+- **Description:** "Several agents answer the same question independently, about three; the answers compared, disagreements kept, the person decides. Use when several agents should answer the same question independently, to see where judgments differ; splitting the work is fanout's." A draft (D107).
+- **Callers:** delegate, by its routing line in delegate's flow (D138, D172).
+- **Flow** (D99, D101, D107): the question scoped; the members chosen, about three, as advice: enough to see disagreement while staying cheap (D116); mixing models and agents where it helps (different models; a Codex agent beside a Claude one, only for a harness on the person's allow-list, by delegate's rule on other harnesses), since answers from one model share its blind spots, and none at the light tier, since each answer is a judgment (D115); each member briefed with the question and the material only, never the main agent's own view; each answers on its own; a summary that keeps the disagreements and says which member said what; every answer kept visible; the person decides or asks for more. How to start another agent is in delegate's reference file for it; the cost follows guardrails' rule on cost.
 
   Done when every member has answered and the summary, with the answers beside it, is in front of the person (D107).
 - **Result:** the summary, with the answers beside it.
@@ -190,8 +198,8 @@ coordinate/
 ### fanout
 
 - **Purpose:** the work split into parts, each agent with a part the others do not have, a different place to look or a different sub-question such as one review lens, and the findings combined (D99, D107, D115). A council, by contrast, asks every member the same question.
-- **Description:** "Several agents search or read different places; their findings, each with its source, combined, checked against the sources and validated." A draft (D107).
-- **Callers:** delegate, by its routing line (D138): when the work splits into parts, each agent with a part the others do not have, one review lens each included; not for the same question to each agent (council) or changes (crew); it gives back the findings combined, checked and validated. Its other callers: understand's research and its parts, survey above all; any wide, light reading.
+- **Description:** "Several agents search or read different places; their findings, each with its source, combined, checked against the sources and validated. Use when the work splits into parts, each agent with a part the others do not have; the same question to each is council's." A draft (D107).
+- **Callers:** delegate, by its routing line in delegate's flow (D138, D172). Its other callers: understand's research and its parts, survey above all; any wide, light reading.
 - **Flow** (D99, D107):
   1. **Split by part, not by count:** each agent gets a part the others do not have: a place (official sources, code, issue trackers; a folder, a symbol, a date range) or a sub-question (for a review, one lens) (D115).
   2. **Search or read,** each agent at low effort, since validation checks after it (D144): each writes its findings in the findings format, whose one home is understand's research, to its own file in the scratch place, and reports only the path, the count and what it could not find, as coordinate's brief's report rule says, so the findings never pass through the main context (D149); how its agents write them so the script can read them is fanout's, and delegate and other harnesses use it (D115, D128).
@@ -211,8 +219,8 @@ coordinate/
 ### crew
 
 - **Purpose:** several agents each change their own items of one job in parallel; a shared item has one owner, and the others send it their changes as proposals (D99, D107, D115).
-- **Description:** "Several agents each change their own items of one job; a shared item has one owner, who applies the others' proposals; then one pass over the whole." A draft (D107).
-- **Callers:** delegate, by its routing line (D138): when several agents each change their own items of one job in parallel; not when every change lands in one file, or for reading only (fanout); it gives back the changes made and one pass over the whole. Its other callers: design's parallel staged mode, when several agents work in one blueprint; authoring's edit, for parallel passes over one document (D70, D107).
+- **Description:** "Several agents each change their own items of one job; a shared item has one owner, who applies the others' proposals; then one pass over the whole. Use when several agents each change their own items of one job in parallel." A draft (D107).
+- **Callers:** delegate, by its routing line in delegate's flow (D138, D172). Its other callers: authoring's edit, for parallel passes over one document (D70, D107).
 - **Flow** (D99, D107):
   1. **Plan the parts,** through plan, which divides the work through organize (D155): each agent's part and scope, and which items are shared; the plan listed first, as guardrails' rule for wide changes says, waiting for approval only where guardrails' other kinds apply (D137).
   2. **One owner per item:** no item is written by two agents, since parallel writes to one item overwrite each other; a shared item, such as an index or a changelog the others' changes touch, has one owner, and the others send it their changes as proposals that the owner applies, or it waits for the pass in sequence (D115).
@@ -231,7 +239,7 @@ coordinate/
 
 - **Purpose:** writing for a reader who was not in the conversation and starts now: a delegated agent, fork or fresh, given a task (D147). It holds what every such writing needs, which carryover builds on for a later reader, and what a delegation needs: what a fork and a fresh agent each get, and what the brief asks back. delegate decides who gets the work; brief decides what they are told (D138, D146, D147).
 - **Description:** "Writing what an agent that wasn't in the conversation is told when it starts: what it needs to start without asking, decisions and constraints not in the files, what was ruled out, the first step and when it is done, references by path, and the report it should give back. Use whenever work is handed to an agent, fork or fresh; carryover builds on it for a later session." A draft (D147).
-- **Callers:** coordinate's own skill, by its routing line under "Now" (D134, D147, D164): when a task is handed to an agent, fork or fresh, and what it is told is written; not for who gets the work, its type, tier or cost (delegate), or the state written down for a later session (carryover); it gives back the brief, with the report it asks for. Its other callers: delegate's brief step, for every delegation, council, fanout and crew included; carryover, whose shared parts follow brief's rules; verify, through delegate, when a second agent checks the work (D115, D147).
+- **Callers:** coordinate's own skill, by its routing line under "Now" in coordinate's flow (D134, D147, D172). Its other callers: delegate's brief step, for every delegation, council, fanout and crew included; carryover, whose shared parts follow brief's rules; verify, through delegate, when a second agent checks the work (D115, D147).
 - **Flow** (D147). Rules, each with its reason:
   1. **The reader can start without asking:** the brief holds what the task needs from the conversation, and nothing the reader can find for itself, since a delegated agent cannot ask the person and a question that comes back in its report costs a whole round (D138, D145).
   2. **Decisions and constraints that are not in the files are stated:** what was agreed, what the person wants, limits the code does not show, since the reader can find them nowhere else.
@@ -269,49 +277,58 @@ coordinate/
 
 - **Purpose:** work carried over for later, to a later session or another agent: the state written down when work stops, and checked and continued from at the start of the later one (D65, D147). It builds on coordinate's brief, whose rules hold for any reader who was not in the conversation, and adds what a later reader needs: what is done, what remains, what is open, what it was written against, where it is kept and how to resume (D104, D147). Its rules are its own, not instruct's (D67). Named carryover, since "carryover" also reads as a brief, handing work to an agent now (D147).
 - **Description:** "Carrying work over to a later session or agent: the state written down when work stops, offered at a task's, milestone's or phase's end in a long session, with compaction after it when the work continues, and checked and continued from later; what an agent starting now is told is brief's." A draft (D115, D147, D160).
-- **Callers:** coordinate's own skill, by its routing line (D134, D147, D164): when work is carried over for later, to a later session or another agent, or picked up from a carryover; offered by the wrap-up offer and at a task's, milestone's or phase's end, with compaction after it when the work continues (D160, D161), never written unasked; not for work given to an agent now (brief, delegate) or what a session taught (learn); it gives back the carryover written, or the state checked and the work continued. Its other callers: the person, ending or resuming a session; the main skill's wrap-up offer, when work stops with steps left. It is never written unasked (D104, D107, D115).
+- **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D147, D172). Its other callers: the person, ending or resuming a session; the main skill's wrap-up offer, when work stops with steps left. It is never written unasked, by act's rule to do what was asked and no more, since work not asked for is work the person must review (D104, D107, D115).
 - **Flow** (D104, D107, D147), the offer and two ways in:
 
-  **The offer** (D142, D147, D160): one question, through conduct's ask, offering the one of two that fits, when two things hold: a boundary has been reached, a task, a milestone or a phase completed with nothing in flight, such as a batch committed, an item recorded or a topic finished; and the session has been long, many turns and files read, or the harness shows the window over about half full, where it shows that without extra work (D142). Either way a carryover is written first, so the work resumes from the note, not from a summary alone (D161): when the next work continues this one, the offer is "write a carryover, then compact and continue from it?", the suggested focus naming the note, such as "continue from the carryover note; keep the open questions"; when it is new work and needs only what fits in the carryover, delegate's test of the list with the carryover as the list, it is "write a carryover and continue in a fresh session?". It is not offered when the session is short, or more than once per boundary: declined, it waits for the next one. Its reason: every call carries the whole conversation, so long sessions dominate the cost, while a fresh session carries its start-up and a page, and a compaction at a boundary, backed by the note, keeps what matters; both beat the harness's own compaction, which comes late, near a full window, costs a call over the whole context and decides for itself what to keep ([../../research/token-cost.md](../../research/token-cost.md)). On yes, the agent writes the note, shows its outline, done, remaining and the first next step, and asks the person to approve it, together with its commit where the project commits its notes; in the same message it gives the exact command to type, from the harness's reference file, its focus naming the note, or for new work the line to start a fresh session with. Compacting and starting a fresh session are the person's to do, since the agent cannot start either and skills stay generic (D139); no skill names a harness's command, and each harness's reference file says how (D160, D161). After the compaction, the agent re-reads the note and checks it against what it was written against, as resuming below says.
+  **The offer** (D142, D147, D160): one question, through conduct's ask, offering the one of two that fits, when two things hold: a boundary has been reached, a task, a milestone or a phase completed with nothing in flight, such as a batch committed, an item recorded or a topic finished; and the session has been long, many turns and files read, or the harness shows the window over about half full, where it shows that without extra work (D142). Either way a carryover is written first, so the work resumes from the note, not from a summary alone (D161): when the next work continues this one, the offer is "write a carryover, then compact and continue from it?", the suggested focus naming the note and leaving the summary what the note does not hold, such as "continue from `<note>`; keep what was said after the note was written, and the person's corrections" (D169); when it is new work and needs only what fits in the carryover, delegate's test of the list with the carryover as the list, it is "write a carryover and continue in a fresh session?". It is not offered when the session is short, or more than once per boundary: declined, it waits for the next one. Its reason: every call carries the whole conversation, so long sessions dominate the cost, while a fresh session carries its start-up and the note, and a compaction at a boundary, backed by the note, keeps what matters; both beat the harness's own compaction, which comes late, near a full window, costs a call over the whole context and decides for itself what to keep; and after a break longer than the cache lasts, resuming a long conversation writes it all again, at 12 to 20 times what a cached turn costs (D147, D171) ([../../research/token-cost.md](../../research/token-cost.md)). On yes, the agent writes the note, runs its cold read, shows its outline, the goal and where it stands, remaining and the first next step, and asks the person to approve it, together with its commit where the project commits its notes; in the same message it gives the exact command to type, from the harness's reference file, its focus naming the note, or for new work the line to start a fresh session with. Compacting and starting a fresh session are the person's to do, since the agent cannot start either and skills stay generic (D139); no skill names a harness's command, and each harness's reference file says how (D160, D161). After the compaction, the agent re-reads the note and checks it against what it was written against, as resuming below says.
 
-  **Write:** a document in markdown laid out by the main skill's rule on layout (D95, D154), rightsized for whoever resumes it, by conduct's rightsize (D145), and written by brief's rules, which hold for any reader who was not in the conversation (D147); about a page, as advice (D116); with seven parts, each needed to resume without asking:
-  1. done, each item with its evidence;
-  2. remaining, in the order it should be done;
-  3. decisions made, each with where it is recorded, by brief's rule on what is not in the files;
-  4. uncertain: open questions, and what was assumed but not confirmed;
-  5. references: files, decisions, branches, by path, never pasted, by brief's rule, and what was kept on purpose, with where it is and why, as conduct's cleanup reports it (D129);
-  6. the first next step, concrete enough to start without asking, by brief's rule on the first step;
-  7. written against: the date; in git, the branch, its last commit and any uncommitted changes; without git, the files changed and when (D115).
+  **Write:** a document in markdown laid out by the main skill's rule on layout (D95, D154), rightsized for whoever resumes it, by conduct's rightsize (D145), and written by brief's rules, which hold for any reader who was not in the conversation (D147); as long as a reader with no conversation needs, its first part alone giving the picture (D169). It goes top-down, from the general to the detailed, in ten parts, each needed to resume without asking (D169):
+  1. the goal and where it stands: what the work is for and its state as a whole, in a paragraph;
+  2. the shape of the work now: the structure and the concepts a reader needs, each in a line with where it is defined, never only a decision number;
+  3. how to work here: the person's rules, conventions and commands, such as how to check and render, that are recorded nowhere else; those in instruction files or memory are pointed to, and learn is offered for a rule worth keeping for good;
+  4. done since the last carryover, each item with its evidence;
+  5. decisions made, each with where it is recorded, by brief's rule on what is not in the files;
+  6. remaining, in the order it should be done, each with what it is about and what has already been weighed;
+  7. uncertain: open questions, and what was assumed but not confirmed;
+  8. references: files, decisions, branches, by path, never pasted, by brief's rule, and what was kept on purpose, with where it is and why, as conduct's cleanup reports it (D129);
+  9. the first next step, concrete enough to start without asking, by brief's rule on the first step;
+  10. written against: the date; in git, the branch, its last commit and any uncommitted changes; without git, the files changed and when (D115).
+
+  Each carryover stands alone: it never sends the reader to an earlier one, and its done part covers only what came since the last (D169).
+
+  Before it is written, when the agent created or started anything, conduct's cleanup goes through it, as act's rule says, and what it kept goes into part 8 (D129, D149).
+
+  **Cold read** (D169): before the note is shown or kept, whether it was offered or asked for directly, a fresh agent at the standard tier, started through delegate and briefed by brief, reads only the note and the files it points to, and lists what it would still have to ask to resume; the note answers each, and only then is shown. Reason: the writer cannot see what the conversation gave them that the note does not, and a reader without it finds the gaps at once.
 
   For another agent, brief's rule on tools holds: no tool only one agent has is named (D137, D147).
 
-  Done when all seven parts are filled, or a part says "none" (D107).
+  Done when all ten parts are filled, or a part says "none", and the cold read's questions are answered (D107, D169).
 
   **Resume:**
-  1. read the newest carryover, the latest date and time in its name (D162);
-  2. check it is still true against part 7: files changed since, a branch moved, new commits;
+  1. read the newest carryover, the latest date and time in its name, from where it is kept: the keeper's place where one is loaded, otherwise the file or folder the person names, asked when it is not known (D156, D162);
+  2. check it is still true against part 10: files changed since, a branch moved, new commits; after a compaction, the note is read before the harness's summary, which holds the recent conversation, and where the two disagree, the files decide and the difference is reported (D169);
   3. report any difference before acting; when one touches the first next step, ask through conduct's ask and wait, as act's rule on concerns says (D115);
   4. continue from the first next step.
 
   Done when the differences are reported and the first next step is under way (D107).
 - **Result:** the carryover; on resuming, the differences found and the work continued.
-- **Where it is kept** (D104, D156, D162): carryover says what goes in, and where it is kept only by default: a file the person names; when they name none, the agent asks, recommending a file named by the date and time it is written, then a short topic, in local 24-hour time, such as `2026-10-17-1530-open-topics.md`, so that sorting by name sorts by time, since a carryover in the response alone is lost with the conversation (D115). Each carryover is a new file, never written over an older one; older ones stay as history, resuming reads the newest, and conduct's lean can propose pruning them when they pile up (D157, D162). Where the project's instruction files point to a keeper, such as blueprint's main skill, the keeper says where it lives and in what form, and carryover's own text names none; blueprint's is its `carryovers/` folder, named the same way (D162).
+- **Where it is kept** (D104, D156, D162): carryover says what goes in, and where it is kept only by default: a file the person names; when they name none, the agent asks, recommending a file named by the date and time it is written, then a short topic, in local 24-hour time, such as `2026-10-17-1530-open-topics.md`, so that sorting by name sorts by time, since a carryover in the response alone is lost with the conversation (D115). Each carryover is a new file, never written over an older one; older ones stay as history, resuming reads the newest, and conduct's lean can propose pruning them when they pile up (D157, D162). Where the project's instruction files point to a keeper, such as blueprint's main skill, the keeper says where it lives and in what form, and carryover's own text names none (D162, D163).
 - **Files:** `SKILL.md`; `references/claude.md` and `references/codex.md`, how each harness compacts with a focus and starts a fresh session, both typed by the person, Codex's still to find out (D104, D160, D161).
 - **Material:** workslate and rig (four fields: done, remaining, decisions, uncertain; sender and receiver); mattpocock's `handoff` (references by path); OpenCode's final note; gstack's `context-save`; alirezarezvani's `handoff`.
 - **Tests** (D104, D107):
-  1. after a multi-step session: all seven parts filled, references by path;
+  1. after a multi-step session: all ten parts filled, references by path (D169);
   2. resuming after a commit was added since: the change reported before any action;
   3. nothing left to do: said so, no next step invented;
   4. a carryover for another agent: no tool name that only one agent has;
   5. "I'm stopping for today" with steps left: one question offering learn, then carryover, by the main skill's wrap-up offer; nothing written unasked (D115);
   6. resuming when the branch moved and the first next step depends on it: asked before continuing (D115);
-  7. a project without git: part 7 lists the files changed and when (D115);
+  7. a project without git: part 10 lists the files changed and when (D115);
   8. a batch committed at the end of a long session, the next item needing only what fits in a page: one question offering a carryover and a fresh session (D147);
   9. the next item depends on the discussion just had: a carryover, then compaction, its focus naming the note and that discussion, not a fresh session (D147, D160, D161);
   10. a short session at a phase's end: no offer (D147);
   11. the offer declined: not made again until the next boundary (D147, D160);
   12. a carryover's decisions, references and first next step: written by brief's rules, not restated here (D147);
-  13. a project whose instruction files point to blueprint: the seven parts written in the place and form blueprint says (D156);
+  13. a project whose instruction files point to blueprint: the ten parts written in the place and form blueprint says (D156, D169);
   14. no keeper loaded and no file named: the agent asks, recommending a file (D115, D156);
   15. a task completed in a long session, the next continuing it: one question offering a carryover, then compaction with a focus naming it (D160, D161);
   16. a milestone completed in a long session, new work next: one question offering a carryover and a fresh session (D160);
@@ -319,14 +336,19 @@ coordinate/
   18. the offer accepted with the work continuing: the note written, its outline shown for approval with the command to type, its focus naming the note; after the compaction, the note re-read and checked before continuing (D161);
   19. three carryovers in the folder: the newest, by the date and time in its name, is read, the others left alone (D162);
   20. a carryover written where one already exists: a new file, the older one unchanged (D162);
-  21. no keeper loaded and no file named: the recommended file is named by the date and time, then a short topic (D162).
+  21. no keeper loaded and no file named: the recommended file is named by the date and time, then a short topic (D162);
+  22. a carryover written: its first part alone gives the goal and where the work stands, and each concept is explained in a line with where it is defined (D169);
+  23. before the outline is shown: a fresh agent's cold read lists what it would still ask, and the note answers it (D169);
+  24. a second carryover: it stands alone, its done part covering only what came since the previous one, never "see the previous one" (D169);
+  25. after a compaction, the note and the summary disagree on a step's state: the files decide, and the difference is reported (D169);
+  26. a working rule of the person's recorded nowhere else: in the note; one already in an instruction file: pointed to, with learn offered for a rule worth keeping (D169).
 - **Open:** none known.
 
 ## instruct
 
 - **Purpose:** writing and updating instruction documents: a project's `AGENTS.md` and `CLAUDE.md`, a `CLAUDE.local.md`, the person's own instruction files (D94). Skill files are not instruct's: they are skillbook-tree's, in this repository (D77).
 - **Description:** "Writing or updating instruction documents for agents: AGENTS.md, CLAUDE.md, CLAUDE.local.md and the person's own. Use when adding a rule, tidying or cutting one down, or deciding which file something belongs in; setting skillbook up is setup's." A draft (D115).
-- **Callers:** coordinate's own skill, by its routing line (D134, D164): when a rule in an instruction document is added, tidied or cut down, or which file it belongs in is decided; not for setting skillbook up (setup), skill files (skillbook-tree) or a carryover (carryover); it gives back the change proposed, in the file it belongs in. Its other callers: the person, at any time ("add a rule to our `CLAUDE.md`", "this `AGENTS.md` has grown too long"); setup, when it writes into an instruction document (D94); learn, promoting a lesson into a rule (D98).
+- **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D172). Its other callers: the person, at any time ("add a rule to our `CLAUDE.md`", "this `AGENTS.md` has grown too long"); setup, when it writes into an instruction document (D94); learn, promoting a lesson into a rule (D98).
 - **Flow** (D94):
   1. **Reader and cost,** by conduct's rightsize's first rule: which agent reads the document, and when; a document read on every turn stays short (D145).
   2. **What it must let an agent answer:** the questions and requests it serves, written first; they are its tests.
@@ -342,7 +364,7 @@ coordinate/
   - **Steps:** named, each ending on "done when" or what comes next.
   - **Wording:** reasons instead of capitals; positive wording; one example per rule; the project's terms, one word per concept; no reference the reader cannot resolve; in `AGENTS.md` and other shared files, no tool name only one agent has (D107).
   - **Shape:** what every session needs stays in the document; what only some work needs goes to a skill or a linked file, one level away.
-  - **Which file:** the person's own files for the person's preferences and the pointer; `CLAUDE.local.md` for project-only personal instructions; a project's shared file only for facts any tool needs, changed only when the person asks (D78, D93).
+  - **Which file:** the person's own files for the person's preferences; the pointer where the skills are installed, by setup's rule on where it goes (D165); `CLAUDE.local.md` for project-only personal instructions; a project's shared file only for facts any tool needs, and the pointer once the team commits the skills, changed only when the person asks (D78, D93, D165).
   - **Limits:** no rule that repeats a skillbook rule where the whole team uses skillbook, as setup says; elsewhere a repeat may stay, so teammates without skillbook keep it. Never an instruction document inside a folder that is copied into other projects, since it would carry rules that are not theirs. Advice: under about 200 lines, since every line is read at every session (D107, D115, D116).
 - **Result:** the document, written or updated after approval.
 - **Files:** `SKILL.md` only (D94).
@@ -359,7 +381,7 @@ coordinate/
 
 - **Purpose:** skillbook set up, on request: on a machine, the install checked and the pointer added where the skills are installed; in a project, its blueprint started when it has none and the blueprint set is installed, its instruction files checked and skills recommended (D93, D97, D107, D117, D163). It recommends existing skills and makes none (D77). It runs only on request: the first set-up where the install route has not written the pointer, moving the pointer between a project's local and shared files, and checking that a fresh session loads the main skill (D165).
 - **Description:** "Setting skillbook up on a machine or in a project, on request: the install checked, the pointer added where the skills are installed or moved between local and shared, a project's blueprint started, its instruction files checked, skills recommended." A draft (D117, D165).
-- **Callers:** coordinate's own skill, by its routing line (D134, D164): when skillbook is set up on a machine or in a project; not for writing a rule into an instruction document (instruct) or making a skill (skillbook-tree); it gives back the install checked, the pointer added, the blueprint started, the instruction files checked and skills recommended. Its other callers: the person, setting skillbook up on a machine or in a project.
+- **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D172). Its other callers: the person, setting skillbook up on a machine or in a project.
 - **Flow:** three ways in (D97, D165).
 
   **A machine,** once per computer:
@@ -375,17 +397,18 @@ coordinate/
   2. start its blueprint through blueprint's main skill when it has none and that set is installed; where it is not, nothing is started or said about it, and each skill's result goes where its default says (D152, D156, D163). Where a blueprint lives in a project the person does not own is asked by blueprint's start step (D117, D163);
   3. check its instruction files through instruct: keep the facts, propose what is missing, such as how to build, test and check. What repeats a skillbook rule is proposed for removal from a shared file only when the whole team uses skillbook; the agent does not ask, counts the team as not using it, and says so in one line, inviting a correction; otherwise it stays, and the person is told why (D107, D115, D149);
   4. recommend what fits: the skillbook sets and skills that will matter there, each named with the reason, such as a language's code skill or maintain's repository standard; outside skills only from sources the person already uses. Installing any of them is an action through guardrails (D107);
-  5. propose everything as one list, and apply what the person approves.
+  5. where the skills are installed in the project, check the install and add the pointer to the project's local file, kept out of git, by the rule on where it goes below, unless the install route already wrote it (D165);
+  6. propose everything as one list, and apply what the person approves.
 
   **Moving the pointer,** when the person asks, such as from a project's local file to its shared file once the team commits the skills: the pointer moved through instruct, never left in both, then checked as a machine's step 4 checks it (D165).
 
-  Done when the instruction files hold only what they should and the recommendations are listed. Running either again changes nothing that is already right, and says so (D97). Hooks are proposed only when a rule keeps being broken despite the skills, never by default (D97).
+  Done when the pointer is where the install puts it, the instruction files hold only what they should and the recommendations are listed. Running either again changes nothing that is already right, and says so (D97). Hooks are proposed only when a rule keeps being broken despite the skills, never by default (D97).
 
   Decided content:
   - the pointer sentence: "before answering any request, load the essentials skill and follow it, except a one-line answer that needs no tool and no file" (D78, D152, D153). The exception is the pointer's: once the main skill is loaded, act's and respond's rules hold for every request (D115);
   - **where it goes** (D165): where the skills are installed: installed for the person, across projects, their own instruction files, such as `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`; installed in a project and not committed, the project's local file, such as `CLAUDE.local.md`, kept out of git through `.git/info/exclude`, the default for a project; committed for the team, the project's shared `AGENTS.md` or `CLAUDE.md`, since every contributor then has the skills. Which file each harness reads, and whether an install route writes the pointer itself, are its reference file's, settled with the install routes (D165);
   - **Codex's local file:** as far as known, Codex has none that adds to `AGENTS.md`: its `AGENTS.override.md` replaces the shared file in that folder, so Codex's local file is settled with the install routes, its personal file meanwhile (D93, D165);
-  - **a project's shared `AGENTS.md` or `CLAUDE.md`** changes only when the person asks, as a proposal; the pointer goes there when the team commits the skills (D165); it holds only the facts any tool needs: what the project is, where things are, the commands, the project's conventions (D78, D93).
+  - **a project's shared `AGENTS.md` or `CLAUDE.md`** changes only when the person asks, as a proposal; the pointer goes there when the team commits the skills, and, asked for while they are not committed, it is proposed with a warning that contributors without skillbook would be told to load a skill they lack (D165); beside the pointer, it holds only the facts any tool needs: what the project is, where things are, the commands, the project's conventions (D78, D93).
 - **Result:** what was done, reported: the install checked, the pointer added or moved, the blueprint started, the instruction files checked, skills recommended; instruction files are changed only with the person's approval (D63, D137).
 - **Files:** `SKILL.md`; `references/claude.md` and `references/codex.md`, holding each agent's paths and commands: which instruction files it reads, personal, local and shared, how each set is installed and checked, by the route decided later (D152), and the one-line form of the allow-list delegate reads (D97, D102, D107, D137).
 - **Material:** Claude Code's official plugins (auditing `AGENTS.md`, hooks, recommending skills); loomcraft's rule files.
@@ -404,13 +427,13 @@ coordinate/
   12. an install whose route already wrote the pointer: nothing to do, said so (D165).
 
   The pointer in the person's own instruction files is not tested yet; Claude Code reading `CLAUDE.local.md` with `CLAUDE.md` is ([../../evidence.md](../../evidence.md), E7).
-- **Open:** hooks, until there is a real case; see the ideas document.
+- **Open:** hooks, until there is a real case; see the ideas document. How setup learns which agents the person uses, by finding them on the machine or by asking, is settled with the install routes (D170).
 
 ## learn
 
 - **Purpose:** what a session taught, and where each lesson goes (D65, D66).
-- **Description:** "What a session taught: highlights collected and judged, then, with approval, made into a rule, a decision or a note, or dropped." (D98)
-- **Callers:** coordinate's own skill, by its routing line (D134, D164): when the person asks what a session taught, or accepts it from the wrap-up offer; not for recording a design decision as it is made (design) or writing the state down for later (carryover); it gives back the highlights judged, each made into a rule, a decision or a note with approval, or dropped. Its other callers: the person, asking what was learned; the main skill's wrap-up offer, when work stops with steps left; never run by itself unasked (D98, D107, D115).
+- **Description:** "What a session taught: highlights collected and judged, then, with approval, made into a rule, a decision or an insight, or dropped. Use when the person asks what a session taught, or accepts it from the wrap-up offer." (D98)
+- **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D172). Its other callers: the person, asking what was learned; the main skill's wrap-up offer, when work stops with steps left; never run by itself unasked, since every promotion needs the person's approval, so running unasked would only interrupt (D98, D107, D115).
 - **Flow:** decided (D66): collect highlights, the moments in the conversation that changed the work: a correction from the person, a mistake found, a decision taken, a method that worked or failed (D115); judge each one, whether it is reusable, meaning it would apply beyond this session, and where it belongs; promote it with the person's approval, or drop it; record what went where. Where each kind goes (D98):
   - a rule, into an instruction document, through instruct;
   - a decision or an insight, to the keeper where one is loaded, which says where it goes; with none, listed in the response, with the offer of a file the person names (D163).

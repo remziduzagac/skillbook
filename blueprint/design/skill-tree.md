@@ -163,8 +163,8 @@ essentials/                       essentials, essentials' main skill, listed to 
 │   │                             VaultOps' decompose (D85, D148)
 │   ├── merge/                    organize-merge: several redundant items fused into one survivor, links pointing at the
 │   │                             others updated (D85)
-│   ├── compose/                  organize-compose: a new parent added above items that stay whole: their generalization
-│   │                             (D85)
+│   ├── compose/                  organize-compose: a new parent over the items that share something, stating what they
+│   │                             share; the items moved under it where needed, their content unchanged (D85, D87, D174)
 │   ├── normalize/                organize-normalize: the part several items share taken out into one place they all use
 │   │                             (D85)
 │   └── cluster/                  organize-cluster: a view added for finding items, the items unchanged: an index,
@@ -196,17 +196,18 @@ essentials/                       essentials, essentials' main skill, listed to 
 │   │                             tool only the writer has; a line or two for a fork, findings for a fresh agent, and
 │   │                             the report it asks back; carryover builds on it (D138, D146, D147)
 │   ├── carryover/                coordinate-carryover: work carried over to a later session or agent, built on brief's
-│   │                             rules: a page of done, remaining, decisions, uncertain, references, the first next
-│   │                             step and what it was written against; offered at a task's, milestone's or phase's end
-│   │                             in a long session, before compaction or a fresh session; one file each, named by the
-│   │                             date and time it was written, the newest resumed; on resuming, checked against what
-│   │                             changed before acting (D65, D104, D107, D147, D160, D161, D162)
+│   │                             rules: ten parts, top-down, from the goal and where it stands to the first next step
+│   │                             and what it was written against, standing alone, as long as its reader needs, a fresh
+│   │                             agent's cold read before it is shown; offered at a task's, milestone's or phase's end
+│   │                             in a long session, before compaction or a fresh session; one file each, named by date
+│   │                             and time, the newest resumed (D65, D104, D147, D160, D161, D162, D169)
 │   ├── instruct/                 coordinate-instruct: writing and updating instruction documents: AGENTS.md, CLAUDE.md,
 │   │                             CLAUDE.local.md and the person's own; called by setup, or asked for at any time (D94)
-│   ├── setup/                    coordinate-setup: setting skillbook up on a machine (the install, the pointer in the
-│   │                             person's own files) or in a project (its blueprint started where that set is
-│   │                             installed, its instruction files checked, skills recommended); adds existing skills,
-│   │                             makes none (D93, D97, D117, D163)
+│   ├── setup/                    coordinate-setup: setting skillbook up, on request: the pointer where the skills are
+│   │                             installed, a project's local file by default, its shared file when the team commits
+│   │                             the skills, or moved between them; in a project, its blueprint started where that set
+│   │                             is installed, its instruction files checked, skills recommended; adds existing skills,
+│   │                             makes none (D93, D97, D117, D163, D165)
 │   └── learn/                    coordinate-learn: what a session taught, when asked: highlights collected, judged and,
 │                                 with approval, made into a rule through instruct, or a decision or an insight for the
 │                                 keeper, or dropped; skill promotion and where highlights wait are future work (D66,

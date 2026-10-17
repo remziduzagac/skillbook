@@ -103,7 +103,7 @@ authoring/
 
 #### feature
 
-- **Purpose:** the problem first, then the proposal, the alternatives considered and what is out of scope; it can use understand's frame and weigh (D127).
+- **Purpose:** the problem first, then the proposal, the alternatives considered and what is out of scope; it can use understand's frame, weigh and argue (D127).
 - **Description:**
 - **Callers:**
 - **Flow:**
@@ -117,7 +117,7 @@ authoring/
 
 - **Purpose:** a document read as its intended reader would, with only the document, often by a fresh agent, reporting what that reader could not do from it (D123). The name is to settle ("reader", "coldread").
 - **Description:**
-- **Callers:** to design; those that need it today, each in its own words: design (can a builder build from it?), plan (can the implementer start?), coordinate's carryover (can another agent resume?), clarify's questionnaire (can it be answered without the conversation?), authoring's docs (can a user follow them?), coordinate's brief (is the brief enough?), coordinate's instruct and the project skill skillbook-tree (can an agent act on it?), conduct's rightsize's enrich (what would the reader still ask?), through essentials' main skill, with its own fallback where this set is not installed (D157).
+- **Callers:** to design; those that need it today, each in its own words: design (can a builder build from it?), coordinate's carryover (can another agent resume?), clarify's questionnaire (can it be answered without the conversation?), authoring's docs (can a user follow them?), coordinate's brief (is the brief enough?), coordinate's instruct and the project skill skillbook-tree (can an agent act on it?), conduct's rightsize's enrich (what would the reader still ask?), through essentials' main skill, with its own fallback where this set is not installed (D157).
 - **Flow:**
 - **Result:**
 - **Files:**

@@ -159,4 +159,11 @@ How skillbook's initial design was discussed, from 2026-10-07 to 2026-10-10, in 
 - 103, softeng waits: essentials is completed first (D166).
 - 104, the design folder by set: the person asked for a folder per set, a README and a better view of the tree; design.md was split three ways, the tree moved to design with its open parts left in ideas, and the later sets' skills, which had left the tree when they were set aside, were listed in ideas, as the person asked (D167).
 - 105, essentials' design, gone through in five items: what it is for and when a design is needed, its flow, what a written design holds, its review, and where it is kept, with its tests; the checks that overlapped got one home each (D168).
+- 106, a carryover that carries the whole context: the person found the last one too thin to resume from; its note now goes top-down in ten parts, stands alone, is as long as its reader needs, gets a fresh agent's cold read before it is shown, and splits the work with the harness's summary on compaction (D169).
+- 107, the essentials review: the person asked why skillbook-tree had not been used in this stretch and asked for every essentials skill to be reviewed; six reviewers, one per file, a checker at the strong tier, 80 fixes applied, 19 findings dropped, seven decisions put to the person one by one, setup's question deferred to the install routes (D170).
+- 108, the main skill trimmed, the middle way, to be revisited later, as the person asked (D171).
+- 109, one home for each routing line: "of course our main rule is one home", the person said (D172).
+- 110, plan and design: the person asked why they should be sequential or bounded; each owns its question and calls the other (D173).
+- 111, organize's check covers new items, compose may move items, and delegate chooses the agent, the person noting that delegation is delegate's (D174).
+- 112, verify can choose a fresh agent to check (D175).
 - **Open:** [../ideas/open.md](../ideas/open.md) and the questions in [../ideas/skill-tree.md](../ideas/skill-tree.md).

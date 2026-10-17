@@ -9,7 +9,7 @@ How skills are made and reviewed in this repository; a project skill, never ship
 
 ## Rules
 
-- **A review reads the whole skill:** its section in `blueprint/design/<root>.md`, or its `SKILL.md` once built; the decisions it cites, in `blueprint/decisions.md`, with the notes under them; and the skills it names or that name it.
+- **A review reads the whole skill:** its section in `blueprint/design/<set>/<group>.md`, or its `SKILL.md` once built; the decisions it cites, in `blueprint/decisions.md`, with the notes under them; and the skills it names or that name it.
 - **Every finding is evidence:** the file and line, the check it fails, what is wrong, and a proposed fix. A finding that cannot name its line is not reported.
 - **A review changes nothing.** It reports; the person decides what changes, as `AGENTS.md` says: agents propose, the person approves.
 
@@ -22,7 +22,7 @@ How skills are made and reviewed in this repository; a project skill, never ship
 ## Instructions
 
 - **Reviewing a skill:** run checks 1 to 7 and 11 over it. For a skill with sub-skills of its own, run checks 8 to 10 as well, then review each sub-skill the same way. Several skills can be reviewed in one pass; report each separately.
-- **Reviewing several roots at once:** one reviewer per root, each loading this skill, so findings stay independent; the findings are then checked before they reach the person.
+- **Reviewing several groups at once:** one reviewer per group, each loading this skill, so findings stay independent; the findings are then checked before they reach the person.
 - **Outside material:** adapted, never copied. What a skill takes from another collection or an earlier project is rewritten for skillbook's case, inside the skill, in a reference file of its own, or as a new skill where other skills need it too; no outside file is used as it is, and its licence is checked first (D30, D120).
 - **Making or changing a skill:** not covered here yet. Follow "How a skill is written" in `blueprint/design/how-it-works.md`, then review the result with this checklist.
 - **A skill's name, folder and place in the tree:** not covered here yet. Follow "Names" in `blueprint/design/how-it-works.md` and the tree in `blueprint/design/skill-tree.md`.
@@ -31,7 +31,7 @@ How skills are made and reviewed in this repository; a project skill, never ship
 
 Checks 1 to 7 and 11 hold for every skill, leaf skills too; checks 8 to 10 also for a skill with sub-skills of its own.
 
-1. **Every instruction names the skill it needs:** by its path within a root, through the main skill across roots, and through the other set's main skill, by name, across sets, with a one-line fallback where that set is not installed (D152, D156). Each part of a piece of work has one owner, the caller saying when and what for, the doer how and what goes in, the keeper where and in what form; each skill says only its own part, and its word on where its result is kept, or in what form, is a one-line default (D156).
+1. **Every instruction names the skill it needs:** by its path within a group, through the main skill across groups, and through the other set's main skill, by name, across sets, with a one-line fallback where that set is not installed (D152, D156). Each part of a piece of work has one owner, the caller saying when and what for, the doer how and what goes in, the keeper where and in what form; each skill says only its own part, and its word on where its result is kept, or in what form, is a one-line default (D156).
 2. **Nothing ambiguous, nothing contradictory, no unstated gap:** no instruction can be read two ways; none contradicts another skill's; every case the skill does not cover is named, with where to go: another skill, or the agent's own judgment.
 3. **Comprehensive and exclusive:** every case in the skill's scope is covered or named as a gap; each rule and each concern has one home. A rule stated a second time is allowed only as a clear variation that names the rule it changes.
 4. **No restriction without a reason:** "never", "only", "must not" appear only where something real is at risk, and say why. Nothing stops the agent from using several skills for one request.

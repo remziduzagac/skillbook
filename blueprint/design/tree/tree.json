@@ -375,7 +375,7 @@
      "src": "vo",
      "tail": [],
      "kids": [],
-     "desc": "a new parent added above items that stay whole: their generalization (D85)"
+     "desc": "a new parent over the items that share something, stating what they share; the items moved under it where needed, their content unchanged (D85, D87, D174)"
     },
     {
      "path": [
@@ -477,7 +477,7 @@
       "carryover"
      ],
      "mark": "●",
-     "desc": "work carried over to a later session or agent, built on brief's rules: a page of done, remaining, decisions, uncertain, references, the first next step and what it was written against; offered at a task's, milestone's or phase's end in a long session, before compaction or a fresh session; one file each, named by the date and time it was written, the newest resumed; on resuming, checked against what changed before acting (D65, D104, D107, D147, D160, D161, D162)",
+     "desc": "work carried over to a later session or agent, built on brief's rules: ten parts, top-down, from the goal and where it stands to the first next step and what it was written against, standing alone, as long as its reader needs, a fresh agent's cold read before it is shown; offered at a task's, milestone's or phase's end in a long session, before compaction or a fresh session; one file each, named by date and time, the newest resumed (D65, D104, D147, D160, D161, D162, D169)",
      "src": "ws mp oc gs ar",
      "tail": [],
      "kids": []
@@ -499,7 +499,7 @@
       "setup"
      ],
      "mark": "●",
-     "desc": "setting skillbook up on a machine (the install, the pointer in the person's own files) or in a project (its blueprint started where that set is installed, its instruction files checked, skills recommended); adds existing skills, makes none (D93, D97, D117, D163)",
+     "desc": "setting skillbook up, on request: the pointer where the skills are installed, a project's local file by default, its shared file when the team commits the skills, or moved between them; in a project, its blueprint started where that set is installed, its instruction files checked, skills recommended; adds existing skills, makes none (D93, D97, D117, D163, D165)",
      "src": "cc lc",
      "tail": [],
      "kids": []
