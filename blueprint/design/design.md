@@ -4,6 +4,8 @@ What a builder needs for design and its sub-skills; ideas not yet decided are in
 
 Its parts belong to three sets (D152, D154): the general design, how to design anything, is essentials' design; the recording steps (start, discuss, research, decide, evidence, write, workstream, tasks, work, sync, consolidate, parallel, check, publish) belong to the blueprint set, the spec-to-dev flow, its own thing rather than a part of design; architecture, and review's architecture lens, belong to softeng's design. Each stays in this file until its set is designed.
 
+The blueprint set keeps carryovers, as their keeper (D156), in a `carryovers/` folder at the blueprint's top, beside `notes/`: one file per carryover, never written over, named by the date and time it was written, then a short topic, such as `2026-10-17-1530-open-topics.md`, the newest resumed. It is not a recording step of its own, since carryover says what goes in; the folder layout, settled with start, names it (D162).
+
 ```text
 design/
 ├── architecture/

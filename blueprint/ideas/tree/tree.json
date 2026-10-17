@@ -315,7 +315,7 @@
       "carryover"
      ],
      "mark": "●",
-     "desc": "work carried over to a later session or agent, built on brief's rules: a page of done, remaining, decisions, uncertain, references, the first next step and what it was written against; offered at a phase's end when a long session's next work fits in it; on resuming, checked against what changed before acting (D65, D104, D107, D147)",
+     "desc": "work carried over to a later session or agent, built on brief's rules: a page of done, remaining, decisions, uncertain, references, the first next step and what it was written against; offered at a task's, milestone's or phase's end in a long session, before compaction or a fresh session; one file each, named by the date and time it was written, the newest resumed; on resuming, checked against what changed before acting (D65, D104, D107, D147, D160, D161, D162)",
      "src": "ws mp oc gs ar",
      "tail": [],
      "kids": []

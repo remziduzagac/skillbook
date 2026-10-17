@@ -45,7 +45,7 @@ Where the design work stands, for the next session to pick up without asking. Wr
 
 ## Decisions made
 
-D142–D161, each in [../decisions.md](../decisions.md), with amended-by notes under the earlier decisions they change. Notes 79–98 in [initial-design.md](initial-design.md) tell how each was reached.
+D142–D161, each in [../decisions.md](../decisions.md), with amended-by notes under the earlier decisions they change. Notes 79–98 in [initial-design.md](../notes/initial-design.md) tell how each was reached.
 
 ## Uncertain
 

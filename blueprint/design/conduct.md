@@ -1190,14 +1190,14 @@ conduct/
   Done when all seven parts are filled, or a part says "none" (D107).
 
   **Resume:**
-  1. read the carryover;
+  1. read the newest carryover, the latest date and time in its name (D162);
   2. check it is still true against part 7: files changed since, a branch moved, new commits;
   3. report any difference before acting; when one touches the first next step, ask through conduct's ask and wait, as act's rule on concerns says (D115);
   4. continue from the first next step.
 
   Done when the differences are reported and the first next step is under way (D107).
 - **Result:** the carryover; on resuming, the differences found and the work continued.
-- **Where it is kept** (D104, D156): carryover says what goes in, and where it is kept only by default: a file the person names; when they name none, the agent asks, recommending a file, since a carryover in the response alone is lost with the conversation (D115). Where the project's instruction files point to a keeper, such as blueprint's main skill, the keeper says where it lives and in what form, and carryover's own text names none; the project folder settles its home later (D64).
+- **Where it is kept** (D104, D156, D162): carryover says what goes in, and where it is kept only by default: a file the person names; when they name none, the agent asks, recommending a file named by the date and time it is written, then a short topic, in local 24-hour time, such as `2026-10-17-1530-open-topics.md`, so that sorting by name sorts by time, since a carryover in the response alone is lost with the conversation (D115). Each carryover is a new file, never written over an older one; older ones stay as history, resuming reads the newest, and conduct's lean can propose pruning them when they pile up (D157, D162). Where the project's instruction files point to a keeper, such as blueprint's main skill, the keeper says where it lives and in what form, and carryover's own text names none; blueprint's is its `carryovers/` folder, named the same way (D162).
 - **Files:** `SKILL.md`; `references/claude.md` and `references/codex.md`, how each harness compacts with a focus and starts a fresh session, both typed by the person, Codex's still to find out (D104, D160, D161).
 - **Material:** workslate and rig (four fields: done, remaining, decisions, uncertain; sender and receiver); mattpocock's `handoff` (references by path); OpenCode's final note; gstack's `context-save`; alirezarezvani's `handoff`.
 - **Tests** (D104, D107):
@@ -1218,5 +1218,8 @@ conduct/
   15. a task completed in a long session, the next continuing it: one question offering a carryover, then compaction with a focus naming it (D160, D161);
   16. a milestone completed in a long session, new work next: one question offering a carryover and a fresh session (D160);
   17. a step done with work still in flight: no offer, since it is not a boundary (D160);
-  18. the offer accepted with the work continuing: the note written, its outline shown for approval with the command to type, its focus naming the note; after the compaction, the note re-read and checked before continuing (D161).
+  18. the offer accepted with the work continuing: the note written, its outline shown for approval with the command to type, its focus naming the note; after the compaction, the note re-read and checked before continuing (D161);
+  19. three carryovers in the folder: the newest, by the date and time in its name, is read, the others left alone (D162);
+  20. a carryover written where one already exists: a new file, the older one unchanged (D162);
+  21. no keeper loaded and no file named: the recommended file is named by the date and time, then a short topic (D162).
 - **Open:** none known.

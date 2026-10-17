@@ -34,6 +34,7 @@ A strand is one kind of document. Each answers one question:
 | --- | --- |
 | ideas | What could we do? |
 | notes | What did we discuss? |
+| carryovers | Where does the work stand, to pick it up? |
 | research | What did we learn, and from where? |
 | decisions | What did we agree, and why? |
 | requirements | What must the project do and be? |
@@ -138,7 +139,7 @@ blueprint/
   design.md            how it does it
 ```
 
-The other strands appear when they first have content: `notes.md`, `research.md`, `decisions.md`, `tasks/` and `workstreams/`; `attachments/` when a document first needs a file that is not markdown; `pending/` when agents first work in staged mode.
+The other strands appear when they first have content: `notes.md`, `research.md`, `decisions.md`, `tasks/` and `workstreams/`; `carryovers/` when the first carryover is written, one file each, named by the date and time it was written; `attachments/` when a document first needs a file that is not markdown; `pending/` when agents first work in staged mode.
 
 ### A grown blueprint
 

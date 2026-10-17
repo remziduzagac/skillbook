@@ -13,6 +13,7 @@ skillbook's own design, kept with its own blueprint method. skillbook is a publi
 - [roadmap.md](roadmap.md): the order of work.
 - [ideas/](ideas/README.md): open questions and ideas not yet agreed, the tree among them.
 - [notes/](notes/README.md): how the design was discussed, ideas gathered from earlier projects, and the first design, kept as material for the parts.
+- `carryovers/`: where the work stands for the next session, one file per carryover named by the date and time it was written; resume from the newest.
 - [research/](research/README.md): what was learned, and from where.
 - [decisions.md](decisions.md): every decision with its reasons, D1 onward.
 - [evidence.md](evidence.md): every claim that was checked, with its evidence, E1 onward.
