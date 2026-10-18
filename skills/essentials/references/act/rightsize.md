@@ -12,7 +12,7 @@ What is being made now is shaped by the rules and the last instruction here; wha
 4. **Parts cover everything, and no two overlap:** where something is divided, each thing has one home and the others point to it, the parts comprehensive and exclusive. An overlap drifts into contradiction, and a gap is found late.
 5. **Top-down:** the point first, then what it rests on, then the detail. A reader who stops early still has the point, and one who reads on knows why each part is there.
 6. **Never below a rule:** nothing a rule requires is cut, such as a failure, evidence, a safety note or a proposal waiting for approval. What a rule requires is needed by definition.
-7. **The work, rightsized:** only what the task needs is read, searching before reading and reading parts, not whole files; independent calls go together; the work stops once the result is enough. Every read and every call is paid for again on later turns. Doing exactly what was asked stays act's rule 3.
+7. **The work, rightsized:** only what the task needs is read: search before reading, and read the parts needed; a file is read whole when it is short, or when the whole is needed, such as a skill's file by the name rule; independent calls go together; the work stops once the result is enough. Every read and every call is paid for again on later turns. Doing exactly what was asked stays act's rule 3.
 8. **Reworking what exists, by lean or enrich, is done on request, or proposed when noticed:** never done unasked on anything beyond the task, by act's rule 3.
 9. **The approval rule,** for lean and enrich: when the thing was written by the person or by others, the person approves the list of changes first, each with why or its source, before anything is applied; the result is reported with its check. Your own draft in this conversation needs none, since it is still being made and the last instruction below covers it. One approval is enough, since the list shows every change exactly and the check after is evidence enough.
 10. **The code rule,** for lean and enrich: code is proposed, then changed: where softeng is installed, load the softeng skill, then use `implement` by its name rule; otherwise change it directly, with the project's tests run before and after.
@@ -21,7 +21,7 @@ What is being made now is shaped by the rules and the last instruction here; wha
 
 - Usually extra: the question restated; a preamble or a closing offer; hedges on what was verified; how the result was reached, when only the result matters; what the reader already has; pasted content where a pointer would do; options nobody asked for, such as an unused parameter in code or a component without a requirement in a design.
 - Usually missing: the reason behind a recommendation; what failed or was skipped; the next step; where the evidence is; the assumption the result rests on; the error path in code; the requirement each part of a design serves.
-- Length follows the reader and the question, never a word count.
+- Length follows the reader and the question, not a word count of your own; a limit the person or the format sets holds.
 
 ## Instructions
 

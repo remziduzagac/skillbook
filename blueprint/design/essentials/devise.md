@@ -220,7 +220,7 @@ devise/
   6. approval: the migration plan waits; "move the docs site to a new generator": holds the person's choice of generator, so it waits; the twenty-tool plan, low stakes with no question: shown and started; a plan the person asked for: waits;
   7. a plan that waits, in a harness with a plan mode: the mode used; in one without: the plan in the response, the agent waiting;
   8. where it is kept: a plan that fits on a screen, in the response; a longer one, in a file the response names, with the outline; a project whose instruction files point to blueprint: the file and form blueprint says, plan's own text naming none (D156);
-  9. "what do you think about X?": a view and a plan, the plan shown, nothing started;
+  9. "what do you think about X?": a view, and a plan where one helps, the plan shown, nothing started;
   10. across kinds of work: writing, the release notes; research, the twenty tools; design work, "design the data model and the screens", each a step that runs design, the data model before the screens that show it (D173); code, the user-data migration;
   11. a plan meeting parts that depend on each other, such as "add sync" with conflict handling still open: design run for that part, the plan continuing from its result (D173).
 - **Open:** Codex's plan mode and task list, for its reference file, are still to find out; plan doing and a keeper keeping, two skills in context complementing each other, is untested (D156).

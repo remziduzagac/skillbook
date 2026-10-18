@@ -9,11 +9,12 @@ How a skill's files are written in this repository, from its design. A project s
 
 ## Rules
 
-- **The design is the source:** a skill's files carry its design, found where skillbook-tree says designs live. What the design does not say is not invented while writing: the gap goes back to the design through skillbook-tree, then the files follow. A file that departs from its design is a defect in one of the two, and the person decides which.
+- **The design is the source:** a skill's files carry its design, found where skillbook-tree says designs live. What changes behaviour, a rule, a case, a route or a fallback the design does not hold, is not invented while writing: the gap goes back to the design through skillbook-tree, then the files follow. Wording, examples and order within the design's intent are the writer's. A file that departs from its design is a defect in one of the two, and the person decides which.
 - **Shared rules stay where they live:** where sets and designs live, how a name becomes a file, the exact name rule, a parent that only routes, and the checklist are skillbook-tree's. Read them there and carry them as they are, never retyped from memory, since a rule written twice drifts.
 - **About 100 lines per file,** each file on its own, a main skill's file and every plain skill file under it: an agent may preview a longer file instead of reading it whole, and every line is paid each time the file is read. A file past it is trimmed first; what remains is split into a child or a reference file, at the path its name gives. Nothing a rule needs is cut to fit, such as a reason, a "when not" case or a fallback; a file that truly needs more says why in its first lines.
-- **A skill speaks of its job, never of skillbook's progress:** no "for now", "not built yet" or "until"; a step whose skill does not exist yet simply names none, since an agent uses its own judgment wherever no skill is named, and a note about progress costs tokens on every read and goes stale.
+- **A skill speaks of its job, never of skillbook's progress:** no note on skillbook's progress, such as "for now", "not built yet" or "until X exists"; a step whose skill does not exist yet simply names none, since an agent uses its own judgment wherever no skill is named, and a note about progress costs tokens on every read and goes stale.
 - **Adapted, never copied:** an outside skill's idea is rewritten for skillbook's case; outside text kept close to its original would need that licence's notice, so it is avoided.
+- **Block only where going on would harm:** an instruction stops, waits or forbids only where going on would cause real harm, since a needless block halts work the person wanted done; no stop, wait, "never", "only" or "must" where going on with a note, or the agent's own judgment, would serve; an absolute only where its reason covers every case it forbids; advice is written as advice. skillbook-tree's check 4 is the test.
 
 ## Advice
 
@@ -31,7 +32,7 @@ How a skill's files are written in this repository, from its design. A project s
   - run in each supported agent, about three runs a case or more, since one run proves little;
   - judged by behaviour, which files were read, whole or in part, and what the answer did, not by its wording;
   - the cost stated before running; raw runs kept out of the repository, being bulky and personal, what they showed written into the test's result.
-- **Changing a built skill:** the design changes first, then the files; trimming or filling one follows skillbook-tree's instruction for it.
+- **Changing a built skill:** where the change alters what the design says, the design changes first, then the files; a fix that leaves the design true, such as a typo or a lint failure, goes to the files alone; trimming or filling one follows skillbook-tree's instruction for it.
 
 ## The last instruction
 

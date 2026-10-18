@@ -11,12 +11,12 @@ Questions only someone other than the person can answer, written as a document i
 ## Advice
 
 - Guidance rather than a template: who it is for and why they are asked; the context they need, in plain words; the questions, numbered, each with why it matters; what is needed back, and by when if the person says.
-- A recommended answer only where the person has one: a variation of `respond-ask`'s rule that every question carries one, since this reader is not the person.
+- A recommended answer only where the person has one: a variation of `respond-ask`'s rule that a question carries one wherever you have a basis for one, since this reader is not the person.
 - Its format follows where it goes: a file, an issue or an email. Markdown by default, laid out by `respond-layout`; for a file, also load the authoring set's main skill and use `markdown` by its name rule; where authoring is not installed, `respond-layout` alone.
 
 ## Instructions
 
-1. **Ask only** who it is for, what is needed back, and where it goes, after looking for each in the conversation first, as understand's rules say; it goes in the response by default, for the person to send.
+1. **Ask what the document needs** that the conversation does not say, usually who it is for, what is needed back and where it goes, after looking for each in the conversation first, as understand's rules say; it goes in the response by default, for the person to send.
 2. **Write it,** as the advice says.
 3. **While it is out,** its questions are parked, as clarify says.
 4. **When the answers come back,** clarify continues with them; questions left unanswered stay open and listed, and the person has them asked again or parks them.
