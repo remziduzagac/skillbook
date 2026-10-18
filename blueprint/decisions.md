@@ -2135,3 +2135,9 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 **Why:** the person pointed out that the step read as if devise only produced a document, when the design and the plan are what the work follows and are adjusted as it goes, and that a design usually comes before the plan. The person also found that organize's "planning a whole's parts" read like planning work, while organize arranges the parts of anything. "Usually" keeps room for a plan that leads, such as planning the research a design needs, which devise's routing by the request's main question allows (D173).
 
+## D202: Skills and designs are written in plain English (2026-10-18)
+
+**Decision:** skillbook-write gains a rule on plain English: one idea per sentence, short sentences, active voice, normal word order, common words, a list instead of a long chain of clauses, and the same word for the same thing every time. skillbook-write itself is rewritten in that style, and skillbook-tree asks that designs follow it. The essentials files get one plain-English pass after the running retest, then a small test to check nothing was lost. New designs and decisions are written this way; old decisions and notes stay as they are.
+
+**Why:** the person, not a native English speaker, found the skills, designs and replies hard to read, and doubted the dense style helped agents. It does not: what removes doubt is one word per idea, reasons and stated exceptions, not long sentences, and a sentence with many clauses makes it harder to see what a "not" or an "only" belongs to; shorter text also costs fewer tokens on every read, and respond's own rule asks for plain words.
+
