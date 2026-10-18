@@ -2036,6 +2036,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D195: A skill's file is about 100 lines or fewer, without losing what it needs (2026-10-18)
 
+> **Clarified by the person (2026-10-18):** the limit is per file: the main `SKILL.md` and each file under `references/` is about 100 lines or fewer; a set, or a skill whose children spread over many files, has no limit as a whole.
+
 **Decision:** skillbook-write tells the writer to keep each skill's file, a main skill's `SKILL.md` and every file under `references/`, at about 100 lines or fewer, without losing context or function: nothing a rule requires is cut, such as a reason, a "when not" case or a fallback. A file that grows past it is trimmed first, then split into children or a reference file of its own, each at its path.
 
 **Why:** the person asked for it. Every file in the tests was 41 to 56 lines and was read whole in both agents (D188); Anthropic's guide gives a table of contents to any reference file over 100 lines because an agent may preview a long file with only its first lines, and a file that short needs none. Short files also keep each step's reading small, as skillbook-tree's cost check asks. It is advice, about 100 with its reason, as skillbook-tree's check 5 says a number is, so a file that genuinely needs more says why.
