@@ -34,7 +34,8 @@ Ideas and open questions for coordinate, not decided. What is decided is in [../
 ## setup
 
 - Decided (D97): the machine and project flows, recommendations, running again, hooks only when needed.
-- Which hooks would help, and whether Codex's hooks match Claude Code's: open until there is a real case.
+- Decided (D204): four compaction hooks in Claude Code that print essentials' start files, offered by setup.
+- Which other hooks would help, and whether Codex's hooks match Claude Code's: open until there is a real case.
 - Decided (D149): no question about other agent programs, whose default stays none; the team's use of skillbook stated as a default with a correction invited, not asked.
 
 ## learn

@@ -137,7 +137,7 @@ respond/
 
   **Last instruction, before a round goes out** (D134, D159): every question numbered under its own heading with a recommended answer, or saying it has none where only the person knows, or, where rule 10 says, put through the question tool with the recommended option first and marked; any partial answer named back with what will be taken.
 - **Result:** the answers, handed back to the skill that asked.
-- **Files:** its own file; children named after the agents, read only when running in that agent (D197): `respond-ask-claude`, Claude Code's question tool: one to four questions per call, two to four options each, short labels, a header of at most 12 characters, "Other" always there for a free answer, several options selectable, previews for comparing drafts, the recommended option first with "(Recommended)"; `respond-ask-codex`, whether Codex has a question tool, to find out, text until then (D114, D159).
+- **Files:** its own file; children named after the agents, read only when running in that agent (D197): `respond-ask-claude`, Claude Code's question tool: one to four questions per call, two to four options each, short labels, a header of at most 12 characters, "Other" always there for a free answer, several options selectable, previews for comparing drafts, the recommended option first with "(Recommended)"; `respond-ask-codex`, Codex's way of asking, adapting ask's format to what Codex does well (D205). Codex ignored ask's numbered rounds under headings in 0 of 7 runs, because its own instructions outrank skills and say to prefer reasonable assumptions over asking, to bundle the most critical questions into one freeform question and, for some models, to write connected prose without section headings; its question tool `request_user_input` works only in Plan mode by default, and `codex exec` rejects it, so scripted runs cannot ask at all. The file is tested in a normal interactive Codex session, not in `codex exec` (D114, D159, D205, [../../evidence.md](../../evidence.md), E15).
 - **Material:** respond's and deep clarify's earlier rules on questions (D58, D81); the person's rule that each question of a round has its own heading; mattpocock's position that questioning stays harness-neutral chat ([../../research/mattpocock-skills.md](../../research/mattpocock-skills.md)); the harness's own documentation of its question tool (D159).
 - **Tests** (D114):
   1. a round of three decisions: each under its own numbered heading, with a recommended answer and a reason;
@@ -156,7 +156,8 @@ respond/
   14. a delegated agent with a closed choice: the question in its report, never the tool (D159);
   15. a harness without a question tool: text (D159).
   16. "which versions are supported?", which only the person can answer: no recommended answer, said so, and "go ahead" leaves it open, parked (D199).
-- **Open:** whether Codex has a question tool, for its reference file (D159).
+  17. Codex, in a normal interactive session, a request with open questions: the questions put in the format `respond-ask-codex` gives, each with a recommended answer where there is a basis, and the answers taken as ask says; not tested in `codex exec`, which cannot ask (D205).
+- **Open:** the exact format `respond-ask-codex` holds, found by testing in an interactive Codex session (D205).
 
 ## explain
 

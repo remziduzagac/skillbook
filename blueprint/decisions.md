@@ -1005,6 +1005,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D149 (2026-10-17):** setup asks nothing about other agent programs, whose default stays none, and states its default on whether the team uses skillbook rather than asking.
 >
 > **Amended by D165 (2026-10-17):** setup runs only on request; a third way in moves the pointer between a project's local and shared files.
+>
+> **Amended by D204 (2026-10-19):** hooks are no longer only for a rule that keeps being broken: for a Claude Code install, setup offers four `SessionStart` compaction hooks that print essentials' start files, with the user's approval; other hooks stay proposed only when a rule keeps being broken.
 
 **Decision:** setup has two ways in. A machine, once per computer: check the skillbook plugin is installed in both agents, showing how if not; add the pointer to the person's own instruction files through instruct, unless it is there; check a fresh session loads the main skill. A project, once per project: read what it is and what files it has; check its instruction files through instruct, keeping the facts, proposing to remove what repeats a skillbook rule and to add what is missing; recommend the skillbook skills and outside skills that fit; propose everything as one list and apply what is approved. Running either again changes nothing that is right. Hooks are proposed only when a rule keeps being broken despite the skills. `SKILL.md` only; five tests.
 
@@ -1800,6 +1802,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D159: the question tool, in ask (2026-10-17)
 
+> **Amended by D205 (2026-10-19):** Codex does have a question tool, but only in Plan mode by default, and `codex exec` rejects it; `respond-ask-codex` adapts ask's format to what Codex does well, and the open point on Codex's question tool is closed.
+
 **Decision:** Whether to use the harness's question tool, which puts questions as options to click, is conduct's ask's call; layout points to ask for questions ([design/conduct.md](design/essentials/respond.md)). The tool is used when all three hold: at most four questions; each a choice among a few short options; the reasoning fits in the text above it. Otherwise the questions are numbered in text, as ask's other rules say: when a question needs explaining option by option, a free answer is likely, there are more than four questions, or the person works item by item and accepts with "ok". The person's own instruction file can set a preference, always the tool, always text, or this default, and it wins. A delegated agent never uses it, since its questions go in its report. In the tool, ask's other rules hold in its form: the recommended option first and marked, partial answers named back. No skill names a harness's tool: ask says when, each harness's reference file says how, and where a harness has none, text is used. ask gains `references/claude.md`, holding Claude Code's question tool and its limits: one to four questions per call, two to four options each, short labels, a header of at most 12 characters, "Other" always there for a free answer, several options selectable, previews for comparing drafts, the recommended option first with "(Recommended)"; and `references/codex.md`, where whether Codex has one is still to find out, text until then.
 
 **Why:** Raised by the person with layout. The tool saves keystrokes and cannot be misread for a closed choice; text keeps the explanation, "ok" accepting every question at once, and the person's refinements, such as "ok, but…". The plan-mode pattern (D155) keeps skills portable, as mattpocock keeps questioning in plain chat for the same reason ([research/mattpocock-skills.md](research/mattpocock-skills.md)).
@@ -2066,6 +2070,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 > **Tested (2026-10-18):** Claude Code 2.1.302, default permission mode with only the skill tool allowed, a script's two folders imitated by hand. Reading the reference files of a personal link, a personal copy and a project link failed in each, 0 of 2; a project copy passed, 2 of 2. The rule `Read(~/.claude/skills/**)` in Claude Code's user settings gave 1 of 1 in its `~` form and 1 of 1 in its absolute form; the same rule in a project's `.claude/settings.json` gave 0 of 3 (two in the `~` form, one absolute), for files outside the project. In every failing run the agent answered from the main skill alone without complaining. One or two runs per cell, non-interactive runs where a prompt counts as a refusal (interactively it would be a prompt), and the real script not yet written. Evidence: [E14](evidence.md), [research/skill-loading.md](research/skill-loading.md), "Installed by a script".
 
+> **Amended by D204 (2026-10-19):** setup also offers four compaction hooks in Claude Code's user settings, beside the read rule, in the same step and with the same approval; the install script still edits no settings.
+
 **Decision:** in Claude Code's default permission mode, reading a skill's reference files outside the project asks for permission, for personal skills and plugins alike. A rule `Read(~/.claude/skills/**)` in Claude Code's user settings removes the prompt; a rule in a project's `.claude/settings.json` did not, for files outside the project; a project install as a copy needs no rule; Codex needs none. So for a personal install, essentials' setup skill shows that one rule and adds it to Claude Code's user settings with the person's approval; the install script only says this step comes next (D191). When reads were refused, the agent answered from the main skill alone and barely mentioned it, so the name rule gains a last sentence, and its exact wording becomes: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, say so plainly and stop that step." It sits in the name rule so every main skill holds it, since reads across sets happen from every set.
 
 **Why:** setup already writes the person's files with approval (D165), the person's settings file may be managed elsewhere (a dotfiles repository), and a second writer would split the rule. A refused read that the agent hides makes a skill fail without anyone noticing, so the rule says to stop and say so.
@@ -2108,6 +2114,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D199: Rules that blocked without need softened, and the start files reloaded after compaction (2026-10-18)
 
+> **Amended by D204 (2026-10-19):** the pointer's wording stays, but in Claude Code the reload does not rest on it: setup offers four compaction hooks that print essentials' start files. The retest of the pointer is answered: it reloaded in 1 of 1 chain, then 0 of 3 (E15).
+
 **Decision:** rules that stopped, waited or forbade where going on would serve are softened, each keeping its purpose, and every absolute kept has a reason that covers every case it forbids. By skill:
 
 - **essentials' main skill:** understand, act and respond are loaded at the start of every conversation, and again only when their text is no longer in view, such as after compaction; another set's skill is not reached by a path guessed without loading that set's main skill, since that main skill holds rules its skills rely on; with nothing unfinished, the wrap-up offer leaves out where the work stands and offers what the session taught only when it taught something worth keeping. Its design advises about 5,000 tokens for the files loaded at every start, the main skill and the three group files, since they are carried on every turn of every session.
@@ -2149,3 +2157,43 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 **Why:** the person pointed out that step 7 and the last instruction said almost the same thing; respond is always what happens last, so the last instruction is its one home, as skillbook-tree's check 3 asks, and check 8 still has its last instruction. The person also found the layout of step 6 broken: a paragraph after sub-bullets looked cut off from its item, a pattern that appeared in eighteen places.
 
+## D204: Setup adds a compaction hook in Claude Code that prints essentials' four start files (2026-10-19)
+
+> **Tested (2026-10-19):** Claude Code 2.1.302 with `claude-opus-5-5`, Codex 0.163.0, a fake home per run with the real install script's copy, a forced small context window, non-interactive runs, a commit-message request as the third turn. The pointer alone brought essentials back in 1 of 1 chain at a 20,000-token window, then in 0 of 3 chains at a 52,000-token window; in the one replay at 36,000 the agent loaded the main skill, and a second compaction came before the group files. One hook printing the main skill put its text back in 2 of 2 runs, and the group files were read again in 1 of 2. Four hooks, one per start file, put all four files back whole in 2 of 2 runs, with no file read again, and turn 3 followed respond's rules in both. In Codex the pointer alone reloaded essentials in 3 of 3 chains, against 0 of 2 without it. Limits: two runs per hook arrangement, no control run without hooks in the four-hook test, a task too small to show answer quality, no interactive or manual compaction, one model per agent. Evidence: [E15](evidence.md), [research/skill-loading.md](research/skill-loading.md), "Reloading after compaction".
+
+**Decision:** for a Claude Code install, setup offers, with the user's approval, four `SessionStart` hooks with the matcher `compact` in Claude Code's user settings, beside the read rule `Read(~/.claude/skills/**)`. Each hook prints one start file of essentials:
+
+- `SKILL.md`;
+- `references/understand.md`;
+- `references/act.md`;
+- `references/respond.md`.
+
+The command is `cat "$HOME/.claude/skills/essentials/<file>" 2>/dev/null || true`. It prints nothing and fails nothing when the files are gone, for example after `install.sh --uninstall`. Setup removes the hooks when the user asks.
+
+- **Who installs it:** setup, not `install.sh`. The install script only copies files and never edits the user's settings. A settings change needs the user's approval, and merging JSON safely from a POSIX script needs tools that may not be installed.
+- **Scope:** essentials only. Whether other sets need such hooks is decided when they are built. Codex needs none, since the pointer alone reloaded essentials there.
+- **One hook per file:** Claude Code caps each hook's output at 10,000 characters. The four files are 6,104, 3,731, 7,816 and 5,682 bytes, about 23,300 together, so one hook for all of them would be cut. The hooks run in parallel and their order varies. That is fine, because each file stands on its own.
+- **The pointer stays as it is** (D199). It covers every agent, and the hooks add the files themselves in Claude Code.
+- **Cost:** about 23,300 characters, roughly 5,800 tokens, added again at each compaction.
+
+**Why:** after compaction, Claude Code's summary drops essentials' text. The baseline found that no agent read the files again (0 of 8 turns), and D199 added a reload sentence to the pointer and the main skill. The retest shows the sentence is not enough in Claude Code. The pointer alone worked once and then failed three times, and the summary carried the reload instruction each time without the agent following it. Printing the files through hooks does not depend on the agent choosing to reload. One hook for the main skill put it back in 2 of 2 runs, but the group files came back in only 1 of 2. Four hooks put all four files back whole in 2 of 2 runs. The cost is the extra tokens at each compaction. The user can decline the hooks, and the pointer still works as D199 says.
+
+## D205: Codex keeps its own question style, and `respond-ask-codex` adapts ask's format to it (2026-10-19)
+
+> **Tested (2026-10-18):** codex-cli 0.163.0, the model `gpt-6.1-sol` as far as known, `codex exec` in its default read-only sandbox, first turns of requests that needed clarifying. Codex followed ask's numbered rounds under headings in 0 of 7 runs as first counted; the baseline test's own count is 0 of 8 first turns, and the two later tests added 0 of 4. It asked one unnumbered question with a recommendation each time. Claude Code did it in 7 of 7 baseline first turns, then in every later one. The reason was read in Codex's own instructions and source, and not reproduced by changing them. Evidence: [E15](evidence.md), [research/skill-loading.md](research/skill-loading.md), "How Codex asks questions".
+
+**Decision:** ask's shared rules are not changed to fight Codex's style. `respond-ask-codex`, the Codex file under ask, adapts ask's format to what Codex does well. It is tested in a normal interactive Codex session, not in `codex exec`. It is not built now.
+
+**Why:** the finding, from Codex's own instructions and source:
+
+- Codex's built-in instructions say to prefer reasonable assumptions over asking, to bundle the most critical questions into one freeform question, and, for some models, to write connected prose without section headings.
+- Those instructions outrank skills. A skill's rule that asks for a question or a heading wins only when it states an explicit requirement.
+- Codex's question tool, `request_user_input`, works only in Plan mode by default, and `codex exec` rejects it. A scripted run cannot ask at all, so the seven runs could not show a round of questions.
+
+Fighting these rules in ask's shared rules would add text for every agent to fix one. The Codex file can name what Codex does well and keep ask's purpose: each question numbered, a recommended answer where there is a basis, and the answers taken as ask says. This closes the open point D159 left, whether Codex has a question tool.
+
+## D206: Skill files say "the user", not "the person" (2026-10-19)
+
+**Decision:** skillbook's skill files call the human the agent works with "the user", the word the harnesses use, and agents read it the same way. "The project's users" or "end users" name the people who use what a project builds. The change is made in the 14 files of `skills/essentials/`, in skillbook-write's plain-English rule and in the glossary's new entry "User". New design text from this batch writes "the user". The existing design text and decisions are not rewritten in this batch: they keep "the person" until they are next changed. `AGENTS.md` and `CLAUDE.md` are the user's own instruction files and are not touched.
+
+**Why:** "the person" is not what the harnesses and their agents call the human, so a reader has to translate it. "The user" is one common word for one thing, as skillbook-write's plain-English rule asks, and it is the word Codex's and Claude Code's own instructions use. Rewriting every earlier design file and decision would be a large change with no new meaning, and decisions are append-only.

@@ -6,7 +6,7 @@ The rules and the last instruction here shape what is being made now. lean or en
 
 ## Rules
 
-1. **The reader first:** who reads it, and what for? The reader may be the person, the main agent reading a report, an agent loading a skill, the next one to change the code, or whoever builds a design. What is necessary depends on the reader. Without a reader, "necessary" means nothing.
+1. **The reader first:** who reads it, and what for? The reader may be the user, the main agent reading a report, an agent loading a skill, the next one to change the code, or whoever builds a design. What is necessary depends on the reader. Without a reader, "necessary" means nothing.
 2. **Nothing missing:** the reader can understand or act without asking again. A missing part costs a question or a redo, which costs more than the part.
 3. **Nothing extra:** every part does work for the reader. Remove a part whose removal loses nothing. An extra part costs the reader's attention and, for an agent, tokens on every later turn.
 4. **Parts cover everything, and no two overlap:** where something is divided, each thing has one home, and the others point to it. The parts are comprehensive and exclusive. An overlap drifts into contradiction, and a gap is found late.
@@ -19,7 +19,7 @@ The rules and the last instruction here shape what is being made now. lean or en
    - Stop the work once the result is enough.
    - Why: every read and every call is paid for again on later turns. Doing exactly what was asked stays act's rule 3.
 8. **Rework what exists, by lean or enrich, on request, or propose it when you notice the need.** Never do it unasked on anything beyond the task, by act's rule 3.
-9. **The approval rule,** for lean and enrich: when the person or others wrote the thing, the person first approves the list of changes, each with why or its source. Apply nothing before that. Report the result with its check. Your own draft in this conversation needs no approval, because it is still being made and the last instruction below covers it. One approval is enough, because the list shows every change exactly and the check after it is evidence enough.
+9. **The approval rule,** for lean and enrich: when the user or others wrote the thing, the user first approves the list of changes, each with why or its source. Apply nothing before that. Report the result with its check. Your own draft in this conversation needs no approval, because it is still being made and the last instruction below covers it. One approval is enough, because the list shows every change exactly and the check after it is evidence enough.
 10. **The code rule,** for lean and enrich: propose a code change first, then make it. Where softeng is installed, load the softeng skill, then use `implement` by its name rule. Otherwise change the code directly, and run the project's tests before and after.
 
 ## Advice
@@ -40,7 +40,7 @@ The rules and the last instruction here shape what is being made now. lean or en
   - the assumption the result rests on;
   - the error path in code;
   - the requirement each part of a design serves.
-- Length follows the reader and the question, not a word count of your own. A limit that the person or the format sets holds.
+- Length follows the reader and the question, not a word count of your own. A limit that the user or the format sets holds.
 
 ## Instructions
 
@@ -55,7 +55,7 @@ How a response is worded is the `respond` skill's.
 
 ## The last instruction
 
-Before you return or write anything, ask these questions silently, so the person sees only the result:
+Before you return or write anything, ask these questions silently, so the user sees only the result:
 
 1. Who reads it, and what for?
 2. What could go without losing anything they need? Remove it.

@@ -53,6 +53,7 @@ The words skillbook uses, one per concept. Use them as written, in skills, docs 
 
 ## Act and respond
 
+- **User:** the human the agent works with, the word the harnesses use. For the people who use what a project builds, say the project's users or end users. _Avoid:_ person, in skill files.
 - **Act:** essentials' group for how the agent works: act's rules, which hold for all the work, and its tools, stakes, guardrails, cleanup, verify and rightsize, loaded when a step needs them (D179).
 - **Respond:** essentials' group for everything said to the person: respond's rules, layout, ask and explain; the last step of every request (D179).
 - **Risky action:** an action of one of guardrails' kinds: irreversible, wide, outward, outside the task, costly, running fetched code, weakening a check, touching secrets. guardrails says what each needs: most are proposed and wait for approval; a wide change that is reversible and inside the task is planned, listed and done.

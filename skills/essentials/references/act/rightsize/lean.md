@@ -12,7 +12,7 @@ Removes what is extra from something that exists: it judges each part by what it
    - Merge whole items that say the same thing into one.
    - Why: an extra part costs the reader's attention and, for an agent, tokens on every later turn.
 3. **Never below a rule:** anything a rule requires stays, by rightsize's sixth rule, because what a rule requires is needed by definition.
-4. **The person approves first,** by rightsize's approval rule. The list holds each part that goes or becomes a pointer, with why.
+4. **The user approves first,** by rightsize's approval rule. The list holds each part that goes or becomes a pointer, with why.
 5. **Propose code changes, and make them under tests,** by rightsize's code rule. lean proposes changes such as removing an unused option, dead code or needless duplication. For code, "nothing needed lost" means the tests still pass.
 
 ## Instructions
@@ -30,5 +30,5 @@ Before you return anything, check:
 - nothing a rule requires was cut;
 - every pointer resolves;
 - the list of what went, with why, is ready;
-- where the person's or others' work changed, the list was approved;
+- where the user's or others' work changed, the list was approved;
 - for code, the tests pass.

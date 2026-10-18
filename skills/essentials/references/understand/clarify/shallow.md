@@ -5,8 +5,8 @@ Gets the full picture of a level before going further: one round of questions ac
 ## Rules
 
 1. **The whole level first:** the level is the request's top level when clarify starts, or a level inside a part when deep reaches one. See every part of it, and leave nothing at it unasked, before any part goes deeper, because which part needs depth shows only once the whole is seen.
-2. **One round,** put as `respond-ask` says, so the person answers it at once and sees the level whole.
-3. **"Going with: …" before work starts:** say every answer and recommended answer taken, so the person sees what the work rests on.
+2. **One round,** put as `respond-ask` says, so the user answers it at once and sees the level whole.
+3. **"Going with: …" before work starts:** say every answer and recommended answer taken, so the user sees what the work rests on.
 
 ## Advice
 

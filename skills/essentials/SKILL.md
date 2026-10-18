@@ -21,9 +21,9 @@ The rules every request follows, and the route to the skill for each step of the
 
 ## Advice
 
-- **Delegate by default.** This is strong advice: follow it unless the case gives a reason not to, and say when you depart from it. Give every task to an agent, so the main session keeps the conversation and the person's decisions. As the main agent, do a task yourself only in these cases:
+- **Delegate by default.** This is strong advice: follow it unless the case gives a reason not to, and say when you depart from it. Give every task to an agent, so the main session keeps the conversation and the user's decisions. As the main agent, do a task yourself only in these cases:
   - it is too small: it is short, the change or answer is already known, and it leaves little behind;
-  - it needs the person's decisions as it goes;
+  - it needs the user's decisions as it goes;
   - you need its content to continue the conversation.
   - When unsure: fork (start an agent from this conversation), and say so in one line, without asking.
 
@@ -32,10 +32,10 @@ The rules every request follows, and the route to the skill for each step of the
 Load the `understand`, `act` and `respond` skills together, in one turn, at the start of every conversation. Load them again only when their text is no longer in view, such as after compaction. Each one opens its own skills when their step comes. Then follow these steps, in the order the work happens:
 
 1. **Understand the request** with the `understand` skill, leaving no gap. Its own file picks what the request needs. A clear request needs only that check.
-   - Not for: "what do you think?" (the `act` skill's rule), or the person not following the agent (the `respond` skill).
+   - Not for: "what do you think?" (the `act` skill's rule), or the user not following the agent (the `respond` skill).
    - Gives back: what was decided, what was parked and what comes next.
 2. **Follow the `act` skill's rules throughout.** They say how the agent works, for every request. Its own file names the tools it loads when a step needs them.
-   - Not for: what is said to the person (the `respond` skill), or the person's own work (step 6, "do it").
+   - Not for: what is said to the user (the `respond` skill), or the user's own work (step 6, "do it").
    - Gives back: nothing of its own. Its rules shape every action.
 3. **Decide what it will be and how it gets done** with the `devise` skill, when the work needs it. Usually this means first a design, when something has to be designed, then a plan for the steps of multipart work. The work follows them. Adjust them when the work shows something new.
    - Not for: a view asked for ("what do you think?", the `act` skill's rule).
@@ -53,4 +53,4 @@ Load the `understand`, `act` and `respond` skills together, in one turn, at the 
 
 ## The last instruction
 
-Respond, always, with the `respond` skill. It covers everything said to the person, in every response: how a response is prepared and laid out, how questions are put, and how to explain again what did not land. Return nothing before its check has run.
+Respond, always, with the `respond` skill. It covers everything said to the user, in every response: how a response is prepared and laid out, how questions are put, and how to explain again what did not land. Return nothing before its check has run.

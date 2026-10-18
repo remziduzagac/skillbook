@@ -7,7 +7,7 @@ How to lay out anything the agent writes in markdown: responses, markdown files,
 Which rules win follows the `act` skill's rule on which instruction wins:
 
 - In a markdown file, the project's lint configuration wins over these rules, the prose rule included.
-- The person's instruction in the conversation wins over both.
+- The user's instruction in the conversation wins over both.
 
 1. **Sections get headings, not bold lines.** Keep heading levels in order. Each heading names its section in a few words. A bold line looks like a heading, but nobody can navigate to it or link to it. Lay out a round of questions as `respond-ask` says.
 2. **Bold is for a label or a key phrase inside a section.** A section's title is a heading, by rule 1.
@@ -15,7 +15,7 @@ Which rules win follows the `act` skill's rule on which instruction wins:
 4. **Don't wrap prose by hand:** write one line per paragraph or list item.
    - In a response, never wrap it. The harness wraps prose to its window, and unwrapped text copies and pastes cleanly.
    - In a file, don't wrap it unless the project's own rules say otherwise.
-5. **Numbers when things are referred to by number,** such as steps or questions, so the person can answer or point by number. Use bullets otherwise.
+5. **Numbers when things are referred to by number,** such as steps or questions, so the user can answer or point by number. Use bullets otherwise.
 6. **Fence code, commands and text diagrams, with the language named:** `text` for a diagram. Put file names, commands and identifiers inline in backticks. They then render, highlight and copy cleanly.
 
 ## Strong advice
