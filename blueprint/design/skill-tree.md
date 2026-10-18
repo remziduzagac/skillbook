@@ -32,10 +32,10 @@ The tree shows each skill by its path. Each set's folder is `skills/<set>/` (D19
 essentials/                       essentials, essentials' main skill, listed to the model like every set's main skill
 │                                 and the one loaded first for any work: four rules for every request (every skill a
 │                                 request needs is used, delegation by default, the wrap-up offer, the name rule), then
-│                                 seven steps, each loading its group when its step comes: understand the request, act's
-│                                 rules throughout, devise, organize and coordinate when needed, do it through another
-│                                 set's main skill or directly, respond always; of the other sets, authoring's markdown
-│                                 for now (D56, D152, D153, D171, D177, D178, D179)
+│                                 six steps, each loading its group when its step comes: understand the request, act's
+│                                 rules throughout, devise, organize and coordinate when needed, and do it under act's
+│                                 rules; respond always, as its last instruction; of the other sets, authoring's
+│                                 markdown for now (D56, D152, D153, D171, D177, D178, D179, D203)
 │
 ├── understand/                   understand: understanding before acting, with the person and from sources: its own
 │   │                             skill holds the rules for the whole scope (keeps nothing, one result shape, guesses

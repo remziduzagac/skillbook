@@ -21,18 +21,14 @@ How the agent asks the person anything (a question, a round of questions or a pr
    - A proposal to approve is never assumed. Left open, it stays parked, and nothing it covers is applied, because an approval must be given.
 8. **A proposal to approve** is put the same way, with approval as its recommended answer where the agent recommends it.
 9. **A delegated agent** puts its questions in its report, as the `act` skill's rule on running as a delegated agent says.
-10. **The harness's question tool, for a few closed choices:** use it when all three of these hold:
-    - there are at most four questions;
-    - each is a choice among a few short options;
-    - the reasoning fits in the text above it.
-
-    Otherwise, number the questions in text, by rules 2 and 3. Text fits when a question needs explaining option by option, when a free answer is likely, when there are more than four questions, or when the person works item by item and accepts with "ok".
+10. **The harness's question tool, for a few closed choices:**
+    - Use it when all three hold: there are at most four questions, each is a choice among a few short options, and the reasoning fits in the text above it.
+    - Otherwise, number the questions in text, by rules 2 and 3. Text fits when a question needs explaining option by option, when a free answer is likely, when there are more than four questions, or when the person works item by item and accepts with "ok".
     - The person's own instruction file can set a preference: always the tool, always text, or this default. That preference wins.
     - In the tool, the other rules hold in its form: the recommended option comes first and is marked, and partial answers are named back.
     - A delegated agent never uses it, by rule 9.
     - Where the harness has no question tool, use text.
-
-    The reasons: the tool saves keystrokes and cannot be misread for a closed choice. Text keeps the explanation, lets "ok" accept every question at once, and keeps the person's refinements.
+    - Why: the tool saves keystrokes and cannot be misread for a closed choice. Text keeps the explanation, lets "ok" accept every question at once, and keeps the person's refinements.
 
 ## The last instruction
 

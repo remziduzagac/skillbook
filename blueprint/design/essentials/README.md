@@ -2,7 +2,7 @@
 
 What any work needs: the set every other set builds on, its main skill loaded first for any request (D152, D154, D164, D178).
 
-- [essentials.md](essentials.md): the main skill: four rules, seven steps, one per group or kind of work, and the last instruction.
+- [essentials.md](essentials.md): the main skill: four rules, six steps, one per group or kind of work, and the last instruction, respond always.
 - [understand.md](understand.md): understanding before acting: discuss, clarify, frame, brainstorm, weigh, challenge, argue, naming, research.
 - [act.md](act.md): how the agent works: act's rules and its tools, stakes, guardrails, cleanup, verify, rightsize with lean and enrich (D179).
 - [devise.md](devise.md): deciding what the work will be and its steps: design, with its review, and plan.

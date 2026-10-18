@@ -9,8 +9,7 @@ These rules hold for every message the agent sends to the person: an answer, a r
 1. **Rightsized, by `act-rightsize`:** nothing missing and nothing extra for the person, and the point first. `act-rightsize` holds the rule and its check. Here the rule means:
    - no side topic the person did not ask for;
    - a comparison only when it helps the person decide.
-
-   For example, asked which port the server uses, give the port, not the history of the setting.
+   - For example, asked which port the server uses, give the port, not the history of the setting.
 2. **Name things in words:** never use a reference the reader cannot resolve, because they cannot look it up while reading.
    - Keep a reference as it is when this reader can tell what it is from the reference itself, right now, without looking it up. Examples: a file name or path, a link, a command, a function name, a name the reader knows, or a number from the current round of questions.
    - Otherwise, say in a few words what it is, and put the number in brackets after it, for looking it up. This applies to a decision, evidence, test or note number, a question number from an earlier round, a commit hash, an ID, or an abbreviation the reader has not used. For example, write "the decision to keep one file per skill (D12)", never "D12" alone.

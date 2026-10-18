@@ -2123,6 +2123,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D200: The main skill names all seven steps, and "do it" stays under act and the main skill (2026-10-18)
 
+> **Amended by D203 (2026-10-18):** the respond step is folded into the main skill's last instruction; six steps remain.
+
 > **Amended by D201 (2026-10-18):** the devise step is reworded: deciding what the work will be and how, design usually first, followed and adjusted as the work goes.
 
 **Decision:** the main skill names all seven of its steps now, devise, organize and coordinate included, though their files are not built yet; until they are, the name rule's fallback says plainly that the file could not be read and the agent goes on with its own judgment. Coordinate's step reads "share the work with other agents and later sessions", a delegated agent's result coming back into the conversation. "Do it" is always under act's rules and the main skill's steps, using whichever skills fit: another set's main skill where one in the agent's skill list holds that kind of work, otherwise the agent's own judgment. Its example of a request no skill covers becomes "rename these photos by the date they were taken". Also: the summaries of shallow, deep and ask say "a recommended answer where there is a basis"; while a questionnaire is out, work no outstanding answer touches goes ahead, said in a line; four tests are added for rules D199 changed; the essentials design no longer calls the baseline's pointer and compaction tests pending.
@@ -2140,4 +2142,10 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Decision:** skillbook-write gains a rule on plain English: one idea per sentence, short sentences, active voice, normal word order, common words, a list instead of a long chain of clauses, and the same word for the same thing every time. skillbook-write itself is rewritten in that style, and skillbook-tree asks that designs follow it. The essentials files get one plain-English pass after the running retest, then a small test to check nothing was lost. New designs and decisions are written this way; old decisions and notes stay as they are. A skill whose bare name could be read as an ordinary word is written "the `act` skill", in the skill files and as a point in skillbook-write's rule, at the person's suggestion; a dashed name needs nothing.
 
 **Why:** the person, not a native English speaker, found the skills, designs and replies hard to read, and doubted the dense style helped agents. It does not: what removes doubt is one word per idea, reasons and stated exceptions, not long sentences, and a sentence with many clauses makes it harder to see what a "not" or an "only" belongs to; shorter text also costs fewer tokens on every read, and respond's own rule asks for plain words.
+
+## D203: The main skill's respond step is folded into its last instruction (2026-10-18)
+
+**Decision:** the main skill's seventh step, respond always, is removed, and its last instruction says it: respond, always, with the respond skill, which covers everything said to the person, and return nothing before its check has run. The steps end at "do it". The same day, the lists in the baseline files were tidied: a paragraph after a sub-list became the list's last bullet, labelled "For example", "Why" or "Note" where needed, the wrap-up offer and ask's rule on the question tool were restructured, and "do it" became a list with a "Gives back" line.
+
+**Why:** the person pointed out that step 7 and the last instruction said almost the same thing; respond is always what happens last, so the last instruction is its one home, as skillbook-tree's check 3 asks, and check 8 still has its last instruction. The person also found the layout of step 6 broken: a paragraph after sub-bullets looked cut off from its item, a pattern that appeared in eighteen places.
 

@@ -10,11 +10,9 @@ The rules every request follows, and the route to the skill for each step of the
 ## Rules
 
 - **Use every skill the request needs,** together or one after another. A skill limits this only where it says why.
-- **The wrap-up offer:** sometimes work stops with steps left, such as "let's stop here". Then ask one question, through `respond-ask`. It offers to record two things, in this order:
-  - what the session taught;
-  - where the work stands, for a later session.
-
-  Both are lost when the session ends without a record. If nothing is unfinished, don't offer where the work stands. Offer what the session taught only when it taught something worth keeping.
+- **The wrap-up offer:** when work stops, such as "let's stop here", ask one question through `respond-ask` that offers to record what the session taught and where the work stands, because both are lost when the session ends without a record.
+  - Offer where the work stands only if steps are left.
+  - Offer what the session taught only if it taught something worth keeping.
 - Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, say so plainly and go on with your own judgment.
 - **How to use the name rule:** a call names the skill and nothing more, because this skill is already loaded and its folder is known. For example, for `act-rightsize-lean`, read `references/act.md`, then `references/act/rightsize.md`, then `references/act/rightsize/lean.md`. The reasons:
   - Read each group's file, because a group's file holds the rules shared by everything under it.
@@ -27,8 +25,7 @@ The rules every request follows, and the route to the skill for each step of the
   - it is too small: it is short, the change or answer is already known, and it leaves little behind;
   - it needs the person's decisions as it goes;
   - you need its content to continue the conversation.
-
-  When unsure, fork (start an agent from this conversation), and say so in one line, without asking.
+  - When unsure: fork (start an agent from this conversation), and say so in one line, without asking.
 
 ## Instructions
 
@@ -48,14 +45,12 @@ Load the `understand`, `act` and `respond` skills together, in one turn, at the 
    - Gives back: the new arrangement.
 5. **Share the work with other agents and later sessions** with the `coordinate` skill. It covers a task handed to an agent, with its result coming back into this conversation. By default that is any task that is not too small, as the advice above says. It also covers work carried over to a later session, an instruction document every session reads, setting up skillbook, and what a session taught.
    - Gives back: the agent's report, the carryover or the change made.
-6. **Do it,** always under the `act` skill's rules and these steps. Use whichever skills fit:
-   - Another set's main skill, where one in your skill list holds that kind of work. Load it, then use the skill by its name rule. Don't use a path you guessed without loading it, because that set's main skill holds rules its skills rely on.
-   - Otherwise, your own judgment.
-
-   The `act` skill's rule on a file's type names each type's skill. Do a request that no skill covers the same way, such as "rename these photos by the date they were taken".
-7. **Respond, always,** with the `respond` skill. It covers everything said to the person, in every response: how a response is prepared and laid out, how questions are put, and how to explain again what did not land.
-   - Gives back: nothing of its own. It shapes every response.
+6. **Do it,** always under the `act` skill's rules and these steps, using whichever skills fit:
+   - Work another set holds: where a set in your skill list holds that kind of work, load its main skill, then use the skill by its name rule. Don't use a path you guessed without loading it, because that set's main skill holds rules its skills rely on.
+   - Writing a file: the `act` skill's rule on a file's type names the skill for each type.
+   - Anything else, including a request no skill covers, such as "rename these photos by the date they were taken": your own judgment.
+   - Gives back: the work done.
 
 ## The last instruction
 
-Return nothing before the `respond` skill's check has run on it.
+Respond, always, with the `respond` skill. It covers everything said to the person, in every response: how a response is prepared and laid out, how questions are put, and how to explain again what did not land. Return nothing before its check has run.

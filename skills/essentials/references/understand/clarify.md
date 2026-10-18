@@ -9,8 +9,7 @@ Finds out what the person means before acting: decides what to ask and how deep,
    - Reading and finding facts go on meanwhile.
    - Work that no answer would change may go ahead; say so in a line. The exception is while a questionnaire is out (below).
    - "Go ahead" accepts the recommended answers, as `respond-ask` says.
-
-   This rule is stricter than understand's rule that nothing is changed for good while understanding. It is a variation of that rule, because it is the person's own wish.
+   - Note: this rule is stricter than understand's rule that nothing is changed for good while understanding. It is a variation of that rule, because it is the person's own wish.
 
 These are understand's rules: facts first, who decides, keeping nothing, the result shape, and marking guesses. How a question is put, with its recommended answer, is `respond-ask`'s. The result is in understand's shape, plus what was assumed when anything was left unconfirmed. Each part's own form is in its file.
 

@@ -10,8 +10,7 @@ Removes what is extra from something that exists: it judges each part by what it
    - Where a pointer would do, turn pasted content into a pointer.
    - Keep a repeated part in one home, with the others pointing to it, by rightsize's fourth rule.
    - Merge whole items that say the same thing into one.
-
-   An extra part costs the reader's attention and, for an agent, tokens on every later turn.
+   - Why: an extra part costs the reader's attention and, for an agent, tokens on every later turn.
 3. **Never below a rule:** anything a rule requires stays, by rightsize's sixth rule, because what a rule requires is needed by definition.
 4. **The person approves first,** by rightsize's approval rule. The list holds each part that goes or becomes a pointer, with why.
 5. **Propose code changes, and make them under tests,** by rightsize's code rule. lean proposes changes such as removing an unused option, dead code or needless duplication. For code, "nothing needed lost" means the tests still pass.

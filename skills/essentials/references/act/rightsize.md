@@ -17,8 +17,7 @@ The rules and the last instruction here shape what is being made now. lean or en
    - Read a file whole when it is short, or when the whole is needed, such as a skill's file by the name rule.
    - Make independent calls together.
    - Stop the work once the result is enough.
-
-   Every read and every call is paid for again on later turns. Doing exactly what was asked stays act's rule 3.
+   - Why: every read and every call is paid for again on later turns. Doing exactly what was asked stays act's rule 3.
 8. **Rework what exists, by lean or enrich, on request, or propose it when you notice the need.** Never do it unasked on anything beyond the task, by act's rule 3.
 9. **The approval rule,** for lean and enrich: when the person or others wrote the thing, the person first approves the list of changes, each with why or its source. Apply nothing before that. Report the result with its check. Your own draft in this conversation needs no approval, because it is still being made and the last instruction below covers it. One approval is enough, because the list shows every change exactly and the check after it is evidence enough.
 10. **The code rule,** for lean and enrich: propose a code change first, then make it. Where softeng is installed, load the softeng skill, then use `implement` by its name rule. Otherwise change the code directly, and run the project's tests before and after.

@@ -8,8 +8,7 @@ Understanding before acting, with the person and from sources. It holds the rule
    - Called by a skill: the result goes back to that skill.
    - Used directly: it goes to the keeper that the project's instruction files point to, if any. The keeper says where it goes and in what form.
    - With no keeper: it stays in the response. Offer a long result, or one the person wants kept, as a file they name.
-
-   Each skill here says only what a keeper needs from it. It names none of a keeper's steps or files, because a method tied to where results are stored cannot serve every caller.
+   - Note: each skill here says only what a keeper needs from it. It names none of a keeper's steps or files, because a method tied to where results are stored cannot serve every caller.
 2. **One result shape:** what was decided and why, what was parked and why, and what comes next. Each skill here adds its own part. A caller can then keep any result without knowing which skill made it.
    - The shape says where to find a part. It is not a form to fill.
    - Leave out a field with nothing to say, except "Not found" when something was looked for.
@@ -22,8 +21,7 @@ Understanding before acting, with the person and from sources. It holds the rule
    - Reading, asking and searching change nothing.
    - Probes and experiments are temporary. Make them in a scratch place, or remove them before you return the result.
    - Acting on the result is the caller's job, or waits for the person.
-
-   A change made while understanding decides for the person.
+   - Why: a change made while understanding decides for the person.
 
 ## Advice
 

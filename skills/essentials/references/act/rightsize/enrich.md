@@ -9,8 +9,7 @@ Adds what is missing to something that exists: it answers what its reader would 
    - the project's files;
    - the person, when only they know;
    - outside sources, for outside facts.
-
-   Mark what you don't find as a gap, because an invented answer reads as true.
+   - Mark what you don't find as a gap, because an invented answer reads as true.
 3. **Check that each addition is true, and add nothing the reader would not ask for,** by rightsize's last instruction, so enriching does not become padding.
 4. **The person approves first,** by rightsize's approval rule. The list holds each addition with its source and why. Report the result with the gaps.
 5. **Propose code changes, and make them under tests,** by rightsize's code rule. For example, a missing error path or test.
@@ -23,8 +22,7 @@ Adds what is missing to something that exists: it answers what its reader would 
    - the project's files first;
    - the person, through `respond-ask`, when only they know, such as which versions are supported;
    - outside sources for outside facts.
-
-   Mark what you don't find as a gap.
+   - Mark what you don't find as a gap.
 4. **Apply** each addition with its source, after the approval that rule 4 asks for. For code, follow rule 5.
 5. **Check,** by rule 3.
 
