@@ -15,12 +15,12 @@ devise/
 
 ## devise
 
-- **Purpose:** deciding what the work will be and the steps to get there: design, how to design anything, and plan, planning multipart work before acting and following the plan (D164). Its own `SKILL.md` routes only, in the shape every skill with parts takes, with no rules of its own, since its two share none (D112, D164).
+- **Purpose:** deciding what the work will be and the steps to get there: design, how to design anything, and plan, planning multipart work before acting and following the plan (D164). Its own `SKILL.md` routes only, with no rules of its own, since its two share none (D112, D164).
 - **Description:** "Deciding what the work will be and its steps: a design for something new or changed, a plan for multipart work, and the plan followed. Use when something new or changed is to be designed, or the work is multipart or steps are given to follow." A draft (D164).
 - **Callers:** the main skill, by its routing line (D164, D171, D172); other groups, through the main skill, such as understand's discuss for a design's or a plan's open parts; another set, through essentials' main skill by name, such as softeng, which adds its own design and plan's software parts, and blueprint, which keeps their results (D152, D156); the person, typing it.
 - **Flow:**
 
-  **Scope:** when the request's main question is what something will be, which devise sends to design, or the steps of multipart work to do, build or release, or steps given to follow, which it sends to plan (D173); not for single-step work, which is done directly, a single risky action (act's guardrails), the person's choice in single-step work (respond's ask), or a view asked for, which is act's rule, its plan made in plan but only shown; it gives back what its sub-skill returns: the plan, one line or full, and the checklist followed, or the design (D155, D164, D168, D171).
+  **Scope:** when the request's main question is what something will be, which devise sends to design, or the steps of multipart work to do, build or release, or steps given to follow, which it sends to plan (D173); not for single-step work or a view asked for, each sent where plan's line says; it gives back what its sub-skill returns (D155, D164, D168, D171).
 
   Instructions, one routing line per sub-skill:
   - **design:** when the request's main question is what something will be: something new or changed whose shape is not settled, or a design asked for; not for one open choice (respond's ask, with understand's brainstorm or weigh when options are wanted), an unclear request (understand's clarify), the steps of settled work (plan), rearranging what exists (organize) or a document for readers (authoring); it gives back the design, short or full, approved, and for a full one its review (D168);
@@ -37,7 +37,10 @@ devise/
   2. "fix the typo in the README": single-step, no plan, done directly (D155);
   3. "design a CLI for X": design, a full design (D168);
   4. "a settings page with two toggles": design, a short design (D168);
-  5. "design a CLI for X, then build it": design first, then plan, by design's hand-on (D168).
+  5. "design a CLI for X, then build it": design first, then plan, by design's hand-on (D168);
+  6. "make our onboarding better", its goal unclear: understand's clarify first, not design;
+  7. "reorganize these folders": organize, not design;
+  8. "write a user guide for X": authoring, a document for readers, not design.
 - **Open:** none known.
 
 ## design
@@ -68,7 +71,7 @@ devise/
   3. **divide into parts,** through organize, planning a whole not yet written: the requirements are the items, split into parts with each boundary in one sentence (D148); for software, softeng's design adds architecture here, through softeng's main skill, where that set is installed; where it is not, design's own parts and connections only;
   4. **discuss and decide:** the open questions dividing turns up, through understand's discuss, one item at a time, with brainstorm when options are wanted, weigh to compare them and challenge for decisions others will build on; the agent recommends, the person decides;
   5. **write** the design, top-down, holding the parts below;
-  6. **review** it, through review, by path: when a design is to be checked, before approval or after a large change; not for code or a change about to land (softeng's review), whether work is done (act's verify), a single idea (understand's challenge) or a skill in this repository (skillbook-tree); it gives back the findings, ranked, or with none the lenses that ran; problems go back to step 4;
+  6. **review** it, through review, by path: when a design is to be checked, before approval or after a large change; not for code or a change about to land (softeng's review), whether work is done (act's verify), a single idea (understand's challenge) or a skill's own design (the project's skill-making skill where it has one, otherwise the agent's own judgment); it gives back the findings, ranked, or with none the lenses that ran; problems go back to step 4;
   7. **approve:** the person approves it;
   8. **hand on:** when it is to be built, to plan, by path, then to building; when only the design was wanted, it ends here (D173);
   9. **adjust from building:** when building shows the design wrong or missing something, the design changes first, through step 4, before building goes on, and the plan is then revised by plan's re-planning; the build never quietly wins.
@@ -91,7 +94,7 @@ devise/
 
   **Last instruction, before a design is shown or kept:** settled work got no design; a given design's additions are marked as added; every decision carries its reason; open questions are listed with what would settle each, every assumption marked; a full design was reviewed, each finding fixed, accepted with a reason or parked, and approved by the person before plan; a short one waits only for a choice that is the person's; it is kept where "Where it is kept" says.
 - **Result:** the design, short or full; for a full one, its review and the person's approval.
-- **Where it is kept** (D156, D163, D168): a short design stays in the response. A full design goes in a file the person names; when they name none, the agent asks, recommending a file named for what is designed, where the project keeps its documents, since a full design lost with the conversation would have to be redone. Where the project's instruction files point to a keeper, such as blueprint's main skill, it is kept where the keeper says, and design names none of its steps.
+- **Where it is kept** (D156, D163, D168): a short design stays in the response. A full design goes in a file the person names; when they name none, the agent asks, recommending a file named for what is designed, where the project keeps its documents, since a full design lost with the conversation would have to be redone. Where the project's instruction files point to a keeper, such as blueprint's main skill, it is kept where the keeper says, and design names none of the keeper's steps.
 - **Files:** `SKILL.md` only (D168).
 - **Material:** the draft flow in [../../ideas/skill-tree.md](../../ideas/skill-tree.md); the blueprint method ([../../notes/first-design/design/blueprint.md](../../notes/first-design/design/blueprint.md)) and its worked example; this repository's own way of designing, as a worked example; adapted, never copied (D120).
 - **Tests** (D168):
@@ -99,7 +102,7 @@ devise/
   2. "add a --verbose flag": settled, so no design; plan or done directly;
   3. a spec with gaps: followed, the gaps filled and marked as added;
   4. "where should this helper live?": one question, so brainstorm or the agent's own choice, not design;
-  5. "a settings page with two toggles": a short design in the response, waiting only for a choice that is the person's;
+  5. "a settings page with two toggles": a short design in the response, with no review, waiting only for a choice that is the person's;
   6. building shows the design is wrong: the design changes first, through discuss and decide, then building resumes;
   7. a full design with no keeper loaded and no file named: the agent asks, recommending a file; with blueprint loaded, kept where blueprint says, none of its steps named;
   8. a software design: architecture added through softeng's main skill where that set is installed; where it is not, design's own parts and connections only;
@@ -128,9 +131,9 @@ devise/
 
   **Steps:**
   1. read the design, with what it must cover: the frame, the requirements and the decisions;
-  2. run each lens; a full design is reviewed by a fresh agent, not its writer, since a fork shares the writer's blind spots; a large one by one agent per lens, through coordinate's delegate;
+  2. run each lens; every review is done by a fresh agent, not its writer, since a fork shares the writer's blind spots; a large one by one agent per lens, through coordinate's delegate;
   3. report the findings, ranked "must fix before approval", "should fix" and "note", each with where, what, why it matters and a suggested fix;
-  4. propose only: the findings go back to design's discuss and decide, and the fixes are made by rewriting the design.
+  4. propose only, since what changes is decided in design's discuss and decide, by the person: the findings go back there, and the fixes are made by rewriting the design.
 
   Done when every lens has run and each finding is fixed, accepted with a reason, or parked as an open question.
 - **Result:** the findings, ranked, each with its fix; with none, the lenses that ran.
@@ -144,46 +147,42 @@ devise/
   5. the design left unchanged by the reviewer, who only proposes;
   6. a full design: reviewed by a fresh agent, one agent per lens when it is large;
   7. "review this code change": softeng's review, not this one;
-  8. no findings: the report names the lenses that ran.
+  8. no findings: the report names the lenses that ran;
+  9. a decision already challenged when it was decided: not challenged again;
+  10. softeng not installed: the architecture lens skipped, and said so.
 - **Open:** none known.
 
 ## plan
 
-- **Purpose:** planning multipart work before acting, and following a plan step by step, whether writing, research, design or code: whether a plan is needed, given items enhanced where they are not obvious, one line or a full plan, whose approval it waits for, and revising it when the work shows it wrong (D151, D155). It has no parts, since the work around it already has homes: organize divides the work, understand's challenge checks a full plan, understand's clarify and research and respond's ask expand what is not obvious, and coordinate's delegate hands parts to agents; softeng's own plan adds breakdown, slices and sequence for software (D154, D155).
+- **Purpose:** planning multipart work before acting, and following a plan step by step, whether writing, research, design or code: whether a plan is needed, given items enhanced where they are not obvious, one line or a full plan, whose approval it waits for, and revising it when the work shows it wrong (D151, D155). It has no parts, since the work around it already has homes, listed under "It uses" in its Callers field; softeng's own plan adds breakdown, slices and sequence for software (D154, D155).
 - **Description:** "Planning multipart work before acting, and following it step by step: whether a plan is needed, given items enhanced where they are not obvious, one line or a full plan, whose approval it waits for, and revising it when the work shows it wrong. Use before any work with more than one step or part, or when given steps to follow; an open shape met on the way is designed, through design, and the plan continues (D173)." A draft (D155).
 - **Callers** (D155):
   - devise's own skill, by its routing line in devise's flow (D164, D172);
   - act, through the main skill, whose rule points here for when to plan;
   - design, its sibling under devise, by path, at its hand-over to building (D168);
-  - coordinate's delegate, when it divides work for agents, as crew's first step does;
+  - coordinate's delegate's crew, whose first step plans the parts (D155);
   - understand's discuss, for a plan's open parts, through the main skill;
   - the person, typing it.
 
-  It uses organize, to divide a full plan; understand's clarify, for an unclear goal or done, frame, to state a full plan's goal, research, for something a step needs found out, and challenge, to check a full plan; respond's ask, for the person's choices, stakes, for how high the stakes are, and verify, for each step's check; all through the main skill, since they are in other groups. It uses design, its sibling under devise, by path, for an open shape met on the way (D173).
+  It uses organize, to divide a full plan; understand's clarify, for an unclear goal or done, frame, to state a full plan's goal, research, for something a step needs found out, and challenge, to check a full plan; respond's ask, for the person's choices; act's stakes, for how high the stakes are, and act's verify, for each step's check; coordinate's delegate, to hand parts to agents; all through the main skill, since they are in other groups. It uses design, its sibling under devise, by path, for an open shape met on the way (D173).
 - **Flow** (D151, D155). Planning has two halves: making a plan, and following one. Rules, each with its reason:
   1. **Only multipart work is planned:** work that needs more than one step or part, as the agent sees it, whatever the wording; "fix the failing test" is one step when the error shows the cause, and several (reproduce, find the cause, fix, test again) when it does not. Single-step work needs no plan, since what a plan would add there already has a home: the person's choice goes to respond's ask, the agent's is simply made, and a single risky action is a proposal under act's guardrails. An answer to a question is single-step. A view asked for gets act's "a view and a plan": the plan is made here, shown, and never started.
   2. **Given steps are followed, and enhanced where they are not obvious:** steps count as given when they come from the person, a skill's ordered instructions, tasks a keeper holds, a plan already approved and carried over, or a checklist the project keeps. People usually name the main items and leave the rest to the agent, so given items are the top of the plan: missing items are added and marked, by organize's check, the items set against the goal; items that are not obvious are expanded; obvious ones are left. The person's items keep their place and their wording, and reordering or dropping one is asked first, since they were the person's choice.
   3. **The obvious test sets how far any plan goes:** a step is obvious when the agent could do it now, knows how it will be checked, and has no choice left that would change the result and nothing to find out first. What failed says what to do: parts not yet known, organize's split; an unclear goal or done, understand's clarify; an open choice, made and stated when it is the agent's, asked through respond's ask when it is the person's, with understand's brainstorm or weigh when options are wanted; an open shape, parts or choices that depend on each other, through design, its sibling, by path, the plan continuing from its result (D173); something to find out, a quick look or understand's research. Each new step is tested again, and expanding stops when every step passes: nothing obvious is expanded and nothing unclear is left, act's rightsize applied to a plan (D145).
   4. **A choice is the person's** when the options give them different results they would care about, such as scope, cost, how it looks or a public interface; it is the agent's when only the route differs, since then the person gets the same thing either way.
   5. **One line, or a full plan:** a full plan when stakes are high, as act's stakes rates them, or the work is long or wide; otherwise one line, holding the approach where a choice was made, the steps in order and the check. A full plan is divided through organize, and challenged through understand's challenge before it is shown, since others build on it (D150).
-  6. **Following, whoever wrote the steps:** at about three steps or more, the steps go in a checklist, the harness's task list where it has one; they are done in order, each checked by act's verify before the next, and ticked off. A given step that looks wrong is raised before going on, as act's rule on concerns says; a step that fails stops the list and goes to re-planning.
-  7. **Approval, for either depth:** a plan waits for the person when stakes are high, the person asked for a plan, or it holds a question for them; otherwise it is shown and the work starts, and the person can still stop it, since a plan costs a turn while going the wrong way costs the rework. When it waits, the harness's plan mode is used where there is one, since it holds changes until the person approves; elsewhere the plan goes in the response and the agent waits. No skill names a harness's mode; the reference files say how.
-  8. **Re-planning:** when a step fails, or a fact the plan rests on changes, the plan is revised before going on, and approved again if the first one needed approval; when the steps were the person's own, the revised steps go back to them. When a failure shows the design the plan builds on wrong, the design changes first, by design's step 9, and the plan is revised after it (D168).
+  6. **Following, whoever wrote the steps:** at about three steps or more, since fewer are held in mind without one, the steps go in a checklist, the harness's task list where it has one; they are done in order, each checked by act's verify before the next, since a step that fails unnoticed costs every step built on it, and ticked off. A given step that looks wrong is raised before going on, as act's rule on concerns says; a step that fails stops the list and goes to re-planning.
+  7. **Approval, for either depth:** a plan waits for the person when stakes are high, the person asked for a plan, or it holds a question for them; otherwise it is shown and the work starts, and the person can still stop it, since a plan costs a turn while going the wrong way costs the rework. When it waits, the harness's plan mode is used where there is one, since it holds changes until the person approves; elsewhere the plan goes in the response and the agent waits. The reference files say how each harness's mode is used.
+  8. **Re-planning:** when a step fails, or a fact the plan rests on changes, the plan is revised before going on, since steps planned on a failed step or a changed fact no longer hold, and approved again if the first one needed approval; when the steps were the person's own, the revised steps go back to them. When a failure shows the design the plan builds on wrong, the design changes first, by design's step 9, and the plan is revised after it (D168).
   9. **Where it is kept, plan's own part only** (D156): in the response when it fits on a screen; in a file when it is longer, the response giving the outline. Which file, and in what form, is a keeper's, such as blueprint's where the project's instruction files point to it, so plan never names one; by default, a file the agent names in the response.
 
-  Advice (D116): long or wide means more than about five steps, more than one sitting, or parts that could each go to a different agent, the size where a plan keeps the work from wandering and lets parts be delegated; a checklist starts to pay at about three steps, since fewer are held in mind without one. When unsure whether the work is multipart or a step obvious, a one-line plan is stated and the work starts; re-planning catches the rest when the work turns out bigger.
+  Advice (D116): long or wide means more than about five steps, more than one sitting, or parts that could each go to a different agent, the size where a plan keeps the work from wandering and lets parts be delegated. When unsure whether the work is multipart or a step obvious, a one-line plan is stated and the work starts; re-planning catches the rest when the work turns out bigger.
 
   Instructions, in the order the work happens (D155):
 
-  ```text
-  1. Is the work multipart?            no  → no plan; the work done directly
-  2. Are the steps already given?      yes → follow them, enhanced where not obvious
-  3. One line, or a full plan?         full when stakes are high or the work is long or wide; otherwise one line
-  ```
-
   1. **Multipart?** By rule 1. When not, no plan, and the work is done directly.
   2. **Given?** By rule 2: missing items added and marked, and each item through the obvious test.
-  3. **Make the plan** where none is given: the goal; the steps, expanded by the obvious test; then one line or a full plan, by rule 5. A full plan is divided through organize: split for the parts, one dividing principle, each part's boundary in one sentence, no overlap and no gap, since overlapping steps do work twice and a gap leaves something undone; merge where two steps do the same thing; compose where steps group into phases, each stating what its steps share; normalize where a step repeats across parts, so it is done once. The order of the steps is plan's own, since organize arranges boundaries, not sequence. organize's two approvals do not apply, since nothing existing changes; plan's approval does (D148).
+  3. **Make the plan** where none is given: the goal; the steps, expanded by the obvious test; then one line or a full plan, by rule 5. A full plan is divided through organize, by its rules: split for the parts; merge where two steps do the same thing; compose where steps group into phases; normalize where a step repeats across parts, so it is done once. The order of the steps is plan's own, since organize arranges boundaries, not sequence. organize's two approvals do not apply, since nothing existing changes; plan's approval does (D148).
   4. **Challenge** a full plan through understand's challenge.
   5. **Approval,** by rule 7.
   6. **Follow,** by rule 6, and **re-plan** by rule 8.

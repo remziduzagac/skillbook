@@ -1,30 +1,30 @@
 # Design: essentials, the main skill
 
-What a builder needs for essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work (D56, D71, D152, D153); ideas not yet decided are in [../../ideas/essentials.md](../../ideas/essentials.md). It is designed last, once the groups it routes to are designed (D80). Every section answers the same questions (D80); an empty field is not designed yet.
+What a builder needs for essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work (D56, D71, D152, D153); ideas not yet decided are in [../../ideas/essentials.md](../../ideas/essentials.md). Every section answers the same questions (D80); an empty field is not designed yet.
 
 ## essentials
 
 - **Purpose:** essentials' main skill, loaded first for any piece of work: it holds the few rules that hold for every request and opens essentials level by level, one line per group, each loaded when its step comes (D56, D152, D177, D178).
-- **Description:** the one tested (D57), kept as it is: "Load this first for any piece of work, before answering: it holds the rules every answer follows and routes to the skill for the job. Covers designing, planning, implementing, commits, branches and pull requests, testing or debugging, reviewing code, releasing, deploying, keeping a repository healthy; writing documents, notes, status updates or agent instructions; clarifying a request, brainstorming options, explaining; researching and comparing tools or sources; capturing notes for later, meetings, daily or weekly reviews, personal tasks; delegating, handing work to another agent, verifying work, making skills." It decides whether the main skill loads at all, so it stays broad while the other sets' main skills are not yet routed: act's and respond's rules then hold for any piece of work. A change to it is re-run through the test harness (D136). With the sets, the kinds of work it names are revisited when the other sets' main skills are written, since each of those names its own (D152).
+- **Description:** the one tested (D57), kept as it is: "Load this first for any piece of work, before answering: it holds the rules every answer follows and routes to the skill for the job. Covers designing, planning, implementing, commits, branches and pull requests, testing or debugging, reviewing code, releasing, deploying, keeping a repository healthy; writing documents, notes, status updates or agent instructions; clarifying a request, brainstorming options, explaining; researching and comparing tools or sources; capturing notes for later, meetings, daily or weekly reviews, personal tasks; delegating, handing work to another agent, verifying work, making skills." It decides whether the main skill loads at all, so it stays broad while the other sets' main skills are not yet routed: act's and respond's rules then hold for any piece of work. A change to it is re-run through the test harness (D136).
 - **Callers:**
   - the harness, by its description, as every set's main skill is listed (D56, D152);
   - the pointer, which goes where the skills are installed (D57, D165);
   - the person, typing it;
   - a skill in essentials naming another group's skill, which the main skill's lines locate (D56);
   - a skill in another set, through this main skill by name, never a hidden skill's path (D152).
-- **Flow** (D112, D177, D178), in the shape every parent skill takes: what holds for everything under it, then one line per child, each loaded when its step comes, then the last instruction.
+- **Flow** (D112, D177, D178):
   1. **Rules and advice** that hold for every request and have no skill of their own:
      - every skill a request needs is used, together or in turn; a skill limits this only where it says why (D112, D115);
-     - strong advice, **delegation by default:** every task goes to an agent through coordinate's delegate, so the main session keeps the conversation and the person's decisions; the main agent does a task itself only when it is too small, when it needs the person's decisions as it goes, or when it needs the content to continue the conversation; when unsure, it forks without asking; delegate holds the reasons and the choice of agent (D138, D142, D143, D149);
+     - strong advice, **delegation by default:** every task goes to an agent through coordinate's delegate, so the main session keeps the conversation and the person's decisions; the main agent does a task itself only when it is too small (short, the change or answer already known, and leaving little behind), when it needs the person's decisions as it goes, or when it needs the content to continue the conversation; when unsure, it forks without asking; delegate holds the reasons and the choice of agent (D138, D142, D143, D149);
      - **the wrap-up offer:** when work stops with steps left, such as "let's stop here", one question, through respond's ask, offers coordinate's learn, then its carryover, since what a session taught and where the work stands are lost when it ends unrecorded; with nothing unfinished, nothing is offered (D107, D115, D164).
-  2. **Instructions,** in the order the work happens; understand, act and respond are loaded together at the start of every conversation, the others when their step comes (D178):
+  2. **Instructions,** in the order the work happens; understand, act and respond are loaded together at the start of every conversation, the others when their step comes; each group's Scope line says what it gives back (D178):
      1. **understand** the request, leaving no gap, through understand, whose own skill picks what the request needs, a clear request needing only that check; not "what do you think?" (act's rule) or the person not following the agent (respond's explain);
      2. **throughout, act's rules,** through act, loaded once per conversation; its own skill names the tools it loads when a step needs them (D179);
-     3. **what it will be, and its steps,** when needed, through devise (D173);
+     3. **what it will be, and its steps,** when needed, through devise; not a view asked for ("what do you think?", act's rule) (D173);
      4. **arrange things,** when needed, through organize: dividing, joining, grouping or indexing, planning a whole's parts, or checking parts for overlaps and gaps; not changing what the items say, nor the steps of the work (devise) (D164);
-     5. **hand work to other agents,** now, later or in every session, when needed, through coordinate (D164);
-     6. **do it,** through another set's main skill where one holds that kind of work, otherwise directly, under act's rules, whose rule on writing a file holds each type's skill (D152);
-     7. **respond,** always, through respond, its check run before every response (D179).
+     5. **work with agents not in this conversation,** through coordinate: a task handed to an agent, by default any task that is not too small, as the advice above says; work carried over to a later session; an instruction document every session reads; skillbook set up; or what a session taught (D164);
+     6. **do it,** through another set's main skill where that set is installed and holds that kind of work, otherwise directly, under act's rules, whose rule on a file's type names each type's skill (D152);
+     7. **respond,** always, through respond (D179).
   3. **The last instruction:** nothing is returned before respond's check has run on it (D81, D115).
 - **Result:** none of its own; its rules shape every response (D136).
 - **Files:** `SKILL.md` only (D136).
@@ -48,4 +48,4 @@ What a builder needs for essentials' main skill, listed to the model like every 
   16. "let's wrap up" with steps left: the wrap-up offer, one question offering learn, then carryover; with nothing unfinished, nothing offered (D107, D115);
   17. a task that is not too small: delegated through coordinate's delegate; unsure whether it is too small: a fork, without asking (D138, D143);
   18. the baseline built: its start-up measured, against the figure set then (D149).
-- **Open:** the lines for the other sets' main skills, added as each is designed (D136, D152, D154).
+- **Open:** the lines for the other sets' main skills, added as each is designed, and the kinds of work the description names, revisited then, since each of those names its own (D136, D152, D154).
