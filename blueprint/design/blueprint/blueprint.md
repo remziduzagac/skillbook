@@ -30,7 +30,7 @@ blueprint/
 - **Purpose:** the blueprint set's main skill: a project's spec-to-dev flow and its records, from the idea to the hand-over to code, its files and folders, the procedures that keep them intact, and the form of each document (D46, D47, D154).
 - **Description:**
 - **Callers:**
-- **Flow:**
+- **Flow:** not designed yet, except that its rules hold the name rule, worded exactly as in essentials' main skill: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down." Calls inside the set name the skill and nothing more (D186, D188).
 - **Result:**
 - **Files:**
 - **Material:**

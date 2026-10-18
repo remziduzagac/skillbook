@@ -354,7 +354,7 @@
    "mark": "●",
    "src": "",
    "tail": [],
-   "desc": "working with agents not in this conversation, now, later and in every session: work given to other agents and what they are told, work carried over to a later session, the instruction documents every session reads, skillbook set up, and what a session taught; its own SKILL.md holds one routing line per sub-skill (D164)",
+   "desc": "working with agents not in this conversation, now, later and in every session: work given to other agents and what they are told, work carried over to a later session, the instruction documents every session reads, skillbook set up, and what a session taught; its own file holds one routing line per sub-skill (D164)",
    "kids": [
     {
      "path": [
@@ -514,7 +514,7 @@
    "mark": "●",
    "src": "",
    "tail": [],
-   "desc": "deciding what the work will be and its steps: design, how to design anything, and plan, planning multipart work and following it; its own SKILL.md routes to each (D164)",
+   "desc": "deciding what the work will be and its steps: design, how to design anything, and plan, planning multipart work and following it; its own file routes to each (D164)",
    "kids": [
     {
      "path": [
@@ -1483,7 +1483,7 @@
   "author-updates": "author-business",
   "conduct-answer": "conduct-respond"
  },
- "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: three rules for every request (every skill a request needs is used, delegation by default, the wrap-up offer), then seven steps, each loading its group when its step comes: understand the request, act's rules throughout, devise, organize and coordinate when needed, do it through another set's main skill or directly, respond always; of the other sets, authoring's markdown for now (D56, D152, D153, D171, D177, D178, D179)",
+ "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: four rules for every request (every skill a request needs is used, delegation by default, the wrap-up offer, the name rule), then seven steps, each loading its group when its step comes: understand the request, act's rules throughout, devise, organize and coordinate when needed, do it through another set's main skill or directly, respond always; of the other sets, authoring's markdown for now (D56, D152, D153, D171, D177, D178, D179)",
  "sets": [
   {
    "name": "essentials",

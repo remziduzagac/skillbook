@@ -22,7 +22,7 @@ authoring/
 - **Purpose:**
 - **Description:**
 - **Callers:**
-- **Flow:**
+- **Flow:** not designed yet, except that its rules hold the name rule, worded exactly as in essentials' main skill: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down." Calls inside the set name the skill and nothing more (D186, D188).
 - **Result:**
 - **Files:**
 - **Material:**

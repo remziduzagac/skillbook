@@ -9,7 +9,7 @@ How skillbook works, as decided. The initial design is open (D27): changes go st
 
 ## A folder per set
 
-Each set has a folder holding its main skill's design and one design document per group or root, with a section per sub-skill answering the same questions: purpose, description, callers, flow, result, files, material, tests, open; a section's heading is the sub-skill's folder name (D80, D167).
+Each set has a folder holding its main skill's design and one design document per group or root, with a section per sub-skill answering the same questions: purpose, description, callers, flow, result, files, material, tests, open; a section's heading is the last word of the sub-skill's name, its path (D80, D167).
 
 - [essentials/README.md](essentials/README.md): essentials, what any work needs, the set every other set builds on.
 - [blueprint/README.md](blueprint/README.md): blueprint, the spec-to-dev flow and its records.

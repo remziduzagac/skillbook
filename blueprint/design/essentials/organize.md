@@ -4,7 +4,7 @@ What a builder needs for organize and its five operations, essentials' group for
 
 organize belongs to the essentials set (D152, D154, D164).
 
-How skills reach each other here (D107): a sibling within organize is read by its path; a skill in another group is reached through the main skill, and a skill in another set through that set's main skill, by name; where that set is not installed, the one-line fallback written where it is used holds, and a request pointed to it is done directly under act's rules, as the main skill says (D56, D152).
+How skills reach each other here (D107): a skill of the set, in the same group or another, is named by its name and read as a file by the main skill's name rule; a skill in another set is reached by loading that set's main skill and using the skill by its name rule; where that set is not installed, the one-line fallback written where it is used holds, and a request pointed to it is done directly under act's rules, as the main skill says (D152, D186, D187).
 
 ```text
 organize/    arranging things: the shared rules and the check

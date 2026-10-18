@@ -4,7 +4,7 @@ What a builder needs for respond, essentials' group for everything said to the p
 
 respond belongs to the essentials set (D152, D154, D179).
 
-How skills reach each other here (D107): a sibling within respond is read by its path; a skill in another group is reached through the main skill (D56).
+How skills reach each other here (D107, D186): a skill of the set is named by its name, and the main skill's name rule turns the name into its file; a skill in another set is reached through that set's main skill (D187).
 
 ```text
 respond/
@@ -16,7 +16,7 @@ respond/
 ## respond
 
 - **Purpose:** how every response is prepared before it is returned: what goes in, how it is put together, how it is worded (D60, D81). Its rules apply to every message the agent sends: an answer, a report of work done, a question back, a summary. respond is also the group for everything said to the person, its three children opened by the routing lines below (D179).
-- **Description:** "How every response is prepared before it is returned: rightsized for its reader, things named in words, explanations top-down, plain words, outcomes reported as they happened, no flattery." A draft; it is hidden, so the description is read by the person in the slash menu.
+- **Description:** "How every response is prepared before it is returned: rightsized for its reader, things named in words, explanations top-down, plain words, outcomes reported as they happened, no flattery." A draft; respond's own file is a plain file under the main skill, so the description is read by whoever opens it and is never listed to the model (D188).
 - **Callers:** the main skill, by its seventh step and its last instruction (D81, D178).
 - **Flow:** rules, not steps, checked by the last instruction below (D81). Each rule carries one short example and must still be clear with the example deleted (D81).
 

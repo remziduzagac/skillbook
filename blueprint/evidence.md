@@ -78,3 +78,18 @@ Claims that matter beyond the conversation, each with the evidence that it is tr
 - **Evidence:** three runs: two general-purpose agents started in one message each wrote 14,675 tokens to the cache, neither reading the other's; two Explore agents started in one message each wrote 12,609; two general-purpose agents started one after the other each read 14,675 from cache, written by an earlier run about 40 seconds before ([research/token-cost.md](research/token-cost.md), "Measured").
 - **Verified by:** the agent, by running Claude Code 2.1.302 with `claude-haiku-5-5` as the main agent.
 - **Supports:** D142.
+
+## E12: Sets as plugins with hidden nested skills work in Claude Code and Codex (2026-10-18)
+
+- **Claim:** two plugins in one marketplace, each with a listed main skill and hidden skills nested below it, are listed as their main skills only, are walked down by the name rule in both agents, call each other through the main skill with a fallback where one is missing, and survive compaction after a long sub-skill was read, without a permission prompt.
+- **Evidence:** Claude Code 2.1.302 and Codex 0.163.0, two runs per case: only the main skills listed, in both; down the tree, 4 of 4; with the name rule, 4 of 4 read the right file directly, without it 3 of 4, each after searching the folders; between the plugins, 4 of 4 with both installed and 4 of 4 with the fallback when one was missing; after compaction, 4 of 4 answered a second buried fact of a sub-skill of about 31,000 characters; no permission prompt, reads in the real plugin cache included ([research/skill-loading.md](research/skill-loading.md), "Plugins with nested skills").
+- **Verified by:** the agent, by running both agents.
+- **Supports:** D186, D187, and D72's point on a long skill after compaction.
+
+## E13: A set's other skills as plain files under its main skill are followed as far as nested skills (2026-10-18)
+
+- **Claim:** in Claude Code and Codex, a set's other skills kept as plain markdown files under its main skill's `references/` are read whole down chains of up to seven files, within a set and across two sets, by the name rule, are followed as far as hidden nested skills, and survive compaction without a sentence telling the agent to read them again, provided a parent only routes and its child holds the method.
+- **Evidence:** Claude Code 2.1.302 and Codex 0.163.0, three runs per case, files of 41 to 56 lines: a chain of five files, 3 of 3 in both, and as hidden nested skills 3 of 3 in both; without the name rule 3 of 3 in both, each after a search; a jump to `organize-merge`, 3 of 3 in both; after compaction a buried rule was applied in 12 of 12 runs, with and without a reload sentence, Claude Code re-attaching every file read and Codex reading the needed file again every time; across sets, with a parent that only routes, 3 of 3 in both and the fallback 2 of 2 in both, where a parent holding part of its child's steps stopped Codex at the parent, 0 of 5. Limits: one model per harness, manual compaction in Claude Code and a forced low limit in Codex, non-interactive runs, chains of at most seven files, short files ([research/skill-loading.md](research/skill-loading.md), "Flattened reference files").
+- **Verified by:** the agent, by running both agents.
+- **Supports:** D188, D177 and D187 (their Tested lines).
+

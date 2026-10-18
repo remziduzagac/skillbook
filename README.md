@@ -17,7 +17,7 @@ Only each set's main skill sits in an agent's context; every other skill loads w
 
 ## Installing
 
-Coming with the first release, each set on its own, for Claude Code and Codex; how they are installed is still being decided.
+Coming with the first release: each set is its own plugin in skillbook's marketplace, installed on its own, for Claude Code and Codex, and turned off through the harness's own plugin switch.
 
 ## How it is organised
 

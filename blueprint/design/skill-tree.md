@@ -4,37 +4,38 @@ The tree of skills, by set, as decided; a skill marked (an idea) is placed but n
 
 ## How to read it
 
-- **Each skill is a short folder** inside its parent's; its name, shown before its description, is the folder path joined by dashes: `design/start/` is `design-start` (D43, D71). Inside, only `SKILL.md` sits at the top, with `references/`, `scripts/` and `assets/` beside the sub-skills, and in a hidden skill `agents/`, Codex's settings (D44, D79); the sample below shows it once.
-- **Each set's main skill** is model-invoked, its description in the agent's context every turn (D56, D152). Every other skill, the roots included, is a **sub-skill**: invoked by the person only, costs nothing until used, and is loaded by its path from the skill that needs it, inside its set; the person can type it by the name its install route gives it.
+- **Each skill has a short name in its parent's path;** its name, shown before its description, is that path joined by dashes: `devise/design/` is `devise-design` (D43, D71). A set's main skill is a folder with a `SKILL.md`, and every other skill is a plain file under its `references/`, at the path its name gives: `devise-design` is `references/devise/design.md`, its own scripts and templates in `scripts/` and `assets/` inside the folder `references/devise/design/` (D44, D188); the sample below shows it once.
+- **Each set's main skill** is model-invoked, its description in the agent's context every turn (D56, D152). Every other skill, the roots included, is a **sub-skill**: a plain file that costs nothing until read, read as the file its name gives, by its set's name rule, when a skill names it; the person does not type it, but asks for it in words, such as "use devise-design" (D188).
 - **essentials' main skill,** on the `essentials/` line, sits above the roots: its rules and advice come first; its instructions say when to use each root, in the order the work happens; and every response is checked against respond before it is returned (D56, D63, D81, D112, D178). Beside the roots, **act** holds how the agent works and **respond** everything said to the person, in every root (D179).
 - **(an idea)** marks a skill with no worked-out material anywhere yet; **→** marks a skill it calls.
 - **The roots:** the stages, named by bare verbs (D35, D36, D76): softeng's are implement, test, review, ship and maintain, with its own design and plan; essentials' design and plan sit under devise, not at the top (D154, D164); understand is a verb too, and act, respond, coordinate, organize and authoring, groups, are nouns or set names (D40, D67, D154). A knowledge base and routines are later sets (D64, D152), their skills ideas in [../ideas/later.md](../ideas/later.md) (D167).
 
 ## The tree
 
-One skill folder, as a sample of the shape every folder in the tree has (D43, D44):
+A main skill and two levels below it, as a sample of the shape every set has (D43, D44, D188):
 
 ```text
-design/                         its name: design
-├── SKILL.md                    the rules, the advice, and when to use each sub-skill (D112)
-├── references/                 what the skill reads, linked from SKILL.md
-├── scripts/                    what it runs
-├── assets/                     what it copies out, such as templates
-├── agents/openai.yaml          Codex's setting that hides the skill, written from SKILL.md (D79)
-└── start/                      a sub-skill, named design-start: the same shape again
-    └── SKILL.md
+essentials/                              the main skill's folder, the only skill the harness lists
+├── SKILL.md                             the rules, the advice, and when to use each group (D112)
+└── references/                          the other skills, each a plain file at the path its name gives
+    ├── devise.md                        devise, a group
+    └── devise/                          the folder of the same name, for devise's children
+        ├── design.md                    devise-design
+        └── design/                      the folder of the same name, for design's own files
+            ├── scripts/                 what design runs
+            └── assets/                  what it copies out, such as templates
 ```
 
-The tree shows only the skill folders. Its folder paths are provisional until the layout is decided with the install routes; the tree is one block per set, each starting with a line for the set's main skill, and a part whose set differs from its root's stands in its own set's block, design's recording steps in blueprint's, design's architecture in softeng's (D152, D154).
+The tree shows each skill by its path. Its paths are provisional until the layout is decided with the install routes; the tree is one block per set, each starting with a line for the set's main skill, and a part whose set differs from its root's stands in its own set's block, design's recording steps in blueprint's, design's architecture in softeng's (D152, D154).
 
 ```text
 essentials/                       essentials, essentials' main skill, listed to the model like every set's main skill
-│                                 and the one loaded first for any work: three rules for every request (every skill a
-│                                 request needs is used, delegation by default, the wrap-up offer), then seven steps,
-│                                 each loading its group when its step comes: understand the request, act's rules
-│                                 throughout, devise, organize and coordinate when needed, do it through another set's
-│                                 main skill or directly, respond always; of the other sets, authoring's markdown for
-│                                 now (D56, D152, D153, D171, D177, D178, D179)
+│                                 and the one loaded first for any work: four rules for every request (every skill a
+│                                 request needs is used, delegation by default, the wrap-up offer, the name rule), then
+│                                 seven steps, each loading its group when its step comes: understand the request, act's
+│                                 rules throughout, devise, organize and coordinate when needed, do it through another
+│                                 set's main skill or directly, respond always; of the other sets, authoring's markdown
+│                                 for now (D56, D152, D153, D171, D177, D178, D179)
 │
 ├── understand/                   understand: understanding before acting, with the person and from sources: its own
 │   │                             skill holds the rules for the whole scope (keeps nothing, one result shape, guesses
@@ -147,7 +148,7 @@ essentials/                       essentials, essentials' main skill, listed to 
 ├── coordinate/                   coordinate: working with agents not in this conversation, now, later and in every
 │   │                             session: work given to other agents and what they are told, work carried over to a
 │   │                             later session, the instruction documents every session reads, skillbook set up, and
-│   │                             what a session taught; its own SKILL.md holds one routing line per sub-skill (D164)
+│   │                             what a session taught; its own file holds one routing line per sub-skill (D164)
 │   ├── delegate/                 coordinate-delegate: work given to other agents, the default for any task that is not
 │   │   │                         too small: the type first, after a cost check, then fork or fresh by what the task
 │   │   │                         needs from the conversation and how long it is, then the tier, and the effort apart
@@ -206,8 +207,7 @@ essentials/                       essentials, essentials' main skill, listed to 
 │                                 it is clear; explaining something new is understand's (D54, D63, D96, D107)
 │
 └── devise/                       devise: deciding what the work will be and its steps: design, how to design anything,
-    │                             and plan, planning multipart work and following it; its own SKILL.md routes to each
-    │                             (D164)
+    │                             and plan, planning multipart work and following it; its own file routes to each (D164)
     ├── design/                   devise-design: how to design anything: what something will be, decided before it is
     │   │                         made; three checks (settled, given, short or full); frame, analyse, divide through
     │   │                         organize, discuss and decide through understand, write, review, approve, then plan,

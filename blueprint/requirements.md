@@ -4,7 +4,7 @@ skillbook holds the person's agent skills as sets, each installed on its own, so
 
 ## Goals
 
-- **Install what is needed:** each set, essentials, blueprint, softeng and authoring, installs on its own and works alone; how is decided later (D20, D152).
+- **Install what is needed:** each set, essentials, blueprint, softeng and authoring, installs on its own, as a plugin from skillbook's marketplace, and works alone (D20, D152, D185).
 - **Any kind of project:** essentials for any work: how the agent works (act), understands (understand, research included), arranges (organize), works with other agents (coordinate), designs and plans (devise), and responds (respond); sets for kinds of work: blueprint for a project's design record, softeng for software, authoring for writing; rigs, a knowledge base and routines later (D35, D36, D40, D64, D67, D76, D154).
 - **Cheap to use:** only each installed set's main skill sits in the agent's context every turn; everything else loads when a flow reaches it (D38; [research/skill-loading.md](research/skill-loading.md)).
 - **Easy to build and to grow:** every skill is a plain procedure over its sub-skills, and a new case becomes a new sub-skill rather than a longer file (D38).
@@ -18,8 +18,8 @@ skillbook holds the person's agent skills as sets, each installed on its own, so
 
 ## Constraints
 
-- **The Agent Skills specification:** `name` at most 64 characters, lowercase; `description` at most 1,024 characters. In skillbook a skill's name is its folder path below its set's main skill's folder joined by dashes, so it matches its folder once installed flat, not inside the repository (D43, D71, D152).
-- **Claude Code and Codex,** as tested ([research/skill-loading.md](research/skill-loading.md)): a namespace has one level; a skill the person alone invokes is hidden from the model but can be loaded by its path; a `SKILL.md` nested in another skill's folder is registered only when `plugin.json` lists its folder; plugins hold real files, not symlinks.
+- **The Agent Skills specification:** `name` at most 64 characters, lowercase; `description` at most 1,024 characters. In skillbook a main skill's name is its set's, and every other skill's name is its path below the main skill's `references/` joined by dashes; only a main skill is a skill in the specification's sense, the others being plain files, so the rule that `name` matches its folder concerns the main skill alone (D43, D71, D152, D188).
+- **Claude Code and Codex,** as tested ([research/skill-loading.md](research/skill-loading.md)): a namespace has one level; a skill the person alone invokes is hidden from the model but can be loaded by its path; a `SKILL.md` nested in another skill's folder is registered only when `plugin.json` lists its folder, which skillbook avoids by keeping every other skill a plain file that the name rule reads whole (D188); plugins hold real files, not symlinks.
 - **Public and MIT-licensed:** nothing private enters the repository (D12).
 
 ## Quality goals

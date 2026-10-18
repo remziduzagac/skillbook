@@ -11,12 +11,13 @@ What a builder needs for essentials' main skill, listed to the model like every 
   - the pointer, which goes where the skills are installed (D57, D165);
   - the person, typing it;
   - a skill in essentials naming another group's skill, which the main skill's lines locate (D56);
-  - a skill in another set, through this main skill by name, never a hidden skill's path (D152).
+  - a skill in another set, which loads this main skill and then uses the skill by its name rule, never by a path it knows or builds itself (D152, D187).
 - **Flow** (D112, D177, D178):
   1. **Rules and advice** that hold for every request and have no skill of their own:
      - every skill a request needs is used, together or in turn; a skill limits this only where it says why (D112, D115);
      - strong advice, **delegation by default:** every task goes to an agent through coordinate's delegate, so the main session keeps the conversation and the person's decisions; the main agent does a task itself only when it is too small (short, the change or answer already known, and leaving little behind), when it needs the person's decisions as it goes, or when it needs the content to continue the conversation; when unsure, it forks without asking; delegate holds the reasons and the choice of agent (D138, D142, D143, D149);
-     - **the wrap-up offer:** when work stops with steps left, such as "let's stop here", one question, through respond's ask, offers coordinate's learn, then its carryover, since what a session taught and where the work stands are lost when it ends unrecorded; with nothing unfinished, nothing is offered (D107, D115, D164).
+     - **the wrap-up offer:** when work stops with steps left, such as "let's stop here", one question, through respond's ask, offers coordinate's learn, then its carryover, since what a session taught and where the work stands are lost when it ends unrecorded; with nothing unfinished, nothing is offered (D107, D115, D164);
+     - **the name rule,** worded exactly: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down." A call inside the set names the skill and nothing more, since this skill is already loaded and a plugin's install folder is not known in advance. The path is read top-down, `references/organize.md` and then `references/organize/merge.md` for `organize-merge`, since a group skill holds the rules shared by everything under it (D177), and each file whole, since a file reached through another may otherwise be read only in part (D186, D188).
   2. **Instructions,** in the order the work happens; understand, act and respond are loaded together at the start of every conversation, the others when their step comes; each group's Scope line says what it gives back (D178):
      1. **understand** the request, leaving no gap, through understand, whose own skill picks what the request needs, a clear request needing only that check; not "what do you think?" (act's rule) or the person not following the agent (respond's explain);
      2. **throughout, act's rules,** through act, loaded once per conversation; its own skill names the tools it loads when a step needs them (D179);
@@ -44,8 +45,11 @@ What a builder needs for essentials' main skill, listed to the model like every 
   12. "trim this report", which exists: act, then rightsize's lean, not organize (D157);
   13. "fix the layout of this file", authoring installed: authoring's markdown, through authoring's main skill; not installed: respond's layout and the project's linter through act's verify (D152, D158);
   14. a request no group or set covers yet, such as "write a deploy script": done directly under act's rules;
-  15. a request that needs another set's skill, that set installed: through that set's main skill, by name, never a hidden skill's path (D152);
+  15. a request that needs another set's skill, that set installed: that set's main skill loaded, then the skill by its name rule, never by a path the caller knows or builds itself (D152, D187);
   16. "let's wrap up" with steps left: the wrap-up offer, one question offering learn, then carryover; with nothing unfinished, nothing offered (D107, D115);
   17. a task that is not too small: delegated through coordinate's delegate; unsure whether it is too small: a fork, without asking (D138, D143);
-  18. the baseline built: its start-up measured, against the figure set then (D149).
-- **Open:** the lines for the other sets' main skills, added as each is designed, and the kinds of work the description names, revisited then, since each of those names its own (D136, D152, D154).
+  18. the baseline built: its start-up measured, against the figure set then (D149);
+  19. "use `organize-merge`", organize's file not yet read: `references/organize.md` then `references/organize/merge.md`, read whole, no search (D186, D188);
+  20. the baseline built, after automatic compaction, with real, longer reference files: the agent still uses the real text of a file read before, and whether a sentence telling it to read the file again is needed (D188);
+  21. the baseline built, after automatic compaction: essentials still chosen for a new request, with and without the pointer, since an open Claude Code issue reports that the skill list is not sent again after automatic compaction, which was read in the issue and not reproduced ([../../research/skill-managers.md](../../research/skill-managers.md), D188).
+- **Open:** none known. Each other set's line, and the kinds of work the description names, are added when that set is designed (D136, D152, D154, D183); the map of the groups for people is essentials' page in `docs/` (D183); the pointer's test runs with the baseline (D183), with the two tests on compaction (D188).

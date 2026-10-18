@@ -4,7 +4,7 @@ What a builder needs for coordinate and its sub-skills, essentials' group for wo
 
 coordinate belongs to the essentials set (D152, D154, D164).
 
-How skills reach each other here (D107): a sibling within coordinate is read by its path, such as carryover building on brief; a skill in another group is reached through the main skill, and a skill in another set through that set's main skill, by name; where that set is not installed, the one-line fallback written where it is used holds, and a request pointed to it is done directly under act's rules, as the main skill says (D56, D152).
+How skills reach each other here (D107): a skill of the set, in the same group or another, is named by its name and read as a file by the main skill's name rule; a skill in another set is reached by loading that set's main skill and using the skill by its name rule; where that set is not installed, the one-line fallback written where it is used holds, and a request pointed to it is done directly under act's rules, as the main skill says (D152, D186, D187).
 
 ```text
 coordinate/
@@ -388,7 +388,7 @@ coordinate/
 - **Flow:** three ways in (D97, D165).
 
   **A machine,** once per computer:
-  1. for each agent the person uses, check that each set the person wants is installed, essentials first; if not, show how to install it, by the route decided later (D152);
+  1. for each agent the person uses, check that each set the person wants is installed, essentials first; if not, show how to install it, by the plugin route (D185);
   2. add the pointer where the skills are installed, through instruct, unless it is already there, by the rule on where it goes below (D165);
   3. no question about which other agent programs delegation may run: none by default, and nothing is written; the result says that one can be allowed by naming it, which then goes into the person's own instruction file as one line in the form setup's reference files give, which delegate reads, since a question whose answer has a safe default costs the person a round (D102, D107, D115, D149);
   4. check that a fresh session loads the main skill for a request that needs a file, such as "what does this project's README say?": the agent starts one where its reference file says how, and otherwise asks the person to start it (D107, D115).
@@ -412,7 +412,7 @@ coordinate/
   - **where it goes** (D165): where the skills are installed: installed for the person, across projects, their own instruction files; installed in a project and not committed, the project's local file, kept out of version control, the default for a project; committed for the team, the project's shared `AGENTS.md` or `CLAUDE.md`, since every contributor then has the skills. Which file each harness reads, and whether an install route writes the pointer itself, are its reference file's, settled with the install routes (D165);
   - **a project's shared `AGENTS.md` or `CLAUDE.md`** changes only when the person asks, as a proposal; the pointer goes there when the team commits the skills, and, asked for while they are not committed, it is proposed with a warning that contributors without skillbook would be told to load a skill they lack (D165); beside the pointer, it holds only the facts any tool needs: what the project is, where things are, the commands, the project's conventions (D78, D93).
 - **Result:** what was done, reported: the install checked, the pointer added or moved, the blueprint started, the instruction files checked, skills recommended; instruction files are changed only with the person's approval (D63, D137).
-- **Files:** `SKILL.md`; `references/claude.md` and `references/codex.md`, holding each agent's paths and commands: which instruction files it reads, personal, local and shared, how each set is installed and checked, by the route decided later (D152), and the one-line form of the allow-list delegate reads (D97, D102, D107, D137). Codex's local file is settled with the install routes, its personal file meanwhile, since as far as known Codex has none that adds to `AGENTS.md`: its `AGENTS.override.md` replaces the shared file in that folder (D93, D165).
+- **Files:** `SKILL.md`; `references/claude.md` and `references/codex.md`, holding each agent's paths and commands: which instruction files it reads, personal, local and shared, how each set is installed and checked, by the plugin route (D185), and the one-line form of the allow-list delegate reads (D97, D102, D107, D137). Codex's local file is settled with the install routes, its personal file meanwhile, since as far as known Codex has none that adds to `AGENTS.md`: its `AGENTS.override.md` replaces the shared file in that folder (D93, D165).
 - **Material:** Claude Code's official plugins (auditing `AGENTS.md`, hooks, recommending skills); loomcraft's rule files.
 - **Tests** (D97):
   1. a machine, skills installed for the person, without the pointer: added to their own files, no project file touched (D165);

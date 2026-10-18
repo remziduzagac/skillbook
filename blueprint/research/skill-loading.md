@@ -23,6 +23,8 @@ Whether skillbook's skills can form a tree: skills that load other skills, under
 - **One visible main skill reaches the right skill as often as six or thirteen visible roots,** and its rules are applied whenever it loads; a group layer makes no measurable difference. Claude Code at first answered a third of requests without any skill; a description that says to load it first, or a pointer in `AGENTS.md`, ended that ([Top-level shapes](#top-level-shapes)).
 - **A skill loaded once is reused for the rest of the conversation,** after compaction too, without any instruction; Claude Code sometimes searches the skill folders instead of reading a skill, which a rule in the skills stops ([Loading once, using many times](#loading-once-using-many-times), [Following routes, not searching](#following-routes-not-searching)).
 - **An installed plugin picks up a change** at the next session when Claude Code reads it in place, after `codex plugin add` again for a local Codex plugin, and, from Git, after a version bump and two update commands in Claude Code ([Picking up a changed plugin](#picking-up-a-changed-plugin)).
+- **Two plugins, each a set with a listed main skill and hidden skills nested below it, work in both agents.** Only the main skills are listed; the tree is walked down; a one-sentence name rule in the main skill (a skill named `a-b-c` is the file `a/b/c/SKILL.md` inside the skill's folder) turns a name into a file without a search; a call between plugins works through the other plugin's main skill, with a fallback where it is missing; and a long sub-skill read before compaction was found again afterwards. Claude Code's compaction did not re-attach the main skill loaded through the skill tool, only the summary carried its rules ([Plugins with nested skills](#plugins-with-nested-skills)).
+- **A set's other skills can be plain markdown files under its main skill, and both agents follow them as far as nested skills.** Chains of up to seven files, within a set and across two sets, were read whole in both agents, by the name rule or, without it, after a search of the folder; a parent that did part of its child's work made Codex stop at the parent; after compaction a rule buried in a file read before was applied in 12 of 12 runs, and a sentence telling the agent to read the file again made no difference ([Flattened reference files](#flattened-reference-files)).
 
 ## Setup
 
@@ -204,6 +206,63 @@ A small plugin (a visible skill and one hidden skill holding a code word) instal
 - **Codex copies a local plugin** and picks up an edit only when the plugin is added again; **from Git it refreshed the marketplace and the plugin by itself** at the next session.
 - **GitHub itself** (a throwaway public repository, since deleted) gave the same results: Claude Code installed from `owner/repo`, cloning over SSH, kept the old word after a same-version commit even after both updates, and took the new one once the version was raised and both updates ran; Codex installed over HTTPS and had the new word at the next session after each commit, raised version or not.
 - Not tested: Claude Code installing from GitHub without SSH keys.
+
+## Plugins with nested skills
+
+Whether skillbook's sets can be plugins of their own, each with a listed main skill and hidden skills nested below it, as D152 and D185 describe (*ran*, 2026-10-18, Claude Code 2.1.302 with `claude-opus-5-5` and Codex CLI 0.163.0 with its default model). The earlier tests ran on one plugin; this one ran on two, installed from a local marketplace, and once from a Git source to read files in the real plugin cache.
+
+**Setup.** Two plugins, `alpha` and `beta`, in one marketplace with a manifest for each agent. alpha's main skill is listed; below it sit `plan/`, `plan/steps/`, `plan/detail/` (30,963 characters with two facts buried in it, a code word each) and `review/`, which names `plan-steps` by name only. beta's main skill says: "For a release note, use alpha's plan-steps, through the alpha skill; where alpha isn't installed, write BETA-FALLBACK instead." A control copy of alpha lacked the name rule, worded in alpha as: "Names: a skill named `a-b-c` is the file `a/b/c/SKILL.md` inside this skill's folder; read that file to use it." Every hidden skill carried `disable-model-invocation: true` and an `agents/openai.yaml` with implicit invocation off; Claude Code's `plugin.json` listed the five skill folders, and Codex's pointed at the `skills/` folder. Each variant ran in its own configuration folder (`CLAUDE_CONFIG_DIR`, `CODEX_HOME`) with only the sign-in files copied, deleted afterwards, and each run in a fresh empty folder. Claude Code ran as `claude -p` with the Skill, Read, Glob and Grep tools allowed; Codex as `codex exec --json`. Compaction was `/compact` through a resumed Claude Code session, and in Codex a low `model_auto_compact_token_limit` on the resumed turn. Two runs per cell; Claude Code's cost was about US$3.50 for 23 results. Codex hit an account usage limit for about two minutes; those runs were repeated. The scripts and logs were kept outside the repository, as for the other tests here.
+
+| Case | Claude Code | Codex |
+| --- | --- | --- |
+| 1, only the main skills listed | pass | pass |
+| 2, down the tree to plan-steps | 2/2 | 2/2 |
+| 3, name rule present | 2/2, direct reads | 2/2, direct reads |
+| 3, name rule absent | 1/2, a search first; one run never opened the child | 2/2, a search first |
+| 4, between plugins, both installed | 2/2 | 2/2, by listing files |
+| 4, between plugins, alpha missing | 2/2 fallback | 2/2 fallback |
+| 5, second buried fact after compaction | 2/2, one search | 2/2, one full re-read, one none |
+
+- **Listing:** the model saw alpha and beta and no nested skill, in both agents, as in the one-plugin tests.
+- **Down the tree:** both agents read alpha, then plan, then plan-steps; Claude Code read the 30,000-character plan-detail unprompted in one of two runs.
+- **The name rule** let all four runs read the right file at once, with no search. Without it three of four reached the right file, each after a `Glob` or `rg --files` over the folders, and one Claude Code run never opened the review skill's child at all.
+- **Between plugins,** told to use the skill "through the alpha skill", Codex found plan-steps by listing alpha's folder in both runs, not by the name rule; the caller's wording did not say to apply it. With alpha missing, all four runs wrote the fallback word.
+- **After compaction,** all four conversations answered the second fact of plan-detail correctly. Claude Code found it again with one search, not a full read, and its summary had also written the fact down; Codex re-read the whole file in one run and not in the other.
+- **What Claude Code's compaction kept** (resumed sessions, read from the transcripts): a written summary holding the name rule in its own words, a shared rule's marker and the code words; the two small sub-skill files re-attached whole; plan-detail replaced by a note that its contents were too large and to use `Read`. The main `SKILL.md`, loaded through the Skill tool, was not re-attached: its sentence "Names: a skill named" occurs nowhere after the compaction boundary, so only the summary carried its rules.
+- **Permissions:** no prompt and no denial in any run (23 Claude Code result events with an empty denial list), including reads in the real plugin cache outside the working folder.
+- **The skill tool and a hidden skill:** Claude Code refuses it with "cannot be used with Skill tool due to disable-model-invocation. Ask the user to run /alpha:plan-steps themselves ... Do not replicate this skill's workflow by other means". No real run reached it, since the models read files; an agent that tried the tool first would be pushed away from reading the file.
+- **A local-folder marketplace:** Claude Code reads the plugin's files from the marketplace folder, not from its cache copy.
+- **Variation:** with two runs per cell, extra reads varied a great deal between runs, so nothing can be ranked finer than pass or fail.
+
+## Flattened reference files
+
+Whether a set's other skills can be plain markdown files under its main skill instead of hidden nested skills, as D188 describes (*ran*, 2026-10-18, Claude Code 2.1.302 with `claude-opus-5-5` and Codex CLI 0.163.0 with `gpt-6.1-sol`, read from its rollout files). Two sets, `essentials` and `blueprint`, each a plugin in a local marketplace with a manifest for each agent; every file but the main `SKILL.md` sat under `references/` at the path its name gives (`references/understand/clarify/deep.md` for `understand-clarify-deep`).
+
+**Setup.** Files of 41 to 56 lines, each with rules, steps, notes, a section near the end naming the next file, and a last line asking for a code word in the answer; no prompt named a file, level or code word. essentials held understand, clarify, deep, organize and merge; blueprint held record and decide. Four marketplaces: flat with the name rule, flat without it, nested (essentials as hidden `SKILL.md` folders with `disable-model-invocation`, `agents/openai.yaml` and a `plugin.json` listing the folders), and flat with a sentence in the name rule telling the agent to read a file again after compaction. Each variant had its own configuration folder with only the sign-in files, deleted afterwards. Claude Code ran as `claude -p` with the Skill, Read, Glob and Grep tools allowed; Codex as `codex exec --json`. For compaction, Claude Code ran `/compact` on a resumed session and Codex a throw-away second turn with `model_auto_compact_token_limit=3000`, then both asked a follow-up that needed a rule buried in the deepest file. Three runs per cell; Codex hit an account usage limit and 28 runs were repeated.
+
+| Case | Claude Code | Codex |
+| --- | --- | --- |
+| A chain of five files, three levels, flat with the name rule | 3/3, one folder search in one run | 3/3, no search |
+| B the same without the name rule | 3/3, each after a search | 3/3, each after a search; 2 wrong path guesses |
+| C a jump straight to `organize-merge` | 3/3 | 3/3 |
+| D the same chain as hidden nested skills | 3/3, one search in one run | 3/3, no search |
+| E blueprint to essentials, first `record.md` | 3/3 | 0/3, stopped at the parent |
+| F essentials missing, first `record.md` | 2/2 fallback | 0/2, stopped at the parent |
+| E2 blueprint to essentials, corrected `record.md` | 3/3 | 3/3 |
+| F2 essentials missing, corrected `record.md` | 2/2 fallback | 2/2 fallback |
+| G after compaction, flat | 3/3 rule applied, no re-read | 3/3 rule applied, 3/3 re-read whole |
+| H after compaction, with the reload sentence | 3/3 rule applied, no re-read | 3/3 rule applied, 3/3 re-read whole |
+
+- **Chains of plain files work:** with the name rule, every file on the path was read whole, with no offset or limit, and every code word appeared, in both agents. Hidden nested skills behaved the same, so a plain file is followed no less far than a nested skill.
+- **The name rule saves a search, not the reach:** without it both agents still found every file, but only after a `Glob` over the skill folder (Claude Code, 3 of 3) or `rg --files` or `ls -R` (Codex, 3 of 3), two Codex runs after a guess at a path that does not exist.
+- **A parent that does part of its child's work makes Codex stop at the parent.** In the first E and F runs, blueprint's `record.md` held the drafting steps of `decide.md`; Codex read it, drafted the entry and never reached `decide.md`, essentials' deep file or the fallback (0 of 5). The clarify file also made deep conditional on a broad request, which partly explains the stop there. With `record.md` cut to its shared rules and one line saying when to use `record-decide`, `decide.md` holding the whole method and its call, and clarify's condition removed, Codex went the whole way, 3 of 3, and wrote the fallback marker 2 of 2. Claude Code passed both ways. The F2 Codex runs searched for files by name, once in the plugin folders, and read or loaded no essentials file.
+- **Compaction in Claude Code:** after `/compact` the transcript re-attached every file read in the session, whole and equal to the file on disk (five per run, four in one), and the summary also carried the buried rule's label and code word. No post-compaction tool call was made; the follow-up applied the rule exactly in 6 of 6. As in the earlier test, the main `SKILL.md`, loaded through the skill tool, was not re-attached.
+- **Compaction in Codex:** the compacted history is one opaque encrypted item, so what it keeps cannot be read. After it the agent read the deepest file again, whole, with `cat` in 6 of 6 runs, with and without the reload sentence, 2 or 3 of them from the main skill down; the rule was applied exactly in 6 of 6.
+- **The reload sentence made no difference** with these short files: Claude Code never needed it, Codex read again without it. It is neither shown to be needed nor to do harm.
+- **Permissions:** one Claude Code run (G-3) tried a shell `find` and was denied, then used `Read`; no other prompt or denial in any run.
+- **Cost:** Claude Code about US$6.0 for cases A to H and about US$1.10 for E2 and F2; Codex's cost is not reported.
+
+**What the test does not show.** Three runs per cell, so pass or fail, not rates; one model per harness; files of 41 to 56 lines, so nothing about long files, and chains of at most seven files; compaction was manual in Claude Code and forced by a low limit in Codex, so an automatic compaction in the middle of real work is untested; every run was non-interactive; the Claude Code runs of A to F were made before the buried rule was added to the files, the Codex runs after; the first A to D runs used a clarify file with the broad-request condition that E2 and F2 removed, and were not repeated; Codex loaded essentials before blueprint on its own in the first E runs. Not tested: files that are optional at each step, deeper chains, and whether the skill list is sent again after automatic compaction (an open Claude Code issue says not, [skill-managers.md](skill-managers.md)).
 
 ## Instruction files
 
