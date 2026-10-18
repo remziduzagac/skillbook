@@ -29,7 +29,7 @@ skillbook's skill tree, and how each skill in it is placed, named, designed and 
 - **Designing a skill:** a section in its group's design file, `blueprint/design/<set>/<group>.md`, with the fields every section there has, written to the checklist below; then reviewed.
 - **Reviewing a skill:** checks 1 to 7, 11 and 12 for every skill; 8 to 10 as well for a skill with children of its own, then each child the same way. Several skills can be reviewed in one pass, each reported separately; several groups at once get one reviewer per group, each loading this skill, so findings stay independent, and the findings are checked again before they reach the person. The report gives, for each skill, its name, then each finding with its file and line, the check by number, what is wrong and the proposed fix, then one line naming the checks that found nothing.
 - **Trimming or filling an existing skill:** when it has grown, what does no work for its reader goes, with a list of what went and why; when it leaves its reader asking, what is missing is added, each addition with its source, and what cannot be found marked as a gap. Either is done on request, or proposed when noticed.
-- **Writing a skill's files:** skillbook-write, this repository's other project skill, written when the first skill is built.
+- **Writing a skill's files:** skillbook-write, this repository's other project skill.
 
 ## Names
 
@@ -39,7 +39,7 @@ skillbook's skill tree, and how each skill in it is placed, named, designed and 
 - Each set's main skill holds the name rule, worded exactly: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, say so plainly and stop that step." A call names the skill and nothing more; for `organize-merge` the agent reads `references/organize.md` and then `references/organize/merge.md`, since a group skill holds the rules shared by everything under it.
 - Each set's folder is `skills/<set>/` in the repository.
 - The installed skills are the four main skills, named after their sets with no prefix; a clash with a person's own skill is caught by the install script, which never overwrites a folder it did not install.
-- Still open, for skillbook-write: the head of a plain skill file, what replaces a skill's frontmatter, its description and its `compatibility`.
+- How a plain skill file opens, and how a design becomes files, are skillbook-write's.
 
 ## The checklist
 
@@ -61,7 +61,7 @@ skillbook's skill tree, and how each skill in it is placed, named, designed and 
     - **loading:** other skills reached only at the moment they are needed; the skill's own file short, with what only some work needs in a linked file, and a file that has grown trimmed, as "Trimming or filling an existing skill" says;
     - **the main context:** no step pours large output into the main session; bulk goes to a named file;
     - **checks:** the cheapest evidence that would fail if the claim were false.
-12. **Actions, not tools:** the action is named, never the tool that does it: commit, branch, checkpoint, dry run, version control, never git, a command or a product, since the same action works with another tool. Tests may name a tool where the request or the project does, since a test is a concrete case; Material keeps its sources' names; rigs, whose skills are each about one program, is the exception. A capability the skill needs, such as version control, is declared in its `compatibility` field and its design's Files line; without it, the skill says so in one line and stops that step, offering a fallback where one exists, and never installs anything itself, which is proposed to the person first, since it changes the machine and may run fetched code. How to drive a particular program, its commands, flags and gotchas, belongs to rigs; until rigs exists, the agent's own knowledge and the program's help.
+12. **Actions, not tools:** the action is named, never the tool that does it: commit, branch, checkpoint, dry run, version control, never git, a command or a product, since the same action works with another tool. Tests may name a tool where the request or the project does, since a test is a concrete case; Material keeps its sources' names; rigs, whose skills are each about one program, is the exception. A capability the skill needs, such as version control, is declared in a main skill's `compatibility` field or a plain skill file's `Needs:` line, and in its design's Files line; without it, the skill says so in one line and stops that step, offering a fallback where one exists, and never installs anything itself, which is proposed to the person first, since it changes the machine and may run fetched code. How to drive a particular program, its commands, flags and gotchas, belongs to rigs; until rigs exists, the agent's own knowledge and the program's help.
 
 ## The last instruction
 

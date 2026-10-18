@@ -18,7 +18,7 @@ Run `just check`: markdown lint, link check, ShellCheck, shfmt, actionlint and z
 The two project skills in `.agents/skills/` (linked from `.claude/skills/`), never shipped in any set:
 
 - **skillbook-tree:** before placing, naming, designing or reviewing a skill, recording wording already agreed included, call the Skill tool with "skillbook-tree"; run its checklist on what changed before reporting.
-- **skillbook-write:** before writing a skill's files, call the Skill tool with "skillbook-write"; it is written first, when building starts.
+- **skillbook-write:** before writing a skill's files, call the Skill tool with "skillbook-write"; run its last instruction before reporting.
 
 ## Rules
 
