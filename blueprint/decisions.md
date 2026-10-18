@@ -1203,6 +1203,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 >
 > **Amended by D199 (2026-10-18):** a question carries a recommended answer where the agent has a basis for one; nothing an open question could change is acted on until the answers are in, while reading and work no answer would change go on; questionnaire asks what the document needs that the conversation does not say, usually who it is for, what is needed back and where it goes.
 
+> **Amended by D207 (2026-10-19):** when the user did not ask to be questioned, deep is offered first and starts only after a yes; when unsure whether a part needs depth, deep is offered, not started.
+
 **Decision:** clarify is designed with its three parts ([design/understand.md](design/essentials/understand.md)).
 
 - **clarify** finds out what the person means before acting; it mirrors conduct's explain, which clears up what the agent said. Its own skill holds four shared rules: find facts first; ask only what would change the work; every question with a recommended answer, put as respond says; nothing acted on until the answers are in, a firm rule. It chooses the part, as recommendations the agent weighs: shallow first; deep where a part needs it, triggered by dependence rather than the number of questions, and from the start when the person asks to be questioned; questionnaire for questions only someone else can answer, after the person answers theirs; deep when unsure.
@@ -1548,6 +1550,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 > **Amended by D158 (2026-10-17):** markdown's routing line covers a markdown file's rules and linter; how a response is laid out is essentials' layout.
 >
 > **Amended by D199 (2026-10-18):** clarify's second rule holds back only what an open question could change: reading and finding facts go on, and work no answer would change may go ahead, said in a line.
+
+> **Amended by D207 (2026-10-19):** clarify's advice on depth: deep is offered, and starts after a yes, instead of following the shallow round on its own; when unsure, deep is offered.
 
 **Decision:** clarify takes the shape every skill with parts takes: two rules of its own, asking only what would change the work, and nothing acted on until the answers are in, a stricter variation of understand's rule; pointers to understand's rules and conduct's ask for the rest; advice on choosing the part, shallow first, depth triggered by dependence and, when unsure, deep; one routing line per part with when, when not and what it gives back; and the last instruction. Its description says when to use it. shallow, deep and questionnaire split their musts from their advice, each with a last instruction, and their routing lines become their when-not lines. understand's sub-skills point to understand's rules instead of restating them: each "keeps nothing" passage keeps only where its own result goes; frame's guesses keep only their "(guess)" mark; weigh's unknowns only what settles each kind; challenge's "changes nothing" only who acts on its verdict. author's markdown follows act's rule on which instruction wins, with its own variation for lint configuration and responses; three of its rules gain reasons; its work is set in order as instructions, ending with checking a file; it gains a last instruction and a routing line with when not.
 
@@ -2102,6 +2106,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 > **Amended by D199 (2026-10-18):** act's rule on routes names the name rule's lookup by name as the one use of a search for a skill's file, the file found read whole.
 
+> **Amended by D207 (2026-10-19):** shallow's hand-over offers deep to the user and goes to deep only after a yes; where deep called shallow, the part goes back to deep with no offer.
+
 **Decision:** the name rule's last sentence becomes: "If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, say so plainly and go on with your own judgment." Its exact wording is now: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, say so plainly and go on with your own judgment." A read the harness refused is not worked around, which act's rule on the harness's limits already says. A skill's files for each agent, such as ask's for Claude Code's question tool, are children named after the agent, `respond-ask-claude` and `respond-ask-codex`, each read only when running in that agent; the same holds for plan, delegate, carryover and setup. shallow's hand-over sends a part back to whichever skill called it, clarify or deep, which sends it to deep. explain gains a step: asked to explain more, it goes one level deeper, on the piece asked about only.
 
 **Why:** the person pointed out that stopping goes further than the problem needed: the failure seen in the test was silent, the agent answering from the main skill alone, and saying so plainly fixes that, while a moved file can be found and the rest can go on with the agent's judgment; an agent's flow is stopped only where nothing else would work. A file for one agent under a skill's folder would read as a child by the name rule, so naming it as a child fits with nothing new. The writers of the baseline found the other two gaps: "clarify sends the part to deep" was unclear when deep had called shallow, and explain's test of "explain more" had no step in its flow.
@@ -2197,3 +2203,16 @@ Fighting these rules in ask's shared rules would add text for every agent to fix
 **Decision:** skillbook's skill files call the human the agent works with "the user", the word the harnesses use, and agents read it the same way. "The project's users" or "end users" name the people who use what a project builds. The change is made in the 14 files of `skills/essentials/`, in skillbook-write's plain-English rule and in the glossary's new entry "User". New design text from this batch writes "the user". The existing design text and decisions are not rewritten in this batch: they keep "the person" until they are next changed. `AGENTS.md` and `CLAUDE.md` are the user's own instruction files and are not touched.
 
 **Why:** "the person" is not what the harnesses and their agents call the human, so a reader has to translate it. "The user" is one common word for one thing, as skillbook-write's plain-English rule asks, and it is the word Codex's and Claude Code's own instructions use. Rewriting every earlier design file and decision would be a large change with no new meaning, and decisions are append-only.
+
+## D207: Deep is offered first, and starts only after a yes (2026-10-19)
+
+**Decision:** when the user did not ask to be questioned, the agent offers deep first and starts it only after a yes.
+
+- **Where the offer is made:** at the end of shallow, in the same response as its "going with: …" line for the rest. It names the part, says why it needs more questions (its answers depend on each other and would change the work), and asks, as respond's ask says, whether to question the user on it, with yes as the recommended answer and a short reason. Shallow already asks the user and clarify asks nothing itself, so the offer belongs in shallow. clarify loads deep only after a yes.
+- **If the user declines:** that part's open questions are taken with their recommended answers where there is a basis, and the rest become assumptions. Both are said in "going with", before any work starts.
+- **When unsure** whether a part needs depth, deep is offered, not started.
+- **"Go ahead"** on the offer accepts its recommended answer, yes, as respond's ask says.
+- **No offer** when the user asked to be questioned ("question me on this plan"): deep starts at once, as before. Nor when deep itself called shallow for a new level inside a part, since the user said yes already.
+- The change is in [design/understand.md](design/essentials/understand.md): clarify's advice, routing lines and tests 2 and 12, shallow's hand-over, last instruction and tests, and deep's callers.
+
+**Why:** before, clarify sent a part to deep on its own after the shallow round, and went deep when unsure. The user was not told why more questions were coming and had no easy way to say no, and deep can take many rounds. A clear yes before deep starts keeps that decision with the user. It costs one turn each time deep is offered. The other option, saying why and starting in the same turn with a way to skip, was weighed and not chosen.

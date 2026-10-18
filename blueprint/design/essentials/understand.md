@@ -195,12 +195,12 @@ understand/
 
   Advice (D115):
   - shallow first, unless the person asks to be questioned: which part needs depth shows only once the whole level is seen, and one round costs little; many small tasks end there;
-  - the trigger for deep is dependence, never the number of questions: an answer that opens questions that would change the work; a plan or a design usually has parts that depend on each other, so it usually goes deep after the shallow round;
-  - when, after the shallow round, it is unclear whether a part needs depth, deep.
+  - the trigger for deep is dependence, never the number of questions: an answer that opens questions that would change the work; a plan or a design usually has parts that depend on each other, so deep is usually offered after the shallow round;
+  - when, after the shallow round, it is unclear whether a part needs depth, offer deep rather than going deep (D207).
 
   Instructions, one routing line per part (D135):
-  - **shallow:** when a level is not yet seen whole: the start of most clarifying, and each new level inside a part, for deep; not when the person asks to be questioned or for a part whose answers depend on each other (deep), or for questions only someone else can answer (questionnaire); it gives back the "going with" line, or a part handed to deep.
-  - **deep:** when a part's answers open questions that would change the work, for a plan or a design after the shallow round, or from the start when the person asks to be questioned ("question me on this plan"); not for a level not yet seen whole (shallow first), a topic still to decide together (understand's discuss), or questions only someone else can answer (questionnaire); it gives back the summary the person confirmed, or saw where they said to go on: decided, parked, accepted and assumed.
+  - **shallow:** when a level is not yet seen whole: the start of most clarifying, and each new level inside a part, for deep; not when the person asks to be questioned or for a part whose answers depend on each other (deep), or for questions only someone else can answer (questionnaire); it gives back the "going with" line, with an offer of deep for a part whose answers depend on each other (D207).
+  - **deep:** when the user accepted shallow's offer of deep for a part whose answers open questions that would change the work, or at once, with no offer, when the user asks to be questioned ("question me on this plan"); not for a level not yet seen whole (shallow first), a topic still to decide together (understand's discuss), or questions only someone else can answer (questionnaire); it gives back the summary the person confirmed, or saw where they said to go on: decided, parked, accepted and assumed.
   - **questionnaire:** when questions only someone other than the person can answer, after the person answers theirs: the person says so, or the agent sees it and asks the person whether someone else holds the answer rather than deciding alone (D115); not for anything the person can answer, or anything the files say; it gives back the document, in the response by default for the person to send, and later its answers, taken back into clarify.
   - **While a questionnaire is out:** its questions are parked until the answers return, and what depends on them waits; work no outstanding answer touches goes ahead, said in a line (D115, D200).
 
@@ -212,7 +212,7 @@ understand/
 - **Material:** OpenCode customisations; mattpocock's skills.
 - **Tests** (D109, D115):
   1. "add caching to the API": shallow only, each question with a recommended answer, "going with: …" before any code;
-  2. "plan the migration to Postgres": a shallow round first, then deep on the parts whose answers depend on each other;
+  2. "plan the migration to Postgres": a shallow round first, then "going with" for the rest and the offer of deep on the parts whose answers depend on each other, with no deep question before a yes, and deep after a yes (D207);
   3. "question me on this design": deep from the start;
   4. which test framework the project uses: looked up in its configuration, not asked;
   5. what to name a helper function: not asked, since the answer changes nothing;
@@ -222,7 +222,7 @@ understand/
   9. a clear request, "rename `foo` to `bar` in this file": nothing asked, the work done;
   10. "what do you think about X?": act's rule that an opinion is not a task, a view, and a plan where one helps; not clarify;
   11. "give me options for X": understand's brainstorm, not clarify;
-  12. after the shallow round, unclear whether a part needs depth: deep on that part;
+  12. after the shallow round, unclear whether a part needs depth: deep offered on that part, not started before a yes (D207);
   13. a question the agent sees only someone else can answer: the person asked whether someone else holds it, no questionnaire written unasked;
   14. a questionnaire still out: what depends on it waits, and the person is asked whether the rest goes ahead;
   15. "let's discuss this design": understand's discuss, which works out what is not decided yet, not clarify, which draws out what the person already means (D130).
@@ -245,11 +245,11 @@ understand/
   2. **Leave out** what clarify's rules say not to ask; if nothing needs asking, nothing is asked.
   3. **Ask in one round,** each question with its recommended answer and a short reason, as respond's ask says.
   4. **Wait,** the answers taken as respond's ask says (D114).
-  5. **Hand over:** an answer that opens dependent questions that would change the work ends shallow for that part, and the part goes back to shallow's caller, clarify or deep, which sends it to deep (D197).
-  6. **Last instruction, before work starts:** "going with: …" said for the rest, every answer and recommended answer taken, and what was parked or is in a questionnaire.
+  5. **Hand over:** a part whose answers depend on each other and would change the work, or one where it is unclear whether they do, ends shallow for that part. Shallow offers deep on it (the offer is in the last instruction) and asks no deep question before a yes, because deep can take many rounds, and the user may not see why more questions come or may prefer to go on with the agent's guesses. After a yes the part goes back to shallow's caller, clarify, which loads deep; where deep called shallow, the user has said yes already, so there is no offer and the part goes back to deep (D197, D207).
+  6. **Last instruction, before work starts:** "going with: …" said for the rest, every answer and recommended answer taken, and what was parked or is in a questionnaire; in the same response, the offer of deep for each part handed over. The offer names the part, says why it needs more questions (its answers depend on each other and would change the work), and asks, as respond's ask says, whether to question the user on it, with yes as the recommended answer and a short reason. "Go ahead" accepts it. If the user declines, that part's open questions are taken with their recommended answers where there is a basis, the rest become assumptions, and both are said in "going with" before any work on the part starts (D207).
 
-  Done when every question at the level is answered, taken with its recommended answer, parked, or in a questionnaire, or its part has gone to deep (D199).
-- **Result:** the "going with" line, handed back to clarify; what comes next is the work, or deep on a part.
+  Done when every question at the level is answered, taken with its recommended answer, parked, or in a questionnaire, or its part has been offered to deep and answered yes or no (D199, D207).
+- **Result:** the "going with" line and any offer of deep, handed back to clarify; what comes next is the work, or deep on a part after a yes.
 - **Files:** `SKILL.md` only.
 - **Material:** OpenCode customisations.
 - **Tests** (D109, D115):
@@ -257,15 +257,18 @@ understand/
   2. "go ahead": every recommended answer taken, "going with" listed before starting;
   3. which framework the project uses: looked up in the code, not asked;
   4. "rename this variable to X": nothing asked;
-  5. an answer that opens dependent questions: that part handed to deep through clarify, then "going with" said for the rest.
-  6. "skip the hosting question": shallow is done, that question parked and said in "going with" (D199).
+  5. an answer that opens dependent questions: "going with" said for the rest, and the offer of deep on that part, with its reason and yes recommended; no deep question before a yes (D207);
+  6. "skip the hosting question": shallow is done, that question parked and said in "going with" (D199);
+  7. "no, just go on" to the offer: the part's open questions taken with their recommended answers, the rest listed as assumptions in "going with", before any work on the part starts (D207);
+  8. "go ahead" on a response with the offer: its recommended answer, yes, accepted, and the part handed to deep through clarify (D207);
+  9. a new level inside a part, reached by deep: no offer, since the user said yes already (D207).
 - **Open:** none known.
 
 #### deep
 
 - **Purpose:** a part, or a whole plan, questioned until nothing in it is left assumed (D45, D58, D109). Where shallow sees all of one level, deep goes down through a part until no level is left.
 - **Description:** "Questioning a part, or a whole plan, until nothing is left assumed: numbered rounds, each question with a recommended answer where there is a basis; one by one on request, without losing the round. Use when a part's answers open questions that would change the work, or the person asks to be questioned." A draft (D109).
-- **Callers:** clarify, by its routing line in clarify's flow (D135, D172).
+- **Callers:** clarify, by its routing line in clarify's flow (D135, D172), after the user accepts shallow's offer of deep, or at once when the user asks to be questioned (D207).
 - **Flow** (D58, D109, D115, D135). Rules, each with its reason:
   1. **A question that depends on an unanswered one waits** for a later round, since that answer may change it; each round asks what can be answered now, an order to ask in, with nothing to draw or keep.
   2. **Level by level:** at each new level inside the part, deep first sees that level whole, as clarify's shallow does, then goes down (D115); a level skipped leaves its parts assumed.

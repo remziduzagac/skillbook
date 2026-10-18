@@ -16,15 +16,15 @@ These are understand's rules: facts first, who decides, keeping nothing, the res
 ## Advice
 
 - Start shallow, unless the user asks to be questioned. Which part needs depth shows only once the whole level is seen, and one round costs little. Many small tasks end there.
-- The trigger for deep is dependence, never the number of questions: an answer that opens questions that would change the work. A plan or a design usually has parts that depend on each other, so it usually goes deep after the shallow round.
-- When, after the shallow round, you are unsure whether a part needs depth, go deep on it.
+- The trigger for deep is dependence, never the number of questions: an answer that opens questions that would change the work. A plan or a design usually has parts that depend on each other, so deep is usually offered after the shallow round.
+- When, after the shallow round, you are unsure whether a part needs depth, offer deep rather than going deep.
 
 ## Instructions
 
 - **shallow** (`understand-clarify-shallow`): when a level is not yet seen whole. That is the start of most clarifying, and each new level inside a part, for deep.
   - Not for: the user asking to be questioned or a part whose answers depend on each other (deep), or questions only someone else can answer (questionnaire).
-  - Gives back: the "going with" line, or a part handed to deep.
-- **deep** (`understand-clarify-deep`): when a part's answers open questions that would change the work, as for a plan or a design after the shallow round. Load it from the start when the user asks to be questioned, such as "question me on this plan".
+  - Gives back: the "going with" line, with an offer of deep for a part whose answers depend on each other.
+- **deep** (`understand-clarify-deep`): when the user accepted shallow's offer of deep for a part whose answers open questions that would change the work. Load it at once, with no offer, when the user asks to be questioned, such as "question me on this plan".
   - Not for: a level not yet seen whole (shallow first), a topic still to be decided together, or questions only someone else can answer (questionnaire).
   - Gives back: the summary the user confirmed, or saw where they said to go on: decided, parked, accepted and assumed.
 - **questionnaire** (`understand-clarify-questionnaire`): when questions remain that only someone other than the user can answer, after the user answers theirs. Either the user says so, or you see it. If you see it, ask the user whether someone else holds the answer, rather than deciding alone.
