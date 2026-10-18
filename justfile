@@ -1,6 +1,6 @@
 # Every check, the same way CI runs it. Tools: markdownlint-cli2 (through npx), lychee, ShellCheck, shfmt,
 # actionlint and zizmor.
-check: lint-markdown links lint-shell lint-workflows
+check: lint-markdown links lint-shell lint-workflows check-skills
 
 # Markdown style, with the rules in .markdownlint-cli2.jsonc.
 lint-markdown:
@@ -12,14 +12,18 @@ links:
 
 # Shell scripts: ShellCheck, and shfmt with the settings in .editorconfig.
 lint-shell:
-    shellcheck scripts/*.sh
-    shfmt -d scripts
+    shellcheck install.sh scripts/*.sh
+    shfmt -d install.sh scripts
 
 # Workflows: actionlint and zizmor.
 lint-workflows:
     actionlint
     zizmor .github/workflows
 
-# Link every skill into the folders agents read, for a machine where skills are edited.
+# Each set's skill files: headings match their names, lengths stay near the advice, named skills resolve to files.
+check-skills:
+    scripts/check-skills.sh
+
+# Link this working copy's sets into the folders agents read, for a machine where skills are edited.
 link:
-    scripts/link-skills.sh
+    ./install.sh --link

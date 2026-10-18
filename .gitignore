@@ -5,3 +5,6 @@ node_modules/
 # Blueprint attachments stay out of git; only their index is committed.
 **/attachments/*
 !**/attachments/README.md
+
+# The marker install.sh --link writes into a linked set.
+skills/*/.skillbook-install
