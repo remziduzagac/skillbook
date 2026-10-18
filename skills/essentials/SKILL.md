@@ -9,27 +9,53 @@ The rules every request follows, and the route to the skill for each step of the
 
 ## Rules
 
-- **Every skill the request needs is used,** together or in turn; a skill limits this only where it says why.
-- **The wrap-up offer:** when work stops with steps left, such as "let's stop here", one question, put through `respond-ask`, offers to record what the session taught, then where the work stands for a later session, since both are lost when the session ends unrecorded. With nothing unfinished, where the work stands is not offered, and what the session taught is offered only when it taught something worth keeping.
+- **Use every skill the request needs,** together or one after another. A skill limits this only where it says why.
+- **The wrap-up offer:** sometimes work stops with steps left, such as "let's stop here". Then ask one question, through `respond-ask`. It offers to record two things, in this order:
+  - what the session taught;
+  - where the work stands, for a later session.
+
+  Both are lost when the session ends without a record. If nothing is unfinished, don't offer where the work stands. Offer what the session taught only when it taught something worth keeping.
 - Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, say so plainly and go on with your own judgment.
-- **How the name rule is used:** a call names the skill and nothing more, since this skill is already loaded and its folder is known. For `act-rightsize-lean`, read `references/act.md`, then `references/act/rightsize.md`, then `references/act/rightsize/lean.md`, since a group's file holds the rules shared by everything under it; each file whole, since a file reached through another may otherwise be read only in part; and a file that still cannot be read said plainly, since an answer made without the skill it needed looks complete and is not.
+- **How to use the name rule:** a call names the skill and nothing more, because this skill is already loaded and its folder is known. For example, for `act-rightsize-lean`, read `references/act.md`, then `references/act/rightsize.md`, then `references/act/rightsize/lean.md`. The reasons:
+  - Read each group's file, because a group's file holds the rules shared by everything under it.
+  - Read each file whole, because otherwise you may read a file you reached through another only in part.
+  - If a file still cannot be read, say so plainly, because an answer made without the skill it needed looks complete and is not.
 
 ## Advice
 
-- **Delegation by default,** strong advice, followed unless the case gives a reason not to, the departure said: every task goes to an agent, so the main session keeps the conversation and the person's decisions. The main agent does a task itself only when it is too small (short, the change or answer already known, and leaving little behind), when it needs the person's decisions as it goes, or when it needs the content to continue the conversation. When unsure, fork, an agent that starts from this conversation, and say so in one line, without asking.
+- **Delegate by default.** This is strong advice: follow it unless the case gives a reason not to, and say when you depart from it. Give every task to an agent, so the main session keeps the conversation and the person's decisions. As the main agent, do a task yourself only in these cases:
+  - it is too small: it is short, the change or answer is already known, and it leaves little behind;
+  - it needs the person's decisions as it goes;
+  - you need its content to continue the conversation.
+
+  When unsure, fork (start an agent from this conversation), and say so in one line, without asking.
 
 ## Instructions
 
-Load `understand`, `act` and `respond` together, in one turn, at the start of every conversation, and again only when their text is no longer in view, such as after compaction; each opens its own skills when their step comes. Then, in the order the work happens:
+Load the `understand`, `act` and `respond` skills together, in one turn, at the start of every conversation. Load them again only when their text is no longer in view, such as after compaction. Each one opens its own skills when their step comes. Then follow these steps, in the order the work happens:
 
-1. **Understand the request,** leaving no gap, through `understand`, whose own file picks what the request needs, a clear request needing only that check; not for "what do you think?" (`act`'s rule) or the person not following the agent (`respond`); it gives back what was decided, what was parked and what comes next.
-2. **Throughout, `act`'s rules:** how the agent works, for every request, its own file naming the tools it loads when a step needs them; not for what is said to the person (`respond`) or the person's own work (the next step); it gives back nothing of its own, its rules shaping every action.
-3. **Decide what it will be and how it gets done,** when the work needs it, through `devise`: usually first a design, when something has to be designed, then a plan for the steps of multipart work; the work follows them, and they are adjusted when the work shows something new; not for a view asked for ("what do you think?", `act`'s rule); it gives back the design and plan the work follows, kept current as it goes.
-4. **Arrange the parts of anything,** when needed, through `organize`: dividing it into parts that do not overlap, a whole not yet written included, such as a document's sections outlined before writing; joining parts that repeat; grouping parts under a shared parent; taking out a part several share; indexing parts for finding; or checking parts for overlaps and gaps; not for changing what the parts say, nor the steps of the work (`devise`); it gives back the arrangement.
-5. **Share the work with other agents and later sessions,** through `coordinate`: a task handed to an agent, by default any task that is not too small, as the advice above says, its result coming back into this conversation; work carried over to a later session; an instruction document every session reads; skillbook set up; or what a session taught; it gives back the agent's report, the carryover or the change made.
-6. **Do it,** always under `act`'s rules and these steps, using whichever skills fit: another set's main skill where one in your skill list holds that kind of work, loaded and then the skill used by its name rule, not by a path guessed without loading it, since that set's main skill holds rules its skills rely on; otherwise your own judgment. `act`'s rule on a file's type names each type's skill. A request no skill covers, such as "rename these photos by the date they were taken", is done the same way.
-7. **Respond, always,** through `respond`: everything said to the person, in every response, how it is prepared and laid out, how questions are put, and what did not land explained again; it gives back nothing of its own, shaping every response.
+1. **Understand the request** with the `understand` skill, leaving no gap. Its own file picks what the request needs. A clear request needs only that check.
+   - Not for: "what do you think?" (the `act` skill's rule), or the person not following the agent (the `respond` skill).
+   - Gives back: what was decided, what was parked and what comes next.
+2. **Follow the `act` skill's rules throughout.** They say how the agent works, for every request. Its own file names the tools it loads when a step needs them.
+   - Not for: what is said to the person (the `respond` skill), or the person's own work (step 6, "do it").
+   - Gives back: nothing of its own. Its rules shape every action.
+3. **Decide what it will be and how it gets done** with the `devise` skill, when the work needs it. Usually this means first a design, when something has to be designed, then a plan for the steps of multipart work. The work follows them. Adjust them when the work shows something new.
+   - Not for: a view asked for ("what do you think?", the `act` skill's rule).
+   - Gives back: the design and plan the work follows, kept current as it goes.
+4. **Arrange the parts of something** with the `organize` skill, when needed. For example: split it into parts that don't overlap (also before writing, like outlining a document's sections), merge parts that repeat, group parts under a shared parent, move a shared part into one place, add an index, or check for overlaps and gaps.
+   - Not for: changing what the parts say, or planning the steps of the work (the `devise` skill).
+   - Gives back: the new arrangement.
+5. **Share the work with other agents and later sessions** with the `coordinate` skill. It covers a task handed to an agent, with its result coming back into this conversation. By default that is any task that is not too small, as the advice above says. It also covers work carried over to a later session, an instruction document every session reads, setting up skillbook, and what a session taught.
+   - Gives back: the agent's report, the carryover or the change made.
+6. **Do it,** always under the `act` skill's rules and these steps. Use whichever skills fit:
+   - Another set's main skill, where one in your skill list holds that kind of work. Load it, then use the skill by its name rule. Don't use a path you guessed without loading it, because that set's main skill holds rules its skills rely on.
+   - Otherwise, your own judgment.
+
+   The `act` skill's rule on a file's type names each type's skill. Do a request that no skill covers the same way, such as "rename these photos by the date they were taken".
+7. **Respond, always,** with the `respond` skill. It covers everything said to the person, in every response: how a response is prepared and laid out, how questions are put, and how to explain again what did not land.
+   - Gives back: nothing of its own. It shapes every response.
 
 ## The last instruction
 
-Nothing is returned before `respond`'s check has run on it.
+Return nothing before the `respond` skill's check has run on it.

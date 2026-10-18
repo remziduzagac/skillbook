@@ -1,30 +1,35 @@
 # respond-layout
 
-How anything the agent writes in markdown is laid out: responses, markdown files, pull-request and issue text, and briefs to agents.
+How to lay out anything the agent writes in markdown: responses, markdown files, pull-request and issue text, and briefs to agents.
 
 ## Rules
 
-Which rules win follows `act`'s rule on which instruction wins: in a markdown file, the project's lint configuration wins over these rules, the prose rule included; the person's instruction in the conversation wins over both.
+Which rules win follows the `act` skill's rule on which instruction wins:
 
-1. **Sections get headings, not bold lines:** levels in order, each heading naming its section in a few words, since a bold line looks like a heading but cannot be navigated or linked to. A round of questions is laid out as `respond-ask` says.
-2. **Bold is for a label or a key phrase inside a section;** a section's title is a heading, by rule 1.
-3. **Tables for short values, lists for big ones:** a table holds short cells, such as three options compared on two short attributes, and its rows stay within 120 characters, since a wider row wraps into noise in a terminal; content that would make a wide table becomes a list with sub-items. When a table is worth it at all is the strong advice below.
-4. **Prose is not wrapped by hand:** one line per paragraph or list item. In a response, never, since the harness wraps prose to its window and unwrapped text copies and pastes cleanly; in a file, not unless the project's own rules say otherwise.
-5. **Numbers when things are referred to by number,** such as steps or questions; bullets otherwise, so the person can answer or point by number.
-6. **Code, commands and text diagrams are fenced with the language named,** `text` for a diagram; file names, commands and identifiers inline go in backticks, so they render, highlight and copy cleanly.
+- In a markdown file, the project's lint configuration wins over these rules, the prose rule included.
+- The person's instruction in the conversation wins over both.
+
+1. **Sections get headings, not bold lines.** Keep heading levels in order. Each heading names its section in a few words. A bold line looks like a heading, but nobody can navigate to it or link to it. Lay out a round of questions as `respond-ask` says.
+2. **Bold is for a label or a key phrase inside a section.** A section's title is a heading, by rule 1.
+3. **Tables for short values, lists for big ones:** a table holds short cells, such as three options compared on two short attributes. Keep its rows within 120 characters, because a wider row wraps into noise in a terminal. Turn content that would make a wide table into a list with sub-items. The strong advice below says when a table is worth it at all.
+4. **Don't wrap prose by hand:** write one line per paragraph or list item.
+   - In a response, never wrap it. The harness wraps prose to its window, and unwrapped text copies and pastes cleanly.
+   - In a file, don't wrap it unless the project's own rules say otherwise.
+5. **Numbers when things are referred to by number,** such as steps or questions, so the person can answer or point by number. Use bullets otherwise.
+6. **Fence code, commands and text diagrams, with the language named:** `text` for a diagram. Put file names, commands and identifiers inline in backticks. They then render, highlight and copy cleanly.
 
 ## Strong advice
 
-Followed unless the case gives a reason not to, and said when departed from:
+Follow it unless the case gives a reason not to, and say when you depart from it:
 
-- **Lists over tables:** a list by default; a table only for short values compared across items, since a list holds any length and reads well in a terminal.
-- **Code lines and headings stay within 120 characters,** since a renderer cannot reflow them. A project whose linter enforces it makes it a rule there.
+- **Lists over tables:** use a list by default. Use a table only for short values compared across items, because a list holds any length and reads well in a terminal.
+- **Keep code lines and headings within 120 characters,** because a renderer cannot reflow them. In a project whose linter enforces this, it is a rule there.
 
 ## Advice
 
-- Nesting stops at about two levels of sub-items, since deeper levels lose the reader and render badly in a terminal; deeper detail becomes a new section.
-- A response's sections start at `##`.
+- Stop nesting at about two levels of sub-items, because deeper levels lose the reader and render badly in a terminal. Turn deeper detail into a new section.
+- Start a response's sections at `##`.
 
 ## The last instruction
 
-Before a response or anything in markdown is returned, check that the six rules hold. For a markdown file, also load the `authoring` skill, then use `markdown` by its name rule, for the file rules and the linter; where that set is not installed, run the project's linter where it has one.
+Before you return a response or anything in markdown, check that the six rules hold. For a markdown file, also load the `authoring` skill, then use `markdown` by its name rule, for the file rules and the linter. Where that set is not installed, run the project's linter, if it has one.

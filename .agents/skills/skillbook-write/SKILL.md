@@ -17,6 +17,7 @@ How to write a skill's files in this repository, from its design. This is a proj
   - normal word order and common words;
   - a list instead of a long chain of clauses joined by semicolons;
   - the same word for the same thing every time, as skillbook's glossary uses it.
+  - a skill whose bare name could be read as an ordinary word, such as `act` or `respond`, written as "the `act` skill"; a dashed name such as `respond-ask` needs nothing.
 - **About 100 lines per file.** This counts each file on its own, not the whole skill. An agent may only preview a longer file instead of reading it all, and every line costs tokens each time the file is read. If a file grows past it, trim it first, then split it into a child or a reference file at the path its name gives. Never cut a reason, a "when not" case or a fallback to make it fit. If a file truly needs more, its first lines say why.
 - **Talk about the job, not about skillbook's progress.** Don't write "for now", "not built yet" or "until X exists". If a step's skill doesn't exist yet, just don't name one: an agent uses its own judgment wherever no skill is named, and a progress note costs tokens and goes out of date.
 - **Block only where going on would cause harm.** A needless block stops work the person wanted done. So don't write "stop", "wait", "never", "only" or "must" where going on with a note, or the agent's own judgment, would work. Use an absolute only when its reason covers every case it forbids, and write advice as advice. skillbook-tree's check 4 is the test.
