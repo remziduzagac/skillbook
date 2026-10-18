@@ -136,7 +136,7 @@ respond/
 
   **Last instruction, before a round goes out** (D134, D159): every question numbered under its own heading with a recommended answer, or, where rule 10 says, put through the question tool with the recommended option first and marked; any partial answer named back with what will be taken.
 - **Result:** the answers, handed back to the skill that asked.
-- **Files:** `SKILL.md`; `references/claude.md`, Claude Code's question tool: one to four questions per call, two to four options each, short labels, a header of at most 12 characters, "Other" always there for a free answer, several options selectable, previews for comparing drafts, the recommended option first with "(Recommended)"; `references/codex.md`, whether Codex has a question tool, to find out, text until then (D114, D159).
+- **Files:** its own file; children named after the agents, read only when running in that agent (D197): `respond-ask-claude`, Claude Code's question tool: one to four questions per call, two to four options each, short labels, a header of at most 12 characters, "Other" always there for a free answer, several options selectable, previews for comparing drafts, the recommended option first with "(Recommended)"; `respond-ask-codex`, whether Codex has a question tool, to find out, text until then (D114, D159).
 - **Material:** respond's and deep clarify's earlier rules on questions (D58, D81); the person's rule that each question of a round has its own heading; mattpocock's position that questioning stays harness-neutral chat ([../../research/mattpocock-skills.md](../../research/mattpocock-skills.md)); the harness's own documentation of its question tool (D159).
 - **Tests** (D114):
   1. a round of three decisions: each under its own numbered heading, with a recommended answer and a reason;
@@ -164,7 +164,8 @@ respond/
 - **Flow:** decided (D54):
   1. respond's rule on an explanation's shape, with the point in one plain sentence and the example only when the point is abstract (D60);
   2. what explain adds: every reference the person cannot resolve is replaced by what it means (D107);
-  3. stop once the point is made, and close by naming what could be explained further, without a question; whether it landed, the person's next message says (D115). Done when every term and reference in it is one the person knows or one it explains, and nothing is there that the point does not need.
+  3. stop once the point is made, and close by naming what could be explained further, without a question; whether it landed, the person's next message says (D115);
+  4. asked to explain more, go one level deeper, on the piece asked about only, not on everything (D197). Done when every term and reference in it is one the person knows or one it explains, and nothing is there that the point does not need.
 - **Result:** the explanation, in the conversation.
 - **Files:** `SKILL.md` only (D107).
 - **Material:** mattpocock's `wait-what`.

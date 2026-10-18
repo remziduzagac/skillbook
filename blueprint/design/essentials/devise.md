@@ -209,7 +209,7 @@ devise/
   Agents:   step 3 fanned out by folder
   ```
 
-- **Files:** `SKILL.md`; `references/claude.md` and `references/codex.md`, saying where each harness has a plan mode and a task list, as each harness's reference file maps what a skill leaves generic (D144, D155).
+- **Files:** its own file; two children named after the agents, `devise-plan-claude` and `devise-plan-codex`, each read only when running in that agent (D197), saying where each harness has a plan mode and a task list, as each harness's reference file maps what a skill leaves generic (D144, D155).
 - **Material:** superpowers' writing-plans ([../../research/skill-collections.md](../../research/skill-collections.md)); the harnesses' own plan modes and task lists.
 - **Tests** (D155):
   1. "fix the typo in the README": single-step, no plan, done directly; "delete the old folder": a proposal under guardrails, not a plan; a single-step change whose two options give the person different results: asked through respond's ask;

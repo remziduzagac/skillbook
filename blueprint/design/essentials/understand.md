@@ -245,7 +245,7 @@ understand/
   2. **Leave out** what clarify's rules say not to ask; if nothing needs asking, nothing is asked.
   3. **Ask in one round,** each question with a recommended answer and a short reason.
   4. **Wait,** the answers taken as respond's ask says (D114).
-  5. **Hand over:** an answer that opens dependent questions that would change the work ends shallow for that part, and clarify sends the part to deep.
+  5. **Hand over:** an answer that opens dependent questions that would change the work ends shallow for that part, and the part goes back to shallow's caller, clarify or deep, which sends it to deep (D197).
   6. **Last instruction, before work starts:** "going with: …" said for the rest, every answer and recommended answer taken.
 
   Done when every question at the level has an answer or an accepted recommended answer, or its part has gone to deep.
