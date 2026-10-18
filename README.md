@@ -17,12 +17,12 @@ Only each set's main skill sits in an agent's context; every other skill loads w
 
 ## Installing
 
-Coming with the first release: each set is its own plugin in skillbook's marketplace, installed on its own, for Claude Code and Codex, and turned off through the harness's own plugin switch.
+Coming with the first release: one install script, `install.sh`, copies the sets you choose into the skill folders of Claude Code and Codex; each set is installed on its own, and turned off by removing it.
 
 ## How it is organised
 
 - [blueprint/](blueprint/README.md): skillbook's own design, decisions and research, kept with the blueprint method.
-- `skills/`: the shipped skills, once built; `beta/`: skills being tried.
+- `skills/<set>/`: one folder per set, once built.
 - [docs/](docs/README.md): one page per skill, for people.
 - [blueprint/design/how-it-works.md](blueprint/design/how-it-works.md): skillbook as a whole, as designed so far.
 

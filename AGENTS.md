@@ -5,7 +5,7 @@ skillbook is a public repository of agent skills, organised as sets of skills, e
 ## Where things are
 
 - [blueprint/](blueprint/README.md): the design (current truth), its decisions and research. Start with its README and roadmap. The method it follows, until the design skill exists, is [blueprint/notes/first-design/design/blueprint.md](blueprint/notes/first-design/design/blueprint.md).
-- `skills/` and `beta/`: shipped skills and skills being tried; created when the first skill is built.
+- `skills/<set>/`: one folder per set; created when the first set is built.
 - [docs/](docs/README.md): one page per main skill, for people.
 - [GLOSSARY.md](GLOSSARY.md): the words skillbook uses, one per concept.
 

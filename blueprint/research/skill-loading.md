@@ -25,6 +25,7 @@ Whether skillbook's skills can form a tree: skills that load other skills, under
 - **An installed plugin picks up a change** at the next session when Claude Code reads it in place, after `codex plugin add` again for a local Codex plugin, and, from Git, after a version bump and two update commands in Claude Code ([Picking up a changed plugin](#picking-up-a-changed-plugin)).
 - **Two plugins, each a set with a listed main skill and hidden skills nested below it, work in both agents.** Only the main skills are listed; the tree is walked down; a one-sentence name rule in the main skill (a skill named `a-b-c` is the file `a/b/c/SKILL.md` inside the skill's folder) turns a name into a file without a search; a call between plugins works through the other plugin's main skill, with a fallback where it is missing; and a long sub-skill read before compaction was found again afterwards. Claude Code's compaction did not re-attach the main skill loaded through the skill tool, only the summary carried its rules ([Plugins with nested skills](#plugins-with-nested-skills)).
 - **A set's other skills can be plain markdown files under its main skill, and both agents follow them as far as nested skills.** Chains of up to seven files, within a set and across two sets, were read whole in both agents, by the name rule or, without it, after a search of the folder; a parent that did part of its child's work made Codex stop at the parent; after compaction a rule buried in a file read before was applied in 12 of 12 runs, and a sentence telling the agent to read the file again made no difference ([Flattened reference files](#flattened-reference-files)).
+- **A set installed as a plain folder by a script loads as well as a plugin, and a plugin has no advantage.** Copies and links in the personal and project skill folders passed in both agents, each agent listing the set once although both `~/.claude/skills` and `~/.agents/skills` hold it; in Claude Code's default permission mode the reference files outside the project are refused for personal skills and plugins alike, a rule `Read(~/.claude/skills/**)` in the user settings removes that and the same rule in a project's settings did not, and the agent that is refused answers from the main skill alone without saying so ([Installed by a script](#installed-by-a-script)).
 
 ## Setup
 
@@ -263,6 +264,34 @@ Whether a set's other skills can be plain markdown files under its main skill in
 - **Cost:** Claude Code about US$6.0 for cases A to H and about US$1.10 for E2 and F2; Codex's cost is not reported.
 
 **What the test does not show.** Three runs per cell, so pass or fail, not rates; one model per harness; files of 41 to 56 lines, so nothing about long files, and chains of at most seven files; compaction was manual in Claude Code and forced by a low limit in Codex, so an automatic compaction in the middle of real work is untested; every run was non-interactive; the Claude Code runs of A to F were made before the buried rule was added to the files, the Codex runs after; the first A to D runs used a clarify file with the broad-request condition that E2 and F2 removed, and were not repeated; Codex loaded essentials before blueprint on its own in the first E runs. Not tested: files that are optional at each step, deeper chains, and whether the skill list is sent again after automatic compaction (an open Claude Code issue says not, [skill-managers.md](skill-managers.md)).
+
+## Installed by a script
+
+Whether a set installed as a plain folder, by copy or by link, into the agents' skill folders loads as a plugin does, as D189 asks (*ran*, 2026-10-18, Claude Code 2.1.302 with `claude-opus-5-5` and Codex CLI 0.163.0). The script itself is not written; its result was made by hand in a fake home folder for each cell, with only the sign-in files, deleted afterwards. The skill was the flattened `essentials` of the previous section, unchanged: the name rule in `SKILL.md`, five reference files, a request that needs all five, six code words, passing when all five were read and all six words appeared. The set sat in both `~/.claude/skills/essentials` and `~/.agents/skills/essentials`, for the person or for a project, as a real copy or as a link to a store folder (`~/.local/share/skillbook/<version>/essentials`, a `current` link to it).
+
+**Setup.** Claude Code ran as `claude -p` in two ways: permissive, with Skill, Read, Glob and Grep allowed, two runs per cell; and strict, in the default permission mode with only Skill allowed, two runs per cell, where a prompt shows as a refusal because a non-interactive run has no one to ask. Codex ran as `codex exec --json` with its default sandbox. A follow-up, Claude Code strict only, ran two plugin layouts, a local marketplace and a Git one, and settings-file rules for the personal copy.
+
+| Case | Claude Code, reads allowed | Claude Code, default mode | Codex |
+| --- | --- | --- | --- |
+| personal, link | 2/2 | 0/2, read refused | 2/2 |
+| personal, copy | 2/2 | 0/2, read refused | 2/2 |
+| project, link | 2/2 | 0/2, read refused | 2/2 |
+| project, copy | 2/2 | 2/2 | 2/2 |
+| plugin, local marketplace | not run | 0/2, read refused | not run |
+| plugin, Git marketplace | not run | 0/2, read refused | not run |
+| personal copy, user settings rule | not run | 2/2 (`~` form 1/1, absolute 1/1) | not run |
+| personal copy, project settings rule | not run | 0/3 (`~` form 0/2, absolute 0/1) | not run |
+
+- **Every layout loads when reads are allowed:** in both agents all five files were read whole, in order, with no search in Codex, and all six words appeared.
+- **Each agent lists the set once** although both folders hold it: Claude Code does not read `~/.agents/skills` and Codex does not read `~/.claude/skills`, shown by installing into one folder only (one run each). Installing into both does not list it twice.
+- **The folder the agent is given is the link path,** never the folder it resolves to: Claude Code's "Base directory for this skill" and Codex's skill root table both show the link, and the agents read through it.
+- **Codex needed no trust setting** for a project's skills in an untrusted folder, with the link pointing outside it: no approval or sandbox block in four runs.
+- **Claude Code's default mode refuses the reference files outside the project,** for a personal copy as well as a link, and for a plugin's files in its cache or in the marketplace folder, exactly as for a personal skill. Only the skill tool's own load of `SKILL.md` is exempt. A project copy passes because the files sit in the working folder; a project link fails because the link resolves outside it. The earlier plugin tests saw no prompt because their allow list granted Read everywhere (*inferred*; they were not rerun).
+- **A rule in the user settings removes the refusal:** `Read(~/.claude/skills/**)` passed in its `~` and its absolute form, one run each. The same rule in the project's `.claude/settings.json` did not, in three runs; the cause was not examined, nor whether a rule in `settings.local.json` behaves differently. Command-line forms also worked, one run each: allow rules for a linked store, and `--add-dir`.
+- **A refusal is quiet:** in every failing run the agent answered from `SKILL.md` and its own grouping, reached the first code word only, and did not say that files could not be read.
+- **Cost:** Claude Code about US$5.4 in all, a little over the planned cap; Codex's is not reported.
+
+**What the test does not show.** One or two runs per cell, so pass or fail, not rates; one model per agent; non-interactive runs, where a prompt counts as a refusal and interactively it would be a prompt, so whether an approval or "always allow" persists is untested; the real script, relative links, a version switch and `--project` as the script will do them are untested, as are Codex's workspace-write and untrusted-approval modes and its prompts in the interactive UI; the settings-file forms were run only for the personal copy, and the store rule for a link only on the command line. Codex's skill roots show the link path, so a retargeted `current` link would take effect without a new install (*inferred*, not run).
 
 ## Instruction files
 

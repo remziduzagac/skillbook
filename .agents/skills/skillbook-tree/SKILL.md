@@ -36,8 +36,10 @@ skillbook's skill tree, and how each skill in it is placed, named, designed and 
 - Skills you do are bare verbs; skills about something, the groups among them, are nouns. Leaf skills take short verbs or nouns, and a name is coined only where a plain word will not do.
 - Each set's main skill is named after its set: `essentials`, `blueprint`, `softeng`, `authoring`.
 - Inside a set, every other skill is a plain file under its set's main skill's `references/`, at its path, and its name is that path joined by dashes: `references/coordinate/delegate/fanout.md` is `coordinate-delegate-fanout`. A skill's own scripts and templates sit in `scripts/` and `assets/` inside the folder of the same name beside its file, so those two are never a child's name. The same name may appear in two sets, told apart by their set.
-- Each set's main skill holds the name rule, worded exactly: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down." A call names the skill and nothing more; for `organize-merge` the agent reads `references/organize.md` and then `references/organize/merge.md`, since a group skill holds the rules shared by everything under it.
-- Still open: where the sets' folders sit in the repository, a prefix for a route without a namespace, and, for skillbook-write, the head of a plain skill file: what replaces a skill's frontmatter, its description and its `compatibility`.
+- Each set's main skill holds the name rule, worded exactly: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, say so plainly and stop that step." A call names the skill and nothing more; for `organize-merge` the agent reads `references/organize.md` and then `references/organize/merge.md`, since a group skill holds the rules shared by everything under it.
+- Each set's folder is `skills/<set>/` in the repository.
+- The installed skills are the four main skills, named after their sets with no prefix; a clash with a person's own skill is caught by the install script, which never overwrites a folder it did not install.
+- Still open, for skillbook-write: the head of a plain skill file, what replaces a skill's frontmatter, its description and its `compatibility`.
 
 ## The checklist
 

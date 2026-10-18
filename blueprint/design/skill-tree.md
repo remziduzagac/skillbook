@@ -26,7 +26,7 @@ essentials/                              the main skill's folder, the only skill
             └── assets/                  what it copies out, such as templates
 ```
 
-The tree shows each skill by its path. Its paths are provisional until the layout is decided with the install routes; the tree is one block per set, each starting with a line for the set's main skill, and a part whose set differs from its root's stands in its own set's block, design's recording steps in blueprint's, design's architecture in softeng's (D152, D154).
+The tree shows each skill by its path. Each set's folder is `skills/<set>/` (D190); the tree is one block per set, each starting with a line for the set's main skill, and a part whose set differs from its root's stands in its own set's block, design's recording steps in blueprint's, design's architecture in softeng's (D152, D154).
 
 ```text
 essentials/                       essentials, essentials' main skill, listed to the model like every set's main skill

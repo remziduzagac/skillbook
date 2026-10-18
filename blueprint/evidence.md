@@ -93,3 +93,10 @@ Claims that matter beyond the conversation, each with the evidence that it is tr
 - **Verified by:** the agent, by running both agents.
 - **Supports:** D188, D177 and D187 (their Tested lines).
 
+
+## E14: A set installed as a plain folder loads as a plugin does; Claude Code's default mode refuses its files (2026-10-18)
+
+- **Claim:** in Claude Code and Codex, a set installed as a plain folder, copied or linked, into the personal or the project skill folders loads and is followed as a plugin is, each agent listing it once although both folders hold it; in Claude Code's default permission mode the set's reference files outside the project are refused, for personal skills and plugins alike, a rule `Read(~/.claude/skills/**)` in Claude Code's user settings removes the refusal and the same rule in a project's settings did not, and the refused agent answers from the main skill alone without saying so.
+- **Evidence:** Claude Code 2.1.302 and Codex 0.163.0, two runs per cell, the flattened essentials: with reads allowed every layout passed, 8 of 8 in each agent, each agent listing the set once; in the default mode only the project copy passed, 2 of 2, against 0 of 2 for the personal link, the personal copy and the project link, and 0 of 4 for plugins (a local marketplace and a Git one); the user-settings rule passed 1 of 1 in its `~` form and 1 of 1 in its absolute form, the project-settings rule 0 of 3. Limits: one or two runs per cell, one model per agent, non-interactive runs where a prompt counts as a refusal (interactively it would be a prompt), and the real install script not yet written; the earlier plugin tests' "no prompt" came from an allow list granting Read everywhere, an inference not rerun ([research/skill-loading.md](research/skill-loading.md), "Installed by a script").
+- **Verified by:** the agent, by running both agents.
+- **Supports:** D189 and D193 (their Tested lines).
