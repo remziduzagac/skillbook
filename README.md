@@ -28,8 +28,18 @@ Coming with the first release: one install script, `install.sh`, copies the sets
 - [docs/](docs/README.md): one page per skill, for people.
 - [blueprint/design/how-it-works.md](blueprint/design/how-it-works.md): skillbook as a whole, as designed so far.
 
+## Use at your own risk
+
+skillbook's skills guide an AI agent that reads files, runs commands and changes things on your machine. The skills make the agent more careful, but they cannot guarantee what it does. So:
+
+- review what the agent proposes and does before you accept it;
+- keep backups, and keep your work under version control;
+- use your agent's own permission settings.
+
+skillbook is provided "as is", without warranty and without liability, as sections 7 and 8 of the [licence](LICENSE) say.
+
 ## Help and contributing
 
 Report a skill that misbehaved in a real session as an issue; see [SCOPE.md](SCOPE.md) and [CONTRIBUTING.md](CONTRIBUTING.md). Security problems go through [SECURITY.md](SECURITY.md).
 
-skillbook is maintained by Remzi Duzagac and licensed under the [MIT licence](LICENSE).
+skillbook is maintained by Remzi Duzagac and licensed under the [Apache License 2.0](LICENSE).

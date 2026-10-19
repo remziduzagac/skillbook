@@ -122,6 +122,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 **Why:** "skillbook" says exactly what is inside and matches the person's naming; public like mattpocock/skills.
 
+> **Amended by D209 (2026-10-19):** the licence is Apache-2.0, not MIT.
+
 ## D21: Main skills load their sub-skills on demand (2026-10-10)
 
 > **Amended by D38 (2026-10-11):** a main skill holds its rules and one full flow over sub-skills, which may be skills of their own and call others; complexity moves into a sub-skill.
@@ -2251,3 +2253,13 @@ Fighting these rules in ask's shared rules would add text for every agent to fix
 - Paid small models cost about half a cent a run (inferred): Haiku 5.5 is $0.10 input and $0.50 output per million tokens, and GPT-6 Luna is about the same (read).
 - Both agents can run apart from the user's setup: `CLAUDE_CONFIG_DIR` and `CODEX_HOME` set a separate config root, and both log in with an API key in a headless run (read).
 - A skill that works on a small model is clear, and small models are cheap enough for three or more runs a case. Text added only for a small model costs every user tokens on every turn, so a small-model failure is looked at, not fixed by reflex.
+
+## D209: The licence is Apache-2.0 (2026-10-19)
+
+**Decision:** skillbook is licensed under the Apache License 2.0, replacing MIT (D20). `LICENSE` holds the licence's standard text, and the README names it. Copies published under MIT before the change stay MIT.
+
+**Why:**
+
+- It matches the user's other open-source projects, herdsman and slipbox, which are Apache-2.0.
+- Apache-2.0 adds a patent grant from each contributor and asks that changed files be marked. MIT has neither.
+- The user is the only author so far, so the change needs no one else's consent. It is easiest now, before others contribute.
