@@ -279,6 +279,7 @@ def skill_name(set_name, rel):
 def skills_read(agent, events, home, set_name):
     found = set()
     pattern = re.compile(r"skills/([a-z][a-z0-9-]*)/(SKILL\.md|references/[a-z0-9/_-]+\.md)")
+    bare = re.compile(r"(?<![\w/.-])(SKILL\.md|references/[a-z0-9/_-]+\.md)")
     for e in (e for turn in events for e in turn):
         if agent == "claude" and e.get("type") == "assistant":
             for block in e["message"].get("content", []):
@@ -293,11 +294,21 @@ def skills_read(agent, events, home, set_name):
         if agent == "codex" and e.get("type") == "item.completed":
             item = e["item"]
             if item.get("type") == "command_execution":
-                for s, rel in pattern.findall(item.get("command", "")):
+                command = expand_braces(item.get("command", ""))
+                for s, rel in pattern.findall(command):
                     found.add(skill_name(s, rel))
+                # a command run inside the set's folder names its files without the skills/<set>/ prefix
+                for rel in bare.findall(pattern.sub("", command)):
+                    found.add(skill_name(set_name, rel))
     found.discard(None)
     found.discard("")
     return found
+
+
+def expand_braces(text):
+    """Expands shell braces one level, as in references/{act,respond}.md, so each file is seen by name."""
+    brace = re.compile(r"([^\s'\"{}]*)\{([^{}\s]*,[^{}\s]*)\}([^\s'\"{}]*)")
+    return brace.sub(lambda m: " ".join(m.group(1) + part + m.group(3) for part in m.group(2).split(",")), text)
 
 
 def last_answer(agent, turn_events):
