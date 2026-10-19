@@ -24,7 +24,7 @@ Starts with the baseline (D108); the rest once the person declares the initial d
 
 - [ ] **The test setup** (D208, [design/testing.md](design/testing.md)), built in this order:
   1. Install tests in CI: `just test-install` for `install.sh`, run in GitHub CI on Linux and macOS. Built: 16 tests in `tests/install-test.sh`.
-  2. The runner `tests/run.py` with two or three essentials cases and their fixtures, run by `just test-agents`.
+  2. The runner `tests/run.py` with two or three essentials cases and their fixtures, run by `just test-agents`. Built: three cases on the `tiny-weather` toy project; on the first pass, one run each, the opinion and evidence cases passed in both agents, and both small models added caching to the vague request instead of asking.
   3. `just try claude` and `just try codex`, the manual sandbox.
 - [ ] **The repository's checks:** the check script (names matching paths, every dashed name a skill uses resolving to a file, the head of a plain skill file, D188, D190), release-please (D192).
 - [ ] **The first skills,** as their parts are designed.

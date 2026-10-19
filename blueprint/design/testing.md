@@ -1,6 +1,6 @@
 # Testing
 
-How skillbook is tested, as a whole: what runs where, what a test needs, and where the files live. Each skill's own tests are in its design section, in the Tests list; this file says how they are run (D208). The install tests are built; the AI tests are not yet.
+How skillbook is tested, as a whole: what runs where, what a test needs, and where the files live. Each skill's own tests are in its design section, in the Tests list; this file says how they are run (D208). The install tests and the automated AI test runner are built; `just try` is not yet.
 
 ## Three kinds of test
 
@@ -28,7 +28,8 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   - the prompt for each turn;
   - the agents it runs in;
   - the number of runs, 3 by default;
-  - the checks a script can make from the event log: files read, whole or in part; tools used; nothing changed before approval; text the answer must or must not contain.
+  - whether the pointer is in the user's instruction file, yes by default;
+  - the checks a script can make from the event log: the skills read, by name; nothing changed in the toy project; patterns the last answer must or must not contain. Whether a file was read whole or in part, and which tools ran, are not checked yet.
 - **`tests/run.py`:** the runner, written with the Python standard library only. For each case, agent and run it:
   1. makes a throwaway home outside the repository;
   2. installs skillbook there with `install.sh`;

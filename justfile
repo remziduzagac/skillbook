@@ -28,6 +28,10 @@ check-skills:
 test-install:
     tests/install-test.sh
 
+# AI test cases in throwaway homes, on small models by default; see tests/run.py --help. It asks before spending.
+test-agents *args:
+    python3 tests/run.py {{args}}
+
 # Link this working copy's sets into the folders agents read, for a machine where skills are edited.
 link:
     ./install.sh --link

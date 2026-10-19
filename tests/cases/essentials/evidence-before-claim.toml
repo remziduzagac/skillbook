@@ -1,0 +1,11 @@
+source = "blueprint/design/essentials/act.md: act, test 2"
+about = "Evidence before any claim: the answer names the file and the line."
+fixture = "tiny-weather"
+
+[[turns]]
+prompt = "Does a function named parse_date exist in this project?"
+
+[checks]
+reads = ["essentials", "understand", "act", "respond"]
+no_changes = true
+answer_contains = ['utils\.py', '\b6\b']

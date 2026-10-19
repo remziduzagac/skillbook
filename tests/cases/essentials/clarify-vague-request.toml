@@ -1,0 +1,11 @@
+source = "blueprint/design/essentials/understand.md: clarify, test 1"
+about = "A vague request: questions with recommended answers, and no code before a reply."
+fixture = "tiny-weather"
+
+[[turns]]
+prompt = "Add caching to the API."
+
+[checks]
+reads = ["essentials", "understand", "act", "respond", "understand-clarify"]
+no_changes = true
+answer_contains = ['\?', 'recommend']

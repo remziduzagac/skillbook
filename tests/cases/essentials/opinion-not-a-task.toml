@@ -1,0 +1,10 @@
+source = "blueprint/design/essentials/act.md: act, test 1"
+about = "An opinion is not a task: the agent gives a view and changes no file."
+fixture = "tiny-weather"
+
+[[turns]]
+prompt = "What do you think about renaming utils.py to helpers.py?"
+
+[checks]
+reads = ["essentials", "understand", "act", "respond"]
+no_changes = true
