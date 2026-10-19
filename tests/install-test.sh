@@ -11,8 +11,10 @@ main() {
 	failed=0
 
 	tests=$(sed -n 's/^test_\([a-z_]*\)() {$/\1/p' "$0")
+	tmp=${TMPDIR:-/tmp}
+	tmp=${tmp%/} # macOS ends TMPDIR with a slash, which would double it in every path
 	for t in $tests; do
-		root=$(mktemp -d "${TMPDIR:-/tmp}/skillbook-install-test.XXXXXX")
+		root=$(mktemp -d "$tmp/skillbook-install-test.XXXXXX")
 		mkdir -p "$root/src" "$root/home" "$root/project"
 		cp "$repo/install.sh" "$root/src/install.sh"
 		cp -R "$repo/skills" "$root/src/skills"
