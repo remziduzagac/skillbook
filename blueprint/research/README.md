@@ -12,3 +12,4 @@ What was learned from outside, one topic each, with every claim's source and how
 - [token-cost.md](token-cost.md): what an agent's work costs in tokens, and what that means for delegating; behind delegate's choices.
 - [skill-collections.md](skill-collections.md): how other skill collections are built, and skills that could feed skillbook's tree.
 - [skill-writing-guides.md](skill-writing-guides.md): mattpocock, superpowers and Anthropic on writing skills, side by side.
+- [test-infrastructure.md](test-infrastructure.md): free and paid ways to run AI tests, small models, and how to log in and keep a run apart from the user's setup; behind skillbook's test setup.

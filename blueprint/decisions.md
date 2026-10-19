@@ -2050,6 +2050,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D190: The repository's layout (2026-10-18)
 
+> **Amended by D208 (2026-10-19):** `tests/` holds `fixtures/`, `cases/`, the runner `run.py` and the install tests; AI tests run on the user's machine only, and only static checks and install tests run in GitHub CI.
+
 **Decision:** each set lives in `skills/<set>/` (`SKILL.md`, `references/`, its own `scripts/` and `assets/`), installed whole. At the root: `install.sh`, the one install route; `docs/`, one page per main skill for people; `tests/`, skill tests and the loading harness, raw runs never committed; `scripts/`, the repository's checks, including one that every dashed name a skill uses resolves to a file; `blueprint/`, as now; `.agents/skills/`, the project skills, never installed; and `.github/`, the `justfile` and greenrepo's root files. There is no `beta/` folder: a set not ready is left out of what the release packs (D192). The one-plugin files (`.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`) and `scripts/link-skills.sh` are removed when building starts, `install.sh --link` replacing the link script (D191). greenrepo's upkeep files (`.github/upkeep/`: expected settings, rulesets, renewals, deviations, with health and audit workflows) and a `MAINTAINING.md`, which skillbook lacks, are added when the repository is brought up to greenrepo, not now.
 
 **Why:** `skills/<set>/` matches herdsman (`skills/herdsman/`) and slipbox (`skills/slipbox/`), the person's two well-kept repositories used as examples, and the folder most installers expect. `install.sh` sits at the root because it is skillbook's only distribution file (herdsman keeps `distribution/` for three installers and a manifest). `tests/` is new because the baseline brings real skill tests (the pointer, compaction, the name rule) that need a committed home. Sources read: `~/Projects/herdsman` and [slipbox](https://github.com/remziduzagac/slipbox) (2026-10-18), and [notes/first-design/design/greenrepo.md](notes/first-design/design/greenrepo.md).
@@ -2216,3 +2218,36 @@ Fighting these rules in ask's shared rules would add text for every agent to fix
 - The change is in [design/understand.md](design/essentials/understand.md): clarify's advice, routing lines and tests 2 and 12, shallow's hand-over, last instruction and tests, and deep's callers.
 
 **Why:** before, clarify sent a part to deep on its own after the shallow round, and went deep when unsure. The user was not told why more questions were coming and had no easy way to say no, and deep can take many rounds. A clear yes before deep starts keeps that decision with the user. It costs one turn each time deep is offered. The other option, saying why and starting in the same turn with a way to skip, was weighed and not chosen.
+
+## D208: Three kinds of test; AI tests run on the user's machine only (2026-10-19)
+
+**Decision:** skillbook has three kinds of test. The design is in [design/testing.md](design/testing.md).
+
+- **Static checks:** `just check`, as now, locally and in GitHub CI on every pull request.
+- **Install tests:** `just test-install` checks `install.sh` in a throwaway home: copy and link modes, the marker, refusing a folder it did not install, `--sets`, `--project`, `--uninstall` and running twice. They need no agent and no key. They run locally and in GitHub CI on every pull request, on Linux and macOS.
+- **AI tests, local only.** No AI test runs on GitHub, and the user's personal accounts are never used in GitHub CI.
+  - **Automated:** `just test-agents` runs cases through one runner, `tests/run.py`, written with the Python standard library only. The user starts it, or an agent does while building or changing a skill. An agent may also guide a run and judge what a script cannot check.
+  - **Manual:** `just try claude` or `just try codex` opens that agent in a toy project, with a sandbox home that has skillbook installed in link mode, so edits show at once. The user logs in once inside the sandbox. The command runs in whatever terminal or pane the user picks.
+- **Files:** `tests/fixtures/<name>/` for toy projects, shared by both AI tests; `tests/cases/<set>/<case>.toml`, one case per file, with the design test it comes from, the fixture, the prompt for each turn, the agents, the number of runs (3 by default) and the checks a script can make from the event log; `tests/run.py`; and the install tests.
+- **Runner rules:**
+  - Small models by default, Claude Haiku (`claude -p --model haiku`) and GPT-6 Luna (`codex exec -m gpt-6-luna`); `--model` runs larger ones, for example before a release. A failure only on a small model is a signal to look at, not an automatic change.
+  - Login with an API key from the environment, or with the user's own login copied into the throwaway home only when asked, and deleted afterwards.
+  - The expected cost is printed before a run, and a budget cap stops it.
+  - Event logs and credentials stay outside the repository and are deleted afterwards unless kept on request; only summaries are shown.
+  - Scripts check behaviour; what only judgment can check is judged by the guiding agent or the user, and the result says so.
+  - Cases come from the designs' Tests lists, which stay the source; a few become cases first, starting with essentials.
+- **Open, settled when building:** whether `install.sh` installs into `CLAUDE_CONFIG_DIR` when it is set, or the sandbox and throwaway homes simply set `HOME`; and where Codex finds skills under `CODEX_HOME`.
+
+**Why:**
+
+- One runner and one set of fixtures serve automated and manual tests, locally. The user can try skills while they are edited without loading half-built skills into a working session.
+- GitHub CI gets only what needs no account and no key.
+- No free route fits. From [research/test-infrastructure.md](research/test-infrastructure.md), read unless marked:
+  - GitHub Models was retired on 2026-07-30.
+  - OpenCode's free models are free "for a limited time", publish no limits, and some may use prompts for training. Its terms forbid extracting output "automatically or programmatically".
+  - Anthropic's Claude for Open Source gives one person 6 months of Claude Max 20x, for individual use only. No API credits were found, and whether it is open is unclear.
+  - OpenAI's Codex for Open Source gives 6 months of ChatGPT Pro with Codex, and API credits from its fund for core open-source work, with no amount stated. It is personal and not transferable.
+  - These are personal plans, so they fit local tests by the user and never GitHub CI.
+- Paid small models cost about half a cent a run (inferred): Haiku 5.5 is $0.10 input and $0.50 output per million tokens, and GPT-6 Luna is about the same (read).
+- Both agents can run apart from the user's setup: `CLAUDE_CONFIG_DIR` and `CODEX_HOME` set a separate config root, and both log in with an API key in a headless run (read).
+- A skill that works on a small model is clear, and small models are cheap enough for three or more runs a case. Text added only for a small model costs every user tokens on every turn, so a small-model failure is looked at, not fixed by reflex.
