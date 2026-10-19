@@ -1,0 +1,8 @@
+<svg role="img" aria-label="skillbook logo" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#1b2130"/>
+  <path d="M92 388 Q172 352 256 392 Q340 352 420 388" fill="none" stroke="#e8e6e1" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M92 132 Q172 96 248 136 V360 Q172 320 92 356 Z" fill="#8fa3f5" stroke="#8fa3f5" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M420 132 Q340 96 264 136 V360 Q340 320 420 356 Z" fill="#8fa3f5" stroke="#8fa3f5" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M132 204 L184 240 L132 276" fill="none" stroke="#1b2130" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M300 196 H384 M300 240 H384 M300 284 H352" fill="none" stroke="#1b2130" stroke-width="22" stroke-linecap="round"/>
+</svg>

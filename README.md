@@ -1,4 +1,6 @@
-# skillbook
+<p align="center"><img src="assets/logo.svg" alt="" width="96"></p>
+<h1 align="center">skillbook</h1>
+<p align="center"><a href="https://github.com/remziduzagac/skillbook/actions/workflows/ci.yml"><img src="https://github.com/remziduzagac/skillbook/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a></p>
 
 Agent skills for any kind of project, organised as sets you install separately: essentials, for how any work is done, and sets for keeping a project's design record, engineering software and writing for people. Built for Claude Code and Codex, written so other agents that read skills work too.
 
