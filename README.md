@@ -23,10 +23,8 @@ Coming with the first release: one install script, `install.sh`, copies the sets
 
 ## How it is organised
 
-- [blueprint/](blueprint/README.md): skillbook's own design, decisions and research, kept with the blueprint method.
 - `skills/<set>/`: one folder per set, once built.
 - [docs/](docs/README.md): one page per skill, for people.
-- [blueprint/design/how-it-works.md](blueprint/design/how-it-works.md): skillbook as a whole, as designed so far.
 
 ## Use at your own risk
 
