@@ -48,6 +48,24 @@ main() {
 		done
 	done
 
+	# A test case's prompt must not be one of its set's own examples, or a pass may only show a matched example. A
+	# case that tests an example on purpose says so with `uses_skill_example = true`.
+	copied=$(for case in "$repo"/tests/cases/*/*.toml; do
+		[ -f "$case" ] || continue
+		grep -q '^uses_skill_example = true' "$case" && continue
+		set_dir="$repo/skills/$(basename "$(dirname "$case")")"
+		[ -d "$set_dir" ] || continue
+		grep '^prompt = ' "$case" | sed 's/^prompt = "//; s/"$//; s/[.?!]$//' | while IFS= read -r prompt; do
+			if grep -rqiF -- "$prompt" "$set_dir"; then
+				echo "${case#"$repo"/}: its prompt \"$prompt\" appears in ${set_dir#"$repo"/}; word it differently"
+			fi
+		done
+	done)
+	if [ -n "$copied" ]; then
+		echo "$copied"
+		problems=$((problems + $(echo "$copied" | wc -l)))
+	fi
+
 	if [ "$problems" -gt 0 ]; then
 		echo "$problems problem(s)"
 		exit 1

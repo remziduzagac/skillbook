@@ -1,6 +1,7 @@
 source = "blueprint/design/essentials/understand.md: clarify, test 1"
-about = "A vague request: questions with recommended answers, and no code before a reply."
+about = "A vague request, using an example the skills themselves give: questions with recommended answers, no change before a reply. The held-out cases test the rule on prompts the skills never show."
 fixture = "tiny-weather"
+uses_skill_example = true
 
 [[turns]]
 prompt = "Add caching to the API."

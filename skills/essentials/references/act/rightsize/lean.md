@@ -12,13 +12,13 @@ Removes what is extra from something that exists: it judges each part by what it
    - Merge whole items that say the same thing into one.
    - Why: an extra part costs the reader's attention and, for an agent, tokens on every later turn.
 3. **Never below a rule:** anything a rule requires stays, by rightsize's sixth rule, because what a rule requires is needed by definition.
-4. **The user approves first,** by rightsize's approval rule. The list holds each part that goes or becomes a pointer, with why.
+4. **The user approves first,** by rightsize's approval rule, which puts the list through `respond-ask`. The list holds each part that goes or becomes a pointer, with why.
 5. **Propose code changes, and make them under tests,** by rightsize's code rule. lean proposes changes such as removing an unused option, dead code or needless duplication. For code, "nothing needed lost" means the tests still pass.
 
 ## Instructions
 
 1. **Find the reader,** and what the thing is for.
-2. **List each part** with what it does for that reader. Use a script where the parts can be listed mechanically. When the thing is large, delegate the listing to another agent. Never read everything twice in the main session, because every read is paid for again on later turns.
+2. **List each part** with what it does for that reader. Use a script where the parts can be listed mechanically. When the thing is large, delegate the listing to another agent, unless you are a delegated agent yourself. Never read everything twice in the main session, because every read is paid for again on later turns.
 3. **Mark what goes,** by rules 2 and 3.
 4. **Apply,** after the approval that rule 4 asks for. For code, follow rule 5.
 5. **Check:** every needed part is still there, or reachable by its pointer, and every pointer resolves. For code, the tests pass.

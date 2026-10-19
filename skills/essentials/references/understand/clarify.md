@@ -5,11 +5,11 @@ Finds out what the user means before acting: decides what to ask and how deep, a
 ## Rules
 
 1. **Ask only what would change the work.** When every answer leads to the same work, decide yourself, as understand's rule on who decides says. An unneeded question costs the user a turn.
-   - The test: if two likely answers would lead to different work or a different result, ask.
+   - The test: if two likely answers would lead to different work or a different result, ask. If every likely answer leads to the same work, don't. For example, "add caching to the API" (where, and for how long), "write the project overview" (for whom) and "clean up the old branches" (which ones) ask. "Rename `foo` to `bar` in this file" and "fix the typo in the README" do not.
    - The result is not always code or files. It can be a document, a decision, an action or anything else.
 2. **Act on nothing an open question could change until the answers are in.**
    - Reading and finding facts go on meanwhile.
-   - Work that no answer would change may go ahead; say so in a line. The exception is while a questionnaire is out (below).
+   - Work that no answer would change may go ahead; say so in a line.
    - "Go ahead" accepts the recommended answers, as `respond-ask` says.
    - Note: this rule is stricter than understand's rule that nothing is changed for good while understanding. It is a variation of that rule, because it is the user's own wish.
 
@@ -32,7 +32,7 @@ These are understand's rules: facts first, who decides, keeping nothing, the res
 - **questionnaire** (`understand-clarify-questionnaire`): when questions remain that only someone other than the user can answer, after the user answers theirs. Either the user says so, or you see it. If you see it, ask the user whether someone else holds the answer, rather than deciding alone.
   - Not for: anything the user can answer, or anything the files say.
   - Gives back: the document, in the response by default, for the user to send. Later, its answers, taken back here.
-- **While a questionnaire is out:** its questions are parked until the answers return, and what depends on them waits. Work that no outstanding answer touches goes ahead; say so in a line.
+- **While a questionnaire is out:** its questions are parked until the answers return. Work that depends on them does not start. Ask the user, through `respond-ask`, whether the rest goes ahead.
 
 Not here:
 

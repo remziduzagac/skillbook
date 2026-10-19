@@ -26,7 +26,7 @@ Understanding before acting, with the user and from sources. It holds the rules 
 ## Advice
 
 - Several skills can serve one request, and nothing limits combining them.
-- Keep it in proportion: give as much understanding as the decision deserves. A rename needs none; a plan needs more.
+- Keep it in proportion: give as much understanding as the decision deserves. A plan needs more. A task that looks small but leaves an open choice still goes to `understand-clarify`, by its test: if two likely answers would lead to different work or a different result, ask. "Rename `foo` to `bar` in this file" needs none.
 - The question itself may be wrong. Reframing it is always an option.
 - Show what the user would want to correct, such as how you framed the question or what you assumed. Keep your own choices quiet.
 
@@ -34,7 +34,7 @@ Understanding before acting, with the user and from sources. It holds the rules 
 
 **With the user:**
 
-- **clarify** (`understand-clarify`): when what the user means is not clear yet, or they ask to be questioned. A request is not clear when it leaves the user a choice that would change the result, such as where, how long or which kind. "Add caching to the API" leaves where the cache lives, how long entries last and what is cached. The `act` skill's rule to clarify before acting sends here every request that is not understood.
+- **clarify** (`understand-clarify`): when what the user means is not clear yet, or they ask to be questioned. A request is not clear when it leaves the user a choice that would change the result, such as where, how long or which kind. "Clean up the old branches" leaves which ones go and which stay. The `act` skill's rule to clarify before acting sends here every request that is not understood.
   - Not for: what the files already say (rule 4), a topic still to be decided together, or the user not following you (`respond-explain`).
   - Gives back: the "going with" line and what was assumed, or a questionnaire for whoever holds the answers.
 

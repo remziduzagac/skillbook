@@ -1,0 +1,11 @@
+source = "blueprint/design/essentials/act.md: rightsize, lean"
+about = "Trimming what already exists: the list of changes comes first, and nothing is applied before the user approves."
+fixture = "tiny-weather"
+
+[[turns]]
+prompt = "Make NOTES.md shorter."
+
+[checks]
+reads = ["essentials", "understand", "act", "respond"]
+no_changes = true
+answer_contains = ['NOTES']

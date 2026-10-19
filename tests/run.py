@@ -37,7 +37,7 @@ DEFAULT_MODELS = {"claude": "haiku", "codex": "gpt-6-luna"}
 # US dollars per million tokens: input, cached input, output. Used for Codex, which reports tokens, not cost.
 CODEX_PRICES = {"gpt-6-luna": (0.10, 0.01, 0.50)}
 ESTIMATE_PER_TURN = 0.02  # a rough upper guess, in US dollars, for one turn on a small model
-AGENT_DIRS = {".claude", ".codex", ".agents"}  # folders an agent may create in the project; not counted as changes
+AGENT_DIRS = {".claude", ".codex", ".agents", "__pycache__"}  # made by agents or by compiling; not counted as changes
 
 
 def main():
@@ -107,7 +107,7 @@ def parse_args():
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     p.add_argument("--case", default="", help="run only cases whose id contains this text")
     p.add_argument("--agents", default="claude,codex", help="comma-separated: claude, codex")
-    p.add_argument("--runs", type=int, default=0, help="runs per case and agent (default: the case's, else 3)")
+    p.add_argument("--runs", type=int, default=0, help="runs per case and agent (default: the case's, else 1)")
     p.add_argument("--model", action="append", default=[], help="agent=model, such as claude=sonnet")
     p.add_argument("--login", action="store_true", help="copy your own login into each throwaway home")
     p.add_argument("--instruction", default="", help="a line added to the user's instruction file, for a variant")
@@ -130,7 +130,7 @@ def load_cases(pattern):
         data["id"] = case_id
         data["set"] = path.parent.name
         data.setdefault("agents", ["claude", "codex"])
-        data.setdefault("runs", 3)
+        data.setdefault("runs", 1)  # cover a rule with several different cases, not repeats of one
         data.setdefault("pointer", True)
         data.setdefault("checks", {})
         if not (FIXTURES / data["fixture"]).is_dir():
@@ -248,7 +248,7 @@ def snapshot(folder):
     files = {}
     for path in folder.rglob("*"):
         rel = path.relative_to(folder)
-        if path.is_file() and rel.parts[0] not in AGENT_DIRS:
+        if path.is_file() and not AGENT_DIRS.intersection(rel.parts):
             files[str(rel)] = hashlib.sha256(path.read_bytes()).hexdigest()
     return files
 
@@ -365,6 +365,8 @@ def check(checks, result):
         out[f"reads {name}"] = name in result["reads"]
     if checks.get("no_changes"):
         out["no changes"] = not result["changes"]
+    for path in checks.get("changed", []):
+        out[f"changed {path}"] = any(c.split(" ", 1)[1] == path for c in result["changes"] if c.startswith("changed "))
     for pattern in checks.get("answer_contains", []):
         out[f"answer has /{pattern}/"] = bool(re.search(pattern, result["answer"], re.IGNORECASE))
     for pattern in checks.get("answer_not_contains", []):

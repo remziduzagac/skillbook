@@ -1,0 +1,1 @@
+Notes from the first version. The old service shut down; api.py uses the new one.

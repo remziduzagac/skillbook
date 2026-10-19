@@ -11,7 +11,7 @@ Questions a part, or a whole plan, until nothing in it is left assumed: numbered
    - Where the user has already said to go on, showing it is enough, because nothing assumed is then acted on unseen.
 4. **Never record unasked:** recording writes to the project, and the `act` skill's rule is to do exactly what was asked.
 
-Facts and decisions follow understand's rules: you find the facts, and the decisions are the user's. Put rounds and take answers as `respond-ask` says. After each round, wait as `understand-clarify-shallow` says. In the summary, list as accepted the recommended answers that "go ahead" accepted before the end.
+Facts and decisions follow understand's rules: you find the facts, and the decisions are the user's. Put rounds and take answers as `respond-ask` says. After each round, end the turn, as `respond-ask` says. In the summary, list as accepted the recommended answers that "go ahead" accepted before the end.
 
 ## Advice
 

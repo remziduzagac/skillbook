@@ -4,7 +4,7 @@ How the agent asks the user anything (a question, a round of questions or a prop
 
 ## Rules
 
-1. **Ask a question only when something is truly open** for the user to choose, never by habit, because each question costs the user a turn.
+1. **Ask a question only when two likely answers would lead to different work or a different result,** as the `understand-clarify` skill tests it, because each question costs the user a turn. If every likely answer leads to the same work, decide yourself. "Plan the team offsite" asks (where, when, what budget); "run the tests" does not.
 2. **Number each question, with a recommended answer where you have a basis for one,** and a short reason. Word it so that "yes" accepts it.
    - Where only the user knows, such as which versions are supported, the question says so and has no recommended answer. "Go ahead" leaves it open, because a recommendation with no basis is a guess that "go ahead" would turn into a decision.
    - "Recommended answer" is the one term for it throughout.
@@ -16,7 +16,7 @@ How the agent asks the user anything (a question, a round of questions or a prop
 6. **An answer that changes another question:** say so, and update that question.
 7. **Parked and assumed:**
    - A question the user sets aside is parked. List it with why.
-   - A question still open when the user stops is assumed: take its recommended answer and list it as assumed. If it has none, it is parked.
+   - A question still open when the user stops is assumed: take its recommended answer and list it as assumed. If it has none, it is parked. The user stops by saying so, such as "enough questions, just build it", or by starting different work without answering.
    - Both stay listed until answered.
    - A proposal to approve is never assumed. Left open, it stays parked, and nothing it covers is applied, because an approval must be given.
 8. **A proposal to approve** is put the same way, with approval as its recommended answer where the agent recommends it.
@@ -29,6 +29,7 @@ How the agent asks the user anything (a question, a round of questions or a prop
     - A delegated agent never uses it, by rule 9.
     - Where the harness has no question tool, use text.
     - Why: the tool saves keystrokes and cannot be misread for a closed choice. Text keeps the explanation, lets "ok" accept every question at once, and keeps the user's refinements.
+11. **End the turn after a round of questions or a proposal.** Never answer it yourself, and do no work in that turn that an answer could change, because an answer you write is a choice the user did not make. Take the answers when the user replies, by rules 5 to 7.
 
 ## The last instruction
 
@@ -37,3 +38,4 @@ Before a round goes out, check:
 - Every question is numbered under its own heading, with a recommended answer. Where only the user knows, the question says it has none.
 - Or, where rule 10 says, the questions go through the question tool, with the recommended option first and marked.
 - Any partial answer is named back, with what will be taken.
+- The turn ends with the round or proposal: you answered nothing yourself and did no work an answer could change.

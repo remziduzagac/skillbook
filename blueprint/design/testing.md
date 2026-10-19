@@ -25,11 +25,12 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 - **`tests/cases/<set>/<case>.toml`:** one case per file. Its fields:
   - the design test it comes from: the design file and the test's number;
   - the fixture;
+  - `uses_skill_example = true` for a case that tests one of the skill's own examples on purpose; every other prompt is checked by `just check` against the set's text (D213);
   - the prompt for each turn;
   - the agents it runs in;
-  - the number of runs, 3 by default;
+  - the number of runs, 1 by default: a rule is covered by several different cases rather than by repeating one, since varied prompts show more for the same cost; a case is repeated only when it fails or its results disagree (D213);
   - whether the pointer is in the user's instruction file, yes by default;
-  - the checks a script can make from the event log: the skills read, by name; nothing changed in the toy project; patterns the last answer must or must not contain. Whether a file was read whole or in part, and which tools ran, are not checked yet.
+  - the checks a script can make from the event log: the skills read, by name; nothing changed in the toy project, or named files changed; patterns the last answer must or must not contain. Whether a file was read whole or in part, and which tools ran, are not checked yet.
 - **`tests/run.py`:** the runner, written with the Python standard library only. For each case, agent and run it:
   1. makes a throwaway home outside the repository;
   2. installs skillbook there with `install.sh`;
