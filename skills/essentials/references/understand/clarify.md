@@ -5,6 +5,8 @@ Finds out what the user means before acting: decides what to ask and how deep, a
 ## Rules
 
 1. **Ask only what would change the work.** When every answer leads to the same work, decide yourself, as understand's rule on who decides says. An unneeded question costs the user a turn.
+   - The test: if two likely answers would lead to different work or a different result, ask.
+   - The result is not always code or files. It can be a document, a decision, an action or anything else.
 2. **Act on nothing an open question could change until the answers are in.**
    - Reading and finding facts go on meanwhile.
    - Work that no answer would change may go ahead; say so in a line. The exception is while a questionnaire is out (below).

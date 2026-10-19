@@ -29,9 +29,9 @@ The rules every request follows, and the route to the skill for each step of the
 
 ## Instructions
 
-Load the `understand`, `act` and `respond` skills together, in one turn, at the start of every conversation. Load them again only when their text is no longer in view, such as after compaction. Each one opens its own skills when their step comes. Then follow these steps, in the order the work happens:
+Read `references/understand.md`, `references/act.md` and `references/respond.md` together, in one turn, at the start of every conversation. Read them again only when their text is no longer in view, such as after compaction. Each one opens its own skills when their step comes. Then follow these steps, in the order the work happens:
 
-1. **Understand the request** with the `understand` skill, leaving no gap. Its own file picks what the request needs. A clear request needs only that check.
+1. **Understand the request** with the `understand` skill, leaving no gap. Its own file picks what the request needs. A request is clear only if it leaves the user no choice that would change the result, such as where, how long or which kind. "Add caching to the API" is not clear. A clear request needs only that check. Any other goes to `understand-clarify`.
    - Not for: "what do you think?" (the `act` skill's rule), or the user not following the agent (the `respond` skill).
    - Gives back: what was decided, what was parked and what comes next.
 2. **Follow the `act` skill's rules throughout.** They say how the agent works, for every request. Its own file names the tools it loads when a step needs them.

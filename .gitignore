@@ -8,3 +8,6 @@ node_modules/
 
 # The marker install.sh --link writes into a linked set.
 skills/*/.skillbook-install
+
+# Python bytecode from running the test runner.
+__pycache__/

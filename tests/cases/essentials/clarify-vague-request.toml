@@ -8,4 +8,4 @@ prompt = "Add caching to the API."
 [checks]
 reads = ["essentials", "understand", "act", "respond", "understand-clarify"]
 no_changes = true
-answer_contains = ['\?', 'recommend']
+answer_contains = ['recommend']

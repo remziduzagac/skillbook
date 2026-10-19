@@ -34,7 +34,7 @@ Understanding before acting, with the user and from sources. It holds the rules 
 
 **With the user:**
 
-- **clarify** (`understand-clarify`): when what the user means is not clear yet, or they ask to be questioned. The `act` skill's rule to clarify before acting sends here every request that is not understood.
+- **clarify** (`understand-clarify`): when what the user means is not clear yet, or they ask to be questioned. A request is not clear when it leaves the user a choice that would change the result, such as where, how long or which kind. "Add caching to the API" leaves where the cache lives, how long entries last and what is cached. The `act` skill's rule to clarify before acting sends here every request that is not understood.
   - Not for: what the files already say (rule 4), a topic still to be decided together, or the user not following you (`respond-explain`).
   - Gives back: the "going with" line and what was assumed, or a questionnaire for whoever holds the answers.
 

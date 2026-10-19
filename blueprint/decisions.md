@@ -1207,6 +1207,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 > **Amended by D207 (2026-10-19):** when the user did not ask to be questioned, deep is offered first and starts only after a yes; when unsure whether a part needs depth, deep is offered, not started.
 
+> **Amended by D210 (2026-10-20):** clarify's rule to ask only what would change the work gets a test: if two likely answers would lead to different work or a different result, ask, whatever the result is; shallow's wait ends the turn with the questions, and the agent does not answer them itself.
+
 **Decision:** clarify is designed with its three parts ([design/understand.md](design/essentials/understand.md)).
 
 - **clarify** finds out what the person means before acting; it mirrors conduct's explain, which clears up what the agent said. Its own skill holds four shared rules: find facts first; ask only what would change the work; every question with a recommended answer, put as respond says; nothing acted on until the answers are in, a firm rule. It chooses the part, as recommendations the agent weighs: shallow first; deep where a part needs it, triggered by dependence rather than the number of questions, and from the start when the person asks to be questioned; questionnaire for questions only someone else can answer, after the person answers theirs; deep when unsure.
@@ -1512,6 +1514,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 > **Amended by D163 (2026-10-17):** understand's first rule: a result used directly goes to the keeper where the project's instruction files point to one, and with none stays in the response, a long one offered as a file the person names; sub-skills name no keeper's steps or files.
 >
 > **Amended by D172 (2026-10-17):** understand's full routing lines move into its own flow, each sub-skill's section pointing to them, as every group does.
+
+> **Amended by D210 (2026-10-20):** understand's routing line for clarify says what "not clear" means: a request that leaves the user a choice that would change the result, such as where, how long or which kind.
 
 **Decision:** understand's own skill holds the rules for its whole scope, advice, one instruction per sub-skill and the last instruction; it understands nothing itself and never does the work. Its rules: understanding keeps nothing, every result handed back, kept by design in a project; one result shape, what was decided, what was parked and what comes next, each sub-skill adding its own part; guesses and assumptions marked, and an unknown that would change the result named with what would settle it; facts first; who decides, the person's choices through ask and the agent's own made quietly with the reason said; nothing in the work changed for good while understanding. Facts first and who decides move up from clarify, and the sub-skills' own statements of the other rules become pointers at the reshape. Its instructions are the sub-skills' agreed routing lines, shortened, under five headings: with the person (discuss, clarify), from sources (research), exploring options (brainstorm), thinking it through (frame, weigh, challenge), names (naming); the order in which an item uses them lives in discuss and brainstorm. "Explain how this module works" goes to research's fact. frame, weigh and challenge stay as they are, with no group skill, which would hold no rule of its own. When several sub-skills serve one request, their results are combined into one shape. The main skill's line for understand is written into the main skill when the flows are revisited.
 
@@ -1946,6 +1950,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 >
 > **Amended by D199 (2026-10-18):** understand, act and respond load at the start of every conversation, and again only when their text is no longer in view, such as after compaction.
 
+> **Amended by D210 (2026-10-20):** step 1 no longer lets a request with open choices pass as clear, and the main skill names the three start files by their paths instead of as skills to load.
+
 **Decision:** essentials' main skill holds at its top only what holds for every request and has no skill of its own: every skill a request needs is used; delegation by default, as strong advice, its reasons and the choice of agent being delegate's; and the wrap-up offer. Then seven steps, in the order the work happens: understand the request, leaving no gap (understand); throughout, act's rules (act); what it will be and its steps, when needed (devise); arranging things, when needed (organize); handing work to other agents, now or later, when needed (coordinate); doing it, through another set's main skill where one holds that kind of work, otherwise directly, under act's rules; and responding, always (respond), nothing returned before respond's check. understand, act and respond load at the start of every conversation, the others when their step comes. The main skill no longer reads act, respond, rightsize and layout by path; act's and respond's own skills load their tools. Its design document is cut down: a short purpose, callers as a list, eighteen tests on what the main skill itself does, the others moved to the skills they test. Calls between essentials skills by path, rather than through the main skill, were proposed and wait for the folder layout.
 
 **Why:** The person found the main skill and its document unnecessarily complex and sketched it as these steps; it now only opens the tree and holds what has no other home.
@@ -2263,3 +2269,24 @@ Fighting these rules in ask's shared rules would add text for every agent to fix
 - It matches the user's other open-source projects, herdsman and slipbox, which are Apache-2.0.
 - Apache-2.0 adds a patent grant from each contributor and asks that changed files be marked. MIT has neither.
 - The user is the only author so far, so the change needs no one else's consent. It is easiest now, before others contribute.
+
+## D210: Open choices make a request not clear, and the start files are named by path (2026-10-20)
+
+> **Tested (2026-10-20):** the AI test runner (`tests/run.py`), case `essentials/clarify-vague-request`, "Add caching to the API." on the `tiny-weather` toy project. Before: in 16 runs most Claude Haiku, Claude Sonnet and GPT-6 Luna runs wrote a cache without asking; GPT-6.1 Sol asked 4 of 4. After: Haiku 3 of 3, Luna 3 of 3 and Sonnet 1 of 1 read clarify, asked with recommended answers and changed nothing. The case's question-mark check was dropped, since one Haiku run put its questions as headings; the other two cases still passed in both agents. Few runs, non-interactive, one toy project.
+
+**Decision:** four changes, each in the design and the skill files.
+
+- **What "not clear" means:** a request is not clear when it leaves the user a choice that would change the result, such as where, how long or which kind. "Add caching to the API" leaves where the cache lives, how long entries last and what is cached. This is in clarify's routing line in understand, and in step 1 of the main skill. A clear request still needs only the understand check. A request with open choices goes to clarify.
+- **A test for clarify's first rule:** if two likely answers would lead to different work or a different result, ask. The test is generic on purpose. The result can be code, files, a document, a decision, an action or anything else.
+- **Waiting ends the turn:** in shallow, waiting means ending the turn with the questions. The agent does not answer its own questions, and does not go on in the same turn with work an answer could change. Work that no answer would change may still go ahead, as clarify's second rule says. Shallow is the one home of this rule. Deep points to it. Neither `respond-ask` nor deep stated waiting before.
+- **The start files are named by path:** the main skill says to read `references/understand.md`, `references/act.md` and `references/respond.md` together, so no agent takes them for registered skills missing from its list. The name rule is unchanged.
+- Tests are added in [design/essentials/essentials.md](design/essentials/essentials.md) (25, 26) and [design/essentials/understand.md](design/essentials/understand.md) (test 2 widened; clarify 16 and 17; shallow 10; deep 11).
+
+**Why:** The AI test case `tests/cases/essentials/clarify-vague-request.toml` sends "Add caching to the API." to a toy project and expects a question with a recommended answer and no change. In 16 runs on 2026-10-19 and 2026-10-20 (Claude Haiku and Sonnet, GPT-6 Luna and GPT-6.1 Sol, through `tests/run.py`), most small-model and Sonnet runs wrote a cache without asking. GPT-6.1 Sol asked every time (4 of 4). The logs showed four causes:
+
+- Agents judged the request clear and never opened clarify. Haiku wrote "The request is clear enough to act on". Sonnet read understand, act and respond, then wrote code. The main skill's "A clear request needs only that check" gave that exit, clarify's routing fired only for a request "not clear yet", and clarify's rule to decide yourself when every answer leads to the same work was a second exit.
+- Haiku read "Load the `understand`, `act` and `respond` skills" as skills missing from its list and went on by its own judgment.
+- A GPT-6 Luna run asked, then answered its own question in the same turn and wrote code. Shallow said "Wait" but not that waiting ends the turn.
+- Telling the agent that the user is present helped only a little (Haiku 0 of 3 to 1 of 3), so a headless run is not the main cause.
+
+The kept logs are in `/tmp/skillbook-test-results/inv-*/`, a summary in each. The new wording was not re-run; the next AI test run will show whether it works.

@@ -17,7 +17,7 @@ Ask first the questions that others depend on. There is no fixed number of quest
 1. **Look across the whole level,** first from what can be read. Ask only about what you could not fill in from what is known.
 2. **Leave out** what clarify's rules say not to ask. If nothing needs asking, ask nothing.
 3. **Ask in one round,** each question with its recommended answer and a short reason, as `respond-ask` says.
-4. **Wait,** and take the answers as `respond-ask` says.
+4. **Wait:** end the turn with the questions. Do not answer them yourself, and do not go on in the same turn with work an answer could change. Take the answers when the user replies, as `respond-ask` says.
 5. **Hand over:** a part may have answers that depend on each other and would change the work, or you may be unsure whether they do. That ends shallow for that part. Offer deep on it, as the last instruction says, and ask no deep question before a yes. Deep can take many rounds, and the user may not see why more questions come, or may prefer to go on with your guesses.
    - After a yes, the part goes back to clarify, which loads deep.
    - If deep called shallow, the user has said yes already. Make no offer; the part goes back to deep.
