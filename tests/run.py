@@ -110,6 +110,7 @@ def parse_args():
     p.add_argument("--runs", type=int, default=0, help="runs per case and agent (default: the case's, else 3)")
     p.add_argument("--model", action="append", default=[], help="agent=model, such as claude=sonnet")
     p.add_argument("--login", action="store_true", help="copy your own login into each throwaway home")
+    p.add_argument("--instruction", default="", help="a line added to the user's instruction file, for a variant")
     p.add_argument("--budget", type=float, default=1.0, help="stop starting runs past this many US dollars")
     p.add_argument("--timeout", type=int, default=300, help="seconds per turn")
     p.add_argument("--keep", action="store_true", help="keep each run's event log in the results folder")
@@ -174,7 +175,7 @@ def run_one(case, agent, n, args, out_dir, budget_left):
     try:
         home, work = root / "home", root / "work"
         shutil.copytree(FIXTURES / case["fixture"], work)
-        prepare_home(home, agent, case, args.login)
+        prepare_home(home, agent, case, args.login, args.instruction)
         before = snapshot(work)
         env = agent_env(home, agent, args.login)
         events = []
@@ -212,7 +213,7 @@ def run_one(case, agent, n, args, out_dir, budget_left):
     return result
 
 
-def prepare_home(home, agent, case, use_login):
+def prepare_home(home, agent, case, use_login, instruction=""):
     agent_dir = home / (".claude" if agent == "claude" else ".codex")
     agent_dir.mkdir(parents=True)
     subprocess.run([str(REPO / "install.sh"), "--agents", agent], env={**os.environ, "HOME": str(home)},
@@ -221,8 +222,9 @@ def prepare_home(home, agent, case, use_login):
         # setup adds this read rule for a personal install, since the default mode asks before each reference file
         settings = {"permissions": {"allow": ["Read(~/.claude/skills/**)"]}}
         (agent_dir / "settings.json").write_text(json.dumps(settings, indent=2) + "\n")
-    if case["pointer"]:
-        (agent_dir / ("CLAUDE.md" if agent == "claude" else "AGENTS.md")).write_text(POINTER + "\n")
+    lines = ([POINTER] if case["pointer"] else []) + ([instruction] if instruction else [])
+    if lines:
+        (agent_dir / ("CLAUDE.md" if agent == "claude" else "AGENTS.md")).write_text("\n\n".join(lines) + "\n")
     if use_login:
         shutil.copy2(own_login(agent), agent_dir / own_login(agent).name)
 
@@ -278,8 +280,6 @@ def skill_name(set_name, rel):
 
 def skills_read(agent, events, home, set_name):
     found = set()
-    pattern = re.compile(r"skills/([a-z][a-z0-9-]*)/(SKILL\.md|references/[a-z0-9/_-]+\.md)")
-    bare = re.compile(r"(?<![\w/.-])(SKILL\.md|references/[a-z0-9/_-]+\.md)")
     for e in (e for turn in events for e in turn):
         if agent == "claude" and e.get("type") == "assistant":
             for block in e["message"].get("content", []):
@@ -287,21 +287,42 @@ def skills_read(agent, events, home, set_name):
                     continue
                 if block["name"] == "Skill":
                     found.add(block["input"].get("skill", "").split(":")[-1])
-                    continue
-                text = json.dumps(block["input"])
-                for s, rel in pattern.findall(text):
-                    found.add(skill_name(s, rel))
+                elif block["name"] == "Bash":
+                    found |= reads_in_command(block["input"].get("command", ""), set_name)
+                else:
+                    found |= reads_in_command(json.dumps(block["input"]), set_name, bare=False)
         if agent == "codex" and e.get("type") == "item.completed":
             item = e["item"]
             if item.get("type") == "command_execution":
-                command = expand_braces(item.get("command", ""))
-                for s, rel in pattern.findall(command):
-                    found.add(skill_name(s, rel))
-                # a command run inside the set's folder names its files without the skills/<set>/ prefix
-                for rel in bare.findall(pattern.sub("", command)):
-                    found.add(skill_name(set_name, rel))
+                found |= reads_in_command(item.get("command", ""), set_name)
     found.discard(None)
     found.discard("")
+    return found
+
+
+FULL_PATH = re.compile(r"skills/([a-z][a-z0-9-]*)/(SKILL\.md|references/[a-z0-9/_-]+\.md)")
+CD_INTO_SET = re.compile(r"\bcd\s+['\"]?[^\s'\";&|]*?skills/([a-z][a-z0-9-]*)((?:/[a-z0-9_-]+)*)/?['\"]?(?=[\s;&|]|$)")
+MD_FILE = re.compile(r"(?<![\w/.-])((?:[a-z0-9_-]+/)*[a-z0-9_-]+\.md|SKILL\.md)")
+
+
+def reads_in_command(command, set_name, bare=True):
+    """The skills whose files a command names: by full path, or by a path relative to a set's folder."""
+    command = expand_braces(command)
+    found = {skill_name(s, rel) for s, rel in FULL_PATH.findall(command)}
+    if not bare:
+        return found
+    rest = FULL_PATH.sub("", command)
+    cd = CD_INTO_SET.search(rest)
+    if cd:
+        # after `cd .../skills/<set>/references`, a file is named relative to that folder
+        set_name, base = cd.group(1), cd.group(2).strip("/")
+        rest = rest[cd.end():]
+    else:
+        base = ""
+    for token in MD_FILE.findall(rest):
+        rel = f"{base}/{token}" if base and token != "SKILL.md" else token
+        if cd or rel == "SKILL.md" or rel.startswith("references/"):
+            found.add(skill_name(set_name, rel))
     return found
 
 
@@ -312,15 +333,14 @@ def expand_braces(text):
 
 
 def last_answer(agent, turn_events):
-    if agent == "claude":
-        for e in reversed(turn_events):
-            if e.get("type") == "result":
-                return e.get("result") or ""
-        return ""
-    for e in reversed(turn_events):
-        if e.get("type") == "item.completed" and e["item"].get("type") == "agent_message":
-            return e["item"].get("text", "")
-    return ""
+    """Everything the agent said in the turn, so a question followed by a closing line still counts."""
+    texts = []
+    for e in turn_events:
+        if agent == "claude" and e.get("type") == "assistant":
+            texts += [b.get("text", "") for b in e["message"].get("content", []) if b.get("type") == "text"]
+        if agent == "codex" and e.get("type") == "item.completed" and e["item"].get("type") == "agent_message":
+            texts.append(e["item"].get("text", ""))
+    return "\n\n".join(t for t in texts if t)
 
 
 def cost(agent, model, events):
