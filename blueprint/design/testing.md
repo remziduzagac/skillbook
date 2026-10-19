@@ -48,6 +48,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 - **Privacy:** event logs and credentials stay outside the repository and are deleted afterwards, unless the user asks to keep them. Only summaries are shown. What a run showed goes into the design's test result or an evidence entry, as skillbook-write says.
 - **Judging:** scripts check behaviour. What only judgment can check, such as whether an explanation is clear, is judged by the agent that guides the run or by the user, and the result says which.
 - **Cases come from the designs' Tests lists,** which stay the source. A few are turned into cases first, starting with essentials.
+- **Test first for behaviour rules that are new, changed or failed:** the case is written and seen to fail before the wording changes, as skillbook-write says (D211).
 
 ## Open, settled when building
 

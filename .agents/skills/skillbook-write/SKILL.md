@@ -19,6 +19,10 @@ How to write a skill's files in this repository, from its design. This is a proj
   - the same word for the same thing every time, as skillbook's glossary uses it;
   - "the user" for the human the agent works with, the word the harnesses use; "the project's users" or "end users" for the people who use what a project builds;
   - a skill whose bare name could be read as an ordinary word, such as `act` or `respond`, written as "the `act` skill"; a dashed name such as `respond-ask` needs nothing.
+- **Concrete wording.** An agent follows what it can act on. So:
+  - for a verb that depends on the user, such as wait, ask, stop or confirm, write the action: "end the turn with the questions; never answer them yourself", not "wait";
+  - name a thing as the agent's tools see it: a registered skill by its name, any other file by its path. "Load the `understand` skill" made a model look for a registered skill and give up; naming the file by path fixed it;
+  - use the general word, with the narrow cases as examples: "a different result, such as code, a document, a decision or an action", not "different code or files".
 - **About 100 lines per file.** This counts each file on its own, not the whole skill. An agent may only preview a longer file instead of reading it all, and every line costs tokens each time the file is read. If a file grows past it, trim it first, then split it into a child or a reference file at the path its name gives. Never cut a reason, a "when not" case or a fallback to make it fit. If a file truly needs more, its first lines say why.
 - **Talk about the job, not about skillbook's progress.** Don't write "for now", "not built yet" or "until X exists". If a step's skill doesn't exist yet, just don't name one: an agent uses its own judgment wherever no skill is named, and a progress note costs tokens and goes out of date.
 - **Block only where going on would cause harm.** A needless block stops work the user wanted done. So don't write "stop", "wait", "never", "only" or "must" where going on with a note, or the agent's own judgment, would work. Use an absolute only when its reason covers every case it forbids, and write advice as advice. skillbook-tree's check 4 is the test.
@@ -40,11 +44,11 @@ How to write a skill's files in this repository, from its design. This is a proj
   Then write the body in the order skillbook-tree's checklist gives, with the name rule from skillbook-tree, word for word, among the rules.
 - **A plain skill file:** start with a `#` heading holding its dashed name, then one line saying what it does. If it needs a capability, add a line starting `Needs:` that names it and the fallback without it. Don't repeat when to use it, when not, or what it gives back: those live in its parent's line, which the agent reads first. Then write the body in the same order as a main skill's.
 - **The rest of the design:** its Files become the skill's own scripts and templates, placed as skillbook-tree's names say. Its Tests become test cases (below). Its Callers and Material stay in the design.
-- **Test cases:** run each test in the design through the harness, the way a user meets the skill:
-  - install with the repository's install script into a throwaway home, never the user's own, so their setup stays as it was; copy in only the login needed, and remove it afterwards with the transcripts, which hold account details;
-  - run in each supported agent, about three runs a case or more, since one run proves little;
-  - judge by behaviour, such as which files were read, whole or in part, and what the answer did, not by its wording;
-  - say the cost before running; keep raw runs out of the repository, since they are large and personal, and write what they showed into the test's result.
+- **Test cases:** turn each test in the design into an AI test case, run the way a user meets the skill. blueprint/design/testing.md has the case format, the runner and its rules; this is the part that is about writing.
+  - **Test first** for a behaviour rule that is new, changed or has failed, not for every existing rule at once. Write the case (`tests/cases/<set>/`, run by `tests/run.py`), run it on the small models and see it fail, change the wording, run it again and see it pass. Record the before and after in the decision's Tested line.
+  - Run on the user's machine only, in a throwaway home, never their own. Small models are the default, with three runs a case or more, since one run proves little. A failure only on a small model is a signal to look at, not a reason to add text at once.
+  - Judge by behaviour, such as which files were read and what the answer did, not by its wording.
+  - Say the cost before running; the runner prints it and stops at its cap. Keep raw runs out of the repository, since they are large and personal, and write what they showed into the test's result.
 - **Changing a built skill:** if the change alters what the design says, change the design first, then the files. A fix that keeps the design true, such as a typo or a lint error, goes to the files only. To trim or fill a skill, follow skillbook-tree's instruction for it.
 
 ## The last instruction

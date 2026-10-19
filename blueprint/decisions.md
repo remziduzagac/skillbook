@@ -2290,3 +2290,28 @@ Fighting these rules in ask's shared rules would add text for every agent to fix
 - Telling the agent that the user is present helped only a little (Haiku 0 of 3 to 1 of 3), so a headless run is not the main cause.
 
 The kept logs are in `/tmp/skillbook-test-results/inv-*/`, a summary in each. The new wording was not re-run; the next AI test run will show whether it works.
+
+## D211: Skills use testable triggers, narrow exits and boundary examples, written test-first (2026-10-20)
+
+**Decision:** every skill follows six lessons from D210. The first three are design checks, the last three are writing rules.
+
+- **A trigger is a test, not a judgment word.** "When not clear" lets the agent decide in favour of acting. A test it can apply does not: "if two likely answers would lead to different work or a different result, ask". This is skillbook-tree's check 13.
+- **An exit is narrow and says when it applies.** Words such as "only", "skip", "no need" and "a clear request needs only that check" are taken eagerly. Check 13 again.
+- **Each trigger has a boundary example:** one case that qualifies and one near miss that does not. "Add caching to the API" is not clear; "rename `foo` to `bar` in this file" is clear. Check 13 again, and check 7: each trigger's test covers its near miss too.
+- **Name things as the agent's tools see them.** A registered skill by its name, any other file by its path. skillbook-write's rule "Concrete wording".
+- **A verb that depends on the user names its action.** "Wait" becomes "end the turn with the questions; never answer them yourself". The same rule.
+- **Use the general word, with the narrow cases as examples:** "a different result, such as code, a document, a decision or an action", not "different code or files". The same rule.
+
+Behaviour rules that are new, changed or have failed are written test-first, in skillbook-write's "Test cases" instruction: write the AI test case, see it fail on the small models, change the wording, see it pass, and record the before and after in the decision's Tested line. This is not asked of every existing rule at once. The instruction now matches [design/testing.md](design/testing.md): local only, small models by default, a budget cap. That file gained one line on test-first.
+
+No earlier decision states a rule this changes, so none is amended.
+
+**Why:** D210's evidence. The 16 runs of "Add caching to the API" went wrong for general reasons, not for clarify alone:
+
+- A judgment word as the trigger, "not clear yet", let agents judge the request clear.
+- Two wide exits, "a clear request needs only that check" and "decide yourself when every answer leads to the same work", were taken at once.
+- With no case at the boundary, each model drew the line where it liked.
+- "Load the `understand` skill" sent a model looking for a registered skill; the path fixed it.
+- "Wait" did not tell a model to end its turn, and it answered its own question.
+
+Each cause applies to any skill, so the fix is a rule for all of them. Essentials is not yet reviewed against it; the roadmap has that item.
