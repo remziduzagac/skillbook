@@ -34,6 +34,8 @@ main() {
 				fi
 				;;
 			esac
+			# The backticks are literal: they match a skill name written as code.
+			# shellcheck disable=SC2016
 			for word in $(grep -o '`[a-z][a-z]*\(-[a-z][a-z]*\)*`' "$file" | tr -d '`' | sort -u); do
 				group="${word%%-*}"
 				[ -f "$refs/$group.md" ] || continue
