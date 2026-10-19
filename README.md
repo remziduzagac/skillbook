@@ -30,13 +30,13 @@ Coming with the first release: one install script, `install.sh`, copies the sets
 
 ## Use at your own risk
 
-skillbook's skills guide an AI agent that reads files, runs commands and changes things on your machine. The skills make the agent more careful, but they cannot guarantee what it does. So:
+skillbook's skills guide an AI agent that reads files, runs commands and changes things on your machine. skillbook does not control what the agent does. You are responsible for everything the agent does with these skills, and for any result. So:
 
 - review what the agent proposes and does before you accept it;
 - keep backups, and keep your work under version control;
 - use your agent's own permission settings.
 
-skillbook is provided "as is", without warranty and without liability, as sections 7 and 8 of the [licence](LICENSE) say.
+skillbook is provided "as is", without warranty of any kind. Its authors and contributors are not liable for any damage or loss, as sections 7 and 8 of the [licence](LICENSE) say.
 
 ## Help and contributing
 
