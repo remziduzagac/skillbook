@@ -12,8 +12,8 @@ links:
 
 # Shell scripts: ShellCheck, and shfmt with the settings in .editorconfig.
 lint-shell:
-    shellcheck install.sh scripts/*.sh
-    shfmt -d install.sh scripts
+    shellcheck install.sh scripts/*.sh tests/*.sh
+    shfmt -d install.sh scripts tests
 
 # Workflows: actionlint and zizmor.
 lint-workflows:
@@ -23,6 +23,10 @@ lint-workflows:
 # Each set's skill files: headings match their names, lengths stay near the advice, named skills resolve to files.
 check-skills:
     scripts/check-skills.sh
+
+# install.sh in throwaway homes: copy and link modes, the marker, refusing a folder it did not install, uninstalling.
+test-install:
+    tests/install-test.sh
 
 # Link this working copy's sets into the folders agents read, for a machine where skills are edited.
 link:

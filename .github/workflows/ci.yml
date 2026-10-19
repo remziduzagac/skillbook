@@ -31,10 +31,26 @@ jobs:
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
       - run: just check
 
+  test-install:
+    name: install tests (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    permissions:
+      contents: read # check out the repository
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: tests/install-test.sh
+
   required:
     name: required
     if: always()
-    needs: [check]
+    needs: [check, test-install]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions: {}

@@ -1,6 +1,6 @@
 # Testing
 
-How skillbook is tested, as a whole: what runs where, what a test needs, and where the files live. Each skill's own tests are in its design section, in the Tests list; this file says how they are run (D208). Nothing here is built yet.
+How skillbook is tested, as a whole: what runs where, what a test needs, and where the files live. Each skill's own tests are in its design section, in the Tests list; this file says how they are run (D208). The install tests are built; the AI tests are not yet.
 
 ## Three kinds of test
 
@@ -36,7 +36,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   4. runs the agent headless;
   5. checks the event log;
   6. writes a short summary.
-- **`tests/install.sh`** (or a similar name, settled when built): the install tests.
+- **`tests/install-test.sh`:** the install tests. Each test copies `install.sh` and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched.
 
 ## The runner's rules
 
