@@ -16,11 +16,11 @@ Questions only someone other than the user can answer, written as a document its
   - the questions, numbered, each with why it matters;
   - what is needed back, and by when, if the user says.
 - Give a recommended answer only where the user has one. This is a variation of `respond-ask`'s rule that a question carries one wherever you have a basis for one, because this reader is not the user.
-- Its format follows where it goes: a file, an issue or an email. Use markdown by default, laid out by `respond-layout`. For a file, also load the authoring set's main skill and use `markdown` by its name rule. Where authoring is not installed, use `respond-layout` alone.
+- Its format follows where it goes: a file, an issue or an email. Use markdown by default, laid out by `respond-layout`. For a file, if the `authoring` skill is in your skill list, also load it and read its `markdown` skill (`references/markdown.md` in its folder); otherwise `respond-layout` alone.
 
 ## Instructions
 
-1. **Ask what the document needs** that the conversation does not say. Usually that is who it is for, what is needed back, and where it goes. Look for each in the conversation first, as understand's rules say. By default, the document goes in the response, for the user to send.
+1. **Ask what the document needs** that the conversation does not say. Usually that is who it is for, what is needed back, and where it goes. Look for each in the conversation first, as the `understand` skill's rules say. By default, the document goes in the response, for the user to send.
 2. **Write it,** as the advice says.
 3. **While it is out,** its questions are parked, as clarify says.
 4. **When the answers come back,** clarify continues with them. Questions left unanswered stay open and listed. The user has them asked again, or parks them.

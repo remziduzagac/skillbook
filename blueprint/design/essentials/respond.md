@@ -25,7 +25,7 @@ respond/
   Rules:
   1. **Rightsized, by act's rightsize:** the response has nothing missing and nothing extra for the person, the point first; rightsize holds the rule and its check, respond its uses here: no side topic the person did not ask for, and a comparison shown only when it helps the person decide (D60, D83, D121, D134, D145).
   2. **Things named in words:** never a reference the reader cannot resolve, since they cannot look it up while reading. The test: a reference stays as it is when this reader can tell what it is from the reference itself, right now, without looking it up, such as a file name or path, a link, a command, a function name, a name the reader knows, or a number from the current round of questions; otherwise a few words say what it is, with the number in brackets after for looking it up, as for a decision, evidence, test or note number, a question number from an earlier round, a commit hash, an ID, or an abbreviation the reader has not used. A delegated agent's report to the main agent may use numbers, and the main agent turns them into words when it tells the person (D55, D60, D146).
-  3. **An explanation's shape,** for an explanation or a decision put to the person: where we are, the point, what it rests on, an example; top-down itself, the point first in every response, is act's rightsize's rule (D54, D60, D81, D145).
+  3. **An explanation's shape,** when a response says why something is so or how it works, or puts a decision to the person, and not for a plain fact or a status line; a decision put as a question also follows respond's ask (D215): where we are, the point, what it rests on, an example; top-down itself, the point first in every response, is act's rightsize's rule (D54, D60, D81, D145).
   4. **Plain words:** the everyday word over the term of art; a term the person has not used is explained the first time (D60, D115).
   5. **Questions follow respond's ask:** any question or proposal in a response is put through ask (D58, D81, D114).
   6. **Outcomes as they happened:** what was done, what was skipped, what failed; a result verified through act's verify is stated plainly, without hedging (D81).
@@ -40,18 +40,18 @@ respond/
   - when disagreeing with the person on something that matters, their view is stated at its strongest first, in a line or two, through understand's argue (D132).
 
   Instructions, one routing line per child (D134, D179):
-  - **layout:** when anything is written in markdown, a response, a markdown file, pull-request or issue text or a brief, or the person asks how something is laid out; respond loads it for every response, so this line serves requests about layout itself; not for wording, order and length (respond), a round of questions (ask), a markdown file's file rules and linter (authoring's markdown, where that set is installed), or commit messages and comments in code (the project's conventions); it gives back the response or file laid out (D158).
+  - **layout:** when anything is written in markdown, a response, a markdown file, pull-request or issue text or a brief, or the person asks how something is laid out; respond loads it for every response, so this line serves requests about layout itself; not for wording, order and length (respond), a round of questions (ask), a markdown file's file rules and linter (authoring's markdown, where that set is in the agent's skill list, D215), or commit messages and comments in code (the project's conventions); it gives back the response or file laid out (D158).
   - **ask:** when a response asks the person anything: a question, a round of questions, a proposal to approve, or the wrap-up offer; not for which questions to ask or how deep (understand's clarify), when a proposal is needed and what it holds (guardrails), or plain wording (respond); it gives back each answer taken, accepted, changed or parked, or assumed when the person stops.
-  - **explain:** when the person did not follow something the agent itself said, such as "I don't follow" or "what do you mean?"; not for explaining something new, such as a function or a concept (understand's research), or a document for readers (authoring); it gives back the point explained top-down, every reference in words, stopping once it is clear.
+  - **explain:** when the person did not follow something the agent itself said, such as "I don't follow" or "what do you mean?"; not for explaining something new, such as a function or a concept (understand's research), or a document for readers (authoring); a request that is both uses both (D115); it gives back the point explained top-down, every reference in words, stopping once it is clear.
 
-  **Last instruction, before the response is returned:** every rule above checked against it, rule 1 by act's rightsize's check, and what fails fixed first; the main skill's last instruction is this check (D81, D134, D145). A one-line response gets a glance; the full pass runs for longer responses, and for any that touch a secret, an irreversible action, a reference or a failure, the cases the rules exist for, since the check is thinking paid at output price on most turns (D149).
+  **Last instruction, before the response is returned:** every rule above checked against it, rule 1 by act's rightsize's check, and what fails fixed first; the main skill's last instruction is this check (D81, D134, D145). A one-line response gets a quick check of rule 1, unless it reports a failure, touches a secret or an irreversible action, or holds a reference that rule 2 puts in words, such as a decision number; every other response gets the full pass, since those are the cases the rules exist for, and the check is thinking paid at output price on most turns (D149, D215).
 - **Result:** none of its own; it shapes every response.
 - **Files:** `SKILL.md` only: no `references/`, `scripts/` or `assets/` (D81).
 - **Material:** mattpocock's `wait-what` and `writing-for-agents`; meddah's "a rule and its example"; the person's own rule on unresolved references.
 - **Tests** (D81), each a request with something checkable in the response:
   1. a question about an earlier decision: a few words first, the number in brackets after, never a bare number (D146);
   2. a one-line factual question: a short response, no side topic, no closing question;
-  3. a question whose answer needs explaining: the top-down order, whichever skill answers it (D107);
+  3. a question whose answer needs explaining: the top-down order, whichever skill answers it (D107); near miss, a plain fact such as a port number: no explanation's shape (D215);
   4. a choice to make: put as respond's ask says (D114);
   5. a task where one step fails: the failure is reported;
   6. a response with several sections: each marked with a heading, not a bold line (D107);
@@ -83,12 +83,12 @@ respond/
   - authoring's markdown, for structure, through essentials' main skill where essentials is installed, with its one-line fallback where it is not (D156);
   - the person, typing it.
 - **Flow** (D158). **Which rules win** follows act's rule on which instruction wins; in a markdown file, a project's lint configuration wins, the prose rule included, as authoring's markdown says where that set is installed; the person's instruction in the conversation wins over both (D115, D135). Rules, one line each, each with its reason:
-  1. **Sections get headings, not bold lines:** levels in order, a heading naming its section in a few words. A bold line looks like a heading but cannot be navigated or linked to. How a round of questions is laid out is respond's ask's (D114).
+  1. **Sections get headings, not bold lines:** when a response or file has two or more parts a reader may look for or jump to, each gets a heading, and a short answer with one point gets none (D215); levels in order, a heading naming its section in a few words. A bold line looks like a heading but cannot be navigated or linked to. How a round of questions is laid out is respond's ask's (D114).
   2. **Bold is for a label or a key phrase inside a section;** a section's title is a heading, by rule 1 (D137).
   3. **Tables for short values, lists for big ones:** a table holds short cells, such as three options compared on two short attributes, and its rows stay within 120 characters, since a wider row wraps into noise in a terminal; content that would make a wide table becomes a list with sub-items, and when a table is worth it at all is the strong advice below (D137, D199). The one rule with an example, since "short cells" is easy to stretch.
   4. **Prose is not wrapped by hand:** one line per paragraph or list item. In a response, never: the harness wraps prose to its window, and unwrapped text copies and pastes cleanly. In a file, not unless the project's own rules say otherwise (D110, D115).
-  5. **Numbers when things are referred to by number,** such as steps or questions; bullets otherwise, so the person can answer or point by number.
-  6. **Code, commands and text diagrams are fenced with the language named,** `text` for a diagram; file names, commands and identifiers inline go in backticks, so they render, highlight and copy cleanly.
+  5. **Numbers when the reader will refer to items by position,** such as steps followed in order or questions answered by number; bullets otherwise, such as for loose points, so the person can answer or point by number (D215).
+  6. **What the reader copies or reads as a block is fenced with the language named:** a command to run, code of more than one line, or a text diagram, `text` for a diagram; a name inside a sentence, such as a file name, a command or an identifier, goes inline in backticks, so they render, highlight and copy cleanly (D215).
 
   **Strong advice** (D116, D158), followed unless the case gives a reason not to, and said when departed from:
   - **lists over tables:** a list by default; a table only for short values compared across items, since a list holds any length and reads well in a terminal. The person's own rule;
@@ -96,18 +96,18 @@ respond/
 
   **Advice** (D116): nesting stops at about two levels of sub-items, since deeper levels lose the reader and render badly in a terminal; deeper detail becomes a new section. A response's sections start at `##`.
 
-  **Last instruction, before a response or anything in markdown is returned:** the six rules hold; for a markdown file, authoring's markdown's file rules and linter as well where that set is installed, otherwise the project's linter through act's verify where it has one (D152, D158).
+  **Last instruction, before a response or anything in markdown is returned:** the six rules hold; for a markdown file, authoring's markdown's file rules and linter as well where that set is in the agent's skill list (D215), otherwise the project's linter through act's verify where it has one (D152, D158).
 - **Result:** none of its own; it shapes every response and everything written in markdown.
 - **Files:** `SKILL.md` only (D158).
 - **Material:** the person's markdown-style skill, with the person's own tooling left out (D68, D111); the person's rule that lists win over tables; authoring's markdown's structure layer, which it now holds (D111, D158).
 - **Tests** (D111, D115, D137, D158):
-  1. a response with several sections: headings, not bold lines, starting at `##`;
+  1. a response with several sections: headings, not bold lines, starting at `##`; near miss, a short answer with one point: no heading (D215);
   2. a label inside a section: bold, and never a bold line as a section's title;
   3. three options compared on two short attributes: a table allowed, every row within 120 characters;
   4. options compared with a long description each: a list with sub-items, not a wide table;
   5. a long explanation: each paragraph on one line;
   6. steps the person will refer to by number: numbered; loose points: bullets;
-  7. a command to run: fenced, its language named;
+  7. a command to run: fenced, its language named; a function named inside a sentence: inline in backticks, not fenced (D215);
   8. detail three levels deep: a new section instead of a third level of sub-items;
   9. a comparison that would fit either way: a list, by the strong advice;
   10. a pull-request description: these rules, without authoring's file rules;
@@ -128,7 +128,7 @@ respond/
   2. **Numbered, each with a recommended answer where the agent has a basis for one,** with a short reason, worded so that "yes" accepts it; where only the person knows, such as which versions are supported, the question says so and has none, and "go ahead" leaves it open, since a recommendation with no basis is a guess that "go ahead" would turn into a decision (D199). One term, "recommended answer", throughout (D58). A recommended answer is challenged first, through understand's challenge, at the depth its trigger sets by stakes; a decision the person makes without a recommendation, or against one, is challenged the same way before it is relied on (D150).
   3. **Each question under its own heading, its number in the heading,** such as "### 2. How a round is laid out", so the person can answer by number and find each one again.
   4. **One round, or one by one on request,** without losing the round: the numbers stay and nothing is dropped; each step names the question by its number and says which remain (D58).
-  5. **Answers:** "go ahead" accepts the recommended answers for every question left unanswered. When only some are answered, the rest are named back with the answers that will be taken, before anything is acted on.
+  5. **Answers:** "go ahead" accepts the recommended answers for every question left unanswered. When only some are answered and the reply says nothing of the rest, the rest are still open, since the person has neither accepted them nor stopped: they are named back with the answers that would be taken, and the turn ends, by rule 11 (D215).
   6. **An answer that changes another question** is said so, and that question is updated.
   7. **Parked and assumed:** a question the person sets aside is parked, listed with why; a question still open when the person stops is assumed, taken with its recommended answer and listed as assumed, or parked where it has none; the person stops by saying so, such as "enough questions, just build it", or by starting different work without answering (D212). Both stay listed until answered. A proposal to approve is never assumed: left open, it stays parked and nothing it covers is applied, since an approval must be given, as guardrails says (D137).
   8. **A proposal to approve** is put the same way, with approval as its recommended answer where the agent recommends it.
@@ -136,14 +136,14 @@ respond/
   10. **The harness's question tool, for a few closed choices** (D159): used when all three hold: at most four questions; each a choice among a few short options; the reasoning fits in the text above it. Otherwise the questions are numbered in text, by rules 2 and 3: when a question needs explaining option by option, a free answer is likely, there are more than four questions, or the person works item by item and accepts with "ok". The person's own instruction file can set a preference, always the tool, always text, or this default, and it wins. In the tool, the other rules hold in its form: the recommended option first and marked, partial answers named back. A delegated agent never uses it, by rule 9. Each harness's reference file says how its tool is used; where a harness has none, text is used. Its reasons: the tool saves keystrokes and cannot be misread for a closed choice; text keeps the explanation, "ok" accepting every question at once, and the person's refinements.
   11. **The turn ends after a round of questions or a proposal** (D212): the agent never answers it itself and does no work in that turn that an answer could change, since an answer the agent writes is a choice the person did not make; the answers are taken when the person replies, by rules 5 to 7. This is the one home of the rule: shallow, deep, act's rules, rightsize's approval rule and questionnaire point here instead of saying "wait". It was shallow's wait before (D210).
 
-  **Last instruction, before a round goes out** (D134, D159): every question numbered under its own heading with a recommended answer, or saying it has none where only the person knows, or, where rule 10 says, put through the question tool with the recommended option first and marked; any partial answer named back with what will be taken; the turn ends with the round or proposal, nothing answered by the agent and no work done that an answer could change (D212).
+  **Last instruction, before a round goes out** (D134, D159): every question numbered under its own heading with a recommended answer, or saying it has none where only the person knows, or, where rule 10 says, put through the question tool with the recommended option first and marked; any partial answer named back with what would be taken, the turn ending with it (D215); the turn ends with the round or proposal, nothing answered by the agent and no work done that an answer could change (D212).
 - **Result:** the answers, handed back to the skill that asked.
 - **Files:** its own file; children named after the agents, read only when running in that agent (D197): `respond-ask-claude`, Claude Code's question tool: one to four questions per call, two to four options each, short labels, a header of at most 12 characters, "Other" always there for a free answer, several options selectable, previews for comparing drafts, the recommended option first with "(Recommended)"; `respond-ask-codex`, Codex's way of asking, adapting ask's format to what Codex does well (D205). Codex ignored ask's numbered rounds under headings in 0 of 7 runs, because its own instructions outrank skills and say to prefer reasonable assumptions over asking, to bundle the most critical questions into one freeform question and, for some models, to write connected prose without section headings; its question tool `request_user_input` works only in Plan mode by default, and `codex exec` rejects it, so scripted runs cannot ask at all. The file is tested in a normal interactive Codex session, not in `codex exec` (D114, D159, D205, [../../evidence.md](../../evidence.md), E15).
 - **Material:** respond's and deep clarify's earlier rules on questions (D58, D81); the person's rule that each question of a round has its own heading; mattpocock's position that questioning stays harness-neutral chat ([../../research/mattpocock-skills.md](../../research/mattpocock-skills.md)); the harness's own documentation of its question tool (D159).
 - **Tests** (D114):
   1. a round of three decisions: each under its own numbered heading, with a recommended answer and a reason;
   2. "go ahead" after a round: every unanswered question taken with its recommended answer, and said back;
-  3. two of five answered: the other three named back with what will be taken, before acting;
+  3. two of five answered: the other three named back with what would be taken, and the turn ends with nothing acted on that they could change (D215);
   4. "one by one": the numbers kept, the remaining named at each step;
   5. an answer that changes a later question: said so, and the question updated;
   6. a response that needs no decision: no question at the end; a request whose likely answers all lead to the same work, "rename `foo` to `bar` in this file": no question; "add caching to the API": a round (D212);
@@ -167,16 +167,16 @@ respond/
 - **Description:** "Clearing up something the agent said that did not land: explained top-down, every reference in words, stopping once it is clear. Use when the person did not follow something the agent itself said." (D96)
 - **Callers:** respond's own skill, by its routing line in respond's flow (D134, D172). Its other callers: the person, typing it or saying in words that they did not follow, through the main skill (D54).
 - **Flow:** decided (D54):
-  1. respond's rule on an explanation's shape, with the point in one plain sentence and the example only when the point is abstract (D60);
+  1. respond's rule on an explanation's shape, with the point in one plain sentence; an example when the point is a general rule or idea the person has not seen applied, and none when it is already about one concrete thing in front of them, such as a named file or a failed step (D60, D215);
   2. what explain adds: every reference the person cannot resolve is replaced by what it means (D107);
   3. stop once the point is made, and close by naming what could be explained further, without a question; whether it landed, the person's next message says (D115);
-  4. asked to explain more, go one level deeper, on the piece asked about only, not on everything (D197). Done when every term and reference in it is one the person knows or one it explains, and nothing is there that the point does not need.
+  4. asked to explain more, go one level deeper, on the piece asked about only, not on everything (D197): the piece the person names or quotes, or, when they name none, as in a bare "explain more", the point just made (D215). Done when every term and reference in it is one the person knows or one it explains, and nothing is there that the point does not need.
 - **Result:** the explanation, in the conversation.
 - **Files:** `SKILL.md` only (D107).
 - **Material:** mattpocock's `wait-what`.
 - **Tests** (D96):
   1. a response full of decision numbers, then "I don't follow": the explanation names each one in words;
   2. "explain what you meant by X": the top-down order, stopping without detail nobody asked for (D107);
-  3. "explain more" after an explanation: one level deeper on the piece asked about, not on everything;
+  3. "explain more" after an explanation: one level deeper on the point just made, not on everything; "what did you mean by the second part?": one level deeper on that part (D215);
   4. the person quotes the agent's own words and says they do not follow: explain; the person names a function and asks how it works: understand; when a request is both, both run (D115).
 - **Open:** none known.

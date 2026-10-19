@@ -56,7 +56,7 @@ understand/
 
   **With the person:**
   - **discuss:** when "let's discuss X" or "let's go through this" is said; a topic with several open questions decided together; a plan or proposal gone through item by item; a "brainstorm" that turns out to hold several questions, which is said when the topic is split; not for one open question, which goes to its sub-skill: brainstorm for options, weigh for a choice, research for a fact, naming for a name, challenge for an idea to attack, argue for a case; not when what the person means is unclear, "question me on this" included (clarify); not for "what do you think about X?", which is act's rule, a view, and a plan where one helps; not for the agent's own choices (weigh, quietly, its reason said); not when the person did not follow the agent (respond's explain); not for doing the work (the other groups and sets); it gives back each item decided, parked or handed on, with why, the side topics and where each went, and what comes next (D130).
-  - **clarify:** when what the person means is not clear yet, or they ask to be questioned; a request is not clear when it leaves the user a choice that would change the result, such as where, how long or which kind, so "clean up the old branches" is not clear, since it leaves which ones go and which stay (D210, D213); act's first rule sends every request not understood here; not for what the files already say (rule 4), a topic to decide together (discuss), or the person not following the agent (respond's explain); it gives back the "going with" line and what was assumed, or a questionnaire for whoever holds the answers (D109).
+  - **clarify:** when the request leaves the person a choice that would change the result, or they ask to be questioned (D215); such a choice, of where, how long or which kind, makes a request not clear, so "clean up the old branches" is not clear, since it leaves which ones go and which stay (D210, D213); act's first rule sends every request not understood here; not for what the files already say (rule 4), a topic to decide together (discuss), or the person not following the agent (respond's explain); it gives back the "going with" line and what was assumed, or a questionnaire for whoever holds the answers (D109).
 
   **From sources:**
   - **research:** when a question or claim needs facts from several sources or from outside the project, how something in the project works included, such as "explain how this module loads plugins", when that needs reading across files (D137); a finding others will rely on, so where it came from matters; what exists on a subject, such as tools, alternatives, competitors, prior art or papers; why something happens, when the cause is not obvious; a fact an option or a weakness hinges on; not for a quick look inside the task, which the agent just reads, as understand's rules say; what the person means (clarify); what only someone else knows (clarify's questionnaire); new options to invent (brainstorm, since survey finds only what exists); a choice between options (weigh); whether work is done (act's verify); it gives back the findings with their sources; for a claim, the verdict and how strong the evidence is; for a survey, the comparison; for an analysis, the cause; and in every case what was not found and what comes next (D128).
@@ -199,14 +199,14 @@ understand/
   - when, after the shallow round, it is unclear whether a part needs depth, offer deep rather than going deep (D207).
 
   Instructions, one routing line per part (D135):
-  - **shallow:** when a level is not yet seen whole: the start of most clarifying, and each new level inside a part, for deep; not when the person asks to be questioned or for a part whose answers depend on each other (deep), or for questions only someone else can answer (questionnaire); it gives back the "going with" line, with an offer of deep for a part whose answers depend on each other (D207).
-  - **deep:** when the user accepted shallow's offer of deep for a part whose answers open questions that would change the work, or at once, with no offer, when the user asks to be questioned ("question me on this plan"); not for a level not yet seen whole (shallow first), a topic still to decide together (understand's discuss), or questions only someone else can answer (questionnaire); it gives back the summary the person confirmed, or saw where they said to go on: decided, parked, accepted and assumed.
+  - **shallow:** when clarify starts on a request, unless the person asked to be questioned, and, for deep, at each new level inside a part (D215); not when the person asks to be questioned or for a part whose answers depend on each other (deep), or for questions only someone else can answer (questionnaire); it gives back the "going with" line, with an offer of deep for a part whose answers depend on each other (D207).
+  - **deep:** when the user accepted shallow's offer of deep for a part whose answers open questions that would change the work, or at once, with no offer, when the user asks to be questioned ("question me on this plan"); not for a level not yet seen whole (shallow first), a topic still to decide together (understand's discuss), or questions only someone else can answer (questionnaire); it gives back the summary the person confirmed, or saw after telling the agent to start the work: decided, parked, accepted and assumed (D215).
   - **questionnaire:** when questions only someone other than the person can answer, after the person answers theirs: the person says so, or the agent sees it and asks the person whether someone else holds the answer rather than deciding alone (D115); not for anything the person can answer, or anything the files say; it gives back the document, in the response by default for the person to send, and later its answers, taken back into clarify.
   - **While a questionnaire is out:** its questions are parked until the answers return; work that depends on them does not start, and the person is asked, through respond's ask, whether the rest goes ahead (D115, D200, D212).
 
   Gaps: the person not following the agent goes to respond's explain; a topic to decide together, to understand's discuss; options, to brainstorm; "what do you think?", to act's rule that an opinion is not a task.
 
-  **Last instruction, before anything an open question could change is acted on:** every question that would change the work answered, taken with its recommended answer by the person's acceptance, parked, or in a questionnaire; "going with" said, or the summary confirmed, or shown where the person said to go on; understand's rules hold (D199).
+  **Last instruction, before anything an open question could change is acted on:** every question that would change the work answered, taken with its recommended answer by the person's acceptance, parked, or in a questionnaire; "going with" said, or the summary confirmed, or shown where the person told the agent to start the work; understand's rules hold (D199, D215).
 - **Result** (D50, D109): understand's shape, what was decided and why, what was parked and why, what comes next; plus what was assumed, when anything was left unconfirmed. Each part's own form is in its section. clarify keeps nothing, by understand's rule; a caller such as design gets it back (D135, D163).
 - **Files:** `SKILL.md` only.
 - **Material:** OpenCode customisations; mattpocock's skills.
@@ -278,18 +278,18 @@ understand/
 - **Flow** (D58, D109, D115, D135). Rules, each with its reason:
   1. **A question that depends on an unanswered one waits** for a later round, since that answer may change it; each round asks what can be answered now, an order to ask in, with nothing to draw or keep.
   2. **Level by level:** at each new level inside the part, deep first sees that level whole, as clarify's shallow does, then goes down (D115); a level skipped leaves its parts assumed.
-  3. **The summary is confirmed before anything is acted on:** what is decided, parked, accepted and assumed, parked and assumed as respond's ask defines them; if the person stops early, every open question goes into it as an assumption and the summary is shown before acting; where the person has already said to go on, showing it is enough, since nothing assumed is acted on unseen (D58, D199).
+  3. **The summary is confirmed before anything is acted on:** what is decided, parked, accepted and assumed, parked and assumed as respond's ask defines them; if the person stops early, every open question goes into it as an assumption and the summary is shown before acting; where the person tells the agent to start the work, such as "enough questions, just build it", showing it is enough, since nothing assumed is acted on unseen (D58, D199). "Go ahead" is not that: it accepts the current round's recommended answers, and the questioning goes on (D215).
   4. **Recording is never done unasked:** recording writes to the project, and act's rule is to do exactly what was asked (D115).
 
   Facts and decisions as understand's rules say: the agent finds the facts; the decisions are the person's. Rounds are put and answers taken as respond's ask says, and each round ends the turn, as respond's ask says (D210, D212); recommended answers accepted by "go ahead" before the end are listed as accepted in the summary (D114, D115).
 
   Advice:
   - the answers shape the next round;
-  - in a long session, recording the decisions so far is offered where the caller keeps them, so that compaction cannot lose them; used directly, with no caller, the offer is where the loaded keeper says, and with none, a file the person names (D163).
+  - in a long session, recording the decisions so far is offered where the caller keeps them, so that compaction cannot lose them; the signs are ones the agent can see: the harness says its context is filling up, a summary has replaced earlier turns, or the rounds reach about five, each adding decisions compaction could lose (D215); used directly, with no caller, the offer is where the loaded keeper says, and with none, a file the person names (D163).
 
-  **Last instruction, before anything is acted on:** the summary confirmed by the person, or shown where they said to go on.
+  **Last instruction, before anything is acted on:** the summary confirmed by the person, or shown where they told the agent to start the work (D215).
 
-  Done when no level is left with anything assumed that would change the work, and the person has confirmed the summary, or seen it where they said to go on.
+  Done when no level is left with anything assumed that would change the work, and the person has confirmed the summary, or seen it where they told the agent to start the work.
 - **Result:** understand's shape, with the confirmed summary.
 - **Files:** `SKILL.md` only.
 - **Material:** mattpocock's grilling skill, which deep replaces (D45); its decision tree is not used (D109).
@@ -300,7 +300,7 @@ understand/
   4. the person stops after the second round: the open questions listed as assumptions, the summary shown before acting; "enough questions, just build it": showing it is enough (D199);
   5. the end: the summary confirmed before any work starts;
   6. a long session: recording the decisions so far offered where the caller keeps them;
-  7. "go ahead" after the first round: the open questions' recommended answers accepted, listed as accepted in the summary;
+  7. "go ahead" after the first round: the open questions' recommended answers accepted, listed as accepted in the summary, and the next round put, since "go ahead" does not end the questioning (D215);
   8. "question me on this plan": clarify sends it to deep from the start;
   9. a part with sub-parts of its own: that level seen whole before going down;
   10. used directly in a long session: recording offered where the loaded keeper says, or with none in a file the person names, never written unasked (D163);
@@ -320,7 +320,7 @@ understand/
   Advice:
   - guidance rather than a template: who it is for and why they are asked; the context they need, in plain words; the questions, numbered, each with why it matters; what is needed back, and by when if the person says;
   - a recommended answer only where the person has one, a variation of respond's ask, since its reader is not the person (D114);
-  - its format follows where it goes, a file, an issue or an email; markdown by default, laid out by respond's layout, and by authoring's markdown as well for a file where that set is installed (D158).
+  - its format follows where it goes, a file, an issue or an email; markdown by default, laid out by respond's layout, and by authoring's markdown as well for a file where that set is in the agent's skill list (D158, D215).
 
   Instructions, in the order the work happens:
   1. **Ask what the document needs** that the conversation does not say, usually who it is for, what is needed back and where it goes, after looking for each in the conversation first, as understand's rules say (D199); it goes in the response by default, for the person to send.

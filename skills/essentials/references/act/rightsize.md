@@ -2,7 +2,7 @@
 
 What anything given back, made or done needs for its reader: nothing missing, nothing extra, parts that cover everything without overlap, the point first. For the work, it means reading and doing only what the task needs.
 
-The rules and the last instruction here shape what is being made now. lean or enrich, below, rework what already existed before this task.
+The rules and the last instruction here shape what is being made now. The `lean` and `enrich` skills, below, rework what already existed before this task.
 
 ## Rules
 
@@ -14,13 +14,13 @@ The rules and the last instruction here shape what is being made now. lean or en
 6. **Never below a rule:** cut nothing a rule requires, such as a failure, evidence, a safety note or a proposal waiting for approval. What a rule requires is needed by definition.
 7. **The work, rightsized:** read only what the task needs.
    - Search before reading, and read the parts needed.
-   - Read a file whole when it is short, or when the whole is needed, such as a skill's file by the name rule.
+   - Read a file whole when you would read most of it anyway, when finding the part you need would take more calls than reading it whole, or when the whole is needed, such as a skill's file by the name rule.
    - Make independent calls together.
-   - Stop the work once the result is enough.
-   - Why: every read and every call is paid for again on later turns. Doing exactly what was asked stays act's rule 3.
-8. **Rework what exists, by lean or enrich, on request, or propose it when you notice the need.** Never do it unasked on anything beyond the task, by act's rule 3.
-9. **The approval rule,** for lean and enrich: when the user or others wrote the thing, put the list of changes, each with why or its source, to the user through `respond-ask`, which ends the turn. Apply nothing before the user approves. Report the result with its check. Your own draft in this conversation needs no approval, because it is still being made and the last instruction below covers it. One approval is enough, because the list shows every change exactly and the check after it is evidence enough.
-10. **The code rule,** for lean and enrich: propose a code change first, then make it. Where softeng is installed, load the softeng skill, then use `implement` by its name rule. Otherwise change the code directly, and run the project's tests before and after.
+   - Stop once the result answers what was asked and its evidence is in hand; don't search on for more of the same. Asked which version a library is pinned to, stop at the line that pins it.
+   - Why: every read and every call is paid for again on later turns. Doing exactly what was asked stays the `act` skill's rule 3.
+8. **Rework what exists with the `lean` or `enrich` skill, on request, or propose it when you notice the need.** Never do it unasked on anything beyond the task, by the `act` skill's rule 3.
+9. **The approval rule,** for the `lean` and `enrich` skills: when the user or others wrote the thing, put the list of changes, each with why or its source, to the user through `respond-ask`, which ends the turn. Apply nothing before the user approves. Report the result with its check. Your own draft in this conversation needs no approval, because it is still being made and the last instruction below covers it. One approval is enough, because the list shows every change exactly and the check after it is evidence enough.
+10. **The code rule,** for the `lean` and `enrich` skills: propose a code change first, then make it. If the `softeng` skill is in your skill list, load it, then read its `implement` skill (`references/implement.md` in its folder). Otherwise change the code directly, and run the project's tests before and after.
 
 ## Advice
 
@@ -45,7 +45,7 @@ The rules and the last instruction here shape what is being made now. lean or en
 ## Instructions
 
 - **lean** (`act-rightsize-lean`): when the user asks to trim or shorten something that existed before the request, such as "trim the meeting notes", or when something that exists carries parts that do nothing for its reader. It lists the changes first. Examples: an instruction file grown to 400 lines; a report that repeats itself; a skill file at build time, since it is carried every turn; an option in code nobody uses; a component in a design that no requirement needs.
-  - Not for: your own draft from this conversation (the check below), rewording within a sentence (the `respond` skill, or, where the authoring skill is installed, `edit` by its name rule), dividing or merging across files, your own leftovers (act's rule 12), or deleting whole files (act's rule 5).
+  - Not for: your own draft from this conversation (the check below), rewording within a sentence (the `respond` skill, or, if the `authoring` skill is in your skill list, its `edit` skill, `references/edit.md` in its folder), dividing or merging across files (the `organize` skill), your own leftovers (the `act` skill's rule 12), or deleting whole files (the `act` skill's rule 5).
   - Gives back: the thing with its extra parts removed, and a list of what went and why.
 - **enrich** (`act-rightsize-enrich`): when something that exists leaves its reader asking. Examples: a README that does not say how to install; a design that does not say which requirement each part serves; a report without its evidence or its next step; a skill missing its "when not" cases.
   - Not for: writing from scratch (the skill that makes that thing), finding out for its own sake, or whether it is correct.

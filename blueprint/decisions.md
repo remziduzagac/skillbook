@@ -804,6 +804,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 > **Amended by D149 (2026-10-17):** a one-line response gets a glance; the full pass runs for longer responses and for any that touch a secret, an irreversible action, a reference or a failure.
 >
 > **Amended by D199 (2026-10-18):** length following the question becomes advice, a short question usually getting a short response; a question carries a recommended answer where the agent has a basis for one.
+>
+> **Amended by D215 (2026-10-20):** a one-line response gets a quick check of the first rule, unless it reports a failure, touches a secret or an irreversible action, or holds a reference that needs words; the explanation's shape applies when a response says why or how something is, or puts a decision to the user.
 
 **Decision:** conduct's answer is renamed respond: how every response is prepared, whether an answer, a report of work done, a question back or a summary. The main skill reads it first on every request, with act, and checks each response against it before returning it. Beside its earlier rules (complete and nothing extra, things named in words, top-down when explaining, plain words), it gains: the length follows the question; a decision is asked as numbered questions, each with a recommended answer worded so that "yes" accepts it, while understand's deep clarify keeps how the questions are found; outcomes are reported as they happened, what was done, skipped or failed, and a verified result plainly; a response ends on a question only when something is truly open. Each rule carries one short example and must hold with the example deleted; everything sits in `SKILL.md`. Five tests check it: a decision named in words, a short answer to a short question, an explanation's top-down order, a choice asked as numbered questions, a failure reported.
 
@@ -1307,6 +1309,8 @@ For the main skill: it holds rules and advice of its own again, among them follo
 
 > **Amended by D212 (2026-10-20):** the first rule uses clarify's test, two likely answers leading to different work or a different result, with its pair of examples; the stop that assumes an open question is the user saying to stop or starting different work without answering; a new rule makes the turn end after a round or a proposal, never answering it and doing no work an answer could change.
 
+> **Amended by D215 (2026-10-20):** when only some questions are answered and the reply says nothing of the rest, the rest are still open: they are named back with the answers that would be taken, and the turn ends.
+
 **Decision:** conduct gains a sub-skill, ask: how the agent asks the person anything, a question, a round of questions or a proposal to approve, and how it takes the answers ([design/conduct.md](design/essentials/respond.md)). Its rules:
 
 - a question only when something is truly open for the person to choose;
@@ -1331,6 +1335,8 @@ Which questions to ask and how deep stay clarify's; when a proposal is needed an
 > **Amended by D147 (2026-10-17):** what this settled for handoff holds for carryover, its new name; the brief it settled for delegate is conduct's brief.
 >
 > **Amended by D199 (2026-10-18):** with nothing unfinished, where the work stands is not offered, and what the session taught is offered only when it taught something worth keeping.
+>
+> **Amended by D215 (2026-10-20):** the wrap-up offer comes when the user says they are stopping, not when a task is finished; what a session taught is offered when a later session would otherwise get it wrong or have to find it again.
 
 **Decision:** The skills designed so far were reviewed with skillbook-tree (D113): four reviewers, about 130 findings, each recorded with its outcome in [notes/skill-review.md](notes/skill-review.md). Decided with the person:
 
@@ -1606,6 +1612,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 > **Amended by D146 (2026-10-17):** delegate's brief asks for the report back rightsized for the main agent, its parts named, longer material in a named file.
 >
 > **Amended by D147 (2026-10-17):** delegate's advice on the brief moves to conduct's brief, and delegate's step points to it.
+>
+> **Amended by D215 (2026-10-20):** too small means the change or answer is known, it takes about three tool calls or fewer, and what it reads or prints is short; content counts as an exception only when the conversation needs the content itself, not a report of a few lines.
 
 **Decision:** Delegation is the default: every task goes to an agent, a fork or a fresh one, so the main session keeps the conversation, the tracking and the person's decisions; the main agent does a task itself only when it is too small, costing less than an agent's start-up and report, or when it needs the person's decisions as it goes, and when it cannot tell whether a task is too small it asks the person. This is strong advice in the main skill, the one place read every conversation; delegate holds how. No other approval is asked for delegating; guardrails' cost rule still applies to large delegations, with usage limits counting as cost, and delegation never widens what is allowed. A fork serves work the conversation has decided; a fresh agent serves independence, which a review, fresh eyes, verify's second agent and a council's members need, or another tier, or a small task in a long conversation; the rule against delegating once the files are read holds only for fresh agents. The main session keeps a running list, says one line when a task starts and when it comes back, waits for the harness's notice, checks each result through verify and reports it in a few lines. delegate takes the full shape: rules, advice, one routing line each for council, fanout and crew, so that a review with one lens per agent is a fanout, and a last instruction; the three earlier reasons become advice for choosing the agent and the kind.
 
@@ -1795,6 +1803,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 > **Amended by D212 (2026-10-20):** "trim X" or "shorten X", for something that existed before the request, goes to lean, which lists the changes first; the list is put through respond's ask, which ends the turn; lean's listing is delegated unless the agent is itself delegated; enrich's check that an addition is true is its source, a file and line, or the command or page that shows it.
 
+> **Amended by D215 (2026-10-20):** lean keeps a repeat in one home inside the one thing being trimmed, while a repeat across files is organize's; its listing is delegated when the thing is more than one read can take whole; enrich marks a gap only after searching the project's files and, for an outside fact, an outside source.
+
 **Decision:**
 
 - **Shape:** lean and enrich are rightsize's two sub-skills, for things that already exist; rightsize keeps the principle and the silent check that shapes what is being made now. The line between them is whether the thing existed before this task. Each is used on request, or proposed when noticed; never done unasked on anything beyond the task, by act's rule to do exactly what was asked.
@@ -1811,6 +1821,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 > **Amended by D179 (2026-10-17):** layout is respond's, always loaded by it.
 >
 > **Amended by D199 (2026-10-18):** a table's rows within 120 characters move from the strong advice into the table rule, with the reason; lists over tables stays strong advice, and so do code lines and headings within 120 characters.
+>
+> **Amended by D215 (2026-10-20):** a section gets a heading when a response or file has two or more parts a reader may look for or jump to; a list is numbered when the reader will refer to items by position; what the reader copies or reads as a block is fenced, and a name inside a sentence goes inline.
 
 **Decision:** essentials gains a conduct skill, layout, beside respond rather than inside it, since files, briefs to agents, and pull-request and issue text use it too, while respond is about responses: how anything the agent writes in markdown is laid out ([design/conduct.md](design/essentials/respond.md)). It is the small skill with generic rules that the sets left to design, and its rules are authoring's markdown's structure layer, moved, not copied: sections get headings, not bold lines; bold for a label or a key phrase inside a section; tables for short values, lists for big ones; prose not wrapped by hand; numbers where things are referred to by number, bullets otherwise; code, commands and text diagrams fenced with the language named. Its strong advice adds the person's rule, lists over tables: a list by default, a table only for short values compared across items and fitting within 120 characters; and table rows, code lines and headings stay within 120 characters. Its advice: nesting stops at about two levels, and a response's sections start at `##`. essentials' main skill reads it with act, respond and rightsize, together in one turn, and its rule on layout points here; respond's layout rule, act for any markdown file, brief and authoring's markdown point here too; how a round of questions is laid out stays ask's. authoring's markdown keeps the file layer: the file rules, a project's lint configuration winning in its files, the advice for fitting a table and the linter check, added where authoring is installed; where essentials is not installed, markdown carries a one-line fallback: headings for sections, lists over wide tables, prose unwrapped, code fenced. Without authoring, a markdown file gets layout and the project's linter through verify. It is named layout: plain, saying what it does, and not already a term. Rejected: format, which reads as code formatters and file formats; style, writing style and the harness's own style; presentation, long; shape, the shape every skill takes.
 
@@ -2138,6 +2150,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 > **Amended by D204 (2026-10-19):** the pointer's wording stays, but in Claude Code the reload does not rest on it: setup offers four compaction hooks that print essentials' start files. The retest of the pointer is answered: it reloaded in 1 of 1 chain, then 0 of 3 (E15).
 
+> **Amended by D215 (2026-10-20):** a summary is enough to show, without waiting for confirmation, where the user tells the agent to start the work, such as "enough questions, just build it"; "go ahead" accepts only the current round's recommended answers, and the questioning goes on.
+
 **Decision:** rules that stopped, waited or forbade where going on would serve are softened, each keeping its purpose, and every absolute kept has a reason that covers every case it forbids. By skill:
 
 - **essentials' main skill:** understand, act and respond are loaded at the start of every conversation, and again only when their text is no longer in view, such as after compaction; another set's skill is not reached by a path guessed without loading that set's main skill, since that main skill holds rules its skills rely on; with nothing unfinished, the wrap-up offer leaves out where the work stands and offers what the session taught only when it taught something worth keeping. Its design advises about 5,000 tokens for the files loaded at every start, the main skill and the three group files, since they are carried on every turn of every session.
@@ -2363,3 +2377,32 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 - **Where:** one line each in skillbook-write's "Test cases" and skillbook-tree's "Reviewing a skill".
 
 **Why:** D210 fixed "add caching to the API" with a caching example, and the case passed; a held-out prompt, "add logging to the tool", then failed in both agents (D212's after-run). Chasing each failing case would fill the skills with special cases that are read every session and still miss the next request. The user asked that skills stay generic, keep small-model support, and improve through changes that apply everywhere, such as varied examples. A "list the open choices before every request" step was weighed and not taken: it is general, but it adds work to every request to fix one kind of failure.
+
+## D215: Triggers and exits become tests the agent can apply, and the start files are trimmed (2026-10-20)
+
+**Decision:** the second batch of fixes from the review of essentials against D211, each a pattern fixed in general, in the design and the skill files; and the four start files trimmed.
+
+- **A judgment-word trigger or a wide exit gets a test the agent can apply:**
+  - delegation: a task is too small when the change or answer is known, it takes about three tool calls or fewer, and what it reads or prints is short, since a brief and a report would cost more; the user's decisions are an exception when they come as the task goes, not only at the start; the content is an exception only when the conversation needs the content itself, not a report of a few lines;
+  - the wrap-up offer comes when the user says they are stopping, not when a task is finished; what the session taught is offered when a later session would otherwise get it wrong or have to find it again;
+  - the main skill's devise step: a design when the request leaves open what something will be, a plan when the work is multipart; act's planning rule takes plan's test, more than one step or part, with a one-line plan when unsure; the organize step: when the request or a step changes how something is divided, not what it says;
+  - act's rule on repeated failures points to its advice, about three attempts; its rule on delegated agents says how the agent knows (its brief says another agent started it) and what outward means (anything that leaves the working folder, such as a push, a message, a publish or a deletion outside it);
+  - rightsize reads a file whole when most of it would be read anyway, or finding the part would take more calls, and stops once the result answers what was asked with its evidence in hand;
+  - enrich marks a gap only after searching the project's files and, for an outside fact, an outside source;
+  - deep offers to record the decisions on a sign the agent can see: the harness says its context is filling up, a summary has replaced earlier turns, or the rounds reach about five;
+  - clarify's line for shallow: when clarify starts, unless the user asked to be questioned, and at each new level for deep;
+  - respond's last instruction: a one-line response gets a quick check of the first rule unless it reports a failure, touches a secret or an irreversible action, or holds a reference that needs words; every other response gets the full pass;
+  - respond's shape of an explanation applies when a response says why or how something is, or puts a decision to the user, a question also following respond's ask; explain gives an example when the point is a general rule or idea, and a bare "explain more" goes deeper on the point just made;
+  - layout: headings when a response or file has two or more parts a reader may look for; numbers when items are referred to by position; fenced what is copied or read as a block, a name inside a sentence inline.
+- **Near-synonyms and open boundaries settled:**
+  - deep: where the user tells the agent to start the work, showing the summary is enough; "go ahead" accepts only the current round's recommended answers, and the questioning goes on;
+  - ask: when only some questions are answered and the reply says nothing of the rest, the rest are still open, since the user has neither accepted them nor stopped; they are named back with the answers that would be taken, and the turn ends;
+  - lean keeps a repeat in one home inside the one thing being trimmed; a repeat across files is organize's; its listing is delegated when the thing is more than one read can take whole;
+  - a request that is both explain and understand uses both.
+- **Names the agent can test:** another set's skill is reached "if the `authoring` skill is in your skill list", and its file is named by path, such as `references/markdown.md` in its folder; skill names that read as ordinary words, such as lean, enrich, understand and respond, are written as "the `lean` skill" or by their dashed names.
+- **The start files trimmed:** repetition removed and sentences merged, nothing a rule requires cut; act's "not for" list moved to the main skill's line for act, since a parent's line holds when not to use a child. Together they went from 24,782 to about 23,100 characters, with this batch's tests added. Reaching about 20,000 would need detail moved into child files that do not exist yet, which is a design question left open.
+- Tests are added or widened in the design files of essentials (7, 16, 17), act (13, 22; rightsize 8; lean 3; enrich 2), respond (3; layout 1, 7; ask 3; explain 3) and understand (deep 7).
+
+No AI test was run for this batch, as the user asked.
+
+**Why:** D211's checks and D214's rule to fix the pattern, never the case. The review behind D212 also found these; D212 fixed the ones that could cause harm. Each fix states a test where a judgment word stood, so each model draws the line in the same place. The ask fix follows from rules already there: a question is assumed only when the user stops, and a round of questions ends the turn. The two numbers, about three tool calls and about five rounds, are advice with their reasons, and can be changed without changing the rule.

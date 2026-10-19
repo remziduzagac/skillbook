@@ -12,7 +12,7 @@ How the agent asks the user anything (a question, a round of questions or a prop
    - Challenge a decision the user makes without a recommendation, or against one, the same way before you rely on it.
 3. **Each question under its own heading, with its number in the heading,** such as "### 2. How a round is laid out". The user can then answer by number and find each one again.
 4. **One round, or one by one on request,** without losing the round: the numbers stay and nothing is dropped. Each step names the question by its number and says which remain.
-5. **Answers:** "go ahead" accepts the recommended answers for every question left unanswered. Say them back. When the user answers only some, name the rest back with the answers you will take, before you act on anything.
+5. **Answers:** "go ahead" accepts the recommended answers for every question left unanswered. Say them back. When the user answers only some and says nothing of the rest, the rest are still open, because the user has neither accepted them nor stopped. Name them back with the answers you would take, and end the turn, by rule 11.
 6. **An answer that changes another question:** say so, and update that question.
 7. **Parked and assumed:**
    - A question the user sets aside is parked. List it with why.
@@ -37,5 +37,5 @@ Before a round goes out, check:
 
 - Every question is numbered under its own heading, with a recommended answer. Where only the user knows, the question says it has none.
 - Or, where rule 10 says, the questions go through the question tool, with the recommended option first and marked.
-- Any partial answer is named back, with what will be taken.
+- Any partial answer is named back, with what would be taken, and the turn ends with it.
 - The turn ends with the round or proposal: you answered nothing yourself and did no work an answer could change.
