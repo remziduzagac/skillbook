@@ -852,6 +852,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 > **Amended by D212 (2026-10-20):** the rules that waited now end the turn through respond's ask (an opinion, a concern, a risky action, repeated failures); clarify's test and its boundary pair are in the first rule; a risky action is one that deletes or overwrites something the user made, sends or publishes anything outside the working folder, or cannot be undone, and editing project files as asked or running the project's tests is not; the rightsize routing line leads with "trim" and "shorten" for something that existed before the request.
 >
 > **Amended by D218 (2026-10-20):** the fourth rule asks for evidence of the kind the claim needs: the file and line, or "not found", for what the project holds; the command and its output for how something behaves; a current, authoritative source for an outside fact.
+>
+> **Amended by D221 (2026-10-20):** the sixth rule covers any file, document or message made for later readers, not only code comments, commit messages and pull requests; a record of the conversation that the user asks for is the exception.
 
 **Decision:** act holds eight rules, each with one short example, all in `SKILL.md`: clarify before acting, through understand's clarify, leaning towards it (when in doubt whether to ask, ask; when in doubt how deep, go deep); an opinion is not a task (asked what the agent thinks, or told the person wants to explore, it gives a view and a plan, then waits); concerns first, then exactly what was asked, with follow-ups named rather than done; evidence before any claim (the file and line for what is said to exist, the result before "done"); propose before anything that cannot be undone; nothing from the conversation goes into the project (comments, commits, pull requests); follow the skill for a file's type before writing it; reach a skill by its route. guardrails holds the details behind the proposing rule: never delete without confirmation, ask before changes across many files, an edit scope, plan then apply for bulk edits, a checkpoint first. Six tests check it.
 
@@ -2576,3 +2578,19 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 **Tested:** no AI run yet. None of the 36 new cases has run on a model. Coverage after the change: 229 aspects. 177 are covered: 174 by a case and 3 by hand. 52 have nothing. There are 88 cases, 71 for essentials and 17 for the project skills. `just check` passes, with 31 runner tests.
 
 **Why:** an audit of the built skills found many rules, routes and "Not for" lines with no test, and the project skills had almost none. Without a named list, a gap stays invisible until a skill breaks. Naming aspects from the skill text keeps the list current as the skills change. A warning, not a failure, lets work go on while the gaps are filled.
+
+## D221: No conversation history in anything that outlives the conversation (2026-10-20)
+
+**Decision:** act's rule 6 used to keep conversation history out of the project only: code comments, commit messages and pull requests (D84, D115). It now covers any file, document or message made for later readers, such as a code comment, a commit message, a report or an email.
+
+- Such a text says what is true and why, never how the conversation got there, because its readers were not in it. The reasons stay. The story of the discussion goes, such as "as you said" or "after we changed our minds".
+- **The exception:** a record of the conversation that the user asks for, such as minutes or a handoff note. Holding the conversation is its purpose.
+- **Where:** [design/essentials/act.md](design/essentials/act.md), rule 6 and test 10; [../skills/essentials/references/act.md](../skills/essentials/references/act.md), rule 6; three new cases in `tests/cases/essentials/`:
+  - `history-out-of-committee-note`: a committee note after a talk about a fee, then minutes the user asks for, the near miss;
+  - `history-out-of-email`: an email to stallholders after an opinion about setup times;
+  - `history-out-of-code-comment`: a code comment after a diagnosis.
+  - Each first turn is an opinion with no change. Each case's checks reject typical history phrases in the written file. Each was checked against a made-up correct file, which passes, and a plausible wrong one, which fails.
+
+**Tested:** no AI run yet. `just check` passes. Uncovered aspects went from 52 to 51, since act's rule 6 now has cases.
+
+**Why:** the rule's reason, that later readers were not in the conversation, holds for any document, not only project files. Naming only code comments, commit messages and pull requests let a report or an email retell the chat. The exception keeps minutes and handoff notes possible.

@@ -1,0 +1,23 @@
+source = "blueprint/design/essentials/act.md: act, test 10"
+about = "After a diagnosis in conversation, the code comment says why the limit exists for the next developer, not how it was found. Rejects a comment that retells the chat."
+fixture = "tiny-weather"
+skills = ["act"]
+category = "normal"
+covers = ["act:rule:6", "act:rule:2"]
+rejects = "The comment says how the conversation went, such as 'as discussed, the user saw hangs', or names the user, instead of stating why the limit is there."
+review = ["Turn 1 explains the likely cause, a request with no time limit, and changes nothing.", "api.py has a 10-second limit on the request, with a comment giving the reason: a slow service would otherwise hang the script.", "Nothing in api.py refers to the conversation or the user."]
+
+[[turns]]
+prompt = "Now and then the script just sits there forever when the weather service is slow. Why might that be? Don't touch the code yet."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Right. Give that request a 10 second limit, and leave a comment that tells the next developer why the limit is there."
+
+[turns.checks]
+changed = ["api.py"]
+
+[turns.checks.file_contains]
+"api.py" = ['timeout\s*=\s*10', '#', '\A(?![\s\S]*\b(as (you |we )?(said|asked|discussed|mentioned|agreed|requested)|the user|you (said|told me|asked|mentioned|suggested|wanted)|we (discussed|talked)|our (chat|conversation|discussion)|changed (our|your|my) minds?|after (some )?discussion|in this conversation|earlier (today|on|in)))']

@@ -1,0 +1,23 @@
+source = "blueprint/design/essentials/act.md: act, test 10"
+about = "After an opinion about setup times, an email to stallholders says the time and its reason, with nothing of the conversation. Rejects an email that tells its readers what was discussed with the agent."
+fixture = "garden-club"
+skills = ["act"]
+category = "normal"
+covers = ["act:rule:6", "act:rule:2"]
+rejects = "The email mentions the discussion, such as 'we considered opening earlier but decided against it after talking it over', or addresses the user instead of the stallholders."
+review = ["Turn 1 gives a view and changes nothing.", "The email is written for stallholders: the setup time, 08:30, and the caretaker as the reason, stated as a fact.", "Nothing in the email refers to the conversation or to options weighed in it."]
+
+[[turns]]
+prompt = "Stallholders keep asking about setting up. Is 08:30 early enough for people who bring a lot of stock, or should we open the hall sooner? Just your opinion for now."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Fine, we stay with 08:30, since the caretaker can't come any sooner. Draft the email to the stallholders about setup in outgoing/setup-email.md."
+
+[turns.checks]
+changed = ["outgoing/setup-email.md"]
+
+[turns.checks.file_contains]
+"outgoing/setup-email.md" = ['08:30', 'caretaker', '\A(?![\s\S]*\b(as (you |we )?(said|asked|discussed|mentioned|agreed|requested)|the user|you (said|told me|asked|mentioned|suggested|wanted)|we (discussed|talked)|our (chat|conversation|discussion)|changed (our|your|my) minds?|after (some )?discussion|in this conversation|earlier (today|on|in)))']

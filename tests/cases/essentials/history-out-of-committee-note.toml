@@ -1,0 +1,33 @@
+source = "blueprint/design/essentials/act.md: act, test 10"
+about = "After a short back-and-forth about a fee, a note for the committee gives the change and its reason without the conversation; then minutes the user asks for record the conversation. Rejects a note that retells the discussion, and minutes that leave out the option dropped."
+fixture = "garden-club"
+skills = ["act"]
+category = "boundary"
+covers = ["act:rule:6", "act:rule:2"]
+rejects = "The committee note says how the decision was reached in the chat, such as 'as you said' or 'we first thought of one fee for all'; or the minutes, which the user asked for, leave the conversation out."
+review = ["Turn 1 gives a view on one fee for all stalls and changes nothing.", "The committee note gives the new large stall fee and the reason, the growers put off by the old price, as facts, with nothing about the conversation.", "fees.md shows the new fee and keeps the small stall fee.", "The minutes record the conversation: the one-fee idea, why it was dropped, and the decision."]
+
+[[turns]]
+prompt = "The large stall fee at the fair looks steep next to the small one. Should we charge every stall the same? Give me your take; don't change anything yet."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I've thought it over. Keep the two sizes, but bring the large stall down to £15, because two growers told me £18 put them off. Update fees.md and put a short note for the committee in notes/fee-change.md."
+
+[turns.checks]
+changed = ["fees.md", "notes/fee-change.md"]
+
+[turns.checks.file_contains]
+"notes/fee-change.md" = ['£\s?15', 'grower|put (them )?off|deter|too (high|steep|dear)', '\A(?![\s\S]*\b(as (you |we )?(said|asked|discussed|mentioned|agreed|requested)|the user|you (said|told me|asked|mentioned|suggested|wanted)|we (discussed|talked)|our (chat|conversation|discussion)|changed (our|your|my) minds?|after (some )?discussion|in this conversation|earlier (today|on|in)))']
+"fees.md" = ['£\s?15', '£\s?10']
+
+[[turns]]
+prompt = "Now write up what you and I went through just now, the one-fee idea included, as minutes in notes/minutes.md."
+
+[turns.checks]
+changed = ["notes/minutes.md"]
+
+[turns.checks.file_contains]
+"notes/minutes.md" = ['same|one fee|single fee|flat', '£\s?15']
