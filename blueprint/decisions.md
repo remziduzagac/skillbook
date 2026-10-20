@@ -2391,6 +2391,8 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 
 **Why:** the evidence above and D211's lessons. "Delete the old files" worked, but "wait" in act's fifth rule named no action, and the near miss ("rename a function") showed the agent already tells a risky action from an edit, so the test only writes that down. "Trim NOTES.md" skipped lean in two runs of six: act's routing line led with a different case and put "trim" at its end, so the agent edited the file. Several places used the bare words "wait" and "ask" for the same behaviour, and "wait" is the word D210 showed a model reads as nothing. A rule with one home, and pointers to it, keeps the wording the same everywhere. The test for whether to ask was written three times in three ways, so each place drew the line differently.
 
+> **Amended (2026-10-20):** in this decision's results, "Claude" means Claude Haiku and "Codex" means Codex with GPT-6 Luna, its small model; they say nothing about either agent's larger models. Results are reported per agent and model (skillbook-write, "Test cases").
+
 ## D213: Examples vary, and test prompts are held out (2026-10-20)
 
 **Decision:**
@@ -2401,6 +2403,8 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 - **Where:** skillbook-tree's check 13 (varied examples) and check 7 (held-out prompts); skillbook-write's "Concrete wording" and "Test cases"; `scripts/check-skills.sh`; [design/testing.md](design/testing.md). Two prompts that copied skill examples were reworded, and the skills' "trim NOTES.md" example, which named the toy project's own file, became "trim the meeting notes".
 
 **Why:** one example repeated in every start file teaches the example, not the rule, and a test that sends that same example can pass by matching it. The after-run of D212 showed both: once the caching example appeared only in clarify, Codex stopped asking about caching, and the held-out "add logging to the tool" failed in both agents. Varied prompts also show more than repeats of one prompt for the same cost.
+
+> **Amended (2026-10-20):** in this decision's results, "Claude" means Claude Haiku and "Codex" means Codex with GPT-6 Luna, its small model; they say nothing about either agent's larger models. Results are reported per agent and model (skillbook-write, "Test cases").
 
 ## D214: Skills give general guidance, and tests find patterns (2026-10-20)
 
@@ -2514,6 +2518,8 @@ No AI test was run for this batch.
 > **Amended by the main agent's follow-up (2026-10-20), within D218:** shallow's decline path now treats open questions as respond's ask does when the user stops (taken with a recommended answer, parked without one, nothing only the user knows supplied), the same shared-terms fix as deep's; understand's "make minor choices quietly, and say the reason" now reads "without a 'going with' line; give the reason if the user asks"; clarify's caching example became "add retries to the API client", so "add caching to the API" is a held-out prompt in every test.
 
 ## D219: The test suite covers every built skill, and its kept summaries hold review evidence, never secrets (2026-10-20)
+
+> **Observed (2026-10-20):** the two understand-deep cases, one run each, Claude Code with Claude Haiku and Codex with GPT-6 Luna, US$0.069. The runner worked end to end: multi-turn resumes in both agents, no errors, no file changed, and no account data in the kept summaries. Semantic review by the main agent: Claude Haiku met 7 of 7 criteria; GPT-6 Luna met 5 of 7, not loading deep and deferring the branching question, and it left out recommended answers in three rounds. A small-model signal only (D214).
 
 **Decision:**
 

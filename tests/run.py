@@ -755,7 +755,14 @@ def check(checks, result, fixture=None):
 
 def summarize(results, spent, unknown=0):
     note = f", plus unquantified spending in {unknown} runs" if unknown else ""
-    lines = ["# AI test results", "", f"Spent: ${spent:.3f}{note}", ""]
+    lines = ["# AI test results", "", f"Spent: ${spent:.3f}{note}", "",
+             "Results are per agent and model. One model's result says nothing about the agent's other models or "
+             "its provider: a small model's failure is a signal about that model.", ""]
+    for agent, model in sorted({(r["agent"], r["model"]) for r in results}):
+        mine = [r for r in results if (r["agent"], r["model"]) == (agent, model)]
+        whole = sum(not r["error"] and all(v is True for v in r["checks"].values()) for r in mine)
+        lines.append(f"- {agent} ({model}): every automatic check passed in {whole} of {len(mine)} runs")
+    lines.append("")
     keys = sorted({(r["case"], r["agent"]) for r in results})
     for case_id, agent in keys:
         runs = [r for r in results if r["case"] == case_id and r["agent"] == agent]
