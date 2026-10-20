@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: questionnaire, tests 1, 7 and 8"
+about = "Exercises questionnaire, tests 1, 7 and 8 with a held-out situation. Rejects: Asks again for supplied document context, sends the questionnaire, or relies on unexplained conversation references."
+fixture = "tiny-weather"
+skills = ["understand-clarify", "understand-clarify-questionnaire"]
+category = "normal"
+rejects = "Asks again for supplied document context, sends the questionnaire, or relies on unexplained conversation references."
+review = ["Produces a self-contained questionnaire for the service operations team explaining tiny-weather and why the service constraints matter.", "Covers the team-owned authentication and request-limit questions with the reason each answer is needed, without inventing recommended policy values.", "Returns the document in chat for the user to forward, without asking again who receives it or sending anything."]
+
+[[turns]]
+prompt = "Our service operations team alone knows which authentication method and request limits apply to the weather endpoint. I cannot answer those questions. Prepare a questionnaire for that team, including enough context about tiny-weather for people who have never seen this project. Return it here; I will forward it. There is no deadline."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+reads = ["understand-clarify-questionnaire"]
+no_changes = true

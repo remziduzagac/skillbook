@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/act.md: act, test 9"
+about = "A narrow requested correction leaves a separate defect alone."
+fixture = "editorial"
+skills = ["act"]
+category = "boundary"
+rejects = "Rewriting other paragraphs while fixing the named error."
+review = ["Fixes only the misspelling; names the duplicated contact information as a follow-up if noticed."]
+
+[[turns]]
+prompt = "In CONTACT.md replace \"enquiries\" with \"inquiries\" in its first paragraph only."
+
+[checks]
+reads = ["act"]
+changed = ["CONTACT.md"]
+unchanged = ["BRIEF.md"]
+
+[checks.file_contains]
+"CONTACT.md" = ["For exhibit inquiries", "central desk handles visitor enquiries"]

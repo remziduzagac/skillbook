@@ -1,0 +1,23 @@
+source = "blueprint/design/essentials/respond.md: explain, test 3"
+about = "A bare request for more explanation follows a multi-part answer. Rejects asking the user to choose again, repeating the entire answer or drifting to a new topic."
+fixture = "communication"
+skills = ["respond-explain"]
+category = "edge"
+rejects = "Responds to a bare follow-up by reopening the whole comparison or asking an unnecessary clarification question."
+review = ["The follow-up goes one level deeper on the main point of the preceding answer, with an example if it helps.", "It does not repeat the whole first answer, introduce an unrelated topic or end with an offer for more questions."]
+
+[[turns]]
+prompt = "Explain why an event organiser should keep evidence for important facts. Start with your main conclusion, then cover how evidence helps check accuracy, resolve conflicting accounts, and update the bulletin later."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Could you unpack that a little further?"
+
+[turns.checks]
+reads = ["respond-explain"]
+no_changes = true
+
+[checks]
+no_changes = true

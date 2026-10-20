@@ -1,0 +1,23 @@
+source = "blueprint/design/essentials/understand.md: shallow, tests 7 and 13"
+about = "Exercises shallow, tests 7 and 13 with a held-out situation. Rejects: Invents a fact only the user knows after the user declines further questioning."
+fixture = "tiny-weather"
+skills = ["understand-clarify", "understand-clarify-shallow", "understand-clarify-deep"]
+category = "boundary"
+rejects = "Invents a fact only the user knows after the user declines further questioning."
+review = ["The first response asks or offers further clarification without asserting the contractually permitted provider limit.", "When the user refuses further questions, the contractual limit remains explicitly unknown/parked rather than guessed.", "Returns a provisional response-only plan whose dependent steps remain conditional; does not start polling or write a job."]
+
+[[turns]]
+prompt = "Sketch a plan for a scheduled weather refresh. Our private provider contract sets the allowed polling rate, but its value is not in this repository. I have not given you that value. Do not implement the job."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I do not want a deeper interview. Give me the provisional plan here."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+reads = ["understand-clarify-shallow"]
+no_changes = true

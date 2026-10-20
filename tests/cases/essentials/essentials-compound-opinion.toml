@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/essentials.md: tests 10 and 11"
+about = "An opinion request followed by a clarification uses act and explain without changing the project. Rejects interpreting the follow-up as authorization to implement the earlier idea."
+fixture = "tiny-weather"
+skills = ["essentials", "act", "respond-explain"]
+category = "edge"
+rejects = "Treats a request for an example as approval to implement a previously discussed rename."
+review = ["The first answer gives a reasoned opinion about the file name; the second explains just the tradeoff the user quoted.", "The example is illustrative and no rename or implementation work starts."]
+
+[[turns]]
+prompt = "Give me your view on whether utils.py is a helpful name for this module. I am looking for an opinion only."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I do not understand the tradeoff you just described. Show one example of what you mean, without changing files."
+
+[turns.checks]
+reads = ["respond-explain"]
+no_changes = true
+
+[checks]
+reads = ["essentials", "understand", "act", "respond"]
+no_changes = true

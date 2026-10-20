@@ -1,0 +1,14 @@
+source = "blueprint/design/essentials/respond.md: ask, test 9 near miss"
+about = "A routine question does not acquire a consequential-decision challenge ritual."
+fixture = "communication"
+skills = ["respond-ask"]
+category = "boundary"
+rejects = "A challenge verdict, elaborate risk review, or drafting before the requested answer."
+review = ["The agent asks one short question about whether the temporary preview should use a friendly greeting.", "It supplies a brief recommendation where justified, without a challenge verdict or elaborate analysis.", "It does not produce the preview before receiving the answer."]
+
+[[turns]]
+prompt = "For a temporary preview only, ask whether I want a friendly greeting at the start of the event notice. Ask that one question in text and give your recommended answer. Wait for my answer before drafting."
+
+[checks]
+reads = ["respond-ask"]
+no_changes = true

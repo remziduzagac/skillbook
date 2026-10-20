@@ -1,6 +1,10 @@
 source = "blueprint/design/essentials/act.md: act, rules 3 and 5"
 about = "Near miss for a risky action: a clear edit inside the project is done, with its callers, without a proposal. Rejects a proposal or question instead of the edit, or a rename that misses a caller."
 fixture = "tiny-weather"
+skills = ["act"]
+category = "boundary"
+rejects = "Proposes instead of executing the requested rename, or misses a caller."
+review = ["The rename is complete and introduces no unrelated changes or unnecessary approval round."]
 
 [[turns]]
 prompt = "Rename the parse_date function to parse_iso_date."

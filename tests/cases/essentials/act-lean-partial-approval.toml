@@ -1,0 +1,27 @@
+source = "blueprint/design/essentials/act.md: rightsize, test 14; lean, test 8"
+about = "Partial approval confines the edit to the accepted section."
+fixture = "editorial"
+skills = ["act-rightsize", "act-rightsize-lean"]
+category = "edge"
+rejects = "Treating approval of one section as approval for the entire proposed trim."
+review = ["Turn 1 proposes a concrete trim without edits. Turn 2 shortens Opening only; Access and Safety remain byte-for-byte as in the fixture. No new approval is sought for the explicitly accepted Opening edit."]
+
+[[turns]]
+prompt = "Please condense the repeated wording in BRIEF.md while retaining all practical details."
+
+[turns.checks]
+no_changes = true
+reads = ["act-rightsize-lean"]
+
+[[turns]]
+prompt = "Apply the Opening edit only. Do not change Access or Safety."
+
+[turns.checks]
+changed = ["BRIEF.md"]
+
+[checks]
+reads = ["act-rightsize-lean"]
+shorter = ["BRIEF.md"]
+
+[checks.file_contains]
+"BRIEF.md" = ["10:00", "The east entrance has step-free access\\. The east entrance is accessible without steps\\. Visitors needing step-free access should use the east entrance\\.", "Last admission is 16:30\\. Keep emergency exits clear\\."]

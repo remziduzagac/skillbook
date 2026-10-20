@@ -1,0 +1,4 @@
+name = "beacon"
+install = "python3 -m pip install ."
+minimum_python = "3.12"
+output_directory = "bundles"

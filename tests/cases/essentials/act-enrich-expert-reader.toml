@@ -1,0 +1,27 @@
+source = "blueprint/design/essentials/act.md: enrich, test 1; rightsize, test 2"
+about = "Missing handover details are selected for experienced operators rather than generic newcomers."
+fixture = "editorial"
+skills = ["act-rightsize", "act-rightsize-enrich"]
+category = "boundary"
+rejects = "Padding the handover with beginner installation content instead of operational facts."
+review = ["Proposes the status-file location, resume command and failed-checkpoint action from operations.toml. Keeps the experienced-duty-operator audience and omits installation/tutorial material. After approval, adds sourced operational details only."]
+
+[[turns]]
+prompt = "Make runbook.md sufficient for the experienced duty operator resuming an interrupted build. The current operational settings are in operations.toml."
+
+[turns.checks]
+no_changes = true
+reads = ["act-rightsize-enrich"]
+
+[[turns]]
+prompt = "Approved. Add those operational details."
+
+[turns.checks]
+changed = ["runbook.md"]
+
+[checks]
+reads = ["act-rightsize-enrich"]
+unchanged = ["README.md", "operations.toml"]
+
+[checks.file_contains]
+"runbook.md" = ["state/build-status\\.json", "beacon resume --from-checkpoint", "duty engineer"]

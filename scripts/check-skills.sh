@@ -66,7 +66,12 @@ main() {
 	copied=$(for case in "$repo"/tests/cases/*/*.toml; do
 		[ -f "$case" ] || continue
 		grep -q '^uses_skill_example = true' "$case" && continue
-		set_dir="$repo/skills/$(basename "$(dirname "$case")")"
+		group=$(basename "$(dirname "$case")")
+		if [ "$group" = project ]; then
+			set_dir="$repo/.agents/skills"
+		else
+			set_dir="$repo/skills/$group"
+		fi
 		[ -d "$set_dir" ] || continue
 		grep '^prompt = ' "$case" | sed 's/^prompt = "//; s/"$//; s/[.?!]$//' | while IFS= read -r prompt; do
 			if grep -rqiF -- "$prompt" "$set_dir"; then

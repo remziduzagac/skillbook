@@ -2277,6 +2277,8 @@ Fighting these rules in ask's shared rules would add text for every agent to fix
 
 > **Amended by D216 (2026-10-20):** the budget does not stop a run already started: no new run starts once known spending reaches it, each Claude call is capped at the budget left, Codex cost is estimated and not capped, and a model with no known price counts as unknown, not zero.
 
+> **Amended by D219 (2026-10-20):** a case also names the skills it exercises, its category (normal, boundary or edge), the wrong behaviour it rejects and a review rubric, and runs once by default (D213); `just check` also runs the runner's own tests, which need no account; and the summaries kept after a run hold each turn's answer, the toy project's changes and a list of the actions taken, but never tool outputs, the separate home that holds the login, or raw event logs unless the user asks to keep them.
+
 **Decision:** skillbook has three kinds of test. The design is in [design/testing.md](design/testing.md).
 
 - **Static checks:** `just check`, as now, locally and in GitHub CI on every pull request.
@@ -2511,3 +2513,28 @@ No AI test was run for this batch.
 
 > **Amended by the main agent's follow-up (2026-10-20), within D218:** shallow's decline path now treats open questions as respond's ask does when the user stops (taken with a recommended answer, parked without one, nothing only the user knows supplied), the same shared-terms fix as deep's; understand's "make minor choices quietly, and say the reason" now reads "without a 'going with' line; give the reason if the user asks"; clarify's caching example became "add retries to the API client", so "add caching to the API" is a held-out prompt in every test.
 
+## D219: The test suite covers every built skill, and its kept summaries hold review evidence, never secrets (2026-10-20)
+
+**Decision:**
+
+- **Cases:** 48 cases, 43 for essentials and 5 for the project skills, with 67 scripted turns for each agent, over four toy projects: `tiny-weather`, `editorial`, `communication` and `skill-lab`. Each case names:
+  - `skills`, the built skills it exercises, and `category`, normal, boundary or edge;
+  - `rejects`, the plausible wrong behaviour it must tell apart from the right one;
+  - `review`, what the user or a guiding agent judges by reading, which no script can check;
+  - `project_skills`, only for the project-skill cases: skillbook-tree or skillbook-write is copied into the throwaway home's skill folder for that case alone, never into a shipped set or the user's real home.
+- **The project-skill scenarios:** five, in [design/testing.md](design/testing.md): a review that finds overlapping routes, a review of a leaf, a narrow spelling fix, a requested behaviour missing from the design, and one already present. The `skill-lab` toy project holds small drafts that are flawed on purpose.
+- **What the runner checks:**
+  - reads and reads not, for the whole run or one turn; a read counts only with a successful matching tool result, or a supported reading command such as `cat` or `sed -n` that exits 0; pipelines, fallbacks such as `||`, background commands and redirections are not counted, since they can hide a failed read;
+  - changes per turn, files left unchanged, facts a file still holds, and a file made shorter;
+  - a statement before the first change: when a command's effect cannot be known, the check is `unknown`, never a pass; a plan update or a search is not counted as a possible change;
+  - an `unknown` result makes the run end with a non-zero exit, but is reported apart from a failure;
+  - a failed or timed-out turn keeps what it showed, marked incomplete; Codex's later turns resume the same session and get the same write sandbox through `-c sandbox_mode="workspace-write"`.
+- **What a kept summary holds (the privacy rule):** each turn's answer, the toy project's changes as diffs, the file contents a check asks for, and an ordered list of tool names, commands and target paths. It holds no tool output, nothing from the separate home where a login is copied, and no raw event log unless the user passes `--keep`. A login is copied only with `--login` and is deleted with the throwaway folder.
+- **Budget:** as in D216; and a failed or timed-out call keeps the spending already known, with any unknown rest reported apart. Within a run, a Claude turn does not start when the budget left is used up or unknown.
+- **Runner tests without an account:** `tests/test_runner.py`, 25 tests on made-up event logs, run by `just test-runner` inside `just check`. They check reads that failed, were skipped or were only named, kept content, per-turn evidence, unknown order, failed processes and spending across interrupted turns. `just test-coverage` counts the scenarios; it is not a pass rate.
+- **Coverage today:** every built skill has at least one case, but not every skill has all three categories yet: lean has no boundary case, ask no normal case, layout and understand no edge case, and skillbook-tree no normal case.
+- **Where:** `tests/run.py`, `tests/test_runner.py`, [../tests/README.md](../tests/README.md), the cases in `tests/cases/`, the toy projects in `tests/fixtures/`, the `justfile` and [design/testing.md](design/testing.md).
+
+None of the new cases has run on a model yet; earlier results in the decisions' Tested lines do not show that they pass.
+
+**Why:** the user wanted every built skill tested with normal, boundary and edge cases, each able to tell the right behaviour from a plausible wrong one. A script can check facts, such as what was read and what changed, but not whether a question was needed or an explanation helped, so each case carries a review rubric and the summary keeps the evidence to judge it after the throwaway folder is gone. That evidence must not carry a login or account data, so tool outputs and the login's home stay out. Runner tests with no account run in `just check`, so a change to the runner cannot quietly make a wrong behaviour pass.

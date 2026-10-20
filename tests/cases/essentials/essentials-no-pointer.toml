@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/essentials.md: callers and test 1"
+about = "The registered description selects essentials without a user-file pointer. Rejects answering without the startup rules."
+fixture = "tiny-weather"
+pointer = false
+skills = ["essentials"]
+category = "boundary"
+rejects = "Answers the project question without loading the main skill and its three start files."
+review = ["The answer uses the repository's documented invocation and does not ask an unnecessary preference question."]
+
+[[turns]]
+prompt = "Find the example invocation in the project documentation and tell me what it does."
+
+[checks]
+reads = ["essentials", "understand", "act", "respond"]
+no_changes = true
+answer_contains = ['api\.py', 'Istanbul']

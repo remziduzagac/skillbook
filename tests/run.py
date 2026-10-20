@@ -14,10 +14,13 @@ Cases are TOML files under tests/cases/<set>/. Python 3.11 or later, standard li
 
 import argparse
 import datetime
+import difflib
 import hashlib
 import json
+import math
 import os
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -45,6 +48,9 @@ def main():
     cases = load_cases(args.case)
     if not cases:
         sys.exit(f"no case matches {args.case!r} under {CASES.relative_to(REPO)}")
+    if args.coverage:
+        print(coverage(cases))
+        return 0
 
     agents = [a for a in args.agents.split(",") if a]
     plan = []
@@ -55,19 +61,13 @@ def main():
             for n in range(1, (args.runs or case["runs"]) + 1):
                 plan.append((case, agent, n))
 
-    usable = {agent: login_problem(agent, args.login) for agent in agents}
-    for agent, problem in usable.items():
-        if problem:
-            print(f"skipping {agent}: {problem}")
-    plan = [p for p in plan if not usable[p[1]]]
-    if not plan:
-        sys.exit("nothing to run")
-
     turns = sum(len(case["turns"]) for case, _, _ in plan)
     estimate = turns * ESTIMATE_PER_TURN
-    print(f"{len(plan)} runs, {turns} turns, models: " + ", ".join(model_for(a, args) for a in agents))
+    models = ", ".join(model_for(a, args) for a in agents)
+    print(f"{len(plan)} runs, {turns} turns, models: " + models)
     print(f"estimated cost: up to about ${estimate:.2f}")
-    print(f"budget: no new run starts once known spending reaches ${args.budget:.2f}; each Claude call is also capped by "
+    print(f"budget: no new run starts once known spending reaches ${args.budget:.2f}; "
+          "each Claude call is also capped by "
           "--max-budget-usd; Codex cost is estimated from tokens and not capped; a model with no known price counts as "
           "unknown, not as zero")
     if args.login:
@@ -76,6 +76,13 @@ def main():
         for case, agent, n in plan:
             print(f"  {case['id']}  {agent}  run {n}")
         return 0
+    usable = {agent: login_problem(agent, args.login) for agent in agents}
+    for agent, problem in usable.items():
+        if problem:
+            print(f"skipping {agent}: {problem}")
+    plan = [p for p in plan if not usable[p[1]]]
+    if not plan:
+        sys.exit("nothing to run")
     if not args.yes and input("run? [y/N] ").strip().lower() != "y":
         return 1
 
@@ -91,14 +98,19 @@ def main():
             print(f"budget of ${args.budget:.2f} reached; {len(plan) - len(results)} runs not started")
             break
         result = run_one(case, agent, n, args, out_dir, args.budget - spent)
-        if result["cost"] is None:
-            unknown += 0 if result["error"] else 1
-        else:
-            spent += result["cost"]
+        spent += result["cost"] or 0.0
+        unknown += int(result.get("cost_unknown", result["cost"] is None))
         results.append(result)
-        failed = [name for name, ok in result["checks"].items() if not ok]
+        failed = [name for name, ok in result["checks"].items() if ok is False]
+        unresolved = [name for name, ok in result["checks"].items() if ok is None]
         status = "error" if result["error"] else ("ok" if not failed else "FAIL " + ", ".join(failed))
+        if not result["error"] and not failed and unresolved:
+            status = "unknown evidence: " + ", ".join(unresolved)
+        elif not result["error"] and not failed and result.get("review"):
+            status = "automatic checks passed; review pending"
         price = "cost unknown" if result["cost"] is None else f"${result['cost']:.3f}"
+        if result.get("cost_unknown"):
+            price += "; additional cost unknown"
         print(f"  {case['id']}  {agent}  run {n}: {status}  ({price})")
 
     summary = summarize(results, spent, unknown)
@@ -107,7 +119,7 @@ def main():
     print()
     print(summary)
     print(f"summary written to {out_dir}")
-    complete = all(not r["error"] and all(r["checks"].values()) for r in results)
+    complete = all(not r["error"] and all(v is True for v in r["checks"].values()) for r in results)
     return 0 if complete and len(results) == len(plan) else 1
 
 
@@ -125,6 +137,7 @@ def parse_args():
     p.add_argument("--keep", action="store_true", help="keep each run's event log in the results folder")
     p.add_argument("--out", help="results folder (default: a dated folder in the system's temporary folder)")
     p.add_argument("--dry-run", action="store_true", help="list the runs and the estimate, then stop")
+    p.add_argument("--coverage", action="store_true", help="report scenario coverage without running an agent")
     p.add_argument("--yes", action="store_true", help="run without asking")
     return p.parse_args()
 
@@ -144,8 +157,52 @@ def load_cases(pattern):
         data.setdefault("checks", {})
         if not (FIXTURES / data["fixture"]).is_dir():
             sys.exit(f"{case_id}: no fixture named {data['fixture']}")
+        validate_case(data)
         cases.append(data)
     return cases
+
+
+CHECK_NAMES = {"reads", "reads_not", "no_changes", "changed", "unchanged", "file_contains", "shorter",
+               "states_before_change", "answer_contains", "answer_not_contains"}
+
+
+def validate_case(case):
+    """Reject misspelled assertions rather than silently running a case without its intended check."""
+    if case.get("category", "normal") not in {"normal", "boundary", "edge"}:
+        raise ValueError(f"{case['id']}: unknown category")
+    if not case.get("turns"):
+        raise ValueError(f"{case['id']}: at least one turn is required")
+    for label, checks in [("run", case["checks"])] + [
+            (f"turn {i}", t.get("checks", {})) for i, t in enumerate(case["turns"], 1)]:
+        unknown = set(checks) - CHECK_NAMES
+        if unknown:
+            raise ValueError(f"{case['id']} {label}: unknown checks: {', '.join(sorted(unknown))}")
+        for pattern in checks.get("answer_contains", []) + checks.get("answer_not_contains", []):
+            re.compile(pattern)
+        for patterns in checks.get("file_contains", {}).values():
+            for pattern in patterns:
+                re.compile(pattern)
+    for skill in case.get("project_skills", []):
+        if skill not in {"skillbook-tree", "skillbook-write"}:
+            raise ValueError(f"{case['id']}: unknown project skill {skill}")
+
+
+def coverage(cases):
+    """Count declared scenario coverage; this says nothing about observed model success."""
+    names = {"essentials", "skillbook-tree", "skillbook-write"}
+    names.update(skill_name("essentials", str(p.relative_to(REPO / "skills" / "essentials")))
+                 for p in (REPO / "skills" / "essentials" / "references").rglob("*.md"))
+    lines = ["# Scenario coverage", "", "Executable cases, not observed results. Counts can overlap across skills.", "",
+             "| Skill | Normal | Boundary | Edge | Multi-turn | Review |",
+             "| --- | --- | --- | --- | --- | --- |"]
+    for name in sorted(names):
+        selected = [c for c in cases if name in c.get("skills", [])]
+        counts = [sum(c.get("category") == category for c in selected) for category in ("normal", "boundary", "edge")]
+        counts += [sum(len(c["turns"]) > 1 for c in selected), sum(bool(c.get("review")) for c in selected)]
+        lines.append(f"| {name} | " + " | ".join(map(str, counts)) + " |")
+    lines += ["", f"{len(cases)} cases; {sum(len(c['turns']) for c in cases)} scripted turns per agent.",
+              "Review counts cases requiring a human or guiding agent to judge the semantic criteria."]
+    return "\n".join(lines)
 
 
 def model_for(agent, args):
@@ -179,7 +236,8 @@ def own_login(agent):
 
 def run_one(case, agent, n, args, out_dir, budget_left):
     result = {"case": case["id"], "agent": agent, "run": n, "model": model_for(agent, args), "error": None,
-              "cost": None, "checks": {}, "reads": [], "changes": [], "answer": ""}
+              "cost": 0.0, "cost_unknown": False, "checks": {}, "reads": [], "changes": [], "answer": "",
+              "review": case.get("review", []), "turns": []}
     root = Path(tempfile.mkdtemp(prefix="skillbook-test-"))
     try:
         home, work = root / "home", root / "work"
@@ -190,11 +248,16 @@ def run_one(case, agent, n, args, out_dir, budget_left):
         events = []
         session = None
         previous = before
+        previous_text = fixture_text(work)
         turn_checks = {}
         for i, turn in enumerate(case["turns"], 1):
+            remaining = max(0.0, budget_left - result["cost"])
             if agent == "claude":
+                if remaining <= 0 or result["cost_unknown"]:
+                    result["error"] = f"turn {i}: remaining budget is exhausted or unknown"
+                    break
                 cmd = ["claude", "-p", turn["prompt"], "--model", result["model"], "--output-format", "stream-json",
-                       "--verbose", "--permission-mode", "acceptEdits", "--max-budget-usd", f"{budget_left:.2f}"]
+                       "--verbose", "--permission-mode", "acceptEdits", "--max-budget-usd", f"{remaining:.8f}"]
                 if session:
                     cmd += ["--resume", session]
             else:
@@ -203,35 +266,148 @@ def run_one(case, agent, n, args, out_dir, budget_left):
                 # a resumed run takes no -s flag, so the same sandbox is set through the config
                 cmd += ["-s", "workspace-write"] if not session else ["-c", 'sandbox_mode="workspace-write"']
                 cmd += ([session] if session else []) + [turn["prompt"]]
-            proc = subprocess.run(cmd, cwd=work, env=env, stdin=subprocess.DEVNULL, capture_output=True, text=True,
-                                  timeout=args.timeout)
-            turn_events = [json.loads(line) for line in proc.stdout.splitlines() if line.startswith("{")]
+            try:
+                proc = subprocess.run(cmd, cwd=work, env=env, stdin=subprocess.DEVNULL, capture_output=True, text=True,
+                                      timeout=args.timeout)
+                stdout, failed = proc.stdout, proc.returncode != 0
+                if failed:
+                    result["error"] = f"turn {i}: exit {proc.returncode}: {redact(proc.stderr.strip()[-300:])}"
+            except subprocess.TimeoutExpired as exc:
+                stdout = exc.stdout or ""
+                if isinstance(stdout, bytes):
+                    stdout = stdout.decode(errors="replace")
+                failed = True
+                result["error"] = f"turn {i}: took longer than {args.timeout} seconds"
+            turn_events = parse_events(stdout)
             if args.keep:
-                (out_dir / f"{case['id'].replace('/', '--')}--{agent}--{n}--turn{i}.jsonl").write_text(proc.stdout)
-            if proc.returncode != 0 and not turn_events:
-                result["error"] = f"turn {i}: exit {proc.returncode}: {proc.stderr.strip()[-300:]}"
-                return result
+                (out_dir / f"{case['id'].replace('/', '--')}--{agent}--{n}--turn{i}.jsonl").write_text(stdout)
+            turn_cost = cost(agent, result["model"], [turn_events])
+            result["cost"] += turn_cost or 0.0
+            result["cost_unknown"] |= turn_cost is None or failed
             events.append(turn_events)
             session = session or session_id(agent, turn_events)
             now = snapshot(work)
+            this_turn = observe(agent, [turn_events], home, case["set"], previous, work, turn.get("checks", {}))
+            current_text = fixture_text(work)
+            result["turns"].append({**this_turn, "actions": action_evidence(agent, turn_events),
+                                    "file_diffs": fixture_diffs(previous_text, current_text),
+                                    "trace_complete": not failed})
             if turn.get("checks"):
-                this_turn = {"reads": [], "changes": changes(previous, now), "answer": last_answer(agent, turn_events)}
-                for name, ok in check(turn["checks"], this_turn).items():
+                for name, ok in check(turn["checks"], this_turn, case["fixture"]).items():
                     turn_checks[f"turn {i}: {name}"] = ok
             previous = now
-        result["cost"] = cost(agent, result["model"], events)
-        result["reads"] = sorted(skills_read(agent, events, home, case["set"]))
-        result["changes"] = changes(before, snapshot(work))
-        result["answer"] = last_answer(agent, events[-1])
-        result["before_change"], result["changed_files"] = text_before_change(agent, events)
-        result["files"] = {path: (work / path).read_text(errors="replace") if (work / path).is_file() else None
-                           for path in set(case["checks"].get("file_contains", {})) | set(case["checks"].get("shorter", []))}
-        result["checks"] = {**turn_checks, **check(case["checks"], result, case["fixture"])}
-    except subprocess.TimeoutExpired:
-        result["error"] = f"a turn took longer than {args.timeout} seconds"
+            previous_text = current_text
+            if failed:
+                break
+        if events:
+            result.update(observe(agent, events, home, case["set"], before, work, case["checks"]))
+            result["checks"] = {**turn_checks, **check(case["checks"], result, case["fixture"])}
     finally:
+        # remove a copied login first and say so if that fails, rather than trusting the folder removal to take it
+        for login in (root / "home" / ".claude" / ".credentials.json", root / "home" / ".codex" / "auth.json"):
+            try:
+                login.unlink(missing_ok=True)
+            except OSError as exc:
+                result["error"] = (result["error"] or "") + f"; could not delete the copied login {login}: {exc}"
         shutil.rmtree(root, ignore_errors=True)
     return result
+
+
+def observe(agent, events, home, set_name, before, work, checks):
+    """Use the same evidence for run-wide and turn-local assertions, including leaf reads and file contents."""
+    said, changed, uncertain = text_before_change(agent, events)
+    delta = changes(before, snapshot(work))
+    if delta and not changed and not uncertain:
+        said, uncertain = "", True  # no mutation boundary was observable; later prose is not a prior statement
+    paths = set(checks.get("file_contains", {})) | set(checks.get("shorter", []))
+    return {"reads": sorted(skills_read(agent, events, home, set_name)),
+            "changes": delta, "answer": last_answer(agent, events[-1]),
+            "before_change": said, "changed_files": changed or bool(delta), "sequencing_unknown": uncertain,
+            "files": {p: (work / p).read_text(errors="replace")
+                      if (work / p).is_file() and not (work / p).is_symlink()
+                      and (work / p).resolve().is_relative_to(work.resolve())
+                      and not withheld((work / p).read_bytes()) else None for p in paths}}
+
+
+def parse_events(stdout):
+    events = []
+    for line in stdout.splitlines():
+        if line.startswith("{"):
+            try:
+                events.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue  # a timeout can leave the final event incomplete
+    return events
+
+
+SECRET_MARKERS = (b"refresh_token", b"refreshToken", b"access_token", b"accessToken", b"sk-ant-", b"OPENAI_API_KEY",
+                  b"CODEX_API_KEY", b"ANTHROPIC_API_KEY")
+
+
+def withheld(data):
+    """True for content that looks like a login or key, which a kept summary must never hold."""
+    return any(marker in data for marker in SECRET_MARKERS)
+
+
+def redact(text):
+    text = re.sub(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", "(email)", text)
+    return re.sub(r"[A-Za-z0-9_\-]{32,}", "(token)", text)
+
+
+def fixture_text(work):
+    """Only fixture files, never the separate credential home; binary files keep their content hash; a hard link, or
+    content that looks like a login or key, is withheld, since an agent could copy one into the project."""
+    files = {}
+    for name, digest in snapshot(work).items():
+        path = work / name
+        if path.is_symlink():
+            files[name] = f"(symlink to {os.readlink(path)})\n"
+            continue
+        data = path.read_bytes()
+        if path.stat().st_nlink > 1 or withheld(data):
+            files[name] = f"(content withheld: a hard link or credential-like content, sha256 {digest})\n"
+            continue
+        try:
+            files[name] = data.decode("utf-8")
+        except UnicodeDecodeError:
+            files[name] = f"(binary file, sha256 {digest})\n"
+    return files
+
+
+def fixture_diffs(before, after):
+    return {p: "".join(difflib.unified_diff(before.get(p, "").splitlines(keepends=True),
+                                           after.get(p, "").splitlines(keepends=True),
+                                           fromfile=f"before/{p}", tofile=f"after/{p}"))
+            for p in sorted(before.keys() | after.keys()) if before.get(p) != after.get(p)}
+
+
+def action_evidence(agent, events):
+    """Ordered tool names, commands and target paths, without tool outputs or credential-home contents."""
+    actions = []
+    outcomes = {}
+    if agent == "claude":
+        for e in events:
+            content = e.get("message", {}).get("content", [])
+            for block in content if isinstance(content, list) else []:
+                if block.get("type") == "tool_result":
+                    outcomes[block.get("tool_use_id")] = "failed" if block.get("is_error") else "succeeded"
+    for e in events:
+        if agent == "claude" and e.get("type") == "assistant":
+            for block in e.get("message", {}).get("content", []):
+                if block.get("type") == "tool_use":
+                    data = block.get("input", {})
+                    action = {"tool": block["name"], "id": block.get("id"),
+                              "status": outcomes.get(block.get("id"), "unknown")}
+                    action.update({k: data[k] for k in ("command", "file_path", "path", "url") if k in data})
+                    actions.append(action)
+        elif agent == "codex" and e.get("type") in {"item.started", "item.completed"}:
+            item = e.get("item", {})
+            if item.get("type") in {"agent_message", "reasoning"}:
+                continue
+            action = {"tool": item.get("type"), "phase": e["type"]}
+            action.update({k: item[k] for k in ("command", "exit_code", "changes", "server", "tool") if k in item})
+            actions.append(action)
+    return actions
 
 
 def prepare_home(home, agent, case, use_login, instruction=""):
@@ -239,6 +415,10 @@ def prepare_home(home, agent, case, use_login, instruction=""):
     agent_dir.mkdir(parents=True)
     subprocess.run([str(REPO / "install.sh"), "--agents", agent], env={**os.environ, "HOME": str(home)},
                    check=True, capture_output=True)
+    skill_dir = home / (".claude" if agent == "claude" else ".agents") / "skills"
+    for name in case.get("project_skills", []):
+        # hidden files, such as an editor's swap file, are not part of the skill under test
+        shutil.copytree(REPO / ".agents" / "skills" / name, skill_dir / name, ignore=shutil.ignore_patterns(".*"))
     if agent == "claude":
         # setup adds this read rule for a personal install, since the default mode asks before each reference file
         settings = {"permissions": {"allow": ["Read(~/.claude/skills/**)"]}}
@@ -269,7 +449,11 @@ def snapshot(folder):
     files = {}
     for path in folder.rglob("*"):
         rel = path.relative_to(folder)
-        if path.is_file() and not AGENT_DIRS.intersection(rel.parts):
+        if AGENT_DIRS.intersection(rel.parts):
+            continue
+        if path.is_symlink():
+            files[str(rel)] = "symlink:" + hashlib.sha256(os.readlink(path).encode()).hexdigest()
+        elif path.is_file():
             files[str(rel)] = hashlib.sha256(path.read_bytes()).hexdigest()
     return files
 
@@ -300,19 +484,20 @@ def skill_name(set_name, rel):
 
 
 def skills_read(agent, events, home, set_name):
-    """The skills whose files the agent read successfully: by the Skill or Read tool, or by a command that reads files."""
+    """Skills read through successful tool results or supported file-reading commands."""
     found = set()
     all_events = [e for turn in events for e in turn]
-    failed = set()  # Claude tool calls whose result was an error
+    succeeded = set()
     for e in all_events:
         if agent == "claude" and e.get("type") == "user":
-            for block in e["message"].get("content", []) if isinstance(e["message"].get("content"), list) else []:
-                if block.get("type") == "tool_result" and block.get("is_error"):
-                    failed.add(block.get("tool_use_id"))
+            content = e["message"].get("content", [])
+            for block in content if isinstance(content, list) else []:
+                if block.get("type") == "tool_result" and not block.get("is_error"):
+                    succeeded.add(block.get("tool_use_id"))
     for e in all_events:
         if agent == "claude" and e.get("type") == "assistant":
             for block in e["message"].get("content", []):
-                if block.get("type") != "tool_use" or block.get("id") in failed:
+                if block.get("type") != "tool_use" or block.get("id") not in succeeded:
                     continue
                 if block["name"] == "Skill":
                     found.add(block["input"].get("skill", "").split(":")[-1])
@@ -330,7 +515,7 @@ def skills_read(agent, events, home, set_name):
 
 
 READ_TOOLS = {"Read", "View"}
-READERS = {"cat", "sed", "head", "tail", "nl", "less", "more", "awk", "bat"}  # commands that print a file's text
+READERS = {"cat", "sed", "head", "tail", "nl", "awk", "bat"}
 FULL_PATH = re.compile(r"skills/([a-z][a-z0-9-]*)/(SKILL\.md|references/[a-z0-9/_-]+\.md)")
 CD_INTO_SET = re.compile(r"^cd\s+['\"]?[^\s'\"]*?skills/([a-z][a-z0-9-]*)((?:/[a-z0-9_-]+)*)/?['\"]?$")
 MD_FILE = re.compile(r"(?<![\w/.-])((?:[a-z0-9_-]+/)*[a-z0-9_-]+\.md|SKILL\.md)")
@@ -341,22 +526,31 @@ def reads_in_command(command, set_name):
     """The skills whose files a shell command prints with a reading command such as cat or sed, not merely names."""
     wrapped = SHELL_WRAPPER.match(command.strip())
     command = expand_braces(wrapped.group(2) if wrapped else command)
+    # These forms can hide a failed or skipped read behind a successful final command. Without a per-command
+    # result we cannot establish which file was read, so leave the evidence uncounted.
+    if re.search(r"[;|\n<>`]|\$\(|(?<!&)&(?!&)", command):
+        return set()
     found = set()
     cd_set, base = None, None
     for segment in re.split(r"&&|\|\||;|\||\n", command):
         segment = segment.strip()
-        words = segment.split()
+        try:
+            words = shlex.split(segment)
+        except ValueError:
+            continue
         if not words:
             continue
         if words[0] == "cd":
             cd = CD_INTO_SET.match(segment)
             cd_set, base = (cd.group(1), cd.group(2).strip("/")) if cd else (None, None)
             continue
-        if os.path.basename(words[0]) not in READERS:
-            continue
-        found |= {skill_name(s, rel) for s, rel in FULL_PATH.findall(segment)}
-        rest = FULL_PATH.sub("", segment)
-        for token in MD_FILE.findall(rest):
+        for token in reader_operands(words):
+            full = FULL_PATH.search(token)
+            if full and full.end() == len(token):
+                found.add(skill_name(*full.groups()))
+                continue
+            if not MD_FILE.fullmatch(token):
+                continue
             if cd_set is not None:
                 # after `cd .../skills/<set>/references`, a file is named relative to that folder
                 rel = f"{base}/{token}" if base and token != "SKILL.md" else token
@@ -366,32 +560,117 @@ def reads_in_command(command, set_name):
     return found
 
 
+def reader_operands(words):
+    """Recognise a small set of read-only forms; program strings and unknown options are not file evidence."""
+    program, args = os.path.basename(words[0]), list(words[1:])
+    if program not in READERS:
+        return []
+    if program == "sed":
+        quiet = args and args[0] == "-n"
+        if args and args[0] == "-n":
+            args.pop(0)
+        script = args.pop(0) if args else None
+        if script is None or (quiet and not script) or not re.fullmatch(r"(?:\d+(?:,(?:\d+|\$))?p)?", script):
+            return []
+    elif program == "awk":
+        if not args or args.pop(0) != "1":
+            return []
+    allowed = {"cat": {"-n", "-b", "-s", "-v", "-A", "-E", "-T"},
+               "nl": {"-ba", "-bt", "-bn"}, "bat": {"-p", "--plain", "--paging=never"}}
+    operands = []
+    while args:
+        word = args.pop(0)
+        if word == "--":
+            return operands + args
+        if program in {"head", "tail"} and word in {"-n", "-c"}:
+            count = args.pop(0) if args else ""
+            if not count.isdigit() or int(count) == 0:
+                return []
+        elif word.startswith("-"):
+            if word not in allowed.get(program, set()):
+                return []
+        else:
+            operands.append(word)
+    return operands
+
+
 MIN_STATEMENT = 80  # characters of text before the first change; less is a preamble, not a stated plan
 WRITE_TOOLS = {"Edit", "Write", "MultiEdit", "NotebookEdit"}
-WRITER = re.compile(r"(?:^|[\s;&|('\"])(?:rm|mv|cp|mkdir|touch|tee|truncate|ln|apply_patch)\s|sed\s+-i|(?<![0-9&])>\s*[^&\s]|"
-                    r"git\s+(?:mv|rm|commit|apply|checkout|restore)\b")
+WRITE_COMMANDS = {"rm", "mv", "cp", "mkdir", "touch", "tee", "truncate", "ln", "apply_patch"}
+# Tools and items that cannot touch the toy project: a plan update or a search is not a potential mutation.
+NO_FILE_TOOLS = {"claude": {"Skill", "Grep", "Glob", "LS", "TodoWrite", "WebSearch", "WebFetch", "ToolSearch"},
+                 "codex": {"todo_list", "web_search", "error"}}
+
+
+def command_effect(command):
+    """Classify only direct known forms. Opaque scripts have an unknown effect, not a guessed one."""
+    wrapped = SHELL_WRAPPER.match(command.strip())
+    command = wrapped.group(2) if wrapped else command
+    if re.search(r"[;&\n<>`]|\|\||\$\(", command):
+        return "unknown"
+    effects = {segment_effect(part) for part in command.split("|")}
+    if "write" in effects:
+        return "write"
+    return "read" if effects == {"read"} else "unknown"
+
+
+def segment_effect(segment):
+    """One command of a pipeline: write, read, or unknown when it is not a known direct form."""
+    try:
+        words = shlex.split(segment)
+    except ValueError:
+        return "unknown"
+    if not words:
+        return "read"
+    program = os.path.basename(words[0])
+    if program in WRITE_COMMANDS or program == "sed" and any(w.startswith("-i") for w in words[1:]):
+        return "write"
+    if reader_operands(words) or program in {"pwd", "ls", "true", "false", "wc", "grep"}:
+        return "read"
+    if program == "rg" and not any(w.startswith("--pre") for w in words[1:]):
+        return "read"
+    if program == "find" and not any(w in {"-exec", "-execdir", "-delete", "-fprint", "-fprintf", "-fls", "-ok", "-okdir"}
+                                     for w in words[1:]):
+        return "read"
+    if program == "git" and len(words) > 1 and words[1] in {"status", "diff", "log", "show"} and "--output" not in " ".join(words):
+        return "read"
+    if program == "sed" and any(re.search(r"(^|[;}\s])w\s", w) for w in words[1:]):
+        return "unknown"  # sed's w command writes a file
+    if program in {"sed", "nl", "head", "tail", "cat", "awk"}:
+        return "read"  # inside a pipeline, reading its input; a file-writing form is caught above or by redirection
+    return "unknown"
 
 
 def text_before_change(agent, events):
-    """What the agent said before its first change to files, and whether it changed any; the event order decides."""
+    """Text before the first definite or potential mutation; unknown command effects stay explicit."""
     said = []
     for e in (e for turn in events for e in turn):
         if agent == "claude" and e.get("type") == "assistant":
             for block in e["message"].get("content", []):
                 if block.get("type") == "text":
                     said.append(block.get("text", ""))
-                elif block.get("type") == "tool_use" and (
-                        block["name"] in WRITE_TOOLS
-                        or block["name"] == "Bash" and WRITER.search(block["input"].get("command", ""))):
-                    return "\n\n".join(said), True
+                elif block.get("type") == "tool_use":
+                    if block["name"] in WRITE_TOOLS:
+                        return "\n\n".join(said), True, False
+                    if block["name"] == "Bash":
+                        effect = command_effect(block["input"].get("command", ""))
+                        if effect != "read":
+                            return "\n\n".join(said), effect == "write", effect == "unknown"
+                    elif block["name"] not in READ_TOOLS | NO_FILE_TOOLS["claude"]:
+                        return "\n\n".join(said), False, True
         if agent == "codex" and e.get("type") in ("item.started", "item.completed"):
             item = e["item"]
             if e["type"] == "item.completed" and item.get("type") == "agent_message":
                 said.append(item.get("text", ""))
-            elif item.get("type") == "file_change" or (
-                    item.get("type") == "command_execution" and WRITER.search(item.get("command", ""))):
-                return "\n\n".join(said), True
-    return "\n\n".join(said), False
+            elif item.get("type") == "file_change":
+                return "\n\n".join(said), True, False
+            elif item.get("type") == "command_execution":
+                effect = command_effect(item.get("command", ""))
+                if effect != "read":
+                    return "\n\n".join(said), effect == "write", effect == "unknown"
+            elif item.get("type") not in {"agent_message", "reasoning"} | NO_FILE_TOOLS["codex"]:
+                return "\n\n".join(said), False, True
+    return "\n\n".join(said), False, False
 
 
 def expand_braces(text):
@@ -413,24 +692,37 @@ def last_answer(agent, turn_events):
 
 def cost(agent, model, events):
     total = 0.0
+    seen = False
     for e in (e for turn in events for e in turn):
         if agent == "claude" and e.get("type") == "result":
-            total += e.get("total_cost_usd") or 0.0
+            value = e.get("total_cost_usd")
+            if type(value) not in {int, float} or not math.isfinite(value) or value < 0:
+                return None
+            total += value
+            seen = True
         if agent == "codex" and e.get("type") == "turn.completed":
+            seen = True
             prices = CODEX_PRICES.get(model)
             if not prices:
                 return None
-            u = e.get("usage", {})
+            u = e.get("usage")
+            if not isinstance(u, dict):
+                return None
+            counts = [u.get("input_tokens"), u.get("output_tokens"), u.get("cached_input_tokens", 0)]
+            if any(type(n) is not int or n < 0 for n in counts) or counts[2] > counts[0]:
+                return None
             cached = u.get("cached_input_tokens", 0)
-            total += ((u.get("input_tokens", 0) - cached) * prices[0] + cached * prices[1]
-                      + u.get("output_tokens", 0) * prices[2]) / 1_000_000
-    return total
+            total += ((u["input_tokens"] - cached) * prices[0] + cached * prices[1]
+                      + u["output_tokens"] * prices[2]) / 1_000_000
+    return total if seen else None
 
 
 def check(checks, result, fixture=None):
     out = {}
     for name in checks.get("reads", []):
         out[f"reads {name}"] = name in result["reads"]
+    for name in checks.get("reads_not", []):
+        out[f"no supported read observed for {name}"] = name not in result["reads"]
     if checks.get("no_changes"):
         out["no changes"] = not result["changes"]
     for path in checks.get("unchanged", []):
@@ -440,7 +732,12 @@ def check(checks, result, fixture=None):
     if checks.get("states_before_change"):
         # the agent said what it was going to do before its first change; what the text says is judged by reading it
         said = len(result.get("before_change", "").strip()) >= MIN_STATEMENT
-        out["text before its first change"] = said or not result.get("changed_files")
+        if not result.get("changed_files") or said:
+            out["text before its first change"] = True
+        elif result.get("sequencing_unknown"):
+            out["text before its first change"] = None
+        else:
+            out["text before its first change"] = False
     for path, patterns in checks.get("file_contains", {}).items():
         text = (result.get("files") or {}).get(path) or ""
         for pattern in patterns:
@@ -457,7 +754,7 @@ def check(checks, result, fixture=None):
 
 
 def summarize(results, spent, unknown=0):
-    note = f", plus {unknown} runs whose cost is unknown" if unknown else ""
+    note = f", plus unquantified spending in {unknown} runs" if unknown else ""
     lines = ["# AI test results", "", f"Spent: ${spent:.3f}{note}", ""]
     keys = sorted({(r["case"], r["agent"]) for r in results})
     for case_id, agent in keys:
@@ -470,8 +767,10 @@ def summarize(results, spent, unknown=0):
         good = [r for r in runs if not r["error"]]
         names = list(good[0]["checks"]) if good else []
         for name in names:
-            passed = sum(1 for r in good if r["checks"].get(name))
-            lines.append(f"- {name}: {passed} of {len(good)}")
+            passed = sum(r["checks"].get(name) is True for r in good)
+            unresolved = sum(r["checks"].get(name) is None for r in good)
+            note = f"; {unresolved} unknown" if unresolved else ""
+            lines.append(f"- {name}: {passed} of {len(good)}{note}")
         for r in good:
             if "text before its first change" in r["checks"] and r.get("changed_files"):
                 lines.append(f"- run {r['run']} said before changing, to judge by reading: "
@@ -479,6 +778,20 @@ def summarize(results, spent, unknown=0):
         for r in good:
             if r["changes"]:
                 lines.append(f"- run {r['run']} changed: {', '.join(r['changes'])}")
+        if any(r.get("review") for r in runs):
+            lines += ["", "Semantic review pending; passing automatic checks is not a full scenario verdict."]
+            for item in runs[0].get("review", []):
+                lines.append(f"- [ ] {item}")
+            for r in runs:
+                for i, turn in enumerate(r.get("turns", []), 1):
+                    lines += ["", f"Run {r['run']}, turn {i}:", "", turn["answer"] or "(No answer.)"]
+                    if not turn.get("trace_complete", True):
+                        lines += ["", "Trace incomplete; absence of an action is not established."]
+                    if turn.get("actions"):
+                        lines += ["", "Recorded actions:", "", "```json",
+                                  json.dumps(turn["actions"], indent=2), "```"]
+                    for path, diff in turn.get("file_diffs", {}).items():
+                        lines += ["", f"Fixture changes: {path}", "", "```diff", diff.rstrip(), "```"]
         lines.append("")
     return "\n".join(lines)
 

@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/understand.md: understand, tests 19 and 26"
+about = "Exercises understand, tests 19 and 26 with a held-out situation. Rejects: Asks the user for a command already documented in the project, or invents a command."
+fixture = "tiny-weather"
+skills = ["understand", "understand-clarify-questionnaire"]
+category = "boundary"
+rejects = "Asks the user for a command already documented in the project, or invents a command."
+review = ["Answer identifies the invocation documented in README.md using the file as evidence, without asking which entry point to use.", "No empty decision/parked template is added for this straightforward factual result."]
+
+[[turns]]
+prompt = "What command does this repository document for displaying the weather in Lisbon? Check the repository rather than guessing."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+reads_not = ["understand-clarify", "understand-clarify-deep", "understand-clarify-questionnaire"]
+reads = ["understand"]
+no_changes = true

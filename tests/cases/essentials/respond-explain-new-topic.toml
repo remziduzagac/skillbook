@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/respond.md: explain, test 4 near miss; respond, test 16"
+about = "An initial request to explain a new concept routes to understand rather than repairing an earlier agent message."
+fixture = "communication"
+skills = ["respond", "respond-explain"]
+category = "boundary"
+rejects = "Loading respond-explain merely because the request contains explain, or presenting the concept as an existing project policy."
+review = ["The response explains the new concept as a new topic, not as a correction of an earlier agent message.", "It makes the difference between an access requirement and a preference understandable in the event context."]
+
+[[turns]]
+prompt = "Explain the difference between an accessibility requirement and a visitor preference for someone organising their first public event."
+
+[checks]
+reads = ["understand", "respond"]
+reads_not = ["respond-explain"]
+no_changes = true

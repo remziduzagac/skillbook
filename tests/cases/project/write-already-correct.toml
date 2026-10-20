@@ -1,0 +1,16 @@
+source = "blueprint/design/testing.md: project skill scenarios, test 5"
+about = "A requested invariant is already present in the skill. Rejects gratuitous edits made merely to produce a diff."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-write"]
+category = "boundary"
+rejects = "Changes unrelated wording or duplicates an unavailable-capability fallback that already exists."
+review = ["The agent checks the design and implementation, identifies that the requested fallback already exists and cites it.", "It leaves the unrelated spelling error alone and does not invent a failing baseline to justify a change."]
+
+[[turns]]
+prompt = "Ensure the fixture's explain skill says to continue with a response-only explanation when a capability is unavailable. If that instruction is present already, report its location and leave all files as they are."
+
+[checks]
+reads = ["skillbook-write"]
+no_changes = true
+answer_contains = ['explain\.md', 'response-only']

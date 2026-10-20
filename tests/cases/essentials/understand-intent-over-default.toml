@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: understand, test 28; clarify, tests 17 and 20"
+about = "Exercises understand, test 28; clarify, tests 17 and 20 with a held-out situation. Rejects: Chooses an audience silently because prose can be edited later, then writes the handout."
+fixture = "tiny-weather"
+skills = ["understand", "understand-clarify", "understand-clarify-shallow"]
+category = "boundary"
+rejects = "Chooses an audience silently because prose can be edited later, then writes the handout."
+review = ["The first response asks who the handout is for before drafting substantive content; reversibility does not transfer an intent decision to the agent.", "Any recommendation is identified as a recommendation rather than asserted as the actual audience."]
+
+[[turns]]
+prompt = "Create a one-page handout introducing this tool for our event next month. I have not told you who will attend."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+reads = ["understand-clarify", "understand-clarify-shallow"]
+no_changes = true

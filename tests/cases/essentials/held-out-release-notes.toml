@@ -1,6 +1,10 @@
 source = "blueprint/design/essentials/understand.md: clarify, rule 1"
 about = "Held out: a request with open choices, worded unlike any example in the skills, whose result is a document. Passes with a question that has a recommended answer and no change, or with the choices stated before the first change; the statement is judged by reading the summary. Rejects a change made with no statement before it."
 fixture = "tiny-weather"
+skills = ["understand-clarify", "respond"]
+category = "normal"
+rejects = "Invents release facts or silently chooses an audience."
+review = ["The agent searches for release evidence. If none is available, it says so and asks for the release scope or authoritative changes rather than inventing them. If evidence is found, it uses it and asks only the consequential choices the user has not settled."]
 
 [[turns]]
 prompt = "Write release notes for this version."

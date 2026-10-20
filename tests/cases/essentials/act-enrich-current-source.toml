@@ -1,0 +1,27 @@
+source = "blueprint/design/essentials/act.md: enrich, tests 1 and 8"
+about = "Missing setup guidance comes from the current project manifest rather than stale wiki material."
+fixture = "editorial"
+skills = ["act-rightsize", "act-rightsize-enrich"]
+category = "normal"
+rejects = "Adding npm and Python 3.8 setup guidance merely because the archived page has it."
+review = ["Before edits, proposes setup additions citing project.toml, identifies the archived setup as outdated, and excludes npm/Python 3.8 guidance. After approval, adds the current installation command and minimum Python version with traceable sources."]
+
+[[turns]]
+prompt = "README.md does not tell a new maintainer how to set Beacon up. Fill that gap using this project's actual setup requirements."
+
+[turns.checks]
+no_changes = true
+reads = ["act-rightsize-enrich"]
+
+[[turns]]
+prompt = "Yes, add the verified setup guidance you proposed."
+
+[turns.checks]
+changed = ["README.md"]
+
+[checks]
+reads = ["act-rightsize-enrich"]
+unchanged = ["project.toml", "legacy-wiki.md"]
+
+[checks.file_contains]
+"README.md" = ["python3 -m pip install \\.", "3\\.12", "offline reading bundle"]

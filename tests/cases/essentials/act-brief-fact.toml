@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/act.md: rightsize, tests 1 and 10"
+about = "A short factual answer keeps its evidence without irrelevant exposition."
+fixture = "editorial"
+skills = ["act", "act-rightsize"]
+category = "normal"
+rejects = "A lengthy handover or an unsupported time."
+review = ["States 16:30 directly with a BRIEF.md line citation; no unrelated visitor advice, preamble or offer."]
+
+[[turns]]
+prompt = "At what time does the exhibition stop admitting visitors, according to the brief?"
+
+[checks]
+reads = ["act", "act-rightsize"]
+no_changes = true
+answer_contains = ["16:30", "BRIEF\\.md"]

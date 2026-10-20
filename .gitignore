@@ -11,3 +11,6 @@ skills/*/.skillbook-install
 
 # Python bytecode from running the test runner.
 __pycache__/
+
+# Vim swap files.
+*.swp

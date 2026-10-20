@@ -1,0 +1,16 @@
+source = "blueprint/design/testing.md: project skill scenarios, test 1"
+about = "Review a small design whose routes disagree about a moving subset. Rejects approving it or silently rewriting it."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree"]
+skills = ["skillbook-tree"]
+category = "edge"
+rejects = "Approves overlapping routing conditions, reports no evidence, or edits the design during review."
+review = ["The review identifies that moving selected documents qualifies for both routes, cites the actual conflicting lines and proposes one general distinction.", "The reviewer uses the project checklist and reports coverage without implementing its proposed fix."]
+
+[[turns]]
+prompt = "Review the routing in blueprint/design/essentials/organize.md. Report supported findings and proposed fixes only."
+
+[checks]
+reads = ["skillbook-tree"]
+no_changes = true
+answer_contains = ['organize\.md', 'alpha', 'beta']

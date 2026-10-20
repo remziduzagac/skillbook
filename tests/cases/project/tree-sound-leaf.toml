@@ -1,0 +1,15 @@
+source = "blueprint/design/testing.md: project skill scenarios, test 2"
+about = "Review a leaf against its design without inventing a child section requirement. Rejects a speculative finding or changes made during review."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree"]
+skills = ["skillbook-tree"]
+category = "boundary"
+rejects = "Requires routing sections for a leaf or changes files as part of a review."
+review = ["The reviewer distinguishes the real spelling correction from checklist defects and does not require child-routing sections for a leaf.", "Any finding names an actual line and applicable check; missing external history is reported as a coverage limit, not invented."]
+
+[[turns]]
+prompt = "Review skills/essentials/references/respond/explain.md against its fixture design. It is a leaf with no children. Show any findings; change nothing."
+
+[checks]
+reads = ["skillbook-tree"]
+no_changes = true

@@ -1,6 +1,6 @@
 # Every check, the same way CI runs it. Tools: markdownlint-cli2 (through npx), lychee, ShellCheck, shfmt,
 # actionlint and zizmor.
-check: lint-markdown links lint-shell lint-workflows check-skills
+check: lint-markdown links lint-shell lint-workflows check-skills test-runner
 
 # Markdown style, with the rules in .markdownlint-cli2.jsonc.
 lint-markdown:
@@ -31,6 +31,14 @@ test-install:
 # AI test cases in throwaway homes, on small models by default; see tests/run.py --help. It asks before spending.
 test-agents *args:
     python3 tests/run.py {{args}}
+
+# Test the scenario runner and all case definitions without a model, account or network access.
+test-runner:
+    PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py'
+
+# Count executable normal, boundary and edge scenarios; this is not a model pass-rate report.
+test-coverage:
+    python3 tests/run.py --coverage
 
 # Link this working copy's sets into the folders agents read, for a machine where skills are edited.
 link:

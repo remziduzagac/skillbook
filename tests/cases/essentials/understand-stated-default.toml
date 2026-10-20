@@ -1,0 +1,20 @@
+source = "blueprint/design/essentials/understand.md: clarify, test 20; shallow, tests 1 and 11"
+about = "Exercises clarify, test 20; shallow, tests 1 and 11 with a held-out situation. Rejects: Asks the user to choose delegated reversible details, or silently chooses the cache policy."
+fixture = "tiny-weather"
+skills = ["understand", "understand-clarify", "understand-clarify-shallow"]
+category = "normal"
+rejects = "Asks the user to choose delegated reversible details, or silently chooses the cache policy."
+review = ["Before editing, the response states consequential cache choices such as expiry and scope.", "The agent chooses the reversible details delegated by the user and implements them without requesting an unnecessary approval.", "The cache avoids repeated successful fetches within its chosen lifetime without changing normal CLI output."]
+
+[[turns]]
+prompt = "Add a small in-process cache for successful weather lookups in api.py. Choose a reasonable short lifetime and other reversible details yourself; keep the command-line output the same."
+
+[turns.checks]
+changed = ["api.py"]
+states_before_change = true
+
+[checks]
+reads_not = ["understand-clarify-deep"]
+reads = ["understand-clarify", "understand-clarify-shallow"]
+changed = ["api.py"]
+states_before_change = true

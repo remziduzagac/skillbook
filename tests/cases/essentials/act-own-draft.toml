@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/act.md: lean, test 9; rightsize, test 9"
+about = "Shortening a draft made in this conversation needs no lean approval round."
+fixture = "editorial"
+skills = ["act-rightsize"]
+category = "boundary"
+rejects = "Treating the agent's fresh draft as a pre-existing document requiring approval."
+review = ["Turn 1 drafts a visitor notice from the given facts. Turn 2 supplies a shorter notice directly and keeps all three facts, without a proposal or approval question."]
+
+[[turns]]
+prompt = "Draft a visitor notice in about 90 words using BRIEF.md. Mention opening time, the accessible entrance and last admission. Keep it in this chat."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Reduce your notice to one short sentence, retaining those three details."
+
+[turns.checks]
+no_changes = true
+reads_not = ["act-rightsize-lean"]
+answer_contains = ["10:00", "east", "16:30"]
+
+[checks]
+reads = ["act-rightsize"]

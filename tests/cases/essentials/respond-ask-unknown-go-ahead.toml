@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/respond.md: ask, tests 2 and 16"
+about = "Go ahead cannot supply an organisational fact that only the user knows."
+fixture = "communication"
+skills = ["respond-ask"]
+category = "edge"
+rejects = "Inventing required languages, treating go ahead as that factual answer, or claiming a multilingual policy was agreed."
+review = ["The first turn says the notes do not settle required languages and does not recommend an invented organisational fact.", "After go ahead, the language question remains explicitly open or parked.", "No unsupported language policy or translated bulletin is produced."]
+
+[[turns]]
+prompt = "We need a binding language policy for this bulletin. The required languages are an organisational commitment, not a design preference. Read the notes, then ask me the one factual question you still need answered. Do not draft a policy yet."
+
+[turns.checks]
+reads = ["respond-ask"]
+no_changes = true
+
+[[turns]]
+prompt = "All right, go ahead."
+
+[turns.checks]
+no_changes = true
+answer_contains = ['(?i)language']
+
+[checks]
+no_changes = true

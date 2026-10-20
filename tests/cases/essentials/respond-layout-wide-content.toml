@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/respond.md: layout, tests 4 and 9"
+about = "Comparing options with substantial descriptions uses readable lists rather than a wide table."
+fixture = "communication"
+skills = ["respond-layout"]
+category = "normal"
+rejects = "A wide table, invented event policy, or a recommendation with no tradeoffs."
+review = ["The three approaches are presented as a list with readable supporting detail, not a table.", "Each option explains its different effect on capacity and visitor access.", "The recommendation is framed as a recommendation rather than an existing project decision."]
+
+[[turns]]
+prompt = "Compare timed entry, a morning-and-afternoon reservation system, and a waiting list for our open studio. Give a substantial description of the visitor experience and operational drawback for each, then recommend an approach. Use the project notes for context."
+
+[checks]
+reads = ["respond-layout"]
+no_changes = true
+answer_not_contains = ['(?m)^\s*\|.*\|\s*$']

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/respond.md: layout, test 16"
+about = "An explicit plain-text delivery format overrides Markdown presentation defaults."
+fixture = "communication"
+skills = ["respond-layout"]
+category = "boundary"
+rejects = "Sending headings, tables, code fences or emphasis markers into the specified plain-text channel."
+review = ["The output is ready to paste into the specified channel and contains the requested logistics and registration condition.", "It contains no explanation of formatting decisions or closing offer."]
+
+[[turns]]
+prompt = "Draft a short announcement from the project notes for an SMS gateway. Plain sentences only: no Markdown, heading, bullets, table, or emphasis markers. Include the date, opening hours, location, price, and registration requirement. Do not publish it."
+
+[checks]
+reads = ["respond-layout"]
+no_changes = true
+answer_contains = ['(?i)\b(14\s+Nov(?:ember)?|Nov(?:ember)?\s+14)\b', 'Harbor Hall']
+answer_not_contains = ['(?m)^\s*#{1,6} ', '(?m)^\s*[-*+] ', '```', '\*\*', '(?m)^\s*\|']

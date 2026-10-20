@@ -30,11 +30,14 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   - the agents it runs in;
   - the number of runs, 1 by default: a rule is covered by several different cases rather than by repeating one, since varied prompts show more for the same cost; a case is repeated only when it fails or its results disagree (D213);
   - whether the pointer is in the user's instruction file, yes by default;
+  - `skills`, the implemented skills whose behaviour or routing boundary it exercises; `category`, normal, boundary or edge; `rejects`, the plausible wrong behaviour;
+  - `review`, semantic acceptance criteria judged by the user or guiding agent; automatic success leaves these pending, and the summary includes each turn's answer for review;
+  - `project_skills`, the repository's own skills copied into the isolated agent skill folder for a project-skill exercise only, never added to the shipped set;
   - the checks a script can make from the event log, for the whole run under `[checks]`, or for one turn under `[turns.checks]`, judged on that turn's answer and changes (D216):
-    - the skills read, by name, for the whole run: a read counts only when it succeeded, that is, a read or skill tool call whose result is not an error, or a reading command such as `cat` or `sed` that exits 0; a path merely named, as by `echo` or `ls`, does not count;
+    - the skills read or not read (`reads`, `reads_not`), by name, for the run or one turn: a read counts only with a successful matching tool result or a supported reading command that exits 0; a path merely named, as by `echo` or `ls`, does not count; shell forms that can mask skipped or failed reads are left uncounted;
     - nothing changed in the toy project (`no_changes`), named files changed (`changed`), or named files left unchanged (`unchanged`);
     - a file that still holds given facts (`file_contains`) or got shorter (`shorter`);
-    - something said before the first change (`states_before_change`): the runner finds the first file change in the event log and checks that the agent said a plan of some length before it; what that text says is judged by reading the summary, which shows it (D218);
+    - something said before the first change (`states_before_change`): the runner combines file-state changes with event order and checks for a statement before the first definite or potential mutation; an opaque command whose timing cannot be established leaves this assertion unknown, never passing by assuming no change; what the statement says is judged by reading the summary (D218);
     - patterns the answer must or must not contain, the answer being everything the agent said in the turn, the last turn for the whole run.
 
     Whether a file was read whole or in part, and which tools ran, are not checked yet. Each case's `about` names the wrong behaviour it rejects, and a case is checked against a correct trace and a plausible wrong one before its result is trusted, as skillbook-write says (D217).
@@ -46,6 +49,18 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   5. checks the event log;
   6. writes a short summary.
 - **`tests/install-test.sh`:** the install tests. Each test copies `install.sh` and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched.
+- **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model. `just test-coverage` reports executable scenario counts, not observed success.
+- **Review evidence:** before deleting each sandbox, the runner retains per-turn fixture diffs, observed file contents requested by assertions, answers and an ordered action ledger of tool names, commands and target paths. Tool outputs and credential-home contents are not copied into that ledger. Failed or timed-out turns retain the evidence available, marked incomplete. A semantic criterion that cannot be established from the retained evidence stays unknown; raw events may be kept explicitly when needed.
+
+## Project skill scenarios
+
+The project skills have no shipped-set design sections. These scenarios apply their existing contracts, with small fixture drafts, without changing their rules:
+
+1. skillbook-tree reviews overlapping routes: it reports the actual conflicting lines and a general fix, changing nothing.
+2. skillbook-tree reviews a leaf: it applies the relevant checklist without inventing a requirement for child-routing sections.
+3. skillbook-write corrects one spelling error: it preserves the design and required fallback, changing nothing unrelated.
+4. skillbook-write finds a requested behaviour absent from the design: it proposes the design change through skillbook-tree before changing either file.
+5. skillbook-write finds the requested behaviour already present: it reports the evidence and leaves the files alone.
 
 ## The runner's rules
 
@@ -54,10 +69,11 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 - **Login:** an API key from the environment, or the user's own login copied into the throwaway home only when the user asks, and deleted afterwards.
 - **Cost:** the expected cost is printed before a run, with what the budget guarantees (D216):
   - no new run starts once known spending reaches the budget, so a run already started can pass it;
-  - each Claude call is also capped at the budget left, by `--max-budget-usd`;
+  - each Claude call is also capped at the budget left after completed calls, by `--max-budget-usd`; within one run, another Claude turn does not start when that remainder is exhausted or that run's cost became unknown; an unknown cost in an earlier run does not stop later runs, which are capped at the budget minus known spending;
   - Codex cost is estimated from its token counts and is not capped;
   - a model with no known price counts as unknown, not as zero, and the summary says how many runs had an unknown cost.
-- **Privacy:** event logs and credentials stay outside the repository and are deleted afterwards, unless the user asks to keep them. Only summaries are shown. What a run showed goes into the design's test result or an evidence entry, as skillbook-write says.
+  - a failed or timed-out call does not erase completed spending: known spending remains a lower bound, and any unquantified remainder is reported separately.
+- **Privacy:** raw event logs and credentials stay outside the repository and are deleted afterwards, unless the user asks to keep the logs. Local review summaries retain the fixture and action evidence described above, never the separate credential home or raw tool outputs. What a run showed goes into the design's test result or an evidence entry, as skillbook-write says.
 - **Judging:** scripts check behaviour. What only judgment can check, such as whether an explanation is clear, is judged by the agent that guides the run or by the user, and the result says which.
 - **Cases come from the designs' Tests lists,** which stay the source. A few are turned into cases first, starting with essentials.
 - **Test first for behaviour rules that are new, changed or failed:** the case is written and seen to fail before the wording changes, as skillbook-write says (D211).

@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/act.md: lean, tests 1 and 8"
+about = "Declining a proposed trim leaves the existing work untouched."
+fixture = "editorial"
+skills = ["act-rightsize", "act-rightsize-lean"]
+category = "edge"
+rejects = "Applying the trim despite an explicit refusal."
+review = ["Turn 1 identifies specific repetitions and proposes their removal without changing the file. Turn 2 acknowledges the refusal and makes no edits."]
+
+[[turns]]
+prompt = "Reduce repetition in BRIEF.md without losing any visitor information."
+
+[turns.checks]
+no_changes = true
+reads = ["act-rightsize-lean"]
+
+[[turns]]
+prompt = "No. Leave the handout exactly as it is."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+reads = ["act-rightsize", "act-rightsize-lean"]
+no_changes = true

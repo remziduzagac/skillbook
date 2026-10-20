@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/respond.md: ask, tests 1, 3 and 5"
+about = "A partial answer leaves the remaining decisions open instead of drafting around unaccepted recommendations."
+fixture = "communication"
+skills = ["respond-ask"]
+category = "edge"
+rejects = "Treating one answered question as acceptance of the others or writing the requested announcement prematurely."
+review = ["The first turn asks the three requested decisions, with recommendations only where justified.", "The second turn records that intended readers are neighbours, identifies tone and length as still open, and names the recommended answers that would be taken.", "The second turn ends with the remaining decisions and does not deliver the announcement."]
+
+[[turns]]
+prompt = "Before drafting our event announcement, ask me in text about exactly these three decisions, in this order: intended readers, tone, and length. Give a recommendation wherever the notes give you a reasonable basis. Do not draft yet."
+
+[turns.checks]
+reads = ["respond-ask"]
+no_changes = true
+
+[[turns]]
+prompt = "For the first question, the readers are neighbours within walking distance."
+
+[turns.checks]
+no_changes = true
+answer_contains = ['(?i)tone', '(?i)length']
+
+[checks]
+no_changes = true

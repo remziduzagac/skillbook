@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: understand, tests 18 and 21"
+about = "Exercises understand, tests 18 and 21 with a held-out situation. Rejects: Leaves investigative edits or presents an inferred network result as an observed fact."
+fixture = "tiny-weather"
+skills = ["understand"]
+category = "normal"
+rejects = "Leaves investigative edits or presents an inferred network result as an observed fact."
+review = ["The result distinguishes code inspection from observations of the real service, and marks anything that could not be verified.", "The response gives the investigation result and any next step without saving a report or modifying project files."]
+
+[[turns]]
+prompt = "Investigate whether passing a city containing spaces is handled correctly by this client. Do not fix it or contact the service; report what inspection can establish and what would still need a probe."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+reads = ["understand"]
+no_changes = true

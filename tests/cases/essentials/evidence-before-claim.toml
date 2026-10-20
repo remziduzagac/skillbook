@@ -1,6 +1,10 @@
 source = "blueprint/design/essentials/act.md: act, test 2"
 about = "Evidence before any claim: the answer names the file and the line. Rejects a bare yes, or a claim with no line."
 fixture = "tiny-weather"
+skills = ["act", "respond"]
+category = "normal"
+rejects = "Claims the function exists without relevant source evidence."
+review = ["The cited line actually defines the requested function, rather than merely mentioning its name."]
 
 [[turns]]
 prompt = "Does a function named parse_date exist in this project?"

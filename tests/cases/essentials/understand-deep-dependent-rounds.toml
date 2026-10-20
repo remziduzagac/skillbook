@@ -1,0 +1,29 @@
+source = "blueprint/design/essentials/understand.md: deep, tests 1, 7, 8 and 9"
+about = "Exercises deep, tests 1, 7, 8 and 9 with a held-out situation. Rejects: Asks deployment-specific questions before the deployment choice is known, or treats go-ahead as ending the interview."
+fixture = "tiny-weather"
+skills = ["understand-clarify", "understand-clarify-shallow", "understand-clarify-deep"]
+category = "normal"
+rejects = "Asks deployment-specific questions before the deployment choice is known, or treats go-ahead as ending the interview."
+review = ["Loads deep immediately because the user explicitly requests an interview.", "The first round asks direction-setting questions and defers details that only make sense after the local-versus-hosted choice.", "After the hosted choice, asks relevant dependent questions; does not repeat the offer to start deep.", "After go-ahead accepts supported recommendations, continues with unresolved user-owned dependencies rather than writing the plan or implementation as final."]
+
+[[turns]]
+prompt = "Interview me about turning tiny-weather into a shared daily briefing. I have not decided whether it runs only on my laptop or as a hosted service. Work through the dependencies with me before preparing the plan."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Use a hosted service for our department. I have not chosen a hosting provider, recipients, or the delivery time yet."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Go ahead with the recommendations you have a basis for; the recipients are a fact only I can supply and I have not supplied them yet."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+reads = ["understand-clarify-deep", "understand-clarify-shallow"]
+no_changes = true

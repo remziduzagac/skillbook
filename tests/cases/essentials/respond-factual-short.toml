@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/respond.md: respond, tests 2 and 12; layout, test 1 near miss"
+about = "A factual lookup needs a direct short answer without a closing question."
+fixture = "communication"
+skills = ["respond", "respond-layout"]
+category = "normal"
+rejects = "A long event summary, invented opening time, or unnecessary follow-up question."
+review = ["The first line gives 10:00 as the opening time.", "The answer stays focused on the requested fact and has no heading or closing question."]
+
+[[turns]]
+prompt = "Check the project notes: at what time do visitors start arriving for the open studio?"
+
+[checks]
+reads = ["respond", "respond-layout"]
+no_changes = true
+answer_contains = ['(?i)\b10(?::00|\s*a\.?m\.?)']
+answer_not_contains = ['(?m)^#{1,6} ', '\?']
