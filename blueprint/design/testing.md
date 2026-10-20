@@ -65,7 +65,7 @@ The project skills have no shipped-set design sections. These scenarios apply th
 ## The runner's rules
 
 - **Models:** small by default, Claude Haiku (`claude -p --model haiku`) and GPT-6 Luna (`codex exec -m gpt-6-luna`). A skill that works on a small model is clear, and small models are cheap enough for three or more runs a case. `--model` runs larger models, for example before a release.
-  - A failure only on a small model is a signal to look at, not a reason to change the skill at once. Text added for a small model costs every user tokens on every turn.
+  - A failure on one small model is noted, not acted on. When more than one model fails the same case, or a larger model fails it, the failure is looked into, what fails and why, before anything changes, since the cause is then likely the skill. Text added for one small model costs every user tokens on every turn. The summary flags a case that more than one model failed (D214).
 - **Login:** an API key from the environment, or the user's own login copied into the throwaway home only when the user asks, and deleted afterwards.
 - **Cost:** the expected cost is printed before a run, with what the budget guarantees (D216):
   - no new run starts once known spending reaches the budget, so a run already started can pass it;

@@ -2418,6 +2418,8 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 
 **Why:** D210 fixed "add caching to the API" with a caching example, and the case passed; a held-out prompt, "add logging to the tool", then failed in both agents (D212's after-run). Chasing each failing case would fill the skills with special cases that are read every session and still miss the next request. The user asked that skills stay generic, keep small-model support, and improve through changes that apply everywhere, such as varied examples. A "list the open choices before every request" step was weighed and not taken: it is general, but it adds work to every request to fix one kind of failure.
 
+> **Amended (2026-10-20):** the user set the threshold: a failure on one small model is noted and needs no action; when more than one model fails the same case, or a larger model fails it, what fails and why is looked into before anything changes. The runner's summary flags such cases.
+
 ## D215: Triggers and exits become tests the agent can apply, and the start files are trimmed (2026-10-20)
 
 > **Amended by D218 (2026-10-20):** respond's last instruction runs rule 7's check (a secret, a vulnerability detail, text the agent did not write, an irreversible action) on every response, however short; only the rest of the check scales with the response.

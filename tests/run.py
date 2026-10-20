@@ -763,6 +763,15 @@ def summarize(results, spent, unknown=0):
         whole = sum(not r["error"] and all(v is True for v in r["checks"].values()) for r in mine)
         lines.append(f"- {agent} ({model}): every automatic check passed in {whole} of {len(mine)} runs")
     lines.append("")
+    failing = {}
+    for r in results:
+        if r["error"] or not all(v is True for v in r["checks"].values()):
+            failing.setdefault(r["case"], set()).add(f"{r['agent']} ({r['model']})")
+    shared = {case: models for case, models in failing.items() if len(models) > 1}
+    if shared:
+        lines.append("Failed on more than one model, so worth looking into (one model alone is only noted):")
+        lines += [f"- {case}: {', '.join(sorted(models))}" for case, models in sorted(shared.items())]
+        lines.append("")
     keys = sorted({(r["case"], r["agent"]) for r in results})
     for case_id, agent in keys:
         runs = [r for r in results if r["case"] == case_id and r["agent"] == agent]
