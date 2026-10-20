@@ -7,7 +7,7 @@ Questions a part, or a whole plan, until what materially affects the agreed work
 1. **A question that depends on an unanswered one waits** for a later round, because that answer may change it. Each round asks what can be answered now. This is an order to ask in, with nothing to draw or keep.
 2. **Level by level:** at each new level inside the part, first see that level whole through `understand-clarify-shallow`, then go down. A skipped level leaves its parts assumed.
 3. **The user confirms the summary before anything is acted on.** The summary lists what is decided, parked, accepted and assumed, with parked and assumed as `respond-ask` defines them.
-   - If the user stops early, every open question goes into the summary as an assumption, and you show the summary before acting.
+   - If the user stops early, take each open question as `respond-ask` says: assumed with its recommended answer, or parked where it has none. A fact only the user knows stays parked; never supply it. A proposal is never assumed. Show the summary before acting.
    - Where the user tells you to start the work, such as "enough questions, just build it", showing the summary is enough, because nothing assumed is then acted on unseen.
    - "Go ahead" is not that: it accepts the current round's recommended answers, and the questioning goes on.
 4. **Never record unasked:** recording writes to the project, and the `act` skill's rule is to do exactly what was asked.

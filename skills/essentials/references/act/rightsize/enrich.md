@@ -17,7 +17,7 @@ Adds what is missing to something that exists: it answers what its reader would 
 ## Instructions
 
 1. **Find the reader,** and what the thing is for.
-2. **Find what the reader would still ask** by reading as that reader would. If the `authoring` skill is in your skill list, load it, then read its `reader` skill (`references/reader.md` in its folder). Otherwise, list the questions a newcomer would ask.
+2. **Find what the reader would still ask** by reading as that reader would. If the `authoring` skill is in your skill list, load it, then read its `reader` skill (`references/reader.md` in its folder). Otherwise, list what this reader would still need to understand or act.
 3. **Find each answer,** by rule 2:
    - the project's files first;
    - the user, through `respond-ask`, when only they know, such as which versions are supported;

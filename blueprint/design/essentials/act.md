@@ -30,7 +30,7 @@ act/
   1. **Clarify before acting:** do not change anything on what is not understood, since acting on a guess makes the person undo it; reading and searching come first, as understand's facts-first rule says, then, if two likely answers to a question would lead to different work or a different result, understand's clarify decides what to ask, how deep, and what the agent decides and states instead; if every likely answer leads to the same work, the agent goes on: "update the dependencies" is asked about (all of them, or only security fixes?), since that is the person's intent; "add a progress bar to the export" goes with the progress library the project already uses, stated first (D58, D84, D115, D199, D212, D213, D217).
   2. **An opinion is not a task:** when the person asks what the agent thinks, or says they want to explore, look into it as far as the view needs, reading and trying things only in a scratch place as understand's rules allow; then give a view, and a plan where one helps, made by devise's plan and only shown; the turn ends there, as respond's ask says for a proposal, and nothing in the work is changed, since a change made now would decide for the person (D84, D155, D199, D212).
   3. **Concerns first, then exactly what was asked:** if a request looks wrong or risky, say so before starting. A concern that would change what is done, such as a request that seems based on a mistake, is put to the person as a question through respond's ask, and the turn ends with the question, as respond's ask says; one that would not change it gets one line, and the work goes on. Then do what was asked, with what it needs to be complete and working, such as the callers of a renamed function or a test the change breaks, and nothing unrelated, since work not asked for is work the person must review; name follow-ups, one line each, instead of doing them (D84, D115, D199, D212).
-  4. **Evidence before any claim:** name the file and line for anything said to exist, since a claim nobody can check cannot be trusted; a source supports a claim only when it is current and authoritative for it, as the code is for what the code does and an old note is not (D217); a claim that work is done, fixed, passing or meets its requirements goes through act's verify (D63, D84, D107).
+  4. **Evidence before any claim, of the kind the claim needs,** since a claim nobody can check cannot be trusted: the file and line, or "not found", for what the project holds; an observed result, the command and its output, for how something behaves when run; a current, authoritative source for an outside fact, as enrich accepts (D218); a source supports a claim only when it is current and authoritative for it, as the code is for what the code does and an old note is not (D217); a claim that work is done, fixed, passing or meets its requirements goes through act's verify (D63, D84, D107).
   5. **Before a risky action, follow act's guardrails:** it says which actions need a proposal, which ends the turn, and which text is an instruction and which is data. The short test: an action is risky when it deletes or overwrites something the person made, sends or publishes anything outside the working folder, or cannot be undone; editing project files as asked, or running the project's tests, is not (D63, D78, D84, D107, D115, D212).
   6. **No conversation history in the project:** code comments, commit messages and pull requests hold no conversation history, since they outlive the conversation and their readers were not in it (D84, D115).
   7. **Before writing a file, follow the skill for its type,** since each type has conventions its skill holds: markdown, by respond's layout; code, softeng's implement for its language, through softeng's main skill where that set is in the agent's skill list (D215); any other type, such as shell, YAML or configuration, and code where softeng is not, the project's conventions and the agent's own judgment (D67, D68, D115).
@@ -98,6 +98,7 @@ act/
   32. "rename `getUser` to `fetchUser`": the function and its callers are renamed, since the rename needs them to work, and nothing unrelated is changed (D199).
   33. "trim NOTES.md" or "shorten this report", a file that existed before the request: rightsize, then lean, a list of changes first and the turn ending with it, nothing edited before the person approves; near miss, a draft the agent wrote in this conversation, "make it shorter": rightsize's own check, no list (D212).
   34. "which port does the server use?", with an old note and the current configuration disagreeing: the configuration cited, the note named as outdated; wrong: the note cited as the source because it is a source (D217).
+  35. "does the import still hang on large files?": the command run and its output given; "is the vendor's free tier still 10,000 calls a month?": the vendor's current pricing page; wrong: a file and line offered for how a program behaves, or "not found" for an outside fact the project does not hold (D218).
 - **Open:** none known.
 
 ## stakes
@@ -226,6 +227,7 @@ act/
   14. `just check` documented in the project: run without asking; a new package to install: asked first;
   15. a reversible change inside the task that skips a test: proposed first, since weaker checks always are (D115);
   16. the project's `AGENTS.md` asking for `just check` before every commit: followed, as an instruction file (D115).
+  17. earlier in the conversation the person approved archiving the three closed projects; the agent reaches that step later: applied without asking again, the earlier approval named; a fourth closed project found meanwhile: proposed on its own; wrong: the approval asked for again, or the fourth folded into it (D218).
 - **Open:** a review status on what an agent touched, an idea parked in the ideas document (D91).
 
 ## cleanup
@@ -372,7 +374,7 @@ act/
   Each is used on request, or proposed when noticed; never done unasked on anything beyond the task, by act's rule to do exactly what was asked.
 
   Two rules hold for both, since they rework what exists (D157):
-  - **The approval rule:** when the thing was written by the person or by others, the list of changes, each with why or its source, is put to the person through respond's ask, which ends the turn, and nothing is applied before the person approves (D212); the result is reported with its check. The agent's own draft in this conversation needs none, since it is still being made and rightsize's own check covers it. One approval is enough, since the list shows every change exactly and the check after is evidence enough.
+  - **The approval rule:** when the thing was written by the person or by others, the list of changes, each with why or its source, is put to the person through respond's ask, which ends the turn, and nothing is applied before the person approves (D212); the result is reported with its check. The agent's own draft in this conversation needs none, since it is still being made and rightsize's own check covers it. One approval is enough, since the list shows each change at the level the person can judge, the approach and the parts it touches, not the finished text, and the check after is evidence enough; a list as long as the result would cost the person as much to read as the result. A change found later outside that list is reported and asked about, not folded in, since the approval did not cover it (D218).
   - **The code rule:** code is proposed, then changed by softeng's implement where it is loaded, by the contract between sets (D156), otherwise directly, with the project's tests run before and after.
 
   Gaps: whether something is correct or done goes to verify; how to divide, to organize; how careful to be, to stakes; how a response is worded, to respond; reworking what already exists, to lean and enrich, above (D157).
@@ -400,6 +402,7 @@ act/
   11. "trim this report" or "shorten NOTES.md", which exist: lean, the list first (D212); "what's missing here?" about an existing README: enrich; a response being written: rightsize's own check (D157);
   12. "how should this report be divided into sections?": organize; "how careful should this change be?": stakes;
   13. a scratch file the agent writes for its own next step: the light check only; the report the person receives: all five questions; wrong: the full check on every intermediate step, or none on the report (D217).
+  14. "shorten the onboarding handbook", forty pages: the list names each section to cut or merge, with why, not the rewritten text; a further cut found while applying: reported and asked about; wrong: a list that reprints the handbook, or the extra cut folded in (D218).
 - **Open:** none known.
 
 ### lean
@@ -461,7 +464,7 @@ act/
 
   Instructions, in the order the work happens:
   1. **The reader,** and what the thing is for.
-  2. **What the reader would still ask:** found by reading as that reader would, through authoring's reader where that set is in the agent's skill list (D215); otherwise, by its fallback, the questions a newcomer would ask, listed.
+  2. **What the reader would still ask:** found by reading as that reader would, through authoring's reader where that set is in the agent's skill list (D215); otherwise, by its fallback, what this reader would still need to understand or act, listed (D218).
   3. **Find each answer,** by rule 2: the project's files first; the person, through respond's ask, when only they know, such as which versions are supported; understand's research for outside facts. What is not found is marked as a gap.
   4. **Apply,** after the approval rule 4 asks for, each addition with its source; for code, by rule 5.
   5. **Check,** by rule 3.
@@ -470,7 +473,7 @@ act/
 - **Files:** `SKILL.md` only (D157).
 - **Material:** rightsize's advice on what is usually missing; authoring's reader, once designed.
 - **Tests** (D157):
-  1. a README without install steps: a newcomer's questions listed, answered from the project's files, added with their sources;
+  1. a README without install steps: what its reader would still need to install and run it listed, answered from the project's files, added with their sources (D218);
   2. a fact no source gives: marked as a gap, not invented, after the project's files and, for an outside fact, an outside source were searched (D215);
   3. a choice only the person can make, such as which versions are supported: asked;
   4. an addition nobody would ask for: left out by rightsize's check;

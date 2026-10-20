@@ -523,6 +523,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 > **Amended by D199 (2026-10-18):** when the person stops early and has already said to go on, the summary with its assumptions is shown before acting, and showing it is enough; before the answers, reading and work no answer would change go on.
 >
 > **Amended by D217 (2026-10-20):** deep questions until what materially affects the agreed work is resolved, and lists the rest as assumptions, rather than until nothing is left assumed.
+>
+> **Amended by D218 (2026-10-20):** when the person stops early, deep takes each open question as respond's ask defines it: assumed with its recommended answer, or parked where it has none, such as a fact only the person knows, which the agent never supplies; a proposal is never assumed.
 
 **Decision:** The behaviour first known as grilling lives in three places, each holding one part:
 
@@ -848,6 +850,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 > **Amended by D199 (2026-10-18):** clarify before acting forbids changing anything on what is not understood, reading and searching coming first; an opinion is looked into as far as the view needs, only in a scratch place, with a plan where one helps; exactly what was asked includes what it needs to be complete and working, such as the callers of a renamed function, and nothing unrelated.
 
 > **Amended by D212 (2026-10-20):** the rules that waited now end the turn through respond's ask (an opinion, a concern, a risky action, repeated failures); clarify's test and its boundary pair are in the first rule; a risky action is one that deletes or overwrites something the user made, sends or publishes anything outside the working folder, or cannot be undone, and editing project files as asked or running the project's tests is not; the rightsize routing line leads with "trim" and "shorten" for something that existed before the request.
+>
+> **Amended by D218 (2026-10-20):** the fourth rule asks for evidence of the kind the claim needs: the file and line, or "not found", for what the project holds; the command and its output for how something behaves; a current, authoritative source for an outside fact.
 
 **Decision:** act holds eight rules, each with one short example, all in `SKILL.md`: clarify before acting, through understand's clarify, leaning towards it (when in doubt whether to ask, ask; when in doubt how deep, go deep); an opinion is not a task (asked what the agent thinks, or told the person wants to explore, it gives a view and a plan, then waits); concerns first, then exactly what was asked, with follow-ups named rather than done; evidence before any claim (the file and line for what is said to exist, the result before "done"); propose before anything that cannot be undone; nothing from the conversation goes into the project (comments, commits, pull requests); follow the skill for a file's type before writing it; reach a skill by its route. guardrails holds the details behind the proposing rule: never delete without confirmation, ask before changes across many files, an edit scope, plan then apply for bulk edits, a checkpoint first. Six tests check it.
 
@@ -1216,6 +1220,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 > **Amended by D210 (2026-10-20):** clarify's rule to ask only what would change the work gets a test: if two likely answers would lead to different work or a different result, ask, whatever the result is; shallow's wait ends the turn with the questions, and the agent does not answer them itself.
 >
 > **Amended by D217 (2026-10-20):** shallow asks the smallest round that sets the level's direction, later questions when their answers become needed; deep resolves what materially affects the agreed work and lists the rest.
+>
+> **Amended by D218 (2026-10-20):** shallow's "going with" sums up the decisions the work rests on, the assumptions taken and what is still open; an answer the person just gave is not said back unless it needed reading, and minor choices are left out.
 
 **Decision:** clarify is designed with its three parts ([design/understand.md](design/essentials/understand.md)).
 
@@ -1816,6 +1822,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 > **Amended by D212 (2026-10-20):** "trim X" or "shorten X", for something that existed before the request, goes to lean, which lists the changes first; the list is put through respond's ask, which ends the turn; lean's listing is delegated unless the agent is itself delegated; enrich's check that an addition is true is its source, a file and line, or the command or page that shows it.
 
 > **Amended by D215 (2026-10-20):** lean keeps a repeat in one home inside the one thing being trimmed, while a repeat across files is organize's; its listing is delegated when the thing is more than one read can take whole; enrich marks a gap only after searching the project's files and, for an outside fact, an outside source.
+>
+> **Amended by D218 (2026-10-20):** the approval list shows each change at the level the person can judge, the approach and the parts it touches, not the finished text, and a change found later outside it is reported and asked about, not folded in; enrich's fallback lists what this reader would still need to understand or act, not what a newcomer would ask.
 
 **Decision:**
 
@@ -2140,6 +2148,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D196: skillbook-write stands on its own, and a plain skill file opens with its name (2026-10-18)
 
+> **Amended by D218 (2026-10-20):** skillbook-write copies word for word only the text a rule requires word for word, such as the name rule; the other shared rules are pointed to.
+
 **Decision:** skillbook-write is a short project skill of its own, `.agents/skills/skillbook-write/SKILL.md`, not built over the harness's `skill-creator`; the useful ideas of `skill-creator` and of the other writing guides are adapted in its own words. It holds only writing advice: how a design becomes a skill's files, the head of a plain skill file, about 100 lines per file (D195), testing through the harness, and the last checks. Locations and shared rules, where sets and designs live, the name rule, a parent that only routes and the checklist, it takes from skillbook-tree; it names no path, tool or command of its own, so a change to the layout or a rule is made once, where it lives. A plain skill file opens with a `#` heading holding its dashed name, and one line saying what it does, then a `Needs:` line, naming a capability and the fallback without it, only when the skill needs one; when to use it, when not and what it gives back stay in its parent's line. A main skill keeps its frontmatter, with `compatibility` for what it needs. The check script compares a plain file's heading with the name its path gives. The layout of `tests/` is settled with the baseline's first test.
 
 **Why:** a comparison of the two `skill-creator` versions, Anthropic's (485 lines, which Claude Code gets as a skill synced from the account) and Codex's built-in one (229 lines), found them at odds with skillbook's rules on most points that matter: `SKILL.md` up to 500 lines against about 100 per file, "pushy" descriptions holding every "when to use" against a parent's line for each child, flat examples with the entry file holding content, no name rule, a Codex validator that rejects `compatibility` and a scaffolder that writes the settings file of a hidden skill, and test runners that hand the skill's path to the agent, so they never test the installed skill being found; what is left, general writing advice and a run without the skill to compare against, fits in a few lines. Both are Apache 2.0, so ideas rewritten in skillbook's words need no notice. The person asked that skillbook-write not refer to the design folder directly but stay general enough to survive changes. The head repeats nothing: the agent reads the parent first, top-down, so its line for the child is already in view, and one home for each fact is the checklist's rule.
@@ -2335,6 +2345,8 @@ The kept logs are in `/tmp/skillbook-test-results/inv-*/`, a summary in each. Th
 
 ## D211: Skills use testable triggers, narrow exits and boundary examples, written test-first (2026-10-20)
 
+> **Amended by D218 (2026-10-20):** a file is named by its path where the agent opens it directly, such as a start file the main skill reads; inside a set, a call names a skill by its name, which the name rule turns into its file.
+
 **Decision:** every skill follows six lessons from D210. The first three are design checks, the last three are writing rules.
 
 - **A trigger is a test, not a judgment word.** "When not clear" lets the agent decide in favour of acting. A test it can apply does not: "if two likely answers would lead to different work or a different result, ask". This is skillbook-tree's check 13.
@@ -2363,6 +2375,8 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 > **Tested (2026-10-20):** the AI test runner (`tests/run.py`), small models, 3 runs each, before the fix. "Delete the old files." (case `essentials/propose-before-deleting`): 6 of 6 proposed and deleted nothing. "Trim NOTES.md." (case `essentials/trim-lists-first`): 4 of 6 listed the changes first; 2 edited the file directly without loading `act-rightsize-lean` (Claude Haiku 1 of 3, GPT-6 Luna 1 of 3). "Rename the parse_date function to parse_iso_date." (case `essentials/edit-is-not-risky`, the near miss): 6 of 6 renamed it in `utils.py` and `api.py` without a proposal. Earlier: "Add caching to the API." passes 7 of 7 after D210. After (2026-10-20, with D213's varied examples in place; Claude Haiku and GPT-6 Luna, 3 runs each): propose-before-deleting 6 of 6; trim-lists-first 6 of 6, up from 4 of 6; edit-is-not-risky, the near miss, 6 of 6; opinion-not-a-task 6 of 6; evidence-before-claim 5 of 6, the miss skipping three start files. Asking regressed: "add caching to the API" 2 of 3 in Claude and 0 of 3 in Codex, down from 7 of 7 after D210, once the caching example left the start files; the held-out "add logging to the tool" 0 of 6 and "write release notes for this version" 2 of 6, while "archive the old data" passed 5 of 6. So D210's pass rested partly on its example, and the test for whether to ask does not yet move agents on "add X" requests; D214 says how such results are used.
 
 > **Amended by D217 (2026-10-20):** the one test for whether to ask gains who decides: of the choices that would change the result, the user's (intent, taste, anything hard to undo, what only they know) are asked, and the rest are made and stated in a "going with" line before the work; shallow takes a likely value for a choice that is the agent's and states it, rather than asking it.
+>
+> **Amended by D218 (2026-10-20):** when the harness's question tool returns the user's answers within the same turn, the agent goes on with the work those answers settle; an empty or cancelled result is no answer, and never an approval.
 
 **Decision:** the first batch of fixes from a review of essentials against D211, for behaviour that can cause harm. Each is in the design and the skill files.
 
@@ -2399,6 +2413,8 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 **Why:** D210 fixed "add caching to the API" with a caching example, and the case passed; a held-out prompt, "add logging to the tool", then failed in both agents (D212's after-run). Chasing each failing case would fill the skills with special cases that are read every session and still miss the next request. The user asked that skills stay generic, keep small-model support, and improve through changes that apply everywhere, such as varied examples. A "list the open choices before every request" step was weighed and not taken: it is general, but it adds work to every request to fix one kind of failure.
 
 ## D215: Triggers and exits become tests the agent can apply, and the start files are trimmed (2026-10-20)
+
+> **Amended by D218 (2026-10-20):** respond's last instruction runs rule 7's check (a secret, a vulnerability detail, text the agent did not write, an irreversible action) on every response, however short; only the rest of the check scales with the response.
 
 **Decision:** the second batch of fixes from the review of essentials against D211, each a pattern fixed in general, in the design and the skill files; and the four start files trimmed.
 
@@ -2445,6 +2461,8 @@ No AI test was run for this batch.
 
 ## D217: Project-skill checks from two reviews, four general patterns, and smaller fixes (2026-10-20)
 
+> **Amended by D218 (2026-10-20):** in who decides, where a choice fits both sides the user's wins, and how easy it is to undo decides only the choices the user left to the agent; easy to undo means the consequences of acting can be undone, not only the file; "going with" states the choices the result rests on, not every minor one.
+
 **Decision:**
 
 - **skillbook-tree:**
@@ -2469,3 +2487,27 @@ No AI test was run for this batch.
 No AI test was run for this batch.
 
 **Why:** two outside reviews of essentials and the project skills. The user asked that the solutions stay general, so each pattern became one rule with one home, applied wherever it appears, not a fix for each finding (D214).
+
+## D218: Shared terms used fully, mandatory checks never skipped, overlapping categories ordered (2026-10-20)
+
+**Decision:** fixes from a third outside review of essentials and the project skills, each a general rule applied where the review found it, in the design and the skill files.
+
+- **A rule that uses another skill's terms uses them fully, or states its exception and why** (skillbook-tree's check 3, "shared terms"). Applied in deep: when the user stops early, each open question is taken as `respond-ask` defines it: assumed with its recommended answer, or parked where it has none, such as a fact only the user knows, which the agent never supplies; a proposal is never assumed.
+- **A light or proportional path never skips a mandatory check** (check 13, "proportion"). Applied in respond's last instruction: rule 7's check, for a secret, a vulnerability detail, text the agent did not write or an irreversible action, runs on every response; only the rest of the check scales.
+- **Overlapping categories say which wins** (check 2, "overlaps ordered"; check 13, "who decides"). Applied in understand's rule on who decides, the categories' one home: where a choice fits both sides, the user's explicit intent and preferences win, and how easy a choice is to undo decides only the choices the user left to the agent; easy to undo means the consequences of acting can be undone, not only that the file can be edited again, since a reversible change can still send messages, migrate data or reach users; "going with" states the choices the result rests on, not every minor one. Clarify's first rule, which holds the test, and ask's first rule point to that rule instead of listing the categories again. The main skill's and shallow's examples of a stated choice became consequential ones: how often a new sync job runs, and how many rows a new list view shows per page.
+- **Paired tests follow a moved boundary** (check 2): shallow's test 1 and plan's test 1 no longer require a question for every choice; they accept a question or a "going with" line, by who decides.
+- **Evidence fits the claim** (check 11, "evidence quality"): act's rule 4 asks for the file and line, or "not found", for what the project holds; the command and its output for how something behaves; a current, authoritative source for an outside fact, as enrich already accepts.
+- **What an approval covers:** rightsize's approval list shows each change at the level the user can judge, the approach and the parts it touches, not the finished text, since a list as long as the result costs as much to read; a change found later outside the list is reported and asked about, not folded in.
+- **A question tool that returns answers:** when the harness's question tool returns the user's own answers within the turn, the agent goes on with the work those answers settle; an empty or cancelled result is no answer, and never an approval. It is a stated variation inside ask's rule on ending the turn.
+- **Smaller wording fixes:** enrich's fallback lists what this reader would still need to understand or act, not what a newcomer would ask; shallow's "going with" sums up the decisions, the assumptions and what is still open, and does not repeat an answer the user just gave unless it needed reading.
+- **skillbook-write:** only text a rule requires word for word, such as the name rule, is copied word for word; other shared rules are pointed to. A file is named by its path where the agent opens it directly, such as a start file; inside a set, a call names a skill, and the name rule turns it into its file.
+- **skillbook-tree's navigation:** checks 2, 3, 5, 7 and 12 are split into short named sub-points, and check 11's "checks" into "checks" and "evidence quality", so each rule is easy to find; no rule moved and no check was added.
+- **Tests:** design tests are added or widened in essentials (27, a compound request), understand (28; shallow 1 and 13; deep 13; questionnaire 9, a return cycle), act (35; rightsize 14; enrich 1; guardrails 17, an earlier approval recognised later), respond (15; ask 19; explain 5) and devise (plan 1). Layout's test for a plain-text destination and a user who asks for no headings already existed (layout 16), so none was added.
+- **The start files** go from 23,524 to 23,523 characters: the additions were paid for by trimming a repeated example, a restated pointer and long lists, nothing a rule requires cut.
+
+No AI test was run for this batch.
+
+**Why:** a third outside review of essentials and the project skills found a rule that borrowed another skill's terms in part, a light path that skipped a check another rule requires, categories that overlapped with no order, and tests and wording that lagged the boundary D217 moved. The user asked that the solutions stay general, so each finding became a general rule with one home, applied where the review found it (D214).
+
+> **Amended by the main agent's follow-up (2026-10-20), within D218:** shallow's decline path now treats open questions as respond's ask does when the user stops (taken with a recommended answer, parked without one, nothing only the user knows supplied), the same shared-terms fix as deep's; understand's "make minor choices quietly, and say the reason" now reads "without a 'going with' line; give the reason if the user asks"; clarify's caching example became "add retries to the API client", so "add caching to the API" is a held-out prompt in every test.
+

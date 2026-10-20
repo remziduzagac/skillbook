@@ -33,6 +33,8 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   - the checks a script can make from the event log, for the whole run under `[checks]`, or for one turn under `[turns.checks]`, judged on that turn's answer and changes (D216):
     - the skills read, by name, for the whole run: a read counts only when it succeeded, that is, a read or skill tool call whose result is not an error, or a reading command such as `cat` or `sed` that exits 0; a path merely named, as by `echo` or `ls`, does not count;
     - nothing changed in the toy project (`no_changes`), named files changed (`changed`), or named files left unchanged (`unchanged`);
+    - a file that still holds given facts (`file_contains`) or got shorter (`shorter`);
+    - something said before the first change (`states_before_change`): the runner finds the first file change in the event log and checks that the agent said a plan of some length before it; what that text says is judged by reading the summary, which shows it (D218);
     - patterns the answer must or must not contain, the answer being everything the agent said in the turn, the last turn for the whole run.
 
     Whether a file was read whole or in part, and which tools ran, are not checked yet. Each case's `about` names the wrong behaviour it rejects, and a case is checked against a correct trace and a plausible wrong one before its result is trusted, as skillbook-write says (D217).

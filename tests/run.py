@@ -223,7 +223,10 @@ def run_one(case, agent, n, args, out_dir, budget_left):
         result["reads"] = sorted(skills_read(agent, events, home, case["set"]))
         result["changes"] = changes(before, snapshot(work))
         result["answer"] = last_answer(agent, events[-1])
-        result["checks"] = {**turn_checks, **check(case["checks"], result)}
+        result["before_change"], result["changed_files"] = text_before_change(agent, events)
+        result["files"] = {path: (work / path).read_text(errors="replace") if (work / path).is_file() else None
+                           for path in set(case["checks"].get("file_contains", {})) | set(case["checks"].get("shorter", []))}
+        result["checks"] = {**turn_checks, **check(case["checks"], result, case["fixture"])}
     except subprocess.TimeoutExpired:
         result["error"] = f"a turn took longer than {args.timeout} seconds"
     finally:
@@ -363,6 +366,34 @@ def reads_in_command(command, set_name):
     return found
 
 
+MIN_STATEMENT = 80  # characters of text before the first change; less is a preamble, not a stated plan
+WRITE_TOOLS = {"Edit", "Write", "MultiEdit", "NotebookEdit"}
+WRITER = re.compile(r"(?:^|[\s;&|('\"])(?:rm|mv|cp|mkdir|touch|tee|truncate|ln|apply_patch)\s|sed\s+-i|(?<![0-9&])>\s*[^&\s]|"
+                    r"git\s+(?:mv|rm|commit|apply|checkout|restore)\b")
+
+
+def text_before_change(agent, events):
+    """What the agent said before its first change to files, and whether it changed any; the event order decides."""
+    said = []
+    for e in (e for turn in events for e in turn):
+        if agent == "claude" and e.get("type") == "assistant":
+            for block in e["message"].get("content", []):
+                if block.get("type") == "text":
+                    said.append(block.get("text", ""))
+                elif block.get("type") == "tool_use" and (
+                        block["name"] in WRITE_TOOLS
+                        or block["name"] == "Bash" and WRITER.search(block["input"].get("command", ""))):
+                    return "\n\n".join(said), True
+        if agent == "codex" and e.get("type") in ("item.started", "item.completed"):
+            item = e["item"]
+            if e["type"] == "item.completed" and item.get("type") == "agent_message":
+                said.append(item.get("text", ""))
+            elif item.get("type") == "file_change" or (
+                    item.get("type") == "command_execution" and WRITER.search(item.get("command", ""))):
+                return "\n\n".join(said), True
+    return "\n\n".join(said), False
+
+
 def expand_braces(text):
     """Expands shell braces one level, as in references/{act,respond}.md, so each file is seen by name."""
     brace = re.compile(r"([^\s'\"{}]*)\{([^{}\s]*,[^{}\s]*)\}([^\s'\"{}]*)")
@@ -396,7 +427,7 @@ def cost(agent, model, events):
     return total
 
 
-def check(checks, result):
+def check(checks, result, fixture=None):
     out = {}
     for name in checks.get("reads", []):
         out[f"reads {name}"] = name in result["reads"]
@@ -406,6 +437,18 @@ def check(checks, result):
         out[f"unchanged {path}"] = not any(c.split(" ", 1)[1] == path for c in result["changes"])
     for path in checks.get("changed", []):
         out[f"changed {path}"] = any(c.split(" ", 1)[1] == path for c in result["changes"] if c.startswith("changed "))
+    if checks.get("states_before_change"):
+        # the agent said what it was going to do before its first change; what the text says is judged by reading it
+        said = len(result.get("before_change", "").strip()) >= MIN_STATEMENT
+        out["text before its first change"] = said or not result.get("changed_files")
+    for path, patterns in checks.get("file_contains", {}).items():
+        text = (result.get("files") or {}).get(path) or ""
+        for pattern in patterns:
+            out[f"{path} keeps /{pattern}/"] = bool(re.search(pattern, text, re.IGNORECASE))
+    for path in checks.get("shorter", []):
+        text = (result.get("files") or {}).get(path)
+        original = (FIXTURES / fixture / path).read_text() if fixture else ""
+        out[f"{path} shorter"] = text is not None and len(text) < len(original)
     for pattern in checks.get("answer_contains", []):
         out[f"answer has /{pattern}/"] = bool(re.search(pattern, result["answer"], re.IGNORECASE))
     for pattern in checks.get("answer_not_contains", []):
@@ -429,6 +472,10 @@ def summarize(results, spent, unknown=0):
         for name in names:
             passed = sum(1 for r in good if r["checks"].get(name))
             lines.append(f"- {name}: {passed} of {len(good)}")
+        for r in good:
+            if "text before its first change" in r["checks"] and r.get("changed_files"):
+                lines.append(f"- run {r['run']} said before changing, to judge by reading: "
+                             + " ".join(r["before_change"].split())[:300])
         for r in good:
             if r["changes"]:
                 lines.append(f"- run {r['run']} changed: {', '.join(r['changes'])}")

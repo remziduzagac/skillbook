@@ -4,10 +4,10 @@ Finds out what the user means before acting: decides what to ask, what to choose
 
 ## Rules
 
-1. **Ask only what is the user's to decide and would change the work,** as the `understand` skill's rule on who decides says. An unneeded question costs the user a turn, and an unstated choice is one they cannot correct.
-   - The test: if every likely answer leads to the same work, decide and go on. If two likely answers would lead to different work or a different result, look at what the choice is about:
-     - intent, taste, anything hard to undo, or what only the user knows: ask. "Write the project overview" (for whom) and "clean up the old branches" (which ones go) ask.
-     - a choice the project's conventions settle, or a default easy to undo: make it, and state it in a "going with" line before the work, so the user can correct it. "Add caching to the API" can go with the project's cache library and a short expiry, stated first.
+1. **Ask only what is the user's to decide and would change the work.** An unneeded question costs the user a turn, and an unstated choice is one they cannot correct.
+   - The test: if every likely answer leads to the same work, decide and go on. If two likely answers would lead to different work or a different result, look at whose the choice is, by the `understand` skill's rule on who decides, which also says which side wins when a choice is both:
+     - the user's: ask. "Write the project overview" (for whom) and "clean up the old branches" (which ones go) ask.
+     - yours: make it, and state it in a "going with" line before the work, so the user can correct it. "Add retries to the API client" can go with the project's HTTP library and three tries, stated first.
    - "Rename `foo` to `bar` in this file" and "fix the typo in the README" leave no such choice.
    - The result is not always code or files. It can be a document, a decision, an action or anything else.
 2. **Act on nothing an open question could change until the answers are in.**
@@ -48,5 +48,5 @@ Not here:
 Before you act on anything an open question could change, check:
 
 - Every question that is the user's to decide is answered, taken with its recommended answer by the user's acceptance, parked, or in a questionnaire.
-- "Going with" is said, every choice you made in it, or the summary is confirmed, or it is shown where the user told you to start the work.
+- "Going with" is said, with the choices the work rests on, or the summary is confirmed, or it is shown where the user told you to start the work.
 - The `understand` skill's rules hold.

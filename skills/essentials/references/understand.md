@@ -14,12 +14,14 @@ Understanding before acting, with the user and from sources. It holds the rules 
    - When several skills serve one request, combine their results into one shape, keeping each one's own additions, so the caller gets one result back.
 3. **Mark guesses and assumptions, and name an unknown that would change the result, with what would settle it.** An unmarked guess gets relied on as a fact.
 4. **Facts first:** read what can be read before asking the user. Asking what the files already say wastes the user's time and hides what only they know.
-5. **Who decides:** a choice that changes what the user gets is theirs when it is about intent, taste, anything hard to undo, or what only they know: put it through `respond-ask`, with a recommended answer. A choice the project's conventions settle, or a default easy to undo, is yours: make it and state it in a "going with" line before the work, so the user can correct it. Make the rest quietly, and say the reason. This rule sets where your judgment stops.
-6. **Nothing in the work is changed for good while understanding,** because a change made now decides for the user. Reading, asking and searching change nothing. Make probes and experiments in a scratch place, or remove them before you return the result. Acting on the result is the caller's job, or waits for the user.
+5. **Who decides:** a choice that changes what the user gets is theirs when it is about their intent, taste or preferences, anything hard to undo, or what only they know: put it through `respond-ask`, with a recommended answer. A choice the project's conventions settle, or a default easy to undo, is yours: make it and state it in a "going with" line before the work, so the user can correct it. Make minor choices without a "going with" line; give the reason if the user asks.
+   - A choice of both kinds is the user's: a wedding toast's style, though easy to rewrite. Ease of undoing decides only what they left to you.
+   - Easy to undo means the effects, not just the file: a change that sends messages, migrates data or reaches users is hard to undo.
+6. **Nothing in the work is changed for good while understanding,** because a change made now decides for the user. Make probes and experiments in a scratch place, or remove them before you return the result. Acting on the result is the caller's job, or waits for the user.
 
 ## Advice
 
-- Give as much understanding as the decision deserves; a plan needs more. A task that looks small but leaves an open choice still goes to `understand-clarify`, which decides whether to ask it or state it. "Rename `foo` to `bar` in this file" needs none.
+- Give as much understanding as the decision deserves; a plan needs more. A task that looks small but leaves an open choice still goes to `understand-clarify`, which decides whether to ask it or state it.
 - The question itself may be wrong. Reframing it is always an option.
 - Show what the user would want to correct, such as how you framed the question or what you assumed.
 
@@ -35,4 +37,4 @@ Anything else about understanding that fits no line here is your own judgment, u
 
 ## The last instruction
 
-Before you return anything, check that the rules above hold: the result in its shape, guesses marked, unknowns named with what would settle them, and nothing in the work changed for good. The used skill's own last instruction holds too.
+Before you return anything, check the rules above: the result's shape, guesses marked, unknowns named, nothing changed for good. The used skill's own last instruction holds too.

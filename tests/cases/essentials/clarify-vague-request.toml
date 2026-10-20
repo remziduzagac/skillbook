@@ -1,11 +1,10 @@
 source = "blueprint/design/essentials/understand.md: clarify, test 1"
-about = "A request with open choices, using an example the skills themselves give: a question with a recommended answer, or the choices stated in a going-with line before the work. Rejects going ahead with the choices unstated. The held-out cases test the rule on prompts the skills never show."
+about = "A request with open choices, worded like the example the skills used before D218, now held out. Passes with a question that has a recommended answer and no change, or with the choices stated before the first change; the statement is judged by reading the summary. Rejects a change made with no statement before it."
 fixture = "tiny-weather"
-uses_skill_example = true
 
 [[turns]]
 prompt = "Add caching to the API."
 
 [checks]
 reads = ["essentials", "understand", "act", "respond"]
-answer_contains = ['going with|recommend']
+states_before_change = true

@@ -4,7 +4,7 @@ How the agent asks the user anything (a question, a round of questions or a prop
 
 ## Rules
 
-1. **Ask a question only for a choice that is the user's and would change the result,** as the `understand-clarify` skill tests it, because each question costs the user a turn: intent, taste, anything hard to undo, or what only the user knows. Make a choice the project's conventions settle, or a default easy to undo, yourself, and state it in a "going with" line before the work. "Plan the team offsite" asks (where, when, what budget); "format the dates in this table" goes with the format the rest of the document uses.
+1. **Ask a question only for a choice that is the user's and would change the result,** by the `understand` skill's rule on who decides and as the `understand-clarify` skill tests it, because each question costs the user a turn. Make a choice that is yours, and state it in a "going with" line before the work. "Plan the team offsite" asks (where, when, what budget); "format the dates in this table" goes with the format the rest of the document uses.
 2. **Number each question, with a recommended answer where you have a basis for one,** and a short reason. Word it so that "yes" accepts it.
    - Where only the user knows, such as which versions are supported, the question says so and has no recommended answer. "Go ahead" leaves it open, because a recommendation with no basis is a guess that "go ahead" would turn into a decision.
    - "Recommended answer" is the one term for it throughout.
@@ -30,6 +30,8 @@ How the agent asks the user anything (a question, a round of questions or a prop
     - Where the harness has no question tool, use text.
     - Why: the tool saves keystrokes and cannot be misread for a closed choice. Text keeps the explanation, lets "ok" accept every question at once, and keeps the user's refinements.
 11. **End the turn after a round of questions or a proposal.** Never answer it yourself, and do no work in that turn that an answer could change, because an answer you write is a choice the user did not make. Take the answers when the user replies, by rules 5 to 7.
+    - When the question tool returns the user's own answers within the turn, the turn has not ended on the question: go on with the work those answers settle.
+    - An empty or cancelled result is no answer, and never an approval.
 
 ## The last instruction
 
@@ -38,4 +40,4 @@ Before a round goes out, check:
 - Every question is numbered under its own heading, with a recommended answer. Where only the user knows, the question says it has none.
 - Or, where rule 10 says, the questions go through the question tool, with the recommended option first and marked.
 - Any partial answer is named back, with what would be taken, and the turn ends with it.
-- The turn ends with the round or proposal: you answered nothing yourself and did no work an answer could change.
+- The turn ends with the round or proposal, unless the question tool returned the user's answers: you answered nothing yourself and did no work an answer could change.

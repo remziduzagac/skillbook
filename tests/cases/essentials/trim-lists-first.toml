@@ -1,5 +1,5 @@
 source = "blueprint/design/essentials/act.md: rightsize, lean"
-about = "Trimming what already exists: turn 1 lists the changes and changes nothing; after the user approves, turn 2 applies them. A refusal, or applying at once, fails."
+about = "Trimming what already exists, through the lean skill: turn 1 lists the changes and changes nothing; after the user approves, turn 2 makes NOTES.md shorter and keeps its facts. Rejects applying at once, a refusal, or a change that drops facts or does not shorten it."
 fixture = "tiny-weather"
 
 [[turns]]
@@ -16,4 +16,8 @@ prompt = "Yes, apply those changes."
 changed = ["NOTES.md"]
 
 [checks]
-reads = ["essentials", "understand", "act", "respond"]
+reads = ["essentials", "understand", "act", "respond", "act-rightsize-lean"]
+shorter = ["NOTES.md"]
+
+[checks.file_contains]
+"NOTES.md" = ['cache', 'cit(y|ies)', 'service']
