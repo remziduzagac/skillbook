@@ -1,12 +1,15 @@
 #!/bin/sh
 # Checks every set in skills/: each plain skill file opens with a heading holding the name its path gives, each file
 # stays near the length skillbook-write advises, and every skill named in backticks whose group exists in the set
-# resolves to a file. Prints one line per problem and exits non-zero when there is any.
+# resolves to a file. Prints one line per problem and exits non-zero when there is any. Also prints, for each set, the
+# characters of its start files (the main SKILL.md and the files its "Read `references/...`" line names), and warns,
+# without failing, past the advised size.
 set -eu
 
 main() {
 	repo="$(cd "$(dirname "$0")/.." && pwd)"
-	limit=120 # about 100 lines is the advice; past this a file is reported
+	limit=120         # about 100 lines is the advice; past this a file is reported
+	start_limit=20000 # about 20,000 characters (about 5,000 tokens) for the start files, carried on every turn
 	problems=0
 
 	[ -d "$repo/skills" ] || {
@@ -17,6 +20,16 @@ main() {
 	for set_dir in "$repo"/skills/*/; do
 		[ -f "$set_dir/SKILL.md" ] || continue
 		refs="${set_dir}references"
+		start_files="$set_dir/SKILL.md $(grep '^Read `references/' "$set_dir/SKILL.md" |
+			grep -o 'references/[a-z0-9/_-]*\.md' | sed "s|^|$set_dir|" | tr '\n' ' ')"
+		# shellcheck disable=SC2086 # the list is split on spaces on purpose
+		total=$(cat $start_files | wc -c | tr -d ' ')
+		set_name=$(basename "$set_dir")
+		if [ "$total" -gt "$start_limit" ]; then
+			echo "$set_name: start files $total characters, past about $start_limit; warning only, trim when you can"
+		else
+			echo "$set_name: start files $total characters"
+		fi
 		for file in "$set_dir/SKILL.md" $(find "$refs" -name '*.md' 2>/dev/null | sort); do
 			rel="${file#"$repo"/}"
 			lines=$(wc -l <"$file")

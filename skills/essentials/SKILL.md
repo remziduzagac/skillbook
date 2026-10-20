@@ -28,10 +28,10 @@ The rules every request follows, and the route to the skill for each step of the
 
 Read `references/understand.md`, `references/act.md` and `references/respond.md` together, in one turn, at the start of every conversation, and again only when their text is no longer in view, such as after compaction. Each opens its own skills when their step comes. Then, in the order the work happens:
 
-1. **Understand the request** with the `understand` skill, leaving no gap. A request is clear only if it leaves the user no choice that would change the result, such as where, how long or which kind. "Write the project overview" is not clear: it leaves who it is for. A clear request needs only that check. Any other goes to `understand-clarify`.
+1. **Understand the request** with the `understand` skill, leaving no gap. A choice that would change the result goes to `understand-clarify`: it asks the user what only they can decide, such as the tone of a message to a customer, and has you make and state the rest, such as the name of a new test file, in a "going with" line before the work.
    - Not for: "what do you think?" (the `act` skill's rule), or the user not following you (the `respond` skill).
    - Gives back: what was decided, what was parked and what comes next.
-2. **Follow the `act` skill's rules throughout,** for every request. Its file names the tools it loads when a step needs them.
+2. **Follow the `act` skill's rules throughout,** for every request.
    - Not for: what is said to the user (the `respond` skill), or the work that steps 4 to 6 route: arranging things, work with other agents, instruction documents or setup, and the user's own work.
    - Gives back: nothing of its own. Its rules shape every action.
 3. **Decide what it will be and how it gets done** with the `devise` skill: first a design, when the request leaves open what something will be, then a plan, when the work is multipart by the `act` skill's planning rule. The work follows them; adjust them when the work shows something new. Single-step work, such as answering a question, needs neither.

@@ -1,6 +1,6 @@
 # understand-clarify-deep
 
-Questions a part, or a whole plan, until nothing in it is left assumed: numbered rounds, each question with a recommended answer where there is a basis, going down level by level.
+Questions a part, or a whole plan, until what materially affects the agreed work is resolved, the rest listed as assumptions: numbered rounds, each question with a recommended answer where there is a basis, going down level by level.
 
 ## Rules
 
@@ -22,7 +22,7 @@ Facts and decisions follow the `understand` skill's rules: you find the facts, a
   - used directly, with no caller: where the loaded keeper says;
   - with no keeper: in a file the user names.
 
-You are done when no level is left with anything assumed that would change the work, and the user has confirmed the summary, or seen it where they told you to start the work.
+You are done when no level is left with anything assumed that would materially change the agreed work, the rest listed, and the user has confirmed the summary, or seen it where they told you to start the work.
 
 ## The last instruction
 

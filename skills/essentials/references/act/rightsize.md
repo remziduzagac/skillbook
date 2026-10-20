@@ -55,7 +55,7 @@ How a response is worded is the `respond` skill's.
 
 ## The last instruction
 
-Before you return or write anything, ask these questions silently, so the user sees only the result:
+Before you return or write anything, check it in proportion to what is at stake. Intermediate work, such as a probe, a scratch file or notes for your next step, gets a light check: questions 2 and 5. What the user or another reader receives gets all five, because a full check on every step costs more than it finds. Ask them silently, so the user sees only the result:
 
 1. Who reads it, and what for?
 2. What could go without losing anything they need? Remove it.

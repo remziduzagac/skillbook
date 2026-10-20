@@ -30,7 +30,12 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   - the agents it runs in;
   - the number of runs, 1 by default: a rule is covered by several different cases rather than by repeating one, since varied prompts show more for the same cost; a case is repeated only when it fails or its results disagree (D213);
   - whether the pointer is in the user's instruction file, yes by default;
-  - the checks a script can make from the event log: the skills read, by name; nothing changed in the toy project, or named files changed; patterns the last answer must or must not contain. Whether a file was read whole or in part, and which tools ran, are not checked yet.
+  - the checks a script can make from the event log, for the whole run under `[checks]`, or for one turn under `[turns.checks]`, judged on that turn's answer and changes (D216):
+    - the skills read, by name, for the whole run: a read counts only when it succeeded, that is, a read or skill tool call whose result is not an error, or a reading command such as `cat` or `sed` that exits 0; a path merely named, as by `echo` or `ls`, does not count;
+    - nothing changed in the toy project (`no_changes`), named files changed (`changed`), or named files left unchanged (`unchanged`);
+    - patterns the answer must or must not contain, the answer being everything the agent said in the turn, the last turn for the whole run.
+
+    Whether a file was read whole or in part, and which tools ran, are not checked yet. Each case's `about` names the wrong behaviour it rejects, and a case is checked against a correct trace and a plausible wrong one before its result is trusted, as skillbook-write says (D217).
 - **`tests/run.py`:** the runner, written with the Python standard library only. For each case, agent and run it:
   1. makes a throwaway home outside the repository;
   2. installs skillbook there with `install.sh`;
@@ -45,7 +50,11 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 - **Models:** small by default, Claude Haiku (`claude -p --model haiku`) and GPT-6 Luna (`codex exec -m gpt-6-luna`). A skill that works on a small model is clear, and small models are cheap enough for three or more runs a case. `--model` runs larger models, for example before a release.
   - A failure only on a small model is a signal to look at, not a reason to change the skill at once. Text added for a small model costs every user tokens on every turn.
 - **Login:** an API key from the environment, or the user's own login copied into the throwaway home only when the user asks, and deleted afterwards.
-- **Cost:** the expected cost is printed before a run, and a budget cap stops the run.
+- **Cost:** the expected cost is printed before a run, with what the budget guarantees (D216):
+  - no new run starts once known spending reaches the budget, so a run already started can pass it;
+  - each Claude call is also capped at the budget left, by `--max-budget-usd`;
+  - Codex cost is estimated from its token counts and is not capped;
+  - a model with no known price counts as unknown, not as zero, and the summary says how many runs had an unknown cost.
 - **Privacy:** event logs and credentials stay outside the repository and are deleted afterwards, unless the user asks to keep them. Only summaries are shown. What a run showed goes into the design's test result or an evidence entry, as skillbook-write says.
 - **Judging:** scripts check behaviour. What only judgment can check, such as whether an explanation is clear, is judged by the agent that guides the run or by the user, and the result says which.
 - **Cases come from the designs' Tests lists,** which stay the source. A few are turned into cases first, starting with essentials.

@@ -11,7 +11,7 @@ These rules hold for every message you send the user: an answer, a report of wor
    - Keep a reference as it is when this reader can tell what it is from the reference itself, right now, such as a path, a link, a command, a function name, a name the reader knows, or a number from the current round of questions.
    - Otherwise, say in a few words what it is, with the number in brackets after it, for a decision, test or note number, a question number from an earlier round, a commit hash, an ID, or an abbreviation the reader has not used: "the decision to keep one file per skill (D12)", never "D12" alone.
    - A delegated agent's report to the main agent may use numbers. The main agent puts them in words for the user.
-3. **The shape of an explanation,** when a response says why something is so or how it works, or puts a decision to the user: where we are, the point, what it rests on, an example. A plain fact or a status line needs no shape. A decision put as a question also follows rule 5. For example: the build fails; the cache is stale; it was made before the last upgrade; clearing it fixed the same failure yesterday.
+3. **The shape of an explanation,** a guide when a response takes more than a few sentences to say why or how something is, or puts a decision to the user: usually where we are, the point, what it rests on, an example, ordered by what the reader is missing. A short answer, a plain fact or a status line needs no shape. A decision put as a question also follows rule 5. For example: the build fails; the cache is stale; it predates the last upgrade; clearing it fixed the same failure yesterday.
 4. **Plain words:** use the everyday word over the term of art. Explain a term the user has not used the first time it appears, such as "idempotent (safe to run twice)".
 5. **Questions follow `respond-ask`:** any question or proposal, even a single yes-or-no question at the end.
 6. **Outcomes as they happened:** say what was done, what was skipped and what failed. State a verified result plainly, without hedging: "two of three tests pass; the third fails on a timeout".
@@ -28,7 +28,7 @@ These rules hold for every message you send the user: an answer, a report of wor
 
 ## Instructions
 
-- `respond-layout`: when anything is written in markdown (a response, a markdown file, pull-request or issue text, a brief), or the user asks how something is laid out, such as "use headings, not bold lines". Rule 8 loads it for every response, so this line serves requests about layout itself.
+- `respond-layout`: when anything is written in markdown (a response, a markdown file, pull-request or issue text, a brief), or the user asks how something is laid out, such as "use headings, not bold lines".
   - Not for: wording, order and length ("make this reply shorter": the rules above), a round of questions (`respond-ask`), a markdown file's file rules and linter (the `authoring` skill, if it is in your skill list), or commit messages and comments in code (the project's conventions).
   - Gives back: the response or file, laid out.
 - `respond-ask`: when a response asks the user anything: a question, a round of questions, a proposal to approve, or the wrap-up offer.

@@ -1,5 +1,5 @@
 source = "blueprint/design/essentials/understand.md: clarify, test 1"
-about = "A vague request, using an example the skills themselves give: questions with recommended answers, no change before a reply. The held-out cases test the rule on prompts the skills never show."
+about = "A request with open choices, using an example the skills themselves give: a question with a recommended answer, or the choices stated in a going-with line before the work. Rejects going ahead with the choices unstated. The held-out cases test the rule on prompts the skills never show."
 fixture = "tiny-weather"
 uses_skill_example = true
 
@@ -7,6 +7,5 @@ uses_skill_example = true
 prompt = "Add caching to the API."
 
 [checks]
-reads = ["essentials", "understand", "act", "respond", "understand-clarify"]
-no_changes = true
-answer_contains = ['recommend']
+reads = ["essentials", "understand", "act", "respond"]
+answer_contains = ['going with|recommend']

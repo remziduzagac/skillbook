@@ -8,6 +8,7 @@ Which rules win follows the `act` skill's rule on which instruction wins:
 
 - In a markdown file, the project's lint configuration wins over these rules, the prose rule included.
 - The user's instruction in the conversation wins over both.
+- The lists, heading levels and widths below are defaults. They give way to where the output goes, such as a message that does not render markdown or a narrow window, and to the user's preferences.
 
 1. **Sections get headings, not bold lines:** when a response or file has two or more parts a reader may look for or jump to, give each a heading; a short answer with one point gets none. Keep heading levels in order. Each heading names its section in a few words. A bold line looks like a heading, but nobody can navigate to it or link to it. Lay out a round of questions as `respond-ask` says.
 2. **Bold is for a label or a key phrase inside a section.** A section's title is a heading, by rule 1.

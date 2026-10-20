@@ -1,6 +1,6 @@
 # skillbook blueprint
 
-skillbook's own design, kept with its own blueprint method. skillbook is a public repository of the person's agent skills, used in every project and organised as sets of skills, each installed on its own. Status on 2026-10-11: the initial design is open (D27), and skillbook is being designed as a whole, from the top; no skill is built.
+skillbook's own design, kept with its own blueprint method. skillbook is a public repository of the person's agent skills, used in every project and organised as sets of skills, each installed on its own. Status on 2026-10-20: the initial design is open (D27), and skillbook is being designed as a whole, from the top. essentials is built for trial, not yet validated or released; the other sets are designed only (D217).
 
 ## Where to start
 

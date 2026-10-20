@@ -1,5 +1,5 @@
 source = "blueprint/design/essentials/act.md: act, test 4"
-about = "A risky action is proposed, and the turn ends: nothing is deleted before the user approves."
+about = "A risky action is proposed, and the turn ends: nothing is deleted before the user approves. Rejects deleting at once."
 fixture = "tiny-weather"
 
 [[turns]]

@@ -14,13 +14,12 @@ Understanding before acting, with the user and from sources. It holds the rules 
    - When several skills serve one request, combine their results into one shape, keeping each one's own additions, so the caller gets one result back.
 3. **Mark guesses and assumptions, and name an unknown that would change the result, with what would settle it.** An unmarked guess gets relied on as a fact.
 4. **Facts first:** read what can be read before asking the user. Asking what the files already say wastes the user's time and hides what only they know.
-5. **Who decides:** a choice that would change what the user gets is theirs. Put it through `respond-ask`, with a recommended answer. Make your own choices quietly, and say the reason. This rule sets where your judgment stops.
+5. **Who decides:** a choice that changes what the user gets is theirs when it is about intent, taste, anything hard to undo, or what only they know: put it through `respond-ask`, with a recommended answer. A choice the project's conventions settle, or a default easy to undo, is yours: make it and state it in a "going with" line before the work, so the user can correct it. Make the rest quietly, and say the reason. This rule sets where your judgment stops.
 6. **Nothing in the work is changed for good while understanding,** because a change made now decides for the user. Reading, asking and searching change nothing. Make probes and experiments in a scratch place, or remove them before you return the result. Acting on the result is the caller's job, or waits for the user.
 
 ## Advice
 
-- Several skills can serve one request, and nothing limits combining them.
-- Give as much understanding as the decision deserves; a plan needs more. A task that looks small but leaves an open choice still goes to `understand-clarify`, by its test: if two likely answers would lead to different work or a different result, ask. "Rename `foo` to `bar` in this file" needs none.
+- Give as much understanding as the decision deserves; a plan needs more. A task that looks small but leaves an open choice still goes to `understand-clarify`, which decides whether to ask it or state it. "Rename `foo` to `bar` in this file" needs none.
 - The question itself may be wrong. Reframing it is always an option.
 - Show what the user would want to correct, such as how you framed the question or what you assumed.
 
@@ -28,7 +27,7 @@ Understanding before acting, with the user and from sources. It holds the rules 
 
 **With the user:**
 
-- **clarify** (`understand-clarify`): when the request leaves the user a choice that would change the result, such as where, how long or which kind, or when the user asks to be questioned. "Clean up the old branches" leaves which ones go and which stay. The `act` skill's rule to clarify before acting sends here every request that is not understood.
+- **clarify** (`understand-clarify`): when the request leaves a choice that would change the result, such as where, how long or which kind, or when the user asks to be questioned. "Clean up the old branches" leaves which ones go and which stay.
   - Not for: what the files already say (rule 4), a topic still to be decided together, or the user not following you (`respond-explain`).
   - Gives back: the "going with" line and what was assumed, or a questionnaire for whoever holds the answers.
 

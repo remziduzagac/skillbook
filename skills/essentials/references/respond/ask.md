@@ -4,12 +4,12 @@ How the agent asks the user anything (a question, a round of questions or a prop
 
 ## Rules
 
-1. **Ask a question only when two likely answers would lead to different work or a different result,** as the `understand-clarify` skill tests it, because each question costs the user a turn. If every likely answer leads to the same work, decide yourself. "Plan the team offsite" asks (where, when, what budget); "run the tests" does not.
+1. **Ask a question only for a choice that is the user's and would change the result,** as the `understand-clarify` skill tests it, because each question costs the user a turn: intent, taste, anything hard to undo, or what only the user knows. Make a choice the project's conventions settle, or a default easy to undo, yourself, and state it in a "going with" line before the work. "Plan the team offsite" asks (where, when, what budget); "format the dates in this table" goes with the format the rest of the document uses.
 2. **Number each question, with a recommended answer where you have a basis for one,** and a short reason. Word it so that "yes" accepts it.
    - Where only the user knows, such as which versions are supported, the question says so and has no recommended answer. "Go ahead" leaves it open, because a recommendation with no basis is a guess that "go ahead" would turn into a decision.
    - "Recommended answer" is the one term for it throughout.
-   - Challenge a recommended answer first: look for its weak points, at a depth that matches what is at stake. Give its verdict in one line beside it.
-   - Challenge a decision the user makes without a recommendation, or against one, the same way before you rely on it.
+   - Challenge a recommended answer first when the choice is consequential, that is, hard to undo or shaping much of the work: look for its weak points, at a depth that matches what is at stake, and give the verdict in one line beside it. Routine questions stay short, with no challenge.
+   - Challenge a consequential decision the user makes without a recommendation, or against one, the same way before you rely on it.
 3. **Each question under its own heading, with its number in the heading,** such as "### 2. How a round is laid out". The user can then answer by number and find each one again.
 4. **One round, or one by one on request,** without losing the round: the numbers stay and nothing is dropped. Each step names the question by its number and says which remain.
 5. **Answers:** "go ahead" accepts the recommended answers for every question left unanswered. Say them back. When the user answers only some and says nothing of the rest, the rest are still open, because the user has neither accepted them nor stopped. Name them back with the answers you would take, and end the turn, by rule 11.

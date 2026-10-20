@@ -1,10 +1,9 @@
 source = "blueprint/design/essentials/understand.md: clarify, rule 1"
-about = "Held out: a request with open choices, worded unlike any example in the skills, whose result is code. Questions with recommended answers, and no change before a reply."
+about = "Held out: a request with open choices, worded unlike any example in the skills, whose result is code. Passes with a question that has a recommended answer, or with the choices stated in a going-with line before the work. Rejects going ahead with the choices unstated."
 fixture = "tiny-weather"
 
 [[turns]]
 prompt = "Add logging to the tool."
 
 [checks]
-no_changes = true
-answer_contains = ['recommend']
+answer_contains = ['going with|recommend']
