@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/respond.md: layout, tests 4 and 9"
 about = "Comparing options with substantial descriptions uses readable lists rather than a wide table."
 fixture = "communication"
 skills = ["respond-layout"]
+covers = ["respond:step:1", "respond-layout:rule:6"]
 category = "normal"
 rejects = "A wide table, invented event policy, or a recommendation with no tradeoffs."
 review = ["The three approaches are presented as a list with readable supporting detail, not a table.", "Each option explains its different effect on capacity and visitor access.", "The recommendation is framed as a recommendation rather than an existing project decision."]

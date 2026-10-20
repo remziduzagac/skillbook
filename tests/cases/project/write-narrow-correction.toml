@@ -3,6 +3,7 @@ about = "Fix a spelling error in a built skill while preserving its design and f
 fixture = "skill-lab"
 project_skills = ["skillbook-tree", "skillbook-write"]
 skills = ["skillbook-write"]
+covers = ["skillbook-write:rule:1", "skillbook-write:step:5", "skillbook-write:last"]
 category = "normal"
 rejects = "Leaves the typo, rewrites the design or removes the unavailable-capability fallback."
 review = ["Only the misspelled word is corrected; no new rule, route or policy is introduced.", "Unavailable repository checks are reported honestly rather than claimed as passing."]

@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/respond.md: ask, tests 1, 3 and 5"
 about = "A partial answer leaves the remaining decisions open instead of drafting around unaccepted recommendations."
 fixture = "communication"
 skills = ["respond-ask"]
+covers = ["respond:step:2", "respond-ask:rule:2", "respond-ask:rule:5", "respond-ask:rule:11", "respond-ask:last"]
 category = "edge"
 rejects = "Treating one answered question as acceptance of the others or writing the requested announcement prematurely."
 review = ["The first turn asks the three requested decisions, with recommendations only where justified.", "The second turn records that intended readers are neighbours, identifies tone and length as still open, and names the recommended answers that would be taken.", "The second turn ends with the remaining decisions and does not deliver the announcement."]

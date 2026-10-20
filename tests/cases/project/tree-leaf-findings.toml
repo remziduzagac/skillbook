@@ -1,0 +1,22 @@
+source = ".agents/skills/skillbook-tree/SKILL.md: checks 4, 5, 7 and 11; Advice; The last instruction"
+about = "Review a small leaf whose file and design hold several real faults beside one look-alike that is justified. Rejects missing the real faults, or flagging the justified 'never' because findings were not checked again."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-tree"]
+covers = ["skillbook-tree:check:4", "skillbook-tree:check:5", "skillbook-tree:check:7", "skillbook-tree:check:11", "skillbook-tree:check:13", "skillbook-tree:rule:3", "skillbook-tree:advice:2", "skillbook-tree:last"]
+category = "edge"
+rejects = "Approves the skill, misses the unreasoned limits or the double reading, flags the secrets line that already gives its reason, or edits either file."
+review = [
+  "The review finds, with file and line: the hard limit of five points, which the design gives as advice with a reason; the unexplained stop on an unclear source, a judgment word that blocks where going on with a note would serve; and reading the whole folder and the source again for each point.",
+  "It finds the design's tests weak: the first test's prompt is the skill's own example, so it is not held out; neither test names a wrong behaviour; and none tells a summary request apart from a request to edit the source.",
+  "The 'never' about passwords, keys and tokens is not reported as a fault, since it states a reason that covers every case it forbids; a reviewer who flagged it and then withdrew it after checking again is fine, as long as the returned report does not hold it.",
+  "Findings are few and strong, each with its check number and a general fix, followed by the checks that found nothing and a short coverage statement; nothing is changed.",
+]
+
+[[turns]]
+prompt = "Is digest fit to ship? Go over its built file and its design and tell me what's wrong, but don't touch either one."
+
+[checks]
+reads = ["skillbook-tree"]
+no_changes = true
+answer_contains = ['digest\.md']

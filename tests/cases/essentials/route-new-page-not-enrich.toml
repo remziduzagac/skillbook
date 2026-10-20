@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/act.md: enrich, test 5"
+about = "Writing a new page from scratch is the work itself, not enrich, which fills gaps in something that existed before the request. Rejects loading enrich and proposing additions to approve before any page exists."
+fixture = "garden-club"
+skills = ["act-rightsize"]
+category = "boundary"
+covers = ["act-rightsize:not-for:act-rightsize-enrich"]
+rejects = "Loads enrich for a page that does not exist yet, or lists gaps for approval instead of writing it."
+review = ["The page gives the fair's date, place, hours and the seedling table from fair.md and the draft, in the 24-hour clock, with nothing invented.", "The wrong date in the October draft is not copied; if noticed, it is named as a follow-up."]
+
+[[turns]]
+prompt = "Make a one-page notice about the autumn fair for the noticeboard by the gate, saved as noticeboard.md."
+
+[checks]
+reads_not = ["act-rightsize-enrich"]
+unchanged = ["fair.md", "drafts/october.md"]
+
+[checks.file_contains]
+"noticeboard.md" = ['14 Nov', '10:00', '(?i)mill lane|community hall']

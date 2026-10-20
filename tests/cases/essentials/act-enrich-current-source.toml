@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: enrich, tests 1 and 8"
 about = "Missing setup guidance comes from the current project manifest rather than stale wiki material."
 fixture = "editorial"
 skills = ["act-rightsize", "act-rightsize-enrich"]
+covers = ["act:route:act-rightsize", "act:rule:4", "act-rightsize:route:act-rightsize-enrich", "act-rightsize:rule:2", "act-rightsize:rule:9", "act-rightsize-enrich:rule:1", "act-rightsize-enrich:rule:2", "act-rightsize-enrich:rule:3", "act-rightsize-enrich:rule:4", "act-rightsize-enrich:step:1", "act-rightsize-enrich:step:3", "act-rightsize-enrich:step:4", "act-rightsize-enrich:step:5", "act-rightsize-enrich:last", "respond-ask:rule:11"]
 category = "normal"
 rejects = "Adding npm and Python 3.8 setup guidance merely because the archived page has it."
 review = ["Before edits, proposes setup additions citing project.toml, identifies the archived setup as outdated, and excludes npm/Python 3.8 guidance. After approval, adds the current installation command and minimum Python version with traceable sources."]

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/respond.md: respond, test 16"
+about = "Explaining code the user has not seen explained before is understanding, not respond's explain: nothing of the agent's failed to land. Rejects loading explain, or changing the script."
+fixture = "garden-club"
+skills = ["understand", "respond"]
+category = "boundary"
+covers = ["respond:not-for:step-3"]
+rejects = "Loads respond-explain for a first explanation, or fixes the script while explaining it."
+review = ["The answer walks through what the script reads, how it looks up each fee and what it prints, in plain words for someone who does not read Python.", "It may mention that a stall with no size stops it, as a note; the script is not changed."]
+
+[[turns]]
+prompt = "Talk me through what stall_fees.py does, for someone who has never read Python."
+
+[checks]
+reads_not = ["respond-explain"]
+no_changes = true

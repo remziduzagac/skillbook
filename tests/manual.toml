@@ -1,0 +1,14 @@
+# Aspects that a headless run cannot test. A person tests each by hand in a live session.
+# Everything else a skill states belongs to a case in tests/cases/, named in its `covers` field.
+
+[[aspect]]
+id = "respond-ask:rule:10"
+reason = "The harness's question tool: a headless run has no question tool, so only a live session shows when the agent uses it, how it marks the recommended option and what it does with an empty or cancelled answer."
+
+[[aspect]]
+id = "understand-clarify-deep:advice:2"
+reason = "The offer to record decisions rests on real signs that a session is long: the harness saying its context is filling up, or a summary replacing earlier turns. A scripted run reaches neither without a real compaction."
+
+[[aspect]]
+id = "essentials:advice:1"
+reason = "Delegating by default means starting a real agent or fork and taking its report back. The runner records reads and file changes, not agents it started, so a case cannot show that the agent delegated or why it did not."

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/essentials.md: tests 7 and 8"
+about = "Asking what must happen and in what order is planning the work's steps, not arranging a document's parts: an ordered list of steps, nothing restructured. Rejects outlining or reorganising the bulletin's sections."
+fixture = "communication"
+skills = ["essentials", "act"]
+category = "boundary"
+covers = ["essentials:not-for:step-4"]
+rejects = "Answers with an outline of the bulletin's sections or reorganises README.md, instead of the steps of the work."
+review = ["The steps are in order, with testing the registration form and the organisers' language decision before publishing.", "The language decision is marked as the organisers' and not yet made, not filled in.", "Nothing is published and no file changes."]
+
+[[turns]]
+prompt = "What still has to happen, and in which order, before the open studio bulletin can go out?"
+
+[checks]
+no_changes = true
+answer_contains = ['(?i)registration', '(?i)language']

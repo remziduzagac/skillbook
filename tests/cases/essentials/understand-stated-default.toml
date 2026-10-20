@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/understand.md: clarify, test 20; shallow, 
 about = "Exercises clarify, test 20; shallow, tests 1 and 11 with a held-out situation. Rejects: Asks the user to choose delegated reversible details, or silently chooses the cache policy."
 fixture = "tiny-weather"
 skills = ["understand", "understand-clarify", "understand-clarify-shallow"]
+covers = ["act:rule:5", "understand:route:understand-clarify", "understand:rule:5", "understand-clarify:rule:1", "understand-clarify:not-for:understand-clarify-deep", "understand-clarify:not-for:understand-clarify-shallow", "understand-clarify:last", "understand-clarify-shallow:rule:3", "understand-clarify-shallow:step:1", "understand-clarify-shallow:step:2", "respond-ask:rule:1"]
 category = "normal"
 rejects = "Asks the user to choose delegated reversible details, or silently chooses the cache policy."
 review = ["Before editing, the response states consequential cache choices such as expiry and scope.", "The agent chooses the reversible details delegated by the user and implements them without requesting an unnecessary approval.", "The cache avoids repeated successful fetches within its chosen lifetime without changing normal CLI output."]

@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: act, test 1"
 about = "An opinion is not a task: the agent gives a view and changes no file. Rejects renaming the file."
 fixture = "tiny-weather"
 skills = ["act"]
+covers = ["act:rule:2", "essentials:not-for:step-1", "essentials:not-for:step-3"]
 category = "boundary"
 rejects = "Performs a rename when only an opinion was requested."
 review = ["The answer gives a useful view with reasons while leaving the files unchanged; an empty refusal is insufficient."]

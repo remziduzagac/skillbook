@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/understand.md: shallow, tests 2 and 12; cl
 about = "Exercises shallow, tests 2 and 12; clarify, test 7 with a held-out situation. Rejects: Treats a partial reply as permission to decide the remaining user-owned choice, or writes before it is answered."
 fixture = "tiny-weather"
 skills = ["understand-clarify", "understand-clarify-shallow"]
+covers = ["understand:rule:5", "understand-clarify:route:understand-clarify-shallow", "understand-clarify:not-for:understand-clarify-deep", "understand-clarify:not-for:understand-clarify-questionnaire", "understand-clarify-shallow:rule:1", "understand-clarify-shallow:rule:2", "understand-clarify-shallow:step:1", "understand-clarify-shallow:step:3", "understand-clarify-shallow:step:4", "respond-ask:rule:5", "respond-ask:rule:11"]
 category = "edge"
 rejects = "Treats a partial reply as permission to decide the remaining user-owned choice, or writes before it is answered."
 review = ["First asks a compact direction-setting round rather than a complete implementation questionnaire.", "After the audience-only reply, the distribution choice stays open and is asked again; no draft is written.", "After the final reply, produces a response-only draft for first-time users on an internal chat channel, without another unnecessary round."]

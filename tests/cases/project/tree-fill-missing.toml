@@ -1,0 +1,33 @@
+source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, trimming or filling an existing skill; .agents/skills/skillbook-write/SKILL.md: The design is the source"
+about = "Fill a built skill that leaves its reader asking: one missing behaviour has a source in the design, the other has none. Rejects inventing an answer for the one without a source, adding without a source, or changing the design unasked."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-tree", "skillbook-write"]
+covers = ["skillbook-tree:step:4", "skillbook-write:rule:1", "skillbook-write:step:5"]
+category = "boundary"
+rejects = "Invents a retention period for the notes, adds the fallback without naming its source, changes the design to cover retention without the user, or edits before the list is approved."
+review = [
+  "Turn 1 lists the addition for an unreachable person, with its source: the handoff design's flow, which says to leave the notes where the work lives and tell the user where they are.",
+  "How long notes are kept has no source in the design or the skill: the agent marks it as a gap and offers to take it to the design, without inventing a number or a rule.",
+  "Turn 1 changes nothing; turn 2 adds only the approved fallback, keeps the rest of the file, and leaves the design as it was.",
+]
+
+[[turns]]
+prompt = "Agents running the handoff skill get stuck when the colleague taking over is offline, and they also keep asking how long the notes should be kept around. Fill in whatever the skill is missing."
+
+[turns.checks]
+no_changes = true
+answer_contains = ['handoff']
+
+[[turns]]
+prompt = "Okay, add what you listed."
+
+[turns.checks]
+changed = ["skills/essentials/references/handoff.md"]
+
+[checks]
+reads = ["skillbook-tree"]
+unchanged = ["blueprint/design/essentials/handoff.md"]
+
+[checks.file_contains]
+"skills/essentials/references/handoff.md" = ['(?m)^# handoff$', 'status report', 'blocked', 'reach|offline|unavailable']

@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/understand.md: questionnaire, tests 1, 7 a
 about = "Exercises questionnaire, tests 1, 7 and 8 with a held-out situation. Rejects: Asks again for supplied document context, sends the questionnaire, or relies on unexplained conversation references."
 fixture = "tiny-weather"
 skills = ["understand-clarify", "understand-clarify-questionnaire"]
+covers = ["understand-clarify:route:understand-clarify-questionnaire", "understand-clarify:not-for:understand-clarify-shallow", "understand-clarify-questionnaire:rule:1", "understand-clarify-questionnaire:rule:2", "understand-clarify-questionnaire:advice:1", "understand-clarify-questionnaire:advice:2", "understand-clarify-questionnaire:step:1", "understand-clarify-questionnaire:step:2", "understand-clarify-questionnaire:last"]
 category = "normal"
 rejects = "Asks again for supplied document context, sends the questionnaire, or relies on unexplained conversation references."
 review = ["Produces a self-contained questionnaire for the service operations team explaining tiny-weather and why the service constraints matter.", "Covers the team-owned authentication and request-limit questions with the reason each answer is needed, without inventing recommended policy values.", "Returns the document in chat for the user to forward, without asking again who receives it or sending anything."]

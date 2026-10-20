@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/respond.md: respond, tests 2 and 12; layou
 about = "A factual lookup needs a direct short answer without a closing question."
 fixture = "communication"
 skills = ["respond", "respond-layout"]
+covers = ["act-rightsize:rule:3", "act-rightsize:advice:1", "respond:rule:1", "respond:advice:1", "respond-layout:rule:4"]
 category = "normal"
 rejects = "A long event summary, invented opening time, or unnecessary follow-up question."
 review = ["The first line gives 10:00 as the opening time.", "The answer stays focused on the requested fact and has no heading or closing question."]

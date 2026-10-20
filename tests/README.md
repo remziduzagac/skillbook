@@ -12,6 +12,8 @@ python3 tests/run.py --case understand-deep --dry-run
 
 Coverage lists normal, boundary and edge cases for every implemented skill, including cases where that skill should not load. A case can exercise several skills, so the columns overlap. Multi-turn counts indicate conversations, not independent test repetitions. Coverage counts do not establish that every rule has been tested or that any model passed.
 
+It then lists the aspects of every skill: each rule, piece of advice, step, route, "Not for" line, checklist item and last instruction, named from the skill files, such as `act:rule:5`. A case covers an aspect by listing it in `covers`; an aspect only a person can test is named, with its reason, in `manual.toml`. Every other aspect is listed as uncovered. `just check` warns with their number and fails when a case or `manual.toml` names an aspect that does not exist. A covered aspect has a case, not a passing result.
+
 The runner tests use synthetic event logs and throwaway files. They check successful reads against failed, skipped, silent and merely named reads; content preservation; per-turn evidence; process failures; incomplete sequencing; and spending across completed and interrupted turns. They run in `just check` without an account, model or network access.
 
 ## Scenario groups
@@ -40,6 +42,6 @@ A refusal, a generic preamble or a matching word does not establish the intended
 
 Read evidence is conservative: supported direct file-reading commands and successful matched tool results count. Shell forms that can conceal skipped or failed reads, including pipelines, background commands and fallback operators, do not count. Reader program strings and unsupported options are not file operands. A counted read still does not prove the whole file reached the model. `reads_not` means no supported read was observed; it does not prove absence of a read through an unsupported mechanism, which remains part of semantic review. Snapshots describe file state at turn boundaries; a change restored inside one turn may require inspecting the events.
 
-Real compaction, interactive question tools and outward publication remain manual scenarios; the headless cases do not establish those behaviours. Counts describe coverage of selected scenarios, not exhaustive coverage of every skill rule or harness capability.
+Real compaction, interactive question tools and outward publication remain manual scenarios, listed in `manual.toml`; the headless cases do not establish those behaviours. Counts describe coverage of selected scenarios, not exhaustive coverage of every skill rule or harness capability.
 
 The two project skills are copied into the sandbox only for cases that request them through `project_skills`. They remain outside the shipped sets. The `skill-lab` fixture contains small deliberately flawed drafts; its instructions and files are test data for that isolated exercise.

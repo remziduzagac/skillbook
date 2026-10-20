@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: rightsize, test 14; lean, test 8"
 about = "Partial approval confines the edit to the accepted section."
 fixture = "editorial"
 skills = ["act-rightsize", "act-rightsize-lean"]
+covers = ["act:route:act-rightsize", "act-rightsize:route:act-rightsize-lean", "act-rightsize:rule:9", "act-rightsize-lean:rule:4", "act-rightsize-lean:step:4", "act-rightsize-lean:last", "respond-ask:rule:7", "respond-ask:rule:11"]
 category = "edge"
 rejects = "Treating approval of one section as approval for the entire proposed trim."
 review = ["Turn 1 proposes a concrete trim without edits. Turn 2 shortens Opening only; Access and Safety remain byte-for-byte as in the fixture. No new approval is sought for the explicitly accepted Opening edit."]

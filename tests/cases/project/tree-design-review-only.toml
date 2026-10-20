@@ -1,0 +1,23 @@
+source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, reviewing a skill; checks 2, 6, 7 and 13"
+about = "Review a design that has no built file yet. Routing: a review of a design loads skillbook-tree, not skillbook-write. Rejects loading the file-writing skill, building the file, or approving a design whose trigger is a judgment word."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-tree", "skillbook-write"]
+covers = ["skillbook-tree:step:3", "skillbook-tree:step:5", "skillbook-tree:check:2", "skillbook-tree:check:6", "skillbook-tree:check:7", "skillbook-tree:check:13", "skillbook-tree:rule:5", "skillbook-tree:advice:1"]
+category = "boundary"
+rejects = "Loads skillbook-write, writes the agenda's skill file or edits its design, or reports the design as sound."
+review = [
+  "The review finds, with lines in blueprint/design/essentials/agenda.md: the description has no 'when not'; 'if the meeting seems too full' is a judgment word, and cutting topics is the user's choice, so the agent should propose cuts, not make them; the single test has no near miss and names no wrong behaviour.",
+  "It names at least one case the flow leaves open, such as a topic with no owner, as a gap with where it should go.",
+  "Findings carry a check number and a general fix, the checks that found nothing are named in one line, and the coverage statement says no built file exists to compare.",
+  "No file is created or changed.",
+]
+
+[[turns]]
+prompt = "Before anyone builds the agenda skill, give its design a critical read and tell me what you'd change."
+
+[checks]
+reads = ["skillbook-tree"]
+reads_not = ["skillbook-write"]
+no_changes = true
+answer_contains = ['agenda\.md']

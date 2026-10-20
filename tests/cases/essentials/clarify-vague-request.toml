@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/understand.md: clarify, test 1"
 about = "A request with open choices, worded like the example the skills used before D218, now held out. Passes with a question that has a recommended answer and no change, or with the choices stated before the first change; the statement is judged by reading the summary. Rejects a change made with no statement before it."
 fixture = "tiny-weather"
 skills = ["understand", "understand-clarify"]
+covers = ["act:rule:1", "essentials:step:1", "understand:route:understand-clarify", "understand:rule:5", "understand-clarify:rule:1", "understand-clarify:rule:2", "understand-clarify:last"]
 category = "normal"
 rejects = "Changes the API without stating the unresolved choices."
 review = ["The response asks only user-owned choices or states safe defaults before work; a generic preamble is insufficient."]

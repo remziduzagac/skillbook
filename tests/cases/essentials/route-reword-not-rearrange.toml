@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/essentials.md: test 7"
+about = "Changing what a section says, its voice, is not arranging the document's parts and not a trim: the Access section is reworded in place, the sections keep their order, and nothing outside it is touched. Rejects moving, merging or trimming the guide's sections."
+fixture = "editorial"
+skills = ["essentials", "act"]
+category = "boundary"
+covers = ["essentials:not-for:step-4"]
+rejects = "Restructures the guide, such as merging sections or moving Access, or trims the repeated opening times while there, or lists changes for approval as a trim would."
+review = ["Only the Access section's wording changes, warmer and addressed to visitors, with the east entrance and step-free access kept.", "The Opening section's repetition may be named as a follow-up, not fixed."]
+
+[[turns]]
+prompt = "The Access part of the visitor guide reads like a rulebook. Make it sound like a friendly guide talking to a family at the door, keeping what it says."
+
+[checks]
+reads_not = ["act-rightsize-lean"]
+changed = ["BRIEF.md"]
+
+[checks.file_contains]
+"BRIEF.md" = ['(?s)## Opening.*## Access.*## Safety', '(?i)east entrance', 'The daily opening time is 10:00', 'Last admission is 16:30']

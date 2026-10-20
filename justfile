@@ -1,6 +1,6 @@
 # Every check, the same way CI runs it. Tools: markdownlint-cli2 (through npx), lychee, ShellCheck, shfmt,
 # actionlint and zizmor.
-check: lint-markdown links lint-shell lint-workflows check-skills test-runner
+check: lint-markdown links lint-shell lint-workflows check-skills test-runner check-coverage
 
 # Markdown style, with the rules in .markdownlint-cli2.jsonc.
 lint-markdown:
@@ -36,7 +36,11 @@ test-agents *args:
 test-runner:
     PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py'
 
-# Count executable normal, boundary and edge scenarios; this is not a model pass-rate report.
+# Every aspect a case must name in `covers` still exists, and how many aspects nothing covers yet (a warning only).
+check-coverage:
+    python3 tests/run.py --coverage --summary
+
+# Count executable normal, boundary and edge scenarios, and list the aspects no case covers; not a model pass rate.
 test-coverage:
     python3 tests/run.py --coverage
 

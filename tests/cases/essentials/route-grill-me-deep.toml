@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: clarify, test 3; deep, test 8"
+about = "A user who asks to be questioned at length gets deep at once, not shallow's single round with an offer of deep. Rejects a shallow round that ends by offering deeper questions."
+fixture = "garden-club"
+skills = ["understand-clarify", "understand-clarify-deep"]
+category = "normal"
+covers = ["understand-clarify:not-for:understand-clarify-shallow"]
+rejects = "Asks one small round and offers to go deeper, as if the user had not asked to be questioned, or skips the questions and drafts a plan."
+review = ["The first round is numbered, each question with a recommended answer where the folder or common practice gives a basis, and questions that depend on unanswered ones wait.", "There is no offer of deep: the questioning has begun.", "The turn ends with the round; no file changes."]
+
+[[turns]]
+prompt = "Grill me on how the club should move plot bookings online, as many rounds as it takes; I'd rather answer questions now than fix things later."
+
+[checks]
+reads = ["understand-clarify-deep"]
+no_changes = true

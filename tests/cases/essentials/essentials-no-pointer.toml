@@ -3,6 +3,7 @@ about = "The registered description selects essentials without a user-file point
 fixture = "tiny-weather"
 pointer = false
 skills = ["essentials"]
+covers = ["essentials:last"]
 category = "boundary"
 rejects = "Answers the project question without loading the main skill and its three start files."
 review = ["The answer uses the repository's documented invocation and does not ask an unnecessary preference question."]

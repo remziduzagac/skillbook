@@ -1,0 +1,26 @@
+source = ".agents/skills/skillbook-write/SKILL.md: Instructions, a plain skill file; Rules; The last instruction"
+about = "Build a plain skill file from a design written in dense, passive prose that needs a capability. Rejects copying the design's wording, leaving out the capability line or its fallback, or carrying the design's progress note into the skill."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-write"]
+covers = ["skillbook-write:step:2", "skillbook-write:rule:1", "skillbook-write:rule:3", "skillbook-write:rule:4", "skillbook-write:rule:5", "skillbook-write:rule:6", "skillbook-write:advice:2", "skillbook-write:last", "skillbook-tree:step:5", "skillbook-tree:names:7", "skillbook-write:advice:1"]
+category = "normal"
+rejects = "Pastes the design's flow as it is, writes 'wait for the user', omits the Needs line or its hand-check fallback, repeats when to use the skill, says the web-checking skill is not built yet, or changes the design."
+review = [
+  "The file opens with a '# cite' heading and one line saying what it does, then a 'Needs:' line naming web access and the hand-check list without it; it does not repeat when to use the skill or when not.",
+  "The design's long passive sentence becomes short active steps in common words, as a list; 'wait for the user' becomes an action the agent can take, such as listing the proposed replacement and ending the turn without changing the figure.",
+  "Every rule, route and fallback in the design is there: each quotation and figure matched to its source, the ones without a source listed with their line, the hand-check fallback, and the one-line answer when there is nothing to check.",
+  "The file stands on its own: an agent with only this file can act on each step without the design or the conversation.",
+  "The design's note that a shared web-checking skill is not built yet does not appear in the file; the step simply uses web access.",
+  "The file is far below about 100 lines, and before reporting the agent runs what checks exist, runs skillbook-tree's checklist on the new file, says honestly that this toy repository has no check command, and lists any difference from the design with file and line.",
+]
+
+[[turns]]
+prompt = "The cite design is approved. Create its skill file now."
+
+[checks]
+reads = ["skillbook-write"]
+unchanged = ["blueprint/design/authoring/cite.md", "skills/authoring/references/digest.md"]
+
+[checks.file_contains]
+"skills/authoring/references/cite.md" = ['(?m)^# cite\s*$', '(?m)^Needs:', 'hand|manual']

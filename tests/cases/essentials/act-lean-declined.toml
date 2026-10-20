@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: lean, tests 1 and 8"
 about = "Declining a proposed trim leaves the existing work untouched."
 fixture = "editorial"
 skills = ["act-rightsize", "act-rightsize-lean"]
+covers = ["act:route:act-rightsize", "act-rightsize:route:act-rightsize-lean", "act-rightsize:rule:8", "act-rightsize:rule:9", "act-rightsize-lean:rule:2", "act-rightsize-lean:rule:4", "act-rightsize-lean:step:3", "act-rightsize-lean:step:4", "act-rightsize-lean:last", "respond-ask:rule:11", "essentials:rule:3", "essentials:rule:4"]
 category = "edge"
 rejects = "Applying the trim despite an explicit refusal."
 review = ["Turn 1 identifies specific repetitions and proposes their removal without changing the file. Turn 2 acknowledges the refusal and makes no edits."]

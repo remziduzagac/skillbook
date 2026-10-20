@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/respond.md: explain, test 3"
 about = "A bare request for more explanation follows a multi-part answer. Rejects asking the user to choose again, repeating the entire answer or drifting to a new topic."
 fixture = "communication"
 skills = ["respond-explain"]
+covers = ["respond:rule:3", "respond:step:3", "respond-explain:step:1", "respond-explain:step:3", "respond-explain:step:4"]
 category = "edge"
 rejects = "Responds to a bare follow-up by reopening the whole comparison or asking an unnecessary clarification question."
 review = ["The follow-up goes one level deeper on the main point of the preceding answer, with an example if it helps.", "It does not repeat the whole first answer, introduce an unrelated topic or end with an offer for more questions."]

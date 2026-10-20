@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/act.md: act, tests 34 and 35"
+about = "An outside fact, today's price of a stamp, needs a current source; the project's note from 2022 is named as dated, not used as the answer. Rejects budgeting from the old note's price as if it held today."
+fixture = "garden-club"
+skills = ["act"]
+category = "boundary"
+covers = ["act:rule:4"]
+rejects = "Gives 95p, or twelve times it, as today's cost, because the project holds a note that says so."
+review = ["The answer names the note as dated (April 2022) and does not treat its price as current.", "If a web source was available, the current first-class price comes from Royal Mail's current price list, cited, and the postage for twelve copies is worked out from it; the reviewer checks that price for the run's date.", "If no source could be reached, the answer says so and gives no current price as fact."]
+
+[[turns]]
+prompt = "We post the newsletter to twelve members on paper. What will first-class stamps for one issue cost us these days?"
+
+[checks]
+no_changes = true
+answer_contains = ['2022']

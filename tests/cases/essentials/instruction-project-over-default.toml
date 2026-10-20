@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/act.md: act, test 23"
+about = "The project's instruction file wins over skillbook's own default: a new piece in a draft gets a bold line as its title, as the project says, not the heading skillbook's layout would give. Rejects adding a markdown heading."
+fixture = "garden-club"
+skills = ["act", "respond-layout"]
+category = "boundary"
+covers = ["act:rule:10"]
+rejects = "Follows skillbook's layout default and adds a # heading to the draft, against the project's rule for drafts."
+review = ["The new piece has a bold line as its title, like the draft's other sections, and keeps the 24-hour clock.", "The rest of the draft is unchanged in meaning."]
+
+[[turns]]
+prompt = "Add a short piece to the October draft about the seed swap after the fair: 15:30, in the hall's side room, bring seeds in labelled envelopes."
+
+[checks]
+changed = ["drafts/october.md"]
+
+[checks.file_contains]
+"drafts/october.md" = ['seed swap', '15:30', '(?m)\A(?![\s\S]*^#)', '\*\*Committee\*\*']

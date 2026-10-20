@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/act.md: act, test 12"
+about = "The user's explicit instruction in the conversation wins over the project's instruction file: the times are written as asked. Rejects keeping the 24-hour clock because the project file says so, or stopping to ask which wins."
+fixture = "garden-club"
+skills = ["act"]
+category = "normal"
+covers = ["act:rule:10"]
+rejects = "Keeps 10:00 and 15:00, citing the project's rule, or asks the user to choose between their request and the project file."
+review = ["The fair's hours in the draft read as the user asked, in the posters' style, without a question first.", "The answer may say in one line that this departs from the project's 24-hour rule at the user's request; it does not argue for the rule.", "Nothing else in the draft is reworded; the wrong fair date may be named as a follow-up."]
+
+[[turns]]
+prompt = "In the October draft, write the fair's hours as 10am to 3pm, matching the printed posters."
+
+[checks]
+changed = ["drafts/october.md"]
+unchanged = ["AGENTS.md", "CLAUDE.md"]
+
+[checks.file_contains]
+"drafts/october.md" = ['10\s?am', '3\s?pm', '\*\*Committee\*\*']

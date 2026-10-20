@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: enrich, test 1; rightsize, test 2"
 about = "Missing handover details are selected for experienced operators rather than generic newcomers."
 fixture = "editorial"
 skills = ["act-rightsize", "act-rightsize-enrich"]
+covers = ["act:route:act-rightsize", "act-rightsize:route:act-rightsize-enrich", "act-rightsize:rule:1", "act-rightsize:rule:2", "act-rightsize:rule:3", "act-rightsize:rule:9", "act-rightsize-enrich:rule:1", "act-rightsize-enrich:rule:2", "act-rightsize-enrich:rule:3", "act-rightsize-enrich:rule:4", "act-rightsize-enrich:step:1", "act-rightsize-enrich:step:2", "act-rightsize-enrich:step:3", "act-rightsize-enrich:step:4", "act-rightsize-enrich:last", "respond-ask:rule:11"]
 category = "boundary"
 rejects = "Padding the handover with beginner installation content instead of operational facts."
 review = ["Proposes the status-file location, resume command and failed-checkpoint action from operations.toml. Keeps the experienced-duty-operator audience and omits installation/tutorial material. After approval, adds sourced operational details only."]

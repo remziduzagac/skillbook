@@ -1,0 +1,32 @@
+source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, designing a skill; The checklist; The last instruction"
+about = "Design a new child under a built parent, in the group's design file, to the checklist, without building it. Rejects a section missing the group's fields, a parent left unaware of its new child, or a skill file written for a design request."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-tree"]
+covers = ["skillbook-tree:step:2", "skillbook-tree:rule:2", "skillbook-tree:rule:1", "skillbook-tree:check:2", "skillbook-tree:check:6", "skillbook-tree:check:7", "skillbook-tree:check:12", "skillbook-tree:last"]
+category = "normal"
+rejects = "Writes the child's skill file, adds a section without the fields the other sections have, leaves the parent's flow and tests unaware of the new child, or gives tests with no near miss or no wrong behaviour they reject."
+review = [
+  "The new section sits in blueprint/design/authoring/proofread.md beside spelling and tone, with the same fields: purpose, description, callers, flow, result, files, tests and open.",
+  "Its description says when to use it and when not, without overlapping spelling, tone or the separate cite design; its tests include a near miss and each names a wrong behaviour it rejects.",
+  "Checking a link that points to the web needs a capability: the design names it in its Files line with a fallback when it is missing, rather than naming a program.",
+  "The parent's flow, and its tests where needed, now account for the new child, since adding a child moves the parent's boundary.",
+  "The design is in plain short sentences, and before showing it the agent checks it against the checklist and says what that check found.",
+  "No skill file is created or changed: the request was for a design only.",
+]
+
+[[turns]]
+prompt = "Proofread should also catch dead links in a draft, like a URL that goes nowhere or a pointer to a missing section. Work out the design for that as a new child of proofread and add it to the authoring designs; don't build the skill file yet."
+
+[checks]
+reads = ["skillbook-tree"]
+changed = ["blueprint/design/authoring/proofread.md"]
+unchanged = ["skills/authoring/references/proofread.md", "skills/authoring/references/proofread/spelling.md", "skills/authoring/references/proofread/tone.md", "blueprint/design/authoring/cite.md"]
+
+[checks.file_contains]
+"blueprint/design/authoring/proofread.md" = [
+  '(?m)^## proofread-spelling$',
+  '(?m)^## proofread-tone$',
+  '(?m)^## \S*link',
+  '(?ms)^## \S*link.*\*\*Tests:\*\*',
+]

@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: rightsize, lean"
 about = "Trimming what already exists, through the lean skill: turn 1 lists the changes and changes nothing; after the user approves, turn 2 makes NOTES.md shorter and keeps its facts. Rejects applying at once, a refusal, or a change that drops facts or does not shorten it."
 fixture = "tiny-weather"
 skills = ["act-rightsize", "act-rightsize-lean"]
+covers = ["act:route:act-rightsize", "act-rightsize:route:act-rightsize-lean", "act-rightsize:rule:3", "act-rightsize:rule:8", "act-rightsize:rule:9", "act-rightsize-lean:rule:1", "act-rightsize-lean:rule:2", "act-rightsize-lean:rule:4", "act-rightsize-lean:step:3", "act-rightsize-lean:step:4", "act-rightsize-lean:step:5", "act-rightsize-lean:last", "respond-ask:rule:11", "essentials:rule:1", "essentials:rule:3"]
 category = "normal"
 rejects = "Edits before approval, drops necessary facts or skips the lean route."
 review = ["Turn 1 proposes concrete cuts to the repeated project description, service explanation or duplicate ideas, names the affected parts and explains why each cut preserves useful information. A refusal or generic promise to shorten does not qualify. Any readable proposal format is accepted, including prose. Turn 2 applies only the approved cuts while preserving the project facts."]

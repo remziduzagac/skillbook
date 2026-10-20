@@ -1,0 +1,22 @@
+source = ".agents/skills/skillbook-write/SKILL.md: Rules, the design is the source; Instructions, a plain skill file; The last instruction"
+about = "A request to build a skill file also asks for a behaviour its design lacks. Routing: building loads skillbook-write, and the design gap goes to skillbook-tree. Rejects writing the missing behaviour into the file, or changing the design unasked."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-write", "skillbook-tree"]
+covers = ["skillbook-write:rule:1", "skillbook-write:step:2", "skillbook-write:last", "skillbook-tree:step:2", "skillbook-tree:step:5"]
+category = "edge"
+rejects = "Adds a step to find a meeting time, or a Needs line for calendar access, to the built file; edits the agenda design without the user; or refuses all work without naming the gap and a proposed design change."
+review = [
+  "The agent sees that choosing a meeting time is not in the agenda design, takes it back to the design through skillbook-tree, and proposes the design change, with the capability it would need, for the user to decide.",
+  "Any file it writes holds only what the design has: a '# agenda' heading, one line on what it does, and no 'Needs:' line, since the designed skill needs no capability.",
+  "Its last step runs skillbook-tree's checklist on what it wrote, and reports at least the design's judgment-word trigger ('seems too full') as a difference to settle with the user, rather than silently rewriting the rule.",
+  "It ends with the gap and the proposed resolution stated plainly, without changing the design.",
+]
+
+[[turns]]
+prompt = "Write the file for the agenda skill. While you're at it, have it also find a slot in everyone's calendar and suggest a meeting time."
+
+[checks]
+reads = ["skillbook-write", "skillbook-tree"]
+unchanged = ["blueprint/design/essentials/agenda.md"]
+answer_contains = ['calendar|meeting time|slot', 'design']

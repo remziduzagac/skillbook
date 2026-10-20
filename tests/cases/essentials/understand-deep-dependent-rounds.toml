@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/understand.md: deep, tests 1, 7, 8 and 9"
 about = "Exercises deep, tests 1, 7, 8 and 9 with a held-out situation. Rejects: Asks deployment-specific questions before the deployment choice is known, or treats go-ahead as ending the interview."
 fixture = "tiny-weather"
 skills = ["understand-clarify", "understand-clarify-shallow", "understand-clarify-deep"]
+covers = ["understand-clarify:route:understand-clarify-deep", "understand-clarify:not-for:understand-clarify-shallow", "understand-clarify:advice:1", "understand-clarify:advice:2", "understand-clarify-deep:rule:1", "understand-clarify-deep:rule:2", "understand-clarify-deep:rule:3", "understand-clarify-deep:advice:1", "respond-ask:rule:5", "respond-ask:rule:11"]
 category = "normal"
 rejects = "Asks deployment-specific questions before the deployment choice is known, or treats go-ahead as ending the interview."
 review = ["Loads deep immediately because the user explicitly requests an interview.", "The first round asks direction-setting questions and defers details that only make sense after the local-versus-hosted choice.", "After the hosted choice, asks relevant dependent questions; does not repeat the offer to start deep.", "After go-ahead accepts supported recommendations, continues with unresolved user-owned dependencies rather than writing the plan or implementation as final."]

@@ -3,6 +3,7 @@ about = "A requested invariant is already present in the skill. Rejects gratuito
 fixture = "skill-lab"
 project_skills = ["skillbook-tree", "skillbook-write"]
 skills = ["skillbook-write"]
+covers = ["skillbook-write:rule:1", "skillbook-write:step:5"]
 category = "boundary"
 rejects = "Changes unrelated wording or duplicates an unavailable-capability fallback that already exists."
 review = ["The agent checks the design and implementation, identifies that the requested fallback already exists and cites it.", "It leaves the unrelated spelling error alone and does not invent a failing baseline to justify a change."]

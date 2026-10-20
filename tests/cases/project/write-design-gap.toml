@@ -3,6 +3,7 @@ about = "A requested implementation behaviour is absent from the design. Rejects
 fixture = "skill-lab"
 project_skills = ["skillbook-tree", "skillbook-write"]
 skills = ["skillbook-write", "skillbook-tree"]
+covers = ["skillbook-tree:step:2", "skillbook-write:rule:1", "skillbook-write:step:5", "skillbook-write:last"]
 category = "edge"
 rejects = "Adds automatic publication despite the explicit design-review boundary."
 review = ["The agent identifies that automatic publication is absent from the design and proposes the design change through the project skill.", "It ends with the concrete gap and a proposed resolution, without adding publication steps or performing any outward action."]

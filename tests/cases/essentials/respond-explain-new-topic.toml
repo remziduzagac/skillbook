@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/respond.md: explain, test 4 near miss; res
 about = "An initial request to explain a new concept routes to understand rather than repairing an earlier agent message."
 fixture = "communication"
 skills = ["respond", "respond-explain"]
+covers = ["respond:not-for:step-3"]
 category = "boundary"
 rejects = "Loading respond-explain merely because the request contains explain, or presenting the concept as an existing project policy."
 review = ["The response explains the new concept as a new topic, not as a correction of an earlier agent message.", "It makes the difference between an access requirement and a preference understandable in the event context."]

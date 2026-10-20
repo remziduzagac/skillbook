@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: act, test 1"
 about = "An editorial opinion inspects existing material but does not silently rewrite it."
 fixture = "editorial"
 skills = ["act"]
+covers = ["act:rule:2", "act-rightsize:advice:2"]
 category = "normal"
 rejects = "Editing the brief instead of giving an assessment."
 review = ["Gives a reasoned assessment of whether the brief suits visitors; any suggested edit remains a proposal."]

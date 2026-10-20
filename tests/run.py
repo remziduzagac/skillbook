@@ -49,7 +49,19 @@ def main():
     if not cases:
         sys.exit(f"no case matches {args.case!r} under {CASES.relative_to(REPO)}")
     if args.coverage:
-        print(coverage(cases))
+        if not args.summary:
+            print(coverage(cases))
+        report, unknown_ids, uncovered = aspect_coverage(load_cases(""))
+        if args.summary:
+            # for just check: one line, a warning only, since covering every aspect is advice to work towards
+            print(f"aspects: {len(uncovered)} with nothing covering them; run `just test-coverage` for the list")
+            for aspect in unknown_ids:
+                print(f"unknown aspect named by a case or tests/manual.toml: {aspect}")
+            return 1 if unknown_ids else 0
+        print()
+        print(report)
+        if unknown_ids:
+            return 1  # a case or the manual list names an aspect that no longer exists
         return 0
 
     agents = [a for a in args.agents.split(",") if a]
@@ -138,6 +150,7 @@ def parse_args():
     p.add_argument("--out", help="results folder (default: a dated folder in the system's temporary folder)")
     p.add_argument("--dry-run", action="store_true", help="list the runs and the estimate, then stop")
     p.add_argument("--coverage", action="store_true", help="report scenario coverage without running an agent")
+    p.add_argument("--summary", action="store_true", help="with --coverage: one line of aspect coverage, for just check")
     p.add_argument("--yes", action="store_true", help="run without asking")
     return p.parse_args()
 
@@ -205,6 +218,83 @@ def coverage(cases):
     return "\n".join(lines)
 
 
+MANUAL = REPO / "tests" / "manual.toml"
+SECTION_KINDS = {"Rules": "rule", "Advice": "advice", "Names": "names", "The checklist": "check"}
+
+
+def skill_files():
+    """Each built skill's file and name: a set's main skill, its plain files, and the project skills."""
+    files = []
+    for main in sorted((REPO / "skills").glob("*/SKILL.md")):
+        set_name = main.parent.name
+        files.append((set_name, main))
+        for path in sorted((main.parent / "references").rglob("*.md")):
+            files.append((skill_name(set_name, str(path.relative_to(main.parent))), path))
+    for main in sorted((REPO / ".agents" / "skills").glob("*/SKILL.md")):
+        files.append((main.parent.name, main))
+    return files
+
+
+def aspects():
+    """Every aspect a skill states, named from its own text: each item of its rules, advice, names and checklist; each
+    instruction, and for a routing line the route and its "Not for" cases; and its last instruction."""
+    found = {}
+    for name, path in skill_files():
+        section, index, current = None, 0, None
+        for line in path.read_text().splitlines():
+            if line.startswith("## "):
+                section, index, current = line[3:].strip(), 0, None
+                if section == "The last instruction":
+                    found[f"{name}:last"] = "the last instruction"
+                continue
+            top = re.match(r"^(?:\d+\.|-) (.*)", line)
+            if top and section in SECTION_KINDS:
+                index += 1
+                found[f"{name}:{SECTION_KINDS[section]}:{index}"] = summary_of(top.group(1))
+            elif top and section == "Instructions":
+                route = re.search(r"\(`([a-z][a-z0-9-]*)`\)", top.group(1))
+                index += 1
+                current = route.group(1) if route else f"step-{index}"
+                key = f"route:{current}" if route else f"step:{index}"
+                found[f"{name}:{key}"] = summary_of(top.group(1))
+            elif current and section == "Instructions" and line.strip().startswith("- Not for:"):
+                found[f"{name}:not-for:{current}"] = summary_of(line.strip()[2:])
+    return found
+
+
+def summary_of(text):
+    text = re.sub(r"[*`]", "", text).strip()
+    return text[:70] + ("…" if len(text) > 70 else "")
+
+
+def aspect_coverage(cases):
+    """Which aspects a case or the manual list covers, which are named but unknown, and which nothing covers."""
+    known = aspects()
+    covered = {}
+    for case in cases:
+        for aspect in case.get("covers", []):
+            covered.setdefault(aspect, []).append(case["id"])
+    manual = tomllib.loads(MANUAL.read_text()).get("aspect", []) if MANUAL.is_file() else []
+    by_hand = {m["id"]: m.get("reason", "") for m in manual}
+    unknown_ids = sorted((set(covered) | set(by_hand)) - set(known))
+    uncovered = [a for a in known if a not in covered and a not in by_hand]
+    lines = ["# Aspect coverage", "",
+             "Each aspect is an item a skill states: a rule, advice, a route or step and its Not-for cases, a checklist "
+             "check, the last instruction. A case covers what its `covers` field names; tests/manual.toml lists what "
+             "only a person can test. Counting coverage says nothing about any model passing.", "",
+             "| Skill | Aspects | By a case | By hand | None |", "| --- | --- | --- | --- | --- |"]
+    for name, _ in skill_files():
+        mine = [a for a in known if a.split(":")[0] == name]
+        lines.append(f"| {name} | {len(mine)} | {sum(a in covered for a in mine)} | "
+                     f"{sum(a in by_hand and a not in covered for a in mine)} | {sum(a in uncovered for a in mine)} |")
+    lines += ["", f"{len(known)} aspects; {len(uncovered)} with nothing covering them."]
+    if unknown_ids:
+        lines += ["", "Named but not found in any skill (renamed or renumbered?):"] + [f"- {a}" for a in unknown_ids]
+    if uncovered:
+        lines += ["", "Not covered:"] + [f"- `{a}`: {known[a]}" for a in uncovered]
+    return "\n".join(lines), unknown_ids, uncovered
+
+
 def model_for(agent, args):
     for item in args.model:
         name, _, model = item.partition("=")
@@ -242,6 +332,9 @@ def run_one(case, agent, n, args, out_dir, budget_left):
     try:
         home, work = root / "home", root / "work"
         shutil.copytree(FIXTURES / case["fixture"], work)
+        # A fixture keeps one project instruction file, AGENTS.md; Claude Code reads only CLAUDE.md.
+        if agent == "claude" and (work / "AGENTS.md").is_file() and not (work / "CLAUDE.md").exists():
+            shutil.copyfile(work / "AGENTS.md", work / "CLAUDE.md")
         prepare_home(home, agent, case, args.login, args.instruction)
         before = snapshot(work)
         env = agent_env(home, agent, args.login)

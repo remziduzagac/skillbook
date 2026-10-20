@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: clarify, test 15"
+about = "A choice the user wants to think through together is a discussion under understand's rules, not clarify, which draws out what the user already means. Rejects a round of clarifying questions with recommended answers, or a plan."
+fixture = "garden-club"
+skills = ["understand"]
+category = "boundary"
+covers = ["understand:not-for:understand-clarify", "understand-clarify:not-for:understand-clarify-deep", "understand-clarify:step:7"]
+rejects = "Treats the open topic as a request to specify work: runs a numbered question round with recommended answers, or starts writing a plan or a notice."
+review = ["The answer engages with the choice: what each way costs and who it reaches, using what the folder holds, such as the twelve members on paper.", "It gives a view or the open points that matter and may ask one or two real questions; it does not run a clarifying round as if specifying a task.", "No file changes."]
+
+[[turns]]
+prompt = "I keep going back and forth on dropping the email newsletter for a printed sheet pinned at the gate. Can we think it over together before anything gets decided?"
+
+[checks]
+reads_not = ["understand-clarify"]
+no_changes = true

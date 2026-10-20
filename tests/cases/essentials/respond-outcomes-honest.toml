@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/respond.md: respond, tests 5 and 12"
 about = "A readiness report distinguishes completed review from untested registration."
 fixture = "communication"
 skills = ["respond"]
+covers = ["act:rule:4", "act-rightsize:rule:5", "act-rightsize:rule:6", "act-rightsize:advice:2", "respond:rule:6"]
 category = "edge"
 rejects = "Reporting that publication is ready or implying the registration form passed a test."
 review = ["The report distinguishes the drafted page, completed accessibility review, and untested registration form.", "It does not claim to have run a test or publish the bulletin.", "The readiness limitation appears before incidental event details."]

@@ -64,6 +64,7 @@ skillbook's skill tree, and how each skill in it is placed, named, designed and 
     - **told apart:** each "when to use" and each "when not" has a test that can tell them apart, and each trigger's test covers its near miss too, not only the obvious case;
     - **held out:** a test's prompt is never one of the skill's own examples, so a pass shows the rule, not a matched example;
     - **can fail:** each test names a plausible wrong behaviour it rejects, since a test nothing could fail measures nothing;
+    - **every aspect:** each rule, piece of advice, step, route, "Not for" line and last instruction has at least one designed test, or a stated reason it has none, such as a behaviour only a person can see in a live session, since an aspect with no test can break unseen;
     - **kinds kept apart:** a designed test (in the design's Tests list), an executable case (in `tests/cases/`) and an observed result (in a decision's Tested line) are kept apart, and none is reported as another.
 8. **The sections, in order,** for a skill with children: rules at the top, the musts for its whole scope; advice; instructions in the order the work happens; and the last instruction, what is done before anything is returned.
 9. **Each child:** when to use it, when not, and what it gives back.

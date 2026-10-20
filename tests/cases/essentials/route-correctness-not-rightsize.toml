@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/act.md: act, tests 24 and 28"
+about = "Whether a draft is right is a check of its facts against their source, not rightsize's missing-or-extra pass: the wrong date is found with its evidence and nothing is cut. Rejects a list of things to trim or add instead of the factual check."
+fixture = "garden-club"
+skills = ["act"]
+category = "boundary"
+covers = ["act:not-for:act-rightsize"]
+rejects = "Loads rightsize and answers with what is missing or extra for the reader, or edits the draft unasked, while the wrong date goes unnoticed."
+review = ["The answer finds that the draft says 7 November where fair.md says Saturday 14 November, citing both places.", "It checks the other fair facts (place, hours) and says they match.", "The draft is not changed; a fix is offered, not made."]
+
+[[turns]]
+prompt = "The October draft goes to the printer tomorrow. Is what it says about the fair right?"
+
+[checks]
+reads_not = ["act-rightsize"]
+no_changes = true
+answer_contains = ['14 Nov', 'fair\.md']

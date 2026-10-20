@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: lean, test 9; rightsize, test 9"
 about = "Shortening a draft made in this conversation needs no lean approval round."
 fixture = "editorial"
 skills = ["act-rightsize"]
+covers = ["act:not-for:act-rightsize", "act-rightsize:not-for:act-rightsize-lean", "act-rightsize:rule:3", "act-rightsize:rule:9", "act-rightsize:advice:3", "act-rightsize:last"]
 category = "boundary"
 rejects = "Treating the agent's fresh draft as a pre-existing document requiring approval."
 review = ["Turn 1 drafts a visitor notice from the given facts. Turn 2 supplies a shorter notice directly and keeps all three facts, without a proposal or approval question."]

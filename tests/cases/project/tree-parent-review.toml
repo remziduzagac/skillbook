@@ -1,0 +1,22 @@
+source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, reviewing a skill; checks 8 to 10, 12 and 13"
+about = "Review a built skill that has children: checks 8 to 10 on the parent, then each child the same way. Rejects reviewing the parent only, missing the parent's order and routing faults, or editing during a review."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-tree"]
+covers = ["skillbook-tree:step:3", "skillbook-tree:check:1", "skillbook-tree:check:8", "skillbook-tree:check:9", "skillbook-tree:check:10", "skillbook-tree:check:12", "skillbook-tree:check:13", "skillbook-tree:rule:3", "skillbook-tree:rule:4", "skillbook-tree:rule:5", "skillbook-tree:advice:3"]
+category = "normal"
+rejects = "Reviews only the parent file, treats the parent as a leaf, misses that the parent does a child's work, reports findings without file and line, or changes a file."
+review = [
+  "The parent proofread gets checks 8 to 10: its instructions come before its rules; its line for tone says neither when to load it nor what it gives back, and neither child line says when not to; its third instruction does spelling's work inside the parent.",
+  "Each child is then reviewed on its own, against its design section: spelling names a program instead of the action and declares no capability, against a design that uses the agent's judgment; tone rewrites the draft on a judgment word ('feels off'), where the design and the parent's rule say to propose and wait for approval.",
+  "Each finding gives the file and line, the check by number, what is wrong and a general fix; related findings are grouped; each skill ends with a line naming the checks that found nothing.",
+  "The review ends with a short coverage statement, and no file changes.",
+]
+
+[[turns]]
+prompt = "Audit the proofread skill in the authoring set, including whatever sits below it, against what was designed. I only want the problems reported; edit nothing."
+
+[checks]
+reads = ["skillbook-tree"]
+no_changes = true
+answer_contains = ['proofread\.md', 'spelling', 'tone']

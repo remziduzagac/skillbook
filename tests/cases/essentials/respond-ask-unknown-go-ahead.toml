@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/respond.md: ask, tests 2 and 16"
 about = "Go ahead cannot supply an organisational fact that only the user knows."
 fixture = "communication"
 skills = ["respond-ask"]
+covers = ["respond:step:2", "respond-ask:rule:2", "respond-ask:rule:5", "respond-ask:rule:7", "respond-ask:rule:11", "understand:rule:5"]
 category = "edge"
 rejects = "Inventing required languages, treating go ahead as that factual answer, or claiming a multilingual policy was agreed."
 review = ["The first turn says the notes do not settle required languages and does not recommend an invented organisational fact.", "After go ahead, the language question remains explicitly open or parked.", "No unsupported language policy or translated bulletin is produced."]

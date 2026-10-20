@@ -21,7 +21,7 @@ How skillbook is tested, as a whole: what runs where, what a test needs, and whe
 
 All in `tests/` (D190), except the commands, which are in the `justfile`.
 
-- **`tests/fixtures/<name>/`:** small toy projects, each a known situation, such as a vague request or a plan whose parts depend on each other. Automated and manual tests share them.
+- **`tests/fixtures/<name>/`:** small toy projects, each a known situation, such as a vague request or a plan whose parts depend on each other. Automated and manual tests share them. A fixture's project instruction file is `AGENTS.md` only; the runner copies it to `CLAUDE.md` for Claude Code, so both agents get the same instructions and the repository holds no nested `CLAUDE.md` that would load into a developer's own session.
 - **`tests/cases/<set>/<case>.toml`:** one case per file. Its fields:
   - the design test it comes from: the design file and the test's number;
   - the fixture;
@@ -31,6 +31,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   - the number of runs, 1 by default: a rule is covered by several different cases rather than by repeating one, since varied prompts show more for the same cost; a case is repeated only when it fails or its results disagree (D213);
   - whether the pointer is in the user's instruction file, yes by default;
   - `skills`, the implemented skills whose behaviour or routing boundary it exercises; `category`, normal, boundary or edge; `rejects`, the plausible wrong behaviour;
+  - `covers`, the aspects of the skills it tests, by the ids `tests/run.py --coverage` names from the skill files: each rule, piece of advice, step, route, "Not for" line, checklist item and last instruction, such as `act:rule:5` or `act:not-for:act-rightsize`; only what its checks or review can fail on;
   - `review`, semantic acceptance criteria judged by the user or guiding agent; automatic success leaves these pending, and the summary includes each turn's answer for review;
   - `project_skills`, the repository's own skills copied into the isolated agent skill folder for a project-skill exercise only, never added to the shipped set;
   - the checks a script can make from the event log, for the whole run under `[checks]`, or for one turn under `[turns.checks]`, judged on that turn's answer and changes (D216):
@@ -49,7 +50,9 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   5. checks the event log;
   6. writes a short summary.
 - **`tests/install-test.sh`:** the install tests. Each test copies `install.sh` and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched.
-- **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model. `just test-coverage` reports executable scenario counts, not observed success.
+- **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model. `just test-coverage` reports executable scenario counts, not observed success, and lists each aspect that no case covers and `tests/manual.toml` does not name.
+- **`tests/manual.toml`:** the aspects only a person can test in a live session, such as the harness's question tool, real compaction or publishing, each with its reason.
+- **`just check-coverage`,** inside `just check`: warns with the number of uncovered aspects, and fails only when a case or `tests/manual.toml` names an aspect that does not exist.
 - **Review evidence:** before deleting each sandbox, the runner retains per-turn fixture diffs, observed file contents requested by assertions, answers and an ordered action ledger of tool names, commands and target paths. Tool outputs and credential-home contents are not copied into that ledger. Failed or timed-out turns retain the evidence available, marked incomplete. A semantic criterion that cannot be established from the retained evidence stays unknown; raw events may be kept explicitly when needed.
 
 ## Project skill scenarios

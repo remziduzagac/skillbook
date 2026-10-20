@@ -1,0 +1,19 @@
+source = "blueprint/design/essentials/understand.md: clarify, test 4; questionnaire, test 1"
+about = "A fact the files hold is read, not asked and not sent out as a questionnaire, though the request names someone else: next year's plot fee comes from fees.md. Rejects asking the user or the chair for the amount."
+fixture = "garden-club"
+skills = ["understand", "understand-clarify"]
+category = "boundary"
+covers = ["understand:not-for:understand-clarify", "understand-clarify:not-for:understand-clarify-questionnaire"]
+rejects = "Asks the user for the fee, or writes a questionnaire for the chair, though fees.md records it."
+review = ["The draft gains the 2027 plot fees from fees.md, in the draft's style, and the answer cites fees.md.", "Where it goes in the draft is chosen and stated, not asked."]
+
+[[turns]]
+prompt = "The chair wants next year's plot fee announced in the October draft. Add it."
+
+[checks]
+reads_not = ["understand-clarify-questionnaire"]
+changed = ["drafts/october.md"]
+unchanged = ["outgoing/questions.md"]
+
+[checks.file_contains]
+"drafts/october.md" = ['35', '\*\*Committee\*\*']

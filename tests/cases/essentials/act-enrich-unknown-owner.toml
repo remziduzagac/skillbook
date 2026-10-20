@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: enrich, tests 2, 3 and 7"
 about = "A project-specific missing contact is not fabricated from outside information."
 fixture = "editorial"
 skills = ["act-rightsize", "act-rightsize-enrich"]
+covers = ["act-rightsize:route:act-rightsize-enrich", "act-rightsize-enrich:rule:2", "act-rightsize-enrich:step:3", "act-rightsize-enrich:last", "understand:rule:5"]
 category = "edge"
 rejects = "Inventing an owner or response-time promise when no project source gives it."
 review = ["Searches local project evidence, identifies that the weekend contact and response guarantee are absent, and asks the user or marks a gap; adds no guessed person, address or SLA."]

@@ -1,0 +1,35 @@
+source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, trimming or filling an existing skill; Rules, rightsized"
+about = "Trim a built skill that has grown: turn 1 lists what would go and why and changes nothing; after approval, turn 2 cuts only that and keeps every reason, 'when not' case and required step. Rejects cutting at once, cutting what a rule requires, or quietly filling a gap while trimming."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-tree", "skillbook-write"]
+covers = ["skillbook-tree:step:4", "skillbook-tree:rule:1", "skillbook-tree:advice:4", "skillbook-write:step:5"]
+category = "normal"
+rejects = "Edits before the user approves the list, drops the reason, the status-report exclusion or where things live, keeps the decision history and empty examples, or adds the missing fallback without asking."
+review = [
+  "Turn 1 lists the cuts, each with why: the background on how the skill was decided and its decision numbers; the rule restated from another skill; the line that does no work; the examples that teach nothing.",
+  "Turn 1 keeps the reason that the next person cannot ask later, the exclusion for a status report to a manager and naming where each thing lives, and says they stay because a rule requires them.",
+  "The design's fallback for a person who cannot be reached is missing from the file; the agent may propose adding it as a separate change, but turn 2 does not fold it into the trim unasked.",
+  "Turn 2 applies the approved cuts only, and reports what went, with the check it ran.",
+]
+
+[[turns]]
+prompt = "The handoff skill has picked up a lot of padding over time. Slim it to what an agent working from it actually needs."
+
+[turns.checks]
+no_changes = true
+answer_contains = ['handoff']
+
+[[turns]]
+prompt = "Fine, make those cuts."
+
+[turns.checks]
+changed = ["skills/essentials/references/handoff.md"]
+
+[checks]
+reads = ["skillbook-tree"]
+unchanged = ["blueprint/design/essentials/handoff.md"]
+shorter = ["skills/essentials/references/handoff.md"]
+
+[checks.file_contains]
+"skills/essentials/references/handoff.md" = ['(?m)^# handoff$', 'status report', '(cannot|can.t|can not) ask', 'blocked', 'branch|folder|shared document']

@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: rightsize, tests 1 and 10"
 about = "A short factual answer keeps its evidence without irrelevant exposition."
 fixture = "editorial"
 skills = ["act", "act-rightsize"]
+covers = ["act:rule:4", "act-rightsize:rule:3", "act-rightsize:rule:5", "act-rightsize:advice:1", "act-rightsize:advice:2", "act-rightsize:last", "respond:rule:1", "respond:advice:1"]
 category = "normal"
 rejects = "A lengthy handover or an unsupported time."
 review = ["States 16:30 directly with a BRIEF.md line citation; no unrelated visitor advice, preamble or offer."]

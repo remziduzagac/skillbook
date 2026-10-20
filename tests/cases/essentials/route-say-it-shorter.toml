@@ -1,0 +1,22 @@
+source = "blueprint/design/essentials/respond.md: respond, test 18; act.md: act, test 33"
+about = "Shortening the agent's own reply is respond's wording and length, not layout and not a trim of an existing file: the next reply says the same in fewer lines. Rejects a change list for approval, a file written, or only re-laying the same text out."
+fixture = "garden-club"
+skills = ["respond", "act-rightsize"]
+category = "normal"
+covers = ["essentials:not-for:step-2", "act:not-for:act-rightsize", "respond:not-for:step-1"]
+rejects = "Loads lean and lists changes to approve, writes the summary to a file, or keeps the length and only adds headings or bullets."
+review = ["The second reply keeps what a stallholder needs most (date, place, set-up time, fee, one pitch each) in about three lines, with nothing new added.", "It is shorter in content, not only re-laid out.", "No file changes in either turn."]
+
+[[turns]]
+prompt = "Tell me everything a stallholder needs to know about the autumn fair, from what is in this folder."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Too long for a text message. Give me the same in three lines."
+
+[turns.checks]
+no_changes = true
+reads_not = ["act-rightsize-lean"]
+answer_contains = ['14 Nov']

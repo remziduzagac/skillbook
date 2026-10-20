@@ -1,0 +1,23 @@
+source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, placing or moving a skill; Names"
+about = "Place and name a proposed skill from the tree, against a suggested name that breaks the naming rules, as advice only. Rejects accepting the suggestion, ignoring the existing skill that already holds the knowledge, or loading the file-writing skill."
+fixture = "skill-lab"
+project_skills = ["skillbook-tree", "skillbook-write"]
+skills = ["skillbook-tree"]
+covers = ["skillbook-tree:step:1", "skillbook-tree:names:1", "skillbook-tree:names:3", "skillbook-tree:names:5", "skillbook-tree:check:3", "skillbook-tree:rule:5"]
+category = "boundary"
+rejects = "Accepts the long coined name with the set prefix, or a file under a scripts folder; places the skill without looking at the tree; loads skillbook-write for a placing question; or edits the tree before the user decides."
+review = [
+  "The agent reads the skill tree and notices that digest already turns a long text into decisions and open questions, so it either places the new skill under digest or argues that digest should cover it, and says why.",
+  "The proposed name follows the naming rules: a short plain verb or noun, the path joined by dashes with no set prefix, and a file under references/ rather than under scripts/.",
+  "It names the resulting file path for its proposal, and explains briefly why the colleague's name and folder do not fit, without lecturing.",
+  "Nothing is changed: the user said they decide first.",
+]
+
+[[turns]]
+prompt = "A colleague wants a skill that reads a long email thread and pulls out each decision with its owner. They'd call it authoring-email-thread-decision-extractor and keep it at skills/authoring/scripts/thread.md. Where would it fit in our tree, and under what name? Just advise; I'll decide before anything gets added."
+
+[checks]
+reads = ["skillbook-tree"]
+reads_not = ["skillbook-write"]
+no_changes = true
+answer_contains = ['digest', 'references/']

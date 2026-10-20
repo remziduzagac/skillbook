@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/respond.md: respond, test 16"
+about = "A document that explains something to its readers is written work, not respond's explain, which repairs a message of the agent's that did not land. Rejects loading explain for it."
+fixture = "garden-club"
+skills = ["respond", "act"]
+category = "boundary"
+covers = ["respond:not-for:step-3"]
+rejects = "Loads respond-explain because the request says explain, or writes the guide in the chat only."
+review = ["The guide states the 2027 fees, the half plot and the over-70 discount from fees.md, for a reader new to the club.", "It is saved where asked, and the answer says so briefly."]
+
+[[turns]]
+prompt = "New members keep asking how plot fees work. Write them a short guide, saved as guides/plot-fees.md."
+
+[checks]
+reads_not = ["respond-explain"]
+
+[checks.file_contains]
+"guides/plot-fees.md" = ['35', '20', '(?i)70']

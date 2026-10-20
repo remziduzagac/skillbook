@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/act.md: act, test 9"
 about = "A narrow requested correction leaves a separate defect alone."
 fixture = "editorial"
 skills = ["act"]
+covers = ["act:rule:3"]
 category = "boundary"
 rejects = "Rewriting other paragraphs while fixing the named error."
 review = ["Fixes only the misspelling; names the duplicated contact information as a follow-up if noticed."]

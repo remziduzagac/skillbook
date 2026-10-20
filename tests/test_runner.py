@@ -355,5 +355,20 @@ class ReviewFollowUpTests(unittest.TestCase):
         self.assertNotIn("a" * 40, line)
 
 
+class AspectCoverage(unittest.TestCase):
+    def test_aspects_come_from_the_skill_text(self):
+        names = runner.aspects()
+        for aspect in ("act:rule:5", "act:route:act-rightsize", "act:not-for:act-rightsize", "essentials:step:1",
+                       "essentials:not-for:step-1", "respond-ask:last", "skillbook-tree:check:13"):
+            self.assertIn(aspect, names)
+
+    def test_unknown_and_uncovered_aspects_are_reported(self):
+        cases = [{"id": "x/one", "covers": ["act:rule:5", "act:rule:999"]}]
+        _, unknown, uncovered = runner.aspect_coverage(cases)
+        self.assertIn("act:rule:999", unknown)
+        self.assertNotIn("act:rule:5", uncovered)
+        self.assertIn("act:rule:6", uncovered)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -2546,3 +2546,33 @@ No AI test was run for this batch.
 None of the new cases has run on a model yet; earlier results in the decisions' Tested lines do not show that they pass.
 
 **Why:** the user wanted every built skill tested with normal, boundary and edge cases, each able to tell the right behaviour from a plausible wrong one. A script can check facts, such as what was read and what changed, but not whether a question was needed or an explanation helped, so each case carries a review rubric and the summary keeps the evidence to judge it after the throwaway folder is gone. That evidence must not carry a login or account data, so tool outputs and the login's home stay out. Runner tests with no account run in `just check`, so a change to the runner cannot quietly make a wrong behaviour pass.
+
+## D220: Test coverage is checkable, aspect by aspect (2026-10-20)
+
+**Decision:**
+
+- **Aspects are named from the skill text.** `tests/run.py --coverage` lists every aspect of every skill. An aspect is a rule, a piece of advice, a step, a route, a "Not for" line, a checklist item, a name rule or the last instruction. Ids look like `act:rule:5`, `act:not-for:act-rightsize` or `essentials:step:1`.
+- **Each case lists what it tests in a `covers` field.** It lists only what its checks or review rubric can fail on, so an aspect that a case merely touches is not covered.
+- **Some aspects only a person can test.** `tests/manual.toml` names them, each with a reason: the harness's question tool, the deep offer to record after a real compaction, and delegating to a real agent. These need a live session.
+- **The check warns and fails in two different ways.** `just test-coverage` lists every uncovered aspect. `just check` (its `check-coverage` step) warns with their number, and fails only when a case or the manual list names an aspect that does not exist. A covered aspect has a case. It does not have a passing result.
+- **The project skills gain the same duty.**
+  - skillbook-tree's check 7 (Tests) gains "every aspect": each rule, piece of advice, step, route, "Not for" line and last instruction has at least one designed test, or a stated reason it has none.
+  - skillbook-write's test-case instruction gains three things: list `covers`; put aspects only a person can test in `tests/manual.toml` with a reason; and before reporting, show no uncovered aspect of the skill written, or name each one left and why.
+- **Gaps were filled in this order:**
+  - first safety: respond's rule on secrets, vulnerability details, text the agent did not write and irreversible actions; act's rule on a delegated agent; act's rule on which instruction wins; act's kinds of evidence;
+  - then the "Not for" routes;
+  - then the project skills: designing, placing and naming, reviewing a skill with children, trimming and filling, building a file, writing test cases, and routing between the two project skills.
+  - The rest is covered as each skill is next touched.
+- **A fixture keeps one project instruction file, `AGENTS.md`.** The runner copies it to `CLAUDE.md` in the sandbox for Claude Code, so both agents get the same instructions. The repository has no nested `CLAUDE.md` that would load into a developer's own session. Before this, Claude Code runs did not see a fixture's `AGENTS.md`.
+- **Where:**
+  - [../tests/run.py](../tests/run.py): `aspects`, `aspect_coverage`, `--summary` and the `AGENTS.md` copy;
+  - [../tests/test_runner.py](../tests/test_runner.py): class `AspectCoverage`;
+  - [../tests/manual.toml](../tests/manual.toml);
+  - the `covers` field in all cases in `tests/cases/`, 24 new essentials cases and the new fixture `tests/fixtures/garden-club/`, 12 new project cases and new drafts in `tests/fixtures/skill-lab/`;
+  - the [justfile](../justfile) (`check-coverage`, `test-coverage`);
+  - [../.agents/skills/skillbook-tree/SKILL.md](../.agents/skills/skillbook-tree/SKILL.md) and [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md);
+  - [design/testing.md](design/testing.md) and [../tests/README.md](../tests/README.md).
+
+**Tested:** no AI run yet. None of the 36 new cases has run on a model. Coverage after the change: 229 aspects. 177 are covered: 174 by a case and 3 by hand. 52 have nothing. There are 88 cases, 71 for essentials and 17 for the project skills. `just check` passes, with 31 runner tests.
+
+**Why:** an audit of the built skills found many rules, routes and "Not for" lines with no test, and the project skills had almost none. Without a named list, a gap stays invisible until a skill breaks. Naming aspects from the skill text keeps the list current as the skills change. A warning, not a failure, lets work go on while the gaps are filled.

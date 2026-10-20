@@ -1,0 +1,16 @@
+{
+  "essentials": {
+    "respond": { "children": { "explain": { "state": "built" } } },
+    "organize": { "children": { "arrange": { "state": "designed" } } },
+    "handoff": { "state": "built" },
+    "agenda": { "state": "designed" }
+  },
+  "authoring": {
+    "proofread": {
+      "state": "built",
+      "children": { "spelling": { "state": "built" }, "tone": { "state": "built" } }
+    },
+    "digest": { "state": "built" },
+    "cite": { "state": "designed" }
+  }
+}

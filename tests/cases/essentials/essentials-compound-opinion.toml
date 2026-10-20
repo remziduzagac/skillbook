@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/essentials.md: tests 10 and 11"
 about = "An opinion request followed by a clarification uses act and explain without changing the project. Rejects interpreting the follow-up as authorization to implement the earlier idea."
 fixture = "tiny-weather"
 skills = ["essentials", "act", "respond-explain"]
+covers = ["act:rule:2", "essentials:rule:1", "essentials:not-for:step-1", "essentials:not-for:step-3", "respond:step:3", "respond-explain:step:1", "understand:not-for:understand-clarify"]
 category = "edge"
 rejects = "Treats a request for an example as approval to implement a previously discussed rename."
 review = ["The first answer gives a reasoned opinion about the file name; the second explains just the tradeoff the user quoted.", "The example is illustrative and no rename or implementation work starts."]

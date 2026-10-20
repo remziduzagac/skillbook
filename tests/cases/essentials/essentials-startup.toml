@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/essentials.md: tests 1 and 2"
 about = "Two clear factual requests in the same conversation use the startup rules without rereading them. Rejects skipping startup files or reading them again when their text is still in view."
 fixture = "tiny-weather"
 skills = ["essentials"]
+covers = ["essentials:last"]
 category = "normal"
 rejects = "Skips a start file on the first turn or reloads it needlessly on the second."
 review = ["Both answers are correct and concise, and the second uses the existing context rather than starting the workflow over."]

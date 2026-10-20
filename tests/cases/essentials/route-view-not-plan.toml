@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/essentials.md: test 10; understand.md: clarify, test 10"
+about = "A view asked for goes to act's rule that an opinion is not a task, not to clarify's questions or a design: a reasoned take, nothing changed. Rejects a round of clarifying questions, or drafting an event plan into the files."
+fixture = "garden-club"
+skills = ["essentials", "act"]
+category = "boundary"
+covers = ["essentials:not-for:step-1", "essentials:not-for:step-3", "understand-clarify:step:6"]
+rejects = "Treats the question as a request to specify or plan the seed swap: asks a round of questions with recommended answers, or writes a plan or a newsletter piece."
+review = ["The answer gives a view with its reasons, using what the folder shows about the club and the fair where it helps.", "Any plan is shown only, short, and the turn ends with the view; no file changes.", "No round of numbered questions is put to the user before the view."]
+
+[[turns]]
+prompt = "Would a seed swap after the fair be worth the bother for a club our size? I just want your honest take."
+
+[checks]
+reads_not = ["understand-clarify"]
+no_changes = true

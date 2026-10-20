@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/respond.md: ask, test 17; understand.md: clarify, test 1"
+about = "Which questions to ask before work is clarify's decision; respond's ask only shapes how they are put. Rejects a long checklist of every possible question, or questions the folder already answers."
+fixture = "garden-club"
+skills = ["understand-clarify", "respond-ask"]
+category = "normal"
+covers = ["respond:not-for:step-2"]
+rejects = "Answers with a generic list of everything a flyer could need, asks for facts the files hold, or asks about choices that are the agent's to make and state."
+review = ["Only what is the user's to decide and would change the flyer is asked, each with a recommended answer where there is a basis; the rest is stated as going with.", "Nothing the folder holds is asked, such as the club's name or the hall.", "The turn ends with the questions; no file changes."]
+
+[[turns]]
+prompt = "I want a flyer for the spring plant sale. What do you need from me before you start?"
+
+[checks]
+reads = ["understand-clarify", "respond-ask"]
+no_changes = true

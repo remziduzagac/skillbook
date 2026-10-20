@@ -2,6 +2,7 @@ source = "blueprint/design/essentials/respond.md: explain, tests 2 and 3"
 about = "A follow-up explanation deepens only the quoted idea and ends without an offer."
 fixture = "communication"
 skills = ["respond-explain"]
+covers = ["respond:step:3", "respond-explain:step:1", "respond-explain:step:3", "respond-explain:step:4"]
 category = "normal"
 rejects = "Repeating all three explanations, adding unrelated detail, or closing with another offer to explain."
 review = ["The first turn explains all three concepts without claiming they are project policy.", "The second turn explains wait-list priority more concretely, without restarting the explanations of timed entry or walk-in access.", "The second answer ends once the explanation is complete and contains no closing offer."]

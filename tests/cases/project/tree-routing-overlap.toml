@@ -3,6 +3,7 @@ about = "Review a small design whose routes disagree about a moving subset. Reje
 fixture = "skill-lab"
 project_skills = ["skillbook-tree"]
 skills = ["skillbook-tree"]
+covers = ["skillbook-tree:step:3", "skillbook-tree:rule:4", "skillbook-tree:rule:5", "skillbook-tree:check:2", "skillbook-tree:check:3"]
 category = "edge"
 rejects = "Approves overlapping routing conditions, reports no evidence, or edits the design during review."
 review = ["The review identifies that moving selected documents qualifies for both routes, cites the actual conflicting lines and proposes one general distinction.", "The reviewer uses the project checklist and reports coverage without implementing its proposed fix."]
