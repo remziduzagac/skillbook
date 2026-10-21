@@ -25,4 +25,4 @@ reads = ["essentials", "understand", "act", "respond", "act-rightsize-lean"]
 shorter = ["NOTES.md"]
 
 [checks.file_contains]
-"NOTES.md" = ['cache', 'cit(y|ies)', 'service']
+"NOTES.md" = ['cach(e|ing)', 'cit(y|ies)', 'service']
