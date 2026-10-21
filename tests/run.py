@@ -46,6 +46,9 @@ AGENT_DIRS = {".claude", ".codex", ".agents", "__pycache__"}  # made by agents o
 
 def main():
     args = parse_args()
+    if args.to_judge:
+        print(runs_to_judge([Path(f) for f in args.to_judge]), end="")
+        return 0
     cases = load_cases(args.case)
     if not cases:
         sys.exit(f"no case matches {args.case!r} under {CASES.relative_to(REPO)}")
@@ -177,7 +180,18 @@ def parse_args():
     p.add_argument("--coverage", action="store_true", help="report scenario coverage without running an agent")
     p.add_argument("--summary", action="store_true", help="with --coverage: one line of aspect coverage, for just check")
     p.add_argument("--yes", action="store_true", help="run without asking")
+    p.add_argument("--to-judge", nargs="+", metavar="FOLDER",
+                   help="list every run in these results folders for semantic review, as tests/judge.md says")
     return p.parse_args()
+
+
+def runs_to_judge(folders):
+    """One tab-separated line per run: case, agent, model, run number and the summary that holds its answers."""
+    lines = []
+    for path in sorted(p for folder in folders for p in folder.rglob("summary.json")):
+        for r in json.loads(path.read_text()):
+            lines.append("\t".join([r["case"], r["agent"], r["model"], str(r["run"]), str(path.with_suffix(".md"))]))
+    return "".join(line + "\n" for line in lines)
 
 
 def load_cases(pattern):
@@ -201,7 +215,7 @@ def load_cases(pattern):
 
 
 CHECK_NAMES = {"reads", "reads_not", "no_changes", "changed", "unchanged", "file_contains", "shorter",
-               "states_before_change", "answer_contains", "answer_not_contains"}
+               "states_before_change", "answer_contains", "answer_not_contains", "written_under", "folder_lacks"}
 
 
 def validate_case(case):
@@ -217,7 +231,7 @@ def validate_case(case):
             raise ValueError(f"{case['id']} {label}: unknown checks: {', '.join(sorted(unknown))}")
         for pattern in checks.get("answer_contains", []) + checks.get("answer_not_contains", []):
             re.compile(pattern)
-        for patterns in checks.get("file_contains", {}).values():
+        for patterns in [*checks.get("file_contains", {}).values(), *checks.get("folder_lacks", {}).values()]:
             for pattern in patterns:
                 re.compile(pattern)
     for skill in case.get("project_skills", []):
@@ -452,6 +466,8 @@ def observe(agent, events, home, set_name, before, work, checks):
     if delta and not changed and not uncertain:
         said, uncertain = "", True  # no mutation boundary was observable; later prose is not a prior statement
     paths = set(checks.get("file_contains", {})) | set(checks.get("shorter", []))
+    folders = tuple(checks.get("folder_lacks", {}))
+    paths |= {p for p in written(delta) if folders and p.startswith(folders)}
     return {"reads": sorted(skills_read(agent, events, home, set_name)),
             "changes": delta, "answer": last_answer(agent, events[-1]),
             "before_change": said, "changed_files": changed or bool(delta), "sequencing_unknown": uncertain,
@@ -596,6 +612,11 @@ def snapshot(folder):
     return files
 
 
+def written(changes):
+    """The paths a list of changes added or changed, leaving out removals."""
+    return [c.split(" ", 1)[1] for c in changes if c.startswith(("changed ", "added "))]
+
+
 def changes(before, after):
     out = [f"added {p}" for p in after if p not in before]
     out += [f"removed {p}" for p in before if p not in after]
@@ -664,10 +685,18 @@ def reads_in_command(command, set_name):
     """The skills whose files a shell command prints with a reading command such as cat or sed, not merely names."""
     wrapped = SHELL_WRAPPER.match(command.strip())
     command = expand_braces(wrapped.group(2) if wrapped else command)
-    # These forms can hide a failed or skipped read behind a successful final command. Without a per-command
-    # result we cannot establish which file was read, so leave the evidence uncounted.
-    if re.search(r"[;|\n<>`]|\$\(|(?<!&)&(?!&)", command):
+    # Command substitution and background jobs can hide a read anywhere, so nothing in such a command counts.
+    if re.search(r"`|\$\(|(?<!&)&(?!&)", command):
         return set()
+    # A zero exit proves only some steps ran and succeeded. After `a; b`, a new line or `a || b`, it proves only what
+    # follows the last of them, and of `a || b && c` only `c`; in `a && b`, both. A step holding a pipe or a
+    # redirection is left uncounted, since its own status can hide a failed read; the steps beside it still count.
+    command = re.split(r"[;\n]", command)[-1]
+    steps = command.split("&&")
+    if "||" in command:
+        steps = command.rsplit("||", 1)[1].split("&&")[1:]
+    steps = [s for s in steps if not re.search(r"[|<>]", s)]
+    command = " && ".join(steps)
     found = set()
     cd_set, base = None, None
     for segment in re.split(r"&&|\|\||;|\||\n", command):
@@ -867,8 +896,7 @@ def check(checks, result, fixture=None):
         out[f"unchanged {path}"] = not any(c.split(" ", 1)[1] == path for c in result["changes"])
     for path in checks.get("changed", []):
         # a file the turn created counts as changed: the case asks that it holds the work, not that it existed before
-        out[f"changed {path}"] = any(c.split(" ", 1)[1] == path for c in result["changes"]
-                                     if c.startswith(("changed ", "added ")))
+        out[f"changed {path}"] = path in written(result["changes"])
     if checks.get("states_before_change"):
         # the agent said what it was going to do before its first change; what the text says is judged by reading it
         said = len(result.get("before_change", "").strip()) >= MIN_STATEMENT
@@ -886,6 +914,14 @@ def check(checks, result, fixture=None):
         text = (result.get("files") or {}).get(path)
         original = (FIXTURES / fixture / path).read_text() if fixture else ""
         out[f"{path} shorter"] = text is not None and len(text) < len(original)
+    for folder, least in checks.get("written_under", {}).items():
+        count = sum(p.startswith(folder) for p in written(result["changes"]))
+        out[f"at least {least} files written under {folder}"] = count >= least
+    for folder, patterns in checks.get("folder_lacks", {}).items():
+        texts = [t or "" for p, t in (result.get("files") or {}).items() if p.startswith(folder)]
+        for pattern in patterns:
+            out[f"files written under {folder} lack /{pattern}/"] = not any(
+                re.search(pattern, t, re.IGNORECASE) for t in texts)
     for pattern in checks.get("answer_contains", []):
         out[f"answer has /{pattern}/"] = bool(re.search(pattern, result["answer"], re.IGNORECASE))
     for pattern in checks.get("answer_not_contains", []):

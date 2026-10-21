@@ -29,7 +29,7 @@ Understanding before acting, with the user and from sources. It holds the rules 
 
 **With the user:**
 
-- **clarify** (`understand-clarify`): when the request leaves a choice that would change the result, such as where, how long or which kind, or when the user asks to be questioned. "Clean up the old branches" leaves which ones go and which stay.
+- **clarify** (`understand-clarify`): when the request leaves a choice or an unknown that would change the result, such as where, how long or which kind; when it asks for a plan or a way to do something, which usually leaves several; when an answer it needs is one only someone else holds, such as a supplier or another team; or when the user asks to be questioned. "Clean up the old branches" leaves which ones go and which stay.
   - Not for: what the files already say (rule 4), a topic still to be decided together, or the user not following you (`respond-explain`).
   - Gives back: the "going with" line and what was assumed, or a questionnaire for whoever holds the answers.
 

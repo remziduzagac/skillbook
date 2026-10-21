@@ -19,7 +19,9 @@ prompt = "Write executable test cases for digest from what its design says shoul
 
 [turns.checks]
 unchanged = ["skills/authoring/references/digest.md", "blueprint/design/authoring/digest.md"]
-answer_contains = ['tests/cases']
+answer_contains = ['tests/cases', 'quarterly']
+written_under = { "tests/cases/authoring/" = 3 }
+folder_lacks = { "tests/cases/" = ['quarterly'] }
 
 [[turns]]
 prompt = "I ran all of them once with Claude Code on Claude Haiku and once with Codex on GPT-6 Luna. Every one passed the first time, and nobody had touched digest beforehand."

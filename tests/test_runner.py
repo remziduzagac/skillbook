@@ -32,6 +32,20 @@ class ReadEvidence(unittest.TestCase):
             with self.subTest(command=command):
                 self.assertEqual(runner.skills_read("codex", [[command_event(command)]], None, "essentials"), {"act"})
 
+    def test_only_the_last_command_of_a_sequence_counts(self):
+        act = "/tmp/skills/essentials/references/act.md"
+        for command, found in [(f"cat /tmp/skills/essentials/SKILL.md; cat {act}", {"act"}),
+                               (f"cat {act}; cat /missing/notes.md", set()),
+                               ("cd /tmp/skills/essentials/references; cat act.md", set()),
+                               (f"cat /tmp/x.md; cat {act} | head", set()),
+                               (f"cat {act} && rg --files | head", {"act"}),
+                               (f"cat {act} && pwd\ntrue", set()),
+                               (f"cat {act} 2>/dev/null || true", set()),
+                               (f"false || true && cat {act}", {"act"}),
+                               (f"cat $(echo x) && cat {act}", set())]:
+            with self.subTest(command=command):
+                self.assertEqual(runner.skills_read("codex", [[command_event(command)]], None, "essentials"), found)
+
     def test_named_failed_skipped_and_masked_reads_do_not_count(self):
         for command, status in [
                 ("echo /tmp/skills/essentials/references/act.md", 0),
@@ -211,6 +225,36 @@ class TurnLifecycle(unittest.TestCase):
         out = runner.check({"changed": ["notes/new.md", "old.md"]}, result)
         self.assertEqual(out, {"changed notes/new.md": True, "changed old.md": False})
 
+    def test_files_written_under_a_folder_are_counted_and_searched(self):
+        checks = {"written_under": {"tests/cases/": 2}, "folder_lacks": {"tests/cases/": ["quarterly"]}}
+        with tempfile.TemporaryDirectory() as root:
+            work = Path(root)
+            (work / "tests" / "cases").mkdir(parents=True)
+            (work / "tests" / "cases" / "a.toml").write_text("prompt = 'a recipe'")
+            (work / "tests" / "cases" / "b.toml").write_text("prompt = 'the quarterly report'")
+            (work / "other.md").write_text("quarterly")
+            observed = runner.observe("codex", [[]], work, "essentials", {}, work, checks)
+            self.assertEqual(sorted(observed["files"]), ["tests/cases/a.toml", "tests/cases/b.toml"])
+            self.assertEqual(runner.check(checks, observed), {
+                "at least 2 files written under tests/cases/": True,
+                "files written under tests/cases/ lack /quarterly/": False})
+            (work / "tests" / "cases" / "b.toml").unlink()
+            observed = runner.observe("codex", [[]], work, "essentials", {}, work, checks)
+            self.assertEqual(runner.check(checks, observed), {
+                "at least 2 files written under tests/cases/": False,
+                "files written under tests/cases/ lack /quarterly/": True})
+
+    def test_every_run_in_the_results_folders_is_listed_for_judging(self):
+        with tempfile.TemporaryDirectory() as root:
+            folder = Path(root) / "case-a"
+            folder.mkdir()
+            runs = [{"case": "essentials/a", "agent": agent, "model": model, "run": 1}
+                    for agent, model in [("claude", "haiku"), ("codex", "gpt-6-luna")]]
+            (folder / "summary.json").write_text(json.dumps(runs))
+            listed = runner.runs_to_judge([Path(root)]).splitlines()
+            self.assertEqual(listed, [f"essentials/a\tclaude\thaiku\t1\t{folder / 'summary.md'}",
+                                      f"essentials/a\tcodex\tgpt-6-luna\t1\t{folder / 'summary.md'}"])
+
     def test_claude_event_with_text_message_is_skipped(self):
         events = [{"type": "user", "message": "plain text"},
                   {"type": "assistant", "message": {"content": [
@@ -221,7 +265,7 @@ class TurnLifecycle(unittest.TestCase):
     def run_main(self, fake_run, runs=0, budget=1.0, jobs=4):
         args = SimpleNamespace(case="history-out-of-email", agents="claude,codex", runs=runs, model=[], login=False,
                                instruction="", budget=budget, timeout=1, keep=False, dry_run=False, coverage=False,
-                               summary=False, yes=True, jobs=jobs)
+                               summary=False, yes=True, jobs=jobs, to_judge=None)
         with tempfile.TemporaryDirectory() as output, \
                 patch.object(runner, "run_one", side_effect=fake_run), \
                 patch.object(runner, "login_problem", return_value=None), \

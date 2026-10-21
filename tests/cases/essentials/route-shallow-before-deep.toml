@@ -5,11 +5,12 @@ skills = ["understand-clarify", "understand-clarify-shallow"]
 category = "boundary"
 covers = ["understand-clarify:not-for:understand-clarify-deep"]
 rejects = "Loads deep and runs level-by-level rounds though the user did not ask to be questioned, or drafts the plan with its choices unstated."
-review = ["Either one small round sets the direction (such as what is sold, when and where), each question with a recommended answer where there is a basis, or a first plan states its open choices as assumptions the user can change.", "Choices that are the agent's are stated in a going-with line; a part whose answers depend on each other gets an offer of deep, with yes recommended, not deep questions.", "The turn ends with the round or the plan; no file changes."]
+review = ["One small round sets the direction (such as what is sold, when and where), each question with a recommended answer where there is a basis.", "Choices that are the agent's are stated in a going-with line; a part whose answers depend on each other gets an offer of deep, with yes recommended, not deep questions.", "The turn ends with the round; no file changes."]
 
 [[turns]]
 prompt = "We'd like to hold a plant sale next spring. Help me work out how."
 
 [turns.checks]
+reads = ["understand-clarify-shallow"]
 reads_not = ["understand-clarify-deep"]
 no_changes = true
