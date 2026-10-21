@@ -5,11 +5,12 @@ skills = ["act"]
 category = "boundary"
 covers = ["act:rule:4"]
 rejects = "Gives 95p, or twelve times it, as today's cost, because the project holds a note that says so."
-review = ["The answer names the note as dated (April 2022) and does not treat its price as current.", "If a web source was available, the current first-class price comes from Royal Mail's current price list, cited, and the postage for twelve copies is worked out from it; the reviewer checks that price for the run's date.", "If no source could be reached, the answer says so and gives no current price as fact."]
+review = ["If the answer uses the project's note, it names it as dated (April 2022) and does not treat its price as current; an answer that never reads the note is not marked down for that alone.", "If a web source was available, the current first-class price comes from Royal Mail's current price list, cited, and the postage for twelve copies is worked out from it; the reviewer checks that price for the run's date.", "If no source could be reached, the answer says so and gives no current price as fact."]
 
 [[turns]]
 prompt = "We post the newsletter to twelve members on paper. What will first-class stamps for one issue cost us these days?"
 
 [checks]
 no_changes = true
-answer_contains = ['2022']
+# the club is in the UK, as its files show; a price in another currency means the project was not looked at
+answer_contains = ['£|pence|\b\d+p\b|royal mail']

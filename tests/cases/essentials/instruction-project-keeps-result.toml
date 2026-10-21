@@ -11,7 +11,7 @@ review = ["The questions for the caretaker are added at the top of outgoing/ques
 prompt = "The fair notice should say whether the hall has step-free access and an accessible toilet. I have no idea; only the hall's caretaker knows."
 
 [checks]
-reads = ["understand-clarify-questionnaire"]
+reads_not = ["understand-clarify-shallow"]
 unchanged = ["sent.log"]
 
 [checks.file_contains]

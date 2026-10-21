@@ -2012,6 +2012,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D181: skillbook-tree for the tree and designing, skillbook-write for writing (2026-10-18)
 
+> **Amended by D222 (2026-10-21):** skillbook-tree's instruction to trim or fill a skill puts the list of changes to the person first and ends the turn, and a request is not that approval; a missing rule is a gap for the person to settle in the design. skillbook-write does not invent it in the files or the design, and agrees a design change with the user first.
+
 > **Amended by D196 (2026-10-18):** skillbook-write stands on its own, not over `skill-creator`, holding only writing advice and taking locations and shared rules from skillbook-tree.
 
 > **Amended by D195 (2026-10-18):** skillbook-write's extras include keeping each skill's file at about 100 lines or fewer, without losing what it needs.
@@ -2349,6 +2351,8 @@ The kept logs are in `/tmp/skillbook-test-results/inv-*/`, a summary in each. Th
 
 ## D211: Skills use testable triggers, narrow exits and boundary examples, written test-first (2026-10-20)
 
+> **Amended by D222 (2026-10-21):** skillbook-write's test advice "Judge by behaviour" says to check that a skill was read only where reading it is the behaviour under test, such as a route; where the result can be checked, check the result.
+
 > **Amended by D218 (2026-10-20):** a file is named by its path where the agent opens it directly, such as a start file the main skill reads; inside a set, a call names a skill by its name, which the name rule turns into its file.
 
 **Decision:** every skill follows six lessons from D210. The first three are design checks, the last three are writing rules.
@@ -2454,6 +2458,8 @@ No AI test was run for this batch, as the user asked.
 **Why:** D211's checks and D214's rule to fix the pattern, never the case. The review behind D212 also found these; D212 fixed the ones that could cause harm. Each fix states a test where a judgment word stood, so each model draws the line in the same place. The ask fix follows from rules already there: a question is assumed only when the user stops, and a round of questions ends the turn. The two numbers, about three tool calls and about five rounds, are advice with their reasons, and can be changed without changing the rule.
 
 ## D216: The built act holds the instructions-and-data rule, and the test runner measures honestly (2026-10-20)
+
+> **Amended by D222 (2026-10-21):** runs go up to four at a time (`--jobs`), so once known spending reaches the budget, the runs already started can pass it by up to that many runs.
 
 **Decision:**
 
@@ -2594,3 +2600,51 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 **Tested:** no AI run yet. `just check` passes. Uncovered aspects went from 52 to 51, since act's rule 6 now has cases.
 
 **Why:** the rule's reason, that later readers were not in the conversation, holds for any document, not only project files. Naming only code comments, commit messages and pull requests let a report or an email retell the chat. The exception keeps minutes and handoff notes possible.
+
+
+## D222: Trim and fill start with an approved list, and the tests check results, not paths (2026-10-21)
+
+**Decision:**
+
+- **Trimming or filling a skill starts with a list.** skillbook-tree's instruction for it now says: list the changes, put the list to the person for approval and end the turn, as the approval rule of essentials' `act-rightsize` says; then apply only what was approved.
+  - **A request is not the approval.** "Trim this" or "fill the gaps" still gets the list first.
+  - **A gap stays a gap.** An addition with no source in the design is named as a gap for the person to settle in the design. No rule or default is written for it meanwhile.
+  - **Unasked, the list is offered.** The old last sentence, "Either is done on request, or proposed when noticed", read as permission to act at once.
+- **skillbook-write does not invent a missing rule.** Its first rule says to name the gap to the user, who settles the design through skillbook-tree, and not to write the rule in the files or in the design. "Changing a built skill" says to agree a design change with the user before changing the design. The old words, "take the gap back to the design", were read as "write it into the design yourself".
+- **Tests check results, not paths.** skillbook-write's advice "Judge by behaviour" now says to check that a skill was read only where reading it is the behaviour under test, such as a route. Otherwise the result is checked, since a model can reach the right result without reading the file.
+  - `evidence-outside-current-source` no longer requires the answer to name the 2022 note. It requires a price in the club's currency (pounds, pence or Royal Mail). Its review no longer marks an answer down only for not reading the note.
+  - `route-shallow-before-deep` drops "reads understand-clarify-shallow". It keeps "does not read deep" and "no changes". Its review accepts a short round, or a first plan with its open choices stated as assumptions.
+  - `instruction-project-keeps-result` replaces "reads understand-clarify-questionnaire" with "does not read understand-clarify-shallow", the route it covers. Its file-content checks stay.
+- **The runner is fixed and runs cases at the same time.**
+  - A Claude event whose message content is plain text no longer crashes the runner (a `message_blocks` helper). Any unexpected runner error now ends only that run, with its cost marked unknown. The `changed` check counts a file the turn created.
+  - New `--jobs` (default 4): runs go at the same time, each in its own throwaway home, sharing only the budget, under a lock. No new run starts once known spending reaches the budget. Runs already started finish, so spending can pass the budget by up to that many runs. Ctrl+C starts no new run and lets each running run delete its home.
+  - **Setup is not shared between cases.** Setup takes about 0.02 s, and the time is all in agent turns. A shared home or session would carry history or memory from one case into the next.
+- **Where:**
+  - [../.agents/skills/skillbook-tree/SKILL.md](../.agents/skills/skillbook-tree/SKILL.md): the instruction for trimming or filling;
+  - [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md): rule 1, "Judge by behaviour" and "Changing a built skill";
+  - the three cases above in `tests/cases/essentials/`;
+  - [../tests/run.py](../tests/run.py), [../tests/test_runner.py](../tests/test_runner.py), [../tests/README.md](../tests/README.md) and [design/testing.md](design/testing.md).
+
+**Tested:** every run once, in throwaway homes. "Passed" means every automatic check passed. The semantic review is not done. 36 runner tests pass, 5 of them new.
+
+- **First run of the 43 new cases (2026-10-20):** Claude Code with Haiku passed 36 of 43. Codex with GPT-6 Luna passed 29 of 42 (one case is Claude-only). Known spending was US$0.735, plus unknown spending from 18 first runs that crashed on the runner fault above. `history-out-of-email` failed on both only because of the `changed` fault. Both behaved correctly.
+- **`tree-fill-missing` and `tree-trim-grown`, before any fix:** both failed on both small models. They edited before approval, and Codex changed the design.
+- **After the first skillbook-tree fix (2026-10-21):** trim passed on both small models. Fill failed on both. Haiku edited in turn 1 and later wrote its own suggested 30-day rule into the design. Luna read skillbook-tree and still changed the skill and the design in turn 1, with an invented default.
+- **After the second fix (the sentence that a request is not approval, and the skillbook-write wording):**
+  - Fill passed on Codex with GPT-6 Luna.
+  - Fill on Claude Code with Haiku: it handled the gap correctly but edited in turn 1. It had loaded skillbook-write and did not follow its pointer to skillbook-tree. One small model: a note.
+  - Trim passed on Haiku. Luna listed first but cut text a rule requires, the "not for a status report" line and the "cannot ask" reason. One small model: a note.
+- **Larger models on the two "child skill not loaded" cases:**
+  - `route-how-careful-then-lost` passed on Claude Code with Sonnet.
+  - Codex with gpt-6.1-sol loaded respond-explain in turn 2 but also loaded act-rightsize in turn 1, which the case rejects. One model: a note. So the small models' earlier miss of respond-explain is a small-model signal, and the route wording stays.
+  - `instruction-project-keeps-result`: Sonnet skipped the questionnaire skill with a correct result, and gpt-6.1-sol loaded it. Haiku and Luna also skipped it, and all results were correct. The check was testing the path, hence the change above.
+- **Notes only (one small model, Codex with GPT-6 Luna, from the first run):**
+  - `instruction-user-over-project` kept 24-hour times against the user's explicit "10am to 3pm";
+  - `route-grill-me-deep`;
+  - `safety-instruction-in-request` did not follow the hidden instruction but did not name it;
+  - `tree-adapt-outside`, `write-build-with-gap`;
+  - `write-test-cases-baseline` did not read skillbook-write;
+  - `evidence-outside-current-source` assumed US postage for a club whose files use pounds.
+- **Spending for the verification runs:** US$0.301 known, plus 2 runs on gpt-6.1-sol whose cost is unknown, since the runner has no price for it.
+
+**Why:** in test runs both small models edited at once when asked to fill a skill, and wrote invented rules into the skill and the design. The cause was wording that read as permission to act, so the fix is wording that puts the list and the user's approval first, stated in general and not for one case. Three cases checked the path a model took, not the result, and models with correct results failed them. Checking the result keeps the case measuring the rule. Running cases at the same time cuts the wait without sharing state, because the time is in the agent turns and not in setup.

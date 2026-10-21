@@ -25,6 +25,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 import tomllib
 from pathlib import Path
 
@@ -78,7 +79,8 @@ def main():
     models = ", ".join(model_for(a, args) for a in agents)
     print(f"{len(plan)} runs, {turns} turns, models: " + models)
     print(f"estimated cost: up to about ${estimate:.2f}")
-    print(f"budget: no new run starts once known spending reaches ${args.budget:.2f}; "
+    print(f"budget: no new run starts once known spending reaches ${args.budget:.2f}, and runs already started "
+          f"finish, up to {args.jobs} at a time; "
           "each Claude call is also capped by "
           "--max-budget-usd; Codex cost is estimated from tokens and not capped; a model with no known price counts as "
           "unknown, not as zero")
@@ -102,28 +104,50 @@ def main():
     out_dir = Path(args.out or Path(tempfile.gettempdir()) / "skillbook-test-results" / stamp)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    spent = 0.0
-    unknown = 0
-    results = []
-    for case, agent, n in plan:
-        if spent >= args.budget:
-            print(f"budget of ${args.budget:.2f} reached; {len(plan) - len(results)} runs not started")
-            break
-        result = run_one(case, agent, n, args, out_dir, args.budget - spent)
-        spent += result["cost"] or 0.0
-        unknown += int(result.get("cost_unknown", result["cost"] is None))
-        results.append(result)
-        failed = [name for name, ok in result["checks"].items() if ok is False]
-        unresolved = [name for name, ok in result["checks"].items() if ok is None]
-        status = "error" if result["error"] else ("ok" if not failed else "FAIL " + ", ".join(failed))
-        if not result["error"] and not failed and unresolved:
-            status = "unknown evidence: " + ", ".join(unresolved)
-        elif not result["error"] and not failed and result.get("review"):
-            status = "automatic checks passed; review pending"
-        price = "cost unknown" if result["cost"] is None else f"${result['cost']:.3f}"
-        if result.get("cost_unknown"):
-            price += "; additional cost unknown"
-        print(f"  {case['id']}  {agent}  run {n}: {status}  ({price})")
+    lock = threading.Lock()
+    state = {"spent": 0.0, "unknown": 0, "next": 0, "stop": False}
+    done = {}
+
+    def worker():
+        # each run keeps its own throwaway home and folder, so runs share nothing but the budget
+        while True:
+            with lock:
+                if state["stop"] or state["next"] >= len(plan):
+                    return
+                if state["spent"] >= args.budget:
+                    state["stop"] = True
+                    print(f"budget of ${args.budget:.2f} reached; {len(plan) - state['next']} runs not started")
+                    return
+                i = state["next"]
+                state["next"] += 1
+                left = args.budget - state["spent"]
+            case, agent, n = plan[i]
+            try:
+                result = run_one(case, agent, n, args, out_dir, left)
+            except Exception as error:  # a runner bug ends this run, not the others; what it spent is unknown
+                result = {"case": case["id"], "agent": agent, "run": n, "model": model_for(agent, args),
+                          "error": f"runner error: {error!r}", "cost": 0.0, "cost_unknown": True, "checks": {},
+                          "reads": [], "changes": [], "answer": "", "review": case.get("review", []), "turns": []}
+            with lock:
+                state["spent"] += result["cost"] or 0.0
+                state["unknown"] += int(result.get("cost_unknown", result["cost"] is None))
+                done[i] = result
+                print(f"  {case['id']}  {agent}  run {n}: {run_status(result)}")
+
+    workers = [threading.Thread(target=worker) for _ in range(max(1, min(args.jobs, len(plan))))]
+    for w in workers:
+        w.start()
+    try:
+        for w in workers:
+            w.join()
+    except KeyboardInterrupt:
+        # the agents get the interrupt too; let each run clean up its home, and start no new run
+        state["stop"] = True
+        print("interrupted; waiting for running runs to clean up")
+        for w in workers:
+            w.join()
+    results = [done[i] for i in sorted(done)]
+    spent, unknown = state["spent"], state["unknown"]
 
     summary = summarize(results, spent, unknown)
     (out_dir / "summary.md").write_text(summary)
@@ -145,6 +169,7 @@ def parse_args():
     p.add_argument("--instruction", default="", help="a line added to the user's instruction file, for a variant")
     p.add_argument("--budget", type=float, default=1.0,
                    help="no new run starts once known spending reaches this many US dollars")
+    p.add_argument("--jobs", type=int, default=4, help="runs at the same time, each in its own throwaway home")
     p.add_argument("--timeout", type=int, default=300, help="seconds per turn")
     p.add_argument("--keep", action="store_true", help="keep each run's event log in the results folder")
     p.add_argument("--out", help="results folder (default: a dated folder in the system's temporary folder)")
@@ -324,6 +349,20 @@ def own_login(agent):
     return real_home / (".claude/.credentials.json" if agent == "claude" else ".codex/auth.json")
 
 
+def run_status(result):
+    failed = [name for name, ok in result["checks"].items() if ok is False]
+    unresolved = [name for name, ok in result["checks"].items() if ok is None]
+    status = "error" if result["error"] else ("ok" if not failed else "FAIL " + ", ".join(failed))
+    if not result["error"] and not failed and unresolved:
+        status = "unknown evidence: " + ", ".join(unresolved)
+    elif not result["error"] and not failed and result.get("review"):
+        status = "automatic checks passed; review pending"
+    price = "cost unknown" if result["cost"] is None else f"${result['cost']:.3f}"
+    if result.get("cost_unknown"):
+        price += "; additional cost unknown"
+    return f"{status}  ({price})"
+
+
 def run_one(case, agent, n, args, out_dir, budget_left):
     result = {"case": case["id"], "agent": agent, "run": n, "model": model_for(agent, args), "error": None,
               "cost": 0.0, "cost_unknown": False, "checks": {}, "reads": [], "changes": [], "answer": "",
@@ -474,19 +513,25 @@ def fixture_diffs(before, after):
             for p in sorted(before.keys() | after.keys()) if before.get(p) != after.get(p)}
 
 
+def message_blocks(event):
+    """A Claude event's content blocks; some events carry their message as plain text, which holds none."""
+    message = event.get("message")
+    content = message.get("content") if isinstance(message, dict) else None
+    return [b for b in content if isinstance(b, dict)] if isinstance(content, list) else []
+
+
 def action_evidence(agent, events):
     """Ordered tool names, commands and target paths, without tool outputs or credential-home contents."""
     actions = []
     outcomes = {}
     if agent == "claude":
         for e in events:
-            content = e.get("message", {}).get("content", [])
-            for block in content if isinstance(content, list) else []:
+            for block in message_blocks(e):
                 if block.get("type") == "tool_result":
                     outcomes[block.get("tool_use_id")] = "failed" if block.get("is_error") else "succeeded"
     for e in events:
         if agent == "claude" and e.get("type") == "assistant":
-            for block in e.get("message", {}).get("content", []):
+            for block in message_blocks(e):
                 if block.get("type") == "tool_use":
                     data = block.get("input", {})
                     action = {"tool": block["name"], "id": block.get("id"),
@@ -821,7 +866,9 @@ def check(checks, result, fixture=None):
     for path in checks.get("unchanged", []):
         out[f"unchanged {path}"] = not any(c.split(" ", 1)[1] == path for c in result["changes"])
     for path in checks.get("changed", []):
-        out[f"changed {path}"] = any(c.split(" ", 1)[1] == path for c in result["changes"] if c.startswith("changed "))
+        # a file the turn created counts as changed: the case asks that it holds the work, not that it existed before
+        out[f"changed {path}"] = any(c.split(" ", 1)[1] == path for c in result["changes"]
+                                     if c.startswith(("changed ", "added ")))
     if checks.get("states_before_change"):
         # the agent said what it was going to do before its first change; what the text says is judged by reading it
         said = len(result.get("before_change", "").strip()) >= MIN_STATEMENT

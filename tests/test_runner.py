@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 import subprocess
 import tempfile
+import threading
+import time
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -203,6 +205,65 @@ class TurnLifecycle(unittest.TestCase):
                 patch.object(runner, "agent_env", return_value={}), \
                 patch.object(runner.subprocess, "run", side_effect=responder):
             return runner.run_one(case, agent, 1, args, Path(output), budget)
+
+    def test_changed_counts_a_created_file_but_not_a_removed_one(self):
+        result = {"reads": [], "answer": "", "changes": ["added notes/new.md", "removed old.md"]}
+        out = runner.check({"changed": ["notes/new.md", "old.md"]}, result)
+        self.assertEqual(out, {"changed notes/new.md": True, "changed old.md": False})
+
+    def test_claude_event_with_text_message_is_skipped(self):
+        events = [{"type": "user", "message": "plain text"},
+                  {"type": "assistant", "message": {"content": [
+                      {"type": "tool_use", "name": "Read", "id": "t1", "input": {"file_path": "fees.md"}}]}}]
+        actions = runner.action_evidence("claude", events)
+        self.assertEqual([(a["tool"], a["file_path"]) for a in actions], [("Read", "fees.md")])
+
+    def run_main(self, fake_run, runs=0, budget=1.0, jobs=4):
+        args = SimpleNamespace(case="history-out-of-email", agents="claude,codex", runs=runs, model=[], login=False,
+                               instruction="", budget=budget, timeout=1, keep=False, dry_run=False, coverage=False,
+                               summary=False, yes=True, jobs=jobs)
+        with tempfile.TemporaryDirectory() as output, \
+                patch.object(runner, "run_one", side_effect=fake_run), \
+                patch.object(runner, "login_problem", return_value=None), \
+                patch.object(runner, "parse_args", return_value=args), \
+                contextlib.redirect_stdout(io.StringIO()) as printed:
+            args.out = output
+            runner.main()
+            return json.loads((Path(output) / "summary.json").read_text()), printed.getvalue()
+
+    @staticmethod
+    def fake_result(case, agent, n, cost=0.01):
+        return {"case": case["id"], "agent": agent, "run": n, "model": "m", "error": None, "cost": cost,
+                "cost_unknown": False, "checks": {}, "reads": [], "changes": [], "answer": "", "review": [],
+                "turns": []}
+
+    def test_runner_error_ends_one_run_and_marks_its_cost_unknown(self):
+        results, _ = self.run_main(RuntimeError("boom"))
+        self.assertEqual(len(results), 2)
+        self.assertTrue(all(r["cost_unknown"] and "boom" in r["error"] for r in results))
+
+    def test_jobs_run_at_the_same_time_and_keep_the_plan_order(self):
+        lock, running, most = threading.Lock(), [0], [0]
+
+        def fake(case, agent, n, args, out_dir, left):
+            with lock:
+                running[0] += 1
+                most[0] = max(most[0], running[0])
+            time.sleep(0.05)
+            with lock:
+                running[0] -= 1
+            return self.fake_result(case, agent, n)
+
+        results, _ = self.run_main(fake, runs=3, jobs=3)
+        self.assertEqual(most[0], 3)
+        self.assertEqual([(r["agent"], r["run"]) for r in results],
+                         [("claude", 1), ("claude", 2), ("claude", 3), ("codex", 1), ("codex", 2), ("codex", 3)])
+
+    def test_budget_stops_new_runs_across_jobs(self):
+        results, printed = self.run_main(lambda case, agent, n, *rest: self.fake_result(case, agent, n, 0.6),
+                                         runs=3, budget=1.0, jobs=1)
+        self.assertEqual(len(results), 2)
+        self.assertIn("4 runs not started", printed)
 
     def test_fixture_diffs_and_action_evidence_survive_cleanup(self):
         roots = []

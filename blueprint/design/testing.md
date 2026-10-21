@@ -36,13 +36,13 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   - `project_skills`, the repository's own skills copied into the isolated agent skill folder for a project-skill exercise only, never added to the shipped set;
   - the checks a script can make from the event log, for the whole run under `[checks]`, or for one turn under `[turns.checks]`, judged on that turn's answer and changes (D216):
     - the skills read or not read (`reads`, `reads_not`), by name, for the run or one turn: a read counts only with a successful matching tool result or a supported reading command that exits 0; a path merely named, as by `echo` or `ls`, does not count; shell forms that can mask skipped or failed reads are left uncounted;
-    - nothing changed in the toy project (`no_changes`), named files changed (`changed`), or named files left unchanged (`unchanged`);
+    - nothing changed in the toy project (`no_changes`), named files changed or created (`changed`), or named files left unchanged (`unchanged`);
     - a file that still holds given facts (`file_contains`) or got shorter (`shorter`);
     - something said before the first change (`states_before_change`): the runner combines file-state changes with event order and checks for a statement before the first definite or potential mutation; an opaque command whose timing cannot be established leaves this assertion unknown, never passing by assuming no change; what the statement says is judged by reading the summary (D218);
     - patterns the answer must or must not contain, the answer being everything the agent said in the turn, the last turn for the whole run.
 
     Whether a file was read whole or in part, and which tools ran, are not checked yet. Each case's `about` names the wrong behaviour it rejects, and a case is checked against a correct trace and a plausible wrong one before its result is trusted, as skillbook-write says (D217).
-- **`tests/run.py`:** the runner, written with the Python standard library only. For each case, agent and run it:
+- **`tests/run.py`:** the runner, written with the Python standard library only. It runs up to four runs at a time (`--jobs`), sharing only the budget; nothing is shared between runs, such as a home, a session or a fixture copy, since a shared one would carry one case's history into another. For each case, agent and run it:
   1. makes a throwaway home outside the repository;
   2. installs skillbook there with `install.sh`;
   3. copies the fixture in;
