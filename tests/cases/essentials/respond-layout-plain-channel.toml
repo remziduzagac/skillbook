@@ -2,10 +2,10 @@ source = "blueprint/design/essentials/respond.md: layout, test 16"
 about = "An explicit plain-text delivery format overrides Markdown presentation defaults."
 fixture = "communication"
 skills = ["respond-layout"]
-covers = ["respond:step:1", "respond-layout:rule:2", "respond-layout:rule:3"]
+covers = ["respond:step:1", "respond-layout:rule:2", "respond-layout:rule:3", "respond-layout:rule:10"]
 category = "boundary"
 rejects = "Sending headings, tables, code fences or emphasis markers into the specified plain-text channel."
-review = ["The output is ready to paste into the specified channel and contains the requested logistics and registration condition.", "It contains no explanation of formatting decisions or closing offer."]
+review = ["The output is ready to paste into the specified channel and contains the requested logistics and registration condition.", "The draft comes first and whole; any note on a choice or assumption is short and comes after it. No account of how the draft was made, and no closing offer."]
 
 [[turns]]
 prompt = "Draft a short announcement from the project notes for an SMS gateway. Plain sentences only: no Markdown, heading, bullets, table, or emphasis markers. Include the date, opening hours, location, price, and registration requirement. Do not publish it."

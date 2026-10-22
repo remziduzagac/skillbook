@@ -470,7 +470,8 @@ def observe(agent, events, home, set_name, before, work, checks):
     said, changed, uncertain = text_before_change(agent, events)
     delta = changes(before, snapshot(work))
     if delta and not changed and not uncertain:
-        said, uncertain = "", True  # no mutation boundary was observable; later prose is not a prior statement
+        # no mutation boundary was observable; later prose is not a prior statement
+        said, uncertain = "", "a change no action shows"
     paths = set(checks.get("file_contains", {})) | set(checks.get("shorter", []))
     folders = tuple(checks.get("folder_lacks", {}))
     paths |= {p for p in written(delta) if folders and p.startswith(folders)}
@@ -815,7 +816,8 @@ def segment_effect(segment):
 
 
 def text_before_change(agent, events):
-    """Text before the first definite or potential mutation; unknown command effects stay explicit."""
+    """Text before the first definite or potential mutation, whether it wrote, and the first action of unknown effect,
+    named so an unknown order can be explained; empty when there was none."""
     said = []
     for e in (e for turn in events for e in turn):
         if agent == "claude" and e.get("type") == "assistant":
@@ -824,26 +826,33 @@ def text_before_change(agent, events):
                     said.append(block.get("text", ""))
                 elif block.get("type") == "tool_use":
                     if block["name"] in WRITE_TOOLS:
-                        return "\n\n".join(said), True, False
+                        return "\n\n".join(said), True, ""
                     if block["name"] == "Bash":
-                        effect = command_effect(block["input"].get("command", ""))
+                        command = block["input"].get("command", "")
+                        effect = command_effect(command)
                         if effect != "read":
-                            return "\n\n".join(said), effect == "write", effect == "unknown"
+                            return "\n\n".join(said), effect == "write", unknown_action(effect, command)
                     elif block["name"] not in READ_TOOLS | NO_FILE_TOOLS["claude"]:
-                        return "\n\n".join(said), False, True
+                        return "\n\n".join(said), False, f"tool {block['name']}"
         if agent == "codex" and e.get("type") in ("item.started", "item.completed"):
             item = e["item"]
             if e["type"] == "item.completed" and item.get("type") == "agent_message":
                 said.append(item.get("text", ""))
             elif item.get("type") == "file_change":
-                return "\n\n".join(said), True, False
+                return "\n\n".join(said), True, ""
             elif item.get("type") == "command_execution":
-                effect = command_effect(item.get("command", ""))
+                command = item.get("command", "")
+                effect = command_effect(command)
                 if effect != "read":
-                    return "\n\n".join(said), effect == "write", effect == "unknown"
+                    return "\n\n".join(said), effect == "write", unknown_action(effect, command)
             elif item.get("type") not in {"agent_message", "reasoning"} | NO_FILE_TOOLS["codex"]:
-                return "\n\n".join(said), False, True
-    return "\n\n".join(said), False, False
+                return "\n\n".join(said), False, f"item {item.get('type')}"
+    return "\n\n".join(said), False, ""
+
+
+def unknown_action(effect, command):
+    """Names a command of unknown effect, shortened; empty for one whose effect is known."""
+    return "command " + " ".join(command.split())[:80] if effect == "unknown" else ""
 
 
 def expand_braces(text):
@@ -974,6 +983,8 @@ def summarize(results, spent, unknown=0):
             if "text before its first change" in r["checks"] and r.get("changed_files"):
                 lines.append(f"- run {r['run']} said before changing, to judge by reading: "
                              + " ".join(r["before_change"].split())[:300])
+                if r.get("sequencing_unknown"):
+                    lines.append(f"- run {r['run']} order unknown from: {r['sequencing_unknown']}")
         for r in good:
             if r["changes"]:
                 lines.append(f"- run {r['run']} changed: {', '.join(r['changes'])}")

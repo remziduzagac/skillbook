@@ -5,7 +5,7 @@ skills = ["act", "understand-clarify", "understand-clarify-questionnaire"]
 category = "edge"
 covers = ["act:rule:10", "understand-clarify:not-for:understand-clarify-shallow"]
 rejects = "Puts a round of questions to the user, who said they cannot answer, or invents access details, or returns the questionnaire only in the chat."
-review = ["The questions for the caretaker are added at the top of outgoing/questions.md, self-contained for someone who has not seen this folder, and the older entry stays.", "No access or toilet detail is invented in the draft; the part that depends on the answers waits, and the user is asked whether the rest goes ahead.", "Nothing is sent."]
+review = ["The questions for the caretaker are added at the top of outgoing/questions.md, self-contained for someone who has not seen this folder, and the older entry stays.", "No access or toilet detail is invented in the draft; the part that depends on the answers waits, and the answer says so. The request holds no other work, so no question about going ahead is needed.", "Nothing is sent."]
 
 [[turns]]
 prompt = "The fair notice should say whether the hall has step-free access and an accessible toilet. I have no idea; only the hall's caretaker knows."

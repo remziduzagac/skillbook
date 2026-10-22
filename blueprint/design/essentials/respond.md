@@ -89,6 +89,7 @@ respond/
   4. **Prose is not wrapped by hand:** one line per paragraph or list item. In a response, never: the harness wraps prose to its window, and unwrapped text copies and pastes cleanly. In a file, not unless the project's own rules say otherwise (D110, D115).
   5. **Numbers when the reader will refer to items by position,** such as steps followed in order or questions answered by number; bullets otherwise, such as for loose points, so the person can answer or point by number (D215).
   6. **What the reader copies or reads as a block is fenced with the language named:** a command to run, code of more than one line, or a text diagram, `text` for a diagram; a name inside a sentence, such as a file name, a command or an identifier, goes inline in backticks, so they render, highlight and copy cleanly (D215).
+  7. **Text the person will paste or send elsewhere comes whole and on its own:** the text first, in the form its destination takes, then any note, such as a choice made or an assumption, in a line or two after it, never inside it, so it copies in one piece. Understand's rules on marking assumptions and stating choices still hold; this rule says where the note goes (D229).
 
   **Strong advice** (D116, D158), followed unless the case gives a reason not to, and said when departed from:
   - **lists over tables:** a list by default; a table only for short values compared across items, since a list holds any length and reads well in a terminal. The person's own rule;
@@ -96,7 +97,7 @@ respond/
 
   **Advice** (D116): nesting stops at about two levels of sub-items, since deeper levels lose the reader and render badly in a terminal; deeper detail becomes a new section. A response's sections start at `##`.
 
-  **Last instruction, before a response or anything in markdown is returned:** the six rules hold; for a markdown file, authoring's markdown's file rules and linter as well where that set is in the agent's skill list (D215), otherwise the project's linter through act's verify where it has one (D152, D158).
+  **Last instruction, before a response or anything in markdown is returned:** the seven rules hold; for a markdown file, authoring's markdown's file rules and linter as well where that set is in the agent's skill list (D215), otherwise the project's linter through act's verify where it has one (D152, D158).
 - **Result:** none of its own; it shapes every response and everything written in markdown.
 - **Files:** `SKILL.md` only (D158).
 - **Material:** the person's markdown-style skill, with the person's own tooling left out (D68, D111); the person's rule that lists win over tables; authoring's markdown's structure layer, which it now holds (D111, D158).
@@ -116,7 +117,8 @@ respond/
   13. "tighten this paragraph": respond's rules, not layout's;
   14. "ask me three questions": laid out as respond's ask says;
   15. a markdown file written with authoring not installed: these rules, and the project's linter through verify where it has one (D152);
-  16. a reply going into a chat that shows markdown as plain text, or a user who asked for no headings: plain paragraphs and simple lines; wrong: `##` headings and tables sent anyway (D217).
+  16. a reply going into a chat that shows markdown as plain text, or a user who asked for no headings: plain paragraphs and simple lines; wrong: `##` headings and tables sent anyway (D217);
+  17. a draft the person will paste into a chat, an email or a form: the draft first and whole, in the destination's form, with any choice or assumption in a line or two after it; wrong: "Going with: …" or "tell me if you meant …" inside or before the draft (D229).
 - **Open:** none known.
 
 ## ask

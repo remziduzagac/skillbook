@@ -45,10 +45,11 @@ understand/
   4. **Facts first:** what can be read is read before the person is asked or anything the files could settle is assumed, such as which version, plan or provider is meant (D224). Asking what the files already say wastes the person's time and hides what only they know.
   5. **Who decides:** a choice that would change what the person gets is theirs when it is about their intent, taste or preferences, anything hard to undo, or what only they know, and is put through respond's ask with a recommended answer; a choice the project's conventions settle, or a default that is easy to undo, is the agent's, made and stated in a "going with" line before the work, so the person can correct it; choices that change nothing the person gets are made without a "going with" line, the reason given if the person asks (D218). It sets where the agent's judgment stops; clarify's first rule holds the test (D217). Where a choice fits both sides, the person's wins: their explicit intent and preferences come first, and how easy a choice is to undo decides only the choices they have left to the agent, so a wedding toast's style is theirs though the toast is easy to rewrite. Easy to undo means the consequences of acting can be undone, not only that the file can be edited again: a reversible change that sends messages, migrates data or reaches users is hard to undo. "Going with" states the choices the result rests on, not every minor implementation decision (D218).
   6. **Nothing in the work is changed for good while understanding:** reading, asking and searching change nothing; probes and experiments are temporary, in a scratch place or reverted through act's cleanup; acting on the result is the caller's, or waits for the person. A change made while understanding decides for the person.
+  7. **Clarify is read before the first change on a request that leaves a choice or an unknown that would change the result,** even when the answer seems plain, because whether to ask or state it, and that a stated choice comes before the work, are decided in clarify. Models that saw the choice as plain skipped clarify and stated their choices after the change, so the rule has one home here and the advice that only pointed to clarify is gone (D227).
 
   Advice:
   - several skills can serve one request, and nothing limits combining them, such as research inside a discussion's item, or frame and then challenge; the built file leaves this to the main skill's first rule, which says the same (D217);
-  - in proportion: as much understanding as the decision deserves; a plan needs more; act's stakes judges it (D121, D133); but a task that looks small and leaves an open choice still goes to clarify, which decides whether to ask it or state it (D212, D217); "rename `foo` to `bar` in this file" needs none;
+  - in proportion: as much understanding as the decision deserves; a plan needs more; act's stakes judges it (D121, D133); "rename `foo` to `bar` in this file" needs none;
   - the question itself may be wrong: reframing through frame is always an option;
   - what the person would want to correct is shown, such as a frame or the assumptions made; the agent's own choices stay quiet.
 
@@ -108,6 +109,7 @@ understand/
   26. a result with nothing parked: no Parked field shown; the question not repeated back to the person who asked it (D149).
   27. "check X's limits, then add it": research's fact first, then the work done directly under act's rules (D178).
   28. a choice on both sides, such as which achievements a cover letter leads with (taste, though the letter is easy to edit): asked, since the person's side wins; a code change that can be reverted but, once run, emails every subscriber: hard to undo, so asked; a local variable's name: made quietly, not listed in "going with"; wrong: the cover letter's emphasis chosen because it can be changed, or "going with" listing every minor choice (D218).
+  29. a request whose choice seems plain, such as "write release notes for this version": clarify is read before the first change, and the choices are asked or stated before the work, not after it; wrong: a change made with the choices stated afterward (D227).
 - **Open:** none known.
 
 ### discuss
@@ -203,7 +205,7 @@ understand/
   - **shallow:** when clarify starts on a request, unless the person asked to be questioned, and, for deep, at each new level inside a part (D215); not when the person asks to be questioned or for a part whose answers depend on each other (deep), or for questions only someone else can answer (questionnaire); it gives back the "going with" line, with an offer of deep for a part whose answers depend on each other (D207).
   - **deep:** when the user accepted shallow's offer of deep for a part whose answers open questions that would change the work, or at once, with no offer, when the user asks to be questioned ("question me on this plan"); not for a level not yet seen whole (shallow first), a topic still to decide together (understand's discuss), or questions only someone else can answer (questionnaire); it gives back the summary the person confirmed, or saw after telling the agent to start the work: decided, parked, accepted and assumed (D215).
   - **questionnaire:** when questions only someone other than the person can answer, after the person answers theirs: the person says so, or the agent sees it and asks the person whether someone else holds the answer rather than deciding alone (D115); not for anything the person can answer, or anything the files say; it gives back the document, in the response by default for the person to send, and later its answers, taken back into clarify.
-  - **While a questionnaire is out:** its questions are parked until the answers return; work that depends on them does not start, and the person is asked, through respond's ask, whether the rest goes ahead (D115, D200, D212).
+  - **While a questionnaire is out:** its questions are parked until the answers return; work that depends on them does not start, and, if work that does not depend on them is left, the person is asked, through respond's ask, whether it goes ahead; if none is left, the agent says what waits for the answers (D115, D200, D212, D228).
 
   Gaps: the person not following the agent goes to respond's explain; a topic to decide together, to understand's discuss; options, to brainstorm; "what do you think?", to act's rule that an opinion is not a task.
 
@@ -225,12 +227,12 @@ understand/
   11. "give me options for X": understand's brainstorm, not clarify;
   12. after the shallow round, unclear whether a part needs depth: deep offered on that part, not started before a yes (D207);
   13. a question the agent sees only someone else can answer: the person asked whether someone else holds it, no questionnaire written unasked;
-  14. a questionnaire still out: what depends on it waits, and the person is asked whether the rest goes ahead;
+  14. a questionnaire still out: what depends on it waits; if other work is left, the person is asked whether it goes ahead; if none is left, the answer says what waits (D228);
   15. "let's discuss this design": understand's discuss, which works out what is not decided yet, not clarify, which draws out what the person already means (D130).
   16. "add caching to the API": clarify is read, and either a question with a recommended answer or a "going with" line comes before the work; wrong: judged clear and done with nothing stated (D210, D217);
   17. "write the project overview", audience unknown, so a new hire and an investor would get different documents: asked, though the result is a document and not code (D210);
   18. "add a retry to the upload function", a small-looking task: clarify, since how many times and for which errors would change the work; easy to undo, so stated in "going with" before the work, or asked; near miss, "rename `foo` to `bar` in this file": nothing asked or stated (D212, D217);
-  19. a questionnaire out and work that depends on its questions: not started, and the person asked through ask whether the rest goes ahead (D212).
+  19. a questionnaire out and work that depends on its questions: not started; if other work is left, the person asked through ask whether it goes ahead; if none is left, no such question (D212, D228).
   20. who decides: who a talk is for, a matter of intent: asked; which test framework a new test uses, settled by the project, or how many retries, easy to undo: made and stated in "going with" before the work; wrong: asking about the framework, or choosing the audience quietly (D217).
 - **Open:** none known.
 

@@ -18,6 +18,7 @@ Which rules win follows the `act` skill's rule on which instruction wins:
    - In a file, don't wrap it unless the project's own rules say otherwise.
 5. **Numbers when the reader will refer to items by position,** such as steps followed in order or questions answered by number, so the user can answer or point by number. Use bullets otherwise, such as for loose points.
 6. **Fence what the reader copies or reads as a block, with the language named:** a command to run, code of more than one line, or a text diagram (`text`). Put a name inside a sentence inline in backticks, such as a file name, a command or an identifier. They then render, highlight and copy cleanly.
+7. **Text the user will paste or send elsewhere comes whole and on its own:** the text first, in the form its destination takes, then any note, such as a choice made or an assumption, in a line or two after it, never inside it, so it copies in one piece.
 
 ## Strong advice
 
@@ -33,4 +34,4 @@ Follow it unless the case gives a reason not to, and say when you depart from it
 
 ## The last instruction
 
-Before you return a response or anything in markdown, check that the six rules hold. For a markdown file, if the `authoring` skill is in your skill list, also load it and read its `markdown` skill (`references/markdown.md` in its folder) for the file rules and the linter. Otherwise, run the project's linter, if it has one.
+Before you return a response or anything in markdown, check that the seven rules hold. For a markdown file, if the `authoring` skill is in your skill list, also load it and read its `markdown` skill (`references/markdown.md` in its folder) for the file rules and the linter. Otherwise, run the project's linter, if it has one.

@@ -2800,3 +2800,46 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 - People look in `docs/`, not in a folder of old notes, so the method this repository follows should be there.
 - Keeping them as ideas stops a reader from taking them for the finished docs page or for current truth.
+
+## D227: Understand makes reading clarify a rule (2026-10-22)
+
+**Decision:**
+
+- **A new rule 7 in understand:** read `understand-clarify` before the first change on a request that leaves a choice or an unknown that would change the result, even when the answer seems plain. Whether to ask or state it, and that a stated choice comes before the work, are decided in clarify.
+- **The advice line is gone.** "A task that looks small but leaves an open choice still goes to clarify" moved into the rule, so the rule has one home.
+- **Cases:** `clarify-vague-request` and `held-out-release-notes` now check that `understand-clarify` is read, and cover the new rule.
+- **Where:** [design/essentials/understand.md](design/essentials/understand.md), understand rules and test 29.
+
+**Why:**
+
+- In three cases, Haiku and a Codex model opened only essentials, understand, act and respond. They never opened clarify, where the ask-or-state test and the "going with" order live.
+- `understand` and `act` restate enough that agents think the child adds nothing.
+- Most models stated their choices after the change, not before.
+- **Not taken now:** a new wording for "a search finds nothing the request takes for granted", seen in `held-out-release-notes`, waits until this rule is rerun.
+
+## D228: Asking whether the rest goes ahead only when some work is left (2026-10-22)
+
+**Decision:**
+
+- **While a questionnaire is out,** work that depends on its questions does not start. If work that does not depend on them is left, the agent asks, through `respond-ask`, whether it goes ahead. If none is left, it says what waits for the answers.
+- **Case:** `instruction-project-keeps-result` no longer expects the question, since the whole request depends on the caretaker.
+- **Where:** [design/essentials/understand.md](design/essentials/understand.md), clarify's flow and tests 14 and 19.
+
+**Why:**
+
+- Every model, Sonnet included, missed "ask whether the rest goes ahead" in that case. Nothing was left to go ahead with, so the line and the rubric were both wrong there.
+- A question with no work behind it costs the user a turn for nothing.
+
+## D229: Text to paste elsewhere comes whole, notes after it (2026-10-22)
+
+**Decision:**
+
+- **A new rule 7 in respond's layout:** text the user will paste or send elsewhere comes whole and on its own. The text comes first, in the form its destination takes. Any note, such as a choice made or an assumption, follows in a line or two, never inside the text.
+- **Understand's rules still hold:** assumptions are marked and choices stated. The rule says where the note goes.
+- **Case:** `respond-layout-plain-channel` now checks the order, and covers the rule.
+- **Where:** [design/essentials/respond.md](design/essentials/respond.md), layout rules and tests 16 and 17.
+
+**Why:**
+
+- In `respond-layout-plain-channel`, no model used Markdown. The failures were notes put around the draft, such as "Going with: no year" and "tell me if you meant other notes".
+- Understand's rules require such notes, but no skill said how to give text meant to be pasted elsewhere.

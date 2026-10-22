@@ -183,7 +183,16 @@ class ScenarioChecks(unittest.TestCase):
                 {"type": "tool_use", "name": "Edit", "id": "edit-1", "input": {}}]}}])]
         for agent, events in traces:
             with self.subTest(agent=agent):
-                self.assertEqual(runner.text_before_change(agent, [events]), (statement, True, False))
+                self.assertEqual(runner.text_before_change(agent, [events]), (statement, True, ""))
+
+    def test_unknown_order_names_its_action(self):
+        traces = [
+            ("claude", [{"type": "assistant", "message": {"content": [
+                {"type": "tool_use", "name": "Agent", "id": "agent-1", "input": {}}]}}], "tool Agent"),
+            ("codex", [command_event('python3 -c "write_a_file()"')], 'command python3 -c "write_a_file()"')]
+        for agent, events, action in traces:
+            with self.subTest(agent=agent):
+                self.assertEqual(runner.text_before_change(agent, [events]), ("", False, action))
 
     def test_content_loss_and_incorrect_routes_fail(self):
         checks = {"reads": ["act-rightsize-lean"], "reads_not": ["understand-clarify-deep"],

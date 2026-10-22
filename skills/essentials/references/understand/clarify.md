@@ -35,7 +35,7 @@ These are the `understand` skill's rules: facts first, who decides, keeping noth
 - **questionnaire** (`understand-clarify-questionnaire`): when questions remain that only someone other than the user can answer, after the user answers theirs. Either the user says so, or you see it. If you see it, ask the user whether someone else holds the answer, rather than deciding alone.
   - Not for: anything the user can answer, or anything the files say.
   - Gives back: the document, in the response by default, for the user to send. Later, its answers, taken back here.
-- **While a questionnaire is out:** its questions are parked until the answers return. Work that depends on them does not start. Ask the user, through `respond-ask`, whether the rest goes ahead.
+- **While a questionnaire is out:** its questions are parked until the answers return. Work that depends on them does not start. If work that does not depend on them is left, ask the user, through `respond-ask`, whether it goes ahead. If none is left, say what waits for the answers.
 
 Not here:
 
