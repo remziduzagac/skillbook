@@ -132,6 +132,16 @@ class ScenarioChecks(unittest.TestCase):
         report = runner.summarize([result], 0)
         self.assertIn("0 of 1; 1 unknown", report)
 
+    def test_each_model_gets_its_own_summary_section(self):
+        results = [{"case": "essentials/a", "agent": "claude", "run": 1, "model": model, "error": None,
+                    "checks": {}, "changes": [], "turns": [{"answer": f"answer from {model}"}], "review": ["x"]}
+                   for model in ("haiku", "sonnet")]
+        report = runner.summarize(results, 0)
+        one, two = report.index("## essentials/a — claude (haiku)"), report.index("## essentials/a — claude (sonnet)")
+        self.assertLess(one, report.index("answer from haiku"))
+        self.assertLess(report.index("answer from haiku"), two)
+        self.assertLess(two, report.index("answer from sonnet"))
+
     def test_opaque_edit_cannot_pass_sequencing_without_evidence(self):
         with tempfile.TemporaryDirectory() as root:
             work = Path(root)
@@ -218,7 +228,7 @@ class TurnLifecycle(unittest.TestCase):
         with tempfile.TemporaryDirectory() as output, patch.object(runner, "prepare_home"), \
                 patch.object(runner, "agent_env", return_value={}), \
                 patch.object(runner.subprocess, "run", side_effect=responder):
-            return runner.run_one(case, agent, 1, args, Path(output), budget)
+            return runner.run_one(case, agent, runner.DEFAULT_MODELS[agent], 1, args, Path(output), budget)
 
     def test_changed_counts_a_created_file_but_not_a_removed_one(self):
         result = {"reads": [], "answer": "", "changes": ["added notes/new.md", "removed old.md"]}
@@ -281,6 +291,13 @@ class TurnLifecycle(unittest.TestCase):
                 "cost_unknown": False, "checks": {}, "reads": [], "changes": [], "answer": "", "review": [],
                 "turns": []}
 
+    def test_a_repeated_model_runs_an_agent_on_each_and_an_unknown_agent_stops_the_runner(self):
+        args = SimpleNamespace(model=["claude=haiku", "claude=sonnet"])
+        self.assertEqual(runner.models_for("claude", args), ["haiku", "sonnet"])
+        self.assertEqual(runner.models_for("codex", args), [runner.DEFAULT_MODELS["codex"]])
+        with self.assertRaises(SystemExit):
+            runner.models_for("claude", SimpleNamespace(model=["sonnet"]))
+
     def test_runner_error_ends_one_run_and_marks_its_cost_unknown(self):
         results, _ = self.run_main(RuntimeError("boom"))
         self.assertEqual(len(results), 2)
@@ -289,7 +306,7 @@ class TurnLifecycle(unittest.TestCase):
     def test_jobs_run_at_the_same_time_and_keep_the_plan_order(self):
         lock, running, most = threading.Lock(), [0], [0]
 
-        def fake(case, agent, n, args, out_dir, left):
+        def fake(case, agent, model, n, args, out_dir, left):
             with lock:
                 running[0] += 1
                 most[0] = max(most[0], running[0])

@@ -186,7 +186,7 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 **Decision:** The roadmap's status line says whether the initial design is open or settled. An agent reads it before planning: while the initial design is open, changes go straight into the root and no workstream is proposed. The person may reopen a settled initial design, recorded as a decision, while nothing depends on it yet.
 
-**Why:** An agent that took D26 at its word would have pushed the redesign of D27 through a workstream. Making the phase explicit, and reopening possible, keeps agents from adding workstreams the person does not want. Applied to the method in [design/blueprint.md](notes/first-design/design/blueprint.md).
+**Why:** An agent that took D26 at its word would have pushed the redesign of D27 through a workstream. Making the phase explicit, and reopening possible, keeps agents from adding workstreams the person does not want. Applied to the method in [design/blueprint.md](../docs/blueprint/idea/blueprint.md).
 
 ## D29: blueprint carries the design flow, from idea to implementation and back (2026-10-10)
 
@@ -194,7 +194,7 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 **Decision:** blueprint holds the flow of design work, not only its strands. A big task arrives as an idea; it is analysed through the code, research and discussion into a PRD (a workstream, or the root during the initial design); it is planned as tasks and implemented; and the implementation updates the blueprint. This replaces mattpocock/skills' chain of spec, tickets and map.
 
-**Why:** It is how the person develops today. A structure without its flow leaves the agent to invent the order of the work. The flow is drafted in [notes/skillbook-tree.md](ideas/skill-tree.md) and goes into [design/blueprint.md](notes/first-design/design/blueprint.md) when blueprint is improved.
+**Why:** It is how the person develops today. A structure without its flow leaves the agent to invent the order of the work. The flow is drafted in [notes/skillbook-tree.md](ideas/skill-tree.md) and goes into [design/blueprint.md](../docs/blueprint/idea/blueprint.md) when blueprint is improved.
 
 ## D30: Outside skills are learned from where they map, discussed where they do not (2026-10-10)
 
@@ -2046,9 +2046,9 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 > **Amended by D189 (2026-10-18):** the wider install routes are not plugins: one install script copies each set into `~/.claude/skills` and `~/.agents/skills`, which the later harnesses read too; supporting them stays later.
 
-**Decision:** skillbook supports Claude Code and Codex now. OpenCode, pi and Hermes Agent come later, with the wider install routes (D185); what was found about them, and about the other harnesses and install routes surveyed, is kept in [research/install-routes.md](research/install-routes.md) for then.
+**Decision:** skillbook supports Claude Code and Codex now. Another agent program, pi and Hermes Agent come later, with the wider install routes (D185); what was found about them, and about the other harnesses and install routes surveyed, is kept in [research/install-routes.md](research/install-routes.md) for then.
 
-**Why:** Claude Code and Codex are the harnesses the person works in. The findings show that each later harness needs its own handling: pi does not list a skill nested inside another skill's folder, so a tree stays hidden there without a flag; Hermes Agent lists every nested skill it finds under a skills folder, and a skill cannot hide itself, only the person's own configuration can; OpenCode hides a skill by its own metadata key. Supporting them now would mean designing for three more mechanisms before the first skill is built.
+**Why:** Claude Code and Codex are the harnesses the person works in. The findings show that each later harness needs its own handling: pi does not list a skill nested inside another skill's folder, so a tree stays hidden there without a flag; Hermes Agent lists every nested skill it finds under a skills folder, and a skill cannot hide itself, only the person's own configuration can; a third harness hides a skill by its own metadata key. Supporting them now would mean designing for three more mechanisms before the first skill is built.
 
 ## D185: A plugin per set from skillbook's own marketplace (2026-10-18)
 
@@ -2094,13 +2094,13 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 **Decision:** each set's main skill (`essentials`, `blueprint`, `softeng`, `authoring`) stays a real skill, the only one registered with the harness and listed to the model. Every other node of the tree becomes a plain markdown file inside its set's main skill, at the path its name gives: the node `devise-design` is `references/devise/design.md`. A node's own scripts and templates go in `scripts/` and `assets/` inside the folder of the same name beside its file, such as `references/devise/design/scripts/`, so `scripts` and `assets` are never the name of a child. Every node is still called a skill in the design, keeps its dashed name and its place in the tree; only how it is shipped changes. The person does not type sub-skills directly: they are reached through the main skill, or asked for in words, such as "use devise-design". Each main skill holds the name rule, worded exactly: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down." Calls between sets are unchanged (D187): "load the X skill, then use `<name>` by its name rule", with the fallback. No sentence telling the agent to read a file again after compaction is added for now; it is rechecked with the baseline (below). What is still open, for skillbook-write when building starts: the form of a node file's head, what replaces a skill's frontmatter (its description and its `compatibility`), and how `just check` checks it. Two tests join the baseline's: after automatic compaction, with real, longer reference files, does the agent still use the real text, and is a reload sentence needed; and after automatic compaction, is essentials still chosen, with and without the pointer, since an open Claude Code issue reports that the skill list is not sent again after automatic compaction (read in the issue on 2026-10-18, not reproduced, [research/skill-managers.md](research/skill-managers.md)).
 
-**Why:** the tests above showed plain files are followed as far as nested skills and are read whole, in both harnesses, within a set and across sets. Flattening drops the machinery that existed only to hide sub-skills: `disable-model-invocation` in every skill, Codex's `agents/openai.yaml` in every folder (D79), `plugin.json` listing every folder (D43), and the risk of Claude Code's skill tool refusing a hidden skill (D186). The later harnesses get simpler too ([research/install-routes.md](research/install-routes.md)): Hermes Agent lists every nested `SKILL.md` and cannot hide one, pi and skills.sh see only the top skill, and OpenCode needs its own hiding key; with plain files there is nothing to hide. The Agent Skills specification allows "any additional files or directories" and Anthropic's guide shows reference files grouped in folders by domain; both warn to keep references "one level deep from SKILL.md", because a file reached through another may be read only partly, which the name rule answers: it sits in `SKILL.md`, gives every file's path directly, and says to read the whole file. A reload sentence was tested and made no difference: Claude Code re-attached every file it had read, whole, and Codex read the needed file again every time without it; the files were short and compaction was forced, so it is rechecked when the baseline is built, with real, longer files and automatic compaction. The research on other projects found the field flattens too: nobody solves nesting well ([research/skill-managers.md](research/skill-managers.md)).
+**Why:** the tests above showed plain files are followed as far as nested skills and are read whole, in both harnesses, within a set and across sets. Flattening drops the machinery that existed only to hide sub-skills: `disable-model-invocation` in every skill, Codex's `agents/openai.yaml` in every folder (D79), `plugin.json` listing every folder (D43), and the risk of Claude Code's skill tool refusing a hidden skill (D186). The later harnesses get simpler too ([research/install-routes.md](research/install-routes.md)): Hermes Agent lists every nested `SKILL.md` and cannot hide one, pi and skills.sh see only the top skill, and a third harness needs its own hiding key; with plain files there is nothing to hide. The Agent Skills specification allows "any additional files or directories" and Anthropic's guide shows reference files grouped in folders by domain; both warn to keep references "one level deep from SKILL.md", because a file reached through another may be read only partly, which the name rule answers: it sits in `SKILL.md`, gives every file's path directly, and says to read the whole file. A reload sentence was tested and made no difference: Claude Code re-attached every file it had read, whole, and Codex read the needed file again every time without it; the files were short and compaction was forced, so it is rechecked when the baseline is built, with real, longer files and automatic compaction. The research on other projects found the field flattens too: nobody solves nesting well ([research/skill-managers.md](research/skill-managers.md)).
 
 ## D189: One install script replaces plugins (2026-10-18)
 
 > **Tested (2026-10-18):** Claude Code 2.1.302 and Codex 0.163.0, the flattened essentials copied or linked into the personal and the project skill folders, with file reads allowed: every layout passed in both, 8 of 8 each, two runs per cell, all five reference files read whole. Each harness listed the set once although `~/.claude/skills` and `~/.agents/skills` both held it, Claude Code ignoring `~/.agents/skills` and Codex `~/.claude/skills`. The folder each gave the agent was the link path, not the folder it resolves to. Codex needed no trust setting for the project's skills. In Claude Code's default permission mode a plugin's reference files were refused like a personal skill's, 0 of 4 (a local marketplace and a Git one, 2 each). One or two runs per cell, non-interactive runs where a prompt counts as a refusal (interactively it would be a prompt), and the real script not yet written. Evidence: [E14](evidence.md), [research/skill-loading.md](research/skill-loading.md), "Installed by a script".
 
-**Decision:** skillbook is installed by one POSIX `sh` script, `install.sh`, not by plugins; the plugin per set (D185) is dropped. The script copies each chosen set's folder into the agents' personal skill folders: `~/.claude/skills/<set>` for Claude Code and `~/.agents/skills/<set>`, which Codex reads, as do pi, OpenCode, Gemini CLI, Cursor and others ([research/install-routes.md](research/install-routes.md)); supporting those later harnesses stays later (D184). One script installs any set or several (`--sets essentials,blueprint`); without `--sets` it installs every released set, essentials alone at first; `--uninstall --sets blueprint` removes one. Turning a set off is removing it. Its details are D191, the layout D190, versions D192 and the permission rule D193. Weighed and declined: a separate script per set, which would repeat the download, check and uninstall logic and let the sets drift to different versions.
+**Decision:** skillbook is installed by one POSIX `sh` script, `install.sh`, not by plugins; the plugin per set (D185) is dropped. The script copies each chosen set's folder into the agents' personal skill folders: `~/.claude/skills/<set>` for Claude Code and `~/.agents/skills/<set>`, which Codex reads, as do pi, Gemini CLI, Cursor and others ([research/install-routes.md](research/install-routes.md)); supporting those later harnesses stays later (D184). One script installs any set or several (`--sets essentials,blueprint`); without `--sets` it installs every released set, essentials alone at first; `--uninstall --sets blueprint` removes one. Turning a set off is removing it. Its details are D191, the layout D190, versions D192 and the permission rule D193. Weighed and declined: a separate script per set, which would repeat the download, check and uninstall logic and let the sets drift to different versions.
 
 **Why:** flattening (D188) made each set one folder holding one skill, so the script copies at most four folders; the objection that ruled out a link script (D74), about ninety personal skills without a prefix open to clashes, no longer holds. Two folders reach Claude Code and every harness that reads `~/.agents/skills`, while a plugin reaches only the harnesses that read its marketplace format. Plugins also showed no advantage in the tests: Claude Code asks permission to read a plugin's reference files exactly as it does for personal skills.
 
@@ -2310,7 +2310,7 @@ Fighting these rules in ask's shared rules would add text for every agent to fix
 - GitHub CI gets only what needs no account and no key.
 - No free route fits. From [research/test-infrastructure.md](research/test-infrastructure.md), read unless marked:
   - GitHub Models was retired on 2026-07-30.
-  - OpenCode's free models are free "for a limited time", publish no limits, and some may use prompts for training. Its terms forbid extracting output "automatically or programmatically".
+  - One service's free models are free "for a limited time", publish no limits, and some may use prompts for training. Its terms forbid extracting output "automatically or programmatically".
   - Anthropic's Claude for Open Source gives one person 6 months of Claude Max 20x, for individual use only. No API credits were found, and whether it is open is unclear.
   - OpenAI's Codex for Open Source gives 6 months of ChatGPT Pro with Codex, and API credits from its fund for core open-source work, with no amount stated. It is personal and not transferable.
   - These are personal plans, so they fit local tests by the user and never GitHub CI.
@@ -2766,3 +2766,37 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Respond's rule 7 sent vulnerability details to act's rules, which the built act did not have, and public replies exposed an unfixed problem.
 - Both models priced postage for the wrong country without reading the club's files, one saying the notes "don't specify a country".
 - Examples that echo a test prompt let a case pass by matching words, not by following the rule.
+
+## D225: Commit messages never credit an AI tool, checked in three places (2026-10-22)
+
+**Decision:**
+
+- **The rule is old, the check is new.** AGENTS.md already says "Commits carry no AI attribution lines", but that is only an instruction an agent can miss. Claude Code adds a Co-Authored-By line and a "Generated with" line by default.
+- **Three layers enforce it.**
+  1. Claude Code's own setting. `.claude/settings.json` turns attribution off: `"attribution": {"commit": "", "pr": "", "sessionUrl": false}`.
+  2. A commit-message hook. `scripts/check-commit-message.sh` refuses a message with a trailer ending in `-by:` (such as Co-authored-by or Assisted-by) that names an AI tool, a "Generated with" or "Generated by" line naming one, or the robot emoji. Naming a tool elsewhere is allowed, since skillbook writes about them. Comment lines and text below the `git commit -v` scissors line are ignored. `.githooks/commit-msg` runs it. `just hooks` turns the hooks on once per clone (`git config core.hooksPath .githooks`). `just check-commits` checks a range, by default the commits not yet on origin/main.
+  3. A CI job named "commit messages" in `.github/workflows/ci.yml`. It checks every commit of each push and pull request, the whole history when there is no earlier commit to compare with, as after a new branch or a force push. It is part of the required job.
+- **Checked.** The whole history, 61 commits, passes. CONTRIBUTING.md says how to turn the hook on.
+- **Not taken now.** CI can only report after a direct push to main. Requiring pull requests on main would block it first, but that GitHub setting stays the person's choice.
+- **Where:** [design/testing.md](design/testing.md), "Three kinds of test", item 1.
+
+**Why:**
+
+- The setting stops it at the source for Claude Code.
+- The hook works for every agent and person, whatever writes the commit.
+- CI catches what skipped the hook, such as a commit made on GitHub's website.
+- An instruction alone depends on the agent reading it; a check does not.
+
+## D226: The first blueprint method and its example are in docs/blueprint/idea/ (2026-10-22)
+
+**Decision:**
+
+- `blueprint.md`, the blueprint method as first designed, and `blueprint-example.md`, herdsman's worktree groups followed through every part of it, moved from `blueprint/notes/first-design/design/` to `docs/blueprint/idea/`, so people can find them.
+- The root `README.md` ("How it is organised") and `docs/README.md` link to them. Every link to them was updated. Old notes keep their plain-text mentions as history.
+- They stay ideas for the blueprint set, not its docs page and not current truth. This repository's own blueprint still follows that method until the design skill exists. `AGENTS.md` and `blueprint/README.md` point to the new place.
+- D183 stands: the page for each main skill, and essentials' page as the map, still come with the skills. `docs/README.md` now also lists these two idea files.
+
+**Why:**
+
+- People look in `docs/`, not in a folder of old notes, so the method this repository follows should be there.
+- Keeping them as ideas stops a reader from taking them for the finished docs page or for current truth.

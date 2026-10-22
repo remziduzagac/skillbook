@@ -4,7 +4,7 @@ How skillbook is tested, as a whole: what runs where, what a test needs, and whe
 
 ## Three kinds of test
 
-1. **Static checks:** `just check`, as today. It runs the markdown lint, the link check, ShellCheck, shfmt, actionlint, zizmor and the skill-file check. It runs locally and in GitHub CI on every pull request.
+1. **Static checks:** `just check`, as today. It runs the markdown lint, the link check, ShellCheck, shfmt, actionlint, zizmor and the skill-file check. It runs locally and in GitHub CI on every pull request. CI also checks every commit message for AI credit lines, and `just hooks` turns the same check on locally (D225).
 2. **Install tests:** `just test-install`. They check `install.sh` in a throwaway home:
    - copy mode and link mode;
    - the marker file;
@@ -93,7 +93,7 @@ The project skills have no shipped-set design sections. These scenarios apply th
 - **GitHub CI gets only what needs no account and no key.**
 - **No free route fits** ([../research/test-infrastructure.md](../research/test-infrastructure.md), read unless marked inferred):
   - GitHub Models was retired on 2026-07-30.
-  - OpenCode's free models are free "for a limited time" and publish no limits. Some may use prompts for training. Its terms forbid extracting output programmatically.
+  - One service's free models are free "for a limited time" and publish no limits. Some may use prompts for training. Its terms forbid extracting output programmatically.
   - Anthropic's Claude for Open Source gives one person 6 months of Claude Max 20x, for individual use only, with no API credits found; whether it is open is unclear.
   - OpenAI's Codex for Open Source gives 6 months of ChatGPT Pro with Codex, and API credits from its fund for core open-source work, with no amount stated. It is personal and not transferable.
   - These are personal plans, so they fit local tests by the user and never GitHub CI.

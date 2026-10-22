@@ -15,7 +15,7 @@ Whether skillbook's AI tests can run on GitHub for free or at low cost, which sm
 ## Summary
 
 - **GitHub Models is gone.** It was retired on 2026-07-30 (read). A `models: read` permission cannot be used any more.
-- **OpenCode's free models are weak ground for tests.** They are free "for a limited time", publish no limits and say nothing about automated use (read). Some may use prompts for training (read). Its terms forbid extracting output "automatically or programmatically" (read); whether a test run counts is unclear (inferred).
+- **One service's free models are weak ground for tests.** They are free "for a limited time", publish no limits and say nothing about automated use (read). Some may use prompts for training (read). Its terms forbid extracting output "automatically or programmatically" (read); whether a test run counts is unclear (inferred).
 - **Provider programmes are personal.** Anthropic's gives one person 6 months of Claude Max 20x, individual use only (read). OpenAI's gives 6 months of ChatGPT Pro with Codex, and API credits for core open-source work, with no amount stated (read). Neither is a sure budget for GitHub CI.
 - **Paid small models are very cheap.** Claude Haiku 5.5 costs $0.10 per million input tokens and $0.50 per million output tokens for prompts up to 100,000 tokens (read). GPT-6 Luna costs the same (read). One test run of about 30,000 input and 3,000 output tokens costs about half a cent on either (inferred).
 - **Both agents can run apart from the user's setup.** Claude Code has `CLAUDE_CONFIG_DIR` and Codex has `CODEX_HOME`. Both log in with an API key in a headless run (read).
@@ -23,9 +23,9 @@ Whether skillbook's AI tests can run on GitHub for free or at low cost, which sm
 
 ## 1. Free or sponsored inference
 
-### OpenCode free models (OpenCode Zen)
+### A service's free models
 
-- **Who provides them.** Mixed. The Nemotron free models are NVIDIA's free endpoints. "Jev 1.13 Free" is from TypeSafe AI. Big Pickle and other "stealth" models do not name a provider. The privacy section names OpenAI, Anthropic, Mistral and NVIDIA as upstream providers of the paid models. Source: <https://opencode.ai/docs/zen/> (read).
+- **Who provides them.** Mixed. The Nemotron free models are NVIDIA's free endpoints. "Jev 1.13 Free" is from TypeSafe AI. Big Pickle and other "stealth" models do not name a provider. The privacy section names OpenAI, Anthropic, Mistral and NVIDIA as upstream providers of the paid models. Source: the service's models page (read).
 - **The free models listed on 2026-10-19** (read, same page): Big Pickle, GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free, Space Bunny Free, Beam Free, LL Alpha Free, LongCat 2.5 Preview Free, Exo Free, MiMo-V2.6-Flash Free, MiMo-V2.5 Free, three Nemotron free models and Jev 1.13 Free. All cost $0.
 - **Limits.** The page says the models are free "for a limited time" and gives no request caps or rate limits (read). Beam Free is unavailable in several countries (read). No published anonymous rate limit was found.
 - **Data use** (read, same page):
@@ -35,11 +35,11 @@ Whether skillbook's AI tests can run on GitHub for free or at low cost, which sm
   - GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free, Space Bunny Free and LongCat 2.5 Preview Free: zero retention, no training.
   - Nemotron: trial use only, logged, do not send confidential data.
   - skillbook is public, so training use matters less, but prompts and test cases would still go to unknown providers.
-- **Terms on automated use.** The Zen page does not mention it (read). The general terms (<https://opencode.ai/legal/terms-of-service>, read) ban extracting data or output "automatically or programmatically", ban "unreasonable load" and say access may be restricted. They have no section on free models, and say Zen is on a separate paid-services page that could not be read. The clause reads as aimed at scraping, but that is our reading (inferred).
-- **Headless use.** `opencode run [message..]` is non-interactive, with `--model provider/model`, `--format json` for raw JSON events and `--auto` to approve permissions. Source: <https://opencode.ai/docs/cli/> (read).
-- **Login.** `opencode auth login` stores keys in `~/.local/share/opencode/auth.json`. OpenCode also loads provider keys from environment variables or a project `.env` (read, same page). The official Zen setup says to sign in, add billing details and credits, copy an API key, then run `/connect` (read). The docs do not say whether free models work with no key. A forum post says no key is needed (inferred: <https://forum.cloudron.io/topic/15277/ai-devops-opencode-make-coding-free-with-zen-models-no-claude-openai-google/3>). An issue in an unrelated project says "opencode serves free models without any account or key" (read: <https://github.com/marius-patrik/DarkFactory/issues/227>); that project closed the issue and dropped OpenCode from its pipeline (read).
-- **Official GitHub Action.** `opencode github run` signs in with OIDC to the OpenCode GitHub App, or uses `use_github_token: true`. Model keys go in Actions secrets. The page has no advice on fork pull requests (read: <https://opencode.ai/docs/github/>).
-- **Fit for skillbook:** poor. The tests need Claude Code's and Codex's own skill loaders, and OpenCode is a third agent, so it cannot answer "does Claude Code load this skill".
+- **Terms on automated use.** The models page does not mention it (read). The general terms (read) ban extracting data or output "automatically or programmatically", ban "unreasonable load" and say access may be restricted. They have no section on free models, and say the free-model service is on a separate paid-services page that could not be read. The clause reads as aimed at scraping, but that is our reading (inferred).
+- **Headless use.** Its CLI has a non-interactive run command, with a model option, a JSON output option for raw events and an option to approve permissions (read).
+- **Login.** A login command stores keys in a file in its data folder. It also loads provider keys from environment variables or a project `.env` (read, same page). The official setup says to sign in, add billing details and credits, copy an API key, then connect it in the program (read). The docs do not say whether free models work with no key. A forum post says no key is needed (inferred). An issue in an unrelated project says the program "serves free models without any account or key" (read: <https://github.com/marius-patrik/DarkFactory/issues/227>); that project closed the issue and dropped the program from its pipeline (read).
+- **Official GitHub Action.** Its GitHub Action signs in with OIDC to the program's GitHub App, or uses `use_github_token: true`. Model keys go in Actions secrets. The page has no advice on fork pull requests (read).
+- **Fit for skillbook:** poor. The tests need Claude Code's and Codex's own skill loaders, and this program is a third agent, so it cannot answer "does Claude Code load this skill".
 
 ### GitHub Models with `GITHUB_TOKEN`
 
@@ -113,7 +113,7 @@ Whether skillbook's AI tests can run on GitHub for free or at low cost, which sm
 
 ## Gaps
 
-- Whether OpenCode free models work with no key from a CI runner, and their rate limits.
+- Whether the service's free models work with no key from a CI runner, and their rate limits.
 - Official free-tier numbers for Gemini and Groq.
 - Whether the two open-source programmes are open for applications, and the dollar amount of OpenAI's credits.
 - Whether `codex exec -m gpt-6-luna` works with an API key. It is on the Responses API, but it was not run.
@@ -122,14 +122,7 @@ Whether skillbook's AI tests can run on GitHub for free or at low cost, which sm
 
 ## Sources
 
-- <https://opencode.ai/docs/zen/> (read)
-- <https://opencode.ai/docs/cli/> (read)
-- <https://opencode.ai/docs/github/> (read)
-- <https://opencode.ai/docs/providers/> (read)
-- <https://opencode.ai/zen> (read)
-- <https://opencode.ai/legal/terms-of-service> (read)
 - <https://github.com/marius-patrik/DarkFactory/issues/227> (read)
-- <https://forum.cloudron.io/topic/15277/ai-devops-opencode-make-coding-free-with-zen-models-no-claude-openai-google/3> (inferred, snippet)
 - <https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models> (read)
 - <https://github.blog/changelog/2026-07-30-github-models-is-now-retired/> (read)
 - <https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/> (inferred, snippet)

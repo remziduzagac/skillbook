@@ -18,7 +18,7 @@ skillbook holds the person's agent skills, so every project gets them without fi
 ## Skills
 
 - **The first set:** agent-writing, markdown-style, blueprint and greenrepo (D20–D24).
-- **Specified in:** [design/skillbook.md](design/skillbook.md) for the set as a whole, [design/blueprint.md](design/blueprint.md) and [design/greenrepo.md](design/greenrepo.md) for the two main skills.
+- **Specified in:** [design/skillbook.md](design/skillbook.md) for the set as a whole, [design/blueprint.md](../../../docs/blueprint/idea/blueprint.md) and [design/greenrepo.md](design/greenrepo.md) for the two main skills.
 
 ## Loading
 

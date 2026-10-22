@@ -4,4 +4,4 @@ The spec-to-dev flow and its records: a project's design record from the idea to
 
 - [blueprint.md](blueprint.md): its main skill, its recording steps and its document forms, mostly not designed yet.
 
-Until it is designed, this repository's own blueprint follows the method in [../../notes/first-design/design/blueprint.md](../../notes/first-design/design/blueprint.md).
+Until it is designed, this repository's own blueprint follows the method in [../../../docs/blueprint/idea/blueprint.md](../../../docs/blueprint/idea/blueprint.md).

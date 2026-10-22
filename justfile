@@ -12,8 +12,8 @@ links:
 
 # Shell scripts: ShellCheck, and shfmt with the settings in .editorconfig.
 lint-shell:
-    shellcheck install.sh scripts/*.sh tests/*.sh
-    shfmt -d install.sh scripts tests
+    shellcheck install.sh scripts/*.sh tests/*.sh .githooks/*
+    shfmt -d install.sh scripts tests .githooks
 
 # Workflows: actionlint and zizmor.
 lint-workflows:
@@ -43,6 +43,14 @@ check-coverage:
 # Count executable normal, boundary and edge scenarios, and list the aspects no case covers; not a model pass rate.
 test-coverage:
     python3 tests/run.py --coverage
+
+# Turn on this repository's git hooks, which refuse a commit message that credits an AI tool; once per clone.
+hooks:
+    git config core.hooksPath .githooks
+
+# No commit in the range credits an AI tool; by default, the commits not yet on origin/main.
+check-commits range="origin/main..HEAD":
+    scripts/check-commit-message.sh --range '{{range}}'
 
 # Link this working copy's sets into the folders agents read, for a machine where skills are edited.
 link:

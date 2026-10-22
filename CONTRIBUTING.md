@@ -13,5 +13,5 @@ Agents are welcome as tools. A report comes from a person who saw the problem ha
 ## Working on skillbook
 
 - `just check` runs every check: markdown lint, link check, ShellCheck, shfmt, actionlint and zizmor. The [justfile](justfile) lists the tools.
-- Commits follow lowercase Conventional Commits.
+- Commits follow lowercase Conventional Commits, and never credit an AI tool: no Co-authored-by or "Generated with" line naming one. `just hooks` turns on a check that refuses such a message, and CI checks every commit too.
 - The design lives in [blueprint/](blueprint/README.md); changes to it follow the rules in its README.

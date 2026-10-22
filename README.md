@@ -25,6 +25,7 @@ Coming with the first release: one install script, `install.sh`, copies the sets
 
 - `skills/<set>/`: one folder per set, once built.
 - [docs/](docs/README.md): one page per skill, for people.
+- [docs/blueprint/idea/](docs/blueprint/idea/blueprint.md): the first idea of the blueprint method, with [a worked example](docs/blueprint/idea/blueprint-example.md).
 
 ## Use at your own risk
 

@@ -1,6 +1,6 @@
 # Blueprint
 
-Draft v3, 2026-10-07 to 2026-10-10, agreed in the design discussion recorded in [../notes/initial-design.md](../../initial-design.md). Built from that discussion, the research in [../research/design-documentation-approaches/](../../../research/design-documentation-approaches/README.md) and trailscout's design docs, an earlier project's working example. [blueprint-example.md](blueprint-example.md) follows one feature through every part of it.
+Draft v3, 2026-10-07 to 2026-10-10, agreed in the design discussion recorded in [blueprint/notes/initial-design.md](../../../blueprint/notes/initial-design.md). Built from that discussion, the research in [blueprint/research/design-documentation-approaches/](../../../blueprint/research/design-documentation-approaches/README.md) and trailscout's design docs, an earlier project's working example. [blueprint-example.md](blueprint-example.md) follows one feature through every part of it.
 
 ## What this is
 

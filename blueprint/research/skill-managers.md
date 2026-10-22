@@ -58,7 +58,7 @@ How other projects get skills into agent harnesses, turn single skills on and of
 
 ### Vercel `skills` CLI (vercel-labs/skills) and skills.sh
 
-- What: "The CLI for the open agent skills ecosystem"; supports Claude Code, Codex, Cursor, OpenCode "and 75 more". *read* 35.4k stars, created 2026-01-14, last push 2026-10-09, about 1,155 open issues (GitHub API count includes PRs).
+- What: "The CLI for the open agent skills ecosystem"; supports Claude Code, Codex, Cursor "and 75 more". *read* 35.4k stars, created 2026-01-14, last push 2026-10-09, about 1,155 open issues (GitHub API count includes PRs).
 - Shape: CLI writer. Installs into a canonical copy then symlinks into each agent's folder (project `./<agent>/skills/`, global `-g`), or `--copy`. *read*
 - Discovery/loading: harness-native; the CLI does not serve skills. *read*
 - On/off: no enable/disable; `add`/`remove` with `--agent` and `--skill`; `metadata.internal: true` hides a skill unless `INSTALL_INTERNAL_SKILLS=1`; open request #2499 for a `--disable-model-invocation` flag. *read*
@@ -151,7 +151,7 @@ How other projects get skills into agent harnesses, turn single skills on and of
 
 ### dotagents (getsentry/dotagents)
 
-- What: declare skills, MCP servers, hooks, subagents and plugins in `agents.toml`; it configures Claude, Cursor, Codex, Copilot CLI, Grok, VS Code, OpenCode and Pi. *read* 253 stars, created 2026-02-07, last push 2026-10-15, MIT. (Not to be confused with yourconscience/dotagents, a Go CLI with a `~/.agents` repo and commit-pinned audited external skills, search snippet only *inferred*.)
+- What: declare skills, MCP servers, hooks, subagents and plugins in `agents.toml`; it configures Claude, Cursor, Codex, Copilot CLI, Grok, VS Code and Pi. *read* 253 stars, created 2026-02-07, last push 2026-10-15, MIT. (Not to be confused with yourconscience/dotagents, a Go CLI with a `~/.agents` repo and commit-pinned audited external skills, search snippet only *inferred*.)
 - Shape: CLI writer. Skills live in `.agents/skills/` and are symlinked into tool folders (`.claude/skills/`); `~/.agents/agents.toml` and `agents.lock` for global state, `--project` for repo state; commands `init`, `add`, `remove`, `install`, `list`, `sync`, `mcp`, `trust`, `doctor`. Sources: GitHub, GitLab, any git server, well-known HTTPS sources, local dirs; plugins are installed as canonical bundles with disposable per-target outputs. *read*
 - On/off: removing a skill supplied by a wildcard source adds it to that source's `exclude` array; an include option is not mentioned. Lock contents (commit pin, integrity hash) are from a search snippet *inferred*.
 - Limits: Pi plugin skills land in the shared `.agents/skills/`, so other clients see them; plugin-bundled MCP servers not projected to Pi. *read*
@@ -159,14 +159,14 @@ How other projects get skills into agent harnesses, turn single skills on and of
 
 ### skillshare (runkids/skillshare)
 
-- What: CLI plus desktop app and web dashboard, one source synced to Claude Code, Codex, Pi, OpenCode and more; also agents, rules, MCP, hooks, plugins. *read* 2.8k stars, created 2026-01-14, last push 2026-10-17, v0.25.13.
+- What: CLI plus desktop app and web dashboard, one source synced to Claude Code, Codex, Pi and more; also agents, rules, MCP, hooks, plugins. *read* 2.8k stars, created 2026-01-14, last push 2026-10-17, v0.25.13.
 - Shape: CLI writer; symlinks on macOS/Linux, NTFS junctions on Windows, file symlinks need Developer Mode or are copied; per-tool `--mode copy`. A `.skillignore` file exists and the README "links to a filtering guide" for choosing "what each tool receives", but the mechanism was not described in what I read. Project-level skills via `init -p`. *read*
 - Problems: Windows symlink fallback to copies is silent. *read*
 
 ### Skills-Manager (jiweiyeah) and other desktop/CLI managers
 
 - jiweiyeah/Skills-Manager: desktop app plus `skm` CLI, 32 tools, about 1.0k stars, created 2026-02-06, last push 2026-09-10. Central hub folder, symlinks into each tool (Windows: symlink, then junction, then tracked copy). `skm enable <skill> --for <tool>` / `skm disable` add or remove the link; `skm adopt` moves existing skills into the hub; `skm doctor` / `fix`. No nesting or MCP. *read*
-- mode-io/skill-manager: local app for Codex CLI, Claude Code, Cursor, OpenCode, Hermes Agent, OpenClaw; 17 stars. One copy in a shared store linked to chosen harnesses; "Disabling a harness removes only that link, and the package stays in the store". Per-skill and per-harness toggles; Hermes category layout noted; Windows support narrow (Codex only). *read*
+- mode-io/skill-manager: local app for Codex CLI, Claude Code, Cursor, Hermes Agent, OpenClaw; 17 stars. One copy in a shared store linked to chosen harnesses; "Disabling a harness removes only that link, and the package stays in the store". Per-skill and per-harness toggles; Hermes category layout noted; Windows support narrow (Codex only). *read*
 - emanuelet/skill-manager (fork of omrikais/skill-manager): `sm` CLI for Claude Code and Codex; canonical store `~/.skill-manager/skills/`, deploy/undeploy per tool with symlinks, `depends` in frontmatter deployed first, auto-adopt that removes the original from tool folders, an MCP server and a SessionStart hook for trigger-based activation; 0 stars. *read* (Auto-adopt of skills placed by hand is an example of a manager surprising users.)
 - abubakarsiddik31/skill-manager: desktop app; moves disabled skills to a sibling `.disabled/` folder. *inferred* (search snippet only). SkillDock (wanghuan9) also listed, not read.
 - Lesson: the on/off verb in these tools is "link or unlink". None of them add dependency or nesting semantics.
@@ -190,7 +190,7 @@ How other projects get skills into agent harnesses, turn single skills on and of
 
 ### obra/superpowers and its early Codex script
 
-- What: the largest skills project (301k stars, created 2025-10-09, last push 2026-10-10). Installed per harness by each harness's plugin mechanism (Claude Code marketplace, Codex marketplace, Cursor, Gemini CLI extensions, OpenCode INSTALL.md, and about a dozen more). *read*
+- What: the largest skills project (301k stars, created 2025-10-09, last push 2026-10-10). Installed per harness by each harness's plugin mechanism (Claude Code marketplace, Codex marketplace, Cursor, Gemini CLI extensions, and about a dozen more). *read*
 - Discovery: a `using-superpowers` skill plus per-harness bootstrap; skills trigger automatically from descriptions. Pi and Muse inject the bootstrap through a session-start hook. Hermes "has no post-compaction hook", so long sessions can lose the bootstrap. *read*
 - References between skills: bare names in the README; in the writing guide `**REQUIRED SUB-SKILL:** Use superpowers:test-driven-development`, never `@` links ("force-loads files immediately, consuming 200k+ context"), "Flat namespace - all skills in one searchable namespace". *read*
 - Early skill-finding scripts: a third-party doc (lzw.me) describes `~/.codex/superpowers/.codex/superpowers-codex` with `bootstrap`, `find-skills` and `use-skill <name>` subcommands, using `skills-core.js` to search skill dirs recursively with a depth limit, a `superpowers:` prefix for the official copy, personal skills with no prefix that override. It calls Codex support experimental. *read* (that page) but whether the script still exists upstream is *inferred*: the release notes I read (v6.0.0 to v6.4.1) do not mention it, and the current README describes plugin marketplaces. I did not find the commit that removed it.
@@ -205,7 +205,7 @@ How other projects get skills into agent harnesses, turn single skills on and of
 
 - Claude Code #43816 "SkillSearch" (2026-04-05): asks for a name-only listing, an on-demand description search, and the existing full-body load; cites 81+ skills listed, about 4 to 5K tokens listing cost by the author's estimate (inconsistent figures), Tool Search cutting MCP tool context 77K to 8.7K. Closed "not planned" 2026-06-05 by the stale bot, locked 2026-08-08, no Anthropic staff reply. *read*
 - Claude Code #21545 (2026-01-28): name-only stubs for skills and MCP servers; closed as not planned by the stale bot 2026-02-28. *read*
-- OpenCode #13188 (2026-02-11): the skill tool description lists every skill every turn; 21 agents plus 3 skills cost about 2,000 tokens per turn; a commenter with about 1,500 skills measured about 148K tokens (56% of a 262K window); closed as not planned by a bot 2026-07-09. *read*
+- Another agent program's issue #13188 (2026-02-11): the skill tool description lists every skill every turn; 21 agents plus 3 skills cost about 2,000 tokens per turn; a commenter with about 1,500 skills measured about 148K tokens (56% of a 262K window); closed as not planned by a bot 2026-07-09. *read*
 - Hermes Agent #22620 (2026-05-09, open, P3): 200+ skills add 10 to 15K tokens per call; proposals are vector routing, lazy listing, config groups; workaround of disabling 90 skills cut context about 37%. *read*
 - Lesson: users want listing relief; harness vendors have not shipped it for skills, and the ask closes unanswered. Claude Code did ship deferred loading for MCP tools ("Tool search ... on by default"). *read* That is an argument that an MCP tool is cheap to host even with many sub-skills.
 
@@ -276,7 +276,6 @@ Projects
 - <https://github.com/emanuelet/skill-manager> (read)
 - <https://github.com/antfu/skills-npm> (read)
 - <https://github.com/obra/superpowers> and its releases page (read); <https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-skills/SKILL.md> (read)
-- <https://lzw.me/docs/opencodedocs/obra/superpowers/platforms/codex/index.html> (read, third party)
 - <https://github.blog/changelog/2026-04-16-manage-agent-skills-with-github-cli/> (read)
 - <https://docs.tessl.io/reference/glossary> (read); <https://docs.tessl.io/introduction-to-tessl> (search snippet only)
 - <https://github.com/zouyingcao/agentskills-mcp>, <https://github.com/PederHP/skillsdotnet>, <https://github.com/maiconsouza89/agents-skills/issues/24>, <https://github.com/abubakarsiddik31/skill-manager>, <https://github.com/wanghuan9/skilldock> (search snippets only)
@@ -291,7 +290,6 @@ Issues and forum threads
 - <https://claudeissues.com/issue/98220-feature-let-skilloverrides-disable-individual-plugin-skills> (read)
 - <https://claudeissues.com/issue/82017-compaction-continued-sessions-lose-the-skill-inventory-skill-listing-only-deltas> (read)
 - <https://github.com/anthropics/claude-code/issues/28266> and /18192 and claudeissues.com mirrors #20979, #39138, #39787, #40640 (search snippets only)
-- <https://github.com/anomalyco/opencode/issues/13188> (read)
 - <https://github.com/NousResearch/hermes-agent/issues/22620> (read)
 - <https://forum.cursor.com/t/cursor-doesnt-follow-symlinks-to-discover-skills/149693> (read)
 - <https://claudeissues.com/issue/40123> and /45748 (Read tool dedupe; search snippets only)

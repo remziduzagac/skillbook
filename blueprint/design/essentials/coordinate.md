@@ -317,7 +317,7 @@ coordinate/
 - **Result:** the carryover; on resuming, the differences found and the work continued.
 - **Where it is kept** (D104, D156, D162): carryover says what goes in, and where it is kept only by default: a file the person names; when they name none, the agent asks, recommending a file named by the date and time it is written, then a short topic, in local 24-hour time, such as `2026-10-17-1530-open-topics.md`, so that sorting by name sorts by time, since a carryover in the response alone is lost with the conversation (D115). Each carryover is a new file, never written over an older one; older ones stay as history, resuming reads the newest, and rightsize's lean can propose pruning them when they pile up (D157, D162). Where the project's instruction files point to a keeper, such as blueprint's main skill, the keeper says where it lives and in what form, and carryover's own text names none (D162, D163).
 - **Files:** its own file; two children named after the agents, `coordinate-carryover-claude` and `coordinate-carryover-codex`, each read only when running in that agent (D197), how each harness compacts with a focus and starts a fresh session, both typed by the person, Codex's still to find out (D104, D160, D161).
-- **Material:** workslate and rig (four fields: done, remaining, decisions, uncertain; sender and receiver); mattpocock's `handoff` (references by path); OpenCode's final note; gstack's `context-save`; alirezarezvani's `handoff`.
+- **Material:** workslate and rig (four fields: done, remaining, decisions, uncertain; sender and receiver); mattpocock's `handoff` (references by path); the person's agent customisations' final note; gstack's `context-save`; alirezarezvani's `handoff`.
 - **Tests** (D104, D107):
   1. after a multi-step session: all ten parts filled, references by path (D169);
   2. resuming after a commit was added since: the change reported before any action;
@@ -371,7 +371,7 @@ coordinate/
   - **Limits:** no rule that repeats a skillbook rule where the whole team uses skillbook, as setup says; elsewhere a repeat may stay, so teammates without skillbook keep it. Never an instruction document inside a folder that is copied into other projects, since it would carry rules that are not theirs. Advice: under about 200 lines, since every line is read at every session (D107, D115, D116).
 - **Result:** the document, written or updated after approval.
 - **Files:** `SKILL.md` only (D94).
-- **Material:** mattpocock's `writing-for-agents`; superpowers' `writing-skills`; workslate's and OpenCode's rules for principles files; meddah; the writing guides compared in [../../research/skill-writing-guides.md](../../research/skill-writing-guides.md).
+- **Material:** mattpocock's `writing-for-agents`; superpowers' `writing-skills`; workslate's and the person's agent customisations' rules for principles files; meddah; the writing guides compared in [../../research/skill-writing-guides.md](../../research/skill-writing-guides.md).
 - **Tests** (D94):
   1. "add a rule": added to the right file, with its reason, without repeating a skillbook rule where the team uses skillbook;
   2. a bloated `AGENTS.md` full of procedures: cut down to the facts through rightsize's lean, with the procedures proposed elsewhere (D157);

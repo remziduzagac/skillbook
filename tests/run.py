@@ -69,18 +69,19 @@ def main():
         return 0
 
     agents = [a for a in args.agents.split(",") if a]
+    models = {agent: models_for(agent, args) for agent in agents}
     plan = []
     for case in cases:
         for agent in agents:
             if agent not in case["agents"]:
                 continue
-            for n in range(1, (args.runs or case["runs"]) + 1):
-                plan.append((case, agent, n))
+            for model in models[agent]:
+                for n in range(1, (args.runs or case["runs"]) + 1):
+                    plan.append((case, agent, model, n))
 
-    turns = sum(len(case["turns"]) for case, _, _ in plan)
+    turns = sum(len(case["turns"]) for case, _, _, _ in plan)
     estimate = turns * ESTIMATE_PER_TURN
-    models = ", ".join(model_for(a, args) for a in agents)
-    print(f"{len(plan)} runs, {turns} turns, models: " + models)
+    print(f"{len(plan)} runs, {turns} turns, models: " + ", ".join(m for a in agents for m in models[a]))
     print(f"estimated cost: up to about ${estimate:.2f}")
     print(f"budget: no new run starts once known spending reaches ${args.budget:.2f}, and runs already started "
           f"finish, up to {args.jobs} at a time; "
@@ -90,8 +91,8 @@ def main():
     if args.login:
         print("login: your own, copied into each throwaway home and deleted with it")
     if args.dry_run:
-        for case, agent, n in plan:
-            print(f"  {case['id']}  {agent}  run {n}")
+        for case, agent, model, n in plan:
+            print(f"  {case['id']}  {agent}  {model}  run {n}")
         return 0
     usable = {agent: login_problem(agent, args.login) for agent in agents}
     for agent, problem in usable.items():
@@ -124,18 +125,18 @@ def main():
                 i = state["next"]
                 state["next"] += 1
                 left = args.budget - state["spent"]
-            case, agent, n = plan[i]
+            case, agent, model, n = plan[i]
             try:
-                result = run_one(case, agent, n, args, out_dir, left)
+                result = run_one(case, agent, model, n, args, out_dir, left)
             except Exception as error:  # a runner bug ends this run, not the others; what it spent is unknown
-                result = {"case": case["id"], "agent": agent, "run": n, "model": model_for(agent, args),
+                result = {"case": case["id"], "agent": agent, "run": n, "model": model,
                           "error": f"runner error: {error!r}", "cost": 0.0, "cost_unknown": True, "checks": {},
                           "reads": [], "changes": [], "answer": "", "review": case.get("review", []), "turns": []}
             with lock:
                 state["spent"] += result["cost"] or 0.0
                 state["unknown"] += int(result.get("cost_unknown", result["cost"] is None))
                 done[i] = result
-                print(f"  {case['id']}  {agent}  run {n}: {run_status(result)}")
+                print(f"  {case['id']}  {agent}  {model}  run {n}: {run_status(result)}")
 
     workers = [threading.Thread(target=worker) for _ in range(max(1, min(args.jobs, len(plan))))]
     for w in workers:
@@ -167,7 +168,8 @@ def parse_args():
     p.add_argument("--case", default="", help="run only cases whose id contains this text")
     p.add_argument("--agents", default="claude,codex", help="comma-separated: claude, codex")
     p.add_argument("--runs", type=int, default=0, help="runs per case and agent (default: the case's, else 1)")
-    p.add_argument("--model", action="append", default=[], help="agent=model, such as claude=sonnet")
+    p.add_argument("--model", action="append", default=[],
+                   help="agent=model, such as claude=sonnet; repeat it to run an agent on several models")
     p.add_argument("--login", action="store_true", help="copy your own login into each throwaway home")
     p.add_argument("--instruction", default="", help="a line added to the user's instruction file, for a variant")
     p.add_argument("--budget", type=float, default=1.0,
@@ -334,12 +336,14 @@ def aspect_coverage(cases):
     return "\n".join(lines), unknown_ids, uncovered
 
 
-def model_for(agent, args):
+def models_for(agent, args):
+    """The models an agent runs on: each one --model names for it, else its default."""
     for item in args.model:
-        name, _, model = item.partition("=")
-        if name == agent:
-            return model
-    return DEFAULT_MODELS[agent]
+        if item.partition("=")[0] not in DEFAULT_MODELS:
+            # a value without a known agent would otherwise leave every agent on its default, unnoticed
+            sys.exit(f"--model {item}: write it as agent=model, with agent one of {', '.join(DEFAULT_MODELS)}")
+    named = [model for name, _, model in (item.partition("=") for item in args.model) if name == agent]
+    return named or [DEFAULT_MODELS[agent]]
 
 
 def login_problem(agent, use_login):
@@ -377,8 +381,8 @@ def run_status(result):
     return f"{status}  ({price})"
 
 
-def run_one(case, agent, n, args, out_dir, budget_left):
-    result = {"case": case["id"], "agent": agent, "run": n, "model": model_for(agent, args), "error": None,
+def run_one(case, agent, model, n, args, out_dir, budget_left):
+    result = {"case": case["id"], "agent": agent, "run": n, "model": model, "error": None,
               "cost": 0.0, "cost_unknown": False, "checks": {}, "reads": [], "changes": [], "answer": "",
               "review": case.get("review", []), "turns": []}
     root = Path(tempfile.mkdtemp(prefix="skillbook-test-"))
@@ -426,7 +430,9 @@ def run_one(case, agent, n, args, out_dir, budget_left):
                 result["error"] = f"turn {i}: took longer than {args.timeout} seconds"
             turn_events = parse_events(stdout)
             if args.keep:
-                (out_dir / f"{case['id'].replace('/', '--')}--{agent}--{n}--turn{i}.jsonl").write_text(stdout)
+                model_name = re.sub(r"[^A-Za-z0-9._-]+", "-", result["model"])
+                name = f"{case['id'].replace('/', '--')}--{agent}--{model_name}--{n}--turn{i}.jsonl"
+                (out_dir / name).write_text(stdout)
             turn_cost = cost(agent, result["model"], [turn_events])
             result["cost"] += turn_cost or 0.0
             result["cost_unknown"] |= turn_cost is None or failed
@@ -948,10 +954,11 @@ def summarize(results, spent, unknown=0):
         lines.append("Failed on more than one model, so worth looking into (one model alone is only noted):")
         lines += [f"- {case}: {', '.join(sorted(models))}" for case, models in sorted(shared.items())]
         lines.append("")
-    keys = sorted({(r["case"], r["agent"]) for r in results})
-    for case_id, agent in keys:
-        runs = [r for r in results if r["case"] == case_id and r["agent"] == agent]
-        lines.append(f"## {case_id} — {agent} ({runs[0]['model']})")
+    # one section per model, so a judge reading a section reads only that model's runs
+    keys = sorted({(r["case"], r["agent"], r["model"]) for r in results})
+    for case_id, agent, model in keys:
+        runs = [r for r in results if (r["case"], r["agent"], r["model"]) == (case_id, agent, model)]
+        lines.append(f"## {case_id} — {agent} ({model})")
         lines.append("")
         errors = [r for r in runs if r["error"]]
         for r in errors:

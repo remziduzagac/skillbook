@@ -47,10 +47,30 @@ jobs:
           persist-credentials: false
       - run: tests/install-test.sh
 
+  commits:
+    name: commit messages
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read # check out the repository with its history
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: No commit credits an AI tool
+        env:
+          BEFORE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          AFTER: ${{ github.event.pull_request.head.sha || github.sha }}
+        # a new branch, or a force push, has no earlier commit here, so the whole history is checked
+        run: |
+          if git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then range="$BEFORE..$AFTER"; else range="$AFTER"; fi
+          scripts/check-commit-message.sh --range "$range"
+
   required:
     name: required
     if: always()
-    needs: [check, test-install]
+    needs: [check, test-install, commits]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions: {}

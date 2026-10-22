@@ -32,8 +32,8 @@ skillbook is a public repository of the person's agent skills, used in every pro
 | 1 | [blueprint/README.md](../../README.md), [roadmap.md](roadmap.md) | 70 | the map and the plan |
 | 2 | [blueprint/decisions.md](../../decisions.md) | 360 | D1–D41, each with its reason |
 | 3 | [blueprint/design/skillbook.md](design/skillbook.md) | 400 | how skills are built and loaded |
-| 4 | [blueprint/design/blueprint.md](design/blueprint.md) | 1,230 | the blueprint skill's specification |
-| 5 | [blueprint/design/blueprint-example.md](design/blueprint-example.md) | 480 | the method on a real case |
+| 4 | [blueprint.md](../../../docs/blueprint/idea/blueprint.md) | 1,230 | the blueprint skill's specification |
+| 5 | [blueprint-example.md](../../../docs/blueprint/idea/blueprint-example.md) | 480 | the method on a real case |
 | 6 | [blueprint/design/greenrepo.md](design/greenrepo.md) | 880 | the greenrepo skill's specification |
 | 7 | [blueprint/design/greenrepo-profiles.md](design/greenrepo-profiles.md) | 240 | greenrepo's profiles |
 
