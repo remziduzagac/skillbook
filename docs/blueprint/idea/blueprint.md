@@ -1,7 +1,5 @@
 # Blueprint
 
-Draft v3, 2026-10-07 to 2026-10-10, agreed in the design discussion recorded in [blueprint/notes/initial-design.md](../../../blueprint/notes/initial-design.md). Built from that discussion, the research in [blueprint/research/design-documentation-approaches/](../../../blueprint/research/design-documentation-approaches/README.md) and trailscout's design docs, an earlier project's working example. [blueprint-example.md](blueprint-example.md) follows one feature through every part of it.
-
 ## What this is
 
 A blueprint is a folder of markdown documents that holds a project's thinking: its ideas, the discussions, the research, the decisions and their reasons, what the project must do, how it works, and the work planned to get there. It sits beside the code and is written before and alongside it.
@@ -15,6 +13,18 @@ It is not:
 - the user documentation, which lives in the project's `docs/` and is written for users;
 - an issue tracker, though its tasks can be mirrored to one;
 - a description of the code: it says what the system does and why, and names modules, but never repeats code.
+
+### Spec-driven development
+
+A blueprint is a way of doing spec-driven development: what to build, and why, is written down before the code, and that written spec drives the work, not a chat. This matters more with AI agents. An agent builds what it is told, and a spec it can read gives every session the same intent.
+
+Most spec-driven tools write one spec per change: a request, a plan and a task list for one feature. Once the feature ships, that spec is rarely read again and goes stale. A blueprint differs in three ways:
+
+- **The spec stays current.** Requirements and design always describe the whole project as it is now. A change is written as a proposal against them, and merged into them when it is done. See [Consolidation](#consolidation).
+- **It flows both ways.** The spec drives the code, and what the code teaches is written back, so neither falls behind. See [Two-way sync](#two-way-sync).
+- **The reasons stay with it.** Ideas, discussions, research and decisions are kept beside the spec, so a later reader knows why, not only what.
+
+The ceremony fits the size of the work. A small fix is a task. Only a change to what the project must do, or to how it works, goes through a workstream.
 
 ### Principles
 
