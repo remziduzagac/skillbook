@@ -8,7 +8,6 @@ Understanding before acting, with the user and from sources. It holds the rules 
    - Called by a skill: to that skill.
    - Used directly: to the keeper the project's instruction files point to, if any. The keeper says where it goes and in what form.
    - With no keeper: it stays in the response. Offer a long result, or one the user wants kept, as a file they name.
-   - Each skill here names none of a keeper's steps or files, because a method tied to where results are stored cannot serve every caller.
 2. **One result shape:** what was decided and why, what was parked and why, and what comes next, plus each skill's own part. A caller can then keep any result without knowing which skill made it.
    - The shape says where to find a part; it is not a form to fill. Leave out a field with nothing to say, except "Not found" when something was looked for. Leave out of what the user sees a field they already have, such as their question.
    - When several skills serve one request, combine their results into one shape, keeping each one's own additions, so the caller gets one result back.

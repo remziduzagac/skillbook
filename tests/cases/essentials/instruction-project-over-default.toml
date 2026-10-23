@@ -3,7 +3,7 @@ about = "The project's instruction file wins over skillbook's own default: a new
 fixture = "garden-club"
 skills = ["act", "respond-layout"]
 category = "boundary"
-covers = ["act:rule:10"]
+covers = ["act:rule:9"]
 rejects = "Follows skillbook's layout default and adds a # heading to the draft, against the project's rule for drafts."
 review = ["The new piece has a bold line as its title, like the draft's other sections, and keeps the 24-hour clock.", "The rest of the draft is unchanged in meaning."]
 

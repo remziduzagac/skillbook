@@ -703,6 +703,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 >
 > **Amended by D199 (2026-10-18):** a search never stands in for the route; it is used only as the name rule's fallback, to find by name a file the route could not open, and the file found is read whole. understand, act and respond are loaded again when their text is no longer in view, such as after compaction.
 
+> **Amended by D231 (2026-10-23):** the rule on routes moves from act to the main skill's name-rule bullet, its one home; act's rules 9 to 14 become 8 to 13, and act's test 6 moves to the main skill's tests.
+
 **Decision:** skillbook adds no mechanism and no instruction for reusing a skill already loaded: both agents reuse what they read for the rest of the conversation, after compaction too. act gains a rule: reach a skill by following its route and read its whole file; never search the skill folders for keywords. Whether a long skill whose details never showed in an answer survives compaction is tested once a real long skill exists.
 
 **Why:** In a seven-turn test neither agent loaded the main skill or any file again after reading it, and an instruction to reuse made no difference; after compaction both kept following the skills. Claude Code sometimes searched the skill folders and answered from the matching lines, missing the rest of the skill ([research/skill-loading.md](research/skill-loading.md), "Loading once, using many times").
@@ -2860,3 +2862,23 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 - The skill places, names, designs and reviews skillbook's skills, and holds the checklist every design is written to and reviewed against. "Tree" named only one part of that work. "Design" names its main job.
 - Only the skill is renamed. The skill tree is still the tree.
+
+## D231: The start files lose their repeats; the size target stays advice (2026-10-23)
+
+**Decision:**
+
+- **Six cuts:** each removes text that repeats another skill, or text meant for builders.
+  - Essentials step 1 and act rule 1 point to understand's rules and clarify, which hold the ask-or-state test and its examples.
+  - Act's rule on routes moves into essentials' name-rule bullet, so act has 13 rules, not 14.
+  - Act's stopping rule keeps its reason, and the Advice section that repeated it is gone.
+  - Understand's rule 1 loses its line for builders: no skill under understand names a keeper's steps or files. It stays in the design as a constraint on how understand's skills are written.
+  - Respond rule 7 loses the API-key sentence, which act's rule 5 already covers. Essentials step 3 loses the sentence that devise's own content covers.
+- **Size:** the start files go from 24,809 to 23,743 characters, measured with `scripts/check-skills.sh`.
+- **The target stays advice:** about 20,000 characters never justifies cutting what the skills need. Capability comes first. The size is measured again after act's four missing children (stakes, guardrails, cleanup, verify) are built.
+- **Where:** [design/essentials/essentials.md](design/essentials/essentials.md), [design/essentials/act.md](design/essentials/act.md), [design/essentials/understand.md](design/essentials/understand.md), the built start files in `skills/essentials/`, and the `act:rule:` ids in `tests/cases/essentials/`.
+
+**Why:**
+
+- Every repeat costs tokens on every turn and breaks the one-home rule.
+- A parent that restates its child makes weaker models stop at the parent and never read the child (note 151 in `notes/initial-design.md`).
+- Trimming alone cannot reach 20,000 without cutting routes, never-rules or steps that earlier decisions kept on purpose.

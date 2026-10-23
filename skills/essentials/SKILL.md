@@ -14,7 +14,7 @@ The rules every request follows, and the route to the skill for each step of the
   - Offer where the work stands only if steps are left.
   - Offer what the session taught only if a later session would otherwise get it wrong or have to find it again, such as a correction from the user, a fact about the project that was hard to find, or a way of working the user asked for.
 - Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, say so plainly and go on with your own judgment.
-- **How to use the name rule:** a call names the skill and nothing more, because this skill is loaded and its folder known. For `act-rightsize-lean`, read `references/act.md`, then `references/act/rightsize.md`, then `references/act/rightsize/lean.md`. The reasons: a group's file holds the rules shared by everything under it; a file reached through another may otherwise be read only in part; and an answer made without the skill it needed looks complete and is not.
+- **How to use the name rule:** a call names the skill and nothing more, because this skill is loaded and its folder known. For `act-rightsize-lean`, read `references/act.md`, then `references/act/rightsize.md`, then `references/act/rightsize/lean.md`, because a group's file holds the rules shared by everything under it. Never let a search stand in for this, because a search finds matching lines and misses the rest of the skill, and an answer made without the skill it needed looks complete and is not. Read the skills a route names for the same step together, in one turn, because each read is a turn that carries the whole context again.
 
 ## Advice
 
@@ -28,13 +28,13 @@ The rules every request follows, and the route to the skill for each step of the
 
 Read `references/understand.md`, `references/act.md` and `references/respond.md` together, in one turn, at the start of every conversation, and again only when their text is no longer in view, such as after compaction. Each opens its own skills when their step comes. Then, in the order the work happens:
 
-1. **Understand the request** with the `understand` skill, leaving no gap. A choice that would change the result goes to `understand-clarify`: it asks the user what only they can decide, such as the tone of a message to a customer, and has you make and state the rest, such as how often a new sync job runs, in a "going with" line before the work.
+1. **Understand the request** with the `understand` skill, leaving no gap. A choice or an unknown that would change the result goes to `understand-clarify`.
    - Not for: "what do you think?" (the `act` skill's rule), or the user not following you (the `respond` skill).
    - Gives back: what was decided, what was parked and what comes next.
 2. **Follow the `act` skill's rules throughout,** for every request.
    - Not for: what is said to the user (the `respond` skill), or the work that steps 4 to 6 route: arranging things, work with other agents, instruction documents or setup, and the user's own work.
    - Gives back: nothing of its own. Its rules shape every action.
-3. **Decide what it will be and how it gets done** with the `devise` skill: first a design, when the request leaves open what something will be, then a plan, when the work is multipart by the `act` skill's planning rule. The work follows them; adjust them when the work shows something new. Single-step work, such as answering a question, needs neither.
+3. **Decide what it will be and how it gets done** with the `devise` skill: first a design, when the request leaves open what something will be, then a plan, when the work is multipart by the `act` skill's planning rule. Single-step work, such as answering a question, needs neither.
    - Not for: a view asked for ("what do you think?", the `act` skill's rule).
    - Gives back: the design and plan the work follows, kept current as it goes.
 4. **Arrange the parts of something** with the `organize` skill, when the request or a step changes how something is divided, not what it says: split it into parts that don't overlap (outlining a document before writing included), merge repeats, group parts under a parent, move a shared part into one place, index, or check for overlaps and gaps.

@@ -3,7 +3,7 @@ about = "The user's explicit instruction in the conversation wins over the proje
 fixture = "garden-club"
 skills = ["act"]
 category = "normal"
-covers = ["act:rule:10"]
+covers = ["act:rule:9"]
 rejects = "Keeps 10:00 and 15:00, citing the project's rule, or asks the user to choose between their request and the project file."
 review = ["The fair's hours in the draft read as the user asked, in the posters' style, without a question first.", "The answer may say in one line that this departs from the project's 24-hour rule at the user's request; it does not argue for the rule.", "Nothing else in the draft is reworded; the wrong fair date may be named as a follow-up."]
 
