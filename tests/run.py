@@ -653,13 +653,16 @@ def skills_read(agent, events, home, set_name):
     """Skills read through successful tool results or supported file-reading commands."""
     found = set()
     all_events = [e for turn in events for e in turn]
-    succeeded = set()
+    succeeded, outputs = set(), {}
     for e in all_events:
         if agent == "claude" and e.get("type") == "user":
             content = e["message"].get("content", [])
             for block in content if isinstance(content, list) else []:
                 if block.get("type") == "tool_result" and not block.get("is_error"):
                     succeeded.add(block.get("tool_use_id"))
+                    text = block.get("content", "")
+                    outputs[block.get("tool_use_id")] = text if isinstance(text, str) else "\n".join(
+                        part.get("text", "") for part in text if isinstance(part, dict))
     for e in all_events:
         if agent == "claude" and e.get("type") == "assistant":
             for block in e["message"].get("content", []):
@@ -669,15 +672,42 @@ def skills_read(agent, events, home, set_name):
                     found.add(block["input"].get("skill", "").split(":")[-1])
                 elif block["name"] == "Bash":
                     found |= reads_in_command(block["input"].get("command", ""), set_name)
+                    found |= skills_printed(outputs.get(block.get("id"), ""))
                 elif block["name"] in READ_TOOLS:
                     found |= {skill_name(s, rel) for s, rel in FULL_PATH.findall(json.dumps(block["input"]))}
         if agent == "codex" and e.get("type") == "item.completed":
             item = e["item"]
-            if item.get("type") == "command_execution" and item.get("exit_code") == 0:
-                found |= reads_in_command(item.get("command", ""), set_name)
+            if item.get("type") == "command_execution":
+                if item.get("exit_code") == 0:
+                    found |= reads_in_command(item.get("command", ""), set_name)
+                found |= skills_printed(item.get("aggregated_output") or "")
     found.discard(None)
     found.discard("")
     return found
+
+
+def skill_ends():
+    """Each skill's first heading and last line, from the repository's copies, which the throwaway homes install."""
+    files = {p.parent.name: p for p in (REPO / ".agents" / "skills").glob("*/SKILL.md")}
+    for folder in (REPO / "skills").iterdir():
+        files.update({skill_name(folder.name, p.relative_to(folder).as_posix()): p for p in folder.rglob("*.md")})
+    ends = {}
+    for name, path in files.items():
+        lines = [line.rstrip() for line in path.read_text().splitlines() if line.strip()]
+        heading = next((line for line in lines if line.startswith("# ")), None)
+        if name and heading:
+            ends[name] = (heading, lines[-1])
+    return ends
+
+
+SKILL_ENDS = skill_ends()
+
+
+def skills_printed(output):
+    """Skills whose whole file a command printed, whatever the command: its heading and its last line are both there.
+    The exit status of a sequence such as `cat a || cat b; ls` cannot prove a read; the output can."""
+    lines = {line.rstrip() for line in output.splitlines()}
+    return {name for name, (heading, last) in SKILL_ENDS.items() if heading in lines and last in lines}
 
 
 READ_TOOLS = {"Read", "View"}
@@ -686,12 +716,14 @@ FULL_PATH = re.compile(r"skills/([a-z][a-z0-9-]*)/(SKILL\.md|references/[a-z0-9/
 CD_INTO_SET = re.compile(r"^cd\s+['\"]?[^\s'\"]*?skills/([a-z][a-z0-9-]*)((?:/[a-z0-9_-]+)*)/?['\"]?$")
 MD_FILE = re.compile(r"(?<![\w/.-])((?:[a-z0-9_-]+/)*[a-z0-9_-]+\.md|SKILL\.md)")
 SHELL_WRAPPER = re.compile(r"""^\S*(?:sh|bash|zsh)\s+-l?c\s+(['"])(.*)\1$""", re.S)
+# Silencing output or joining its two streams changes no file and hides no exit status.
+SAFE_REDIRECT = re.compile(r"\s*(?:[12]?>>?\s*/dev/null|2>&1)(?=\s|$|[;&|)])")
 
 
 def reads_in_command(command, set_name):
     """The skills whose files a shell command prints with a reading command such as cat or sed, not merely names."""
     wrapped = SHELL_WRAPPER.match(command.strip())
-    command = expand_braces(wrapped.group(2) if wrapped else command)
+    command = SAFE_REDIRECT.sub("", expand_braces(wrapped.group(2) if wrapped else command))
     # Command substitution and background jobs can hide a read anywhere, so nothing in such a command counts.
     if re.search(r"`|\$\(|(?<!&)&(?!&)", command):
         return set()
@@ -777,29 +809,46 @@ NO_FILE_TOOLS = {"claude": {"Skill", "Grep", "Glob", "LS", "TodoWrite", "WebSear
 
 
 def command_effect(command):
-    """Classify only direct known forms. Opaque scripts have an unknown effect, not a guessed one."""
+    """Classify only direct known forms, joined by pipes, `&&`, `||` or `;`. Opaque scripts have an unknown effect, not
+    a guessed one."""
     wrapped = SHELL_WRAPPER.match(command.strip())
-    command = wrapped.group(2) if wrapped else command
-    if re.search(r"[;&\n<>`]|\|\||\$\(", command):
+    command = SAFE_REDIRECT.sub("", wrapped.group(2) if wrapped else command)
+    if re.search(r"[\n`]|\$\(", command):
         return "unknown"
-    effects = {segment_effect(part) for part in command.split("|")}
+    lexer = shlex.shlex(command, posix=True, punctuation_chars=True)
+    lexer.whitespace_split = True
+    try:
+        tokens = list(lexer)
+    except ValueError:
+        return "unknown"
+    steps, words = [], []
+    for token in tokens:
+        if token in {"&&", "||", ";", "|"}:
+            steps.append(words)
+            words = []
+        elif set(token) <= set("&|;<>()"):
+            return "unknown"  # a background job, a subshell or a redirection: what it touches is not followed
+        else:
+            words.append(token)
+    effects = {segment_effect(step) for step in steps + [words]}
     if "write" in effects:
         return "write"
     return "read" if effects == {"read"} else "unknown"
 
 
-def segment_effect(segment):
-    """One command of a pipeline: write, read, or unknown when it is not a known direct form."""
-    try:
-        words = shlex.split(segment)
-    except ValueError:
-        return "unknown"
+def segment_effect(words):
+    """One simple command, as words: write, read, or unknown when it is not a known direct form. A `for` loop's own
+    words only set its variable; the commands inside it are classified like any other."""
+    if words[:1] == ["do"]:
+        words = words[1:]
+    if words == ["done"] or words[:1] == ["for"] and words[2:3] == ["in"]:
+        return "read"
     if not words:
         return "read"
     program = os.path.basename(words[0])
     if program in WRITE_COMMANDS or program == "sed" and any(w.startswith("-i") for w in words[1:]):
         return "write"
-    if reader_operands(words) or program in {"pwd", "ls", "true", "false", "wc", "grep"}:
+    if reader_operands(words) or program in {"pwd", "ls", "true", "false", "wc", "grep", "echo", "printf"}:
         return "read"
     if program == "rg" and not any(w.startswith("--pre") for w in words[1:]):
         return "read"

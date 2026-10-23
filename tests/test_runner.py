@@ -62,6 +62,21 @@ class ReadEvidence(unittest.TestCase):
             with self.subTest(command=command):
                 self.assertFalse(runner.skills_read("codex", [[command_event(command, status)]], None, "essentials"))
 
+    def test_a_whole_file_in_the_output_counts_whatever_the_command(self):
+        clarify = (runner.REPO / "skills/essentials/references/understand/clarify.md").read_text()
+        command = "cat /x/understand/clarify.md 2>/dev/null || cat /y/understand-clarify.md; git status --short"
+        printed = {"type": "item.completed", "item": {"type": "command_execution", "command": command,
+                                                       "exit_code": 0, "aggregated_output": clarify}}
+        self.assertEqual(runner.skills_read("codex", [[printed]], None, "essentials"), {"understand-clarify"})
+        head = {**printed, "item": {**printed["item"], "aggregated_output": "\n".join(clarify.splitlines()[:5])}}
+        self.assertFalse(runner.skills_read("codex", [[head]], None, "essentials"))
+        call = {"type": "assistant", "message": {"content": [{
+            "type": "tool_use", "id": "bash-1", "name": "Bash", "input": {"command": command}}]}}
+        result = {"type": "user", "message": {"content": [{
+            "type": "tool_result", "tool_use_id": "bash-1", "is_error": False,
+            "content": [{"type": "text", "text": clarify}]}]}}
+        self.assertEqual(runner.skills_read("claude", [[call, result]], None, "essentials"), {"understand-clarify"})
+
     def test_claude_needs_a_matching_successful_result(self):
         call = {"type": "assistant", "message": {"content": [{
             "type": "tool_use", "id": "read-1", "name": "Read",
@@ -461,15 +476,22 @@ class CaseInventory(unittest.TestCase):
 class ReviewFollowUpTests(unittest.TestCase):
     def test_read_only_pipelines_and_searches(self):
         for command in ("rg foo api.py", "grep -n parse utils.py", "find . -name '*.py'", "wc -l NOTES.md",
-                        "git status", "nl -ba api.py | sed -n 1,40p", "/usr/bin/zsh -lc 'rg --files'"):
+                        "git status", "nl -ba api.py | sed -n 1,40p", "/usr/bin/zsh -lc 'rg --files'",
+                        "rg foo || true",
+                        "find . -type f -not -path '*/.git/*' | head -100 && echo --- && grep -rIl -iE 'api|route' .",
+                        "cat a.md 2>/dev/null || cat b.md; git status --short", "rg foo 2>&1 | head",
+                        'for f in ISSUE.md api.py; do echo "=== $f"; cat "$f"; done'):
             self.assertEqual(runner.command_effect(command), "read", command)
 
     def test_writing_or_opaque_forms_are_not_read(self):
         self.assertEqual(runner.command_effect("find . -name '*.pyc' -delete"), "unknown")
         self.assertEqual(runner.command_effect("cat api.py > copy.py"), "unknown")
-        self.assertEqual(runner.command_effect("rg foo || true"), "unknown")
         self.assertEqual(runner.command_effect("cat api.py | sed -n 'w out.txt'"), "unknown")
         self.assertEqual(runner.command_effect("rm old/notes.txt"), "write")
+        self.assertEqual(runner.command_effect("cat a.md && rm old/notes.txt"), "write")
+        for command in ("rg foo & rm x", "(cd old && ls)", "cat <<EOF\nx\nEOF", "ls; python3 build.py",
+                        "echo x >> notes.md", "grep 'unclosed", 'for f in $(ls); do cat "$f"; done'):
+            self.assertEqual(runner.command_effect(command), "unknown", command)
 
     def test_credential_like_content_is_withheld(self):
         with tempfile.TemporaryDirectory() as tmp:
