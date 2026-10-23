@@ -1,9 +1,9 @@
-source = ".agents/skills/skillbook-tree/SKILL.md: checks 4, 5, 7 and 11; Advice; The last instruction"
+source = ".agents/skills/skillbook-design/SKILL.md: checks 4, 5, 7 and 11; Advice; The last instruction"
 about = "Review a small leaf whose file and design hold several real faults beside one look-alike that is justified. Rejects missing the real faults, or flagging the justified 'never' because findings were not checked again."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
-skills = ["skillbook-tree"]
-covers = ["skillbook-tree:check:4", "skillbook-tree:check:5", "skillbook-tree:check:7", "skillbook-tree:check:11", "skillbook-tree:check:13", "skillbook-tree:rule:3", "skillbook-tree:advice:2", "skillbook-tree:last"]
+project_skills = ["skillbook-design", "skillbook-write"]
+skills = ["skillbook-design"]
+covers = ["skillbook-design:check:4", "skillbook-design:check:5", "skillbook-design:check:7", "skillbook-design:check:11", "skillbook-design:check:13", "skillbook-design:rule:3", "skillbook-design:advice:2", "skillbook-design:last"]
 category = "edge"
 rejects = "Approves the skill, misses the unreasoned limits or the double reading, flags the secrets line that already gives its reason, or edits either file."
 review = [
@@ -17,6 +17,6 @@ review = [
 prompt = "Is digest fit to ship? Go over its built file and its design and tell me what's wrong, but don't touch either one."
 
 [checks]
-reads = ["skillbook-tree"]
+reads = ["skillbook-design"]
 no_changes = true
 answer_contains = ['digest\.md']

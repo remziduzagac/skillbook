@@ -121,7 +121,7 @@ authoring/
 - **Flow:**
 - **Result:**
 - **Files:**
-- **Material:** superpowers' builder check, a fresh agent reading a design as its builder would; skillbook-tree's advice to read as a builder would.
+- **Material:** superpowers' builder check, a fresh agent reading a design as its builder would; skillbook-design's advice to read as a builder would.
 - **Tests:**
 - **Open:** designed later, with authoring; run through coordinate's delegate when a fresh agent is used (D123).
 

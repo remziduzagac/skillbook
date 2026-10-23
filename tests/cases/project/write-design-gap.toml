@@ -1,9 +1,9 @@
 source = "blueprint/design/testing.md: project skill scenarios, test 4"
 about = "A requested implementation behaviour is absent from the design. Rejects inventing that behaviour in the built skill or changing its design unasked."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
-skills = ["skillbook-write", "skillbook-tree"]
-covers = ["skillbook-tree:step:2", "skillbook-write:rule:1", "skillbook-write:step:5", "skillbook-write:last"]
+project_skills = ["skillbook-design", "skillbook-write"]
+skills = ["skillbook-write", "skillbook-design"]
+covers = ["skillbook-design:step:2", "skillbook-write:rule:1", "skillbook-write:step:5", "skillbook-write:last"]
 category = "edge"
 rejects = "Adds automatic publication despite the explicit design-review boundary."
 review = ["The agent identifies that automatic publication is absent from the design and proposes the design change through the project skill.", "It ends with the concrete gap and a proposed resolution, without adding publication steps or performing any outward action."]
@@ -12,6 +12,6 @@ review = ["The agent identifies that automatic publication is absent from the de
 prompt = "Update the built fixture skill to publish explanations automatically. First use the skill-writing workflow to check its design, and propose any missing design behaviour for my review before editing either file."
 
 [checks]
-reads = ["skillbook-tree", "skillbook-write"]
+reads = ["skillbook-design", "skillbook-write"]
 no_changes = true
 answer_contains = ['publish|publication', 'design']

@@ -2016,6 +2016,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D181: skillbook-tree for the tree and designing, skillbook-write for writing (2026-10-18)
 
+> **Amended by D230 (2026-10-23):** skillbook-tree is now named skillbook-design.
+
 > **Amended by D222 (2026-10-21):** skillbook-tree's instruction to trim or fill a skill puts the list of changes to the person first and ends the turn, and a request is not that approval; a missing rule is a gap for the person to settle in the design. skillbook-write does not invent it in the files or the design, and agrees a design change with the user first.
 
 > **Amended by D196 (2026-10-18):** skillbook-write stands on its own, not over `skill-creator`, holding only writing advice and taking locations and shared rules from skillbook-tree.
@@ -2588,7 +2590,7 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
   - [../tests/manual.toml](../tests/manual.toml);
   - the `covers` field in all cases in `tests/cases/`, 24 new essentials cases and the new fixture `tests/fixtures/garden-club/`, 12 new project cases and new drafts in `tests/fixtures/skill-lab/`;
   - the [justfile](../justfile) (`check-coverage`, `test-coverage`);
-  - [../.agents/skills/skillbook-tree/SKILL.md](../.agents/skills/skillbook-tree/SKILL.md) and [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md);
+  - [../.agents/skills/skillbook-design/SKILL.md](../.agents/skills/skillbook-design/SKILL.md) and [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md);
   - [design/testing.md](design/testing.md) and [../tests/README.md](../tests/README.md).
 
 **Tested:** no AI run yet. None of the 36 new cases has run on a model. Coverage after the change: 229 aspects. 177 are covered: 174 by a case and 3 by hand. 52 have nothing. There are 88 cases, 71 for essentials and 17 for the project skills. `just check` passes, with 31 runner tests.
@@ -2632,7 +2634,7 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
   - New `--jobs` (default 4): runs go at the same time, each in its own throwaway home, sharing only the budget, under a lock. No new run starts once known spending reaches the budget. Runs already started finish, so spending can pass the budget by up to that many runs. Ctrl+C starts no new run and lets each running run delete its home.
   - **Setup is not shared between cases.** Setup takes about 0.02 s, and the time is all in agent turns. A shared home or session would carry history or memory from one case into the next.
 - **Where:**
-  - [../.agents/skills/skillbook-tree/SKILL.md](../.agents/skills/skillbook-tree/SKILL.md): the instruction for trimming or filling;
+  - [../.agents/skills/skillbook-design/SKILL.md](../.agents/skills/skillbook-design/SKILL.md): the instruction for trimming or filling;
   - [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md): rule 1, "Judge by behaviour" and "Changing a built skill";
   - the three cases above in `tests/cases/essentials/`;
   - [../tests/run.py](../tests/run.py), [../tests/test_runner.py](../tests/test_runner.py), [../tests/README.md](../tests/README.md) and [design/testing.md](design/testing.md).
@@ -2843,3 +2845,18 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 - In `respond-layout-plain-channel`, no model used Markdown. The failures were notes put around the draft, such as "Going with: no year" and "tell me if you meant other notes".
 - Understand's rules require such notes, but no skill said how to give text meant to be pasted elsewhere.
+
+## D230: The project skill skillbook-tree becomes skillbook-design (2026-10-23)
+
+**Decision:**
+
+- **Renamed:** the project skill and its folder, `skillbook-tree` to `skillbook-design`, and the ten `tree-*` test cases to `design-*`.
+- **Reworded:** the skill's description and opening line now say it is about designing skills: placing them in the skill tree, naming, designing and reviewing them.
+- **Keeps its name:** the skill tree files (`design/skill-tree.md`, `design/tree/tree.json`, `render.py`).
+- **Keeps the old name:** past decisions, notes and finished roadmap items, since they record what was true then.
+- **Where:** `.agents/skills/skillbook-design/`, [AGENTS.md](../AGENTS.md), `tests/cases/project/design-*.toml`, and every current mention of the old name.
+
+**Why:**
+
+- The skill places, names, designs and reviews skillbook's skills, and holds the checklist every design is written to and reviewed against. "Tree" named only one part of that work. "Design" names its main job.
+- Only the skill is renamed. The skill tree is still the tree.

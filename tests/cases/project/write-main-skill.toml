@@ -1,16 +1,16 @@
 source = ".agents/skills/skillbook-write/SKILL.md: Instructions, a main skill's file; Rules, shared rules stay where they live"
 about = "Build a set's main skill file from a design that says to use the name rule word for word without quoting it. Rejects a missing or paraphrased name rule, frontmatter without the set's name or its description, or a body that does its children's work."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
-skills = ["skillbook-write", "skillbook-tree"]
-covers = ["skillbook-write:step:1", "skillbook-write:rule:2", "skillbook-tree:names:2", "skillbook-tree:names:4", "skillbook-write:last"]
+project_skills = ["skillbook-design", "skillbook-write"]
+skills = ["skillbook-write", "skillbook-design"]
+covers = ["skillbook-write:step:1", "skillbook-write:rule:2", "skillbook-design:names:2", "skillbook-design:names:4", "skillbook-write:last"]
 category = "normal"
 rejects = "Retypes or paraphrases the name rule from memory, names the skill other than after its set, leaves out the description, puts angle brackets in it, or writes the children's steps into the main skill."
 review = [
   "The frontmatter holds the set's name and the design's description, within 1,024 characters and without angle brackets, and no compatibility field, since the design says the set needs no capability.",
-  "The name rule is copied word for word from skillbook-tree, among the rules; the other shared rules are pointed to, not copied.",
+  "The name rule is copied word for word from skillbook-design, among the rules; the other shared rules are pointed to, not copied.",
   "The body follows the checklist's order: rules, then one line per child saying when to load it, when not and what it gives back, then the last instruction; nothing about how a child works inside.",
-  "Before reporting, the agent runs skillbook-tree's checklist on the new file and lists any difference from the design with file and line.",
+  "Before reporting, the agent runs skillbook-design's checklist on the new file and lists any difference from the design with file and line.",
 ]
 
 [[turns]]

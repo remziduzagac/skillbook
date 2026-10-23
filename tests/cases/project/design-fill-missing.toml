@@ -1,9 +1,9 @@
-source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, trimming or filling an existing skill; .agents/skills/skillbook-write/SKILL.md: The design is the source"
+source = ".agents/skills/skillbook-design/SKILL.md: Instructions, trimming or filling an existing skill; .agents/skills/skillbook-write/SKILL.md: The design is the source"
 about = "Fill a built skill that leaves its reader asking: one missing behaviour has a source in the design, the other has none. Rejects inventing an answer for the one without a source, adding without a source, or changing the design unasked."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
-skills = ["skillbook-tree", "skillbook-write"]
-covers = ["skillbook-tree:step:4", "skillbook-write:rule:1", "skillbook-write:step:5"]
+project_skills = ["skillbook-design", "skillbook-write"]
+skills = ["skillbook-design", "skillbook-write"]
+covers = ["skillbook-design:step:4", "skillbook-write:rule:1", "skillbook-write:step:5"]
 category = "boundary"
 rejects = "Invents a retention period for the notes, adds the fallback without naming its source, changes the design to cover retention without the user, or edits before the list is approved."
 review = [
@@ -26,7 +26,7 @@ prompt = "Okay, add what you listed."
 changed = ["skills/essentials/references/handoff.md"]
 
 [checks]
-reads = ["skillbook-tree"]
+reads = ["skillbook-design"]
 unchanged = ["blueprint/design/essentials/handoff.md"]
 
 [checks.file_contains]

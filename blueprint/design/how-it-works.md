@@ -38,7 +38,7 @@ The full tree, every skill with its one-line description, is in [skill-tree.md](
 - **The lifecycle is no longer general:** essentials holds design and plan, which any work needs; doing, checking and delivering are each set's, softeng's for software and authoring's for writing; with no such set installed, the work is done under act's rules. act sends every file written to the skill for its type, code or markdown, where that set is installed (D35, D67, D68, D76, D154).
 - **Later:** rigs, a set for the programs agents drive, git and the GitHub CLI, other agent programs, herdr, nvim, containers, each program with one home that other skills point to (D103, D154); a knowledge base, the person's notes and sources, once called vaultops, and routines, their daily work ([../notes/knowledge-and-routines.md](../notes/knowledge-and-routines.md), D64, D152).
 
-**Project skills.** Skills that only skillbook itself needs live in this repository's project skill folders (`.agents/skills/`, linked from `.claude/skills/`) and are never shipped in any set (D67, D152): skillbook-tree, for placing, naming, designing and reviewing a skill (D77, D112, D181), and skillbook-write, for writing a skill's files, written when the first skill is built (D181).
+**Project skills.** Skills that only skillbook itself needs live in this repository's project skill folders (`.agents/skills/`, linked from `.claude/skills/`) and are never shipped in any set (D67, D152): skillbook-design, for placing, naming, designing and reviewing a skill (D77, D112, D181), and skillbook-write, for writing a skill's files, written when the first skill is built (D181).
 
 What each root holds is drafted in [skill-tree.md](skill-tree.md), each root marked with its set.
 
@@ -54,14 +54,14 @@ Depth comes from sub-skills, each a file of its own with its name and place in t
 
 ## How a skill is written
 
-- **Placing, naming, designing and reviewing a skill:** skillbook-tree, this repository's project skill, holds the shape every skill's design takes, level by level and actions, not tools among it, and the checklist each design is reviewed against (D112, D177, D180, D181).
-- **Writing a skill's files:** skillbook-write, the second project skill, a short skill of its own rather than one built over `skill-creator`: how a design becomes files, the head of a plain skill file (a `#` heading holding its dashed name, one line on what it does, a `Needs:` line only when it needs a capability), each file, the main `SKILL.md` and every reference file, about 100 lines or fewer with no limit on a set as a whole, tests through the harness (run as [testing.md](testing.md) says), and the last checks; locations and shared rules it takes from skillbook-tree (D181, D195, D196). Its advice includes the two lines below:
+- **Placing, naming, designing and reviewing a skill:** skillbook-design, this repository's project skill, holds the shape every skill's design takes, level by level and actions, not tools among it, and the checklist each design is reviewed against (D112, D177, D180, D181).
+- **Writing a skill's files:** skillbook-write, the second project skill, a short skill of its own rather than one built over `skill-creator`: how a design becomes files, the head of a plain skill file (a `#` heading holding its dashed name, one line on what it does, a `Needs:` line only when it needs a capability), each file, the main `SKILL.md` and every reference file, about 100 lines or fewer with no limit on a set as a whole, tests through the harness (run as [testing.md](testing.md) says), and the last checks; locations and shared rules it takes from skillbook-design (D181, D195, D196). Its advice includes the two lines below:
   - a simple text diagram shows a loop, a decision that is easy to miss, or what an operation does to its items, before and after; a long flow offers a checklist the agent copies and ticks off (D38, D88);
   - the three guides compared, mattpocock/skills, superpowers and Anthropic's, are in [../research/skill-writing-guides.md](../research/skill-writing-guides.md) (D22).
 
 ## Names
 
-How skills are named, and where each goes in the tree, is skillbook-tree's (D181). A skill's name is its folder path below its set's main skill, joined by dashes, without the set; each set's main skill holds the name rule, which turns a name into the file to read, `references/a/b/c.md` for `a-b-c`, so a call names the skill and nothing more; the installed main skills keep their set names, with no prefix (D43, D186, D188, D194). The folder a project's design lives in stays `blueprint/` (D33).
+How skills are named, and where each goes in the tree, is skillbook-design's (D181). A skill's name is its folder path below its set's main skill, joined by dashes, without the set; each set's main skill holds the name rule, which turns a name into the file to read, `references/a/b/c.md` for `a-b-c`, so a call names the skill and nothing more; the installed main skills keep their set names, with no prefix (D43, D186, D188, D194). The folder a project's design lives in stays `blueprint/` (D33).
 
 ## design, blueprint, understand and maintain
 
@@ -83,4 +83,4 @@ skillbook is installed by one POSIX `sh` script, `install.sh`, not by plugins, f
 - **Updating and versions:** running the script again installs the latest release. The whole repository has one version, tagged `v<version>`, and a release packs every released set at it; release-please opens the release pull request from Conventional Commits and CI builds the archives and their sums. A set still being built is left out of the release; the installed version shows in the marker file and in each main skill's `metadata.version` (D75, D192).
 - **Names:** the installed skills keep their set names, with no prefix; the script never overwrites a folder it did not install (D194).
 
-Project skills such as skillbook-tree are not installed with any set; they work only inside this repository (D67).
+Project skills such as skillbook-design are not installed with any set; they work only inside this repository (D67).

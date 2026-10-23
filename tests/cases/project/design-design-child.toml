@@ -1,9 +1,9 @@
-source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, designing a skill; The checklist; The last instruction"
+source = ".agents/skills/skillbook-design/SKILL.md: Instructions, designing a skill; The checklist; The last instruction"
 about = "Design a new child under a built parent, in the group's design file, to the checklist, without building it. Rejects a section missing the group's fields, a parent left unaware of its new child, or a skill file written for a design request."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
-skills = ["skillbook-tree"]
-covers = ["skillbook-tree:step:2", "skillbook-tree:rule:2", "skillbook-tree:rule:1", "skillbook-tree:check:2", "skillbook-tree:check:6", "skillbook-tree:check:7", "skillbook-tree:check:12", "skillbook-tree:last"]
+project_skills = ["skillbook-design", "skillbook-write"]
+skills = ["skillbook-design"]
+covers = ["skillbook-design:step:2", "skillbook-design:rule:2", "skillbook-design:rule:1", "skillbook-design:check:2", "skillbook-design:check:6", "skillbook-design:check:7", "skillbook-design:check:12", "skillbook-design:last"]
 category = "normal"
 rejects = "Writes the child's skill file, adds a section without the fields the other sections have, leaves the parent's flow and tests unaware of the new child, or gives tests with no near miss or no wrong behaviour they reject."
 review = [
@@ -19,7 +19,7 @@ review = [
 prompt = "Proofread should also catch dead links in a draft, like a URL that goes nowhere or a pointer to a missing section. Work out the design for that as a new child of proofread and add it to the authoring designs; don't build the skill file yet."
 
 [checks]
-reads = ["skillbook-tree"]
+reads = ["skillbook-design"]
 changed = ["blueprint/design/authoring/proofread.md"]
 unchanged = ["skills/authoring/references/proofread.md", "skills/authoring/references/proofread/spelling.md", "skills/authoring/references/proofread/tone.md", "blueprint/design/authoring/cite.md"]
 

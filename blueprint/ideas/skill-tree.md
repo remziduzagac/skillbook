@@ -105,8 +105,8 @@ Calls between skills, beyond each skill loading its own sub-skills.
 - **ship-wizard** ← ship-infra, ship-release.
 - **respond** and **act** ← the main skill, by its steps, once per conversation; respond again before each response is returned (D63, D81, D178).
 - **authoring-blueprint** ← design's recording steps (discuss, research, decide, write, workstream, tasks), for each document's form (D69). **coordinate-delegate** ← authoring-edit, for passes run in parallel (D70).
-- **organize** ← design (an idea document split into sub-documents), plan (dividing a plan's work; the former plan-breakdown is kept in [plan's ideas](plan.md), D151), authoring-docs, and skillbook-tree for placing a skill (D61, D77).
-- **act-rightsize-lean** ← coordinate-instruct's prune step on an existing document, skillbook-tree's cost check, design-review's lean lens and authoring-edit, for removing whole parts; **authoring-reader** ← act-rightsize-enrich, for what the reader would still ask (D157).
+- **organize** ← design (an idea document split into sub-documents), plan (dividing a plan's work; the former plan-breakdown is kept in [plan's ideas](plan.md), D151), authoring-docs, and skillbook-design for placing a skill (D61, D77).
+- **act-rightsize-lean** ← coordinate-instruct's prune step on an existing document, skillbook-design's cost check, design-review's lean lens and authoring-edit, for removing whole parts; **authoring-reader** ← act-rightsize-enrich, for what the reader would still ask (D157).
 
 ## The roots, provisional
 
@@ -138,7 +138,7 @@ In [mattpocock-comparison.md](../notes/mattpocock-comparison.md): where each of 
 1. **understand, in detail:** each skill stripped of its old tools' conventions (D50); its root's flow is the discussion and design's discuss the record (D53).
 2. **How each activity specialises** for kinds of work other than software (D35), and how a lifecycle activity meets authoring and understand ("review my essay"). Settled in part (D154): the lifecycle is no longer general, and each set holds its own stages.
 3. **shipping's reach:** whether running what was shipped (monitor, incident) stays in ship or becomes its own part.
-4. **Listed besides the roots,** settled: markdown-style became author-markdown, reached through act's rule for every file written; agent-writing became coordinate-instruct, with skillbook's own conventions in the project skill skillbook-tree (D67). Was: markdown-style fires on every markdown edit; agent-writing is called from `AGENTS.md`.
+4. **Listed besides the roots,** settled: markdown-style became author-markdown, reached through act's rule for every file written; agent-writing became coordinate-instruct, with skillbook's own conventions in the project skill skillbook-design (D67). Was: markdown-style fires on every markdown edit; agent-writing is called from `AGENTS.md`.
 5. **The thin branches:** ship's, authoring's and code's ideas: placeholders, or left out until needed.
 6. **Moving in:** `delegation-routing`, which lives in the person's dotfiles today, into coordinate-delegate.
 7. **Names under a group,** settled: there is no group layer left; names start at the stage (`design-start`, D76).

@@ -1,9 +1,9 @@
-source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, reviewing a skill; checks 8 to 10, 12 and 13"
+source = ".agents/skills/skillbook-design/SKILL.md: Instructions, reviewing a skill; checks 8 to 10, 12 and 13"
 about = "Review a built skill that has children: checks 8 to 10 on the parent, then each child the same way. Rejects reviewing the parent only, missing the parent's order and routing faults, or editing during a review."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
-skills = ["skillbook-tree"]
-covers = ["skillbook-tree:step:3", "skillbook-tree:check:1", "skillbook-tree:check:8", "skillbook-tree:check:9", "skillbook-tree:check:10", "skillbook-tree:check:12", "skillbook-tree:check:13", "skillbook-tree:rule:3", "skillbook-tree:rule:4", "skillbook-tree:rule:5", "skillbook-tree:advice:3"]
+project_skills = ["skillbook-design", "skillbook-write"]
+skills = ["skillbook-design"]
+covers = ["skillbook-design:step:3", "skillbook-design:check:1", "skillbook-design:check:8", "skillbook-design:check:9", "skillbook-design:check:10", "skillbook-design:check:12", "skillbook-design:check:13", "skillbook-design:rule:3", "skillbook-design:rule:4", "skillbook-design:rule:5", "skillbook-design:advice:3"]
 category = "normal"
 rejects = "Reviews only the parent file, treats the parent as a leaf, misses that the parent does a child's work, reports findings without file and line, or changes a file."
 review = [
@@ -17,6 +17,6 @@ review = [
 prompt = "Audit the proofread skill in the authoring set, including whatever sits below it, against what was designed. I only want the problems reported; edit nothing."
 
 [checks]
-reads = ["skillbook-tree"]
+reads = ["skillbook-design"]
 no_changes = true
 answer_contains = ['proofread\.md', 'spelling', 'tone']

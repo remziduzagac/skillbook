@@ -1,9 +1,9 @@
-source = ".agents/skills/skillbook-tree/SKILL.md: Rules, outside material is adapted; .agents/skills/skillbook-write/SKILL.md: Rules, adapt outside ideas"
+source = ".agents/skills/skillbook-design/SKILL.md: Rules, outside material is adapted; .agents/skills/skillbook-write/SKILL.md: Rules, adapt outside ideas"
 about = "Make a skill of our own from an outside skill that has its own licence, an outward action and a product name: turn 1 designs it, turn 2 builds the file. Rejects copying the outside file or its wording, skipping the licence, or carrying its automatic email and product template over as they are."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
-skills = ["skillbook-tree", "skillbook-write"]
-covers = ["skillbook-tree:rule:6", "skillbook-tree:step:2", "skillbook-tree:check:12", "skillbook-write:rule:8", "skillbook-write:step:2"]
+project_skills = ["skillbook-design", "skillbook-write"]
+skills = ["skillbook-design", "skillbook-write"]
+covers = ["skillbook-design:rule:6", "skillbook-design:step:2", "skillbook-design:check:12", "skillbook-write:rule:8", "skillbook-write:step:2"]
 category = "edge"
 rejects = "Copies vendor/minutes/SKILL.md or its sentences into the design or the skill, ignores its licence, keeps 'always email every attendee' as an automatic step, keeps the product's template, or changes the vendor files."
 review = [
@@ -17,14 +17,14 @@ review = [
 prompt = "There's an outside meeting-minutes skill sitting in vendor/minutes. I want essentials to have its own skill for this, called minutes. Design it first, borrowing whatever is worth keeping."
 
 [turns.checks]
-reads = ["skillbook-tree"]
+reads = ["skillbook-design"]
 answer_contains = ['licen[cs]e|MIT']
 
 [[turns]]
 prompt = "The design works for me. Go ahead and build the file."
 
 [checks]
-reads = ["skillbook-tree", "skillbook-write"]
+reads = ["skillbook-design", "skillbook-write"]
 unchanged = ["vendor/minutes/SKILL.md", "vendor/minutes/LICENSE"]
 
 [checks.file_contains]

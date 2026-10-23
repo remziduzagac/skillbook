@@ -29,7 +29,7 @@ Ideas and open questions for coordinate, not decided. What is decided is in [../
 
 ## instruct
 
-- Decided (D94). The skill-file ideas gathered here first (the description is the trigger, a thin `SKILL.md`, a gotchas section) are skillbook-tree's, in this repository.
+- Decided (D94). The skill-file ideas gathered here first (the description is the trigger, a thin `SKILL.md`, a gotchas section) are skillbook-design's, in this repository.
 
 ## setup
 

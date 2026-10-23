@@ -12,7 +12,7 @@ Ideas and open questions for design, not decided. What is decided is in [../desi
 
 ### review
 
-- One home for consistency checks, contradictions, duplication, gaps and drift, which verify's four checks, organize's check, design's review, skillbook-tree's checklist and challenge each hold today: to settle with design's review (D123). Settled (D168): gaps and overlaps are organize's check; contradiction is design's review's; drift and coverage are verify's; weaknesses are challenge's; what is extra is lean's.
+- One home for consistency checks, contradictions, duplication, gaps and drift, which verify's four checks, organize's check, design's review, skillbook-design's checklist and challenge each hold today: to settle with design's review (D123). Settled (D168): gaps and overlaps are organize's check; contradiction is design's review's; drift and coverage are verify's; weaknesses are challenge's; what is extra is lean's.
 
 ### start
 

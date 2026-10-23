@@ -6,7 +6,7 @@
 - **Description:** "Checks and condenses writing: proofreading a finished draft, tracing its quotations and figures to sources, and digesting a long text for someone who will not read it. Load it for work on a draft or a long text; not for writing code."
 - **Callers:** the harness, by its description; the user, typing it.
 - **Flow:**
-  1. **Rules:** the name rule, worded exactly as skillbook-tree's Names gives it; a draft the user wrote is changed only after the user approves the proposed changes, since it is their text.
+  1. **Rules:** the name rule, worded exactly as skillbook-design's Names gives it; a draft the user wrote is changed only after the user approves the proposed changes, since it is their text.
   2. **Instructions,** one line per skill, each loaded when its step comes:
      - proofread: when a finished draft needs checking for spelling or voice; not for restructuring it; gives back proposed corrections, grouped by kind;
      - cite: when a draft quotes people or gives figures; not for spelling or voice; gives back each quotation and figure with its source or marked as having none;

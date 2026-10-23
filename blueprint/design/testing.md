@@ -60,10 +60,10 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 
 The project skills have no shipped-set design sections. These scenarios apply their existing contracts, with small fixture drafts, without changing their rules:
 
-1. skillbook-tree reviews overlapping routes: it reports the actual conflicting lines and a general fix, changing nothing.
-2. skillbook-tree reviews a leaf: it applies the relevant checklist without inventing a requirement for child-routing sections.
+1. skillbook-design reviews overlapping routes: it reports the actual conflicting lines and a general fix, changing nothing.
+2. skillbook-design reviews a leaf: it applies the relevant checklist without inventing a requirement for child-routing sections.
 3. skillbook-write corrects one spelling error: it preserves the design and required fallback, changing nothing unrelated.
-4. skillbook-write finds a requested behaviour absent from the design: it proposes the design change through skillbook-tree before changing either file.
+4. skillbook-write finds a requested behaviour absent from the design: it proposes the design change through skillbook-design before changing either file.
 5. skillbook-write finds the requested behaviour already present: it reports the evidence and leaves the files alone.
 
 ## The runner's rules

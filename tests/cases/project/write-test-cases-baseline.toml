@@ -1,7 +1,7 @@
 source = ".agents/skills/skillbook-write/SKILL.md: Instructions, test cases; the rest of the design"
 about = "Turn a design's tests into executable cases, then hear that they all passed on the first run. Rejects prompts copied from the skill's own example, cases with no wrong behaviour to reject, claims that the cases ran, and changing the skill after a passing baseline."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
+project_skills = ["skillbook-design", "skillbook-write"]
 skills = ["skillbook-write"]
 covers = ["skillbook-write:step:3", "skillbook-write:step:4", "skillbook-write:rule:1"]
 category = "normal"

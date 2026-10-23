@@ -1,11 +1,11 @@
 ---
-name: skillbook-tree
-description: "skillbook's skill tree, and how a skill in it is placed, named, designed and reviewed: the shape every skill's design takes and the checklist it is reviewed against. Use when adding, moving, naming, designing or reviewing a skill in this repository, or checking designs against how skillbook's skills are made; not for writing a skill's files, which is skillbook-write's."
+name: skillbook-design
+description: "How skillbook's skills are placed in the skill tree, named, designed and reviewed: the shape every skill's design takes and the checklist it is reviewed against. Use when adding, moving, naming, designing or reviewing a skill in this repository, or checking designs against how skillbook's skills are made; not for writing a skill's files, which is skillbook-write's."
 ---
 
-# skillbook-tree
+# skillbook-design
 
-skillbook's skill tree, and how each skill in it is placed, named, designed and reviewed. A project skill, never shipped in any set.
+How skillbook's skills are placed in the skill tree, named, designed and reviewed. A project skill, never shipped in any set.
 
 ## Rules
 

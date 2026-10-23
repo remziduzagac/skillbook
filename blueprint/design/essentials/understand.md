@@ -667,7 +667,7 @@ understand/
   - understand's own skill, by its routing line in understand's flow (D125, D172);
   - its sibling frame, by path, when a term the work depends on needs defining;
   - design, for a new concept or the name of a part, implement, for a module or a public interface, authoring's docs, for terms used consistently, and organize, whose normalize puts a shared definition in the glossary, through the main skill;
-  - this repository's skillbook-tree, for the word in a new skill's name, its folder rules staying its own;
+  - this repository's skillbook-design, for the word in a new skill's name, its folder rules staying its own;
   - the person, typing it.
 
   It uses brainstorm for candidates and weigh against what makes a good name, by path, and respond's ask for the person's choice.

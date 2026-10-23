@@ -1,9 +1,9 @@
-source = ".agents/skills/skillbook-tree/SKILL.md: Instructions, reviewing a skill; checks 2, 6, 7 and 13"
-about = "Review a design that has no built file yet. Routing: a review of a design loads skillbook-tree, not skillbook-write. Rejects loading the file-writing skill, building the file, or approving a design whose trigger is a judgment word."
+source = ".agents/skills/skillbook-design/SKILL.md: Instructions, reviewing a skill; checks 2, 6, 7 and 13"
+about = "Review a design that has no built file yet. Routing: a review of a design loads skillbook-design, not skillbook-write. Rejects loading the file-writing skill, building the file, or approving a design whose trigger is a judgment word."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
-skills = ["skillbook-tree", "skillbook-write"]
-covers = ["skillbook-tree:step:3", "skillbook-tree:step:5", "skillbook-tree:check:2", "skillbook-tree:check:6", "skillbook-tree:check:7", "skillbook-tree:check:13", "skillbook-tree:rule:5", "skillbook-tree:advice:1"]
+project_skills = ["skillbook-design", "skillbook-write"]
+skills = ["skillbook-design", "skillbook-write"]
+covers = ["skillbook-design:step:3", "skillbook-design:step:5", "skillbook-design:check:2", "skillbook-design:check:6", "skillbook-design:check:7", "skillbook-design:check:13", "skillbook-design:rule:5", "skillbook-design:advice:1"]
 category = "boundary"
 rejects = "Loads skillbook-write, writes the agenda's skill file or edits its design, or reports the design as sound."
 review = [
@@ -17,7 +17,7 @@ review = [
 prompt = "Before anyone builds the agenda skill, give its design a critical read and tell me what you'd change."
 
 [checks]
-reads = ["skillbook-tree"]
+reads = ["skillbook-design"]
 reads_not = ["skillbook-write"]
 no_changes = true
 answer_contains = ['agenda\.md']

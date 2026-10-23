@@ -1,7 +1,7 @@
 source = "blueprint/design/testing.md: project skill scenarios, test 3"
 about = "Fix a spelling error in a built skill while preserving its design and fallback. Rejects rewriting the design or dropping required behaviour."
 fixture = "skill-lab"
-project_skills = ["skillbook-tree", "skillbook-write"]
+project_skills = ["skillbook-design", "skillbook-write"]
 skills = ["skillbook-write"]
 covers = ["skillbook-write:rule:1", "skillbook-write:step:5", "skillbook-write:last"]
 category = "normal"
