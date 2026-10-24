@@ -1,10 +1,10 @@
 # act-verify
 
-Evidence before you say that work is done, fixed, passing, correct or meets its requirements, or answer whether it does: the check that would fail if the claim were false, chosen with who runs it, run fresh, and its result stated as it is.
+Checks claims that work is done, fixed, passing, correct or meets requirements, including answers about whether it does. Chooses evidence that would fail if the claim were false and who checks it. Runs it fresh and reports the actual result.
 
 ## Rules
 
-1. **Evidence that would fail if the claim were false,** because a claim nobody checked reads as true:
+1. **Choose evidence that would fail if the claim were false.** An unchecked claim reads as true:
 
    | Claim | Evidence | Not enough |
    | --- | --- | --- |
@@ -17,26 +17,30 @@ Evidence before you say that work is done, fixed, passing, correct or meets its 
 
 2. **Who checks:**
    - you, for what a command or a file can show;
-   - a fresh agent, one that did not do the work: when `act-stakes` rates the work high, when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary is fair to its source. If the stakes are not judged yet, judge them with `act-stakes` before you choose. The stakes come from how far the result reaches and whether it can be undone, never from the size of the change or the time a check takes: one wrong digit in a bank transfer about to go is high. Start it with your harness's own way of starting an agent, and brief it with the claim and what would show it false. A check is independent only when another agent or a person made it and you saw its result; your own second look never is, and neither is an agent you started or waited on whose result you did not see. If you cannot start one, such as when you are a delegated agent or your harness has no way to, mark that part unverified and say who should check it; the `act` skill's rule 10 says what goes into your report;
-   - the user, for meaning, taste, anything that cannot be undone, and anything no check can see. Where a fresh agent's check is due too, the user's comes after it, never in its place, because asking the user to read it again is not an independent check.
+   - a fresh agent that did not do the work: for high stakes, a user-requested independent check, or judgment you cannot give your own work, such as a summary's fairness to its source.
+     - Judge stakes with `act-stakes` first if not yet judged. Use reach and undo, not change size or check time. One wrong digit in an imminent bank transfer is high.
+     - Start the agent through your harness. Brief it with the claim and what would show it false.
+     - Count a check as independent only after seeing another agent's or person's result. Your own second look does not count. Neither does starting or waiting on an agent without seeing its result.
+     - If you cannot start one, mark that part unverified. Say who should check it. This includes delegated agents and harnesses without agents. Follow the `act` skill's rule 10 for your report;
+   - the user: for meaning, taste, irreversible results and anything no check can see. Get any required fresh agent's check first. The user's check does not replace it: asking them to reread is not independent checking.
 
    How much rides on the work, and whether it can be undone, is `act-stakes`' judgment. The user's check here is of the result; approving a risky action before it is taken is `act-guardrails`'.
-3. **Fresh and whole:** run the check now, on the work as it is; an earlier run does not count. Read what would fail if the claim were false: the exit code, the count of failures and the failing lines. Read the full output only when something fails, because a full log in the main session is paid for on every later turn.
-4. **The result as it is:** confirmed, state the claim with its evidence beside it; not confirmed, state the actual status with its evidence, as the `respond` skill's rule on outcomes says.
-   - State a cause or a result only as the output shows it, by the `respond` skill's rule on outcomes: a test that timed out is reported as timed out, never as a slow network you guess.
-   - A stand-in, such as a simulated setting or a mocked service, shows only what it stands in for. Say so, and mark the real check unverified, with what would confirm it.
-   - A matter of taste, such as whether a text now sounds warmer, is the user's, by rule 2: say what you changed and what you checked, and leave the judgment to them.
-5. **Four more checks** for a plan's task, a commit or a pull request, before it is called done:
+3. **Run the check now on the current work.** Earlier runs do not count. Read what would fail if the claim were false: exit code, failure count and failing lines. Read full output only on failure. Full logs in the main session cost again on every later turn.
+4. **Report the actual result with evidence beside it.** If confirmed, give the claim. Otherwise give the actual status, by the `respond` skill's outcomes rule.
+   - Report only causes and results shown by output, by the `respond` skill's outcomes rule. Report a timed-out test as timed out, not as a guessed slow network.
+   - Say what a stand-in, such as a simulated setting or mocked service, actually shows. Mark the real check unverified. Give what would confirm it.
+   - Leave taste to the user, by rule 2. For warmer wording, for example, say what you changed and checked. Leave the judgment to them.
+5. **Run four more checks before calling a plan's task, commit or pull request done:**
    - **contradiction:** with a decision or another part of the work;
    - **duplication:** of something that already exists;
    - **drift:** from the design and the plan;
    - **coverage:** every requirement met, shown with the checklist from rule 1.
 
-   Search for the item's names and its decision's terms, and read the hits in parts, not whole designs. When the reading is large, give it to a fresh agent on the standard tier, neither the lightest nor the strongest model, because contradiction and drift are judgments.
+   Search for the item's names and decision terms. Read hits in parts, not whole designs. Delegate large reading to a fresh agent on the standard tier, neither lightest nor strongest. Contradiction and drift need judgment.
 
-   Scale them with what `act-stakes` says, because the full search on a small change costs more than it finds. Plainly low work, such as a typo fix, gets about one line saying what you looked at, and nothing outside the task: name a problem you find outside it as a follow-up, one line each, by the `act` skill's rule 3, because a findings report on a one-line change costs the user more than the change. The whole answer is then a few lines: the claim with its evidence, that line, and the follow-ups. Where the project has no design, plan or decisions, say so, and skip the checks that need one.
+   Scale checks by `act-stakes`. A full search on a small change costs more than it finds. For plainly low work such as a typo, give about one line on what you checked. Stay inside the task. Report outside problems as one-line follow-ups by the `act` skill's rule 3. A findings report costs more than a one-line change. The whole answer is a few lines: claim and evidence, check line, follow-ups. If the project lacks a design, plan or decisions, say so. Skip checks that need the missing item.
 
-6. **A check repeated by hand:** by the third time in a conversation that you run the same check by hand, on the same item or another, offer in one line to make it a script, a test or a lint rule, because that is cheaper and surer. Two could be chance; three show it repeats. Don't write one unasked, because it is work the user did not ask for, by the `act` skill's rule 3.
+6. **Offer to automate a check on its third manual run in a conversation.** This applies across items too. Give a one-line offer of a script, test or lint rule. Automation is cheaper and surer. Two runs could be chance; three show repetition. Do not write it unasked: that is extra work, by the `act` skill's rule 3.
 
 Not here: a fact about the outside world, such as whether a library still supports an old version, and how strong a research finding is, are questions under the `understand` skill's rules. Your own evidence for a claim of done or correct is seen or measured, never only said.
 
@@ -48,8 +52,8 @@ Not here: a fact about the outside world, such as whether a library still suppor
 4. **Run it fresh and whole,** by rule 3.
 5. **Compare and say it,** by rule 4.
 6. **For a plan's task, a commit or a pull request,** do the four checks, by rule 5.
-7. **Hand back** each claim with its evidence, or the actual status, to the caller. Where it matters beyond the conversation, such as a finished task, give it to the keeper the project's instruction files point to, if any; with none, it stays in the response.
+7. **Return each claim with its evidence or actual status to the caller.** If it matters beyond the conversation, such as a finished task, give it to the keeper in the project's instruction files. Without one, keep it in the response.
 
 ## The last instruction
 
-Before you say anything is done or correct, check: every claim in the response has its evidence beside it, or is marked unverified; nothing you checked yourself, and no check whose result you did not see, is called independent or done; work rated high has had a fresh agent's check, or the response says that check is still to do; for a plan's task, a commit or a pull request, the four checks are done, in proportion to the stakes; and a check you have run by hand for the third time has its offer, by rule 6.
+**Check before calling anything done or correct.** Each claim has evidence beside it or is marked unverified. No self-check or unseen result is called independent or done. High-stakes work has a fresh agent's check or an explicit pending check. A plan's task, commit or pull request has the four checks, scaled to stakes. The third manual run has its automation offer, by rule 6.

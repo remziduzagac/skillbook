@@ -10,15 +10,15 @@ Which rules win follows the `act` skill's rule on which instruction wins:
 - The user's instruction in the conversation wins over both.
 - The lists, heading levels and widths below are defaults. They give way to where the output goes, such as a message that does not render markdown or a narrow window, and to the user's preferences.
 
-1. **Sections get headings, not bold lines:** when a response or file has two or more parts a reader may look for or jump to, give each a heading; a short answer with one point gets none. Keep heading levels in order. Each heading names its section in a few words. A bold line looks like a heading, but nobody can navigate to it or link to it. Lay out a round of questions as `respond-ask` says.
+1. **Give headings to sections readers may seek or jump to.** Use them for two or more such parts. One short point needs none. Keep heading levels in order. Name each section in a few words. Bold lines cannot be navigated or linked to. Use `respond-ask` for question rounds.
 2. **Bold is for a label or a key phrase inside a section.** A section's title is a heading, by rule 1.
-3. **Tables for short values, lists for big ones:** a table holds short cells, such as three options compared on two short attributes. Keep its rows within 120 characters, because a wider row wraps into noise in a terminal. Turn content that would make a wide table into a list with sub-items. The strong advice below says when a table is worth it at all.
-4. **Don't wrap prose by hand:** write one line per paragraph or list item.
+3. **Keep tables to short values.** Example: three options with two short attributes. Keep rows within 120 characters. Wider rows wrap into noise in a terminal. Turn wide content into a list with sub-items. Follow the strong advice below on whether to use a table.
+4. **Write one line per paragraph or list item.** Do not wrap prose by hand.
    - In a response, never wrap it. The harness wraps prose to its window, and unwrapped text copies and pastes cleanly.
    - In a file, don't wrap it unless the project's own rules say otherwise.
-5. **Numbers when the reader will refer to items by position,** such as steps followed in order or questions answered by number, so the user can answer or point by number. Use bullets otherwise, such as for loose points.
-6. **Fence what the reader copies or reads as a block, with the language named:** a command to run, code of more than one line, or a text diagram (`text`). Put a name inside a sentence inline in backticks, such as a file name, a command or an identifier. They then render, highlight and copy cleanly.
-7. **Text the user will paste or send elsewhere comes whole and on its own:** the text first, in the form its destination takes, then any note, such as a choice made or an assumption, in a line or two after it, never inside it, so it copies in one piece.
+5. **Number items readers will refer to by position.** Examples: ordered steps or questions answered by number. Use bullets for loose points. Numbers let the user answer or point to an item.
+6. **Fence blocks the reader copies or reads together.** Name the language. Examples: a command, multiline code or a diagram (`text`). Put names within sentences in inline backticks: files, commands or identifiers. These render, highlight and copy cleanly.
+7. **Give text for pasting or sending whole and on its own.** Use the destination's form. Put any note, such as a choice or assumption, after it in a line or two. Keep notes outside the text so it copies in one piece.
 
 ## Strong advice
 
@@ -34,4 +34,4 @@ Follow it unless the case gives a reason not to, and say when you depart from it
 
 ## The last instruction
 
-Before you return a response or anything in markdown, check that the seven rules hold. For a markdown file, if the `authoring` skill is in your skill list, also load it and read its `markdown` skill (`references/markdown.md` in its folder) for the file rules and the linter. Otherwise, run the project's linter, if it has one.
+**Check all seven rules before returning markdown.** This includes responses. For markdown files, load `authoring` if in your skill list. Read its `markdown` skill (`references/markdown.md` in its folder) for file rules and linting. Otherwise run the project's linter, if any.

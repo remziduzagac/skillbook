@@ -6,21 +6,27 @@ The rules and the last instruction here shape what is being made now. The `lean`
 
 ## Rules
 
-1. **The reader first:** who reads it, and what for? The reader may be the user, the main agent reading a report, an agent loading a skill, the next one to change the code, or whoever builds a design. What is necessary depends on the reader. Without a reader, "necessary" means nothing.
-2. **Nothing missing:** the reader can understand or act without asking again. A missing part costs a question or a redo, which costs more than the part.
-3. **Nothing extra:** every part does work for the reader. Remove a part whose removal loses nothing. An extra part costs the reader's attention and, for an agent, tokens on every later turn.
-4. **Parts cover everything, and no two overlap:** where something is divided, each thing has one home, and the others point to it. The parts are comprehensive and exclusive. An overlap drifts into contradiction, and a gap is found late.
-5. **Top-down:** the point first, then what it rests on, then the detail. A reader who stops early still has the point. A reader who reads on knows why each part is there.
-6. **Never below a rule:** cut nothing a rule requires, such as a failure, evidence, a safety note or a proposal waiting for approval. What a rule requires is needed by definition.
-7. **The work, rightsized:** read only what the task needs.
+1. **Identify the reader and purpose.** The reader may be the user, a main agent reading a report, an agent loading a skill, the next code maintainer or a design's builder. What is necessary depends on that reader. Without one, "necessary" means nothing.
+2. **Include what the reader needs to understand or act without asking again.** A missing part costs a question or redo, more than the part itself.
+3. **Remove parts whose removal loses nothing.** Every part must work for the reader. Extra parts cost attention and, for agents, tokens on every later turn.
+4. **Give each thing one home when dividing work.** Other parts point there. Cover everything without overlap. Overlaps drift into contradiction. Gaps are found late.
+5. **Put the point first, then its basis, then detail.** Readers who stop early get the point. Those reading on know why each part is there.
+6. **Keep everything a rule requires.** Examples: a failure, evidence, safety note or pending proposal. A rule makes it necessary by definition.
+7. **Read only what the task needs.**
    - Search before reading, and read the parts needed.
-   - Read a file whole when you would read most of it anyway, when finding the part you need would take more calls than reading it whole, or when the whole is needed, such as a skill's file by the name rule.
+   - Read a file whole if you need most of it, finding the needed part would take more calls, or the whole is required, such as by the skill name rule.
    - Make independent calls together.
-   - Stop once the result answers what was asked and its evidence is in hand; don't search on for more of the same. Asked which version a library is pinned to, stop at the line that pins it.
+   - Stop when the result answers the request and you have evidence. Do not search for more of the same. Asked a library's pinned version, stop at the line that pins it.
    - Why: every read and every call is paid for again on later turns. Doing exactly what was asked stays the `act` skill's rule 3.
-8. **Rework what exists with the `lean` or `enrich` skill, on request, or propose it when you notice the need.** Never do it unasked on anything beyond the task, by the `act` skill's rule 3.
-9. **The approval rule,** for trimming or filling something that existed before the request, the `lean` and `enrich` skills' work, whether or not you load them. A change the user names, such as one given section to add, is the edit itself and needs none. A request to fill, complete or make something sufficient is filling, even when it says what is lacking, because you still find what goes in. When the user or others wrote the thing, put the list of changes, each with why or its source, to the user through `respond-ask`, which ends the turn. Apply nothing before the user approves. Report the result with its check. Your own draft in this conversation needs no approval, because it is still being made and the last instruction below covers it. One approval is enough, because the list shows each change at the level the user can judge, the approach and the parts it touches, not the finished text, and the check after it is evidence enough. A list as long as the result costs the user as much to read. Report a change you find later outside the list, and ask about it; don't fold it in.
-10. **The code rule,** for the `lean` and `enrich` skills: propose a code change first, then make it. If the `softeng` skill is in your skill list, load it, then read its `implement` skill (`references/implement.md` in its folder). Otherwise change the code directly, and run the project's tests before and after.
+8. **Use `lean` or `enrich` to rework existing material on request.** Propose it when you notice the need. Never do it unasked beyond the task, by the `act` skill's rule 3.
+9. **Get approval for a list before trimming or filling existing material.** This covers `lean` and `enrich` work whether you load them or not.
+   - A named change, such as a given section to add, is the edit itself and needs no such approval. Filling, completing or making something sufficient is filling even if the request names what is lacking: you still find what goes in.
+   - For work written by the user or others, put the change list through `respond-ask`. Give each change's reason or source. End the turn. Apply nothing before approval.
+   - Report the result and its check.
+   - Your own draft in this conversation needs no approval. It is still being made and the last instruction covers it.
+   - One approval is enough. Show the approach and parts touched, at a level the user can judge, not finished text. The later check is enough evidence. A list as long as the result costs as much to read.
+   - Report later changes outside the list. Ask about them instead of folding them in.
+10. **Propose code changes before making them in `lean` or `enrich`.** If `softeng` is in your skill list, load it and read its `implement` skill (`references/implement.md` in its folder). Otherwise edit directly under the project's tests, run before and after.
 
 ## Advice
 
@@ -55,7 +61,7 @@ How a response is worded is the `respond` skill's.
 
 ## The last instruction
 
-Before you return or write anything, check it in proportion to what is at stake. Intermediate work, such as a probe, a scratch file or notes for your next step, gets a light check: questions 2 and 5. What the user or another reader receives gets all five, because a full check on every step costs more than it finds. Ask them silently, so the user sees only the result:
+**Check before returning or writing anything.** Scale to stakes. For intermediate probes, scratch files or notes for your next step, use questions 2 and 5. For anything another reader receives, use all five. A full check on every step costs more than it finds. Ask silently so the user sees only the result:
 
 1. Who reads it, and what for?
 2. What could go without losing anything they need? Remove it.

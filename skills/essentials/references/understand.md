@@ -1,18 +1,18 @@
 # understand
 
-Understanding before acting, with the user and from sources. It holds the rules every way of understanding follows, and says which skill to use. It understands nothing itself and never does the work.
+Understanding before acting, with the user and from sources. Its rules hold for every way of understanding. It routes to the skill needed. It understands nothing itself and never does the work.
 
 ## Rules
 
-1. **Understanding keeps nothing:** hand back every result.
+1. **Hand back every result.** Understanding keeps nothing.
    - Called by a skill: to that skill.
    - Used directly: to the keeper the project's instruction files point to, if any. The keeper says where it goes and in what form.
    - With no keeper: it stays in the response. Offer a long result, or one the user wants kept, as a file they name.
-2. **One result shape:** what was decided and why, what was parked and why, and what comes next, plus each skill's own part. A caller can then keep any result without knowing which skill made it.
-   - The shape says where to find a part; it is not a form to fill. Leave out a field with nothing to say, except "Not found" when something was looked for. Leave out of what the user sees a field they already have, such as their question.
-   - When several skills serve one request, combine their results into one shape, keeping each one's own additions, so the caller gets one result back.
-3. **Mark guesses and assumptions, and name an unknown that would change the result, with what would settle it.** An unmarked guess gets relied on as a fact.
-4. **Facts first:** read what can be read before asking the user or assuming what the files could settle, such as which version, plan or provider is meant. Asking what the files already say wastes the user's time and hides what only they know.
+2. **Use one result shape.** Give what was decided and why, what was parked and why, and what comes next. Add each skill's own part. A caller can then keep any result without knowing which skill made it.
+   - Use the shape to locate parts, not as a form to fill. Omit empty fields. Keep "Not found" when something was looked for. Omit fields the user already has, such as their question.
+   - Combine results from several skills into one shape. Keep each skill's additions. The caller gets one result back.
+3. **Mark guesses and assumptions.** Name each unknown that would change the result. Say what would settle it. An unmarked guess gets relied on as a fact.
+4. **Read the facts before asking or assuming.** Read what can settle a question, such as which version, plan or provider is meant. Asking what the files already say wastes the user's time and hides what only they know.
 5. **Who decides:** some choices are the user's, and some are yours.
    - The user's: their intent, taste or preferences, anything hard to undo, and what only they know. Ask through `respond-ask`, with a recommended answer.
    - Yours: what the project's conventions settle, and a default easy to undo. Make it.
@@ -22,8 +22,8 @@ Understanding before acting, with the user and from sources. It holds the rules 
    - Minor choices need no line. Give the reason if the user asks.
    - A choice of both kinds is the user's: a wedding toast's style, though easy to rewrite. Ease of undoing decides only what they left to you.
    - Easy to undo means the effects, not just the file: a change that sends messages, migrates data or reaches users is hard to undo.
-6. **Nothing in the work is changed for good while understanding,** because a change made now decides for the user. Make probes and experiments in a scratch place, or remove them through `act-cleanup` before you return the result. Acting on the result is the caller's job, or waits for the user.
-7. **Read `understand-clarify` before the first change on a request that leaves a choice or an unknown that would change the result,** even when the answer seems plain. Whether to ask or state it, and that a stated choice comes before the work, are decided there.
+6. **Make no lasting change while understanding.** A change now decides for the user. Put probes and experiments in a scratch place. Otherwise remove them through `act-cleanup` before returning the result. Acting on it is the caller's job, or waits for the user.
+7. **Read `understand-clarify` before the first change** if a request leaves a choice or unknown that would change the result. Do this even when the answer seems plain. That skill decides whether to ask or show a choice, and requires a shown choice before work.
 
 ## Advice
 
@@ -43,4 +43,4 @@ Anything else about understanding that fits no line here is your own judgment, u
 
 ## The last instruction
 
-Before you return anything, check the rules above: the result's shape, guesses marked, unknowns named, nothing changed for good. The used skill's own last instruction holds too.
+**Check the rules above before returning anything.** Check the result shape, marked guesses, named unknowns and no lasting changes. Follow the used skill's last instruction too.

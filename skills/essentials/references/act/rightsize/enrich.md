@@ -1,29 +1,31 @@
 # act-rightsize-enrich
 
-Adds what is missing to something that exists: it answers what its reader would still ask, from the project, the user or research. Each addition has a source and is checked, and what cannot be found is marked as a gap.
+Adds missing parts to existing material. Answers the reader's remaining questions from the project, user or research. Each addition has a checked source. Unfound answers are marked as gaps.
 
 ## Rules
 
-1. **What the reader would still ask decides what is missing,** by `act-rightsize`'s second rule, because a missing part costs a question or a redo.
-2. **Never invent:** each addition comes from one of these:
+1. **Find what the reader would still ask.** Follow `act-rightsize`'s second rule. A missing part costs a question or redo.
+2. **Source every addition.** Never invent one. Use:
    - the project's files;
    - the user, when only they know;
    - outside sources, for outside facts.
-   - Mark as a gap what you did not find after searching the project's files, and an outside source where the fact is from outside the project. An invented answer reads as true, and a gap marked too early sends the user to find what you could have found.
-3. **Check that each addition is true:** one about the project through `act-verify`, such as install steps tried or read in the current build file; an outside fact by a source current and authoritative for it, under the `understand` skill's rules. Each comes with its source, such as a file and line, or the command or page that shows it. A source supports an addition only if it is current and authoritative for it: an outdated wiki page, or a comment the code contradicts, proves nothing. **Add nothing the reader would not ask for,** by `act-rightsize`'s last instruction, so enriching does not become padding.
-4. **The user approves first,** by `act-rightsize`'s approval rule, which puts the list through `respond-ask`. The list holds each addition with its source and why. Report the result with the gaps.
-5. **Propose code changes, and make them under tests,** by `act-rightsize`'s code rule. For example, a missing error path or test.
+   - Mark an unfound answer as a gap only after searching the project files, and outside sources for outside facts. Inventions read as true. Premature gaps send the user to find what you could have found.
+3. **Check each addition is true.** Use `act-verify` for project facts, such as install steps tried or read in the current build file. Use a current, authoritative source for outside facts, under the `understand` skill's rules.
+   - Give each source: file and line, command or page showing it. An old wiki or comment contradicted by code proves nothing.
+   - Add nothing the reader would not ask for, by `act-rightsize`'s last instruction. Enriching must not become padding.
+4. **Get approval for the list first.** Follow `act-rightsize`'s approval rule through `respond-ask`. List each addition, source and reason. Report the result and gaps.
+5. **Follow `act-rightsize`'s code rule for proposed code changes.** Examples: a missing error path or test.
 
 ## Instructions
 
 1. **Find the reader,** and what the thing is for.
-2. **Find what the reader would still ask** by reading as that reader would. If the `authoring` skill is in your skill list, load it, then read its `reader` skill (`references/reader.md` in its folder). Otherwise, list what this reader would still need to understand or act.
+2. **Read as the reader to find their remaining questions.** If `authoring` is in your skill list, load it and read its `reader` skill (`references/reader.md` in its folder). Otherwise list what this reader still needs to understand or act.
 3. **Find each answer,** by rule 2:
    - the project's files first;
    - the user, through `respond-ask`, when only they know, such as which versions are supported;
    - outside sources for outside facts.
    - Mark a gap only as rule 2 says.
-4. **Apply** each addition with its source, after the approval that rule 4 asks for. For code, follow rule 5.
+4. **Apply approved additions with their sources.** Get approval by rule 4. Follow rule 5 for code.
 5. **Check,** by rule 3.
 
 ## The last instruction

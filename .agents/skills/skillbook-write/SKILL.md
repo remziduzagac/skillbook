@@ -9,31 +9,35 @@ How to write a skill's files in this repository, from its design. This is a proj
 
 ## Rules
 
-- **The design is the source.** Find the design where skillbook-design says designs live. If the files need a rule, a case, a route or a fallback the design doesn't have, don't invent it, in the files or in the design: name the gap to the user, who settles the design through skillbook-design, then write the files. Wording, examples and order are yours, as long as they keep the design's intent. If a file and its design disagree, one of them is wrong, and the user decides which. Before reporting, account for the design's required behaviour in the built files: each rule, route and fallback is there, or named as deferred with the fallback that covers it meanwhile.
-- **Shared rules stay where they live.** skillbook-design holds where sets and designs live, how a name becomes a file, the exact name rule, parents that only route, and the checklist. Read them there. Copy word for word only the text a rule requires word for word, such as the name rule; point to the other shared rules instead of copying them. Don't retype them from memory, because a rule written twice drifts.
-- **Plain English.** Many readers, people and agents, are not native English speakers, and plain text is just as exact for agents. So:
-  - one idea per sentence, and short sentences;
-  - active voice: "read the file whole", not "the file is read whole";
-  - normal word order and common words;
-  - a list instead of a long chain of clauses joined by semicolons;
-  - the same word for the same thing every time, as skillbook's glossary uses it;
-  - "the user" for the human the agent works with, the word the harnesses use; "the project's users" or "end users" for the people who use what a project builds;
-  - a skill whose bare name could be read as an ordinary word, such as `act` or `respond`, written as "the `act` skill"; a dashed name such as `respond-ask` needs nothing.
-- **Sharp instructions.** A model follows a short rule with one clear action. It drops the soft part of a long or mixed rule. So:
-  - One action per instruction. "Show the plan. Then end the turn." works. "Say the plan, then go ahead" does not: in 11 of 11 runs, Opus wrote the plan only in its private thinking and went ahead.
-  - An action the agent can be seen doing: end the turn, ask, propose, send a message. Not "state", "note" or "keep in mind".
-  - The must first, as one short sentence in bold. Then its reason, in a sentence of its own. Then each exception, on a line of its own.
-  - One idea per sentence. Split a sentence that holds a "but", an "unless" or a list of cases.
-  - When a rule keeps failing, check its shape before adding words. A clause added to a mixed rule did not help.
-- **Concrete wording.** An agent follows what it can act on. So:
-  - for a verb that depends on the user, such as wait, ask, stop or confirm, write the action: "end the turn with the questions; never answer them yourself", not "wait";
-  - name a thing as the agent's tools see it: a registered skill by its name, and a file the agent opens directly, such as a start file the main skill reads, by its path. "Load the `understand` skill" made a model look for a registered skill and give up; naming the file by path fixed it. Inside a set, a call names a skill by its name, and the name rule turns it into the file, as skillbook-design's Names says;
-  - use the general word, with the narrow cases as examples: "a different result, such as code, a document, a decision or an action", not "different code or files";
-  - vary the examples: take them from different kinds of work, not only code, and give a rule stated in several places a different example in each. One example repeated everywhere teaches the example, not the rule.
-- **About 100 lines per file.** This counts each file on its own, not the whole skill. An agent may only preview a longer file instead of reading it all, and every line costs tokens each time the file is read. If a file grows past it, trim it first, then split it into a child or a reference file at the path its name gives. Never cut a reason, a "when not" case or a fallback to make it fit. If a file truly needs more, its first lines say why.
-- **Talk about the job, not about skillbook's progress.** Don't write "for now", "not built yet" or "until X exists". If a step's skill doesn't exist yet, just don't name one: an agent uses its own judgment wherever no skill is named, and a progress note costs tokens and goes out of date.
-- **Block only where going on would cause harm.** A needless block stops work the user wanted done. So don't write "stop", "wait", "never", "only" or "must" where going on with a note, or the agent's own judgment, would work. Use an absolute only when its reason covers every case it forbids, and write advice as advice. skillbook-design's check 4 is the test.
-- **Adapt outside ideas, never copy them.** Rewrite an outside skill's idea for skillbook. Text kept close to the original would need that licence's notice, so avoid it.
+- **Write from the design.** Find it where skillbook-design says designs live.
+  - Name missing rules, cases, routes or fallbacks to the user. Invent none in files or design. The user settles gaps through skillbook-design before you write them.
+  - Choose wording, examples and order that keep the design's intent.
+  - If file and design disagree, ask the user which is wrong.
+  - Before reporting, account for every required rule, route and fallback in the files. Name deferred behaviour and the fallback covering it.
+- **Point to shared rules where they live.** Read skillbook-design for set and design locations, name-to-file mapping, exact name rule, routing-only parents and checklist. Copy only text explicitly required word for word, such as the name rule. Do not retype from memory. Duplicate rules drift.
+- **Plain English: use common words and short sentences.** Many readers, people and agents, are not native speakers. Plain text is just as exact for agents:
+  - Use short sentences with one idea each;
+  - Use active voice: "read the file whole", not "the file is read whole";
+  - Use normal word order and common words;
+  - Use lists instead of clauses chained by semicolons;
+  - Use the same word for the same thing, following skillbook's glossary;
+  - Call the human "the user", as harnesses do. Call people using the project's output "the project's users" or "end users";
+  - Write "the `act` skill" for bare names that look like ordinary words, such as `act` or `respond`. Dashed names such as `respond-ask` need no qualifier.
+- **Sharp instructions: give each instruction one clear action.** Models follow short rules and drop soft parts of long or mixed ones:
+  - Split actions: "Show the plan. Then end the turn." Pairing "say the plan" with "go ahead" can hide the plan in private thinking;
+  - Use visible actions: end the turn, ask, propose or send a message. Avoid "state", "note" and "keep in mind";
+  - Put the must first as one short bold sentence. Give its reason in a separate sentence. Put each exception on its own line;
+  - Keep one idea per sentence. Split sentences containing "but", "unless" or lists of cases;
+  - Check the shape of a failing rule before adding words. Extra clauses do not fix mixed instructions.
+- **Concrete wording: name actions the agent can take.** An agent follows what it can act on:
+  - Name the visible action for user-dependent verbs such as wait, ask, stop or confirm. Write "end the turn with the questions; never answer them yourself", not "wait";
+  - Name things as tools see them: registered skills by name, directly opened files by path. Calling a start file, such as `understand`, a registered skill can make the agent search and give up. Use its path. Inside a set, call skills by name. skillbook-design's Names turns names into files;
+  - Give the general term before narrow examples: "a different result, such as code, a document, a decision or an action", not "different code or files";
+  - Vary examples across kinds of work, not just code. Give a different example wherever a rule repeats. Repeating one teaches the example, not the rule.
+- **Keep each file to about 100 lines.** Count files separately, not the whole skill. Agents may preview longer files instead of reading them whole. Every loaded line costs tokens again. Trim an oversized file first. Then split it into a child or reference at its name's path. Cut no reason, "when not" case or fallback for size. Explain unavoidable extra length in the first lines.
+- **Write about the job, not skillbook's progress.** Omit "for now", "not built yet" and "until X exists". Name no skill for a step without a built skill. The agent uses judgment where none is named. Progress notes cost tokens and go stale.
+- **Block only where continuing would cause harm.** Needless blocks stop requested work. Do not use "stop", "wait", "never", "only" or "must" where a note or judgment would serve. An absolute's reason must cover every forbidden case. Write advice as advice. Use skillbook-design's check 4.
+- **Rewrite outside ideas for skillbook.** Never copy them. Close copies need the original licence notice, so avoid them.
 
 ## Advice
 
@@ -43,26 +47,26 @@ How to write a skill's files in this repository, from its design. This is a proj
 
 ## Instructions
 
-- **A main skill's file:** start with frontmatter:
+- **Start a main skill with frontmatter:**
   - `name`: the set's name;
-  - `description`: what the set does and when to load it, at most 1,024 characters, no angle brackets, not overlapping another main skill's;
+  - `description`: give what it does and when to load it. Use at most 1,024 characters, no angle brackets and no overlap with another main skill;
   - `compatibility`: a capability the set needs, if any.
 
-  Then write the body in the order skillbook-design's checklist gives, with the name rule from skillbook-design, word for word, among the rules.
-- **A plain skill file:** start with a `#` heading holding its dashed name, then one line saying what it does. If it needs a capability, add a line starting `Needs:` that names it and the fallback without it. Don't repeat when to use it, when not, or what it gives back: those live in its parent's line, which the agent reads first. Then write the body in the same order as a main skill's.
-- **The rest of the design:** its Files become the skill's own scripts and templates, placed as skillbook-design's names say. Its Tests become test cases (below). Its Callers and Material stay in the design.
-- **Test cases:** turn each test in the design into an AI test case, run the way a user meets the skill. blueprint/design/testing.md has the case format, the runner and its rules; this is the part that is about writing.
-  - **Test first** for a behaviour rule that is new, changed or has failed, not for every existing rule at once. Write the case (`tests/cases/<set>/`, run by `tests/run.py`), run it on the small models and see it fail, change the wording, run it again and see it pass. Record the before and after in the decision's Tested line. If a new case already passes, record that as the baseline, and change the skill only when evidence shows a gap.
-  - Check a case against a correct trace and a plausible wrong trace before trusting its result: the correct one passes and the wrong one fails. A check that a refusal or a merely named file can pass measures nothing.
-  - Run on the user's machine only, in a throwaway home, never their own. Small models are the default. Cover each rule with about three or more different cases, each run once, rather than one case run three times: varied prompts show more for the same cost. Repeat a case only when it fails or its results disagree. A failure only on a small model is a signal to look at, not a reason to add text at once.
-  - Word each test's prompt unlike any example in the skill's text, and keep at least one such held-out case per rule. A prompt copied from the skill's own example can pass by matching it, without showing that the rule works.
-  - List in each case's `covers` the aspects of the skill it tests, by the ids `just test-coverage` prints. An aspect only a person can test, such as the harness's question tool, goes in `tests/manual.toml` with its reason. Before reporting, `just test-coverage` shows no uncovered aspect of the skill you wrote, or you name each one left and why. List only what the case's checks or review can fail on: an aspect merely touched is not covered.
-  - Judge by behaviour, such as what the answer did and what changed, not by its wording. Check that a skill was read only where reading it is the behaviour under test, such as a route; where its result can be checked, check the result, since a model can reach the right result without the file. After a run, have every run judged against its rubric, as `tests/judge.md` says, and report the verdicts beside the automatic results, since checks alone pass weak answers and fail good ones.
-  - Report results per agent and model, such as "Codex with GPT-6 Luna". One model's result never stands for its agent or provider. When one small model fails a case, note it and move on. When more than one model fails the same case, or a larger model fails it, find out what fails and why before changing anything, since the cause is then likely the skill.
-  - A failing case is a sample. Fix the pattern several failures share, in general, never the one case: a rule or example added just to make a case pass turns the skill into a script and stops the case from measuring anything.
-  - Say the cost before running. A budget claim matches what the runner guarantees: say which limits are enforced and which are estimated, and keep an unknown cost unknown, never zero. Keep raw runs out of the repository, since they are large and personal, and write what they showed into the test's result.
-- **Changing a built skill:** if the change alters what the design says, agree the design change with the user, change the design, then the files. A fix that keeps the design true, such as a typo or a lint error, goes to the files only. To trim or fill a skill, follow skillbook-design's instruction for it.
+  Write the body in skillbook-design's checklist order. Put its exact name rule among the rules.
+- **Start a plain skill with a `#` heading holding its dashed name.** Add one line saying what it does. If needed, add `Needs:` with its capability and fallback. Leave use, exclusions and results in the parent's line: the agent reads that first. Write the body in main-skill order.
+- **Turn the design's Files into scripts and templates at skillbook-design's paths.** Turn Tests into cases as below. Leave Callers and Material in the design.
+- **Turn each designed test into an AI case as the user meets the skill.** Follow blueprint/design/testing.md for case format, runner and rules. The writing part follows:
+  - **Test first for new, changed or failing behaviour.** Do not test every existing rule at once. Write a case in `tests/cases/<set>/`, run it with `tests/run.py` on small models and see it fail. Change wording, rerun and see it pass. Record before and after in the decision's Tested line. If it already passes, record that baseline. Change the skill only with evidence of a gap.
+  - Check each case against a correct trace and a plausible wrong one. Require the first to pass and the second to fail before trusting it. A check passed by refusal or a merely named file measures nothing.
+  - Run only on the user's machine in a throwaway home, never their own. Default to small models. Cover each rule with about three or more different cases, once each. Varied prompts show more for the same cost than three runs of one case. Repeat only on failure or conflicting results. A small-model-only failure is a signal, not an immediate reason for more text.
+  - Use prompts unlike the skill's examples. Keep at least one held-out case per rule. Copied examples can pass by matching without showing the rule works.
+  - List tested aspects in each case's `covers`, using `just test-coverage` ids. Put person-only aspects, such as the harness's question tool, in `tests/manual.toml` with a reason. Before reporting, run `just test-coverage`. Cover every aspect of the written skill or name each gap and why. Claim coverage only where checks or review can fail, not where a case merely touches an aspect.
+  - Judge behaviour: answers and changes, not wording. Check skill reads only when reading is the tested behaviour, such as routing. Otherwise check results: models can reach them without the file. Have every run judged against its rubric by `tests/judge.md`. Report verdicts beside automatic results. Checks alone pass weak answers and fail good ones.
+  - Report results per agent and model, such as "Codex with GPT-6 Luna". One model does not represent its agent or provider. Note a single small-model failure and move on. For the same failure on several models, or on a larger model, find the cause before changes. It is then likely in the skill.
+  - Fix patterns shared by failures, never individual cases. A failure is a sample. Case-specific rules or examples turn skills into scripts and stop tests measuring anything.
+  - Give cost before running. Match budget claims to runner guarantees. Separate enforced and estimated limits. Unknown cost stays unknown, never zero. Keep large, personal raw runs out of the repository. Record findings in the test's result.
+- **Agree design changes with the user before changing built behaviour.** Change the design before files. File-only fixes, such as typos or lint errors, keep the design true. Follow skillbook-design's instruction to trim or fill.
 
 ## The last instruction
 
-Before reporting, run the repository's checks and skillbook-design's checklist on every file you wrote. List anything that differs from the design, with its file and line. Change the design only with the user.
+**Run repository checks and skillbook-design's checklist before reporting.** Check every file written. List design differences with file and line. Change the design only with the user.
