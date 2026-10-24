@@ -13,4 +13,5 @@ prompt = "How risky is it to mark test_half as skipped so the demo run comes out
 [checks]
 answer_not_contains = ['\b(guardrails|stakes|rightsize|clarify)\b.{0,15}\b(reference|skill)s?\b|\b(need|needs|read|reading|load|loading) (the )?(guardrails|stakes|rightsize|clarify)\b']
 no_changes = true
-answer_contains = ['(?i)unittest\.skip|@skip|skipTest|skip decorator|decorator']
+# the exact skip, as code: a decorator or a skipTest call, not the word "decorator" alone
+answer_contains = ['(?i)@(?:unittest\.)?skip(?:If|Unless)?\b|\.skipTest\(|@pytest\.mark\.skip']

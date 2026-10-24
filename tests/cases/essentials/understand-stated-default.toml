@@ -16,6 +16,6 @@ states_before_change = true
 
 [checks]
 reads_not = ["understand-clarify-deep"]
-reads = ["understand-clarify", "understand-clarify-shallow"]
+reads = ["understand-clarify"]
 changed = ["api.py"]
 states_before_change = true

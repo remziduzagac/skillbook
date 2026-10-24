@@ -45,6 +45,14 @@ CODEX_PRICES = {"gpt-6-luna": (0.10, 0.01, 0.50)}
 ESTIMATE_PER_TURN = 0.02  # a rough upper guess, in US dollars, for one turn on a small model
 AGENT_DIRS = {".claude", ".codex", ".agents", "__pycache__"}  # made by agents or by compiling; not counted as changes
 MARKER = "SKILLBOOK_TEST_RUN"  # set in each agent's environment, so a process that leaves its group is still found
+# A copied login must not let a test agent reach the user's accounts. Claude Code otherwise loads the account's
+# claude.ai connectors (such as Gmail or Google Drive) and the skills and plugins claude.ai syncs; the run's
+# command line also takes --strict-mcp-config, so no MCP server loads from any other configuration either.
+CLAUDE_ACCOUNT_OFF = {"disableClaudeAiConnectors": True, "syncClaudeAiSkills": False, "syncClaudeAiPlugins": False}
+# Claude Code tools that act on the account or the user's devices: cloud routines, phone notifications, designs.
+ACCOUNT_TOOLS = ["RemoteTrigger", "PushNotification", "DesignSync"]
+# Codex features that bring a ChatGPT login's apps (its connectors) and remote plugins into a run.
+CODEX_ACCOUNT_FEATURES = ["apps", "plugins", "remote_plugin"]
 
 
 def main():
@@ -426,7 +434,8 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
                     result["error"] = f"turn {i}: remaining budget is exhausted or unknown"
                     break
                 cmd = ["claude", "-p", turn["prompt"], "--model", result["model"], "--output-format", "stream-json",
-                       "--verbose", "--permission-mode", "acceptEdits", "--max-budget-usd", f"{remaining:.8f}"]
+                       "--verbose", "--permission-mode", "acceptEdits", "--strict-mcp-config",
+                       "--max-budget-usd", f"{remaining:.8f}"]
                 if session:
                     cmd += ["--resume", session]
             else:
@@ -841,10 +850,15 @@ def prepare_home(home, agent, case, use_login, instruction=""):
         # setup adds this read rule for a personal install, since the default mode asks before each reference file.
         # A print-mode run has nobody to approve a command, so commands run without asking, inside Claude Code's
         # sandbox: writes only in the run's folder and its TMPDIR, no network, and no start at all without it.
-        settings = {"permissions": {"allow": ["Read(~/.claude/skills/**)", "Bash"]},
+        settings = {"permissions": {"allow": ["Read(~/.claude/skills/**)", "Bash"], "deny": ACCOUNT_TOOLS},
                     "sandbox": {"enabled": True, "failIfUnavailable": True, "autoAllowBashIfSandboxed": True,
-                                "allowUnsandboxedCommands": False}}
+                                "allowUnsandboxedCommands": False},
+                    **CLAUDE_ACCOUNT_OFF}
         (agent_dir / "settings.json").write_text(json.dumps(settings, indent=2) + "\n")
+    else:
+        # A copied ChatGPT login would otherwise bring the account's apps (connectors) and remote plugins into the run.
+        (agent_dir / "config.toml").write_text(
+            "[features]\n" + "".join(f"{name} = false\n" for name in CODEX_ACCOUNT_FEATURES))
     lines = ([POINTER] if case["pointer"] else []) + ([instruction] if instruction else [])
     if lines:
         (agent_dir / ("CLAUDE.md" if agent == "claude" else "AGENTS.md")).write_text("\n\n".join(lines) + "\n")

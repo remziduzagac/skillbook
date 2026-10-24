@@ -14,6 +14,7 @@ import sys
 import tempfile
 import threading
 import time
+import tomllib
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -428,6 +429,17 @@ class TurnLifecycle(unittest.TestCase):
         self.assertEqual(caps, [1.0, 0.4])
         self.assertAlmostEqual(result["cost"], 0.70)
 
+    def test_claude_loads_no_mcp_server_but_those_the_runner_names(self):
+        cmds = []
+
+        def respond(cmd, **kwargs):
+            cmds.append(cmd)
+            return subprocess.CompletedProcess(cmd, 0, json.dumps({"type": "result", "total_cost_usd": 0.01}), "")
+
+        self.run_fake(respond, [{"prompt": "First."}], agent="claude")
+        self.assertIn("--strict-mcp-config", cmds[0])
+        self.assertNotIn("--mcp-config", cmds[0])
+
     def test_claude_does_not_start_another_turn_after_exhausting_budget(self):
         calls = []
 
@@ -489,6 +501,20 @@ class ClaudeSandbox(unittest.TestCase):
         self.assertIn("Bash", settings["permissions"]["allow"])
         self.assertEqual(settings["sandbox"], {"enabled": True, "failIfUnavailable": True,
                                                "autoAllowBashIfSandboxed": True, "allowUnsandboxedCommands": False})
+
+    def test_a_copied_login_reaches_no_connector_or_account_tool(self):
+        with tempfile.TemporaryDirectory() as claude_home, tempfile.TemporaryDirectory() as codex_home, \
+                patch.object(runner.subprocess, "run"):
+            runner.prepare_home(Path(claude_home), "claude", {"pointer": False}, use_login=False)
+            runner.prepare_home(Path(codex_home), "codex", {"pointer": False}, use_login=False)
+            settings = json.loads((Path(claude_home) / ".claude" / "settings.json").read_text())
+            codex = tomllib.loads((Path(codex_home) / ".codex" / "config.toml").read_text())
+        self.assertIs(settings["disableClaudeAiConnectors"], True)
+        self.assertIs(settings["syncClaudeAiSkills"], False)
+        self.assertIs(settings["syncClaudeAiPlugins"], False)
+        for tool in ("RemoteTrigger", "PushNotification", "DesignSync"):
+            self.assertIn(tool, settings["permissions"]["deny"])
+        self.assertEqual(codex["features"], {"apps": False, "plugins": False, "remote_plugin": False})
 
 
 class LeftRunning(unittest.TestCase):

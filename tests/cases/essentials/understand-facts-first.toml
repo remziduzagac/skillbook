@@ -15,5 +15,5 @@ no_changes = true
 
 [checks]
 reads_not = ["understand-clarify", "understand-clarify-deep", "understand-clarify-questionnaire"]
-reads = ["understand"]
+answer_contains = ['python3 api\.py', 'README']
 no_changes = true

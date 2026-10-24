@@ -26,5 +26,5 @@ prompt = "Go ahead with the recommendations you have a basis for; the recipients
 no_changes = true
 
 [checks]
-reads = ["understand-clarify-deep", "understand-clarify-shallow"]
+reads = ["understand-clarify-deep"]
 no_changes = true
