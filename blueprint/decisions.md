@@ -446,6 +446,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 ## D53: understand's main skill is the discussion; ideate is renamed brainstorm (2026-10-11)
 
+> **Amended by D252 (2026-10-25):** Brainstorm returns options or requested candidates without forcing a choice. Only a request to choose adds weighing and a decision or park.
+
 > **Amended by D112 (2026-10-13):** understand's own skill takes the shape every main skill takes; the discussion as its flow is weighed when it is designed, after its sub-skills (D109).
 >
 > **Amended by D116 (2026-10-13):** brainstorm's three to seven options are advice.
@@ -1419,6 +1421,8 @@ skillbook-tree's check 5 says so.
 
 ## D118: brainstorm, and frame, weigh and challenge in understand (2026-10-13)
 
+> **Amended by D252 (2026-10-25):** Brainstorm follows the caller's requested result. It returns candidates without deciding the caller's question. Calls use full skill names and plain reference files. Agent-made choices follow understand's who-decides rule.
+
 > **Amended by D119 (2026-10-13):** frame is designed.
 >
 > **Amended by D121 (2026-10-13):** the moves found in weigh's material have homes: developing in brainstorm, recording a decision in design's decide step and author's blueprint skill, showing a comparison in respond or ask, to settle; reversibility goes to conduct's stakes.
@@ -1440,6 +1444,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Why:** Framing, weighing and challenging are needed by design, plan, research and a council's summary as much as by brainstorm, so each gets one home. A brainstorm happens inside a discussion, and the blueprint already splits a discussion into notes, ideas and decisions.
 
 ## D119: frame states a question or problem before work on it (2026-10-13)
+
+> **Amended by D252 (2026-10-25):** Frame shows its result with a read-only answer and adds no checkpoint. Unknown facts go to research; user choices or knowledge go to clarify when they would change the result. Audience is a caller input, not a required frame field.
 
 **Decision:** understand's frame is designed ([design/understand.md](design/essentials/understand.md)): a question or problem stated in about one to three sentences, with its goal, what is out of scope, its constraints and what a good answer looks like, in one short form; what cannot be stated from what is known is marked unknown and handed to clarify. Its rules: stated from what is known first; every part filled or marked unknown; a guess marked as a guess; unknowns to clarify; one problem per frame; the person's question shown framed before work builds on it, the agent's own choice framed quietly. It is the one home of the lenses clarify's shallow used to list, and weigh takes its "a good answer" as the terms it weighs on. It keeps nothing: in a project, design's discuss step records it with the discussion it opens; when it changes, the new frame replaces the old where it is kept.
 
@@ -1464,6 +1470,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Why:** "What happens if it is wrong" and "can it be undone" were already judged in four skills, in four wordings, and review and ship will judge them too; one home keeps the judgment the same wherever care is decided.
 
 ## D122: weigh compares options on terms set first, and recommends (2026-10-13)
+
+> **Amended by D252 (2026-10-25):** Weigh may report no downside found within the agreed terms, with where it looked. It returns development needs to its caller and reuses current challenges. Lists remain valid. Choice disclosure follows understand's rule.
 
 > **Amended by D132 (2026-10-14):** a debate is weigh's: when the stakes are high or the person asks for a debate, each option is put through argue and challenge, to the same depth, before the comparison.
 >
@@ -1491,6 +1499,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D124: challenge attacks an idea before it is relied on (2026-10-13)
 
+> **Amended by D252 (2026-10-25):** Challenge includes material costs and risks even when the goal remains feasible. It follows ask's consequential-choice trigger. A challenge is reused only while its relevant inputs stay unchanged. Independent objections follow act-verify rule 2.
+
 > **Amended by D132 (2026-10-14):** argue is challenge's mirror, the case for a position; the case against stays challenge's, and argue uses challenge for its objections, taking only the weaknesses.
 >
 > **Amended by D150 (2026-10-17):** challenge gains a trigger in conduct's ask, before a recommendation is put and after a decision made without or against one, its depth following stakes; nothing is challenged twice.
@@ -1500,6 +1510,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Why:** An idea attacked in a weak version, or against no goal, yields either flattery or an endless list of flaws; measured against its frame and stated at its strongest, a challenge finds the weaknesses that matter and says what would fix them, while the caller keeps the decision.
 
 ## D125: naming chooses names and keeps the vocabulary (2026-10-13)
+
+> **Amended by D252 (2026-10-25):** Naming returns proposals and writes nothing. Its caller, or the main work flow for a direct request, writes approved entries. A supplied name gets checks without a new candidate round unless there is a real conflict. Candidate generation returns before selection.
 
 **Decision:** understand's naming is designed ([design/understand.md](design/essentials/understand.md)), in two halves: choosing a name people will read and rely on, from brainstorm's candidates weighed through weigh, the person's choice put through conduct's ask, and the decision recorded with the rejected words and why; and keeping a project's vocabulary to one word per concept, each term defined once in its glossary with the words to avoid, a term used two ways flagged until resolved. Its rules: read the glossary and how the word is used first; no synonym and no word with a nearby meaning; no part named after its whole; a plain word wherever one will do; naming proposes and does not rename, the rename done by whoever owns the files as guardrails says. A local name in code stays the code skill's. The glossary lives where the project keeps one, otherwise `GLOSSARY.md` at the root, or in the blueprint for a project the person does not own. mattpocock's skills, its material, are MIT, checked on GitHub.
 
@@ -1541,11 +1553,15 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D130: discuss is understand's sub-skill again (2026-10-14)
 
+> **Amended by D252 (2026-10-25):** Discuss leaves actions and recording to the work-owning caller. Its item layout is a default; closing turns need no invented item, question or recommendation. Agent-made choices follow understand's rule.
+
 **Decision:** understand gains a sub-skill, discuss: a topic worked through with the person, item by item, each item decided, parked or handed on. understand's own skill holds only the shared rules and which part to choose, as clarify's and research's do; the discussion is no longer its own flow. Its rules: the whole first, framed and split into items; one item per turn, with "Remaining"; the agent proposes and the person decides, through ask; every item closed; side topics taken now or recorded where they belong; a decision that changes an earlier one names it. Each item uses what it needs, clarify, research, brainstorm, weigh, challenge, naming or any other skill, and nothing in discuss limits which; work that does not need the person goes to delegate. Its result is understand's shape with the items handed on and the side topics; in a project, what is agreed goes to design as a whole, recorded when the person says so and offered when a topic is complete or the discussion runs long. It is set apart from clarify, which draws out what the person already means, and from brainstorm by the number of open questions rather than the word used. design's discuss step keeps its name for now: whether design's steps that use another skill stay sub-skills, and the name such a step needs if it does, is settled when design is designed.
 
 **Why:** Discussing is the same work whatever the topic, as this session's own way of working shows, and nothing in it is specific to design; a parent that handles one case itself mixes its shared rules with that case, as research's did before fact.
 
 ## D131: understand's own skill designed (2026-10-14)
+
+> **Amended by D252 (2026-10-25):** The group's routes and tests follow the revised result contracts. Agent-made choices point to its who-decides rule. The group and seven thinking tools declare their plain reference files.
 
 > **Amended by D224 (2026-10-21):** the facts-first rule also says to read before assuming what the files could settle, such as which version, plan or provider is meant.
 >
@@ -1565,6 +1581,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D132: argue makes the strongest honest case for a position (2026-10-14)
 
+> **Amended by D252 (2026-10-25):** Argue gets audience from its caller or known context. It has a light path for reflecting an existing view. It reuses a current challenge and returns that result separately to a caller, without putting its verdict inside the one-sided case.
+
 **Decision:** understand gains argue, designed ([design/understand.md](design/essentials/understand.md)), under its "thinking it through" heading as challenge's mirror: the strongest honest case for a position. Its rules: the position stated precisely first, through frame; every reason resting on evidence, through research, or marked as an assumption; the strongest objections, found through challenge, met by answering, conceding or narrowing the position, saying why; the weaknesses admitted; the result labelled one-sided. Its result adds the case to understand's shape, with a strength, strong, moderate or weak, that rates the case and not the choice, and the evidence that would change it; when no honest case exists, it says so and invents nothing. It decides nothing: whether a claim is true stays research's fact, the case against challenge's, and a choice weigh's. A debate is not a skill: "debate X versus Y" goes to weigh, which, when the stakes are high or the person asks for a debate, puts each option through argue and challenge to the same depth before comparing. respond uses argue for the person's view at its strongest, author for a proposal's case, and discuss for an item that asks for one. Agents debating in rounds is an open question in delegate.
 
 **Why:** challenge attacked ideas and nothing made the case for one, though respond, weigh and author each needed it. A case made one-sided on purpose helps only when it is honest and says so; otherwise it reads as a verdict. A debate combines three skills that already exist, so a skill of its own would hold no rule of its own.
@@ -1578,6 +1596,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Why:** Four skills judged the same thing in four wordings, and others said "when the stakes are high" with nothing behind it. One judgment, made from facts and never lowering a rule, gives every caller the same answer, while each keeps what that answer means for its own work.
 
 ## D134: conduct's own skill, its routing lines, and act, respond and ask in the shape (2026-10-15)
+
+> **Amended by D252 (2026-10-25):** The advice to reflect the user's view uses argue's light path. A short reflection starts no investigation and makes no proof claim.
 
 > **Amended by D145 (2026-10-17):** conduct gains rightsize, its routing line under "Before saying done", beside verify.
 >
@@ -1759,6 +1779,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D150: decisions others build on, and challenge before suggesting (2026-10-17)
 
+> **Amended by D252 (2026-10-25):** Only ask's consequential-choice trigger applies; routine plan or design questions do not force a challenge. An earlier challenge is reused only while the idea, goal, constraints and evidence remain unchanged.
+
 > **Amended by D217 (2026-10-20):** a recommended answer, or a decision the user makes without or against one, is challenged only when the choice is consequential, hard to undo or shaping much of the work; routine questions stay short.
 
 **Decision:** Decisions that other work builds on, such as a design, an architecture, a plan or an interface, are judged in delegate's tier rule by what would be built on them, not by how easily their file is reverted: the strong tier and high effort, since a wrong decision costs more than the model; the strongest model, which each reference file names, only after the strong tier has tried and fallen short. The note for the main skill's docs page adds that design and planning sessions deserve a capable model at higher effort. understand's challenge gains a trigger: before a recommendation is put to the person, at a depth that follows stakes: low, none; medium, the strongest one or two objections thought through, shown only if one holds, changing the recommendation or adding a caveat; high, or any design or plan decision, a full challenge, its verdict in one line beside the recommendation. A decision the person makes without a recommendation, or against one, is challenged the same way before it is relied on. Nothing is challenged twice. The trigger lives in challenge's callers, and ask's rule on recommended answers points to it.
@@ -1816,6 +1838,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** blueprint is a flow anyone's engineering skills can use, so it holds no opinion on how to design. softeng explains how good software is designed, so it holds its own design rather than a share of a split one. General implement, test, review, ship and maintain would be thin, since act, verify and understand's challenge already hold their general parts. markdown is authoring's, and essentials needs only generic rules for its own outputs.
 
 ## D155: plan's full design (2026-10-17)
+
+> **Amended by D252 (2026-10-25):** Planning callers use understand's who-decides rule for open choices. Option and comparison tools return the requested result; the caller owns continuation and lasting changes.
 
 > **Amended by D173 (2026-10-17):** plan and design each own their question and call each other: devise routes by the request's main question; plan settles a single open choice through ask and an open shape through design, then continues; a plan's step can be design work.
 >
@@ -1900,6 +1924,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D163: the contract between sets holds for every skill (2026-10-17)
 
+> **Amended by D252 (2026-10-25):** Naming keeps its glossary destination default, but writes nothing. The caller, or the main work flow for a direct request, applies approved glossary entries under act's rules.
+
 **Decision:** The contract between sets (D156) holds for every essentials skill, not only plan and carryover. No skill splits its results by "in a project" and "outside any project". Each result is handed back to its caller; used directly, it goes to the keeper where the project's instruction files point to one, such as blueprint's main skill, which says where it goes and in what form; with none, the skill's default holds: in the response, a long result or one the person wants kept offered as a file they name. understand's first rule holds that default for all its sub-skills; each says only what a keeper needs from it, such as weigh's options weighed and why the chosen one won, and names no keeper's steps or files. learn's decisions and insights go to the keeper, or with none are listed in the response with the offer of a file; its rules still go through instruct. verify's evidence goes to the keeper where one is loaded. setup starts a blueprint only where that set is installed and says nothing of it otherwise; where a blueprint lives in a project the person does not own is blueprint's start step's to ask. What essentials' design said about how blueprint files each result moves to blueprint's side, in its design file, so nothing is lost. A result that is not a record, such as naming's glossary, keeps its own default. essentials' general design sets its default when it is designed.
 
 **Why:** The person pointed out that the rule settled for plan and blueprint applies to all: essentials and blueprint complement each other, each saying only its own part, so essentials works fully alone and blueprint adds where things are kept. The split by project came from every project having a blueprint (D117), which ended when blueprint became a set of its own.
@@ -1937,6 +1963,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** The person asked for the design folder to follow the sets, each with its own files, with a README saying what is what and a better view of the tree. design.md mixed three sets, and the tree sat in ideas while most of it was decided. The knowledge base's and routines' skills had left the tree when they were set aside and showed only in a note; the person asked that they be in ideas.
 
 ## D168: essentials' design, how to design anything (2026-10-17)
+
+> **Amended by D252 (2026-10-25):** Design and its review reuse a challenge only while its inputs remain unchanged. Changed evidence or constraints need renewed scrutiny. The design caller owns lasting changes and records; frame adds no separate checkpoint.
 
 > **Amended by D173 (2026-10-17):** settled means at most one open choice, which a question settles; a design hands on to plan when it is to be built, or ends there when only the design was wanted.
 
@@ -3553,3 +3581,31 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - The project skills broke several of their own rules, which a builder following them would copy.
 
 **Tested:** nothing was run. The person asked that tests wait.
+
+## D252: The understand thinking tools return what their caller needs, without extra decisions (2026-10-25)
+
+**Decision:**
+
+- The seven thinking-tool designs, discuss, frame, brainstorm, weigh, challenge, argue and naming, use full dashed skill names. Their Files fields name `references/understand/<name>.md`. The parent routes and affected callers use the same contracts.
+- Agent-made choices follow understand's who-decides rule. The tools define no second disclosure or timing rule. Frame appears with a read-only answer and adds no checkpoint. Changes still follow that rule and act's plan rule.
+- Brainstorm returns options when asked for options and candidates when called for candidates. Only a request to choose adds weighing and the proper decision owner. Weigh returns a need for further option development to its caller instead of calling an active brainstorm back. Naming gets candidates first, then compares them once on its criteria.
+- A debate keeps one current challenge per option. Argue uses its weaknesses as objections. It returns the challenge separately for a caller to reuse. Its verdict stays outside the one-sided case and may inform weigh's comparison. Changed inputs require renewed scrutiny. Challenge owns any independent check.
+- Unbuilt dependencies remain named in the designs. No per-call fallbacks are added. The build follows skillbook-write's rule to omit calls to unbuilt skills and use judgment there. For independent objections, argue and challenge point to act-verify rule 2 without restating it.
+- Discuss returns requested actions and recording to the work-owning caller. It writes nothing itself. The normal item layout is a default. Closing turns need no invented question, item or recommendation. Recommendations still need a basis.
+- Frame routes unknowns by what would settle them. Facts are read or researched. Clarify handles the user's choices and knowledge when they would change the result. Other gaps remain marked without a forced question.
+- Weigh searches for real downsides but may report none found within the agreed terms, with where it looked. It invents no downside. A readable list is valid even when a table would fit.
+- Challenge includes material costs and risks that leave the goal feasible. It excludes unrelated preferences. Its ask trigger is the current consequential-choice rule, not every decision in a plan or design. Reuse requires an unchanged idea, goal, constraints and evidence.
+- Argue gets audience from the caller or known context. It clarifies an audience gap only when the answer would change the case. A faithful reflection of a view already in the conversation uses a light path, without an investigation or proof claim. A requested evidenced case uses the full path.
+- Naming proposes and writes nothing. The work that asked for it writes approved glossary entries under act's rules. For a direct request, the main work flow owns that writing. A name already supplied by the user gets glossary and collision checks without a new candidate or decision round. A real conflict is raised as a concern.
+- Each changed boundary has designed tests for the qualifying case, the near miss and the plausible wrong result. Caller tests cover reuse, return ownership and the absence of duplicate choice rounds. These are designed tests, not observed model results.
+
+**Why:**
+
+- A tool must return what its caller asked for. A candidate generator that chooses early takes over the caller's decision. A call back into an active caller can repeat the same work indefinitely.
+- Repeating an unchanged challenge costs time and tokens. Reusing one after the inputs changed can hide a new weakness.
+- A required negative finding can produce an invented downside. A weakness can matter through cost or risk without making the goal impossible.
+- Shared choice, plan and independent-check rules need one home. A message in private thinking gives the user no chance to correct it.
+- Understanding methods should not make lasting changes. The caller owns application of an approved result.
+- A short reflection needs fidelity to the conversation, not a new investigation. A full case needs evidence, objections and admitted weaknesses.
+
+**Tested:** No model test was run.

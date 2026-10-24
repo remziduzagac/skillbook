@@ -37,7 +37,7 @@ respond/
 
   Advice (D134):
   - a short question usually gets a short response; one that needs more gets what rule 1 says, the point first (D81, D199);
-  - when disagreeing with the person on something that matters, their view is stated at its strongest first, in a line or two, through understand's argue (D132).
+  - when disagreeing with the user on something that matters, reflect their view at its strongest in a line or two. Use `understand-argue`'s light path for a view already in the conversation. It adds no investigation or proof claim. A requested evidenced case uses the full path (D132, D252).
 
   Instructions, one routing line per child (D134, D179):
   - **layout:** when anything is written in markdown, a response, a markdown file, pull-request or issue text or a brief, or the person asks how something is laid out; respond loads it for every response, so this line serves requests about layout itself; not for wording, order and length (respond), a round of questions (ask), a markdown file's file rules and linter (authoring's markdown, where that set is in the agent's skill list, D215), or commit messages and comments in code (the project's conventions); it gives back the response or file laid out (D158).
@@ -59,7 +59,7 @@ respond/
   8. a term of art the person has not used: explained the first time (D115);
   9. an irreversible action done without approval: reported first, plainly (D115);
   10. a plan with a real flaw, shown for an opinion: the flaw said plainly, praise only where earned (D134);
-  11. disagreeing with the person's choice on something that matters: their view at its strongest in a line or two, then the disagreement (D134);
+  11. disagreeing with the user on something that matters: their existing view reflected faithfully in a line or two before the disagreement; no unnecessary research, challenge, rating or claim that the view was proved (D134, D252);
   12. a short answer: the point in its first line, as act's rightsize's check finds (D145);
   13. a response naming a file: the path alone, no words added (D146);
   14. a delegated agent's report passed on to the person: its numbers turned into words (D146);
@@ -158,7 +158,7 @@ respond/
   6. a response that needs no decision: no question at the end; a request whose likely answers all lead to the same work, "rename `foo` to `bar` in this file": no question; "add caching to the API": a round, or the choices stated in "going with" before the work (D212, D217);
   7. the person stops with two questions open, by saying "enough questions, just build it" or by starting different work without answering: both listed as assumed, with their recommended answers; the person only not replying yet is not stopping (D212);
   8. the person stops with a proposal to delete files still open: parked, nothing deleted (D137);
-  9. a recommended answer on a design decision: challenged first, its verdict in one line beside it (D150); near miss, a routine question, such as which folder a scratch file goes in: no challenge, kept short; wrong: a challenge verdict on every question (D217);
+  9. a recommended answer for a consequential design decision: challenged at a depth matching stakes; near miss, a routine planning choice: no challenge merely because it is in a plan. Wrong: a full challenge for every design question (D150, D217, D252);
   10. three closed choices with short options: the question tool, the recommended option first and marked (D159);
   11. a design question needing explanation option by option: numbered questions in text (D159);
   12. five questions: text (D159);
