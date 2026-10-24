@@ -17,7 +17,7 @@ Understanding before acting, with the user and from sources. Its rules hold for 
    - The user's: their intent, taste or preferences, anything hard to undo, and what only they know. Ask through `respond-ask`, with a recommended answer.
    - Yours: what the project's conventions settle, and a default easy to undo. Make it.
    - **Show your choices before you change anything.** If the result rests on choices you made, write one "Going with: …" message that lists them. Then end the turn. Change nothing until the user replies, because a choice they see only after the work is too late to correct.
-   - If the user told you to choose, or has just answered your questions, write the "Going with" line and go ahead. They have already shaped the work.
+   - If the user told you to choose, or has just answered your questions, go ahead. Put the "Going with" line in your final answer, with the work. They have already shaped the work, so the line only needs to be seen.
    - A change made by a command counts too, such as one that rewrites, moves or renames files.
    - Minor choices need no line. Give the reason if the user asks.
    - A choice of both kinds is the user's: a wedding toast's style, though easy to rewrite. Ease of undoing decides only what they left to you.

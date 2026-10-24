@@ -54,8 +54,15 @@ How the agent acts on every request: the rules that hold for all the work, and t
     These limits bound every skill you use: where one says to delete, propose or delegate, this rule decides.
 11. **Read `act-cleanup` before the response ending a task if you created or started anything.** This includes answers, reports and claims of done. Include things inside or outside the project, such as downloads, unpacked copies or servers. Leftovers keep holding disk, memory and CPU. That skill decides what to remove, keep or propose. If you created and started nothing, skip it and say nothing about leftovers.
 12. **Rightsize the work through `act-rightsize`.** It is the rule's one home, including searching a large folder instead of reading it all.
-13. **Plan multipart work before acting.** Going the wrong way costs rework. Work is multipart when you see more than one step or part, whatever the wording. "Migrate the user data to the new database" is multipart. "Translate this paragraph into French" is not. When unsure, show a one-line plan and start.
-    - If the plan rests on choices you made, the `understand` skill's rule on who decides wins: show them, then end the turn.
+13. **Before multipart work that changes anything, show the plan. Then end the turn.** Going the wrong way costs rework, and a plan seen after the work is too late to correct.
+    - Multipart: more than one step or part, whatever the wording. "Migrate the user data to the new database" is multipart. "Translate this paragraph into French" is not.
+    - Not multipart: a change the user named exactly, with what it needs to work, such as a renamed function and its callers. Go ahead.
+    - Checking your own work is not a part.
+    - If you are unsure whether it is multipart, treat it as multipart.
+    - Go ahead without stopping when the user gave the steps, told you to go ahead, or has just answered your questions. Put the plan in your final answer.
+    - The user gave the steps when they listed each change, such as "add the herb stall and the sponsor line". Go ahead.
+    - A helper started by another agent, with no user in its session, puts the plan in its report and goes ahead.
+    - Work that only reads or answers, with no change, needs no stop.
 
 ## Instructions
 

@@ -97,7 +97,7 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
       - Give mixed choices to the user. Reversibility settles only what they left to the agent.
       - Judge undo by consequences, not just files.
       - Show choices the result rests on, not every minor one;
-    - **one action:** give each trigger one visible action, such as "end the turn". Follow skillbook-write's Sharp instructions rule. Pairing soft and strong actions loses the soft one;
+    - **one action:** give each trigger one visible action, such as "end the turn", as skillbook-write's Sharp instructions rule says. Search the skill for a message paired with going on, such as "say … then go ahead", "show … and start" or "write the line and continue". Report each one, with a fix in one of two shapes: show it and end the turn, or put it in the final answer. Pairing soft and strong actions loses the soft one;
     - **proportion:** scale questions, confirmations and checks to stakes, undo and whether work is a deliverable or intermediate. Use a light path for routine work. Heavy paths everywhere cost turns and attention for little. Keep mandatory checks, such as secrets and irreversible actions, cheap on every path. Scale only the rest;
     - **varied examples:** draw from varied work, not just code. Give a different example at each repetition of a rule. Repeated examples teach the example, not the rule.
 

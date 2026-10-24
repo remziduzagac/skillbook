@@ -7,6 +7,7 @@ covers = ["skillbook-design:step:2", "skillbook-design:rule:2", "skillbook-desig
 category = "normal"
 rejects = "Writes the child's skill file, adds a section without the fields the other sections have, leaves the parent's flow and tests unaware of the new child, or gives tests with no near miss or no wrong behaviour they reject."
 review = [
+  "Turn 1 may show the plan for the new child and the parent's update and end the turn, or do the work; after the go-ahead the design is written, and the checks below apply to the final state.",
   "The new section sits in blueprint/design/authoring/proofread.md beside spelling and tone, with the same fields: purpose, description, callers, flow, result, files, tests and open.",
   "Its description says when to use it and when not, without overlapping spelling, tone or the separate cite design; its tests include a near miss and each names a wrong behaviour it rejects.",
   "Checking a link that points to the web needs a capability: the design names it in its Files line with a fallback when it is missing, rather than naming a program.",
@@ -17,6 +18,9 @@ review = [
 
 [[turns]]
 prompt = "Proofread should also catch dead links in a draft, like a URL that goes nowhere or a pointer to a missing section. Work out the design for that as a new child of proofread and add it to the authoring designs; don't build the skill file yet."
+
+[[turns]]
+prompt = "Looks right. Go ahead."
 
 [checks]
 reads = ["skillbook-design"]

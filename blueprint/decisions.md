@@ -3487,3 +3487,32 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Of the seven runs that fell to poor in round 7, six were chance or failed the same way on the old text when rerun. Reading a failure and rerunning both texts would have shown that before any change.
 - D244's show-then-stop rule made `act-cleanup-brief` expect the wrong thing until it gained a second turn. The case should have changed with the rule.
 - The first version-control overwrite case failed for a second question it was not testing, the recipe's lost time line. One decision per case avoids that.
+
+## D250: No instruction pairs a message with going on; multipart work that changes anything stops at its plan (2026-10-24)
+
+**Decision:**
+
+- skillbook-write's "Sharp instructions": never pair a message with going on in one instruction, such as "say the plan, then go ahead" or "show a one-line plan and start". Pick one of two shapes: show it, then end the turn, or put it in the final answer, after the work.
+  - "Write it in the final answer" counts as a visible action.
+  - "State", "note" and "keep in mind" are avoided for what the user must see before the work goes on.
+- skillbook-design check 13, one action: the reviewer searches the skill for a message paired with going on and reports each, with a fix in one of the two shapes.
+- act rule 13: before multipart work that changes anything, show the plan, then end the turn.
+  - Multipart is more than one step or part, whatever the wording. When unsure, treat it as multipart.
+  - Go ahead without stopping when the user gave the steps, told the agent to go ahead, or has just answered its questions, and put the plan in the final answer.
+  - Work that only reads or answers needs no stop.
+  - Not multipart: a change the user named exactly, with what it needs to work, such as a renamed function and its callers. Checking the agent's own work is not a part.
+  - The user gave the steps when they listed each change, such as "add the herb stall and the sponsor line".
+  - A helper started by another agent, with no user in its session, puts the plan in its report and goes ahead.
+  - This replaces "when unsure, show a one-line plan and start" (D215) and D248's line about choices.
+- understand rule 5: after the user told the agent to choose, or has just answered, the agent goes ahead and puts its "Going with" line in the final answer.
+- verify rule 2: the fresh-agent check is its own bold must. Before reporting high-stakes work, start a fresh agent that did not do the work to check it. Judge stakes first. If no agent can be started, write in the report that the check is still to do and who should do it.
+- verify rule 6: on the third time the same check is run by hand in a conversation, end the answer with a one-line offer of a script, test or lint rule. Same meaning, one action.
+- Cases whose first turn did multipart change work without a go-ahead gain a second, go-ahead turn, by skillbook-design's boundary-change check: `design-design-child`, `act-verify-tests-green` and `act-cleanup-tidy-code`. Their first turn accepts either the work or the plan. A sweep of the other cases found six whose boundary was unclear; the person settled it with the four lines above, which leave four of them as they are.
+
+**Why:**
+
+- "Say it, then go ahead" put the message only in the agent's thinking in 11 of 11 runs (D244). A sweep found the same pairing still in act rule 13 and understand rule 5.
+- The person rejected leaving the stop to the agent's judgment of its own choices, because that leaves unclear exactly where it should ask. One fixed place, before the first change, has no such ambiguity.
+- `act-verify-print-run` and `act-verify-repeated-check` stayed weak on both texts in D248's reruns. Their rules were long and mixed several triggers.
+
+**Tested:** nothing was run yet. The person asked that tests wait.

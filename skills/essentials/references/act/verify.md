@@ -17,11 +17,12 @@ Checks claims that work is done, fixed, passing, correct or meets requirements, 
 
 2. **Who checks:**
    - you, for what a command or a file can show;
-   - a fresh agent that did not do the work: for high stakes, a user-requested independent check, or judgment you cannot give your own work, such as a summary's fairness to its source.
-     - Judge stakes with `act-stakes` first if not yet judged. Use reach and undo, not change size or check time. One wrong digit in an imminent bank transfer is high.
+   - **a fresh agent: before you report high-stakes work, start one that did not do the work to check it.** Your own read of your own work misses what you got wrong.
+     - Judge the stakes with `act-stakes` first if they are not judged yet. Judge by reach and undo, not by the size of the change or the time left. One wrong digit in a bank transfer about to go out is high.
+     - Start one too when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary is fair to its source.
      - Start the agent through your harness. Brief it with the claim and what would show it false.
-     - Count a check as independent only after seeing another agent's or person's result. Your own second look does not count. Neither does starting or waiting on an agent without seeing its result.
-     - If you cannot start one, mark that part unverified. Say who should check it. This includes delegated agents and harnesses without agents. Follow the `act` skill's rule 10 for your report;
+     - Count a check as independent only after you see another agent's or person's result. Your own second look does not count. Neither does starting or waiting on an agent without seeing its result.
+     - If you cannot start one, write in your report that this check is still to do, and who should do it. This includes delegated agents and harnesses without agents. Follow the `act` skill's rule 10 for your report;
    - the user: for meaning, taste, irreversible results and anything no check can see. Get any required fresh agent's check first. The user's check does not replace it: asking them to reread is not independent checking.
 
    How much rides on the work, and whether it can be undone, is `act-stakes`' judgment. The user's check here is of the result; approving a risky action before it is taken is `act-guardrails`'.
@@ -40,7 +41,9 @@ Checks claims that work is done, fixed, passing, correct or meets requirements, 
 
    Scale checks by `act-stakes`. A full search on a small change costs more than it finds. For plainly low work such as a typo, give about one line on what you checked. Stay inside the task. Report outside problems as one-line follow-ups by the `act` skill's rule 3. A findings report costs more than a one-line change. The whole answer is a few lines: claim and evidence, check line, follow-ups. If the project lacks a design, plan or decisions, say so. Skip checks that need the missing item.
 
-6. **Offer to automate a check on its third manual run in a conversation.** This applies across items too. Give a one-line offer of a script, test or lint rule. Automation is cheaper and surer. Two runs could be chance; three show repetition. Do not write it unasked: that is extra work, by the `act` skill's rule 3.
+6. **On the third time you run the same check by hand in a conversation, end your answer with a one-line offer to make it a script, a test or a lint rule.** Automation is cheaper and surer. Two runs could be chance; three show repetition.
+   - The same check counts across items, such as the same format check on a second and a third file.
+   - Write nothing unasked. It is extra work, by the `act` skill's rule 3.
 
 Not here: a fact about the outside world, such as whether a library still supports an old version, and how strong a research finding is, are questions under the `understand` skill's rules. Your own evidence for a claim of done or correct is seen or measured, never only said.
 

@@ -24,8 +24,8 @@ How to write a skill's files in this repository, from its design. This is a proj
   - Call the human "the user", as harnesses do. Call people using the project's output "the project's users" or "end users";
   - Write "the `act` skill" for bare names that look like ordinary words, such as `act` or `respond`. Dashed names such as `respond-ask` need no qualifier.
 - **Sharp instructions: give each instruction one clear action.** Models follow short rules and drop soft parts of long or mixed ones:
-  - Split actions: "Show the plan. Then end the turn." Pairing "say the plan" with "go ahead" can hide the plan in private thinking;
-  - Use visible actions: end the turn, ask, propose or send a message. Avoid "state", "note" and "keep in mind";
+  - Never pair a message with going on in one instruction, such as "say the plan, then go ahead" or "show a one-line plan and start". The model goes on and writes the message only in its private thinking, which the user never sees. Pick one shape: show it, then end the turn; or put it in the final answer, after the work. "Show the plan. Then end the turn." works;
+  - Use visible actions: end the turn, ask, propose, send a message, or write it in the final answer. Avoid "state", "note" and "keep in mind" for what the user must see before the work goes on;
   - Put the must first as one short bold sentence. Give its reason in a separate sentence. Put each exception on its own line;
   - Keep one idea per sentence. Split sentences containing "but", "unless" or lists of cases;
   - Keep a rule's conditions and numbers in its bold must when you split it, such as "after about three attempts" or "as far as you know". Moved to a later sentence, they read as explanation;
