@@ -1010,6 +1010,15 @@ class AspectCoverage(unittest.TestCase):
         self.assertNotIn("act:rule:5", uncovered)
         self.assertIn("act:rule:6", uncovered)
 
+    def test_a_committed_fixture_has_history_but_no_counted_files(self):
+        with tempfile.TemporaryDirectory() as root:
+            work = Path(root)
+            (work / "notes.md").write_text("one\n")
+            runner.commit_fixture(work)
+            log = subprocess.run(["git", "log", "--oneline"], cwd=work, capture_output=True, text=True, check=True)
+            self.assertEqual(len(log.stdout.splitlines()), 1)
+            self.assertEqual(list(runner.snapshot(work)), ["notes.md"])
+
 
 if __name__ == "__main__":
     unittest.main()

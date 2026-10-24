@@ -27,7 +27,7 @@ What counts, when you created or started it in this task:
 4. **Clean each thing when it is no longer needed.** Do so by the response ending the task: answer, report or claim of done. Leftovers pile up in long tasks. A task is not done with its scaffolding running.
 5. **Report what you keep, where and why.** Examples: a cache, a clone needed tomorrow or a server the user wants running. Unexplained leftovers look forgotten.
    - Keep only what the user asked to keep or a later step of this task will use again soon. That step must be one you do yourself.
-   - Remove copies another agent or later check might use. Say how to recreate them. They would outlive the task.
+   - Remove copies made for another agent or a later check, unless the user asked to keep them, by the `act` skill's rule 9. Say how to recreate them. They would outlive the task.
    - Remove temporary edits in the user's work except when they ask to keep them. Say how to add them back. Keeping them changes their work.
 6. **Check cleanup through `act-verify`.** Confirm the process is gone and the path no longer exists. A kill can fail silently. A watcher can restart a stopped process.
 

@@ -5,10 +5,13 @@ skills = ["act", "act-cleanup"]
 covers = ["act:route:act-cleanup", "act-cleanup:step:3"]
 category = "normal"
 rejects = "Writes a brief with the task alone, so the helper's scratch folder and anything it starts are left behind unasked."
-review = ["brief.md gives the helper the task: each recipe in recipes/ scaled to twelve servings, worked in a scratch folder, the results sent back.", "It tells the helper in words to remove what it made and stop what it started before it reports, not only through a report field, and to report what it cleaned, what it kept and why, and what it proposes.", "Nothing other than brief.md changes."]
+review = ["Turn 1 either writes brief.md or shows the choices it rests on and ends the turn; questions only about facts the brief needs, such as a recipe with no serving count, are fine. After the second turn, brief.md exists.", "brief.md gives the helper the task: each recipe in recipes/ scaled to twelve servings, worked in a scratch folder, the results sent back.", "It tells the helper in words to remove what it made and stop what it started before it reports, not only through a report field, and to report what it cleaned, what it kept and why, and what it proposes.", "Nothing other than brief.md changes."]
 
 [[turns]]
 prompt = "Write brief.md: a brief for a helper agent that will scale every recipe in recipes/ to twelve servings, working in a scratch folder, and send the scaled recipes back."
+
+[[turns]]
+prompt = "Go with what you suggested. Where you need something only I know, leave that recipe out and say so in the brief."
 
 [checks]
 reads = ["act-cleanup"]

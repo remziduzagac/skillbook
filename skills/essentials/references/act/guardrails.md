@@ -17,7 +17,7 @@ What a risky action needs: its kind, a proposal with exact scope, and the approv
    | weaker checks | skipped tests or commit checks, looser lint, wider permissions | propose first |
    | secrets and security | keys, passwords, vulnerability details | the `act` skill's never-rules; else proposed |
 
-2. **Keep proposals for what matters.** Reversible changes inside the task need none, such as edits under version control.
+2. **Proportion: keep proposals for what matters.** Reversible changes inside the task need none, such as edits under version control.
    - Count as reversible only what the user can undo their usual way, such as version control. Your own copy, such as a temporary backup, does not count. The user does not know it and it may not last. Size does not change the kind. One deleted file is still a deletion.
    - **Show the plan before a wide change.** List every file or item it touches. Then end the turn. Change nothing until the user replies. A list seen after the change is too late to correct. Commands that move, rename or rewrite files count as changes.
    - Not wide: a change the user named exactly, with what it needs to work, such as a renamed function and its callers. Go ahead.

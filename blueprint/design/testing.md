@@ -24,7 +24,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 - **`tests/fixtures/<name>/`:** small toy projects, each a known situation, such as a vague request or a plan whose parts depend on each other. Automated and manual tests share them. A fixture's project instruction file is `AGENTS.md` only; the runner copies it to `CLAUDE.md` for Claude Code, so both agents get the same instructions and the repository holds no nested `CLAUDE.md` that would load into a developer's own session.
 - **`tests/cases/<set>/<case>.toml`:** one case per file. Its fields:
   - the design test it comes from: the design file and the test's number;
-  - the fixture;
+  - the fixture, and `version_control = true` for a case whose project starts under version control with one commit, since whether a change can be undone the user's usual way can depend on it;
   - `uses_skill_example = true` for a case that tests one of the skill's own examples on purpose; every other prompt is checked by `just check` against the set's text (D213);
   - the prompt for each turn;
   - the agents it runs in;
@@ -51,7 +51,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 - **`tests/run.py`:** the runner, written with the Python standard library only. It runs up to four runs at a time (`--jobs`), sharing only the budget; nothing is shared between runs, such as a home, a session or a fixture copy, since a shared one would carry one case's history into another. For each case, agent and run it:
   1. makes a throwaway home outside the repository, with the run's own temporary folder inside it, set as the agent's `TMPDIR`, so nothing an agent leaves there outlives the run, after a short listing of its paths and sizes is kept in the turn's evidence (D233);
   2. installs skillbook there with `install.sh`;
-  3. copies the fixture in;
+  3. copies the fixture in, and commits it when the case asks for version control;
   4. runs the agent headless, each turn in a process group of its own, with a marker in its environment for a process that leaves the group;
   5. records what the agent left running when each turn ended, then, when the run ends or a turn times out, ends it, so a leftover the model caused is still observed and nothing keeps running on the user's machine (D233);
   6. checks the event log;

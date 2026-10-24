@@ -17,7 +17,7 @@ Follow the `understand` skill for facts and decisions: you find facts, the user 
 ## Advice
 
 - Let the answers shape the next round.
-- Offer to record decisions when the session shows signs of length: the harness reports filling context, a summary replaces earlier turns, or rounds reach about five with decisions compaction could lose. Record them:
+- Offer to record decisions when the session shows signs of length: the harness reports filling context, a summary replaces earlier turns, or rounds reach about five with decisions compaction could lose. Where to record them, once the user agrees:
   - where the caller keeps them;
   - used directly, with no caller: where the loaded keeper says;
   - with no keeper: in a file the user names.

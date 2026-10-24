@@ -44,6 +44,7 @@ DEFAULT_MODELS = {"claude": "haiku", "codex": "gpt-6-luna"}
 CODEX_PRICES = {"gpt-6-luna": (0.10, 0.01, 0.50)}
 ESTIMATE_PER_TURN = 0.02  # a rough upper guess, in US dollars, for one turn on a small model
 AGENT_DIRS = {".claude", ".codex", ".agents", "__pycache__"}  # made by agents or by compiling; not counted as changes
+VC_DIRS = {".git"}  # a case's own version control; its files are not the project's
 MARKER = "SKILLBOOK_TEST_RUN"  # set in each agent's environment, so a process that leaves its group is still found
 # A copied login must not let a test agent reach the user's accounts. Claude Code otherwise loads the account's
 # claude.ai connectors (such as Gmail or Google Drive) and the skills and plugins claude.ai syncs; the run's
@@ -429,6 +430,8 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
         home, work, tmp = root / "home", root / "work", root / "tmp"
         tmp.mkdir()
         shutil.copytree(FIXTURES / case["fixture"], work)
+        if case.get("version_control"):
+            commit_fixture(work)
         # A fixture keeps one project instruction file, AGENTS.md; Claude Code reads only CLAUDE.md.
         if agent == "claude" and (work / "AGENTS.md").is_file() and not (work / "CLAUDE.md").exists():
             shutil.copyfile(work / "AGENTS.md", work / "CLAUDE.md")
@@ -913,11 +916,20 @@ def agent_env(home, agent, use_login, tmp):
     return env
 
 
+def commit_fixture(work):
+    """Put a case's project under version control with one commit, apart from the user's own git settings."""
+    env = {"PATH": os.environ.get("PATH", ""), "HOME": str(work), "GIT_CONFIG_GLOBAL": os.devnull,
+           "GIT_CONFIG_NOSYSTEM": "1"}
+    for args in (["init", "-q"], ["add", "-A"],
+                 ["-c", "user.name=Test", "-c", "user.email=test@example.invalid", "commit", "-q", "-m", "fixture"]):
+        subprocess.run(["git", "-c", "core.hooksPath=" + os.devnull, *args], cwd=work, env=env, check=True)
+
+
 def snapshot(folder):
     files = {}
     for path in folder.rglob("*"):
         rel = path.relative_to(folder)
-        if AGENT_DIRS.intersection(rel.parts):
+        if AGENT_DIRS.intersection(rel.parts) or VC_DIRS.intersection(rel.parts):
             continue
         if path.is_symlink():
             files[str(rel)] = "symlink:" + hashlib.sha256(os.readlink(path).encode()).hexdigest()

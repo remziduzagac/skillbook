@@ -56,4 +56,4 @@ Not here: a fact about the outside world, such as whether a library still suppor
 
 ## The last instruction
 
-**Check before calling anything done or correct.** Each claim has evidence beside it or is marked unverified. No self-check or unseen result is called independent or done. High-stakes work has a fresh agent's check or an explicit pending check. A plan's task, commit or pull request has the four checks, scaled to stakes. The third manual run has its automation offer, by rule 6.
+**Check before calling anything done or correct.** Each claim has evidence beside it or is marked unverified. Never call your own check independent. Never call a check done or independent if you did not see its result. High-stakes work has a fresh agent's check or an explicit pending check. A plan's task, commit or pull request has the four checks, scaled to stakes. The third manual run has its automation offer, by rule 6.

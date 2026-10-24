@@ -55,7 +55,7 @@ How to write a skill's files in this repository, from its design. This is a proj
   Write the body in skillbook-design's checklist order. Put its exact name rule among the rules.
 - **Start a plain skill with a `#` heading holding its dashed name.** Add one line saying what it does. If needed, add `Needs:` with its capability and fallback. Leave use, exclusions and results in the parent's line: the agent reads that first. Write the body in main-skill order.
 - **Turn the design's Files into scripts and templates at skillbook-design's paths.** Turn Tests into cases as below. Leave Callers and Material in the design.
-- **Turn each designed test into an AI case as the user meets the skill.** Follow blueprint/design/testing.md for case format, runner and rules. The writing part follows:
+- **Test cases: turn each designed test into an AI case, run the way a user meets the skill.** Follow blueprint/design/testing.md for case format, runner and rules. The writing part follows:
   - **Test first for new, changed or failing behaviour.** Do not test every existing rule at once. Write a case in `tests/cases/<set>/`, run it with `tests/run.py` on small models and see it fail. Change wording, rerun and see it pass. Record before and after in the decision's Tested line. If it already passes, record that baseline. Change the skill only with evidence of a gap.
   - Check each case against a correct trace and a plausible wrong one. Require the first to pass and the second to fail before trusting it. A check passed by refusal or a merely named file measures nothing.
   - Run only on the user's machine in a throwaway home, never their own. Default to small models. Cover each rule with about three or more different cases, once each. Varied prompts show more for the same cost than three runs of one case. Repeat only on failure or conflicting results. A small-model-only failure is a signal, not an immediate reason for more text.
@@ -65,7 +65,7 @@ How to write a skill's files in this repository, from its design. This is a proj
   - Report results per agent and model, such as "Codex with GPT-6 Luna". One model does not represent its agent or provider. Note a single small-model failure and move on. For the same failure on several models, or on a larger model, find the cause before changes. It is then likely in the skill.
   - Fix patterns shared by failures, never individual cases. A failure is a sample. Case-specific rules or examples turn skills into scripts and stop tests measuring anything.
   - Give cost before running. Match budget claims to runner guarantees. Separate enforced and estimated limits. Unknown cost stays unknown, never zero. Keep large, personal raw runs out of the repository. Record findings in the test's result.
-- **Agree design changes with the user before changing built behaviour.** Change the design before files. File-only fixes, such as typos or lint errors, keep the design true. Follow skillbook-design's instruction to trim or fill.
+- **Changing a built skill: if the change alters what the design says, agree the design change with the user first.** Then change the design, then the files. A fix that keeps the design true, such as a typo or a lint error, goes to the files only. Follow skillbook-design's instruction to trim or fill.
 
 ## The last instruction
 
