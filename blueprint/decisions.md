@@ -3468,3 +3468,22 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 - The rewrite's aim was shape, not meaning, so what changed meaning is put back. A condition moved out of the bold must into a second sentence read as explanation.
 - An overwrite the user can undo their usual way is reversible, as guardrails rule 2 already defines it, and asking for it costs a turn.
+
+## D249: What the sharp rewrite and its tests taught goes into the project skills (2026-10-24)
+
+**Decision:**
+
+- skillbook-write's "Sharp instructions" gains two lines:
+  - Keep a rule's conditions and numbers in its bold must when splitting it, such as "after about three attempts" or "as far as you know".
+  - Keep a rule's bold label when rewriting it, with the action after it.
+- skillbook-write's "Test cases" gains two lines:
+  - Give a case one decision to test, and read a failing answer before changing the skill.
+  - Before blaming a change for a failing case, run that case a few times on the old text and on the new, judged the same way.
+- skillbook-design's check 2, boundary changes, gains: when a rule changes what the agent does, find the cases whose rubric expects the old behaviour and update them with the rule.
+
+**Why:**
+
+- The rewrite lost four conditions that moved into a second sentence or were cut ("as far as you know", "after about three", "once the user agrees", "current and authoritative"), and it renamed labels that other files used as names (D248).
+- Of the seven runs that fell to poor in round 7, six were chance or failed the same way on the old text when rerun. Reading a failure and rerunning both texts would have shown that before any change.
+- D244's show-then-stop rule made `act-cleanup-brief` expect the wrong thing until it gained a second turn. The case should have changed with the rule.
+- The first version-control overwrite case failed for a second question it was not testing, the recipe's lost time line. One decision per case avoids that.

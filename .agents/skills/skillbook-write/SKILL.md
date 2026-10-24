@@ -28,6 +28,8 @@ How to write a skill's files in this repository, from its design. This is a proj
   - Use visible actions: end the turn, ask, propose or send a message. Avoid "state", "note" and "keep in mind";
   - Put the must first as one short bold sentence. Give its reason in a separate sentence. Put each exception on its own line;
   - Keep one idea per sentence. Split sentences containing "but", "unless" or lists of cases;
+  - Keep a rule's conditions and numbers in its bold must when you split it, such as "after about three attempts" or "as far as you know". Moved to a later sentence, they read as explanation;
+  - Keep a rule's bold label when you rewrite it, and put the action after it. Other files and decisions name the rule by its label;
   - Check the shape of a failing rule before adding words. Extra clauses do not fix mixed instructions.
 - **Concrete wording: name actions the agent can take.** An agent follows what it can act on:
   - Name the visible action for user-dependent verbs such as wait, ask, stop or confirm. Write "end the turn with the questions; never answer them yourself", not "wait";
@@ -63,6 +65,8 @@ How to write a skill's files in this repository, from its design. This is a proj
   - List tested aspects in each case's `covers`, using `just test-coverage` ids. Put person-only aspects, such as the harness's question tool, in `tests/manual.toml` with a reason. Before reporting, run `just test-coverage`. Cover every aspect of the written skill or name each gap and why. Claim coverage only where checks or review can fail, not where a case merely touches an aspect.
   - Judge behaviour: answers and changes, not wording. Check skill reads only when reading is the tested behaviour, such as routing. Otherwise check results: models can reach them without the file. Have every run judged against its rubric by `tests/judge.md`. Report verdicts beside automatic results. Checks alone pass weak answers and fail good ones.
   - Report results per agent and model, such as "Codex with GPT-6 Luna". One model does not represent its agent or provider. Note a single small-model failure and move on. For the same failure on several models, or on a larger model, find the cause before changes. It is then likely in the skill.
+  - Give a case one decision to test. A fixture detail that raises a second question, such as a file that differs in more than the change asked for, makes a failure ambiguous. Read a failing answer before you change the skill.
+  - Before you blame a change for a failing case, run that case a few times on the old text and on the new, judged the same way. Single runs vary, and the old text may fail too.
   - Fix patterns shared by failures, never individual cases. A failure is a sample. Case-specific rules or examples turn skills into scripts and stop tests measuring anything.
   - Give cost before running. Match budget claims to runner guarantees. Separate enforced and estimated limits. Unknown cost stays unknown, never zero. Keep large, personal raw runs out of the repository. Record findings in the test's result.
 - **Changing a built skill: if the change alters what the design says, agree the design change with the user first.** Then change the design, then the files. A fix that keeps the design true, such as a typo or a lint error, goes to the files only. Follow skillbook-design's instruction to trim or fill.

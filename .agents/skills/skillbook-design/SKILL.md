@@ -51,7 +51,7 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
     - **one reading:** give each instruction one reading. Contradict no other skill;
     - **gaps named:** name every uncovered case and its destination: another skill or the agent's judgment;
     - **overlaps ordered:** say which category wins when two fit. Otherwise one case gets two answers;
-    - **boundary changes:** check positive routes, exclusions, callers and paired tests together. A boundary moved in only one place leaves two homes or none.
+    - **boundary changes:** check positive routes, exclusions, callers and paired tests together. A boundary moved in only one place leaves two homes or none. When a rule changes what the agent does, find the cases whose rubric expects the old behaviour and update them with the rule.
 3. **Cover the scope without overlap:**
     - **coverage:** cover every in-scope case or name it as a gap;
     - **one home:** give each rule and concern one home, here or in a called skill. Never send a case back to its caller, directly or through others. Restate a rule only as an explicit variation naming the rule changed;
