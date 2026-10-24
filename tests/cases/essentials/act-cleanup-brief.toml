@@ -5,7 +5,7 @@ skills = ["act", "act-cleanup"]
 covers = ["act:route:act-cleanup", "act-cleanup:step:3"]
 category = "normal"
 rejects = "Writes a brief with the task alone, so the helper's scratch folder and anything it starts are left behind unasked."
-review = ["brief.md gives the helper the task: each recipe in recipes/ scaled to twelve servings, worked in a scratch folder, the results sent back.", "It asks the helper to clean up what it made or started, and to report what it cleaned, what it kept and why, and what it proposes.", "Nothing other than brief.md changes."]
+review = ["brief.md gives the helper the task: each recipe in recipes/ scaled to twelve servings, worked in a scratch folder, the results sent back.", "It tells the helper in words to remove what it made and stop what it started before it reports, not only through a report field, and to report what it cleaned, what it kept and why, and what it proposes.", "Nothing other than brief.md changes."]
 
 [[turns]]
 prompt = "Write brief.md: a brief for a helper agent that will scale every recipe in recipes/ to twelve servings, working in a scratch folder, and send the scaled recipes back."
@@ -15,4 +15,4 @@ reads = ["act-cleanup"]
 changed = ["brief.md"]
 
 [checks.file_contains]
-"brief.md" = ['clean', 'kept|keep']
+"brief.md" = ['clean', 'kept|keep', '(?i)\bstop']
