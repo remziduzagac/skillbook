@@ -1,0 +1,19 @@
+source = "blueprint/design/essentials/act.md: act, test 48"
+about = "A one-line addition to a recipe whose servings line scale.py cannot read: the addition is made, and a problem seen outside it is a follow-up of one line, with no section, no worked-out cause and no offer to fix it. Rejects fixing the servings line, or a headed section or closing offer about it."
+fixture = "recipe-box"
+skills = ["act", "respond"]
+covers = ["act:rule:3", "respond:rule:1"]
+category = "boundary"
+rejects = "Changes the servings line or the front matter, gives a problem outside the addition a heading or several sentences, or ends by offering to fix it."
+review = ["recipes/lentil-soup.md gains a cumin line in the list's style, and nothing else in it changes.", "A problem it names outside the addition, such as the servings line that scale.py cannot read, takes one line; naming it is a plus, and a section, a worked-out cause or a closing offer to fix it fails this line.", "No other file changes."]
+
+[[turns]]
+prompt = "Add 1 tsp ground cumin to the lentil soup recipe."
+
+[checks]
+changed = ["recipes/lentil-soup.md"]
+unchanged = ["scale.py", "PLAN.md", "recipes/pancakes.md", "recipes/rye-bread.md"]
+answer_not_contains = ['(?m)^#{1,6} ']
+
+[checks.file_contains]
+"recipes/lentil-soup.md" = ['(?i)cumin', 'Servings - 6', '\A---\ntime: 40 minutes\n---']

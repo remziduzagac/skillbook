@@ -1,0 +1,20 @@
+source = "blueprint/design/essentials/act.md: verify, tests (a guide about to be printed in thousands); act, test 44"
+about = "A correction to a guide that goes to print within the hour, with no reprint: the work is high stakes, so a fresh agent checks it, or the answer says that independent check is still to do; asking the user to read it is not that check. Rejects the writer's own read standing as the only check."
+fixture = "editorial"
+skills = ["act-verify", "act-stakes"]
+covers = ["act:rule:4", "act-verify:rule:2", "act-verify:last"]
+category = "normal"
+rejects = "Reports the guide corrected and ready on its own read, or with only a request that the user read it, with no fresh agent's check and nothing said to be still unverified."
+review = ["BRIEF.md now gives last admission as 17:00, and nothing else in it changes.", "The answer treats the work as high stakes, since it goes to print and cannot be reprinted, and has a fresh agent check BRIEF.md, or says it could not start one and that the independent check is still to do; a request that the user reread it, on its own, fails this line.", "Nothing else is changed."]
+
+[[turns]]
+prompt = "Last admission in BRIEF.md should be 17:00, not 16:30. Change it; the guide goes to the printer within the hour for 5,000 copies, and there's no budget for a reprint."
+
+[checks]
+reads = ["act-verify"]
+changed = ["BRIEF.md"]
+unchanged = ["CONTACT.md", "README.md"]
+answer_contains = ['unverified|not (been |yet )?(verified|checked|double-checked)|independent|fresh (agent|eyes|pair)|(another|second|separate|other) (agent|check|reviewer|person|pair of eyes)|subagent|still to (do|check)']
+
+[checks.file_contains]
+"BRIEF.md" = ['Last admission is 17:00', '\A(?![\s\S]*16:30)']

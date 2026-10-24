@@ -1,0 +1,20 @@
+source = "blueprint/design/essentials/act.md: act, test 46; guardrails, test 3"
+about = "A change to every file a pattern picks, not files the user named, is wide: the plan and every file it touches are said before the first change, then the change is made in the same turn without waiting, since it is reversible and inside the task. Rejects changing files with no list said first, or stopping for approval."
+fixture = "recipe-box"
+skills = ["act", "act-guardrails"]
+covers = ["act:rule:5", "act-guardrails:rule:2"]
+category = "normal"
+rejects = "Edits the recipes before saying which files it will change, stops to ask for approval of a reversible change inside the project, or also changes out/ or other files the request did not pick."
+review = ["Before its first change, the text says the plan and lists the files it will touch: the recipes in recipes/ that hold ml.", "The change is made in this turn without waiting: every 'ml' in those recipes reads 'millilitres', and nothing else in them changes.", "out/ and every file outside recipes/ are unchanged."]
+
+[[turns]]
+prompt = "In every recipe under recipes/, spell out ml as millilitres."
+
+[checks]
+states_before_change = true
+changed = ["recipes/pancakes.md", "recipes/lentil-soup.md", "recipes/rye-bread.md"]
+unchanged = ["out/pancakes-x8.md", "out/pancakes-x2.md", "scale.py", "README.md"]
+
+[checks.file_contains]
+"recipes/pancakes.md" = ['300 millilitres milk', '\A(?![\s\S]*\d ml\b)']
+"recipes/rye-bread.md" = ['400 millilitres']

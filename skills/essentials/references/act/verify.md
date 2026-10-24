@@ -17,8 +17,8 @@ Evidence before you say that work is done, fixed, passing, correct or meets its 
 
 2. **Who checks:**
    - you, for what a command or a file can show;
-   - the user, for meaning, taste, anything that cannot be undone, and anything no check can see;
-   - a fresh agent, one that did not do the work: when `act-stakes` rates the work high, when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary is fair to its source. If you cannot start one, such as when you are a delegated agent, say that part is unverified; the `act` skill's rule 10 says what goes into your report.
+   - a fresh agent, one that did not do the work: when `act-stakes` rates the work high, when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary is fair to its source. If the stakes are not judged yet, judge them with `act-stakes` before you choose. If you cannot start one, such as when you are a delegated agent, say that part is unverified; the `act` skill's rule 10 says what goes into your report;
+   - the user, for meaning, taste, anything that cannot be undone, and anything no check can see. Where a fresh agent's check is due too, the user's comes after it, never in its place, because asking the user to read it again is not an independent check.
 
    How much rides on the work, and whether it can be undone, is `act-stakes`' judgment. The user's check here is of the result; approving a risky action before it is taken is `act-guardrails`'.
 3. **Fresh and whole:** run the check now, on the work as it is; an earlier run does not count. Read what would fail if the claim were false: the exit code, the count of failures and the failing lines. Read the full output only when something fails, because a full log in the main session is paid for on every later turn.
@@ -49,4 +49,4 @@ Not here: a fact about the outside world, such as whether a library still suppor
 
 ## The last instruction
 
-Before you say anything is done or correct, check: every claim in the response has its evidence beside it, or is marked unverified; for a plan's task, a commit or a pull request, the four checks are done, in proportion to the stakes; and a check you have run by hand for the third time has its offer, by rule 6.
+Before you say anything is done or correct, check: every claim in the response has its evidence beside it, or is marked unverified; work rated high has had a fresh agent's check, or the response says that check is still to do; for a plan's task, a commit or a pull request, the four checks are done, in proportion to the stakes; and a check you have run by hand for the third time has its offer, by rule 6.

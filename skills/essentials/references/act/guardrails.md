@@ -9,7 +9,7 @@ What a risky action needs: which actions are risky, by their kind; a proposal wi
    | Kind | Such as | Rule |
    | --- | --- | --- |
    | can't be undone | deleting, overwriting, force-pushing, dropping data | confirm first; the reversible way first |
-   | wide | changes across many files, bulk edits | plan first, list everything touched, stay in it |
+   | wide | files a search or a pattern picks, bulk edits | plan first, list everything touched, stay in it |
    | outward | publishing, pushing, posting; local data sent to a remote service | always propose |
    | outside the task | the home folder, other projects, personal files; reads too | ask first, naming exactly where |
    | costly | paid model runs, many agents, long jobs | state the expected cost; ask unless trivial |
@@ -32,7 +32,7 @@ What a risky action needs: which actions are risky, by their kind; a proposal wi
 For an action of a kind that needs a proposal:
 
 1. **Propose:** what, why, the exact scope (paths, items), and how to undo it, or that it cannot be undone. Add a dry run's output where the tool offers one, such as a preview of what would be removed or changed. Put it through `respond-ask`.
-2. **End the turn with the proposal.** Apply nothing before the user approves; an approval for something else, or no answer, is not approval.
+2. **End the turn with the proposal.** Apply nothing before the user approves. A request for the action is not approval, even when it names the action, because the user has not yet seen its exact scope or that it cannot be undone. Nor is an approval for something else, or no answer. Words that approve a stated scope are approval, even before you propose it, such as "I approve removing those two folders", by rule 3.
 3. **Checkpoint first where you can:** a commit or a copy.
 4. **Apply exactly the approved scope.**
 5. **Stop on surprise:** if the action does more or other than proposed, such as an unexpected file touched or an error halfway, stop and report. Don't go on and don't repair quietly, because what was not proposed was not approved. A formatter that touches lines outside the scope counts.
