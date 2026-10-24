@@ -12,4 +12,4 @@ prompt = "Task 1 in PLAN.md is ticked. Before I commit, confirm it's really done
 
 [checks]
 no_changes = true
-answer_not_contains = ['\b(act|respond|understand)-(stakes|guardrails|cleanup|verify|rightsize|layout|ask|explain|clarify)', '\b(guardrails|stakes|rightsize|clarify)\b.{0,15}\b(reference|skill)s?\b|\b(need|needs|read|reading|load|loading) (the )?(guardrails|stakes|rightsize|clarify)\b']
+answer_not_contains = ['\b(guardrails|stakes|rightsize|clarify)\b.{0,15}\b(reference|skill)s?\b|\b(need|needs|read|reading|load|loading) (the )?(guardrails|stakes|rightsize|clarify)\b']

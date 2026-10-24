@@ -8,7 +8,7 @@ What a risky action needs: which actions are risky, by their kind; a proposal wi
 
    | Kind | Such as | Rule |
    | --- | --- | --- |
-   | can't be undone | deleting, overwriting, force-pushing, dropping data | confirm first; the reversible way first |
+   | can't be undone | deleting, overwriting, force-pushing, dropping data | propose first; a reversible way if any |
    | wide | files a search or a pattern picks, bulk edits | plan first, list everything touched, stay in it |
    | outward | publishing, pushing, posting; local data sent to a remote service | always propose |
    | outside the task | the home folder, other projects, personal files; reads too | ask first, naming exactly where |
@@ -18,7 +18,8 @@ What a risky action needs: which actions are risky, by their kind; a proposal wi
    | secrets and security | keys, passwords, vulnerability details | the `act` skill's never-rules; else proposed |
 
 2. **Proportion:** a change that is reversible and inside the task needs no proposal, such as editing a file under version control. Keep proposals for what matters.
-   - A wide change that is reversible and inside the task: put the plan and everything it touches in the response before starting, then go ahead without waiting.
+   - Reversible means the user can undo it their usual way, such as from version control. A copy you make yourself, such as a backup in a temporary folder, does not count, because the user does not know of it and it may not last. Size does not change the kind: one deleted file is still a deletion.
+   - A wide change that is reversible and inside the task: write the plan and everything it will touch as text before your first change, such as a short message between tool calls, then go ahead without waiting. A list only in the final answer comes after the change, too late to correct.
    - A kind whose rule is to propose or ask (can't be undone, outward, outside the task, costly, others' code to run, weaker checks, secrets) always needs it, whatever proportion says.
    - You still ask whenever something is not understood, by the `act` skill's rule 1. An instruction from the user or the project to propose more often wins, by its rule 9.
 3. **One approval, one action:** an approval covers one action and its stated scope, by the means proposed, whenever it was given. Another means is a new proposal, even for the same result, because what it does on the way was not approved: approval to run the release script does not cover publishing its files by hand. When you reach a step the user approved earlier in this conversation, apply it and name that approval. It does not extend to the next action, or to another place or context: approval to publish a page to the test site does not cover publishing it live. Propose anything found later outside the scope on its own.
@@ -35,7 +36,7 @@ For an action of a kind that needs a proposal:
 2. **End the turn with the proposal.** Apply nothing before the user approves. A request for the action is not approval, even when it names the action, because the user has not yet seen its exact scope or that it cannot be undone. Nor is an approval for something else, or no answer. Words that approve a stated scope are approval, even before you propose it, such as "I approve removing those two folders", by rule 3.
 3. **Checkpoint first where you can:** a commit or a copy.
 4. **Apply exactly the approved scope.**
-5. **Stop on surprise:** if the action does more or other than proposed, such as an unexpected file touched or an error halfway, stop and report. Don't go on and don't repair quietly, because what was not proposed was not approved. A formatter that touches lines outside the scope counts.
+5. **Stop on surprise:** if the action does more or other than proposed, such as an unexpected file touched or an error halfway, stop, report, and ask through `respond-ask` how to go on. Don't go on and don't repair quietly, because what was not proposed was not approved. A formatter that touches lines outside the scope counts.
 6. **Check and report the result** through `act-verify`.
 
 ## The last instruction

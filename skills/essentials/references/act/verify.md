@@ -17,12 +17,15 @@ Evidence before you say that work is done, fixed, passing, correct or meets its 
 
 2. **Who checks:**
    - you, for what a command or a file can show;
-   - a fresh agent, one that did not do the work: when `act-stakes` rates the work high, when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary is fair to its source. If the stakes are not judged yet, judge them with `act-stakes` before you choose. If you cannot start one, such as when you are a delegated agent, say that part is unverified; the `act` skill's rule 10 says what goes into your report;
+   - a fresh agent, one that did not do the work: when `act-stakes` rates the work high, when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary is fair to its source. If the stakes are not judged yet, judge them with `act-stakes` before you choose. Start it with your harness's own way of starting an agent, and brief it with the claim and what would show it false. A check is independent only when another agent or a person made it; your own second look never is. If you cannot start one, such as when you are a delegated agent or your harness has no way to, mark that part unverified and say who should check it; the `act` skill's rule 10 says what goes into your report;
    - the user, for meaning, taste, anything that cannot be undone, and anything no check can see. Where a fresh agent's check is due too, the user's comes after it, never in its place, because asking the user to read it again is not an independent check.
 
    How much rides on the work, and whether it can be undone, is `act-stakes`' judgment. The user's check here is of the result; approving a risky action before it is taken is `act-guardrails`'.
 3. **Fresh and whole:** run the check now, on the work as it is; an earlier run does not count. Read what would fail if the claim were false: the exit code, the count of failures and the failing lines. Read the full output only when something fails, because a full log in the main session is paid for on every later turn.
 4. **The result as it is:** confirmed, state the claim with its evidence beside it; not confirmed, state the actual status with its evidence, as the `respond` skill's rule on outcomes says.
+   - State a cause or a result only as the output shows it: a command that was not found is reported as not found, never as a reason you guess.
+   - A stand-in, such as a simulated setting or a mocked service, shows only what it stands in for. Say so, and mark the real check unverified, with what would confirm it.
+   - A matter of taste, such as whether a text now sounds warmer, is the user's, by rule 2: say what you changed and what you checked, and leave the judgment to them.
 5. **Four more checks** for a plan's task, a commit or a pull request, before it is called done:
    - **contradiction:** with a decision or another part of the work;
    - **duplication:** of something that already exists;
@@ -49,4 +52,4 @@ Not here: a fact about the outside world, such as whether a library still suppor
 
 ## The last instruction
 
-Before you say anything is done or correct, check: every claim in the response has its evidence beside it, or is marked unverified; work rated high has had a fresh agent's check, or the response says that check is still to do; for a plan's task, a commit or a pull request, the four checks are done, in proportion to the stakes; and a check you have run by hand for the third time has its offer, by rule 6.
+Before you say anything is done or correct, check: every claim in the response has its evidence beside it, or is marked unverified; nothing you checked yourself is called independent; work rated high has had a fresh agent's check, or the response says that check is still to do; for a plan's task, a commit or a pull request, the four checks are done, in proportion to the stakes; and a check you have run by hand for the third time has its offer, by rule 6.

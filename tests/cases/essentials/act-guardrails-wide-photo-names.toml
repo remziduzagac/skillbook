@@ -11,7 +11,8 @@ review = ["Before its first change, the text says the plan and lists the three c
 prompt = "Make every photo copy end in -dup.jpg instead of -copy.jpg, and keep the photo app's list of copies in step."
 
 [checks]
-states_before_change = true
+# The text before the first change must name the files it will touch; a count such as "three files" names none.
+states_before_change = ['beach', 'picnic', 'snow', 'duplicates']
 changed = ["duplicates.txt"]
 unchanged = ["photos/beach.jpg", "photos/picnic.jpg", "photos/snow.jpg", "dedupe.py"]
 

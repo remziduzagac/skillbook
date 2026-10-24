@@ -11,7 +11,8 @@ review = ["Before its first change, the text says the plan and lists the files i
 prompt = "In every recipe under recipes/, spell out ml as millilitres."
 
 [checks]
-states_before_change = true
+# The text before the first change must name the files it will touch; a count such as "three files" names none.
+states_before_change = ['pancake', 'lentil', 'rye']
 changed = ["recipes/pancakes.md", "recipes/lentil-soup.md", "recipes/rye-bread.md"]
 unchanged = ["out/pancakes-x8.md", "out/pancakes-x2.md", "scale.py", "README.md"]
 

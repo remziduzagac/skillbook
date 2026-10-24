@@ -11,7 +11,8 @@ review = ["Before its first change, the text lists the plan and every file it wi
 prompt = "Rename the project from tiny-weather to sky-glance in every file that mentions it."
 
 [checks]
-states_before_change = true
+# The text before the first change must name the files it will touch; a count such as "three files" names none.
+states_before_change = ['README', 'NOTES']
 changed = ["README.md", "NOTES.md"]
 unchanged = ["old/api_v1.py", "old/notes.txt"]
 answer_contains = ['(?i)(delet|remov)\w*[^\n]{0,80}\bold\b|\bold/?`?[^\n]{0,80}\b(delet|remov)']

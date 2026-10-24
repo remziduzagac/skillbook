@@ -212,6 +212,9 @@ def load_cases(pattern):
         data.setdefault("runs", 1)  # cover a rule with several different cases, not repeats of one
         data.setdefault("pointer", True)
         data.setdefault("checks", {})
+        if data["set"] == "essentials":
+            # no essentials answer names a skill unless its case says the user needs the name, with names_no_skill
+            data["checks"].setdefault("names_no_skill", True)
         if not (FIXTURES / data["fixture"]).is_dir():
             sys.exit(f"{case_id}: no fixture named {data['fixture']}")
         validate_case(data)
@@ -221,7 +224,10 @@ def load_cases(pattern):
 
 CHECK_NAMES = {"reads", "reads_not", "no_changes", "changed", "unchanged", "file_contains", "shorter",
                "states_before_change", "answer_contains", "answer_not_contains", "written_under", "folder_lacks",
-               "nothing_left_running", "tmp_has", "tmp_lacks"}
+               "nothing_left_running", "tmp_has", "tmp_lacks", "names_no_skill", "only_changed", "actions_lack",
+               "answer_path_has", "agent_started_or_answer"}
+PATTERN_CHECKS = ("answer_contains", "answer_not_contains", "tmp_has", "tmp_lacks", "actions_lack", "answer_path_has",
+                  "agent_started_or_answer")
 
 
 def validate_case(case):
@@ -235,9 +241,12 @@ def validate_case(case):
         unknown = set(checks) - CHECK_NAMES
         if unknown:
             raise ValueError(f"{case['id']} {label}: unknown checks: {', '.join(sorted(unknown))}")
-        for pattern in (checks.get("answer_contains", []) + checks.get("answer_not_contains", [])
-                        + checks.get("tmp_has", []) + checks.get("tmp_lacks", [])):
+        stated = checks.get("states_before_change", False)
+        for pattern in [p for name in PATTERN_CHECKS for p in checks.get(name, [])] + (
+                stated if isinstance(stated, list) else []):
             re.compile(pattern)
+        if not isinstance(checks.get("names_no_skill", True), bool):
+            raise ValueError(f"{case['id']} {label}: names_no_skill is true or false")
         for patterns in [*checks.get("file_contains", {}).values(), *checks.get("folder_lacks", {}).values()]:
             for pattern in patterns:
                 re.compile(pattern)
@@ -451,7 +460,9 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
             this_turn["left_unknown_because"] = ran["left_why"]
             this_turn["tmp_listing"] = ran["tmp"]
             current_text = fixture_text(work)
-            result["turns"].append({**this_turn, "actions": action_evidence(agent, turn_events),
+            final, between = turn_parts(agent, turn_events)
+            result["turns"].append({**this_turn, "final_answer": final, "between_tools": between,
+                                    "actions": action_evidence(agent, turn_events),
                                     "file_diffs": fixture_diffs(previous_text, current_text),
                                     "trace_complete": not failed})
             last_tmp = ran.get("tmp_paths")
@@ -681,6 +692,9 @@ def observe(agent, events, home, set_name, before, work, checks):
     paths |= {p for p in written(delta) if folders and p.startswith(folders)}
     return {"reads": sorted(skills_read(agent, events, home, set_name)),
             "changes": delta, "answer": "\n\n".join(a for a in (turn_answer(agent, turn) for turn in events) if a),
+            "targets": [value for turn in events for action in action_evidence(agent, turn)
+                        for key, value in action.items() if key in TARGET_KEYS and isinstance(value, str)],
+            "agents_started": agents_started(agent, events),
             "before_change": said, "changed_files": changed or bool(delta), "sequencing_unknown": uncertain,
             "files": {p: (work / p).read_text(errors="replace")
                       if (work / p).is_file() and not (work / p).is_symlink()
@@ -747,6 +761,38 @@ def message_blocks(event):
     return [b for b in content if isinstance(b, dict)] if isinstance(content, list) else []
 
 
+# what an action ran, or the paths and search patterns it named
+TARGET_KEYS = ("command", "file_path", "path", "pattern", "url")
+
+
+def agents_started(agent, events):
+    """How many agents the main agent started with a call that did not fail: Claude's Agent or Task tool with a
+    successful result, or Codex collaboration calls: one that spawns an agent, or the distinct agents the calls name.
+    A Codex wait that names no agent starts nothing and does not count."""
+    count = 0
+    if agent == "claude":
+        failed = {b.get("tool_use_id") for e in (e for turn in events for e in turn) for b in message_blocks(e)
+                  if b.get("type") == "tool_result" and b.get("is_error")}
+        answered = {b.get("tool_use_id") for e in (e for turn in events for e in turn) for b in message_blocks(e)
+                    if b.get("type") == "tool_result"}
+        for e in (e for turn in events for e in turn):
+            if e.get("type") == "assistant" and not e.get("parent_tool_use_id"):
+                count += sum(b.get("type") == "tool_use" and b.get("name") in {"Agent", "Task"}
+                             and b.get("id") in answered - failed for b in message_blocks(e))
+    else:
+        named, spawns = set(), 0
+        for e in (e for turn in events for e in turn):
+            item = e.get("item", {})
+            if (e.get("type") == "item.completed" and item.get("type") == "collab_tool_call"
+                    and item.get("status") != "failed"):
+                spawns += "spawn" in str(item.get("tool", ""))
+                ids = item.get("receiver_thread_ids")
+                if isinstance(ids, list):
+                    named.update(str(i) for i in ids if i)
+        count = max(spawns, len(named))
+    return count
+
+
 def action_evidence(agent, events):
     """Ordered tool names, commands and target paths, without tool outputs or credential-home contents."""
     actions = []
@@ -763,14 +809,21 @@ def action_evidence(agent, events):
                     data = block.get("input", {})
                     action = {"tool": block["name"], "id": block.get("id"),
                               "status": outcomes.get(block.get("id"), "unknown")}
-                    action.update({k: data[k] for k in ("command", "file_path", "path", "url") if k in data})
+                    action.update({k: data[k] for k in TARGET_KEYS if k in data})
                     actions.append(action)
         elif agent == "codex" and e.get("type") in {"item.started", "item.completed"}:
             item = e.get("item", {})
             if item.get("type") in {"agent_message", "reasoning"}:
                 continue
             action = {"tool": item.get("type"), "phase": e["type"]}
-            action.update({k: item[k] for k in ("command", "exit_code", "changes", "server", "tool") if k in item})
+            if item.get("type") == "collab_tool_call":
+                # a call about other agents: its name, such as wait or a spawn, which agents it names, and their states
+                action.update({k: item[k] for k in ("tool", "receiver_thread_ids", "agents_states", "status")
+                               if k in item})
+                action["call"] = action.pop("tool", None)
+                action["tool"] = "collab_tool_call"
+            else:
+                action.update({k: item[k] for k in ("command", "exit_code", "changes", "server", "tool") if k in item})
             actions.append(action)
     return actions
 
@@ -912,6 +965,53 @@ def skill_ends():
 
 
 SKILL_ENDS = skill_ends()
+
+
+def skill_talk():
+    """A pattern for text that names a shipped skill, a skill's file or a route to one, which the respond skill's rule
+    1 keeps from the user. The names come from the skill files, and from skills they name in backticks, so a new
+    skill is covered. A bare word such as verify, layout or clarify counts only next to "skill", or, for the words
+    rare in ordinary prose, after a verb such as load or need."""
+    words, parents = set(), set()
+    for name, path in skill_files():
+        if path.is_relative_to(REPO / "skills"):
+            named = [name] + re.findall(r"`([a-z][a-z0-9-]*)` skill", path.read_text())
+            words.update(part for n in named for part in n.split("-"))
+            parents.update(n.split("-")[0] for n in named if "-" in n)
+    names = "|".join(sorted(words, key=lambda w: (-len(w), w)))
+    parents = "|".join(sorted(parents)) or "(?!)"
+    rare = "guardrails|rightsize|stakes|clarify"
+    quote = r"[`'\"’]?"
+    verbs = r"needs?|needed|loads?|loaded|loading|reads?|reading|uses?|used|using|follows?|followed|following"
+    return re.compile("|".join([
+        rf"\b(?:{parents})-[a-z]",  # a dashed name, such as act-verify or respond-layout
+        rf"\b(?:{names}){quote}(?:\s+|-)skills?\b",  # the verify skill, layout and ask skills
+        r"`[a-z][\w-]*`\s+skills?\b",  # the `coordinate` skill
+        r"\b(?:referenced|loaded)\s+(?:\S+\s+)?skills?\b",  # the referenced coordination skill
+        rf"\b(?:essentials|{rare}){quote}\s+(?:references?|guidance|instructions)\b|\bessentials{quote}\s+set\b",
+        rf"\b(?:{verbs})\s+(?:the\s+)?{quote}(?:{rare})\b",  # need clarify, read the guardrails
+        r"\b(?:loads?|loaded|loading)\s+(?:the\s+)?(?:required\s+)?essentials\b",  # not "need the essentials fast"
+        rf"\bSKILL\.md\b|\breferences/[\w./-]*\.md\b|\b(?:{parents})(?:/[\w-]+)*\.md\b|\bskills/[a-z][\w-]*/",  # files
+    ]), re.IGNORECASE)
+
+
+SKILL_TALK = skill_talk()
+# Codex's harness tells it to say in one short line which skills it uses; the essentials skill allows that line
+# naming only essentials, so the default check leaves out one such line for these agents.
+ANNOUNCES_SKILLS = {"codex"}
+ESSENTIALS_WORD = re.compile(r"(?:the\s+)?[`'\"’]?essentials[`'\"’]?(?:\s+skill)?", re.IGNORECASE)
+
+
+def names_skill(answer, agent=None):
+    """Whether the answer names a skill, a skill's file or a route, apart from the one allowed announcing line."""
+    if agent in ANNOUNCES_SKILLS:
+        lines = answer.splitlines()
+        for i, line in enumerate(lines):
+            rest = ESSENTIALS_WORD.sub("", line)
+            if len(line) <= 200 and rest != line and not SKILL_TALK.search(rest):
+                answer = "\n".join(lines[:i] + lines[i + 1:])
+                break
+    return bool(SKILL_TALK.search(answer))
 
 
 def skills_printed(output):
@@ -1123,15 +1223,40 @@ def expand_braces(text):
     return brace.sub(lambda m: " ".join(m.group(1) + part + m.group(3) for part in m.group(2).split(",")), text)
 
 
-def turn_answer(agent, turn_events):
-    """Everything the agent said in the turn, so a question followed by a closing line still counts."""
+def turn_texts(agent, turn_events):
+    """The agent's own text in a turn, in order, each marked by whether a tool call came after it. A started agent's
+    events, which Claude marks with the call that started it, are that agent's work, not text for the user."""
     texts = []
     for e in turn_events:
-        if agent == "claude" and e.get("type") == "assistant":
-            texts += [b.get("text", "") for b in e["message"].get("content", []) if b.get("type") == "text"]
-        if agent == "codex" and e.get("type") == "item.completed" and e["item"].get("type") == "agent_message":
-            texts.append(e["item"].get("text", ""))
-    return "\n\n".join(t for t in texts if t)
+        if agent == "claude" and e.get("type") == "assistant" and not e.get("parent_tool_use_id"):
+            for block in message_blocks(e):
+                if block.get("type") == "text" and block.get("text"):
+                    texts.append([block["text"], False])
+                elif block.get("type") == "tool_use":
+                    for text in texts:
+                        text[1] = True
+        if agent == "codex" and e.get("type") in {"item.started", "item.completed"}:
+            item = e.get("item", {})
+            if item.get("type") == "agent_message":
+                if e["type"] == "item.completed" and item.get("text"):
+                    texts.append([item["text"], False])
+            elif item.get("type") != "reasoning":
+                for text in texts:
+                    text[1] = True
+    return texts
+
+
+def turn_answer(agent, turn_events):
+    """Everything the agent said in the turn, between tool calls too, so a question followed by a closing line still
+    counts, and so does a skill named in a progress line."""
+    return "\n\n".join(text for text, _ in turn_texts(agent, turn_events))
+
+
+def turn_parts(agent, turn_events):
+    """The final answer, the text after the last tool call, and the text written before it, for the summary."""
+    texts = turn_texts(agent, turn_events)
+    return ("\n\n".join(text for text, before in texts if not before),
+            [text for text, before in texts if before])
 
 
 def cost(agent, model, events):
@@ -1176,15 +1301,25 @@ def check(checks, result, fixture=None, tmp=None):
     for path in checks.get("changed", []):
         # a file the turn created counts as changed: the case asks that it holds the work, not that it existed before
         out[f"changed {path}"] = path in written(result["changes"])
-    if checks.get("states_before_change"):
-        # the agent said what it was going to do before its first change; what the text says is judged by reading it
-        said = len(result.get("before_change", "").strip()) >= MIN_STATEMENT
-        if not result.get("changed_files") or said:
-            out["text before its first change"] = True
-        elif result.get("sequencing_unknown"):
-            out["text before its first change"] = None
-        else:
-            out["text before its first change"] = False
+    stated = checks.get("states_before_change")
+    if stated:
+        # the agent said what it was going to do before its first change; a list of patterns, such as the files it
+        # will touch, must each be in that text, so a bare count passes no pattern; the rest is judged by reading it
+        before = result.get("before_change", "")
+        said = len(before.strip()) >= MIN_STATEMENT
+        for name, found in [("text before its first change", said)] + [
+                (f"text before its first change has /{p}/", said and bool(re.search(p, before, re.IGNORECASE)))
+                for p in (stated if isinstance(stated, list) else [])]:
+            if not result.get("changed_files") or found:
+                out[name] = True
+            elif result.get("sequencing_unknown"):
+                out[name] = None
+            else:
+                out[name] = False
+    if checks.get("only_changed"):
+        allowed = set(checks["only_changed"])
+        out[f"nothing changed but {', '.join(sorted(allowed))}"] = all(
+            c.split(" ", 1)[1] in allowed for c in result["changes"])
     for path, patterns in checks.get("file_contains", {}).items():
         text = (result.get("files") or {}).get(path) or ""
         for pattern in patterns:
@@ -1214,7 +1349,43 @@ def check(checks, result, fixture=None, tmp=None):
         out[f"answer has /{pattern}/"] = bool(re.search(pattern, result["answer"], re.IGNORECASE))
     for pattern in checks.get("answer_not_contains", []):
         out[f"answer lacks /{pattern}/"] = not re.search(pattern, result["answer"], re.IGNORECASE)
+    if checks.get("names_no_skill"):
+        out["answer names no skill or skill file"] = not names_skill(result["answer"], result.get("agent"))
+    for pattern in checks.get("agent_started_or_answer", []):
+        out[f"an agent was started, or the answer has /{pattern}/"] = bool(
+            result.get("agents_started") or re.search(pattern, result["answer"], re.IGNORECASE))
+    for pattern in checks.get("answer_path_has", []):
+        found = named_paths(result["answer"])
+        out[f"a temporary path the answer names holds /{pattern}/"] = any(
+            re.search(pattern, p, re.IGNORECASE) for p in found)
+    for pattern in checks.get("actions_lack", []):
+        out[f"no action matches /{pattern}/"] = not any(
+            re.search(pattern, t, re.IGNORECASE) for t in result.get("targets", []))
     return out
+
+
+TEMP_ROOTS = tuple({Path(p).resolve() for p in (tempfile.gettempdir(), "/tmp", "/var/tmp")})
+NAMED_PATH = re.compile(r"(?<![\w.~$/-])/[\w.@%+-]+(?:/[\w.@%+-]+)*/?")
+
+
+def named_paths(answer, cap=200):
+    """Absolute paths the answer names that exist inside a system temporary folder, the run's own or not, each with
+    the paths under it, a folder ending in a slash; names only, never contents, and at most cap of them."""
+    found = []
+    for text in dict.fromkeys(m.group(0).rstrip(".,:;") for m in NAMED_PATH.finditer(answer)):
+        path = Path(text)
+        try:
+            real = path.resolve()
+            if not any(real.is_relative_to(root) and real != root for root in TEMP_ROOTS) or not path.exists():
+                continue
+            found.append(str(path) + ("/" if path.is_dir() else ""))
+            for below in path.rglob("*") if path.is_dir() else []:
+                if len(found) >= cap:
+                    return found
+                found.append(str(below) + ("/" if below.is_dir() else ""))
+        except OSError:
+            continue
+    return found
 
 
 def summarize(results, spent, unknown=0):
@@ -1267,7 +1438,16 @@ def summarize(results, spent, unknown=0):
                 lines.append(f"- [ ] {item}")
             for r in runs:
                 for i, turn in enumerate(r.get("turns", []), 1):
-                    lines += ["", f"Run {r['run']}, turn {i}:", "", turn["answer"] or "(No answer.)"]
+                    if "final_answer" in turn:
+                        lines += ["", f"Run {r['run']}, turn {i}, final answer:", "",
+                                  turn["final_answer"] or "(No text after the last tool call.)"]
+                        if turn["between_tools"]:
+                            lines += ["", "Text written between tool calls, before the final answer (the user sees "
+                                      "it too; the answer checks read it with the final answer):"]
+                            for text in turn["between_tools"]:
+                                lines += [""] + [f"> {line}".rstrip() for line in text.splitlines()]
+                    else:
+                        lines += ["", f"Run {r['run']}, turn {i}:", "", turn["answer"] or "(No answer.)"]
                     if not turn.get("trace_complete", True):
                         lines += ["", "Trace incomplete; absence of an action is not established."]
                     if turn.get("left_running"):
