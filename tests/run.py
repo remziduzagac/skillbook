@@ -769,8 +769,12 @@ def prepare_home(home, agent, case, use_login, instruction=""):
         # hidden files, such as an editor's swap file, are not part of the skill under test
         shutil.copytree(REPO / ".agents" / "skills" / name, skill_dir / name, ignore=shutil.ignore_patterns(".*"))
     if agent == "claude":
-        # setup adds this read rule for a personal install, since the default mode asks before each reference file
-        settings = {"permissions": {"allow": ["Read(~/.claude/skills/**)"]}}
+        # setup adds this read rule for a personal install, since the default mode asks before each reference file.
+        # A print-mode run has nobody to approve a command, so commands run without asking, inside Claude Code's
+        # sandbox: writes only in the run's folder and its TMPDIR, no network, and no start at all without it.
+        settings = {"permissions": {"allow": ["Read(~/.claude/skills/**)", "Bash"]},
+                    "sandbox": {"enabled": True, "failIfUnavailable": True, "autoAllowBashIfSandboxed": True,
+                                "allowUnsandboxedCommands": False}}
         (agent_dir / "settings.json").write_text(json.dumps(settings, indent=2) + "\n")
     lines = ([POINTER] if case["pointer"] else []) + ([instruction] if instruction else [])
     if lines:

@@ -469,6 +469,16 @@ if sys.argv[3] == "wait":
 """
 
 
+class ClaudeSandbox(unittest.TestCase):
+    def test_claude_runs_commands_only_inside_a_required_sandbox(self):
+        with tempfile.TemporaryDirectory() as home, patch.object(runner.subprocess, "run"):
+            runner.prepare_home(Path(home), "claude", {"pointer": False}, use_login=False)
+            settings = json.loads((Path(home) / ".claude" / "settings.json").read_text())
+        self.assertIn("Bash", settings["permissions"]["allow"])
+        self.assertEqual(settings["sandbox"], {"enabled": True, "failIfUnavailable": True,
+                                               "autoAllowBashIfSandboxed": True, "allowUnsandboxedCommands": False})
+
+
 class LeftRunning(unittest.TestCase):
     """What an agent leaves running is recorded before the runner ends it, and nothing outlives the run."""
 
