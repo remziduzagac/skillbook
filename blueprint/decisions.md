@@ -3417,3 +3417,16 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 - The evidence in D244: a rule that paired a soft action with a strong one got the soft half dropped, in 11 of 11 runs.
 - The person's view is that instructions should be clear, short and direct, and that long sentences should be split.
+
+## D247: Test runs are judged on Sonnet (2026-10-24)
+
+**Decision:**
+
+- Every test run is judged by fresh agents on Sonnet. Another model, such as Opus or Fable, is used only with the person's approval. `tests/judge.md` and the testing design say so. This replaces "a model larger than the ones tested" (D223).
+- The check: 24 round-6 Opus runs judged first on Fable (groups 2 and 10, chosen for the most poor and mixed verdicts) were judged again on Sonnet. 23 of 24 verdicts matched. The one difference: Sonnet rated `project/design-design-review-only` good where Fable rated it mixed, for findings that name their checks without numbers, a stricter reading.
+
+**Why:**
+
+- The person asked for it. Fable judges, about twelve a round, used the person's plan limits fast, and one stopped at a monthly spend limit.
+- A judge is independent because it starts fresh, with only the case, the run record and the judging guide, not because it is larger. Sonnet's verdicts matched on the hard cases, so a larger model buys little here.
+
