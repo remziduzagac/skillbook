@@ -10,7 +10,7 @@ Adds what is missing to something that exists: it answers what its reader would 
    - the user, when only they know;
    - outside sources, for outside facts.
    - Mark as a gap what you did not find after searching the project's files, and an outside source where the fact is from outside the project. An invented answer reads as true, and a gap marked too early sends the user to find what you could have found.
-3. **Check that each addition is true:** it comes with its source, such as a file and line, or the command or page that shows it. A source supports an addition only if it is current and authoritative for it: an outdated wiki page, or a comment the code contradicts, proves nothing. **Add nothing the reader would not ask for,** by `act-rightsize`'s last instruction, so enriching does not become padding.
+3. **Check that each addition is true:** one about the project through `act-verify`, such as install steps tried or read in the current build file; an outside fact by a source current and authoritative for it, under the `understand` skill's rules. Each comes with its source, such as a file and line, or the command or page that shows it. A source supports an addition only if it is current and authoritative for it: an outdated wiki page, or a comment the code contradicts, proves nothing. **Add nothing the reader would not ask for,** by `act-rightsize`'s last instruction, so enriching does not become padding.
 4. **The user approves first,** by `act-rightsize`'s approval rule, which puts the list through `respond-ask`. The list holds each addition with its source and why. Report the result with the gaps.
 5. **Propose code changes, and make them under tests,** by `act-rightsize`'s code rule. For example, a missing error path or test.
 

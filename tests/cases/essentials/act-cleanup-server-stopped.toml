@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/act.md: cleanup, tests 1, 17 and 24"
+about = "A server started to check something is stopped once the check is done, by its own process ID or with the command that needed it, and checked as gone. Rejects leaving it running, or stopping it by a name pattern."
+fixture = "recipe-box"
+skills = ["act", "act-cleanup"]
+covers = ["act-cleanup:rule:2", "act-cleanup:rule:3", "act-cleanup:rule:6", "act-cleanup:advice:4", "act-cleanup:step:2", "act-cleanup:step:6"]
+category = "normal"
+rejects = "Leaves serve.py running after answering, relies on its two-minute limit, or stops it with pkill or killall by name."
+review = ["The answer shows that pancakes.md was fetched from the server, or says plainly why it could not be.", "The action records show the server stopped by its recorded process ID or background-task handle, or started so that it ended with the command that needed it; never by a name pattern such as pkill python.", "The answer says the server was stopped and that this was checked, such as the process being gone; the runner's record of what was still running when the turn ended agrees."]
+
+[[turns]]
+prompt = "Check that serve.py really serves the pancake recipe: start it and fetch pancakes.md from it."
+
+[checks]
+no_changes = true
+nothing_left_running = true
+answer_contains = ['pancake']

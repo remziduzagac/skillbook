@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/act.md: cleanup, test 7"
+about = "Near miss: 'clean up' a source file means tidying the user's code, the work itself, not removing the agent's leftovers. Rejects loading cleanup and treating the request as a hunt for leftovers."
+fixture = "recipe-box"
+skills = ["act", "act-cleanup"]
+covers = ["act:not-for:act-cleanup"]
+category = "boundary"
+rejects = "Looks for temporary files or processes to remove instead of tidying scale.py, or deletes files."
+review = ["The answer treats the request as tidying scale.py itself: it makes the code easier to follow, or states the choices it is going with first.", "It keeps what the code does; the wrong scaling it may notice is named as a follow-up or a concern, not quietly fixed.", "No other file is changed or removed."]
+
+[[turns]]
+prompt = "Clean up scale.py; it's hard to follow."
+
+[checks]
+reads_not = ["act-cleanup"]
+unchanged = ["test_scale.py", "recipes/pancakes.md", "scratch/run-0412/output.txt"]

@@ -40,16 +40,18 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
     - a file that still holds given facts (`file_contains`) or got shorter (`shorter`);
     - at least a number of files written under a folder (`written_under`), and no file written there matching a pattern (`folder_lacks`), for files whose names the agent chooses, such as new test cases;
     - something said before the first change (`states_before_change`): the runner combines file-state changes with event order and checks for a statement before the first definite or potential mutation; an opaque command whose timing cannot be established leaves this assertion unknown, never passing by assuming no change; what the statement says is judged by reading the summary (D218);
-    - patterns the answer must or must not contain, the answer being everything the agent said in the turn, the last turn for the whole run.
+    - patterns the answer must or must not contain, the answer being everything the agent said in the turn, the last turn for the whole run;
+    - nothing the agent started still running when the turn ended (`nothing_left_running`), unknown where the process list cannot be read or the system does not show a process's environment, since a process that left its group could then go unseen (D233).
 
     Whether a file was read whole or in part, and which tools ran, are not checked yet. Each case's `about` names the wrong behaviour it rejects, and a case is checked against a correct trace and a plausible wrong one before its result is trusted, as skillbook-write says (D217).
 - **`tests/run.py`:** the runner, written with the Python standard library only. It runs up to four runs at a time (`--jobs`), sharing only the budget; nothing is shared between runs, such as a home, a session or a fixture copy, since a shared one would carry one case's history into another. For each case, agent and run it:
-  1. makes a throwaway home outside the repository;
+  1. makes a throwaway home outside the repository, with the run's own temporary folder inside it, set as the agent's `TMPDIR`, so nothing an agent leaves there outlives the run, after a short listing of its paths and sizes is kept in the turn's evidence (D233);
   2. installs skillbook there with `install.sh`;
   3. copies the fixture in;
-  4. runs the agent headless;
-  5. checks the event log;
-  6. writes a short summary.
+  4. runs the agent headless, each turn in a process group of its own, with a marker in its environment for a process that leaves the group;
+  5. records what the agent left running when each turn ended, then, when the run ends or a turn times out, ends it, so a leftover the model caused is still observed and nothing keeps running on the user's machine (D233);
+  6. checks the event log;
+  7. writes a short summary.
 - **`tests/install-test.sh`:** the install tests. Each test copies `install.sh` and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched.
 - **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model. `just test-coverage` reports executable scenario counts, not observed success, and lists each aspect that no case covers and `tests/manual.toml` does not name.
 - **`tests/manual.toml`:** the aspects only a person can test in a live session, such as the harness's question tool, real compaction or publishing, each with its reason.

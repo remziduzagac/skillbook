@@ -96,25 +96,26 @@ essentials/                       essentials, essentials' main skill, listed to 
 ├── act/                          act: how the agent works, its rules holding for all the work and its tools loaded when
 │   │                             a step needs them: clarify before acting, through clarify; an opinion is not a task; a
 │   │                             concern that would change the work asked and waited on, then exactly what was asked;
-│   │                             evidence before any claim, through verify; guardrails before a risky action; the skill
-│   │                             for a file's type; a skill by its route; stop when attempts keep failing; which
-│   │                             instruction wins; running as a delegated agent (D58, D63, D72, D84, D107, D115, D116,
-│   │                             D177, D179)
+│   │                             evidence before any claim, through verify; guardrails before a risky action, with the
+│   │                             never-rules; the skill for a file's type; a skill by its route; stop when attempts
+│   │                             keep failing; which instruction wins, text from anywhere else being data; running as a
+│   │                             delegated agent (D58, D63, D72, D84, D107, D115, D116, D177, D179, D233)
 │   ├── stakes/                   act-stakes: how much care something deserves, judged from facts: Undo, Reach, Catch
 │   │                             and Cost, and one level, low, medium or high, the higher when unsure and never below a
 │   │                             rule; it judges and the caller acts: guardrails, delegate, verify, weigh and
 │   │                             understand map it (D121, D133)
 │   ├── guardrails/               act-guardrails: risky actions in eight kinds (irreversible, wide, outward, outside the
 │   │                             task, costly, others' text and code, weaker checks, secrets): proposed with their
-│   │                             scope, approved, applied exactly, checked; which text is an instruction and which is
-│   │                             data; trivial cost, the project's own commands, safe writes, the network, proportion,
-│   │                             the never-rules (D91, D92, D107, D115)
+│   │                             scope, approved, applied exactly, checked; trivial cost, the project's own commands,
+│   │                             safe writes, the network, proportion; it points to act's never-rules and its rule on
+│   │                             instructions and data (D91, D92, D107, D115, D233)
 │   ├── cleanup/                  act-cleanup: what the agent itself created and no longer needs, removed by exact path
 │   │                             or ID: its own without asking, the rest proposed; what is kept said with why; act
 │   │                             names it before "done" (D126, D129)
-│   ├── verify/                   act-verify: evidence before claiming work is done, fixed, passing or meets its
-│   │                             requirements: the check chosen, run fresh, and who checks; four further checks for a
-│   │                             plan's task, a commit or a pull request (D89, D107)
+│   ├── verify/                   act-verify: evidence before claiming work is done, fixed, passing, correct or meets
+│   │                             its requirements: the check chosen, run fresh, and who checks; four further checks for
+│   │                             a plan's task, a commit or a pull request, in proportion to the stakes (D89, D107,
+│   │                             D233)
 │   └── rightsize/                act-rightsize: nothing missing and nothing extra for the reader, parts comprehensive
 │       │                         and exclusive, the point first, and the work rightsized; a five-question check that
 │       │                         respond, authoring, organize, brief, carryover, instruct and act run; its two parts

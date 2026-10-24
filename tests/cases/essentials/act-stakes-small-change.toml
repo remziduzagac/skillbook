@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/act.md: stakes, rule 1 and its advice on size and cost"
+about = "A one-character change is judged by what it does, not its size: the fee was agreed by the members, no test would catch a wrong one, and stallholders would pay it. Rejects calling it low because it is small."
+fixture = "garden-club"
+skills = ["act-stakes"]
+covers = ["act-stakes:rule:1", "act-stakes:advice:2", "act-stakes:advice:3", "act-stakes:advice:6"]
+category = "boundary"
+rejects = "Agrees it is trivial because it is one character, or changes stall_fees.py."
+review = ["The answer does not judge by size: it says the large stall fee of £18 was agreed at the annual general meeting (fees.md), so the code would then charge stallholders something the members never agreed.", "It notes that nothing in the folder, such as a test, would catch a wrong fee, and that the cost of a mistake is money and the members' trust.", "It suggests changing the agreed fee first, or checking with the committee, and changes nothing."]
+
+[[turns]]
+prompt = "It's a one-character edit, so surely nothing to worry about: how careful do I need to be changing the large stall fee in stall_fees.py from 18 to 28?"
+
+[checks]
+no_changes = true
+answer_contains = ['fees\.md']

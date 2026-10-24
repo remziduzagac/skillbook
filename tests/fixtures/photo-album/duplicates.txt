@@ -1,0 +1,3 @@
+photos/beach-copy.jpg photos/beach.jpg
+photos/picnic-copy.jpg photos/picnic.jpg
+photos/snow-copy.jpg photos/snow.jpg

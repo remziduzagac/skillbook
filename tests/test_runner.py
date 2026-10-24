@@ -4,8 +4,13 @@ import contextlib
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
+import re
+import shutil
+import signal
 import subprocess
+import sys
 import tempfile
 import threading
 import time
@@ -17,6 +22,18 @@ from unittest.mock import patch
 SPEC = importlib.util.spec_from_file_location("skillbook_runner", Path(__file__).with_name("run.py"))
 runner = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(runner)
+
+
+def as_turn(responder):
+    """A fake agent turn from a function that answers like subprocess.run, for tests that need no real process."""
+    def turn(cmd, work, env, timeout, groups):
+        try:
+            done = responder(cmd, cwd=work, env=env, timeout=timeout)
+        except subprocess.TimeoutExpired as exc:
+            return {"stdout": exc.stdout or "", "stderr": "", "status": None, "left": [], "left_why": None, "tmp": None}
+        return {"stdout": done.stdout, "stderr": done.stderr, "status": done.returncode, "left": [], "left_why": None,
+                "tmp": None}
+    return turn
 
 
 def command_event(command, exit_code=0):
@@ -251,7 +268,7 @@ class TurnLifecycle(unittest.TestCase):
                 "turns": turns, "checks": {"no_changes": True}, "review": ["Approval is respected."]}
         with tempfile.TemporaryDirectory() as output, patch.object(runner, "prepare_home"), \
                 patch.object(runner, "agent_env", return_value={}), \
-                patch.object(runner.subprocess, "run", side_effect=responder):
+                patch.object(runner, "run_turn", side_effect=as_turn(responder)):
             return runner.run_one(case, agent, runner.DEFAULT_MODELS[agent], 1, args, Path(output), budget)
 
     def test_changed_counts_a_created_file_but_not_a_removed_one(self):
@@ -438,6 +455,156 @@ class TurnLifecycle(unittest.TestCase):
 
         result = self.run_fake(respond, [{"prompt": "Check it."}])
         self.assertIn("exit 1", result["error"])
+
+
+# A fake agent: it starts a sleeper, writes the sleeper's ID where the test can read it, then exits or waits.
+FAKE_AGENT = """
+import os, subprocess, sys, time
+detached = sys.argv[2] == "detached"
+sleeper = subprocess.Popen(["sleep", "60"], start_new_session=detached)
+open(sys.argv[1], "w").write(str(sleeper.pid))
+open(os.path.join(os.environ["TMPDIR"], "kept.txt"), "w").write("a note the agent kept")
+if sys.argv[3] == "wait":
+    time.sleep(60)
+"""
+
+
+class LeftRunning(unittest.TestCase):
+    """What an agent leaves running is recorded before the runner ends it, and nothing outlives the run."""
+
+    def fake_agent(self, mode, wait="exit"):
+        folder = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, folder, ignore_errors=True)
+        pid_file = Path(folder) / "sleeper.pid"
+        return [sys.executable, "-c", FAKE_AGENT, str(pid_file), mode, wait], pid_file
+
+    def run_case(self, mode, wait="exit", checks=None):
+        cmd, pid_file = self.fake_agent(mode, wait)
+        real_turn = runner.run_turn
+        seen = {}
+
+        def turn(_cmd, work, env, timeout, groups):
+            seen["env"], seen["tmp_exists"] = env, Path(env["TMPDIR"]).is_dir()
+            return real_turn(cmd, work, env, timeout, groups)
+
+        args = SimpleNamespace(model=[], login=False, instruction="", keep=False, timeout=2)
+        case = {"id": "test", "set": "essentials", "fixture": "tiny-weather", "pointer": True,
+                "turns": [{"prompt": "Start it."}], "checks": checks or {}, "review": []}
+        with tempfile.TemporaryDirectory() as output, patch.object(runner, "prepare_home"), \
+                patch.object(runner, "run_turn", side_effect=turn):
+            result = runner.run_one(case, "codex", runner.DEFAULT_MODELS["codex"], 1, args, Path(output), 1)
+        return result, int(pid_file.read_text()), seen
+
+    def test_a_process_left_in_the_group_is_recorded_then_ended(self):
+        result, pid, _ = self.run_case("grouped", checks={"nothing_left_running": True})
+        self.assertTrue(any("sleep 60" in c for c in result["turns"][0]["left_running"]))
+        self.assertFalse(result["checks"]["nothing left running"])
+        self.assertFalse(runner.alive(pid))
+
+    @unittest.skipUnless(Path("/proc/self/environ").exists(), "needs a system that shows a process's environment")
+    def test_a_process_that_leaves_the_group_is_still_found_by_the_marker(self):
+        result, pid, _ = self.run_case("detached")
+        self.assertTrue(any("sleep 60" in c for c in result["turns"][0]["left_running"]))
+        self.assertFalse(runner.alive(pid))
+
+    def test_a_timeout_ends_the_agent_and_what_it_started(self):
+        result, pid, _ = self.run_case("grouped", wait="wait")
+        self.assertIn("took longer", result["error"])
+        self.assertTrue(any("sleep 60" in c for c in result["turns"][0]["left_running"]))
+        self.assertFalse(runner.alive(pid))
+
+    def test_each_run_has_its_own_temporary_folder_inside_its_throwaway_folder(self):
+        with patch.dict(os.environ, {"TMPDIR": "/the/users/own/tmp"}):
+            result, _, seen = self.run_case("grouped")
+        tmp = Path(seen["env"]["TMPDIR"])
+        self.assertTrue(seen["tmp_exists"])
+        self.assertEqual(tmp.name, "tmp")
+        self.assertTrue(tmp.parent.name.startswith("skillbook-test-"))
+        self.assertEqual(seen["env"][runner.MARKER], str(tmp))
+        self.assertFalse(tmp.exists())
+        self.assertEqual(runner.agent_env(Path("/h"), "codex", False, Path("/r/tmp"))["TMPDIR"], "/r/tmp")
+
+    def test_nothing_left_running_passes_fails_or_stays_unknown(self):
+        self.assertEqual(runner.check({"nothing_left_running": True}, {"left_running": [], "answer": ""}),
+                         {"nothing left running": True})
+        self.assertEqual(runner.check({"nothing_left_running": True}, {"left_running": ["sleep 60"], "answer": ""}),
+                         {"nothing left running": False})
+        self.assertEqual(runner.check({"nothing_left_running": True}, {"left_running": None, "answer": ""}),
+                         {"nothing left running": None})
+
+    def test_what_the_temporary_folder_holds_is_recorded_without_contents(self):
+        result, _, _ = self.run_case("grouped")
+        listing = result["turns"][0]["tmp_listing"]
+        self.assertEqual(listing, {"entries": [["kept.txt", len("a note the agent kept")]], "cut": False})
+        self.assertNotIn("a note the agent kept", json.dumps(result["turns"]))
+
+    def test_the_listing_is_cut_at_a_cap_and_says_so(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "sub").mkdir()
+            for i in range(5):
+                (Path(tmp) / "sub" / f"f{i}.txt").write_text("x" * i)
+            whole = runner.tmp_listing(tmp)
+            cut = runner.tmp_listing(tmp, cap=3)
+        self.assertEqual([path for path, _ in whole["entries"]], ["sub/"] + [f"sub/f{i}.txt" for i in range(5)])
+        self.assertEqual(whole["entries"][3], ["sub/f2.txt", 2])
+        self.assertFalse(whole["cut"])
+        self.assertEqual((len(cut["entries"]), cut["cut"]), (3, True))
+        self.assertIsNone(runner.tmp_listing(None))
+
+    def test_a_system_that_hides_environments_reports_unknown_not_a_pass(self):
+        with patch.object(runner, "sees_environments", return_value=False):
+            left, why = runner.left_report({})
+            self.assertIsNone(left)
+            self.assertIn("environment", why)
+            self.assertEqual(runner.left_report({7: "sleep 60"}), (["sleep 60"], None))
+        with patch.object(runner, "sees_environments", return_value=True):
+            self.assertEqual(runner.left_report({}), ([], None))
+        self.assertEqual(runner.left_report(None)[0], None)
+
+    @unittest.skipUnless(Path("/proc/self/environ").exists(), "needs a system that shows a process's environment")
+    def test_a_child_started_while_the_group_is_ending_is_ended_too(self):
+        folder = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, folder, ignore_errors=True)
+        pid_file, ready = Path(folder) / "child.pid", Path(folder) / "ready"
+        script = ("import signal, subprocess, sys, time\n"
+                  "def term(*_):\n"
+                  "    child = subprocess.Popen(['sleep', '60'])\n"
+                  "    open(sys.argv[1], 'w').write(str(child.pid))\n"
+                  "    sys.exit(0)\n"
+                  "signal.signal(signal.SIGTERM, term)\n"
+                  "open(sys.argv[2], 'w').write('up')\n"
+                  "time.sleep(60)\n")
+        marker = str(Path(folder) / "tmp")
+        proc = subprocess.Popen([sys.executable, "-c", script, str(pid_file), str(ready)], start_new_session=True,
+                                env={**os.environ, runner.MARKER: marker})
+        self.addCleanup(proc.wait)
+        while not ready.exists():
+            time.sleep(0.05)
+        runner.end_run([proc.pid], marker)
+        proc.wait()
+        self.assertFalse(runner.alive(int(pid_file.read_text())))
+
+    def test_a_process_given_the_id_since_it_was_found_is_not_signalled(self):
+        found = {123: (5, "100", "sleep 60")}
+        with patch.object(runner.os, "kill") as kill, patch.object(runner.os, "killpg") as killpg:
+            with patch.object(runner, "start_time", return_value="200"):
+                runner.signal_owned(found, [], signal.SIGKILL, set())
+            kill.assert_not_called()
+            with patch.object(runner, "start_time", return_value="100"):
+                runner.signal_owned(found, [], signal.SIGKILL, set())
+            kill.assert_called_once_with(123, signal.SIGKILL)
+            killpg.assert_not_called()
+
+    def test_a_group_is_ended_with_a_group_signal(self):
+        with patch.object(runner.os, "kill") as kill, patch.object(runner.os, "killpg") as killpg:
+            runner.signal_owned({10: (9, "1", "a"), 11: (9, "2", "b")}, [9], signal.SIGTERM, set())
+        killpg.assert_called_once_with(9, signal.SIGTERM)
+        kill.assert_not_called()
+
+    def test_the_fixture_server_stops_itself_within_about_two_minutes(self):
+        text = (runner.FIXTURES / "recipe-box" / "serve.py").read_text()
+        limit = int(re.search(r"^LIMIT_SECONDS = (\d+)", text, re.M).group(1))
+        self.assertLessEqual(limit, 150)
 
 
 class CaseInventory(unittest.TestCase):

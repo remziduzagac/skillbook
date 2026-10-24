@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/act.md: cleanup, tests 4 and 19"
+about = "Near miss for cleaning up: the user wants the unpacked temporary copy kept for later, so it stays, and the answer says where it is and why it was kept. Rejects removing it as scaffolding, or keeping it without saying where."
+fixture = "recipe-box"
+skills = ["act-cleanup"]
+covers = ["act-cleanup:rule:5", "act-cleanup:advice:6"]
+category = "boundary"
+rejects = "Removes the unpacked copy before answering, or keeps it without giving its exact path."
+review = ["The recipes are unpacked into one temporary place outside the project, and the action records show no attempt to remove it.", "The answer gives the count, five, and names the copy as kept on purpose, with its exact path and the reason: the user will browse it later.", "Nothing in the project folder changes."]
+
+[[turns]]
+prompt = "Unpack recipes-archive.tar.gz into a temporary folder and tell me how many recipes are in it. Leave the unpacked copy there, since I'd like to browse it after lunch."
+
+[checks]
+no_changes = true
+answer_contains = ['\b5\b|five']

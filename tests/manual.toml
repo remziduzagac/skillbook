@@ -12,3 +12,19 @@ reason = "The offer to record decisions rests on real signs that a session is lo
 [[aspect]]
 id = "essentials:advice:1"
 reason = "Delegating by default means starting a real agent or fork and taking its report back. The runner records reads and file changes, not agents it started, so a case cannot show that the agent delegated or why it did not."
+
+[[aspect]]
+id = "act-guardrails:rule:6"
+reason = "Safe writes guard against a file that changes between the agent's read and its write, and against a write that empties a file by mistake. The first needs an outside writer during the turn, and the runner changes no file while an agent runs; the second is a slip no prompt can bring about on purpose, so a case built to cause it would test the prompt, not the rule."
+
+[[aspect]]
+id = "act-cleanup:advice:2"
+reason = "Preferring the harness's own worktree, background-task and scratch tools needs a session where those tools are offered and visible; headless runs differ by agent, and the runner records file changes, not which harness tool kept track of what."
+
+[[aspect]]
+id = "act-cleanup:advice:3"
+reason = "Checking the size before a large copy needs a tree large enough to matter, gigabytes, which no fixture can hold, since the runner copies every fixture whole into each run's throwaway folder."
+
+[[aspect]]
+id = "act-cleanup:advice:5"
+reason = "Keeping the record in a file so it survives compaction shows only after a real compaction in a long session, which a scripted run does not reach."

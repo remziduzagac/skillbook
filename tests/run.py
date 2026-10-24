@@ -22,10 +22,12 @@ import os
 import re
 import shlex
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
 import threading
+import time
 import tomllib
 from pathlib import Path
 
@@ -42,6 +44,7 @@ DEFAULT_MODELS = {"claude": "haiku", "codex": "gpt-6-luna"}
 CODEX_PRICES = {"gpt-6-luna": (0.10, 0.01, 0.50)}
 ESTIMATE_PER_TURN = 0.02  # a rough upper guess, in US dollars, for one turn on a small model
 AGENT_DIRS = {".claude", ".codex", ".agents", "__pycache__"}  # made by agents or by compiling; not counted as changes
+MARKER = "SKILLBOOK_TEST_RUN"  # set in each agent's environment, so a process that leaves its group is still found
 
 
 def main():
@@ -217,7 +220,8 @@ def load_cases(pattern):
 
 
 CHECK_NAMES = {"reads", "reads_not", "no_changes", "changed", "unchanged", "file_contains", "shorter",
-               "states_before_change", "answer_contains", "answer_not_contains", "written_under", "folder_lacks"}
+               "states_before_change", "answer_contains", "answer_not_contains", "written_under", "folder_lacks",
+               "nothing_left_running"}
 
 
 def validate_case(case):
@@ -386,15 +390,19 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
               "cost": 0.0, "cost_unknown": False, "checks": {}, "reads": [], "changes": [], "answer": "",
               "review": case.get("review", []), "turns": []}
     root = Path(tempfile.mkdtemp(prefix="skillbook-test-"))
+    groups = []  # each turn's process group, so what an agent leaves running is found and ended with the run
+    marker = None
     try:
-        home, work = root / "home", root / "work"
+        home, work, tmp = root / "home", root / "work", root / "tmp"
+        tmp.mkdir()
         shutil.copytree(FIXTURES / case["fixture"], work)
         # A fixture keeps one project instruction file, AGENTS.md; Claude Code reads only CLAUDE.md.
         if agent == "claude" and (work / "AGENTS.md").is_file() and not (work / "CLAUDE.md").exists():
             shutil.copyfile(work / "AGENTS.md", work / "CLAUDE.md")
         prepare_home(home, agent, case, args.login, args.instruction)
         before = snapshot(work)
-        env = agent_env(home, agent, args.login)
+        env = agent_env(home, agent, args.login, tmp)
+        marker = env.get(MARKER)
         events = []
         session = None
         previous = before
@@ -416,18 +424,15 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
                 # a resumed run takes no -s flag, so the same sandbox is set through the config
                 cmd += ["-s", "workspace-write"] if not session else ["-c", 'sandbox_mode="workspace-write"']
                 cmd += ([session] if session else []) + [turn["prompt"]]
-            try:
-                proc = subprocess.run(cmd, cwd=work, env=env, stdin=subprocess.DEVNULL, capture_output=True, text=True,
-                                      timeout=args.timeout)
-                stdout, failed = proc.stdout, proc.returncode != 0
-                if failed:
-                    result["error"] = f"turn {i}: exit {proc.returncode}: {redact(proc.stderr.strip()[-300:])}"
-            except subprocess.TimeoutExpired as exc:
-                stdout = exc.stdout or ""
-                if isinstance(stdout, bytes):
-                    stdout = stdout.decode(errors="replace")
+            ran = run_turn(cmd, work, env, args.timeout, groups)
+            stdout = ran["stdout"]
+            if ran["status"] is None:
                 failed = True
                 result["error"] = f"turn {i}: took longer than {args.timeout} seconds"
+            else:
+                failed = ran["status"] != 0
+                if failed:
+                    result["error"] = f"turn {i}: exit {ran['status']}: {redact(ran['stderr'].strip()[-300:])}"
             turn_events = parse_events(stdout)
             if args.keep:
                 model_name = re.sub(r"[^A-Za-z0-9._-]+", "-", result["model"])
@@ -440,6 +445,9 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
             session = session or session_id(agent, turn_events)
             now = snapshot(work)
             this_turn = observe(agent, [turn_events], home, case["set"], previous, work, turn.get("checks", {}))
+            this_turn["left_running"] = ran["left"]
+            this_turn["left_unknown_because"] = ran["left_why"]
+            this_turn["tmp_listing"] = ran["tmp"]
             current_text = fixture_text(work)
             result["turns"].append({**this_turn, "actions": action_evidence(agent, turn_events),
                                     "file_diffs": fixture_diffs(previous_text, current_text),
@@ -453,8 +461,11 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
                 break
         if events:
             result.update(observe(agent, events, home, case["set"], before, work, case["checks"]))
+            result["left_running"] = result["turns"][-1]["left_running"]
             result["checks"] = {**turn_checks, **check(case["checks"], result, case["fixture"])}
     finally:
+        # end what the agent left running before its folders go, so nothing outlives the run on the user's machine
+        end_run(groups, marker)
         # remove a copied login first and say so if that fails, rather than trusting the folder removal to take it
         for login in (root / "home" / ".claude" / ".credentials.json", root / "home" / ".codex" / "auth.json"):
             try:
@@ -463,6 +474,183 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
                 result["error"] = (result["error"] or "") + f"; could not delete the copied login {login}: {exc}"
         shutil.rmtree(root, ignore_errors=True)
     return result
+
+
+def run_turn(cmd, work, env, timeout, groups):
+    """One agent turn, started in a session and process group of its own, so whatever it starts can be found.
+
+    Returns its output, its error output, its exit status (None when it took longer than the timeout), what was
+    still running from this run's turns once the agent had ended (None when that cannot be told, and why), and what
+    the run's own temporary folder held, all recorded before anything is ended or removed. On a timeout, everything
+    the run has running is ended at once, the agent included."""
+    marker = env.get(MARKER)
+    proc = subprocess.Popen(cmd, cwd=work, env=env, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE, text=True, start_new_session=True)
+    groups.append(proc.pid)
+    try:
+        stdout, stderr = proc.communicate(timeout=timeout)
+        left, why = left_report(running(groups, marker))
+        return {"stdout": stdout, "stderr": stderr, "status": proc.returncode, "left": left, "left_why": why,
+                "tmp": tmp_listing(env.get("TMPDIR"))}
+    except subprocess.TimeoutExpired:
+        # the agent may have ended while something it started still holds its output open; that is not a timeout
+        finished = proc.poll() is not None
+        left, why = left_report(running(groups, marker), proc.pid)
+        listing = tmp_listing(env.get("TMPDIR"))
+        end_run(groups, marker)
+        proc.kill()
+        try:
+            stdout, stderr = proc.communicate(timeout=10)
+        except subprocess.TimeoutExpired:
+            stdout, stderr = "", ""  # something outside the group still holds the output; the trace stays incomplete
+        return {"stdout": stdout or "", "stderr": stderr or "", "status": proc.returncode if finished else None,
+                "left": left, "left_why": why, "tmp": listing}
+
+
+def left_report(found, skip=None):
+    """The commands still running from a run's turns, as the summary shows them, and why that is unknown: None and
+    a reason when the process list could not be read, or when it is empty on a system that does not show a process's
+    environment, since one that left its group could then be running unseen."""
+    if found is None:
+        return None, "the process list could not be read"
+    left = sorted(redact(c)[:200] for p, c in found.items() if p != skip)
+    if not left and not sees_environments():
+        return None, "this system does not show a process's environment, so one that left its group is not seen"
+    return left, None
+
+
+def sees_environments():
+    return Path("/proc/self/environ").exists()
+
+
+def tmp_listing(tmp, cap=50):
+    """What a run's own temporary folder holds, as paths inside it with sizes and never contents, cut at cap entries,
+    so a judge can see what the agent left or kept there before the folder goes with the run."""
+    if not tmp:
+        return None
+    entries = []
+    for folder, dirs, files in os.walk(tmp):
+        dirs.sort()
+        for name in sorted(files) + dirs:
+            if len(entries) >= cap:
+                return {"entries": entries, "cut": True}
+            path = Path(folder) / name
+            try:
+                size = path.lstat().st_size
+            except OSError:
+                continue
+            rel = str(path.relative_to(tmp)) + ("/" if name in dirs else "")
+            entries.append([redact(rel)[:200], size])
+    return {"entries": entries, "cut": False}
+
+
+def running(groups, marker):
+    """The processes a run's agents left running, as {pid: command}: those still in one of its turns' process groups,
+    and, where the system shows a process's environment, those that carry the run's marker after leaving the group.
+    None when the process list cannot be read, so a check reports unknown rather than nothing."""
+    found = owned(groups, marker)
+    return None if found is None else {pid: command for pid, (_, _, command) in found.items()}
+
+
+def owned(groups, marker):
+    """Like running, as {pid: (process group, start time, command)}; the start time tells a process from a later one
+    that was given the same ID."""
+    if not groups:
+        return {}
+    try:
+        listing = subprocess.run(["ps", "-A", "-o", "pid=,pgid=,stat=,args="], capture_output=True, text=True,
+                                 timeout=10)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if listing.returncode != 0:
+        return None
+    found = {}
+    for line in listing.stdout.splitlines():
+        parts = line.split(None, 3)
+        if len(parts) < 3 or not parts[0].isdigit() or not parts[1].isdigit() or parts[2].startswith("Z"):
+            continue  # a zombie has ended already; only its parent's bookkeeping is left
+        pid, group = int(parts[0]), int(parts[1])
+        if pid != os.getpid() and (group in groups or carries(pid, marker)):
+            found[pid] = (group, start_time(pid), parts[3] if len(parts) > 3 else "")
+    return found
+
+
+def carries(pid, marker):
+    """True when a process's environment holds this run's marker; False where the system does not show it."""
+    if not marker:
+        return False
+    try:
+        return f"{MARKER}={marker}".encode() in Path(f"/proc/{pid}/environ").read_bytes().split(b"\0")
+    except OSError:
+        return False
+
+
+def start_time(pid):
+    """When a process started, in the system's own ticks, or None where the system does not show it."""
+    try:
+        return Path(f"/proc/{pid}/stat").read_text().rpartition(")")[2].split()[19]
+    except (OSError, IndexError):
+        return None
+
+
+def end_run(groups, marker):
+    """End everything a run has running; where the process list cannot be read, end its turns' groups whole."""
+    if owned(groups, marker) is None:
+        for group in groups:
+            try:
+                os.killpg(group, signal.SIGKILL)
+            except (ProcessLookupError, PermissionError):
+                pass
+        return
+    end_processes(groups, marker)
+
+
+def end_processes(groups, marker):
+    """End what the run's turns left: each group by a group signal, TERM and then, after a moment, KILL. The list is
+    read again all the while, so a process started during the ending is caught too. A process is never found by its
+    name, only by its group or the run's marker."""
+    for sig in (signal.SIGTERM, signal.SIGKILL):
+        sent = set()
+        deadline = time.monotonic() + 2
+        while True:
+            found = owned(groups, marker)
+            if not found:
+                return
+            signal_owned(found, groups, sig, sent)
+            if time.monotonic() >= deadline:
+                break
+            time.sleep(0.05)
+
+
+def signal_owned(found, groups, sig, sent):
+    """Signal what was found and not signalled yet: a group once for its new members, a process that left its groups
+    alone and only if it still has the start time it was found with, so a process given its ID since is left be."""
+    new = {pid: v for pid, v in found.items() if (pid, v[1]) not in sent}
+    sent.update((pid, v[1]) for pid, v in new.items())
+    for group in {v[0] for v in new.values() if v[0] in groups}:
+        try:
+            os.killpg(group, sig)
+        except (ProcessLookupError, PermissionError):
+            pass
+    for pid, (group, started, _) in new.items():
+        if group not in groups and started is not None and start_time(pid) == started:
+            try:
+                os.kill(pid, sig)
+            except (ProcessLookupError, PermissionError):
+                pass
+
+
+def alive(pid):
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    try:
+        return Path(f"/proc/{pid}/stat").read_text().rpartition(")")[2].split()[0] != "Z"
+    except (OSError, IndexError):
+        return True
 
 
 def observe(agent, events, home, set_name, before, work, checks):
@@ -591,10 +779,13 @@ def prepare_home(home, agent, case, use_login, instruction=""):
         shutil.copy2(own_login(agent), agent_dir / own_login(agent).name)
 
 
-def agent_env(home, agent, use_login):
-    keep = ("PATH", "LANG", "LC_ALL", "TERM", "TMPDIR", "USER", "LOGNAME", "SHELL")
+def agent_env(home, agent, use_login, tmp):
+    keep = ("PATH", "LANG", "LC_ALL", "TERM", "USER", "LOGNAME", "SHELL")
     env = {k: os.environ[k] for k in keep if k in os.environ}
     env["HOME"] = str(home)
+    # the run's own temporary folder, inside its throwaway folder, so nothing the agent leaves there outlives the run
+    env["TMPDIR"] = str(tmp)
+    env[MARKER] = str(tmp)
     if agent == "codex":
         env["CODEX_HOME"] = str(home / ".codex")
     if not use_login:
@@ -986,6 +1177,9 @@ def check(checks, result, fixture=None):
         for pattern in patterns:
             out[f"files written under {folder} lack /{pattern}/"] = not any(
                 re.search(pattern, t, re.IGNORECASE) for t in texts)
+    if checks.get("nothing_left_running"):
+        left = result.get("left_running")
+        out["nothing left running"] = None if left is None else not left
     for pattern in checks.get("answer_contains", []):
         out[f"answer has /{pattern}/"] = bool(re.search(pattern, result["answer"], re.IGNORECASE))
     for pattern in checks.get("answer_not_contains", []):
@@ -1046,6 +1240,20 @@ def summarize(results, spent, unknown=0):
                     lines += ["", f"Run {r['run']}, turn {i}:", "", turn["answer"] or "(No answer.)"]
                     if not turn.get("trace_complete", True):
                         lines += ["", "Trace incomplete; absence of an action is not established."]
+                    if turn.get("left_running"):
+                        lines += ["", "Still running when the turn ended (the runner ended it with the run):", ""]
+                        lines += [f"- `{command}`" for command in turn["left_running"]]
+                    elif "left_running" in turn and turn["left_running"] is None:
+                        why = turn.get("left_unknown_because")
+                        lines += ["", "Whether anything was still running when the turn ended is unknown"
+                                  + (f": {why}." if why else ".")]
+                    listing = turn.get("tmp_listing")
+                    if listing and listing["entries"]:
+                        lines += ["", "In the run's temporary folder when the turn ended (paths and sizes only; "
+                                  "the folder is deleted with the run):", ""]
+                        lines += [f"- `{path}` ({size} bytes)" for path, size in listing["entries"]]
+                        if listing["cut"]:
+                            lines.append(f"- (cut at {len(listing['entries'])} entries)")
                     if turn.get("actions"):
                         lines += ["", "Recorded actions:", "", "```json",
                                   json.dumps(turn["actions"], indent=2), "```"]

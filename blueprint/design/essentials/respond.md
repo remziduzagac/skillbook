@@ -29,7 +29,7 @@ respond/
   4. **Plain words:** the everyday word over the term of art; a term the person has not used is explained the first time (D60, D115).
   5. **Questions follow respond's ask:** any question or proposal in a response is put through ask (D58, D81, D114).
   6. **Outcomes as they happened:** what was done, what was skipped, what failed; a result verified through act's verify is stated plainly, without hedging (D81).
-  7. **No guardrail broken:** checked against act's guardrails' never-rules, their one home, when the response touches a secret, a vulnerability detail, text the agent did not write or an irreversible action; otherwise guardrails is not read, since reading it every time costs context. respond adds one thing: if something irreversible was done without approval, it is reported first, plainly (D82, D107, D115).
+  7. **No guardrail broken:** checked against act's never-rules and its rule on instructions and data, their one home, and against act's guardrails, for what an action needs, when the response touches a secret, a vulnerability detail, text the agent did not write or an irreversible action; otherwise guardrails is not read, since reading it every time costs context (D233). respond adds one thing: if something irreversible was done without approval, it is reported first, plainly (D82, D107, D115).
   8. **Layout, for every response:** laid out by layout, which respond loads for each (D95, D111, D115, D154, D158).
   9. **No flattery:** agreement and praise only when earned, with the reason, and disagreement said plainly, since flattery hides what the person needs to know (D123, D134).
 

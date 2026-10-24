@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/act.md: verify, flow (the four more checks for a plan's task)"
+about = "A plan's task whose own checklist is met but which breaks one of the plan's decisions: every recipe has its cooking time, but in a front matter block the plan rules out. Only the contradiction check finds it. Rejects 'done' because each recipe has a time."
+fixture = "recipe-box"
+skills = ["act-verify"]
+covers = ["act:route:act-verify", "act-verify:rule:5", "act-verify:step:6"]
+category = "edge"
+rejects = "Confirms the task is done because each of the three recipes has a cooking time."
+review = ["The answer checks the task's own requirement and finds it met: pancakes.md, lentil-soup.md and rye-bread.md each give a time.", "It finds that the times sit in a front matter block, which the plan's second decision rules out because the print shop's converter prints it as text, and so says the task is not done as the plan decided, citing PLAN.md.", "It suggests how to bring it in line, such as a plain 'Time:' line, without making the change; nothing is changed."]
+
+[[turns]]
+prompt = "I've finished task 4 in PLAN.md. Check it's done so I can tick it off."
+
+[checks]
+reads = ["act-verify"]
+no_changes = true
+answer_contains = ['front.?matter|YAML|metadata']

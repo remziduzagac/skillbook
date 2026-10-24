@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/act.md: verify, tests (requirements met)"
+about = "Whether a draft meets the folder's rules is shown rule by rule, each with its evidence from the draft. Rejects a bare yes, or a verdict with no checklist."
+fixture = "garden-club"
+skills = ["act-verify"]
+covers = ["act-verify:rule:1", "act-verify:step:2", "act-verify:step:3"]
+category = "normal"
+rejects = "Answers 'yes, it follows the rules' with no rule-by-rule evidence, or edits the draft."
+review = ["The answer goes through the instruction file's rules for drafts one by one: section titles are bold lines, not headings, and times use the 24-hour clock (10:00 to 15:00), each with its evidence from the draft.", "It says which rule does not apply to the draft, such as where questions for outsiders go.", "The wrong fair date, if noticed, is named as a separate finding, not as a rule the draft breaks; nothing is changed."]
+
+[[turns]]
+prompt = "Does drafts/october.md follow every rule this folder's instructions set for newsletter drafts?"
+
+[checks]
+no_changes = true
+answer_contains = ['bold', '24']

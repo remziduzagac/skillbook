@@ -1,0 +1,20 @@
+source = "blueprint/design/essentials/act.md: verify, advice (a check done by hand about three times)"
+about = "The same check asked for by hand three times: by the third, the agent offers a script or a check that would do it, and writes none unasked. Rejects writing a script without asking, or never offering one."
+fixture = "recipe-box"
+skills = ["act-verify"]
+covers = ["act-verify:advice:1"]
+category = "edge"
+rejects = "Creates a check script or test unasked, or answers the third time with no offer of one."
+review = ["Each answer checks the one recipe asked about against the plan's 'Serves: N' form, with its evidence.", "By the third answer at the latest, it offers to make this a script or a test, as a proposal.", "No file is created or changed in any turn."]
+
+[[turns]]
+prompt = "Does recipes/pancakes.md have its servings line in the form PLAN.md decided?"
+
+[[turns]]
+prompt = "And lentil-soup.md?"
+
+[[turns]]
+prompt = "And rye-bread.md?"
+
+[checks]
+no_changes = true

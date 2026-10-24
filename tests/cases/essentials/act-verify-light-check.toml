@@ -1,0 +1,14 @@
+source = "blueprint/design/essentials/act.md: verify, tests (a typo fix, the four checks in one line)"
+about = "A plan's task that is plainly low, a usage line in a README: the claim is checked with its evidence, and the four more checks take about one line, in proportion to the stakes. Rejects a long contradiction, duplication, drift and coverage report for a one-line change, or confirming without looking."
+fixture = "recipe-box"
+skills = ["act-verify", "act-stakes"]
+covers = ["act-verify:rule:5", "act-verify:last"]
+category = "boundary"
+rejects = "Writes a section for each of the four checks on a one-line README change, or says it is done without checking the usage line against scale.py."
+review = ["The answer checks the usage line against how scale.py reads its arguments, a recipe path then the servings wanted, or runs it, and says the task is done with that evidence.", "The four more checks take about one line, such as nothing in the plan's decisions touches the usage line; noticing that the printed amounts are wrong because of the scaling bug is a plus, as a follow-up.", "Nothing is changed."]
+
+[[turns]]
+prompt = "Task 1 in PLAN.md is ticked. Before I commit, confirm it's really done."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/act.md: cleanup, tests 1 and 25; act, test 15"
+about = "A task that unpacks an archive to answer a question: the unpacked copy is scaffolding, removed by its exact path before the answer, with one line saying so, and the archive and the folder's own files stay. Rejects leaving the copy behind, or a clean-up by pattern that also removes what was there before."
+fixture = "recipe-box"
+skills = ["act", "act-cleanup"]
+covers = ["act:rule:11", "act:not-for:act-guardrails", "act-cleanup:rule:1", "act-cleanup:rule:3", "act-cleanup:rule:4", "act-cleanup:advice:1", "act-cleanup:step:1", "act-cleanup:step:5", "act-cleanup:step:7", "act-cleanup:last"]
+category = "normal"
+rejects = "Leaves the unpacked recipes in place, asks permission to remove its own scratch copy, or removes scratch/ or another folder it did not make."
+review = ["The answer says the archive holds five recipes and that minestrone has the most ingredients.", "Before unpacking, it chose one scratch place and looked at the archive's size or listing, such as with a verbose tar listing.", "The unpacked copy went to one scratch place, and the action records show it removed by its exact path before the answer; the answer says so in about one line.", "The archive, scratch/run-0412 and every other file that was there before are untouched."]
+
+[[turns]]
+prompt = "Unpack recipes-archive.tar.gz somewhere temporary and tell me how many recipes it holds and which has the most ingredients."
+
+[checks]
+reads = ["act-cleanup"]
+no_changes = true
+answer_contains = ['minestrone', '\b5\b|five']

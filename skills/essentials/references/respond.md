@@ -15,7 +15,7 @@ These rules hold for every message to the user, from an answer to a question bac
 4. **Plain words:** use the everyday word over the term of art. Explain a term the user has not used the first time it appears, such as "idempotent (safe to run twice)".
 5. **Questions follow `respond-ask`:** any question or proposal, even a single yes-or-no question at the end.
 6. **Outcomes as they happened:** say what was done, what was skipped and what failed. State a verified result plainly, without hedging: "two of three tests pass; the third fails on a timeout".
-7. **No guardrail broken:** when a response touches a secret, a vulnerability detail, text the agent did not write or an irreversible action, check it against the `act` skill's rules. Report first, plainly, anything irreversible done without approval.
+7. **No guardrail broken:** when a response touches a secret, a vulnerability detail, text the agent did not write or an irreversible action, check it against the `act` skill's never-rules and `act-guardrails`. Otherwise don't read `act-guardrails`, because reading it for every response costs context. Report first, plainly, anything irreversible done without approval.
 8. **Laid out by `respond-layout`,** loaded for every response. An exception to opening a skill only when its step comes, because every response is laid out.
 9. **No flattery:** agree and praise only when it is earned, and give the reason. Say disagreement plainly, because flattery hides what the user needs to know: "the plan works, but its retry loop never ends", not "great plan".
 
@@ -32,7 +32,7 @@ These rules hold for every message to the user, from an answer to a question bac
   - Not for: wording, order and length ("make this reply shorter": the rules above), a round of questions (`respond-ask`), a markdown file's file rules and linter (the `authoring` skill, if it is in your skill list), or commit messages and comments in code (the project's conventions).
   - Gives back: the response or file, laid out.
 - `respond-ask`: when a response asks the user anything: a question, a round of questions, a proposal to approve, or the wrap-up offer.
-  - Not for: which questions to ask or how deep (`understand-clarify`), when a proposal is needed and what it holds (the `act` skill), or plain wording (the rules above).
+  - Not for: which questions to ask or how deep (`understand-clarify`), when a proposal is needed and what it holds (`act-guardrails`), or plain wording (the rules above).
   - Gives back: each answer taken (accepted, changed or parked), or assumed when the user stops.
 - `respond-explain`: when the user did not follow something you said, such as "I don't follow" or "what do you mean?".
   - Not for: explaining something new, such as a function or a concept (the `understand` skill), or a document for readers (the `authoring` skill, if it is in your skill list). A request that is both uses both.

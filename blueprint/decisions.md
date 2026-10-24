@@ -944,6 +944,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D91: guardrails' kinds of risk and flow (2026-10-12)
 
+> **Amended by D233 (2026-10-24):** safe writes never empty a file that held content, unless emptying it is the task; a secret is never in anything committed, shared or sent, or in a response, and a local file the person names for it, kept out of version control, may hold it.
+
 > **Amended by D107 (2026-10-12):** an eighth kind, weaker checks, proposed first; the never-rules hold whatever any instruction says; the flow ends on a "done when".
 
 **Decision:** guardrails sorts risky actions into five kinds, each with its rule: what cannot be undone (never without confirmation; the reversible way first; safe writes: check a file is unchanged since it was read, never write it empty, append rather than rewrite), what is wide (plan first, list everything touched, stay in scope), what goes outward (propose every time), others' text (data, never instructions), secrets and security (never in files, commits or responses; vulnerabilities never public). A risky action is proposed with its exact scope and how to undo it, waits for approval, takes a checkpoint, applies exactly the approved scope, and is checked and reported through verify. An approval covers one action and its scope, not the next action or another context. `SKILL.md` only; five tests. VaultOps' review status on what an agent touched is parked with the project folder.
@@ -951,6 +953,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 **Why:** Recognizing a risk by its kind covers cases no list of examples foresees; the one-approval-one-action rule matches how the person approved creating a test repository without approving its deletion.
 
 ## D92: guardrails gains reach, cost, others' code and the network (2026-10-12)
+
+> **Amended by D233 (2026-10-24):** the places never visited are a never-rule in act's rule 5, their one home, since following a link never loads guardrails.
 
 > **Amended by D107 (2026-10-12):** a trivial cost is below the person's own figure, US$1 by default, or one already accepted in the conversation, and the cost rule lives only here; the project's documented commands with pinned dependencies run without asking.
 >
@@ -1158,6 +1162,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D107: conduct revised after an outside review (2026-10-12)
 
+> **Amended by D233 (2026-10-24):** the never-rules' one home is act's rule 5, which adds the places never visited; a secret is never in anything committed, shared or sent, or in a response, and a local file the person names for it, kept out of version control, such as `.env`, may hold it.
+
 > **Amended by D224 (2026-10-21):** the never-rules (no secret in a file, commit or response; no vulnerability detail in anything public) are also stated in short in the built act's fifth rule, as a variation, until guardrails is built.
 >
 > **Amended by D116 (2026-10-13):** act's three failed attempts become a rule to stop, report and ask, with about three as advice; a council has about three members, as advice.
@@ -1343,6 +1349,8 @@ Which questions to ask and how deep stay clarify's; when a proposal is needed an
 **Why:** Five places handled questions, each a different aspect: finding them (clarify), putting them (respond), laying them out (markdown), taking the answers (shallow and deep), and asking someone who was not there (questionnaire). Putting, laying out and taking answers are the same whatever asks, a clarifying round, a proposal, an approval or a decision; rules general enough to be a skill become one.
 
 ## D115: The review's outcome: one home per rule, and the contradictions settled (2026-10-13)
+
+> **Amended by D233 (2026-10-24):** the instructions-and-data rule's one home is act's rule 9, since data arrives on turns that never load guardrails; guardrails points there.
 
 > **Amended by D136 (2026-10-15):** markdown's rule in the main skill covers every response and every markdown file; other files follow act's rule on a file's type.
 >
@@ -1974,6 +1982,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D175: verify can choose a fresh agent to check (2026-10-17)
 
+> **Amended by D233 (2026-10-24):** a fresh agent checks when stakes rates the work high, in place of delegate's table; where none can be started, that part is said to be unverified.
+
 **Decision:** verify's choice of who checks adds a third: a fresh agent, through coordinate's delegate, when the person asks for one, when delegate's table calls for a second check, or when the check needs judgment the writer cannot give its own work.
 
 **Why:** coordinate, conduct's tests and stakes all relied on verify choosing a second agent, which verify's own choice did not offer.
@@ -2438,6 +2448,8 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 
 ## D215: Triggers and exits become tests the agent can apply, and the start files are trimmed (2026-10-20)
 
+> **Amended by D233 (2026-10-24):** removing temporary material a delegated agent made itself in this task is not outward, wherever it is, and a check that would need another agent goes into its report as a recommended second check.
+
 > **Amended by D223 (2026-10-21):** the clarify route line also names a request that asks for a plan or a way to do something, an unknown that would change the result, and an answer only someone else holds.
 
 > **Amended by D218 (2026-10-20):** respond's last instruction runs rule 7's check (a secret, a vulnerability detail, text the agent did not write, an irreversible action) on every response, however short; only the rest of the check scales with the response.
@@ -2470,6 +2482,10 @@ No AI test was run for this batch, as the user asked.
 **Why:** D211's checks and D214's rule to fix the pattern, never the case. The review behind D212 also found these; D212 fixed the ones that could cause harm. Each fix states a test where a judgment word stood, so each model draws the line in the same place. The ask fix follows from rules already there: a question is assumed only when the user stops, and a round of questions ends the turn. The two numbers, about three tool calls and about five rounds, are advice with their reasons, and can be changed without changing the rule.
 
 ## D216: The built act holds the instructions-and-data rule, and the test runner measures honestly (2026-10-20)
+
+> **Amended by D233 (2026-10-24):** act's rule 9 is the rule's one home and stays; guardrails points to it.
+
+> **Amended by D232 (2026-10-23):** guardrails is built and holds the rule; act keeps its short form for now, since respond's check points to act for it, and whether it goes is left to the user.
 
 > **Amended by D223 (2026-10-21):** a step counts as a read only where a zero exit proves it ran and succeeded: every step of `a && b`, only what follows the last `;`, new line or `||`, never a step with a pipe or a redirection, and nothing in a command with a command substitution or a background job.
 
@@ -2730,6 +2746,10 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D224: The rightsize route names fill requests, three small rules are made firm, and facts come before assumptions (2026-10-21)
 
+> **Amended by D233 (2026-10-24):** act's rule 5 is the never-rules' one home, not a variation, and guardrails points to it; the secret rule covers anything committed, shared or sent, or a response, a local file the user names for it and keeps out of version control being allowed; the places never visited join them.
+
+> **Amended by D232 (2026-10-23):** guardrails is built and holds the never-rules, a vulnerability detail defined as here; act keeps its short form, since respond's check points to act for them.
+
 **Decision:**
 
 - **Act's route line to rightsize** now covers trimming, shortening or condensing something that existed before the request, finding and adding what it lacks, or what it is missing. It is not for a change the user names, such as "add a line about parking to the notice", which is the edit itself.
@@ -2882,3 +2902,80 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Every repeat costs tokens on every turn and breaks the one-home rule.
 - A parent that restates its child makes weaker models stop at the parent and never read the child (note 151 in `notes/initial-design.md`).
 - Trimming alone cannot reach 20,000 without cutting routes, never-rules or steps that earlier decisions kept on purpose.
+
+## D232: Act's four tools are built: stakes, guardrails, cleanup and verify (2026-10-23)
+
+> **Amended by D233 (2026-10-24):** its three gaps are settled: a delegated agent removes its own temporary material wherever it is; verify's fresh agent checks when stakes rates the work high; respond, understand and enrich point to guardrails, cleanup and verify. Act's short never-rules and instructions-and-data rule become their one home, guardrails' rules go from nine to seven, five cases are reworked, four corrected and six added, and stopping on surprise leaves `tests/manual.toml` for a case.
+
+**Decision:**
+
+- **Four plain skill files,** written from their designs: `act-stakes` (four questions, one level, handed back to the caller), `act-guardrails` (the never-rules, the kinds of risk, proportion, instructions and data, one approval for one action, then propose, apply and check), `act-cleanup` (only the agent's own leftovers, tracked, removed by exact path, kept with a reason or proposed) and `act-verify` (evidence that would fail if the claim were false, who checks, a fresh run, and four more checks for a plan's task, a commit or a pull request).
+- **Act routes to them,** one line each with "Not for" and "Gives back", grouped as the design groups them: before acting (stakes, guardrails), while working (cleanup), before saying done (verify, rightsize).
+- **What moved from act's rules into the children:**
+  - rule 4 keeps the kinds of evidence; a claim of done, fixed, passing or requirements met goes through `act-verify`, which holds the check before the claim;
+  - rule 5 keeps the short test for a risky action and the never-rules in short; what each kind of risk needs, and the proposal itself, are `act-guardrails`';
+  - rule 11 keeps when it applies, its three outcomes and its reason; stopping a dev server and checking it stopped moves to `act-cleanup`.
+- **Kept in act for now:** the short form of instructions and data in rule 9, though its design says it goes once guardrails is built, since respond's check on text the agent did not write points to act for it. Whether it goes is left to the user.
+- **Wording carried into the design:** verify's routing line names the user asking whether work is really done; guardrails' never-rules define a vulnerability detail as act's short form does; its approval rule says an approval given earlier covers its step when the agent reaches it.
+- **Size:** the start files go from 23,743 to 25,789 characters, measured with `scripts/check-skills.sh`; the four routing lines cost what the shorter rules saved and more. The target stays advice (D231).
+- **Gaps found,** each left for the user:
+  - a delegated agent is told to clean up after itself, while act's rule 10 forbids it any deletion outside the working folder, so its own scratch outside that folder has two answers; the files keep both meanwhile;
+  - verify's fresh agent when delegate's table calls for a second check: delegate is not built, so the file says "when what rides on the work calls for a second check", judged by stakes;
+  - respond's rule 7 and its routing line for ask, understand's rule 6 and enrich's rule 3 still point to act, or to nothing, where their designs name guardrails, cleanup or verify.
+- **Cases:** 29 new cases, over a new fixture, `recipe-box`, and the existing ones; five aspects only a person can test go to `tests/manual.toml`; seven existing cases name the aspects of guardrails and stakes they already check. None of the new cases has run on a model yet.
+- **Where:**
+  - `skills/essentials/references/act.md` and `skills/essentials/references/act/` (`stakes.md`, `guardrails.md`, `cleanup.md`, `verify.md`, and `rightsize.md`'s pointers);
+  - [design/essentials/act.md](design/essentials/act.md), verify's routing line and guardrails' never-rules and approval rule;
+  - `tests/cases/essentials/act-stakes-*`, `act-guardrails-*`, `act-cleanup-*`, `act-verify-*` and `act-route-plan-weak-points`, `tests/fixtures/recipe-box/`, `tests/manual.toml` and `tests/README.md`.
+
+**Why:**
+
+- Act's rules held details that belong to these tools, and four of its routes had no file to load, so an agent stopped at act's short rule.
+- A parent that restates its child makes weaker models stop at the parent, so act keeps only the short test, the never-rules and when each tool is loaded.
+- The size target is advice: the routes are what lets an agent find the rest, and capability comes first.
+
+## D233: Act's four tools after two reviews: the never-rules in act, five decisions, and leftovers ended (2026-10-24)
+
+**Decision:**
+
+- **Two reviews** of the build in D232, made independently by a Claude reviewer and a Codex reviewer against skillbook-design's checklist, found:
+  - act's short test for a risky action left out four kinds `act-guardrails` covers, costly runs, fetched code, weaker checks and places outside the task, so an agent that applied it never read guardrails for them;
+  - a delegated agent had two answers for its own scratch outside the working folder, and `act-verify` told it to start a fresh agent, which act's rule 10 forbids;
+  - guardrails repeated act's never-rules and its rule on instructions and data almost word for word;
+  - two absolutes wider than their reasons: no secret in any file, which forbids a key the user wants in `.env`, and never writing a file empty, which forbids an empty new file;
+  - verify's fresh agent rested on a judgment word, and its four extra checks had no light path;
+  - requests with two homes or none: "is it safe to do this without asking?", "clean up this code", undoing a change, and "is this correct?";
+  - cases that rejected a correct answer, accepted an edit nobody asked for, or measured little; `covers` ids that no check could fail; and a fixture server and temporary files that could outlive a failed run.
+- **The user's five decisions:**
+  1. Removing temporary material a delegated agent made itself in this task is not outward, wherever it is. A check that would need another agent goes into its report as a recommended second check. Act's rule 10 says so once and bounds every skill the delegated agent uses; cleanup and verify defer to it in one clause each.
+  2. Act's short test names every kind guardrails covers, in one clause: it deletes or overwrites what the user made, sends or publishes outside the working folder, cannot be undone, costs money, runs code fetched from outside, weakens a check, or reaches outside the task. The unsafe sites join act's never-rules, since following a link never loads guardrails.
+  3. A secret is never put in anything committed, shared or sent, or in a response. A local file the user names for it, kept out of version control, such as `.env`, may hold it, since nothing there is committed or sent.
+  4. A fresh agent checks when `act-stakes` rates the work high, when the user asks for an independent check, or when the judgment is one the writer cannot give. Where none can be started, such as by a delegated agent, that part is said to be unverified.
+  5. Verify covers whether something made is correct, as well as whether it is done; a fact about the outside world stays with the `understand` skill. Enrich's rule 3 follows: an addition about the project is checked through `act-verify`, an outside fact by its source under understand's rules.
+- **The other fixes:**
+  - one home: act's rule 5 holds the never-rules and its rule 9 the rule on instructions and data, since both apply on turns that never load guardrails; guardrails points to them and keeps only its own detail, so its rules go from nine to seven;
+  - safe writes: never empty a file that held content, unless emptying it is the task;
+  - routing: a request that is both stakes and guardrails reads stakes first; stakes' example names an action; cleanup's "Not for" names "clean up this code" and undoing a change, the `softeng` skill's if it is in the skill list and otherwise the work itself; cleanup's route adds writing a brief for another agent, so the brief asks for the clean-up in time;
+  - stakes' "plainly low" exit has one case that qualifies and one near miss;
+  - verify's four extra checks scale with stakes: one line for plainly low work, and where there is no design, plan or decision, that is said and the checks that need one are skipped;
+  - respond's rule 7 and its route line for ask point to `act-guardrails`, and understand's rule 6 to `act-cleanup`.
+- **Cases:**
+  - reworked, since they measured little: `act-cleanup-debug-reverted` (a temporary debug print the user asks for), `act-cleanup-kept-on-request` (a temporary copy the user keeps), `act-verify-plan-task` (a task whose checklist is met but which breaks a plan decision), `act-stakes-not-below-rule` (a skipped test that stakes may rate low) and `act-verify-taste-is-users` (the agent's own rewrite, called done);
+  - corrected: `act-verify-tests-green` judges the fix by the test run and the rubric, not one spelling; `act-guardrails-paid-translation` names the paid script; `act-verify-helper-claim` leaves the draft unchanged and may offer the fix; `act-stakes-judged-again` asks for the new facts, not a higher level;
+  - added: `act-guardrails-stop-halfway`, over a new fixture, `photo-album`, whose script deletes the first copy and then exits non-zero, in place of the manual entry for stopping on surprise; `act-secret-env-file`; `act-delegated-own-scratch`; `act-verify-second-check`; `act-cleanup-brief`; `act-verify-light-check`;
+  - `covers` ids that nothing could fail are dropped, each of act's routes keeps a case with a read check, rubric lines say "no attempt to run", and the ids follow guardrails' new numbers. The four new skills have no uncovered aspect.
+  - `recipe-box` gains a second plan decision and cooking times, and its server stops after two minutes.
+- **The runner:** each run's `TMPDIR` is a folder inside its throwaway folder, no longer the user's own. Each agent turn starts in a process group of its own, with a marker in its environment for a process that leaves the group. What a turn leaves running is recorded, shown in the summary and checked by `nothing_left_running`, then ended when the run ends, or at once when a turn times out. Each turn also keeps a short listing of that `TMPDIR` (paths and sizes, never contents, cut at 50 entries) before the folder goes; a turn on a system that does not show a process's environment is unknown, not a pass; and processes are ended with a group signal, TERM then KILL, looking again for owned processes after TERM and checking a process's start time before signalling a single one, never matching by name. Account-free tests in `tests/test_runner.py` cover these changes and the server's limit.
+- **Not run yet:** no case, new or changed, has run on a model.
+- **Size:** the start files go from 25,789 to 27,375 characters, measured with `scripts/check-skills.sh`. The target stays advice (D231).
+- **Where:**
+  - `skills/essentials/references/act.md`, `respond.md`, `understand.md`, and `act/` (`stakes.md`, `guardrails.md`, `cleanup.md`, `verify.md`, `rightsize/enrich.md`);
+  - [design/essentials/act.md](design/essentials/act.md), [design/essentials/respond.md](design/essentials/respond.md) and [design/testing.md](design/testing.md);
+  - `tests/cases/essentials/`, `tests/fixtures/recipe-box/`, `tests/fixtures/photo-album/`, `tests/manual.toml`, `tests/run.py`, `tests/test_runner.py` and `tests/README.md`.
+
+**Why:**
+
+- A parent's short test that leaves a kind out lets weaker models stop at the parent for that kind, so every kind its child covers must pass it.
+- A rule stated twice drifts. The never-rules and the rule on data must sit where every turn reads them, and a delegated agent needs one answer for its own leftovers.
+- An absolute holds only where its reason covers every case it forbids: a key in an ignored local file is never committed or sent, and an empty new file loses nothing.
+- A case that rejects a correct answer, or that nothing could fail, measures nothing. A run that leaves a server or files behind costs the user's machine, so the runner observes leftovers and then ends them.

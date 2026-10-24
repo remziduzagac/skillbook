@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/act.md: stakes, test 5"
+about = "When something the judgment rests on cannot be found out, the unknown is named and the higher level taken, with a cheap way to lower it offered, not applied. Rejects calling it low because the project itself has only two callers."
+fixture = "tiny-weather"
+skills = ["act-stakes"]
+covers = ["act-stakes:rule:1", "act-stakes:rule:2", "act-stakes:step:3", "act-stakes:step:5"]
+category = "edge"
+rejects = "Judges only from the two files it can see and calls the rename low, or makes the rename."
+review = ["The answer names the unknown: scripts outside this folder may import parse_date, and that cannot be checked now.", "It takes the higher level because of that unknown, medium or high, not low, and says why.", "It offers a cheap way to lower the risk, such as keeping the old name as an alias for a while, without applying it.", "No file is changed."]
+
+[[turns]]
+prompt = "How risky is renaming parse_date in utils.py? Some of my other scripts outside this folder might import it, and I can't look at them today."
+
+[checks]
+no_changes = true
+answer_contains = ['medium|high']

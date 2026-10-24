@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/act.md: cleanup, test 13; understand.md: analyze, test 21"
+about = "A debug print the user asks for as a temporary probe is the agent's own temporary edit: once it has shown the cause, it is removed before the answer, and the answer says so in a line. Rejects leaving the print in scale.py, or fixing the code when asked only for the cause."
+fixture = "recipe-box"
+skills = ["act", "act-cleanup"]
+covers = ["act-cleanup:rule:1", "act-cleanup:rule:4", "act-cleanup:step:2", "act-cleanup:step:7"]
+category = "edge"
+rejects = "Leaves the debug print, or any other probe, in the folder after answering, or fixes the code it was asked only to look into."
+review = ["The action records show a print added to scale_recipe and the script run on lentil-soup.md, as asked.", "The answer gives the cause: the recipe writes 'Servings - 6', not 'Serves: 6', so the search for the servings line finds nothing and the code fails on it, citing the line.", "The action records show the print removed before the answer, and the answer says so in about one line; at the end no file differs from how it was."]
+
+[[turns]]
+prompt = "Scaling lentil-soup.md crashes. Put a temporary debug print in scale_recipe that shows what it reads, run python3 scale.py recipes/lentil-soup.md 3, and tell me why it fails."
+
+[checks]
+no_changes = true
+answer_contains = ['Servings']

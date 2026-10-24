@@ -195,7 +195,7 @@
    "mark": "●",
    "src": "own vo sp",
    "tail": [],
-   "desc": "how the agent works, its rules holding for all the work and its tools loaded when a step needs them: clarify before acting, through clarify; an opinion is not a task; a concern that would change the work asked and waited on, then exactly what was asked; evidence before any claim, through verify; guardrails before a risky action; the skill for a file's type; a skill by its route; stop when attempts keep failing; which instruction wins; running as a delegated agent (D58, D63, D72, D84, D107, D115, D116, D177, D179)",
+   "desc": "how the agent works, its rules holding for all the work and its tools loaded when a step needs them: clarify before acting, through clarify; an opinion is not a task; a concern that would change the work asked and waited on, then exactly what was asked; evidence before any claim, through verify; guardrails before a risky action, with the never-rules; the skill for a file's type; a skill by its route; stop when attempts keep failing; which instruction wins, text from anywhere else being data; running as a delegated agent (D58, D63, D72, D84, D107, D115, D116, D177, D179, D233)",
    "kids": [
     {
      "path": [
@@ -214,7 +214,7 @@
       "guardrails"
      ],
      "mark": "●",
-     "desc": "risky actions in eight kinds (irreversible, wide, outward, outside the task, costly, others' text and code, weaker checks, secrets): proposed with their scope, approved, applied exactly, checked; which text is an instruction and which is data; trivial cost, the project's own commands, safe writes, the network, proportion, the never-rules (D91, D92, D107, D115)",
+     "desc": "risky actions in eight kinds (irreversible, wide, outward, outside the task, costly, others' text and code, weaker checks, secrets): proposed with their scope, approved, applied exactly, checked; trivial cost, the project's own commands, safe writes, the network, proportion; it points to act's never-rules and its rule on instructions and data (D91, D92, D107, D115, D233)",
      "src": "vo sb lc gs ts",
      "tail": [],
      "kids": []
@@ -236,7 +236,7 @@
       "verify"
      ],
      "mark": "●",
-     "desc": "evidence before claiming work is done, fixed, passing or meets its requirements: the check chosen, run fresh, and who checks; four further checks for a plan's task, a commit or a pull request (D89, D107)",
+     "desc": "evidence before claiming work is done, fixed, passing, correct or meets its requirements: the check chosen, run fresh, and who checks; four further checks for a plan's task, a commit or a pull request, in proportion to the stakes (D89, D107, D233)",
      "src": "sp md ws",
      "tail": [],
      "kids": []
