@@ -802,6 +802,7 @@ class TextBetweenToolCalls(unittest.TestCase):
 
 # Text seen in runs that names a skill, a skill's file or a route to one; the default check must catch each.
 SKILL_LEAKS = [
+    "Need layout and rightsize for the response.",
     "Now the verify skill, layout, and the plan.",
     "I'll load the essentials skill, then check the README.",
     "I’ve loaded essentials. I’m checking its request.",
@@ -824,6 +825,7 @@ SKILL_LEAKS = [
 
 # Plausible correct answers, from runs and from ordinary prose; the default check must pass each.
 SKILL_FINE = [
+    "For the beans we need canes, twine and stakes.",
     "Last admission is 16:30 (4:30 pm), according to the brief.",
     "The server exited, so I couldn’t fetch `pancakes.md` or verify HTTP serving. No process was left running.",
     "I'll verify the date against fair.md before changing anything.",

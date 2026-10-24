@@ -1,15 +1,16 @@
 source = "blueprint/design/essentials/understand.md: clarify, test 1"
-about = "A request with open choices, worded like the example the skills used before D218, now held out. Passes with a question that has a recommended answer and no change, or with the choices stated before the first change; the statement is judged by reading the summary. Rejects a change made with no statement before it."
+about = "A request with open choices, worded like the example the skills used before D218, now held out. Passes with a question that has a recommended answer, or with a going-with message that lists the choices; either way the turn ends with nothing changed. Rejects a change in this turn."
 fixture = "tiny-weather"
 skills = ["understand", "understand-clarify"]
 covers = ["act:rule:1", "essentials:step:1", "understand:route:understand-clarify", "understand:rule:5", "understand:rule:7", "understand-clarify:rule:1", "understand-clarify:rule:2", "understand-clarify:last"]
 category = "normal"
-rejects = "Changes the API without stating the unresolved choices."
-review = ["The response asks only user-owned choices or states safe defaults before work; a generic preamble is insufficient."]
+rejects = "Changes the API in this turn, before the user has seen the choices."
+review = ["The response asks only user-owned choices or shows its defaults in a going-with message, and ends the turn with nothing changed; a generic preamble is insufficient."]
 
 [[turns]]
 prompt = "Add caching to the API."
 
 [checks]
+no_changes = true
 reads = ["essentials", "understand", "understand-clarify", "act", "respond"]
 states_before_change = true

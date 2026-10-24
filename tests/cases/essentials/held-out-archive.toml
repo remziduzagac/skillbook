@@ -1,5 +1,5 @@
 source = "blueprint/design/essentials/understand.md: clarify, rule 1"
-about = "Held out: a request with open choices, worded unlike any example in the skills, whose result is an action. Passes with a question that has a recommended answer and no change, or with the choices stated before the first change; the statement is judged by reading the summary. Rejects a change made with no statement before it."
+about = "Held out: a request with open choices, worded unlike any example in the skills, whose result is an action. Passes with a question that has a recommended answer, or with a going-with message that lists the choices; either way the turn ends with nothing changed. Rejects a change in this turn."
 fixture = "tiny-weather"
 skills = ["understand-clarify", "act"]
 covers = ["act:rule:1", "act:rule:5", "understand:route:understand-clarify", "understand:rule:5", "understand-clarify:rule:1", "understand-clarify:rule:2", "understand-clarify:last"]
@@ -11,4 +11,5 @@ review = ["The agent distinguishes reversible archiving from deletion and obtain
 prompt = "Archive the old data."
 
 [checks]
+no_changes = true
 states_before_change = true

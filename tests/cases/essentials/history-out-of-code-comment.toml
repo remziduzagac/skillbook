@@ -20,4 +20,4 @@ prompt = "Right. Give that request a 10 second limit, and leave a comment that t
 changed = ["api.py"]
 
 [turns.checks.file_contains]
-"api.py" = ['timeout\s*=\s*10', '#', '\A(?![\s\S]*\b(as (you |we )?(said|asked|discussed|mentioned|agreed|requested)|the user|you (said|told me|asked|mentioned|suggested|wanted)|we (discussed|talked)|our (chat|conversation|discussion)|changed (our|your|my) minds?|after (some )?discussion|in this conversation|earlier (today|on|in)))']
+"api.py" = ['timeout\s*=\s*10|TIMEOUT\w*\s*=\s*10', '#', '\A(?![\s\S]*\b(as (you |we )?(said|asked|discussed|mentioned|agreed|requested)|the user|you (said|told me|asked|mentioned|suggested|wanted)|we (discussed|talked)|our (chat|conversation|discussion)|changed (our|your|my) minds?|after (some )?discussion|in this conversation|earlier (today|on|in)))']

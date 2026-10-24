@@ -15,7 +15,7 @@ Ask first the questions that others depend on. There is no fixed number of quest
 ## Instructions
 
 1. **Look across the whole level,** first from what can be read. Ask about what you could not settle from what is known and is the user's by clarify's first rule, such as how long a newsletter runs. A choice only a likely value could settle, and yours to make, such as how many rows a new list view shows per page: take the likely value and state it in "going with", never quietly.
-2. **Leave out** what clarify's rules say not to ask. If no choice is left for the user, ask nothing: say "going with" and go on.
+2. **Leave out** what clarify's rules say not to ask. If no choice is left for the user, ask nothing: show "going with" as the `understand` skill's rule on who decides says.
 3. **Ask in one round,** each question with its recommended answer and a short reason, as `respond-ask` says.
 4. **End the turn** with the round, as `respond-ask` says, and take the answers when the user replies.
 5. **Hand over:** a part may have answers that depend on each other and would change the work, or you may be unsure whether they do. That ends shallow for that part. Offer deep on it, as the last instruction says, and ask no deep question before a yes. Deep can take many rounds, and the user may not see why more questions come, or may prefer to go on with your guesses.

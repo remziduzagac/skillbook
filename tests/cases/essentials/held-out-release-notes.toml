@@ -1,5 +1,5 @@
 source = "blueprint/design/essentials/understand.md: clarify, rule 1"
-about = "Held out: a request with open choices, worded unlike any example in the skills, whose result is a document. Passes with a question that has a recommended answer and no change, or with the choices stated before the first change; the statement is judged by reading the summary. Rejects a change made with no statement before it."
+about = "Held out: a request with open choices, worded unlike any example in the skills, whose result is a document. Passes with a question that has a recommended answer, or with a going-with message that lists the choices; either way the turn ends with nothing changed. Rejects a change in this turn."
 fixture = "tiny-weather"
 skills = ["understand-clarify", "respond"]
 covers = ["act:rule:1", "act:rule:4", "understand:rule:4", "understand:rule:7", "understand:route:understand-clarify", "understand-clarify:rule:1", "understand-clarify:last"]
@@ -11,5 +11,6 @@ review = ["The agent searches for release evidence. If none is available, it say
 prompt = "Write release notes for this version."
 
 [checks]
+no_changes = true
 reads = ["understand-clarify"]
 states_before_change = true

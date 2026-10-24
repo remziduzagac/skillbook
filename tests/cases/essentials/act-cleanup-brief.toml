@@ -15,4 +15,4 @@ reads = ["act-cleanup"]
 changed = ["brief.md"]
 
 [checks.file_contains]
-"brief.md" = ['clean|remov|delet', 'kept|keep', '\bstop|\bkill|shut\S* down|terminat|\bend (it|them|any|every|each|all|the)\b|(made|make|created|create)[^.\n]{0,40}\bstart']
+"brief.md" = ['clean|remov|delet', 'kept|keep', '\bstop (it|them|any|every|each|all|the|what|whatever|processes|servers?)\b|\bkill|shut\S* down|terminat|\bend (it|them|any|every|each|all|the)\b|(made|make|created|create)[^.\n]{0,40}\bstart']

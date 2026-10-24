@@ -19,6 +19,12 @@ How to write a skill's files in this repository, from its design. This is a proj
   - the same word for the same thing every time, as skillbook's glossary uses it;
   - "the user" for the human the agent works with, the word the harnesses use; "the project's users" or "end users" for the people who use what a project builds;
   - a skill whose bare name could be read as an ordinary word, such as `act` or `respond`, written as "the `act` skill"; a dashed name such as `respond-ask` needs nothing.
+- **Sharp instructions.** A model follows a short rule with one clear action. It drops the soft part of a long or mixed rule. So:
+  - One action per instruction. "Show the plan. Then end the turn." works. "Say the plan, then go ahead" does not: in 11 of 11 runs, Opus wrote the plan only in its private thinking and went ahead.
+  - An action the agent can be seen doing: end the turn, ask, propose, send a message. Not "state", "note" or "keep in mind".
+  - The must first, as one short sentence in bold. Then its reason, in a sentence of its own. Then each exception, on a line of its own.
+  - One idea per sentence. Split a sentence that holds a "but", an "unless" or a list of cases.
+  - When a rule keeps failing, check its shape before adding words. A clause added to a mixed rule did not help.
 - **Concrete wording.** An agent follows what it can act on. So:
   - for a verb that depends on the user, such as wait, ask, stop or confirm, write the action: "end the turn with the questions; never answer them yourself", not "wait";
   - name a thing as the agent's tools see it: a registered skill by its name, and a file the agent opens directly, such as a start file the main skill reads, by its path. "Load the `understand` skill" made a model look for a registered skill and give up; naming the file by path fixed it. Inside a set, a call names a skill by its name, and the name rule turns it into the file, as skillbook-design's Names says;

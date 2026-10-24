@@ -1033,6 +1033,9 @@ def skill_talk():
         r"\b(?:referenced|loaded)\s+(?:\S+\s+)?skills?\b",  # the referenced coordination skill
         rf"\b(?:essentials|{rare}){quote}\s+(?:references?|guidance|instructions)\b|\bessentials{quote}\s+set\b",
         rf"\b(?:{verbs})\s+(?:the\s+)?{quote}(?:{rare})\b",  # need clarify, read the guardrails
+        # need layout and rightsize: a short list after the verb; stakes stays out, as in "canes, twine and stakes"
+        rf"\b(?:{verbs})\s+(?:the\s+)?(?:{quote}[\w-]+{quote}(?:,\s*|\s+and\s+)){{1,3}}{quote}"
+        r"(?:guardrails|rightsize|clarify)\b",
         r"\b(?:loads?|loaded|loading)\s+(?:the\s+)?(?:required\s+)?essentials\b",  # not "need the essentials fast"
         rf"\bSKILL\.md\b|\breferences/[\w./-]*\.md\b|\b(?:{parents})(?:/[\w-]+)*\.md\b|\bskills/[a-z][\w-]*/",  # files
     ]), re.IGNORECASE)
