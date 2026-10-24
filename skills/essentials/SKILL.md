@@ -36,13 +36,13 @@ Read `references/understand.md`, `references/act.md` and `references/respond.md`
 2. **Follow the `act` skill's rules throughout,** for every request.
    - Not for: what is said to the user (the `respond` skill), or the work that steps 4 to 6 route: arranging things, work with other agents, instruction documents or setup, and the user's own work.
    - Gives back: nothing of its own. Its rules shape every action.
-3. **Decide what it will be and how it gets done** with the `devise` skill: first a design, when the request leaves open what something will be, then a plan, when the work is multipart by the `act` skill's planning rule. Single-step work, such as answering a question, needs neither.
+3. **Decide what it will be and how it gets done:** first a design, when the request leaves open what something will be, then a plan, when the work is multipart by the `act` skill's planning rule. Single-step work, such as answering a question, needs neither.
    - Not for: a view asked for ("what do you think?", the `act` skill's rule).
    - Gives back: the design and plan the work follows, kept current as it goes.
-4. **Arrange the parts of something** with the `organize` skill, when the request or a step changes how something is divided, not what it says: split it into parts that don't overlap (outlining a document before writing included), merge repeats, group parts under a parent, move a shared part into one place, index, or check for overlaps and gaps.
-   - Not for: changing what the parts say, or planning the steps of the work (the `devise` skill).
+4. **Arrange the parts of something** when the request or a step changes how something is divided, not what it says: split it into parts that don't overlap (outlining a document before writing included), merge repeats, group parts under a parent, move a shared part into one place, index, or check for overlaps and gaps.
+   - Not for: changing what the parts say, or planning the steps of the work (step 3).
    - Gives back: the new arrangement.
-5. **Share the work with other agents and later sessions** with the `coordinate` skill: a task handed to an agent, its result coming back here; work carried over to a later session; an instruction document every session reads; setting up skillbook; and what a session taught.
+5. **Share the work with other agents and later sessions:** a task handed to an agent, its result coming back here; work carried over to a later session; an instruction document every session reads; setting up skillbook; and what a session taught.
    - Gives back: the agent's report, the carryover or the change made.
 6. **Do it,** always under the `act` skill's rules and these steps, using whichever skills fit:
    - Work another set holds: if a set in your skill list holds that kind of work, load its main skill, then use the skill by its name rule, never by a path guessed without loading it, because that set's main skill holds rules its skills rely on.

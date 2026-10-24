@@ -10,7 +10,7 @@ Removes what is extra from something that exists: it judges each part by what it
    - Where a pointer would do, turn pasted content into a pointer.
    - Keep a repeated part in one home, with the others pointing to it, by `act-rightsize`'s fourth rule.
    - Merge whole items that say the same thing into one.
-   - Both work inside the thing being trimmed. A repeat across files, or files that say the same thing, is the `organize` skill's work.
+   - Both work inside the thing being trimmed. A repeat across files, or files that say the same thing, is arranging parts, the main skill's step 4.
    - Why: an extra part costs the reader's attention and, for an agent, tokens on every later turn.
 3. **Never below a rule:** anything a rule requires stays, by `act-rightsize`'s sixth rule, because what a rule requires is needed by definition.
 4. **The user approves first,** by `act-rightsize`'s approval rule, which puts the list through `respond-ask`. The list holds each part that goes or becomes a pointer, with why.

@@ -149,6 +149,8 @@ def main():
                 done[i] = result
                 print(f"  {case['id']}  {agent}  {model}  run {n}: {run_status(result)}")
 
+    # Codex's sandbox is set to keep the shared /tmp unwritable; a name new there afterwards shows if that ever fails
+    shared_before = shared_tmp_names() if any(p[1] == "codex" for p in plan) else None
     workers = [threading.Thread(target=worker) for _ in range(max(1, min(args.jobs, len(plan))))]
     for w in workers:
         w.start()
@@ -165,6 +167,11 @@ def main():
     spent, unknown = state["spent"], state["unknown"]
 
     summary = summarize(results, spent, unknown)
+    if shared_before is not None:
+        new = sorted(shared_tmp_names() - shared_before)
+        if new:
+            summary += ("\nNew in the shared /tmp while these runs went, which may not be theirs: "
+                        + ", ".join(new[:20]) + (f" and {len(new) - 20} more" if len(new) > 20 else "") + "\n")
     (out_dir / "summary.md").write_text(summary)
     (out_dir / "summary.json").write_text(json.dumps(results, indent=2) + "\n")
     print()
@@ -196,6 +203,14 @@ def parse_args():
     p.add_argument("--to-judge", nargs="+", metavar="FOLDER",
                    help="list every run in these results folders for semantic review, as tests/judge.md says")
     return p.parse_args()
+
+
+def shared_tmp_names(root="/tmp"):
+    """The names directly in the machine's shared temporary folder, never their contents."""
+    try:
+        return {entry.name for entry in os.scandir(root)}
+    except OSError:
+        return set()
 
 
 def runs_to_judge(folders):
@@ -233,7 +248,7 @@ def load_cases(pattern):
 CHECK_NAMES = {"reads", "reads_not", "no_changes", "changed", "unchanged", "file_contains", "shorter",
                "states_before_change", "answer_contains", "answer_not_contains", "written_under", "folder_lacks",
                "nothing_left_running", "tmp_has", "tmp_lacks", "names_no_skill", "only_changed", "actions_lack",
-               "answer_path_has", "agent_started_or_answer"}
+               "answer_path_has", "agent_started_or_answer", "removed"}
 PATTERN_CHECKS = ("answer_contains", "answer_not_contains", "tmp_has", "tmp_lacks", "actions_lack", "answer_path_has",
                   "agent_started_or_answer")
 
@@ -704,6 +719,7 @@ def observe(agent, events, home, set_name, before, work, checks):
             "targets": [value for turn in events for action in action_evidence(agent, turn)
                         for key, value in action.items() if key in TARGET_KEYS and isinstance(value, str)],
             "agents_started": agents_started(agent, events),
+            "agents_unseen": agents_unseen(agent, events, uncertain == "a change no action shows"),
             "before_change": said, "changed_files": changed or bool(delta), "sequencing_unknown": uncertain,
             "files": {p: (work / p).read_text(errors="replace")
                       if (work / p).is_file() and not (work / p).is_symlink()
@@ -802,6 +818,16 @@ def agents_started(agent, events):
     return count
 
 
+def agents_unseen(agent, events, unexplained_change):
+    """Whether an agent may have run that the record cannot show. Codex's exec events show neither a spawn nor what a
+    started agent does, only some calls about agents, so any such call, or a change no recorded action explains, may
+    be an agent's work. Claude's records show every start."""
+    if agent != "codex":
+        return False
+    return unexplained_change or any(e.get("item", {}).get("type") == "collab_tool_call"
+                                     for turn in events for e in turn)
+
+
 def action_evidence(agent, events):
     """Ordered tool names, commands and target paths, without tool outputs or credential-home contents."""
     actions = []
@@ -857,8 +883,11 @@ def prepare_home(home, agent, case, use_login, instruction=""):
         (agent_dir / "settings.json").write_text(json.dumps(settings, indent=2) + "\n")
     else:
         # A copied ChatGPT login would otherwise bring the account's apps (connectors) and remote plugins into the run.
+        # Its workspace-write sandbox would also let the run write the machine's real /tmp, which outlives the run and
+        # no check sees; the run's own TMPDIR stays writable.
         (agent_dir / "config.toml").write_text(
-            "[features]\n" + "".join(f"{name} = false\n" for name in CODEX_ACCOUNT_FEATURES))
+            "[features]\n" + "".join(f"{name} = false\n" for name in CODEX_ACCOUNT_FEATURES)
+            + "\n[sandbox_workspace_write]\nexclude_slash_tmp = true\n")
     lines = ([POINTER] if case["pointer"] else []) + ([instruction] if instruction else [])
     if lines:
         (agent_dir / ("CLAUDE.md" if agent == "claude" else "AGENTS.md")).write_text("\n\n".join(lines) + "\n")
@@ -1014,6 +1043,11 @@ SKILL_TALK = skill_talk()
 # naming only essentials, so the default check leaves out one such line for these agents.
 ANNOUNCES_SKILLS = {"codex"}
 ESSENTIALS_WORD = re.compile(r"(?:the\s+)?[`'\"’]?essentials[`'\"’]?(?:\s+skill)?", re.IGNORECASE)
+# the line says the agent uses the skill, not why it acts: "I'll load the essentials skill", not "essentials forbids"
+ANNOUNCING = re.compile(r"\b(load|loading|use|using|read|reading|follow|following|apply|applying|open|opening)\b"
+                        r"[^.\n]{0,40}\bessentials\b", re.IGNORECASE)
+GIVES_REASON = re.compile(r"\b(because|since|so that|requires?|says|rules?|forbids?|prohibits?|allows?|must)\b",
+                          re.IGNORECASE)
 
 
 def names_skill(answer, agent=None):
@@ -1022,7 +1056,8 @@ def names_skill(answer, agent=None):
         lines = answer.splitlines()
         for i, line in enumerate(lines):
             rest = ESSENTIALS_WORD.sub("", line)
-            if len(line) <= 200 and rest != line and not SKILL_TALK.search(rest):
+            if (len(line) <= 200 and ANNOUNCING.search(line) and not GIVES_REASON.search(line)
+                    and not SKILL_TALK.search(rest)):
                 answer = "\n".join(lines[:i] + lines[i + 1:])
                 break
     return bool(SKILL_TALK.search(answer))
@@ -1312,6 +1347,8 @@ def check(checks, result, fixture=None, tmp=None):
         out["no changes"] = not result["changes"]
     for path in checks.get("unchanged", []):
         out[f"unchanged {path}"] = not any(c.split(" ", 1)[1] == path for c in result["changes"])
+    for path in checks.get("removed", []):
+        out[f"removed {path}"] = f"removed {path}" in result["changes"]
     for path in checks.get("changed", []):
         # a file the turn created counts as changed: the case asks that it holds the work, not that it existed before
         out[f"changed {path}"] = path in written(result["changes"])
@@ -1366,8 +1403,10 @@ def check(checks, result, fixture=None, tmp=None):
     if checks.get("names_no_skill"):
         out["answer names no skill or skill file"] = not names_skill(result["answer"], result.get("agent"))
     for pattern in checks.get("agent_started_or_answer", []):
-        out[f"an agent was started, or the answer has /{pattern}/"] = bool(
-            result.get("agents_started") or re.search(pattern, result["answer"], re.IGNORECASE))
+        # an agent the record cannot show leaves the check unknown, not failed
+        found = bool(result.get("agents_started") or re.search(pattern, result["answer"], re.IGNORECASE))
+        out[f"an agent was started, or the answer has /{pattern}/"] = (
+            True if found else None if result.get("agents_unseen") else False)
     for pattern in checks.get("answer_path_has", []):
         found = named_paths(result["answer"])
         out[f"a temporary path the answer names holds /{pattern}/"] = any(
@@ -1444,6 +1483,8 @@ def summarize(results, spent, unknown=0):
                 if r.get("sequencing_unknown"):
                     lines.append(f"- run {r['run']} order unknown from: {r['sequencing_unknown']}")
         for r in good:
+            if r.get("agents_unseen"):
+                lines.append(f"- run {r['run']} may have started an agent the record cannot show")
             if r["changes"]:
                 lines.append(f"- run {r['run']} changed: {', '.join(r['changes'])}")
         if any(r.get("review") for r in runs):

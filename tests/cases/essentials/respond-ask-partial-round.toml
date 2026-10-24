@@ -19,7 +19,7 @@ prompt = "For the first question, the readers are neighbours within walking dist
 
 [turns.checks]
 no_changes = true
-answer_contains = ['(?i)tone', '(?i)length']
+answer_contains = ['(?i)tone', '(?i)length|how long|word count|\bwords?\b']
 
 [checks]
 no_changes = true

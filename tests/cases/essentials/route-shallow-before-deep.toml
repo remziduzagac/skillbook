@@ -5,7 +5,7 @@ skills = ["understand-clarify", "understand-clarify-shallow"]
 category = "boundary"
 covers = ["understand-clarify:not-for:understand-clarify-deep"]
 rejects = "Loads deep and runs level-by-level rounds though the user did not ask to be questioned, or drafts the plan with its choices unstated."
-review = ["One small round sets the direction (such as what is sold, when and where), each question with a recommended answer where there is a basis.", "Choices that are the agent's are stated in a going-with line; a part whose answers depend on each other gets an offer of deep, with yes recommended, not deep questions.", "The turn ends with the round; no file changes."]
+review = ["One small round sets the direction (such as what is sold, when and where), each question with a recommended answer where there is a basis.", "No deep question is asked. The going-with line for the agent's own choices, and an offer of deep, yes recommended, for a part whose answers depend on each other, may come in this turn or after the round is answered, since shallow states them before work starts; neither is missing if the turn ends with the round.", "The turn ends with the round; no file changes."]
 
 [[turns]]
 prompt = "We'd like to hold a plant sale next spring. Help me work out how."

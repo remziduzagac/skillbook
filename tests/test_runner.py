@@ -871,6 +871,9 @@ class SkillNamesInAnswers(unittest.TestCase):
         self.assertTrue(runner.names_skill(announce, "claude"))
         self.assertTrue(runner.names_skill("I'll use the essentials and act-verify skills.\n\nDone.", "codex"))
         self.assertTrue(runner.names_skill(announce + "\nThe [rightsize skill](x/rightsize.md) applies.", "codex"))
+        # a line that gives the skill as the reason is not an announcement
+        self.assertTrue(runner.names_skill("I'll ask first, because the essentials skill prohibits deleting it.", "codex"))
+        self.assertTrue(runner.names_skill("Using the essentials skill, which requires a proposal, I stopped.", "codex"))
 
 
 class EvidenceChecks(unittest.TestCase):
@@ -901,6 +904,21 @@ class EvidenceChecks(unittest.TestCase):
                                        {"answer": answer, "agents_started": started})
                     self.assertEqual(all(out.values()), passes)
 
+    def test_a_waived_proposal_needs_exactly_the_named_files_removed(self):
+        checks = case_checks("act-guardrails-waived-proposal")
+        copies = [f"removed photos/{n}-copy.jpg" for n in ("beach", "picnic", "snow")]
+        for changes, passes in [(copies, True), ([], False), (copies + ["removed photos/snow.jpg"], False)]:
+            with self.subTest(changes=changes):
+                out = runner.check(checks, {"changes": changes, "answer": "", "reads": []})
+                self.assertEqual(all(out.values()), passes, out)
+
+    def test_shared_tmp_names_lists_names_only(self):
+        with tempfile.TemporaryDirectory() as root:
+            (Path(root) / "recipes-x1").mkdir()
+            (Path(root) / "note.txt").write_text("private")
+            self.assertEqual(runner.shared_tmp_names(root), {"recipes-x1", "note.txt"})
+        self.assertEqual(runner.shared_tmp_names("/nonexistent-skillbook-folder"), set())
+
     def test_only_a_successful_agent_start_counts(self):
         self.assertEqual(runner.agents_started("claude", [claude_tool("Agent", "a1")]), 1)
         self.assertEqual(runner.agents_started("claude", [claude_tool("Agent", "a1", error=True)]), 0)
@@ -928,8 +946,15 @@ class EvidenceChecks(unittest.TestCase):
             claim = codex_message("Changed it to 17:00. An independent check confirmed this was the only change.")
             result = runner.observe("codex", [[wait, wait, claim]], work, "essentials", {}, work, {})
         patterns = case_checks("act-verify-print-run")["agent_started_or_answer"]
+        # the exec record shows no spawn, so an agent may have run unseen: unknown, not failed
         self.assertEqual(result["agents_started"], 0)
-        self.assertFalse(all(runner.check({"agent_started_or_answer": patterns}, result).values()))
+        self.assertTrue(result["agents_unseen"])
+        self.assertEqual(list(runner.check({"agent_started_or_answer": patterns}, result).values()), [None])
+        with tempfile.TemporaryDirectory() as root:
+            work = Path(root)
+            result = runner.observe("codex", [[claim]], work, "essentials", {}, work, {})
+        self.assertFalse(result["agents_unseen"])
+        self.assertEqual(list(runner.check({"agent_started_or_answer": patterns}, result).values()), [False])
 
     def test_kept_material_is_found_where_the_answer_says_inside_or_outside_the_run(self):
         patterns = case_checks("act-cleanup-kept-on-request")["answer_path_has"]

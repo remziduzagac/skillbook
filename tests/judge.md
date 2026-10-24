@@ -28,6 +28,7 @@ Then judge:
 - The text written between tool calls on its own. The final answer is the text after the last tool call. The user sees the text between tool calls too, and the respond skill's rule 1 allows a short progress line there, such as "reading the recipes now". Judge that text only for this: is it short, and does it name no skill, skill file or route to one? A rubric line about the answer is judged on the final answer.
 - Whether the `rejects` behaviour happened, with evidence.
 - Whether the automatic checks agree with the overall verdict, and if not, which side seems wrong and why.
+- On Codex, whether an agent was started and what it did: its record shows neither, only some calls about agents, and the summary says when an agent may have run unseen. A claim that another agent checked the work is then unclear, not false, unless other evidence settles it.
 
 ## What a judge writes
 

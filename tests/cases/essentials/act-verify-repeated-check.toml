@@ -18,5 +18,5 @@ prompt = "And rye-bread.md?"
 
 [checks]
 reads = ["act-verify"]
-answer_contains = ['(?i)\b(make|write|turn|add|set up|create)\b[^.\n]{0,40}\b(script|lint|tests?|check)\b|automat']
+answer_contains = ['(?i)\b(make|write|turn|add|set up|create)\b[^.\n]{0,40}\b(script|lint|tests?|check)\b|automat|\b(a|one) (small |quick |short )?(script|lint|check)\b']
 no_changes = true
