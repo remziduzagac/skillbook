@@ -3516,3 +3516,40 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - `act-verify-print-run` and `act-verify-repeated-check` stayed weak on both texts in D248's reruns. Their rules were long and mixed several triggers.
 
 **Tested:** nothing was run yet. The person asked that tests wait.
+
+## D251: The project skills are reviewed and fixed; the name rule names an unread file in the answer (2026-10-24)
+
+**Decision:**
+
+- The name rule's end changes from "say so plainly and go on with your own judgment." to "go on with your own judgment, and name the file in your final answer."
+  - It changes everywhere it is quoted word for word: skills/essentials/SKILL.md, skillbook-design's Names, the essentials, blueprint and authoring designs, and the `write-main-skill` case's check.
+  - blueprint/design/how-it-works.md's Names line, which still said the step stops, now says the same.
+- A fresh reviewer read skillbook-design and skillbook-write for contradictions, gaps and errors. The fixes in skillbook-design:
+  - The who-decides line for a user who told the agent to choose now goes ahead and puts the line in the final answer, as understand's rule does since D250.
+  - "Propose it first" for installing becomes "propose it and end the turn".
+  - A finding about something missing names where it should be and the search that found nothing.
+  - "The person" becomes "the user", as the glossary says for skill files.
+  - The review instruction is split into a list.
+  - Bare `respond` and rigs become "the `respond` skill" and "the `rigs` skill", and "until it exists" becomes "where it is not installed".
+  - The description names recording agreed wording, as AGENTS.md does.
+- The fixes in skillbook-write:
+  - A gap is listed for the user and the turn ends.
+  - Files that already do what was asked are reported with the line that shows it and left alone.
+  - "Routing-only parents" becomes "how parents open (checks 8 to 10)".
+  - "Checklist order" and "main-skill order" become the order of skillbook-design's check 8.
+  - A path names only a start file the main skill reads; every other skill is called by name.
+  - "Cover every aspect" applies to what was written or changed.
+  - Results go in the decision's Tested line.
+  - The outside-material rule points to skillbook-design's.
+- AGENTS.md now says the essentials set is built and being tested, and `skills/<set>/` has an example.
+- Left as they are, by the person's agreement:
+  - "About 100 lines" stays a rule, with its reason and the 120-line check.
+  - A main skill's design already fits `<set>/<group>.md`.
+  - "Send a message" and "give cost before running" stay, since text between tool calls is visible to the user.
+
+**Why:**
+
+- "Say so plainly and go on" is the say-then-go-on shape D250 bans, and an unread skill file the user never hears of hides a failure.
+- The project skills broke several of their own rules, which a builder following them would copy.
+
+**Tested:** nothing was run. The person asked that tests wait.

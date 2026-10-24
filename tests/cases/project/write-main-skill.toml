@@ -26,7 +26,7 @@ unchanged = ["blueprint/design/authoring/authoring.md", "skills/authoring/refere
   '(?m)^description:',
   'a skill named `a-b-c` is the file `references/a/b/c\.md` inside this skill',
   'Read each file on the path you have not read yet, top-down\.',
-  'say so plainly and go on with your own judgment\.',
+  'go on with your own judgment, and name the file in your final answer\.',
   'proofread',
   'cite',
   'digest',
