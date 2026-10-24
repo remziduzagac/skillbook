@@ -1,8 +1,8 @@
-source = "blueprint/design/essentials/act.md: stakes, tests 1 and 16; act, test 26"
-about = "A rename inside the project that its tests would catch is plainly low: a short answer with its reason, and no approval needed. Rejects a long risk report, a demand for sign-off, or doing the rename when only asked whether it is safe."
+source = "blueprint/design/essentials/act.md: stakes, tests 1 and 16; act, test 26; stakes, test 20"
+about = "A rename inside the project that its tests would catch is plainly low: a short answer naming the level low with its reason, even though the user asked how risky it is, and no approval needed. Rejects a long risk report, a demand for sign-off, or doing the rename when only asked whether it is safe."
 fixture = "recipe-box"
 skills = ["act-stakes", "act-guardrails"]
-covers = ["act:route:act-stakes", "act:route:act-guardrails", "act-stakes:advice:1", "act-stakes:advice:2", "act-stakes:step:2", "act-guardrails:rule:2"]
+covers = ["act:route:act-stakes", "act:route:act-guardrails", "act-stakes:advice:1", "act-stakes:advice:2", "act-stakes:step:2", "act-stakes:step:6", "act-guardrails:rule:2"]
 category = "boundary"
 rejects = "Answers with a four-part risk assessment and mitigations for a local rename, says it needs someone's approval, or renames the function."
 review = ["The answer says the rename is low risk in a few lines, with the reason: it stays inside the project, the tests call scale() and would catch a missed caller, and it is easy to undo.", "It says no approval is needed for a change like this; noting that three tests already fail for another reason is a plus.", "No file is changed, since the user only asked whether it is safe."]

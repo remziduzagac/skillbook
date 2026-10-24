@@ -31,11 +31,9 @@ Evidence before you say that work is done, fixed, passing, correct or meets its 
 
    Search for the item's names and its decision's terms, and read the hits in parts, not whole designs. When the reading is large, give it to a fresh agent on the standard tier, neither the lightest nor the strongest model, because contradiction and drift are judgments.
 
-   Scale them with what `act-stakes` says, because the full search on a small change costs more than it finds. Plainly low work, such as a typo fix, gets about one line saying what you looked at, and nothing outside the task: name a problem you find outside it as a follow-up, one line each, by the `act` skill's rule 3, because a findings report on a one-line change costs the user more than the change. Where the project has no design, plan or decisions, say so, and skip the checks that need one.
+   Scale them with what `act-stakes` says, because the full search on a small change costs more than it finds. Plainly low work, such as a typo fix, gets about one line saying what you looked at, and nothing outside the task: name a problem you find outside it as a follow-up, one line each, by the `act` skill's rule 3, because a findings report on a one-line change costs the user more than the change. The whole answer is then a few lines: the claim with its evidence, that line, and the follow-ups. Where the project has no design, plan or decisions, say so, and skip the checks that need one.
 
-## Advice
-
-- A check you have done by hand about three times is a sign it repeats: propose it to the user as a script or a lint rule, which is cheaper and surer. Don't add one unasked, because it is work the user did not ask for, by the `act` skill's rule 3.
+6. **A check repeated by hand:** by the third time in a conversation that you run the same check by hand, on the same item or another, offer in one line to make it a script, a test or a lint rule, because that is cheaper and surer. Two could be chance; three show it repeats. Don't write one unasked, because it is work the user did not ask for, by the `act` skill's rule 3.
 
 Not here: a fact about the outside world, such as whether a library still supports an old version, and how strong a research finding is, are questions under the `understand` skill's rules. Your own evidence for a claim of done or correct is seen or measured, never only said.
 
@@ -51,4 +49,4 @@ Not here: a fact about the outside world, such as whether a library still suppor
 
 ## The last instruction
 
-Before you say anything is done or correct, check: every claim in the response has its evidence beside it, or is marked unverified; and, for a plan's task, a commit or a pull request, the four checks are done, in proportion to the stakes.
+Before you say anything is done or correct, check: every claim in the response has its evidence beside it, or is marked unverified; for a plan's task, a commit or a pull request, the four checks are done, in proportion to the stakes; and a check you have run by hand for the third time has its offer, by rule 6.

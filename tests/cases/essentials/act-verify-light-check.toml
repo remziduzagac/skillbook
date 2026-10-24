@@ -1,14 +1,15 @@
-source = "blueprint/design/essentials/act.md: verify, tests (a typo fix, the four checks in one line; a bug seen elsewhere, one line)"
+source = "blueprint/design/essentials/act.md: verify, tests (a typo fix, the four checks in one line; a bug seen elsewhere, one line); respond.md: respond, test 21"
 about = "A plan's task that is plainly low, a usage line in a README: the claim is checked with its evidence, and the four more checks take about one line, in proportion to the stakes, with nothing outside the task beyond a one-line follow-up each. Rejects a long contradiction, duplication, drift and coverage report for a one-line change, a findings report on work outside the task, or confirming without looking."
 fixture = "recipe-box"
 skills = ["act-verify", "act-stakes"]
-covers = ["act-verify:rule:5", "act-verify:last"]
+covers = ["act-verify:rule:5", "act-verify:last", "respond:rule:1"]
 category = "boundary"
 rejects = "Writes a section for each of the four checks on a one-line README change, works out problems outside task 1 at length or ends by proposing their fixes, or says it is done without checking the usage line against scale.py."
-review = ["The answer checks the usage line against how scale.py reads its arguments, a recipe path then the servings wanted, or runs it, and says the task is done with that evidence.", "The four more checks take about one line, such as nothing in the plan's decisions touches the usage line. Anything found outside task 1, such as the scaling bug or a recipe's front matter, is named in one line each as a follow-up; a section of numbered findings, or a closing proposal of fixes outside task 1, fails this line. Noticing the scaling bug in one line is a plus.", "Nothing is changed."]
+review = ["The answer checks the usage line against how scale.py reads its arguments, a recipe path then the servings wanted, or runs it, and says the task is done with that evidence.", "The four more checks take about one line, such as nothing in the plan's decisions touches the usage line. Anything found outside task 1, such as the scaling bug or a recipe's front matter, is named in one line each as a follow-up; a section of numbered findings, or a closing proposal of fixes outside task 1, fails this line. Noticing the scaling bug in one line is a plus.", "Nothing is changed, and no skill or skill file is named in the answer."]
 
 [[turns]]
 prompt = "Task 1 in PLAN.md is ticked. Before I commit, confirm it's really done."
 
 [checks]
 no_changes = true
+answer_not_contains = ['\b(act|respond|understand)-(stakes|guardrails|cleanup|verify|rightsize|layout|ask|explain|clarify)', '\b(guardrails|stakes|rightsize|clarify)\b.{0,15}\b(reference|skill)s?\b|\b(need|needs|read|reading|load|loading) (the )?(guardrails|stakes|rightsize|clarify)\b']

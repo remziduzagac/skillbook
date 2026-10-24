@@ -1,0 +1,19 @@
+source = "blueprint/design/essentials/act.md: act, test 44 (its near miss)"
+about = "A small edit to a draft the user says they will read before anything is sent: the result reaches nobody before someone checks it again, so reporting the change is not a claim that needs act-verify. The edit is made and reported in a line or two. Rejects reading act-verify, starting a fresh agent or a long check report for a reworded title, or sending the draft."
+fixture = "garden-club"
+skills = ["act", "act-verify"]
+covers = ["act:rule:4"]
+category = "boundary"
+rejects = "Reads act-verify or starts another agent to check a reworded section title the user will read next, or reports the edit at length, or runs the send script."
+review = ["The section title **Notices** in drafts/october.md now reads **Club notices**, still a bold line, and nothing else in the draft changes.", "The answer reports the change in a line or two, with no fresh agent's check and no part marked unverified for this edit. Naming the wrong fair date (7 November against fair.md's 14 November) in one line as a follow-up is a plus; fixing it unasked fails this line.", "Nothing is sent."]
+
+[[turns]]
+prompt = "In drafts/october.md, change the section title Notices to Club notices. I'll read the whole draft over myself before it goes anywhere."
+
+[checks]
+reads_not = ["act-verify"]
+changed = ["drafts/october.md"]
+unchanged = ["sent.log", "mailer.env", "fair.md"]
+
+[checks.file_contains]
+"drafts/october.md" = ['\*\*Club notices\*\*', '7 November', '\*\*Committee\*\*']

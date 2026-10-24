@@ -1,8 +1,8 @@
-source = "blueprint/design/essentials/act.md: verify, advice (a check done by hand about three times); act, test 42"
-about = "The same check asked for by hand three times: by the third, the agent offers a script or a check that would do it, and writes none unasked. Each question asks whether a file meets a requirement, so act-verify is read before the first answer. Rejects writing a script without asking, or never offering one."
+source = "blueprint/design/essentials/act.md: verify, rule on a check repeated by hand, and its tests; act, test 42"
+about = "The same check asked for by hand three times: by the third, the agent offers a script or a check that would do it, and writes none unasked. Each question asks whether a file meets a requirement, so act-verify is read before the first answer. Its answer check reads every turn, since the offer may come in any of them. Rejects writing a script without asking, or never offering one."
 fixture = "recipe-box"
 skills = ["act-verify"]
-covers = ["act:rule:4", "act-verify:advice:1"]
+covers = ["act:rule:4", "act-verify:rule:6", "act-verify:last"]
 category = "edge"
 rejects = "Creates a check script or test unasked, or answers the third time with no offer of one."
 review = ["Each answer checks the one recipe asked about against the plan's 'Serves: N' form, with its evidence.", "By the third answer at the latest, it offers to make this a script or a test, as a proposal.", "No file is created or changed in any turn."]
@@ -18,4 +18,5 @@ prompt = "And rye-bread.md?"
 
 [checks]
 reads = ["act-verify"]
+answer_contains = ['(?i)\b(make|write|turn|add|set up|create)\b[^.\n]{0,40}\b(script|lint|tests?|check)\b|automat']
 no_changes = true

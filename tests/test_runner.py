@@ -125,6 +125,18 @@ class ScenarioChecks(unittest.TestCase):
                 self.assertIsNone(runner.check({"states_before_change": True}, result)[
                     "text before its first change"])
 
+    def test_run_wide_answer_checks_read_every_turn(self):
+        first = {"type": "assistant", "message": {"content": [{"type": "text", "text": "Need act-stakes first."}]}}
+        second = {"type": "assistant", "message": {"content": [{"type": "text", "text": "Level: high."}]}}
+        checks = {"answer_not_contains": [r"\bact-stakes"], "answer_contains": ["high"]}
+        with tempfile.TemporaryDirectory() as root:
+            work = Path(root)
+            whole = runner.observe("claude", [[first], [second]], work, "essentials", {}, work, {})
+            last = runner.observe("claude", [[second]], work, "essentials", {}, work, {})
+        lacks = r"answer lacks /\bact-stakes/"
+        self.assertEqual(runner.check(checks, whole), {lacks: False, "answer has /high/": True})
+        self.assertEqual(runner.check(checks, last), {lacks: True, "answer has /high/": True})
+
     def test_missing_or_inconsistent_usage_stays_unknown(self):
         for usage in [None, {}, {"input_tokens": 100}, {"input_tokens": -1, "output_tokens": 0},
                       {"input_tokens": 1, "output_tokens": 0, "cached_input_tokens": 2},
@@ -675,8 +687,18 @@ class ReviewFollowUpTests(unittest.TestCase):
                         "rg foo || true",
                         "find . -type f -not -path '*/.git/*' | head -100 && echo --- && grep -rIl -iE 'api|route' .",
                         "cat a.md 2>/dev/null || cat b.md; git status --short", "rg foo 2>&1 | head",
-                        'for f in ISSUE.md api.py; do echo "=== $f"; cat "$f"; done'):
+                        'for f in ISSUE.md api.py; do echo "=== $f"; cat "$f"; done',
+                        "S=/tmp/skills; cat $S/act.md; cd /tmp/work && grep -rn tiny . ; find . -iname '*x*'"):
             self.assertEqual(runner.command_effect(command), "read", command)
+
+    def test_a_set_variable_does_not_hide_what_follows(self):
+        self.assertEqual(runner.command_effect("D=/tmp/x; rm -r $D"), "write")
+        self.assertEqual(runner.command_effect("PYTHONPATH=. python3 build.py"), "unknown")
+        self.assertEqual(runner.command_effect("D=$(mktemp -d); ls $D"), "unknown")
+        statement = {"type": "assistant", "message": {"content": [
+            {"type": "tool_use", "name": "Bash", "input": {"command": "S=/tmp/s; cat $S/act.md; cd /tmp/w"}},
+            {"type": "tool_use", "name": "Bash", "input": {"command": "sed -i 's/a/b/' README.md"}}]}}
+        self.assertEqual(runner.text_before_change("claude", [[statement]]), ("", True, ""))
 
     def test_writing_or_opaque_forms_are_not_read(self):
         self.assertEqual(runner.command_effect("find . -name '*.pyc' -delete"), "unknown")

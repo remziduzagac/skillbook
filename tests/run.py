@@ -669,7 +669,8 @@ def alive(pid):
 
 
 def observe(agent, events, home, set_name, before, work, checks):
-    """Use the same evidence for run-wide and turn-local assertions, including leaf reads and file contents."""
+    """Use the same evidence for run-wide and turn-local assertions, including leaf reads and file contents. The answer
+    is every given turn's text, so a run-wide answer check sees each turn, not only the last."""
     said, changed, uncertain = text_before_change(agent, events)
     delta = changes(before, snapshot(work))
     if delta and not changed and not uncertain:
@@ -679,7 +680,7 @@ def observe(agent, events, home, set_name, before, work, checks):
     folders = tuple(checks.get("folder_lacks", {}))
     paths |= {p for p in written(delta) if folders and p.startswith(folders)}
     return {"reads": sorted(skills_read(agent, events, home, set_name)),
-            "changes": delta, "answer": last_answer(agent, events[-1]),
+            "changes": delta, "answer": "\n\n".join(a for a in (turn_answer(agent, turn) for turn in events) if a),
             "before_change": said, "changed_files": changed or bool(delta), "sequencing_unknown": uncertain,
             "files": {p: (work / p).read_text(errors="replace")
                       if (work / p).is_file() and not (work / p).is_symlink()
@@ -1053,7 +1054,9 @@ def segment_effect(words):
         words = words[1:]
     if words == ["done"] or words[:1] == ["for"] and words[2:3] == ["in"]:
         return "read"
-    if not words:
+    while words and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*=\S*", words[0]):
+        words = words[1:]  # a shell variable set for what follows; a command substitution was refused above
+    if not words or words[0] == "cd" and len(words) <= 2:
         return "read"
     program = os.path.basename(words[0])
     if program in WRITE_COMMANDS or program == "sed" and any(w.startswith("-i") for w in words[1:]):
@@ -1120,7 +1123,7 @@ def expand_braces(text):
     return brace.sub(lambda m: " ".join(m.group(1) + part + m.group(3) for part in m.group(2).split(",")), text)
 
 
-def last_answer(agent, turn_events):
+def turn_answer(agent, turn_events):
     """Everything the agent said in the turn, so a question followed by a closing line still counts."""
     texts = []
     for e in turn_events:

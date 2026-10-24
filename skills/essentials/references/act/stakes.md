@@ -56,7 +56,7 @@ Not here: what could go wrong with an idea is a different question, under the `u
    How much the user hears:
    - nothing, when the level changes nothing the caller would do anyway;
    - one line with the reason, when it changes what happens, such as asking first, a stronger model, the user checking the result, or a debate of the options;
-   - the full shape, when the user asks how risky something is.
+   - the full shape, when the user asks how risky something is, unless it is plainly low: then the one line, naming the level low with its reason, even when asked, because the four answers add nothing there and a long report hides the point.
 
    stakes keeps nothing. The caller's own record names the judgment where it matters, such as a decision's reason, a proposal's risk, or a delegated brief's reason for its model.
 

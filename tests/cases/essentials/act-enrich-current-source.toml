@@ -21,7 +21,7 @@ prompt = "Yes, add the verified setup guidance you proposed."
 changed = ["README.md"]
 
 [checks]
-answer_not_contains = ['\b(act|respond|understand)-(stakes|guardrails|cleanup|verify|rightsize|layout|ask|explain|clarify)']
+answer_not_contains = ['\b(act|respond|understand)-(stakes|guardrails|cleanup|verify|rightsize|layout|ask|explain|clarify)', '\b(guardrails|stakes|rightsize|clarify)\b.{0,15}\b(reference|skill)s?\b|\b(need|needs|read|reading|load|loading) (the )?(guardrails|stakes|rightsize|clarify)\b']
 reads = ["act-rightsize-enrich"]
 unchanged = ["project.toml", "legacy-wiki.md"]
 
