@@ -221,7 +221,7 @@ def load_cases(pattern):
 
 CHECK_NAMES = {"reads", "reads_not", "no_changes", "changed", "unchanged", "file_contains", "shorter",
                "states_before_change", "answer_contains", "answer_not_contains", "written_under", "folder_lacks",
-               "nothing_left_running"}
+               "nothing_left_running", "tmp_has", "tmp_lacks"}
 
 
 def validate_case(case):
@@ -235,7 +235,8 @@ def validate_case(case):
         unknown = set(checks) - CHECK_NAMES
         if unknown:
             raise ValueError(f"{case['id']} {label}: unknown checks: {', '.join(sorted(unknown))}")
-        for pattern in checks.get("answer_contains", []) + checks.get("answer_not_contains", []):
+        for pattern in (checks.get("answer_contains", []) + checks.get("answer_not_contains", [])
+                        + checks.get("tmp_has", []) + checks.get("tmp_lacks", [])):
             re.compile(pattern)
         for patterns in [*checks.get("file_contains", {}).values(), *checks.get("folder_lacks", {}).values()]:
             for pattern in patterns:
@@ -408,6 +409,7 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
         previous = before
         previous_text = fixture_text(work)
         turn_checks = {}
+        last_tmp = None  # every path in the run's temporary folder when the last turn ended
         for i, turn in enumerate(case["turns"], 1):
             remaining = max(0.0, budget_left - result["cost"])
             if agent == "claude":
@@ -452,8 +454,9 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
             result["turns"].append({**this_turn, "actions": action_evidence(agent, turn_events),
                                     "file_diffs": fixture_diffs(previous_text, current_text),
                                     "trace_complete": not failed})
+            last_tmp = ran.get("tmp_paths")
             if turn.get("checks"):
-                for name, ok in check(turn["checks"], this_turn, case["fixture"]).items():
+                for name, ok in check(turn["checks"], this_turn, case["fixture"], last_tmp).items():
                     turn_checks[f"turn {i}: {name}"] = ok
             previous = now
             previous_text = current_text
@@ -462,7 +465,7 @@ def run_one(case, agent, model, n, args, out_dir, budget_left):
         if events:
             result.update(observe(agent, events, home, case["set"], before, work, case["checks"]))
             result["left_running"] = result["turns"][-1]["left_running"]
-            result["checks"] = {**turn_checks, **check(case["checks"], result, case["fixture"])}
+            result["checks"] = {**turn_checks, **check(case["checks"], result, case["fixture"], last_tmp)}
     finally:
         # end what the agent left running before its folders go, so nothing outlives the run on the user's machine
         end_run(groups, marker)
@@ -491,12 +494,12 @@ def run_turn(cmd, work, env, timeout, groups):
         stdout, stderr = proc.communicate(timeout=timeout)
         left, why = left_report(running(groups, marker))
         return {"stdout": stdout, "stderr": stderr, "status": proc.returncode, "left": left, "left_why": why,
-                "tmp": tmp_listing(env.get("TMPDIR"))}
+                "tmp": tmp_listing(env.get("TMPDIR")), "tmp_paths": tmp_paths(env.get("TMPDIR"))}
     except subprocess.TimeoutExpired:
         # the agent may have ended while something it started still holds its output open; that is not a timeout
         finished = proc.poll() is not None
         left, why = left_report(running(groups, marker), proc.pid)
-        listing = tmp_listing(env.get("TMPDIR"))
+        listing, paths = tmp_listing(env.get("TMPDIR")), tmp_paths(env.get("TMPDIR"))
         end_run(groups, marker)
         proc.kill()
         try:
@@ -504,7 +507,7 @@ def run_turn(cmd, work, env, timeout, groups):
         except subprocess.TimeoutExpired:
             stdout, stderr = "", ""  # something outside the group still holds the output; the trace stays incomplete
         return {"stdout": stdout or "", "stderr": stderr or "", "status": proc.returncode if finished else None,
-                "left": left, "left_why": why, "tmp": listing}
+                "left": left, "left_why": why, "tmp": listing, "tmp_paths": paths}
 
 
 def left_report(found, skip=None):
@@ -542,6 +545,18 @@ def tmp_listing(tmp, cap=50):
             rel = str(path.relative_to(tmp)) + ("/" if name in dirs else "")
             entries.append([redact(rel)[:200], size])
     return {"entries": entries, "cut": False}
+
+
+def tmp_paths(tmp):
+    """Every path inside a run's own temporary folder, uncut, for the tmp_has and tmp_lacks checks. It is kept in
+    memory for those checks only and never written to a summary, so the cut listing stays what a judge sees."""
+    if not tmp:
+        return None
+    found = []
+    for folder, dirs, files in os.walk(tmp):
+        found += [str((Path(folder) / name).relative_to(tmp)) for name in files]
+        found += [str((Path(folder) / name).relative_to(tmp)) + "/" for name in dirs]
+    return found
 
 
 def running(groups, marker):
@@ -1143,7 +1158,9 @@ def cost(agent, model, events):
     return total if seen else None
 
 
-def check(checks, result, fixture=None):
+def check(checks, result, fixture=None, tmp=None):
+    """The automatic checks for a run or a turn; tmp is every path in the run's temporary folder when the turn ended,
+    or None when that is not known, which leaves the temporary-folder checks unknown."""
     out = {}
     for name in checks.get("reads", []):
         out[f"reads {name}"] = name in result["reads"]
@@ -1184,6 +1201,12 @@ def check(checks, result, fixture=None):
     if checks.get("nothing_left_running"):
         left = result.get("left_running")
         out["nothing left running"] = None if left is None else not left
+    for pattern in checks.get("tmp_has", []):
+        found = None if tmp is None else any(re.search(pattern, p, re.IGNORECASE) for p in tmp)
+        out[f"temporary folder has /{pattern}/"] = found
+    for pattern in checks.get("tmp_lacks", []):
+        found = None if tmp is None else any(re.search(pattern, p, re.IGNORECASE) for p in tmp)
+        out[f"temporary folder lacks /{pattern}/"] = None if found is None else not found
     for pattern in checks.get("answer_contains", []):
         out[f"answer has /{pattern}/"] = bool(re.search(pattern, result["answer"], re.IGNORECASE))
     for pattern in checks.get("answer_not_contains", []):

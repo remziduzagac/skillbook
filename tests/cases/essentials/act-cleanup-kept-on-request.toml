@@ -13,3 +13,4 @@ prompt = "Unpack recipes-archive.tar.gz into a temporary folder and tell me how 
 [checks]
 no_changes = true
 answer_contains = ['\b5\b|five']
+tmp_has = ['old-recipes/']

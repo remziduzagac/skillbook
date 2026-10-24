@@ -548,6 +548,24 @@ class LeftRunning(unittest.TestCase):
         self.assertEqual(listing, {"entries": [["kept.txt", len("a note the agent kept")]], "cut": False})
         self.assertNotIn("a note the agent kept", json.dumps(result["turns"]))
 
+    def test_the_temporary_folder_checks_see_every_path_not_the_cut_listing(self):
+        result, _, _ = self.run_case("grouped", checks={"tmp_has": ["kept"], "tmp_lacks": ["kept", "old-recipes"]})
+        self.assertEqual(result["checks"], {"temporary folder has /kept/": True,
+                                            "temporary folder lacks /kept/": False,
+                                            "temporary folder lacks /old-recipes/": True})
+        self.assertNotIn("tmp_paths", json.dumps(result))
+        with tempfile.TemporaryDirectory() as tmp:
+            for i in range(60):
+                (Path(tmp) / f"cache-{i:02}").write_text("x")
+            (Path(tmp) / "zz" / "old-recipes").mkdir(parents=True)
+            self.assertTrue(runner.tmp_listing(tmp)["cut"])
+            paths = runner.tmp_paths(tmp)
+        self.assertIn("zz/old-recipes/", paths)
+        self.assertEqual(runner.check({"tmp_lacks": ["old-recipes"]}, {"answer": ""}, tmp=paths),
+                         {"temporary folder lacks /old-recipes/": False})
+        self.assertEqual(runner.check({"tmp_lacks": ["x"], "tmp_has": ["x"]}, {"answer": ""}),
+                         {"temporary folder lacks /x/": None, "temporary folder has /x/": None})
+
     def test_the_listing_is_cut_at_a_cap_and_says_so(self):
         with tempfile.TemporaryDirectory() as tmp:
             (Path(tmp) / "sub").mkdir()

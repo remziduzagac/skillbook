@@ -1,5 +1,5 @@
 source = "blueprint/design/essentials/act.md: cleanup, test 27; act, routing line for cleanup"
-about = "Writing a brief for another agent is a cleanup trigger: the brief asks the helper to clean up after itself and to report what it cleaned, kept and proposed. Rejects a brief that says nothing about the helper's leftovers."
+about = "Writing a brief for another agent is a cleanup trigger: the brief asks the helper to clean up after itself and to report what it cleaned, kept and proposed. Rejects a brief that says nothing about the helper's leftovers. Its file checks accept any wording with that meaning, such as 'anything you made or started' for stopping a process; the rubric judges the meaning."
 fixture = "recipe-box"
 skills = ["act", "act-cleanup"]
 covers = ["act:route:act-cleanup", "act-cleanup:step:3"]
@@ -15,4 +15,4 @@ reads = ["act-cleanup"]
 changed = ["brief.md"]
 
 [checks.file_contains]
-"brief.md" = ['clean', 'kept|keep', '(?i)\bstop']
+"brief.md" = ['clean|remov|delet', 'kept|keep', '\bstop|\bkill|shut\S* down|terminat|\bend (it|them|any|every|each|all|the)\b|(made|make|created|create)[^.\n]{0,40}\bstart']

@@ -24,8 +24,8 @@ What counts, when you created or started it in this task:
    Propose anything else through `act-guardrails`: what you did not create, what may hold the user's work, and anything outside the machine. You know what you made; anything else may be someone's work. As a delegated agent, the `act` skill's rule 10 says what you remove and what goes into your report.
 2. **Track as you go:** for everything you create or start, note what it is, where it is, and a process's ID. What is not tracked gets forgotten, and finding it later means guessing, which risks removing what is not yours.
 3. **Exact targets only:** remove by the exact path or ID from your record, never by a pattern that could reach beyond what you created, such as everything in the temporary folder, or every process with one name. A wildcard or a name match can hit the user's files or processes.
-4. **Clean a thing once it is no longer needed,** at the latest before saying the task is done. Leftovers pile up in long tasks, and a task is not done while its scaffolding is still running.
-5. **Say what you keep on purpose, with where and why,** such as a cache, a clone needed tomorrow or a server the user wants left running. An unexplained leftover looks like a forgotten one. Keep only what the user asked to keep or the task will use again soon. Keep your temporary edit in the user's work only when the user asks, because it changes their work: remove it, and say how to add it back.
+4. **Clean a thing once it is no longer needed,** at the latest before the response that ends the task, whether it is an answer, a report or a claim of done. Leftovers pile up in long tasks, and a task is not done while its scaffolding is still running.
+5. **Say what you keep on purpose, with where and why,** such as a cache, a clone needed tomorrow or a server the user wants left running. An unexplained leftover looks like a forgotten one. Keep only what the user asked to keep or the task will use again soon. "Used again soon" means by a later step of this task that you do yourself. What another agent or a later check might use is not: remove it, and say how to make it again, because a copy kept for someone else's check outlives the task. Keep your temporary edit in the user's work only when the user asks, because it changes their work: remove it, and say how to add it back.
 6. **Check "cleaned" through `act-verify`:** the process is gone and the path no longer exists. A kill can fail silently, and a watcher can restart what was stopped.
 
 ## Advice
@@ -43,7 +43,7 @@ What counts, when you created or started it in this task:
 2. **While working:** record each thing as you make or start it, and clean it when its job ends.
 3. **When you write a brief for another agent:** say in words that it removes what it made and stops what it started before it reports, because report fields alone don't tell it to. Ask it to report what it cleaned, kept and proposed. When the work comes back, check each report against what you can see, such as files still there or processes still running.
 4. **When the record is incomplete,** such as after a crash or something forgotten: look in the places you use and list what is there. Propose anything you cannot be sure is yours; don't remove it.
-5. **Before saying done,** by the `act` skill's rule 11, **or before stopping,** such as at the wrap-up offer or when work is carried over to a later session: go through the record, clean your own, and propose the rest through `act-guardrails` and `respond-ask`.
+5. **Before the response that ends the task,** by the `act` skill's rule 11, **or before stopping,** such as at the wrap-up offer or when work is carried over to a later session: go through the record, clean your own, and propose the rest through `act-guardrails` and `respond-ask`.
 6. **Check** with `act-verify`.
 7. **Report,** at the end of the response:
 
@@ -60,4 +60,4 @@ What counts, when you created or started it in this task:
 
 ## The last instruction
 
-Before you say the task is done or stop, check: every item in the record is cleaned and checked as gone, kept with where and why, or proposed, and the report says which.
+Before the response that ends the task, or before you stop, check: every item in the record is cleaned and checked as gone, kept with where and why, or proposed, and the report says which.

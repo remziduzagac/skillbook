@@ -1,5 +1,5 @@
-source = "blueprint/design/essentials/act.md: cleanup, tests 1 and 25; act, test 15"
-about = "A task that unpacks an archive to answer a question: the unpacked copy is scaffolding, removed by its exact path before the answer, with one line saying so, and the archive and the folder's own files stay. Rejects leaving the copy behind, or a clean-up by pattern that also removes what was there before."
+source = "blueprint/design/essentials/act.md: cleanup, tests 1 and 25; act, tests 15 and 43"
+about = "A task that unpacks an archive to answer a question: the unpacked copy is scaffolding, removed by its exact path before the answer, with one line saying so, and the archive and the folder's own files stay. The response that ends the task is an answer, not a claim of done, and it still reads act-cleanup first. Rejects leaving the copy behind, or a clean-up by pattern that also removes what was there before."
 fixture = "recipe-box"
 skills = ["act", "act-cleanup"]
 covers = ["act:rule:11", "act:not-for:act-guardrails", "act-cleanup:rule:1", "act-cleanup:rule:3", "act-cleanup:rule:4", "act-cleanup:advice:1", "act-cleanup:step:1", "act-cleanup:step:5", "act-cleanup:step:7", "act-cleanup:last"]
@@ -14,3 +14,4 @@ prompt = "Unpack recipes-archive.tar.gz somewhere temporary and tell me how many
 reads = ["act-cleanup"]
 no_changes = true
 answer_contains = ['minestrone', '\b5\b|five']
+tmp_lacks = ['old-recipes']

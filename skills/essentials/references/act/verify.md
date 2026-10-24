@@ -1,6 +1,6 @@
 # act-verify
 
-Evidence before you say that work is done, fixed, passing, correct or meets its requirements: the check that would fail if the claim were false, chosen with who runs it, run fresh, and its result stated as it is.
+Evidence before you say that work is done, fixed, passing, correct or meets its requirements, or answer whether it does: the check that would fail if the claim were false, chosen with who runs it, run fresh, and its result stated as it is.
 
 ## Rules
 
@@ -31,7 +31,7 @@ Evidence before you say that work is done, fixed, passing, correct or meets its 
 
    Search for the item's names and its decision's terms, and read the hits in parts, not whole designs. When the reading is large, give it to a fresh agent on the standard tier, neither the lightest nor the strongest model, because contradiction and drift are judgments.
 
-   Scale them with what `act-stakes` says, because the full search on a small change costs more than it finds. Plainly low work, such as a typo fix, gets one line saying what you looked at. Where the project has no design, plan or decisions, say so, and skip the checks that need one.
+   Scale them with what `act-stakes` says, because the full search on a small change costs more than it finds. Plainly low work, such as a typo fix, gets about one line saying what you looked at, and nothing outside the task: name a problem you find outside it as a follow-up, one line each, by the `act` skill's rule 3, because a findings report on a one-line change costs the user more than the change. Where the project has no design, plan or decisions, say so, and skip the checks that need one.
 
 ## Advice
 
