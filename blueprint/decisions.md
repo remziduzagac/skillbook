@@ -186,7 +186,7 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 **Decision:** The roadmap's status line says whether the initial design is open or settled. An agent reads it before planning: while the initial design is open, changes go straight into the root and no workstream is proposed. The person may reopen a settled initial design, recorded as a decision, while nothing depends on it yet.
 
-**Why:** An agent that took D26 at its word would have pushed the redesign of D27 through a workstream. Making the phase explicit, and reopening possible, keeps agents from adding workstreams the person does not want. Applied to the method in [design/blueprint.md](../docs/blueprint/idea/blueprint.md).
+**Why:** An agent that took D26 at its word would have pushed the redesign of D27 through a workstream. Making the phase explicit, and reopening possible, keeps agents from adding workstreams the person does not want. Applied to the method in [design/blueprint.md](../docs/blueprint/idea.md).
 
 ## D29: blueprint carries the design flow, from idea to implementation and back (2026-10-10)
 
@@ -194,7 +194,7 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 **Decision:** blueprint holds the flow of design work, not only its strands. A big task arrives as an idea; it is analysed through the code, research and discussion into a PRD (a workstream, or the root during the initial design); it is planned as tasks and implemented; and the implementation updates the blueprint. This replaces mattpocock/skills' chain of spec, tickets and map.
 
-**Why:** It is how the person develops today. A structure without its flow leaves the agent to invent the order of the work. The flow is drafted in [notes/skillbook-tree.md](ideas/skill-tree.md) and goes into [design/blueprint.md](../docs/blueprint/idea/blueprint.md) when blueprint is improved.
+**Why:** It is how the person develops today. A structure without its flow leaves the agent to invent the order of the work. The flow is drafted in [notes/skillbook-tree.md](ideas/skill-tree.md) and goes into [design/blueprint.md](../docs/blueprint/idea.md) when blueprint is improved.
 
 ## D30: Outside skills are learned from where they map, discussed where they do not (2026-10-10)
 

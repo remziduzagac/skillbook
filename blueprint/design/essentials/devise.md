@@ -100,7 +100,7 @@ devise/
 - **Result:** the short or full design with its actual approval status; for a full one, its review and any outstanding checks. Approval is required before execution, not assumed from delivery (D257).
 - **Where it is kept** (D156, D163, D168): a short design stays in the response. A full design goes in a file the person names; when they name none, the agent asks, recommending a file named for what is designed, where the project keeps its documents, since a full design lost with the conversation would have to be redone. Where the project's instruction files point to a keeper, such as blueprint's main skill, it is kept where the keeper says, and design names none of the keeper's steps.
 - **Files:** `references/devise/design.md` (D257).
-- **Material:** the draft flow in [../../ideas/skill-tree.md](../../ideas/skill-tree.md); the blueprint method ([../../../docs/blueprint/idea/blueprint.md](../../../docs/blueprint/idea/blueprint.md)) and its worked example; this repository's own way of designing, as a worked example; adapted, never copied (D120).
+- **Material:** the draft flow in [../../ideas/skill-tree.md](../../ideas/skill-tree.md); the blueprint method ([../../../docs/blueprint/idea.md](../../../docs/blueprint/idea.md)) and its worked example; this repository's own way of designing, as a worked example; adapted, never copied (D120).
 - **Tests** (D168):
   1. "design a CLI for X": a full design, framed, divided, its open questions one at a time, written with the eight parts, reviewed by a fresh agent and approved before plan;
   2. "add a --verbose flag": settled, so no design; plan or done directly;

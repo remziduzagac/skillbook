@@ -25,7 +25,7 @@ skillbook is a book of skills for AI agents such as Claude Code and Codex: instr
 | authoring | writing for people: user docs, business documents, articles, issues; editing |
 
 [es-docs]: docs/essentials/README.md
-[bp-idea]: docs/blueprint/idea/blueprint.md
+[bp-idea]: docs/blueprint/idea.md
 
 Only each set's main skill sits in an agent's context; every other skill loads when a flow reaches it, so a set can grow without filling the context. Each set works alone, and uses another when it is installed.
 
@@ -38,7 +38,7 @@ Coming with the first release: one install script, `install.sh`, copies the sets
 - `skills/<set>/`: one folder per set, once built.
 - [docs/](docs/README.md): one page per skill, for people.
 - [docs/essentials/](docs/essentials/README.md): what essentials is for, how it works, and a line on each of its skills.
-- [docs/blueprint/idea/](docs/blueprint/idea/blueprint.md): the first idea of the blueprint method, with [a worked example](docs/blueprint/idea/blueprint-example.md).
+- [docs/blueprint/idea.md](docs/blueprint/idea.md): the first idea of the blueprint method, with [a worked example](docs/blueprint/idea.md#a-worked-example-worktree-groups).
 
 ## Use at your own risk
 

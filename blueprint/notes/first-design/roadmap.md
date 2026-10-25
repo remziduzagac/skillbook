@@ -17,7 +17,7 @@ Starts once the person declares the initial design settled again.
 - [ ] **The repository's checks:** the check script and CI that skillbook's design specifies, release-please, and the rest of greenrepo's core for a markdown-and-Bash repository.
 - [ ] **agent-writing:** the writing rules every skill follows, adapted from mattpocock/skills' `writing-for-agents` (D22). First, because every other skill is written against it.
 - [ ] **markdown-style:** moved in from the person's existing skill (D24).
-- [ ] **blueprint:** the main skill and its sub-skills, from [design/blueprint.md](../../../docs/blueprint/idea/blueprint.md).
+- [ ] **blueprint:** the main skill and its sub-skills, from [design/blueprint.md](../../../docs/blueprint/idea.md).
 - [ ] **greenrepo:** the main skill, its sub-skills, profile files with examples, and templates for the health workflow and the three upkeep files, from [design/greenrepo.md](design/greenrepo.md).
 - [ ] **A first manual run of the health workflow on herdsman,** which answers greenrepo's open platform questions.
 - [ ] **The first release:** manifests listing the shipped skills, docs pages, install instructions.

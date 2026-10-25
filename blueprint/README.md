@@ -26,7 +26,7 @@ skillbook's own design, kept with its own blueprint method. skillbook is a publi
 - Building what the design describes changes neither, so it is planned as tasks.
 - Decisions are append-only: a change is a new entry, and a note goes under each earlier entry it changes.
 - Work goes top-down, from the goals to the tasks; corrections go back up to the level they belong to.
-- Until the design skill is written, this blueprint follows the method in [../docs/blueprint/idea/blueprint.md](../docs/blueprint/idea/blueprint.md).
+- Until the design skill is written, this blueprint follows the method in [../docs/blueprint/idea.md](../docs/blueprint/idea.md).
 
 ## Conventions
 

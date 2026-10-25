@@ -32,10 +32,12 @@ skillbook is a public repository of the person's agent skills, used in every pro
 | 1 | [blueprint/README.md](../../README.md), [roadmap.md](roadmap.md) | 70 | the map and the plan |
 | 2 | [blueprint/decisions.md](../../decisions.md) | 360 | D1–D41, each with its reason |
 | 3 | [blueprint/design/skillbook.md](design/skillbook.md) | 400 | how skills are built and loaded |
-| 4 | [blueprint.md](../../../docs/blueprint/idea/blueprint.md) | 1,230 | the blueprint skill's specification |
-| 5 | [blueprint-example.md](../../../docs/blueprint/idea/blueprint-example.md) | 480 | the method on a real case |
+| 4 | [blueprint.md](../../../docs/blueprint/idea.md) | 1,230 | the blueprint skill's specification |
+| 5 | [blueprint-example.md][example] | 480 | the method on a real case |
 | 6 | [blueprint/design/greenrepo.md](design/greenrepo.md) | 880 | the greenrepo skill's specification |
 | 7 | [blueprint/design/greenrepo-profiles.md](design/greenrepo-profiles.md) | 240 | greenrepo's profiles |
+
+[example]: ../../../docs/blueprint/idea.md#a-worked-example-worktree-groups
 
 The research in [blueprint/research/](../../research/README.md) is evidence, not instructions: read a write-up when you need the reason behind a rule, and a research note when you need its source. The notes are long; search them rather than read them whole. [blueprint/notes/](../README.md) tells how the design was reached.
 

@@ -1,6 +1,6 @@
 # Design: blueprint
 
-What a builder needs for the blueprint set: its main skill, its recording steps and the form of each document (D46, D47, D154); ideas not yet decided are in [../../ideas/design.md](../../ideas/design.md). Until it is designed, this repository's blueprint follows the method in [../../../docs/blueprint/idea/blueprint.md](../../../docs/blueprint/idea/blueprint.md). Every section answers the same questions (D80); an empty field is not designed yet. In the tree, the steps are named design-start and so on until names are settled with the install routes.
+What a builder needs for the blueprint set: its main skill, its recording steps and the form of each document (D46, D47, D154); ideas not yet decided are in [../../ideas/design.md](../../ideas/design.md). Until it is designed, this repository's blueprint follows the method in [../../../docs/blueprint/idea.md](../../../docs/blueprint/idea.md). Every section answers the same questions (D80); an empty field is not designed yet. In the tree, the steps are named design-start and so on until names are settled with the install routes.
 
 The blueprint set keeps carryovers, as their keeper (D156), in a `carryovers/` folder at the blueprint's top, beside `notes/`: one file per carryover, never written over, named by the date and time it was written, then a short topic, such as `2026-10-17-1530-open-topics.md`, the newest resumed. It is not a recording step of its own, since carryover says what goes in; the folder layout, settled with start, names it (D162).
 
