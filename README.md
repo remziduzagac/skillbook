@@ -10,7 +10,7 @@ skillbook is a book of skills for AI agents such as Claude Code and Codex: instr
 
 <p align="center">
   <img alt="An orange robot at a workbench reads a black skillbook, with diagrams, gears and screens around it"
-    src="assets/skillbook-robot.webp" width="720">
+    src="assets/skillbook-robot.webp" width="600">
 </p>
 
 **Status:** the essentials set is built and being tested; the other sets are still being designed. There is no release yet.
