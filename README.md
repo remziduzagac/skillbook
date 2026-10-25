@@ -12,7 +12,7 @@
 
 Agent skills for any kind of project, organised as sets you install separately: essentials, for how any work is done, and sets for keeping a project's design record, engineering software and writing for people. Built for Claude Code and Codex, written so other agents that read skills work too.
 
-**Status:** the design is under way; no skill is built yet. Nothing here is installable today.
+**Status:** the essentials set is built and being tested; the other sets are still being designed. There is no release yet.
 
 ## The plan
 
