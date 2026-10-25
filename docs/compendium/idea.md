@@ -1,5 +1,10 @@
 # compendium
 
+<p align="center">
+  <img alt="An orange robot at a desk full of old books and scrolls reads a leather tome, with linked notes on screens behind it"
+    src="../../assets/skillbook-compendium-robot.webp" width="600">
+</p>
+
 The first idea of the compendium set. Nothing here is designed yet: every line below is an idea that may change.
 
 ## What it is for
