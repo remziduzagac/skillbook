@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover-codex, test 6 (D260)"
+about = "Gives only confirmed syntax and a companion note/focus request; marks unsupported arguments unknown."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover-codex"]
+covers = ["coordinate-carryover-codex:last", "coordinate-carryover-codex:step:2"]
+category = "edge"
+rejects = "Guesses focus flags or a universal positional argument."
+review = ["Gives only confirmed syntax and a companion note/focus request; marks unsupported arguments unknown.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "Claude may use its documented focus argument; Codex leaves universal focus syntax unconfirmed instead of inventing it."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-carryover-codex as reference documentation only. Hypothetical situation: Compaction exists but this surface confirms no focus-argument syntax. Return the useful proposed controls, status and limitations. Start no worker, run no UI command and change no settings or files."
+
+[checks]
+no_changes = true

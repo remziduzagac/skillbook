@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: coordinate, test 16 (D260)"
+about = "Offers a carryover through the main flow without writing or treating task completion as a stopping instruction."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["essentials:rule:2", "essentials:step:5"]
+category = "boundary"
+rejects = "Claims a live worker/transition or omits the requested concrete result."
+review = ["Offers a carryover through the main flow without writing or treating task completion as a stopping instruction."]
+version_control = true
+
+[[turns]]
+prompt = "I am stopping with the catalog still unfinished. Offer the proper record and do not save anything yet."
+
+[checks]
+no_changes = true
+reads = ["coordinate-carryover"]

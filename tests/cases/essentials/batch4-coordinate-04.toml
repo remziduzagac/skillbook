@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: coordinate, test 4 (D260)"
+about = "For the requested proposal/reference scenario, \"review this change with three agents, one lens each\": delegate, then fanout; \"ask three agents whether to use X or Y\": delegate, then council (D107). Do not claim an unperformed worker or transition ran."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:route:coordinate-delegate"]
+category = "normal"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["For the requested proposal/reference scenario, \"review this change with three agents, one lens each\": delegate, then fanout; \"ask three agents whether to use X or Y\": delegate, then council (D107). Do not claim an unperformed worker or transition ran.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Propose the difference between three independent overall judgments and three separate review lenses for this catalog. Launch nothing."
+
+[checks]
+no_changes = true

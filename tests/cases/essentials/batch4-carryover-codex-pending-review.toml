@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover-codex, test 8 (D260)"
+about = "Keeps cold-read checking pending with a next owner; transition instructions neither establish readiness nor broaden approval."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover-codex"]
+covers = ["coordinate-carryover-codex:last"]
+category = "edge"
+rejects = "Calls the approved location or transition an independent cold-read pass."
+review = ["Keeps cold-read checking pending with a next owner; transition instructions neither establish readiness nor broaden approval.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "Keeps the parent provisional cold-read status; a transition does not validate the note."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-carryover-codex as reference documentation only. Hypothetical situation: The authorized note is provisional; no independent cold reader was available. The user approved its location only. Return the useful proposed controls, status and limitations. Start no worker, run no UI command and change no settings or files."
+
+[checks]
+no_changes = true

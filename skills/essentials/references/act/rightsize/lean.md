@@ -19,7 +19,7 @@ Removes extra parts from existing material. Judges each part for its reader. Cut
 ## Instructions
 
 1. **Find the reader,** and what the thing is for.
-2. **List each part and its job for that reader.** Use a script when listing is mechanical. Delegate the listing if the material exceeds one whole read, such as several files or a file returned only in part. A delegated agent does not delegate again. Never read everything twice in the main session: each read costs again on later turns.
+2. **List each part and its job for that reader.** Use a script when listing is mechanical. Use `coordinate-delegate` for the listing if the material exceeds one whole read, such as several files or a file returned only in part. A delegated agent does not delegate again. Never read everything twice in the main session: each read costs again on later turns.
 3. **Mark what goes,** by rules 2 and 3.
 4. **Apply the approved list.** Get approval by rule 4. Follow rule 5 for code.
 5. **Check that every needed part remains or has a working pointer.** For code, check passing tests and preservation of public interfaces, documented behaviour and untested requirements.

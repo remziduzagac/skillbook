@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 9 (D260)"
+about = "For the requested proposal/reference scenario, unsure whether a task is too small: follow the main skill's current advice within permitted capabilities, with actual worker state and current progress timing (D260). Do not claim an unperformed worker or transition ran."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:rule:1"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["For the requested proposal/reference scenario, unsure whether a task is too small: follow the main skill's current advice within permitted capabilities, with actual worker state and current progress timing (D260). Do not claim an unperformed worker or transition ran.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "The result is not already known: the job needs comparing many record descriptions and returns a short summary. Propose worker context and tier for this uncertain-size task. Start nothing."
+
+[checks]
+no_changes = true

@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: coordinate, test 14 (D260)"
+about = "Keeps foreign documentation inspection separate from the operational current-harness route."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate-delegate:not-for:coordinate-delegate-claude", "coordinate-delegate:not-for:coordinate-delegate-codex"]
+category = "boundary"
+rejects = "Claims a live worker/transition or omits the requested concrete result."
+review = ["Keeps foreign documentation inspection separate from the operational current-harness route."]
+version_control = true
+
+[[turns]]
+prompt = "Read the Claude worker reference as documentation from Codex. Explain its mapping; operate no Claude controls."
+
+[checks]
+no_changes = true
+reads = ["coordinate-delegate-claude"]

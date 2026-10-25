@@ -42,6 +42,18 @@ def command_event(command, exit_code=0):
         "type": "command_execution", "command": command, "exit_code": exit_code}}
 
 
+class SkillResources(unittest.TestCase):
+    def test_resources_are_not_callable_skills(self):
+        for rel in ["references/coordinate/delegate/assets/prices.md",
+                    "references/coordinate/delegate/scripts/help.md"]:
+            with self.subTest(rel=rel):
+                self.assertIsNone(runner.skill_name("essentials", rel))
+        self.assertEqual(runner.skill_name("essentials", "references/coordinate/delegate/codex.md"),
+                         "coordinate-delegate-codex")
+        self.assertTrue(all("assets" not in path.parts and "scripts" not in path.parts
+                            for _, path in runner.skill_files()))
+
+
 class ReadEvidence(unittest.TestCase):
     def test_successful_direct_and_wrapped_reads(self):
         for command in ["cat /tmp/skills/essentials/references/act.md",

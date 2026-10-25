@@ -20,7 +20,7 @@ Checks claims that work is done, fixed, passing, correct or meets requirements, 
    - **a fresh agent: before you report high-stakes work, start one that did not do the work to check it.** Your own read of your own work misses what you got wrong.
      - Judge the stakes with `act-stakes` first if they are not judged yet. Judge by reach and undo, not by the size of the change or the time left. One wrong digit in a bank transfer about to go out is high.
      - Start one too when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary is fair to its source.
-     - Start the agent through your harness. Brief it with the claim and what would show it false.
+     - Start the agent through `coordinate-delegate`. Brief it with the claim and what would show it false.
      - Count a check as independent only after you see another agent's or person's result. Your own second look does not count. Neither does starting or waiting on an agent without seeing its result.
      - If you cannot start one, write in your report that this check is still to do, and who should do it. This includes delegated agents and harnesses without agents. Follow the `act` skill's rule 10 for your report;
    - the user: for meaning, taste, irreversible results and anything no check can see. Get any required fresh agent's check first. The user's check does not replace it: asking them to reread is not independent checking.
@@ -37,7 +37,7 @@ Checks claims that work is done, fixed, passing, correct or meets requirements, 
    - **drift:** from the design and the plan;
    - **coverage:** every requirement met, shown with the checklist from rule 1.
 
-   Search for the item's names and decision terms. Read hits in parts, not whole designs. Delegate large reading to a fresh agent on the standard tier, neither lightest nor strongest. Contradiction and drift need judgment.
+   Search for the item's names and decision terms. Read hits in parts, not whole designs. Use `coordinate-delegate` for large reading by a fresh agent on the standard tier, neither lightest nor strongest. Contradiction and drift need judgment.
 
    Scale checks by `act-stakes`. A full search on a small change costs more than it finds. For plainly low work such as a typo, give about one line on what you checked. Stay inside the task. Report outside problems as one-line follow-ups by the `act` skill's rule 3. A findings report costs more than a one-line change. The whole answer is a few lines: claim and evidence, check line, follow-ups. If the project lacks a design, plan or decisions, say so. Skip checks that need the missing item.
 

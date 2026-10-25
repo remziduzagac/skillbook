@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 32 (D260)"
+about = "For the requested proposal/reference scenario, a fork: its effort not set, the main session's kept (D143). Do not claim an unperformed worker or transition ran."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:rule:4"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["For the requested proposal/reference scenario, a fork: its effort not set, the main session's kept (D143). Do not claim an unperformed worker or transition ran.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "In a hypothetical history-sharing fork, may a caller lower its inherited effort independently? Explain within available controls, without changing anything."
+
+[checks]
+no_changes = true

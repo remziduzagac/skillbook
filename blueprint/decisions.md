@@ -1061,6 +1061,9 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D99: delegate, with council, fanout and crew (2026-10-12)
 
+> **Amended by D260 (2026-10-25):** D260 builds the core delegate/brief/carryover flow and four harness children; later orchestration methods remain designed dependencies.
+
+
 > **Amended by D105 (2026-10-12):** search first; delegate reading only what a search cannot narrow.
 >
 > **Amended by D107 (2026-10-12):** the cost is stated before the brief; work that will need a judgment review is not given to the light tier; crew also covers proposals to one shared item; fanout's findings take one format, a script consolidates them and checks each quote, and the validator is at the strong tier; the reference files wait for rigs.
@@ -1126,6 +1129,9 @@ Each hands back the before-and-after map, the inventory or test result, and what
 **Why:** These skills are about a program, used from many roots, rather than a kind of work. "tools" collides with an agent's own tools; a rig is the equipment one works with.
 
 ## D104: handoff's two sides (2026-10-12)
+
+> **Amended by D260 (2026-10-25):** D260 distinguishes provisional carryovers, actual cold-read readiness and authorized resumption, including completed work.
+
 
 > **Amended by D107 (2026-10-12):** a seventh part, what the handoff was written against (the date, the branch, its last commit); proposed when the person says they are stopping or a long task stops with steps left.
 >
@@ -1669,6 +1675,9 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D138: Delegation by default, and delegate in the shape (2026-10-17)
 
+> **Amended by D260 (2026-10-25):** D260 applies the whole cost rule even to one worker, capability limits and actual lifecycle/progress status.
+
+
 > **Amended by D198 (2026-10-18):** a fork made when unsure is said in one line.
 
 > **Amended by D142 (2026-10-17):** too small means short, the change or answer already known, and leaving little behind; delegate chooses the type, then fork or fresh, then the model; fork or fresh is judged from the list of what the agent needs from the conversation and how long the task is, so a long conversation favours a fresh agent for a long task, not a small one.
@@ -1711,6 +1720,9 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D142: What delegating costs, and how delegate chooses (2026-10-17)
 
+> **Amended by D260 (2026-10-25):** D260 keeps context-shape selection while using dated conditional controls and honest unavailable-capability returns.
+
+
 > **Amended by D147 (2026-10-17):** the offer at a phase's end when the window is over about half full is designed in carryover, with signs for harnesses that do not show the window.
 
 **Decision:** What an agent's work costs rests on four facts, explained in a research note ([research/token-cost.md](research/token-cost.md)): every turn pays for the whole context again; the cache makes that cheaper, not free; output costs several times input; the model sets the price of every token. Each skill carries only a short reason drawn from it; a harness's specifics, whether it can fork, how its fork uses the cache and what context use it shows the agent, go in delegate's reference file for that harness; no new skill is made before the lean discussion. delegate chooses in this order: the type, used as named when the caller names one, otherwise after a cost check, several agents only when the parts are large, independence or different lenses improve the result, time matters and the person accepts the cost, or one agent's context would fill up, with a search before any reading fanout; then fork or fresh for each agent; then the model for each fresh agent. Fork or fresh is judged from signs, never counted tokens: the list of what the agent needs from the conversation, short or long; whether the task's answer is already known or has to be found; whether it reads or produces a lot; whether a lighter model fits. Independence still needs a fresh agent. delegate's advice holds this as a sample of how its `SKILL.md` puts it, each line with an example. The window's fullness is used only where the harness shows it to the agent without extra work, and only to give a fresh agent the list in a file instead of a fork when the window is nearly full, and to offer a handoff at the end of a phase when it is over about half full; a session's transcript is read for measuring, never for routine choices. The main skill's too-small test becomes: short, and it leaves little behind. The two assumptions behind the worked figures were measured by running Claude Code with the lightest model: a fork's first call read the parent's whole conversation from cache while it was warm (E10), and a fresh agent's start-up is about 14,700 tokens for the general-purpose agent and 12,600 for Explore (E11). The order of the work that follows: delegate, handoff, organize, a sweep of the other skills and skillbook's own files, then the lean skill.
@@ -1728,6 +1740,9 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Why:** Thinking is paid at output price, so how hard an agent thinks costs as much as how much it writes, and effort answers the same question as the model. This session's own figures show that long sessions dominate the cost: carrying the context and writing it to cache were about four-fifths of it. Where the too-small call is hard, doing the task and forking cost about the same, so a question costs the person a turn and settles little. Delegating content the main agent needs for the conversation means reading the report and then the content anyway.
 
 ## D144: Models named only per harness, and effort chosen apart from the model (2026-10-17)
+
+> **Amended by D260 (2026-10-25):** D260 keeps four role distinctions, dated harness mappings and official price data separate from generic role policy.
+
 
 > **Amended by D149 (2026-10-17):** prices and price steps move out of each harness's mapping file into one `references/prices.md`, read only when a cost is stated.
 >
@@ -1761,6 +1776,9 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D147: brief and carryover, the two halves of writing for a reader who was not there (2026-10-17)
 
+> **Amended by D260 (2026-10-25):** D260 reuses only shared brief writing rules for a later main session and adds the act-only worker bootstrap.
+
+
 > **Amended by D149 (2026-10-17):** a fresh agent's brief tells it not to load the main skill and names any skill it needs.
 >
 > **Amended by D160 (2026-10-17):** the offer comes at a task's, milestone's or phase's end in a long session, and is to compact, with a suggested focus, when the work continues, or a carryover and a fresh session when it is new work.
@@ -1781,6 +1799,9 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Why:** Most parts are made, not rearranged: a document, a program or a system is divided as it is planned, and the same principle, boundaries and warning signs hold, while nothing exists yet whose meaning could be lost. What a reader opens costs attention and, for an agent, tokens on every later turn, so a part's size follows how it is read. Examples drawn from one kind make a rule look as if it held only for that kind.
 
 ## D149: the cost sweep's fixes (2026-10-17)
+
+> **Amended by D260 (2026-10-25):** D260 replaces the blanket main-skill skip with an act read plus the exact name rule and dependencies loaded on demand. Cost/approval follows the complete current guardrails rule.
+
 
 > **Amended by D154 (2026-10-17):** the first read becomes act, respond, rightsize and essentials' output-format skill once designed.
 >
@@ -1921,6 +1942,9 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D160: compaction offered at a boundary (2026-10-17)
 
+> **Amended by D260 (2026-10-25):** D260 adds conditional documented transition controls and plain continuation fallbacks; the user performs transitions.
+
+
 > **Amended by D161 (2026-10-17):** a carryover is written first in both cases; when the work continues, compaction follows it, its focus naming the note.
 
 **Decision:** carryover's offer comes when a boundary has been reached, a task, a milestone or a phase completed with nothing in flight, and the session has been long; it offers the one of two that fits: to compact, with a suggested focus such as "keep the open questions and the decisions in progress", when the next work continues this one; or a carryover and a fresh session when it is new work that needs only what fits in the carryover. It is offered once per boundary; compacting and starting fresh are the person's to do; no skill names a harness's command, and carryover's reference files say how for each harness, Codex's still to find out ([design/conduct.md](design/essentials/respond.md)).
@@ -1928,6 +1952,9 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** The person's usage report showed most cost at long contexts in long sessions, and its advice was to compact mid-task and clear when switching tasks. The person asked that compaction at least be suggested, and that it come when a milestone or task is completed. A compaction chosen at a boundary with a focus keeps what matters, where the harness's own comes late and chooses for itself.
 
 ## D161: a carryover before compaction (2026-10-17)
+
+> **Amended by D260 (2026-10-25):** D260 retains offer/note approval while reporting provisional review status and checking current authority after transition.
+
 
 > **Amended by D169 (2026-10-17):** the note holds what lasts and the harness's summary the recent conversation; the focus says so, and on resuming the note is read first, the files deciding where the two disagree.
 
@@ -1994,6 +2021,9 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** design was the one part of essentials left empty. Its draft flow dated from before the sets; with the recording steps the blueprint set's and architecture softeng's, what remains is the method itself, gone through with the person in five items. The checks that overlapped across verify, organize, review, challenge and skillbook-tree, left to settle here (D123), now have one home each.
 
 ## D169: a carryover that carries the whole context (2026-10-17)
+
+> **Amended by D260 (2026-10-25):** D260 permits an authorized provisional note when the independent cold reader is unavailable. It never claims validated readiness.
+
 
 **Decision:** carryover's note goes top-down, from the general to the detailed, in ten parts: the goal and where it stands; the shape of the work now, each concept in a line with where it is defined; how to work here, the person's rules, conventions and commands recorded nowhere else, the rest pointed to and learn offered for a rule worth keeping; done since the last carryover, with evidence; decisions, with where each is recorded; remaining, each with what it is about and what has been weighed; uncertain; references; the first next step; written against. Each carryover stands alone, never sending the reader to an earlier one. It is as long as a reader with no conversation needs, its first part alone giving the picture, replacing about a page. Before its outline is shown, a fresh agent at the standard tier reads only the note and the files it points to and lists what it would still ask; the note answers each. With compaction, the note holds what lasts and the harness's summary the recent conversation: the focus names the note and asks the summary to keep what was said after it and the person's corrections; on resuming, the note is read first, and where the two disagree the files decide and the difference is reported. Without compaction, the note works on its own.
 
@@ -2233,6 +2263,9 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** a comparison of the two `skill-creator` versions, Anthropic's (485 lines, which Claude Code gets as a skill synced from the account) and Codex's built-in one (229 lines), found them at odds with skillbook's rules on most points that matter: `SKILL.md` up to 500 lines against about 100 per file, "pushy" descriptions holding every "when to use" against a parent's line for each child, flat examples with the entry file holding content, no name rule, a Codex validator that rejects `compatibility` and a scaffolder that writes the settings file of a hidden skill, and test runners that hand the skill's path to the agent, so they never test the installed skill being found; what is left, general writing advice and a run without the skill to compare against, fits in a few lines. Both are Apache 2.0, so ideas rewritten in skillbook's words need no notice. The person asked that skillbook-write not refer to the design folder directly but stay general enough to survive changes. The head repeats nothing: the agent reads the parent first, top-down, so its line for the child is already in view, and one home for each fact is the checklist's rule.
 
 ## D197: An unreadable file no longer stops the flow, and per-agent files are children (2026-10-18)
+
+> **Amended by D260 (2026-10-25):** D260 designs and builds the four delegate/carryover harness children with conditional controls and explicit unknowns.
+
 
 > **Amended by D257 (2026-10-25):** D257 designs and builds both plan harness children with explicit conditional controls and fallbacks.
 
@@ -3755,6 +3788,9 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D259: Settle and build organize with explicit approvals and preserved meaning (2026-10-25)
 
+> **Amended by D260 (2026-10-25):** D260 restores coordinate-delegate for optional inventory judgment while retaining self-check fallback and pending required independence.
+
+
 **Decision:**
 
 - Organize uses `references/organize.md`; its five operations use plain files under `references/organize/`. All use full names. Parents keep one route per child. The main skill, devise, design, plan, design review, verify and lean name the corresponding organize operation or bounded check. A called check returns to its active caller without restarting it.
@@ -3776,3 +3812,27 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Passing tests do not establish preservation of untested public behavior. Conditional specialist calls need an honest fallback.
 
 **Tested:** No model test was run, by D253. The six files and their caller routes are built. The numbered design scenarios have executable cases inspected against correct and plausible wrong traces, including separate approval/application/confirmation turns. Static checks, case counts, coverage, manual limits and the file-against-design review are recorded in `../tests/batch3-build-report.md`. These are not observed model passes.
+
+## D260: Build coordinate's core with an act bootstrap and honest worker and carryover status (2026-10-25)
+
+**Decision:**
+
+- Coordinate, delegate, brief and carryover use plain files at their full name-rule paths. Four harness children are included: delegate/claude, delegate/codex, carryover/claude and carryover/codex. Each parent gives child use, exclusions and returned status. Later council, fanout, crew, instruct, setup and learn remain designed dependencies; built text uses judgment where their files are absent and claims no unperformed method.
+- Delegate keeps generic roles light, standard, strong and strongest-model escalation after strong fails. Effort is separate; model mappings and controls are dated and conditional in harness children. A shared model for two roles does not merge their policies. User mappings override defaults within harness permissions. Missing mappings use the session-model fallback; unavailable controls and access remain limitations, not guessed capabilities.
+- The complete guardrails cost rule applies before each worker starts, even one short worker. Estimates, unknown usage, quota cost and actual enforced caps are distinct. Prices affect cost/approval, not role definitions. Required proposals use respond-ask and end the turn. Ordinary status/results follow the main progress and final-answer rules. Startup, blocked, failed, cancelled and completed work keep their actual status.
+- Delegation needs permitted live controls. If unavailable, return the specific limitation and remaining work to the caller. Ordinary work returns under that caller's existing policy. Required independence stays pending under act-verify rule 2 with its next owner. No fork, self-review, alternative process or missing event supplies independence. Verification workers return to their active verification caller without a recursive verification cycle. Delegation never widens authority or answers an absent user's approval prompt.
+- A fresh worker reads references/act.md whole through the actual essentials folder path when that text is absent. Its brief marks it as delegated work and copies the exact main Names line as the approved bootstrap exception. Named dependencies read their parents when needed, including understand and respond. Do not forbid them or assume a settled brief prevents new ambiguity. A fork reuses only visible inherited context. The brief no longer duplicates act rule 10, which remains authoritative over every used skill.
+- Briefs explicitly request cleanup before reporting and then cleaned/kept/proposed evidence. A read-only label alone proves no absence of artifacts or processes. Carryover reuses shared context/decision/reference/next-step writing rules, not a worker's startup or report-back restrictions. A later main session follows its own current instructions.
+- A carryover keeps the ten-part standalone shape, normal keeper/default location and note approval. A missing independent cold reader permits only an authorized explicitly provisional note, with the check pending and its next owner. User approval or self-review does not establish independent checking or validated readiness. A delegated writer returns the cold-read need to its caller rather than delegating again.
+- On resumption, files establish observable state; current instructions establish authority. Notes and summaries are records, not new orders or approvals. Work/consent-changing differences ask and end the turn before affected action. Non-blocking differences go in the final answer; required notices retain timing. Actual prior approval holds only within its scope and basis. Resume continues authorized remaining work, or reports checked completion without inventing a next step.
+- The four children give documented conditional delegation and transition controls. Official-source research is in research/coordinate-harnesses.md; API cost observations are in delegate's assets/prices.md and are not subscription bills or caps. A universal Codex compact-focus argument, universal fork cache saving, live account/tool access and actual spending enforcement remain unconfirmed. The user performs compaction or starts a new chat. Missing controls return a plain note/focus/startup request without installations or settings changes.
+- Built callers name coordinate for their actual step, preserving independence ownership, verify returns, organize's self-check path, plan sequencing and caller-owned recording. Cases cover selection, boundaries, bootstrap artifacts, provisional saving and reference workflows. Live worker/transition observations are kept separate and explicitly declared manual.
+
+**Why:**
+
+- A worker needs the act baseline and a reliable path to dependencies, not every start file upfront and not a copied partial safety policy. Context reuse must be visible, not inferred from the word fork.
+- One worker may still cost more than the accepted limit. A documented API or model does not establish a permitted tool or an actual cost cap.
+- Returning provisional state is useful without claiming a missing independent check passed. Stored next steps cannot grant authority or override current user corrections.
+- Keeping policy in parents and changing controls in dated children avoids stale commands changing generic rules.
+
+**Tested:** No model test was run, by D253. Eight files and supporting material are built with executable cases for each numbered design scenario and explicit manual operational aspects. Correct and plausible wrong traces were inspected; no observed model passes are claimed. Repository checks, case counts, coverage, design comparison and unknown harness facts are recorded in ../tests/batch4-build-report.md. Live worker startup, independent results and transition cycles remain unverified.

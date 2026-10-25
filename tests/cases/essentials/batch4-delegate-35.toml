@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 35 (D260)"
+about = "For the requested proposal/reference scenario, a tricky function that tests will check: the standard tier and high effort (D144). Do not claim an unperformed worker or transition ran."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:rule:3", "coordinate-delegate:rule:4", "coordinate-delegate:step:6"]
+category = "normal"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["For the requested proposal/reference scenario, a tricky function that tests will check: the standard tier and high effort (D144). Do not claim an unperformed worker or transition ran.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Propose tier and effort for a tricky helper function whose behavior a later test checks. Launch nothing."
+
+[checks]
+no_changes = true

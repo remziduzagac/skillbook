@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: coordinate, test 7 (D260)"
+about = "For the requested proposal/reference scenario, \"check my work with another agent\": verify, which chooses who checks, and delegate to start the second agent; two lines serve one request (D115). Do not claim an unperformed worker or transition ran."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:route:coordinate-delegate", "coordinate:not-for:coordinate-delegate"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["For the requested proposal/reference scenario, \"check my work with another agent\": verify, which chooses who checks, and delegate to start the second agent; two lines serve one request (D115). Do not claim an unperformed worker or transition ran.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Propose how a second worker would check the drafted index. Do not start it or claim the check ran."
+
+[checks]
+no_changes = true

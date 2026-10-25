@@ -92,3 +92,63 @@ reason = "The rollback fixture tests a known later edit. A new concurrent write 
 [[aspect]]
 id = "organize:rule:8"
 reason = "The cases exercise generic code-preservation and the absent-specialist fallback. Actual architecture/implementation delegation to an installed external softeng set needs that set in a live session; its design is not a fixture substitute."
+
+[[aspect]]
+id = "coordinate-delegate-claude:step:1"
+reason = "Actual claude tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
+
+[[aspect]]
+id = "coordinate-delegate-claude:step:5"
+reason = "Actual claude tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
+
+[[aspect]]
+id = "coordinate-delegate-codex:step:1"
+reason = "Actual codex tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
+
+[[aspect]]
+id = "coordinate-delegate-codex:step:5"
+reason = "Actual codex tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
+
+[[aspect]]
+id = "coordinate-carryover-claude:step:1"
+reason = "Actual claude tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
+
+[[aspect]]
+id = "coordinate-carryover-claude:step:5"
+reason = "Actual claude tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
+
+[[aspect]]
+id = "coordinate-carryover-codex:step:1"
+reason = "Actual codex tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
+
+[[aspect]]
+id = "coordinate-carryover-codex:step:5"
+reason = "Actual codex tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
+
+[[aspect]]
+id = "coordinate-delegate:step:8"
+reason = "Actual worker startup/identity/state is not established by proposal-only scenarios; Codex tool events may omit spawned workers. Check live, without treating a missing event as proof of no worker."
+
+[[aspect]]
+id = "coordinate-delegate:step:9"
+reason = "Actual returned work verification and cleanup need a real worker result and observation. Proposal scenarios test ownership and requested evidence only."
+
+[[aspect]]
+id = "coordinate-delegate:step:3"
+reason = "Selecting current native worker controls requires their live exposure; documentation inspection is not that exposure."
+
+[[aspect]]
+id = "coordinate-delegate:route:coordinate-delegate-claude"
+reason = "Positive native Claude routing needs a Claude session. Codex reference inspection cannot establish this operational route."
+
+[[aspect]]
+id = "coordinate-carryover:route:coordinate-carryover-claude"
+reason = "Positive native Claude transition routing needs a Claude session; reference-only Codex scenarios are not live transitions."
+
+[[aspect]]
+id = "coordinate-carryover:step:2"
+reason = "The pre-note cleanup of real prior session artifacts requires a live lifecycle; a fixture cannot establish what the earlier writer actually started."
+
+[[aspect]]
+id = "act-rightsize-lean:step:2"
+reason = "The restored large-material delegation needs an actual over-one-read item and permitted worker lifecycle. Proposal-only coordinate cases cannot prove that listing execution or its no-nested-delegation limit."

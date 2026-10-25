@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 46 (D260)"
+about = "Does not exempt one worker from cost approval; returns scoped cost and waits before starting."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:rule:8"]
+category = "edge"
+rejects = "Treats one worker as automatically trivial."
+review = ["Does not exempt one worker from cost approval; returns scoped cost and waits before starting.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "A single short proposed worker costs $9 and no cost has been accepted. Return the cost proposal before any start."
+
+[checks]
+no_changes = true

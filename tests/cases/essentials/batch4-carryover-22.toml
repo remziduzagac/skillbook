@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 22 (D260)"
+about = "a carryover written: its first part alone gives the goal and where the work stands, and each concept is explained in a line with where it is defined (D169);"
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:rule:3", "coordinate-carryover:step:3"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["a carryover written: its first part alone gives the goal and where the work stands, and each concept is explained in a line with where it is defined (D169);", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Draft the opening picture and concept definitions for the catalog carryover so a reader without this discussion understands it."
+
+[checks]
+no_changes = true

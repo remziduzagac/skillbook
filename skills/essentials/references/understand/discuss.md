@@ -48,7 +48,7 @@ Side topics:  each and where it went
 Next:         next steps
 ```
 
-Use agreed lines to carry the result so far. Gather it in the final summary. Keep no lasting record yourself. The caller passes a requested record to a loaded keeper. With no loaded keeper, the main work flow writes a file the user names. The caller reports what it wrote and where. Commit only when the user asks. When the user says they are stopping, follow the main skill's rule to offer a record of what the session taught and where the work stands. That offer covers a carryover when work remains.
+Use agreed lines to carry the result so far. Gather it in the final summary. Keep no lasting record yourself. The caller passes a requested record to a loaded keeper. With no loaded keeper, the main work flow writes a file the user names. The caller reports what it wrote and where. Commit only when the user asks. When the user says they are stopping, follow the main skill's rule to offer a record of what the session taught and where the work stands. That offer uses `coordinate-carryover` when work remains.
 
 ## The last instruction
 

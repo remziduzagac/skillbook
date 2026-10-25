@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 47 (D260)"
+about = "Keeps cost unknown and distinguishes an estimate from an enforced cap."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:rule:8"]
+category = "edge"
+rejects = "Calls missing cost zero or claims an unenforced budget cap."
+review = ["Keeps cost unknown and distinguishes an estimate from an enforced cap.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "A proposed worker has no reliable token rate or usage estimate. Explain cost and approval status without starting it."
+
+[checks]
+no_changes = true

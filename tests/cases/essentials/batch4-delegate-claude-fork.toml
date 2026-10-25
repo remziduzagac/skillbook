@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate-claude, test 2 (D260)"
+about = "Proposes the exposed fork with inherited model/effort and visible context; does not call it independent."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate-claude"]
+covers = ["coordinate-delegate-claude:last", "coordinate-delegate-claude:step:3"]
+category = "edge"
+rejects = "Overrides a fork model/effort despite inheritance or calls the fork independent."
+review = ["Proposes the exposed fork with inherited model/effort and visible context; does not call it independent.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "Keeps inherited history distinct from independence and respects conditional fork support."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-delegate-claude as reference documentation only. Hypothetical situation: The short task needs the full prior discussion and no independent review. A history-sharing fork is exposed. Return the useful proposed controls, status and limitations. Start no worker, run no UI command and change no settings or files."
+
+[checks]
+no_changes = true

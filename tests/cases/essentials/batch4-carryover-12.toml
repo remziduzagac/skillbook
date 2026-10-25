@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 12 (D260)"
+about = "a carryover's decisions, references and first next step: written by brief's rules, not restated here (D147);"
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:rule:2"]
+category = "normal"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["a carryover's decisions, references and first next step: written by brief's rules, not restated here (D147);", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Draft the decisions, references and next-step parts of a later-session note using the shared brief rules. Save nothing."
+
+[checks]
+no_changes = true

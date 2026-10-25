@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: coordinate, test 1 (D260)"
+about = "\"set up skillbook in this project\": setup;"
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = []
+category = "normal"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["\"set up skillbook in this project\": setup;", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "What would setting up the catalog skills involve? Give a view only; change nothing."
+
+[checks]
+no_changes = true

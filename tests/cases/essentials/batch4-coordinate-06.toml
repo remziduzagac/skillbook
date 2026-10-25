@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: coordinate, test 6 (D260)"
+about = "\"write the state down so another agent can continue tomorrow\": carryover, not delegate or brief (D107, D147);"
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:route:coordinate-carryover", "coordinate:not-for:coordinate-carryover"]
+category = "normal"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["\"write the state down so another agent can continue tomorrow\": carryover, not delegate or brief (D107, D147);", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Prepare state another main session can continue tomorrow, from work.md. Return a draft only."
+
+[checks]
+no_changes = true

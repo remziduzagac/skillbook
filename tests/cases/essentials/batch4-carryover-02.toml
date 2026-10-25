@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 2 (D260)"
+about = "Checks current files against the note, reports the stipulated later title-only commit as a non-blocking difference in the final answer, and claims no unsupported history or execution."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:step:10", "coordinate-carryover:step:11"]
+category = "boundary"
+rejects = "Treats any later commit as a blocking decision or claims to have observed the stipulated commit in local history."
+review = ["Checks current files against the note, reports the stipulated later title-only commit as a non-blocking difference in the final answer, and claims no unsupported history or execution.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Read the latest catalog note. Assume one later commit changed only the draft title; scope, consent and the authorized identifier check are unchanged. Report the checked basis and harmless difference; take no implementation action."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate-codex, test 7 (D260)"
+about = "Reports effort control unavailable and actual effort unknown; changes no configuration or main effort."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate-codex"]
+covers = ["coordinate-delegate-codex:last", "coordinate-delegate-codex:step:4"]
+category = "edge"
+rejects = "Invents an effort parameter or changes settings to obtain it."
+review = ["Reports effort control unavailable and actual effort unknown; changes no configuration or main effort.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "Reports the missing effort control without changing the main effort/configuration."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-delegate-codex as reference documentation only. Hypothetical situation: A fresh worker is permitted but its schema exposes no effort control. High effort would suit the task. Return the useful proposed controls, status and limitations. Start no worker, run no UI command and change no settings or files."
+
+[checks]
+no_changes = true

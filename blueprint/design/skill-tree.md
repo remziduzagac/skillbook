@@ -163,20 +163,29 @@ essentials/                       essentials, essentials' main skill, listed to 
 │   │   ├── fanout/               coordinate-delegate-fanout: the work split into parts, each agent with a place or a
 │   │   │                         sub-question the others do not have; findings with their sources consolidated by a
 │   │   │                         script, which checks each quote, then validated and synthesized (D99, D107, D115)
-│   │   └── crew/                 coordinate-delegate-crew: several agents each change their own items of one job; a
-│   │                             shared item has one owner, who applies the others' proposals; then one pass in
-│   │                             sequence (D99, D107, D115)
+│   │   ├── crew/                 coordinate-delegate-crew: several agents each change their own items of one job; a
+│   │   │                         shared item has one owner, who applies the others' proposals; then one pass in
+│   │   │                         sequence (D99, D107, D115)
+│   │   ├── claude/               coordinate-delegate-claude: current claude controls and dated mappings within delegate
+│   │   │                         policy; actual capability checks and missing-control fallbacks (D260)
+│   │   └── codex/                coordinate-delegate-codex: current codex controls and dated mappings within delegate
+│   │                             policy; actual capability checks and missing-control fallbacks (D260)
 │   ├── brief/                    coordinate-brief: what an agent that was not in the conversation is told when it
 │   │                             starts: what it needs to start without asking, decisions and constraints not in the
 │   │                             files, what was ruled out, the first step and when it is done, references by path, no
 │   │                             tool only the writer has; a line or two for a fork, findings for a fresh agent, and
 │   │                             the report it asks back; carryover builds on it (D138, D146, D147)
 │   ├── carryover/                coordinate-carryover: work carried over to a later session or agent, built on brief's
-│   │                             rules: ten parts, top-down, from the goal and where it stands to the first next step
-│   │                             and what it was written against, standing alone, as long as its reader needs, a fresh
-│   │                             agent's cold read before it is shown; offered at a task's, milestone's or phase's end
-│   │                             in a long session, before compaction or a fresh session; one file each, named by date
-│   │                             and time, the newest resumed (D65, D104, D147, D160, D161, D162, D169)
+│   │   │                         shared writing rules: ten parts, top-down, from the goal and where it stands to the
+│   │   │                         first next step and what it was written against, standing alone, as long as its reader
+│   │   │                         needs, a fresh agent's cold read before readiness is claimed; unavailable review
+│   │   │                         leaves an authorized provisional note (D260); offered at a task's, milestone's or
+│   │   │                         phase's end in a long session, before compaction or a fresh session; one file each,
+│   │   │                         named by date and time, the newest resumed (D65, D104, D147, D160, D161, D162, D169)
+│   │   ├── claude/               coordinate-carryover-claude: current claude controls and dated mappings within
+│   │   │                         carryover policy; actual capability checks and missing-control fallbacks (D260)
+│   │   └── codex/                coordinate-carryover-codex: current codex controls and dated mappings within carryover
+│   │                             policy; actual capability checks and missing-control fallbacks (D260)
 │   ├── instruct/                 coordinate-instruct: writing and updating instruction documents: AGENTS.md, CLAUDE.md,
 │   │                             CLAUDE.local.md and the person's own; called by setup, or asked for at any time (D94)
 │   ├── setup/                    coordinate-setup: setting skillbook up, on request: the pointer where the skills are
@@ -363,7 +372,7 @@ authoring/                        authoring: author renamed (D154): writing work
 | essentials / understand | 15 | 15 | 0 |
 | essentials / act | 7 | 7 | 0 |
 | essentials / organize | 5 | 5 | 0 |
-| essentials / coordinate | 9 | 9 | 0 |
+| essentials / coordinate | 13 | 13 | 0 |
 | essentials / respond | 3 | 3 | 0 |
 | essentials / devise | 3 | 3 | 0 |
 | blueprint / steps and forms | 15 | 15 | 0 |
@@ -377,7 +386,7 @@ authoring/                        authoring: author renamed (D154): writing work
 | authoring / authoring | 9 | 4 | 5 |
 | later / rigs | 1 | 0 | 1 |
 
-104 skills under essentials' groups and the other sets' roots, design and plan counted in each set that has a part of them, and the main skills above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
+108 skills under essentials' groups and the other sets' roots, design and plan counted in each set that has a part of them, and the main skills above; their reference files are not named yet. A part's row counts the part itself. Only each set's main skill costs context every turn (D56, D152).
 
 ## Where the material comes from
 
@@ -386,7 +395,7 @@ For each skill, the sources that already hold material for it: read them before 
 - **understand:** understand-discuss (own, oc, sp); understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-argue (gs, ar); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
 - **act:** act-stakes (own); act-guardrails (vo, sb, lc, gs, ts); act-cleanup (own, sp, ar, an); act-verify (sp, md, ws); act-rightsize (own, mp); act-rightsize-lean (own, mp); act-rightsize-enrich (own).
 - **organize:** organize-split (vo); organize-merge (vo); organize-compose (vo); organize-normalize (vo); organize-cluster (vo).
-- **coordinate:** coordinate-delegate (own, ts, md, sp, vo); coordinate-delegate-council (ws); coordinate-delegate-fanout (own, ts); coordinate-delegate-crew (md); coordinate-brief (own, mp); coordinate-carryover (ws, mp, oc, gs, ar); coordinate-instruct (mp, sp, ws, oc); coordinate-setup (cc, lc); coordinate-learn (ws, mp, gs, cc).
+- **coordinate:** coordinate-delegate (own, ts, md, sp, vo); coordinate-delegate-council (ws); coordinate-delegate-fanout (own, ts); coordinate-delegate-crew (md); coordinate-delegate-claude (none yet); coordinate-delegate-codex (none yet); coordinate-brief (own, mp); coordinate-carryover (ws, mp, oc, gs, ar); coordinate-carryover-claude (none yet); coordinate-carryover-codex (none yet); coordinate-instruct (mp, sp, ws, oc); coordinate-setup (cc, lc); coordinate-learn (ws, mp, gs, cc).
 - **respond:** respond-layout (own); respond-ask (own, mp); respond-explain (mp).
 - **devise:** devise-design; devise-design-review (ts, mp); devise-plan (none yet).
 - **steps and forms:** design-start (sk); design-discuss (sk, mp); design-research (sk, ts); design-decide (sk, mp); design-evidence (sk); design-write (sk); design-workstream (sk); design-tasks (sk, mp); design-work (sk); design-sync (sk); design-consolidate (sk); design-parallel (sk); design-check (sk); design-publish (sk); authoring-blueprint (sk, mp, ts).

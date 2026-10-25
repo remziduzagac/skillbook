@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 51 (D260)"
+about = "Reports cancellation and incomplete coverage rather than marking the work verified or successful."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:last", "coordinate-delegate:advice:5", "coordinate-delegate:step:10"]
+category = "edge"
+rejects = "Calls partial cancelled work complete."
+review = ["Reports cancellation and incomplete coverage rather than marking the work verified or successful.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical worker was cancelled after inspecting only one of two records. Return its status and what remains."
+
+[checks]
+no_changes = true

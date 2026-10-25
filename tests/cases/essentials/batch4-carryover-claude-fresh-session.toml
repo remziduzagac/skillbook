@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover-claude, test 2 (D260)"
+about = "Gives the documented fresh-chat command and a separate startup line to read the note/current instructions and check its basis."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover-claude"]
+covers = ["coordinate-carryover-claude:last", "coordinate-carryover-claude:step:3"]
+category = "edge"
+rejects = "Claims the displayed command started a chat or treats note actions as newly authorized."
+review = ["Gives the documented fresh-chat command and a separate startup line to read the note/current instructions and check its basis.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "Uses the documented fresh-session command and a separate read-note/startup line."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-carryover-claude as reference documentation only. Hypothetical situation: The user wants fresh context using notes/session.md; the documented fresh-chat control is available. Return the useful proposed controls, status and limitations. Start no worker, run no UI command and change no settings or files."
+
+[checks]
+no_changes = true

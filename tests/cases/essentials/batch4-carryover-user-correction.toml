@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 30 (D260)"
+about = "Keeps current user authority over the historical record and raises any affected action."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:rule:6"]
+category = "edge"
+rejects = "Says files or the old note always override the user."
+review = ["Keeps current user authority over the historical record and raises any affected action.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "The latest direct user instruction is to keep all identifiers. An older carryover says to replace them. Explain what governs; make no change."
+
+[checks]
+no_changes = true

@@ -287,7 +287,7 @@ def coverage(cases):
     lines = ["# Scenario coverage", "", "Executable cases, not observed results. Counts can overlap across skills.", "",
              "| Skill | Normal | Boundary | Edge | Multi-turn | Review |",
              "| --- | --- | --- | --- | --- | --- |"]
-    for name in sorted(names):
+    for name in sorted(names - {None}):
         selected = [c for c in cases if name in c.get("skills", [])]
         counts = [sum(c.get("category") == category for c in selected) for category in ("normal", "boundary", "edge")]
         counts += [sum(len(c["turns"]) > 1 for c in selected), sum(bool(c.get("review")) for c in selected)]
@@ -308,7 +308,9 @@ def skill_files():
         set_name = main.parent.name
         files.append((set_name, main))
         for path in sorted((main.parent / "references").rglob("*.md")):
-            files.append((skill_name(set_name, str(path.relative_to(main.parent))), path))
+            name = skill_name(set_name, str(path.relative_to(main.parent)))
+            if name:
+                files.append((name, path))
     for main in sorted((REPO / ".agents" / "skills").glob("*/SKILL.md")):
         files.append((main.parent.name, main))
     return files
@@ -963,7 +965,7 @@ def skill_name(set_name, rel):
     """The skill a file in a set's folder holds: SKILL.md is the set's main skill, references/a/b.md is a-b."""
     if rel == "SKILL.md":
         return set_name
-    if rel.startswith("references/") and rel.endswith(".md"):
+    if rel.startswith("references/") and rel.endswith(".md") and not ({"assets", "scripts"} & set(Path(rel).parts)):
         return rel[len("references/"):-len(".md")].replace("/", "-")
     return None
 

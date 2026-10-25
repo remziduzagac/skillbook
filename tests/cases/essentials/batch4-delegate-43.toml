@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 43 (D260)"
+about = "For the requested proposal/reference scenario, the strong tier fell short on a design: the strongest model, as the reference file names it (D150). Do not claim an unperformed worker or transition ran."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:rule:3", "coordinate-delegate:step:6"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["For the requested proposal/reference scenario, the strong tier fell short on a design: the strongest model, as the reference file names it (D150). Do not claim an unperformed worker or transition ran.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "A proposed design worker at the strong role fell short on reasoning after inputs and permissions were checked. Explain the next escalation option, without starting it."
+
+[checks]
+no_changes = true

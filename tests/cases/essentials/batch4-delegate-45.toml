@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 45 (D260)"
+about = "a question about the design section being discussed: the main agent reads it itself, not delegated, since it needs the content to continue the conversation (D143)."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:rule:1"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["a question about the design section being discussed: the main agent reads it itself, not delegated, since it needs the content to continue the conversation (D143).", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Let us examine the wording of constraints.md together. Read it and tell me what it means here; this discussion needs the actual content, not a worker summary."
+
+[checks]
+no_changes = true

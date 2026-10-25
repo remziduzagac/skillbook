@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 23 (D260)"
+about = "Proposes a fresh standard-tier reader with only the note and its references, returning gaps for repair. Without an actual cold read, the note remains provisional with checking pending and a next owner."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:rule:4"]
+category = "boundary"
+rejects = "Calls the proposed or self-reviewed note independently checked or blocks all authorized provisional saving."
+review = ["Proposes a fresh standard-tier reader with only the note and its references, returning gaps for repair. Without an actual cold read, the note remains provisional with checking pending and a next owner.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Propose an independent cold-read process for a carryover. Do not start a reviewer, claim it ran or save the note."
+
+[checks]
+no_changes = true

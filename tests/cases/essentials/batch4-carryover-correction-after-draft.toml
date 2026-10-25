@@ -1,0 +1,19 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 33 (D260)"
+about = "The second answer updates remaining work to the user's current reporting-only scope. It preserves record identifiers and makes no record changes or publication claim."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:rule:6", "coordinate-carryover:step:11", "coordinate-carryover:step:12"]
+category = "edge"
+rejects = "Carries forward an earlier broader step as authority after the user narrowed scope."
+review = ["The second answer updates remaining work to the user's current reporting-only scope. It preserves record identifiers and makes no record changes or publication claim."]
+version_control = true
+
+[[turns]]
+prompt = "Draft the next-step part of a catalog carryover in chat using work.md. Save nothing and change no records."
+
+[[turns]]
+prompt = "Correction: leave all record files untouched. The remaining task is only to report identifier coverage. Revise the next step in chat; the earlier draft grants no extra authority."
+
+[checks]
+no_changes = true

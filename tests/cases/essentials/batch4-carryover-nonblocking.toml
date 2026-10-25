@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 31 (D260)"
+about = "Reports the harmless difference in the final answer without an unnecessary approval checkpoint."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:step:11"]
+category = "edge"
+rejects = "Pairs a warning with immediate mutation or forces a decision for an irrelevant title."
+review = ["Reports the harmless difference in the final answer without an unnecessary approval checkpoint.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "A prior note has an obsolete draft title, but work scope, consent and the next read-only check are unchanged. Return the checked status, no edits."
+
+[checks]
+no_changes = true

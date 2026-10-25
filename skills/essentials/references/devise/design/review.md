@@ -7,8 +7,8 @@ Needs: an independent reviewer for the required review. If one cannot start, fol
 ## Rules
 
 1. **Keep each check in its home.** Consistency and the builder walk-through are here. Use `understand-challenge` for weaknesses, `act-rightsize-lean` for what is extra and `act-verify` for built work against its design. Use the `organize` skill's bounded check for parts against requirements, including coverage and overlap.
-2. **Use an independent reviewer.** Follow `act-verify` rule 2. A fresh reviewer may perform this check; the writer's second look and a fork sharing its context do not count. They share blind spots.
-   - For a large review, use an available fresh agent per lens through the harness.
+2. **Use an independent reviewer.** Follow `act-verify` rule 2. Use `coordinate-delegate` to start a permitted fresh reviewer for this check; the writer's second look and a fork sharing its context do not count. They share blind spots.
+   - For a large review, use `coordinate-delegate` for an available fresh agent per lens.
    - If no independent reviewer is available, return provisional findings. Name the unfinished independent check and who should arrange it. A delegated worker asks its caller to arrange that check. A log that records no helper does not prove that no helper was available.
 3. **Propose changes only.** The design owner decides what to fix, accept or park. Editing during a review would decide for them.
 4. **Finish by returning the findings.** Do not wait for the caller to resolve the findings. Name required checks you did not complete. Returning findings does not mean every required check is complete.

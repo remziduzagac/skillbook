@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: coordinate, test 2 (D260)"
+about = "\"write a carryover\": carryover (D147);"
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:route:coordinate-carryover", "coordinate:last"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["\"write a carryover\": carryover (D147);", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Write a carryover draft for the private catalog in chat. Do not save it yet."
+
+[checks]
+no_changes = true

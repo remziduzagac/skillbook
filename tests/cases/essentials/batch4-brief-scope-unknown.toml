@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: brief, test 12 (D260)"
+about = "Includes the act bootstrap/name rule, permits understand dependencies on demand and sends user-dependent gaps to the caller."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-brief"]
+covers = ["coordinate-brief:rule:8", "coordinate-brief:step:1", "coordinate-brief:step:2", "coordinate-brief:step:6", "coordinate-brief:last", "coordinate-brief:step:4", "coordinate-brief:advice:2"]
+category = "edge"
+rejects = "Assumes a settled brief makes later ambiguity impossible or tells the worker never to load understand."
+review = ["Includes the act bootstrap/name rule, permits understand dependencies on demand and sends user-dependent gaps to the caller.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "The requested brief/report must include the relevant scope, first step, done criterion and usable evidence. Fresh or context-lost workers get the delegated marker, actual essentials path, required act read and exact Names line; dependencies are allowed on demand. Reporting/cleanup requirements remain explicit where this is a worker brief."]
+version_control = true
+
+[[turns]]
+prompt = "Draft a worker brief for inspecting identifiers. During inspection it might discover a privacy-sensitive scope ambiguity. Explain how that gap returns; launch nothing."
+
+[checks]
+no_changes = true

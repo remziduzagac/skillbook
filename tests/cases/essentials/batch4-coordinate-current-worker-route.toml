@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: coordinate, test 12 (D260)"
+about = "Reads the Codex child via its parent and returns the actual proposed mapping/capability limits, without a claimed live spawn."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate-delegate:route:coordinate-delegate-codex", "coordinate-delegate:step:3", "coordinate:not-for:coordinate-delegate"]
+category = "boundary"
+rejects = "Claims a live worker/transition or omits the requested concrete result."
+review = ["Reads the Codex child via its parent and returns the actual proposed mapping/capability limits, without a claimed live spawn."]
+version_control = true
+
+[[turns]]
+prompt = "Inspect the current Codex worker mapping for a proposed identifier check. Return permitted controls and unknowns; start no worker."
+
+[checks]
+no_changes = true
+reads = ["coordinate-delegate-codex"]

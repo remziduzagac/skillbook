@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 9 (D260)"
+about = "the next item depends on the discussion just had: a carryover, then compaction, its focus naming the note and that discussion, not a fresh session (D147, D160, D161);"
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:advice:2"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["the next item depends on the discussion just had: a carryover, then compaction, its focus naming the note and that discussion, not a fresh session (D147, D160, D161);", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "At a long-session boundary, the next work depends on recent discussion. Offer the appropriate continuation, without changing the session."
+
+[checks]
+no_changes = true

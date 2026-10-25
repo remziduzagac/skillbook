@@ -20,7 +20,7 @@ Attacks an idea, plan or decision before it is relied on and returns meaningful 
 - Try relevant scenarios: tenfold size, a year later, a false main assumption, a changed dependency or the knowledgeable person gone.
 - Look for missing evidence, undefined terms, unstated constraints and dependencies.
 - Treat an unsupported claim as an assumption. Seek evidence rather than treating demand or preference as known.
-- For who supplies independent objections, follow `act-verify` rule 2. This skill owns that check. `understand-argue` and `understand-weigh` may reuse it while inputs remain unchanged.
+- For who supplies independent objections, follow `act-verify` rule 2 and use `coordinate-delegate` for the required worker. This skill owns that check. `understand-argue` and `understand-weigh` may reuse it while inputs remain unchanged.
 - Prefer a few strong weaknesses. Put the most serious first and group common causes.
 
 Settle factual doubts from sources or a test. Use `understand-weigh` for several options. Use `understand-frame` or `understand-clarify` for an unclear idea. Use the skill that reviews that kind of work for finished work. Use `act-verify` for a claim that work is done.

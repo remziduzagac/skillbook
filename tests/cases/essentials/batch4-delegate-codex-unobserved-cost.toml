@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate-codex, test 8 (D260)"
+about = "Keeps actual cost/cache hits/caps unknown and distinguishes API rates from subscription quota."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate-codex"]
+covers = ["coordinate-delegate-codex:last", "coordinate-delegate-codex:step:6"]
+category = "edge"
+rejects = "Calls cost zero or estimates an enforced spending cap without evidence."
+review = ["Keeps actual cost/cache hits/caps unknown and distinguishes API rates from subscription quota.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "Reports unknown actual usage/cache/caps rather than zero."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-delegate-codex as reference documentation only. Hypothetical situation: The account uses a subscription and the tool exposes no usage, cache-hit evidence or spending cap. Return the useful proposed controls, status and limitations. Start no worker, run no UI command and change no settings or files."
+
+[checks]
+no_changes = true

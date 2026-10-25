@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 28 (D260)"
+about = "Returns a useful provisional draft with pending independence and next owner, without nesting another worker."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:rule:4", "coordinate-carryover:step:4"]
+category = "edge"
+rejects = "Delegates again or falsely claims an independent review."
+review = ["Returns a useful provisional draft with pending independence and next owner, without nesting another worker.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "This is a delegated writing task. Draft a carryover in chat, but no further delegation is allowed. Return the cold-read need to the caller."
+
+[checks]
+no_changes = true

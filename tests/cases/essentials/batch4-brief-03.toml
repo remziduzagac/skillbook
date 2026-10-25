@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: brief, test 3 (D260)"
+about = "For the requested proposal/reference scenario, a task that depends on a wording the person agreed: the wording stated, since no file holds it. Do not claim an unperformed worker or transition ran."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-brief"]
+covers = ["coordinate-brief:rule:2", "coordinate-brief:step:1", "coordinate-brief:step:2", "coordinate-brief:step:6", "coordinate-brief:last"]
+category = "normal"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["For the requested proposal/reference scenario, a task that depends on a wording the person agreed: the wording stated, since no file holds it. Do not claim an unperformed worker or transition ran.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "The requested brief/report must include the relevant scope, first step, done criterion and usable evidence. Fresh or context-lost workers get the delegated marker, actual essentials path, required act read and exact Names line; dependencies are allowed on demand. Reporting/cleanup requirements remain explicit where this is a worker brief."]
+version_control = true
+
+[[turns]]
+prompt = "The exact phrase agreed in the conversation, recorded nowhere else, is \"retain uncertainty explicitly\". Include it in a worker brief. Start nothing."
+
+[checks]
+no_changes = true

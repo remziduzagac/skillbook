@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 27 (D260)"
+about = "Saves a substantive ten-part note explicitly provisional, marks cold read pending and names the caller to arrange it. User approval does not make it independently checked."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:rule:4", "coordinate-carryover:step:4"]
+category = "edge"
+rejects = "Refuses all useful authorized saving or labels self-review/user approval as an independent cold read."
+review = ["Saves a substantive ten-part note explicitly provisional, marks cold read pending and names the caller to arrange it. User approval does not make it independently checked.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Save the catalog carryover as notes/provisional.md. I approve that file only. No independent cold reader is available or permitted here. Return its actual status and next owner; do not execute its next steps."
+
+[checks]
+changed = ["notes/provisional.md"]
+unchanged = ["work.md", "config.md", "notes/2026-10-24-0900-catalog.md"]

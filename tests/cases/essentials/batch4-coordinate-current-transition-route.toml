@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: coordinate, test 13 (D260)"
+about = "Reads the current carryover Codex child and gives commands/startup focus, retaining review and execution limits."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate-carryover:step:6", "coordinate-carryover:route:coordinate-carryover-codex"]
+category = "boundary"
+rejects = "Claims a live worker/transition or omits the requested concrete result."
+review = ["Reads the current carryover Codex child and gives commands/startup focus, retaining review and execution limits."]
+version_control = true
+
+[[turns]]
+prompt = "In this Codex session, give the documented user commands to compact or start a fresh CLI chat after the catalog note, with its unreviewed status retained. Perform neither."
+
+[checks]
+no_changes = true
+reads = ["coordinate-carryover-codex"]

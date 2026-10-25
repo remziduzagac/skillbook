@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 52 (D260)"
+about = "Returns evidence to the active verification without recursive independent checks."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:last"]
+category = "edge"
+rejects = "Starts verify again as if the check were new ordinary production work."
+review = ["Returns evidence to the active verification without recursive independent checks.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "This is the report of a hypothetical checker already started by act-verify. Describe its return to the active verification request. Start no worker."
+
+[checks]
+no_changes = true

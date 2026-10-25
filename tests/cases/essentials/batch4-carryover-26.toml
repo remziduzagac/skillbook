@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 26 (D260)"
+about = "a working rule of the person's recorded nowhere else: in the note; one already in an instruction file: pointed to, with learn offered for a rule worth keeping (D169)."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:step:3"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["a working rule of the person's recorded nowhere else: in the note; one already in an instruction file: pointed to, with learn offered for a rule worth keeping (D169).", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "The working rule \"keep uncertainty visible\" is not recorded elsewhere; the no-publication rule is in AGENTS.md. Draft their treatment in a carryover. Save nothing."
+
+[checks]
+no_changes = true

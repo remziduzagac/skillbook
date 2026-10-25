@@ -38,6 +38,7 @@ main() {
 				problems=$((problems + 1))
 			fi
 			case "$file" in
+			"$refs"/*/assets/* | "$refs"/*/scripts/*) ;;
 			"$refs"/*)
 				name=$(printf '%s' "${file#"$refs"/}" | sed 's/\.md$//; s|/|-|g')
 				first=$(sed -n '1p' "$file")

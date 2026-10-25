@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 18 (D260)"
+about = "the offer accepted with the work continuing: the note written with actual cold-read status, its outline shown for approval and the documented user transition supplied; no command shown counts as executed; after the compaction, the note re-read and checked before continuing (D161);"
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:step:5", "coordinate-carryover:step:9"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["the offer accepted with the work continuing: the note written with actual cold-read status, its outline shown for approval and the documented user transition supplied; no command shown counts as executed; after the compaction, the note re-read and checked before continuing (D161);", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "I accepted an offer to prepare a carryover. Give a draft outline and the next approval/transition stages; do not pretend acceptance already approved the finished note or its commit."
+
+[checks]
+no_changes = true

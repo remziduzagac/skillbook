@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: brief, test 2 (D260)"
+about = "For the requested proposal/reference scenario, a fork's brief for a task the conversation just decided: a line or two. Do not claim an unperformed worker or transition ran."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-brief"]
+covers = ["coordinate-brief:advice:1"]
+category = "normal"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["For the requested proposal/reference scenario, a fork's brief for a task the conversation just decided: a line or two. Do not claim an unperformed worker or transition ran.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Draft a short brief for a hypothetical fork that visibly holds the settled task, constraints and bootstrap. Start nothing."
+
+[checks]
+no_changes = true

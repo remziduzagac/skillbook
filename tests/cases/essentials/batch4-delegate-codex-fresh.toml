@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate-codex, test 1 (D260)"
+about = "Proposes the light role and low effort where supported, a fresh brief and act bootstrap; live tool access remains unverified."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate-codex"]
+covers = ["coordinate-delegate-codex:last", "coordinate-delegate-codex:step:2", "coordinate-delegate-codex:step:3"]
+category = "edge"
+rejects = "Calls API model availability proof of a permitted worker or omits the fresh bootstrap."
+review = ["Proposes the light role and low effort where supported, a fresh brief and act bootstrap; live tool access remains unverified.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "Explains fresh context and the parent baseline without claiming worker startup."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-delegate-codex as reference documentation only. Hypothetical situation: A mechanical identifier lookup needs a fresh worker and a validator follows it. Only permitted schema fields may be used. Return the useful proposed controls, status and limitations. Start no worker, run no UI command and change no settings or files."
+
+[checks]
+no_changes = true

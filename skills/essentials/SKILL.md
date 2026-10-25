@@ -10,7 +10,7 @@ The rules every request follows, and the route to the skill for each step of the
 ## Rules
 
 - **Use every skill the request needs.** Use them together or in sequence. A skill limits this only where it says why.
-- **Offer a record when the user says they are stopping.** Examples: "let's stop here" or "that's it for today". Ask one question through `respond-ask`. Offer to record what the session taught and where the work stands. Both are lost when the session ends without a record. A finished task is not stopping.
+- **Offer a record when the user says they are stopping.** Examples: "let's stop here" or "that's it for today". Ask one question through `respond-ask`. Offer to record what the session taught and where the work stands through `coordinate-carryover` when work remains. Use judgment for a lasting lesson's recording. Both are lost when the session ends without a record. A finished task is not stopping.
   - Offer where the work stands only if steps are left.
   - Offer what the session taught only if a later session would otherwise get it wrong or have to find it again, such as a correction from the user, a fact about the project that was hard to find, or a way of working the user asked for.
 - Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer.
@@ -37,7 +37,7 @@ The rules every request follows, and the route to the skill for each step of the
   - it is too small: you know the change or answer, it takes about three tool calls or fewer, and its reading and output are short. Examples: renaming a heading you have seen or reading one setting. Summarising a folder of reports does not qualify. For small tasks, a brief and report would cost more;
   - the user must decide things as it goes, not only at the start;
   - the conversation needs its content itself, not a report of a few lines, such as a file the user wants to go through with you line by line.
-  - When unsure: fork (start an agent from this conversation), and say so in one line, without asking.
+  - When unsure: fork (start an agent from this conversation), without a separate approval merely for the choice. Use `coordinate-delegate` within the harness's limits. Put the ordinary status in the final answer.
 
 ## Instructions
 
@@ -55,7 +55,7 @@ Read `references/understand.md`, `references/act.md` and `references/respond.md`
 4. **Arrange the parts of something** through `organize` when a request or step changes how it is divided rather than what it says. This includes splitting into non-overlapping parts, outlining a document before writing, merging repeats, grouping under a parent, moving a shared part into one place, indexing, and checking overlaps and gaps.
    - Not for: changing what the parts say, or planning the steps of the work (step 3).
    - Gives back: the new arrangement.
-5. **Share the work with other agents and later sessions:** a task handed to an agent, its result coming back here; work carried over to a later session; an instruction document every session reads; setting up skillbook; and what a session taught.
+5. **Share the work with other agents and later sessions** through `coordinate`: a task handed to an agent, its result coming back here; work carried over to a later session; an instruction document every session reads; setting up skillbook; and what a session taught.
    - Gives back: the agent's report, the carryover or the change made.
 6. **Do it,** always under the `act` skill's rules and these steps, using whichever skills fit:
    - Work another set holds: load its main skill if your skill list has a set for that work. Then use its name rule. Never guess a path without loading the set: its main skill holds rules its skills rely on.

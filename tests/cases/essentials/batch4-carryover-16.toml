@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 16 (D260)"
+about = "a milestone completed in a long session, new work next: one question offering a carryover and a fresh session (D160);"
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:advice:2"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["a milestone completed in a long session, new work next: one question offering a carryover and a fresh session (D160);", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "A long-session milestone ended and unrelated work is next. Offer the appropriate record/session transition without performing it."
+
+[checks]
+no_changes = true

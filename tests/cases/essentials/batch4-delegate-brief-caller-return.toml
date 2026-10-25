@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 53 (D260)"
+about = "Produces the brief and returns it without a startup or recursive delegation."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-brief:step:6", "coordinate-delegate:step:7"]
+category = "boundary"
+rejects = "Claims a live worker/transition or omits the requested concrete result."
+review = ["Produces the brief and returns it without a startup or recursive delegation."]
+version_control = true
+
+[[turns]]
+prompt = "A caller wants only a worker brief for checking identifiers, not a worker started. Return the brief and its report contract."
+
+[checks]
+no_changes = true
+reads = ["coordinate-brief"]

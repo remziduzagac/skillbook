@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate-codex, test 11 (D260)"
+about = "Keeps strongest escalation unavailable until a strong-role reasoning attempt falls short. Proposes an appropriate intermediate role after checking obstacles and cost."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate-codex"]
+covers = ["coordinate-delegate:rule:3", "coordinate-delegate-codex:step:2"]
+category = "boundary"
+rejects = "Jumps from a light failure directly to strongest."
+review = ["Keeps strongest escalation unavailable until a strong-role reasoning attempt falls short. Proposes an appropriate intermediate role after checking obstacles and cost."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-delegate-codex as reference documentation only. Hypothetical situation: A light worker failed at reasoning. No strong-role worker has attempted the task. Return the proposed selection and actual limitation. Start nothing, change no settings or files, and claim no live interaction."
+
+[checks]
+no_changes = true

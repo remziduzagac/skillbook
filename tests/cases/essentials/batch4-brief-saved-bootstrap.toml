@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/coordinate.md: brief, test 16 (D260)"
+about = "Writes a useful task brief with exact bootstrap, input pointers, success criterion, caller questions and explicit cleanup/report requirements."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-brief"]
+covers = ["coordinate-brief:rule:8", "coordinate-brief:step:3", "coordinate-brief:step:4", "coordinate-brief:step:5", "coordinate-brief:last"]
+category = "boundary"
+rejects = "Claims a live worker/transition or omits the requested concrete result."
+review = ["Writes a useful task brief with exact bootstrap, input pointers, success criterion, caller questions and explicit cleanup/report requirements."]
+version_control = true
+
+[[turns]]
+prompt = "Save an identifier-check worker brief as worker-brief.md. I approve that file only. This is for a fresh worker without inherited skill context; give its actual essentials folder, act-read instruction and exact existing name rule. Start no worker."
+
+[checks]
+changed = ["worker-brief.md"]
+unchanged = ["work.md", "config.md"]
+file_contains = { "worker-brief.md" = ["references/act.md", "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer."] }

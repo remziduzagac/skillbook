@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 49 (D260)"
+about = "Marks the independent check pending and names who should arrange it; self-review is not substituted."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:rule:2"]
+category = "edge"
+rejects = "Calls a fork or self-read independent."
+review = ["Marks the independent check pending and names who should arrange it; self-review is not substituted.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "An independent check is required but no fresh worker may be started. Return the actual verification status."
+
+[checks]
+no_changes = true

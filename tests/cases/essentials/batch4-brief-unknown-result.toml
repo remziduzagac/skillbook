@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: brief, test 13 (D260)"
+about = "Loads needed outcome/verification dependencies and preserves timeout/unknown status with evidence."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-brief"]
+covers = ["coordinate-brief:rule:1", "coordinate-brief:step:1", "coordinate-brief:step:2", "coordinate-brief:step:6", "coordinate-brief:last", "coordinate-brief:step:4", "coordinate-brief:advice:2"]
+category = "edge"
+rejects = "Skips respond entirely because the report is to a caller or invents a network cause."
+review = ["Loads needed outcome/verification dependencies and preserves timeout/unknown status with evidence.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "The requested brief/report must include the relevant scope, first step, done criterion and usable evidence. Fresh or context-lost workers get the delegated marker, actual essentials path, required act read and exact Names line; dependencies are allowed on demand. Reporting/cleanup requirements remain explicit where this is a worker brief."]
+version_control = true
+
+[[turns]]
+prompt = "Draft a verification worker brief when the original check timed out. Require an honest report, without inventing why. Start nothing."
+
+[checks]
+no_changes = true

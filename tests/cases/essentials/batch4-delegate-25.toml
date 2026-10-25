@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 25 (D260)"
+about = "For the requested proposal/reference scenario, a long task with a short list, such as measuring something by running a tool: a fresh agent, at the light tier where the work is mechanical or a later step checks it (D142). Do not claim an unperformed worker or transition ran."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:advice:2"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["For the requested proposal/reference scenario, a long task with a short list, such as measuring something by running a tool: a fresh agent, at the light tier where the work is mechanical or a later step checks it (D142). Do not claim an unperformed worker or transition ran.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Propose how a long mechanical measurement with a short context list would be assigned. Do not start it."
+
+[checks]
+no_changes = true

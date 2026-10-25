@@ -2,7 +2,7 @@
 
 Arranges bounded items while preserving what they mean. Also plans the parts of a future whole and checks gaps and overlaps.
 
-Needs: optional delegation for inventory judgment. Without it, use scripts and compare old parts with their new places yourself. Required independent checks follow `act-verify` rule 2.
+Needs: optional delegation through `coordinate-delegate` for inventory judgment. Without it, use scripts and compare old parts with their new places yourself. Required independent checks follow `act-verify` rule 2.
 
 ```text
 split       A               → A1 A2 A3
@@ -16,7 +16,7 @@ cluster     A B C            → view over A, B, C
 
 1. **Use one dividing principle at a time.** One question sorts the items. Mixing principles creates overlaps.
 2. **Give each part a boundary in one sentence.** Follow `act-rightsize` for parts that cover everything without overlap. An unstated boundary hides overlaps.
-3. **Preserve meaning when rearranging existing material.** Map every original statement to its new place with the same meaning. Nothing substantive is lost, added or changed. Use scripts for mechanical checks. Use available permitted agents for judgment. Without a helper, compare each old part with its new place yourself and report the inventory as self-checked. This fallback permits rereading. Avoid carrying the whole collection twice when smaller comparisons suffice. A count alone does not check meaning. Follow `act-verify` rule 2 when independence is required. Report an unfinished independent check and who should arrange it. User confirmation does not replace it.
+3. **Preserve meaning when rearranging existing material.** Map every original statement to its new place with the same meaning. Nothing substantive is lost, added or changed. Use scripts for mechanical checks. Use `coordinate-delegate` for available permitted agents to check judgment. Without a helper, compare each old part with its new place yourself and report the inventory as self-checked. This fallback permits rereading. Avoid carrying the whole collection twice when smaller comparisons suffice. A count alone does not check meaning. Follow `act-verify` rule 2 when independence is required. Report an unfinished independent check and who should arrange it. User confirmation does not replace it.
 4. **Get the user's approval before changing any item or view.** Show the map by step 9. Ask through `respond-ask`. End the turn before applying. Reuse actual approval only within its scope and basis. Given steps, a go-ahead shortcut in `act` rule 13, or rightsize's one-approval rule do not waive these two checkpoints. Meaning is at stake. A mode change, task box or unanswered question is not approval. A delegated worker returns questions to its caller.
 5. **Get the user's confirmation after checking the applied result.** Return the evidence and result marked awaiting confirmation. End the turn. Confirmed completion needs the user's actual reply. Repair lost statements or failed checks and rerun the check before asking for confirmation. A rejected plan returns to planning, or to step 1 if the principle was rejected.
 6. **Undo only this operation's changes when its result is rejected.** Check for later edits first. Preserve later and unrelated work. If safe undo cannot be shown or needs a risky new action, report the state and ask about recovery through `act-guardrails`. Do not overwrite others' work to restore an old snapshot. After safe undo, plan again.

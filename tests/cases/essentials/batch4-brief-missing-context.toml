@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: brief, test 14 (D260)"
+about = "Supplies the missing act path and exact name rule or verifies visible context; does not infer inheritance from the fork label."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-brief"]
+covers = ["coordinate-brief:rule:8", "coordinate-brief:step:1", "coordinate-brief:step:2", "coordinate-brief:step:6", "coordinate-brief:last", "coordinate-brief:step:4", "coordinate-brief:advice:2"]
+category = "edge"
+rejects = "Omits safety/bootstrap solely because the worker is called a fork."
+review = ["Supplies the missing act path and exact name rule or verifies visible context; does not infer inheritance from the fork label.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "The requested brief/report must include the relevant scope, first step, done criterion and usable evidence. Fresh or context-lost workers get the delegated marker, actual essentials path, required act read and exact Names line; dependencies are allowed on demand. Reporting/cleanup requirements remain explicit where this is a worker brief."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical fork no longer has the earlier instructions visible. Draft the needed bootstrap rather than assuming inherited text."
+
+[checks]
+no_changes = true

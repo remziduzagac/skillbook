@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 17 (D260)"
+about = "a step done with work still in flight: no offer, since it is not a boundary (D160);"
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:advice:1", "coordinate-carryover:advice:2"]
+category = "boundary"
+rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
+review = ["a step done with work still in flight: no offer, since it is not a boundary (D160);", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "A worker is still running and only one intermediate step finished. Give status without treating it as a carryover boundary."
+
+[checks]
+no_changes = true

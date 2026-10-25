@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover-claude, test 5 (D260)"
+about = "Explains this child cannot operate that other harness, returns to the parent for the current child or plain continuation fallback."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover-claude"]
+covers = ["coordinate-carryover-claude:last"]
+category = "edge"
+rejects = "Applies the referenced provider command as a live control for the other harness."
+review = ["Explains this child cannot operate that other harness, returns to the parent for the current child or plain continuation fallback.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction.", "Explains reference-only use and does not operate a foreign harness."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-carryover-claude as reference documentation only. Hypothetical situation: The active harness is the other provider; this child is available only as reference text. Return the useful proposed controls, status and limitations. Start no worker, run no UI command and change no settings or files."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 19 (D260)"
+about = "Reads the newest of the two catalog notes by filename date/time, checks it against current files, and leaves both notes unchanged."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:step:1", "coordinate-carryover:step:10"]
+category = "boundary"
+rejects = "Uses the older note as current or rewrites a historical note."
+review = ["Reads the newest of the two catalog notes by filename date/time, checks it against current files, and leaves both notes unchanged.", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+version_control = true
+
+[[turns]]
+prompt = "Resume by reading the newest note in notes/ and reporting its actual state. Make no implementation change."
+
+[checks]
+no_changes = true
