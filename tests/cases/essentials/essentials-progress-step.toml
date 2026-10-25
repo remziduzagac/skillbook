@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/essentials.md: test 31 (D256)"
+about = "Scores routine progress separately from the factual answer: a short current-step update passes; a findings-and-plan paragraph fails progress without changing the substance verdict."
+fixture = "recipe-box"
+agents = ["codex"]
+skills = ["essentials"]
+covers = ["essentials:rule:5"]
+category = "boundary"
+rejects = "Writes findings, plans or rule explanations as routine progress between tool calls."
+review = ["The final answer reports that scale computes amount * serves / wanted from the current source, without claiming an unrun execution or editing anything.", "Progress-only criterion: each routine update is one short line naming the current step, with no findings, plans or reasons. Judge this only on the Between tool calls line; it never changes the overall substance verdict. Preserve required notices and approval questions at their own timing."]
+
+[[turns]]
+prompt = "Read scale.py and tell me the expression scale(amount, serves, wanted) currently computes. Report the code as written, not the intended arithmetic. Keep me informed while you look. Make no changes."
+
+[checks]
+no_changes = true

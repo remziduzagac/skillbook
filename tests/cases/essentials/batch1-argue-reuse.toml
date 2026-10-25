@@ -4,9 +4,9 @@ fixture = "thinking-lab"
 agents = ["codex"]
 skills = ["understand-argue"]
 category = "edge"
-rejects = "Duplicates the unchanged supplied challenge or puts its verdict in advocacy."
+rejects = "Duplicates the unchanged supplied challenge or makes a comparative choice inside advocacy."
 covers = ["understand-argue:rule:3", "understand-argue:rule:4", "understand-argue:rule:5"]
-review = ["Reuses the supplied challenge, meets the objection, and does not start an equivalent new attack or independent check; no comparative choice verdict inside the advocacy case.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "A strong, moderate or weak rating of the evidential strength of an advocacy case is allowed. Do not count that rating as choosing an option. Keep the comparative choice and the separate challenge outcome outside the one-sided case."]
+review = ["Reuses the supplied challenge, meets the objection, and does not start an equivalent new attack or independent check; no comparative choice verdict inside the advocacy case.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "A case may admit weaknesses and rate its own evidential strength strong, moderate or weak. Neither is a choice between options. A verdict selecting between options stays outside the one-sided case. Return a separate reusable challenge when the caller requests it."]
 
 [[turns]]
 prompt = "The caller supplies a current challenge: hybrid costs one reconciliation hour weekly; mitigate by naming one updater. Goal and evidence are unchanged. Make its positive case using that objection."

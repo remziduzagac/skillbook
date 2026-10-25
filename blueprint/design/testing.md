@@ -14,7 +14,7 @@ How skillbook is tested, as a whole: what runs where, what a test needs, and whe
 
    They need no agent and no key. They run locally and in GitHub CI on every pull request, on Linux and macOS.
 3. **AI tests, local only.** No AI test runs on GitHub. The user's personal accounts are never used in GitHub CI, and no free quota fits (see "Why AI tests stay local").
-   - **Automated:** `just test-agents` runs cases through the runner. The user starts it, or an agent does while building or changing a skill. An agent may also guide a run: start cases, read the summaries and judge what a script cannot check.
+   - **Automated:** `just test-agents` runs cases through the runner. The user sets when model tests run. The remaining build follows the schedule below. An agent may also guide a run: start cases, read the summaries and judge what a script cannot check.
    - **Manual:** `just try claude` or `just try codex` opens that agent in a toy project, with a sandbox home that has skillbook installed in link mode, so edits show at once. The user logs in once inside the sandbox. The user's real agent setup, and the agent session that develops the skills, stay apart from the skills under test. The command runs in whatever terminal or pane the user picks; nothing imposes a layout.
 
 ## Where things live
@@ -44,7 +44,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
     - nothing the agent started still running when the turn ended (`nothing_left_running`), unknown where the process list cannot be read or the system does not show a process's environment, since a process that left its group could then go unseen (D233);
     - a path in the run's own temporary folder, when the turn ended, that matches a pattern (`tmp_has`) or none that does (`tmp_lacks`), such as an unpacked copy the agent should have removed or was asked to keep: every path is checked, not the short listing the summary shows, and the full list of paths is never kept; unknown where the folder could not be read (D235).
     - a file the agent was asked to remove (`removed`), passing only when it is gone (D240);
-    - an agent started (`agent_started_or_answer`): Codex's exec record shows neither an agent it starts nor that agent's actions, so on Codex any call about agents, or a change no recorded action explains, leaves the check unknown, not failed; the summary says an agent may have run unseen, and judges treat a claim of another agent's check as unclear, not false, unless other evidence settles it (D242);
+    - an agent started (`agent_started_or_answer`): Codex's exec record shows neither an agent it starts nor that agent's actions, so on Codex any call about agents, or a change no recorded action explains, leaves the check unknown, not failed; the summary says an agent may have run unseen, and judges follow skillbook-write's record-limit lesson (D242, D254);
     - no skill named in the answer: Codex's harness tells it to say which skills it uses, so only a short line that says it loads, uses, reads or follows essentials and gives no reason is left out; a line with a reason, such as "because the essentials skill prohibits…", counts as naming a skill (D242);
 
     Whether a file was read whole or in part, and which tools ran, are not checked yet. Each case's `about` names the wrong behaviour it rejects, and a case is checked against a correct trace and a plausible wrong one before its result is trusted, as skillbook-write says (D217).
@@ -60,7 +60,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 - **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model. `just test-coverage` reports executable scenario counts, not observed success, and lists each aspect that no case covers and `tests/manual.toml` does not name.
 - **`tests/manual.toml`:** the aspects only a person can test in a live session, such as the harness's question tool, real compaction or publishing, each with its reason.
 - **`just check-coverage`,** inside `just check`: warns with the number of uncovered aspects, and fails only when a case or `tests/manual.toml` names an aspect that does not exist.
-- **Review evidence:** before deleting each sandbox, the runner retains per-turn fixture diffs, observed file contents requested by assertions, answers and an ordered action ledger of tool names, commands and target paths. Tool outputs and credential-home contents are not copied into that ledger. Failed or timed-out turns retain the evidence available, marked incomplete. A semantic criterion that cannot be established from the retained evidence stays unknown; raw events may be kept explicitly when needed.
+- **Review evidence:** before deleting each sandbox, the runner retains per-turn fixture diffs, observed file contents requested by assertions, answers and an ordered action ledger of tool names, commands and target paths. Tool outputs and credential-home contents are not copied into that ledger. Failed or timed-out turns retain the evidence available, marked incomplete. Evidence grading follows skillbook-write's test-case rules. Raw events may be kept explicitly when needed.
 
 ## Project skill scenarios
 
@@ -71,6 +71,10 @@ The project skills have no shipped-set design sections. These scenarios apply th
 3. skillbook-write corrects one spelling error: it preserves the design and required fallback, changing nothing unrelated.
 4. skillbook-write finds a requested behaviour absent from the design: it proposes the design change through skillbook-design before changing either file.
 5. skillbook-write finds the requested behaviour already present: it reports the evidence and leaves the files alone.
+
+## Build validation schedule
+
+Build the remaining batches and their cases before running model tests. Run no model tests per batch. After all batches, run every case once on Codex with GPT-6.1 Sol, then once with GPT-6 Luna. Investigate patterns both models share. Fix those patterns and rerun only the affected cases. Then run one full pass on each model for side effects. This schedule changes when tests run, not their case-writing or judging requirements (D253).
 
 ## The runner's rules
 
@@ -87,7 +91,7 @@ The project skills have no shipped-set design sections. These scenarios apply th
 - **Privacy:** raw event logs and credentials stay outside the repository and are deleted afterwards, unless the user asks to keep the logs. Local review summaries retain the fixture and action evidence described above, never the separate credential home or raw tool outputs. What a run showed goes into the design's test result or an evidence entry, as skillbook-write says.
 - **Judging:** scripts check behaviour. What only judgment can check, such as whether an explanation is clear, is judged by the agent that guides the run or by the user, and the result says which.
 - **Cases come from the designs' Tests lists,** which stay the source. A few are turned into cases first, starting with essentials.
-- **Test first for behaviour rules that are new, changed or failed:** the case is written and seen to fail before the wording changes, as skillbook-write says (D211).
+- **Case-writing rules:** follow [skillbook-write's Test cases instruction](../../.agents/skills/skillbook-write/SKILL.md), including prompt/check agreement, advice relevant to the result, strength versus choice, and unknown evidence. Its test-first rule follows the user's schedule; the build schedule above defers model runs (D253, D254).
 
 ## Open, settled when building
 

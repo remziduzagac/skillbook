@@ -2401,6 +2401,8 @@ The kept logs are in `/tmp/skillbook-test-results/inv-*/`, a summary in each. Th
 
 ## D211: Skills use testable triggers, narrow exits and boundary examples, written test-first (2026-10-20)
 
+> **Amended by D253 (2026-10-25):** The remaining build defers model runs until all batches are built; cases are still written during the build.
+
 > **Amended by D222 (2026-10-21):** skillbook-write's test advice "Judge by behaviour" says to check that a skill was read only where reading it is the behaviour under test, such as a route; where the result can be checked, check the result.
 
 > **Amended by D218 (2026-10-20):** a file is named by its path where the agent opens it directly, such as a start file the main skill reads; inside a set, a call names a skill by its name, which the name rule turns into its file.
@@ -3355,6 +3357,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D242: Codex test runs cannot write the shared /tmp, and what Codex's record cannot show stays unknown (2026-10-24)
 
+> **Amended by D254 (2026-10-25):** The case-writing lesson and judging pointers live in skillbook-write; a record limit alone never fails a case.
+
 **Decision:**
 
 - **The /tmp block:** the runner's throwaway Codex `config.toml` now sets `[sandbox_workspace_write]` `exclude_slash_tmp = true`. A Codex run cannot write the machine's `/tmp`, while its own `TMPDIR` stays writable.
@@ -3584,6 +3588,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D252: The understand thinking tools return what their caller needs, without extra decisions (2026-10-25)
 
+> **Amended by D254–D256 (2026-10-25):** Rubrics allow admitted weaknesses inside advocacy, substance and progress are scored separately, and routine progress has a sharp limit in the main skill. Historical scores below are unchanged.
+
 **Decision:**
 
 - The seven thinking-tool designs, discuss, frame, brainstorm, weigh, challenge, argue and naming, use full dashed skill names. Their Files fields name `references/understand/<name>.md`. The parent routes and affected callers use the same contracts.
@@ -3621,3 +3627,54 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - The seven cases that failed on both models, 3 runs each, round 1 text against the new text: Sol 7 to 15 good of 21, Luna 2 to 3.
 - All 151 cases, round 2 and round 3 answers judged in one pass: Sol 126 to 130 good. Luna's cases with a missed rubric line fell from 35 to 24, while its good count fell from 82 to 75, nearly all from progress text the stricter guide now fails.
 - Luna still misses discuss's whole-first order and closing, and incomplete payloads to callers. Round 3 cost Luna about US$0.66 by the runner's estimate. Sol and judging cost are unknown.
+
+## D253: Build the remaining batches before model testing (2026-10-25)
+
+**Decision:**
+
+- Build the remaining batches and write their cases without model tests per batch.
+- After all batches, run every case once on Codex with GPT-6.1 Sol, then once with GPT-6 Luna.
+- Investigate failures both models share. Fix the general patterns and rerun only the affected cases. Then run one full pass on each model for side effects.
+- The schedule lives in `design/testing.md`. skillbook-write follows the user's schedule. Its test-first path still applies when model runs are due.
+
+**Why:** Per-batch model rounds repeat broad runs before all callers exist. Writing cases during the build keeps its test obligations visible without that repeated cost.
+
+**Tested:** No model test was run. Static checks and coverage are checked separately. The remaining batches are not built by this decision.
+
+## D254: Test-writing lessons have one home in skillbook-write (2026-10-25)
+
+**Decision:**
+
+- skillbook-write's Test cases instruction holds four lessons: prompts agree with their checks; advice is required only when it affects the result, with justified omissions accepted; a strength rating is not a choice between options; and what the record cannot show stays unknown under D242, never failing a case on that limit alone.
+- `tests/judge.md` and `design/testing.md` point to those lessons. Examples use other kinds of work, not the case fixtures.
+- Argue and weigh rubrics allow admitted weaknesses and evidence-strength ratings inside advocacy. Only a verdict choosing between options is excluded there. A caller's requested reusable challenge still returns separately.
+
+**Why:** A conflicting prompt suppresses the behavior its rubric wants. An irrelevant advice requirement rewards bulk. Treating a strength rating or an admitted weakness as a comparative choice misgrades honest advocacy. An unseen event is not proof of a failure.
+
+**Tested:** No model test was run. The argue/weigh case files were audited. Manual trace checks accept a case that admits weak evidence and reject an option choice inside advocacy. The new examples are outside the fixtures.
+
+## D255: Judge substance and progress separately (2026-10-25)
+
+**Decision:**
+
+- The overall verdict in `tests/judge.md` judges the final answer and actions against the substantive rubric.
+- Progress text gets its own none, fine or not fine verdict. Report it beside the overall verdict. It does not change that verdict, including when a rubric has a progress-only criterion.
+- A correct answer and correct actions with a long progress paragraph are good overall and not fine for progress. Short progress cannot rescue an incorrect answer or an unauthorized action.
+- Earlier reports retain their historical scores. No model run or rejudging is required by this change.
+
+**Why:** Combining the scores hid improvements in final answers behind longer progress messages. Separate verdicts show both problems without losing the substance result.
+
+**Tested:** No model test was run. Manual trace checks separate a correct answer with long progress from a failed answer with short progress. Existing result folders and reports were left unchanged.
+
+## D256: Routine progress names one current step (2026-10-25)
+
+**Decision:**
+
+- The main skill's progress and routing rule is the one home. Each routine progress update between tool calls is one short line naming the current step. Findings, plans and reasons go in the final answer.
+- A sharp bold must gives the action. Its reason and a weaving example follow separately.
+- Required notices and approval questions retain their existing timing. A plan shown in a message that ends the turn for approval is not a routine progress update. The rule does not delay it until after a change.
+- Respond's design and the judge point to the main rule. The design gains one paired test: a short current-step line passes progress, while a paragraph of findings fails it even with a correct final answer. An executable case carries that pair without requiring a model run now.
+
+**Why:** A permission to write a progress line gave no limit or clear action. Long updates distract from the task and bury the result. Required pre-action messages still need to reach the user in time.
+
+**Tested:** No model test was run. The paired trace was checked by inspection: a brief reading update with the correct final expression passes; the same answer with a paragraph of findings and later plans fails progress only. Approval questions and required notices keep their separate rules. Model validation follows D253.

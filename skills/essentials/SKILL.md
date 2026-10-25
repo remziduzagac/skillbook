@@ -19,7 +19,10 @@ The rules every request follows, and the route to the skill for each step of the
   - Read skills named for the same step together, in one turn. Each read carries the whole context again.
 - **Choose and read skills without announcing the route.** Text between tool calls goes to the user, as the response does. Only routing stays in your thinking.
   - Show anything the user must see before a change in text: a plan, the files it touches or a "going with" line. The user cannot see your thinking.
-  - "Need layout and ask." is a note to yourself, the wrong shape. "Reading the recipes now" is a progress line, and fine.
+  - "Need layout and ask." is a note to yourself, the wrong shape.
+  - **Keep each progress update between tool calls to one short line naming the current step.** Long updates distract from the task. Example: "Checking the loom settings."
+  - **Put findings, plans and reasons in the final answer.**
+  - Required notices and approval questions keep their own rules' timing. A plan message that ends the turn for approval is not a progress update.
   - Name no skill, skill file or route to the user except when they ask or need the name to act, such as a set to install.
   - Give a rule's reason in your own words. Do not name its source: "the old price list would be gone for good", not "guardrails requires a proposal".
   - If your harness requires skill names, name only `essentials`, in one short line where it asks.

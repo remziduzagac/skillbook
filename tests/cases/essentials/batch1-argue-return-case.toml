@@ -1,12 +1,12 @@
 source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
-about = "Returns the case and separates reusable challenge information; keeps the challenge's decision outcome outside advocacy and performs no duplicate review."
+about = "Returns the case and separates reusable challenge information; keeps a comparative choice outside advocacy and performs no duplicate review."
 fixture = "thinking-lab"
 agents = ["codex"]
 skills = ["understand-argue"]
 category = "edge"
 rejects = "Treats a challenge outcome as the advocacy case's option choice or loses reusable challenge information."
 covers = ["understand-argue:rule:3", "understand-argue:rule:5"]
-review = ["Returns the case and separates reusable challenge information; keeps the challenge's decision outcome outside advocacy and performs no duplicate review.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "A strong, moderate or weak rating of the evidential strength of an advocacy case is allowed. Do not count that rating as choosing an option. Keep the comparative choice and the separate challenge outcome outside the one-sided case."]
+review = ["Returns the case and separates reusable challenge information; keeps a comparative choice outside advocacy and performs no duplicate review.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "A case may admit weaknesses and rate its own evidential strength strong, moderate or weak. Neither is a choice between options. A verdict selecting between options stays outside the one-sided case. Return a separate reusable challenge when the caller requests it."]
 
 [[turns]]
 prompt = "A caller needs the full case for hybrid plus the existing challenge separately for reuse. Keep the challenge's verdict separate from the one-sided case."

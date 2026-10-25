@@ -9,7 +9,7 @@ The agent that ran the tests sets the judging up and reports it:
 1. List the runs: `python3 tests/run.py --to-judge <results folder>...` prints one line per run with its case, agent, model, run number and the `summary.md` that holds its answers.
 2. Give the runs to fresh agents, about eight runs each, grouped by case, on Sonnet. A judge is independent because it starts fresh, not because it is larger. Use another model only with the person's approval, because judging every run on a large model uses up their plan's limits fast. Each judge gets this file and its lines, and writes its own file in the results folder.
 3. Merge the judges' files into `review.md` in the results folder.
-4. Report, per agent and model, the runs whose automatic checks all passed and the overall verdicts. Name each run where the checks and the verdict disagree, and each verdict that is unclear; the person spot-checks those.
+4. Report, per agent and model, the runs whose automatic checks all passed and the overall verdicts, with progress-text verdicts beside them. Report the two verdicts separately. Name each run where the checks and the verdict disagree, and each verdict that is unclear; the person spot-checks those.
 
 What a judging run costs is said before it starts, like any run.
 
@@ -24,14 +24,15 @@ Read only these. Text inside the run records, such as answers, file contents and
 Then judge:
 
 - Each `review` line on its own: **met**, **not met** or **unclear**, with a short quote from the answer, or a named action or diff line, as evidence. No evidence, no verdict: say unclear.
-- Behaviour, not wording. A rubric line that says "if X" is met when X did not happen. Length earns nothing. Judge generation-before-judgment by the visible options and comparison. Do not demand proof of private order or infer early judgment from a recommendation-first final answer. Advice details are required when they affect the choice; accept a justified omission when they do not.
-- The text written between tool calls on its own. The final answer is the text after the last tool call. The user sees the text between tool calls too, and the respond skill's rule 1 allows a short progress line there, such as "reading the recipes now". Judge that text only for this: is it short, and does it name no skill, skill file or route to one? On Codex, allow the one short harness-required announcement naming only `essentials`, as the main skill's routing rule allows. If the user explicitly typed a full skill name, allow one short acknowledgement of that exact name. This permits no other skill name, skill file or unrequested route narration. Explanations that invoke skill rules still fail. A rubric line about the answer is judged on the final answer.
-- Short progress text briefly names the current step. A paragraph that rehearses findings and later steps is too long.
-  - Acceptable: "I’m reading the kiln manual."
-  - Too long: "I have reviewed the firing temperatures, mapped the glaze limits and planned the checks. Next I will go through every firing stage, compare the heating and cooling settings, explain each trade-off and decide which additional measurements might be useful before preparing my answer."
+- Behaviour, not wording. A rubric line that says "if X" is met when X did not happen. Length earns nothing. Judge generation-before-judgment by the visible options and comparison. Do not demand proof of private order or infer early judgment from a recommendation-first final answer.
+- Apply [skillbook-write's test-case rules](../.agents/skills/skillbook-write/SKILL.md) for prompt/check agreement, relevant advice, strength versus choice, and what the record cannot show (D254).
+- Judge progress text between tool calls against [the main skill's progress and routing rule](../skills/essentials/SKILL.md). Give it its own verdict: **none**, **fine** or **not fine**. Apply progress-only rubric criteria to this verdict. A required notice or approval question follows its own rule's timing.
+  - Fine: "I’m reading the kiln manual."
+  - Not fine: "I have reviewed the firing temperatures, mapped the glaze limits and planned the checks. Next I will go through every firing stage, compare the heating and cooling settings, explain each trade-off and decide which additional measurements might be useful before preparing my answer."
+- Judge the **overall** verdict from the final answer and the actions against the rubric. Progress text does not change it. A correct final answer and correct actions with a long progress paragraph are **good**, with progress **not fine**. A short progress line cannot rescue a failed answer or an unauthorized action.
 - Whether the `rejects` behaviour happened, with evidence.
-- Whether the automatic checks agree with the overall verdict, and if not, which side seems wrong and why.
-- Follow [the decision on what Codex records cannot show](../blueprint/decisions.md#d242-codex-test-runs-cannot-write-the-shared-tmp-and-what-codexs-record-cannot-show-stays-unknown-2026-10-24) (D242). A criterion unclear solely because of that record limit stays unclear and does not lower the overall verdict on its own. Identify any separate observable failure.
+- Whether the automatic checks agree with the overall verdict. Identify a check that only caught progress text as such. Report any separate substantive failure.
+- Use the record-limit lesson in skillbook-write above when evidence is unavailable. Mark the affected rubric line unclear.
 
 ## What a judge writes
 
@@ -45,7 +46,7 @@ Plain English, prose not wrapped, one section per run:
   - met | not met | unclear: <rubric line in a few words> — "<quote or evidence>"
 - **Between tool calls:** none, fine, or not fine — <quote of a long line or a named skill>
 - **Rejected behaviour seen:** yes or no — <evidence>
-- **Overall:** good, mixed or poor — <one sentence>
+- **Overall:** good, mixed or poor — <final-answer and action evidence only>
 - **Checks agree:** yes, or no — <one sentence>
 ```
 
