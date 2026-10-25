@@ -4,6 +4,10 @@
     <img alt="skillbook" src="assets/skillbook-logo-dark.svg" width="200">
   </picture>
 </p>
+<p align="center">
+  <img alt="An orange robot at a workbench reads a green skillbook, with diagrams, gears and screens around it"
+    src="assets/skillbook-robot.webp" width="720">
+</p>
 <p align="center"><a href="https://github.com/remziduzagac/skillbook/actions/workflows/ci.yml"><img src="https://github.com/remziduzagac/skillbook/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a></p>
 
 Agent skills for any kind of project, organised as sets you install separately: essentials, for how any work is done, and sets for keeping a project's design record, engineering software and writing for people. Built for Claude Code and Codex, written so other agents that read skills work too.
