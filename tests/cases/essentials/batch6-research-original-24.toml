@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 24 (D262)"
+about = "Gives the supporting findings and a path for the complete retained list, keeping negative results and actual statuses."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:last", "understand-research:step:6"]
+category = "normal"
+rejects = "Pastes bulk raw findings or silently discards the rest."
+review = ["Gives the supporting findings and a path for the complete retained list, keeping negative results and actual statuses.", "Reject: Pastes bulk raw findings or silently discards the rest.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical completed search returned forty findings. Propose a readable response contract without claiming forty actual findings here."
+
+[checks]
+no_changes = true

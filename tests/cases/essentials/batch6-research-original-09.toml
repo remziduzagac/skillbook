@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 9 (D262)"
+about = "Uses candidate generation rather than reporting a product survey as new ideas."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand:not-for:understand-research", "understand-research:not-for:understand-research-survey"]
+category = "normal"
+rejects = "Treats product discovery as invented options."
+review = ["Uses candidate generation rather than reporting a product survey as new ideas.", "Reject: Treats product discovery as invented options.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Give original ideas for welcoming archive visitors, rather than a survey of existing products."
+
+[checks]
+no_changes = true

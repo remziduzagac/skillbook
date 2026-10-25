@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, test 12 (D262)"
+about = "Returns the comparison to the active design caller with no invented keeper path."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = ["understand-research-survey:last", "understand-research-survey:rule:8", "understand-research-survey:step:5"]
+category = "normal"
+rejects = "Writes a record or bypasses the caller because a keeper exists."
+review = ["Returns the comparison to the active design caller with no invented keeper path.", "Reject: Writes a record or bypasses the caller because a keeper exists.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical loaded keeper owns notes, but a design caller asked only for this survey result. Return it to the caller."
+
+[checks]
+no_changes = true

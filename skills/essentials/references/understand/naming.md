@@ -26,7 +26,7 @@ Proposes shared names and glossary entries without writing or renaming anything.
 - Start from the user's own words where available.
 - Avoid abbreviations except established ones and jokes a newcomer would not understand.
 
-Find public-name availability from the relevant sources, including registry, domain or trademark checks. Use project conventions for local code names. Return repeated definitions to the work arranging those files. Use `understand-frame` or `understand-clarify` before naming an unclear domain. Wording belongs to the `respond` skill or the work writing the document.
+Use `understand-research-fact` for public-name availability from the relevant registry, domain or trademark sources. Return the actual checks and limits here without another naming choice. A limited check is not broader legal or availability certainty. Use project conventions for local code names. Return repeated definitions to the work arranging those files. Use `understand-frame` or `understand-clarify` before naming an unclear domain. Wording belongs to the `respond` skill or the work writing the document.
 
 Return one of these default shapes:
 

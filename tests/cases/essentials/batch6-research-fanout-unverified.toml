@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, additional fanout-unverified (D262)"
+about = "Keeps quote matching distinct from validation and reports the independent check pending with its next owner."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:last", "understand-research:rule:7"]
+category = "boundary"
+rejects = "Promotes matched quotes to validated support."
+review = ["Keeps quote matching distinct from validation and reports the independent check pending with its next owner.", "Reject: Promotes matched quotes to validated support.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Use evidence/unverified.md to report whether fanout validation happened."
+
+[checks]
+no_changes = true

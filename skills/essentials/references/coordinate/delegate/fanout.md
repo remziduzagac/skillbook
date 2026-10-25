@@ -8,7 +8,7 @@ Needs: permitted workers and Python 3 for the consolidation script. If either is
 
 1. **Give each worker a different part or review lens.** Search first. Use one worker when a search or a small task suffices. The same question over the same material uses `coordinate-delegate-council`.
 2. **Keep findings in files until the answer needs them.** Each worker writes its own findings file and returns its path, count and what it could not find. Large raw findings would fill the main conversation.
-3. **Consolidate through the bundled script.** Follow [the findings contract](fanout/assets/findings.md). Preserve every finding, source, conflict and negative result. Checking a quote proves only whether those words occur in the supplied source.
+3. **Consolidate through the bundled script.** Follow [the findings contract](fanout/assets/findings.md), using `understand-research` for the shared semantic fields and provenance ranking. Preserve every finding, source, conflict and negative result. Checking a quote proves only whether those words occur in the supplied source.
 4. **Validate the evidence the answer may rely on and every conflicting pair.** Use a fresh validator at high effort, its tier chosen by the parent. Ask it to try to refute each claim against its sources. Keep uncertain claims unverified. Mark a claim refuted only when evidence goes against it. List the other findings as not validated.
 5. **Support the answer only with validated findings.** Report what was skipped, not found or left unverified, and what would settle relevant unknowns. You may read information about search coverage without using an unverified claim as supporting evidence.
 

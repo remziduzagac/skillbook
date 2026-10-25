@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, additional stale-official (D262)"
+about = "Checks applicability and evidence quality instead of blindly preferring the publisher category."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:rule:2", "understand-research-fact:step:2"]
+category = "boundary"
+rejects = "Always chooses the official source even for the wrong case."
+review = ["Checks applicability and evidence quality instead of blindly preferring the publisher category.", "Reject: Always chooses the official source even for the wrong case.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "An old primary statement conflicts with a relevant newer observation. Explain what must be checked before preferring either."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, test 10 (D262)"
+about = "Reports the CSV change and current evidence date, without presenting old XML evidence as current."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = ["understand-research-survey:advice:1", "understand-research-survey:advice:6"]
+category = "normal"
+rejects = "Copies stale cells merely because this is an update."
+review = ["Reports the CSV change and current evidence date, without presenting old XML evidence as current.", "Reject: Copies stale cells merely because this is an update.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Refresh prior-survey.md from the current supplied product records. Keep only what changed and needed current checks."
+
+[checks]
+no_changes = true

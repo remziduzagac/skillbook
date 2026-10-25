@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: research, additional caller-discuss (D262)"
+about = "Returns 80 with evidence and no new item or unrelated discussion."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-discuss"]
+covers = ["understand-discuss:step:2"]
+category = "boundary"
+rejects = "Restarts the active caller or omits the requested useful fact."
+review = ["Returns 80 with evidence and no new item or unrelated discussion.", "Reject: Restarts the active caller or omits the requested useful fact.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "An active discussion item needs the batch-size fact. Return that fact to the item only."
+
+[checks]
+no_changes = true
+reads = ["understand-research-fact"]

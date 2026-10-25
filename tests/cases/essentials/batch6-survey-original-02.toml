@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, test 2 (D262)"
+about = "Uses weigh for a direct requested choice after returning grounded options."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = ["understand-research-survey:rule:8"]
+category = "normal"
+rejects = "Claims a decision was applied or regenerates candidates unnecessarily."
+review = ["Uses weigh for a direct requested choice after returning grounded options.", "Reject: Claims a decision was applied or regenerates candidates unnecessarily.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "I now want a recommendation after the factual catalog comparison. Propose the next comparison step without applying a choice."
+
+[checks]
+no_changes = true

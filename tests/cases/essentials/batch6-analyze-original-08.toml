@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, test 8 (D262)"
+about = "Keeps two evidence chains and their actual support or unresolved links."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:advice:6", "understand-research-analyze:rule:4", "understand-research-analyze:step:4"]
+category = "normal"
+rejects = "Forces one cause or invents unsupported branches."
+review = ["Keeps two evidence chains and their actual support or unresolved links.", "Reject: Forces one cause or invents unsupported branches.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Two independently supported contributions are given: a dropped key and a stale input value. Explain how to return their causes without inventing a tree."
+
+[checks]
+no_changes = true

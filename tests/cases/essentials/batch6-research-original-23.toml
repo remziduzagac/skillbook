@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 23 (D262)"
+about = "Loads only the needed code guide and distinguishes reading from running."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:5", "understand-research:step:2"]
+category = "normal"
+rejects = "Loads every guide or claims the code was executed."
+review = ["Loads only the needed code guide and distinguishes reading from running.", "Reject: Loads every guide or claims the code was executed.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Explain what code/worker.py declares. Use code as a source and claim no execution."
+
+[checks]
+no_changes = true

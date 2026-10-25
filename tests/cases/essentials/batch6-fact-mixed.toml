@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, additional mixed (D262)"
+about = "Returns mixed support with both records and unresolved limits."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:last", "understand-research-fact:rule:3", "understand-research-fact:step:3"]
+category = "boundary"
+rejects = "Hides one side or treats repeated confidence as a deciding fact."
+review = ["Returns mixed support with both records and unresolved limits.", "Reject: Hides one side or treats repeated confidence as a deciding fact.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Use both relevant supplied label-check records."
+
+[checks]
+no_changes = true

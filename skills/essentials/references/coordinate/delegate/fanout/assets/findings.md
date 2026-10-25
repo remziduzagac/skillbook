@@ -2,7 +2,7 @@
 
 Use UTF-8 JSON Lines: one object per line. Give each worker its own file. Blank lines are ignored. Python 3 runs `consolidate.py --source-root <approved-directory> <file> ...`. It prints one JSON object to standard output. The caller saves that output in its authorized scratch location. No network request or source command runs.
 
-A finding has `kind` set to `finding`, a nonempty `id` unique across the input batch, a nonempty `claim`, a nonempty `source`, `quote` as text or null, `strength`, `applies_to` as text or null, and `source_file` as a local path or null. Strength is one of `seen_or_measured`, `read_at_source`, `inferred`, or `only_said`. Mark recalled knowledge as `from_memory: true` with `only_said`. These fields carry research's designed meaning; this contract defines how the script reads them.
+A finding has `kind` set to `finding`, a nonempty `id` unique across the input batch, a nonempty `claim`, a nonempty `source`, `quote` as text or null, `strength`, `applies_to` as text or null, and `source_file` as a local path or null. Strength is one of `seen_or_measured`, `read_at_source`, `inferred`, or `only_said`. Mark recalled knowledge as `from_memory: true` with `only_said`. These fields carry `understand-research`'s semantic meaning. This contract defines how the script reads them.
 
 A negative result has `kind` set to `not_found`, a nonempty `scope` and a list of nonempty `looked_in` strings. An empty findings file is allowed, but the caller still requests the worker's negative results and actual status. Empty output alone does not establish what was searched.
 

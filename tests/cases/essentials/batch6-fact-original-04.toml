@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, test 4 (D262)"
+about = "Treats the unsupported assertion as only said pending evidence."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:advice:3", "understand-research-fact:step:3"]
+category = "normal"
+rejects = "Accepts the inability as measured fact."
+review = ["Treats the unsupported assertion as only said pending evidence.", "Reject: Accepts the inability as measured fact.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Someone says the indexer cannot retry but supplies no error, documentation or probe. Explain the claim's initial evidence status."
+
+[checks]
+no_changes = true

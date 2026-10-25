@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 4 (D262)"
+about = "Uses survey and analyze for separate questions and returns both requested results without a combined invented frame."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:step:6"]
+category = "normal"
+rejects = "Omits one question or forces both into one cause or choice."
+review = ["Uses survey and analyze for separate questions and returns both requested results without a combined invented frame.", "Reject: Omits one question or forces both into one cause or choice.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Compare the existing fictional catalogs and separately explain the key loss from code/trace.md."
+
+[checks]
+no_changes = true

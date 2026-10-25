@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, test 7 (D262)"
+about = "Returns snapshot availability and date while leaving domains and trademarks unchecked."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:advice:4", "understand-research-fact:last", "understand-research-fact:step:1", "understand-research-fact:step:4"]
+category = "normal"
+rejects = "Claims global legal clearance or begins a new naming choice."
+review = ["Returns snapshot availability and date while leaving domains and trademarks unchecked.", "Reject: Claims global legal clearance or begins a new naming choice.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A naming caller needs only what registry.md establishes about meadow-index. Return the bounded check, not a naming decision."
+
+[checks]
+no_changes = true

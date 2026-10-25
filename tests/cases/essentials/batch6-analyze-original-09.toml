@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, test 9 (D262)"
+about = "Returns the implementation to the caller's debugging or coding work, not another unnecessary analysis loop."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = []
+category = "normal"
+rejects = "Uses analyze as permission to edit or restarts a known cause investigation."
+review = ["Returns the implementation to the caller's debugging or coding work, not another unnecessary analysis loop.", "Reject: Uses analyze as permission to edit or restarts a known cause investigation.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "The request is to fix a failing test, and the cause is already known. Explain who owns the fix; do not edit anything."
+
+[checks]
+no_changes = true

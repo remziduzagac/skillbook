@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, test 3 (D262)"
+about = "Uses brainstorm for new options rather than a product survey."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = []
+category = "normal"
+rejects = "Presents found products as newly generated ideas."
+review = ["Uses brainstorm for new options rather than a product survey.", "Reject: Presents found products as newly generated ideas.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Invent new onboarding ideas rather than listing existing catalog tools."
+
+[checks]
+no_changes = true

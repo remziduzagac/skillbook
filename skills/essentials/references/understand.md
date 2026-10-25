@@ -70,7 +70,13 @@ Understanding before acting, with the user and from sources. Its rules hold for 
   - Not for: local code names (project conventions), repeated definitions (the work arranging the files), wording (the `respond` skill or document-writing work), an unclear domain (`understand-frame` or `understand-clarify`), or applying a rename or glossary edit (the caller).
   - Gives back: the chosen name, reasons and rejected words, or proposed glossary changes. Writes nothing.
 
-A whole design belongs to the work designing it. Anything else about understanding that fits no line here is your own judgment, under the rules above. Find facts from sources when needed.
+**Finding out from sources:**
+
+- **research** (`understand-research`): when a question needs sourced facts, an overview of existing candidates or an investigation into a cause.
+  - Not for: a quick local read (read directly), user intent (`understand-clarify`), invented options (`understand-brainstorm`), choosing known options (`understand-weigh`), or claims of done (`act-verify`).
+  - Gives back: sourced findings and their limits, a bounded claim verdict, compared candidates, or supported and hypothetical causal links. Returns to the active caller.
+
+A whole design belongs to the work designing it. Anything else about understanding that fits no line here is your own judgment, under the rules above. Use `understand-research` for facts needing sourced investigation.
 
 ## The last instruction
 

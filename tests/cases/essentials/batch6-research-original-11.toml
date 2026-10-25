@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 11 (D262)"
+about = "Keeps the excerpt inferred and unverified, names the access gap and does not confirm capacity 200."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:2", "understand-research:rule:3"]
+category = "normal"
+rejects = "Calls the snippet a primary-page read or relies on it as confirmed capacity."
+review = ["Keeps the excerpt inferred and unverified, names the access gap and does not confirm capacity 200.", "Reject: Calls the snippet a primary-page read or relies on it as confirmed capacity.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Use web/snippet.md to report what is known about capacity. The owning page cannot be opened."
+
+[checks]
+no_changes = true

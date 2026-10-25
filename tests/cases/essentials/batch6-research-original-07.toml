@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 7 (D262)"
+about = "Uses known facts first, then asks for the user-owned goal that changes the comparison rather than guessing."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand:not-for:understand-research", "understand-research:not-for:understand-research-fact", "understand-research:rule:1", "understand-research:step:1"]
+category = "normal"
+rejects = "Assumes the deciding preference or performs an unasked selection."
+review = ["Uses known facts first, then asks for the user-owned goal that changes the comparison rather than guessing.", "Reject: Assumes the deciding preference or performs an unasked selection.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "I want research about the catalogs but have not decided whether offline use or export compatibility matters. Ask only what would change the work."
+
+[checks]
+no_changes = true

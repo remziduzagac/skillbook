@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: research, additional root-route (D262)"
+about = "Reads research through understand and returns the applicable sourced answer."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand"]
+covers = ["understand:route:understand-research"]
+category = "boundary"
+rejects = "Stops at generic judgment or returns only a method name."
+review = ["Reads research through understand and returns the applicable sourced answer.", "Reject: Stops at generic judgment or returns only a method name.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Check the sourced retry behavior using project context and the two supplied version manuals."
+
+[checks]
+no_changes = true
+reads = ["understand-research"]

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, additional source-choice (D262)"
+about = "Uses documentation by content, not all guides merely because the transport is web."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:5", "understand-research:step:2"]
+category = "boundary"
+rejects = "Loads every guide or treats the manual as unrelated general commentary."
+review = ["Uses documentation by content, not all guides merely because the transport is web.", "Reject: Loads every guide or treats the manual as unrelated general commentary.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A primary version manual arrives as a web page. Which source guidance applies, and what would you check?"
+
+[checks]
+no_changes = true

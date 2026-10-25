@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, test 10 (D262)"
+about = "Preserves caller remediation ownership and actual unknowns. Names the unproved structural explanation and why moving only the symptom would not establish the cause."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:advice:5", "understand-research-analyze:rule:5"]
+category = "normal"
+rejects = "Takes an incident action or invents its completed status."
+review = ["Preserves caller remediation ownership and actual unknowns. Names the unproved structural explanation and why moving only the symptom would not establish the cause.", "Reject: Takes an incident action or invents its completed status.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical incident caller needs the cause investigation only. Return the result and missing checks to that caller, not an operational action."
+
+[checks]
+no_changes = true

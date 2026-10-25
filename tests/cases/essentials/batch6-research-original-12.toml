@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 12 (D262)"
+about = "Marks recalled knowledge only said until checked and uses version 2 evidence for the actual answer."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:rule:3"]
+category = "normal"
+rejects = "Treats memory as stronger than the applicable manual."
+review = ["Marks recalled knowledge only said until checked and uses version 2 evidence for the actual answer.", "Reject: Treats memory as stronger than the applicable manual.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical assistant recalls a larger retry limit, but the supplied applicable manual differs. Return the sourced answer."
+
+[checks]
+no_changes = true

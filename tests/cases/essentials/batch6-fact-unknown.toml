@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, additional unknown (D262)"
+about = "Returns unknown because the needed section was inaccessible, with what would settle it."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:last", "understand-research-fact:rule:3", "understand-research-fact:step:4"]
+category = "boundary"
+rejects = "Calls the incomplete check unsupported or invents a negative result."
+review = ["Returns unknown because the needed section was inaccessible, with what would settle it.", "Reject: Calls the incomplete check unsupported or invents a negative result.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Use evidence/blocked.md for the translation check."
+
+[checks]
+no_changes = true

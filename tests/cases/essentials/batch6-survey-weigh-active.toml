@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, additional weigh-active (D262)"
+about = "Returns the comparison once and leaves the choice to the active caller."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = ["understand-research-survey:last", "understand-research-survey:rule:8", "understand-research-survey:step:5"]
+category = "boundary"
+rejects = "Starts another weigh operation or asks the caller's user choice again."
+review = ["Returns the comparison once and leaves the choice to the active caller.", "Reject: Starts another weigh operation or asks the caller's user choice again.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "An active comparison caller requested existing candidates only. Return their grounded comparison without invoking that caller again."
+
+[checks]
+no_changes = true

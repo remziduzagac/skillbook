@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, additional no-extra-checkpoint (D262)"
+about = "Returns the approach with the useful requested result and adds no survey-only approval turn."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = ["understand-research-survey:rule:7"]
+category = "boundary"
+rejects = "Stops at a needless request for approval to read the supplied facts."
+review = ["Returns the approach with the useful requested result and adds no survey-only approval turn.", "Reject: Stops at a needless request for approval to read the supplied facts.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Give the read-only comparison approach for the supplied catalogs. No user answer or paid work is needed."
+
+[checks]
+no_changes = true

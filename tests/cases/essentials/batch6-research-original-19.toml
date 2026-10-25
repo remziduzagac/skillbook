@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 19 (D262)"
+about = "Stops with the supported answer and actual coverage limit."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:8"]
+category = "normal"
+rejects = "Keeps expanding scope or claims universal completeness."
+review = ["Stops with the supported answer and actual coverage limit.", "Reject: Keeps expanding scope or claims universal completeness.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "New sources only repeat the scoped answer. Report the result without searching for more of the same."
+
+[checks]
+no_changes = true

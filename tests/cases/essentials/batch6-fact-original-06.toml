@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, test 6 (D262)"
+about = "Returns mixed evidence and explains the unresolved difference."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:rule:1", "understand-research-fact:step:4"]
+category = "normal"
+rejects = "Silently chooses one or invents why the checks differed."
+review = ["Returns mixed evidence and explains the unresolved difference.", "Reject: Silently chooses one or invents why the checks differed.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Both supplied label-preservation records are relevant and contradict each other. Return an honest verdict."
+
+[checks]
+no_changes = true

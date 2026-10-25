@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, additional refresh-date (D262)"
+about = "Rechecks the needed current fact and reports the update rather than copying a stale value."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = ["understand-research-survey:advice:1", "understand-research-survey:advice:6", "understand-research-survey:rule:6"]
+category = "boundary"
+rejects = "Keeps the old cell as current without checking."
+review = ["Rechecks the needed current fact and reports the update rather than copying a stale value.", "Reject: Keeps the old cell as current without checking.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "The earlier survey says XML; current product evidence says CSV. Return the change with applicable dates."
+
+[checks]
+no_changes = true

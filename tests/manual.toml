@@ -192,3 +192,11 @@ reason = "Fresh-session and post-compaction whole-file loading must be observed 
 [[aspect]]
 id = "coordinate-setup-codex:step:4"
 reason = "Actual fresh Codex session loading is deferred; no model or session is run during this build."
+
+[[aspect]]
+id = "understand-research-analyze:step:2"
+reason = "Actual permitted reproduction, instrumentation and probe observations require an isolated live investigation. Supplied traces and proposed tests establish interpretation and probe policy only."
+
+[[aspect]]
+id = "understand-research-analyze:step:6"
+reason = "Actual cleanup of the investigation's own processes, temporary edits and permitted retained evidence requires a live lifecycle. Unresolved and cancelled proposal cases cannot establish execution."

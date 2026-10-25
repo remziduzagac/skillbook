@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, test 6 (D262)"
+about = "Looks at recent changes, the failure path and a reproduction before a scoped bisect. Compares a working and failing case at their boundaries and proposes a scoped bisect with an observable outcome."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:advice:2", "understand-research-analyze:advice:3", "understand-research-analyze:advice:4"]
+category = "normal"
+rejects = "Changes many variables at once or declares a cause without testing."
+review = ["Looks at recent changes, the failure path and a reproduction before a scoped bisect. Compares a working and failing case at their boundaries and proposes a scoped bisect with an observable outcome.", "Reject: Changes many variables at once or declares a cause without testing.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "The problem is a regression after a known set of changes. Propose the investigation order using a controlled bisect if suitable."
+
+[checks]
+no_changes = true

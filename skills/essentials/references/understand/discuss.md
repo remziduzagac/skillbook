@@ -30,7 +30,7 @@ Works through a topic with the user, one item at a time.
 ## Instructions
 
 1. **Frame the topic through `understand-frame`.** Divide it into items. Put the whole list with the first item in the question round.
-2. **Use what the item needs.** Use `understand-frame` for its problem, `understand-clarify` for user intent, `understand-brainstorm` for options, `understand-weigh` for comparison, `understand-challenge` for an attack, `understand-argue` for a requested case and `understand-naming` for names. Find facts where needed. Any other skill may serve an item. Otherwise give your view with reasons. Put open decisions through `respond-ask`. Agent-made choices follow the `understand` skill's who-decides rule.
+2. **Use what the item needs.** Use `understand-frame` for its problem, `understand-clarify` for user intent, `understand-brainstorm` for options, `understand-weigh` for comparison, `understand-challenge` for an attack, `understand-argue` for a requested case and `understand-naming` for names. Use `understand-research` for an item's factual needs and return to that item. Any other skill may serve an item. Otherwise give your view with reasons. Put open decisions through `respond-ask`. Agent-made choices follow the `understand` skill's who-decides rule.
 3. **Close the item.** Update remaining items.
 4. **Place each side topic by rule 5.** Keep the current item visible.
 5. **Keep independent analysis separate from lasting work.** Use available means for analysis that needs no user decision. Return lasting work to the caller. Discussion changes nothing itself.

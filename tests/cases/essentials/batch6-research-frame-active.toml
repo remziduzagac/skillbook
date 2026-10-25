@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, additional frame-active (D262)"
+about = "Returns 80 with evidence to the caller without reframing the same problem."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:rule:1", "understand-research:step:1"]
+category = "boundary"
+rejects = "Starts another frame instead of answering the gap."
+review = ["Returns 80 with evidence to the caller without reframing the same problem.", "Reject: Starts another frame instead of answering the gap.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "You are supplying one factual gap to an active frame caller: version 2 batch size. Return the bounded answer."
+
+[checks]
+no_changes = true

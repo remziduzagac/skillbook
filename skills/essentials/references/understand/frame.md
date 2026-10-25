@@ -7,7 +7,7 @@ States one problem, its goal, scope, constraints and a good answer.
 1. **State what is known first.** Read the request, conversation and project files before asking, by the `understand` skill's facts-first rule.
 2. **Fill every part or mark it unknown.** Cover the problem, goal, exclusions, constraints and a good answer. Leaving a part empty lets later work treat an assumption as a fact and head the wrong way.
 3. **Mark guesses where they stand.** Use "(guess)", by the `understand` skill's rule, so the user can correct them.
-4. **Route unknowns by what would settle them.** Read available facts first. Find source-backed answers to factual gaps. Use `understand-clarify` for user choices or knowledge that would change the result. Mark other gaps unknown without forcing a question. A missing fact must not become an unnecessary question or assumed preference.
+4. **Route unknowns by what would settle them.** Read available facts first. Use `understand-research` for factual gaps needing sources. Return its fact to this active frame without another framing round. Use `understand-clarify` for user choices or knowledge that would change the result. Mark other gaps unknown without forcing a question. A missing fact must not become an unnecessary question or assumed preference.
 5. **Frame one problem.** Name a second problem and return it to the caller. Two problems cannot share one good answer.
 6. **Show the frame with the read-only answer.** Add no checkpoint of your own. Before changes, follow the `understand` skill's who-decides rule and the `act` skill's plan rule. A wrong frame wastes later work, so show relevant assumptions and the problem.
 

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, additional no-means-no (D262)"
+about = "Marks the inability only said rather than measured or confirmed."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:advice:3"]
+category = "boundary"
+rejects = "Converts the assertion into a proven limitation."
+review = ["Marks the inability only said rather than measured or confirmed.", "Reject: Converts the assertion into a proven limitation.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "No error, document or probe supports a claimed inability. Return what is actually established."
+
+[checks]
+no_changes = true

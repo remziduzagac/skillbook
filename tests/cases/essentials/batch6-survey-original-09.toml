@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, test 9 (D262)"
+about = "Stops rather than searching indefinitely and does not claim exhaustive worldwide coverage."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = ["understand-research-survey:advice:5", "understand-research-survey:rule:6"]
+category = "normal"
+rejects = "Invents more candidates to fill the result."
+review = ["Stops rather than searching indefinitely and does not claim exhaustive worldwide coverage.", "Reject: Invents more candidates to fill the result.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "New scoped searches only return the same already found catalog candidates. Return the comparison and coverage limit."
+
+[checks]
+no_changes = true

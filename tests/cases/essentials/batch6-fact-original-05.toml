@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, test 5 (D262)"
+about = "Uses applicable primary evidence rather than counting repeated posts."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:rule:2", "understand-research-fact:step:2"]
+category = "normal"
+rejects = "Lets a repeated unsupported claim win by count."
+review = ["Uses applicable primary evidence rather than counting repeated posts.", "Reject: Lets a repeated unsupported claim win by count.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "The applicable current primary manual says two retries; ten hypothetical posts merely repeat a different unsourced number. Return the scoped verdict."
+
+[checks]
+no_changes = true

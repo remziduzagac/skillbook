@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: research, additional caller-argue (D262)"
+about = "Returns the applicable sourced fact without restarting advocacy or its challenge."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-argue"]
+covers = ["understand-argue:step:2"]
+category = "boundary"
+rejects = "Restarts the active caller or omits the requested useful fact."
+review = ["Returns the applicable sourced fact without restarting advocacy or its challenge.", "Reject: Restarts the active caller or omits the requested useful fact.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A current case needs the version 2 retry fact as evidence. Return that fact, not another challenge."
+
+[checks]
+no_changes = true
+reads = ["understand-research-fact"]

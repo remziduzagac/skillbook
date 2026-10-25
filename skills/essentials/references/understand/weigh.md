@@ -7,7 +7,7 @@ Compares named options on common terms and recommends one, or says what would se
 1. **Set the terms before scoring options.** Use `understand-frame`'s good-answer terms where present, otherwise what matters to the question. Terms chosen later tend to fit the favorite.
 2. **Compare every option on every term.** Different terms cannot support a comparison.
 3. **Give benefits, costs, risks and unknowns for each option.** Search for real downsides. If none is found within the agreed terms, say so with where you looked. A forced downside invents evidence; an unexamined option hides costs.
-4. **Name unknowns that could change the recommendation.** Find facts from sources or a test. Use `understand-clarify` for the user's preference. Give what would settle each unknown.
+4. **Name unknowns that could change the recommendation.** Use `understand-research` or a permitted test for deciding facts. Use `understand-clarify` for the user's preference. Give what would settle each unknown.
 5. **Recommend with why it beats the next best, or say "no clear winner".** Give what would settle a tie. Giving no recommendation leaves the decision undone. Forcing a recommendation hides a tie.
 6. **Follow the `understand` skill's who-decides rule.** When a caller asks for a comparison, return it without starting that caller's choice round. When the user asks directly, give your recommendation as the recommended answer for their choice. Give the reason. Apply the shared rule to agent-made choices. A bare choice cannot be judged.
 
@@ -21,7 +21,7 @@ Compares named options on common terms and recommends one, or says what would se
 - Use scores and weights only with a meaningful measure. Words usually say more than an unsupported number.
 - If a combination may beat options that fail on different terms, return the development need to the caller. Do not call an active `understand-brainstorm` again.
 
-Find evidence or run a test for a fact that would decide the choice. Use `understand-challenge` for one option. Return undeveloped options to the caller with the specific development they need. The caller owns the next generation pass. When a council returns disagreements, preserve them. Compare its members' answers when the user asks for a recommendation.
+Use `understand-research` or a permitted test for a fact that would decide the choice. When candidate discovery is needed, `understand-research-survey` returns it to this active comparison without another weigh call. Use `understand-challenge` for one option. Return undeveloped options to the caller with the specific development they need. The caller owns the next generation pass. When a council returns disagreements, preserve them. Compare its members' answers when the user asks for a recommendation.
 
 Return this default shape:
 

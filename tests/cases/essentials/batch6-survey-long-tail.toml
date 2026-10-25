@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, additional long-tail (D262)"
+about = "Separates compared candidates, unexamined Aster and actual exclusions; does not imply all terms were checked for Aster."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = ["understand-research-survey:advice:4", "understand-research-survey:last", "understand-research-survey:rule:4", "understand-research-survey:step:3"]
+category = "boundary"
+rejects = "Silently drops Aster or pretends it was rejected on gathered evidence."
+review = ["Separates compared candidates, unexamined Aster and actual exclusions; does not imply all terms were checked for Aster.", "Reject: Silently drops Aster or pretends it was rejected on gathered evidence.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Coral and Orchid are fully compared; Aster is only named and unexamined. Return a useful scoped summary."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 18 (D262)"
+about = "Names a relevant reversible probe with scope, evidence criterion and guardrails where needed, without claiming execution. Gives varied searches for and against the proposed hypothesis before justifying a permitted probe."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:7"]
+category = "normal"
+rejects = "Runs an unapproved experiment or treats a proposal as its result."
+review = ["Names a relevant reversible probe with scope, evidence criterion and guardrails where needed, without claiming execution. Gives varied searches for and against the proposed hypothesis before justifying a permitted probe.", "Reject: Runs an unapproved experiment or treats a proposal as its result.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a small temporary experiment to check a fact more directly than reading. Apply nothing."
+
+[checks]
+no_changes = true

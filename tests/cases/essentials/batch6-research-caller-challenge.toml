@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: research, additional caller-challenge (D262)"
+about = "Returns twice with evidence without repeating independent objection ownership."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-challenge"]
+covers = []
+category = "boundary"
+rejects = "Restarts the active caller or omits the requested useful fact."
+review = ["Returns twice with evidence without repeating independent objection ownership.", "Reject: Restarts the active caller or omits the requested useful fact.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A current challenge needs a deciding factual check of the retry count. Return that fact only."
+
+[checks]
+no_changes = true
+reads = ["understand-research-fact"]

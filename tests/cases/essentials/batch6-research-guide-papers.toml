@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/understand.md: research, additional guide-papers (D262)"
+about = "Reads the papers guide, preserves the observational method and counts one study."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:3", "understand-research:advice:5", "understand-research:step:2"]
+category = "edge"
+rejects = "Invents causal proof or citation counts."
+review = ["Reads the papers guide, preserves the observational method and counts one study.", "Reject: Invents causal proof or citation counts.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Use papers/study.md and papers/copy.md to report the scientific claim and limits."
+
+[checks]
+no_changes = true
+reads = ["understand-research"]
+names_no_skill = true

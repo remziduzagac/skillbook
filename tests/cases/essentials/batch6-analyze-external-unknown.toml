@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, additional external-unknown (D262)"
+about = "Keeps the cause unresolved and names evidence needed rather than blaming an external system."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:advice:8"]
+category = "boundary"
+rejects = "Guesses a network or provider cause."
+review = ["Keeps the cause unresolved and names evidence needed rather than blaming an external system.", "Reject: Guesses a network or provider cause.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Evidence does not identify whether the cause is local or external. Return its actual status."
+
+[checks]
+no_changes = true

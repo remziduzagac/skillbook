@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: research, additional caller-brainstorm (D262)"
+about = "Returns twice with evidence without choosing or regenerating options."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+covers = []
+category = "boundary"
+rejects = "Restarts the active caller or omits the requested useful fact."
+review = ["Returns twice with evidence without choosing or regenerating options.", "Reject: Restarts the active caller or omits the requested useful fact.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A candidate generator needs the applicable retry fact before returning ideas. Return only that fact."
+
+[checks]
+no_changes = true
+reads = ["understand-research-fact"]

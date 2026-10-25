@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: research, additional caller-frame (D262)"
+about = "Returns 80 with the version 2 source, without restarting the frame."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-frame"]
+covers = ["understand-frame:rule:4", "understand-research:route:understand-research-fact"]
+category = "boundary"
+rejects = "Restarts the active caller or omits the requested useful fact."
+review = ["Returns 80 with the version 2 source, without restarting the frame.", "Reject: Restarts the active caller or omits the requested useful fact.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "An active frame needs only the applicable batch-size fact. Return that fact, not another frame."
+
+[checks]
+no_changes = true
+reads = ["understand-research-fact"]

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, test 4 (D262)"
+about = "Traces the supported chain to Elm with evidence and marks any unobserved link."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:advice:3", "understand-research-analyze:rule:4", "understand-research-analyze:step:4"]
+category = "normal"
+rejects = "Stops at the symptom or invents an earlier trigger."
+review = ["Traces the supported chain to Elm with evidence and marks any unobserved link.", "Reject: Stops at the symptom or invents an earlier trigger.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "The error appears at Ash, but code/trace.md points to an earlier drop. Trace the cause backward."
+
+[checks]
+no_changes = true

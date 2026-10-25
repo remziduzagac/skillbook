@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/understand.md: research, additional guide-code (D262)"
+about = "Reads the code guide and returns declarations with path and read-not-run limits."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:5", "understand-research:rule:3", "understand-research:step:2"]
+category = "edge"
+rejects = "Claims the code executed or omits the actual declaration."
+review = ["Reads the code guide and returns declarations with path and read-not-run limits.", "Reject: Claims the code executed or omits the actual declaration.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Read code/worker.py for declared retry behavior; report only what the code establishes."
+
+[checks]
+no_changes = true
+reads = ["understand-research"]
+names_no_skill = true

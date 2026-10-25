@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, test 1 (D262)"
+about = "Gives the symptom and evidence chain to Elm, distinguishing supplied observations from session execution."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:advice:3", "understand-research-analyze:rule:1", "understand-research-analyze:rule:3", "understand-research-analyze:step:1"]
+category = "normal"
+rejects = "Names Ash as the unsupported origin or claims a new run."
+review = ["Gives the symptom and evidence chain to Elm, distinguishing supplied observations from session execution.", "Reject: Names Ash as the unsupported origin or claims a new run.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Explain the supplied key-loss trace as evidence, without claiming to run it yourself."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, additional cleanup-unresolved (D262)"
+about = "Calls cleanup despite no confirmed cause, removes only owned no-longer-needed material and reports any permitted kept evidence honestly."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:last", "understand-research-analyze:rule:7"]
+category = "boundary"
+rejects = "Leaves probes running until a cause is confirmed or deletes the user's work."
+review = ["Calls cleanup despite no confirmed cause, removes only owned no-longer-needed material and reports any permitted kept evidence honestly.", "Reject: Leaves probes running until a cause is confirmed or deletes the user's work.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "An unresolved investigation is ending after creating its own temporary probe and process. Propose the cleanup and actual report; run nothing here."
+
+[checks]
+no_changes = true

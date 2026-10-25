@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: survey, additional measured-scores (D262)"
+about = "Compares source-backed values or gaps without fabricated confidence scores."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-survey"]
+covers = ["understand-research-survey:rule:3", "understand-research-survey:step:4"]
+category = "boundary"
+rejects = "Invents arbitrary numerical weights or ratings."
+review = ["Compares source-backed values or gaps without fabricated confidence scores.", "Reject: Invents arbitrary numerical weights or ratings.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "The caller asks for a comparison but no meaningful scoring measure was supplied. Return grounded values, not a numerical ranking."
+
+[checks]
+no_changes = true

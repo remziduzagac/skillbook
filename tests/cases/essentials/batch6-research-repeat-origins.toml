@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, additional repeat-origins (D262)"
+about = "Counts the actual origin once and preserves the supplied evidence limits."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:3", "understand-research:rule:6"]
+category = "boundary"
+rejects = "Claims four independent confirmations."
+review = ["Counts the actual origin once and preserves the supplied evidence limits.", "Reject: Claims four independent confirmations.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A study and three copied summaries repeat one result. Explain independent support without counting copies."
+
+[checks]
+no_changes = true

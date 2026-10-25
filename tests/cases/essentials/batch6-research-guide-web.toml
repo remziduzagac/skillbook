@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/understand.md: research, additional guide-web (D262)"
+about = "Reads the web guide, counts one origin and reports sampling limits."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:3", "understand-research:advice:5", "understand-research:step:2"]
+category = "edge"
+rejects = "Calls copied commentary independent or representative."
+review = ["Reads the web guide, counts one origin and reports sampling limits.", "Reject: Calls copied commentary independent or representative.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Use web/thread.md to explain the scope of its public commentary, not a product verdict."
+
+[checks]
+no_changes = true
+reads = ["understand-research"]
+names_no_skill = true

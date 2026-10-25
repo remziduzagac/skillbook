@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, test 3 (D262)"
+about = "Reads the paper guide, separates association from cause and counts the study once."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:rule:2", "understand-research-fact:step:3"]
+category = "normal"
+rejects = "Claims causal proof or two independent studies."
+review = ["Reads the paper guide, separates association from cause and counts the study once.", "Reject: Claims causal proof or two independent studies.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "What does the supplied reminder study actually establish? Treat its copied summary as the same origin."
+
+[checks]
+no_changes = true

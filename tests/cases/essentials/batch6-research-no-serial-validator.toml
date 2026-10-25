@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, additional no-serial-validator (D262)"
+about = "Answers the fact from the read source without inventing a fanout or making every serial lookup wait for a validator."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:6", "understand-research:rule:7"]
+category = "boundary"
+rejects = "Calls an unstarted validator complete or forces an unneeded fanout."
+review = ["Answers the fact from the read source without inventing a fanout or making every serial lookup wait for a validator.", "Reject: Calls an unstarted validator complete or forces an unneeded fanout.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A short serial lookup reads the applicable manual directly. No independent check was requested and no other trigger is supplied. Return the fact with its actual provenance."
+
+[checks]
+no_changes = true

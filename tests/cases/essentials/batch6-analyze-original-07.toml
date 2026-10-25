@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, test 7 (D262)"
+about = "Labels the explanation a hypothesis and says what would test it."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:advice:5", "understand-research-analyze:rule:3", "understand-research-analyze:step:3"]
+category = "normal"
+rejects = "Calls narrative fit confirmed evidence."
+review = ["Labels the explanation a hypothesis and says what would test it.", "Reject: Calls narrative fit confirmed evidence.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A timing explanation fits the story but has no test or observation. Give its actual status."
+
+[checks]
+no_changes = true

@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/understand.md: research, test 1 (D262)"
+about = "Returns twice from version 2 on Linux, with applicable documentation evidence."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:1", "understand-research:advice:4", "understand-research:not-for:understand-research-analyze", "understand-research:route:understand-research-fact", "understand-research:rule:1", "understand-research:rule:2", "understand-research:rule:5"]
+category = "normal"
+rejects = "Uses version 3 or snippet capacity as if it answered the request."
+review = ["Returns twice from version 2 on Linux, with applicable documentation evidence.", "Reject: Uses version 3 or snippet capacity as if it answered the request.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "How many retries apply to this project? Use the supplied manuals and project context only."
+
+[checks]
+reads = ["understand-research-fact"]
+no_changes = true

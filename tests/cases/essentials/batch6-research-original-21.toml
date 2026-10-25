@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 21 (D262)"
+about = "Returns the fact to the caller; the loaded keeper does not bypass the active call."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:rule:8", "understand-research:step:6"]
+category = "normal"
+rejects = "Writes to a guessed keeper path or bypasses the caller."
+review = ["Returns the fact to the caller; the loaded keeper does not bypass the active call.", "Reject: Writes to a guessed keeper path or bypasses the caller.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical loaded keeper owns research records. You are called by a comparison skill for the applicable retry count. Return the factual result to that active caller."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, additional supported (D262)"
+about = "Returns supported with source, applicability and the scope of checking."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:rule:3"]
+category = "boundary"
+rejects = "Returns unknown despite the available scoped evidence or invents execution."
+review = ["Returns supported with source, applicability and the scope of checking.", "Reject: Returns unknown despite the available scoped evidence or invents execution.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Use the supplied version 2 manual to check the claim that retries happen twice on Linux version 2."
+
+[checks]
+no_changes = true

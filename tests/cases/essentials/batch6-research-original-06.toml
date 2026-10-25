@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 6 (D262)"
+about = "Reads the one local fact directly and returns python3 -m unittest."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand:not-for:understand-research", "understand-research:advice:4", "understand-research:not-for:understand-research-fact"]
+category = "normal"
+rejects = "Starts broad research or invents an external command."
+review = ["Reads the one local fact directly and returns python3 -m unittest.", "Reject: Starts broad research or invents an external command.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Which local check command does project.md record?"
+
+[checks]
+no_changes = true

@@ -410,6 +410,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 ## D50: think's skills are methods; the caller keeps their results (2026-10-11)
 
+> **Amended by D262 (2026-10-25):** Research now owns semantic findings. Fanout retains its machine encoding and actual validation states.
+
 > **Amended by D52 (2026-10-11):** think is renamed understand.
 >
 > **Amended by D53 (2026-10-11):** discuss is understand's main flow, not a sub-skill.
@@ -538,6 +540,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 **Why:** The person wants this behaviour wherever work starts from something unclear. Written once, the method cannot drift between copies, and the rule in the main skill makes it the default in every answer. Rounds of numbered questions move faster than one question per message; going one by one must not cost the questions not yet reached.
 
 ## D59: research is one sub-skill of understand (2026-10-11)
+
+> **Amended by D262 (2026-10-25):** The four research methods are built. Analyze returns evidence to its caller and cleans scaffolding at every investigation ending.
 
 > **Amended by D118 (2026-10-13):** understand also holds frame, weigh and challenge.
 >
@@ -1071,6 +1075,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D99: delegate, with council, fanout and crew (2026-10-12)
 
+> **Amended by D262 (2026-10-25):** Research calls the built delegate and fanout within their search, cost and validation rules.
+
 > **Amended by D261 (2026-10-25):** The three orchestration methods are built inside the active delegate call with explicit lifecycle returns.
 
 > **Amended by D260 (2026-10-25):** D260 builds the core delegate/brief/carryover flow and four harness children; later orchestration methods remain designed dependencies.
@@ -1571,6 +1577,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D128: research designed, with fact, survey and analyze (2026-10-14)
 
+> **Amended by D262 (2026-10-25):** Research uses plain named files and five lazy source guides. Caller frames are reused; fact verdicts distinguish completed unsupported checks from unknown results; survey returns to its caller.
+
 > **Amended by D261 (2026-10-25):** Fanout defines a local JSON Lines encoding of the designed semantic findings fields without building research.
 
 > **Amended by D140 (2026-10-17):** research's instructions are the question, one routing line per part and the last instruction; sources and fanning out are its advice and ranking its rule 3, which the parts point to.
@@ -1582,6 +1590,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Why:** A part exists only where the steps differ: a sub-skill per kind of search would repeat one flow, while how a kind of source is read and trusted is the same whatever the question. Giving the single question its own part leaves research's rules truly shared, as clarify's are. analyze's material traces a chain from symptom to trigger, and a required tree pushes agents to invent branches, as deep clarify's tree did.
 
 ## D129: cleanup designed (2026-10-14)
+
+> **Amended by D262 (2026-10-25):** Survey separates fully compared, screened-out and unexamined candidates and rechecks needed current facts on refresh.
 
 > **Amended by D147 (2026-10-17):** the leftovers a handoff named are named in a carryover, its new name; delegate's brief, which asks for cleanup's three fields, is now conduct's brief.
 >
@@ -1726,6 +1736,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D140: research in the shape, and the ranking of evidence in research (2026-10-17)
 
+> **Amended by D262 (2026-10-25):** Analyze cleans no-longer-needed scaffolding on unresolved and cancelled endings as well as confirmed ones.
+
 **Decision:** research's own skill takes the full shape: its instructions are stating the question, routing to the part, and the last instruction, with one routing line each for fact, survey and analyze, saying when to use it, when not and what it gives back. Choosing sources, each kind through its reference file, and fanning out through delegate when there is a lot to read become research's advice; ranking how strong each finding is stays its rule 3; fact, survey and analyze point to these instead of repeating them, and each part's Callers field carries its line. The ranking of evidence, seen or measured, read at its source, inferred, only said, has its one home in research, beside the findings format; verify is not widened, and fanout and challenge point to research.
 
 **Why:** The baseline review found that research said only when to use each part, and that sources, fanning out and ranking were each stated twice. The ranking had waited on verify's widening while research already held it, so one home closes four open notes.
@@ -1824,6 +1836,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D149: the cost sweep's fixes (2026-10-17)
 
+> **Amended by D262 (2026-10-25):** Research calls now use the built methods without taking over the active caller or its lasting records.
+
 > **Amended by D261 (2026-10-25):** Fanout retains negative results, source evidence and actual validation status through scripted consolidation.
 
 > **Amended by D260 (2026-10-25):** D260 replaces the blanket main-skill skip with an act read plus the exact name rule and dependencies loaded on demand. Cost/approval follows the complete current guardrails rule.
@@ -1902,6 +1916,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** blueprint is a flow anyone's engineering skills can use, so it holds no opinion on how to design. softeng explains how good software is designed, so it holds its own design rather than a share of a split one. General implement, test, review, ship and maintain would be thin, since act, verify and understand's challenge already hold their general parts. markdown is authoring's, and essentials needs only generic rules for its own outputs.
 
 ## D155: plan's full design (2026-10-17)
+
+> **Amended by D262 (2026-10-25):** Design and plan use named research for outside facts and retain ownership of continuation.
 
 > **Amended by D257 (2026-10-25):** D257 settles current ownership, approval reuse and the stricter high-stakes approval. The plan now has two designed harness children.
 
@@ -1995,6 +2011,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** The person asked for a folder to keep carryovers in, and for the date and time in each name, so the latest is plain. A carryover is read at a session's start rather than browsed as history like session notes, so it sits at the top. "Checkpoint", suggested for the folder and then for the skill, was weighed again: in Claude Code's rewind, games, databases and model training, a checkpoint is a saved state of files or data to go back to, while a carryover is a note in plain words to go forward from; an agent told to make a checkpoint may commit or copy files instead of writing the note, a request to go back to a checkpoint could load the skill, and guardrails uses the word for the copy taken before a risky action (D147).
 
 ## D163: the contract between sets holds for every skill (2026-10-17)
+
+> **Amended by D262 (2026-10-25):** The research route and child paths follow the current plain-file name rule.
 
 > **Amended by D252 (2026-10-25):** Naming keeps its glossary destination default, but writes nothing. The caller, or the main work flow for a direct request, applies approved glossary entries under act's rules.
 
@@ -3873,6 +3891,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D261: Settle and build the remaining coordinate methods and setup controls (2026-10-25)
 
+> **Amended by D262 (2026-10-25):** Research owns findings semantics; fanout retains its encoding, script, quote checks and independent validation states.
+
 **Decision:**
 
 - Build council, fanout, crew, instruct, setup and learn at their plain-file paths, plus setup's Claude and Codex children. Give parents one route per child. Methods return to the active caller and use delegate's existing lifecycle, authority, cost, verification and cleanup. Missing, failed, cancelled or running work is not a completed result. Workers never delegate again.
@@ -3893,3 +3913,25 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - The old hook template assumes fixed file sizes and a personal install. Current files exceed that assumption. A bounded request separates supported delivery from an observed whole-file read.
 
 **Tested:** No model test was run, by D253. Cases, local script tests, manual operational limits and the file-against-design review are recorded in `../tests/batch5-build-report.md`. Script checks use temporary fixtures only. No real settings, hooks or installs were changed. Live worker execution, independent validation, fresh-session and post-compaction loading remain unverified.
+
+## D262: Settle and build research with bounded verdicts and caller-owned results (2026-10-25)
+
+**Decision:**
+
+- Research and its fact, survey and analyze methods use plain files at their name-rule paths. Research has one route per method. Five supporting guides cover code, documentation, web material, papers and products. Load a guide when its content kind is first searched. A web address does not make a paper general web material. Missing access returns usable evidence, limits and missing checks without installation or invented findings.
+- Research reuses an active caller's frame and a crisp question. Frame supplies a missing problem, goal or judging term. Research returns each requested part to its active caller. Survey does not call an active weigh operation back. A direct user request including a choice may obtain weighing after the comparison. Lasting records and remediation remain with their owners.
+- Research owns semantic provenance: claim, exact source, quoted words where needed, evidence strength and applicability. Memory is only said until checked. Snippets remain inferred and unverified when their source cannot be opened. Conflicts, negative results and missing coverage stay visible. Fanout owns its encoding and script. Preserve its finding IDs, sources, applicability, quote checks and actual validation states. Quote matching is not truth; unverified findings do not support a fanout-backed answer. Missing validation stays pending with its next owner. Serial research gains no extra independent validator from this rule.
+- Fact searches for and against claims. Supported and mixed follow relevant evidence, not source counts. Unsupported means the completed scoped check found no adequate support. Unknown means access, coverage or evidence prevented a reliable verdict. Neither alone proves false. Return what was checked, limits and what would change the verdict.
+- Survey adds no approval checkpoint of its own. Shared choice, plan and cost rules still apply. Required questions and proposals end the turn. With no decision needed, put the read-only approach, scope and terms in the final answer. Compare every fully examined candidate on every term with evidence or an honest gap. Keep screened-out candidates and their reasons separate from the unexamined long tail. Recheck facts needed for a current answer when refreshing an earlier survey.
+- Analyze keeps hypotheses distinct from supported causes, tests one variable at a time and traces evidence back to its trigger. Failed hypotheses without a new lead return a question and end the turn. Cleanup follows the investigation's actual lifecycle, including unresolved and cancelled endings. Preserve caller work and requested evidence under act-cleanup. Return the cause or unresolved investigation before the caller's fix.
+- Built thinking tools, discussion, design and plan regain named research calls. The active caller owns continuation, choice and recording. Later sets still use the installed-set or judgment fallback; this batch builds no specialist set.
+- Designed tests have Codex cases with useful positive results and plausible wrong behavior. Local fictional evidence keeps source, version, sampling, causal and access limits testable. Live investigation and worker lifecycles remain explicit manual limits. No outside collection was newly copied or adapted from an unread source.
+
+**Why:**
+
+- A repeated frame or choice round can recurse into its caller instead of returning the fact it needs. Lazy guides preserve the distinction between source kind and transport without creating five more methods.
+- Missing evidence, a completed negative check and a disproved claim mean different things. Copies, quotes and validator status cannot substitute for applicable evidence.
+- A long tail is not a completed comparison. Read-only research needs no extra approval turn, while actual cost and consequential choices retain their shared checkpoints.
+- An unresolved or cancelled investigation can leave the same probes and processes as a confirmed one. Cleanup cannot depend on proving a cause.
+
+**Tested:** No model test was run, by D253. The four methods and five source guides are built. The 105 Codex cases were inspected against correct and plausible wrong traces; these are static rubric checks, not observed model passes. Repository checks, coverage limits, caller restoration and the file-against-design review are recorded in `../tests/batch6-build-report.md`. Live probes, worker validation and process cleanup remain unverified.

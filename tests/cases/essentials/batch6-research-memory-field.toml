@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, additional memory-field (D262)"
+about = "Uses only said with from-memory marking, an actual source gap and what would settle it."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:rule:3"]
+category = "boundary"
+rejects = "Invents a read or treats recollection as observed evidence."
+review = ["Uses only said with from-memory marking, an actual source gap and what would settle it.", "Reject: Invents a read or treats recollection as observed evidence.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A proposed finding comes only from recollection. Describe its semantic fields and status before any source check."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: fact, test 2 (D262)"
+about = "Searches both sides and returns mixed evidence with each record and its limitations."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-fact"]
+covers = ["understand-research-fact:advice:1", "understand-research-fact:rule:1"]
+category = "normal"
+rejects = "Chooses only favorable evidence or calls the conflict supported without explanation."
+review = ["Searches both sides and returns mixed evidence with each record and its limitations.", "Reject: Chooses only favorable evidence or calls the conflict supported without explanation.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Check the claim that export always preserves labels using both supplied evidence records."
+
+[checks]
+no_changes = true

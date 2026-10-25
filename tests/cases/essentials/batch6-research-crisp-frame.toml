@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, additional crisp-frame (D262)"
+about = "Reuses the frame and returns the fact without a framing or choice round."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:rule:1", "understand-research:step:1"]
+category = "boundary"
+rejects = "Calls the active frame operation again."
+review = ["Reuses the frame and returns the fact without a framing or choice round.", "Reject: Calls the active frame operation again.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "The caller already supplied a current question and frame for version 2 retries. Return only the missing sourced fact."
+
+[checks]
+no_changes = true

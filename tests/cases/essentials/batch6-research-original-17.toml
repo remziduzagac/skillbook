@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 17 (D262)"
+about = "Uses delegate with fanout, separate files, consolidation, actual independent validation and pending capability states."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:6", "understand-research:rule:7"]
+category = "normal"
+rejects = "Starts ad hoc workers, skips validation or claims the workflow ran."
+review = ["Uses delegate with fanout, separate files, consolidation, actual independent validation and pending capability states.", "Reject: Starts ad hoc workers, skips validation or claims the workflow ran.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "After targeted search, a hypothetical archive still has several separate large reading areas. Propose the research workflow; start no workers."
+
+[checks]
+no_changes = true

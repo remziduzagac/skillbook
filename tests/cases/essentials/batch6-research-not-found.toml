@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, additional not-found (D262)"
+about = "Reports the scoped negative result and limited coverage rather than universal absence."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:rule:4"]
+category = "boundary"
+rejects = "Claims no opening exception exists anywhere."
+review = ["Reports the scoped negative result and limited coverage rather than universal absence.", "Reject: Claims no opening exception exists anywhere.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "What opening exceptions does evidence/empty.md establish, and where was that check limited?"
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 15 (D262)"
+about = "Shows both relevant records and their conflict with strength and limits."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:last", "understand-research:rule:6"]
+category = "normal"
+rejects = "Silently drops the contrary record or counts one as a copy without evidence."
+review = ["Shows both relevant records and their conflict with strength and limits.", "Reject: Silently drops the contrary record or counts one as a copy without evidence.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "Compare evidence/for.md and evidence/against.md for label preservation."
+
+[checks]
+no_changes = true

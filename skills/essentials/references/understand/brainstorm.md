@@ -20,7 +20,7 @@ Generates distinct options for one question and returns what its caller asked fo
 - Show what the request needs, by the `respond` skill's first rule. Use the shared who-decides rule for agent-made choices. Show all options when asked. Quiet analysis does not replace a required visible result.
 - Name and park a new side topic instead of following it.
 
-Find a fact an option depends on from sources. Use `understand-clarify` for unclear user intent. Return a whole-design need to the caller. Return any remaining development need rather than calling an active caller back.
+Use `understand-research` for a fact an option depends on, and `understand-research-survey` for needed existing alternatives or prior art. Return those results here without taking over generation or choice. Use `understand-clarify` for unclear user intent. Return a whole-design need to the caller. Return any remaining development need rather than calling an active caller back.
 
 Return the question and requested options or candidates. When the user requests a choice, add the comparison and decision or explain why you parked it. Keep no lasting record yourself, by the `understand` skill. Return the developed options, open or parked options and any decision for a keeper to record. With no keeper, offer a long result as a file the user names.
 

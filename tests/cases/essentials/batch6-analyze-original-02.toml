@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, test 2 (D262)"
+about = "Keeps association distinct from causation and names missing causal evidence."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:advice:6", "understand-research-analyze:rule:3"]
+category = "normal"
+rejects = "Claims a causal trigger from correlation alone."
+review = ["Keeps association distinct from causation and names missing causal evidence.", "Reject: Claims a causal trigger from correlation alone.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "The supplied reminder study found more searches among reminder recipients. Explain whether that proves the cause."
+
+[checks]
+no_changes = true

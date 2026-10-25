@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: research, test 14 (D262)"
+about = "Flags the version mismatch and uses applicable evidence or an honest gap."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research"]
+covers = ["understand-research:advice:1", "understand-research:rule:2", "understand-research:rule:5"]
+category = "normal"
+rejects = "Silently answers from version 3."
+review = ["Flags the version mismatch and uses applicable evidence or an honest gap.", "Reject: Silently answers from version 3.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "The project uses version 2. Explain whether docs/v3.md can establish its retry behavior."
+
+[checks]
+no_changes = true

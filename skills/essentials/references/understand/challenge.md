@@ -23,7 +23,7 @@ Attacks an idea, plan or decision before it is relied on and returns meaningful 
 - For who supplies independent objections, follow `act-verify` rule 2 and use `coordinate-delegate` for the required worker. This skill owns that check. `understand-argue` and `understand-weigh` may reuse it while inputs remain unchanged.
 - Prefer a few strong weaknesses. Put the most serious first and group common causes.
 
-Settle factual doubts from sources or a test. Use `understand-weigh` for several options. Use `understand-frame` or `understand-clarify` for an unclear idea. Use the skill that reviews that kind of work for finished work. Use `act-verify` for a claim that work is done.
+Use `understand-research` or a permitted test for factual doubts. Return the result here and keep this skill's independent-check ownership. Use `understand-weigh` for several options. Use `understand-frame` or `understand-clarify` for an unclear idea. Use the skill that reviews that kind of work for finished work. Use `act-verify` for a claim that work is done.
 
 Return this short default shape:
 

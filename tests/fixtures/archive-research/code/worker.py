@@ -1,0 +1,2 @@
+RETRIES = 2
+BATCH = 80

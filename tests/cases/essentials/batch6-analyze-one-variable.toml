@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, additional one-variable (D262)"
+about = "Tests one variable at a time with an observable criterion."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:rule:2", "understand-research-analyze:step:3"]
+category = "boundary"
+rejects = "Calls a stacked change proof of which variable caused the problem."
+review = ["Tests one variable at a time with an observable criterion.", "Reject: Calls a stacked change proof of which variable caused the problem.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "A proposed probe changes the timeout and batch size at once. Propose a useful discriminating test without changing files."
+
+[checks]
+no_changes = true

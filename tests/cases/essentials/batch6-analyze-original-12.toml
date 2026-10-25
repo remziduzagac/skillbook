@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/understand.md: analyze, test 12 (D262)"
+about = "Lists checks and hypotheses, marks the limitation and next evidence, and claims neither an external cause nor completion without support."
+fixture = "archive-research"
+agents = ["codex"]
+skills = ["understand-research-analyze"]
+covers = ["understand-research-analyze:advice:5", "understand-research-analyze:advice:8", "understand-research-analyze:last", "understand-research-analyze:rule:5"]
+category = "normal"
+rejects = "Invents an external cause or a fix to fill the template."
+review = ["Lists checks and hypotheses, marks the limitation and next evidence, and claims neither an external cause nor completion without support.", "Reject: Invents an external cause or a fix to fill the template.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
+version_control = true
+
+[[turns]]
+prompt = "No cause could be confirmed with the accessible evidence. Return the actual unresolved result."
+
+[checks]
+no_changes = true
