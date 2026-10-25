@@ -11,7 +11,7 @@ The first idea of the cadence set. Nothing here is designed yet: every line belo
 
 cadence is the rhythm of your own working days: meetings, tasks, and the reviews that close a day or a week. Essentials makes an agent do any single piece of work well. cadence helps with the work that comes back again and again, so nothing that matters slips between days.
 
-What you learn and want to keep, such as notes and sources, belongs to a separate set for knowledge. cadence hands notes to it rather than keeping them itself.
+What you learn and want to keep, such as notes and sources, belongs to a separate set, [compendium](../compendium/idea.md). cadence hands notes to it rather than keeping them itself.
 
 ## Its skills
 
@@ -32,6 +32,6 @@ What you learn and want to keep, such as notes and sources, belongs to a separat
 ## Open questions
 
 - Where cadence keeps its files: beside a project, in a folder of your own, or both.
-- Whether cadence and the knowledge set share one folder.
+- Whether cadence and compendium share one folder.
 - How reviews and close-out hand lessons to essentials' learning from a session.
 - Which of focus and people are worth a skill of their own.

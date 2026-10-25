@@ -5,4 +5,5 @@ One page per main skill, written for people: what it does, when to reach for it,
 - [essentials/](essentials/README.md): what essentials is for, how it works, and a brief line on each of its skills.
 - [softeng/idea.md](softeng/idea.md): the first idea of the softeng set, for designing, building, testing, reviewing, shipping and maintaining software.
 - [cadence/idea.md](cadence/idea.md): the first idea of the cadence set, for meetings, tasks and daily and weekly reviews.
+- [compendium/idea.md](compendium/idea.md): the first idea of the compendium set, for capturing, distilling and finding what you learn.
 - [blueprint/idea.md](blueprint/idea.md): the first idea of the blueprint method, and [a worked example](blueprint/idea.md#a-worked-example-worktree-groups) that follows one feature through it.
