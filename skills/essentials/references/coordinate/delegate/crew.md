@@ -14,10 +14,10 @@ Needs: permitted workers through the active `coordinate-delegate` call. If unava
 
 1. **Plan the parts through `devise-plan`.** It uses `organize` to divide future work. Name each worker's scope, shared items, owners and checks. Existing material rearranged by a step still uses organize's approvals.
 2. **Return a plan-only request without starting workers.** For execution, obtain the approvals required by rule 2 before the active parent starts workers.
-3. **Run authorized disjoint changes through the active delegate call.** Keep its controls, briefs, baseline, actual status, verification and cleanup. Workers start no further workers. Return approval questions to the caller.
+3. **Run authorized disjoint changes through the active delegate call.** Use the active delegate call's controls and briefs. Keep its required baseline, actual task status, verification and cleanup. Workers start no further workers. Return approval questions to the caller.
 4. **Make one pass over the whole in sequence.** The main agent joins what parallel work left separate and applies approved shared-item proposals. Stay inside the approved scope. A job whose changes all affect one item uses one writer; several reading views may use `coordinate-delegate-fanout` first.
 5. **Check the whole result through `act-verify`.** A failed or cancelled part leaves its dependent work unfinished. Report partial changes and the next owner. Do not claim completion or silently undo unrelated or later edits.
 
 ## The last instruction
 
-Return actual changes, the final pass and verification evidence to the active caller. Claim completion only when the whole authorized job passed its checks. Keep pending work, user decisions and cleanup visible. Never restart the parent's method selection.
+Return the changes actually made and evidence of verification to the active caller. Report the result of the final pass over the whole job. Claim completion only when the whole authorized job passed its checks. Keep pending work, user decisions and cleanup visible. Never restart the parent's method selection.

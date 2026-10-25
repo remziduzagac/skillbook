@@ -4,12 +4,12 @@ Proposes and applies approved instruction documents for agents.
 
 ## Rules
 
-1. **Keep shared rules in their proper home.** Put preferences in the user's own instruction files. Put facts every tool needs in the project's shared file. Use `coordinate-setup` for where an installed skillbook pointer belongs. A skill's design or files use the project's skill-making method, otherwise judgment.
+1. **Keep shared rules in their proper home.** Put preferences in the user's own instruction files. Put facts every tool needs in the project's shared file. Use `coordinate-setup` for where an installed skillbook pointer belongs. For a skill's design or files, use the project's method for making skills. Use your judgment when the project has no such method.
 2. **Write pointers with the key word first.** Say what the linked material is and when the reader needs it. An agent scanning the document must be able to find the right line.
 3. **Give each named step an end or next step.** The agent needs to know when to move on.
 4. **Write reasons and plain positive instructions.** Use the project's terms, one word for each concept, and one example per rule. Resolve every reference. Shared files name no tool available to only one agent.
 5. **Keep only what every session needs in the document.** Put occasional procedures in a skill or linked file one level away. Leave out repeated skillbook rules only when the whole team uses skillbook. Otherwise those repeats may be needed by teammates without it.
-6. **Save changes only after the user approves them.** Ask through `respond-ask`. End the turn. An instruction document changes later sessions. A draft is not a saved change. Preserve `act-rightsize-lean`'s change-list approval for existing material and reuse unchanged scoped approval.
+6. **Save changes only after the user approves them.** Ask through `respond-ask`. End the turn. An instruction document changes later sessions. A draft is not a saved change. Follow `act-rightsize-lean`'s rule to get approval for the list of changes to existing material. Reuse approval when its scope and basis have not changed.
 7. **Keep instruction documents out of folders copied into other projects.** Otherwise their rules travel to projects whose users never chose them. Follow the user's explicit instructions under the `act` skill's hierarchy.
 
 ## Advice
