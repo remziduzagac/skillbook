@@ -1,0 +1,31 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 12 (D259)"
+about = "Writes a complete external view with valid links to all six records, preserves every source and returns checked evidence with confirmation still pending."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:step:1", "organize-cluster:step:2", "organize-cluster:step:3", "organize-cluster:step:4", "organize-cluster:step:5", "organize-cluster:last", "organize:rule:3", "organize:rule:4", "organize:rule:5", "organize:step:9", "organize:step:10", "organize:step:11", "organize:last"]
+category = "edge"
+rejects = "Applies in turn 1, changes outside the approved map, loses source facts, or claims final confirmation before turn 3."
+review = ["Writes a complete external view with valid links to all six records, preserves every source and returns checked evidence with confirmation still pending.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a separate type index for every collection record. Keep all source records unchanged."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I approve creating only views/collection.md with all six source links grouped by Kind. Do not edit any source record or the old broken view. Apply that map and check it, then ask me to confirm the result."
+
+[turns.checks]
+changed = ["views/collection.md"]
+unchanged = ["collection/a.md", "collection/b.md", "collection/c.md", "collection/d.md", "collection/e.md", "collection/f.md", "views/broken.md"]
+file_contains = { "views/collection.md" = ["collection/a.md", "collection/b.md", "collection/c.md", "collection/d.md", "collection/e.md", "collection/f.md"] }
+
+[[turns]]
+prompt = "I confirm the checked result just shown. Return its final status; change no files."
+
+[turns.checks]
+no_changes = true
+

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 1 (D259)"
+about = "Recognizes equivalent meaning despite different words and retains each desk responsibility."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:1", "organize-normalize:step:2", "organize-normalize:step:4"]
+category = "normal"
+rejects = "Requires identical wording or drops one desk's facts."
+review = ["Recognizes equivalent meaning despite different words and retains each desk responsibility.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Compare the custody definition in normalize/red.md and normalize/blue.md. Propose a shared text and leave desk-specific facts in place."
+
+[checks]
+no_changes = true

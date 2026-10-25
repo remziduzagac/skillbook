@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: compose, test 8 (D259)"
+about = "Gives one sentence defining the letter scope and places only C3/D4 under it."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-compose"]
+covers = ["organize-compose:step:3"]
+category = "normal"
+rejects = "Uses a vague archive-wide boundary that also includes unselected records."
+review = ["Gives one sentence defining the letter scope and places only C3/D4 under it.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a parent boundary for the two letter records that excludes images and recordings."
+
+[checks]
+no_changes = true

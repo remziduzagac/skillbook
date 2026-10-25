@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 8 (D259)"
+about = "Maps both known links to the survivor and retains a retired-item notice rather than deleting the old account."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:4", "organize-merge:step:5", "organize:rule:7"]
+category = "normal"
+rejects = "Leaves a known link pointing to a retired account or deletes that account."
+review = ["Maps both known links to the survivor and retains a retired-item notice rather than deleting the old account.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose consolidating merge/first.md and merge/second.md and updating merge/references.md. Show the known references and the retirement notice."
+
+[checks]
+no_changes = true

@@ -1,0 +1,22 @@
+source = "blueprint/design/essentials/organize.md: organize, test 45 (D259)"
+about = "Keeps the approved purpose and Kind principle, revises the destination map, and returns it unapplied for approval."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:4", "organize:rule:5", "organize:last"]
+category = "edge"
+rejects = "Applies the rejected map, or treats a rejection as result confirmation."
+review = ["Keeps the approved purpose and Kind principle, revises the destination map, and returns it unapplied for approval.", "Requires the useful proposal in turn 1, then the specified correction or honest approval status in turn 2. Mere refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose type folders for all records in collection/. Show the map before any change."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I reject the destination names, not the Kind principle. Propose a revised map using pictures, correspondence and audio as the three folders. Apply nothing."
+
+[turns.checks]
+no_changes = true

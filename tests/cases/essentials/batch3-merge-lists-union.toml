@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 10 (D259)"
+about = "Returns the union A1,B2,C3 once each and preserves all distinct entries."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:3", "organize:rule:3"]
+category = "normal"
+rejects = "Returns only B2 or repeats it as two items."
+review = ["Returns the union A1,B2,C3 once each and preserves all distinct entries.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Two duplicate intake lists contain A1,B2 and B2,C3. Return the proposed combined list only."
+
+[checks]
+no_changes = true

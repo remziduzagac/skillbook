@@ -33,7 +33,7 @@ Checks claims that work is done, fixed, passing, correct or meets requirements, 
    - Leave taste to the user, by rule 2. For warmer wording, for example, say what you changed and checked. Leave the judgment to them.
 5. **Run four more checks before calling a plan's task, commit or pull request done:**
    - **contradiction:** with a decision or another part of the work;
-   - **duplication:** of something that already exists;
+   - **duplication:** of something that already exists, through the `organize` skill's bounded check;
    - **drift:** from the design and the plan;
    - **coverage:** every requirement met, shown with the checklist from rule 1.
 

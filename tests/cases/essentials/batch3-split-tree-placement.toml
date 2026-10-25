@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 7 (D259)"
+about = "Uses the existing scope boundary for one home and keeps project skill-making ownership with its caller."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:step:1", "organize-split:step:4", "organize-split:step:5", "organize:rule:1", "organize:rule:2", "organize:rule:10"]
+category = "normal"
+rejects = "Creates duplicate skill homes or bypasses project design approval."
+review = ["Uses the existing scope boundary for one home and keeps project skill-making ownership with its caller.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "A project has two existing skill branches, acquisition and care. A new preservation skill fits care by scope. Propose its placement and boundary; do not write skill files."
+
+[checks]
+no_changes = true

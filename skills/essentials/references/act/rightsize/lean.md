@@ -10,7 +10,7 @@ Removes extra parts from existing material. Judges each part for its reader. Cut
    - Where a pointer would do, turn pasted content into a pointer.
    - Keep a repeated part in one home, with the others pointing to it, by `act-rightsize`'s fourth rule.
    - Merge whole items that say the same thing into one.
-   - Keep this work inside the thing being trimmed. Repeats across files or duplicate files are arranging parts, the main skill's step 4.
+   - Keep this work inside the thing being trimmed. Use `organize-normalize` for repeats across files and `organize-merge` for duplicate whole files. Keep single-file trimming here.
    - Why: an extra part costs the reader's attention and, for an agent, tokens on every later turn.
 3. **Keep everything a rule requires.** Follow `act-rightsize`'s sixth rule. What a rule requires is needed by definition.
 4. **Get approval for the list first.** Use `act-rightsize`'s approval rule and `respond-ask`. List every part to remove or replace with a pointer. Give each reason.

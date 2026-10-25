@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 1 (D259)"
+about = "Maps every stable ID once, with one type principle and exhaustive exclusive boundaries."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:step:2", "organize-split:step:3", "organize-split:step:4", "organize-split:step:5", "organize:rule:1", "organize:rule:2", "organize:step:1"]
+category = "normal"
+rejects = "Drops a record or mixes owners and kinds."
+review = ["Maps every stable ID once, with one type principle and exhaustive exclusive boundaries.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose type groups for all collection/ records, with a sentence for each boundary."
+
+[checks]
+no_changes = true

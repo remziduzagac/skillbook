@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 4 (D259)"
+about = "Explains the reader-dependent grouping and asks the unresolved audience choice without moving records."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:step:1", "organize-cluster:step:2"]
+category = "normal"
+rejects = "Uses an arbitrary principle or mixes both as primary groups."
+review = ["Explains the reader-dependent grouping and asks the unresolved audience choice without moving records.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "An archivist searches records by Kind; a donor searches them by Owner. Ask which audience this finding view serves before choosing a grouping."
+
+[checks]
+no_changes = true

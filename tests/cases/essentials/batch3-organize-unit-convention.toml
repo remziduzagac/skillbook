@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 17 (D259)"
+about = "Uses Kind and one bounded group per kind, without asking the already-settled purpose again."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:1", "organize:rule:2", "organize:step:1"]
+category = "normal"
+rejects = "Invents an Owner grouping or asks a redundant user question."
+review = ["Uses Kind and one bounded group per kind, without asking the already-settled purpose again.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The audience finds records by Kind; choose a draft arrangement following that convention and return its complete map in chat."
+
+[checks]
+no_changes = true

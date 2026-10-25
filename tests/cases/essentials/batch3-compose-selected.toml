@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: compose, test 1 (D259)"
+about = "The parent explains their image category, covers the two selected items and excludes unrelated records."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-compose"]
+covers = ["organize-compose:step:1", "organize-compose:step:3", "organize-compose:step:4"]
+category = "normal"
+rejects = "Moves or claims the four unselected records."
+review = ["The parent explains their image category, covers the two selected items and excludes unrelated records.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a parent for A1/B2 only, with a shared statement and boundary. Leave the other archive records untouched."
+
+[checks]
+no_changes = true

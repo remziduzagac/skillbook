@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 26 (D259)"
+about = "Returns the full map and ends the turn unchanged; the given steps do not waive organize's first checkpoint."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:4", "organize:step:9"]
+category = "boundary"
+rejects = "Uses act's given-steps shortcut to move records immediately."
+review = ["Returns the full map and ends the turn unchanged; the given steps do not waive organize's first checkpoint.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Move collection/a.md and collection/b.md into images/ and put the four other records into folders by Kind. Those are my instructions; no destination map has been approved yet. Return the map first."
+
+[checks]
+no_changes = true

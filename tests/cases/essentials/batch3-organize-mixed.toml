@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 15 (D259)"
+about = "Separates new-whole planning from changes to existing records and keeps map approval on the latter."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:10", "organize:rule:4"]
+category = "edge"
+rejects = "Uses the future-handbook exemption to move existing records."
+review = ["Separates new-whole planning from changes to existing records and keeps map approval on the latter.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Plan a future handbook from requirements.md and propose moving the current collection records into type folders. Return both proposals; apply nothing."
+
+[checks]
+no_changes = true

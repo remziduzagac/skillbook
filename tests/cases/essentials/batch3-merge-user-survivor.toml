@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 7 (D259)"
+about = "Uses the supplied survivor and adds compatible second-account content, with retirement/reference changes proposed."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:2", "organize-merge:step:4", "organize:rule:3"]
+category = "normal"
+rejects = "Selects a different survivor or loses the second account's nuance."
+review = ["Uses the supplied survivor and adds compatible second-account content, with retirement/reference changes proposed.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "I want merge/first.md to be the survivor. Propose the merge map without reopening that choice."
+
+[checks]
+no_changes = true

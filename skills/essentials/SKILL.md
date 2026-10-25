@@ -52,7 +52,7 @@ Read `references/understand.md`, `references/act.md` and `references/respond.md`
 3. **Decide what it will be and how it gets done.** Read `devise` for a design, a design review or multipart work, including given steps. It selects the method by the main question and returns the actual design, findings or plan. Exact single-step work needs neither method.
    - Not for: a view asked for ("what do you think?", the `act` skill's rule).
    - Gives back: the design and plan the work follows, kept current as it goes.
-4. **Arrange the parts of something** when a request or step changes how it is divided rather than what it says. This includes splitting into non-overlapping parts, outlining a document before writing, merging repeats, grouping under a parent, moving a shared part into one place, indexing, and checking overlaps and gaps.
+4. **Arrange the parts of something** through `organize` when a request or step changes how it is divided rather than what it says. This includes splitting into non-overlapping parts, outlining a document before writing, merging repeats, grouping under a parent, moving a shared part into one place, indexing, and checking overlaps and gaps.
    - Not for: changing what the parts say, or planning the steps of the work (step 3).
    - Gives back: the new arrangement.
 5. **Share the work with other agents and later sessions:** a task handed to an agent, its result coming back here; work carried over to a later session; an instruction document every session reads; setting up skillbook; and what a session taught.

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 16 (D259)"
+about = "Explains the consequential audience/purpose distinction and asks the user rather than silently choosing a preference."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:step:1"]
+category = "edge"
+rejects = "Treats the user's purpose as an agent-owned default."
+review = ["Explains the consequential audience/purpose distinction and asks the user rather than silently choosing a preference.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Give two possible dividing principles for collection/: by Kind or by Owner. I have not chosen the purpose. Ask only what would change the arrangement, then stop."
+
+[checks]
+no_changes = true

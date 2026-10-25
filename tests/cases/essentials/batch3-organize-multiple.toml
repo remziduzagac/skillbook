@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 12 (D259)"
+about = "Uses normalization then a view in one scoped proposal; keeps source-specific meaning and distinct operation results."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:step:3", "organize:rule:4"]
+category = "normal"
+rejects = "Forces a single operation or applies one while discussing the other."
+review = ["Uses normalization then a view in one scoped proposal; keeps source-specific meaning and distinct operation results.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose extracting the matching custody definitions in normalize/red.md and normalize/blue.md, then adding a finding index for those desks. Do not apply."
+
+[checks]
+no_changes = true

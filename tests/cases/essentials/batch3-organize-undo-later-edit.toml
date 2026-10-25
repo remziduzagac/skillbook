@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 36 (D259)"
+about = "Identifies the later note, limits undo to the prior operation and proposes preservation/recovery rather than overwriting it."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:6"]
+category = "edge"
+rejects = "Replaces the combined file from an old snapshot and loses the later note."
+review = ["Identifies the later note, limits undo to the prior operation and proposes preservation/recovery rather than overwriting it.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Read rollback/map.md and the edited files. The later pencil-review note is mine. I reject the edited merge. Propose a recovery that preserves that note; make no changes."
+
+[checks]
+no_changes = true

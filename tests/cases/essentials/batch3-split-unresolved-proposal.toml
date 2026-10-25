@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 6 (D259)"
+about = "Returns a useful unapplied outline and reports the open placement without claiming completion."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:step:6", "organize-split:last", "organize:rule:1", "organize:rule:2", "organize:rule:9"]
+category = "edge"
+rejects = "Silently drops the topic or claims all required coverage is resolved."
+review = ["Returns a useful unapplied outline and reports the open placement without claiming completion.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The archive audience has not chosen whether emergency guidance belongs in the handbook. Return a draft outline with that unresolved placement visible; apply nothing."
+
+[checks]
+no_changes = true

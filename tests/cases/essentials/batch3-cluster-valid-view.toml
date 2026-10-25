@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 3 (D259)"
+about = "Includes A1 through F6 once in the primary groups with valid paths and no fabricated missing entry."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:step:2", "organize-cluster:step:5"]
+category = "normal"
+rejects = "Invents an orphan because a check is required."
+review = ["Includes A1 through F6 once in the primary groups with valid paths and no fabricated missing entry.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "In chat, give a complete six-record type index with paths that resolve to the actual collection files."
+
+[checks]
+no_changes = true

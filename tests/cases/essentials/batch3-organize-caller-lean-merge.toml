@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/organize.md: organize, test 44 (D259)"
+about = "Routes duplicate whole accounts to organize-merge and retains unique details and approval status."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize", "act-rightsize-lean"]
+covers = ["act-rightsize-lean:rule:2", "organize:step:3"]
+category = "boundary"
+rejects = "Uses single-file trimming to delete a whole account silently."
+review = ["Routes duplicate whole accounts to organize-merge and retains unique details and approval status.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The two whole intake accounts are duplicates with compatible unique detail. Propose consolidating them, without changing files."
+
+[checks]
+no_changes = true
+reads = ["organize-merge"]

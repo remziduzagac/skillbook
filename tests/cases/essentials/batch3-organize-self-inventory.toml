@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 22 (D259)"
+about = "Maps each original fact and compatible unique detail; labels its judgment self-checked and makes no independent-check claim."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:3"]
+category = "edge"
+rejects = "Blocks all useful work without a helper or calls a count independent proof."
+review = ["Maps each original fact and compatible unique detail; labels its judgment self-checked and makes no independent-check claim.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "No delegation is permitted for this ordinary private proposal. Compare the facts in merge/first.md and merge/second.md with a proposed combined account in chat. Give the statement map and what your own comparison shows."
+
+[checks]
+no_changes = true

@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/organize.md: organize, test 5 (D259)"
+about = "Maps all six records into a separate index and keeps source records unchanged pending approval."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:step:3", "organize:route:organize-cluster", "organize:rule:4", "organize:rule:1", "organize:rule:2"]
+category = "normal"
+rejects = "Moves source records or proposes another organizational operation instead of a view."
+review = ["Maps all six records into a separate index and keeps source records unchanged pending approval.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "I want a type index of collection/ without moving the records. Propose a finding view."
+
+[checks]
+no_changes = true
+reads = ["organize-cluster"]

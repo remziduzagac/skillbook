@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 14 (D259)"
+about = "Includes the new applied view in the map and keeps both organize checkpoints despite unchanged source locations."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:4", "organize:rule:10", "organize:step:9"]
+category = "boundary"
+rejects = "Claims a new output file exempts the operation from approval."
+review = ["Includes the new applied view in the map and keeps both organize checkpoints despite unchanged source locations.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a brand-new index file over collection/. Its source records will not move. Do not write until I approve the map."
+
+[checks]
+no_changes = true

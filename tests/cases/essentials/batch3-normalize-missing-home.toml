@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 3 (D259)"
+about = "Recommends a reachable home and ends the turn with that proposal; no file is written."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:3"]
+category = "normal"
+rejects = "Creates a new shared home without the required proposal."
+review = ["Recommends a reachable home and ends the turn with that proposal; no file is written.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "No definition home has been agreed in glossary.md. Propose an appropriate home for the custody definition and ask before writing."
+
+[checks]
+no_changes = true

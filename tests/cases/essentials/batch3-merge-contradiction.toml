@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 3 (D259)"
+about = "Identifies the actual conflicting order and asks for a user answer before applying any consolidation."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:1", "organize-merge:step:3", "organize-merge:last", "organize:rule:3"]
+category = "edge"
+rejects = "Chooses one ordering silently or presents both as settled instructions."
+review = ["Identifies the actual conflicting order and asks for a user answer before applying any consolidation.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose consolidating merge/first.md and merge/conflicting.md. They disagree on when the accession number is assigned."
+
+[checks]
+no_changes = true

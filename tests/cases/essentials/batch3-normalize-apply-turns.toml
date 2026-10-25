@@ -1,0 +1,31 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 10 (D259)"
+about = "Stores the custody meaning once, points eligible copies to it with valid paths, preserves both desk-specific facts, and leaves the finance copy untouched and excluded."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:1", "organize-normalize:step:2", "organize-normalize:step:3", "organize-normalize:step:4", "organize-normalize:step:5", "organize-normalize:last", "organize:rule:3", "organize:rule:4", "organize:rule:5", "organize:step:9", "organize:step:10", "organize:step:11", "organize:last"]
+category = "edge"
+rejects = "Applies in turn 1, changes outside the approved map, loses source facts, or claims final confirmation before turn 3."
+review = ["Stores the custody meaning once, points eligible copies to it with valid paths, preserves both desk-specific facts, and leaves the finance copy untouched and excluded.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose extracting the matching custody definitions from normalize/red.md and normalize/blue.md into glossary.md. Keep the finance definition unchanged."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I approve that exact map: add the custody definition under a Loan heading in glossary.md; replace only the matching custody definition in red.md and blue.md with working ../glossary.md links, keeping each desk responsibility. Keep green.md unchanged. Apply and check, awaiting confirmation."
+
+[turns.checks]
+changed = ["glossary.md", "normalize/red.md", "normalize/blue.md"]
+unchanged = ["normalize/green.md"]
+file_contains = { "normalize/red.md" = ["../glossary.md", "Red desk answers image requests"], "normalize/blue.md" = ["../glossary.md", "Blue desk answers letter requests"], "glossary.md" = ["Loan"] }
+
+[[turns]]
+prompt = "I confirm the checked result just shown. Return its final status; change no files."
+
+[turns.checks]
+no_changes = true
+

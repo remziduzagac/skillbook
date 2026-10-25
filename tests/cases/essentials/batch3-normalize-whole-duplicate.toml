@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 8 (D259)"
+about = "Uses merge for duplicate whole accounts and explains the shared-part boundary."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:1", "organize:not-for:organize-normalize"]
+category = "normal"
+rejects = "Normalizes entire duplicate files while leaving unclear survivor/reference ownership."
+review = ["Uses merge for duplicate whole accounts and explains the shared-part boundary.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Two whole intake accounts are duplicates, not just repeated definition text. Which operation should own their consolidation?"
+
+[checks]
+no_changes = true

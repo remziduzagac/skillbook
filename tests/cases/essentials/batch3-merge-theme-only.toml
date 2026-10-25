@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 5 (D259)"
+about = "Rejects whole-item merge and points to a useful shared parent when grouping is wanted."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:1", "organize:rule:3"]
+category = "boundary"
+rejects = "Merges different object identities as redundant."
+review = ["Rejects whole-item merge and points to a useful shared parent when grouping is wanted.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The collection records share the archive theme but describe different objects. Should they become one duplicate account? Give a short assessment."
+
+[checks]
+no_changes = true

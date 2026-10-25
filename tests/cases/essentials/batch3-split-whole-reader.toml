@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 8 (D259)"
+about = "Keeps individually loaded parts short and understandable, rather than fragmenting every sentence into a file."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:advice:1", "organize-split:advice:2", "organize:rule:1", "organize:rule:2", "organize:step:1"]
+category = "normal"
+rejects = "Creates fragments that require reading siblings to understand them."
+review = ["Keeps individually loaded parts short and understandable, rather than fragmenting every sentence into a file.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose how to split a short checklist that a volunteer reads whole each visit. Keep the output in chat."
+
+[checks]
+no_changes = true

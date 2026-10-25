@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: compose, test 2 (D259)"
+about = "Explains that the operation requires at least two items and does not invent another selected item."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-compose"]
+covers = ["organize-compose:step:2"]
+category = "boundary"
+rejects = "Adds a one-item parent as if it met the trigger."
+review = ["Explains that the operation requires at least two items and does not invent another selected item.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Would adding a parent over only A1 satisfy this operation's minimum? Give a view only."
+
+[checks]
+no_changes = true

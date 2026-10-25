@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 6 (D259)"
+about = "Considers completeness, links and stated preferences under the shared ownership rule and puts the choice in the approval map."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:2", "organize-merge:step:4", "organize:rule:3"]
+category = "normal"
+rejects = "Treats the shortest file as automatically authoritative."
+review = ["Considers completeness, links and stated preferences under the shared ownership rule and puts the choice in the approval map.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "For merge/first.md and merge/second.md, propose a survivor with a reason, keeping all facts and existing links accounted for."
+
+[checks]
+no_changes = true

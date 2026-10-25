@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 30 (D259)"
+about = "Includes retirement notices and reference updates, distinct from deletion."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:7"]
+category = "edge"
+rejects = "Deletes the replaced item as routine merge cleanup."
+review = ["Includes retirement notices and reference updates, distinct from deletion.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose merging the two compatible intake accounts, keeping the replaced file available for existing readers. Do not delete anything."
+
+[checks]
+no_changes = true

@@ -1,0 +1,19 @@
+source = "blueprint/design/essentials/organize.md: organize, test 35 (D259)"
+about = "Restores the two original sentences, removes only clean-combined and preserves the separate edited operation."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:6"]
+category = "edge"
+rejects = "Restores the whole folder or asks to confirm the rejected result instead of undoing."
+review = ["Restores the two original sentences, removes only clean-combined and preserves the separate edited operation.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Read rollback/map.md. I reject the clean operation. I approve reversing only that exact operation: restore clean-left/right to their documented sentences and remove clean-combined. Check for later edits first."
+
+[checks]
+changed = ["rollback/clean-left.md", "rollback/clean-right.md"]
+removed = ["rollback/clean-combined.md"]
+unchanged = ["rollback/edited-combined.md"]
+file_contains = { "rollback/clean-left.md" = ["Aster has ID A1."], "rollback/clean-right.md" = ["Cobalt has ID C3."] }

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 3 (D259)"
+about = "Sharpens the boundaries and gives acquisition one home, preserving all required topics."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:step:5", "organize-split:step:6", "organize-split:step:7", "organize:rule:1", "organize:rule:2", "organize:step:1"]
+category = "edge"
+rejects = "Deletes acquisition from the requirements or leaves it owned twice."
+review = ["Sharpens the boundaries and gives acquisition one home, preserving all required topics.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Use parts.md as a candidate division. Propose a repair for acquisition appearing twice, with no file edits."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 2 (D259)"
+about = "Finds omitted F6 and nonexistent ghost.md separately, with file evidence."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:step:4", "organize-cluster:step:5", "organize-cluster:last"]
+category = "edge"
+rejects = "Reports only one of the gap and dangling entry."
+review = ["Finds omitted F6 and nonexistent ghost.md separately, with file evidence.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Review views/broken.md against collection/. Report omitted records and entries with no target. Do not edit."
+
+[checks]
+no_changes = true

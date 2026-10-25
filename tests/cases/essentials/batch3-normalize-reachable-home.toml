@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 4 (D259)"
+about = "Rejects a home those eligible readers cannot reach and proposes an accessible alternative."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:3"]
+category = "normal"
+rejects = "Treats existence of a shared file as proof its readers can use it."
+review = ["Rejects a home those eligible readers cannot reach and proposes an accessible alternative.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Would a custody definition in an inaccessible private service work for all three reading desks? Assess only; assume the two custody readers cannot access it."
+
+[checks]
+no_changes = true

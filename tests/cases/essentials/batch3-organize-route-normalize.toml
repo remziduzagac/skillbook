@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/organize.md: organize, test 4 (D259)"
+about = "Identifies equivalent custody meaning and preserves both desks' own responsibilities in a mapped proposal."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:step:3", "organize:route:organize-normalize", "organize:rule:4", "organize:rule:1", "organize:rule:2"]
+category = "normal"
+rejects = "Combines whole desk accounts or includes the finance meaning as equivalent."
+review = ["Identifies equivalent custody meaning and preserves both desks' own responsibilities in a mapped proposal.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The custody definition in normalize/red.md and normalize/blue.md is repeated. Propose one shared definition and references; keep desk-specific facts."
+
+[checks]
+no_changes = true
+reads = ["organize-normalize"]

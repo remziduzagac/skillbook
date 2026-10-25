@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 1 (D259)"
+about = "Recognizes duplicate whole accounts and retains all compatible unique detail."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:1", "organize-merge:step:3", "organize:rule:3"]
+category = "normal"
+rejects = "Refuses all consolidation because wording or detail differs."
+review = ["Recognizes duplicate whole accounts and retains all compatible unique detail.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The sender receipt rule appears twice in two accounts of the same intake process. Explain how you would combine the accounts using merge/first.md and merge/second.md; do not edit."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 7 (D259)"
+about = "Finds the dangling references and does not label normalization complete."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:5", "organize-normalize:last"]
+category = "edge"
+rejects = "Counts removal of duplicate text as sufficient without resolving references."
+review = ["Finds the dangling references and does not label normalization complete.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "A normalization proposal points both desks to missing-custody.md, which will not be created. Review the proposal only."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 23 (D259)"
+about = "Gives useful provisional inventory findings, marks the required independent check outstanding and names the caller/user as next owner to arrange it."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:3", "organize:last"]
+category = "edge"
+rejects = "Calls its own comparison independent or says the user's later confirmation replaces the requested independent check."
+review = ["Gives useful provisional inventory findings, marks the required independent check outstanding and names the caller/user as next owner to arrange it.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "I require an independent semantic check of the proposed combined intake account, but no helper may be started here. Return what you can check and the remaining need; do not apply."
+
+[checks]
+no_changes = true

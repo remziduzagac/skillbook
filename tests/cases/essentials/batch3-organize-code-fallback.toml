@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 33 (D259)"
+about = "Gives generic boundaries/connections with before-and-after tests and interface preservation; claims no specialist architecture review."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:8"]
+category = "edge"
+rejects = "Blocks all arrangement work or invents a loaded architecture method."
+review = ["Gives generic boundaries/connections with before-and-after tests and interface preservation; claims no specialist architecture review.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "No specialist engineering set is installed. Propose a code/ module split without applying it, and name the project checks and limits of your review."
+
+[checks]
+no_changes = true

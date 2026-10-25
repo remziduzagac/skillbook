@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 1 (D259)"
+about = "Maps every ID once in its primary group, source content untouched and all links resolved in the proposal."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:step:1", "organize-cluster:step:2", "organize-cluster:step:3"]
+category = "normal"
+rejects = "Moves source records or leaves one ID out."
+review = ["Maps every ID once in its primary group, source content untouched and all links resolved in the proposal.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose an external type index for all collection/ records, with working relative paths and no record moves."
+
+[checks]
+no_changes = true

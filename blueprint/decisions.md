@@ -867,6 +867,9 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 
 ## D85: organize holds five operations (2026-10-11)
 
+> **Amended by D259 (2026-10-25):** D259 settles organize's approval phases, preserved exclusions, plain-file paths and all operation tests.
+
+
 > **Amended by D107 (2026-10-12):** a chooser among the five operations; after a change the result also holds the map of before and after, the inventory or test result, and what was retired, edited or relinked.
 >
 > **Amended by D115 (2026-10-13):** organize's chooser says which operation fits when items move, stay under a new parent, or only gain a view; a request that fits none is not organize's.
@@ -885,6 +888,9 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 
 ## D86: organize works on any unit, preserves meaning, and the person verifies (2026-10-11)
 
+> **Amended by D259 (2026-10-25):** D259 adds a permitted self-inventory fallback, whole code-preservation checks and safe rejection recovery. Required independence still follows act-verify rule 2.
+
+
 > **Amended by D107 (2026-10-12):** the person's two approvals apply only when something changes, and hold even where guardrails' proportion would skip a proposal.
 >
 > **Amended by D148 (2026-10-17):** the units are listed once, in organize's first step, from sentences to a system's components; the inventory is done by a script or a light fresh agent, never by reading everything twice in the main session; meaning preserved and the two approvals apply only when something existing changes.
@@ -894,6 +900,9 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 **Why:** The operations are the same whatever the unit, and for code they are the classic refactorings. What can go wrong is the same too: a merge drops a nuance, a normalized part no longer fits one of its users. An automated check catches some of it; meaning is the person's to confirm.
 
 ## D87: The flows of merge, compose, normalize and cluster (2026-10-12)
+
+> **Amended by D259 (2026-10-25):** D259 defines merge eligibility and contradiction handling, eligible normalization copies and explicitly requested in-item navigation tags.
+
 
 > **Amended by D107 (2026-10-12):** compose needs at least two items; retiring keeps an item marked with where its content went, and deleting it goes through guardrails; normalize puts a rule in the conduct sub-skill whose subject it is.
 >
@@ -1165,6 +1174,9 @@ Each hands back the before-and-after map, the inventory or test result, and what
 **Why:** The rules are respond's and act's; conduct only points. One route for every root keeps the main skill short; the extra read of conduct's file happens once per conversation.
 
 ## D107: conduct revised after an outside review (2026-10-12)
+
+> **Amended by D259 (2026-10-25):** D259 makes both organize approvals explicit turn boundaries, with proposals and results allowed to return before confirmation.
+
 
 > **Amended by D233 (2026-10-24):** the never-rules' one home is act's rule 5, which adds the places never visited; a secret is never in anything committed, shared or sent, or in a response, and a local file the person names for it, kept out of version control, such as `.env`, may hold it.
 
@@ -1759,6 +1771,9 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D148: organize while creating, and parts sized to how they are read (2026-10-17)
 
+> **Amended by D259 (2026-10-25):** D259 replaces the absolute reread ban with an explicit main-session inventory fallback when a helper cannot be used. This is self-checking, not independence.
+
+
 > **Amended by D174 (2026-10-17):** organize's inventory goes through coordinate's delegate where judgment is needed, delegate choosing the agent, not a light agent named here.
 
 **Decision:** organize covers wholes not yet written as well as written ones: for a planned whole, the items are what it must cover, such as a planned report's topics, a planned program's responsibilities or a planned system's requirements. Its routing line and split's say so, split's with examples across kinds: a long document into sections, a report not yet written into the topics it must cover, a large module into smaller ones, a folder of mixed files into groups, a planned system into components. author, implement, design and instruct call organize when they plan parts. Rules 3 to 5, meaning preserved, the two approvals and retiring, do not apply when nothing existing changes, since they are worded for when something changes; the creating skill's approvals apply instead. split gains advice, while creating and when rearranging: each part readable on its own, saying what it is and needing no sibling; a part's size following how it is read, short when read whole or on every turn, with headings or a map when searched. organize's warning signs gain a part readers mostly read in order to skip. cluster gains advice: for items agents read often, a map pays, since readers open only the part they need. The inventory behind meaning preserved is done by a script where one can do it and through delegate by a light fresh agent where judgment is needed, never by reading everything twice in the main session. Code is unchanged; the 11,000-line file waits for implement. organize is worded generically: each rule clear without its example, its examples spanning writing, code and design, a kind named in a rule only where the rule differs for it; the unit step lists the range once: sentences, paragraphs, sections, topics; files, folders; skills; functions, modules, packages; a system's components.
@@ -2013,6 +2028,9 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** The review found one request with two routes: design claimed any choice the person would want a say in, while plan asked every choice itself. The person questioned why plan and design should be sequential or bounded at all; the answer is one home per question, with the two calling each other.
 
 ## D174: organize's check, compose and the tier of a judgment (2026-10-17)
+
+> **Amended by D259 (2026-10-25):** D259 keeps delegation optional for inventory judgment and restores organize calls to the built design, plan, review, verify and lean callers.
+
 
 **Decision:** organize's check also covers a new item set against the existing parts: an item whose content already has a home is an overlap, which verify's duplication check relies on. compose may move the items under its new parent, their content unchanged; split sorts every item into groups by one principle, compose puts one parent over the items that share something. organize's inventory and lean's listing go through coordinate's delegate where judgment is needed, delegate choosing the agent; neither names a tier.
 
@@ -2550,6 +2568,9 @@ No AI test was run for this batch.
 **Why:** an outside review found three gaps. The built act had no instructions-and-data rule, though respond's check on text the agent did not write points to act for it. The runner counted a skill file as read when a command only named its path. And the trim case passed a refusal, since it checked only that nothing changed. A result that a wrong behaviour can pass, or a cost reported as zero when it is unknown, measures nothing.
 
 ## D217: Project-skill checks from two reviews, four general patterns, and smaller fixes (2026-10-20)
+
+> **Amended by D259 (2026-10-25):** D259 applies the complete shared ownership and code-preservation rules to organize; tags may change only under their named navigation exception.
+
 
 > **Amended by D218 (2026-10-20):** in who decides, where a choice fits both sides the user's wins, and how easy it is to undo decides only the choices the user left to the agent; easy to undo means the consequences of acting can be undone, not only the file; "going with" states the choices the result rests on, not every minor one.
 
@@ -3693,6 +3714,9 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D257: Settle and build devise with caller-owned continuation and explicit approval (2026-10-25)
 
+> **Amended by D259 (2026-10-25):** D259 builds organize and replaces the corresponding judgment fallbacks in devise and its design/review/plan callers with named organize calls.
+
+
 **Decision:**
 
 - The devise group routes by the main question. A whole-design-and-build request starts in design. Planning may obtain a design for one part and then resume. A called design returns to its active caller instead of starting another plan. A review-only request returns findings without creating a replacement design.
@@ -3728,3 +3752,27 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 **Why:** A message paired with going on is often lost into private thinking. Delaying a consent-changing concern would deprive the user of the chance to stop. The final-answer branch therefore covers only a concern that cannot change the work or consent.
 
 **Tested:** No model test was run. Cases were checked against an exact authorized edit with its final caveat and a losing action that must remain unperformed pending consent. Static checks are reported in `../tests/batch2-build-report.md`; the semantic outcomes remain untested on models.
+
+## D259: Settle and build organize with explicit approvals and preserved meaning (2026-10-25)
+
+**Decision:**
+
+- Organize uses `references/organize.md`; its five operations use plain files under `references/organize/`. All use full names. Parents keep one route per child. The main skill, devise, design, plan, design review, verify and lean name the corresponding organize operation or bounded check. A called check returns to its active caller without restarting it.
+- Shared choices follow understand rule 5 without a local ownership shortcut. The parent owns approval of the complete map before application and confirmation of the checked result afterward. These explicitly rank above act rule 13's shortcuts and rightsize's one-approval rule. Both questions use respond-ask and end the turn. Approval may be reused only within its scope and basis. Children prepare a proposal before applying an approved map. A worker without a user returns questions to its caller.
+- Scripts check mechanical inventory facts. Available permitted delegation supplies judgment where appropriate. Without a helper, the main session may compare each original part with its new place, including the necessary rereading, and reports a self-checked inventory. This replaces the absolute reread ban, rather than evading it by chunking. A count alone proves no semantic preservation. Where act-verify rule 2 requires independence, the check remains outstanding with its next owner until an independent result arrives. User confirmation does not replace it. Delegation is optional, with the fallback declared in Files and Needs.
+- After applying, lost statements and failed checks are repaired and checked again before result confirmation. The result may return as awaiting confirmation; it is not complete yet. A rejected result reverses only this operation's changes after checking for later edits. Later and unrelated work is preserved. If safe undo cannot be shown or requires a risky new action, report the state and ask about recovery through act-guardrails.
+- A diagnostic check or unapplied proposal may return unresolved placements. A completed arrangement gives every required in-scope item one home. Only exclusions the user approved may remain, with their content preserved outside the changed scope. A partly resolved change is never labeled complete. Planning a future whole still uses its creating skill's approvals; writing a view over existing items still uses both organize checkpoints.
+- Merge combines duplicate accounts of the same whole, keeping compatible unique details and list unions. Sharing only a part uses normalize; sharing a theme uses compose. Contradictions that change meaning need a user answer through respond-ask before application. Retired sources remain marked and known references are updated; unknown external references remain unverified. Normalization replaces only copies confirmed to have the same meaning. Differing copies stay unchanged and listed; they do not prevent completion of the eligible operation.
+- Cluster keeps its view outside source items by default. Navigation tags may be written into items only when the user asks for that form. The approved map lists the exact tag edits and both approvals apply. All other content is checked unchanged. Effects on publishing, access, automation or behavior beyond finding items go back to the caller and act-guardrails. The parent route and cluster purpose, description and result name the same exception.
+- Code and packages keep the whole act-rightsize and act-verify preservation check: tests before and after, public interfaces, documented behavior and untested requirements. Without softeng, generic boundaries and connections precede approved direct changes under project checks; no specialist architecture review is claimed. Unbuilt coordinate calls remain in the design and use permitted harness means or the explicit self-check fallback in built text.
+- Designed tests cover the settled rules, steps, advice, routes, exclusions, last instructions, caller returns and boundary pairs. Cases distinguish proposals from application and actual confirmation. Fixture wording is not copied into skill instructions. Live delegation, external specialist integration and a truly concurrent write remain explicitly manual branches.
+
+**Why:**
+
+- A map the user sees before application can be corrected. A checked result cannot be confirmed until it has been returned. Caller-owned approval avoids child execution before the parent checkpoint.
+- A cost rule should not block ordinary meaning checks in a harness without agents. Self-checking is useful evidence but does not become an independent result.
+- Broad rollback can destroy later work. Named exceptions can hide lost requirements unless their approval and preserved content are visible.
+- Duplicate whole accounts, shared parts and shared themes need different operations. Tags can affect behavior even when their storage looks like metadata.
+- Passing tests do not establish preservation of untested public behavior. Conditional specialist calls need an honest fallback.
+
+**Tested:** No model test was run, by D253. The six files and their caller routes are built. The numbered design scenarios have executable cases inspected against correct and plausible wrong traces, including separate approval/application/confirmation turns. Static checks, case counts, coverage, manual limits and the file-against-design review are recorded in `../tests/batch3-build-report.md`. These are not observed model passes.

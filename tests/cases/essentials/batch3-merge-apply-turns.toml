@@ -1,0 +1,31 @@
+source = "blueprint/design/essentials/organize.md: merge, test 11 (D259)"
+about = "Preserves the three intake facts, retains second.md as a retirement notice and updates both known links. Confirmation remains pending until turn 3."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:2", "organize-merge:step:3", "organize-merge:step:4", "organize-merge:step:5", "organize-merge:last", "organize:rule:7", "organize:rule:3", "organize:rule:4", "organize:rule:5", "organize:step:9", "organize:step:10", "organize:step:11", "organize:last"]
+category = "edge"
+rejects = "Applies in turn 1, changes outside the approved map, loses source facts, or claims final confirmation before turn 3."
+review = ["Preserves the three intake facts, retains second.md as a retirement notice and updates both known links. Confirmation remains pending until turn 3.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose merging merge/first.md and merge/second.md into first.md. Keep a notice in second.md and update references.md. Do not apply before approval."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I approve this exact map: first.md retains all three compatible statements; second.md becomes a retirement notice pointing to first.md; both links in references.md point to first.md. Apply only those three files, then show the checked result awaiting my confirmation."
+
+[turns.checks]
+changed = ["merge/first.md", "merge/second.md", "merge/references.md"]
+unchanged = ["merge/conflicting.md"]
+file_contains = { "merge/first.md" = ["accession number before shelving", "sender keeps the receipt", "scan of the receipt"], "merge/second.md" = ["first.md"], "merge/references.md" = ["first.md"] }
+
+[[turns]]
+prompt = "I confirm the checked result just shown. Return its final status; change no files."
+
+[turns.checks]
+no_changes = true
+

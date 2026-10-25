@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 9 (D259)"
+about = "Allows completion for eligible copies while preserving and listing the genuinely differing copy."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:2", "organize-normalize:last"]
+category = "edge"
+rejects = "Requires every lexical loan mention to point to the shared custody text."
+review = ["Allows completion for eligible copies while preserving and listing the genuinely differing copy.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "A proposed normalization updates only matching custody copies. The finance definition stays unchanged and is explicitly excluded. Can the eligible operation be complete after its checks and confirmations?"
+
+[checks]
+no_changes = true

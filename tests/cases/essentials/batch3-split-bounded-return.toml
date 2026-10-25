@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 10 (D259)"
+about = "Runs the bounded overlap check and returns to the active planner without starting a second plan."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:step:7", "organize-split:last", "organize:rule:1", "organize:rule:2", "organize:rule:10"]
+category = "normal"
+rejects = "Calls the operation chooser recursively or begins building the handbook."
+review = ["Runs the bounded overlap check and returns to the active planner without starting a second plan.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "A planner asks you to propose a division for the six future handbook topics and check for overlaps. Return the parts and check findings to that planner."
+
+[checks]
+no_changes = true

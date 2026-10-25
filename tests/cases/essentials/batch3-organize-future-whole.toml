@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 13 (D259)"
+about = "Maps all six required topics into bounded proposed sections, using the creating work's approval policy rather than two rearrangement confirmations."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:10", "organize:step:1"]
+category = "boundary"
+rejects = "Invents an inventory of nonexistent prior content or imposes result confirmation for a read-only outline."
+review = ["Maps all six required topics into bounded proposed sections, using the creating work's approval policy rather than two rearrangement confirmations.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Plan sections for a new private archive handbook using requirements.md. Choose a draft structure and return it in chat; build no document."
+
+[checks]
+no_changes = true

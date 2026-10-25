@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 19 (D259)"
+about = "Flags unequal levels and missing placement, using the same terms across siblings."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:advice:2", "organize:step:2"]
+category = "edge"
+rejects = "Accepts an individual record and whole categories as equivalent sibling units."
+review = ["Flags unequal levels and missing placement, using the same terms across siblings.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Assess this draft map without applying: A1, all Letters, and all Recordings are sibling parts; B2 is in an unlabeled bucket."
+
+[checks]
+no_changes = true

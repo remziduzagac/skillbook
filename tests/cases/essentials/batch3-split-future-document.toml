@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 2 (D259)"
+about = "Gives each required topic one section and makes each section understandable on its own."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:step:1", "organize-split:step:2", "organize-split:advice:1", "organize:rule:1", "organize:rule:2", "organize:rule:10"]
+category = "normal"
+rejects = "Applies an existing-material inventory or omits emergency contacts."
+review = ["Gives each required topic one section and makes each section understandable on its own.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Outline a new archive handbook from requirements.md. Choose the draft sections and return them without creating a file."
+
+[checks]
+no_changes = true

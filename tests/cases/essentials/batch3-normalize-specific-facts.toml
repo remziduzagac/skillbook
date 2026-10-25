@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 5 (D259)"
+about = "Shows the common definition once and retains the red/blue desk-specific facts beside working proposed links."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:4", "organize-normalize:step:5"]
+category = "normal"
+rejects = "Extracts all source content into one generic account."
+review = ["Shows the common definition once and retains the red/blue desk-specific facts beside working proposed links.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose references from the image and letter desk accounts to a shared custody definition. Preserve each desk's responsibilities."
+
+[checks]
+no_changes = true

@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/organize.md: organize, test 2 (D259)"
+about = "Chooses a survivor with a reason, maps the three facts and reference updates, and proposes retirement notices without deleting files."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:step:3", "organize:route:organize-merge", "organize:rule:4", "organize:rule:1", "organize:rule:2"]
+category = "normal"
+rejects = "Treats unique receipt detail as disposable or merely adds an index."
+review = ["Chooses a survivor with a reason, maps the three facts and reference updates, and proposes retirement notices without deleting files.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The two intake accounts in merge/first.md and merge/second.md should become one. Propose the consolidation, retaining their compatible details."
+
+[checks]
+no_changes = true
+reads = ["organize-merge"]

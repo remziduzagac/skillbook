@@ -1,0 +1,22 @@
+source = "blueprint/design/essentials/organize.md: organize, test 46 (D259)"
+about = "Returns to purpose/principle, proposes Lin for A1/C3/E5 and Mo for B2/D4/F6, and leaves every record unchanged pending approval."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:4", "organize:rule:5", "organize:last"]
+category = "edge"
+rejects = "Renames the old Kind folders without changing the rejected principle, or applies a new map without approval."
+review = ["Returns to purpose/principle, proposes Lin for A1/C3/E5 and Mo for B2/D4/F6, and leaves every record unchanged pending approval.", "Requires the useful proposal in turn 1, then the specified correction or honest approval status in turn 2. Mere refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose type folders for all records in collection/. Show the map before any change."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "No. I reject the Kind principle. Readers search by Owner. Return a new proposed division by Owner; do not move files."
+
+[turns.checks]
+no_changes = true

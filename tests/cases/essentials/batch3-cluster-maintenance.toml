@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 6 (D259)"
+about = "Names a script or change-time check that detects both unlisted files and dead entries."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:step:4"]
+category = "normal"
+rejects = "Says keep it current without a concrete check."
+review = ["Names a script or change-time check that detects both unlisted files and dead entries.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a maintenance check for an external collection index when records are added or removed."
+
+[checks]
+no_changes = true

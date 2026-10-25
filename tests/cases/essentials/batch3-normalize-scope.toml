@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 6 (D259)"
+about = "Gives a custody definition general enough for both eligible uses, without broadening to the different finance meaning."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:4"]
+category = "normal"
+rejects = "Writes a definition so broad it changes the original loan meaning."
+review = ["Gives a custody definition general enough for both eligible uses, without broadening to the different finance meaning.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The shared custody definition must cover the two desk accounts, not financial lending. Propose the narrow wording."
+
+[checks]
+no_changes = true

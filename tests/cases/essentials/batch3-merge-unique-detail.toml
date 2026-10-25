@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 2 (D259)"
+about = "Keeps accession-before-shelving, sender receipt and the private scan detail, with each source fact mapped."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:3", "organize-merge:step:4", "organize:rule:3"]
+category = "normal"
+rejects = "Keeps only their intersection or loses the scan detail."
+review = ["Keeps accession-before-shelving, sender receipt and the private scan detail, with each source fact mapped.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose one intake account from merge/first.md and merge/second.md. Include a statement map showing what came from each."
+
+[checks]
+no_changes = true

@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/organize.md: organize, test 3 (D259)"
+about = "Proposes one parent for A1/B2 with a meaningful shared statement, selected placements and untouched other records."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:step:3", "organize:route:organize-compose", "organize:rule:4", "organize:rule:1", "organize:rule:2", "organize:not-for:organize-split"]
+category = "normal"
+rejects = "Sorts the entire collection or moves the four unselected records."
+review = ["Proposes one parent for A1/B2 with a meaningful shared statement, selected placements and untouched other records.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Put only the two image records in collection/ under a new useful shared parent. Propose it. Leave the other four records where they are."
+
+[checks]
+no_changes = true
+reads = ["organize-compose"]

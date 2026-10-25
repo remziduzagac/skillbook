@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 5 (D259)"
+about = "Keeps Kind as the primary principle and uses the cross-reference as see-also rather than duplicate ownership."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:step:2"]
+category = "normal"
+rejects = "Forbids all cross-links or places A1 in two primary groups."
+review = ["Keeps Kind as the primary principle and uses the cross-reference as see-also rather than duplicate ownership.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a type-based collection index with a see-also link from Images to A1 under Lin. Keep one primary placement per record."
+
+[checks]
+no_changes = true

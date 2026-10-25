@@ -6,7 +6,7 @@ Needs: an independent reviewer for the required review. If one cannot start, fol
 
 ## Rules
 
-1. **Keep each check in its home.** Consistency and the builder walk-through are here. Use `understand-challenge` for weaknesses, `act-rightsize-lean` for what is extra and `act-verify` for built work against its design. Check parts against requirements for coverage and overlap.
+1. **Keep each check in its home.** Consistency and the builder walk-through are here. Use `understand-challenge` for weaknesses, `act-rightsize-lean` for what is extra and `act-verify` for built work against its design. Use the `organize` skill's bounded check for parts against requirements, including coverage and overlap.
 2. **Use an independent reviewer.** Follow `act-verify` rule 2. A fresh reviewer may perform this check; the writer's second look and a fork sharing its context do not count. They share blind spots.
    - For a large review, use an available fresh agent per lens through the harness.
    - If no independent reviewer is available, return provisional findings. Name the unfinished independent check and who should arrange it. A delegated worker asks its caller to arrange that check. A log that records no helper does not prove that no helper was available.
@@ -18,7 +18,7 @@ Needs: an independent reviewer for the required review. If one cannot start, fol
 1. **Read the design and its basis.** Include the frame, requirements and decisions.
 2. **Run the consistency lens.** Find conflicting parts, decisions or requirements and terms used two ways.
 3. **Walk the builder through main and edge cases.** Each must have a responsible part and enough information to act.
-4. **Check coverage and overlap.** Set parts against requirements: none missing, none owned twice.
+4. **Check coverage and overlap through `organize`.** Use its bounded check and return here. Set parts against requirements: none missing, none owned twice.
 5. **Use `understand-challenge` for consequential assumptions.** Reuse a current result only with the same idea, goal, constraints and evidence. Changed inputs need renewed scrutiny.
 6. **Identify what `act-rightsize-lean` would remove.** Report proposed cuts, not an applied removal.
 7. **Use the architecture lens when `softeng` is installed.** Load its main skill and use that lens by its name rule. Otherwise skip it and report the skip.

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 9 (D259)"
+about = "Keeps the local retirement notice and marks the unknown external link status unverified."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:5", "organize-merge:last", "organize:rule:7"]
+category = "normal"
+rejects = "Claims every external reference was updated without access."
+review = ["Keeps the local retirement notice and marks the unknown external link status unverified.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "A printed catalog may still refer to an old intake filename. Propose its retirement without claiming you can edit that external catalog."
+
+[checks]
+no_changes = true

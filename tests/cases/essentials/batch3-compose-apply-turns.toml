@@ -1,0 +1,32 @@
+source = "blueprint/design/essentials/organize.md: compose, test 9 (D259)"
+about = "Creates a useful shared parent, moves only A1/B2 unchanged and leaves all other record content/locations intact. Does not claim confirmation in turn 2."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-compose"]
+covers = ["organize-compose:step:1", "organize-compose:step:2", "organize-compose:step:3", "organize-compose:step:4", "organize-compose:last", "organize:rule:3", "organize:rule:4", "organize:rule:5", "organize:step:9", "organize:step:10", "organize:step:11", "organize:last"]
+category = "edge"
+rejects = "Applies in turn 1, changes outside the approved map, loses source facts, or claims final confirmation before turn 3."
+review = ["Creates a useful shared parent, moves only A1/B2 unchanged and leaves all other record content/locations intact. Does not claim confirmation in turn 2.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a parent for just the two image records, with their content unchanged and no movement of the other records."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I approve this exact map: create collection/images/README.md stating that this parent covers image records; move a.md and b.md unchanged into that folder. Leave c.md through f.md in collection/. Apply and return the evidence awaiting confirmation."
+
+[turns.checks]
+changed = ["collection/images/README.md", "collection/images/a.md", "collection/images/b.md"]
+removed = ["collection/a.md", "collection/b.md"]
+unchanged = ["collection/c.md", "collection/d.md", "collection/e.md", "collection/f.md"]
+file_contains = { "collection/images/a.md" = ["ID: A1"], "collection/images/b.md" = ["ID: B2"] }
+
+[[turns]]
+prompt = "I confirm the checked result just shown. Return its final status; change no files."
+
+[turns.checks]
+no_changes = true
+

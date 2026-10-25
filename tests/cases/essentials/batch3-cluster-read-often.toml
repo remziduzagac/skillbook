@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 10 (D259)"
+about = "Explains how a map lets readers open only the needed part and proposes a concrete useful index."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:advice:1", "organize-cluster:step:1"]
+category = "normal"
+rejects = "Adds navigation that still requires loading all source records."
+review = ["Explains how a map lets readers open only the needed part and proposes a concrete useful index.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Agents frequently load one record from collection/ but currently read all six to find it. Propose an efficient finding view."
+
+[checks]
+no_changes = true

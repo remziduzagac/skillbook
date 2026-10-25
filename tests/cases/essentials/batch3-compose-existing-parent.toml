@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: compose, test 6 (D259)"
+about = "Finds the proposed extra parent adds no useful shared meaning and proposes no duplicate level."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-compose"]
+covers = ["organize-compose:step:2"]
+category = "boundary"
+rejects = "Adds an identical parent merely because the request mentions composing."
+review = ["Finds the proposed extra parent adds no useful shared meaning and proposes no duplicate level.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "An existing Images parent already states exactly what A1/B2 share. Assess whether adding a second identical parent earns its place; do not edit."
+
+[checks]
+no_changes = true

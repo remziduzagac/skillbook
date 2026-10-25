@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 9 (D259)"
+about = "Sizes parts for searching and provides navigation rather than forcing every part into a tiny whole-read limit."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:advice:2", "organize:rule:1", "organize:rule:2", "organize:step:1"]
+category = "normal"
+rejects = "Treats all documents as read-whole prompts with the same fixed size."
+review = ["Sizes parts for searching and provides navigation rather than forcing every part into a tiny whole-read limit.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose sections for a searchable long provenance reference, using headings or a map where useful."
+
+[checks]
+no_changes = true

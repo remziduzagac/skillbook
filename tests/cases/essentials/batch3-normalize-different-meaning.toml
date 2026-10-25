@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: normalize, test 2 (D259)"
+about = "Includes the custody copies only and lists the finance copy as genuinely different and unchanged."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-normalize"]
+covers = ["organize-normalize:step:2", "organize-normalize:last"]
+category = "edge"
+rejects = "Forces the finance meaning into the custody definition to satisfy every-copy wording."
+review = ["Includes the custody copies only and lists the finance copy as genuinely different and unchanged.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Review all three normalize/ accounts for a shared loan definition. Propose only."
+
+[checks]
+no_changes = true

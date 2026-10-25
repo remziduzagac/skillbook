@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 4 (D259)"
+about = "Adds or revises a bounded part in the proposal and does not discard the requirement."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:step:6", "organize-split:last", "organize:rule:1", "organize:rule:2", "organize:rule:9"]
+category = "edge"
+rejects = "Labels a required topic out of scope merely to finish."
+review = ["Adds or revises a bounded part in the proposal and does not discard the requirement.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Emergency contacts has no home in parts.md. Suggest where it belongs; it remains a required topic."
+
+[checks]
+no_changes = true

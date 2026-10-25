@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: compose, test 7 (D259)"
+about = "Maps selected folder moves and a useful parent statement while preserving the two records' facts."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-compose"]
+covers = ["organize-compose:step:3", "organize-compose:step:4", "organize-compose:last"]
+category = "normal"
+rejects = "Rewrites source record facts to fit the new parent."
+review = ["Maps selected folder moves and a useful parent statement while preserving the two records' facts.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a new Images parent and folder placements for only the two image records. Keep all record content unchanged."
+
+[checks]
+no_changes = true

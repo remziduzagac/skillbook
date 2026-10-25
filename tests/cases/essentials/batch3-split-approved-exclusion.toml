@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: split, test 5 (D259)"
+about = "Lists F6 as a preserved approved exclusion and maps every other ID once."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-split"]
+covers = ["organize-split:step:5", "organize-split:step:6", "organize-split:last", "organize:rule:1", "organize:rule:2", "organize:rule:9"]
+category = "normal"
+rejects = "Deletes F6 or silently fails to account for it."
+review = ["Lists F6 as a preserved approved exclusion and maps every other ID once.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "For the proposed collection reorganization, I approve excluding F6 from the changed scope and keeping its current file intact. Map the other five records in chat."
+
+[checks]
+no_changes = true

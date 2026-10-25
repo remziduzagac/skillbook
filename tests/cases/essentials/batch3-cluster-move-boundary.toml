@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 11 (D259)"
+about = "Uses split for source moves by one principle, keeping cluster for finding views."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:step:3", "organize:not-for:organize-cluster"]
+category = "normal"
+rejects = "Answers with an index while leaving the requested movement unaddressed."
+review = ["Uses split for source moves by one principle, keeping cluster for finding views.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "I want all record files moved into type folders. Which operation fits rather than merely adding a view?"
+
+[checks]
+no_changes = true

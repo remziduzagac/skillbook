@@ -80,3 +80,15 @@ reason = "Live codex mode availability, actual approval/exit controls and task o
 [[aspect]]
 id = "devise-plan:route:devise-plan-claude"
 reason = "Positive live selection of the Claude planning child requires a Claude Code session. The Codex-only suite checks its documentation and negative operation boundary, not real Claude routing or tool availability."
+
+[[aspect]]
+id = "organize:rule:3"
+reason = "The cases check self-inventory and reporting a required unavailable independent check. A real fresh helper, its independent judgment and its actual return need a live permitted delegation session; the Codex trace may not expose them. Never infer absence from missing events."
+
+[[aspect]]
+id = "organize:rule:6"
+reason = "The rollback fixture tests a known later edit. A new concurrent write between the actual pre-write read and undo needs an outside writer during a live session; the scenario runner does not interleave external writes."
+
+[[aspect]]
+id = "organize:rule:8"
+reason = "The cases exercise generic code-preservation and the absent-specialist fallback. Actual architecture/implementation delegation to an installed external softeng set needs that set in a live session; its design is not a fixture substitute."

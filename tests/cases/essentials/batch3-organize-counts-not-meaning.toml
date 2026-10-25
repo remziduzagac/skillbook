@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 24 (D259)"
+about = "Rejects count-only proof and maps actual source facts to show the missing semantic evidence."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:3"]
+category = "edge"
+rejects = "Equates matching counts with unchanged meaning."
+review = ["Rejects count-only proof and maps actual source facts to show the missing semantic evidence.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "A script says two original accounts and one merged account have the same total word count. Does that establish preservation? Assess against the actual intake facts without writing."
+
+[checks]
+no_changes = true

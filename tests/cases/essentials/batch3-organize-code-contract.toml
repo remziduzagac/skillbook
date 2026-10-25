@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 32 (D259)"
+about = "Finds the public_id contract violation even if a reduced test suite is green; requires whole public/documented behavior preservation."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:rule:8"]
+category = "edge"
+rejects = "Uses green tests to justify removing an untested public interface."
+review = ["Finds the public_id contract violation even if a reduced test suite is green; requires whole public/documented behavior preservation.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Review a proposed code refactor that keeps accession but removes public_id because tests for the new helper pass. Use code/contract.md. Give a proposal assessment only."
+
+[checks]
+no_changes = true

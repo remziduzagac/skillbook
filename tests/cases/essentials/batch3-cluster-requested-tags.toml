@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: cluster, test 8 (D259)"
+about = "Proposes exactly the requested in-item metadata changes under both parent checkpoints, with all other content preserved."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-cluster"]
+covers = ["organize-cluster:step:3", "organize-cluster:step:5", "organize-cluster:last"]
+category = "edge"
+rejects = "Claims tags are free of approval or refuses any requested in-item tag form."
+review = ["Proposes exactly the requested in-item metadata changes under both parent checkpoints, with all other content preserved.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "I want navigation-only type tags inside collection/a.md and collection/b.md. They affect no publishing, access or automation. Show exact edits for approval before writing."
+
+[checks]
+no_changes = true

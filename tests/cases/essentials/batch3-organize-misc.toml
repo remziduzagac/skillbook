@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 18 (D259)"
+about = "Flags Misc as hiding the omitted letter/recording distinction and suggests a clearer principle."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:advice:1", "organize:step:2"]
+category = "edge"
+rejects = "Treats a large Misc bucket as an adequate principle."
+review = ["Flags Misc as hiding the omitted letter/recording distinction and suggests a clearer principle.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Assess this proposed grouping for collection/: A1/B2 under Images and C3/D4/E5/F6 under Misc. Give a view only."
+
+[checks]
+no_changes = true

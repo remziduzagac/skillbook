@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/organize.md: organize, test 25 (D259)"
+about = "Writes a complete 120-item map in the named file, returns path/parts/counts/exceptions and does not apply sample moves."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:step:9", "organize:rule:4"]
+category = "normal"
+rejects = "Gives only a vague short list or treats saving a proposal as approval to execute it."
+review = ["Writes a complete 120-item map in the named file, returns path/parts/counts/exceptions and does not apply sample moves.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a destination map for 120 private samples named S001 through S120. S001 through S040 go under chilled/, S041 through S080 under ambient/, and S081 through S120 under frozen/, keeping their names. Save the detailed proposal as sample-map.md; I approve that proposal file only, not any sample moves."
+
+[checks]
+changed = ["sample-map.md"]
+unchanged = ["collection/a.md"]

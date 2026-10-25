@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 7 (D259)"
+about = "Finds provenance already in Intake and reports the overlap without writing or restarting a design."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:step:2"]
+category = "edge"
+rejects = "Approves a duplicate merely because its proposed title is new."
+review = ["Finds provenance already in Intake and reports the overlap without writing or restarting a design.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The proposed new Intake module covers provenance. Compare it with parts.md to see whether its content already has a home; do not add it."
+
+[checks]
+no_changes = true

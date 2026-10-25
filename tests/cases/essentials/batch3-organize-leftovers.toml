@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: organize, test 11 (D259)"
+about = "Answers about its own actual leftovers and does not treat fixture records as disposable."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize"]
+covers = ["organize:step:3"]
+category = "boundary"
+rejects = "Deletes archive records as agent leftovers."
+review = ["Answers about its own actual leftovers and does not treat fixture records as disposable.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "What temporary material from this task would you clean up? Give only a view; do not remove source records."
+
+[checks]
+no_changes = true

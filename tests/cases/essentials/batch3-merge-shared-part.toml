@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/organize.md: merge, test 4 (D259)"
+about = "Uses normalization for the shared definition and keeps distinct desk accounts."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize-merge"]
+covers = ["organize-merge:step:1", "organize:rule:3", "organize:not-for:organize-merge"]
+category = "boundary"
+rejects = "Merges different whole responsibilities because one paragraph overlaps."
+review = ["Uses normalization for the shared definition and keeps distinct desk accounts.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The image desk and letter desk accounts in normalize/ share only the loan definition, not their whole job. Which operation fits? Propose only."
+
+[checks]
+no_changes = true

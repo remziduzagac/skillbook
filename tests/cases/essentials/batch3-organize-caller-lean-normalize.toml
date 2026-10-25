@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/organize.md: organize, test 43 (D259)"
+about = "Routes cross-file shared content to organize-normalize, not in-file trimming or whole-account merging."
+fixture = "arrange-lab"
+agents = ["codex"]
+skills = ["organize", "act-rightsize-lean"]
+covers = ["act-rightsize-lean:rule:2", "organize:step:3"]
+category = "boundary"
+rejects = "Drops a desk responsibility or keeps a duplicate home without a proposal."
+review = ["Routes cross-file shared content to organize-normalize, not in-file trimming or whole-account merging.", "Makes no claim beyond the available evidence. A proposal must include the requested concrete map, content or findings; refusal or a bare skill name does not pass."]
+version_control = true
+
+[[turns]]
+prompt = "The two desk accounts repeat a definition across files. Propose reducing this duplication while preserving their separate responsibilities. Do not edit."
+
+[checks]
+no_changes = true
+reads = ["organize-normalize"]
