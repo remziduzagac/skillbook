@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 19 (D257)"
+about = "Uses existing facts before questions, preserves unknowns and adds no frame-specific checkpoint."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:4", "devise-design:step:5"]
+category = "normal"
+rejects = "Asks about a constraint the available file already settles."
+review = ["Uses existing facts before questions, preserves unknowns and adds no frame-specific checkpoint.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Before asking about offline access, read requirements.md. Return a short frame and only questions the files do not settle."
+
+[checks]
+no_changes = true

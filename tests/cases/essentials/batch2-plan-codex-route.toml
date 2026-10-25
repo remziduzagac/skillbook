@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/devise.md: plan harness routing and codex test 8 (D257)"
+about = "Reads the active Codex planning mapping when explicitly asked to inspect its available controls."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan", "devise-plan-codex"]
+covers = ["devise-plan:route:devise-plan-codex"]
+category = "boundary"
+rejects = "Uses a different harness mapping or invents a universal mode switch."
+review = ["Uses the Codex mapping, distinguishes plan tracking from approval, and marks unconfirmed mode controls unknown.", "Claims documentation inspection only, not a live approval or completed task interaction."]
+
+[[turns]]
+prompt = "Use devise-plan and inspect the Codex child reference for this session. Tell me which planning controls are documented and which must still be checked as exposed. Do not change modes, create tasks or edit files."
+
+[checks]
+no_changes = true
+reads = ["devise", "devise-plan", "devise-plan-codex"]

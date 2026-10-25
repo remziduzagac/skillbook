@@ -1,0 +1,20 @@
+source = "blueprint/design/essentials/devise.md: plan, test 2 (D257)"
+about = "Uses the low-stakes given-steps exception and makes only the exact authorized correction."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:rule:2", "devise-plan:rule:3", "devise-plan:step:2"]
+category = "edge"
+rejects = "Asks again instead of making the exact low-stakes authorized correction."
+review = ["Uses the low-stakes given-steps exception and makes only the exact authorized correction.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+version_control = true
+
+[[turns]]
+prompt = "Follow these exact local steps: correct the heading in labels.md to Reservations; verify both instrument lines stayed unchanged. Go ahead."
+
+[checks]
+changed = ["labels.md"]
+unchanged = ["summary.md", "requirements.md", "draft.md", "approved-plan.md"]
+
+[checks.file_contains]
+"labels.md" = ["# Reservations", "Flute: cabinet A", "Cello: cabinet B"]

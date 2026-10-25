@@ -1,0 +1,20 @@
+source = "blueprint/design/essentials/devise.md: plan, test 1 (D257)"
+about = "Executes the exact single-step edit without inventing a plan or user choice."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:rule:1", "devise-plan:step:1"]
+category = "boundary"
+rejects = "Adds an unnecessary plan instead of the exact narrow action."
+review = ["Executes the exact single-step edit without inventing a plan or user choice.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+version_control = true
+
+[[turns]]
+prompt = "Correct only the heading in labels.md to Reservations. Both item lines must remain unchanged."
+
+[checks]
+changed = ["labels.md"]
+unchanged = ["summary.md", "requirements.md", "draft.md", "approved-plan.md"]
+
+[checks.file_contains]
+"labels.md" = ["# Reservations", "Flute: cabinet A", "Cello: cabinet B"]

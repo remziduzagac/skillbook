@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 12 and related Flow (D257)"
+about = "Routes the review-only request to findings and leaves the design unchanged."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:1", "devise-design:route:devise-design-review"]
+category = "edge"
+rejects = "Starts writing a new design or performing its build."
+review = ["Routes the review-only request to findings and leaves the design unchanged.", "Preserves the requested no-change boundary and marks missing evidence."]
+
+[[turns]]
+prompt = "Review draft.md as a design. I want findings only, not a replacement design or implementation."
+
+[checks]
+no_changes = true

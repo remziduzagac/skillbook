@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: review, test 5 and related Flow (D257)"
+about = "Reports what is extra with a reason and suggested cut, leaving the design unchanged."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design-review"]
+covers = ["devise-design-review:step:6", "devise-design-review:rule:3"]
+category = "edge"
+rejects = "Deletes the appendix during review or invents an unnecessary requirement to justify it."
+review = ["Reports what is extra with a reason and suggested cut, leaving the design unchanged.", "Preserves the requested no-change boundary and marks missing evidence."]
+
+[[turns]]
+prompt = "A supplied design has a decorative appendix that serves no stated requirement or reader. Identify the proposed cut as a review finding; do not apply it."
+
+[checks]
+no_changes = true

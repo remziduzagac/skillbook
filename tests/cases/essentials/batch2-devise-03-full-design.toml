@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: devise, test 3 (D257)"
+about = "Recognizes a full builder contract, covers connected behavior and constraints, and does not claim approval or independent review without evidence."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise"]
+covers = ["devise:last", "devise:route:devise-design", "essentials:step:3"]
+category = "normal"
+rejects = "Gives a shallow sketch that a separate builder cannot use."
+review = ["Recognizes a full builder contract, covers connected behavior and constraints, and does not claim approval or independent review without evidence.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Design a new instrument-checkout service for another team to implement. Use the project constraints. Return the draft in chat and mark approval status; make no file changes."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 13 (D257)"
+about = "Uses short depth under the stated near-miss facts, without unnecessary full review."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:3"]
+category = "edge"
+rejects = "Forces full depth solely because the small change will last."
+review = ["Uses short depth under the stated near-miss facts, without unnecessary full review.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "The proposal affects one private label, nobody else builds from it, and its effects are cheaply undone. Give a short design; long life alone is not a full trigger."
+
+[checks]
+no_changes = true

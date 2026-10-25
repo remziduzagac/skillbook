@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: review, test 10 (D257)"
+about = "Runs generic lenses and reports skipped architecture without inventing specialist expertise or silently omitting a required check."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design-review"]
+covers = ["devise-design-review:step:7"]
+category = "edge"
+rejects = "Invents specialist availability or silently claims its lens ran."
+review = ["Runs generic lenses and reports skipped architecture without inventing specialist expertise or silently omitting a required check.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Review draft.md without an installed software-specialist set. Report the lenses used and any specialist lens skipped. Change nothing."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 14 (D257)"
+about = "Uses the answer, preserves the short path and starts no duplicate decision round."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:9"]
+category = "edge"
+rejects = "Asks the same answered question again or adds full review."
+review = ["Uses the answer, preserves the short path and starts no duplicate decision round.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "I have answered the short-design question: use a friendly tone. Finish the brief proposal without asking that same question again. No edits."
+
+[checks]
+no_changes = true

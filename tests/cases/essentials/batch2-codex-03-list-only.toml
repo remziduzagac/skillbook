@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: codex, test 3 (D257)"
+about = "Final-text approval and native task tracking, without inventing a mode control. This is reference reasoning, not proof that live controls ran."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan-codex"]
+covers = ["devise-plan-codex:last", "devise-plan-codex:step:7", "devise-plan:not-for:devise-plan-codex"]
+category = "edge"
+rejects = "Invents a mode switch instead of text approval."
+review = ["Describes the documented workflow: Final-text approval and native task tracking, without inventing a mode control. This is reference reasoning, not proof that live controls ran.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "For documentation only, use devise-plan-codex to explain its workflow when only task tracking is exposed. Do not operate modes, create tasks or edit files in this session. Distinguish documented controls from tools actually exposed."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 14 (D257)"
+about = "Uses a brief user-question turn; does not invent taste or force a full review."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:9"]
+category = "edge"
+rejects = "Answers the user question itself or insists on finishing in the same response."
+review = ["Uses a brief user-question turn; does not invent taste or force a full review.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "A short desk note is enough, but whether it should sound formal or friendly is my unresolved preference. Ask me, then end the turn without making the choice."
+
+[checks]
+no_changes = true

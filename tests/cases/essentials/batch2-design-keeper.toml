@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 7 (D257)"
+about = "Returns the design payload to its keeper without a second decision record."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:rule:5", "devise-design:last"]
+category = "edge"
+rejects = "Invents keeper files or duplicates current and historical decisions as competing records."
+review = ["Returns the current design, reasons and record needs to the already-loaded caller, without choosing its storage procedure or inventing record IDs.", "Keeps one decision home and marks missing approvals or checks honestly."]
+
+[[turns]]
+prompt = "An already-loaded keeper owns the destination and history. Return the current checkout design payload and decision reasons for it to record. Do not create another decision log or ask for the keeper's file layout. No edits."
+
+[checks]
+no_changes = true

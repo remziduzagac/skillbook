@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 4 (D257)"
+about = "Treats a single open choice proportionally under shared ownership rather than forcing full design."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:1"]
+category = "normal"
+rejects = "Starts full design for one isolated choice."
+review = ["Treats a single open choice proportionally under shared ownership rather than forcing full design.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "We only need to choose whether glossary terms belong in the existing glossary or a new note. Compare that one question; do not start an entire design."
+
+[checks]
+no_changes = true

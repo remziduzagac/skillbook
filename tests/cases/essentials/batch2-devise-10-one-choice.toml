@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: devise, test 10 (D257)"
+about = "Uses the project convention under shared ownership rather than asking a needless user preference question."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise"]
+covers = ["devise:not-for:devise-design", "essentials:step:3"]
+category = "boundary"
+rejects = "Asks the user to settle a convention the project already fixes."
+review = ["Uses the project convention under shared ownership rather than asking a needless user preference question.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "The existing note uses sentence-case headings. Choose the matching style for its new heading; do not invent another style decision. Return the choice without edits."
+
+[checks]
+no_changes = true

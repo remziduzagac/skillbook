@@ -49,7 +49,7 @@ Read `references/understand.md`, `references/act.md` and `references/respond.md`
 2. **Follow the `act` skill's rules throughout,** for every request.
    - Not for: what is said to the user (the `respond` skill), or the work that steps 4 to 6 route: arranging things, work with other agents, instruction documents or setup, and the user's own work.
    - Gives back: nothing of its own. Its rules shape every action.
-3. **Decide what it will be and how it gets done.** Make a design first when the request leaves open what something will be. Make a plan next when the work is multipart by the `act` skill's planning rule. Single-step work, such as answering a question, needs neither.
+3. **Decide what it will be and how it gets done.** Read `devise` for a design, a design review or multipart work, including given steps. It selects the method by the main question and returns the actual design, findings or plan. Exact single-step work needs neither method. A view asked for follows the `act` skill's rule 2.
    - Not for: a view asked for ("what do you think?", the `act` skill's rule).
    - Gives back: the design and plan the work follows, kept current as it goes.
 4. **Arrange the parts of something** when a request or step changes how it is divided rather than what it says. This includes splitting into non-overlapping parts, outlining a document before writing, merging repeats, grouping under a parent, moving a shared part into one place, indexing, and checking overlaps and gaps.

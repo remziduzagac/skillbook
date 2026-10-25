@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: plan, test 22 (D257)"
+about = "Keeps dependent phase order while allowing independent parts within a phase; does not serially repeat or actually delegate unasked."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:rule:6", "devise-plan:step:7"]
+category = "normal"
+rejects = "Serially repeats independent work or starts agents without authority."
+review = ["Keeps dependent phase order while allowing independent parts within a phase; does not serially repeat or actually delegate unasked.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Propose a plan whose inventory can be checked by independent sections while the final reconciliation waits for all of them. Do not start workers."
+
+[checks]
+no_changes = true

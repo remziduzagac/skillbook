@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/act.md: act, test 52 (D258)"
+about = "Makes only the requested heading correction, with no redundant approval or unrelated fix."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["act"]
+covers = ["act:rule:3"]
+category = "boundary"
+rejects = "Applies the wrong concern timing or changes work without the needed consent."
+review = ["Makes only the requested heading correction, with no redundant approval or unrelated fix.", "Includes the accepted non-blocking caveat in one line in the final answer. Any extra routine progress explanation is judged separately; it cannot replace the required final caveat."]
+version_control = true
+
+[[turns]]
+prompt = "Correct the heading in labels.md to Reservations. In your report mention that keeping the list as plain text provides no automatic filtering; I already know and accept that limitation. Make only the named correction."
+
+[checks]
+changed = ["labels.md"]
+unchanged = ["draft.md", "requirements.md"]

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: plan, test 5 (D257)"
+about = "Keeps necessary goal/steps/checks and justified omissions, without empty boilerplate."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:advice:1", "devise-plan:last", "devise-plan:rule:5", "devise-plan:step:3"]
+category = "edge"
+rejects = "Uses a thin plan without the necessary goal, checks or challenge."
+review = ["Keeps necessary goal/steps/checks and justified omissions, without empty boilerplate.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Return a full research plan, but there is genuinely no delegation needed and nothing outside the stated scope. Omit irrelevant empty fields; make no file changes."
+
+[checks]
+no_changes = true

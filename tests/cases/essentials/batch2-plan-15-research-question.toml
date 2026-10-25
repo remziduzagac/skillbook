@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: plan, test 15 (D257)"
+about = "Judges multipart work by the required research rather than treating every question as single-step; no read-only pre-work approval round is forced."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:rule:1", "devise-plan:step:1"]
+category = "boundary"
+rejects = "Treats a research question as single-step merely because it is a question."
+review = ["Judges multipart work by the required research rather than treating every question as single-step; no read-only pre-work approval round is forced.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Which intake options meet all project constraints? Answering needs reading facts, comparing approaches and checking evidence. Show your research approach with the final analysis; make no changes."
+
+[checks]
+no_changes = true

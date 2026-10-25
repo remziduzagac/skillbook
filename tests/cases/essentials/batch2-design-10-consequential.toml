@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 10 (D257)"
+about = "Uses a proportional challenge before relying on a consequential decision, marks evidence limits and does not assume approval."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:route:devise-design-review", "devise-design:step:7"]
+category = "normal"
+rejects = "Relies on a consequential assumption without challenge or marked limits."
+review = ["Uses a proportional challenge before relying on a consequential decision, marks evidence limits and does not assume approval.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "The design will become the official checkout authority. Check its consequential assumptions before recommending approval; return analysis only."
+
+[checks]
+no_changes = true

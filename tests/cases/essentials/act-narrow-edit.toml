@@ -5,7 +5,7 @@ skills = ["act"]
 covers = ["act:rule:3"]
 category = "boundary"
 rejects = "Rewriting other paragraphs while fixing the named error."
-review = ["Fixes only the misspelling; names the duplicated contact information as a follow-up if noticed."]
+review = ["Fixes only the misspelling; names the duplicated contact information as a one-line follow-up in the final answer if noticed."]
 
 [[turns]]
 prompt = "In CONTACT.md replace \"enquiries\" with \"inquiries\" in its first paragraph only."

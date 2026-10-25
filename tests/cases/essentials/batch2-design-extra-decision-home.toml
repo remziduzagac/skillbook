@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 6 and related Flow (D257)"
+about = "Keeps current decisions distinct from history and avoids conflicting duplicate homes."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:rule:5"]
+category = "edge"
+rejects = "Publishes both superseded and new decisions as active truth."
+review = ["Keeps current decisions distinct from history and avoids conflicting duplicate homes.", "Preserves the requested no-change boundary and marks missing evidence."]
+
+[[turns]]
+prompt = "Return a revised design with one current decision home. Keep superseded reasoning as history for its owner, not a second conflicting current design. No file edits."
+
+[checks]
+no_changes = true

@@ -1,0 +1,20 @@
+source = "blueprint/design/essentials/devise.md: devise, test 2 (D257)"
+about = "Makes only the exact named correction without an unnecessary planning approval round."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise"]
+covers = ["devise:not-for:devise-plan", "essentials:step:3"]
+category = "boundary"
+rejects = "Makes a full plan or asks approval for the exact narrow edit."
+review = ["Makes only the exact named correction without an unnecessary planning approval round.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+version_control = true
+
+[[turns]]
+prompt = "In labels.md correct the heading to Reservations. Keep both instrument lines unchanged."
+
+[checks]
+changed = ["labels.md"]
+unchanged = ["summary.md", "requirements.md", "draft.md", "approved-plan.md"]
+
+[checks.file_contains]
+"labels.md" = ["# Reservations", "Flute: cabinet A", "Cello: cabinet B"]

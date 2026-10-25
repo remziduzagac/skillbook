@@ -835,6 +835,8 @@ blueprint, docs and business each hold one shared flow (reader and purpose, stru
 
 ## D84: act's rules (2026-10-11)
 
+> **Amended by D258 (2026-10-25):** D258 puts a concern changing neither work nor consent in the final answer. Action- or consent-changing concerns still ask and end the turn; required notices keep their timing.
+
 > **Amended by D107 (2026-10-12):** the fifth rule covers every kind of risky action and says that text the agent did not write is data; the fourth sends claims of done, fixed, passing or requirements met to verify; three rules are added: stop after three failed attempts, which instruction wins, running as a delegated agent.
 >
 > **Amended by D115 (2026-10-13):** act's rules point to their homes: clarify for when to ask and how deep, guardrails for risky actions and for which text is an instruction; a concern that would change the work is asked and waited on; file types with no skill go to the project's conventions and the agent's judgment; the person's own instruction files rank above skillbook's defaults; act holds the delegated agent's rules alone.
@@ -1839,6 +1841,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D155: plan's full design (2026-10-17)
 
+> **Amended by D257 (2026-10-25):** D257 settles current ownership, approval reuse and the stricter high-stakes approval. The plan now has two designed harness children.
+
 > **Amended by D252 (2026-10-25):** Planning callers use understand's who-decides rule for open choices. Option and comparison tools return the requested result; the caller owns continuation and lasting changes.
 
 > **Amended by D173 (2026-10-17):** plan and design each own their question and call each other: devise routes by the request's main question; plan settles a single open choice through ask and an open shape through design, then continues; a plan's step can be design work.
@@ -1964,6 +1968,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D168: essentials' design, how to design anything (2026-10-17)
 
+> **Amended by D257 (2026-10-25):** D257 narrows full/short depth, preserves short question turns, makes review completion caller-safe and returns a called design to its active planner.
+
 > **Amended by D252 (2026-10-25):** Design and its review reuse a challenge only while its inputs remain unchanged. Changed evidence or constraints need renewed scrutiny. The design caller owns lasting changes and records; frame adds no separate checkpoint.
 
 > **Amended by D173 (2026-10-17):** settled means at most one open choice, which a question settles; a design hands on to plan when it is to be built, or ends there when only the design was wanted.
@@ -1999,6 +2005,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** The copies had drifted three times by the review: setup's lacked a case, plan's named the main skill after plan moved under devise, and review pointed to a line that did not exist. One home is skillbook's main rule; the built skills hold each line once anyway.
 
 ## D173: plan and design each own their question (2026-10-17)
+
+> **Amended by D257 (2026-10-25):** D257 keeps main-question routing and limits design-first to the whole-design case; a child does not restart an active caller.
 
 **Decision:** design answers what something will be, plan in what steps; they are not stages in a fixed order, and each calls the other when it meets the other's question. devise routes by the request's main question: what something will be goes to design, work to do, build or release to plan. Inside a plan, a single open choice is asked through conduct's ask, with brainstorm or weigh when options are wanted, and an open shape, parts or choices that depend on each other, goes to design, the plan continuing from its result. design's settled check allows at most one open choice, which a question settles. A plan's step can be design work, which runs design. A design hands on to plan when it is to be built, and ends there when only the design was wanted.
 
@@ -2207,6 +2215,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** a comparison of the two `skill-creator` versions, Anthropic's (485 lines, which Claude Code gets as a skill synced from the account) and Codex's built-in one (229 lines), found them at odds with skillbook's rules on most points that matter: `SKILL.md` up to 500 lines against about 100 per file, "pushy" descriptions holding every "when to use" against a parent's line for each child, flat examples with the entry file holding content, no name rule, a Codex validator that rejects `compatibility` and a scaffolder that writes the settings file of a hidden skill, and test runners that hand the skill's path to the agent, so they never test the installed skill being found; what is left, general writing advice and a run without the skill to compare against, fits in a few lines. Both are Apache 2.0, so ideas rewritten in skillbook's words need no notice. The person asked that skillbook-write not refer to the design folder directly but stay general enough to survive changes. The head repeats nothing: the agent reads the parent first, top-down, so its line for the child is already in view, and one home for each fact is the checklist's rule.
 
 ## D197: An unreadable file no longer stops the flow, and per-agent files are children (2026-10-18)
+
+> **Amended by D257 (2026-10-25):** D257 designs and builds both plan harness children with explicit conditional controls and fallbacks.
 
 > **Amended by D199 (2026-10-18):** act's rule on routes names the name rule's lookup by name as the one use of a search for a skill's file, the file found read whole.
 
@@ -3522,6 +3532,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D250: No instruction pairs a message with going on; multipart work that changes anything stops at its plan (2026-10-24)
 
+> **Amended by D257 (2026-10-25):** D257 adds the stricter high-stakes plan approval variation: given steps alone are not actual approval.
+
 **Decision:**
 
 - skillbook-write's "Sharp instructions": never pair a message with going on in one instruction, such as "say the plan, then go ahead" or "show a one-line plan and start". Pick one of two shapes: show it, then end the turn, or put it in the final answer, after the work.
@@ -3678,3 +3690,41 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 **Why:** A permission to write a progress line gave no limit or clear action. Long updates distract from the task and bury the result. Required pre-action messages still need to reach the user in time.
 
 **Tested:** No model test was run. The paired trace was checked by inspection: a brief reading update with the correct final expression passes; the same answer with a paragraph of findings and later plans fails progress only. Approval questions and required notices keep their separate rules. Model validation follows D253.
+
+## D257: Settle and build devise with caller-owned continuation and explicit approval (2026-10-25)
+
+**Decision:**
+
+- The devise group routes by the main question. A whole-design-and-build request starts in design. Planning may obtain a design for one part and then resume. A called design returns to its active caller instead of starting another plan. A review-only request returns findings without creating a replacement design.
+- The four methods use full names and plain files at their name-rule paths. Plan's two harness children are included in this batch. Parent routes name use, exclusions and results; they load children only when needed.
+- A full design is required by consequential effects, dependent part decisions or another builder relying on it as a contract. Undo means effects. A small reversible change is short only without a full trigger. Longevity alone is not one. Full designs omit empty boilerplate.
+- A short design reads facts first. It asks a necessary user question through respond-ask and ends the turn, then resumes without a full review. With no answer needed it returns briefly. Shared pre-change timing still holds. No local choice definition replaces understand's whole rule.
+- Review finishes when ranked findings return with missing checks marked. Design owns fixing, accepting or parking them before approval and accounts for outstanding checks. An independent review follows act-verify rule 2. If unavailable, return provisional findings, name the check and next owner, and never label self-review independent. A delegated worker hands the need to its caller. Missing log events alone prove no unavailability.
+- Plan is based on actual work, not question wording. Direct facts may need no plan; multipart research does. Given items keep their wording and order, additions are marked and the obvious test stops needless expansion. Three or more steps use a checklist; completed status follows verification. Dependent phases keep their order, while independent parts can be handed on within a phase.
+- A high-stakes plan requires actual user approval before execution. This is a stricter variation of act rule 13's general given-steps exception. Given steps alone are not approval. A plan request does not authorize execution. An unchanged approval is reused only within its scope and basis. A failed check or a changed supporting fact causes replanning even when the step text is unchanged. Plan approval does not waive a separate guardrail.
+- Harness children own controls, not policy. Mode and task-list availability are separate. They use only exposed permitted tools, recognise actual approval, and never infer approval or verification from mode or checkbox state. Missing mode controls use final-text approval and end the turn; missing task controls use plain text. No configuration change or installation fills a gap. Approval does not bypass a still-restricted mode.
+- Official documentation confirms Claude's mode and task tools, and Codex UI plan entry and optional plan tracking. A universal agent-callable Codex mode entry/exit interface remains unconfirmed. The child uses the permitted live controls or reports the limit. Sources and unknowns are in `research/plan-harnesses.md`.
+- Unbuilt same-set dependencies remain in the designs. Built text follows skillbook-write: use judgment rather than naming an unbuilt operation. Dividing/checking parts and handing work through available harness means are the current fallbacks. Optional external sets retain their documented fallbacks.
+
+**Why:**
+
+- A caller must receive the part it asked for. Recursive planning repeats work and loses continuation ownership.
+- Old ownership shortcuts and show-and-start traces disagree with current shared rules. Explicit actions and paired cases make their boundaries testable.
+- Full depth depends on consequences and dependencies, not the kind or age of a deliverable. Short work still needs real user answers.
+- A review report can finish before the design owner resolves it. Missing independent checks must remain visible rather than blocking every useful finding or becoming false evidence.
+- Approval is about an understood scope and basis. Neither giving steps nor a changed UI state supplies it. A restricted harness still constrains execution.
+
+**Tested:** No model test was run, by D253. The six files are built with executable scenarios from all 81 numbered devise tests, extra boundary pairs, and manual declarations for live harness operations. Correct and plausible wrong traces were checked by inspection; these are not observed model passes. Repository checks and coverage are reported in `../tests/batch2-build-report.md`. Actual harness dialogs and task operations remain unverified.
+
+## D258: Non-blocking concerns go in the final answer (2026-10-25)
+
+**Decision:**
+
+- Act's opener and concern branches agree on timing. A concern changing the work or the user's consent goes through respond-ask and ends the turn before action.
+- A concern changing neither goes in one line in the final answer. It is never paired with continuing work in a single instruction.
+- A concern that could change consent is not harmless merely because the requested action's wording stays unchanged. Required notices retain their own timing.
+- Existing concern/follow-up cases use final-answer timing where appropriate. Paired cases distinguish an accepted non-blocking limitation from a possible loss requiring consent; the required-notice boundary is retained.
+
+**Why:** A message paired with going on is often lost into private thinking. Delaying a consent-changing concern would deprive the user of the chance to stop. The final-answer branch therefore covers only a concern that cannot change the work or consent.
+
+**Tested:** No model test was run. Cases were checked against an exact authorized edit with its final caveat and a losing action that must remain unperformed pending consent. Static checks are reported in `../tests/batch2-build-report.md`; the semantic outcomes remain untested on models.

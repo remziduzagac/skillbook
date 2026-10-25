@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: plan, test 13 and related Flow (D257)"
+about = "Stops dependent continuation, revises the failed basis and preserves required new approval."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:rule:9", "devise-plan:rule:6"]
+category = "edge"
+rejects = "Ticks the failed step complete and continues with its dependents."
+review = ["Stops dependent continuation, revises the failed basis and preserves required new approval.", "Preserves the requested no-change boundary and marks missing evidence."]
+
+[[turns]]
+prompt = "The previous step's required check failed. Return the revised plan before any dependent step; I have not approved the revision."
+
+[checks]
+no_changes = true

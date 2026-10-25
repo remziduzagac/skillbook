@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: plan, test 11 (D257)"
+about = "Keeps the active plan as continuation owner and does not recursively start a second plan."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:rule:10"]
+category = "normal"
+rejects = "Starts a second plan instead of resuming the active one."
+review = ["Keeps the active plan as continuation owner and does not recursively start a second plan.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "The work plan has a later reconciliation part whose shape is unresolved. Obtain that part's design and continue this same plan from its result. Return the proposal only."
+
+[checks]
+no_changes = true

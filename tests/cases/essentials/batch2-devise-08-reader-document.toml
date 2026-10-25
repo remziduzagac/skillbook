@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: devise, test 8 (D257)"
+about = "Produces the requested reader document rather than an unrequested design or execution plan."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise"]
+covers = ["devise:not-for:devise-design", "essentials:step:3"]
+category = "boundary"
+rejects = "Returns a design or plan instead of the requested reader text."
+review = ["Produces the requested reader document rather than an unrequested design or execution plan.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Write a visitor-facing explanation of the current checkout terms from glossary.md. Return text only."
+
+[checks]
+no_changes = true

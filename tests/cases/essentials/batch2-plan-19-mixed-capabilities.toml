@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: plan, test 19 (D257)"
+about = "Treats the two capabilities independently and keeps the missing capability's text fallback."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["act:rule:13", "devise-plan:step:6"]
+category = "boundary"
+rejects = "Assumes both capabilities exist when only one does."
+review = ["Treats the two capabilities independently and keeps the missing capability's text fallback.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Explain both cases: a plan mode without task tracking, and task tracking without a plan mode. Return the workflow only, not a claim of live execution."
+
+[checks]
+no_changes = true

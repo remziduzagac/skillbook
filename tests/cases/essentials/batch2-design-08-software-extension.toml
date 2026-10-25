@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 8 (D257)"
+about = "Uses the generic method and states its limited architecture basis without loading a missing specialist or inventing its rules."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:6"]
+category = "normal"
+rejects = "Claims a missing specialist lens was applied."
+review = ["Uses the generic method and states its limited architecture basis without loading a missing specialist or inventing its rules.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Propose a software checkout design using the current project constraints. No software-specialist set is installed. Return the parts and connections in chat only."
+
+[checks]
+no_changes = true

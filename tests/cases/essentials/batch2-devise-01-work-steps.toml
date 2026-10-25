@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: devise, test 1 (D257)"
+about = "Returns ordered work with missing non-obvious steps and checks; does not execute a plan-only request."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise"]
+covers = ["devise:last", "devise:route:devise-plan", "essentials:step:3"]
+category = "normal"
+rejects = "Drops non-obvious steps and their checks."
+review = ["Returns ordered work with missing non-obvious steps and checks; does not execute a plan-only request.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Improve desk intake and prepare staff instructions. Read the project facts first. Plan the work; do not perform it."
+
+[checks]
+no_changes = true

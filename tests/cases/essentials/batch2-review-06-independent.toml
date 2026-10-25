@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: review, test 6 (D257)"
+about = "Distinguishes genuine independence from self-review, and uses the shared unavailable-agent fallback honestly."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design-review"]
+covers = ["devise-design-review:rule:1", "devise-design-review:rule:2", "devise-design-review:step:1", "devise-design-review:step:2", "devise-design-review:step:3", "devise-design-review:step:4", "devise-design-review:step:5", "devise-design-review:step:6", "devise-design-review:step:7", "devise-design-review:step:8", "devise-design-review:last"]
+category = "edge"
+rejects = "Calls a fork or its own second read independent."
+review = ["Distinguishes genuine independence from self-review, and uses the shared unavailable-agent fallback honestly.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope.", "Reports consistency, builder walkthrough, coverage/overlap, challenge, lean and architecture status; marks unavailable checks instead of claiming they ran."]
+
+[[turns]]
+prompt = "The writer asks for an independent full-design review. Use a genuinely fresh reviewer if the harness permits; otherwise mark the independent check outstanding. Do not claim a second self-read is independent."
+
+[checks]
+no_changes = true

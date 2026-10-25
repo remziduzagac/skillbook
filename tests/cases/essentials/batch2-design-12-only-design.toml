@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 12 (D257)"
+about = "Ends with the design result and pending choices, without starting execution or an unasked execution plan."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:rule:4", "devise-design:step:12"]
+category = "normal"
+rejects = "Starts executing or planning implementation after a design-only request."
+review = ["Ends with the design result and pending choices, without starting execution or an unasked execution plan.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "I want a design proposal only, not implementation. Describe ownership and reconciliation from the project facts; keep it in chat."
+
+[checks]
+no_changes = true

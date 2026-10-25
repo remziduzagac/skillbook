@@ -5,7 +5,7 @@ skills = ["act", "act-cleanup"]
 covers = ["act:not-for:act-cleanup"]
 category = "boundary"
 rejects = "Looks for temporary files or processes to remove instead of tidying scale.py, or deletes files."
-review = ["Turn 1 either tidies scale.py or shows its plan or choices and ends the turn; the checks read the end of the second turn.", "The answer treats the request as tidying scale.py itself: it makes the code easier to follow, or states the choices it is going with first.", "It keeps what the code does; the wrong scaling it may notice is named as a follow-up or a concern, not quietly fixed.", "No other file is changed or removed."]
+review = ["Turn 1 either tidies scale.py or shows its plan or choices and ends the turn; the checks read the end of the second turn.", "The answer treats the request as tidying scale.py itself: it makes the code easier to follow, or states the choices it is going with first.", "It keeps what the code does; the wrong scaling it may notice is named as a one-line follow-up in the final answer, not quietly fixed.", "No other file is changed or removed."]
 
 [[turns]]
 prompt = "Clean up scale.py; it's hard to follow."

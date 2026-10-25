@@ -1,0 +1,20 @@
+source = "blueprint/design/essentials/devise.md: design, test 2 (D257)"
+about = "Skips unnecessary design and makes only the settled reversible correction."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:1"]
+category = "normal"
+rejects = "Designs a new shape instead of making the settled correction."
+review = ["Skips unnecessary design and makes only the settled reversible correction.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+version_control = true
+
+[[turns]]
+prompt = "The shape is settled: replace the misspelled heading in labels.md with Reservations. Make that exact correction only."
+
+[checks]
+changed = ["labels.md"]
+unchanged = ["summary.md", "requirements.md", "draft.md", "approved-plan.md"]
+
+[checks.file_contains]
+"labels.md" = ["# Reservations", "Flute: cabinet A", "Cello: cabinet B"]

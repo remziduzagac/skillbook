@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: plan, test 16 (D257)"
+about = "Uses the full shared choice rule, with no local route-versus-result shortcut or invented taste."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:rule:4"]
+category = "normal"
+rejects = "Invents user taste or asks about a settled project convention."
+review = ["Uses the full shared choice rule, with no local route-versus-result shortcut or invented taste.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "The document has a heading convention, but my preferred tone is unknown. Plan the work using that convention and ask only about the taste decision."
+
+[checks]
+no_changes = true

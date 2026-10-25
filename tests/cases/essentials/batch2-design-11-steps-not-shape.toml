@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 11 (D257)"
+about = "Plans settled work without reopening its shape or terminology choice."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:1"]
+category = "normal"
+rejects = "Reopens settled shape instead of returning steps."
+review = ["Plans settled work without reopening its shape or terminology choice.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "The solution is already specified in approved-plan.md. Give its implementation steps only; do not redesign the terminology."
+
+[checks]
+no_changes = true

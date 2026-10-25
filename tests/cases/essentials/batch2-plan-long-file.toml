@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/devise.md: plan, test 8 (D257)"
+about = "Keeps an authorized long plan in a named file and returns an outline."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:last", "devise-plan:rule:5"]
+category = "edge"
+rejects = "Leaves no plan record, invents a keeper procedure or executes the plan."
+review = ["Saves a substantive multi-phase plan under plans/ using the authorized filename choice and returns its actual path plus an outline.", "The plan has goals, ordered checks and marked assumptions; writing it is not treated as approval of its execution."]
+version_control = true
+
+[[turns]]
+prompt = "Prepare a long, multi-session plan for Kestrel. No keeper is loaded. I authorize you to choose a descriptive Markdown filename under plans/ and save the proposal there now. This approves only the local plan record, not its execution. Put the outline and path in your reply."
+
+[checks]
+written_under = { "plans" = 1 }
+unchanged = ["labels.md", "summary.md", "requirements.md", "draft.md"]

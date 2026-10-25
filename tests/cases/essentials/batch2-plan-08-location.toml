@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: plan, test 8 (D257)"
+about = "Hands back the plan and outline with storage ownership intact and no invented keeper path or edit."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:last"]
+category = "boundary"
+rejects = "Invents the keeper's destination or writes a record without authorization."
+review = ["Hands back the plan and outline with storage ownership intact and no invented keeper path or edit.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "The long plan will need a file, but the keeper owns its destination and format. Return an outline and payload to that keeper rather than inventing its files."
+
+[checks]
+no_changes = true

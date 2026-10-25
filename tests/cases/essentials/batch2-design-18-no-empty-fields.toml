@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 18 (D257)"
+about = "Keeps required meaningful contents, reasons and checks while omitting empty fields and invented details."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:8"]
+category = "edge"
+rejects = "Invents empty risks, questions or approval to fill a form."
+review = ["Keeps required meaningful contents, reasons and checks while omitting empty fields and invented details.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Return a full draft from the known constraints. If a section genuinely has nothing to add, omit it rather than filling it with invented risk or history. No files."
+
+[checks]
+no_changes = true

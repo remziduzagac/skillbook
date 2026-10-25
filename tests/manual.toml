@@ -28,3 +28,55 @@ reason = "Checking the size before a large copy needs a tree large enough to mat
 [[aspect]]
 id = "act-cleanup:advice:5"
 reason = "Keeping the record in a file so it survives compaction shows only after a real compaction in a long session, which a scripted run does not reach."
+
+[[aspect]]
+id = "devise-plan-claude:step:1"
+reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-claude:step:2"
+reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-claude:step:3"
+reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-claude:step:4"
+reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-claude:step:5"
+reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-claude:step:6"
+reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-codex:step:1"
+reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-codex:step:2"
+reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-codex:step:3"
+reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-codex:step:4"
+reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-codex:step:5"
+reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan-codex:step:6"
+reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
+
+[[aspect]]
+id = "devise-plan:route:devise-plan-claude"
+reason = "Positive live selection of the Claude planning child requires a Claude Code session. The Codex-only suite checks its documentation and negative operation boundary, not real Claude routing or tool availability."

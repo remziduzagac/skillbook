@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: review, test 7 (D257)"
+about = "Distinguishes implementation verification/code review from a design review instead of forcing this method."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design-review"]
+covers = ["devise-design:not-for:devise-design-review"]
+category = "normal"
+rejects = "Forces a design review onto code/spec implementation verification."
+review = ["Distinguishes implementation verification/code review from a design review instead of forcing this method.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "I want to know whether source-code changes implement a spec, not whether a design holds together. Explain the correct review boundary; do not invent source code or perform a design review."
+
+[checks]
+no_changes = true

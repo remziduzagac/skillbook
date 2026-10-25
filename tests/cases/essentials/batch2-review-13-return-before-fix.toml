@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: review, test 13 (D257)"
+about = "Completes the findings report without taking over caller-owned resolution or altering the draft."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design-review"]
+covers = ["devise-design-review:rule:4", "devise-design-review:step:8"]
+category = "normal"
+rejects = "Waits for caller resolution before returning the findings."
+review = ["Completes the findings report without taking over caller-owned resolution or altering the draft.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Return the review findings now. Their disposition is for the design owner later; do not wait for corrections or mark findings accepted."
+
+[checks]
+no_changes = true

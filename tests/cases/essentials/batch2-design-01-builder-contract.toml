@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 1 (D257)"
+about = "Full draft covers purpose, scope, bounded parts, connections, behavior/failures, decisions/reasons, checks and remaining questions; no invented approval."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:last", "devise-design:rule:1", "devise-design:rule:3", "devise-design:rule:6", "devise-design:step:4", "devise-design:step:6", "devise-design:step:8"]
+category = "normal"
+rejects = "Omits responsibilities, connections, failure paths or decision reasons from the builder contract."
+review = ["Full draft covers purpose, scope, bounded parts, connections, behavior/failures, decisions/reasons, checks and remaining questions; no invented approval.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope.", "Puts purpose before parts/details and gives decisions their reasons; any diagram must help explain connections rather than fill a form.", "A separate builder can follow the main and failure paths without inventing missing responsibilities."]
+
+[[turns]]
+prompt = "Draft a checkout-system design that a separate builder can implement from the answer alone. Use summary.md and requirements.md. Keep it in chat, with approval still open."
+
+[checks]
+no_changes = true

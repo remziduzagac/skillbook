@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: devise, test 9 (D257)"
+about = "Routes by the execution question, identifies the design part and keeps continuation with the active planner."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise"]
+covers = ["devise:last", "devise:route:devise-plan", "essentials:step:3"]
+category = "boundary"
+rejects = "Starts the whole design first or recursively restarts the active planner."
+review = ["Routes by the execution question, identifies the design part and keeps continuation with the active planner.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "The active request is an execution plan. One later part still needs a design for reconciling reservations. Return the steps and that unresolved part; do not restart a whole-design process."
+
+[checks]
+no_changes = true

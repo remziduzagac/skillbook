@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: devise, test 6 (D257)"
+about = "Clarifies the material goal rather than choosing a design problem or generating an ungrounded solution."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise"]
+covers = ["devise:not-for:devise-design", "essentials:step:3"]
+category = "boundary"
+rejects = "Invents the goal instead of asking what changes the work."
+review = ["Clarifies the material goal rather than choosing a design problem or generating an ungrounded solution.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Help Kestrel work better. I have not said which outcome matters. Ask what would change the work before designing anything."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 7 (D257)"
+about = "Recommends a destination and ends with the question; names no invented keeper procedure or record."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:last"]
+category = "edge"
+rejects = "Writes an invented keeper file before the destination answer."
+review = ["Recommends a destination and ends with the question; names no invented keeper procedure or record.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Prepare a full design for another builder. No keeper is loaded and I have not chosen a destination. Ask me where it should be kept; propose a useful file without writing it."
+
+[checks]
+no_changes = true

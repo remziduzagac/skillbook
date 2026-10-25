@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: devise, test 4 (D257)"
+about = "Uses the short path rather than imposing the full design review; preserves any user choice still needed."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise"]
+covers = ["devise:route:devise-design", "essentials:step:3"]
+category = "boundary"
+rejects = "Forces a full review on the stated low-consequence independent change."
+review = ["Uses the short path rather than imposing the full design review; preserves any user choice still needed.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Sketch two independent wording controls for an internal desk note. Mistakes are cheap to undo and nobody else will build from it. Return a short proposal only."
+
+[checks]
+no_changes = true

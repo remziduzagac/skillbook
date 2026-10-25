@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: review, test 3 (D257)"
+about = "Reports the contradictory official authorities as a consistency finding with severity, evidence and remedy."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design-review"]
+covers = ["devise-design-review:rule:1", "devise-design-review:step:2", "devise-design-review:step:8"]
+category = "normal"
+rejects = "Misses mutually incompatible authorities or gives no ranked evidence."
+review = ["Reports the contradictory official authorities as a consistency finding with severity, evidence and remedy.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Check draft.md for requirements or decisions that cannot both hold. Rank findings and suggest a fix. No edits."
+
+[checks]
+no_changes = true

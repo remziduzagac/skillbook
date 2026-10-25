@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: design, test 16 (D257)"
+about = "Separates convention and user preference using the whole shared ownership rule and avoids a local result-versus-route shortcut."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design"]
+covers = ["devise-design:step:7"]
+category = "normal"
+rejects = "Uses a local route-versus-result test or invents the user preference."
+review = ["Separates convention and user preference using the whole shared ownership rule and avoids a local result-versus-route shortcut.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "The headings follow a project convention, while the tone is my preference. Propose the convention-based heading and ask about tone. No edits."
+
+[checks]
+no_changes = true

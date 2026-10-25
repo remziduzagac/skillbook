@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: codex, test 8 (D257)"
+about = "Explains the reference without trying to operate the current session as another harness. This is reference reasoning, not proof that live controls ran."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan-codex"]
+covers = ["devise-plan-codex:last", "devise-plan-codex:step:7", "devise-plan:not-for:devise-plan-codex"]
+category = "edge"
+rejects = "Operates another harness or describes a simulation as a live interaction."
+review = ["Describes the documented workflow: Explains the reference without trying to operate the current session as another harness. This is reference reasoning, not proof that live controls ran.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "For documentation only, use devise-plan-codex to explain its workflow when the caller is reading this other harness reference as documentation. Do not operate modes, create tasks or edit files in this session. Distinguish documented controls from tools actually exposed."
+
+[checks]
+no_changes = true

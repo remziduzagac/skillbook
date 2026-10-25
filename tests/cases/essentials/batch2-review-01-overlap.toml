@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: review, test 1 (D257)"
+about = "Identifies the overlapping ownership with source lines and a general fix; leaves files unchanged."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-design-review"]
+covers = ["devise-design-review:rule:1", "devise-design-review:step:4"]
+category = "normal"
+rejects = "Misses duplicate ownership of the official record."
+review = ["Identifies the overlapping ownership with source lines and a general fix; leaves files unchanged.", "Uses facts relevant to this request or its stated hypothetical scenario, marks unverified claims and makes no change beyond the exact authorized scope."]
+
+[[turns]]
+prompt = "Review draft.md for overlapping ownership of the official record. Return findings only."
+
+[checks]
+no_changes = true
