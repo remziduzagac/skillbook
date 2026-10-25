@@ -6,7 +6,7 @@
 </p>
 <p align="center"><a href="https://github.com/remziduzagac/skillbook/actions/workflows/ci.yml"><img src="https://github.com/remziduzagac/skillbook/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a></p>
 
-skillbook is a book of skills for AI agents such as Claude Code and Codex: instructions an agent loads to understand what you want, do the work with care and tell you plainly what it did. The skills come in sets you install separately: essentials, for how any work is done, and sets for keeping a project's design record, engineering software and writing for people. Other agents that read skills can use them too.
+skillbook is a book of skills for AI agents such as Claude Code and Codex: instructions an agent loads to understand what you want, do the work with care and tell you plainly what it did. The skills come in sets you install separately: essentials, for how any work is done, and sets for keeping a project's design record, engineering software, writing for people, keeping the rhythm of your working days and keeping what you learn. Other agents that read skills can use them too.
 
 <p align="center">
   <img alt="An orange robot at a workbench reads a black skillbook, with diagrams, gears and screens around it"
@@ -20,12 +20,18 @@ skillbook is a book of skills for AI agents such as Claude Code and Codex: instr
 | Sets | What they cover |
 | --- | --- |
 | [essentials][es-docs] | how the agent behaves, understands, arranges, coordinates, designs and plans, with care |
-| blueprint | the spec-to-dev flow: a project's design record, decisions and tasks, kept in step ([idea][bp-idea]) |
-| softeng | how good software is designed, built, tested, reviewed, shipped and maintained |
-| authoring | writing for people: user docs, business documents, articles, issues; editing |
+| [blueprint][bp-idea] | the spec-to-dev flow: a project's design record, decisions and tasks, kept in step |
+| [softeng][se-idea] | how good software is designed, built, tested, reviewed, shipped and maintained |
+| [authoring][au-idea] | writing for people: user docs, business documents, articles, issues; editing |
+| [cadence][ca-idea] | the rhythm of your working days: meetings, tasks, reviews and wrapping up work |
+| [compendium][co-idea] | what you learn: capturing notes and sources, distilling them, and finding them again |
 
 [es-docs]: docs/essentials/README.md
 [bp-idea]: docs/blueprint/idea.md
+[se-idea]: docs/softeng/idea.md
+[au-idea]: docs/authoring/idea.md
+[ca-idea]: docs/cadence/idea.md
+[co-idea]: docs/compendium/idea.md
 
 Only each set's main skill sits in an agent's context; every other skill loads when a flow reaches it, so a set can grow without filling the context. Each set works alone, and uses another when it is installed.
 
@@ -39,6 +45,7 @@ Coming with the first release: one install script, `install.sh`, copies the sets
 - [docs/](docs/README.md): one page per skill, for people.
 - [docs/essentials/](docs/essentials/README.md): what essentials is for, how it works, and a line on each of its skills.
 - [docs/blueprint/idea.md](docs/blueprint/idea.md): the first idea of the blueprint method, with [a worked example](docs/blueprint/idea.md#a-worked-example-worktree-groups).
+- `docs/<set>/idea.md`: the first idea of each other set, such as [softeng](docs/softeng/idea.md).
 
 ## Use at your own risk
 
