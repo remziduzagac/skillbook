@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "First gives an honest bounded case. After the new failed-pilot evidence, revises or narrows the case, explains the change and obtains renewed scrutiny of changed inputs rather than reusing old support as current. No invented pilot success."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "edge"
+rejects = "Repeats a prior strong case unchanged after contrary new evidence."
+covers = ["understand-argue:rule:1", "understand-argue:rule:2", "understand-argue:rule:3", "understand-argue:rule:4", "understand-argue:rule:5"]
+review = ["First gives an honest bounded case. After the new failed-pilot evidence, revises or narrows the case, explains the change and obtains renewed scrutiny of changed inputs rather than reusing old support as current. No invented pilot success."]
+
+[[turns]]
+prompt = "Make the case for hybrid rota authority within the documented access constraints. Mark it one-sided and leave files alone."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "New pilot evidence: the copies diverged in five of six weeks, and no one has time for reconciliation. Update the honest case; do not change the underlying proposal."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+no_changes = true

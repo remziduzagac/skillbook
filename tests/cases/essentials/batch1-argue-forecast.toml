@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Challenges the forecast against actual evidence/base rates if available, otherwise marks it uncertain; no fabricated certainty or statistics."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "edge"
+rejects = "Reports an unsupported forecast as an established outcome."
+covers = ["understand-argue:rule:2", "understand-argue:rule:4", "understand-argue:advice:5"]
+review = ["Challenges the forecast against actual evidence/base rates if available, otherwise marks it uncertain; no fabricated certainty or statistics.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Looks for actual prior-success evidence where available and otherwise marks base-rate evidence missing; invents no statistics."]
+
+[[turns]]
+prompt = "Someone forecasts zero missed shifts for five years after moving online. Make an honest case without treating that inside-view forecast as evidence."
+
+[checks]
+no_changes = true

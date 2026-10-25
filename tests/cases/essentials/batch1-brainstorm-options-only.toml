@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Returns materially different feasible possibilities; no forced choice, final decision or selection question; no edits."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "normal"
+rejects = "Picks a winner or starts a choice round when only possibilities were requested."
+covers = ["understand-brainstorm:rule:1", "understand-brainstorm:rule:2", "understand-brainstorm:rule:3", "understand-brainstorm:rule:4", "understand-brainstorm:rule:5", "understand:route:understand-brainstorm", "understand-clarify:step:7"]
+review = ["Returns materially different feasible possibilities; no forced choice, final decision or selection question; no edits.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Suggest distinct ways to reduce missed museum shifts. I want possibilities only, not a winner or a decision question. Use the constraints in brief.md."
+
+[checks]
+no_changes = true

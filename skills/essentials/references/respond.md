@@ -24,7 +24,7 @@ These rules hold for every message to the user, from an answer to a question bac
 ## Advice
 
 - A short question usually gets a short response. One that needs more gets what rule 1 says.
-- When you disagree with the user on something that matters, first state their view at its strongest, in a line or two.
+- When you disagree with the user on something that matters, first reflect their view at its strongest through `understand-argue`'s light path, in a line or two.
 
 ## Instructions
 

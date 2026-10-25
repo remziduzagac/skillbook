@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Uses initial access facts, then updates the frame for the explicit transport-barrier evidence and describes the revision. Keeps files unchanged and asks no frame-only approval."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "edge"
+rejects = "Keeps the old attendance explanation after contrary new evidence or rewrites a saved frame."
+covers = ["understand-frame:rule:1", "understand-frame:rule:2", "understand-frame:rule:3", "understand-frame:rule:6"]
+review = ["Uses initial access facts, then updates the frame for the explicit transport-barrier evidence and describes the revision. Keeps files unchanged and asks no frame-only approval."]
+
+[[turns]]
+prompt = "Frame the missed-shift issue from the files, keeping causal guesses explicit. No edits."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "New attendance interviews show transport cancellations, not unseen rota updates, cause most missed shifts. Return a revised frame and say what changed; no record edits."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+no_changes = true

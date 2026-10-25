@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "Identifies that the two formats were not supplied and asks for them without inventing options. Keeps the clarification light, with no heavy investigation or independent agents."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "boundary"
+rejects = "Launches heavy checks for a reversible private list."
+covers = ["understand-weigh:rule:5", "understand-weigh:rule:6", "understand-weigh:advice:2"]
+review = ["Identifies that the two formats were not supplied and asks for them without inventing options. Keeps the clarification light, with no heavy investigation or independent agents.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Uses a short clarification appropriate to a private, easily rewritten choice; does not pretend an unspecified comparison was completed."]
+
+[[turns]]
+prompt = "Compare two formats for a private scratch list that only I will read and can rewrite instantly. Keep this proportionate."
+
+[checks]
+no_changes = true

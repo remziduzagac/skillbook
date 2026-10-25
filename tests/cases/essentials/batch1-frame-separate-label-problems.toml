@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Gives one readability frame and separately names the scan-retrieval problem and its next owner or step; no mixed success criterion."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "edge"
+rejects = "Combines independent problems into one vague frame."
+covers = ["understand-frame:rule:2", "understand-frame:rule:5"]
+review = ["Gives one readability frame and separately names the scan-retrieval problem and its next owner or step; no mixed success criterion."]
+
+[[turns]]
+prompt = "Two separate archive issues need different outcomes: visitors cannot read labels, and staff cannot find original scans. Frame just label readability and hand back scan retrieval separately."
+
+[checks]
+no_changes = true

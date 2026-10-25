@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Shows the whole set of open items before discussing one; offers reasons and grounded recommendations; identifies remaining items; no edits."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "normal"
+rejects = "Discusses one item without showing the whole agenda."
+covers = ["understand-discuss:rule:1", "understand-discuss:rule:2", "understand-discuss:rule:3", "understand-discuss:rule:4", "understand-discuss:advice:1", "understand-discuss:advice:3", "understand-discuss:step:1", "understand-discuss:step:2", "understand-discuss:step:8", "understand:route:understand-discuss", "understand-clarify:not-for:understand-clarify-deep", "understand-clarify:step:7", "understand:not-for:understand-clarify"]
+review = ["Shows the whole set of open items before discussing one; offers reasons and grounded recommendations; identifies remaining items; no edits.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Orders prerequisites before dependent decisions, keeps a few real questions within one item and gives grounded reasons. Shows the whole with that item; later items stay tracked."]
+
+[[turns]]
+prompt = "Let us work through the volunteer rota: access for people without phones, update ownership and missed-shift reminders. Read the brief first; decide nothing for me."
+
+[checks]
+no_changes = true

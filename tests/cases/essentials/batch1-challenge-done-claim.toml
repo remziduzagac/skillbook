@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Inspects the file and reports the actual presence or absence as verification; does not substitute a conceptual challenge or invent an entry."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "edge"
+rejects = "Critiques the proposal instead of checking the done claim."
+covers = ["understand-challenge:rule:6"]
+review = ["Inspects the file and reports the actual presence or absence as verification; does not substitute a conceptual challenge or invent an entry."]
+
+[[turns]]
+prompt = "Someone claims GLOSSARY.md already contains a Shift reminder entry. Check that claim against the actual file. Do not critique the idea of reminders."
+
+[checks]
+no_changes = true

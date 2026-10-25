@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Turn 1 proposes the exact entry for approval without editing. Turn 2 the work-owning main workflow adds the explicitly approved entry to the existing glossary, preserving existing terms and avoiding a repeated candidate or approval round."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Writes before approval, repeats naming after a settled choice or overwrites existing terms."
+covers = ["understand-naming:rule:1", "understand-naming:rule:5", "understand-naming:rule:7", "understand-naming:rule:8"]
+review = ["Turn 1 proposes the exact entry for approval without editing. Turn 2 the work-owning main workflow adds the explicitly approved entry to the existing glossary, preserving existing terms and avoiding a repeated candidate or approval round."]
+
+[[turns]]
+prompt = "Propose a glossary entry for Shift reminder, meaning a notice of an upcoming volunteer duty. I have chosen the name; show the entry before any edit."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Approved. The main workflow should add that entry to GLOSSARY.md now. Keep all existing entries unchanged. Go ahead."
+
+[turns.checks]
+changed = ["GLOSSARY.md"]
+only_changed = ["GLOSSARY.md"]
+
+[checks]

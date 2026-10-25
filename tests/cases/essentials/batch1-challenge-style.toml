@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Excludes the unrelated font preference from substantive weaknesses."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "edge"
+rejects = "Counts unrelated font taste as a substantive failure."
+covers = ["understand-challenge:rule:1"]
+review = ["Excludes the unrelated font preference from substantive weaknesses.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Critique paper authority against attendance and access goals. A volunteer dislikes the heading font, but it affects neither goal nor costs."
+
+[checks]
+no_changes = true

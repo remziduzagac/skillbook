@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Precisely states position and goal, gives supported reasons or marked assumptions, meets strong objections, admits weaknesses, rates strength with why/next evidence and labels the result one-sided."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "normal"
+rejects = "Omits honest objections, evidence strength, next evidence or the one-sided label."
+covers = ["understand-argue:rule:1", "understand-argue:rule:2", "understand-argue:rule:3", "understand-argue:rule:4", "understand-argue:rule:5", "understand-argue:advice:1", "understand-argue:step:1", "understand-argue:step:2", "understand-argue:step:3", "understand-argue:step:4", "understand-argue:step:5", "understand-argue:step:6", "understand-argue:last", "understand:route:understand-argue"]
+review = ["Precisely states position and goal, gives supported reasons or marked assumptions, meets strong objections, admits weaknesses, rates strength with why/next evidence and labels the result one-sided.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Gives position/goal/constraints, strongest supported reasons first, strong objections answered or conceded, admitted weaknesses, evidence-based strong/moderate/weak assessment and next evidence. Returns the one-sided case without selecting or changing work."]
+
+[[turns]]
+prompt = "Make the strongest honest case for paper rota authority at this museum. Mark it as one-sided, support reasons from files and admit the strongest objections."
+
+[checks]
+no_changes = true

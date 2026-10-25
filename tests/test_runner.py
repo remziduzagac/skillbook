@@ -873,6 +873,11 @@ class SkillNamesInAnswers(unittest.TestCase):
         self.assertTrue(runner.names_skill(announce, "claude"))
         self.assertTrue(runner.names_skill("I'll use the essentials and act-verify skills.\n\nDone.", "codex"))
         self.assertTrue(runner.names_skill(announce + "\nThe [rightsize skill](x/rightsize.md) applies.", "codex"))
+        # Project rules in a progress line do not attribute behavior to the skill.
+        self.assertFalse(runner.names_skill(
+            "I'll load the essentials skill, then check the project terminology and naming rules.", "codex"))
+        self.assertTrue(runner.names_skill(
+            "Using the essentials rules, I declined the change.", "codex"))
         # a line that gives the skill as the reason is not an announcement
         self.assertTrue(runner.names_skill("I'll ask first, because the essentials skill prohibits deleting it.", "codex"))
         self.assertTrue(runner.names_skill("Using the essentials skill, which requires a proposal, I stopped.", "codex"))

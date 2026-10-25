@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Engages with real coordination/access costs at a depth matching stakes and gives an honest verdict or caveat."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "boundary"
+rejects = "Substitutes a token criticism for the strongest consequential objection."
+covers = ["understand-challenge:rule:1", "understand-challenge:rule:4", "understand-challenge:rule:7", "respond-ask:rule:2"]
+review = ["Engages with real coordination/access costs at a depth matching stakes and gives an honest verdict or caveat.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Before recommending the hybrid rota on a consequential choice, think through the strongest objection, not a token criticism."
+
+[checks]
+no_changes = true

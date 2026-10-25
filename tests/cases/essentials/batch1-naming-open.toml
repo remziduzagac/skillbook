@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Reads existing terms, generates candidates before one comparison, gives a grounded recommendation for the user, includes rejected words/reasons and collision checks; writes nothing."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "normal"
+rejects = "Selects without criteria, glossary checks or rejected-word reasons."
+covers = ["understand-naming:rule:1", "understand-naming:rule:2", "understand-naming:rule:3", "understand-naming:rule:4", "understand-naming:rule:5", "understand-naming:rule:6", "understand-naming:rule:7", "understand-naming:advice:1", "understand-naming:advice:2", "understand-naming:advice:3", "understand-naming:advice:5", "understand-naming:last", "understand:route:understand-naming"]
+review = ["Reads existing terms, shows candidate names and one comparison, gives a grounded recommendation for the user, includes rejected words/reasons and collision checks; writes nothing.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Uses clear short searchable terms fitting the glossary and user language; gives criteria, collision checks and rejected reasons, keeps an open shared choice with the user and writes nothing."]
+
+[[turns]]
+prompt = "What should we call a shared reminder for a volunteer duty? Check the glossary first, generate candidates and compare them against clear naming criteria. Do not edit anything."
+
+[checks]
+no_changes = true

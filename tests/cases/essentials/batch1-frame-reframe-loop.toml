@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Reconsiders the assumed cause and returns an attendance problem frame with known constraints and evidence gaps; proposes no ungrounded fix."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "edge"
+rejects = "Keeps optimizing fonts without reconsidering the goal or causal assumption."
+covers = ["understand-frame:rule:1", "understand-frame:rule:2", "understand-frame:rule:3", "understand-frame:advice:7"]
+review = ["Reconsiders the assumed cause and returns an attendance problem frame with known constraints and evidence gaps; proposes no ungrounded fix."]
+
+[[turns]]
+prompt = "We keep changing noticeboard fonts to cure missed shifts, with no evidence fonts are the cause. Reframe the question before suggesting another fix."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Marks the factual dependency and needed source instead of using an invented price to rank options."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "edge"
+rejects = "Invents the missing renewal price."
+covers = ["understand-brainstorm:rule:5"]
+review = ["Marks the factual dependency and needed source instead of using an invented price to rank options.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Generate rota approaches, but the online service pricing after year one is unknown. Do not browse or invent that price."
+
+[checks]
+no_changes = true

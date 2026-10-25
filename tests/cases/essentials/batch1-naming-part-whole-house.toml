@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Explains the part/whole ambiguity, preserves Home for the dwelling and proposes a clear part term for the user without edits."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Uses the whole name for the porch without flagging the collision."
+covers = ["understand-naming:rule:2", "understand-naming:rule:3", "understand-naming:rule:7"]
+review = ["Explains the part/whole ambiguity, preserves Home for the dwelling and proposes a clear part term for the user without edits."]
+
+[[turns]]
+prompt = "In an unrelated housing glossary, Home means the complete dwelling. Someone proposes Home as the shared name for just the front porch. Assess that name without changing anything."
+
+[checks]
+no_changes = true

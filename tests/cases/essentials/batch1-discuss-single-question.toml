@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Answers the single cost question from the file without a multi-item discussion or unrelated questions."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "boundary"
+rejects = "Starts a discussion agenda for one factual question."
+covers = ["understand-discuss:advice:7", "understand:not-for:understand-discuss"]
+review = ["Answers the single cost question from the file without a multi-item discussion or unrelated questions.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Uses the single-question comparison path rather than a discussion agenda."]
+
+[[turns]]
+prompt = "Which costs less according to options.md: the paper rota or the online rota? Give just the comparison, not a discussion agenda."
+
+[checks]
+no_changes = true

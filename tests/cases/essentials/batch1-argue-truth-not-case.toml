@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Reports the factual annual-cost comparison from evidence, not a one-sided case or invented alternative price."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "edge"
+rejects = "Advocates a position instead of checking the factual claim."
+covers = ["understand-argue:rule:2", "understand-argue:rule:5"]
+review = ["Reports the factual annual-cost comparison from evidence, not a one-sided case or invented alternative price."]
+
+[[turns]]
+prompt = "Is it true, from the supplied evidence, that the online rota is cheaper annually than paper? I need a factual verdict, not advocacy for either."
+
+[checks]
+no_changes = true

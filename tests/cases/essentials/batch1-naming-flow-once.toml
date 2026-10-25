@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "One candidate-return/comparison/choice flow, with criteria, rejected terms and no recursive generation or duplicate user-choice rounds."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Starts duplicate candidate, comparison or user-choice rounds."
+covers = ["understand-naming:rule:1", "understand-naming:rule:5", "understand-naming:rule:6", "understand-naming:rule:7"]
+review = ["One candidate-return/comparison/choice flow, with criteria, rejected terms and no recursive generation or duplicate user-choice rounds.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Choose a term for a public rota reminder. Candidate generation should return to naming, then naming should compare once and put one choice to me. No files may change."
+
+[checks]
+no_changes = true

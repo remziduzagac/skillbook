@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Separates understandable naming fit from unverified registry/domain/trademark availability, identifies the needed sources and makes no fabricated clearance claim or outward call."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Claims the public name is legally or technically available without checking."
+covers = ["understand-naming:rule:1", "understand-naming:rule:5", "understand-naming:rule:7"]
+review = ["Separates understandable naming fit from unverified registry/domain/trademark availability, identifies the needed sources and makes no fabricated clearance claim or outward call."]
+
+[[turns]]
+prompt = "For a hypothetical public museum app, Shift Beacon is a candidate name. No registry, domain or trademark search is available here, and no network access is allowed. Give a naming assessment without claiming availability."
+
+[checks]
+no_changes = true

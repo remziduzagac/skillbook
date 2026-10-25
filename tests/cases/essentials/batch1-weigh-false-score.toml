@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "Rejects unsupported precision and uses meaningful terms/evidence instead of laundering the scores into a ranking."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "boundary"
+rejects = "Treats unsupported decimal scores as evidence."
+covers = ["understand-weigh:rule:1", "understand-weigh:rule:2", "understand-weigh:rule:3", "understand-weigh:advice:6"]
+review = ["Rejects unsupported precision and uses meaningful terms/evidence instead of laundering the scores into a ranking.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Uses words or grounded measures rather than unsupported numerical scores."]
+
+[[turns]]
+prompt = "Someone rated paper 7.3 and online 8.1, but supplied no measure or weights. Compare them honestly from project facts."
+
+[checks]
+no_changes = true

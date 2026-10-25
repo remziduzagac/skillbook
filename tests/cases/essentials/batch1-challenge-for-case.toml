@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Makes the case for the position rather than treating the request as a case against."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "boundary"
+rejects = "Gives a case against when advocacy was requested."
+covers = []
+review = ["Makes the case for the position rather than treating the request as a case against.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Make the positive case for keeping paper authority, labelled as advocacy rather than a verdict."
+
+[checks]
+no_changes = true

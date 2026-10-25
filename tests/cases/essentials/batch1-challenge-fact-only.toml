@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Answers from evidence or marks unknown; does not invent an adversarial critique."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "edge"
+rejects = "Invents a critique instead of answering the factual check."
+covers = ["understand:not-for:understand-challenge"]
+review = ["Answers from evidence or marks unknown; does not invent an adversarial critique.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Does Alpha actually print the required label format according to options.md? Answer the factual check rather than arguing against printers."
+
+[checks]
+no_changes = true

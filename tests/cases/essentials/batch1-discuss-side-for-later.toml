@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Keeps updater ownership as the active item, visibly parks the print-sale topic with a destination and returns to the original question. Writes nothing."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Chases the fundraiser, forgets it or silently abandons updater ownership."
+covers = ["understand-discuss:rule:4", "understand-discuss:rule:5", "understand-discuss:step:4"]
+review = ["Keeps updater ownership as the active item, visibly parks the print-sale topic with a destination and returns to the original question. Writes nothing."]
+
+[[turns]]
+prompt = "Discuss who updates the rota. Also I have an unrelated thought about selling postcard prints next summer. Keep that as a later topic, not a new task."
+
+[checks]
+no_changes = true

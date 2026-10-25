@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Returns the proposed entry without writing the glossary or treating the request as approval of an edit."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Writes an unapproved glossary entry."
+covers = ["understand-naming:rule:7", "understand-naming:rule:8"]
+review = ["Returns the proposed entry without writing the glossary or treating the request as approval of an edit.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Propose a glossary entry for a new reminder concept: one sentence, avoided words and an example if needed. I have not approved adding it."
+
+[checks]
+no_changes = true

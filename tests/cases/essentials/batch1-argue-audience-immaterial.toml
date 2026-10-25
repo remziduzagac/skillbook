@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Marks or omits the immaterial audience gap without blocking or inventing concerns; uses known costs."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "boundary"
+rejects = "Blocks on an audience gap that cannot change the factual case."
+covers = ["understand-argue:rule:1", "understand-argue:rule:2"]
+review = ["Marks or omits the immaterial audience gap without blocking or inventing concerns; uses known costs.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Make a strictly factual cost case for Alpha over Beta using the tested printer requirements. A future presentation audience is unknown and does not affect this comparison."
+
+[checks]
+no_changes = true

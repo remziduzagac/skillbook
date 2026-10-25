@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Recognizes that the purported approved entry was not supplied. Returns the missing term or definition to the caller to settle, without inventing an entry or writing a glossary."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "boundary"
+rejects = "Invents the missing approved term or writes a glossary entry without its contents."
+covers = ["understand-naming:rule:7", "understand-naming:rule:8"]
+review = ["Recognizes that the purported approved entry was not supplied. Returns the missing term or definition to the caller to settle, without inventing an entry or writing a glossary.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "The main work flow will add an approved entry later. As the naming method, return the exact proposed entry and handoff only; write nothing."
+
+[checks]
+no_changes = true

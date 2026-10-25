@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Keeps retention unknown and identifies authoritative factual research as what would settle it; does not guess a legal duration or treat user taste as legal evidence."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "boundary"
+rejects = "Invents a legal retention duration."
+covers = ["understand-frame:rule:2", "understand-frame:rule:4"]
+review = ["Keeps retention unknown and identifies authoritative factual research as what would settle it; does not guess a legal duration or treat user taste as legal evidence.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Frame the archive retention problem. Our legal retention requirement is not in these files. Do not browse or invent it."
+
+[checks]
+no_changes = true

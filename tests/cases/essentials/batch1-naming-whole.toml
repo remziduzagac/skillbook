@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Identifies the part/whole conflict, explains ambiguity and proposes without renaming files."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "boundary"
+rejects = "Names a part Collection despite the whole already using it."
+covers = ["understand-naming:rule:2", "understand-naming:rule:3", "understand-naming:rule:7"]
+review = ["Identifies the part/whole conflict, explains ambiguity and proposes without renaming files.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "A single storage cabinet is about to be named Collection, which already names all archived material. Evaluate the terminology only."
+
+[checks]
+no_changes = true

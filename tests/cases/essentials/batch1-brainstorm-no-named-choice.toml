@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Compares the supplied options without unnecessary generation or unrelated selection questions."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "boundary"
+rejects = "Generates options for a comparison of named options."
+covers = ["understand:not-for:understand-brainstorm"]
+review = ["Compares the supplied options without unnecessary generation or unrelated selection questions.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Compare the named paper and online options on cost only. Do not generate additional approaches."
+
+[checks]
+no_changes = true

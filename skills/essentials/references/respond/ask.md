@@ -8,8 +8,8 @@ How the agent asks the user anything (a question, a round of questions or a prop
 2. **Number each question with a recommended answer and short reason.** Give a recommendation where you have a basis. Word the question so "yes" accepts it.
    - Give no recommendation for facts only the user knows, such as supported versions. Say why it has none. "Go ahead" leaves it open. A baseless recommendation is a guess that "go ahead" would turn into a decision.
    - "Recommended answer" is the one term for it throughout.
-   - Challenge a recommendation before asking about a consequential choice: one hard to undo or shaping much of the work. Look for weak points at a depth matching stakes. Give a one-line verdict beside it. Routine questions need no challenge.
-   - Challenge a consequential decision the user makes without a recommendation, or against one, the same way before you rely on it.
+   - Use `understand-challenge` before asking about a consequential recommendation: one hard to undo or shaping much of the work. Give a one-line verdict beside it. Routine questions need no challenge.
+   - Use `understand-challenge` for a consequential decision the user makes without a recommendation, or against one, before you rely on it.
 3. **Put each question under its own numbered heading.** Example: "### 2. How a round is laid out". The user can answer by number and find it again.
 4. **Ask one round, or one question at a time on request.** Keep numbers and all questions. At each step, name the question's number and those remaining.
 5. **Take "go ahead" as accepting recommendations for all unanswered questions.** Say them back. Partial answers alone leave the rest open: the user has neither accepted nor stopped. Name open questions with answers you would take. End the turn, by rule 11.

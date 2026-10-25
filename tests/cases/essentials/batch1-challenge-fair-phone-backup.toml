@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Represents paper authority plus the phone backup fairly before assessing real timeliness, workload and coverage assumptions. Does not assume phone-less volunteers are automatically excluded by online-only authority."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "edge"
+rejects = "Attacks online-only exclusion instead of the actual backed-up proposal."
+covers = ["understand-challenge:rule:1", "understand-challenge:rule:2", "understand-challenge:rule:3", "understand-challenge:rule:4"]
+review = ["Represents paper authority plus the phone backup fairly before assessing real timeliness, workload and coverage assumptions. Does not assume phone-less volunteers are automatically excluded by online-only authority."]
+
+[[turns]]
+prompt = "Critique this actual proposal: paper remains authoritative; a named volunteer phones each person without a smartphone after any update. Do not attack a different online-only proposal."
+
+[checks]
+no_changes = true

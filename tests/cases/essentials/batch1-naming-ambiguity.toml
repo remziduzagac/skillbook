@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Names both meanings, proposes distinct or single consistent terms and keeps an unresolved clash flagged; no persistent change."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "boundary"
+rejects = "Loses one of the two meanings or writes the glossary."
+covers = ["understand-naming:rule:2", "understand-naming:rule:7", "understand-naming:rule:8", "understand-naming:rule:9"]
+review = ["Names both meanings, proposes distinct or single consistent terms and keeps an unresolved clash flagged; no persistent change.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Our draft uses Shift both for a duty period and for a storage cabinet move. Propose how to resolve that ambiguity; leave the files alone."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Finds Visitor already means a museum attendee and raises the real conflict with reasons instead of accepting a collision silently."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Accepts Visitor despite its existing different meaning."
+covers = ["understand-naming:rule:1", "understand-naming:rule:2", "understand-naming:rule:5"]
+review = ["Finds Visitor already means a museum attendee and raises the real conflict with reasons instead of accepting a collision silently.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "We want to call a storage unit Visitor. Check that proposed name against this project before it is used."
+
+[checks]
+no_changes = true

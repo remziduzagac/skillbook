@@ -30,7 +30,7 @@ Follow the `understand` skill for facts first, who decides, keeping nothing, res
   - Not for: the user asking to be questioned or a part whose answers depend on each other (deep), or questions only someone else can answer (questionnaire).
   - Gives back: the "going with" line, with an offer of deep for a part whose answers depend on each other.
 - **deep** (`understand-clarify-deep`): when the user accepted shallow's offer of deep for a part whose answers open questions that would change the work. Load it at once, with no offer, when the user asks to be questioned, such as "question me on this plan".
-  - Not for: a level not yet seen whole (shallow first), a topic still to be decided together, or questions only someone else can answer (questionnaire).
+  - Not for: a level not yet seen whole (shallow first), a topic still to be decided together (`understand-discuss`), or questions only someone else can answer (questionnaire).
   - Gives back: the summary the user confirmed, or saw after telling you to start the work: decided, parked, accepted and assumed.
 - **questionnaire** (`understand-clarify-questionnaire`): when questions remain that only someone other than the user can answer, after the user answers theirs. Either the user says so, or you see it. If you see it, ask the user whether someone else holds the answer, rather than deciding alone.
   - Not for: anything the user can answer, or anything the files say.
@@ -41,7 +41,7 @@ Not here:
 
 - The user not following you goes to `respond-explain`.
 - "What do you think?" goes to the `act` skill's rule that an opinion is not a task.
-- A topic to decide together, or options wanted, is your own judgment, under the `understand` skill's rules.
+- A topic to decide together goes to `understand-discuss`. Options wanted go to `understand-brainstorm`.
 
 ## The last instruction
 

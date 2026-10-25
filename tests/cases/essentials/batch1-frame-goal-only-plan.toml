@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Turn 1 inspects the known facts and shows a concrete proposed plan or asks a genuinely material user-owned question, then ends before any lasting edit. No generic refusal. Turn 2 follows the explicit go-ahead and writes the grounded pack in only HANDOVER.md and CHECKLIST.md without a redundant approval turn."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "edge"
+rejects = "Writes an unapproved goal-only pack in turn 1, substitutes a generic preamble for a plan or material question, or stops again after go-ahead."
+covers = ["understand-frame:rule:1", "understand-frame:rule:2", "understand-frame:rule:6"]
+review = ["Turn 1 inspects the known facts and shows a concrete proposed plan or asks a genuinely material user-owned question, then ends before any lasting edit. No generic refusal. Turn 2 follows the explicit go-ahead and writes the grounded pack in only HANDOVER.md and CHECKLIST.md without a redundant approval turn."]
+
+[[turns]]
+prompt = "Create a practical handover pack for the museum reminder process so a substitute volunteer can run it. The approved operational facts are: Mei updates the paper rota, a reminder goes on the staff noticeboard weekly, and volunteers check that board. Work out how to package this in the project."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Go ahead with the proposed approach. Put the pack in HANDOVER.md and CHECKLIST.md only, using those approved facts. No other changes."
+
+[turns.checks]
+changed = ["HANDOVER.md", "CHECKLIST.md"]
+only_changed = ["HANDOVER.md", "CHECKLIST.md"]
+
+[checks]

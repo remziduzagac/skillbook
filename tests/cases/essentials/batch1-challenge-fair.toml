@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "States the strongest fair idea, uses its goal/constraints, marks assumptions, and gives evidenced weaknesses with seriousness and mitigation plus an honest verdict."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "normal"
+rejects = "Attacks a strawman or gives weaknesses without evidence, seriousness or remedies."
+covers = ["understand-challenge:rule:1", "understand-challenge:rule:2", "understand-challenge:rule:3", "understand-challenge:rule:4", "understand-challenge:rule:5", "understand-challenge:rule:6", "understand-challenge:advice:3", "understand-challenge:advice:6", "understand-challenge:last", "understand:route:understand-challenge"]
+review = ["States the strongest fair idea, uses its goal/constraints, marks assumptions, and gives evidenced weaknesses with seriousness and mitigation plus an honest verdict.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Looks for missing evidence and dependencies, groups shared causes and orders the few strongest findings first. Marks assumptions, seriousness, evidence and remedies and returns an honest verdict without changes."]
+
+[[turns]]
+prompt = "Critique retaining paper authority for the rota. First represent the actual proposal fairly, then find its meaningful weaknesses and a verdict."
+
+[checks]
+no_changes = true

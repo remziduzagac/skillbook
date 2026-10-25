@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Loads the full-name file understand-discuss through the parent path and returns the requested result, without searching for a nested SKILL.md or claiming the plain reference is unavailable."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Merely mentions the requested skill, looks for a nested SKILL.md, refuses an available reference or edits files."
+covers = ["understand-discuss:last", "understand:route:understand-discuss"]
+review = ["Loads the full-name file understand-discuss through the parent path and returns the requested result, without searching for a nested SKILL.md or claiming the plain reference is unavailable.", "May acknowledge understand-discuss once because the user typed that full name. Names no other unrequested skill or skill file and gives no unrequested route narration. The acknowledgement stays short."]
+
+[[turns]]
+prompt = "Use understand-discuss for this request: Discuss rota access and updater ownership with me. Leave all files unchanged."
+
+[checks]
+no_changes = true
+reads = ["understand-discuss"]
+names_no_skill = false
+answer_not_contains = ["\\b(?:act\\-cleanup|act\\-guardrails|act\\-rightsize|act\\-rightsize\\-enrich|act\\-rightsize\\-lean|act\\-stakes|act\\-verify|respond\\-ask|respond\\-explain|respond\\-layout|skillbook\\-design|skillbook\\-write|understand\\-argue|understand\\-brainstorm|understand\\-challenge|understand\\-clarify|understand\\-clarify\\-deep|understand\\-clarify\\-questionnaire|understand\\-clarify\\-shallow|understand\\-frame|understand\\-naming|understand\\-weigh)\\b", "\\bunderstand\\-discuss\\b[\\s\\S]*\\bunderstand\\-discuss\\b", "\\bSKILL\\.md\\b|\\breferences/[\\w./-]*\\.md\\b|\\b(?:act|respond|understand)\\s+skill\\b"]

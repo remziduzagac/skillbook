@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "First assesses paper within initial constraints. Then reassesses the new reliable-immediate-update requirement, instead of reusing the earlier verdict as current. Both turns leave the proposal unchanged."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "edge"
+rejects = "Reuses a challenge after the required outcome materially changes."
+covers = ["understand-challenge:rule:1", "understand-challenge:rule:3", "understand-challenge:rule:4", "understand-challenge:rule:5", "understand-challenge:rule:7"]
+review = ["First assesses paper within initial constraints. Then reassesses the new reliable-immediate-update requirement, instead of reusing the earlier verdict as current. Both turns leave the proposal unchanged."]
+
+[[turns]]
+prompt = "Critique paper authority against inclusion and offline access, using the project facts. No edits."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "The constraints changed: every offsite volunteer must now receive changes within ten minutes. Reassess paper-only updates under that new condition, without revising the plan."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+no_changes = true

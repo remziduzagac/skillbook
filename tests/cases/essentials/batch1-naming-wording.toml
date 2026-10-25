@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Edits or offers wording without a naming workshop or new glossary concept."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "boundary"
+rejects = "Turns sentence wording into a concept-naming exercise."
+covers = []
+review = ["Edits or offers wording without a naming workshop or new glossary concept.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Make this sentence clearer: The museum is open on Saturdays. This is wording, not a request for a new concept name."
+
+[checks]
+no_changes = true

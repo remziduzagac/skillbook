@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Marks the causal explanation as a guess or unknown and identifies evidence that could settle it."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "edge"
+rejects = "Reports a suspected cause as proven."
+covers = ["understand-frame:rule:3"]
+review = ["Marks the causal explanation as a guess or unknown and identifies evidence that could settle it.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "We suspect late rota updates cause missed shifts, but have no attendance measurements. Frame the issue without treating that explanation as established."
+
+[checks]
+no_changes = true

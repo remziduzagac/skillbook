@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Returns a concrete development need and next step without recursive calls or an unsupported final recommendation."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "edge"
+rejects = "Restarts an active generator instead of returning the development gap."
+covers = ["understand-brainstorm:rule:4", "understand-brainstorm:rule:5"]
+review = ["Returns a concrete development need and next step without recursive calls or an unsupported final recommendation.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "You are a comparison caller reporting that the existing rota options need an offline variant developed. Return that development need to the active caller; do not restart a suspended generator."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Answers or concedes the real cost objection with evidence; keeps it visible and avoids invented offsetting benefits."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "boundary"
+rejects = "Invents savings to dismiss the real cost objection."
+covers = ["understand-argue:rule:2", "understand-argue:rule:3", "understand-argue:rule:4", "understand-argue:advice:4"]
+review = ["Answers or concedes the real cost objection with evidence; keeps it visible and avoids invented offsetting benefits.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Explains whether the case survives when the higher-cost objection is accepted as fact; does not argue away that fact rhetorically."]
+
+[[turns]]
+prompt = "Make the case for the hybrid rota while conceding that it costs more than paper. Do not dismiss that objection with invented savings."
+
+[checks]
+no_changes = true

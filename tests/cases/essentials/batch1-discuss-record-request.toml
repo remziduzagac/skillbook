@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Turn 1 returns decisions and offers recording without edits. Turn 2, the main workflow saves only DECISIONS.md after the explicit request, reports the path and does not commit. Discussion itself hands the record to its owner."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Writes before recording is requested, changes other files or commits."
+covers = ["understand-discuss:rule:4", "understand-discuss:step:6", "understand-discuss:step:7"]
+review = ["Turn 1 returns decisions and offers recording without edits. Turn 2, the main workflow saves only DECISIONS.md after the explicit request, reports the path and does not commit. Discussion itself hands the record to its owner."]
+
+[[turns]]
+prompt = "Our discussion is complete: paper authority for access, Mei as updater, weekly reminders. Return the outcome. No recording requested yet."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Now the main workflow should record exactly those three agreed points and reasons in DECISIONS.md. Go ahead; no other changes and no commit."
+
+[turns.checks]
+changed = ["DECISIONS.md"]
+only_changed = ["DECISIONS.md"]
+
+[checks]

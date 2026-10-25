@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Returns the proposed record and its destination or open destination question; leaves all files unchanged."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Writes the requested future record itself."
+covers = ["understand-discuss:rule:4"]
+review = ["Returns the proposed record and its destination or open destination question; leaves all files unchanged.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "We agreed a rota proposal. Please prepare what the main work flow should record in a file later; do not write the record yourself."
+
+[checks]
+no_changes = true

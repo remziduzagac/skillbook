@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "Returns a specific development need to the caller instead of recursively restarting an active brainstorm or pretending an undeveloped combination is a winner."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "boundary"
+rejects = "Selects an undeveloped combination or recursively restarts generation."
+covers = ["understand-weigh:rule:4", "understand-weigh:rule:5", "understand-weigh:advice:7"]
+review = ["Returns a specific development need to the caller instead of recursively restarting an active brainstorm or pretending an undeveloped combination is a winner.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Returns a concrete combination-development need to its owner without recursively calling an active generator."]
+
+[[turns]]
+prompt = "The existing choices each fail a different requirement. Explain whether a combination deserves development and hand that need back; do not generate or select a new design now."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Prefers a suitable plain word and explains why; does not coin needlessly or make a joke newcomers cannot decode."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "boundary"
+rejects = "Coins jargon despite a suitable plain word."
+covers = ["understand-naming:rule:4", "understand-naming:rule:5", "understand-naming:advice:6"]
+review = ["Prefers a suitable plain word and explains why; does not coin needlessly or make a joke newcomers cannot decode.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Avoids unexplained abbreviations and newcomer-hostile jokes as well as unnecessary coinage."]
+
+[[turns]]
+prompt = "Compare a plain shared term for a duty reminder with the coined label Rotalithium. Invent a word only if ordinary words do not fit."
+
+[checks]
+no_changes = true

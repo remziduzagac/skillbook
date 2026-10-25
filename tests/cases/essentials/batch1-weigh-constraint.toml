@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "Screens options against the budget first, states exclusions and reasons, and does not recommend a disallowed option as feasible."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "edge"
+rejects = "Recommends an option over the hard annual budget as feasible."
+covers = ["understand-weigh:rule:1", "understand-weigh:rule:2", "understand-weigh:rule:3", "understand-weigh:advice:1"]
+review = ["Screens options against the budget first, states exclusions and reasons, and does not recommend a disallowed option as feasible.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Screens the hard annual budget before weighing benefits and names each exclusion with its reason."]
+
+[[turns]]
+prompt = "An arrangement costing more than £90 for the next full year is out. Compare the listed annual costs of the existing rota options under that constraint."
+
+[checks]
+no_changes = true

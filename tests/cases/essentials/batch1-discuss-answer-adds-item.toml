@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "First shows the agenda and one item. After the reply, carries paper authority forward, visibly adds the privacy item, and keeps reminders unresolved without edits."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Treats a new item as settled or loses the accepted authority choice."
+covers = ["understand-discuss:rule:1", "understand-discuss:rule:2", "understand-discuss:rule:3", "understand-discuss:rule:4", "understand-discuss:advice:2", "understand-discuss:advice:4", "understand-discuss:step:3"]
+review = ["First shows the agenda and one item. After the reply, carries paper authority forward, visibly adds the privacy item, and keeps reminders unresolved without edits."]
+
+[[turns]]
+prompt = "Discuss rota authority and reminders with me. Start with authority; leave all files alone."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Paper stays authoritative. Add a separate item about the privacy of volunteer phone numbers. Reminder frequency is still open."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+no_changes = true

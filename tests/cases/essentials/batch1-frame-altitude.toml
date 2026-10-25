@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Keeps the frame at ownership-question scope and does not frame the whole museum."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "edge"
+rejects = "Expands ownership into museum strategy."
+covers = ["understand-frame:rule:5", "understand-frame:advice:6"]
+review = ["Keeps the frame at ownership-question scope and does not frame the whole museum.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Frames ownership at the requested level without expanding into product or institutional strategy."]
+
+[[turns]]
+prompt = "Frame only who should update the museum rota, not the museum strategy or the archive project."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "Names the unconfirmed offline capability and evidence needed; does not assume a roadmap promise is implemented."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "boundary"
+rejects = "Assumes the promised offline feature already exists."
+covers = ["understand-weigh:rule:4", "understand-weigh:rule:5"]
+review = ["Names the unconfirmed offline capability and evidence needed; does not assume a roadmap promise is implemented.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Compare the current paper and online rotas. Online might add offline access next month, but no evidence confirms it. Explain what could change your recommendation."
+
+[checks]
+no_changes = true

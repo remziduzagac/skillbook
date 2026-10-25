@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Returns usable candidates, earlier options distinguished and any actual open or parked questions, without an unrequested choice. Does not invent empty result fields. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "edge"
+rejects = "Writes or invents keeper storage, asks a redundant destination question, or omits the result the keeper needs."
+covers = ["understand-brainstorm:last"]
+review = ["Returns usable candidates, earlier options distinguished and any actual open or parked questions, without an unrequested choice. Does not invent empty result fields. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."]
+
+[[turns]]
+prompt = "You are returning a result to an already-loaded keeper caller. The caller already owns its storage location and format; do not invent or ask for another one. Return reminder candidates only, with paper and online already proposed. Return the payload only and change nothing."
+
+[checks]
+no_changes = true

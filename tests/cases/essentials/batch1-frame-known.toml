@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Frames one problem with goal, exclusions, constraints and a recognizable good answer; uses phone access and cost facts; distinguishes unknowns and guesses; no edit or separate approval checkpoint."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "normal"
+rejects = "Omits exclusions or success terms without marking them unknown."
+covers = ["understand-frame:rule:1", "understand-frame:rule:2", "understand-frame:rule:3", "understand-frame:rule:4", "understand-frame:rule:6", "understand-frame:advice:1", "understand-frame:advice:3", "understand-frame:advice:4", "understand-frame:advice:5", "understand-frame:last", "understand:route:understand-frame"]
+review = ["Frames one problem with goal, exclusions, constraints and a recognizable good answer; uses phone access and cost facts; distinguishes unknowns and guesses; no edit or separate approval checkpoint.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Keeps the problem statement short and specific, includes known current practice and exclusion risks as anti-goals, defines material terms, and fills or marks each frame part. Returns the frame with no changes."]
+
+[[turns]]
+prompt = "Before we consider rota software, tell me what problem this project actually needs to solve. Use the project facts and mark the gaps."
+
+[checks]
+no_changes = true

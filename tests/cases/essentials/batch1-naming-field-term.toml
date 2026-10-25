@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Checks the common field meaning and explains the collision risk; proposes clear terminology without claiming a legal availability check."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Ignores the nearby field meaning or claims unperformed trademark checks."
+covers = ["understand-naming:rule:1", "understand-naming:rule:2", "understand-naming:advice:4"]
+review = ["Checks the common field meaning and explains the collision risk; proposes clear terminology without claiming a legal availability check."]
+
+[[turns]]
+prompt = "A public reminder feature is proposed as Cache, although nearby software uses cache for stored copies. Evaluate that term without renaming anything."
+
+[checks]
+no_changes = true

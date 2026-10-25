@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Makes the authorized reversible choice, writes only SCRATCH.md with factual annual costs, reports the choice in the final answer and asks no redundant choice round."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "edge"
+rejects = "Stops for another approval despite the explicit instruction to choose and go ahead, or changes unrelated files."
+covers = ["understand-brainstorm:rule:4", "understand-brainstorm:rule:5"]
+review = ["Makes the authorized reversible choice, writes only SCRATCH.md with factual annual costs, reports the choice in the final answer and asks no redundant choice round."]
+
+[[turns]]
+prompt = "Choose a short heading yourself for a new private scratch note explaining paper versus online costs. You have my go-ahead to choose and write the chosen heading and known cost comparison in SCRATCH.md now. No other files."
+
+[turns.checks]
+changed = ["SCRATCH.md"]
+only_changed = ["SCRATCH.md"]
+
+[checks]

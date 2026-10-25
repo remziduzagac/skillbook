@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Uses an adversarial assessment rather than a positive advocacy case."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "boundary"
+rejects = "Advocates for the cupboard when a critique was requested."
+covers = ["understand:not-for:understand-argue"]
+review = ["Uses an adversarial assessment rather than a positive advocacy case.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Find the case against retaining the cupboard, rather than advocate for it."
+
+[checks]
+no_changes = true

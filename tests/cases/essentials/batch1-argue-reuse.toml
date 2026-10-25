@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Reuses the supplied challenge, meets the objection, and does not start an equivalent new attack or independent check; no verdict inside the advocacy case."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "edge"
+rejects = "Duplicates the unchanged supplied challenge or puts its verdict in advocacy."
+covers = ["understand-argue:rule:3", "understand-argue:rule:4", "understand-argue:rule:5"]
+review = ["Reuses the supplied challenge, meets the objection, and does not start an equivalent new attack or independent check; no verdict inside the advocacy case.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "The caller supplies a current challenge: hybrid costs one reconciliation hour weekly; mitigate by naming one updater. Goal and evidence are unchanged. Make its positive case using that objection."
+
+[checks]
+no_changes = true

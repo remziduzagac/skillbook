@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Names the separate questions and handles them separately or hands the multi-part topic to discussion, rather than comparing mixed answers."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "boundary"
+rejects = "Mixes archive storage and reminders as comparable options."
+covers = ["understand-brainstorm:rule:1"]
+review = ["Names the separate questions and handles them separately or hands the multi-part topic to discussion, rather than comparing mixed answers.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "We need ideas both for reminder channels and for where to store fragile postcards. Treat these as different questions; do not pick winners."
+
+[checks]
+no_changes = true

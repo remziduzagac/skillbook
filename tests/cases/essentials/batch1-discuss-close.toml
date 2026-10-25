@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Gives a concise result and next step; does not invent another discussion item, decision or empty Remaining field; no file changes."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Invents another open item after closure."
+covers = ["understand-discuss:rule:4", "understand-discuss:step:7", "understand-discuss:last"]
+review = ["Gives a concise result and next step; does not invent another discussion item, decision or empty Remaining field; no file changes.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Offers recording for the completed topic without performing it; returns the actual decisions with their known reasons (or marks reasons unknown) and next step with no invented open item."]
+
+[[turns]]
+prompt = "We have settled all rota items: paper is authoritative, Mei updates it and reminders stay on the noticeboard. Nothing is parked. Please close the discussion."
+
+[checks]
+no_changes = true

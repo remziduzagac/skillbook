@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Recommends the existing Visitor term, puts the other word under avoid, and proposes one definition rather than new synonyms."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "boundary"
+rejects = "Creates a new synonym instead of using the established term."
+covers = ["understand-naming:rule:1", "understand-naming:rule:2", "understand-naming:rule:7", "understand-naming:rule:8"]
+review = ["Recommends the existing Visitor term, puts the other word under avoid, and proposes one definition rather than new synonyms.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "A draft uses customer and Visitor for the same museum attendee. Propose vocabulary cleanup, not document edits."
+
+[checks]
+no_changes = true

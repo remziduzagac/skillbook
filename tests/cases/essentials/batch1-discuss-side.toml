@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Places the blocking storage issue visibly and keeps the original ownership item tracked; does not silently discard either thread or perform repairs."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Loses the ownership thread when storage arises."
+covers = ["understand-discuss:rule:4", "understand-discuss:rule:5", "understand-discuss:step:4"]
+review = ["Places the blocking storage issue visibly and keeps the original ownership item tracked; does not silently discard either thread or perform repairs.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Returns to ownership after placing the blocking storage topic and keeps both destinations visible."]
+
+[[turns]]
+prompt = "We are halfway through reminder ownership. Also, the archive cupboard has started leaking; that affects where our printed rota can be stored. Please discuss this with me."
+
+[checks]
+no_changes = true

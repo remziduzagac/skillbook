@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Does not force a full challenge merely because the choice sits in a plan; remains proportionate."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "boundary"
+rejects = "Requires a full attack solely because a choice is in a plan."
+covers = ["understand-challenge:rule:7"]
+review = ["Does not force a full challenge merely because the choice sits in a plan; remains proportionate.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "We need a routine planning choice about the ordering of two private scratch headings. No one asked for a critique. Does being part of a plan require a full challenge?"
+
+[checks]
+no_changes = true

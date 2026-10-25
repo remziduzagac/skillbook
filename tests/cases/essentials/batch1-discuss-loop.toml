@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Reframes the goal and constraints before choosing channels; retains uncertainty and makes no selection or edit."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "boundary"
+rejects = "Chooses a channel without reconsidering the missing goal."
+covers = ["understand-discuss:rule:1", "understand-discuss:advice:6"]
+review = ["Reframes the goal and constraints before choosing channels; retains uncertainty and makes no selection or edit.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Reframes the missing reminder goal instead of repeating channel arguments."]
+
+[[turns]]
+prompt = "Our discussion keeps circling between email and paper because we have never agreed what problem the reminders solve. Help us get unstuck without selecting a channel."
+
+[checks]
+no_changes = true

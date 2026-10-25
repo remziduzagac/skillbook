@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "The user lists each file change, so the existing plan-rule exception allows writing without another checkpoint."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "edge"
+rejects = "Requires approval despite user-given steps, edits other files, or rewrites already complete files needlessly."
+covers = ["understand-frame:rule:1", "understand-frame:rule:2", "understand-frame:rule:6"]
+review = ["Turn 1 follows the user-given steps and creates only REMINDER.md and NEXT.md with a grounded frame and known constraints, reporting its plan in the final answer. The second go-ahead causes no duplicate rewrite of already complete work. Adds no frame-only checkpoint."]
+
+[[turns]]
+prompt = "Frame our rota reminder problem, then create REMINDER.md with the problem and NEXT.md with known constraints. Choose a simple short format. This is a two-file task."
+
+[turns.checks]
+changed = ["REMINDER.md", "NEXT.md"]
+only_changed = ["REMINDER.md", "NEXT.md"]
+
+[[turns]]
+prompt = "Go ahead with the proposed plan and format. Create those two files only."
+
+[turns.checks]
+no_changes = true
+
+[checks]

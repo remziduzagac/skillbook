@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "Returns the comparison and reason without persistent records or edits."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "edge"
+rejects = "Saves unsolicited comparison notes."
+covers = ["understand-weigh:rule:5", "understand-weigh:rule:6"]
+review = ["Returns the comparison and reason without persistent records or edits.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Recommend between the rota options using the files. Keep the comparison here; do not save notes or update a plan."
+
+[checks]
+no_changes = true

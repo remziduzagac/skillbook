@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "Gives each option equal depth, keeps one current challenge per option, and uses objections/verdict appropriately without duplicate equivalent checks."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "boundary"
+rejects = "Gives unequal advocacy depth or repeats an unchanged challenge."
+covers = ["understand-weigh:rule:2", "understand-weigh:rule:3", "understand-weigh:rule:5", "understand-weigh:advice:4"]
+review = ["Gives each option equal depth, keeps one current challenge per option, and uses objections/verdict appropriately without duplicate equivalent checks.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Uses equivalent strongest cases and attacks for every option; any current attack is reused and its verdict remains in comparison rather than advocacy."]
+
+[[turns]]
+prompt = "Make the strongest case for each rota option and compare them. Reuse any current attack of an unchanged option; do not do the same critique twice."
+
+[checks]
+no_changes = true

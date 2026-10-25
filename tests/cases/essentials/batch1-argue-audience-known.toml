@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Uses the supplied audience and concerns without a redundant audience question."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "boundary"
+rejects = "Asks again for the supplied audience."
+covers = ["understand-argue:rule:1", "understand-argue:advice:2"]
+review = ["Uses the supplied audience and concerns without a redundant audience question.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Orders reasons for the supplied audience without another audience question or invented concerns."]
+
+[[turns]]
+prompt = "Make the case for the paper rota to the four volunteers without smartphones. That is the audience; do not ask me to specify it again."
+
+[checks]
+no_changes = true

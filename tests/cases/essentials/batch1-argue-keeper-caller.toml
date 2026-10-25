@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Returns the precise case, supported or marked reasons, strongest objections met, admitted weaknesses, strength and next evidence, with a reusable challenge separate from advocacy. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "edge"
+rejects = "Writes or invents keeper storage, asks a redundant destination question, or omits the result the keeper needs."
+covers = ["understand-argue:last"]
+review = ["Returns the precise case, supported or marked reasons, strongest objections met, admitted weaknesses, strength and next evidence, with a reusable challenge separate from advocacy. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."]
+
+[[turns]]
+prompt = "You are returning a result to an already-loaded keeper caller. The caller already owns its storage location and format; do not invent or ask for another one. Return a full honest one-sided case for paper authority. Return the payload only and change nothing."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Faithfully reflects the existing view briefly, without a new investigation, challenge, strength rating or proof claim."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "boundary"
+rejects = "Launches a new investigation or rates a simple faithful reflection as proved."
+covers = ["understand-argue:advice:7", "respond:advice:2"]
+review = ["Faithfully reflects the existing view briefly, without a new investigation, challenge, strength rating or proof claim.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Reflects what the user actually said faithfully without strengthening it into an unproved claim."]
+
+[[turns]]
+prompt = "My view is that paper authority keeps volunteers without phones included. Reflect that view fairly in one sentence before saying what issue still needs thought. No research is needed."
+
+[checks]
+no_changes = true

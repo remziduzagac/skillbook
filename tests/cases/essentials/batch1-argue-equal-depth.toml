@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Uses comparable depth and evidence standards for both cases, admits weaknesses in each and selects neither."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "edge"
+rejects = "Gives one position a token case and the other extensive advocacy."
+covers = ["understand-argue:rule:2", "understand-argue:rule:3", "understand-argue:rule:4", "understand-argue:rule:5", "understand-argue:advice:8"]
+review = ["Uses comparable depth and evidence standards for both cases, admits weaknesses in each and selects neither."]
+
+[[turns]]
+prompt = "For a debate caller, return the strongest honest case for paper and for online rota authority at equal depth, not a winner. Keep each case one-sided."
+
+[checks]
+no_changes = true

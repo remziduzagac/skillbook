@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "Sets the terms before comparing, covers each option on every term, includes grounded benefits/costs/risks/unknowns and explains the recommendation against the next best."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "normal"
+rejects = "Judges different options on different terms or gives no reason over the runner-up."
+covers = ["understand-weigh:rule:1", "understand-weigh:rule:2", "understand-weigh:rule:3", "understand-weigh:rule:5", "understand-weigh:rule:6", "understand-weigh:advice:3", "understand-weigh:advice:5", "understand-weigh:last", "understand:route:understand-weigh"]
+review = ["Sets the terms before comparing, covers each option on every term, includes grounded benefits/costs/risks/unknowns and explains the recommendation against the next best.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Includes consequences of being wrong, delayed upkeep costs and undo implications when they affect this choice. Accept a justified omission when they do not. Gives evidence limits, identical terms, a grounded downside search and a reason over the next best; writes nothing."]
+
+[[turns]]
+prompt = "Compare paper, online and hybrid rotas on annual cost, offline access and update effort. Recommend one for the museum, without changing anything."
+
+[checks]
+no_changes = true

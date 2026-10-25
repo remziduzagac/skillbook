@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Reports the real coordination cost with severity and mitigation rather than excluding it because success remains possible."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "boundary"
+rejects = "Excludes material weekly cost because the goal is still achievable."
+covers = ["understand-challenge:rule:1", "understand-challenge:rule:4"]
+review = ["Reports the real coordination cost with severity and mitigation rather than excluding it because success remains possible.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "The hybrid rota meets attendance and access goals but needs an hour of reconciliation every week. Is that a relevant weakness even though the goal remains achievable?"
+
+[checks]
+no_changes = true

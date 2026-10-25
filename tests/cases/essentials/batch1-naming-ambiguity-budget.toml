@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Names both meanings, proposes distinct or single consistent terms, and keeps any unsettled ambiguity explicit; defines proposed terms once."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Leaves the two Budget meanings silently conflated."
+covers = ["understand-naming:rule:2", "understand-naming:rule:8", "understand-naming:rule:9"]
+review = ["Names both meanings, proposes distinct or single consistent terms, and keeps any unsettled ambiguity explicit; defines proposed terms once."]
+
+[[turns]]
+prompt = "In a separate club project, Budget means both the annual money limit and the particular spreadsheet tracking spending. Propose a vocabulary decision without editing documents."
+
+[checks]
+no_changes = true

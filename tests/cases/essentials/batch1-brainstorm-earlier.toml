@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Identifies earlier options as earlier, develops genuinely different additions, and avoids silently replacing the known set."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "boundary"
+rejects = "Drops the earlier proposals or labels them new."
+covers = ["understand-brainstorm:rule:2", "understand-brainstorm:rule:3", "understand-brainstorm:rule:4", "understand-brainstorm:advice:2"]
+review = ["Identifies earlier options as earlier, develops genuinely different additions, and avoids silently replacing the known set.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Reads and lists existing proposals first, explicitly distinguished as earlier."]
+
+[[turns]]
+prompt = "Generate more approaches to reminders. Keep the paper, online and hybrid approaches already in options.md visible as earlier proposals. Do not choose yet."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Names the front-desk decision as replaced by the staff-entrance decision and keeps ownership open. No contradictory two-location decision or edits."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Keeps both conflicting location decisions current."
+covers = ["understand-discuss:rule:4", "understand-discuss:rule:6"]
+review = ["Names the front-desk decision as replaced by the staff-entrance decision and keeps ownership open. No contradictory two-location decision or edits."]
+
+[[turns]]
+prompt = "Earlier we agreed the physical volunteer notice goes by the front desk. We have now agreed it goes beside the staff entrance instead. Close that item and continue the open ownership discussion."
+
+[checks]
+no_changes = true

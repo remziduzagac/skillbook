@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Honours the request for all three items; keeps identifiable questions and remaining work; does not insist on one-item presentation."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "boundary"
+rejects = "Refuses the requested all-item view."
+covers = ["understand-discuss:rule:2"]
+review = ["Honours the request for all three items; keeps identifiable questions and remaining work; does not insist on one-item presentation.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Please show all remaining rota questions together rather than taking them one at a time. The open items are access, ownership and reminders."
+
+[checks]
+no_changes = true

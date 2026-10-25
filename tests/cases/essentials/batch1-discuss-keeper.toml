@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Keeps the discussion in the response; does not invent a storage location or save a transcript."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "boundary"
+rejects = "Saves a discussion transcript without a request."
+covers = ["understand-discuss:rule:4"]
+review = ["Keeps the discussion in the response; does not invent a storage location or save a transcript.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Discuss the remaining archive questions with me. There is no keeper loaded, and I have not asked for any notes to be saved."
+
+[checks]
+no_changes = true

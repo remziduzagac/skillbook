@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Asks for the existing picture before steering with candidates; gives no unsolicited design list or implementation."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "edge"
+rejects = "Offers designs before asking for the user picture."
+covers = ["understand-brainstorm:rule:1", "understand-brainstorm:advice:4"]
+review = ["Asks for the existing picture before steering with candidates; gives no unsolicited design list or implementation.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Asks for the existing user picture before any generated design options."]
+
+[[turns]]
+prompt = "Before suggesting display designs, ask me what I imagine the volunteer noticeboard looking like. I have a picture in mind."
+
+[checks]
+no_changes = true

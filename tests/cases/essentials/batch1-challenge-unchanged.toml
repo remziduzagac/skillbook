@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Explains reuse of the current unchanged assessment without another equivalent critique; keeps the hypothetical evidence boundary clear."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "boundary"
+rejects = "Repeats an unchanged hypothetical critique or uses excluded later evidence."
+covers = ["understand-challenge:rule:7"]
+review = ["Explains reuse of the current unchanged assessment without another equivalent critique; keeps the hypothetical evidence boundary clear.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "The cupboard proposal and the dry-roof evidence are exactly the earlier reviewed state. Do not use the later leak scenario for this hypothetical. Is accepting the unchanged recommendation a reason to repeat its critique?"
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Reviews the actual finished text against source facts and its writing purpose without an unrelated conceptual attack."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "edge"
+rejects = "Uses an adversarial idea challenge in place of finished-output review."
+covers = ["understand-challenge:rule:1", "understand-challenge:rule:6"]
+review = ["Reviews the actual finished text against source facts and its writing purpose without an unrelated conceptual attack."]
+
+[[turns]]
+prompt = "Review this finished public notice for wording: Museum opens Saturday 11:00. Check the wording and time against the files; do not challenge whether museums should open on Saturdays."
+
+[checks]
+no_changes = true

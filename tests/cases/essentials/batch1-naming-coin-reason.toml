@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Uses an ordinary understandable term where it fits and explains the learning cost of the coined word; leaves taste with the user rather than treating novelty as a functional need."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Coins a new opaque word merely for novelty and gives no reason ordinary language fails."
+covers = ["understand-naming:rule:4", "understand-naming:rule:5"]
+review = ["Uses an ordinary understandable term where it fits and explains the learning cost of the coined word; leaves taste with the user rather than treating novelty as a functional need."]
+
+[[turns]]
+prompt = "A hypothetical project needs a shared name for one attendance reminder. Someone says plain words are boring and wants Shiftnado. Evaluate that preference and propose a clear term without editing files."
+
+[checks]
+no_changes = true

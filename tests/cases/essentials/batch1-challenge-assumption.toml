@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Marks or refutes the assumption using the four volunteers without phones; ties the weakness to access."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "boundary"
+rejects = "Accepts the all-smartphone assumption despite contrary facts."
+covers = ["understand-challenge:rule:1", "understand-challenge:rule:3", "understand-challenge:rule:4", "understand-challenge:advice:4"]
+review = ["Marks or refutes the assumption using the four volunteers without phones; ties the weakness to access.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Treats the unsupported ownership claim as an assumption to check against evidence, not as a known preference."]
+
+[[turns]]
+prompt = "A proposal claims the online rota will include every volunteer because everyone owns a smartphone. Check that premise against brief.md."
+
+[checks]
+no_changes = true

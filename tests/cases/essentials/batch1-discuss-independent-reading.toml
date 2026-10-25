@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Uses available inspection/judgment for the independent factual work and returns it without writing records or claiming an agent ran. Keeps user-dependent decisions open."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Treats missing delegation as permission to invent facts, saves an unsolicited record or claims an unseen independent helper."
+covers = ["understand-discuss:step:5"]
+review = ["Uses available inspection/judgment for the independent factual work and returns it without writing records or claiming an agent ran. Keeps user-dependent decisions open."]
+
+[[turns]]
+prompt = "Discuss archive labeling with me. A separate read-only task is to count the postcard and volunteer facts in brief.md; no independent agent is available. Keep that analysis separate from any lasting decision."
+
+[checks]
+no_changes = true

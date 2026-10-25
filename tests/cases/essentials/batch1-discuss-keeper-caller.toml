@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Returns decided items with reasons, parked items with reasons and reopening conditions, side topics and next steps. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Writes or invents keeper storage, asks a redundant destination question, or omits the result the keeper needs."
+covers = ["understand-discuss:last"]
+review = ["Returns decided items with reasons, parked items with reasons and reopening conditions, side topics and next steps. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."]
+
+[[turns]]
+prompt = "You are returning a result to an already-loaded keeper caller. The caller already owns its storage location and format; do not invent or ask for another one. Return the completed discussion: paper authority for inclusion, reminders parked until Mei confirms availability. Return the payload only and change nothing."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Lists distinct options and compares them on common terms; gives a reasoned recommendation without taking the user choice."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "edge"
+rejects = "Returns only an unsupported favorite, without a visible range of distinct options and comparison."
+covers = ["understand-brainstorm:rule:1", "understand-brainstorm:rule:2", "understand-brainstorm:rule:3", "understand-brainstorm:rule:4", "understand-brainstorm:rule:5", "understand-brainstorm:advice:1", "understand-brainstorm:advice:5", "understand-brainstorm:last"]
+review = ["Lists distinct options and compares them on common terms; the recommendation includes reasons and respects user decision ownership. Judge the visible result, not private generation order.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Includes the problem frame, develops promising possibilities enough to compare, and returns a reasoned choice or a park with settling evidence. Leaves files unchanged. A recommendation-first final layout is valid when the requested options and comparison are visible."]
+
+[[turns]]
+prompt = "Suggest ways to update the rota without excluding anyone, compare them and recommend a direction. Do not implement it."
+
+[checks]
+no_changes = true

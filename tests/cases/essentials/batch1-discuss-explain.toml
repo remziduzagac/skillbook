@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Explains the existing point simply and briefly rather than starting another rota decision round."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Starts another decision round instead of explaining."
+covers = []
+review = ["Explains the existing point simply and briefly rather than starting another rota decision round.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Your last discussion reply said authoritative means one version wins. I still do not understand that word; explain it briefly."
+
+[checks]
+no_changes = true

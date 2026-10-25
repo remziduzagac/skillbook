@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
+about = "Returns the case and separates reusable challenge information; does not smuggle its verdict into advocacy or perform duplicate review."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-argue"]
+category = "edge"
+rejects = "Merges the challenge verdict into the case or loses reusable challenge information."
+covers = ["understand-argue:rule:3", "understand-argue:rule:5"]
+review = ["Returns the case and separates reusable challenge information; does not smuggle its verdict into advocacy or perform duplicate review.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "A caller needs the full case for hybrid plus the existing challenge separately for reuse. Do not display its verdict as part of the one-sided case."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Returns the time directly without a framing questionnaire or five-field template."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "boundary"
+rejects = "Adds a framing workshop to a time-only question."
+covers = ["understand:not-for:understand-frame"]
+review = ["Returns the time directly without a framing questionnaire or five-field template.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "The museum opens at 11:00 on Saturday. Repeat that time only."
+
+[checks]
+no_changes = true

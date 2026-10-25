@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Uses local code conventions rather than launching shared naming, candidate generation or glossary work."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "boundary"
+rejects = "Starts a shared naming workshop for a local counter."
+covers = ["understand:not-for:understand-naming"]
+review = ["Uses local code conventions rather than launching shared naming, candidate generation or glossary work.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "The local loop counter in a scratch function is called i. Should this require a shared naming workshop or glossary entry?"
+
+[checks]
+no_changes = true

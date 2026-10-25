@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: naming, Flow and Tests (D252); held-out scenario"
+about = "Lists both meanings as an unresolved ambiguity, proposes understandable alternatives and avoided words, and leaves every write to the caller after agreement."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-naming"]
+category = "edge"
+rejects = "Presents an unagreed vocabulary as already applied or loses one meaning."
+covers = ["understand-naming:rule:2", "understand-naming:rule:7", "understand-naming:rule:8", "understand-naming:rule:9"]
+review = ["Lists both meanings as an unresolved ambiguity, proposes understandable alternatives and avoided words, and leaves every write to the caller after agreement."]
+
+[[turns]]
+prompt = "A hypothetical service uses Ticket for both a paid admission credential and a request for help. We have not chosen replacement terms. Return proposed glossary changes, not an applied rename."
+
+[checks]
+no_changes = true

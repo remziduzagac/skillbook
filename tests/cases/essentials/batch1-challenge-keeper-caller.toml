@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Returns the fair proposal, assumptions, meaningful weaknesses and remedies, verdict and any remaining open risk. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "edge"
+rejects = "Writes or invents keeper storage, asks a redundant destination question, or omits the result the keeper needs."
+covers = ["understand-challenge:last"]
+review = ["Returns the fair proposal, assumptions, meaningful weaknesses and remedies, verdict and any remaining open risk. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."]
+
+[[turns]]
+prompt = "You are returning a result to an already-loaded keeper caller. The caller already owns its storage location and format; do not invent or ask for another one. Return the challenge of paper authority. Return the payload only and change nothing."
+
+[checks]
+no_changes = true

@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "First compares the named options on shared terms. After the budget reply, applies the new annual cap, names exclusions and updates the recommendation without pretending earlier terms still hold. No edits."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "edge"
+rejects = "Recommends an over-budget option or silently keeps the old terms."
+covers = ["understand-weigh:rule:1", "understand-weigh:rule:2", "understand-weigh:rule:3", "understand-weigh:rule:4", "understand-weigh:rule:5", "understand-weigh:rule:6", "understand-weigh:advice:1"]
+review = ["First compares the named options on shared terms. After the budget reply, applies the new annual cap, names exclusions and updates the recommendation without pretending earlier terms still hold. No edits."]
+
+[[turns]]
+prompt = "Compare the three rota arrangements for inclusion, annual cost and update effort; do not implement."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "The confirmed full-year limit is £50 total. Reconsider the same options within that hard constraint. No other funds are available."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+no_changes = true

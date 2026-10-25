@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Returns candidates to the caller without comparing to a final winner, asking the user to choose or invoking naming recursively."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "boundary"
+rejects = "Selects a name or calls naming recursively instead of returning candidates."
+covers = ["understand-brainstorm:rule:4", "understand-brainstorm:rule:5"]
+review = ["Returns candidates to the caller without comparing to a final winner, asking the user to choose or invoking naming recursively.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "You are helping the naming caller. Return candidate terms for a volunteer-duty reminder, using plain words and the glossary. The caller will compare and ask me later."
+
+[checks]
+no_changes = true

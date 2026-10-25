@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Shows the requested alternatives, not only a winner or a narrowed comparison."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "boundary"
+rejects = "Shows only a preferred pair despite a full-range request."
+covers = ["understand-brainstorm:rule:2", "understand-brainstorm:rule:4", "understand-brainstorm:advice:6"]
+review = ["Shows the requested alternatives, not only a winner or a narrowed comparison.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "The requested full range is visible in the answer; private thinking or a preferred pair is insufficient."]
+
+[[turns]]
+prompt = "Show the full range of alternatives you considered for museum reminder channels, not just the preferred pair. Do not select one."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Accepts only the paper decision; keeps reminders open and names the unanswered question; does not assume a frequency or advance as though both were settled."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "boundary"
+rejects = "Treats an unanswered reminder question as agreed."
+covers = ["understand-discuss:rule:2", "understand-discuss:rule:3", "understand-discuss:rule:4", "understand-discuss:advice:2", "understand-discuss:step:3"]
+review = ["Accepts only the paper decision; keeps reminders open and names the unanswered question; does not assume a frequency or advance as though both were settled.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Carries the accepted authority choice forward in a useful agreed line; does not repeat an empty summary or mark unanswered questions closed."]
+
+[[turns]]
+prompt = "We are discussing the rota. You asked whether paper stays authoritative and whether reminders are weekly. My answer is: paper stays authoritative. I have not answered the reminders question."
+
+[checks]
+no_changes = true

@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: frame, Flow and Tests (D252); held-out scenario"
+about = "Uses file evidence, marks untested service behavior, and leaves project files unchanged."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-frame"]
+category = "edge"
+rejects = "Contacts the service or invents tested behaviour."
+covers = ["understand-frame:rule:1", "understand-frame:rule:4"]
+review = ["Uses file evidence, marks untested service behavior, and leaves project files unchanged.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+
+[[turns]]
+prompt = "Frame the online rota access problem using inspection only. Do not contact the service or make an experiment."
+
+[checks]
+no_changes = true

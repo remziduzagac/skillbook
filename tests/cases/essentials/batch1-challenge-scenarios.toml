@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "Uses relevant scale/time/dependency scenarios and named assumptions, groups strong findings, and leaves the plan unchanged."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "boundary"
+rejects = "Rewrites the plan instead of returning stress-test findings."
+covers = ["understand-challenge:rule:1", "understand-challenge:rule:3", "understand-challenge:rule:4", "understand-challenge:rule:6", "understand-challenge:advice:1", "understand-challenge:advice:2"]
+review = ["Uses relevant scale/time/dependency scenarios and named assumptions, groups strong findings, and leaves the plan unchanged.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Explores failure after a year and relevant scale or dependency changes rather than unrelated hypothetical flaws."]
+
+[[turns]]
+prompt = "Stress-test the rota proposal if volunteer numbers grow tenfold, next year funding falls, or the coordinator leaves. Do not rewrite the proposal."
+
+[checks]
+no_changes = true

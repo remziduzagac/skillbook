@@ -1061,12 +1061,16 @@ ESSENTIALS_WORD = re.compile(r"(?:the\s+)?[`'\"’]?essentials[`'\"’]?(?:\s+sk
 # the line says the agent uses the skill, not why it acts: "I'll load the essentials skill", not "essentials forbids"
 ANNOUNCING = re.compile(r"\b(load|loading|use|using|read|reading|follow|following|apply|applying|open|opening)\b"
                         r"[^.\n]{0,40}\bessentials\b", re.IGNORECASE)
-GIVES_REASON = re.compile(r"\b(because|since|so that|requires?|says|rules?|forbids?|prohibits?|allows?|must)\b",
+GIVES_REASON = re.compile(r"\b(because|since|so that|requires?|says|forbids?|prohibits?|allows?|must)\b",
                           re.IGNORECASE)
+
+ESSENTIALS_RULES = re.compile(rf"{ESSENTIALS_WORD.pattern}\s+rules?\b", re.IGNORECASE)
 
 
 def names_skill(answer, agent=None):
     """Whether the answer names a skill, a skill's file or a route, apart from the one allowed announcing line."""
+    if ESSENTIALS_RULES.search(answer):
+        return True
     if agent in ANNOUNCES_SKILLS:
         lines = answer.splitlines()
         for i, line in enumerate(lines):

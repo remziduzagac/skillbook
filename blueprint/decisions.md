@@ -3608,4 +3608,12 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Understanding methods should not make lasting changes. The caller owns application of an approved result.
 - A short reflection needs fidelity to the conversation, not a new investigation. A full case needs evidence, objections and admitted weaknesses.
 
-**Tested:** No model test was run.
+**Tested:** The seven tools were built and run on Codex only, 151 cases, one run each, in two rounds. Fresh Codex agents on GPT-6.1 Sol judged every run.
+
+- Before the build, 7 cases on Sol: 5 good.
+- Round 1: Sol 131 good, 20 mixed, 0 poor. Luna 116 good, 32 mixed, 3 poor.
+- Round 2, after a review's wording fixes: Sol 130 good, 21 mixed, 0 poor. Luna 87 good, 59 mixed, 5 poor.
+- Sol missed a rubric line in 8 cases in each round. Most of Luna's drop is in judgments of progress text, which barely changed between rounds, so one run per case cannot show whether the fixes helped or hurt.
+- Argue's audience fix worked on Sol. Three discuss cases failed on both models in both rounds: a recommended answer the facts support, and the reasons and recording offer at closing. Two of those prompts work against the behaviour they test.
+- Long progress text between tool calls is common on both models. It belongs to respond, not these tools.
+- Luna cost about US$0.97 by the runner's estimate. Sol and judging cost are unknown.

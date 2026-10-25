@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: challenge, Flow and Tests (D252); held-out scenario"
+about = "States the actual assigned-driver prepaid-fuel plan at its strongest, then tests meaningful assumptions against group arrival and affordability. Does not attack missing drivers, unpaid fuel or unrelated individual preference as if given."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-challenge"]
+category = "edge"
+rejects = "Attacks a version without the explicitly supplied driver or fuel, or uses an unrelated goal."
+covers = ["understand-challenge:rule:1", "understand-challenge:rule:2", "understand-challenge:rule:4"]
+review = ["States the actual assigned-driver prepaid-fuel plan at its strongest, then tests meaningful assumptions against group arrival and affordability. Does not attack missing drivers, unpaid fuel or unrelated individual preference as if given."]
+
+[[turns]]
+prompt = "Critique a travel plan in a hypothetical unrelated project: share a hired minibus for six people, with an assigned licensed driver and prepaid fuel. The goal is one affordable group arrival, not maximum individual flexibility."
+
+[checks]
+no_changes = true

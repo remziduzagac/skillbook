@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: discuss, Flow and Tests (D252); held-out scenario"
+about = "Keeps the accepted paper decision, parks frequency because availability is unknown, names the availability answer as reopening condition and closes without treating parked work as decided."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-discuss"]
+category = "edge"
+rejects = "Silently decides the parked frequency or omits why it would reopen."
+covers = ["understand-discuss:rule:3", "understand-discuss:rule:4", "understand-discuss:rule:5", "understand-discuss:step:3", "understand-discuss:last"]
+review = ["Keeps the accepted paper decision, parks frequency because availability is unknown, names the availability answer as reopening condition and closes without treating parked work as decided."]
+
+[[turns]]
+prompt = "Discuss rota authority and reminder frequency. I can decide authority now, but frequency depends on coordinator availability. No edits."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "Paper authority agreed. Park frequency until Mei confirms her availability. Close here."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+no_changes = true

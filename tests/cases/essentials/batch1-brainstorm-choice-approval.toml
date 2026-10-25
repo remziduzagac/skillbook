@@ -1,0 +1,24 @@
+source = "blueprint/design/essentials/understand.md: brainstorm, Flow and Tests (D252); held-out scenario"
+about = "Turn 1 explores and compares real alternatives and asks for a shared authority decision without edits. Turn 2 accepts the explicit paper choice and returns the requested next step without a repeated choice or any write."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-brainstorm"]
+category = "edge"
+rejects = "Chooses for the user in turn 1 or repeats the settled choice round in turn 2."
+covers = ["understand-brainstorm:rule:1", "understand-brainstorm:rule:2", "understand-brainstorm:rule:3", "understand-brainstorm:rule:4", "understand-brainstorm:rule:5"]
+review = ["Turn 1 explores and compares real alternatives and asks for a shared authority decision without edits. Turn 2 accepts the explicit paper choice and returns the requested next step without a repeated choice or any write."]
+
+[[turns]]
+prompt = "Explore rota authority alternatives and help me choose, but shared authority is my decision. Do not implement anything."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I choose paper authority. Return the next step in chat only; no implementation."
+
+[turns.checks]
+no_changes = true
+
+[checks]
+no_changes = true

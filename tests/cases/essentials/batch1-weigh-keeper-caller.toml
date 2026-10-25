@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/understand.md: weigh, Flow and Tests (D252); held-out scenario"
+about = "Returns common terms, the comparison, why the recommendation beats the next best, excluded or parked options and outcome-changing unknowns. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."
+fixture = "thinking-lab"
+agents = ["codex"]
+skills = ["understand-weigh"]
+category = "edge"
+rejects = "Writes or invents keeper storage, asks a redundant destination question, or omits the result the keeper needs."
+covers = ["understand-weigh:last"]
+review = ["Returns common terms, the comparison, why the recommendation beats the next best, excluded or parked options and outcome-changing unknowns. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."]
+
+[[turns]]
+prompt = "You are returning a result to an already-loaded keeper caller. The caller already owns its storage location and format; do not invent or ask for another one. Return the comparison of paper and online authority. Return the payload only and change nothing."
+
+[checks]
+no_changes = true
