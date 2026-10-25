@@ -1,5 +1,10 @@
 # Blueprint
 
+<p align="center">
+  <img alt="An orange robot at a workbench draws on a large blueprint, with technical drawings on the screens behind it"
+    src="../../../assets/skillbook-blueprint-robot.webp" width="720">
+</p>
+
 ## What this is
 
 A blueprint is a folder of markdown documents that holds a project's thinking: its ideas, the discussions, the research, the decisions and their reasons, what the project must do, how it works, and the work planned to get there. It sits beside the code and is written before and alongside it.
