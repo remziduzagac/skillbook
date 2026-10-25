@@ -4,13 +4,14 @@
     <img alt="skillbook" src="assets/skillbook-logo-dark.svg" width="200">
   </picture>
 </p>
-<p align="center">
-  <img alt="An orange robot at a workbench reads a green skillbook, with diagrams, gears and screens around it"
-    src="assets/skillbook-robot.webp" width="720">
-</p>
 <p align="center"><a href="https://github.com/remziduzagac/skillbook/actions/workflows/ci.yml"><img src="https://github.com/remziduzagac/skillbook/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a></p>
 
-Agent skills for any kind of project, organised as sets you install separately: essentials, for how any work is done, and sets for keeping a project's design record, engineering software and writing for people. Built for Claude Code and Codex, written so other agents that read skills work too.
+skillbook is a book of skills for AI agents such as Claude Code and Codex: instructions an agent loads to understand what you want, do the work with care and tell you plainly what it did. The skills come in sets you install separately: essentials, for how any work is done, and sets for keeping a project's design record, engineering software and writing for people. Other agents that read skills can use them too.
+
+<p align="center">
+  <img alt="An orange robot at a workbench reads a black skillbook, with diagrams, gears and screens around it"
+    src="assets/skillbook-robot.webp" width="720">
+</p>
 
 **Status:** the essentials set is built and being tested; the other sets are still being designed. There is no release yet.
 
