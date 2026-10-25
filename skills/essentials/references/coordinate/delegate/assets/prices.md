@@ -13,6 +13,6 @@ Checked 2026-10-25. These are published API rates in USD per million tokens, not
 | Claude Opus 5.5 | 4.00 | 0.20 | 5.00 | 20.00 |
 | Claude Fable 5.1 | 10.00 | 0.25 | 12.50 | 50.00 |
 
-Claude writes above use the five-minute rate; longer cache storage can differ. Luna's published long-prompt rates increase above 272k input: twice input/cache rates and 1.5 times output. Other price steps were not confirmed here. API availability does not prove worker/account access. Quotas, actual cache hits and spending enforcement require live evidence.
+The Claude cache-write prices in the table cover five-minute storage. Longer storage can cost a different amount. For prompts above 272k input tokens, Luna's published input and cache rates double, and its output rate rises to 1.5 times the listed rate. Other price steps were not confirmed here. A model's API availability does not prove that the worker tool or account can access it. Quotas, actual cache hits and spending enforcement require live evidence.
 
 Sources: [Luna](https://developers.openai.com/api/docs/models/gpt-6-luna), [Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [Astra](https://developers.openai.com/api/docs/models/gpt-6-astra), [Claude pricing](https://platform.claude.com/docs/en/about-claude/pricing).

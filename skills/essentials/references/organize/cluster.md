@@ -1,6 +1,6 @@
 # organize-cluster
 
-Builds a finding view with source content unchanged. Navigation tags may be written into items only when the user asks for that form.
+Builds a view that helps readers find items while keeping source content unchanged. Navigation tags may be written into items only when the user asks for that form.
 
 ```text
 A B C → view over A, B, C (source content unchanged)
@@ -8,7 +8,7 @@ A B C → view over A, B, C (source content unchanged)
 
 ## Advice
 
-- A map pays for items agents read often. The reader can open the needed part instead of searching everything.
+- A map saves reading when agents often need the same items. The reader can open the needed part instead of searching everything.
 
 ## Instructions
 
@@ -20,4 +20,4 @@ A B C → view over A, B, C (source content unchanged)
 
 ## The last instruction
 
-Return the view or proposal, its maintenance method and any exact requested tag edits. Source content is otherwise unchanged. Keep the parent's inventory and both approval checkpoints. Report missing items, dead entries and effects beyond navigation rather than claiming a complete finding view.
+Return the view or proposal, its maintenance method and any exact requested tag edits. Source content is otherwise unchanged. Follow the `organize` skill's inventory check and both approval checkpoints. Report missing items, entries that point to nothing and effects beyond navigation. Do not claim the view is complete when those problems remain.
