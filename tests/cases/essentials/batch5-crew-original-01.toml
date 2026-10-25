@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: crew, test 1 (D261)"
+about = "Assigns disjoint writes and keeps plan approval and verification explicit."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-crew"]
+covers = ["coordinate-delegate-crew:rule:1", "coordinate-delegate-crew:step:1"]
+category = "normal"
+rejects = "Starts work from a proposal or assigns competing writers to one card."
+review = ["Assigns disjoint writes and keeps plan approval and verification explicit.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Propose four parallel writers for four distinct exhibit cards. Give each its scope; start nothing."
+
+[checks]
+no_changes = true

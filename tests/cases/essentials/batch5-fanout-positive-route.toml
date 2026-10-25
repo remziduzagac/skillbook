@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 17 (D261)"
+about = "Reads the fanout method and returns scoped parts, files, consolidation and validation status."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:route:coordinate-delegate-fanout"]
+category = "boundary"
+rejects = "Treats separate lenses as a council or claims live workers ran."
+review = ["Reads the fanout method and returns scoped parts, files, consolidation and validation status."]
+version_control = true
+
+[[turns]]
+prompt = "Draft the process for separate large provenance and scheduling review lenses after search cannot narrow the archive. Start nothing."
+
+[checks]
+no_changes = true
+reads = ["coordinate-delegate-fanout"]

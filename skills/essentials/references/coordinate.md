@@ -1,6 +1,6 @@
 # coordinate
 
-Routes work given to other agents now and work carried over to later sessions.
+Routes delegation, brief writing, carryovers, agent instructions, skillbook setup and session lessons.
 
 ## Instructions
 
@@ -11,10 +11,20 @@ Routes work given to other agents now and work carried over to later sessions.
   - Not for: choosing the agent, model or cost (`coordinate-delegate`), or recording state for later (`coordinate-carryover`).
   - Gives back: the brief and the report it asks the worker to return.
 - **carryover** (`coordinate-carryover`): when writing or resuming state for a later session or agent. The carryover offer also applies at a boundary during a long session that will continue.
-  - Not for: starting a worker now (`coordinate-delegate` and `coordinate-brief`) or recording a lasting lesson (the caller).
+  - Not for: starting a worker now (`coordinate-delegate` and `coordinate-brief`) or recording a lasting lesson (`coordinate-learn`).
   - Gives back: the note with its actual review and approval status, or the differences checked on resumption and the authorized work that continues.
 
-For instruction documents, setup or lessons, use judgment under the `act` skill and the project's conventions. For a skill's design or files, use the project's method for making skills. Use your judgment when the project has no such method. A setup request is distinct from adding a rule to an instruction file. Moving an installed skillbook pointer is setup work. Record lessons only when asked or the user accepts the main skill's stopping offer. A request fitting no route uses judgment under the `act` skill. Return each result to its caller.
+- **instruct** (`coordinate-instruct`): when adding, updating or pruning an instruction document for agents.
+  - Not for: skill files or designs (the project's skill-making method), installed pointer placement (`coordinate-setup`), or a later-session note (`coordinate-carryover`).
+  - Gives back: the proposed or approved document, its location and actual save status.
+- **setup** (`coordinate-setup`): when the user asks to set up skillbook on a machine or project, check setup, or move an installed pointer.
+  - Not for: adding an ordinary instruction rule (`coordinate-instruct`) or making skills (the project's skill-making method).
+  - Gives back: approved changes, checked loading, recommendations and pending work.
+- **learn** (`coordinate-learn`): when asked what a session taught or when the user accepts the main stopping offer's lesson part.
+  - Not for: unasked recording, a decision recorded as work happens (the caller), or carrying state forward (`coordinate-carryover`).
+  - Gives back: approved promotions and their destinations, dropped highlights and pending decisions.
+
+For a skill's design or files, use the project's method for making skills, otherwise judgment. A request fitting no route uses judgment under the `act` skill. Return each result to its active caller.
 
 ## The last instruction
 

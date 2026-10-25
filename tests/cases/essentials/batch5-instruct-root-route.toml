@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: instruct, test 14 (D261)"
+about = "Reads instruct and returns a useful draft with scope, reason and save approval pending."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:route:coordinate-instruct"]
+category = "boundary"
+rejects = "Starts setup or saves unapproved guidance."
+review = ["Reads instruct and returns a useful draft with scope, reason and save approval pending."]
+version_control = true
+
+[[turns]]
+prompt = "Draft a project instruction rule for keeping labels unchanged. Do not set up skillbook or save any file."
+
+[checks]
+no_changes = true
+reads = ["coordinate-instruct"]

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: learn, test 4 (D261)"
+about = "Uses the main stopping offer for the useful lesson and remaining work, without recording either unasked."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-learn"]
+covers = ["coordinate-learn:rule:1"]
+category = "normal"
+rejects = "Treats ordinary task completion as stopping or writes the records before acceptance."
+review = ["Uses the main stopping offer for the useful lesson and remaining work, without recording either unasked.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "I am stopping with the visitor guide unfinished and a useful correction about label preservation. Offer the appropriate records; save nothing."
+
+[checks]
+no_changes = true

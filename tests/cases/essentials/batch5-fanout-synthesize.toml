@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 16 (D261)"
+about = "Supports the answer with the validated closing time, reports weekend uncertainty and names what would settle it."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:step:5", "coordinate-delegate-fanout:rule:5"]
+category = "boundary"
+rejects = "Uses the unverified weekend claim as evidence or hides the missing coverage."
+review = ["Supports the answer with the validated closing time, reports weekend uncertainty and names what would settle it."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical validator confirmed that the ticket desk closes at 16:00. It left weekend exceptions unverified because no source was available. Write the useful answer and evidence limits from those supplied statuses."
+
+[checks]
+no_changes = true

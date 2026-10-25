@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: learn, test 12 (D261)"
+about = "Saves only the approved insight with its reason, returns its path and makes no instruction or skill edit."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-learn"]
+covers = ["coordinate-learn:rule:2", "coordinate-learn:step:4", "coordinate-learn:step:5", "coordinate-learn:last"]
+category = "boundary"
+rejects = "Writes into a guessed keeper or promotes it into a rule without approval."
+review = ["Saves only the approved insight with its reason, returns its path and makes no instruction or skill edit."]
+version_control = true
+
+[[turns]]
+prompt = "I approve saving this one insight to lesson.md: preserving uncertain labels avoids inventing source facts. No keeper is loaded. Write only that file and return its actual status."
+
+[checks]
+changed = ["lesson.md"]
+unchanged = ["GUIDANCE.md", "work.md", "simulated/settings.json"]

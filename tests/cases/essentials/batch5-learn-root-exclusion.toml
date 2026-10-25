@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: learn, test 11 (D261)"
+about = "Uses carryover for state and does not promote a lesson."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:not-for:coordinate-learn"]
+category = "boundary"
+rejects = "Treats every state note as a lesson capture."
+review = ["Uses carryover for state and does not promote a lesson."]
+version_control = true
+
+[[turns]]
+prompt = "The session is not ending. I need only the current state in a carryover draft, not lessons. Save nothing."
+
+[checks]
+no_changes = true

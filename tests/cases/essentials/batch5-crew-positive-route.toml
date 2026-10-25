@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: crew, test 9 (D261)"
+about = "Reads crew and returns scoped owners, approval, final pass and verification."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:route:coordinate-delegate-crew"]
+category = "boundary"
+rejects = "Assigns multiple writers to one shared file or starts from a plan-only request."
+review = ["Reads crew and returns scoped owners, approval, final pass and verification."]
+version_control = true
+
+[[turns]]
+prompt = "Draft the process for parallel changes to separate exhibit cards, with one shared index owner. Start nothing."
+
+[checks]
+no_changes = true
+reads = ["coordinate-delegate-crew"]

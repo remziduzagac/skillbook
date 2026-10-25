@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: setup, test 18 (D261)"
+about = "Asks the user for the concrete fresh-session check and reports it pending."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-setup"]
+covers = ["coordinate-setup:last"]
+category = "boundary"
+rejects = "Invents a CLI launch or claims loading without a session."
+review = ["Asks the user for the concrete fresh-session check and reports it pending.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "The current surface has no permitted fresh-session control. Return a useful loading-check request without running a model."
+
+[checks]
+no_changes = true

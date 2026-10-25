@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: instruct, test 13 (D261)"
+about = "Identifies the reader, purpose and questions served, and keeps the document short without losing needed instructions."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-instruct"]
+covers = ["coordinate-instruct:step:1", "coordinate-instruct:step:2", "coordinate-instruct:advice:1"]
+category = "boundary"
+rejects = "Pads it to an arbitrary line count or omits required facts for size."
+review = ["Identifies the reader, purpose and questions served, and keeps the document short without losing needed instructions."]
+version_control = true
+
+[[turns]]
+prompt = "Draft a small instruction document for an agent reading it every turn. Explain the questions it lets that agent answer. Keep required facts and save nothing."
+
+[checks]
+no_changes = true

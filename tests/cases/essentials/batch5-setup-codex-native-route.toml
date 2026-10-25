@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: setup-codex, test 12 (D261)"
+about = "Reads the Codex child through setup and returns actual documented paths and limitations."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-setup"]
+covers = ["coordinate-setup:route:coordinate-setup-codex"]
+category = "boundary"
+rejects = "Claims setup ran or skips the requested useful guidance."
+review = ["Reads the Codex child through setup and returns actual documented paths and limitations."]
+version_control = true
+
+[[turns]]
+prompt = "Read the current Codex setup guidance and return a proposal with supported destinations and unknown loading controls. Make no changes."
+
+[checks]
+no_changes = true
+reads = ["coordinate-setup-codex"]

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: learn, test 3 (D261)"
+about = "May report no new reusable lesson and promotes nothing fabricated."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-learn"]
+covers = ["coordinate-learn:step:2", "coordinate-learn:step:5"]
+category = "normal"
+rejects = "Invents a lasting lesson to fill a form."
+review = ["May report no new reusable lesson and promotes nothing fabricated.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "The session only looked up an already documented time. Report whether anything reusable needs promotion."
+
+[checks]
+no_changes = true

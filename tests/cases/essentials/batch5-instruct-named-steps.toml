@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: instruct, test 12 (D261)"
+about = "Returns usable named steps with completion or next-step conditions."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-instruct"]
+covers = ["coordinate-instruct:rule:3", "coordinate-instruct:step:2"]
+category = "boundary"
+rejects = "Returns an endless or circular procedure without exits."
+review = ["Returns usable named steps with completion or next-step conditions."]
+version_control = true
+
+[[turns]]
+prompt = "Draft a short instruction procedure with named steps for checking a preview. Each step must say when it ends or where it goes next. Save nothing."
+
+[checks]
+no_changes = true

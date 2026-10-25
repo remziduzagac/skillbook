@@ -33,7 +33,7 @@ Makes and follows plans for multipart work, keeping approval and progress explic
    - Not for: operating Claude Code or another harness, or deciding approval policy.
    - Gives back: available controls, their actual results and missing capabilities.
 6. **Apply approval by rules 7 and 8.** Use a permitted available plan mode when approval is needed. Mode changes alone are not approval. If no plan mode is available, put the approval request in the final message. End the turn. If no task tool is available, keep a plain-text checklist. If both capabilities are missing, use both fallbacks. Install or enable nothing to acquire controls.
-7. **Follow authorized steps by rule 6.** Use `coordinate-delegate` to give independent parts to available agents when the caller permits delegation. Raise a wrong given step by the `act` skill's concern rule before relying on it. A failure goes to rule 9, not the next dependent step.
+7. **Follow authorized steps by rule 6.** Use `coordinate-delegate` to give independent parts to available agents when the caller permits delegation. Use `coordinate-delegate-crew` within that active call for parallel changes to separate items. Raise a wrong given step by the `act` skill's concern rule before relying on it. A failure goes to rule 9, not the next dependent step.
 
 A full plan's default shape, omitting empty fields:
 

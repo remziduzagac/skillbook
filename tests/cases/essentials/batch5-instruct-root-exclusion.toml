@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: instruct, test 15 (D261)"
+about = "Leaves skill-file work to the project method or judgment, rather than applying instruct as the writer."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:not-for:coordinate-instruct"]
+category = "boundary"
+rejects = "Treats every Markdown file as an instruction document."
+review = ["Leaves skill-file work to the project method or judgment, rather than applying instruct as the writer."]
+version_control = true
+
+[[turns]]
+prompt = "The work is a skill file change, not a project instruction document. Propose the responsible method only."
+
+[checks]
+no_changes = true

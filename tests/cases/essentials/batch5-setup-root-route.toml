@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: setup, test 20 (D261)"
+about = "Reads setup and returns the combined discovery and approval plan."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:route:coordinate-setup"]
+category = "boundary"
+rejects = "Adds only an ordinary guidance rule or applies changes before approval."
+review = ["Reads setup and returns the combined discovery and approval plan."]
+version_control = true
+
+[[turns]]
+prompt = "Prepare a skillbook setup proposal for this project, without changing any install or configuration."
+
+[checks]
+no_changes = true
+reads = ["coordinate-setup"]

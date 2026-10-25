@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: learn, test 6 (D261)"
+about = "Offers the lesson without inventing remaining work or requiring a carryover."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-learn"]
+covers = ["coordinate-learn:rule:1"]
+category = "boundary"
+rejects = "Drops the lesson because no steps remain or invents a next task."
+review = ["Offers the lesson without inventing remaining work or requiring a carryover.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "I am stopping now. All exhibit tasks are done, but I corrected a reusable label-preservation mistake. Offer only the appropriate useful record. Save nothing."
+
+[checks]
+no_changes = true

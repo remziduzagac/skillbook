@@ -37,7 +37,7 @@ Needs: permitted agent tools. If unavailable, return the limitation and remainin
 
 ## Instructions
 
-1. **Choose the work pattern.** Use the caller's named pattern within its authority. Otherwise consider one worker first. Several earn their cost through large separate parts, independence or different lenses, accepted time savings, or a worker's limited window. Search first. Use a council for the same question over the same material. Use a fanout for separate reading tasks or review lenses. Use a crew for changes to separate items. A shared item has one writer. Use one writer when every change affects the same item. If several views are needed, have those workers return proposals. Keep council disagreements. Do not claim a consolidation or validation method ran without evidence.
+1. **Choose the work pattern.** Use the caller's named pattern within its authority. Otherwise consider one worker first. Several earn their cost through large separate parts, independence or different lenses, accepted time savings, or a worker's limited window. Search first. Read the matching method below when several workers are needed. Run that method inside this active call after controls and approval are settled. A method's request for one worker uses this call's startup steps without selecting a method again. A single task needs no method child. Workers start no further workers.
 2. **Choose fork or fresh by the advice and independence rule.** Use only capabilities actually available.
 3. **Load the current harness child for its controls and mapping.**
 4. **claude** (`coordinate-delegate-claude`): Claude Code's worker controls, mappings for models and reasoning effort, and limits.
@@ -51,6 +51,16 @@ Needs: permitted agent tools. If unavailable, return the limitation and remainin
 8. **Start the authorized worker and record its identity.** Respect limits and keep its actual state on the running list. Use permitted waits while the conversation continues.
 9. **Check the returned result by rule 7.** Handle obstacles by rule 5. Ask the worker to clean up before reporting and check its report through `act-cleanup`.
 10. **Return a short report to the caller.** Report the task outcome, decisions needed from the user, paths to evidence, missing work and cost where needed. Report cleanup under cleaned, kept and proposed. Distinguish failed or unfinished work from completed work.
+
+11. **council** (`coordinate-delegate-council`): several independent answers to the same question over the same material.
+    - Not for: separate parts or review lenses (`coordinate-delegate-fanout`), disjoint changes (`coordinate-delegate-crew`), or an unrequested recommendation.
+    - Gives back: attributed answers, a summary preserving disagreement and missing members.
+12. **fanout** (`coordinate-delegate-fanout`): separate large reading tasks, search areas or review lenses after search cannot narrow the work enough.
+    - Not for: the same whole question to each worker (`coordinate-delegate-council`), parallel changes (`coordinate-delegate-crew`), or work one search settles.
+    - Gives back: consolidated findings, actual validation status, sources and coverage limits.
+13. **crew** (`coordinate-delegate-crew`): parallel changes to separate items with one owner per shared item.
+    - Not for: changes all landing in one item (one writer), reading only (`coordinate-delegate-fanout`), or a plan-only request (return the plan).
+    - Gives back: authorized changes, the final pass, actual verification and unfinished work.
 
 Read [cost data](delegate/assets/prices.md) only when needed. Read [other-harness rules](delegate/assets/other-harnesses.md) only when another program is named or an allowed one fits.
 

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: instruct, test 10 (D261)"
+about = "Reports the unresolved reference and useful repair proposal, without fabricating the target."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-instruct"]
+covers = ["coordinate-instruct:rule:2", "coordinate-instruct:last"]
+category = "boundary"
+rejects = "Claims the missing path resolves."
+review = ["Reports the unresolved reference and useful repair proposal, without fabricating the target.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "A proposed pointer names a missing procedure file. Return the draft's gap instead of calling its references usable."
+
+[checks]
+no_changes = true

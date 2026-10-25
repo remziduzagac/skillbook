@@ -492,10 +492,35 @@
       "setup"
      ],
      "mark": "●",
-     "desc": "setting skillbook up, on request: the pointer where the skills are installed, a project's local file by default, its shared file when the team commits the skills, or moved between them; in a project, its blueprint started where that set is installed, its instruction files checked, skills recommended; adds existing skills, makes none (D93, D97, D117, D163, D165)",
+     "desc": "skillbook setup on request: discover and propose the complete scope, apply approved pointers and settings, preserve existing guidance, and report observed loading or pending checks (D261)",
      "src": "cc lc",
      "tail": [],
-     "kids": []
+     "kids": [
+      {
+       "path": [
+        "coordinate",
+        "setup",
+        "claude"
+       ],
+       "mark": "●",
+       "desc": "current claude setup paths, preserved instruction precedence and conditional loading checks (D261)",
+       "src": "",
+       "tail": [],
+       "kids": []
+      },
+      {
+       "path": [
+        "coordinate",
+        "setup",
+        "codex"
+       ],
+       "mark": "●",
+       "desc": "current codex setup paths, preserved instruction precedence and conditional loading checks (D261)",
+       "src": "",
+       "tail": [],
+       "kids": []
+      }
+     ]
     },
     {
      "path": [

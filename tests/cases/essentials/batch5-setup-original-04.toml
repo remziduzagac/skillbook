@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: setup, test 4 (D261)"
+about = "Leaves correct material unchanged and adds no duplicate."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-setup"]
+covers = ["coordinate-setup:step:1", "coordinate-setup:rule:5"]
+category = "normal"
+rejects = "Adds another pointer or hook merely because setup was requested."
+review = ["Leaves correct material unchanged and adds no duplicate.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical setup already has the correct pointer and identical approved settings entries. Return the repeat-run result."
+
+[checks]
+no_changes = true

@@ -26,7 +26,7 @@ Needs: optional fresh reviewer for an independent cold read. If unavailable, ret
 
    1. Goal and where the whole work stands.
    2. Current structure and concepts, each with where it is defined.
-   3. Give working rules, conventions and commands recorded nowhere else. Point to the files containing those already recorded. Offer a worthwhile lasting lesson through the main stopping flow rather than recording it unasked.
+   3. Give working rules, conventions and commands recorded nowhere else. Point to the files containing those already recorded. Offer a worthwhile lasting lesson through the main stopping flow and `coordinate-learn` rather than recording it unasked.
    4. Done since the previous carryover, with evidence.
    5. Give decisions and where they are recorded. Include decisions recorded nowhere else.
    6. Remaining work in order, what each item is about and what was weighed.

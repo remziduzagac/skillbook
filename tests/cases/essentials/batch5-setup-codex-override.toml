@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: setup-codex, test 9 (D261)"
+about = "Warns the override replaces the same-directory shared file and proposes a supported alternative."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-setup-codex"]
+covers = ["coordinate-setup-codex:step:2"]
+category = "edge"
+rejects = "Calls the override additive."
+review = ["Warns the override replaces the same-directory shared file and proposes a supported alternative.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-setup-codex as reference documentation only. Hypothetical situation: The project has AGENTS.md and a proposed local-only AGENTS.override.md. Return a useful proposal and actual limitations. Start no model or session and edit no file."
+
+[checks]
+no_changes = true

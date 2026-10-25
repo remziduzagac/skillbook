@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: council, test 11 (D261)"
+about = "Uses fanout for the separate lenses and preserves their evidence contracts."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:not-for:coordinate-delegate-council"]
+category = "boundary"
+rejects = "Starts a council as if all questions were identical."
+review = ["Uses fanout for the separate lenses and preserves their evidence contracts."]
+version_control = true
+
+[[turns]]
+prompt = "Three separate lenses should inspect different parts, not answer one whole question. Propose only."
+
+[checks]
+no_changes = true

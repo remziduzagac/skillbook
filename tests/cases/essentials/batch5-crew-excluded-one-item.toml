@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: crew, test 10 (D261)"
+about = "Uses one writer and optionally reading proposals, not simultaneous writes."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:not-for:coordinate-delegate-crew"]
+category = "boundary"
+rejects = "Uses crew for competing writes to one destination."
+review = ["Uses one writer and optionally reading proposals, not simultaneous writes."]
+version_control = true
+
+[[turns]]
+prompt = "All changes affect one guide file. Propose one safe ownership pattern only."
+
+[checks]
+no_changes = true

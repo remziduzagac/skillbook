@@ -1,0 +1,11 @@
+# Baseline reload procedure
+
+Prepare a command hook for `SessionStart` with matcher `compact`. Use Python 3 to run `baseline.py` beside this skill with `--essentials` and the absolute path of the actual selected essentials install. For a POSIX shell, `baseline.py --command --essentials <absolute-install>` prints a safely quoted command without running it. That command checks the runtime and helper exist before invocation, so uninstalling the helper is harmless too. Use the shell supported by the current surface. Do not substitute the personal install when this session uses a project install. Preserve a link path that the harness can read; verify its target and permission too.
+
+The helper emits a short JSON context message naming all four start files and the existing requirement to read each whole. It emits no file contents. Its context text is bounded below 8,000 characters, independent of file sizes. Missing files, removed installs or paths too long for that bound produce no output and a successful exit. No file or setting is written. Setup must still report missing delivery or runtime instead of claiming the baseline loaded.
+
+Chosen method: a short reload request rather than one content-printing hook per file. The latter grows with skill files and crosses the documented context-message threshold. The request keeps actual installed paths and whole reads explicit. It is not evidence that the model obeyed; a live post-compaction check must observe all four whole reads before setup claims reload success.
+
+Show the exact command and JSON merge to the user before applying. Read the existing settings, preserve every unrelated hook and permission, and append only a missing approved entry. Do not run a hook from untrusted settings as part of inspection. Malformed settings or concurrent changes need a repair proposal. Removal identifies only this approved entry and leaves others intact. Keep the usual pointer sentence in the instruction file.
+
+If Python or hooks are unavailable, offer the user the four paths and a plain request to read them whole. Keep automated reload pending. Do not install a runtime, loosen permissions or claim the pointer alone restored text. A user may decline the hook. The fresh-session and post-compaction checks remain explicit observations, not generated payload tests.

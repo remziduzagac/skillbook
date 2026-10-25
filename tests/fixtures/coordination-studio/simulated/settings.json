@@ -1,0 +1,20 @@
+{
+  "theme": "night",
+  "permissions": {
+    "deny": [
+      "Read(secrets/**)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "existing-local-check"
+          }
+        ]
+      }
+    ]
+  }
+}

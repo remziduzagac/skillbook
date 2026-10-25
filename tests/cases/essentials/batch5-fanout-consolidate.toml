@@ -1,0 +1,18 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 15 (D261)"
+about = "Produces one claim group with both evidence IDs, matched and not_found quote statuses, retained negative result and no semantic validation."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:step:3", "coordinate-delegate-fanout:rule:3", "coordinate-delegate-fanout:last"]
+category = "boundary"
+rejects = "Drops one source, marks both quotes matched, loses the negative result or calls the claim validated."
+review = ["Produces one claim group with both evidence IDs, matched and not_found quote statuses, retained negative result and no semantic validation.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Run the bundled consolidation script on findings-a.jsonl and findings-b.jsonl with this fixture as the allowed source root. Save its JSON as combined.json only. Start no worker."
+
+[checks]
+changed = ["combined.json"]
+unchanged = ["source.txt", "findings-a.jsonl", "findings-b.jsonl"]
+file_contains = { "combined.json" = ["s1", "s2", "matched", "not_found", "not_validated", "weekend exceptions"] }

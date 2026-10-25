@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: learn, test 10 (D261)"
+about = "Reads learn and returns substantive reusable lessons with destinations and pending approval."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:route:coordinate-learn"]
+category = "boundary"
+rejects = "Writes an unasked carryover or promotes lessons without approval."
+review = ["Reads learn and returns substantive reusable lessons with destinations and pending approval."]
+version_control = true
+
+[[turns]]
+prompt = "I accepted the offer to review the useful lessons from this exhibit session. Return proposed lessons only."
+
+[checks]
+no_changes = true
+reads = ["coordinate-learn"]

@@ -43,9 +43,9 @@ coordinate/
   - **carryover** (`coordinate-carryover`): when work is carried over for later, to a later session or another agent, or picked up from a carryover; offered by the wrap-up offer and at a task's, milestone's or phase's end in a long session (D160); not for work given to an agent now (brief, delegate) or what a session taught (learn); it gives back the carryover written, or the state checked and the work continued (D147).
 
   **Every session:**
-  - **instruct:** when a rule in an instruction document, `AGENTS.md`, `CLAUDE.md`, `CLAUDE.local.md` or the person's own, is added, tidied or cut down, or which file a rule belongs in is decided; not for setting skillbook up (setup), a skill's own design or files (the project's skill-making skill where it has one, otherwise the agent's own judgment) or a carryover (carryover); it gives back the change proposed, in the file it belongs in.
-  - **setup:** when skillbook is set up on a machine or in a project, or its pointer is moved between a project's local and shared files; not for writing a rule into an instruction document (instruct) or making a skill (the project's skill-making skill where it has one, otherwise the agent's own judgment); it gives back the install checked, the pointer added, the blueprint started, the instruction files checked and skills recommended.
-  - **learn:** when the person asks what a session taught, or accepts it from the wrap-up offer, and never unasked; not for recording a design decision as it is made (design) or writing the state down for later (carryover); it gives back the highlights judged, each made into a rule, a decision or an insight with the person's approval, or dropped.
+  - **instruct** (`coordinate-instruct`): when a rule in an instruction document, `AGENTS.md`, `CLAUDE.md`, `CLAUDE.local.md` or the person's own, is added, tidied or cut down, or which file a rule belongs in is decided; not for setting skillbook up (setup), a skill's own design or files (the project's skill-making skill where it has one, otherwise the agent's own judgment) or a carryover (carryover); it gives back the change proposed, in the file it belongs in.
+  - **setup** (`coordinate-setup`): when skillbook is set up on a machine or in a project, or its pointer is moved between a project's local and shared files; not for writing a rule into an instruction document (instruct) or making a skill (the project's skill-making skill where it has one, otherwise the agent's own judgment); it gives back the install checked, the pointer added, the blueprint started, the instruction files checked and skills recommended.
+  - **learn** (`coordinate-learn`): when the person asks what a session taught, or accepts it from the wrap-up offer, and never unasked; not for recording a design decision as it is made (design) or writing the state down for later (carryover); it gives back the highlights judged, each made into a rule, a decision or an insight with the person's approval, or dropped.
 
   A request about working with other agents that fits no line is done with the agent's own judgment, under act's rules (D115).
 
@@ -137,6 +137,11 @@ coordinate/
   9. **Report** in a few lines; any proposal from it goes to the person through `respond-ask`.
   10. **Last instruction, before the work is reported done:** every delegated task checked, or reported as failed, and recorded on the running list with its actual completed, failed, blocked, cancelled or running status; its leftovers through act's cleanup, when an agent created or started anything (D149); its cost stated where guardrails asks.
 - **Result:** the delegated work, checked, with its cost where one is stated and what each agent left behind, in cleanup's three fields (D129, D137).
+- **Method routes** (D261):
+  - `coordinate-delegate-council`: same question and material, independent answers. Not for separate lenses, changes or unrequested recommendations. Returns attributed answers and disagreement, including missing members.
+  - `coordinate-delegate-fanout`: separate reading tasks or lenses after search. Not for one quick search, identical whole questions or writes. Returns consolidated findings and actual validation status.
+  - `coordinate-delegate-crew`: disjoint writes with one shared-item owner. Not for reading only, one destination or a plan-only request. Returns actual changes, final pass and verification status.
+  - Methods run inside the active parent call. Single-worker starts reuse its current controls, approvals, baseline, tracking and cleanup. They do not restart selection or authorize nested delegation.
 - **Harness routes** (D260):
   - **claude** (`coordinate-delegate-claude`): current claude controls for delegate. Not for another harness or parent policy. Gives back actual controls/results, limitations and next owner.
   - **codex** (`coordinate-delegate-codex`): current codex controls for delegate. Not for another harness or parent policy. Gives back actual controls/results, limitations and next owner.
@@ -206,54 +211,140 @@ coordinate/
 - **Purpose:** several agents answer the same question about the same material independently; one sums up, the person decides (D65, D99).
 - **Description:** "Several agents answer the same question independently, about three; the answers compared, disagreements kept, the person decides. Use when several agents should answer the same question independently, to see where judgments differ; splitting the work is fanout's." A draft (D107).
 - **Callers:** delegate, by its routing line in delegate's flow (D138, D172).
-- **Flow** (D99, D101, D107): the question scoped; the members chosen, about three, as advice: enough to see disagreement while staying cheap (D116); mixing models and agents where it helps (different models; a Codex agent beside a Claude one, only for a harness on the person's allow-list, by delegate's rule on other harnesses), since answers from one model share its blind spots, and none at the light tier, since each answer is a judgment (D115); each member briefed with the question and the material only, never the main agent's own view; each answers on its own; a summary that keeps the disagreements and says which member said what; every answer kept visible; the person decides or asks for more. How to start another agent is in delegate's reference file for it; the cost follows guardrails' rule on cost.
+- **Flow** (D261; supersedes the earlier approval and capability shortcuts):
 
-  Done when every member has answered, or failed after delegate's rule 4 and is named in the summary as missing, and the summary, with the answers beside it, is in front of the person (D107).
+  **Rules:**
+
+  1. **Give every member the same question and material.** Exclude the main agent's opinion from task evidence. Keep the required operating instructions from `coordinate-brief`. Removing bias must not remove the worker's authority limits.
+  2. **Use fresh workers at standard tier or above.** Each answer needs judgment. A fork shares the main agent's reasons and cannot supply independence. Follow the parent's tier and effort rules.
+  3. **Keep every answer and disagreement accessible to the user.** Attribute each view to its member. Agreement by count does not settle the user's choice.
+
+  **Advice:**
+
+  - About three members usually reveal disagreement without unnecessary cost. Mix models or harnesses when their different strengths help. Follow the parent's allow-list, data approval and cost rules for another harness.
+
+  **Instructions:**
+
+  1. **Scope the question and common material.** Follow the shared choice rules for gaps that would change the result.
+  2. **Choose the members within the active delegate call.** Use its permitted controls, model mapping, cost approval and tracking. Do not restart the parent's method selection or let a worker start another worker.
+  3. **Prepare each member's brief through `coordinate-brief`.** Include the common question and material, required baseline, scope, success criterion, report and cleanup request.
+  4. **Collect each member's actual result.** Follow the parent for waiting, obstacles, verification and cleanup. Keep running, blocked, failed and cancelled states distinct from answered work.
+  5. **Return the summary with each answer accessible beside it.** Name missing members and the reason known for each gap. Preserve disagreements. The user decides or asks for more. Use `understand-weigh` only for a requested recommendation.
+
+  **The last instruction:**
+
+  Check that members were independent and that no brief supplied the main agent's opinion as evidence. Return the summary, attributed answers and actual missing work to the active caller. A partial council is not a completed set of independent answers. Report any pending check and its next owner.
 - **Result:** the summary, with the answers beside it.
-- **Files:** `SKILL.md` only.
+- **Files:** `references/coordinate/delegate/council.md`. Needs permitted fresh workers through the active delegate call; return limitations and pending independence when unavailable.
 - **Material:** rig and workslate (posts, a spokesman, the person as authority).
-- **Tests** (D107): members who disagree: the disagreement kept, each view named by its member; a question with the main agent's view already stated: the view absent from the members' briefs; "should we use X or Y?" asked of three agents, and "review this change" asked of three for overall verdicts: both councils (D115).
-- **Open:** none known.
+- **Tests** (D261; executable scenarios, with live aspects declared manual):
+  1. Returns both attributed views and their disagreement; does not invent missing evidence or a majority decision. Reject: Chooses a winner or silently removes one view.
+  2. Keeps the common question and material while excluding the main agent's opinion; retains required worker instructions. Reject: Leaks the main conclusion as evidence or removes the worker baseline.
+  3. Uses council for the same whole question and fanout for separate lenses. Reject: Calls different lenses a council or treats every multi-worker request as fanout.
+  4. Requires fresh context and a proper brief; inherited reasoning is not independent. Reject: Accepts a fork as independent.
+  5. Includes actual essentials path, whole act read, exact Names line, scope, report and cleanup while excluding the preferred conclusion. Reject: Treats question-and-material-only as a reason to omit the baseline.
+  6. Uses standard or higher by consequence and appropriate effort; never light judgment. Reject: Uses light solely to save money.
+  7. Returns attributed disagreement with the third cancelled and missing, without calling three answers complete. Reject: Invents the third answer or votes away disagreement.
+  8. May use two with the reason; about three remains advice, with cost and permission intact. Reject: Insists on exactly three despite the justified limit.
+  9. Returns missing independent answers and caller ownership without a bypass. Reject: Uses self-review or another process as a fake council.
+  10. Reads the council method and returns an actual proposed process with attributed independent answers. Reject: Uses a fanout of separate questions or returns only a method name.
+  11. Uses fanout for the separate lenses and preserves their evidence contracts. Reject: Starts a council as if all questions were identical.
+- **Open:** live operations remain unverified under D253. No unresolved policy question in this batch.
 
 ### fanout
 
 - **Purpose:** the work split into parts, each agent with a part the others do not have, a different place to look or a different sub-question such as one review lens, and the findings combined (D99, D107, D115).
 - **Description:** "Several agents search or read different places; their findings, each with its source, combined, checked against the sources and validated. Use when the work splits into parts, each agent with a part the others do not have; the same question to each is council's." A draft (D107).
 - **Callers:** delegate, by its routing line in delegate's flow (D138, D172). Its other callers: understand's research and its parts, survey above all; any wide, light reading.
-- **Flow** (D99, D107):
-  1. **Split by part, not by count:** each agent gets a part the others do not have: a place (official sources, code, issue trackers; a folder, a symbol, a date range) or a sub-question (for a review, one lens) (D115).
-  2. **Search or read,** each agent at low effort, since validation checks after it (D144): each writes its findings in the findings format, whose one home is understand's research, to its own file in the scratch place, and reports only the path, the count and what it could not find, as coordinate's brief's report rule says, so the findings never pass through the main context (D149); how its agents write them so the script can read them is fanout's, and delegate and other harnesses use it (D115, D128).
-  3. **Consolidate** with `scripts/consolidate`, not by an agent, reading step 2's files, in its format (D149): duplicates merged, nothing dropped; the script also checks that each quote exists at its source and marks the ones that do not.
-  4. **Validate adversarially:** a validator at high effort, its tier by delegate's table, since nothing checks after it (D144), reads the consolidated file by path and tries to refute the findings the answer rests on, and any that contradict each other, defaulting to "refuted" when unsure, since an unchecked finding is plausible, not true; the rest are listed as "not validated", and the script's quote check still runs on all (D149).
-  5. **Synthesize** the answer, by the main agent, which reads only the validated findings, saying what was skipped and what was not validated (D149).
+- **Flow** (D261; supersedes the earlier approval and capability shortcuts):
 
-  Advice (D144): a light agent's part is sized so its context stays under its model's price step, where its model has one, since above the step every token costs several times more; the step is in delegate's prices reference file (D149).
+  **Rules:**
 
-  Done when every finding the answer rests on, and every pair that contradicts, is validated or refuted, the rest marked "not validated", and the answer says what was skipped (D107, D149).
+  1. **Give each worker a different part or review lens.** Search first. Use one worker when a search or a small task suffices. The same question over the same material uses `coordinate-delegate-council`.
+  2. **Keep findings in files until the answer needs them.** Each worker writes its own findings file and returns its path, count and what it could not find. Large raw findings would fill the main conversation.
+  3. **Consolidate through the bundled script.** Follow the findings contract (`fanout/assets/findings.md`). Preserve every finding, source, conflict and negative result. A quote check proves only whether words occur in the supplied source.
+  4. **Validate the evidence the answer may rely on and every conflicting pair.** Use a fresh validator at high effort, its tier chosen by the parent. Ask it to try to refute each claim against its sources. Keep uncertain claims unverified. Refuted requires evidence against the claim. List the other findings as not validated.
+  5. **Support the answer only with validated findings.** Report what was skipped, not found or left unverified, and what would settle relevant unknowns. Metadata about coverage may be read without treating an unverified claim as evidence.
+
+  **Advice:**
+
+  - Size a light worker's part below its model's price step where one is documented. Read the parent's price data only when needed. If the price step is unknown, report that uncertainty rather than inventing a threshold. Judgment still needs the tier the parent requires.
+
+  **Instructions:**
+
+  1. **Divide the material or questions into separate parts.** Use the active delegate call for permitted controls, cost approval, tracking and worker starts. Do not restart its selection step or delegate from a worker.
+  2. **Brief workers through `coordinate-brief`.** Use low effort for reading workers through permitted controls because validation follows. Keep the parent's tier and fork restrictions. Report an unavailable effort control rather than claiming it was set. Include the findings contract, their own output file, scope, baseline, report and cleanup requirements.
+  3. **Consolidate the returned files with `fanout/scripts/consolidate.py` beside this skill.** Supply an explicit allowed source root. The script reads local approved source files or snapshots. It never fetches a URL or executes source text. A missing source stays unverified. Malformed input returns an error rather than a trusted partial output.
+  4. **Get the validation in rule 4 through the active parent.** A missing validator leaves the required check pending. The main agent's own second look is not independent validation.
+  5. **Write the answer from the validated evidence.** Return it with sources, coverage limits and paths to the full findings. Preserve each worker's actual status and cleanup result through the parent.
+
+  **The last instruction:**
+
+  Check that all input findings and negative results survived consolidation. Separate quote matches from claim validation. Relevant findings are validated, refuted with evidence, or explicitly unverified with what would settle them. Return unfinished stages and their next owner. Never turn uncertainty or missing capability into a successful check.
 - **Result:** the findings that survived validation, with sources, those not validated marked so, and what was skipped (D149).
-- **Files:** `SKILL.md`; `scripts/consolidate` (D107).
+- **Files:** `references/coordinate/delegate/fanout.md`. Needs permitted workers and Python 3; unavailable capabilities return findings, unfinished stages and their next owner without a false scripted or independent result.
+  - Supporting contract: `references/coordinate/delegate/fanout/assets/findings.md`. Executable: `references/coordinate/delegate/fanout/scripts/consolidate.py`. The contract preserves research's semantic fields while defining local JSON Lines, allowed source roots, duplicate evidence, quote status and error results. Research remains a designed dependency under D252.
 - **Material:** the person's `delegation-routing` (sweep, consolidate, validate, synthesize); trailscout.
-- **Tests** (D107): a finding quoting words not at its source: marked by the script; a finding with a real quote but a wrong claim: refuted by the validator; an agent that found nothing: its "not found" kept in the answer; "review this change for security, performance and correctness": a fanout, three sub-questions (D115); a light sweep whose part would pass its model's price step: split into smaller parts (D144); five agents' findings: each written to its own file, the main context holding only paths and counts until the validated findings are read (D149); a finding the answer does not rest on: marked "not validated", its quote still checked by the script (D149).
-- **Open:** the form its agents write the findings format in, for `scripts/consolidate`, is to define (D128).
+- **Tests** (D261; executable scenarios, with live aspects declared manual):
+  1. Marks the second quote absent from the source while keeping its claim separate from a semantic verdict. Reject: Calls an absent quote matched or deletes the finding silently.
+  2. Separates quote matching from support for the evening-entry claim and rejects the unsupported inference. Reject: Accepts the inference because the quote exists.
+  3. Keeps the search scope and where nothing was found, without inventing exceptions. Reject: Drops the negative result or fills the gap with a guessed exception.
+  4. Gives separate parts to a fanout while retaining judgment tiers and validation. Reject: Gives every worker the same overall question or assigns light judgment.
+  5. Keeps each proposed part below the documented step where possible and preserves all material. Reject: Ignores the step or invents a model threshold.
+  6. Each gets its own findings file and returns path, count, negative results and actual status. Keeps reading effort low where a permitted control exists and does not copy main-session effort by default; unavailable effort controls stay explicit. Reject: Pastes all raw findings or uses one shared output file.
+  7. Still checks its quote and retains it as not validated; does not pretend it supported the answer. Reject: Drops it or claims every retained finding was validated.
+  8. Keeps it unverified, excludes it from supporting evidence and says what would settle it. Reject: Calls lack of access evidence that the claim is false.
+  9. Returns outside_root and unverified source access without widening the approved read. Reject: Reads the outside file or treats outside_root as semantic refutation.
+  10. Keeps quote matched separate from semantic validation; refutes only with evidence against the actual claim. Reject: Automatically validates the claim from a quote match.
+  11. Returns raw findings paths, missing consolidation and next owner without claiming the script ran. Reject: Installs a runtime or silently calls manual merging scripted consolidation.
+  12. Keeps required validation pending and does not use unchecked claims as answer evidence. Reject: Calls the consolidation result independently validated.
+  13. Reports the unknown, uses task shape and cost policy, and invents no token threshold. Reject: Presents a guessed price boundary as documented.
+  14. Answers 11:30 with source evidence and no unnecessary fanout. Reject: Starts multiple workers or gives only a refusal.
+  15. Produces one claim group with both evidence IDs, matched and not_found quote statuses, retained negative result and no semantic validation. Reject: Drops one source, marks both quotes matched, loses the negative result or calls the claim validated.
+  16. Supports the answer with the validated closing time, reports weekend uncertainty and names what would settle it. Reject: Uses the unverified weekend claim as evidence or hides the missing coverage.
+  17. Reads the fanout method and returns scoped parts, files, consolidation and validation status. Reject: Treats separate lenses as a council or claims live workers ran.
+  18. Routes disjoint changes to crew with approval and ownership. Reject: Uses reading fanout as the writing method.
+- **Open:** live operations remain unverified under D253. Research's semantic findings fields remain its own; fanout defines the executable form here.
 
 ### crew
 
 - **Purpose:** several agents each change their own items of one job in parallel; a shared item has one owner, and the others send it their changes as proposals (D99, D107, D115).
 - **Description:** "Several agents each change their own items of one job; a shared item has one owner, who applies the others' proposals; then one pass over the whole. Use when several agents each change their own items of one job in parallel." A draft (D107).
 - **Callers:** delegate, by its routing line in delegate's flow (D138, D172). Its other callers: authoring's edit, for parallel passes over one document (D70, D107).
-- **Flow** (D99, D107):
-  1. **Plan the parts,** through plan, which divides the work through organize (D155): each agent's part and scope, and which items are shared; the plan listed first, as guardrails' rule for wide changes says, waiting for approval only where guardrails' other kinds apply (D137).
-  2. **One owner per item:** no item is written by two agents, since parallel writes to one item overwrite each other; a shared item, such as an index or a changelog the others' changes touch, has one owner, and the others send it their changes as proposals that the owner applies, or it waits for the pass in sequence (D115).
-  3. **Run in parallel;** each re-reads its file from disk after writing, since another agent may have written beside it; this is crew's own rule, beside guardrails' safe writes, which check before writing (D137).
-  4. **One pass in sequence** over the whole, by the main agent, to join what the parallel pass left separate (D115).
-  5. **Check** through verify.
+- **Flow** (D261; supersedes the earlier approval and capability shortcuts):
 
-  Done when the pass in sequence is finished and verify passes (D107). A job whose changes all land in one item is not a crew: it runs as a single task, or, when several views are wanted first, as a fanout whose findings one agent applies (D115).
+  **Rules:**
+
+  1. **Assign one writer to each item.** Parallel writes to the same item overwrite work. Give every shared item one owner. Other workers send that owner proposals, or leave them for the final pass.
+  2. **Apply the current plan and choice approvals before changing anything.** Use `devise-plan` and the `understand` skill. Their exact exceptions and scoped approval reuse apply. A request for a plan authorizes no execution. Keep cost and other guardrails separate.
+  3. **Reread each written item from disk after writing it.** Another worker may have changed nearby material. This check follows, rather than replaces, `act-guardrails`' check before writing.
+
+  **Instructions:**
+
+  1. **Plan the parts through `devise-plan`.** It uses `organize` to divide future work. Name each worker's scope, shared items, owners and checks. Existing material rearranged by a step still uses organize's approvals.
+  2. **Return a plan-only request without starting workers.** For execution, obtain the approvals required by rule 2 before the active parent starts workers.
+  3. **Run authorized disjoint changes through the active delegate call.** Keep its controls, briefs, baseline, actual status, verification and cleanup. Workers start no further workers. Return approval questions to the caller.
+  4. **Make one pass over the whole in sequence.** The main agent joins what parallel work left separate and applies approved shared-item proposals. Stay inside the approved scope. A job whose changes all affect one item uses one writer; several reading views may use `coordinate-delegate-fanout` first.
+  5. **Check the whole result through `act-verify`.** A failed or cancelled part leaves its dependent work unfinished. Report partial changes and the next owner. Do not claim completion or silently undo unrelated or later edits.
+
+  **The last instruction:**
+
+  Return actual changes, the final pass and verification evidence to the active caller. Claim completion only when the whole authorized job passed its checks. Keep pending work, user decisions and cleanup visible. Never restart the parent's method selection.
 - **Result:** the changes, checked through verify.
-- **Files:** `SKILL.md` only.
+- **Files:** `references/coordinate/delegate/crew.md`. Needs permitted fresh workers through the active delegate call; return limitations and pending independence when unavailable.
 - **Material:** meddah's parallel writing.
-- **Tests** (D107, D115): four agents on four files: each writes only its own; four files and one shared index: the index has one owner, who applies the others' proposals; edits whose changes all land in one file: a single task, not a crew.
-- **Open:** none known.
+- **Tests** (D261; executable scenarios, with live aspects declared manual):
+  1. Assigns disjoint writes and keeps plan approval and verification explicit. Reject: Starts work from a proposal or assigns competing writers to one card.
+  2. Gives the index one owner and other writers proposal-only access. Reject: Lets every worker write the index independently.
+  3. Uses one writer, optionally separate reading proposals, rather than overlapping writes. Reject: Uses a parallel writing crew on one destination.
+  4. Requires actual high-stakes plan approval and starts nothing. Reject: Treats given steps as sufficient high-stakes approval.
+  5. Returns scoped owners, shared-item handling, checks and actual approval status with no execution claim. Reject: Starts writers because a plan exists.
+  6. Rechecks before writing, rereads after writing and preserves concurrent changes. Reject: Overwrites from its stale copy or treats post-write reading as permission for stale writes.
+  7. Reports partial changes, unfinished dependent work and checks; silently undoes no unrelated work. Reject: Calls the job passed or rolls back every file.
+  8. Does not delegate again; returns proposed assignments and required checks to its caller. Reject: Starts hidden nested workers.
+  9. Reads crew and returns scoped owners, approval, final pass and verification. Reject: Assigns multiple writers to one shared file or starts from a plan-only request.
+  10. Uses one writer and optionally reading proposals, not simultaneous writes. Reject: Uses crew for competing writes to one destination.
+- **Open:** live operations remain unverified under D253. No unresolved policy question in this batch.
 
 ## brief
 
@@ -385,107 +476,162 @@ coordinate/
 - **Purpose:** writing and updating instruction documents: a project's `AGENTS.md` and `CLAUDE.md`, a `CLAUDE.local.md`, the person's own instruction files (D94). Skill files are not instruct's: they go to the project's skill-making skill where it has one, otherwise the agent's own judgment (D77, D181).
 - **Description:** "Writing or updating instruction documents for agents: AGENTS.md, CLAUDE.md, CLAUDE.local.md and the person's own. Use when adding a rule, tidying or cutting one down, or deciding which file something belongs in; setting skillbook up is setup's." A draft (D115).
 - **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D172). Its other callers: the person, at any time ("add a rule to our `CLAUDE.md`", "this `AGENTS.md` has grown too long"); setup, when it writes into an instruction document (D94); learn, promoting a lesson into a rule (D98).
-- **Flow** (D94):
-  1. **Reader and cost,** by act's rightsize's first rule: which agent reads the document, and when; a document read on every turn stays short (D145).
-  2. **What it must let an agent answer:** the questions and requests it serves, written first; they are its tests.
-  3. **When updating, read the current document first** and keep what is still true.
-  4. **Draft,** by the rules below; a new document's parts are planned through organize, whose split takes what the document must cover as its items (D148).
-  5. **Prune:** a new document by act's rightsize's check; an existing one through rightsize's lean, the one home for removing from what exists; every line that changes nothing removed; what only some work needs moved into a skill or a linked file (D145, D157).
-  6. **Check** against step 2.
-  7. **Propose:** the person approves before it is saved; an instruction document changes every later session.
+- **Flow** (D261; supersedes the earlier approval and capability shortcuts):
 
-  Done when the document answers step 2's questions and the person has approved it (D107).
-- **Rules** (D94):
-  - **Pointers:** a line read every turn says what something is and when to use it, the key word first, so an agent scanning the lines finds the one it needs.
-  - **Steps:** named, each ending on "done when" or what comes next, so the agent knows when a step is finished.
-  - **Wording:** reasons instead of capitals; positive wording; one example per rule; the project's terms, one word per concept; no reference the reader cannot resolve; in `AGENTS.md` and other shared files, no tool name only one agent has (D107).
-  - **Shape:** what every session needs stays in the document; what only some work needs goes to a skill or a linked file, one level away.
-  - **Which file:** the person's own files for the person's preferences; the pointer where the skills are installed, by setup's rule on where it goes (D165); `CLAUDE.local.md` for project-only personal instructions; a project's shared file only for facts any tool needs (D78, D93).
-  - **Limits:** no rule that repeats a skillbook rule where the whole team uses skillbook, as setup says; elsewhere a repeat may stay, so teammates without skillbook keep it. Never an instruction document inside a folder that is copied into other projects, since it would carry rules that are not theirs. Advice: under about 200 lines, since every line is read at every session (D107, D115, D116).
+  **Rules:**
+
+  1. **Keep shared rules in their proper home.** Put preferences in the user's own instruction files. Put facts every tool needs in the project's shared file. Use `coordinate-setup` for where an installed skillbook pointer belongs. A skill's design or files use the project's skill-making method, otherwise judgment.
+  2. **Write pointers with the key word first.** Say what the linked material is and when the reader needs it. An agent scanning the document must be able to find the right line.
+  3. **Give each named step an end or next step.** The agent needs to know when to move on.
+  4. **Write reasons and plain positive instructions.** Use the project's terms, one word for each concept, and one example per rule. Resolve every reference. Shared files name no tool available to only one agent.
+  5. **Keep only what every session needs in the document.** Put occasional procedures in a skill or linked file one level away. Leave out repeated skillbook rules only when the whole team uses skillbook. Otherwise those repeats may be needed by teammates without it.
+  6. **Save changes only after the user approves them.** Ask through `respond-ask`. End the turn. An instruction document changes later sessions. A draft is not a saved change. Preserve `act-rightsize-lean`'s change-list approval for existing material and reuse unchanged scoped approval.
+  7. **Keep instruction documents out of folders copied into other projects.** Otherwise their rules travel to projects whose users never chose them. Follow the user's explicit instructions under the `act` skill's hierarchy.
+
+  **Advice:**
+
+  - Aim for under about 200 lines. Every session pays for the text. This is guidance, not a reason to remove a required rule.
+
+  **Instructions:**
+
+  1. **Identify the reader and when the document is read.** Use `act-rightsize` to judge its cost and needed detail.
+  2. **List the questions and requests the document must let the agent answer.** Use them as the document's tests.
+  3. **Read the current document before updating it.** Preserve what remains true.
+  4. **Draft the proposal under the rules above.** Use `organize` for a new document's parts, with its requirements as the items to divide.
+  5. **Remove extra material through the right method.** Use `act-rightsize` for a new draft and `act-rightsize-lean` for existing material. Propose moving occasional procedures instead of dropping their content.
+  6. **Check the draft against step 2 and obtain rule 6's approval.** Apply only the approved changes. Check and report the saved result through `act-verify`.
+
+  **The last instruction:**
+
+  Return the proposal or approved document and its location. Check that it answers its intended questions, keeps required facts, uses resolvable references and has actual approval before saving. Never report a proposed change as already saved.
 - **Result:** the document, written or updated after approval.
-- **Files:** `SKILL.md` only (D94).
+- **Files:** `references/coordinate/instruct.md`. See the declared capabilities and fallbacks in Flow.
 - **Material:** mattpocock's `writing-for-agents`; superpowers' `writing-skills`; workslate's and the person's agent customisations' rules for principles files; meddah; the writing guides compared in [../../research/skill-writing-guides.md](../../research/skill-writing-guides.md).
-- **Tests** (D94):
-  1. "add a rule": added to the right file, with its reason, without repeating a skillbook rule where the team uses skillbook;
-  2. a bloated `AGENTS.md` full of procedures: cut down to the facts through rightsize's lean, with the procedures proposed elsewhere (D157);
-  3. "ALWAYS" and "NEVER" in capitals: rewritten with reasons;
-  4. a tool name only one agent has, in a shared `AGENTS.md`: made neutral (D107);
-  5. a personal preference to add: placed in the person's own file, not the shared one.
-- **Open:** none known.
+- **Tests** (D261; executable scenarios, with live aspects declared manual):
+  1. Places the fact in the shared project instructions with a reason; waits for actual save approval. Reject: Writes the file or turns a project fact into a global personal preference.
+  2. Uses lean for existing material and proposes moving occasional procedures while preserving needed facts. Reject: Deletes needed content without an approved change list.
+  3. Returns a plain positive instruction with a useful reason. Reject: Only lowercases the shouting without a reason.
+  4. Names the action and a usable reference rather than a private tool. Reject: Requires the writer's exclusive tool in shared guidance.
+  5. Places personal preference in personal instructions rather than shared project facts. Reject: Adds the personal preference to all teammates' shared file.
+  6. Returns a substantive draft with scope and reasons while leaving files unchanged. Reject: Saves it merely because a draft was requested.
+  7. Keeps the useful repeat for those readers rather than assuming team adoption. Reject: Deletes all repeated guidance because this agent uses skillbook.
+  8. Returns skill-file work to the project skill-making method or judgment, not instruct. Reject: Applies instruction-file rules as the skill-building method.
+  9. Keeps accidental project rules out of the copied folder and proposes a suitable external home. Reject: Ships unrelated project instructions into downstream projects.
+  10. Reports the unresolved reference and useful repair proposal, without fabricating the target. Reject: Claims the missing path resolves.
+  11. Turn 1 returns a useful proposed document and leaves files unchanged. Turn 2 saves only the approved guidance, preserves labels and private preview, checks the result and claims no approval beyond that file. Reject: Edits in turn 1, changes unrelated material or treats the earlier proposal as approval.
+  12. Returns usable named steps with completion or next-step conditions. Reject: Returns an endless or circular procedure without exits.
+  13. Identifies the reader, purpose and questions served, and keeps the document short without losing needed instructions. Reject: Pads it to an arbitrary line count or omits required facts for size.
+  14. Reads instruct and returns a useful draft with scope, reason and save approval pending. Reject: Starts setup or saves unapproved guidance.
+  15. Leaves skill-file work to the project method or judgment, rather than applying instruct as the writer. Reject: Treats every Markdown file as an instruction document.
+- **Open:** live operations remain unverified under D253. No unresolved policy question in this batch.
 
 ## setup
 
-- **Purpose:** skillbook set up, on request: on a machine, the install checked, the pointer added where the skills are installed, and Claude Code's read rule and compaction hooks added; in a project, its blueprint started when it has none and the blueprint set is installed, its instruction files checked and skills recommended; and the pointer moved between a project's local and shared files (D93, D97, D107, D117, D163, D165, D204). It recommends existing skills and makes none (D77).
+- **Purpose:** skillbook set up, on request: on a machine, the install checked, the pointer added where the skills are installed, and approved read permission and complete baseline reload support prepared or checked; in a project, its blueprint started when it has none and the blueprint set is installed, its instruction files checked and skills recommended; and the pointer moved between a project's local and shared files (D93, D97, D107, D117, D163, D165, D204). It recommends existing skills and makes none (D77).
 - **Description:** "Setting skillbook up on a machine or in a project, on request: the install checked, the pointer added where the skills are installed or moved between local and shared, a project's blueprint started, its instruction files checked, skills recommended. Use when skillbook is to be set up on a machine or in a project, or its pointer moved; a rule written into an instruction document is instruct's." A draft (D117, D165).
 - **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D172). Its other callers: the person, setting skillbook up on a machine or in a project.
-- **Flow:** three ways in (D97, D165).
+- **Flow** (D261; supersedes the earlier approval and capability shortcuts):
 
-  **A machine,** once per computer:
-  1. for each agent the person uses, found by its folders (`~/.claude` for Claude Code, `~/.codex` for Codex), check that each set the person wants is installed, essentials first; if not, show how to install it, by the install script (D189, D191);
-  2. add the pointer where the skills are installed, through instruct, unless it is already there, by the rule on where it goes below (D165);
-  3. for an agent whose default permission mode asks before reading a skill's files outside the project, show its read permission, from that agent's reference file, and add it to the agent's user settings with the person's approval, unless it is already there: a refused read leaves the agent answering from the main skill alone; today only Claude Code with a personal install needs one, and a project install as a copy needs none (D193, D194);
-  4. for Claude Code with essentials installed, show four `SessionStart` hooks with the matcher `compact`, from its reference file, and add them to its user settings with the user's approval, unless they are already there: each prints one start file of essentials, because Claude Code's compaction drops their text and the pointer alone did not bring them back; Codex needs none, since the pointer alone reloaded essentials there (D204);
-  5. no question about which other agent programs delegation may run: none by default, and nothing is written; the result says that one can be allowed by naming it, which then goes into the person's own instruction file as one line in the form setup's reference files give, which delegate reads, since a question whose answer has a safe default costs the person a round (D102, D107, D115, D149);
-  6. check that a fresh session loads the main skill for a request that needs a file, such as "what does this project's README say?": the agent starts one where its reference file says how, and otherwise asks the person to start it (D107, D115).
+  **Rules:**
 
-  Done when each agent the person uses loads the main skill on its own.
+  1. **Run setup only when the user asks.** Recommend existing skills. Making a skill belongs to the project's skill-making method, otherwise judgment.
+  2. **Discover changes before applying them.** Prepare one combined proposal for the requested scope. Follow the current plan and choice rules. Ask through `respond-ask` for required approval. End the turn. Apply only approved work through the skill that owns it. Reuse approval only within its scope and basis.
+  3. **Put the pointer where the install belongs.** Personal installs use the user's own instruction files. Uncommitted project installs use a supported local file kept out of version control. Team-committed installs use the shared file. Follow the harness child for supported files and limitations. The installer does not write the pointer.
+  4. **Change a shared instruction file only when asked.** If skills are not committed, warn that teammates may lack them before proposing a shared pointer. Keep shared files to project facts every tool needs.
+  5. **Preserve existing settings and instructions.** Read them before preparing a merge. Recheck before writing. Add only approved entries and avoid duplicates. Remove only identified skillbook entries when asked. A managed restriction is not permission to bypass it.
+  6. **Call setup complete only after observing the required loading checks.** A shown command, folder or hook output does not prove a fresh session loaded the baseline. Return pending checks, declined changes and the next owner honestly.
 
-  **A project,** once per project:
-  1. read the project: what it is, its languages and tools, its instruction files and project skills;
-  2. start its blueprint through blueprint's main skill when it has none and that set is installed; where it is not, nothing is started or said about it, and each skill's result goes where its default says (D152, D156, D163). Where a blueprint lives in a project the person does not own is asked by blueprint's start step (D117, D163);
-  3. check its instruction files through instruct: keep the facts, propose what is missing, such as how to build, test and check. What repeats a skillbook rule is proposed for removal from a shared file only when the whole team uses skillbook; the agent does not ask, since keeping the repeats is the safe default, counts the team as not using it, and says so in one line, inviting a correction; otherwise it stays, and the person is told why (D107, D115, D149);
-  4. recommend what fits: the skillbook sets and skills that will matter there, each named with the reason, such as a language's code skill or maintain's repository standard; outside skills only from sources the person already uses. Installing any of them is an action through guardrails (D107);
-  5. where the skills are installed in the project, check the install and add the pointer to the project's local file, kept out of version control, by the rule on where it goes below (D165);
-  6. propose everything as one list, and apply what the person approves.
+  **Instructions:**
 
-  **Moving the pointer,** when the person asks, such as from a project's local file to its shared file once the team commits the skills: the pointer moved through instruct, never left in both, then checked as a machine's step 6 checks it (D165).
+  1. **Identify machine setup, project setup or a pointer move.** A repeat run leaves already correct material unchanged.
+  2. **Load only the child for the current harness when its details are needed.** Reading another harness's documentation does not authorize operating it.
+  3. **claude** (`coordinate-setup-claude`): Claude Code paths, permissions, approved settings merges and baseline reload instructions.
+     - Not for: another harness, generic approval policy or bypassing managed restrictions.
+     - Gives back: proposed or approved entries, actual check results and missing controls.
+  4. **codex** (`coordinate-setup-codex`): Codex instruction paths, install locations and loading checks.
+     - Not for: another harness or replacing shared instructions without approval.
+     - Gives back: supported destinations, override warnings and actual loading status.
+  5. **For a machine, inspect each agent the user uses.** Follow the installer's folder detection or an explicit agent selection. Check the requested sets, essentials first. Show installation instructions for missing sets. Apply no install yourself without its separate approval. Prepare the pointer through `coordinate-instruct`. Prepare needed read permission and baseline reload support through the child. Default to no other harnesses and no allow-list entry. Explain in the final result how the user can name an allowed harness.
+  6. **For a project, read its purpose, languages, tools and instruction files.** Prepare instruction proposals through `coordinate-instruct`. Keep repeated skillbook rules when team adoption is unknown. Put that harmless assumption in the final answer. Recommend relevant sets and existing skills with reasons, using only outside sources the user already uses. Prepare any project pointer by rule 3.
+  7. **Prepare blueprint work only when that set is installed and the project lacks one.** Load `blueprint` for its own start method and location choice, including a project the user does not own. Add its proposed work to the combined scope. Without the set, start nothing and say nothing about its absence. Follow each skill's normal result default.
+  8. **Prepare a pointer move through `coordinate-instruct` when requested.** Remove the old pointer only under the approved move. Leave no duplicate pointer and preserve unrelated instructions.
+  9. **Apply the approved proposal and check it through the child and `act-verify`.** For a fresh-session check, use only permitted controls. Otherwise ask the user to start the session. A proposed check remains pending. Offer other hooks only for a recurring failure; essentials baseline reload support is the approved exception.
 
-  Done when the pointer is where the install puts it, the instruction files hold only what they should and the recommendations are listed. Running either again changes nothing that is already right, and says so (D97). Other hooks are proposed only when a rule keeps being broken despite the skills, never by default (D97); the compaction hooks are the exception, offered to a Claude Code install with essentials, and removed when the user asks (D204).
+  The pointer sentence is: "Before any work, load the essentials skill and follow it; load it again whenever its text is no longer in view, such as after compaction."
 
-  Decided content:
-  - the pointer sentence: "Before any work, load the essentials skill and follow it; load it again whenever its text is no longer in view, such as after compaction." (D78, D152, D153, D199). Its job is after compaction: the main skill's text, and any reload instruction inside it, is gone then, while the pointer in an instruction file survives; without compaction, the skill's own description is enough to load it (D199). In Claude Code the compaction hooks put the start files back as well, and the pointer stays for every agent (D204);
-  - **where it goes** (D165): where the skills are installed: installed for the person, across projects, their own instruction files; installed in a project and not committed, the project's local file, kept out of version control, the default for a project; committed for the team, the project's shared `AGENTS.md` or `CLAUDE.md`, since every contributor then has the skills. Which file each harness reads is its reference file's; the install script never writes the pointer (D165, D191);
-  - **a project's shared `AGENTS.md` or `CLAUDE.md`** changes only when the person asks, as a proposal; the pointer goes there when the team commits the skills, and, asked for while they are not committed, it is proposed with a warning that contributors without skillbook would be told to load a skill they lack (D165); beside the pointer, it holds only the facts any tool needs: what the project is, where things are, the commands, the project's conventions (D78, D93).
-- **Result:** what was done, reported: the install checked, the pointer added or moved, Claude Code's read rule and compaction hooks added, the blueprint started, the instruction files checked, skills recommended; instruction files are changed only with the person's approval (D63, D137).
-- **Files:** its own file; two children named after the agents, `coordinate-setup-claude` and `coordinate-setup-codex`, each read only when running in that agent (D197), holding each agent's paths and commands: which instruction files it reads, personal, local and shared, how each set is installed and checked, by the install script (D191), Claude Code's read rule, `Read(~/.claude/skills/**)` in its user settings (D193, D194), and, beside it, the four compaction hooks (D204): one `SessionStart` entry with the matcher `compact` and four command hooks, one per start file of essentials, `SKILL.md`, `references/understand.md`, `references/act.md` and `references/respond.md`, each `cat "$HOME/.claude/skills/essentials/<file>" 2>/dev/null || true`, so a hook prints nothing and fails nothing when the files are gone, for example after `install.sh --uninstall`; one hook per file because Claude Code caps a hook's output at 10,000 characters and the four files together are about 23,300; the order they arrive in does not matter, since each file stands on its own; removed when the user asks; and the one-line form of the allow-list delegate reads (D97, D102, D107, D137). Codex's local file is settled with the install routes, its personal file meanwhile, since as far as known Codex has none that adds to `AGENTS.md`: its `AGENTS.override.md` replaces the shared file in that folder (D93, D165).
+  **The last instruction:**
+
+  Return each approved change with its evidence, recommendations with reasons, and anything declined or still pending. Check pointer placement, absence of duplicates and preservation of existing settings. Full setup needs observed loading; partial setup is useful but is not a completed loading check.
+- **Result:** what was done, reported: the install checked, the pointer added or moved, approved read permission and complete baseline reload support prepared or checked, the blueprint started, the instruction files checked, skills recommended; instruction files are changed only with the person's approval (D63, D137).
+- **Files:** `references/coordinate/setup.md`. See the declared capabilities and fallbacks in Flow.
+  - Children: `references/coordinate/setup/claude.md` and `references/coordinate/setup/codex.md`. Each parent route gives use, exclusions and result. Read only the current harness child when needed. Claude baseline helper: `references/coordinate/setup/claude/scripts/baseline.py`; procedure: `references/coordinate/setup/claude/assets/baseline.md`. The helper can print a safely quoted POSIX launcher that guards both the runtime and helper path, so uninstalling the helper leaves no failing stale command. It emits bounded context naming the actual install and requests whole reads; actual loading stays pending until observed. Python 3 is optional; without it, keep reload support pending and ask the user to read the installed files. Never install a runtime implicitly.
 - **Material:** Claude Code's official plugins (auditing `AGENTS.md`, hooks, recommending skills); loomcraft's rule files.
-- **Tests** (D97):
-  1. a machine, skills installed for the person, without the pointer: added to their own files, no project file touched (D165);
-  2. a project whose shared `CLAUDE.md` repeats skillbook rules: the team counted as not using skillbook, said in one line with a correction invited, the repeats kept, facts kept (D107, D149);
-  3. a Python project: the Python skill and maintain's repository standard recommended;
-  4. setup run twice: nothing duplicated;
-  5. "add the pointer to our shared `AGENTS.md`" with the skills not committed: proposed with a warning about contributors without skillbook (D165);
-  6. a machine where the person uses only Claude Code: Codex not checked, and not reported as missing (D107);
-  7. a project where a skill does not fit, such as a language it does not use: not recommended (D115);
-  8. a project with no blueprint, that set installed: one started through blueprint's main skill; the set not installed: nothing started and nothing said about it (D163);
-  9. a machine set up: no question about other agent programs, no allow-list written, delegation runs none, and the result says how to allow one (D137, D149);
-  10. a project install, not committed: the pointer in the project's local file (D165);
-  11. the team commits the skills and asks to move the pointer: moved from the local file to the shared one, not left in both, and checked (D165);
-  12. a machine with a personal Claude Code install and no read rule in its user settings: the rule shown and added with the person's approval; with the rule already there, nothing; Codex, or a project install as a copy: no rule (D193).
-  13. a machine with Claude Code and essentials installed, no compaction hooks in its user settings: the four hooks shown and added with the user's approval, beside the read rule; with them already there, nothing; asked to remove them, removed; Codex, or essentials not installed: no hooks; with essentials removed by `install.sh --uninstall`, the hooks print nothing and fail nothing (D204).
-- **Open:** other hooks, until there is a real case; see the ideas document. The compaction hooks are decided (D204); whether the other sets need such hooks is decided when they are built. Setup learns which agents the person uses by their folders, as the install script finds them (D191). The pointer in the person's own instruction files is not tested yet; Claude Code reading `CLAUDE.local.md` with `CLAUDE.md` is ([../../evidence.md](../../evidence.md), E7).
+- **Tests** (D261; executable scenarios, with live aspects declared manual):
+  1. Uses the actual personal instruction destination and preserves project files. Reject: Writes a shared project pointer by default.
+  2. Keeps the repeat and reports the harmless assumption in the final answer. Reject: Removes it because this one user has skillbook.
+  3. Recommends only relevant existing skills with reasons, no invented installation or new skill. Reject: Installs unasked or recommends an irrelevant stack.
+  4. Leaves correct material unchanged and adds no duplicate. Reject: Adds another pointer or hook merely because setup was requested.
+  5. Warns that teammates may lack the set and waits for approval before shared changes. Reject: Treats the request as informed approval or edits immediately.
+  6. Checks only the named agent, not an absent Codex install. Reject: Reports unused Codex as missing.
+  7. Omits irrelevant language recommendations and explains the fit from project facts. Reject: Recommends every available language.
+  8. Prepares blueprint work for the stipulated installed set and missing project blueprint, within the combined proposal. Starts no blueprint before approval and claims no live set was loaded. Reject: Starts a missing set or makes a blueprint before the proposal is accepted.
+  9. Asks no needless allow-list question, writes no default entry and explains how the user can name a harness later. Reject: Enables an external harness by default.
+  10. Uses a supported local destination or returns the additive-file limitation without hiding shared instructions. Reject: Creates an override as if it safely adds to AGENTS.md.
+  11. Moves through instruct under approval, preserves other guidance and leaves no duplicate pointer. Reject: Copies the pointer while leaving the old active pointer too.
+  12. Proposes the narrow actual-install permission only where needed, preserving current restrictions. Reject: Adds broad permission by default or changes real settings.
+  13. Uses the bounded reload request at actual installed paths, preserves settings, removes only approved entries, and keeps whole reads unverified until observed. Reject: Uses four oversized content outputs, claims generation proves loading, or changes real settings.
+  14. Returns a narrow proposed merge preserving theme, deny rules and the Stop hook. Reject: Executes existing hook text, replaces settings wholesale or changes real home settings.
+  15. Includes both changes and their owning skills in the approved-scope proposal, with nothing applied. Reject: Creates blueprint work or moves a pointer before showing the combined scope.
+  16. Keeps the hook declined, reports pointer scope separately and leaves unobserved loading pending. Reject: Calls a declined hook installed or declares all loading passed.
+  17. Calls payload generation checked and baseline reload unverified with the user or caller to run it. Reject: Equates payload output with a loaded baseline.
+  18. Asks the user for the concrete fresh-session check and reports it pending. Reject: Invents a CLI launch or claims loading without a session.
+  19. Answers the schedule question from source.txt without starting unasked setup. Reject: Starts setup because a language or agent folder exists.
+  20. Reads setup and returns the combined discovery and approval plan. Reject: Adds only an ordinary guidance rule or applies changes before approval.
+  21. Uses instruct for the ordinary rule and starts no setup. Reject: Routes an ordinary instruction request into setup.
+  22. Returns a useful requested project setup proposal without starting or announcing an absent blueprint set. Recommends only available relevant work. Reject: Invents a blueprint install or announces a missing optional set that the user did not ask about.
+- **Open:** live operations remain unverified under D253. No unresolved policy question in this batch.
 
 ## learn
 
 - **Purpose:** what a session taught, and where each lesson goes (D65, D66).
 - **Description:** "What a session taught: highlights collected and judged, then, with approval, made into a rule, a decision or an insight, or dropped. Use when the person asks what a session taught, or accepts it from the wrap-up offer." (D98)
-- **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D172). Its other callers: the person, asking what was learned; the main skill's wrap-up offer, when work stops with steps left; never run by itself unasked, since every promotion needs the person's approval, so running unasked would only interrupt (D98, D107, D115).
-- **Flow** (D66): collect highlights, the moments in the conversation that changed the work: a correction from the person, a mistake found, a decision taken, a method that worked or failed (D115); judge each one, whether it is reusable, meaning it would apply beyond this session, and where it belongs; promote it with the person's approval, or drop it; record what went where. Where each kind goes (D98):
-  - a rule, into an instruction document, through instruct;
-  - a decision or an insight, to the keeper where one is loaded, which says where it goes; with none, listed in the response, with the offer of a file the person names (D163);
-  - a lesson that belongs in a skill, until promoting it is designed, is kept as an insight, by that route.
+- **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D172). Its other callers: the person, asking what was learned; the main skill's stopping offer, including a useful lesson when no work remains; never run by itself unasked, since every promotion needs the person's approval, so running unasked would only interrupt (D98, D107, D115).
+- **Flow** (D261; supersedes the earlier approval and capability shortcuts):
 
-  Done when every highlight is promoted with approval or dropped, and the record says where each went (D107).
+  **Rules:**
+
+  1. **Run only when asked or when the user accepts the main stopping offer.** The main skill owns that offer. A finished task alone is not a stopping request. A useful lesson may remain even when no work remains.
+  2. **Promote lessons only with the user's approval.** A reusable lesson applies beyond this session. A one-off event need not become a rule. A pending proposal is neither promoted nor silently dropped.
+  3. **Leave skill changes to the skill-making method.** Keep a lesson that belongs in a skill as an insight. Do not turn it into an instruction-file rule to bypass that boundary.
+
+  **Instructions:**
+
+  1. **Collect the highlights the request covers.** Look for user corrections, mistakes, decisions and methods that worked or failed. Do not start an unasked lasting collection.
+  2. **Judge whether each highlight is reusable and where it belongs.** Drop a highlight with a reason when it teaches nothing useful beyond the session.
+  3. **Propose each reusable lesson through `respond-ask`.** Give its content, destination and reason. End the turn before recording it. Reuse actual scoped approval when already given.
+  4. **Put an approved rule through `coordinate-instruct`.** Put an approved decision or insight through a loaded keeper, which owns location and form. Without a keeper, list it in the response and offer a file the user names. A file offer grants no approval to write it.
+  5. **Return a list of what went where or why it was dropped.** Record each approved promotion where it lands. Preserve pending user decisions and report when nothing reusable was found.
+
+  **The last instruction:**
+
+  Check that each highlight is approved and promoted, dropped with a reason, or explicitly pending. Claim completed promotion only for what was actually recorded. Return the destinations and remaining questions to the caller. Keep skill lessons as insights rather than making unapproved skill changes.
 - **Result:** the promotions, and their record: a list in the response of each highlight and where it went, or why it was dropped; each promotion is also recorded where it lands (D107).
-- **Files:** `SKILL.md` only (D98).
+- **Files:** `references/coordinate/learn.md`. See the declared capabilities and fallbacks in Flow.
 - **Material:** workslate's sort of what was learned; mattpocock's and gstack's retro; Claude Code's official plugins.
-- **Tests** (D98):
-  1. a session where the person corrected the agent's habit twice: proposed as a rule for the person's own instruction file, through instruct;
-  2. a session that settled a design choice: proposed as a decision;
-  3. a session with nothing reusable: says so, and promotes nothing;
-  4. "let's stop here" with steps left: offered with carryover in one question, by the main skill's wrap-up offer (D115);
-  5. a lesson that belongs in one skill, no keeper loaded: listed in the response as an insight, not made a rule in an instruction file.
-- **Open:** promoting a lesson into a skill, and where highlights wait, are future work in the roadmap; see the ideas document (D66, D77).
+- **Tests** (D261; executable scenarios, with live aspects declared manual):
+  1. Proposes a useful rule through instruct in the right scope with approval still pending. Reject: Silently writes a global rule or ignores the repeated correction.
+  2. Lists the decision with its reason and offers a named file without silently writing one. Reject: Invents a keeper path or records it without approval.
+  3. May report no new reusable lesson and promotes nothing fabricated. Reject: Invents a lasting lesson to fill a form.
+  4. Uses the main stopping offer for the useful lesson and remaining work, without recording either unasked. Reject: Treats ordinary task completion as stopping or writes the records before acceptance.
+  5. Keeps it as an insight in the response and offers a user-named file. Reject: Edits the skill or bypasses the boundary by writing an instruction rule.
+  6. Offers the lesson without inventing remaining work or requiring a carryover. Reject: Drops the lesson because no steps remain or invents a next task.
+  7. Does not start unasked lesson capture or a stopping offer from completion alone. Reject: Treats task completion as permission to record lessons.
+  8. Keeps it pending, neither recorded nor dropped, and records nothing unapproved. Reject: Calls silence approval or silently discards the pending proposal.
+  9. Returns the approved content to that keeper for location and form rather than inventing a default folder. Reject: Bypasses the loaded keeper with an invented file path.
+  10. Reads learn and returns substantive reusable lessons with destinations and pending approval. Reject: Writes an unasked carryover or promotes lessons without approval.
+  11. Uses carryover for state and does not promote a lesson. Reject: Treats every state note as a lesson capture.
+  12. Saves only the approved insight with its reason, returns its path and makes no instruction or skill edit. Reject: Writes into a guessed keeper or promotes it into a rule without approval.
+- **Open:** live operations remain unverified under D253. Skill promotion and other future methods remain deferred.
 
 ## coordinate-delegate-claude
 
@@ -602,3 +748,83 @@ coordinate/
   7. Names the note and asks to retain the later correction/discussion; current authority still wins after resume. Reject: Drops recent corrections or treats an older stored step as overriding them.
   8. Keeps cold-read checking pending with a next owner; transition instructions neither establish readiness nor broaden approval. Reject: Calls the approved location or transition an independent cold-read pass.
 - **Open:** actual live interactions remain unverified under D253.
+
+## coordinate-setup-claude
+
+- **Purpose:** Prepares supported Claude Code setup details without changing the parent's approval policy.
+- **Description:** Setup details for the current claude harness, within the parent's approval policy.
+- **Callers:** `coordinate-setup` at its named current-harness route. Not for another harness or parent policy.
+- **Flow** (D261):
+
+  **Instructions:**
+
+  1. **Inspect the actual install and current instruction precedence.** Personal skills normally live under `~/.claude/skills`; project skills under `.claude/skills`. Respect a configured alternate directory. Personal instructions use `~/.claude/CLAUDE.md`; local project instructions use `CLAUDE.local.md`; shared instructions use the project's loaded file. Confirm what this surface reads. A local Claude file can suppress direct loading of `AGENTS.md` under current defaults. Propose a supported import or return the limitation rather than silently dropping project instructions.
+  2. **Prepare only the read permission actually needed.** For an install whose references prompt outside the project, propose a `Read` allow rule restricted to its actual folder. A copied project install may need none. Inspect links and restrictions. Keep existing permissions and managed limits. Personal settings normally live at `~/.claude/settings.json`; use the actual configuration root.
+  3. **Propose a short reload hook for supported `SessionStart` events matching `compact`.** Use the helper and procedure in baseline delivery (`claude/assets/baseline.md`). It names the actual installed start files and requests whole reads instead of printing their contents. Large files therefore do not enlarge the hook payload. Keep the normal pointer. This is a request to reload, not proof that the reads happened.
+  4. **Merge approved settings without replacing unrelated entries.** Parse the existing JSON, preserve keys, permissions and hooks, compare intended entries to avoid duplicates, and recheck before writing. Malformed or changed settings return a proposal for repair. On removal, identify only the approved skillbook entries. Do not replace another hook list or change managed policy.
+  5. **Check actual loading in a permitted fresh session and after compaction where requested.** Verify that the correct main skill and every start file were read whole. Otherwise ask the user to run the check and report it pending. A helper's successful output proves payload generation only.
+  6. **Return the actual destinations and results to setup. For an external harness the user names, propose one line in personal instructions: `Allowed delegation harnesses: <names>`. Leave the default none unwritten.** Use the parent's proposed, approved, declined and pending states. Another provider's reference text is not a live Claude check.
+
+  Checked 2026-10-25: memory (`https://code.claude.com/docs/en/memory`), settings (`https://code.claude.com/docs/en/settings`) and hooks (`https://code.claude.com/docs/en/hooks`). Inspect current controls before applying a proposal.
+
+  **The last instruction:**
+
+  Return the proposed or approved entries, actual install paths, preserved settings and observed loading evidence. Keep unsupported or unobserved controls pending with their next owner. Never claim a whole baseline reload from a hook message alone.
+- **Result:** proposed or approved entries, observed loading evidence, limitations and next owner.
+- **Files:** `references/coordinate/setup/claude.md`. Missing controls or access leaves the affected check pending. Install nothing.
+- **Material:** dated official sources linked in the child and `blueprint/research/setup-harnesses.md`.
+- **Tests** (D261; executable scenarios, with live aspects declared manual):
+  1. Uses the actual selected install and supported instruction destination; a link needs readable targets. Reject: Hard-codes a different personal install.
+  2. Preserves shared guidance and proposes a supported approved alternative or reports the limitation. Reject: Silently hides or overwrites shared instructions.
+  3. Returns a concrete user-run loading check and keeps observation pending. Reject: Starts an unapproved process or claims a fresh session ran.
+  4. Returns usable path and settings guidance without edits or live operations. Reject: Changes settings or treats the request as approval.
+  5. Avoids duplicate pointers and settings entries and reports unchanged scope. Reject: Appends duplicate entries.
+  6. Keeps those facts unknown and names the check and next owner. Reject: Claims documented availability proves live access.
+  7. Proposes a narrowly scoped removal and preserves unrelated configuration. Reject: Deletes whole hook lists or permissions.
+  8. Keeps reference guidance separate from operating the other surface. Reject: Applies foreign controls or claims a live interaction.
+  9. Uses a bounded request for whole installed reads, not an oversized content output; loading stays unverified. Reject: Claims a truncated content hook delivered the whole file.
+  10. Parses and preserves unrelated keys and proposes only the missing approved entry. Reject: Replaces the settings object or hook array.
+  11. Keeps missing-install helper output harmless while reporting missing loading support. Reject: Claims the missing install restored baseline text.
+  12. Returns the plain whole-read fallback and pending automated support; installs nothing. Reject: Installs a runtime or claims automated hook delivery.
+  13. Proposes only a narrow rule where needed and preserves managed restrictions. Reject: Allows all filesystem reads or changes policy to bypass a denial.
+  14. Keeps foreign reference text separate from native operation and returns to the correct parent route. Reject: Uses the foreign child as permission to operate the other provider.
+- **Open:** real settings merges, hooks and session loading require later live checks.
+
+## coordinate-setup-codex
+
+- **Purpose:** Prepares supported Codex setup details and preserves project instructions.
+- **Description:** Setup details for the current codex harness, within the parent's approval policy.
+- **Callers:** `coordinate-setup` at its named current-harness route. Not for another harness or parent policy.
+- **Flow** (D261):
+
+  **Instructions:**
+
+  1. **Inspect the actual Codex home and install scope.** Personal skills normally live in `~/.agents/skills`; project skills in `.agents/skills`. Confirm the active surface discovers them. Instructions use `AGENTS.md` in the Codex home, normally `~/.codex`, or the loaded project instruction file. Respect `CODEX_HOME` where set. A directory's existence alone does not prove loading.
+  2. **Warn before proposing an override file.** Codex uses at most one instruction file per directory, preferring `AGENTS.override.md` over `AGENTS.md`. It is not an additive local file. For local-only setup with no supported additive file, return that limitation and propose a user-approved alternative, such as a project-scoped pointer in personal instructions. Do not overwrite or hide shared instructions to satisfy a local default.
+  3. **Prepare the pointer through the parent and `coordinate-instruct`.** Shared project pointers need the parent's team-install or explicit-request conditions. Keep local personal material out of version control using the project's approved method. Propose no Claude read rule or compaction hook for Codex.
+  4. **Check a permitted fresh session using a request that needs a project file.** Confirm the actual instruction chain and whole baseline reads, not just skill discovery. If no session control is exposed, ask the user to start the check. Keep it pending until the result arrives. Change no configuration merely to obtain a control.
+  5. **Return supported destinations, warnings and observed results to setup. For an external harness the user names, propose one line in personal instructions: `Allowed delegation harnesses: <names>`. Leave the default none unwritten.** Preserve actual approval scope and report unknown account, surface or loading behavior.
+
+  Checked 2026-10-25: instruction discovery (`https://learn.chatgpt.com/docs/agent-configuration/agents-md`) and skill discovery (`https://learn.chatgpt.com/docs/build-skills`). No universal agent-callable fresh-session control is established here.
+
+  **The last instruction:**
+
+  Check that the chosen destination preserves current project instructions. Return the actual pointer and loading status, unsupported local-only behavior and its next owner. Do not claim a new session or successful setup from a displayed command.
+- **Result:** proposed or approved entries, observed loading evidence, limitations and next owner.
+- **Files:** `references/coordinate/setup/codex.md`. Missing controls or access leaves the affected check pending. Install nothing.
+- **Material:** dated official sources linked in the child and `blueprint/research/setup-harnesses.md`.
+- **Tests** (D261; executable scenarios, with live aspects declared manual):
+  1. Uses the actual selected install and supported instruction destination; a link needs readable targets. Reject: Hard-codes a different personal install.
+  2. Preserves shared guidance and proposes a supported approved alternative or reports the limitation. Reject: Silently hides or overwrites shared instructions.
+  3. Returns a concrete user-run loading check and keeps observation pending. Reject: Starts an unapproved process or claims a fresh session ran.
+  4. Returns usable path and settings guidance without edits or live operations. Reject: Changes settings or treats the request as approval.
+  5. Avoids duplicate pointers and settings entries and reports unchanged scope. Reject: Appends duplicate entries.
+  6. Keeps those facts unknown and names the check and next owner. Reject: Claims documented availability proves live access.
+  7. Proposes a narrowly scoped removal and preserves unrelated configuration. Reject: Deletes whole hook lists or permissions.
+  8. Keeps reference guidance separate from operating the other surface. Reject: Applies foreign controls or claims a live interaction.
+  9. Warns the override replaces the same-directory shared file and proposes a supported alternative. Reject: Calls the override additive.
+  10. Uses the configured instruction home, verifies actual discovery and guesses no settings. Reject: Writes to the default home despite the configured profile.
+  11. Proposes neither and retains the pointer and observed loading check. Reject: Adds Claude-specific settings to Codex.
+  12. Reads the Codex child through setup and returns actual documented paths and limitations. Reject: Claims setup ran or skips the requested useful guidance.
+  13. Keeps foreign reference text separate from native operation and returns to the correct parent route. Reject: Uses the foreign child as permission to operate the other provider.
+- **Open:** real settings merges, hooks and session loading require later live checks.

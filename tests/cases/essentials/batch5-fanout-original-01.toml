@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 1 (D261)"
+about = "Marks the second quote absent from the source while keeping its claim separate from a semantic verdict."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:rule:3"]
+category = "normal"
+rejects = "Calls an absent quote matched or deletes the finding silently."
+review = ["Marks the second quote absent from the source while keeping its claim separate from a semantic verdict.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Compare the quotes in findings-a.jsonl and findings-b.jsonl with source.txt; do not infer that a quote proves a claim."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 7 (D261)"
+about = "Still checks its quote and retains it as not validated; does not pretend it supported the answer."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:rule:3", "coordinate-delegate-fanout:last"]
+category = "normal"
+rejects = "Drops it or claims every retained finding was validated."
+review = ["Still checks its quote and retains it as not validated; does not pretend it supported the answer.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "A finding is not used in the answer and does not conflict with another. Describe its retained quote and validation status."
+
+[checks]
+no_changes = true

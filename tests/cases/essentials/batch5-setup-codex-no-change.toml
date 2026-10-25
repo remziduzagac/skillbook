@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: setup-codex, test 4 (D261)"
+about = "Returns usable path and settings guidance without edits or live operations."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-setup-codex"]
+covers = ["coordinate-setup-codex:step:5"]
+category = "edge"
+rejects = "Changes settings or treats the request as approval."
+review = ["Returns usable path and settings guidance without edits or live operations.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-setup-codex as reference documentation only. Hypothetical situation: The user requested a proposal only. Return useful proposed details and actual limitations. Change no real or fixture settings, start no session, and run no model."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: instruct, test 3 (D261)"
+about = "Returns a plain positive instruction with a useful reason."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-instruct"]
+covers = ["coordinate-instruct:rule:4"]
+category = "normal"
+rejects = "Only lowercases the shouting without a reason."
+review = ["Returns a plain positive instruction with a useful reason.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Rewrite this proposed instruction in chat: ALWAYS CHECK LABELS. Give the reason, not capitalized force."
+
+[checks]
+no_changes = true

@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: council, test 10 (D261)"
+about = "Reads the council method and returns an actual proposed process with attributed independent answers."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:route:coordinate-delegate-council"]
+category = "boundary"
+rejects = "Uses a fanout of separate questions or returns only a method name."
+review = ["Reads the council method and returns an actual proposed process with attributed independent answers."]
+version_control = true
+
+[[turns]]
+prompt = "Draft the process for several independent overall answers to the same exhibit question. Start nothing."
+
+[checks]
+no_changes = true
+reads = ["coordinate-delegate-council"]

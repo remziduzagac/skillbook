@@ -1,0 +1,25 @@
+source = "blueprint/design/essentials/coordinate.md: instruct, test 11 (D261)"
+about = "Turn 1 returns a useful proposed document and leaves files unchanged. Turn 2 saves only the approved guidance, preserves labels and private preview, checks the result and claims no approval beyond that file."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-instruct"]
+covers = ["coordinate-instruct:rule:6", "coordinate-instruct:step:3", "coordinate-instruct:step:6", "coordinate-instruct:last"]
+category = "edge"
+rejects = "Edits in turn 1, changes unrelated material or treats the earlier proposal as approval."
+review = ["Turn 1 returns a useful proposed document and leaves files unchanged. Turn 2 saves only the approved guidance, preserves labels and private preview, checks the result and claims no approval beyond that file.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a rewritten GUIDANCE.md for the exhibit in chat, keeping its facts and usable route pointer. Save nothing yet."
+
+[turns.checks]
+no_changes = true
+
+[[turns]]
+prompt = "I approve saving that proposed GUIDANCE.md only. Apply it and check that labels, private preview and the route reference remain. Change no other file."
+
+[turns.checks]
+changed = ["GUIDANCE.md"]
+
+[checks]
+unchanged = ["exhibit.md", "work.md", "simulated/settings.json"]

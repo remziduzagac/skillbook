@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 2 (D261)"
+about = "Separates quote matching from support for the 09:00 opening claim and rejects the unsupported inference."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:rule:4"]
+category = "normal"
+rejects = "Accepts the inference because the quote exists."
+review = ["Separates quote matching from support for the 09:00 opening claim and rejects the unsupported inference.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "A supplied report quotes the correct opening time but concludes that doors open at 09:00. Explain the validation result from source.txt."
+
+[checks]
+no_changes = true

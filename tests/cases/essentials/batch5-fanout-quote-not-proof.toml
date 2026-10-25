@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 10 (D261)"
+about = "Keeps quote matched separate from semantic validation; refutes only with evidence against the actual claim."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:rule:3", "coordinate-delegate-fanout:rule:4"]
+category = "boundary"
+rejects = "Automatically validates the claim from a quote match."
+review = ["Keeps quote matched separate from semantic validation; refutes only with evidence against the actual claim.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "A quote matches exactly but does not establish the claim attributed to it. Return its two statuses."
+
+[checks]
+no_changes = true

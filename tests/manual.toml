@@ -152,3 +152,43 @@ reason = "The pre-note cleanup of real prior session artifacts requires a live l
 [[aspect]]
 id = "act-rightsize-lean:step:2"
 reason = "The restored large-material delegation needs an actual over-one-read item and permitted worker lifecycle. Proposal-only coordinate cases cannot prove that listing execution or its no-nested-delegation limit."
+
+[[aspect]]
+id = "coordinate-delegate-council:step:4"
+reason = "Collecting real member results, waits, runtime failures and cleanup needs a permitted worker lifecycle. Supplied-report cases do not establish that lifecycle."
+
+[[aspect]]
+id = "coordinate-delegate-fanout:step:4"
+reason = "Actual independent validation needs a fresh permitted worker and observed result; proposed missing-validator cases do not establish a live check."
+
+[[aspect]]
+id = "coordinate-setup:step:9"
+reason = "Applying real approved settings and checking fresh-session loading is deferred. This build changes no real configuration; fixture proposals are not live setup."
+
+[[aspect]]
+id = "coordinate-setup:route:coordinate-setup-claude"
+reason = "The positive native Claude route requires a Claude session. Codex reference cases cannot prove native operation."
+
+[[aspect]]
+id = "coordinate-delegate-crew:step:3"
+reason = "Actual parallel writers and their lifecycle are deferred. A proposal can test ownership and nesting policy, not concurrent execution."
+
+[[aspect]]
+id = "coordinate-delegate-crew:step:4"
+reason = "The final serial integration after real concurrent changes needs live workers; a one-item exclusion case cannot prove integration execution."
+
+[[aspect]]
+id = "coordinate-delegate-crew:rule:3"
+reason = "The post-write reread during real concurrency needs another writer; hypothetical safe-write cases test policy only."
+
+[[aspect]]
+id = "coordinate-setup-claude:step:4"
+reason = "A safe settings merge amid actual concurrent or managed settings changes needs an isolated live configuration check. No real settings are changed in this task."
+
+[[aspect]]
+id = "coordinate-setup-claude:step:5"
+reason = "Fresh-session and post-compaction whole-file loading must be observed in a live permitted Claude session. Payload tests prove generation only."
+
+[[aspect]]
+id = "coordinate-setup-codex:step:4"
+reason = "Actual fresh Codex session loading is deferred; no model or session is run during this build."

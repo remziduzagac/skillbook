@@ -617,6 +617,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 ## D66: learn's flow (2026-10-11)
 
+> **Amended by D261 (2026-10-25):** Lesson proposals can return pending; the stopping trigger follows the current main rule even without unfinished work.
+
 > **Amended by D77 (2026-10-11):** promoting a lesson into a skill is future work.
 >
 > **Amended by D98 (2026-10-12):** insights go into the blueprint's notes until the knowledge folder exists.
@@ -987,6 +989,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D93: setup writes to the person's own files by default (2026-10-12)
 
+> **Amended by D261 (2026-10-25):** Setup children preserve shared guidance and return a limitation for unsupported additive local files.
+
 > **Amended by D165 (2026-10-17):** the pointer goes where the skills are installed: the person's own files for a personal install, a project's local file by default, its shared file when the team commits the skills.
 
 **Decision:** setup puts the pointer in the person's own instruction files, `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`, which both agents read in every project on top of the project's files; no project file is touched by default. Project-only personal instructions, when asked for, go into `CLAUDE.local.md` for Claude Code, which is read in addition to `CLAUDE.md`, kept out of git through `.git/info/exclude` so the project's `.gitignore` is not changed either; for Codex nothing is offered unless asked, and then with a warning, because its `AGENTS.override.md` is read instead of the shared `AGENTS.md` in that folder. A project's shared `AGENTS.md` or `CLAUDE.md` changes only when the person asks, as a proposal, for example in a team that adopts skillbook.
@@ -994,6 +998,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 **Why:** A pointer in shared files imposes skillbook on everyone working on a project, and tells the agents of people without it to load a skill that does not exist. The person's own files reach every project without touching any. Claude Code read `CLAUDE.local.md` alongside `CLAUDE.md` ([evidence.md](evidence.md), E7); Codex's source reads, in each folder, only the first of `AGENTS.override.md` and `AGENTS.md` ([research/skill-loading.md](research/skill-loading.md), "Instruction files").
 
 ## D94: instruct writes and updates instruction documents (2026-10-12)
+
+> **Amended by D261 (2026-10-25):** Instruct uses the current plain-file layout, named shared rules and explicit approval before saving.
 
 > **Amended by D107 (2026-10-12):** tool names are kept neutral only in `AGENTS.md` and other shared files.
 >
@@ -1031,6 +1037,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D97: setup's flows (2026-10-12)
 
+> **Amended by D261 (2026-10-25):** Setup discovers and proposes the combined scope before applying any project changes.
+
 > **Amended by D107 (2026-10-12):** setup checks each agent the person uses, writes the allow-list of other harnesses, checks loading with a request that needs a file, proposes removing repeated skillbook rules from shared files only when the whole team uses skillbook, and keeps each agent's paths in reference files.
 >
 > **Amended by D117 (2026-10-13):** setup's project flow starts the blueprint when a project has none, and asks where it lives in a project the person does not own.
@@ -1047,6 +1055,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D98: learn's destinations, description and tests (2026-10-12)
 
+> **Amended by D261 (2026-10-25):** Learn uses the current stopping offer and keeps pending promotions distinct from recorded or dropped lessons.
+
 > **Amended by D107 (2026-10-12):** learn runs only when asked; its record is a list in the response of where each highlight went.
 >
 > **Amended by D115 (2026-10-13):** learn is offered through conduct's wrap-up rule; highlights are the moments that changed the work.
@@ -1060,6 +1070,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 **Why:** Every promotion needs the person's approval, so running unasked would only interrupt. The blueprint's notes already hold what sessions produce; insights can move to the knowledge folder once it is designed.
 
 ## D99: delegate, with council, fanout and crew (2026-10-12)
+
+> **Amended by D261 (2026-10-25):** The three orchestration methods are built inside the active delegate call with explicit lifecycle returns.
 
 > **Amended by D260 (2026-10-25):** D260 builds the core delegate/brief/carryover flow and four harness children; later orchestration methods remain designed dependencies.
 
@@ -1099,6 +1111,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 **Why:** One-word names read cleanly in a path joined by dashes, where a hyphen inside a name blurs where one name ends and the next begins (`maintain-repo-close-gaps`).
 
 ## D101: A council may mix models and agents (2026-10-12)
+
+> **Amended by D261 (2026-10-25):** Council members keep the fresh-worker baseline while excluding the main agent opinion from task evidence.
 
 > **Amended by D107 (2026-10-12):** three members by default, each briefed without the main agent's own view.
 >
@@ -1180,6 +1194,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 **Why:** The rules are respond's and act's; conduct only points. One route for every root keeps the main skill short; the extra read of conduct's file happens once per conversation.
 
 ## D107: conduct revised after an outside review (2026-10-12)
+
+> **Amended by D261 (2026-10-25):** Orchestration uses current authority, approval, independent checks and honest incomplete states.
 
 > **Amended by D259 (2026-10-25):** D259 makes both organize approvals explicit turn boundaries, with proposals and results allowed to return before confirmation.
 
@@ -1372,6 +1388,8 @@ Which questions to ask and how deep stay clarify's; when a proposal is needed an
 
 ## D115: The review's outcome: one home per rule, and the contradictions settled (2026-10-13)
 
+> **Amended by D261 (2026-10-25):** Crew uses current plan approval and setup prepares the complete proposal before mutations.
+
 > **Amended by D233 (2026-10-24):** the instructions-and-data rule's one home is act's rule 9, since data arrives on turns that never load guardrails; guardrails points there.
 
 > **Amended by D136 (2026-10-15):** markdown's rule in the main skill covers every response and every markdown file; other files follow act's rule on a file's type.
@@ -1553,6 +1571,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D128: research designed, with fact, survey and analyze (2026-10-14)
 
+> **Amended by D261 (2026-10-25):** Fanout defines a local JSON Lines encoding of the designed semantic findings fields without building research.
+
 > **Amended by D140 (2026-10-17):** research's instructions are the question, one routing line per part and the last instruction; sources and fanning out are its advice and ranking its rule 3, which the parts point to.
 >
 > **Amended by D149 (2026-10-17):** a kind of source's reference file is read when that kind is first searched; with many findings, those the answer rests on are given and the full list goes to a named file; survey fans out only when delegate's test for splitting holds.
@@ -1667,6 +1687,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D137: The baseline review's fixes (2026-10-17)
 
+> **Amended by D261 (2026-10-25):** Crew no longer uses the obsolete show-plan-and-continue shortcut.
+
 > **Amended by D147 (2026-10-17):** handoff's rule against naming a tool only one agent has becomes brief's rule, which carryover follows.
 
 **Decision:** The baseline, the main skill, conduct, understand and author's markdown, was reviewed with skillbook-tree by three fresh agents, one per root, and every finding was checked against its lines. Seventeen small fixes are applied. A proposal to approve is never assumed when the person stops. understand's callers no longer say delegate uses weigh for a council's summary, or that the review root uses challenge; design and plan use challenge. understand's routing line for weigh no longer says how weigh works inside. verify's routing line no longer promises ranking evidence before verify is widened. stakes' high reads "nothing would catch it in time, and any one of". The wrap-up offer has one trigger. delegate's and setup's results match their routing lines; setup's reference files hold the allow-list form. crew lists its plan first and waits only where guardrails' other kinds apply, and its re-read after writing is its own rule. handoff names no tool only one agent has, as its own rule. When verify starts an agent, the report comes back to verify. guardrails' never-rules, two of delegate's restrictions and the numbers in fact and analyze gain their reasons. act's rule on a file's type points to the main skill's markdown rule; the main skill's author line says what it adds; markdown's rules 2 and 3 no longer repeat rule 1 or the strong advice; tests are added for the uncovered when-nots. brainstorm's and survey's descriptions, and split's, no longer overlap. Explaining how project code works goes to research's fact when it needs reading across files. Three larger reshapes, research's parts, organize and delegate, and step-by-step flows that do not say why, are left to the person.
@@ -1741,6 +1763,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D144: Models named only per harness, and effort chosen apart from the model (2026-10-17)
 
+> **Amended by D261 (2026-10-25):** Fanout retains separate tier and effort policy and reports unknown price steps.
+
 > **Amended by D260 (2026-10-25):** D260 keeps four role distinctions, dated harness mappings and official price data separate from generic role policy.
 
 
@@ -1799,6 +1823,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Why:** Most parts are made, not rearranged: a document, a program or a system is divided as it is planned, and the same principle, boundaries and warning signs hold, while nothing exists yet whose meaning could be lost. What a reader opens costs attention and, for an agent, tokens on every later turn, so a part's size follows how it is read. Examples drawn from one kind make a rule look as if it held only for that kind.
 
 ## D149: the cost sweep's fixes (2026-10-17)
+
+> **Amended by D261 (2026-10-25):** Fanout retains negative results, source evidence and actual validation status through scripted consolidation.
 
 > **Amended by D260 (2026-10-25):** D260 replaces the blanket main-skill skip with an act read plus the exact name rule and dependencies loaded on demand. Cost/approval follows the complete current guardrails rule.
 
@@ -1987,6 +2013,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** Once essentials became a set of its own, its grouping could be its own. conduct had become a catch-all: its boundary was how the agent acts in every root, while organize changes things for other roots, delegate, brief and carryover hand work to other agents and sessions, and setup, instruct and learn set the agent up. The person asked to merge the agents group and the setup group, since all six write for an agent not in this conversation, and to put design and plan under one folder, named devise.
 
 ## D165: the pointer follows the install, and setup runs on request (2026-10-17)
+
+> **Amended by D261 (2026-10-25):** Setup has two designed harness children, approved destination choices and partial-result returns.
 
 > **Amended by D191 and D193 (2026-10-18):** the install script never writes the pointer; setup does, and setup learns which agents the person uses by their folders. For a personal install setup also shows Claude Code's read rule and adds it to Claude Code's user settings with the person's approval.
 
@@ -2264,6 +2292,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D197: An unreadable file no longer stops the flow, and per-agent files are children (2026-10-18)
 
+> **Amended by D261 (2026-10-25):** The two setup harness children now have complete designs, routes and conditional capabilities.
+
 > **Amended by D260 (2026-10-25):** D260 designs and builds the four delegate/carryover harness children with conditional controls and explicit unknowns.
 
 
@@ -2335,6 +2365,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** the person pointed out that step 7 and the last instruction said almost the same thing; respond is always what happens last, so the last instruction is its one home, as skillbook-tree's check 3 asks, and check 8 still has its last instruction. The person also found the layout of step 6 broken: a paragraph after sub-bullets looked cut off from its item, a pattern that appeared in eighteen places.
 
 ## D204: Setup adds a compaction hook in Claude Code that prints essentials' four start files (2026-10-19)
+
+> **Amended by D261 (2026-10-25):** Bounded reload requests at actual installed paths replace four content-printing hooks. Whole-file loading must be observed; generated hook output is not proof.
 
 > **Tested (2026-10-19):** Claude Code 2.1.302 with `claude-opus-5-5`, Codex 0.163.0, a fake home per run with the real install script's copy, a forced small context window, non-interactive runs, a commit-message request as the third turn. The pointer alone brought essentials back in 1 of 1 chain at a 20,000-token window, then in 0 of 3 chains at a 52,000-token window; in the one replay at 36,000 the agent loaded the main skill, and a second compaction came before the group files. One hook printing the main skill put its text back in 2 of 2 runs, and the group files were read again in 1 of 2. Four hooks, one per start file, put all four files back whole in 2 of 2 runs, with no file read again, and turn 3 followed respond's rules in both. In Codex the pointer alone reloaded essentials in 3 of 3 chains, against 0 of 2 without it. Limits: two runs per hook arrangement, no control run without hooks in the four-hook test, a task too small to show answer quality, no interactive or manual compaction, one model per agent. Evidence: [E15](evidence.md), [research/skill-loading.md](research/skill-loading.md), "Reloading after compaction".
 
@@ -3815,6 +3847,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D260: Build coordinate's core with an act bootstrap and honest worker and carryover status (2026-10-25)
 
+> **Amended by D261 (2026-10-25):** Coordinate now routes all remaining methods; delegate starts workers for an active method without repeating method selection.
+
 **Decision:**
 
 - Coordinate, delegate, brief and carryover use plain files at their full name-rule paths. Four harness children are included: delegate/claude, delegate/codex, carryover/claude and carryover/codex. Each parent gives child use, exclusions and returned status. Later council, fanout, crew, instruct, setup and learn remain designed dependencies; built text uses judgment where their files are absent and claims no unperformed method.
@@ -3836,3 +3870,26 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Keeping policy in parents and changing controls in dated children avoids stale commands changing generic rules.
 
 **Tested:** No model test was run, by D253. Eight files and supporting material are built with executable cases for each numbered design scenario and explicit manual operational aspects. Correct and plausible wrong traces were inspected; no observed model passes are claimed. Repository checks, case counts, coverage, design comparison and unknown harness facts are recorded in ../tests/batch4-build-report.md. Live worker startup, independent results and transition cycles remain unverified.
+
+## D261: Settle and build the remaining coordinate methods and setup controls (2026-10-25)
+
+**Decision:**
+
+- Build council, fanout, crew, instruct, setup and learn at their plain-file paths, plus setup's Claude and Codex children. Give parents one route per child. Methods return to the active caller and use delegate's existing lifecycle, authority, cost, verification and cleanup. Missing, failed, cancelled or running work is not a completed result. Workers never delegate again.
+- Council asks fresh members at standard tier or above the same question over the same material. Its briefs omit the main agent's opinion as evidence without omitting the required act baseline and exact Names line. Answers remain attributed and disagreement remains visible. Recommendations happen only when asked.
+- Fanout searches first, splits by part or lens, writes separate findings files, consolidates with code, validates adversarially and synthesizes from validated evidence. Its JSON Lines contract preserves research's designed semantic fields, every source, duplicate evidence, conflicts and negative results. The script reads only permitted local source files or approved snapshots under an explicit root. It fetches and executes nothing. Invalid input fails without trusted partial output. Quote matching never establishes a claim's truth.
+- Uncertain fanout claims stay unverified and cannot support the answer. Report what would settle them. Refuted needs evidence against the claim. The independent validator checks relevant claims and conflicts; other findings stay not validated. Missing runtime or validation returns unfinished stages and their next owner. Research itself remains designed under D252.
+- Crew gives every changed item one writer and shared items one owner. Current devise-plan and understand approval rules replace the old show-and-continue shortcut. Plan-only work starts no writers. After authorized parallel changes, workers reread their files and the main agent makes one serial pass and verifies the whole. Partial changes are reported without falsely completing or undoing unrelated work.
+- Instruct keeps facts, personal preferences, pointers and occasional procedures in their proper homes. It drafts and checks before saving approved changes. Existing-material pruning keeps rightsize's approval and shared rules. Learn follows the main stopping offer even when a useful lesson remains without unfinished work. It promotes only approved reusable content, returns pending decisions honestly and keeps skill lessons as insights.
+- Setup discovers machine, project or pointer-move work before its combined proposal. Apply only approved scope through the owning skills. Preserve settings, unrelated hooks and instruction precedence; avoid duplicate entries. The children describe conditional actual paths and loading checks. Unsupported additive local guidance returns a limitation rather than hiding a shared instruction file.
+- Replace D204's fixed four content-printing hooks with a bounded request naming every current start file at the actual selected install. A helper can print a safely quoted guarded POSIX launcher. The request avoids growing with baseline contents; missing runtime, helper or installed files is harmless. Keep the normal pointer, approval, safe settings merges and requested removal. Whole baseline restoration is a required observation, not a conclusion from generating output. If it cannot be observed, report reload pending with its next owner.
+- Official documentation supports Claude SessionStart compact context output and the instruction paths described in the children. Large context messages may become a path and preview, so direct content output is unsuitable for the current large act file. The short request is chosen over fixed content hooks. Actual model adherence, managed permissions, settings merges and live loading remain unverified. No real settings, hooks or install changes are made by this build.
+
+**Why:**
+
+- Orchestration children must not restart their caller or bypass the common worker limits. Partial evidence is useful without becoming a successful check.
+- Unknown does not mean false. Exact quotes can accompany unsupported claims. Consolidation must preserve evidence and uncertainty rather than create confidence.
+- A plan shown after writes is too late to correct. Shared items need one owner, and setup must not mutate files before showing its combined scope.
+- The old hook template assumes fixed file sizes and a personal install. Current files exceed that assumption. A bounded request separates supported delivery from an observed whole-file read.
+
+**Tested:** No model test was run, by D253. Cases, local script tests, manual operational limits and the file-against-design review are recorded in `../tests/batch5-build-report.md`. Script checks use temporary fixtures only. No real settings, hooks or installs were changed. Live worker execution, independent validation, fresh-session and post-compaction loading remain unverified.

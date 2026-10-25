@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 18 (D261)"
+about = "Routes disjoint changes to crew with approval and ownership."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:not-for:coordinate-delegate-fanout"]
+category = "boundary"
+rejects = "Uses reading fanout as the writing method."
+review = ["Routes disjoint changes to crew with approval and ownership."]
+version_control = true
+
+[[turns]]
+prompt = "The request is parallel changes to separate cards, not reading. Propose only."
+
+[checks]
+no_changes = true

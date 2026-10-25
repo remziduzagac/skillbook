@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 4 (D261)"
+about = "Gives separate parts to a fanout while retaining judgment tiers and validation."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:rule:1", "coordinate-delegate-fanout:step:1"]
+category = "normal"
+rejects = "Gives every worker the same overall question or assigns light judgment."
+review = ["Gives separate parts to a fanout while retaining judgment tiers and validation.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Propose separate provenance, accessibility and scheduling review lenses for a large exhibit archive after search has narrowed it. Start nothing."
+
+[checks]
+no_changes = true

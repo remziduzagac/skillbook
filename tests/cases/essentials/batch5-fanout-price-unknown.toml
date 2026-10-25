@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 13 (D261)"
+about = "Reports the unknown, uses task shape and cost policy, and invents no token threshold."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:advice:1"]
+category = "boundary"
+rejects = "Presents a guessed price boundary as documented."
+review = ["Reports the unknown, uses task shape and cost policy, and invents no token threshold.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "The current model has no confirmed price step. Propose how to size reading parts without inventing one."
+
+[checks]
+no_changes = true

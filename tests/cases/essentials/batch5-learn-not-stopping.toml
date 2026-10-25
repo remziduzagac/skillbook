@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: learn, test 7 (D261)"
+about = "Does not start unasked lesson capture or a stopping offer from completion alone."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-learn"]
+covers = ["coordinate-learn:rule:1"]
+category = "boundary"
+rejects = "Treats task completion as permission to record lessons."
+review = ["Does not start unasked lesson capture or a stopping offer from completion alone.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "The requested exhibit task has finished. I have not said I am stopping or asked for a lesson record. Give completion status only."
+
+[checks]
+no_changes = true

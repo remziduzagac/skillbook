@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 6 (D261)"
+about = "Each gets its own findings file and returns path, count, negative results and actual status. Keeps reading effort low where a permitted control exists and does not copy main-session effort by default; unavailable effort controls stay explicit."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:rule:2", "coordinate-delegate-fanout:step:2"]
+category = "normal"
+rejects = "Pastes all raw findings or uses one shared output file."
+review = ["Each gets its own findings file and returns path, count, negative results and actual status. Keeps reading effort low where a permitted control exists and does not copy main-session effort by default; unavailable effort controls stay explicit.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Draft the return contract for five hypothetical reading workers. Keep raw findings out of the main conversation. Start nothing."
+
+[checks]
+no_changes = true

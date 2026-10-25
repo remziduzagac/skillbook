@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: setup-claude, test 9 (D261)"
+about = "Uses a bounded request for whole installed reads, not an oversized content output; loading stays unverified."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-setup-claude"]
+covers = ["coordinate-setup-claude:step:3"]
+category = "edge"
+rejects = "Claims a truncated content hook delivered the whole file."
+review = ["Uses a bounded request for whole installed reads, not an oversized content output; loading stays unverified.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Read coordinate-setup-claude as reference documentation only. Hypothetical situation: The act file is 20,000 characters. Return the proposed method, not an applied configuration. Launch nothing and edit no file."
+
+[checks]
+no_changes = true

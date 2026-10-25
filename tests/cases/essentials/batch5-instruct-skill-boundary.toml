@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: instruct, test 8 (D261)"
+about = "Returns skill-file work to the project skill-making method or judgment, not instruct."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-instruct"]
+covers = ["coordinate-instruct:rule:1"]
+category = "boundary"
+rejects = "Applies instruction-file rules as the skill-building method."
+review = ["Returns skill-file work to the project skill-making method or judgment, not instruct.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Propose how to improve a skill file's own instructions without treating it as AGENTS.md."
+
+[checks]
+no_changes = true

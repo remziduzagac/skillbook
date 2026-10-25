@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 3 (D261)"
+about = "Keeps the search scope and where nothing was found, without inventing exceptions."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:rule:2", "coordinate-delegate-fanout:rule:5"]
+category = "normal"
+rejects = "Drops the negative result or fills the gap with a guessed exception."
+review = ["Keeps the search scope and where nothing was found, without inventing exceptions.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "A hypothetical reading worker found no weekend exceptions in source.txt. Return how that negative result is retained. Start nothing."
+
+[checks]
+no_changes = true

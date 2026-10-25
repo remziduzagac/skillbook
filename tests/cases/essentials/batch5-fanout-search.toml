@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 14 (D261)"
+about = "Answers 11:30 with source evidence and no unnecessary fanout."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:rule:1"]
+category = "boundary"
+rejects = "Starts multiple workers or gives only a refusal."
+review = ["Answers 11:30 with source evidence and no unnecessary fanout.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "One targeted search settles the opening time. Give a read-only answer from source.txt rather than starting a team."
+
+[checks]
+no_changes = true

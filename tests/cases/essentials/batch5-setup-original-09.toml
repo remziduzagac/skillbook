@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: setup, test 9 (D261)"
+about = "Asks no needless allow-list question, writes no default entry and explains how the user can name a harness later."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-setup"]
+covers = ["coordinate-setup:step:5"]
+category = "normal"
+rejects = "Enables an external harness by default."
+review = ["Asks no needless allow-list question, writes no default entry and explains how the user can name a harness later.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "No external delegation harness was allowed. Draft the setup result about that policy."
+
+[checks]
+no_changes = true

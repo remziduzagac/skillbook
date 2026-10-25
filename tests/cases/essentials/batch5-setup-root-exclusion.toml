@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: setup, test 21 (D261)"
+about = "Uses instruct for the ordinary rule and starts no setup."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate"]
+covers = ["coordinate:not-for:coordinate-setup"]
+category = "boundary"
+rejects = "Routes an ordinary instruction request into setup."
+review = ["Uses instruct for the ordinary rule and starts no setup."]
+version_control = true
+
+[[turns]]
+prompt = "Add a proposed ordinary instruction about label preservation, not a skillbook install pointer. Save nothing."
+
+[checks]
+no_changes = true

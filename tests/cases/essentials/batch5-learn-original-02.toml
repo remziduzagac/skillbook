@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: learn, test 2 (D261)"
+about = "Lists the decision with its reason and offers a named file without silently writing one."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-learn"]
+covers = ["coordinate-learn:step:4"]
+category = "normal"
+rejects = "Invents a keeper path or records it without approval."
+review = ["Lists the decision with its reason and offers a named file without silently writing one.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "A session settled why tickets remain private. Propose recording that decision; no keeper is loaded."
+
+[checks]
+no_changes = true

@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: instruct, test 1 (D261)"
+about = "Places the fact in the shared project instructions with a reason; waits for actual save approval."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-instruct"]
+covers = ["coordinate-instruct:rule:1"]
+category = "normal"
+rejects = "Writes the file or turns a project fact into a global personal preference."
+review = ["Places the fact in the shared project instructions with a reason; waits for actual save approval.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Propose a shared project instruction to keep exhibit labels unchanged. Keep this a draft in chat."
+
+[checks]
+no_changes = true

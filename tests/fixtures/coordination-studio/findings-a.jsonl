@@ -1,0 +1,2 @@
+{"kind": "finding", "id": "s1", "claim": "Doors open at 11:30.", "source": "source.txt:1", "source_file": "source.txt", "quote": "Doors open at 11:30.", "strength": "read_at_source", "applies_to": "the exhibit"}
+{"kind": "not_found", "scope": "weekend exceptions", "looked_in": ["source.txt"]}

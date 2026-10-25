@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: council, test 3 (D261)"
+about = "Uses council for the same whole question and fanout for separate lenses."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-council"]
+covers = ["coordinate-delegate-council:step:1"]
+category = "normal"
+rejects = "Calls different lenses a council or treats every multi-worker request as fanout."
+review = ["Uses council for the same whole question and fanout for separate lenses.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Propose three independent overall verdicts on exhibit.md, then distinguish that request from three different review lenses. Start no workers."
+
+[checks]
+no_changes = true

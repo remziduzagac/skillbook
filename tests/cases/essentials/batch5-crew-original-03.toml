@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: crew, test 3 (D261)"
+about = "Uses one writer, optionally separate reading proposals, rather than overlapping writes."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-crew"]
+covers = ["coordinate-delegate-crew:step:4"]
+category = "normal"
+rejects = "Uses a parallel writing crew on one destination."
+review = ["Uses one writer, optionally separate reading proposals, rather than overlapping writes.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "Every proposed edit lands in one guide.md. Explain whether a crew fits; make no file."
+
+[checks]
+no_changes = true

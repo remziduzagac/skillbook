@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: setup, test 22 (D261)"
+about = "Returns a useful requested project setup proposal without starting or announcing an absent blueprint set. Recommends only available relevant work."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-setup"]
+covers = ["coordinate-setup:step:7"]
+category = "boundary"
+rejects = "Invents a blueprint install or announces a missing optional set that the user did not ask about."
+review = ["Returns a useful requested project setup proposal without starting or announcing an absent blueprint set. Recommends only available relevant work."]
+version_control = true
+
+[[turns]]
+prompt = "Prepare a read-only skillbook setup proposal for the exhibit project using only sets actually available to this session. Do not install anything, add project files or change settings."
+
+[checks]
+no_changes = true

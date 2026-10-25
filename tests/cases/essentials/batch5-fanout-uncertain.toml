@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: fanout, test 8 (D261)"
+about = "Keeps it unverified, excludes it from supporting evidence and says what would settle it."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-fanout"]
+covers = ["coordinate-delegate-fanout:rule:4", "coordinate-delegate-fanout:rule:5", "coordinate-delegate-fanout:last"]
+category = "boundary"
+rejects = "Calls lack of access evidence that the claim is false."
+review = ["Keeps it unverified, excludes it from supporting evidence and says what would settle it.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "A validator cannot determine a claim because its source is inaccessible. Return the actual validation status."
+
+[checks]
+no_changes = true

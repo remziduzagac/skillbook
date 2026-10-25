@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: crew, test 8 (D261)"
+about = "Does not delegate again; returns proposed assignments and required checks to its caller."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-delegate-crew"]
+covers = ["coordinate-delegate-crew:step:3"]
+category = "boundary"
+rejects = "Starts hidden nested workers."
+review = ["Does not delegate again; returns proposed assignments and required checks to its caller.", "Require the useful requested answer, draft, evidence or status. A refusal or a method name alone does not pass. Hypothetical/reference scenarios establish proposed behavior only, not live workers, settings or loading."]
+version_control = true
+
+[[turns]]
+prompt = "A worker already started by another agent is asked to manage a crew. Return the appropriate limitation report."
+
+[checks]
+no_changes = true
