@@ -4009,3 +4009,11 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 **Why:** A step-list instruction was tried and gave no measured gain. The existing instruction already covers later steps, since every step of a request needs its skill. A line in the main skill costs tokens on every request, and a list kept in thinking cannot be checked.
 
 **Tested:** The frozen 60-case routing sample ran once per case with the step-list wording. Luna passed 44/60 against 47/60 with the existing wording: 4 cases improved and 7 failed, within one-run noise. Sol passed 57/60 with both wordings, with no case changing. The two sequence cases passed 2/2 on each model with the step-list wording, and 2/2 on each model with the existing wording, so the step list added nothing there either. Results are one or two runs per case, not proof of a causal change. Full comparison: `../tests/routing-proposal.md`, Step 2.
+
+## D266: Keep dashed skill names (2026-10-26)
+
+**Decision:** Skill names inside a set stay dashed: a skill named `a-b-c` is the file `references/a/b/c.md`. Names written with slashes, such as `act/rightsize/lean`, were tried and are not adopted.
+
+**Why:** Slashed names were meant to spare small models the step from name to path, since Luna sometimes tried dashed paths such as `references/respond-layout.md`. They removed those dashed paths, but Luna then read fewer of the skills a request needs. The rename touched every skill, design and test, so it would need a clear gain to be worth it.
+
+**Tested:** The frozen 60-case routing sample and the two sequence cases ran three times on Luna with each naming, 372 runs in all. Dashed names passed 149 of 180 sample runs (83%), slashed names 132 (73%). Triggers loaded 72 against 65 of 90; near misses handled 77 against 67 of 90. Every failure was a needed skill not read. Single runs of 60 with the same wording ranged from 46 to 52 passes, so a difference of under about six cases in one run is noise; the gap here is larger. Sixteen cases did worse with slashes and three better. The sequence cases passed 6 of 6 with both. One earlier run on Sol showed no difference: 57 of 60 with both.

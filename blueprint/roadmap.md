@@ -44,3 +44,5 @@ Agreed, but not scheduled.
 Essentials reads needed methods before each request’s work, routes with explicit read instructions and keeps only the three approved duplicate cuts; local lookups and exact supplied questions have separate routing boundaries, tested with the matched Luna/Sol sample (D264).
 
 A step-list instruction before reading skills gave no measured gain, so each request keeps the plain read instruction, and two cases where a request needs two skills in a row stay (D265).
+
+Skill names stay dashed: slashed names were tried and lowered Luna's routing from 83% to 73% over three runs per case (D266).
