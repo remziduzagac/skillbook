@@ -1,5 +1,10 @@
 # authoring
 
+<p align="center">
+  <img alt="An orange robot types on an old black typewriter at a desk stacked with papers, books and scrolls, by lamplight"
+    src="../../assets/skillbook-authoring-robot.webp" width="600">
+</p>
+
 The first idea of the authoring set. Most of it is not designed yet: apart from the markdown skill, every line below is an idea that may change.
 
 ## What it is for
