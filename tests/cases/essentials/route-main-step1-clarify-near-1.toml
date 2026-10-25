@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: main-step1-clarify (D263)"
+about = "Routing only: near for understand-clarify"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["essentials", "understand-clarify"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["essentials:step:1"]
+
+[[turns]]
+prompt = "Quote the room number already written in project.md. No preference or unknown is left open."
+
+[checks]
+reads_not = ["understand-clarify"]

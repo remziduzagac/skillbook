@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: act--act-rightsize (D263)"
+about = "Routing only: trigger for act-rightsize"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "act-rightsize", "act-verify"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act:route:act-rightsize"]
+
+[[turns]]
+prompt = "Review the existing committee notice for unnecessary material and missing context. Propose a bounded change list rather than rewriting it."
+
+[checks]
+reads = ["act-rightsize"]

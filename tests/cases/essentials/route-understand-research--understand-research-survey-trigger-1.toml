@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: understand-research--understand-research-survey (D263)"
+about = "Routing only: trigger for understand-research-survey"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand-brainstorm", "understand-research", "understand-research-survey"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand-research:route:understand-research-survey"]
+
+[[turns]]
+prompt = "Survey the supplied lending-system candidates in evidence.md on offline use and export. Compare existing candidates and report gaps, without choosing."
+
+[checks]
+reads = ["understand-research-survey"]

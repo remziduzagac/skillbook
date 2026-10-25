@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: organize--organize-compose (D263)"
+about = "Routing only: near for organize-compose"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["organize", "organize-cluster", "organize-compose"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["organize:not-for:organize-compose"]
+
+[[turns]]
+prompt = "Build a navigation view over the records by audience, without moving them or creating a new structural parent."
+
+[checks]
+reads_not = ["organize-compose"]
+reads = ["organize-cluster"]

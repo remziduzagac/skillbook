@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: devise-design--devise-design-review (D263)"
+about = "Routing only: near for devise-design-review"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["devise-design", "devise-design-review", "understand-challenge"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["devise-design:not-for:devise-design-review"]
+
+[[turns]]
+prompt = "Pressure-test the one simple idea of having one person hold every key. This is an idea critique, not a review of a finished design document."
+
+[checks]
+reads_not = ["devise-design-review"]
+reads = ["understand-challenge"]

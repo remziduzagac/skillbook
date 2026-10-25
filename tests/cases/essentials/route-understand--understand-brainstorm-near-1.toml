@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: understand--understand-brainstorm (D263)"
+about = "Routing only: near for understand-brainstorm"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-brainstorm", "understand-weigh"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:not-for:understand-brainstorm"]
+
+[[turns]]
+prompt = "Compare two known reminder options: a printed card costs 5 and reaches everyone; a text costs 1 and reaches half. Reach matters most. Recommend one."
+
+[checks]
+reads_not = ["understand-brainstorm"]
+reads = ["understand-weigh"]

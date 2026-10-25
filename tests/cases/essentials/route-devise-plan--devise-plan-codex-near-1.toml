@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: devise-plan--devise-plan-codex (D263)"
+about = "Routing only: near for devise-plan-codex"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["devise-plan", "devise-plan-claude", "devise-plan-codex"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["devise-plan:not-for:devise-plan-codex"]
+
+[[turns]]
+prompt = "Explain planning-mode and checklist controls for Claude Code only. Do not describe or operate Codex."
+
+[checks]
+reads_not = ["devise-plan-codex"]
+reads = ["devise-plan-claude"]

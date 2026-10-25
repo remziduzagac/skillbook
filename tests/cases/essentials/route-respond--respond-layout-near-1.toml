@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: respond--respond-layout (D263)"
+about = "Routing only: near for respond-layout"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["respond", "respond-ask", "respond-layout"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["respond:not-for:step-1"]
+
+[[turns]]
+prompt = "Ask me one question about the audience. This is a question round, not a Markdown formatting job."
+
+[checks]
+reads_not = ["respond-layout"]
+reads = ["respond-ask"]

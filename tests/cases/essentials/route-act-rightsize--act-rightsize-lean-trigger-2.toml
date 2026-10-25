@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: act-rightsize--act-rightsize-lean (D263)"
+about = "Routing only: trigger for act-rightsize-lean"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act-rightsize", "act-rightsize-enrich", "act-rightsize-lean"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act-rightsize:route:act-rightsize-lean"]
+
+[[turns]]
+prompt = "Suggest cuts to the existing report in draft.md for its stated reader. Keep its evidence and next action, and propose the list first."
+
+[checks]
+reads = ["act-rightsize-lean"]

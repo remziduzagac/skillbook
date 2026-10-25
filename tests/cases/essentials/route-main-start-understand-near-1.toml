@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: main-start-understand (D263)"
+about = "Routing only: near for understand"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["essentials", "understand"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = []
+
+[[turns]]
+prompt = "Return only the literal plain-text token Ready."
+
+[checks]
+reads = ["understand"]
+reads_not = ["understand-research"]

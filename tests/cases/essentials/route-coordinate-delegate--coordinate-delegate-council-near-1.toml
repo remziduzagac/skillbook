@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: coordinate-delegate--coordinate-delegate-council (D263)"
+about = "Routing only: near for coordinate-delegate-council"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate-delegate", "coordinate-delegate-council", "coordinate-delegate-fanout"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate-delegate:not-for:coordinate-delegate-council"]
+
+[[turns]]
+prompt = "We have distinct large reading areas that a search could not narrow. Propose distributing separate areas and consolidating sourced findings."
+
+[checks]
+reads_not = ["coordinate-delegate-council"]
+reads = ["coordinate-delegate-fanout"]

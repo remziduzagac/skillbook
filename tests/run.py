@@ -144,6 +144,8 @@ def main():
                 result = {"case": case["id"], "agent": agent, "run": n, "model": model,
                           "error": f"runner error: {error!r}", "cost": 0.0, "cost_unknown": True, "checks": {},
                           "reads": [], "changes": [], "answer": "", "review": case.get("review", []), "turns": []}
+            if case.get("routing_only"):
+                result["routing_only"] = True
             with lock:
                 state["spent"] += result["cost"] or 0.0
                 state["unknown"] += int(result.get("cost_unknown", result["cost"] is None))
@@ -219,6 +221,8 @@ def runs_to_judge(folders):
     lines = []
     for path in sorted(p for folder in folders for p in folder.rglob("summary.json")):
         for r in json.loads(path.read_text()):
+            if r.get("routing_only"):
+                continue
             lines.append("\t".join([r["case"], r["agent"], r["model"], str(r["run"]), str(path.with_suffix(".md"))]))
     return "".join(line + "\n" for line in lines)
 
@@ -236,7 +240,7 @@ def load_cases(pattern):
         data.setdefault("runs", 1)  # cover a rule with several different cases, not repeats of one
         data.setdefault("pointer", True)
         data.setdefault("checks", {})
-        if data["set"] == "essentials":
+        if data["set"] == "essentials" and not data.get("routing_only", False):
             # no essentials answer names a skill unless its case says the user needs the name, with names_no_skill
             data["checks"].setdefault("names_no_skill", True)
         if not (FIXTURES / data["fixture"]).is_dir():
@@ -256,6 +260,14 @@ PATTERN_CHECKS = ("answer_contains", "answer_not_contains", "tmp_has", "tmp_lack
 
 def validate_case(case):
     """Reject misspelled assertions rather than silently running a case without its intended check."""
+    if not isinstance(case.get("routing_only", False), bool):
+        raise ValueError(f"{case['id']}: routing_only is true or false")
+    if case.get("routing_only"):
+        if case.get("review") or len(case.get("turns", [])) != 1:
+            raise ValueError(f"{case['id']}: routing-only cases have one turn and no review")
+        assertions = [case["checks"], case["turns"][0].get("checks", {})]
+        if not any(assertions) or any(set(c) - {"reads", "reads_not"} for c in assertions):
+            raise ValueError(f"{case['id']}: routing-only cases use reads and reads_not only")
     if case.get("category", "normal") not in {"normal", "boundary", "edge"}:
         raise ValueError(f"{case['id']}: unknown category")
     if not case.get("turns"):

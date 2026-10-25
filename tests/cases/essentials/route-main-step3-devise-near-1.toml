@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: main-step3-devise (D263)"
+about = "Routing only: near for devise"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["devise", "essentials"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["essentials:step:3"]
+
+[[turns]]
+prompt = "Return the exact literal word Monday. There is no design, review or multipart work."
+
+[checks]
+reads_not = ["devise"]

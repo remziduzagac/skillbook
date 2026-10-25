@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: devise--devise-design (D263)"
+about = "Routing only: trigger for devise-design"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["devise", "devise-design", "devise-plan"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["devise:route:devise-design"]
+
+[[turns]]
+prompt = "Design how a volunteer matching process should work. The goals are fairness and reliable coverage, and no implementation is authorized."
+
+[checks]
+reads = ["devise-design"]

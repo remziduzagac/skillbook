@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: act--act-stakes (D263)"
+about = "Routing only: trigger for act-stakes"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "act-stakes"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act:route:act-stakes"]
+
+[[turns]]
+prompt = "Assess the consequence and reversibility of a wrong digit on a public museum label before printing. Decide how careful its check should be."
+
+[checks]
+reads = ["act-stakes"]

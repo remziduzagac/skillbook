@@ -699,11 +699,34 @@ class CaseInventory(unittest.TestCase):
         self.assertTrue(cases)
         for case in cases:
             with self.subTest(case=case["id"]):
-                for field in ("skills", "category", "rejects", "review", "source"):
+                for field in ("skills", "category", "rejects", "source") + (() if case.get("routing_only") else ("review",)):
                     self.assertTrue(case.get(field), field)
                 source = runner.REPO / case["source"].split(":", 1)[0]
                 self.assertTrue(source.is_file(), str(source))
                 self.assertTrue(case["checks"] or any(t.get("checks") for t in case["turns"]))
+
+    def test_routing_inventory_contains_only_read_checks_and_no_review(self):
+        cases = runner.load_cases("route-")
+        self.assertTrue(cases)
+        for case in cases:
+            self.assertTrue(case.get("routing_only"), case["id"])
+            self.assertEqual(len(case["turns"]), 1)
+            self.assertFalse(case.get("review"))
+            self.assertTrue(set(case["checks"]) <= {"reads", "reads_not"})
+            self.assertTrue(case["checks"])
+
+    def test_routing_cases_reject_semantic_assertions_and_reviews(self):
+        for extra in [{"checks": {"answer_contains": ["yes"]}}, {"review": ["good answer"]}]:
+            case = {"id": "routing", "routing_only": True, "turns": [{"prompt": "Read a fact"}],
+                    "checks": {"reads": ["understand"]}, **extra}
+            with self.subTest(extra=extra), self.assertRaisesRegex(ValueError, "routing-only"):
+                runner.validate_case(case)
+
+    def test_routing_results_are_excluded_from_semantic_judging(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            record = {"case": "essentials/routing", "agent": "codex", "model": "gpt-6-luna", "run": 1}
+            Path(tmp, "summary.json").write_text(json.dumps([{**record, "routing_only": True}, record]))
+            self.assertEqual(len(runner.runs_to_judge([Path(tmp)]).splitlines()), 1)
 
     def test_typo_in_an_assertion_cannot_silently_pass(self):
         case = {"id": "bad", "turns": [{"prompt": "Hello"}], "checks": {"unchagned": ["NOTES.md"]}}
@@ -870,7 +893,7 @@ class SkillNamesInAnswers(unittest.TestCase):
     def test_every_essentials_case_checks_it_unless_it_opts_out(self):
         cases = runner.load_cases("essentials/")
         self.assertTrue(cases)
-        self.assertTrue(all(c["checks"].get("names_no_skill") in (True, False) for c in cases))
+        self.assertTrue(all(c["checks"].get("names_no_skill") in (True, False) for c in cases if not c.get("routing_only")))
         name = "answer names no skill or skill file"
         self.assertEqual(runner.check({"names_no_skill": True}, {"answer": SKILL_LEAKS[0]}), {name: False})
         self.assertEqual(runner.check({"names_no_skill": True}, {"answer": SKILL_FINE[0]}), {name: True})

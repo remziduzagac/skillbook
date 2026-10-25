@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: understand-research--understand-research-analyze (D263)"
+about = "Routing only: trigger for understand-research-analyze"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand-research", "understand-research-analyze", "understand-research-fact"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand-research:route:understand-research-analyze"]
+
+[[turns]]
+prompt = "Investigate why the current form loses a selected category, using the two captured processing traces in evidence.md. Return causal evidence only."
+
+[checks]
+reads = ["understand-research-analyze"]

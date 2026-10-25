@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: coordinate--coordinate-brief (D263)"
+about = "Routing only: near for coordinate-brief"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "coordinate-brief", "coordinate-carryover"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate:not-for:coordinate-brief"]
+
+[[turns]]
+prompt = "Draft a provisional response-only state note for a later session. No independent reader or worker brief is requested, and no readiness claim is wanted."
+
+[checks]
+reads_not = ["coordinate-brief"]
+reads = ["coordinate-carryover"]

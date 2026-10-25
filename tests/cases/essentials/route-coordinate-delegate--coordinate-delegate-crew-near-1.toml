@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: coordinate-delegate--coordinate-delegate-crew (D263)"
+about = "Routing only: near for coordinate-delegate-crew"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate-delegate", "coordinate-delegate-crew"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate-delegate:not-for:coordinate-delegate-crew"]
+
+[[turns]]
+prompt = "All proposed changes land in one short notice. Explain the single-writer fallback rather than arranging parallel writers."
+
+[checks]
+reads_not = ["coordinate-delegate-crew"]

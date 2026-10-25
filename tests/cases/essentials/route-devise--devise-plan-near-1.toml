@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: devise--devise-plan (D263)"
+about = "Routing only: near for devise-plan"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["devise", "devise-plan"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["devise:not-for:devise-plan"]
+
+[[turns]]
+prompt = "Convert the single date 2026-11-04 to 4 November 2026 and return that text only. There is no multipart work."
+
+[checks]
+reads_not = ["devise-plan"]

@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: main-step5-coordinate (D263)"
+about = "Routing only: trigger for coordinate"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "essentials"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["essentials:step:5"]
+
+[[turns]]
+prompt = "Give a proposal for an agent instruction document that points to project.md. Save nothing."
+
+[checks]
+reads = ["coordinate"]

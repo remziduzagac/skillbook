@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: understand--understand-argue (D263)"
+about = "Routing only: trigger for understand-argue"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-argue", "understand-challenge"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:route:understand-argue"]
+
+[[turns]]
+prompt = "Defend the position that the community kitchen should reserve one evening for beginners. I want advocacy with admitted weaknesses, not a verdict."
+
+[checks]
+reads = ["understand-argue"]

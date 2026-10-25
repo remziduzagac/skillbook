@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: understand--understand-weigh (D263)"
+about = "Routing only: trigger for understand-weigh"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-challenge", "understand-weigh"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:route:understand-weigh"]
+
+[[turns]]
+prompt = "Choose between two exhibit layouts: circles seat 20 and allow conversation; rows seat 30 and obstruct discussion. Discussion is the main goal."
+
+[checks]
+reads = ["understand-weigh"]

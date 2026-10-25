@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: organize--organize-normalize (D263)"
+about = "Routing only: trigger for organize-normalize"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["organize", "organize-merge", "organize-normalize"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["organize:route:organize-normalize"]
+
+[[turns]]
+prompt = "Different records repeat the same contact paragraph. Propose one authoritative home and references from each matching copy. Keep whole records distinct."
+
+[checks]
+reads = ["organize-normalize"]

@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: main-step2-act (D263)"
+about = "Routing only: near for act"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "essentials", "respond-layout"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["essentials:step:2"]
+
+[[turns]]
+prompt = "Present the supplied two schedules as a Markdown table, without changing their facts."
+
+[checks]
+reads = ["act", "respond-layout"]
+reads_not = ["act-guardrails"]

@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: act--act-verify (D263)"
+about = "Routing only: trigger for act-verify"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "act-verify", "understand-challenge"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act:route:act-verify"]
+
+[[turns]]
+prompt = "The supplied roster totals 12 morning and 8 afternoon shifts. Is its claim of 20 shifts correct? Check the actual figures against the claim."
+
+[checks]
+reads = ["act-verify"]

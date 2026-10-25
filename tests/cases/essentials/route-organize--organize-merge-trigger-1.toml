@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: organize--organize-merge (D263)"
+about = "Routing only: trigger for organize-merge"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["organize", "organize-merge", "organize-normalize"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["organize:route:organize-merge"]
+
+[[turns]]
+prompt = "Two complete records in records.md describe the same lending service. Propose one combined account preserving every compatible unique statement."
+
+[checks]
+reads = ["organize-merge"]

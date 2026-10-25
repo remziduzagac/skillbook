@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: understand--understand-argue (D263)"
+about = "Routing only: near for understand-argue"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-argue", "understand-challenge"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:not-for:understand-argue"]
+
+[[turns]]
+prompt = "Critique the single proposal to lock the workshop during all unattended hours. Find where it may fail, not the case for adopting it."
+
+[checks]
+reads_not = ["understand-argue"]
+reads = ["understand-challenge"]

@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: organize--organize-merge (D263)"
+about = "Routing only: near for organize-merge"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["organize", "organize-merge", "organize-normalize"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["organize:not-for:organize-merge"]
+
+[[turns]]
+prompt = "The records are different services sharing one repeated safety paragraph. Propose one shared home for that paragraph only."
+
+[checks]
+reads_not = ["organize-merge"]
+reads = ["organize-normalize"]

@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: coordinate--coordinate-learn (D263)"
+about = "Routing only: near for coordinate-learn"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "coordinate-carryover", "coordinate-learn"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate:not-for:coordinate-learn"]
+
+[[turns]]
+prompt = "We need a standalone state note to continue the unfinished work later. Preserve tasks and decisions, rather than distilling a lasting lesson."
+
+[checks]
+reads_not = ["coordinate-learn"]
+reads = ["coordinate-carryover"]

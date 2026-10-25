@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: understand--understand-clarify (D263)"
+about = "Routing only: trigger for understand-clarify"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-clarify"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:route:understand-clarify"]
+
+[[turns]]
+prompt = "Help with the annual exhibit. I have not chosen whether success means more visits or more revenue. Do not choose that goal for me."
+
+[checks]
+reads = ["understand-clarify"]

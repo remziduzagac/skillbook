@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: understand--understand-research (D263)"
+about = "Routing only: trigger for understand-research"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-research"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:route:understand-research"]
+
+[[turns]]
+prompt = "Investigate the missing delivery using the two independent logs in evidence.md. Return the supported chain and what cannot be established."
+
+[checks]
+reads = ["understand-research"]

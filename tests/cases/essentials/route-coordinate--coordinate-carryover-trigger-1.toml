@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: coordinate--coordinate-carryover (D263)"
+about = "Routing only: trigger for coordinate-carryover"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "coordinate-brief", "coordinate-carryover"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate:route:coordinate-carryover"]
+
+[[turns]]
+prompt = "Draft a provisional standalone continuation note for tomorrow using project.md. Leave it in the response; no review worker or file write is authorized."
+
+[checks]
+reads = ["coordinate-carryover"]

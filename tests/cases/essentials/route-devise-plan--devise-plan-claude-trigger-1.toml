@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: devise-plan--devise-plan-claude (D263)"
+about = "Routing only: trigger for devise-plan-claude"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["devise-plan", "devise-plan-claude", "devise-plan-codex"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["devise-plan:route:devise-plan-claude"]
+
+[[turns]]
+prompt = "For a colleague using Claude Code, explain the available planning-mode and task-list controls for an already written work plan. Do not operate them. The work concerns a public exhibit."
+
+[checks]
+reads = ["devise-plan-claude"]

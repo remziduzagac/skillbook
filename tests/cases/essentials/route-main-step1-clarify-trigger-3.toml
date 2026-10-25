@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: main-step1-clarify (D263)"
+about = "Routing only: trigger for understand-clarify"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["essentials", "understand-clarify"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["essentials:step:1"]
+
+[[turns]]
+prompt = "I need a recommendation later, but whether low cost or accessibility matters most is my unanswered preference. Ask me."
+
+[checks]
+reads = ["understand-clarify"]

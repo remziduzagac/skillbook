@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: devise--devise-design (D263)"
+about = "Routing only: near for devise-design"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["devise", "devise-design", "devise-plan"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["devise:not-for:devise-design"]
+
+[[turns]]
+prompt = "The process shape is already settled. Give the ordered work steps for collecting the three supplied records and checking their totals."
+
+[checks]
+reads_not = ["devise-design"]
+reads = ["devise-plan"]

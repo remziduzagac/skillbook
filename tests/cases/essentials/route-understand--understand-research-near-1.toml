@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: understand--understand-research (D263)"
+about = "Routing only: near for understand-research"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-research"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:not-for:understand-research"]
+
+[[turns]]
+prompt = "What literal event date is recorded in project.md? A direct local quotation is enough; no sourced investigation is needed."
+
+[checks]
+reads_not = ["understand-research"]

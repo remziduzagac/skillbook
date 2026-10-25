@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: understand-clarify--understand-clarify-deep (D263)"
+about = "Routing only: trigger for understand-clarify-deep"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand-clarify", "understand-clarify-deep", "understand-clarify-questionnaire"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand-clarify:route:understand-clarify-deep"]
+
+[[turns]]
+prompt = "Question me thoroughly about the proposed mentoring program, including follow-ups when an answer changes the next choice."
+
+[checks]
+reads = ["understand-clarify-deep"]

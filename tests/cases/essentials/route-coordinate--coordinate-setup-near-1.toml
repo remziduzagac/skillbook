@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: coordinate--coordinate-setup (D263)"
+about = "Routing only: near for coordinate-setup"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "coordinate-instruct", "coordinate-setup"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate:not-for:coordinate-setup"]
+
+[[turns]]
+prompt = "Propose one ordinary repository guidance rule for agents: the visitor records live in project.md. Do not discuss installing skillbook."
+
+[checks]
+reads_not = ["coordinate-setup"]
+reads = ["coordinate-instruct"]

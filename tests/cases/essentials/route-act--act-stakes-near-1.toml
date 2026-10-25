@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: act--act-stakes (D263)"
+about = "Routing only: near for act-stakes"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "act-stakes"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act:not-for:act-stakes"]
+
+[[turns]]
+prompt = "Quote the already recorded risk label from project.md. Do not reassess or classify the risk; this is a direct fact lookup."
+
+[checks]
+reads_not = ["act-stakes"]

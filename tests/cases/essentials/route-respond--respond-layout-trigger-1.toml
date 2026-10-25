@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: respond--respond-layout (D263)"
+about = "Routing only: trigger for respond-layout"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["respond", "respond-ask", "respond-layout"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["respond:step:1"]
+
+[[turns]]
+prompt = "Return a small Markdown table comparing the two stated opening schedules. The facts and choice are settled; this is a presentation request."
+
+[checks]
+reads = ["respond-layout"]

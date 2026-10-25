@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: act--act-guardrails (D263)"
+about = "Routing only: near for act-guardrails"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "act-guardrails", "act-stakes"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act:not-for:act-guardrails"]
+
+[[turns]]
+prompt = "Assess only the consequence level if a public opening-time sign contains an error. No action or permission decision is being requested."
+
+[checks]
+reads_not = ["act-guardrails"]
+reads = ["act-stakes"]

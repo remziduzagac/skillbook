@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: coordinate-setup--coordinate-setup-codex (D263)"
+about = "Routing only: near for coordinate-setup-codex"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate-setup", "coordinate-setup-claude", "coordinate-setup-codex"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate-setup:not-for:coordinate-setup-codex"]
+
+[[turns]]
+prompt = "Give supported skillbook pointer locations for Claude Code only. The target is not Codex, and nothing should be installed."
+
+[checks]
+reads_not = ["coordinate-setup-codex"]
+reads = ["coordinate-setup-claude"]

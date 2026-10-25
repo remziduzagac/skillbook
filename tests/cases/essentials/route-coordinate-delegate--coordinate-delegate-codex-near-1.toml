@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: coordinate-delegate--coordinate-delegate-codex (D263)"
+about = "Routing only: near for coordinate-delegate-codex"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate-delegate", "coordinate-delegate-claude", "coordinate-delegate-codex"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate-delegate:not-for:coordinate-delegate-codex"]
+
+[[turns]]
+prompt = "The target is Claude Code, not Codex. Give reference guidance for that target's worker controls only. Start nothing."
+
+[checks]
+reads_not = ["coordinate-delegate-codex"]
+reads = ["coordinate-delegate-claude"]

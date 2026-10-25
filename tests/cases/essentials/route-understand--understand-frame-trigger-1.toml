@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: understand--understand-frame (D263)"
+about = "Routing only: trigger for understand-frame"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-frame"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:route:understand-frame"]
+
+[[turns]]
+prompt = "Our volunteers keep arguing about speed versus fairness. Before solutions, formulate the actual problem, desired result and how we will recognize success."
+
+[checks]
+reads = ["understand-frame"]

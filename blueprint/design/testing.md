@@ -17,6 +17,16 @@ How skillbook is tested, as a whole: what runs where, what a test needs, and whe
    - **Automated:** `just test-agents` runs cases through the runner. The user sets when model tests run. The remaining build follows the schedule below. An agent may also guide a run: start cases, read the summaries and judge what a script cannot check.
    - **Manual:** `just try claude` or `just try codex` opens that agent in a toy project, with a sandbox home that has skillbook installed in link mode, so edits show at once. The user logs in once inside the sandbox. The user's real agent setup, and the agent session that develops the skills, stay apart from the skills under test. The command runs in whatever terminal or pane the user picks; nothing imposes a layout.
 
+## Routing layer
+
+Test routing before judging answers (D263). A routing case measures successful skill reads only. Give every concrete main instruction and parent-to-child routing line about three varied trigger cases and one or two near misses. A near miss requires the named alternative where applicable. Forbid the target only when the alternative does not itself require it. Mandatory baseline reads cannot prove optional selection or absence; report that limit separately.
+
+The inventory is `tests/routing-routes.md`. Cases use the `route-` prefix, `routing_only = true`, one short read-only turn and a small shared fixture. Their only assertions are `reads` and `reads_not`. They have no answer assertions, semantic rubric or judging. The flag prevents the usual inherited answer-name check and excludes their results from `--to-judge`. Existing behavioral cases use `routing-` in their names where needed to keep `--case route-` specific. Their contents are preserved.
+
+Check each case against a correct and a plausible wrong read trace before running it. A filename merely mentioned is not a read. Unknown evidence stays unknown. A read proves observed loading, not answer quality, whole-file reading or which parent selected it. Report trigger and negative-boundary rates per route. Keep nondiscriminating baseline checks separate. After routing holds, run the behavioral layer and judge its answers and actions under the normal method.
+
+The initial routing pass runs once on Codex with GPT-6 Luna, four jobs, a turn timeout of about 120 seconds and a US$5 known-spend scheduling threshold. Preserve its logs outside the repository. Stop on runner, login or capacity errors. This routing pass uses no Claude model, Sol or semantic judge.
+
 ## Where things live
 
 All in `tests/` (D190), except the commands, which are in the `justfile`.
@@ -32,7 +42,8 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   - whether the pointer is in the user's instruction file, yes by default;
   - `skills`, the implemented skills whose behaviour or routing boundary it exercises; `category`, normal, boundary or edge; `rejects`, the plausible wrong behaviour;
   - `covers`, the aspects of the skills it tests, by the ids `tests/run.py --coverage` names from the skill files: each rule, piece of advice, step, route, "Not for" line, checklist item and last instruction, such as `act:rule:5` or `act:not-for:act-rightsize`; only what its checks or review can fail on;
-  - `review`, semantic acceptance criteria; automatic success leaves these pending, and the summary includes each turn's answer for review. After each run, every run, passed or failed, is judged against them by fresh agents on Sonnet, another model only with the person's approval (D247), as `tests/judge.md` says, and the person spot-checks unclear verdicts and those the automatic checks disagree with;
+  - `routing_only = true`, the reads-only, one-turn routing layer described above;
+  - `review`, semantic acceptance criteria for behavioral cases; automatic success leaves these pending, and the summary includes each turn's answer for review. After each behavioral run, passed or failed, it is judged against them by fresh agents on Sonnet, another model only with the person's approval (D247), as `tests/judge.md` says, and the person spot-checks unclear verdicts and those the automatic checks disagree with;
   - `project_skills`, the repository's own skills copied into the isolated agent skill folder for a project-skill exercise only, never added to the shipped set;
   - the checks a script can make from the event log, for the whole run under `[checks]`, or for one turn under `[turns.checks]`, judged on that turn's answer and changes (D216):
     - the skills read or not read (`reads`, `reads_not`), by name, for the run or one turn: a read counts only with a successful matching tool result or a supported reading command that exits 0; a path merely named, as by `echo` or `ls`, does not count; a step counts only where a zero exit proves it ran and succeeded: every step of `a && b`, and only what follows the last `;`, new line or `||`; a step holding a pipe or a redirection, and a command with a command substitution or a background job, is left uncounted; a command that exits non-zero proves no read, even where a later step such as a search found nothing;
@@ -74,7 +85,7 @@ The project skills have no shipped-set design sections. These scenarios apply th
 
 ## Build validation schedule
 
-Build the remaining batches and their cases before running model tests. Run no model tests per batch. After all batches, run every case once on Codex with GPT-6.1 Sol, then once with GPT-6 Luna. Investigate patterns both models share. Fix those patterns and rerun only the affected cases. Then run one full pass on each model for side effects. This schedule changes when tests run, not their case-writing or judging requirements (D253).
+Build the remaining batches and their cases before behavioral model tests. Run no model tests per batch. After all batches, test the routing layer first. Once routing holds, run every behavioral case once on Codex with GPT-6.1 Sol, then once with GPT-6 Luna. Investigate patterns both models share. Fix those patterns and rerun only the affected cases. Then run one full pass on each model for side effects. This schedule changes when tests run, not their case-writing or judging requirements (D253).
 
 ## The runner's rules
 

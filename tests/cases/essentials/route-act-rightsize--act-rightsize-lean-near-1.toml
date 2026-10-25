@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: act-rightsize--act-rightsize-lean (D263)"
+about = "Routing only: near for act-rightsize-lean"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act-rightsize", "act-rightsize-enrich", "act-rightsize-lean"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act-rightsize:not-for:act-rightsize-lean"]
+
+[[turns]]
+prompt = "The existing draft leaves a newcomer without the necessary context. Identify the missing parts and propose additions, not cuts."
+
+[checks]
+reads_not = ["act-rightsize-lean"]
+reads = ["act-rightsize-enrich"]

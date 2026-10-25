@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: act--act-cleanup (D263)"
+about = "Routing only: trigger for act-cleanup"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "act-cleanup", "act-guardrails"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act:route:act-cleanup"]
+
+[[turns]]
+prompt = "Before preparing a brief for a new helper, identify how your own now-unused investigation files and process should be cleaned. Do not write files."
+
+[checks]
+reads = ["act-cleanup"]

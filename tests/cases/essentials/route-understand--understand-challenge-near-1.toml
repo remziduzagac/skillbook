@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: understand--understand-challenge (D263)"
+about = "Routing only: near for understand-challenge"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-argue", "understand-challenge"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:not-for:understand-challenge"]
+
+[[turns]]
+prompt = "Make the strongest honest case in favor of a quiet reading hour. Include the best objections, but label it as one-sided advocacy."
+
+[checks]
+reads_not = ["understand-challenge"]
+reads = ["understand-argue"]

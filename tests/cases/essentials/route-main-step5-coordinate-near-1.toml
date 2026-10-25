@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: main-step5-coordinate (D263)"
+about = "Routing only: near for coordinate"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "essentials"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["essentials:step:5"]
+
+[[turns]]
+prompt = "What exact rehearsal room is recorded in project.md? It is a small direct lookup, not delegated work."
+
+[checks]
+reads_not = ["coordinate"]

@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: organize--organize-compose (D263)"
+about = "Routing only: trigger for organize-compose"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["organize", "organize-cluster", "organize-compose"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["organize:route:organize-compose"]
+
+[[turns]]
+prompt = "Give the selected workshop records a meaningful shared parent without changing their text. This is not an index over the whole collection."
+
+[checks]
+reads = ["organize-compose"]

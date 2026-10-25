@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: coordinate--coordinate-carryover (D263)"
+about = "Routing only: near for coordinate-carryover"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "coordinate-brief", "coordinate-carryover"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate:not-for:coordinate-carryover"]
+
+[[turns]]
+prompt = "Draft the task brief for a worker starting in this session now. It is not a note for a later continuation."
+
+[checks]
+reads_not = ["coordinate-carryover"]
+reads = ["coordinate-brief"]

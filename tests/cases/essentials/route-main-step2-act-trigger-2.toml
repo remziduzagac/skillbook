@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: main-step2-act (D263)"
+about = "Routing only: trigger for act"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "essentials", "respond-layout"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["essentials:step:2"]
+
+[[turns]]
+prompt = "Give a brief view on whether the fully described evening session seems welcoming; make no changes."
+
+[checks]
+reads = ["act"]

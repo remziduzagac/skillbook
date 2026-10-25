@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: organize--organize-compose (D263)"
+about = "Routing only: trigger for organize-compose"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["organize", "organize-cluster", "organize-compose"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["organize:route:organize-compose"]
+
+[[turns]]
+prompt = "Propose a containing section for just the selected access-policy records in records.md, stating their shared responsibility."
+
+[checks]
+reads = ["organize-compose"]

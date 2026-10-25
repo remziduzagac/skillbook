@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: devise-design--devise-design-review (D263)"
+about = "Routing only: trigger for devise-design-review"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["devise-design", "devise-design-review", "understand-challenge"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["devise-design:route:devise-design-review"]
+
+[[turns]]
+prompt = "Perform an explicit review of the draft exhibit-access design in design.md before its owner approves it. Change nothing."
+
+[checks]
+reads = ["devise-design-review"]

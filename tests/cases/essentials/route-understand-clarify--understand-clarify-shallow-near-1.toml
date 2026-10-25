@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: understand-clarify--understand-clarify-shallow (D263)"
+about = "Routing only: near for understand-clarify-shallow"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand-clarify", "understand-clarify-deep", "understand-clarify-shallow"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand-clarify:not-for:understand-clarify-shallow"]
+
+[[turns]]
+prompt = "Interview me thoroughly about the new learning program. I explicitly want dependent follow-up questions, not just an opening round."
+
+[checks]
+reads_not = ["understand-clarify-shallow"]
+reads = ["understand-clarify-deep"]

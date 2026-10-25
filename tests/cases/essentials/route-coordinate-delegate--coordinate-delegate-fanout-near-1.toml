@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: coordinate-delegate--coordinate-delegate-fanout (D263)"
+about = "Routing only: near for coordinate-delegate-fanout"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate-delegate", "coordinate-delegate-council", "coordinate-delegate-fanout"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate-delegate:not-for:coordinate-delegate-fanout"]
+
+[[turns]]
+prompt = "Give several independent reviewers the same entire question over the same material, preserving each answer separately. This is not separate reading areas."
+
+[checks]
+reads_not = ["coordinate-delegate-fanout"]
+reads = ["coordinate-delegate-council"]

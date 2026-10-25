@@ -1,0 +1,16 @@
+source = "tests/routing-routes.md: act-rightsize--act-rightsize-enrich (D263)"
+about = "Routing only: near for act-rightsize-enrich"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act-rightsize", "act-rightsize-enrich", "act-verify"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act-rightsize:not-for:act-rightsize-enrich"]
+
+[[turns]]
+prompt = "Is the stated sum of the two shift counts correct? Check correctness only; do not complete or expand the document."
+
+[checks]
+reads_not = ["act-rightsize-enrich"]
+reads = ["act-verify"]

@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: coordinate--coordinate-delegate (D263)"
+about = "Routing only: trigger for coordinate-delegate"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "coordinate-brief", "coordinate-delegate"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate:route:coordinate-delegate"]
+
+[[turns]]
+prompt = "Arrange how a helper should investigate the recorded delivery discrepancy for the main session. Give the delegation proposal, not the work itself."
+
+[checks]
+reads = ["coordinate-delegate"]

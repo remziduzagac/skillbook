@@ -3566,6 +3566,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D247: Test runs are judged on Sonnet (2026-10-24)
 
+> **Amended by D263 (2026-10-25):** Reads-only routing cases are not semantically judged. Behavioral runs retain their normal fresh-judge requirement.
+
 **Decision:**
 
 - Every test run is judged by fresh agents on Sonnet. Another model, such as Opus or Fable, is used only with the person's approval. `tests/judge.md` and the testing design say so. This replaces "a model larger than the ones tested" (D223).
@@ -3745,6 +3747,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Luna still misses discuss's whole-first order and closing, and incomplete payloads to callers. Round 3 cost Luna about US$0.66 by the runner's estimate. Sol and judging cost are unknown.
 
 ## D253: Build the remaining batches before model testing (2026-10-25)
+
+> **Amended by D263 (2026-10-25):** Routing is tested first in a separate reads-only layer. Behavioral answer judging follows after routing holds.
 
 **Decision:**
 
@@ -3935,3 +3939,21 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - An unresolved or cancelled investigation can leave the same probes and processes as a confirmed one. Cleanup cannot depend on proving a cause.
 
 **Tested:** No model test was run, by D253. The four methods and five source guides are built. The 105 Codex cases were inspected against correct and plausible wrong traces; these are static rubric checks, not observed model passes. Repository checks, coverage limits, caller restoration and the file-against-design review are recorded in `../tests/batch6-build-report.md`. Live probes, worker validation and process cleanup remain unverified.
+
+## D263: Test routing by reads before judging answers (2026-10-25)
+
+**Decision:**
+
+- Essentials gains a routing layer before behavioral answer tests. Inventory every concrete main instruction and parent-to-child route with its file, line, trigger and exclusions. Give each about three varied triggers and one or two near misses. A named alternative is required where applicable. Test the target's absence only when another required flow does not itself need that target.
+- Routing cases use one small read-only turn, a shared fixture and only successful `reads` and `reads_not` evidence. They have no answer checks, review rubric or semantic judge. The explicit routing-only case flag prevents inherited answer-name checks and keeps these results out of semantic judging. Normal cases retain those checks and their review requirements.
+- Mandatory conversation-start and response reads cannot show optional route selection. A mandatory response utility can also make a target's absence invalid. Preserve those routes in the inventory, name their measurement limit, and report baseline checks separately from discriminating negative cases. A successful read establishes loading, not its selecting caller or answer quality.
+- Reserve the `route-` selector for this layer. Preserve existing semantic scenarios under `routing-` filenames, retaining their contents, assertions and coverage. Historical IDs map by replacing that literal token. The new cases use held-out requests and are checked against correct and plausible wrong read traces before model execution.
+- The first routing pass uses Codex with GPT-6 Luna only, once per case, four jobs, about 120 seconds per turn and a US$5 known-spend scheduling threshold. Keep logs outside the repository and stop on runner, login or capacity errors. Answers are judged only after routing holds. No skill instruction is changed by this testing method.
+
+**Why:**
+
+- A bad answer and a missing method load need different evidence. Mixing answer checks with read checks obscures which layer failed.
+- A boundary test can reject a correct composition if it forbids a utility the alternative needs. Mandatory loading also cannot establish optional selection.
+- A selector that mixes semantic scenarios into a reads-only pass silently changes its meaning and spending. Preserving the earlier scenarios keeps their evidence and coverage available.
+
+**Tested:** All 240 synthetic correct read traces passed and plausible wrong traces failed. Codex with GPT-6 Luna recorded 59 of 240 planned cases before one 120-second timeout stopped new starts. Completed trigger checks passed 19/44; ordinary near contracts passed 8/13; the baseline control passed 1/1. Known token-cost estimate $0.172670, with 1 unquantified remainder. No answer or progress judging ran. Static checks, measurement limits and per-route results are in `../tests/routing-report.md`.

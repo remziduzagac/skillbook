@@ -1,0 +1,15 @@
+source = "tests/routing-routes.md: coordinate--coordinate-learn (D263)"
+about = "Routing only: trigger for coordinate-learn"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "coordinate-carryover", "coordinate-learn"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate:route:coordinate-learn"]
+
+[[turns]]
+prompt = "Extract what this session taught for future agent guidance: we learned that room B uses a different inventory key. Propose a lasting lesson, save nothing."
+
+[checks]
+reads = ["coordinate-learn"]
