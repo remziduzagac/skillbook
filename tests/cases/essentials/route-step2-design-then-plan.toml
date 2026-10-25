@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/essentials.md: per-request read instruction (D265)"
+about = "Reads the methods for the request’s known sequence; timing and execution order remain unmeasured."
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["devise", "devise-design", "devise-plan"]
+category = "normal"
+rejects = "Reads only the first method, or omits a required parent."
+covers = ["devise:route:devise-design", "devise:route:devise-plan"]
+
+[[turns]]
+prompt = "Design a small tool-lending service, then plan how to set it up. Keep both as proposals here; don’t build anything."
+
+[checks]
+reads = ["devise", "devise-design", "devise-plan"]

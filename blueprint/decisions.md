@@ -3980,6 +3980,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D264: Read needed methods before each request’s work (2026-10-25)
 
+> **Amended by D265 (2026-10-25):** Before reading the request’s needed skills, map its steps to their skills in thinking. This private routing list does not replace a plan shown to the user.
+
 **Decision:**
 
 - Each main skill says: “For each request, read the skills it needs before doing the work.” Essentials puts it before the numbered work steps. The essentials, authoring and blueprint main designs carry the same instruction. Softeng takes it when its main skill is designed.
@@ -3999,3 +4001,11 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Matched requests on two models separate a model-specific observation from a shared routing pattern. One run is a baseline, not a reliability estimate or proof of the cause.
 
 **Tested:** Before the change, the frozen 60-case sample completed on both models without timeouts or infrastructure errors. Luna loaded 13/30 triggers and passed 14/30 full near contracts. Sol loaded 28/30 triggers and passed 28/30 full near contracts. Both kept all 30 near targets clear. Four raw failures were shared; three had the boundary uncertainties settled above. After the approved change, both models completed the same 60 requests without timeout or infrastructure error. Luna passed 47/60 current contracts; Sol passed 57/60. On the 57 unchanged contracts, Luna improved from 27 to 44 passes (19 improved, two pass-to-fail), while Sol moved from 56 to 54 (two pass-to-fail). Three contracts changed under the approved boundaries and are reported separately. Comparable method triggers were 13/29 to 21/29 for Luna and 28/29 to 27/29 for Sol. Unchanged near contracts were 14/28 to 23/28 and 28/28 to 27/28 respectively. Three research cases still have shared missing reads. Static checks passed with 97 unit tests; coverage names resolve. The checker reports start files at 38,953 versus 38,388 before; the advisory warning remains. No semantic answer judgment ran. Baseline and comparison evidence: `../tests/routing-proposal.md`.
+
+## D265: Keep the per-request read instruction without a step list (2026-10-26)
+
+**Decision:** Each main skill keeps one instruction: "For each request, read the skills it needs before doing the work." It adds no instruction to list the request's steps and the skill for each in thinking. Two reads-only cases stay: one request needs clarify then design, the other design then plan.
+
+**Why:** A step-list instruction was tried and gave no measured gain. The existing instruction already covers later steps, since every step of a request needs its skill. A line in the main skill costs tokens on every request, and a list kept in thinking cannot be checked.
+
+**Tested:** The frozen 60-case routing sample ran once per case with the step-list wording. Luna passed 44/60 against 47/60 with the existing wording: 4 cases improved and 7 failed, within one-run noise. Sol passed 57/60 with both wordings, with no case changing. The two sequence cases passed 2/2 on each model with the step-list wording, and 2/2 on each model with the existing wording, so the step list added nothing there either. Results are one or two runs per case, not proof of a causal change. Full comparison: `../tests/routing-proposal.md`, Step 2.

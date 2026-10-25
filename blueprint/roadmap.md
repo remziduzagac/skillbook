@@ -42,3 +42,5 @@ Agreed, but not scheduled.
 - [ ] **Wider install routes:** skills.sh and other routes beyond the install script (D189), once the sets are stable; with them the later harnesses, another agent program, pi and Hermes Agent (D184), and the manager CLI idea, of which the script is the natural first step ([ideas/open.md](ideas/open.md)).
 
 Essentials reads needed methods before each request’s work, routes with explicit read instructions and keeps only the three approved duplicate cuts; local lookups and exact supplied questions have separate routing boundaries, tested with the matched Luna/Sol sample (D264).
+
+A step-list instruction before reading skills gave no measured gain, so each request keeps the plain read instruction, and two cases where a request needs two skills in a row stay (D265).
