@@ -1,0 +1,15 @@
+source = "skills/essentials/references/understand.md:42 (understand--understand-clarify)"
+about = "Routing only: near for understand-clarify"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-clarify"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:not-for:understand-clarify"]
+
+[[turns]]
+prompt = "What room is rehearsal in? It’s in project.md."
+
+[checks]
+reads_not = ["understand-clarify"]

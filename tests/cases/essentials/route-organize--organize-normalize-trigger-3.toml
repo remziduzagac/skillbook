@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: organize--organize-normalize (D263)"
+source = "skills/essentials/references/organize.md:50 (organize--organize-normalize)"
 about = "Routing only: trigger for organize-normalize"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["organize:route:organize-normalize"]
 
 [[turns]]
-prompt = "Find where the identical delivery instructions repeated in records.md should live once, with references from the separate services."
+prompt = "Where should we keep the repeated contact paragraph in records.md so each separate service can refer to it? Suggest the change only."
 
 [checks]
-reads = ["organize-normalize"]
+reads = ["organize", "organize-normalize"]

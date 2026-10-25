@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: organize--organize-normalize (D263)"
+source = "skills/essentials/references/organize.md:50 (organize--organize-normalize)"
 about = "Routing only: trigger for organize-normalize"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["organize:route:organize-normalize"]
 
 [[turns]]
-prompt = "Three separate activity sheets share an identical permission clause. Propose factoring out that common clause, not merging the activities."
+prompt = "The activities in records.md all repeat the community-desk contact sentence. Suggest one place for it and references from each activity."
 
 [checks]
-reads = ["organize-normalize"]
+reads = ["organize", "organize-normalize"]

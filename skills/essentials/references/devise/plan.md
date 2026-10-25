@@ -26,10 +26,10 @@ Makes and follows plans for multipart work, keeping approval and progress explic
 2. **Inspect given steps by rule 2.** Read the project facts before assuming what a step needs. Keep obvious steps short.
 3. **Make the plan at the depth rule 5 sets.** Use `understand-frame` for a full plan's goal and done. Use `organize` for splitting unknown parts, merging duplicate steps, grouping phases and isolating repeated shared work. Dividing a whole that does not exist yet changes no existing arrangement. Follow this skill's approval rules. This skill decides the order of steps. Read a harness child below only when you need its controls in the current harness. Reading another harness's reference does not authorize using its controls.
 
-4. **claude** (`devise-plan-claude`): for Claude Code plan-mode and task controls.
+4. **claude** (`devise-plan-claude`): **Read `devise-plan-claude` when you need Claude Code’s plan-mode or task-list controls.**
    - Not for: operating Codex or another harness, or deciding approval policy.
    - Gives back: available controls, their actual results and missing capabilities.
-5. **codex** (`devise-plan-codex`): for Codex plan-mode and task controls.
+5. **codex** (`devise-plan-codex`): **Read `devise-plan-codex` when you need Codex’s plan-mode or task-list controls.**
    - Not for: operating Claude Code or another harness, or deciding approval policy.
    - Gives back: available controls, their actual results and missing capabilities.
 6. **Apply approval by rules 7 and 8.** Use a permitted available plan mode when approval is needed. Mode changes alone are not approval. If no plan mode is available, put the approval request in the final message. End the turn. If no task tool is available, keep a plain-text checklist. If both capabilities are missing, use both fallbacks. Install or enable nothing to acquire controls.

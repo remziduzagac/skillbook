@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: act--act-guardrails (D263)"
+source = "skills/essentials/references/act.md:76 (act--act-guardrails)"
 about = "Routing only: trigger for act-guardrails"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["act:route:act-guardrails"]
 
 [[turns]]
-prompt = "I may replace the only original event photograph. Explain the proposed irreversible action and recovery limits for approval; change nothing."
+prompt = "We may replace the only original event photograph. Show me the change and what we could recover before I approve it. Change nothing."
 
 [checks]
-reads = ["act-guardrails"]
+reads = ["act", "act-guardrails"]

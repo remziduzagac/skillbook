@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate--coordinate-instruct (D263)"
+source = "skills/essentials/references/coordinate.md:17 (coordinate--coordinate-instruct)"
 about = "Routing only: trigger for coordinate-instruct"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate:route:coordinate-instruct"]
 
 [[turns]]
-prompt = "Review the existing agent guidance in guidance.md and propose an update to its repository facts. Do not change pointer placement."
+prompt = "Review guidance.md and suggest updates to the project facts it gives agents. Put the suggestions here."
 
 [checks]
-reads = ["coordinate-instruct"]
+reads = ["coordinate", "coordinate-instruct"]

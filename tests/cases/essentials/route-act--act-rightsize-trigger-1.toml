@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: act--act-rightsize (D263)"
+source = "skills/essentials/references/act.md:93 (act--act-rightsize)"
 about = "Routing only: trigger for act-rightsize"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["act:route:act-rightsize"]
 
 [[turns]]
-prompt = "Identify what this existing welcome draft lacks for a first-time visitor and propose the additions. Do not apply them."
+prompt = "What is the existing welcome notice in draft.md missing for a first-time visitor? Suggest additions, but don’t edit it yet."
 
 [checks]
-reads = ["act-rightsize"]
+reads = ["act", "act-rightsize"]

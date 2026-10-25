@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: act-rightsize--act-rightsize-lean (D263)"
+source = "skills/essentials/references/act/rightsize.md:53 (act-rightsize--act-rightsize-lean)"
 about = "Routing only: trigger for act-rightsize-lean"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["act-rightsize:route:act-rightsize-lean"]
 
 [[turns]]
-prompt = "Find removable bulk in the existing volunteer guide excerpt in draft.md. Return a trimming proposal, not a rewritten guide."
+prompt = "What could we remove from the volunteer guide in draft.md without losing anything a new volunteer needs? Show the list first."
 
 [checks]
-reads = ["act-rightsize-lean"]
+reads = ["act", "act-rightsize", "act-rightsize-lean"]

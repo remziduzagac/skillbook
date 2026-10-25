@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate-delegate--coordinate-delegate-council (D263)"
+source = "skills/essentials/references/coordinate/delegate.md:55 (coordinate-delegate--coordinate-delegate-council)"
 about = "Routing only: trigger for coordinate-delegate-council"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate-delegate:route:coordinate-delegate-council"]
 
 [[turns]]
-prompt = "For the same supplied policy, I want three independent answers to the identical question, with disagreements preserved and no winner chosen. Propose the method only."
+prompt = "How can I get three independent answers to the same policy question and keep their disagreements visible? Don’t start any agents yet."
 
 [checks]
-reads = ["coordinate-delegate-council"]
+reads = ["coordinate", "coordinate-delegate", "coordinate-delegate-council"]

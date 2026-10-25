@@ -16,24 +16,26 @@ Finds the user's meaning before acting. Decides what to ask, what to choose and 
    - "Go ahead" accepts the recommended answers, as `respond-ask` says.
    - This is stricter than the `understand` skill's ban on lasting changes while understanding. It varies that rule because it is the user's own wish.
 
+**Use `respond-ask` when the user supplies the exact question to ask.** Shallow and deep find the request’s open choices; a preselected question needs neither.
+
 Follow the `understand` skill for facts first, who decides, keeping nothing, result shape and marked guesses. Use `respond-ask` for questions and recommended answers. Return the `understand` shape with assumptions left unconfirmed. Each part's own form is in its file.
 
 ## Advice
 
-- Start shallow. Load deep directly when the user asks to be questioned. Depth becomes clear only after seeing the whole level. One round costs little. Many small tasks end there.
+- Start shallow. Load deep directly when the user asks for an interview to find open choices. Depth becomes clear only after seeing the whole level. One round costs little. Many small tasks end there.
 - Use dependence to trigger deep, never question count. An answer must open questions that would change the work. Plans and designs usually have dependent parts. Usually offer deep after shallow for those.
 - When, after the shallow round, you are unsure whether a part needs depth, offer deep rather than going deep.
 
 ## Instructions
 
-- **shallow** (`understand-clarify-shallow`): when clarify starts on a request, unless the user asked to be questioned; and, for deep, at each new level inside a part.
-  - Not for: the user asking to be questioned or a part whose answers depend on each other (deep), or questions only someone else can answer (questionnaire).
+- **shallow** (`understand-clarify-shallow`): **Read `understand-clarify-shallow` when clarify starts finding open choices without a request for an interview, or deep reaches a new level inside a part.**
+  - Not for: a user-supplied exact question (`respond-ask`), the user asking for an interview or a part whose answers depend on each other (deep), or questions only someone else can answer (questionnaire).
   - Gives back: the "going with" line, with an offer of deep for a part whose answers depend on each other.
-- **deep** (`understand-clarify-deep`): when the user accepted shallow's offer of deep for a part whose answers open questions that would change the work. Load it at once, with no offer, when the user asks to be questioned, such as "question me on this plan".
-  - Not for: a level not yet seen whole (shallow first), a topic still to be decided together (`understand-discuss`), or questions only someone else can answer (questionnaire).
+- **deep** (`understand-clarify-deep`): **Read `understand-clarify-deep` when the user accepts shallow’s offer to explore a part whose answers open questions that would change the work, or asks for an interview to find open choices.** When the user asks for an interview to find open choices, read it at once without another offer. Example: “question me on this plan”.
+  - Not for: a user-supplied exact question (`respond-ask`), a level not yet seen whole (shallow first), a topic still to be decided together (`understand-discuss`), or questions only someone else can answer (questionnaire).
   - Gives back: the summary the user confirmed, or saw after telling you to start the work: decided, parked, accepted and assumed.
-- **questionnaire** (`understand-clarify-questionnaire`): when questions remain that only someone other than the user can answer, after the user answers theirs. Either the user says so, or you see it. If you see it, ask the user whether someone else holds the answer, rather than deciding alone.
-  - Not for: anything the user can answer, or anything the files say.
+- **questionnaire** (`understand-clarify-questionnaire`): **Read `understand-clarify-questionnaire` when questions remain that only someone other than the user can answer, after the user has answered theirs.** The user may say that someone else holds the answer. If you see it instead, ask the user rather than deciding alone.
+  - Not for: a user-supplied exact question (`respond-ask`), anything the user can answer, or anything the files say.
   - Gives back: the document, in the response by default, for the user to send. Later, its answers, taken back here.
 - **Ask whether independent work should proceed while a questionnaire is out.** Ask through `respond-ask` only if independent work remains. Otherwise say what waits for answers. Park the questionnaire's questions until answers return. Start no dependent work.
 

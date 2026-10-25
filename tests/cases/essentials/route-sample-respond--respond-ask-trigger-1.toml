@@ -1,0 +1,15 @@
+source = "skills/essentials/references/respond.md:34 (respond--respond-ask)"
+about = "Routing only: trigger for respond-ask"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["respond", "respond-ask"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["respond:step:2"]
+
+[[turns]]
+prompt = "Ask me whether I prefer opening on Saturday or Sunday."
+
+[checks]
+reads = ["respond", "respond-ask"]

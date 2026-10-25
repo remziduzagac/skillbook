@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand--understand-clarify (D263)"
+source = "skills/essentials/references/understand.md:42 (understand--understand-clarify)"
 about = "Routing only: trigger for understand-clarify"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand:route:understand-clarify"]
 
 [[turns]]
-prompt = "Help with the annual exhibit. I have not chosen whether success means more visits or more revenue. Do not choose that goal for me."
+prompt = "I need a report, but haven’t chosen whether it’s for donors or auditors. Ask me before writing it."
 
 [checks]
-reads = ["understand-clarify"]
+reads = ["understand", "understand-clarify"]

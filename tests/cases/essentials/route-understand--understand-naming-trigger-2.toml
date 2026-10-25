@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand--understand-naming (D263)"
+source = "skills/essentials/references/understand.md:69 (understand--understand-naming)"
 about = "Routing only: trigger for understand-naming"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand:route:understand-naming"]
 
 [[turns]]
-prompt = "We call an assigned volunteer a holder in one document and a steward in another. Propose one term and a clear definition for that concept."
+prompt = "We need a shared term for a volunteer who is trained but not assigned to a shift. Suggest one."
 
 [checks]
-reads = ["understand-naming"]
+reads = ["understand", "understand-naming"]

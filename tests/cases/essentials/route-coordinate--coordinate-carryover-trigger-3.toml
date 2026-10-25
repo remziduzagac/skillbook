@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate--coordinate-carryover (D263)"
+source = "skills/essentials/references/coordinate.md:13 (coordinate--coordinate-carryover)"
 about = "Routing only: trigger for coordinate-carryover"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate:route:coordinate-carryover"]
 
 [[turns]]
-prompt = "Prepare a response-only boundary note for the next session: use the recorded decisions and remaining work in project.md. Mark independent review pending."
+prompt = "Write a handoff note for the next session from project.md. Put it here and mark any review still needed."
 
 [checks]
-reads = ["coordinate-carryover"]
+reads = ["coordinate", "coordinate-carryover"]

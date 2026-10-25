@@ -40,3 +40,5 @@ Agreed, but not scheduled.
 - [ ] **knowledge and routines,** set aside on 2026-10-11 (D64): their design starts from what was known then, in [notes/knowledge-and-routines.md](notes/knowledge-and-routines.md): the skills they held, the decisions that still stand, the folder proposal (`skillbook/` with `blueprint/` and a knowledge folder), where learn's highlights wait, and the open questions.
 - [ ] **More repository profiles:** containers, mobile, deploy targets, frameworks, each after a short research round.
 - [ ] **Wider install routes:** skills.sh and other routes beyond the install script (D189), once the sets are stable; with them the later harnesses, another agent program, pi and Hermes Agent (D184), and the manager CLI idea, of which the script is the natural first step ([ideas/open.md](ideas/open.md)).
+
+Essentials reads needed methods before each request’s work, routes with explicit read instructions and keeps only the three approved duplicate cuts; local lookups and exact supplied questions have separate routing boundaries, tested with the matched Luna/Sol sample (D264).

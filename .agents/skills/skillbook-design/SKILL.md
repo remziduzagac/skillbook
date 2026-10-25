@@ -77,7 +77,7 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
     - **kinds kept apart:** distinguish designed tests (design's Tests list), executable cases (`tests/cases/`) and observed results (decision's Tested line). Never report one as another.
 8. **Order a parent's sections as follows:** rules for its whole scope; advice; instructions in work order; last instruction before anything is returned.
 9. **Give each child's use, exclusions and result.**
-10. **Open children level by level.** At the top, keep only rules and advice shared by everything below and lacking their own skill. Give one line per direct child saying when to load it. Load the child at its step. It opens its children the same way. Read nothing before needed.
+10. **Open children level by level.** At the top, keep only rules and advice shared by everything below and lacking their own skill. Give one line per direct child saying when to load it. For each request, read the methods already needed before its work. Read their parent paths top-down. Reuse whole text still in view. A method needed only after a later discovery opens then. Leave unrelated children unopened. Each child opens its own children the same way.
     - Introduce no grandchildren in those lines. Explain exceptions, such as the `respond` skill, loaded for every response.
     - Any skill may use any other skill or sub-skill when needed. This limits opening, not use.
     - Use if-then-else only to impose order. Leave child internals to the child. A parent doing the child's work makes the agent stop there. Turn complicated instructions into children.

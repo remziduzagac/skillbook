@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: organize--organize-compose (D263)"
+source = "skills/essentials/references/organize.md:47 (organize--organize-compose)"
 about = "Routing only: trigger for organize-compose"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["organize:route:organize-compose"]
 
 [[turns]]
-prompt = "Select the three related outreach activities in records.md and propose a parent explaining what they share. Do not sort the unrelated items."
+prompt = "Give the three outreach activities in records.md a shared section that explains what they have in common. Leave the other items alone."
 
 [checks]
-reads = ["organize-compose"]
+reads = ["organize", "organize-compose"]

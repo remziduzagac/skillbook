@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: act--act-guardrails (D263)"
+source = "skills/essentials/references/act.md:76 (act--act-guardrails)"
 about = "Routing only: trigger for act-guardrails"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["act:route:act-guardrails"]
 
 [[turns]]
-prompt = "Before sending a list of member names to an outside printing service, give the approval proposal and its exact data scope. Send nothing."
+prompt = "Before we send member names to an outside printer, show me exactly what we would send and what I need to approve. Send nothing."
 
 [checks]
-reads = ["act-guardrails"]
+reads = ["act", "act-guardrails"]

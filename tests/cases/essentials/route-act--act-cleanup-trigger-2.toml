@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: act--act-cleanup (D263)"
+source = "skills/essentials/references/act.md:84 (act--act-cleanup)"
 about = "Routing only: trigger for act-cleanup"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["act:route:act-cleanup"]
 
 [[turns]]
-prompt = "Your delegated worker left temporary rehearsal exports it created for this job. Check the cleanup obligation and report what should be removed or kept."
+prompt = "The agent you sent to help left temporary rehearsal exports it made for this job. Tell me which should go and which should stay."
 
 [checks]
-reads = ["act-cleanup"]
+reads = ["act", "act-cleanup"]

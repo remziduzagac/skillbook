@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand--understand-naming (D263)"
+source = "skills/essentials/references/understand.md:69 (understand--understand-naming)"
 about = "Routing only: trigger for understand-naming"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand:route:understand-naming"]
 
 [[turns]]
-prompt = "Offer short public names for a neighborhood service that lends repair tools. Friendly and literal are the criteria; leave the choice with me."
+prompt = "Suggest a public name for our shared repair desk. It helps residents mend household items."
 
 [checks]
-reads = ["understand-naming"]
+reads = ["understand", "understand-naming"]

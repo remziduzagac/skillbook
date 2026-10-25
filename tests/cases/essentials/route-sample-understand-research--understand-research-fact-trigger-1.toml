@@ -1,0 +1,17 @@
+source = "skills/essentials/references/understand/research.md:33 (understand-research--understand-research-fact)"
+about = "Routing only: direct local answer boundary for understand-research-fact"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand-research", "understand-research-fact", "understand-research-survey"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand-research:not-for:understand-research-fact"]
+
+[[turns]]
+prompt = "Is it true that the current policy allows four loans? Check the current and archived policy records in evidence.md."
+
+
+[checks]
+reads = ["understand"]
+reads_not = ["understand-research-fact"]

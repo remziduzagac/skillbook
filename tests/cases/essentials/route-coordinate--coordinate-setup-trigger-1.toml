@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate--coordinate-setup (D263)"
+source = "skills/essentials/references/coordinate.md:20 (coordinate--coordinate-setup)"
 about = "Routing only: trigger for coordinate-setup"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate:route:coordinate-setup"]
 
 [[turns]]
-prompt = "Explain the proposed personal skillbook setup for Codex, including the instruction pointer location. Install nothing and change no settings."
+prompt = "How should I set up skillbook for my own Codex sessions? Show me where its instructions belong. Don’t install or change anything yet."
 
 [checks]
-reads = ["coordinate-setup"]
+reads = ["coordinate", "coordinate-setup"]

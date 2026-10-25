@@ -1,0 +1,16 @@
+source = "skills/essentials/references/act/rightsize.md:53 (act-rightsize--act-rightsize-lean)"
+about = "Routing only: near for act-rightsize-lean"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act-rightsize", "act-rightsize-enrich", "act-rightsize-lean"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act-rightsize:not-for:act-rightsize-lean"]
+
+[[turns]]
+prompt = "What is the volunteer guide in draft.md missing for someone joining today? Suggest additions, but don’t edit it yet."
+
+[checks]
+reads_not = ["act-rightsize-lean"]
+reads = ["act", "act-rightsize", "act-rightsize-enrich"]

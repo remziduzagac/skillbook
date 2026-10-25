@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: main-step1-clarify (D263)"
+source = "skills/essentials/SKILL.md:50 (main-step1-clarify)"
 about = "Routing only: trigger for understand-clarify"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["essentials:step:1"]
 
 [[turns]]
-prompt = "The desired report could be for donors or auditors; I have not decided, and the content would differ. Resolve that preference first."
+prompt = "I need a report, but haven’t chosen whether it’s for donors or auditors. Ask me before writing it."
 
 [checks]
-reads = ["understand-clarify"]
+reads = ["understand", "understand-clarify"]

@@ -20,7 +20,7 @@ main() {
 	for set_dir in "$repo"/skills/*/; do
 		[ -f "$set_dir/SKILL.md" ] || continue
 		refs="${set_dir}references"
-		start_files="$set_dir/SKILL.md $(grep '^Read `references/' "$set_dir/SKILL.md" |
+		start_files="$set_dir/SKILL.md $(grep -E '^(\*\*)?Read `references/' "$set_dir/SKILL.md" |
 			grep -o 'references/[a-z0-9/_-]*\.md' | sed "s|^|$set_dir|" | tr '\n' ' ')"
 		# shellcheck disable=SC2086 # the list is split on spaces on purpose
 		total=$(cat $start_files | wc -c | tr -d ' ')

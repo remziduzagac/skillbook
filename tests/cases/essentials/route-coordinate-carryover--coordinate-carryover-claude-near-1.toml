@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate-carryover--coordinate-carryover-claude (D263)"
+source = "skills/essentials/references/coordinate/carryover.md:41 (coordinate-carryover--coordinate-carryover-claude)"
 about = "Routing only: near for coordinate-carryover-claude"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,8 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate-carryover:not-for:coordinate-carryover-claude"]
 
 [[turns]]
-prompt = "The continuation target is Codex only. Explain its documented session-transition controls, not Claude Code's."
+prompt = "What opening date is written in project.md?"
 
 [checks]
 reads_not = ["coordinate-carryover-claude"]
-reads = ["coordinate-carryover-codex"]

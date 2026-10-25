@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: organize--organize-compose (D263)"
+source = "skills/essentials/references/organize.md:47 (organize--organize-compose)"
 about = "Routing only: trigger for organize-compose"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["organize:route:organize-compose"]
 
 [[turns]]
-prompt = "Give the selected workshop records a meaningful shared parent without changing their text. This is not an index over the whole collection."
+prompt = "Suggest one section for the outreach activities in records.md and explain what they share. Leave the other records alone."
 
 [checks]
-reads = ["organize-compose"]
+reads = ["organize", "organize-compose"]

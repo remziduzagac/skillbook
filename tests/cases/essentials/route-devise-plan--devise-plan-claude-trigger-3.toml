@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: devise-plan--devise-plan-claude (D263)"
+source = "skills/essentials/references/devise/plan.md:29 (devise-plan--devise-plan-claude)"
 about = "Routing only: trigger for devise-plan-claude"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["devise-plan:route:devise-plan-claude"]
 
 [[turns]]
-prompt = "Explain the documented Claude Code plan-mode approval transition for a read-only prepared plan. This is guidance, not a mode or settings change. The work concerns archive data."
+prompt = "I use Claude Code. What can I do if planning-mode or task-list controls aren’t available? Explain the alternatives without changing settings."
 
 [checks]
-reads = ["devise-plan-claude"]
+reads = ["devise", "devise-plan", "devise-plan-claude"]

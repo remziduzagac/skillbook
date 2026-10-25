@@ -30,13 +30,13 @@ Needs: access to the sources the question requires. Local reading, search, brows
 
 1. **Set the question by rule 1.** Route factual gaps to sources and user-owned choices through `understand-clarify`. Separate several questions at the caller rather than forcing them into one frame.
 2. **Load the source guide when its kind is first searched.** Read [code](research/assets/code.md), [documentation](research/assets/documentation.md), [web](research/assets/web.md), [papers](research/assets/papers.md) or [products](research/assets/products.md) only for that kind. The guide does not replace these shared rules.
-3. **fact** (`understand-research-fact`): one sourced answer or a verdict on one claim.
-   - Not for: existing alternatives (`understand-research-survey`), causes (`understand-research-analyze`), a quick local read (read directly), or user intent (`understand-clarify`).
+3. **fact** (`understand-research-fact`): **Read `understand-research-fact` when an investigation needs one sourced answer or a verdict on one claim that a quick local read does not settle.**
+   - Not for: existing alternatives (`understand-research-survey`), causes (`understand-research-analyze`), a quick local read that already settles the answer (read directly), or user intent (`understand-clarify`).
    - Gives back: the answer or verdict, evidence for and against, limits and unresolved checks.
-4. **survey** (`understand-research-survey`): what exists on a subject, compared on common terms.
+4. **survey** (`understand-research-survey`): **Read `understand-research-survey` when the user needs to know what exists on a subject, compared on common terms.**
    - Not for: invented options (`understand-brainstorm`), choosing between known options (`understand-weigh`), or one candidate fact (`understand-research-fact`).
    - Gives back: compared candidates, excluded and unexamined candidates, sources, coverage and date.
-5. **analyze** (`understand-research-analyze`): why something happens when its cause needs investigation.
+5. **analyze** (`understand-research-analyze`): **Read `understand-research-analyze` when the user asks why something happens and the cause needs investigation.**
    - Not for: the fix (the caller), one fact (`understand-research-fact`), or claims of done (`act-verify`).
    - Gives back: the symptom, supported or hypothetical causal links, rejected causes and the next investigation or fix owner.
 6. **Return the requested result with its evidence.** Several questions may use several methods. Return each method's part to the active caller without restarting it. With many findings, give those supporting the answer and a path to the full list. Keep requested records with their owner rather than inventing a keeper path.

@@ -35,45 +35,45 @@ Understanding before acting, with the user and from sources. Its rules hold for 
 
 **With the user:**
 
-- **discuss** (`understand-discuss`): when the user wants to discuss a topic with several open parts, including a plan, design or proposal. A multi-question brainstorm goes here.
+- **discuss** (`understand-discuss`): **Read `understand-discuss` when the user wants to talk through several open parts of a topic, plan, design or proposal, including a brainstorm with several questions.**
   - Not for: a single question (its skill below), unclear intent (`understand-clarify`), a requested view (the `act` skill), the user not following (`respond-explain`), or lasting work (the caller).
   - Gives back: items decided, parked or handed on with reasons, side topics placed, and next steps.
 
-- **clarify** (`understand-clarify`): when the request leaves a choice or an unknown that would change the result, such as where, how long or which kind; when it asks for a plan or a way to do something, which usually leaves several; when an answer it needs is one only someone else holds, such as a supplier or another team; or when the user asks to be questioned. "Clean up the old branches" leaves which ones go and which stay.
-  - Not for: what the files already say (rule 4), a topic still to be decided together (`understand-discuss`), or the user not following you (`respond-explain`).
+- **clarify** (`understand-clarify`): **Read `understand-clarify` when a choice or unknown would change the result, a plan or way of doing something leaves such choices open, an answer is held only by someone else, or the user asks for an interview to find their open choices.** Examples: an open place, length or kind; “Clean up the old branches” leaves which ones go and which stay.
+  - Not for: a user-supplied exact question (`respond-ask`), what the files already say (rule 4), a topic still to be decided together (`understand-discuss`), or the user not following you (`respond-explain`).
   - Gives back: the "going with" line and what was assumed, or a questionnaire for whoever holds the answers.
 
 **Exploring options:**
 
-- **brainstorm** (`understand-brainstorm`): when one question needs new options. A caller may request candidates only.
+- **brainstorm** (`understand-brainstorm`): **Read `understand-brainstorm` when one question needs new options, including a caller’s request for candidates only.**
   - Not for: unclear intent (`understand-clarify`), comparing named options (`understand-weigh`), facts (read or find sources), a whole design (the work designing it), several open questions (`understand-discuss`), or a direct naming request (`understand-naming`). Called by naming, return candidates to it.
   - Gives back: requested options or candidates. Only a requested choice adds comparison and a decision or park.
 
 **Thinking it through:**
 
-- **frame** (`understand-frame`): when a question lacks a stated problem, goal or terms for judging an answer; when work loops or drifts; or when asked what is being solved.
+- **frame** (`understand-frame`): **Read `understand-frame` when the problem, goal or way to judge an answer is missing, work loops or drifts, or the user asks what is being solved.**
   - Not for: a crisp request, facts or intent only the user can supply (`understand-clarify` where they change the result), or several problems at once (divide them). Find sources for factual gaps.
   - Gives back: the frame and unknowns with what would settle them. Adds no checkpoint beyond rule 5 and the `act` skill's plan rule.
-- **weigh** (`understand-weigh`): when two or more named options need comparison and a recommendation, including a requested debate.
+- **weigh** (`understand-weigh`): **Read `understand-weigh` when two or more named options need comparison and a recommendation, including a requested debate.**
   - Not for: one option (`understand-challenge`), no options (`understand-brainstorm`), a deciding fact (sources or a test), a settled choice to check (`understand-challenge`), or a council preserving disagreements.
   - Gives back: comparison and recommendation, or no clear winner with what would settle it. Returns development needs to its caller, not an active brainstorm.
-- **challenge** (`understand-challenge`): before relying on an idea, plan or decision, or when asked to attack one.
+- **challenge** (`understand-challenge`): **Read `understand-challenge` when you are about to rely on an idea, plan or decision, or are asked to attack one.**
   - Not for: several options (`understand-weigh`), finished work or design review (the work reviewing that kind), a claim of done (`act-verify`), an unclear idea (`understand-clarify` or `understand-frame`), a doubt settled by facts (sources or a test), or a case for (`understand-argue`). Reuse a challenge only while its inputs stay unchanged.
   - Gives back: relevant weaknesses, including material costs or risks that leave the goal feasible, each with seriousness and mitigation, and a verdict.
-- **argue** (`understand-argue`): when a position is wanted at its strongest as a one-sided case. The `respond` skill may use its light path to reflect an existing view.
+- **argue** (`understand-argue`): **Read `understand-argue` when the strongest one-sided case for a position is wanted, or the response needs its light path to reflect an existing view.**
   - Not for: the case against (`understand-challenge`), choosing or debating (`understand-weigh`), factual truth (sources), options (`understand-brainstorm`), or the persuasive document itself (the work writing it).
   - Gives back: case, evidence, objections met, weaknesses, strength, what would change it and a one-sided label. Returns its current challenge separately for caller reuse, outside the case.
 
 **Names:**
 
-- **naming** (`understand-naming`): when a shared or public name is open, a new concept enters the work, terms clash, or glossary changes need proposing. A supplied name gets terminology and collision checks without reopening a settled choice.
+- **naming** (`understand-naming`): **Read `understand-naming` when a shared or public name is open, a new concept enters the work, terms clash, glossary changes need proposing, or a supplied name needs terminology and collision checks.** For a supplied name, check terminology and collisions without reopening the settled choice.
   - Not for: local code names (project conventions), repeated definitions (the work arranging the files), wording (the `respond` skill or document-writing work), an unclear domain (`understand-frame` or `understand-clarify`), or applying a rename or glossary edit (the caller).
   - Gives back: the chosen name, reasons and rejected words, or proposed glossary changes. Writes nothing.
 
 **Finding out from sources:**
 
-- **research** (`understand-research`): when a question needs sourced facts, an overview of existing candidates or an investigation into a cause.
-  - Not for: a quick local read (read directly), user intent (`understand-clarify`), invented options (`understand-brainstorm`), choosing known options (`understand-weigh`), or claims of done (`act-verify`).
+- **research** (`understand-research`): **Read `understand-research` when the question needs sourced facts, an overview of existing candidates or an investigation into a cause.** A quick local read that already settles the answer needs no research method.
+  - Not for: a quick local read that already settles the answer (read directly), user intent (`understand-clarify`), invented options (`understand-brainstorm`), choosing known options (`understand-weigh`), or claims of done (`act-verify`).
   - Gives back: sourced findings and their limits, a bounded claim verdict, compared candidates, or supported and hypothetical causal links. Returns to the active caller.
 
 A whole design belongs to the work designing it. Anything else about understanding that fits no line here is your own judgment, under the rules above. Use `understand-research` for facts needing sourced investigation.

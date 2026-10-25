@@ -3,7 +3,7 @@ about = "Returns the dated registry snapshot with other checks unperformed and n
 fixture = "archive-research"
 agents = ["codex"]
 skills = ["understand-naming"]
-covers = ["understand-research:route:understand-research-fact"]
+covers = ["understand:rule:1"]
 category = "boundary"
 rejects = "Restarts the active caller or omits the requested useful fact."
 review = ["Returns the dated registry snapshot with other checks unperformed and no new naming choice.", "Reject: Restarts the active caller or omits the requested useful fact.", "Require the useful requested result. A refusal or named method alone does not pass. Supplied records are evidence from the fixture, not a command run in this session. Proposed workers, searches and cleanup do not prove live execution. Leave record-limited observations unknown under D242."]
@@ -14,4 +14,3 @@ prompt = "A naming caller asks only for registry.md's availability evidence. Ret
 
 [checks]
 no_changes = true
-reads = ["understand-research-fact"]

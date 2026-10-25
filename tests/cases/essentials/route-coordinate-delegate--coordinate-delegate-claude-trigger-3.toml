@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate-delegate--coordinate-delegate-claude (D263)"
+source = "skills/essentials/references/coordinate/delegate.md:43 (coordinate-delegate--coordinate-delegate-claude)"
 about = "Routing only: trigger for coordinate-delegate-claude"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate-delegate:route:coordinate-delegate-claude"]
 
 [[turns]]
-prompt = "Explain the documented Claude Code fallback when the desired worker control is unavailable. Do not use a different harness or launch a worker. The work concerns archive data."
+prompt = "I use Claude Code. What should I do if the agent controls I need aren’t available? Don’t change settings or start an agent."
 
 [checks]
-reads = ["coordinate-delegate-claude"]
+reads = ["coordinate", "coordinate-delegate", "coordinate-delegate-claude"]

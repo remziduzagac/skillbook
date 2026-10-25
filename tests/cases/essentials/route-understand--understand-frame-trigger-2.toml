@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand--understand-frame (D263)"
+source = "skills/essentials/references/understand.md:54 (understand--understand-frame)"
 about = "Routing only: trigger for understand-frame"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand:route:understand-frame"]
 
 [[turns]]
-prompt = "We keep switching between easier archive search and cheaper storage. Help define the single problem and what a satisfactory answer would establish."
+prompt = "Our booking discussions keep drifting between occupancy and equal access. Help us define the problem and what a good result looks like."
 
 [checks]
-reads = ["understand-frame"]
+reads = ["understand", "understand-frame"]

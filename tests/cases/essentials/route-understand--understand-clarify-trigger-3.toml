@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand--understand-clarify (D263)"
+source = "skills/essentials/references/understand.md:42 (understand--understand-clarify)"
 about = "Routing only: trigger for understand-clarify"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand:route:understand-clarify"]
 
 [[turns]]
-prompt = "Prepare a travel recommendation eventually, but first resolve whether accessibility or shortest travel time is my priority. That preference is mine."
+prompt = "I want a recommendation, but haven’t decided whether cost or accessibility matters most. Ask me first."
 
 [checks]
-reads = ["understand-clarify"]
+reads = ["understand", "understand-clarify"]

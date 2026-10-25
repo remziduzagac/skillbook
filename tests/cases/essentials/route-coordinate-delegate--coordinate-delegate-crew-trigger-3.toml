@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate-delegate--coordinate-delegate-crew (D263)"
+source = "skills/essentials/references/coordinate/delegate.md:61 (coordinate-delegate--coordinate-delegate-crew)"
 about = "Routing only: trigger for coordinate-delegate-crew"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate-delegate:route:coordinate-delegate-crew"]
 
 [[turns]]
-prompt = "An approved parallel update has separate owners for the roster, notice and access sheet. Describe how to handle one failed writer and check the joined result; do not execute."
+prompt = "Different agents will update the roster, notice and access sheet. What should happen if one fails, and how should the whole result be checked? Don’t start them."
 
 [checks]
-reads = ["coordinate-delegate-crew"]
+reads = ["coordinate", "coordinate-delegate", "coordinate-delegate-crew"]

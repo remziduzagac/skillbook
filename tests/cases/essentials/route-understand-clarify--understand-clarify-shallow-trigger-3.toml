@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand-clarify--understand-clarify-shallow (D263)"
+source = "skills/essentials/references/understand/clarify.md:31 (understand-clarify--understand-clarify-shallow)"
 about = "Routing only: trigger for understand-clarify-shallow"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand-clarify:route:understand-clarify-shallow"]
 
 [[turns]]
-prompt = "I want a recommendation later; for now I have one open preference, morning or evening sessions. Ask a brief initial question."
+prompt = "Before recommending a meeting time, ask whether I prefer mornings or evenings."
 
 [checks]
-reads = ["understand-clarify-shallow"]
+reads = ["understand", "understand-clarify", "understand-clarify-shallow"]

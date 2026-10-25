@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: organize--organize-merge (D263)"
+source = "skills/essentials/references/organize.md:44 (organize--organize-merge)"
 about = "Routing only: trigger for organize-merge"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["organize:route:organize-merge"]
 
 [[turns]]
-prompt = "The same exhibit is described twice in records.md, with different useful details. Map both whole accounts into one survivor without dropping facts."
+prompt = "Combine the two lending-service accounts in records.md into one draft account. Keep the useful details from both. Don’t edit the file."
 
 [checks]
-reads = ["organize-merge"]
+reads = ["organize", "organize-merge"]

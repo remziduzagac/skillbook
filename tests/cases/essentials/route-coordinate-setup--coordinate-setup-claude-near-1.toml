@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate-setup--coordinate-setup-claude (D263)"
+source = "skills/essentials/references/coordinate/setup.md:20 (coordinate-setup--coordinate-setup-claude)"
 about = "Routing only: near for coordinate-setup-claude"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,8 +9,8 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate-setup:not-for:coordinate-setup-claude"]
 
 [[turns]]
-prompt = "Give supported skillbook pointer locations for Codex only. The target is not Claude Code, and nothing should be installed."
+prompt = "Draft a project rule for agents: visitor records are in project.md. Put the draft here."
 
 [checks]
 reads_not = ["coordinate-setup-claude"]
-reads = ["coordinate-setup-codex"]
+reads = ["coordinate", "coordinate-instruct"]

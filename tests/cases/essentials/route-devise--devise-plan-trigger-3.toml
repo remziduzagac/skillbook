@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: devise--devise-plan (D263)"
+source = "skills/essentials/references/devise.md:12 (devise--devise-plan)"
 about = "Routing only: trigger for devise-plan"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["devise:route:devise-plan"]
 
 [[turns]]
-prompt = "Provide a work sequence with checks for moving a known set of records, updating their references and validating the result. The design is fixed."
+prompt = "Plan how to move the records, update their references and check the result. We’ve already settled where they will go. Don’t execute it."
 
 [checks]
-reads = ["devise-plan"]
+reads = ["devise", "devise-plan"]

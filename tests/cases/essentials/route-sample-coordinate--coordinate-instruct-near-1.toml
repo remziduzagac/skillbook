@@ -1,0 +1,15 @@
+source = "skills/essentials/references/coordinate.md:17 (coordinate--coordinate-instruct)"
+about = "Routing only: near for coordinate-instruct"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "coordinate-instruct", "coordinate-setup"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate:not-for:coordinate-instruct"]
+
+[[turns]]
+prompt = "What opening date is written in project.md?"
+
+[checks]
+reads_not = ["coordinate-instruct"]

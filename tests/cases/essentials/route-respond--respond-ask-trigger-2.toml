@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: respond--respond-ask (D263)"
+source = "skills/essentials/references/respond.md:34 (respond--respond-ask)"
 about = "Routing only: trigger for respond-ask"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["respond:step:2"]
 
 [[turns]]
-prompt = "Put a single approval question to me about a proposed unrepeatable delivery. Take no action."
+prompt = "Ask me whether I approve sending the one-time delivery. Don’t send anything."
 
 [checks]
-reads = ["respond-ask"]
+reads = ["respond", "respond-ask"]

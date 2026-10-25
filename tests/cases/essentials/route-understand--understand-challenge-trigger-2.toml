@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand--understand-challenge (D263)"
+source = "skills/essentials/references/understand.md:60 (understand--understand-challenge)"
 about = "Routing only: trigger for understand-challenge"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand:route:understand-challenge"]
 
 [[turns]]
-prompt = "Pressure-test one idea: hold every tutoring session outdoors. Attendance continuity is essential, and weather can change."
+prompt = "Find weaknesses in the idea of holding all community meetings online. We want everyone to take part."
 
 [checks]
-reads = ["understand-challenge"]
+reads = ["understand", "understand-challenge"]

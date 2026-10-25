@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: devise-plan--devise-plan-claude (D263)"
+source = "skills/essentials/references/devise/plan.md:29 (devise-plan--devise-plan-claude)"
 about = "Routing only: trigger for devise-plan-claude"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["devise-plan:route:devise-plan-claude"]
 
 [[turns]]
-prompt = "Give reference guidance for tracking the supplied three-step work plan with Claude Code's native controls, and report unavailable controls. The work concerns volunteer scheduling."
+prompt = "I use Claude Code. How can I track the checklist in a work plan and mark steps done after checking them? Don’t operate the controls."
 
 [checks]
-reads = ["devise-plan-claude"]
+reads = ["devise", "devise-plan", "devise-plan-claude"]

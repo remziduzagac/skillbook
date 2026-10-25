@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand-clarify--understand-clarify-shallow (D263)"
+source = "skills/essentials/references/understand/clarify.md:31 (understand-clarify--understand-clarify-shallow)"
 about = "Routing only: trigger for understand-clarify-shallow"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand-clarify:route:understand-clarify-shallow"]
 
 [[turns]]
-prompt = "A notice is needed, and I have not told you whether it is for tenants or shop owners. First check the missing preference lightly."
+prompt = "I need a notice but haven’t chosen whether it addresses tenants or shop owners. Ask me a quick question first."
 
 [checks]
-reads = ["understand-clarify-shallow"]
+reads = ["understand", "understand-clarify", "understand-clarify-shallow"]

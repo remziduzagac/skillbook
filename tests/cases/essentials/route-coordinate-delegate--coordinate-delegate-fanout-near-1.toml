@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate-delegate--coordinate-delegate-fanout (D263)"
+source = "skills/essentials/references/coordinate/delegate.md:58 (coordinate-delegate--coordinate-delegate-fanout)"
 about = "Routing only: near for coordinate-delegate-fanout"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,8 +9,8 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate-delegate:not-for:coordinate-delegate-fanout"]
 
 [[turns]]
-prompt = "Give several independent reviewers the same entire question over the same material, preserving each answer separately. This is not separate reading areas."
+prompt = "How can I get three independent answers to the same policy question and keep their disagreements visible? Don’t start any agents yet."
 
 [checks]
 reads_not = ["coordinate-delegate-fanout"]
-reads = ["coordinate-delegate-council"]
+reads = ["coordinate", "coordinate-delegate", "coordinate-delegate-council"]

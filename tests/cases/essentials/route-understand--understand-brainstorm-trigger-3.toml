@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand--understand-brainstorm (D263)"
+source = "skills/essentials/references/understand.md:48 (understand--understand-brainstorm)"
 about = "Routing only: trigger for understand-brainstorm"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand:route:understand-brainstorm"]
 
 [[turns]]
-prompt = "Invent several approaches to encouraging people to return borrowed garden tools. Existing products are not what I need."
+prompt = "Suggest different ways to reuse spare exhibition panels. We want to avoid buying materials."
 
 [checks]
-reads = ["understand-brainstorm"]
+reads = ["understand", "understand-brainstorm"]

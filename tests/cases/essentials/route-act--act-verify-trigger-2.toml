@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: act--act-verify (D263)"
+source = "skills/essentials/references/act.md:90 (act--act-verify)"
 about = "Routing only: trigger for act-verify"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["act:route:act-verify"]
 
 [[turns]]
-prompt = "The delivery note says all required fields are present, but evidence.md lists the required fields separately. Verify that completion claim."
+prompt = "The delivery note in evidence.md says it includes every required field. Check that claim."
 
 [checks]
-reads = ["act-verify"]
+reads = ["act", "act-verify"]

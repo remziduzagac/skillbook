@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand--understand-argue (D263)"
+source = "skills/essentials/references/understand.md:63 (understand--understand-argue)"
 about = "Routing only: trigger for understand-argue"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand:route:understand-argue"]
 
 [[turns]]
-prompt = "Make an explicitly one-sided case for lending musical instruments through the library. Give its best reasons and meet the strongest objections."
+prompt = "Make the strongest honest case for lending musical instruments through the library, including answers to the best objections."
 
 [checks]
-reads = ["understand-argue"]
+reads = ["understand", "understand-argue"]

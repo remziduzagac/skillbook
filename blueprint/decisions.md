@@ -1326,6 +1326,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 ## D112: A main skill holds rules, advice and when to use each skill (2026-10-13)
 
+> **Amended by D264 (2026-10-25):** D264 makes each main skill read the methods already needed by each request before its work, while retaining top-down opening and reuse of whole text still in view.
+
 > **Amended by D116 (2026-10-13):** the advice section may hold strong advice, followed unless the case gives a reason not to; numbers are advice unless a rule cannot apply without them.
 >
 > **Amended by D131 (2026-10-14):** understand's own skill is designed in this shape, its instructions under five headings.
@@ -1790,6 +1792,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D145: rightsize, nothing missing and nothing extra for the reader (2026-10-17)
 
+> **Amended by D264 (2026-10-25):** D264 removes only the repeated rightsizing summary in respond; its response-specific requirements and explicit check remain.
+
 > **Amended by D149 (2026-10-17):** rightsize is read with act, respond and author's markdown in the main skill's first read, not reached later through respond.
 >
 > **Amended by D157 (2026-10-17):** rightsize gains two sub-skills for what already exists, lean, removing what is extra, and enrich, adding what is missing; "lean" now names the removing part and comes off the glossary's avoid list.
@@ -2091,11 +2095,15 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D172: one home for each routing line (2026-10-17)
 
+> **Amended by D264 (2026-10-25):** D264 rewrites routing triggers as explicit read instructions without moving their exclusions or results out of the parent.
+
 **Decision:** each routing line, when to use a sub-skill, when not and what it gives back, lives only in its parent's flow. A sub-skill's callers field says it is reached by its routing line in the parent's flow and lists only its other callers. understand moves its full lines into its own flow, as every group does.
 
 **Why:** The copies had drifted three times by the review: setup's lacked a case, plan's named the main skill after plan moved under devise, and review pointed to a line that did not exist. One home is skillbook's main rule; the built skills hold each line once anyway.
 
 ## D173: plan and design each own their question (2026-10-17)
+
+> **Amended by D264 (2026-10-25):** D264 removes duplicated caller-return sentences from devise while retaining its no-restart requirements and the child return destinations.
 
 > **Amended by D257 (2026-10-25):** D257 keeps main-question routing and limits design-first to the whole-design case; a child does not restart an active caller.
 
@@ -2127,6 +2135,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** The person asked why plan was not in devise and suggested putting it in devise.md, devise being small; design followed, so that every group keeps one file. The person asked where the essentials folder's README was. organize's and coordinate's ideas had stayed in conduct's file after the regrouping.
 
 ## D177: skills open level by level (2026-10-17)
+
+> **Amended by D264 (2026-10-25):** D264 reads methods already needed by a request before its work. Parent paths still open top-down; later-discovered needs open at their step and unrelated children stay closed.
 
 > **Tested (2026-10-18):** a parent only routes. With blueprint's `record.md` holding part of `decide.md`'s steps (drafting the entry), Codex stopped at `record.md` and never reached `decide.md` or essentials' deep file: 0 of 3, and 0 of 2 for the fallback case. With `record.md` holding only its shared rules and one line saying when to use `record-decide`, Codex went the whole way, 3 of 3 and 2 of 2; Claude Code passed both ways. Evidence: [E13](evidence.md), [research/skill-loading.md](research/skill-loading.md), "Flattened reference files".
 
@@ -2333,6 +2343,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 ## D199: Rules that blocked without need softened, and the start files reloaded after compaction (2026-10-18)
 
+> **Amended by D264 (2026-10-25):** D264 preserves reuse of whole text still in view. A second request reads a newly needed method rather than rereading every visible file.
+
 > **Amended by D204 (2026-10-19):** the pointer's wording stays, but in Claude Code the reload does not rest on it: setup offers four compaction hooks that print essentials' start files. The retest of the pointer is answered: it reloaded in 1 of 1 chain, then 0 of 3 (E15).
 
 > **Amended by D215 (2026-10-20):** a summary is enough to show, without waiting for confirmation, where the user tells the agent to start the work, such as "enough questions, just build it"; "go ahead" accepts only the current round's recommended answers, and the questioning goes on.
@@ -2426,6 +2438,8 @@ Fighting these rules in ask's shared rules would add text for every agent to fix
 **Why:** "the person" is not what the harnesses and their agents call the human, so a reader has to translate it. "The user" is one common word for one thing, as skillbook-write's plain-English rule asks, and it is the word Codex's and Claude Code's own instructions use. Rewriting every earlier design file and decision would be a large change with no new meaning, and decisions are append-only.
 
 ## D207: Deep is offered first, and starts only after a yes (2026-10-19)
+
+> **Amended by D264 (2026-10-25):** D264 distinguishes an exact question supplied by the user, handled by respond-ask, from an interview to find open choices, handled by clarify’s shallow/deep methods.
 
 **Decision:** when the user did not ask to be questioned, the agent offers deep first and starts it only after a yes.
 
@@ -3801,6 +3815,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D257: Settle and build devise with caller-owned continuation and explicit approval (2026-10-25)
 
+> **Amended by D264 (2026-10-25):** D264 retains caller ownership and no-restart constraints while removing only duplicated return-destination sentences from devise.
+
 > **Amended by D259 (2026-10-25):** D259 builds organize and replaces the corresponding judgment fallbacks in devise and its design/review/plan callers with named organize calls.
 
 
@@ -3920,6 +3936,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D262: Settle and build research with bounded verdicts and caller-owned results (2026-10-25)
 
+> **Amended by D264 (2026-10-25):** D264 clarifies that a quick local read which already settles the answer needs no fact investigation. Source surveys remain distinct from choosing known options.
+
 **Decision:**
 
 - Research and its fact, survey and analyze methods use plain files at their name-rule paths. Research has one route per method. Five supporting guides cover code, documentation, web material, papers and products. Load a guide when its content kind is first searched. A web address does not make a paper general web material. Missing access returns usable evidence, limits and missing checks without installation or invented findings.
@@ -3942,6 +3960,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D263: Test routing by reads before judging answers (2026-10-25)
 
+> **Amended by D264 (2026-10-25):** D264 adds the matched Luna/Sol routing comparison, full parent-path assertions, 300-second timeouts treated as unknown, and explicit changed-rubric accounting.
+
 **Decision:**
 
 - Essentials gains a routing layer before behavioral answer tests. Inventory every concrete main instruction and parent-to-child route with its file, line, trigger and exclusions. Give each about three varied triggers and one or two near misses. A named alternative is required where applicable. Test the target's absence only when another required flow does not itself need that target.
@@ -3957,3 +3977,25 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - A selector that mixes semantic scenarios into a reads-only pass silently changes its meaning and spending. Preserving the earlier scenarios keeps their evidence and coverage available.
 
 **Tested:** All 240 synthetic correct read traces passed and plausible wrong traces failed. Codex with GPT-6 Luna recorded 59 of 240 planned cases before one 120-second timeout stopped new starts. Completed trigger checks passed 19/44; ordinary near contracts passed 8/13; the baseline control passed 1/1. Known token-cost estimate $0.172670, with 1 unquantified remainder. No answer or progress judging ran. Static checks, measurement limits and per-route results are in `../tests/routing-report.md`.
+
+## D264: Read needed methods before each request’s work (2026-10-25)
+
+**Decision:**
+
+- Each main skill says: “For each request, read the skills it needs before doing the work.” Essentials puts it before the numbered work steps. The essentials, authoring and blueprint main designs carry the same instruction. Softeng takes it when its main skill is designed.
+- Read the methods already needed by the request before its work. Follow the name rule top-down and read whole files. Reuse whole text still in view. A need discovered later opens its method then. Leave unrelated children unopened. Startup and compaction rules, missing-file fallbacks, visible choices, plan messages and approval timing remain.
+- Parent routing triggers become direct “Read X when …” instructions in plain user language. The 59 source lines cover 60 concrete edges and two dynamic main dispatches. Preserve numbering, names, examples, exclusions and returned results. Reflect the same Flow wording in the designs.
+- Remove only three duplicated passages: respond’s summary of rightsize’s rule/check, devise’s design-return sentence and devise’s generic return sentence. Rightsize owns the rule and check; the design and plan children own their result destinations. Keep devise’s no-restart prohibitions, shared policy and every fallback. No larger parent trim is approved.
+- A quick local read that already settles the answer needs no `understand-research-fact`. Fact is for an investigation the local record does not settle. A user-supplied exact question uses `respond-ask`; shallow and deep find the request’s open choices. A request for an interview is distinct from one preselected question.
+- Keep routing cases as real requests with successful reads only. Grandchild cases require the parent path and child. Run the same selected cases once on Codex with GPT-6 Luna, four jobs, and GPT-6.1 Sol, two jobs, with a 300-second timeout and a US$5 known-spend scheduling threshold per model. Timeouts are unknown and do not stop scheduling. Capacity, login or runner errors stop new runs; retain partial evidence. Use no Claude model or semantic judge in this layer. Unknown price is not zero cost.
+- Keep changed prompts or assertions separate in before-and-after comparisons. Applying the two boundary decisions changes three sample contracts: the local fact trigger, the analyze near miss and the exact-question near miss. Their prompts and IDs remain unchanged. Reclassify the local fact trigger as a direct-read control instead of presenting it as a method-loading improvement.
+- Design future tests for a newly needed child on a second request, reuse of whole text still in view, and a child read before the first substantive change. The last requires ordered behavioral evidence; reads-only presence checks do not establish timing.
+
+**Why:**
+
+- Reading startup rules alone can leave the needed method unread while an answer still looks complete. Explicit read actions make the required behavior observable.
+- A parent must route rather than replace a child’s method. Removing shared policy or incomplete duplicates would lose requirements, so trimming stays bounded to complete existing homes.
+- Optional alternatives make bad negative assertions: a correct direct lookup or a supplied question must not fail because it omitted an unnecessary method.
+- Matched requests on two models separate a model-specific observation from a shared routing pattern. One run is a baseline, not a reliability estimate or proof of the cause.
+
+**Tested:** Before the change, the frozen 60-case sample completed on both models without timeouts or infrastructure errors. Luna loaded 13/30 triggers and passed 14/30 full near contracts. Sol loaded 28/30 triggers and passed 28/30 full near contracts. Both kept all 30 near targets clear. Four raw failures were shared; three had the boundary uncertainties settled above. After the approved change, both models completed the same 60 requests without timeout or infrastructure error. Luna passed 47/60 current contracts; Sol passed 57/60. On the 57 unchanged contracts, Luna improved from 27 to 44 passes (19 improved, two pass-to-fail), while Sol moved from 56 to 54 (two pass-to-fail). Three contracts changed under the approved boundaries and are reported separately. Comparable method triggers were 13/29 to 21/29 for Luna and 28/29 to 27/29 for Sol. Unchanged near contracts were 14/28 to 23/28 and 28/28 to 27/28 respectively. Three research cases still have shared missing reads. Static checks passed with 97 unit tests; coverage names resolve. The checker reports start files at 38,953 versus 38,388 before; the advisory warning remains. No semantic answer judgment ran. Baseline and comparison evidence: `../tests/routing-proposal.md`.

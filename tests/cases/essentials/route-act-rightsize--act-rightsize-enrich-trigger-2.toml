@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: act-rightsize--act-rightsize-enrich (D263)"
+source = "skills/essentials/references/act/rightsize.md:56 (act-rightsize--act-rightsize-enrich)"
 about = "Routing only: trigger for act-rightsize-enrich"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["act-rightsize:route:act-rightsize-enrich"]
 
 [[turns]]
-prompt = "The existing report in draft.md lacks support for its intended reader. Identify the missing evidence or next step and propose the change list."
+prompt = "What support or next step is missing from the report in draft.md? Suggest additions before editing."
 
 [checks]
-reads = ["act-rightsize-enrich"]
+reads = ["act", "act-rightsize", "act-rightsize-enrich"]

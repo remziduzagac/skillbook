@@ -41,28 +41,32 @@ The rules every request follows, and the route to the skill for each step of the
 
 ## Instructions
 
-Read `references/understand.md`, `references/act.md` and `references/respond.md` together in one turn at each conversation's start. Reread only when their text leaves view, such as after compaction. Each opens its skills at their step. Follow these steps in work order:
+**Read `references/understand.md`, `references/act.md` and `references/respond.md` when a conversation starts.** Read them together in one turn. Reread only when their text leaves view, such as after compaction. Each opens its needed skills top-down.
 
-1. **Understand the request** with the `understand` skill, leaving no gap. A choice or an unknown that would change the result goes to `understand-clarify`.
+**For each request, read the skills it needs before doing the work.**
+
+Follow these steps in work order:
+
+1. **Read `understand` when understanding any request.** Its rules leave no gap. Read `understand-clarify` when a choice or unknown would change the result.
    - Not for: "what do you think?" (the `act` skill's rule), or the user not following you (the `respond` skill).
    - Gives back: what was decided, what was parked and what comes next.
-2. **Follow the `act` skill's rules throughout,** for every request.
+2. **Read `act` when a conversation starts.** Follow its rules throughout every request.
    - Not for: what is said to the user (the `respond` skill), or the work that steps 4 to 6 route: arranging things, work with other agents, instruction documents or setup, and the user's own work.
    - Gives back: nothing of its own. Its rules shape every action.
-3. **Decide what it will be and how it gets done.** Read `devise` for a design, a design review or multipart work, including given steps. It selects the method by the main question and returns the actual design, findings or plan. Exact single-step work needs neither method.
+3. **Read `devise` when the user needs a design, design review or multipart work, including given steps.** It selects the method by the main question and returns the design, findings or plan. Exact single-step work needs neither method.
    - Not for: a view asked for ("what do you think?", the `act` skill's rule).
    - Gives back: the design and plan the work follows, kept current as it goes.
-4. **Arrange the parts of something** through `organize` when a request or step changes how it is divided rather than what it says. This includes splitting into non-overlapping parts, outlining a document before writing, merging repeats, grouping under a parent, moving a shared part into one place, indexing, and checking overlaps and gaps.
+4. **Read `organize` when the request or a step changes how something is divided rather than what it says.** This includes splitting, outlining before writing, merging repeats, grouping under a parent, moving a shared part into one place, indexing, and checking overlaps and gaps.
    - Not for: changing what the parts say, or planning the steps of the work (step 3).
    - Gives back: the new arrangement.
-5. **Share the work with other agents and later sessions** through `coordinate`: a task handed to an agent, its result coming back here; work carried over to a later session; an instruction document every session reads; setting up skillbook; and what a session taught.
+5. **Read `coordinate` when work goes to another agent, its result comes back, work passes to a later session, agents need instruction documents, skillbook needs setup, or a session’s lessons need recording.**
    - Gives back: the agent's report, the carryover or the change made.
 6. **Do it,** always under the `act` skill's rules and these steps, using whichever skills fit:
-   - Work another set holds: load its main skill if your skill list has a set for that work. Then use its name rule. Never guess a path without loading the set: its main skill holds rules its skills rely on.
-   - Writing a file: the `act` skill's rule on a file's type.
+   - **Read the main skill of an installed set when it holds that kind of work.** Use its name rule after loading it. Never guess its paths: its main skill holds rules its skills rely on.
+   - **Read the skill for a file’s type when writing that file, as `act` rule 7 requires.**
    - Anything else, including a request no skill covers, such as "rename these photos by the date they were taken": your own judgment.
    - Gives back: the work done.
 
 ## The last instruction
 
-**Respond with the `respond` skill.** It covers everything said to the user. Return nothing before its check has run.
+**Read `respond` when preparing anything to say to the user.** Return nothing before its check has run.

@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: act--act-cleanup (D263)"
+source = "skills/essentials/references/act.md:84 (act--act-cleanup)"
 about = "Routing only: trigger for act-cleanup"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["act:route:act-cleanup"]
 
 [[turns]]
-prompt = "Before preparing a brief for a new helper, identify how your own now-unused investigation files and process should be cleaned. Do not write files."
+prompt = "Before briefing another agent, work out what to do with the temporary files and process you no longer need from this task."
 
 [checks]
-reads = ["act-cleanup"]
+reads = ["act", "act-cleanup"]

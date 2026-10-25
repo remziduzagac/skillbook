@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: main-step1-understand (D263)"
+source = "skills/essentials/SKILL.md:50 (main-step1-understand)"
 about = "Routing only: trigger for understand"
 fixture = "routing-studio"
 agents = ["codex"]

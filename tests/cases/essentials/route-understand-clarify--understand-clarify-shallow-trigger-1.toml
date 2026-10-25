@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand-clarify--understand-clarify-shallow (D263)"
+source = "skills/essentials/references/understand/clarify.md:31 (understand-clarify--understand-clarify-shallow)"
 about = "Routing only: trigger for understand-clarify-shallow"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand-clarify:route:understand-clarify-shallow"]
 
 [[turns]]
-prompt = "I need a short introduction eventually, but whether it addresses patrons or staff is undecided. Start with a quick clarification, not a long interview."
+prompt = "I need an introduction, but haven’t decided if it’s for patrons or staff. Ask me a quick question first."
 
 [checks]
-reads = ["understand-clarify-shallow"]
+reads = ["understand", "understand-clarify", "understand-clarify-shallow"]

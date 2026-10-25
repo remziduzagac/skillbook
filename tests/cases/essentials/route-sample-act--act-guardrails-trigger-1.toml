@@ -1,0 +1,15 @@
+source = "skills/essentials/references/act.md:76 (act--act-guardrails)"
+about = "Routing only: trigger for act-guardrails"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "act-guardrails", "act-stakes"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act:route:act-guardrails"]
+
+[[turns]]
+prompt = "I’m considering deleting the only old enrollment file. There’s no backup. Show me exactly what I’d need to approve first. Delete nothing."
+
+[checks]
+reads = ["act", "act-guardrails"]

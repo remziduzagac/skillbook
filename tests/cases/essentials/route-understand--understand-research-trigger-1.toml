@@ -1,15 +1,16 @@
-source = "tests/routing-routes.md: understand--understand-research (D263)"
-about = "Routing only: trigger for understand-research"
+source = "skills/essentials/references/understand.md:75 (understand--understand-research)"
+about = "Routing only: direct local answer boundary for understand-research"
 fixture = "routing-studio"
 agents = ["codex"]
 routing_only = true
 skills = ["understand", "understand-research"]
-category = "normal"
+category = "boundary"
 rejects = "The trace omits a required successful read or reads a forbidden method."
-covers = ["understand:route:understand-research"]
+covers = ["understand:not-for:understand-research"]
 
 [[turns]]
-prompt = "Use the dated records in evidence.md to investigate the claim about the loan limit. Reconcile relevant sources and their applicability, not a quick quotation."
+prompt = "Check whether the current loan limit really is four. Compare the dated policy records in evidence.md."
 
 [checks]
-reads = ["understand-research"]
+reads = ["understand"]
+reads_not = ["understand-research"]

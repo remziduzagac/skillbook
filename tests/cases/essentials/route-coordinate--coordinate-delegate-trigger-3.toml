@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate--coordinate-delegate (D263)"
+source = "skills/essentials/references/coordinate.md:7 (coordinate--coordinate-delegate)"
 about = "Routing only: trigger for coordinate-delegate"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate:route:coordinate-delegate"]
 
 [[turns]]
-prompt = "I want several independent agents to examine the supplied service proposal. Describe how to commission them, without starting them."
+prompt = "I want several agents to review the service proposal in design.md independently. How should I give them the work? Don’t start them."
 
 [checks]
-reads = ["coordinate-delegate"]
+reads = ["coordinate", "coordinate-delegate"]

@@ -6,7 +6,7 @@ How to prepare every response before you return it: what goes in, how it is put 
 
 These rules hold for every message to the user, from an answer to a question back.
 
-1. **Rightsize the response through `act-rightsize`.** It holds the rule and check: nothing missing, nothing extra, the point first. Include no unasked side topic. Compare only when it helps the user decide. Asked which port the server uses, give the port, not the setting's history. Length follows the request, not what you found. Include facts learned on the way, such as files searched, only when the user needs them to act. After making something, such as a saved file or text to paste, give its location and basis in a line or two. Do not repeat it.
+1. **Rightsize the response through `act-rightsize`.** Include no unasked side topic. Compare only when it helps the user decide. Asked which port the server uses, give the port, not the setting's history. Length follows the request, not what you found. Include facts learned on the way, such as files searched, only when the user needs them to act. After making something, such as a saved file or text to paste, give its location and basis in a line or two. Do not repeat it.
 2. **Name things in words the reader can resolve.** They cannot look up an unresolved reference while reading.
    - Keep a reference as it is when this reader can tell what it is from the reference itself, right now, such as a path, a link, a command, a name the reader knows, or a number from the current round of questions.
    - Otherwise, give its meaning in a few words, then the number in brackets. This applies to decision, test or note numbers, earlier question numbers, commit hashes, IDs and abbreviations the reader has not used. Say "the decision to keep one file per skill (D12)", never "D12" alone.
@@ -28,13 +28,13 @@ These rules hold for every message to the user, from an answer to a question bac
 
 ## Instructions
 
-- `respond-layout`: when anything is written in markdown (a response, a markdown file, pull-request or issue text, a brief), or the user asks how something is laid out, such as "use headings, not bold lines".
+- `respond-layout`: **Read `respond-layout` when you prepare any response, write anything in Markdown, or the user asks how something should be laid out.** Rule 8’s every-response requirement still holds. Markdown includes a response, file, pull-request or issue text, or brief. Example: “use headings, not bold lines”.
   - Not for: wording, order and length ("make this reply shorter": the rules above), a round of questions (`respond-ask`), a markdown file's file rules and linter (the `authoring` skill, if it is in your skill list), or commit messages and comments in code (the project's conventions).
   - Gives back: the response or file, laid out.
-- `respond-ask`: when a response asks the user anything: a question, a round of questions, a proposal to approve, or the wrap-up offer.
+- `respond-ask`: **Read `respond-ask` when you ask the user anything, including questions, a proposal to approve or the wrap-up offer.**
   - Not for: which questions to ask or how deep (`understand-clarify`), when a proposal is needed and what it holds (`act-guardrails`), or plain wording (the rules above).
   - Gives back: each answer taken (accepted, changed or parked), or assumed when the user stops.
-- `respond-explain`: when the user did not follow something you said, such as "I don't follow" or "what do you mean?".
+- `respond-explain`: **Read `respond-explain` when the user did not follow something you said, such as “I don’t follow” or “what do you mean?”.**
   - Not for: explaining something new, such as a function or a concept (the `understand` skill), or a document for readers (the `authoring` skill, if it is in your skill list). A request that is both uses both.
   - Gives back: the point explained top-down, every reference in words, stopping once it is clear.
 

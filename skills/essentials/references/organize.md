@@ -38,19 +38,19 @@ cluster     A B C            → view over A, B, C
 2. **Return findings directly for a check-only request.** Compare written or planned parts with everything they must cover. Report gaps, overlaps, mixed levels and conflicting terms. Check a proposed new item against content already placed too. Change nothing. Ask for neither approval before a change nor confirmation afterward. This bounded check returns to its active caller without running the operation chooser again.
 3. **Load the operation by what happens to the items.** Children prepare a proposal first. Each child applies its proposal only under the `organize` skill's approved map.
 
-4. **split** (`organize-split`): one written or planned whole becomes parts, or all loose items are sorted into groups by one principle.
+4. **split** (`organize-split`): **Read `organize-split` when one written or planned whole needs separate parts, or all loose items need sorting into groups by one principle.**
    - Not for: selected items getting a shared parent (`organize-compose`), a view for finding items (`organize-cluster`), or duplicate accounts of one whole (`organize-merge`).
    - Gives back: parts, boundaries and each item's place, with unresolved placements marked.
-5. **merge** (`organize-merge`): duplicate accounts of the same whole become one survivor, keeping compatible unique details.
+5. **merge** (`organize-merge`): **Read `organize-merge` when duplicate accounts of the same whole need combining into one account that keeps compatible unique details.**
    - Not for: a shared part (`organize-normalize`) or only a theme (`organize-compose`).
    - Gives back: the survivor or proposal, its statement map, reference changes and retired items.
-6. **compose** (`organize-compose`): selected items get a parent that says what they share, moving under it where folders hold the arrangement.
+6. **compose** (`organize-compose`): **Read `organize-compose` when selected items need a parent that explains what they share.** Where folders hold the arrangement, move the selected items under that parent.
    - Not for: sorting every item into groups (`organize-split`) or only finding items (`organize-cluster`).
    - Gives back: the parent, what it states the items share and the selected items with their content unchanged.
-7. **normalize** (`organize-normalize`): a repeated part becomes one shared home that eligible items reference.
+7. **normalize** (`organize-normalize`): **Read `organize-normalize` when a repeated part needs one shared home that eligible items reference.**
    - Not for: duplicate whole accounts (`organize-merge`).
    - Gives back: the shared part and working references, with differing copies unchanged and listed.
-8. **cluster** (`organize-cluster`): a view helps find items, with source content unchanged. Navigation tags may be written into items only when the user asks for that form.
+8. **cluster** (`organize-cluster`): **Read `organize-cluster` when a view is needed to help find items while leaving their source content unchanged.** Navigation tags may be written into items only when the user asks for that form.
    - Not for: moving items into groups (`organize-split`), adding a shared parent (`organize-compose`), or effects beyond navigation (the caller and `act-guardrails`).
    - Gives back: the view, how it stays current and exact requested tag edits. Source content is otherwise unchanged.
 

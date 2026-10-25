@@ -1,0 +1,16 @@
+source = "skills/essentials/references/act.md:76 (act--act-guardrails)"
+about = "Routing only: near for act-guardrails"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "act-guardrails", "act-stakes"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act:not-for:act-guardrails"]
+
+[[turns]]
+prompt = "How bad would a wrong opening time on our sign be? How carefully should we check it?"
+
+[checks]
+reads_not = ["act-guardrails"]
+reads = ["act", "act-stakes"]

@@ -17,10 +17,10 @@ Needs: access to the named install and instruction files. If you cannot access t
 
 1. **Identify machine setup, project setup or a pointer move.** A repeat run leaves already correct material unchanged.
 2. **Load only the child for the current harness when its details are needed.** Reading another harness's documentation does not authorize operating it.
-3. **claude** (`coordinate-setup-claude`): Claude Code paths, permissions, approved settings merges and baseline reload instructions.
+3. **claude** (`coordinate-setup-claude`): **Read `coordinate-setup-claude` when you need Claude Code’s paths, permissions, approved settings merges or baseline reload instructions.**
    - Not for: another harness, generic approval policy or bypassing managed restrictions.
    - Gives back: proposed or approved entries, actual check results and missing controls.
-4. **codex** (`coordinate-setup-codex`): Codex instruction paths, install locations and loading checks.
+4. **codex** (`coordinate-setup-codex`): **Read `coordinate-setup-codex` when you need Codex’s instruction paths, install locations or loading checks.**
    - Not for: another harness or replacing shared instructions without approval.
    - Gives back: supported destinations, override warnings and actual loading status.
 5. **For a machine, inspect each agent the user uses.** Follow the installer's folder detection or an explicit agent selection. Check the requested sets, essentials first. Show installation instructions for missing sets. Do not install anything yourself without separate approval for that installation. Prepare the pointer through `coordinate-instruct`. Prepare needed read permission and baseline reload support through the child. Default to no other harnesses and no allow-list entry. Explain in the final result how the user can name an allowed harness.

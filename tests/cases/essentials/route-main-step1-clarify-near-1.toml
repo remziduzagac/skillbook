@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: main-step1-clarify (D263)"
+source = "skills/essentials/SKILL.md:50 (main-step1-clarify)"
 about = "Routing only: near for understand-clarify"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["essentials:step:1"]
 
 [[turns]]
-prompt = "Quote the room number already written in project.md. No preference or unknown is left open."
+prompt = "What room is rehearsal in? It’s in project.md."
 
 [checks]
 reads_not = ["understand-clarify"]

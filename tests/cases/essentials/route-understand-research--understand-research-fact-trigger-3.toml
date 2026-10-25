@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand-research--understand-research-fact (D263)"
+source = "skills/essentials/references/understand/research.md:33 (understand-research--understand-research-fact)"
 about = "Routing only: trigger for understand-research-fact"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand-research:route:understand-research-fact"]
 
 [[turns]]
-prompt = "From the original study and its later correction in evidence.md, assess the claim that reminders caused higher attendance. Keep a bounded verdict."
+prompt = "Do reminder texts increase attendance among first-time visitors? Investigate which evidence in evidence.md applies and what further checking is needed."
 
 [checks]
-reads = ["understand-research-fact"]
+reads = ["understand", "understand-research", "understand-research-fact"]

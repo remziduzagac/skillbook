@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand-clarify--understand-clarify-deep (D263)"
+source = "skills/essentials/references/understand/clarify.md:34 (understand-clarify--understand-clarify-deep)"
 about = "Routing only: trigger for understand-clarify-deep"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand-clarify:route:understand-clarify-deep"]
 
 [[turns]]
-prompt = "I want a guided interview about the traveling exhibit. Dig into dependent decisions rather than stopping after the first level."
+prompt = "Question me in depth about the traveling exhibit. Follow up on decisions that depend on each other."
 
 [checks]
-reads = ["understand-clarify-deep"]
+reads = ["understand", "understand-clarify", "understand-clarify-deep"]

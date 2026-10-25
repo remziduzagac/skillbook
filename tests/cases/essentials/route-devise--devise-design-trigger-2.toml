@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: devise--devise-design (D263)"
+source = "skills/essentials/references/devise.md:9 (devise--devise-design)"
 about = "Routing only: trigger for devise-design"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["devise:route:devise-design"]
 
 [[turns]]
-prompt = "Propose the structure of a quiet-room booking service for the museum. Its shape is open; do not build it."
+prompt = "Design a quiet-room booking service for the museum. Show its parts and how they connect. Don’t build it."
 
 [checks]
-reads = ["devise-design"]
+reads = ["devise", "devise-design"]

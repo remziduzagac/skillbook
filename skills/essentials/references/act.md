@@ -70,10 +70,10 @@ How the agent acts on every request: the rules that hold for all the work, and t
 
 **Before acting:**
 
-- **stakes** (`act-stakes`): when a skill decides how careful to be, or the user asks how risky something is or how careful to be, such as "how bad would it be if the price import went wrong?".
+- **stakes** (`act-stakes`): **Read `act-stakes` when a skill needs to decide how careful to be, or the user asks how risky something is or how carefully to check it.** Example: “how bad would it be if the price import went wrong?”
   - Not for: whether an action needs approval (`act-guardrails`), what could go wrong with an idea (the `understand` skill), whether work is done or correct (`act-verify`), or a security review of code (the `softeng` skill, if it is in your skill list).
   - Gives back: the four answers and the level, with a one-line reason.
-- **guardrails** (`act-guardrails`): by rule 5, and for the `respond` skill's check when a response touches a risky action.
+- **guardrails** (`act-guardrails`): **Read `act-guardrails` when an action falls under rule 5, or a response touches a secret, vulnerability detail, others’ text or any action covered by rule 5.**
   - Not for: how much care something deserves (`act-stakes`), your own leftovers (`act-cleanup`), or a security review of code (the `softeng` skill, if it is in your skill list).
   - Gives back: the proposal with its scope; once approved, the action applied exactly and checked.
 
@@ -81,16 +81,16 @@ A request that is both, such as "can I archive these without checking with anyon
 
 **While working:**
 
-- **cleanup** (`act-cleanup`): by rule 11, when you write a brief for another agent, and when part of the work is finished and its scaffolding is no longer needed, before making something large, when disk or memory runs short, or when the user asks, such as "remove what you left lying around".
+- **cleanup** (`act-cleanup`): **Read `act-cleanup` when rule 11 applies, you write an agent brief, finished work leaves temporary material that is no longer needed, you are about to make something large, disk or memory runs short, or the user asks you to remove your leftovers.** Example: “remove what you left lying around”.
   - Not for: tidying the user's work, such as "clean up this code", or undoing a change, which are the `softeng` skill's, if it is in your skill list, and otherwise the work itself; what you did not create (`act-guardrails`); what the project's own tools keep, such as installed dependencies; or freeing space in general (rule 5).
   - Gives back: what was cleaned, what was kept on purpose with where and why, and what is proposed.
 
 **Before saying done:**
 
-- **verify** (`act-verify`): by rule 4, and when the user asks whether work is really done or checked, or whether something made is correct, such as "are you sure it works now?" or "is the seating plan I made right?".
+- **verify** (`act-verify`): **Read `act-verify` when rule 4 applies, or the user asks whether work is done, checked or correct.**
   - Not for: approving a risky action before it is taken (`act-guardrails`), reviewing finished work about to land (the `softeng` skill, if it is in your skill list), or whether an idea holds or a fact about the outside world is true (the `understand` skill).
   - Gives back: each claim with its evidence beside it, confirmed or not, and who checked.
-- **rightsize** (`act-rightsize`): when asked to trim, shorten or condense something that existed before the request, or find and add what it lacks. Examples: "trim the meeting notes", "shorten this report", "complete the onboarding page" or "what is this README missing?". A named change, such as "add a line about parking to the notice", is the edit itself. A fill or complete request is not a named change, even if it says what to add. Load this skill before changing anything. The user approves a change list first. Also load it by rule 12, the `respond` skill's check, or for non-response work such as "check this report has nothing extra for its reader".
+- **rightsize** (`act-rightsize`): **Read `act-rightsize` when the user asks to trim, shorten, condense, fill or complete existing material, or to find what it lacks or what does nothing for its reader.** A named change is the edit itself. A fill or complete request still finds what goes in, even when it names what is lacking. Read this skill before any change. The user approves the list first. Rule 12 and the response check also call this skill. Examples: "trim the meeting notes", "shorten this report", "complete the onboarding page" or "what is this README missing?". Also read it by rule 12, the `respond` skill’s check, or for non-response work such as “check this report has nothing extra for its reader”.
   - Not for: your own draft from this conversation, whether it is correct or done (`act-verify`), how to divide something into parts, or how careful to be (`act-stakes`).
   - Gives back: the output or plan of the work, rightsized for its reader, the point first; or the thing reworked, with its list of changes.
 

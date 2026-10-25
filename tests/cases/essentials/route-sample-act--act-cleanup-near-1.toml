@@ -1,0 +1,16 @@
+source = "skills/essentials/references/act.md:84 (act--act-cleanup)"
+about = "Routing only: near for act-cleanup"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["act", "act-cleanup", "act-guardrails"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["act:not-for:act-cleanup"]
+
+[[turns]]
+prompt = "I’m considering deleting our only membership ledger. Show me what I’d need to approve first. Delete nothing."
+
+[checks]
+reads_not = ["act-cleanup"]
+reads = ["act", "act-guardrails"]

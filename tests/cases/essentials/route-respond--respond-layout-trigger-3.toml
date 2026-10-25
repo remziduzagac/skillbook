@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: respond--respond-layout (D263)"
+source = "skills/essentials/references/respond.md:31 (respond--respond-layout)"
 about = "Routing only: trigger for respond-layout"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["respond:step:1"]
 
 [[turns]]
-prompt = "Lay out the supplied museum notice with Markdown headings and a short list. Change no facts and save no file."
+prompt = "Format the visitor notice in draft.md with Markdown headings and a short list. Don’t change the facts or save a file."
 
 [checks]
-reads = ["respond-layout"]
+reads = ["respond", "respond-layout"]

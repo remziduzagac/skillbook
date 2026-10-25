@@ -1,0 +1,15 @@
+source = "skills/essentials/references/organize.md:50 (organize--organize-normalize)"
+about = "Routing only: trigger for organize-normalize"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["organize", "organize-merge", "organize-normalize"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["organize:route:organize-normalize"]
+
+[[turns]]
+prompt = "The different activities in records.md repeat the same contact paragraph. Suggest one place to keep that paragraph and links from each activity."
+
+[checks]
+reads = ["organize", "organize-normalize"]

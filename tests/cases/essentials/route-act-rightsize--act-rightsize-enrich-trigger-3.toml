@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: act-rightsize--act-rightsize-enrich (D263)"
+source = "skills/essentials/references/act/rightsize.md:56 (act-rightsize--act-rightsize-enrich)"
 about = "Routing only: trigger for act-rightsize-enrich"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["act-rightsize:route:act-rightsize-enrich"]
 
 [[turns]]
-prompt = "Our existing volunteer guide excerpt is incomplete for someone joining today. Propose what to add, with the reason for each addition."
+prompt = "What should the volunteer guide in draft.md tell someone arriving today? Show the additions first."
 
 [checks]
-reads = ["act-rightsize-enrich"]
+reads = ["act", "act-rightsize", "act-rightsize-enrich"]

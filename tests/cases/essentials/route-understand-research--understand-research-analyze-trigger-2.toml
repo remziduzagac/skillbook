@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand-research--understand-research-analyze (D263)"
+source = "skills/essentials/references/understand/research.md:39 (understand-research--understand-research-analyze)"
 about = "Routing only: trigger for understand-research-analyze"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand-research:route:understand-research-analyze"]
 
 [[turns]]
-prompt = "Investigate why the current form loses a selected category, using the two captured processing traces in evidence.md. Return causal evidence only."
+prompt = "Why does the saved record lose the selected category? Follow the form and processing records in evidence.md."
 
 [checks]
-reads = ["understand-research-analyze"]
+reads = ["understand", "understand-research", "understand-research-analyze"]

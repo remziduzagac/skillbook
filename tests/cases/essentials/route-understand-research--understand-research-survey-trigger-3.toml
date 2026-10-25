@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand-research--understand-research-survey (D263)"
+source = "skills/essentials/references/understand/research.md:36 (understand-research--understand-research-survey)"
 about = "Routing only: trigger for understand-research-survey"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand-research:route:understand-research-survey"]
 
 [[turns]]
-prompt = "Give an overview of the existing reminder approaches in the supplied source records, including coverage limits and the date. Do not recommend one."
+prompt = "Give me an overview of the reminder approaches recorded in evidence.md. Tell me what their sources do and don’t show."
 
 [checks]
-reads = ["understand-research-survey"]
+reads = ["understand", "understand-research", "understand-research-survey"]

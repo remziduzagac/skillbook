@@ -38,10 +38,10 @@ Needs: optional fresh reviewer for an independent cold read. If unavailable, ret
 4. **Get the cold read by rule 4.** Return the actual reviewed or provisional status.
 5. **Show the note's outline for approval through `respond-ask`.** Include the goal, where the work stands, remaining work and the first next step. Include its proposed commit where the project commits notes. End the turn. The accepted offer is not approval of the finished note or its commit. A provisional note does not become independently checked through approval.
 6. **Load the current harness child when giving transition instructions.**
-7. **claude** (`coordinate-carryover-claude`): the user's Claude Code compaction or fresh-session controls.
+7. **claude** (`coordinate-carryover-claude`): **Read `coordinate-carryover-claude` when you need the user’s Claude Code compaction or fresh-session controls.**
    - Not for: another harness, changing carryover content or performing a transition without the user.
    - Gives back: the documented command and its focus, or the line for starting the next session, along with missing controls and the actual status.
-8. **codex** (`coordinate-carryover-codex`): the user's Codex compaction or fresh-session controls.
+8. **codex** (`coordinate-carryover-codex`): **Read `coordinate-carryover-codex` when you need the user’s Codex compaction or fresh-session controls.**
    - Not for: another harness or treating a command shown as a transition already performed.
    - Gives back: the documented command and its focus, or the line for starting the next session, along with missing controls and the actual status.
 9. **Give the user's transition instructions with the approval outline when relevant.** The user types them. Do not run them as shell commands or change settings. If unsupported, give the note path and a plain continuation request, with the unsupported control marked unknown.

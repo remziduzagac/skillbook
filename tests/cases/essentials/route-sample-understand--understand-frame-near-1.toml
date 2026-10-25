@@ -1,0 +1,15 @@
+source = "skills/essentials/references/understand.md:54 (understand--understand-frame)"
+about = "Routing only: near for understand-frame"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-frame"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:not-for:understand-frame"]
+
+[[turns]]
+prompt = "How many names are here: Mira, Tomas, Ivo? Just give the number."
+
+[checks]
+reads_not = ["understand-frame"]

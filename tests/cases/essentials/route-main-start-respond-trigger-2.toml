@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: main-start-respond (D263)"
+source = "skills/essentials/SKILL.md:44 (main-start-respond)"
 about = "Routing only: trigger for respond"
 fixture = "routing-studio"
 agents = ["codex"]

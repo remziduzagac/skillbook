@@ -1,0 +1,16 @@
+source = "skills/essentials/references/coordinate.md:13 (coordinate--coordinate-carryover)"
+about = "Routing only: near for coordinate-carryover"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["coordinate", "coordinate-brief", "coordinate-carryover"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["coordinate:not-for:coordinate-carryover"]
+
+[[turns]]
+prompt = "Write the instructions for an agent I’ve already chosen to check the exhibit labels today. Don’t start it."
+
+[checks]
+reads_not = ["coordinate-carryover"]
+reads = ["coordinate", "coordinate-brief"]

@@ -50,10 +50,10 @@ The rules and the last instruction here shape what is being made now. The `lean`
 
 ## Instructions
 
-- **lean** (`act-rightsize-lean`): when the user asks to trim or shorten something that existed before the request, such as "trim the meeting notes", or when something that exists carries parts that do nothing for its reader. It lists the changes first. Examples: an instruction file grown to 400 lines; a report that repeats itself; a skill file at build time, since it is carried every turn; an option in code nobody uses; a component in a design that no requirement needs.
+- **lean** (`act-rightsize-lean`): **Read `act-rightsize-lean` when the user asks to trim or shorten existing material, or you notice parts that do nothing for its reader.** It lists changes before applying them. Examples: an instruction file grown to 400 lines; a report that repeats itself; a skill file at build time, since it is carried every turn; an option in code nobody uses; a component in a design that no requirement needs.
   - Not for: your own draft from this conversation (the check below), rewording within a sentence (the `respond` skill, or, if the `authoring` skill is in your skill list, its `edit` skill, `references/edit.md` in its folder), dividing or merging across files (`organize`), your own leftovers (`act-cleanup`), or deleting whole files (`act-guardrails`).
   - Gives back: the thing with its extra parts removed, and a list of what went and why.
-- **enrich** (`act-rightsize-enrich`): when something that exists leaves its reader asking. Examples: a README that does not say how to install; a design that does not say which requirement each part serves; a report without its evidence or its next step; a skill missing its "when not" cases.
+- **enrich** (`act-rightsize-enrich`): **Read `act-rightsize-enrich` when existing material leaves its reader unable to understand or act without asking again.** Examples: a README that does not say how to install; a design that does not say which requirement each part serves; a report without its evidence or its next step; a skill missing its "when not" cases.
   - Not for: writing from scratch (the skill that makes that thing), finding out for its own sake, or whether it is correct (`act-verify`).
   - Gives back: the thing with what was missing added, each addition with its source, and what could not be found marked as a gap.
 

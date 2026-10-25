@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: understand-clarify--understand-clarify-shallow (D263)"
+source = "skills/essentials/references/understand/clarify.md:31 (understand-clarify--understand-clarify-shallow)"
 about = "Routing only: near for understand-clarify-shallow"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,8 +9,8 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["understand-clarify:not-for:understand-clarify-shallow"]
 
 [[turns]]
-prompt = "Interview me thoroughly about the new learning program. I explicitly want dependent follow-up questions, not just an opening round."
+prompt = "Interview me in depth about starting a neighborhood learning program. Ask follow-ups as my answers change things."
 
 [checks]
 reads_not = ["understand-clarify-shallow"]
-reads = ["understand-clarify-deep"]
+reads = ["understand", "understand-clarify", "understand-clarify-deep"]

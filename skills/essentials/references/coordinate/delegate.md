@@ -40,10 +40,10 @@ Needs: permitted agent tools. If unavailable, return the limitation and remainin
 1. **Choose the work pattern.** Use the caller's named pattern within its authority. Otherwise consider one worker first. Several earn their cost through large separate parts, independence or different lenses, accepted time savings, or a worker's limited window. Search first. Read the matching method below when several workers are needed. Run that method inside this active call after controls and approval are settled. A method's request for one worker uses this call's startup steps without selecting a method again. A single task needs no method child. Workers start no further workers.
 2. **Choose fork or fresh by the advice and independence rule.** Use only capabilities actually available.
 3. **Load the current harness child for its controls and mapping.**
-4. **claude** (`coordinate-delegate-claude`): Claude Code's worker controls, mappings for models and reasoning effort, and limits.
+4. **claude** (`coordinate-delegate-claude`): **Read `coordinate-delegate-claude` when you need Claude Code’s agent controls, model or reasoning-effort mappings, or limits.**
    - Not for: operating another harness or choosing authority, cost approval or independence policy.
    - Gives back: available controls, selected mapping, actual worker status and unknown capabilities.
-5. **codex** (`coordinate-delegate-codex`): Codex's worker controls, mappings for models and reasoning effort, and limits.
+5. **codex** (`coordinate-delegate-codex`): **Read `coordinate-delegate-codex` when you need Codex’s agent controls, model or reasoning-effort mappings, or limits.**
    - Not for: operating another harness or changing the main session's model or settings.
    - Gives back: available controls, selected mapping, actual worker status and unknown capabilities.
 6. **Choose a fresh worker's model and effort by rules 3 and 4.** Resolve cost by rule 8 before starting. Report a missing mapping or control. Do not invent one.
@@ -52,13 +52,13 @@ Needs: permitted agent tools. If unavailable, return the limitation and remainin
 9. **Check the returned result by rule 7.** Handle obstacles by rule 5. Ask the worker to clean up before reporting and check its report through `act-cleanup`.
 10. **Return a short report to the caller.** Report the task outcome, decisions needed from the user, paths to evidence, missing work and cost where needed. Report cleanup under cleaned, kept and proposed. Distinguish failed or unfinished work from completed work.
 
-11. **council** (`coordinate-delegate-council`): several independent answers to the same question over the same material.
+11. **council** (`coordinate-delegate-council`): **Read `coordinate-delegate-council` when several independent agents should answer the same question over the same material.**
     - Not for: separate parts or review lenses (`coordinate-delegate-fanout`), disjoint changes (`coordinate-delegate-crew`), or an unrequested recommendation.
     - Gives back: attributed answers, a summary preserving disagreement and missing members.
-12. **fanout** (`coordinate-delegate-fanout`): separate large reading tasks, search areas or review lenses after search cannot narrow the work enough.
+12. **fanout** (`coordinate-delegate-fanout`): **Read `coordinate-delegate-fanout` when search cannot narrow the work enough and separate large reading tasks, search areas or review angles remain.**
     - Not for: the same whole question to each worker (`coordinate-delegate-council`), parallel changes (`coordinate-delegate-crew`), or work one search settles.
     - Gives back: consolidated findings, actual validation status, sources and coverage limits.
-13. **crew** (`coordinate-delegate-crew`): parallel changes to separate items with one owner per shared item.
+13. **crew** (`coordinate-delegate-crew`): **Read `coordinate-delegate-crew` when agents will change separate items in parallel, with one owner for each shared item.**
     - Not for: changes all landing in one item (one writer), reading only (`coordinate-delegate-fanout`), or a plan-only request (return the plan).
     - Gives back: authorized changes, the final pass, actual verification and unfinished work.
 

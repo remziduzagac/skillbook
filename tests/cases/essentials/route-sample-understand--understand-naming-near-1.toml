@@ -1,0 +1,16 @@
+source = "skills/essentials/references/understand.md:69 (understand--understand-naming)"
+about = "Routing only: near for understand-naming"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-brainstorm", "understand-naming"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:not-for:understand-naming"]
+
+[[turns]]
+prompt = "Give me different ways neighbors could share unused supplies."
+
+[checks]
+reads_not = ["understand-naming"]
+reads = ["understand", "understand-brainstorm"]

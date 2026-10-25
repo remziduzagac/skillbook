@@ -1,0 +1,15 @@
+source = "skills/essentials/references/understand/research.md:39 (understand-research--understand-research-analyze)"
+about = "Routing only: near for understand-research-analyze"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand-research", "understand-research-analyze", "understand-research-fact"]
+category = "boundary"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand-research:not-for:understand-research-analyze"]
+
+[[turns]]
+prompt = "Check whether the current loan limit really is four, using the policy records in evidence.md."
+
+[checks]
+reads_not = ["understand-research-analyze"]

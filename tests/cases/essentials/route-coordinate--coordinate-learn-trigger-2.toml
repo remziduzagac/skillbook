@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: coordinate--coordinate-learn (D263)"
+source = "skills/essentials/references/coordinate.md:23 (coordinate--coordinate-learn)"
 about = "Routing only: trigger for coordinate-learn"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -9,7 +9,7 @@ rejects = "The trace omits a required successful read or reads a forbidden metho
 covers = ["coordinate:route:coordinate-learn"]
 
 [[turns]]
-prompt = "Help decide which session lessons deserve recording: a corrected volunteer identifier is stable, but a one-day delay was temporary. Propose only."
+prompt = "Which is worth remembering for later sessions: a corrected volunteer ID, or a one-day delivery delay? Suggest what to record."
 
 [checks]
-reads = ["coordinate-learn"]
+reads = ["coordinate", "coordinate-learn"]

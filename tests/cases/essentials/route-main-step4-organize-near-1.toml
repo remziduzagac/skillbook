@@ -1,4 +1,4 @@
-source = "tests/routing-routes.md: main-step4-organize (D263)"
+source = "skills/essentials/SKILL.md:59 (main-step4-organize)"
 about = "Routing only: near for organize"
 fixture = "routing-studio"
 agents = ["codex"]
@@ -6,7 +6,7 @@ routing_only = true
 skills = ["essentials", "organize"]
 category = "boundary"
 rejects = "The trace omits a required successful read or reads a forbidden method."
-covers = ["essentials:step:4"]
+covers = ["essentials:step:4", "essentials:not-for:step-4"]
 
 [[turns]]
 prompt = "Reword this one sentence more politely: You arrived too late. Do not change any structure."

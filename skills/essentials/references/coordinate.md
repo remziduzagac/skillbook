@@ -4,23 +4,23 @@ Routes delegation, brief writing, carryovers, agent instructions, skillbook setu
 
 ## Instructions
 
-- **delegate** (`coordinate-delegate`): when work goes to an agent, or several agents should answer, search or change things. Follow the main skill's delegation advice.
+- **delegate** (`coordinate-delegate`): **Read `coordinate-delegate` when work goes to another agent, or several agents should answer, search or change things.** Follow the main skill’s delegation advice.
   - Not for: writing the brief (`coordinate-brief`), continuing later (`coordinate-carryover`), or choosing whether an independent check is needed (`act-verify`, which calls delegate to start it).
   - Gives back: actual work and verification status, cost where needed, task status and cleanup results.
-- **brief** (`coordinate-brief`): when writing what a worker starting now needs, fork or fresh.
+- **brief** (`coordinate-brief`): **Read `coordinate-brief` when you write instructions for an agent starting work now, whether forked or fresh.**
   - Not for: choosing the agent, model or cost (`coordinate-delegate`), or recording state for later (`coordinate-carryover`).
   - Gives back: the brief and the report it asks the worker to return.
-- **carryover** (`coordinate-carryover`): when writing or resuming state for a later session or agent. The carryover offer also applies at a boundary during a long session that will continue.
+- **carryover** (`coordinate-carryover`): **Read `coordinate-carryover` when you write or resume a record of work for a later session or agent, or offer a handoff at a boundary in a long continuing session.**
   - Not for: starting a worker now (`coordinate-delegate` and `coordinate-brief`) or recording a lasting lesson (`coordinate-learn`).
   - Gives back: the note with its actual review and approval status, or the differences checked on resumption and the authorized work that continues.
 
-- **instruct** (`coordinate-instruct`): when adding, updating or pruning an instruction document for agents.
+- **instruct** (`coordinate-instruct`): **Read `coordinate-instruct` when you add, update or prune instructions that agents read.**
   - Not for: skill files or designs (the project's skill-making method), installed pointer placement (`coordinate-setup`), or a later-session note (`coordinate-carryover`).
   - Gives back: the proposed or approved document, its location and actual save status.
-- **setup** (`coordinate-setup`): when the user asks to set up skillbook on a machine or project, check setup, or move an installed pointer.
+- **setup** (`coordinate-setup`): **Read `coordinate-setup` when the user asks to set up skillbook on a machine or project, check its setup, or move its installed pointer.**
   - Not for: adding an ordinary instruction rule (`coordinate-instruct`) or making skills (the project's skill-making method).
   - Gives back: approved changes, checked loading, recommendations and pending work.
-- **learn** (`coordinate-learn`): when asked what a session taught or when the user accepts the main stopping offer's lesson part.
+- **learn** (`coordinate-learn`): **Read `coordinate-learn` when the user asks what a session taught, or accepts the lesson part of the stopping offer.**
   - Not for: unasked recording, a decision recorded as work happens (the caller), or carrying state forward (`coordinate-carryover`).
   - Gives back: approved promotions and their destinations, dropped highlights and pending decisions.
 

@@ -1,0 +1,15 @@
+source = "skills/essentials/references/understand.md:54 (understand--understand-frame)"
+about = "Routing only: trigger for understand-frame"
+fixture = "routing-studio"
+agents = ["codex"]
+routing_only = true
+skills = ["understand", "understand-frame"]
+category = "normal"
+rejects = "The trace omits a required successful read or reads a forbidden method."
+covers = ["understand:route:understand-frame"]
+
+[[turns]]
+prompt = "We keep arguing about speed and fairness for the volunteer roster. Help us work out what problem we’re solving and what success means."
+
+[checks]
+reads = ["understand", "understand-frame"]
