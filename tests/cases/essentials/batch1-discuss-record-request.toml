@@ -5,11 +5,11 @@ agents = ["codex"]
 skills = ["understand-discuss"]
 category = "edge"
 rejects = "Writes before recording is requested, changes other files or commits."
-covers = ["understand-discuss:rule:4", "understand-discuss:step:6", "understand-discuss:step:7"]
+covers = ["understand-discuss:rule:4", "understand-discuss:step:6", "understand-discuss:step:7", "understand-discuss:rule:7"]
 review = ["Turn 1 returns decisions and offers recording without edits. Turn 2, the main workflow saves only DECISIONS.md after the explicit request, reports the path and does not commit. Discussion itself hands the record to its owner."]
 
 [[turns]]
-prompt = "Our discussion is complete: paper authority for access, Mei as updater, weekly reminders. Return the outcome. No recording requested yet."
+prompt = "Our discussion is complete: paper authority for access, Mei as updater, weekly reminders. Return the outcome."
 
 [turns.checks]
 no_changes = true

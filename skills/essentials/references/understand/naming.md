@@ -8,7 +8,10 @@ Proposes shared names and glossary entries without writing or renaming anything.
 2. **Keep one word per concept and one concept per word.** Add no synonym for an existing term or word already meaning something else in the project or nearby field. Readers could not tell which meaning is meant.
 3. **Do not name a part after its whole.** The whole's name would mean two things.
 4. **Use a plain word where one works.** Coin only when none works and give the reason. Plain words are understood; coined words must be learned.
-5. **Leave a shared name to the user's choice.** For an open name, ask `understand-brainstorm` for candidates only, compare once through `understand-weigh` on the naming criteria, and ask through `respond-ask`. For a supplied name, keep terminology and collision checks. Reopen only a real conflict under the `act` skill's concern rule. When the user has settled the name, start no new candidate or approval round.
+5. **Leave a shared name to the user's choice.** For an open name, ask `understand-brainstorm` for candidates only, compare once through `understand-weigh` on the naming criteria, and ask through `respond-ask`.
+   - **For a supplied name, check the glossary, existing usage and potential collisions.**
+   - **For a supplied name, report the check results in `Checked`, even when nothing clashes.** The caller needs to know what was checked.
+   - Reopen a supplied name for a real conflict under the `act` skill's concern rule. When the user has settled the name, start no new candidate or approval round.
 6. **Return rejected words and reasons.** The caller can record them so they are not proposed again.
 7. **Write and rename nothing.** The caller applies approved names and glossary entries under the `act` skill. A wide rename follows `act-guardrails`. Propose the old word under Avoid. Half a rename leaves two words for one thing. For a direct request, the main work flow owns the change.
 8. **Propose one glossary definition per term.** Use one sentence, words to avoid and an example where needed. Duplicate definitions drift. The caller writes approved entries.

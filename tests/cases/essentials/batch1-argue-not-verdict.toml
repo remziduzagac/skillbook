@@ -1,12 +1,12 @@
 source = "blueprint/design/essentials/understand.md: argue, Flow and Tests (D252); held-out scenario"
-about = "Keeps advocacy labelled one-sided and separates strength of the case from a selection or verdict."
+about = "Keeps advocacy labelled one-sided and separates strength of the case from a selection or comparative choice verdict."
 fixture = "thinking-lab"
 agents = ["codex"]
 skills = ["understand-argue"]
 category = "boundary"
 rejects = "Presents advocacy as a selection verdict."
 covers = ["understand-argue:rule:5"]
-review = ["Keeps advocacy labelled one-sided and separates strength of the case from a selection or verdict.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+review = ["Keeps advocacy labelled one-sided and separates strength of the case from a selection or comparative choice verdict.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "A strong, moderate or weak rating of the evidential strength of an advocacy case is allowed. Do not count that rating as choosing an option. Keep the comparative choice and the separate challenge outcome outside the one-sided case."]
 
 [[turns]]
 prompt = "Argue for paper authority. I am not asking you to choose for me or certify it is the best option."

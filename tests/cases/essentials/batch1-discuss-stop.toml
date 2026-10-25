@@ -5,7 +5,7 @@ agents = ["codex"]
 skills = ["understand-discuss"]
 category = "boundary"
 rejects = "Reports unfinished items as decided."
-covers = ["understand-discuss:rule:4"]
+covers = ["understand-discuss:rule:4", "understand-discuss:rule:7"]
 review = ["Lists the open items and reasons or next steps; offers the appropriate wrap-up without pretending unfinished items were decided.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
 
 [[turns]]

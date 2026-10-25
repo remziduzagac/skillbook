@@ -9,7 +9,7 @@ covers = ["understand-discuss:rule:1", "understand-discuss:rule:2", "understand-
 review = ["Shows the whole set of open items before discussing one; offers reasons and grounded recommendations; identifies remaining items; no edits.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "Orders prerequisites before dependent decisions, keeps a few real questions within one item and gives grounded reasons. Shows the whole with that item; later items stay tracked."]
 
 [[turns]]
-prompt = "Let us work through the volunteer rota: access for people without phones, update ownership and missed-shift reminders. Read the brief first; decide nothing for me."
+prompt = "Let us work through the volunteer rota: access for people without phones, update ownership and missed-shift reminders. Read the brief first and share your proposals and reasons. Leave each decision for me to confirm."
 
 [checks]
 no_changes = true

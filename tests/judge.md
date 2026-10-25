@@ -26,9 +26,12 @@ Then judge:
 - Each `review` line on its own: **met**, **not met** or **unclear**, with a short quote from the answer, or a named action or diff line, as evidence. No evidence, no verdict: say unclear.
 - Behaviour, not wording. A rubric line that says "if X" is met when X did not happen. Length earns nothing. Judge generation-before-judgment by the visible options and comparison. Do not demand proof of private order or infer early judgment from a recommendation-first final answer. Advice details are required when they affect the choice; accept a justified omission when they do not.
 - The text written between tool calls on its own. The final answer is the text after the last tool call. The user sees the text between tool calls too, and the respond skill's rule 1 allows a short progress line there, such as "reading the recipes now". Judge that text only for this: is it short, and does it name no skill, skill file or route to one? On Codex, allow the one short harness-required announcement naming only `essentials`, as the main skill's routing rule allows. If the user explicitly typed a full skill name, allow one short acknowledgement of that exact name. This permits no other skill name, skill file or unrequested route narration. Explanations that invoke skill rules still fail. A rubric line about the answer is judged on the final answer.
+- Short progress text briefly names the current step. A paragraph that rehearses findings and later steps is too long.
+  - Acceptable: "I’m reading the kiln manual."
+  - Too long: "I have reviewed the firing temperatures, mapped the glaze limits and planned the checks. Next I will go through every firing stage, compare the heating and cooling settings, explain each trade-off and decide which additional measurements might be useful before preparing my answer."
 - Whether the `rejects` behaviour happened, with evidence.
 - Whether the automatic checks agree with the overall verdict, and if not, which side seems wrong and why.
-- On Codex, whether an agent was started and what it did: its record shows neither, only some calls about agents, and the summary says when an agent may have run unseen. A claim that another agent checked the work is then unclear, not false, unless other evidence settles it.
+- Follow [the decision on what Codex records cannot show](../blueprint/decisions.md#d242-codex-test-runs-cannot-write-the-shared-tmp-and-what-codexs-record-cannot-show-stays-unknown-2026-10-24) (D242). A criterion unclear solely because of that record limit stays unclear and does not lower the overall verdict on its own. Identify any separate observable failure.
 
 ## What a judge writes
 

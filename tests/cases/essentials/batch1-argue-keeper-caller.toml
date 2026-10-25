@@ -6,7 +6,7 @@ skills = ["understand-argue"]
 category = "edge"
 rejects = "Writes or invents keeper storage, asks a redundant destination question, or omits the result the keeper needs."
 covers = ["understand-argue:last"]
-review = ["Returns the precise case, supported or marked reasons, strongest objections met, admitted weaknesses, strength and next evidence, with a reusable challenge separate from advocacy. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."]
+review = ["Returns the precise case, supported or marked reasons, strongest objections met, admitted weaknesses, strength and next evidence, with a reusable challenge separate from advocacy. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round.", "A strong, moderate or weak rating of the evidential strength of an advocacy case is allowed. Do not count that rating as choosing an option. Keep the comparative choice and the separate challenge outcome outside the one-sided case."]
 
 [[turns]]
 prompt = "You are returning a result to an already-loaded keeper caller. The caller already owns its storage location and format; do not invent or ask for another one. Return a full honest one-sided case for paper authority. Return the payload only and change nothing."

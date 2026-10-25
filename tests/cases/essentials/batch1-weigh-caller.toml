@@ -9,7 +9,7 @@ covers = ["understand-weigh:rule:6"]
 review = ["Returns the requested comparison and recommendation without asking the user to approve it or deciding for the caller.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
 
 [[turns]]
-prompt = "You are returning a cost/access comparison to the naming-style caller of this task. Return the comparison only. The caller will run its own user choice round."
+prompt = "You are returning a cost/access comparison to the naming-style caller of this task. Return the comparison and your recommendation to the caller. The caller will run its own user choice round."
 
 [checks]
 no_changes = true

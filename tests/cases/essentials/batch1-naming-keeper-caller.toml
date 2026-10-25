@@ -6,7 +6,7 @@ skills = ["understand-naming"]
 category = "edge"
 rejects = "Writes or invents keeper storage, asks a redundant destination question, or omits the result the keeper needs."
 covers = ["understand-naming:last"]
-review = ["Returns the supplied chosen name, its available rationale, collision checks and proposed definition/avoided terms. Includes rejected words only if actually considered or supplied; invents no earlier decision history. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round."]
+review = ["Returns the supplied chosen name, its available rationale, collision checks and proposed definition/avoided terms. Includes rejected words only if actually considered or supplied; invents no earlier decision history. Hands it to the caller without naming invented keeper files, writing a record or starting a duplicate user-choice round.", "For the supplied name, reports the glossary and collision-check result in Checked, including a negative result when nothing clashes. Does not invent a clash or reopen a settled choice without a real conflict."]
 
 [[turns]]
 prompt = "You are returning a result to an already-loaded keeper caller. The caller already owns its storage location and format; do not invent or ask for another one. Return the approved name Shift reminder and a proposed glossary entry. Return the payload only and change nothing."

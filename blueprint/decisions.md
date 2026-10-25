@@ -3617,3 +3617,7 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Argue's audience fix worked on Sol. Three discuss cases failed on both models in both rounds: a recommended answer the facts support, and the reasons and recording offer at closing. Two of those prompts work against the behaviour they test.
 - Long progress text between tool calls is common on both models. It belongs to respond, not these tools.
 - Luna cost about US$0.97 by the runner's estimate. Sol and judging cost are unknown.
+- Round 3 fixed the tests and the judging first: prompts that forbade what their case checks, rubrics that took argue's strength rating for a choice, and a judge rule that a claim Codex's record cannot show does not lower a verdict on its own. Two skill gaps then got their own rules: discuss closes a completed topic with reasons, the next step and a recording offer, and naming reports its checks for a supplied name.
+- The seven cases that failed on both models, 3 runs each, round 1 text against the new text: Sol 7 to 15 good of 21, Luna 2 to 3.
+- All 151 cases, round 2 and round 3 answers judged in one pass: Sol 126 to 130 good. Luna's cases with a missed rubric line fell from 35 to 24, while its good count fell from 82 to 75, nearly all from progress text the stricter guide now fails.
+- Luna still misses discuss's whole-first order and closing, and incomplete payloads to callers. Round 3 cost Luna about US$0.66 by the runner's estimate. Sol and judging cost are unknown.

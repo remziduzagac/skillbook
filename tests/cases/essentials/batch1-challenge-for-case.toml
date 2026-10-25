@@ -9,7 +9,7 @@ covers = []
 review = ["Makes the case for the position rather than treating the request as a case against.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
 
 [[turns]]
-prompt = "Make the positive case for keeping paper authority, labelled as advocacy rather than a verdict."
+prompt = "Make the positive case for keeping paper authority, labelled as one-sided advocacy rather than a choice between options."
 
 [checks]
 no_changes = true

@@ -6,7 +6,7 @@ skills = ["understand-naming"]
 category = "boundary"
 rejects = "Reopens candidates or approval after a settled conflict-free name."
 covers = ["understand-naming:rule:1", "understand-naming:rule:5", "understand-naming:rule:7"]
-review = ["Keeps terminology/collision checks and accepts the settled name if no real conflict; no candidate or approval round, no write.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it."]
+review = ["Keeps terminology/collision checks and accepts the settled name if no real conflict; no candidate or approval round, no write.", "The response uses available project facts, marks unverified claims, and changes no fixture file unless the request explicitly authorizes it.", "For the supplied name, reports the glossary and collision-check result in Checked, including a negative result when nothing clashes. Does not invent a clash or reopen a settled choice without a real conflict."]
 
 [[turns]]
 prompt = "We already chose Shift reminder. Check it against the glossary, but do not propose replacement names or ask us to choose again."
