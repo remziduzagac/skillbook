@@ -1,6 +1,6 @@
 # Every check, the same way CI runs it. Tools: markdownlint-cli2 (through npx), lychee, ShellCheck, shfmt,
 # actionlint and zizmor.
-check: lint-markdown links lint-shell lint-workflows check-skills test-runner check-coverage
+check: lint-markdown links lint-shell lint-workflows check-skills test-runner check-runner-ts check-coverage
 
 # Markdown style, with the rules in .markdownlint-cli2.jsonc.
 lint-markdown:
@@ -8,7 +8,7 @@ lint-markdown:
 
 # Every local link and anchor resolves.
 links:
-    lychee --offline --include-fragments --no-progress '**/*.md'
+    lychee --offline --include-fragments --no-progress --exclude-path node_modules '**/*.md'
 
 # Shell scripts: ShellCheck, and shfmt with the settings in .editorconfig.
 lint-shell:
@@ -55,3 +55,14 @@ check-commits range="origin/main..HEAD":
 # Link this working copy's sets into the folders agents read, for a machine where skills are edited.
 link:
     ./install.sh --link
+
+# TypeScript runner: types, unit contracts, generated schema and every YAML conversion.
+check-runner-ts:
+    bun run typecheck
+    bun test tests/runner
+    bun tests/runner/schema.ts --check
+    bun tests/run.ts --validate
+
+# The Bun runner runs beside the Python runner during the port comparison.
+test-agents-ts *args:
+    bun tests/run.ts {{args}}

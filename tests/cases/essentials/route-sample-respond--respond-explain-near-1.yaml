@@ -1,0 +1,2 @@
+# yaml-language-server: $schema=../../case.schema.json
+{source: skills/essentials/references/respond.md:37 (respond--respond-explain),about: "Routing only: near for respond-explain",fixture: routing-studio,agents: [codex],routing_only: true,skills: [respond,respond-explain],category: boundary,rejects: The trace omits a required successful read or reads a forbidden method.,covers: [respond:not-for:step-3],turns: [{prompt: What is compound interest? I’m learning about it for the first time.}],checks: {reads_not: [respond-explain],reads: [understand]}}

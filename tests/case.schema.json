@@ -1,0 +1,353 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CaseFile",
+  "definitions": {
+    "CaseFile": {
+      "type": "object",
+      "properties": {
+        "about": {
+          "type": "string"
+        },
+        "design": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "fixture": {
+          "type": "string"
+        },
+        "agents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Agent"
+          }
+        },
+        "runs": {
+          "type": "number"
+        },
+        "pointer": {
+          "type": "boolean"
+        },
+        "routing_only": {
+          "type": "boolean"
+        },
+        "version_control": {
+          "type": "boolean"
+        },
+        "uses_skill_example": {
+          "type": "boolean"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "normal",
+            "boundary",
+            "edge"
+          ]
+        },
+        "rejects": {
+          "type": "string"
+        },
+        "covers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "review": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "project_skills": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "skillbook-design",
+              "skillbook-write"
+            ]
+          }
+        },
+        "checks": {
+          "$ref": "#/definitions/Checks"
+        },
+        "turns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Turn"
+          }
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "facts": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "fixed",
+                "simulated"
+              ]
+            }
+          },
+          "required": [
+            "description",
+            "facts",
+            "mode"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "fixture",
+        "turns"
+      ],
+      "additionalProperties": false
+    },
+    "Agent": {
+      "type": "string",
+      "enum": [
+        "claude",
+        "codex"
+      ]
+    },
+    "Checks": {
+      "type": "object",
+      "properties": {
+        "reads": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reads_not": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "no_changes": {
+          "type": "boolean"
+        },
+        "changed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unchanged": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "removed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "only_changed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "file_contains": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "shorter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "states_before_change": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "answer_contains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "answer_not_contains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "names_no_skill": {
+          "type": "boolean"
+        },
+        "written_under": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "folder_lacks": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "nothing_left_running": {
+          "type": "boolean"
+        },
+        "tmp_has": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tmp_lacks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "agent_started_or_answer": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "answer_path_has": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "actions_lack": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "Turn": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "checks": {
+          "$ref": "#/definitions/Checks"
+        },
+        "tagged_checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaggedCheck"
+          }
+        },
+        "rubric": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rubric"
+          }
+        }
+      },
+      "required": [
+        "prompt"
+      ],
+      "additionalProperties": false
+    },
+    "TaggedCheck": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "depends_on": {
+          "type": "object",
+          "properties": {
+            "turn": {
+              "type": "number"
+            },
+            "check": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "turn",
+            "check"
+          ],
+          "additionalProperties": false
+        },
+        "assert": {
+          "$ref": "#/definitions/Checks"
+        }
+      },
+      "required": [
+        "id",
+        "tag",
+        "assert"
+      ],
+      "additionalProperties": false
+    },
+    "Rubric": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "criterion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tag",
+        "criterion"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,2 @@
+# yaml-language-server: $schema=../../case.schema.json
+{source: skills/essentials/references/respond.md:34 (respond--respond-ask),about: "Routing only: near for respond-ask",fixture: routing-studio,agents: [codex],routing_only: true,skills: [respond,respond-ask],category: boundary,rejects: The trace omits a required successful read or reads a forbidden method.,covers: [respond:not-for:step-2],turns: [{prompt: "Just say: Open at noon."}],checks: {reads_not: [respond-ask]}}

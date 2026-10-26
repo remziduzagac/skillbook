@@ -126,3 +126,17 @@ Build the remaining batches and their cases before behavioral model tests. Run n
 
 - [how-it-works.md](how-it-works.md): the install script the install tests check, and how a skill is written.
 - skillbook-write's "Test cases" instruction, in `.agents/skills/skillbook-write/SKILL.md`: how a design's tests are run and what a result holds.
+
+## TypeScript runner
+
+The runner is TypeScript on Bun, pinned through mise and in CI (D268). `tests/run.ts` runs beside `tests/run.py`. The Python runner and its TOML cases stay unchanged for comparison. The new runner reads YAML files beside selected TOML cases, with the same ids. It converts no scenario content during the port.
+
+The modules under `tests/runner/` separate case loading and validation, sandbox homes and files, process ownership, agent commands, trace parsing, assertions, scoring, reports and the command line. Plain functions take data and return observations or verdicts. File access and agent processes stay at the edges. Each module has account-free tests. Bun supplies YAML parsing, subprocess support and the test runner. Exact package versions and their lockfile keep schema generation, validation and type checking reproducible.
+
+`types.ts` defines the case format. A generated JSON Schema checks every YAML file before any run starts and supplies editor completion. Unknown fields and invalid checks fail early. Schema freshness, type checking and unit tests join `just check`. A conversion check loads each YAML and its TOML neighbour and compares the data before defaults.
+
+A case is a conversation, including a single-message case. It holds a user description and facts sheet, a fixed or simulated user mode, and ordered turns with messages and purposes. Fixed mode sends the written messages. The simulated mode is represented in the format; executing it is deferred to the scenario layer and fails explicitly until implemented. Turns can hold tagged assertions and rubric criteria. A tagged assertion may depend on an earlier turn's check. An unmet or unknown dependency gives `not reached`, separate from failure and unknown evidence. Results preserve the scripted and sent messages, observations, tagged verdicts and rubric judgments as JSON. Scores group checks by habit or skill across runs, with counts and a Wilson 95% interval; unknown and not-reached checks have their own counts and do not enter the pass rate. A rubric judge interface accepts a fresh judgment without mixing it with automatic results. Judge calibration and model execution belong to the scenario layer.
+
+The port preserves isolated homes, explicit login copies with cleanup, agent account restrictions, per-turn timeouts and evidence, process cleanup, scheduling by jobs and known spending, unknown costs, kept event logs, coverage and the list of runs needing judgment. Codex cost remains an estimate from token usage, without a hard API spending cap. Saved-log replay compares the new assertions with the Python assertions before a bounded live comparison. A live disagreement can be model variation; replaying the same evidence distinguishes that from a runner difference.
+
+Later: a terminal view, possibly using OpenTUI, can watch runs and browse turns, checks and scores from the same JSON results. The port builds no terminal interface.
