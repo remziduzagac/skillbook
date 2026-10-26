@@ -22,3 +22,41 @@ test("blind selection uses fixed Luna runs and covers every held-out scenario on
   expect(chosen.every(r => r.run === 1)).toBe(true);
   expect(() => heldoutRuns(rows.slice(0, 2))).toThrow();
 });
+
+test("action lists retain failed commands, repeated calls, helper results and incomplete starts", async () => {
+  const { actionList } = await import("./rating-walk");
+  const actions = [1, 0].flatMap(exit_code => [
+    { tool: "command_execution", phase: "item.started", command: "python test.py", exit_code: null },
+    { tool: "command_execution", phase: "item.completed", command: "python test.py", exit_code },
+  ]);
+  const rows = actionList({ reads: ["test.py"], actions: [...actions,
+    { tool: "collab_tool_call", phase: "item.completed", call: "spawn_agent",
+      status: "completed", receiver_thread_ids: ["worker"], agents_states: { worker: { status: "running" } } },
+    { tool: "collab_tool_call", phase: "item.completed", call: "wait",
+      status: "completed", receiver_thread_ids: ["worker"], agents_states: { worker: { status: "completed", message: "Checked" } } },
+    { tool: "command_execution", phase: "item.started", command: "unfinished\n" + "x".repeat(600) },
+  ] });
+  expect(rows).toHaveLength(6);
+  expect(rows[0]).toContain("exit 1");
+  expect(rows[1]).toContain("exit 0");
+  expect(rows[3]).toContain("Checked");
+  expect(rows[4]).toContain("unknown");
+  expect(rows[4]).toContain("[cut]");
+  expect(rows.every(row => !row.includes("\n"))).toBe(true);
+  expect(rows[5]).toBe("Read: test.py");
+});
+
+test("small walk selection excludes automatic checks and rotates habits without reading verdicts", async () => {
+  const { walkChecks } = await import("./rating-walk");
+  const checks = [
+    { id: "automatic", assert: { exists: "x" } },
+    ...["a", "b", "c"].map(id => ({ id, tag: "skill:lookup", criterion: id })),
+    ...["point", "glance"].map(id => ({ id, tag: "habit:" + id, criterion: id })),
+  ];
+  for (let turn = 0; turn < 4; turn++) {
+    const picked = walkChecks(checks, turn);
+    expect(picked).toHaveLength(3);
+    expect(picked.every(c => c.criterion)).toBe(true);
+    expect(picked[2]!.id).toBe(turn % 2 ? "glance" : "point");
+  }
+});

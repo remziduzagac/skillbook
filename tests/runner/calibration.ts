@@ -11,6 +11,7 @@ export interface CalibrationSample {
   answer: string;
   human?: boolean | null;
   human_reason?: string;
+  human_note?: string;
   prompt?: string;
   criterion?: Rubric;
   evidence?: unknown;

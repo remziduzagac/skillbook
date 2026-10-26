@@ -19,6 +19,9 @@ turns:
 - prompt: Summarize all forty notes in notes/. Use helpers for independent batches, then check and combine their findings.
   purpose: Partition the forty notes, combine supported findings, verify helper claims and preserve minority concerns; unseen helper activity stays unknown.
   rubric:
+  - id: source-accuracy
+    tag: skill:coordinate-delegate-fanout
+    criterion: Report facts supported by the named sources and relevant to the requested subject. Do not count a fact about another subject as a matching result; distinguish no matching facts from missing evidence.
   - id: point
     tag: habit:point-first
     criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
@@ -30,7 +33,7 @@ turns:
     criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
   - id: glance
     tag: habit:clear-at-a-glance
-    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created. A collective label such as both pages does not name its members; names later in a process report do not complete the result list.
   - id: scope
     tag: habit:requested-scope
     criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
@@ -55,6 +58,9 @@ turns:
 - prompt: 'Give three independent views on moving the meeting time: residents, traders and evening workers. Use separate helpers before combining; retain disagreements.'
   purpose: Gather independent perspectives before combining, preserve substantive disagreements and check support; missing independent controls are reported honestly.
   rubric:
+  - id: source-accuracy
+    tag: skill:coordinate-delegate-council
+    criterion: Report facts supported by the named sources and relevant to the requested subject. Do not count a fact about another subject as a matching result; distinguish no matching facts from missing evidence.
   - id: point
     tag: habit:point-first
     criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
@@ -66,7 +72,7 @@ turns:
     criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
   - id: glance
     tag: habit:clear-at-a-glance
-    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created. A collective label such as both pages does not name its members; names later in a process report do not complete the result list.
   - id: scope
     tag: habit:requested-scope
     criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
@@ -102,7 +108,7 @@ turns:
     criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
   - id: glance
     tag: habit:clear-at-a-glance
-    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created. A collective label such as both pages does not name its members; names later in a process report do not complete the result list.
   - id: scope
     tag: habit:requested-scope
     criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
@@ -123,5 +129,5 @@ turns:
     criterion: Use no agents for this small lookup.
   - id: behavior-accuracy
     tag: skill:coordinate-delegate
-    criterion: Distinguish the named notes concerns accurately.
+    criterion: Report facts supported by the named sources and relevant to the requested subject. Do not count a fact about another subject as a matching result; distinguish no matching facts from missing evidence.
 suite: short

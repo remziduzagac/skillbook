@@ -84,7 +84,7 @@ export async function rubricJudge(call: StructuredCall, request: JudgeRequest): 
 
 export function judgeEvidence(turns: Event[], sources: Record<string, string> = {}) {
   const keys = ["scripted_message", "sent_message", "final_answer", "between_tools", "actions", "file_diffs",
-    "trace_complete", "reads", "changes", "files", "paths_present", "fresh_session"];
+    "trace_complete", "agents_started", "agents_unseen", "reads", "changes", "files", "paths_present", "fresh_session"];
   return { sources, current_turn: turns.length, progress_role: "unscored evidence", turns: turns.map(t => Object.fromEntries(keys.filter(k => k in t).map(k => [k, t[k]]))) };
 }
 

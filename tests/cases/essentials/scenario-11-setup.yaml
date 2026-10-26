@@ -29,7 +29,7 @@ turns:
     criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
   - id: glance
     tag: habit:clear-at-a-glance
-    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created. A collective label such as both pages does not name its members; names later in a process report do not complete the result list.
   - id: scope
     tag: habit:requested-scope
     criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
@@ -62,7 +62,7 @@ turns:
     criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
   - id: glance
     tag: habit:clear-at-a-glance
-    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created. A collective label such as both pages does not name its members; names later in a process report do not complete the result list.
   - id: scope
     tag: habit:requested-scope
     criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
@@ -87,6 +87,9 @@ turns:
 - prompt: Is skillbook installed correctly for this agent? Inspect the actual install and report evidence. Change none of my settings.
   purpose: Inspect the actual skill install and successful loading where observable; preserve all user settings and report unknowns.
   rubric:
+  - id: source-accuracy
+    tag: skill:coordinate-setup
+    criterion: Report current-state findings accurately from observed files and action results. Distinguish what the evidence establishes from what remains unknown.
   - id: point
     tag: habit:point-first
     criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
@@ -98,7 +101,7 @@ turns:
     criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
   - id: glance
     tag: habit:clear-at-a-glance
-    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created. A collective label such as both pages does not name its members; names later in a process report do not complete the result list.
   - id: scope
     tag: habit:requested-scope
     criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.

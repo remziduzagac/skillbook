@@ -17,6 +17,7 @@ test("final-answer checks ignore skill names in progress, but not in a known fin
 });
 test("judge inputs use current final answers while retaining unscored progress as evidence", async () => {
   const evidence = judgeEvidence([{ final_answer: "Current result.", between_tools: ["Working."],
+    agents_started: 1, agents_unseen: true,
     judgments: [{ verdict: false }] }]);
   const request = { rubric: { id: "p", tag: "habit:point-first", criterion: POINT_FIRST },
     answer: "Working.\nCurrent result.", evidence };
@@ -26,6 +27,8 @@ test("judge inputs use current final answers while retaining unscored progress a
     expect(data.answer).toBe("Current result.");
     expect(data.evidence.turns[0].between_tools).toEqual(["Working."]);
     expect(data.evidence.turns[0]).not.toHaveProperty("judgments");
+    expect(data.evidence.turns[0].agents_started).toBe(1);
+    expect(data.evidence.turns[0].agents_unseen).toBe(true);
     return data.criteria ? { results: [{ id: "p", verdict: true, reason: "direct" }] } :
       { verdict: true, reason: "direct" };
   };
