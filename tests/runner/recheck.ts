@@ -1,6 +1,7 @@
 import { join } from "node:path";
 import { snapshot, fixtureText } from "./files";
 import { FIXTURES } from "./paths";
+import { progressFindings } from "./progress";
 import { check } from "./checks";
 import { evaluateTagged, score } from "./scoring";
 import type { Case, Event, Verdict } from "./types";
@@ -36,6 +37,7 @@ export function recheckScenario(original: Event, c: Case): Event {
   }
   result.checks = { ...Object.fromEntries(Object.entries(result.checks ?? {}).filter(([key]) => /^turn \d+:/.test(key))),
     ...check(c.checks, result, c.fixture) };
+  result.progress_findings = progressFindings(result.turns);
   result.run_checks = c.suite && c.checks.names_no_skill ? [{
     id: "no-skill-names", tag: "habit:no-skill-names",
     verdict: result.checks?.["answer names no skill or skill file"] ?? null,

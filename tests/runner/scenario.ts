@@ -1,6 +1,8 @@
+import { currentFinal } from "./answers";
+import { JUDGING_RULES } from "./judgment-policy";
 import { agentCommand } from "./agents";
 import { runTurn } from "./process";
-import { parse_events, turn_parts, action_evidence } from "./trace";
+import { parse_events, turn_parts, action_evidence, redact } from "./trace";
 import { cost } from "./cost";
 import type { Case, Event, JudgeRequest, JudgeResult } from "./types";
 
@@ -26,7 +28,12 @@ export function structuredCall(
     catch (error) { account(null); throw error; }
     const events = parse_events(ran.stdout);
     account(cost("codex", SCENARIO_MODEL, [events]));
-    if (ran.status !== 0) throw Error("scenario model failed: " + ran.stderr.slice(-200));
+    if (ran.status !== 0) {
+      const errors = events.filter(e => e.type === "error" || e.type === "turn.failed")
+        .map(e => e.message ?? e.error?.message ?? e.error ?? "").join("; ");
+      throw Error(`scenario model failed (exit ${ran.status ?? "timeout"}): ` +
+        redact(ran.stderr || errors || "no diagnostic output").slice(-400));
+    }
     if (action_evidence("codex", events).length) throw Error("scenario model used tools");
     const [answer] = turn_parts("codex", events);
     return JSON.parse(answer.trim().replace(/^```json\s*|\s*```$/g, ""));
@@ -63,9 +70,7 @@ export async function fit(call: StructuredCall, reply: string, next: string) {
 export async function rubricJudge(call: StructuredCall, request: JudgeRequest): Promise<JudgeResult> {
   const result = await call(
     'Judge the criterion. Return {"verdict":boolean|null|"not reached","reason":string}. ' +
-    "Judge behavior, not matching words or naming a file. Use null when evidence cannot establish the claim. " +
-    "Use not reached only when an earlier failure makes this criterion test a different conversation. " +
-    "Do not fail invisible helper activity or unsupported trace absence. Cite concrete evidence for the verdict.", request,
+    JUDGING_RULES, { ...request, answer: currentFinal(request.answer, request.evidence) },
   );
   if (![true, false, null, "not reached"].includes(result.verdict) || typeof result.reason !== "string" || !result.reason.trim())
     throw Error("invalid rubric judgment");
@@ -75,7 +80,7 @@ export async function rubricJudge(call: StructuredCall, request: JudgeRequest): 
 export function judgeEvidence(turns: Event[], sources: Record<string, string> = {}) {
   const keys = ["scripted_message", "sent_message", "final_answer", "between_tools", "actions", "file_diffs",
     "trace_complete", "reads", "changes", "files", "paths_present", "fresh_session"];
-  return { sources, turns: turns.map(t => Object.fromEntries(keys.filter(k => k in t).map(k => [k, t[k]]))) };
+  return { sources, current_turn: turns.length, progress_role: "unscored evidence", turns: turns.map(t => Object.fromEntries(keys.filter(k => k in t).map(k => [k, t[k]]))) };
 }
 
 export async function rubricBatch(call: StructuredCall, requests: JudgeRequest[]): Promise<JudgeResult[]> {
@@ -85,9 +90,8 @@ export async function rubricBatch(call: StructuredCall, requests: JudgeRequest[]
     throw Error("rubric batches need the same answer and evidence");
   const rows = await call(
     'Judge each criterion independently. Return {"results":[{"id":string,"verdict":boolean|null|"not reached","reason":string}]}. ' +
-    "Use null for insufficient evidence. Use not reached only when an earlier failure makes this a different conversation. " +
-    "Do not fail invisible helper activity or unsupported trace absence. Cite concrete evidence; judge behavior, not keywords.",
-    { criteria: requests.map(r => r.rubric), answer: requests[0]!.answer, evidence: requests[0]!.evidence },
+    JUDGING_RULES,
+    { criteria: requests.map(r => r.rubric), answer: currentFinal(requests[0]!.answer, requests[0]!.evidence), evidence: requests[0]!.evidence },
   );
   if (!Array.isArray(rows.results) || rows.results.length !== requests.length ||
     new Set(rows.results.map((r: any) => r.id)).size !== requests.length) throw Error("invalid rubric batch");

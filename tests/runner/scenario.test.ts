@@ -212,7 +212,7 @@ test("the allowed Codex startup notice is checked per turn in conversation-wide 
 
 test("every semantic criterion has distinct synthetic correct/wrong evidence and no expected label in judge input", async () => {
   const { validateRubricFixtures, rubricFixtures, resolveRubricTrace } = await import("./rubric-fixtures");
-  expect(validateRubricFixtures()).toBe(208);
+  expect(validateRubricFixtures()).toBe(269);
   const trace = resolveRubricTrace(rubricFixtures.checks[0]!.positive);
   expect(trace.turns[0].final_answer).toContain("Who will borrow");
   expect(JSON.stringify(trace)).not.toContain('"expected"');
@@ -252,7 +252,7 @@ test("semantic scoring requires every current correct/wrong fixture judgment, wi
     check: `${row.case}:${row.turn}:${row.id}`, expected, judgment: { verdict: expected },
   })));
   const report = { model: "gpt-6.1-sol", fixture_hash: rubricFixtureHash(), results };
-  expect(validateRubricReport(report)).toBe(416);
+  expect(validateRubricReport(report)).toBe(538);
   expect(() => validateRubricReport({ ...report, results: results.slice(1) })).toThrow();
   expect(() => validateRubricReport({ ...report, results: [...results.slice(1), results[1]] })).toThrow();
   expect(() => validateRubricReport({ ...report, fixture_hash: "old" })).toThrow();

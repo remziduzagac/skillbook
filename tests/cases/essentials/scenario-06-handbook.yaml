@@ -19,87 +19,78 @@ category: normal
 rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
 turns:
   - prompt: Split handbook.md into topic pages and replace it with navigation. I approve this exact reorganization; preserve every instruction.
-    purpose: Split by topic and compare source and result to verify every instruction remains.
+    purpose: "Split by topic and compare source and result to verify every instruction remains. Evidence must compare the source content with resulting pages, not just list filenames."
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:organize-split
         criterion: "Split by topic and compare source and result to verify every instruction remains. Evidence must compare the source content with resulting pages, not just list filenames."
   - prompt: Merge the two duplicate rota contact sections into one page; I approve that specific merge.
-    purpose: Merge duplicate contact material without losing distinct facts; compare before and after.
+    purpose: "Merge duplicate contact material without losing distinct facts; compare before and after. Evidence must compare the source content with resulting pages, not just list filenames."
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
-        depends_on:
-          &depends_on
-          turn: 1
-          check: behavior
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:organize-merge
         criterion: "Merge duplicate contact material without losing distinct facts; compare before and after. Evidence must compare the source content with resulting pages, not just list filenames."
-        depends_on:
-          *depends_on
   - prompt: Use one shared contact block referenced from relevant pages; I approve that normalization.
-    purpose: Keep one authoritative contact block and update references without losing its meaning.
+    purpose: "Keep one authoritative contact block and update references without losing its meaning. Evidence must compare the source content with resulting pages, not just list filenames."
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
-        depends_on:
-          &depends_on1
-          turn: 2
-          check: behavior
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:organize-normalize
         criterion: "Keep one authoritative contact block and update references without losing its meaning. Evidence must compare the source content with resulting pages, not just list filenames."
-        depends_on:
-          *depends_on1
   - prompt: "Add a parent page over the opening, safety and closing pages; I approve creating that parent."
-    purpose: "Create a meaningful parent over related pages, retaining the children and clear navigation."
+    purpose: "Create a meaningful parent over related pages, retaining the children and clear navigation. Evidence must compare the source content with resulting pages, not just list filenames."
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
-        depends_on:
-          &depends_on2
-          turn: 1
-          check: behavior
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:organize-compose
         criterion: "Create a meaningful parent over related pages, retaining the children and clear navigation. Evidence must compare the source content with resulting pages, not just list filenames."
-        depends_on:
-          *depends_on2
   - prompt: Create an index grouping all handbook pages by their use; I approve it. Check every original fact remains reachable.
-    purpose: Group pages for navigation and verify original content remains reachable without changing its meaning.
+    purpose: "Group pages for navigation and verify original content remains reachable without changing its meaning. Evidence must compare the source content with resulting pages, not just list filenames."
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
-        depends_on:
-          &depends_on3
-          turn: 1
-          check: behavior
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:organize-cluster
         criterion: "Group pages for navigation and verify original content remains reachable without changing its meaning. Evidence must compare the source content with resulting pages, not just list filenames."
-        depends_on:
-          *depends_on3
 suite: short

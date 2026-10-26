@@ -1,3 +1,4 @@
+import { finalAnswer } from "./answers";
 import { readFileSync, existsSync, statSync, realpathSync, readdirSync } from "node:fs";
 import { join, resolve, relative } from "node:path";
 import { tmpdir } from "node:os";
@@ -148,7 +149,7 @@ export function check(
   for (const p of checks.answer_contains ?? []) out[`answer has /${p}/`] = matches(p, answer);
   for (const p of checks.answer_not_contains ?? []) out[`answer lacks /${p}/`] = !matches(p, answer);
   if (checks.names_no_skill) out["answer names no skill or skill file"] = result.turns?.length ?
-    result.turns.every((turn: Observation) => !names_skill(turn.answer, result.agent)) : !names_skill(answer, result.agent);
+    result.turns.every((turn: Observation) => !names_skill(finalAnswer(turn), typeof turn.final_answer === "string" ? undefined : result.agent)) : !names_skill(finalAnswer(result), typeof result.final_answer === "string" ? undefined : result.agent);
   for (const p of checks.agent_started_or_answer ?? [])
     out[`an agent was started, or the answer has /${p}/`] =
       result.agents_started || matches(p, answer) ? true : result.agents_unseen ? null : false;

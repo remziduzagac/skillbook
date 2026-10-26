@@ -1,5 +1,5 @@
 {
-  "criterion": "Give a design choice with a concrete reason tied to the user's needs.",
+  "criterion": "Give a design choice with a concrete reason tied to the user's needs. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one.",
   "prompt": "We have 30 households borrowing garden tools at the hall. We have settled on paper-only signups and loan records, no deposits and volunteers on Saturday mornings. Design checkout within those choices, and give reasons.",
   "samples": [
     {

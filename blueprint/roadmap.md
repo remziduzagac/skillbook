@@ -52,3 +52,5 @@ Sets are agent-agnostic: plan, delegate, carryover and setup use the current age
 The test runner moves to TypeScript on pinned Bun, with YAML checked by a generated schema and a conversation model ready for scenarios; Python and TOML stay for comparison, and a terminal view is a later idea (D268).
 
 The main behavioral layer becomes fifteen realistic conversations, with fixed and constrained simulated users, calibrated rubric judging and pooled scores with intervals (D269).
+
+Scenario checks separate final answers from unscored progress, add clear-at-a-glance and judge current-turn work with explicit recovery paths; calibration runs twice before broader scoring (D270).

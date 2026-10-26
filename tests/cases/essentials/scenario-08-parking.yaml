@@ -21,10 +21,13 @@ turns:
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:coordinate-delegate-fanout
         criterion: "Partition the forty notes, combine supported findings, verify helper claims and preserve minority concerns; unseen helper activity stays unknown."
@@ -33,10 +36,13 @@ turns:
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:coordinate-delegate-council
         criterion: "Gather independent perspectives before combining, preserve substantive disagreements and check support; missing independent controls are reported honestly."
@@ -45,10 +51,13 @@ turns:
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:coordinate-delegate
         criterion: Search only the three named notes without agents; distinguish their concerns accurately.

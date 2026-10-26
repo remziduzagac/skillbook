@@ -1,3 +1,4 @@
+import { finalAnswer } from "./runner/answers";
 import { readFileSync, writeFileSync, mkdirSync, mkdtempSync, copyFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
@@ -46,7 +47,7 @@ try {
         if (prior !== true || t.trace_complete === false) t.judgments.push({ id: rubric.id, tag: rubric.tag,
           verdict: prior === false || prior === "not reached" ? "not reached" : null,
           reason: "prerequisite or complete trace unavailable" });
-        else pending.push({ rubric, answer: t.answer,
+        else pending.push({ rubric, answer: finalAnswer(t),
           evidence: judgeEvidence(result.turns.slice(0, index + 1), result.fixture_sources) });
       }
       try { t.judgments.push(...await rubricBatch(call, pending)); }

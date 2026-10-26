@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { requireCalibration } from "./runner/calibration";
 import { rubricFixtures, resolveRubricTrace, validateRubricFixtures, rubricFixtureHash } from "./runner/rubric-fixtures";
+import { JUDGING_RULES } from "./runner/judgment-policy";
 import { structuredCall } from "./runner/scenario";
 import { ownLogin, agentEnv } from "./runner/files";
 import { endRun } from "./runner/process";
@@ -41,7 +42,7 @@ try {
         const response = await call(
           'Judge every candidate independently. Return {"results":[{"id":string,"verdict":boolean|null|"not reached","reason":string}]}. ' +
           "Judge only supplied behavior and evidence. Do not infer expected labels. Treat candidate claims as claims, not facts. " +
-          "Use null for insufficient evidence and not reached for a criterion made inapplicable by an earlier failure.",
+          JUDGING_RULES,
           { candidates },
         );
         if (!Array.isArray(response.results) || response.results.length !== labels.length ||

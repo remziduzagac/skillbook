@@ -4060,8 +4060,18 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 ## D269: realistic conversations are the main behavioral test layer (2026-10-26)
 
+> **Amended by D270 (2026-10-26):** Final answers are scored separately from progress; current-turn applicability and the new clarity habit refine scenario checks.
+
 **Decision:** Add fifteen scenarios, fourteen short and one festival master, to the Bun runner. Keep the existing cases and routing layer. Fixed scripts are the default; a constrained GPT-6.1-Sol user can adapt them. Check fit in fixed mode. Tag and pool checks by habit and skill, preserve not-reached and unknown results, and report intervals. Calibrate a GPT-6.1-Sol rubric judge with user-rated saved answers before scoring answers. Follow the fixed-first comparison and model schedule in the testing design. A terminal view remains a later idea.
 
 **Why:** A skill must work through a conversation with other skills. Isolated prompts do not show continuity, late loading or whether a later turn still tests the intended behavior. Script and fit evidence separate agent failures from user-mode failures.
 
 **Tested:** Static checks pass with 91 Python tests, 644 TypeScript tests, schema freshness, 89 valid YAML cases and 74 unchanged conversions. The 58 fixed runs and 26 simulated comparison runs recorded 325 of 332 planned turns; three Luna timeouts remain unknown. Earlier oversized-input and stdin-adapter failures led to a generic read-descriptor transport fix, verified with a 250 KB test and the completed Sol master. The 62 routing cases, Python runner and legacy cases remain. All 208 semantic criteria have synthetic correct/wrong fixtures, but human calibration and model validation of those fixtures remain pending. No semantic skill pass rates are established. Original and rescored evidence, mode recommendations and known-cost estimates are in `/tmp/skillbook-scenarios/report.md`; actual total cost remains unknown.
+
+## D270: separate final-answer quality, progress evidence and current-turn work (2026-10-26)
+
+**Decision:** Point-first and no-skill-names score final answers only. Keep progress as evidence and report possible progress problems without scores. Add clear-at-a-glance on every final answer. Accept a post-work review of approved work. Judge the current turn, using real applicability rather than earlier quality scores to decide not reached. Accept recommendations beside questions when the user keeps the choice, reasons or an explicit lack of basis, missing-note recovery and necessary clarification of the kind of result. Apply these rules throughout the fifteen scenarios. Compare the human-rated calibration twice before any broader scoring.
+
+**Why:** The first comparison mixed progress with final answers, review with renewed permission, and failed prerequisites with acceptable recovery. A main point can lead while the list of results is still hard to scan. Separate checks make those differences visible without grading a user's preferred wording.
+
+**Tested:** Static checks pass with 91 Python and 654 TypeScript tests, 89 valid YAML cases and 74 unchanged conversions. All fifteen scenarios use the three shared final-answer checks; the authored fixture inventory is 269, without AI pair validation. The calibration passes are incomplete: 12 of 58 and 15 of 58 judgments returned, all agreeing with the human; 11 shared judgments match. Repeated timeouts, including isolated diagnostic calls, prevent a full agreement result. Progress review flags seven entries without scoring them. Partial records and the report are in `/tmp/skillbook-calibration2/`. No broader scoring was run; judge calibration remains unresolved.

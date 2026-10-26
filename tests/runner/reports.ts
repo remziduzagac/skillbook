@@ -101,6 +101,8 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
         lines.push(`- ${name}: ${value === null ? "0 of 1; 1 unknown" : value ? "1 of 1" : "0 of 1"}`);
       if (r.sequencing_unknown) lines.push(`- order unknown from: ${r.sequencing_unknown}`);
       if (r.agents_unseen) lines.push("- An agent may have run unseen in the exec record.");
+      if (r.progress_findings?.length) lines.push("", "Unscored progress review:",
+        ...r.progress_findings.map((f: Event) => `- Turn ${f.turn} (${f.flags.join(", ")}): ${f.text}`));
       if (r.review?.length) {
         lines.push("", "Semantic review pending; passing automatic checks is not a full scenario verdict.");
         for (const item of r.review) lines.push(`- [ ] ${item}`);

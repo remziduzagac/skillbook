@@ -16,45 +16,48 @@ category: normal
 rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
 turns:
   - prompt: Read lease.md. Send a questionnaire I can forward to the landlord about the shop fit-out. It must make sense without our conversation.
-    purpose: Produce a self-contained answerable questionnaire that includes relevant known constraints and asks only unresolved landlord facts.
+    purpose: "Produce a self-contained answerable questionnaire that includes relevant known constraints and asks only unresolved landlord facts. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:understand-clarify-questionnaire
-        criterion: Produce a self-contained answerable questionnaire that includes relevant known constraints and asks only unresolved landlord facts.
+        criterion: "Produce a self-contained answerable questionnaire that includes relevant known constraints and asks only unresolved landlord facts. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
   - prompt: "The landlord confirms lease.md as written. Budget $3000, move next month, two staff. Help plan level by level. Start on the ground floor and ask only what must be settled there."
-    purpose: "Stay at the first level, use supplied facts, ask necessary user-owned ground-floor choices and stop before the next level."
+    purpose: "Stay at the first level, use supplied facts, ask necessary user-owned ground-floor choices and stop before the next level. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:understand-clarify-deep
-        criterion: "Stay at the first level, use supplied facts, ask necessary user-owned ground-floor choices and stop before the next level."
+        criterion: "Stay at the first level, use supplied facts, ask necessary user-owned ground-floor choices and stop before the next level. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
   - prompt: "Ground floor: keep the counter by the door, no new fixtures or signs, use freestanding shelves. That settles it. Move to upper-floor storage now."
-    purpose: "Treat ground floor as settled, move one level to storage, ask relevant storage choices without inventing user answers."
+    purpose: "Treat ground floor as settled, move one level to storage, ask relevant storage choices without inventing user answers. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
     rubric:
       - id: point
         tag: habit:point-first
-        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
+      - id: glance
+        tag: habit:clear-at-a-glance
+        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
       - id: scope
         tag: habit:requested-scope
-        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
-        depends_on:
-          &depends_on
-          turn: 2
-          check: behavior
+        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
       - id: behavior
         tag: skill:understand-clarify-deep
-        criterion: "Treat ground floor as settled, move one level to storage, ask relevant storage choices without inventing user answers."
-        depends_on:
-          *depends_on
+        criterion: "Treat ground floor as settled, move one level to storage, ask relevant storage choices without inventing user answers. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
 suite: short

@@ -18,6 +18,7 @@ import { agentCommand } from "./agents";
 import { parse_events, sessionId, turn_parts, action_evidence, redact } from "./trace";
 import { cost, DEFAULT_MODELS } from "./cost";
 import { check } from "./checks";
+import { progressFindings } from "./progress";
 import { structuredCall, simulate, fit, rubricJudge, judgeEvidence } from "./scenario";
 import { evaluateTagged, score, scoreRuns } from "./scoring";
 import { runStatus, summarize } from "./reports";
@@ -130,6 +131,8 @@ export async function runOne(
       observation.tmp_listing = ran.tmp;
       const currentText = fixtureText(work),
         [final, between] = turn_parts(agent, turnEvents);
+      observation.final_answer = final;
+      observation.between_tools = between;
       const tagged = evaluateTagged(turn.tagged_checks ?? [], observation, taggedHistory, c.fixture, ran.tmp_paths);
       for (const t of tagged) taggedHistory[`${i}:${t.id}`] = t.verdict;
       result.turns.push({
@@ -159,7 +162,7 @@ export async function runOne(
         else if (!args.judge || failed) judgment = { id: rubric.id, tag: rubric.tag, verdict: null,
           reason: failed ? "incomplete turn" : "calibrated judge not enabled" };
         else {
-          try { judgment = await rubricJudge(call, { rubric, answer: observation.answer,
+          try { judgment = await rubricJudge(call, { rubric, answer: final,
             evidence: judgeEvidence(result.turns, result.fixture_sources) }); }
           catch (error) { judgment = { id: rubric.id, tag: rubric.tag, verdict: null, reason: String(error) }; }
         }
@@ -189,6 +192,7 @@ export async function runOne(
     result.error = `runner error: ${String(error)}`;
     result.cost_unknown = true;
   } finally {
+    result.progress_findings = progressFindings(result.turns);
     result.run_checks = c.suite && c.checks.names_no_skill ? [{
       id: "no-skill-names", tag: "habit:no-skill-names",
       verdict: result.checks["answer names no skill or skill file"] ?? null,
