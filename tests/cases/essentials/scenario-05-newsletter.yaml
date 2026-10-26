@@ -1,0 +1,61 @@
+about: Fact-check and improve a newsletter.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Fact-check and improve a newsletter.
+fixture: scenarios/newsletter
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    source: sources.md is the original project record. Do not invent external figures.
+  mode: fixed
+skills:
+  - act-rightsize-enrich
+  - respond-explain
+  - understand-research-fact
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: Check each claim in draft.md against sources.md. Give a verdict and evidence for each; do not edit yet.
+    purpose: "Give a sourced verdict for all three claims, distinguish visits from visitors and reject unsupported universals."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-research-fact
+        criterion: "Give a sourced verdict for all three claims, distinguish visits from visitors and reject unsupported universals."
+  - prompt: Add the missing figures to draft.md using only sources.md; retain the topic and make uncertainty clear.
+    purpose: Propose the concrete additions from checked source facts and end before writing an unapproved filling list.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:act-rightsize-enrich
+        criterion: Propose the concrete additions from checked source facts and end before writing an unapproved filling list.
+  - prompt: "I do not get your second point about the figures. Explain it another way, without changing the draft."
+    purpose: "Explain the prior second point in a different way, using a concrete example rather than repeating it."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on
+          turn: 2
+          check: behavior
+      - id: behavior
+        tag: skill:respond-explain
+        criterion: "Explain the prior second point in a different way, using a concrete example rather than repeating it."
+        depends_on:
+          *depends_on
+suite: short

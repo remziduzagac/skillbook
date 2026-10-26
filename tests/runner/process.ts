@@ -1,5 +1,6 @@
 import { spawn, spawnSync } from "node:child_process";
-import { readFileSync, readdirSync, lstatSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync, lstatSync, existsSync, mkdtempSync, writeFileSync, openSync, closeSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join, relative } from "node:path";
 import { MARKER } from "./paths";
 import { redact } from "./trace";
@@ -122,15 +123,31 @@ export async function runTurn(
   env: NodeJS.ProcessEnv,
   timeout: number,
   groups: number[],
+  input?: string,
 ): Promise<TurnExecution> {
-  const proc = spawn(cmd[0]!, cmd.slice(1), { cwd: work, env, detached: true, stdio: ["ignore", "pipe", "pipe"] });
+  let inputFd: number | undefined;
+  if (input !== undefined) {
+    const folder = mkdtempSync(join(env.TMPDIR ?? tmpdir(), "skillbook-stdin-"));
+    try {
+      const path = join(folder, "input");
+      writeFileSync(path, input, { mode: 0o600 });
+      inputFd = openSync(path, "r");
+    } finally { rmSync(folder, { recursive: true, force: true }); }
+  }
+  // A read descriptor avoids dropped writes in Bun's child-process stdin adapter.
+  let proc: ReturnType<typeof spawn>;
+  try {
+    proc = spawn(cmd[0]!, cmd.slice(1), {
+      cwd: work, env, detached: true, stdio: [inputFd ?? "ignore", "pipe", "pipe"],
+    });
+  } finally { if (inputFd !== undefined) closeSync(inputFd); }
   let stdout = "",
     stderr = "",
     timedOut = false,
     spawnError: Error | undefined;
   if (proc.pid) groups.push(proc.pid);
-  proc.stdout.on("data", (b) => (stdout += b));
-  proc.stderr.on("data", (b) => (stderr += b));
+  proc.stdout!.on("data", (b) => (stdout += b));
+  proc.stderr!.on("data", (b) => (stderr += b));
   let exited = false,
     status: number | null = null;
   proc.on("exit", (code) => {
@@ -152,8 +169,8 @@ export async function runTurn(
     await cleanup;
     proc.kill("SIGKILL");
     // A foreign process holding the pipes cannot keep this turn alive forever.
-    proc.stdout.destroy();
-    proc.stderr.destroy();
+    proc.stdout!.destroy();
+    proc.stderr!.destroy();
   }, timeout * 1000);
   await new Promise<void>((resolve) => {
     proc.once("close", () => resolve());

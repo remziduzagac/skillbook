@@ -1,13 +1,17 @@
+import { scoreRuns } from "./scoring";
 import { readFileSync } from "node:fs";
 import { walk } from "./inventory";
 import type { Event } from "./types";
 export function runStatus(r: Event) {
+  const semantic = (r.turns ?? []).flatMap((t: Event) => [...(t.tagged_checks ?? []), ...(t.judgments ?? [])]);
   const failed = Object.entries(r.checks ?? {})
       .filter(([, v]) => v === false)
       .map(([n]) => n),
     unknown = Object.entries(r.checks ?? {})
       .filter(([, v]) => v === null)
       .map(([n]) => n);
+  failed.push(...semantic.filter((s: Event) => s.verdict === false).map((s: Event) => `${s.tag}/${s.id}`));
+  unknown.push(...semantic.filter((s: Event) => s.verdict === null).map((s: Event) => `${s.tag}/${s.id}`));
   let status = r.error
     ? "error"
     : failed.length
@@ -42,6 +46,29 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
     "Results are per agent and model. Automatic checks leave semantic review pending.",
     "",
   ];
+  for (const [group, scores] of Object.entries(scoreRuns(results as any))) {
+    lines.push(`## Scores: ${group}`, "", "95% Wilson intervals over scored checks; correlated turns are not independent trials.", "");
+    for (const [tag, s] of Object.entries(scores))
+      lines.push(`- ${tag}: ${s.passed}/${s.total}; ${s.rate === null ? "unknown" : (100*s.rate).toFixed(1)+"%"}; ` +
+        `95% ${(100*s.interval[0]).toFixed(1)}–${(100*s.interval[1]).toFixed(1)}%; ` +
+        `${s.unknown} unknown; ${s.not_reached} not reached`);
+    lines.push("");
+  }
+  const fits: Record<string, { off: number; unknown: number; total: number }> = {};
+  for (const r of results) if (r.user_mode === "fixed") {
+    const counts = fits[r.case] ??= { off: 0, unknown: 0, total: 0 };
+    const before = counts.total;
+    for (const t of r.turns ?? []) if (t.fit) {
+      counts.total++;
+      counts.off += Number(t.fit.off_script === true);
+      counts.unknown += Number(t.fit.off_script === null);
+    }
+    const missing = Math.max(0, (r.expected_turns ?? r.turns.length) - 1 - (counts.total - before));
+    counts.total += missing;
+    counts.unknown += missing;
+  }
+  lines.push("## Fixed-script fit", "", ...Object.entries(fits).map(([id, s]) =>
+    `- ${id}: ${s.off} off-script / ${s.total} transitions; ${s.unknown} unknown`), "");
   const pairs = [...new Set(results.map((r) => JSON.stringify([r.agent, r.model])))].sort();
   const failures: Record<string, Set<string>> = {};
   for (const pair of pairs) {
@@ -80,6 +107,10 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
       }
       for (const [i, t] of (r.turns ?? []).entries()) {
         lines.push("", `Run ${r.run}, turn ${i + 1}, final answer:`, "", t.final_answer ?? t.answer ?? "(No answer.)");
+        lines.push("", "Scripted message: " + (t.scripted_message ?? ""),
+          "Sent message: " + (t.sent_message ?? ""), "Steered: " + String(t.steered ?? false));
+        if (t.fit) lines.push("Fit: " + JSON.stringify(t.fit));
+        if (t.judgments?.length) lines.push("Rubric results: " + JSON.stringify(t.judgments));
         if (t.between_tools?.length)
           lines.push("", "Text written between tool calls (also visible to the user):", "", ...t.between_tools);
         if (t.trace_complete === false) lines.push("", "Trace incomplete; absence of an action is not established.");

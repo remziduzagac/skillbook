@@ -1,0 +1,105 @@
+about: Make a usable handbook without losing meaning.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Make a usable handbook without losing meaning.
+fixture: scenarios/handbook
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    scope: "All five requested reorganization steps are approved, including creating files and replacing handbook.md with navigation. No source facts may be dropped."
+  mode: fixed
+skills:
+  - organize-cluster
+  - organize-compose
+  - organize-merge
+  - organize-normalize
+  - organize-split
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: Split handbook.md into topic pages and replace it with navigation. I approve this exact reorganization; preserve every instruction.
+    purpose: Split by topic and compare source and result to verify every instruction remains.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:organize-split
+        criterion: "Split by topic and compare source and result to verify every instruction remains. Evidence must compare the source content with resulting pages, not just list filenames."
+  - prompt: Merge the two duplicate rota contact sections into one page; I approve that specific merge.
+    purpose: Merge duplicate contact material without losing distinct facts; compare before and after.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on
+          turn: 1
+          check: behavior
+      - id: behavior
+        tag: skill:organize-merge
+        criterion: "Merge duplicate contact material without losing distinct facts; compare before and after. Evidence must compare the source content with resulting pages, not just list filenames."
+        depends_on:
+          *depends_on
+  - prompt: Use one shared contact block referenced from relevant pages; I approve that normalization.
+    purpose: Keep one authoritative contact block and update references without losing its meaning.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on1
+          turn: 2
+          check: behavior
+      - id: behavior
+        tag: skill:organize-normalize
+        criterion: "Keep one authoritative contact block and update references without losing its meaning. Evidence must compare the source content with resulting pages, not just list filenames."
+        depends_on:
+          *depends_on1
+  - prompt: "Add a parent page over the opening, safety and closing pages; I approve creating that parent."
+    purpose: "Create a meaningful parent over related pages, retaining the children and clear navigation."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on2
+          turn: 1
+          check: behavior
+      - id: behavior
+        tag: skill:organize-compose
+        criterion: "Create a meaningful parent over related pages, retaining the children and clear navigation. Evidence must compare the source content with resulting pages, not just list filenames."
+        depends_on:
+          *depends_on2
+  - prompt: Create an index grouping all handbook pages by their use; I approve it. Check every original fact remains reachable.
+    purpose: Group pages for navigation and verify original content remains reachable without changing its meaning.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on3
+          turn: 1
+          check: behavior
+      - id: behavior
+        tag: skill:organize-cluster
+        criterion: "Group pages for navigation and verify original content remains reachable without changing its meaning. Evidence must compare the source content with resulting pages, not just list filenames."
+        depends_on:
+          *depends_on3
+suite: short

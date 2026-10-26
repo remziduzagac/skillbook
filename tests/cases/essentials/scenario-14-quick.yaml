@@ -1,0 +1,81 @@
+about: Handle a series of quick requests proportionately.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Handle a series of quick requests proportionately.
+fixture: scenarios/quick
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    audience: Release announcement audience is club volunteers; release v1 adds saved searches. Rename is exactly local variable total to sum.
+  mode: fixed
+skills:
+  - respond
+  - respond-layout
+  - understand-clarify
+  - understand-clarify-shallow
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: "Rename the local variable total to sum in totals.py, preserving behavior."
+    purpose: Perform the exact unambiguous rename without clarification or unrelated edits.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-clarify
+        criterion: Perform the exact unambiguous rename without clarification or unrelated edits.
+    tagged_checks:
+      - id: rename
+        tag: skill:respond
+        assert:
+          changed:
+            - totals.py
+          file_contains:
+            totals.py:
+              - sum = 0
+              - sum \+= value
+              - return sum
+          only_changed:
+            - totals.py
+  - prompt: "Write the release announcement for v1, which adds saved searches."
+    purpose: Ask who the announcement is for before writing it; do not invent an audience.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-clarify-shallow
+        criterion: Ask who the announcement is for before writing it; do not invent an audience.
+  - prompt: "For club volunteers. Write the announcement. Then answer this quick question: how many sides does a triangle have?"
+    purpose: Give the requested brief announcement and factual answer with no unnecessary headings on the factual answer.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:respond
+        criterion: Give the requested brief announcement and factual answer with no unnecessary headings on the factual answer.
+  - prompt: Compare email and printed flyers for reaching our volunteers. Keep it readable in a narrow terminal.
+    purpose: Give a useful comparison whose lines and any table fit a narrow terminal; avoid a wide table.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:respond-layout
+        criterion: Give a useful comparison whose lines and any table fit a narrow terminal; avoid a wide table.
+suite: short

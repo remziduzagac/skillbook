@@ -16,6 +16,15 @@ export function validateCase(data: unknown): asserts data is CaseFile {
   const fixture = resolve(FIXTURES, c.fixture);
   if (relative(FIXTURES, fixture).startsWith("..") || !existsSync(fixture))
     throw Error(`no fixture named ${c.fixture}`);
+  if (c.suite) {
+    if (!c.goal?.trim() || !c.user?.description.trim() || !Object.keys(c.user.facts).length)
+      throw Error("scenario needs a goal, user description and facts");
+    if (c.suite === "short" && (c.turns.length < 3 || c.turns.length > 5))
+      throw Error("short scenario needs three to five turns");
+    for (const turn of c.turns) if (!turn.purpose?.trim() ||
+      !["habit:point-first", "habit:requested-scope"].every(tag => turn.rubric?.some(r => r.tag === tag)))
+      throw Error("scenario turns need purposes and both shared habit checks");
+  }
   if (c.routing_only) {
     const checks = [c.checks ?? {}, c.turns[0]!.checks ?? {}];
     if (
@@ -29,10 +38,10 @@ export function validateCase(data: unknown): asserts data is CaseFile {
   const ids = new Map<number, Set<string>>();
   for (const [i, t] of c.turns.entries()) {
     const current = new Set<string>();
-    for (const tagged of t.tagged_checks ?? []) {
+    for (const tagged of [...(t.tagged_checks ?? []), ...(t.rubric ?? [])]) {
       if (current.has(tagged.id)) throw Error("duplicate tagged check id");
       current.add(tagged.id);
-      if (!tagged.id.trim() || !tagged.tag.trim() || !Object.keys(tagged.assert).length)
+      if (!tagged.id.trim() || !tagged.tag.trim() || ("assert" in tagged ? !Object.keys(tagged.assert).length : !tagged.criterion.trim()))
         throw Error("tagged checks need an id, a tag and a nonempty assertion");
       const dep = tagged.depends_on;
       if (dep && (!Number.isInteger(dep.turn) || dep.turn < 1 || dep.turn > i || !ids.get(dep.turn)?.has(dep.check)))
@@ -61,6 +70,7 @@ export function validateCase(data: unknown): asserts data is CaseFile {
       ...(checks.changed ?? []),
       ...(checks.unchanged ?? []),
       ...(checks.removed ?? []),
+      ...(checks.absent ?? []),
       ...(checks.shorter ?? []),
       ...Object.keys(checks.file_contains ?? {}),
     ])

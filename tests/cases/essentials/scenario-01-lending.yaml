@@ -1,0 +1,84 @@
+about: Design a neighbourhood lending scheme.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Design a neighbourhood lending scheme.
+fixture: scenarios/lending
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    choices: "Thirty households, garden tools only, paper signup at the hall, no deposits, volunteers staff Saturday mornings. Design only; no launch approved."
+  mode: fixed
+skills:
+  - devise-design
+  - devise-design-review
+  - devise-plan
+  - respond-ask
+  - understand-clarify-shallow
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: Help us lend things around the neighbourhood.
+    purpose: Ask about user-owned choices needed for a design; end with the questions and do not answer them yourself.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-clarify-shallow
+        criterion: Ask about user-owned choices needed for a design; end with the questions and do not answer them yourself.
+      - id: extra-1
+        tag: skill:respond-ask
+        criterion: Ask only questions the user can answer; never supply their answers.
+  - prompt: "We have thirty households, garden tools only, paper signup at the hall, no deposits, volunteers on Saturday mornings. Those are my choices. Design the scheme; do not launch it."
+    purpose: "Give a coherent design with reasons for material choices, using the supplied constraints."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:devise-design
+        criterion: "Give a coherent design with reasons for material choices, using the supplied constraints."
+  - prompt: Review that design for weak points and show the revisions you recommend; change no files.
+    purpose: Review the actual design against its goals; explain concrete weaknesses and reasons for revisions.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on
+          turn: 2
+          check: behavior
+      - id: behavior
+        tag: skill:devise-design-review
+        criterion: Review the actual design against its goals; explain concrete weaknesses and reasons for revisions.
+        depends_on:
+          *depends_on
+  - prompt: "Give me the setup plan for that scheme, including dependencies. Show the plan and stop before setup."
+    purpose: "Show an actionable ordered plan with dependencies, then end the turn without setup changes."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on1
+          turn: 2
+          check: behavior
+      - id: behavior
+        tag: skill:devise-plan
+        criterion: "Show an actionable ordered plan with dependencies, then end the turn without setup changes."
+        depends_on:
+          *depends_on1
+suite: short

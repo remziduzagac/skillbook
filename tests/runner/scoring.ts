@@ -9,7 +9,10 @@ export function evaluateTagged(
 ): TaggedResult[] {
   return checks.map((c) => {
     const dep = c.depends_on;
-    if (dep && earlier[`${dep.turn}:${dep.check}`] !== true) return { id: c.id, tag: c.tag, verdict: "not reached" };
+    if (dep && earlier[`${dep.turn}:${dep.check}`] !== true) return {
+      id: c.id, tag: c.tag,
+      verdict: earlier[`${dep.turn}:${dep.check}`] === null ? null : "not reached",
+    };
     const verdicts = Object.values(check(c.assert, observation, fixture, tmp));
     return { id: c.id, tag: c.tag, verdict: verdicts.includes(false) ? false : verdicts.includes(null) ? null : true };
   });
@@ -61,12 +64,12 @@ export async function judgeRubric(judge: RubricJudge, request: JudgeRequest) {
 }
 
 export function scoreRuns(
-  runs: { agent: string; model: string; turns: { tagged_checks?: TaggedResult[]; judgments?: TaggedResult[] }[] }[],
+  runs: { agent: string; model: string; user_mode?: string; unreached_turn_checks?: TaggedResult[]; run_checks?: TaggedResult[]; turns: { tagged_checks?: TaggedResult[]; judgments?: TaggedResult[] }[] }[],
 ) {
   const groups: Record<string, TaggedResult[]> = {};
   for (const run of runs) {
-    const key = `${run.agent}/${run.model}`;
-    (groups[key] ??= []).push(...run.turns.flatMap((t) => [...(t.tagged_checks ?? []), ...(t.judgments ?? [])]));
+    const key = `${run.agent}/${run.model}${run.user_mode ? "/" + run.user_mode : ""}`;
+    (groups[key] ??= []).push(...run.turns.flatMap((t) => [...(t.tagged_checks ?? []), ...(t.judgments ?? [])]), ...(run.unreached_turn_checks ?? []), ...(run.run_checks ?? []));
   }
   return Object.fromEntries(Object.entries(groups).map(([key, rows]) => [key, score(rows)]));
 }

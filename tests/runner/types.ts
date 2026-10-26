@@ -6,6 +6,7 @@ export interface Checks {
   changed?: string[];
   unchanged?: string[];
   removed?: string[];
+  absent?: string[];
   only_changed?: string[];
   file_contains?: Record<string, string[]>;
   shorter?: string[];
@@ -32,16 +33,20 @@ export interface Rubric {
   id: string;
   tag: string;
   criterion: string;
+  depends_on?: { turn: number; check: string };
 }
 export interface Turn {
   prompt: string;
   purpose?: string;
+  fresh_session?: boolean;
   checks?: Checks;
   tagged_checks?: TaggedCheck[];
   rubric?: Rubric[];
 }
 export interface CaseFile {
   about?: string;
+  goal?: string;
+  suite?: "short" | "master";
   design?: string;
   source?: string;
   fixture: string;
@@ -97,11 +102,17 @@ export interface Observation {
   changed_files: boolean;
   sequencing_unknown: string;
   files: Record<string, string | null>;
+  paths_present?: Record<string, boolean | null>;
   left_running?: string[] | null;
   [key: string]: any;
 }
 export interface Options {
   case: string;
+  suite?: "short" | "master";
+  user_mode?: "fixed" | "simulated";
+  judge?: boolean;
+  calibration?: string;
+  rubric_validation?: string;
   agents: Agent[];
   runs: number;
   model: string[];
@@ -148,4 +159,5 @@ export interface RunResult {
   review: string[];
   turns: TurnResult[];
   routing_only: boolean;
+  run_checks?: TaggedResult[];
 }

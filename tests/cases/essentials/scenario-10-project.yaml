@@ -1,0 +1,76 @@
+about: Prepare museum labels over two sessions.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Prepare museum labels over two sessions.
+fixture: scenarios/project
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    scope: Source dates and names in source.md. Only two labels are approved. Fresh session resumes solely from files and carryover note.
+  mode: fixed
+skills:
+  - act-verify
+  - coordinate-carryover
+  - coordinate-learn
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: Write two short museum labels in labels.md from source.md. I approve that file and the order A then B; retain uncertain dates.
+    purpose: "Produce both accurate labels, retaining the uncertain date and unknown maker; check against the catalogue."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:act-verify
+        criterion: "Produce both accurate labels, retaining the uncertain date and unknown maker; check against the catalogue."
+  - prompt: Stopping for today. Write a carryover note at carryover.md so a fresh session can continue without this conversation.
+    purpose: "Write a self-contained carryover with goal, files, completed work, uncertainty and next steps; keep approvals bounded."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:coordinate-carryover
+        criterion: "Write a self-contained carryover with goal, files, completed work, uncertainty and next steps; keep approvals bounded."
+  - prompt: Read carryover.md and resume. Check the actual files and tell me the current next step; do not redo completed work.
+    purpose: "Resume from the note and actual files without relying on old conversation, recheck state and avoid duplicate work."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on
+          turn: 2
+          check: behavior
+      - id: behavior
+        tag: skill:coordinate-carryover
+        criterion: "Resume from the note and actual files without relying on old conversation, recheck state and avoid duplicate work."
+        depends_on:
+          *depends_on
+    fresh_session: true
+  - prompt: "What did we learn? Propose useful reusable lessons and where each belongs, without saving them yet."
+    purpose: Propose evidence-based reusable lessons with a destination for each; do not persist them without approval.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:coordinate-learn
+        criterion: Propose evidence-based reusable lessons with a destination for each; do not persist them without approval.
+suite: short
+checks:
+  names_no_skill: false

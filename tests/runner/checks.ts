@@ -103,6 +103,7 @@ export function check(
     out[`no supported read observed for ${n}`] = !(result.reads ?? []).includes(n);
   if (checks.no_changes) out["no changes"] = !delta.length;
   for (const p of checks.unchanged ?? []) out[`unchanged ${p}`] = !delta.some((c) => c.slice(c.indexOf(" ") + 1) === p);
+  for (const p of checks.absent ?? []) out[`absent ${p}`] = result.paths_present?.[p] == null ? null : !result.paths_present[p];
   for (const p of checks.removed ?? []) out[`removed ${p}`] = delta.includes(`removed ${p}`);
   for (const p of checks.changed ?? []) out[`changed ${p}`] = paths.includes(p);
   const stated = checks.states_before_change;
@@ -146,7 +147,8 @@ export function check(
     out[`temporary folder lacks /${p}/`] = tmp === null ? null : !tmp.some((x) => matches(p, x));
   for (const p of checks.answer_contains ?? []) out[`answer has /${p}/`] = matches(p, answer);
   for (const p of checks.answer_not_contains ?? []) out[`answer lacks /${p}/`] = !matches(p, answer);
-  if (checks.names_no_skill) out["answer names no skill or skill file"] = !names_skill(answer, result.agent);
+  if (checks.names_no_skill) out["answer names no skill or skill file"] = result.turns?.length ?
+    result.turns.every((turn: Observation) => !names_skill(turn.answer, result.agent)) : !names_skill(answer, result.agent);
   for (const p of checks.agent_started_or_answer ?? [])
     out[`an agent was started, or the answer has /${p}/`] =
       result.agents_started || matches(p, answer) ? true : result.agents_unseen ? null : false;

@@ -116,3 +116,24 @@ test("scheduler stops at known budget and tracks unknown cost separately", async
     rmSync(out, { recursive: true, force: true });
   }
 });
+
+test("fresh-session turns retain work files but never resume the prior conversation", async () => {
+  const out = mkdtempSync(join(tmpdir(), "runner-fresh-"));
+  const commands: string[][] = [];
+  const c = sample();
+  c.turns[1]!.fresh_session = true;
+  try {
+    const result = await runOne(c, "codex", "gpt-6-luna", 1, args(), out, 1, async (command, work) => {
+      commands.push(command);
+      expect(existsSync(join(work, "NOTES.md"))).toBe(true);
+      return { stdout: [JSON.stringify({ type: "thread.started", thread_id: "old-session" }),
+        JSON.stringify(message(commands.length === 1 ? "first" : "second")),
+        JSON.stringify({ type: "turn.completed", usage: { input_tokens: 10, output_tokens: 2 } })].join("\n"),
+        status: 0, stderr: "", left: [], left_why: null, tmp: null, tmp_paths: null };
+    });
+    expect(result.error).toBeNull();
+    expect(commands[1]).not.toContain("resume");
+    expect(commands[1]).not.toContain("old-session");
+    expect(result.turns[1].fresh_session).toBe(true);
+  } finally { rmSync(out, { recursive: true, force: true }); }
+});

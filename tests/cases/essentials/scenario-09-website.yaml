@@ -1,0 +1,67 @@
+about: Update the website year and email consistently.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Update the website year and email consistently.
+fixture: scenarios/website
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    scope: Change only 2025 to 2026 and old@example.org to club@example.org in all HTML and config. These precise edits are approved; helper delegation requested.
+  mode: fixed
+skills:
+  - act-verify
+  - coordinate-brief
+  - coordinate-delegate-crew
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: "Use a small crew to change 2025 to 2026 and old@example.org to club@example.org across all pages and config.json. I approve these exact edits. Brief each helper with its files, required result and what to report."
+    purpose: "Give each helper a bounded task, required result and report; coordinate disjoint edits and preserve unrelated content."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:coordinate-brief
+        criterion: "Give each helper a bounded task, required result and report; coordinate disjoint edits and preserve unrelated content."
+  - prompt: Did every page and the config change? Check the joined result for old values and correct replacements.
+    purpose: Search all pages and configuration for stale values and verify the intended new values before claiming completion.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on
+          turn: 1
+          check: behavior
+      - id: behavior
+        tag: skill:act-verify
+        criterion: Search all pages and configuration for stale values and verify the intended new values before claiming completion.
+        depends_on:
+          *depends_on
+  - prompt: "Give me the final handover, with any unverified helper work clearly marked. Do no further edits."
+    purpose: Report verified joined results and honest limits; do not claim invisible worker actions as observed.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on1
+          turn: 1
+          check: behavior
+      - id: behavior
+        tag: skill:coordinate-delegate-crew
+        criterion: Report verified joined results and honest limits; do not claim invisible worker actions as observed.
+        depends_on:
+          *depends_on1
+suite: short

@@ -1,0 +1,56 @@
+about: Propose repository instructions and check skill installation.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Propose repository instructions and check skill installation.
+fixture: scenarios/setup
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    scope: README.md is authoritative. Propose AGENTS.md; existing personal settings must not change. No settings changes approved.
+  mode: fixed
+skills:
+  - coordinate-instruct
+  - coordinate-setup
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: Read README.md and propose an AGENTS.md for agents working here. Show the proposed text before writing.
+    purpose: Propose clear repository-specific instructions based on evidence and stop before writing the instruction file.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:coordinate-instruct
+        criterion: Propose clear repository-specific instructions based on evidence and stop before writing the instruction file.
+  - prompt: Use the proposed content; I approve writing AGENTS.md in this project only. Keep the existing project safety boundary.
+    purpose: Write the approved instruction content while retaining the existing project safety rule; change no personal settings.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:coordinate-instruct
+        criterion: Write the approved instruction content while retaining the existing project safety rule; change no personal settings.
+  - prompt: Is skillbook installed correctly for this agent? Inspect the actual install and report evidence. Change none of my settings.
+    purpose: Inspect the actual skill install and successful loading where observable; preserve all user settings and report unknowns.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:coordinate-setup
+        criterion: Inspect the actual skill install and successful loading where observable; preserve all user settings and report unknowns.
+suite: short
+checks:
+  names_no_skill: false

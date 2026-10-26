@@ -153,6 +153,10 @@ export function observe(
     before_change: said,
     changed_files: changed || delta.length > 0,
     sequencing_unknown: uncertain,
+    paths_present: Object.fromEntries((checks.absent ?? []).map(p => {
+      try { lstatSync(join(work, p)); return [p, true]; }
+      catch (error: any) { return [p, error.code === "ENOENT" ? false : null]; }
+    })),
     files: Object.fromEntries([...paths].map((p) => [p, safeContent(work, p)])),
   };
 }

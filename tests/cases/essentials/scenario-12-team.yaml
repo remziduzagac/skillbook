@@ -1,0 +1,95 @@
+about: Agree the direction of a library reminder project.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Agree the direction of a library reminder project.
+fixture: scenarios/team
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    goal: "Reduce missed reservations without a new database this quarter. Open questions: reminder channel, timing, opt-out. User chooses email, day before, opt-out link in sequence."
+  mode: fixed
+skills:
+  - understand-brainstorm
+  - understand-discuss
+  - understand-frame
+  - understand-naming
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: "Read notes.md. What exactly are we building? Frame one problem, goal and scope; do not start implementation."
+    purpose: "Give one coherent problem, goal and bounded scope based on the competing needs."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-frame
+        criterion: "Give one coherent problem, goal and bounded scope based on the competing needs."
+  - prompt: "Give distinct approach and name options for that project, with reasons for the names. Do not pick for me."
+    purpose: "Offer materially different approaches and suitable differentiated names, not near-identical variants; leave the choice open."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-brainstorm
+        criterion: "Offer materially different approaches and suitable differentiated names, not near-identical variants; leave the choice open."
+      - id: extra-1
+        tag: skill:understand-naming
+        criterion: Give name options that differ in meaning or associations and explain their fit.
+  - prompt: "Go through channel, timing and opt-out one at a time. Start with channel and end this turn there."
+    purpose: "Discuss only channel, offer reasons and end with that item unresolved for the user."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-discuss
+        criterion: "Discuss only channel, offer reasons and end with that item unresolved for the user."
+  - prompt: Email. Settle channel and move to timing only; end there.
+    purpose: "Respect email as settled, discuss timing alone and end on that item."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on
+          turn: 3
+          check: behavior
+      - id: behavior
+        tag: skill:understand-discuss
+        criterion: "Respect email as settled, discuss timing alone and end on that item."
+        depends_on:
+          *depends_on
+  - prompt: The day before. Settle timing and discuss opt-out only; end there.
+    purpose: "Respect settled choices, discuss opt-out alone and stop for the user choice."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on1
+          turn: 4
+          check: behavior
+      - id: behavior
+        tag: skill:understand-discuss
+        criterion: "Respect settled choices, discuss opt-out alone and stop for the user choice."
+        depends_on:
+          *depends_on1
+suite: short

@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { validateRubricReport } from "./rubric-fixtures";
+import { requireCalibration } from "./calibration";
 import { parseArgs as parse } from "node:util";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
@@ -23,6 +26,11 @@ export function parseArgs(argv: string[]): Options {
   const { values: v } = parse({
     args: expanded,
     options: {
+      suite: { type: "string" },
+      "user-mode": { type: "string" },
+      "rubric-validation": { type: "string" },
+      calibration: { type: "string" },
+      judge: { type: "boolean", default: false },
       case: { type: "string", default: "" },
       agents: { type: "string", default: "claude,codex" },
       runs: { type: "string", default: "0" },
@@ -50,7 +58,14 @@ export function parseArgs(argv: string[]): Options {
     if (!Number.isFinite(n) || n < minimum || (integer && !Number.isInteger(n))) throw Error(`invalid --${name}`);
     return n;
   };
+  if (v.suite && !["short", "master"].includes(v.suite)) throw Error("invalid --suite");
+  if (v["user-mode"] && !["fixed", "simulated"].includes(v["user-mode"])) throw Error("invalid --user-mode");
   return {
+    suite: v.suite as Options["suite"],
+    user_mode: v["user-mode"] as Options["user_mode"],
+    judge: v.judge,
+    calibration: v.calibration,
+    rubric_validation: v["rubric-validation"],
     case: v.case!,
     agents,
     runs: number("runs", 0, true),
@@ -75,7 +90,7 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
     console.log(
       "bun tests/run.ts [--case TEXT] [--agents claude,codex] [--model agent=model] " +
         "[--runs N] [--jobs N] [--budget USD] [--timeout SECONDS] [--login] [--keep] [--out DIR] " +
-        "[--dry-run] [--yes] [--validate] [--coverage] [--summary] [--to-judge DIR]",
+        "[--suite short|master] [--user-mode fixed|simulated] [--judge --calibration FILE --rubric-validation FILE] [--dry-run] [--yes] [--validate] [--coverage] [--summary] [--to-judge DIR]",
     );
     return 0;
   }
@@ -85,7 +100,7 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
     return 0;
   }
   const all = loadCases(),
-    cases = all.filter((c) => c.id.includes(args.case));
+    cases = all.filter((c) => c.id.includes(args.case) && (!args.suite || c.suite === args.suite));
   if (args.validate) {
     console.log(`${all.length} YAML cases valid; ${compareConversions()} TOML conversions identical`);
     return 0;
@@ -107,8 +122,12 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
     for (const [c, a, m, n] of plan) console.log(`  ${c.id} ${a} ${m} run ${n}`);
     return 0;
   }
-  if (cases.some((c) => c.user?.mode === "simulated"))
-    throw Error("simulated user execution is deferred to the scenario layer");
+
+  if (args.judge) {
+    console.log("Judge calibration:", requireCalibration(args.calibration));
+    if (!args.rubric_validation) throw Error("--judge needs --rubric-validation FILE");
+    console.log("Rubric trace judgments:", validateRubricReport(JSON.parse(readFileSync(args.rubric_validation, "utf8"))));
+  }
   const usable = plan.filter(([, a]) => {
     const problem = loginProblem(a, args.login);
     if (problem) console.log(`skipping ${a}: ${problem}`);

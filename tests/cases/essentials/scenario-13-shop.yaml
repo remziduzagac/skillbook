@@ -1,0 +1,60 @@
+about: Plan a shop move within landlord constraints.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Plan a shop move within landlord constraints.
+fixture: scenarios/shop
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    choices: "Ground floor shop, upper storage; no drilling, delivery window 08–10 weekdays, signs need written approval. Budget $3000, move next month, two staff. User wants a questionnaire first, then ground level before upper level."
+  mode: fixed
+skills:
+  - understand-clarify-deep
+  - understand-clarify-questionnaire
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: Read lease.md. Send a questionnaire I can forward to the landlord about the shop fit-out. It must make sense without our conversation.
+    purpose: Produce a self-contained answerable questionnaire that includes relevant known constraints and asks only unresolved landlord facts.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-clarify-questionnaire
+        criterion: Produce a self-contained answerable questionnaire that includes relevant known constraints and asks only unresolved landlord facts.
+  - prompt: "The landlord confirms lease.md as written. Budget $3000, move next month, two staff. Help plan level by level. Start on the ground floor and ask only what must be settled there."
+    purpose: "Stay at the first level, use supplied facts, ask necessary user-owned ground-floor choices and stop before the next level."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-clarify-deep
+        criterion: "Stay at the first level, use supplied facts, ask necessary user-owned ground-floor choices and stop before the next level."
+  - prompt: "Ground floor: keep the counter by the door, no new fixtures or signs, use freestanding shelves. That settles it. Move to upper-floor storage now."
+    purpose: "Treat ground floor as settled, move one level to storage, ask relevant storage choices without inventing user answers."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on
+          turn: 2
+          check: behavior
+      - id: behavior
+        tag: skill:understand-clarify-deep
+        criterion: "Treat ground floor as settled, move one level to storage, ask relevant storage choices without inventing user answers."
+        depends_on:
+          *depends_on
+suite: short

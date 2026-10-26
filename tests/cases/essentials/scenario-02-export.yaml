@@ -1,0 +1,58 @@
+about: Fix an export that omits its final row.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Fix an export that omits its final row.
+fixture: scenarios/export
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    scope: Only export.py defect; test_export.py is the regression check. No refactor approved.
+  mode: fixed
+skills:
+  - act-cleanup
+  - act-verify
+  - understand-research-analyze
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: "Fix the export dropping its final row. Use test_export.py, keep the fix narrow and run the regression test."
+    purpose: Show evidence establishing the cause before the fix; fix only the defect and run a test that would fail on the old behavior.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-research-analyze
+        criterion: Show evidence establishing the cause before the fix; fix only the defect and run a test that would fail on the old behavior.
+      - id: extra-1
+        tag: skill:act-verify
+        criterion: Run the regression test after the narrow fix and support correctness with the observed result.
+  - prompt: Is it done? Check the current result before saying yes.
+    purpose: Use a fresh observed regression test result to support the completion claim; a prior result or reading is insufficient.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:act-verify
+        criterion: Use a fresh observed regression test result to support the completion claim; a prior result or reading is insufficient.
+  - prompt: Anything left over from your work? Remove your own temporary probes and scratch files.
+    purpose: Check for agent-created temporary material and remove it; preserve user source files and necessary regression tests.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:act-cleanup
+        criterion: Check for agent-created temporary material and remove it; preserve user source files and necessary regression tests.
+suite: short

@@ -1,0 +1,59 @@
+about: Shorten a board report while preserving budget evidence.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Shorten a board report while preserving budget evidence.
+fixture: scenarios/board
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    approval: Only the Repetition and Decorative history sections may be removed on turn two. Budget figures remain required.
+  mode: fixed
+skills:
+  - act-rightsize-enrich
+  - act-rightsize-lean
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: The board report is too long. Propose a specific cut list for report.md and stop before editing.
+    purpose: "Give a concrete cut list with reasons, then end the turn with no file changes."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:act-rightsize-lean
+        criterion: "Give a concrete cut list with reasons, then end the turn with no file changes."
+    tagged_checks:
+      - id: unchanged
+        tag: skill:act-rightsize-lean
+        assert:
+          no_changes: true
+  - prompt: "Approve only removing the Repetition and Decorative history sections. Apply those cuts, keep the rest."
+    purpose: "Apply exactly the approved cuts; preserve the decision, background and all budget numbers."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:act-rightsize-lean
+        criterion: "Apply exactly the approved cuts; preserve the decision, background and all budget numbers."
+  - prompt: The budget numbers are missing from your short answer. Add them from report.md to your answer.
+    purpose: "Supply quote 12400, contingency 1600, total 14000 and reserve 18000 from the source; invent no numbers."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:act-rightsize-enrich
+        criterion: "Supply quote 12400, contingency 1600, total 14000 and reserve 18000 from the source; invent no numbers."
+suite: short

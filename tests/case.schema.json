@@ -8,6 +8,16 @@
         "about": {
           "type": "string"
         },
+        "goal": {
+          "type": "string"
+        },
+        "suite": {
+          "type": "string",
+          "enum": [
+            "short",
+            "master"
+          ]
+        },
         "design": {
           "type": "string"
         },
@@ -163,6 +173,12 @@
             "type": "string"
           }
         },
+        "absent": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "only_changed": {
           "type": "array",
           "items": {
@@ -272,6 +288,9 @@
         "purpose": {
           "type": "string"
         },
+        "fresh_session": {
+          "type": "boolean"
+        },
         "checks": {
           "$ref": "#/definitions/Checks"
         },
@@ -340,6 +359,22 @@
         },
         "criterion": {
           "type": "string"
+        },
+        "depends_on": {
+          "type": "object",
+          "properties": {
+            "turn": {
+              "type": "number"
+            },
+            "check": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "turn",
+            "check"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [

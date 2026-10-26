@@ -1,0 +1,71 @@
+about: Choose a public website tool for a club.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Choose a public website tool for a club.
+fixture: scenarios/tools
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    needs: "requirements.md contains all constraints. No purchase, signup or installation authorized."
+  mode: fixed
+skills:
+  - understand-argue
+  - understand-challenge
+  - understand-research-survey
+  - understand-weigh
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: Read requirements.md and compare current website tools for our club. Use official sources and recommend one on the same criteria.
+    purpose: "Provide sourced alternatives and compare budget, editing and hosting needs on the same terms; give a reasoned recommendation."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:understand-research-survey
+        criterion: "Provide sourced alternatives and compare budget, editing and hosting needs on the same terms; give a reasoned recommendation."
+      - id: extra-1
+        tag: skill:understand-weigh
+        criterion: Recommend on the same stated criteria and give reasons for the trade-offs.
+  - prompt: Make the strongest case for your actual recommendation. Label this as the one-sided case; do not change the pick.
+    purpose: "Explicitly label a one-sided case for the actual prior pick, with supporting reasons rather than silently changing it."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on
+          turn: 1
+          check: behavior
+      - id: behavior
+        tag: skill:understand-argue
+        criterion: "Explicitly label a one-sided case for the actual prior pick, with supporting reasons rather than silently changing it."
+        depends_on:
+          *depends_on
+  - prompt: Now poke holes in that same recommendation and say what could change the choice.
+    purpose: "Attack the actual recommendation, give material objections and the conditions that would overturn it."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+        depends_on:
+          &depends_on1
+          turn: 1
+          check: behavior
+      - id: behavior
+        tag: skill:understand-challenge
+        criterion: "Attack the actual recommendation, give material objections and the conditions that would overturn it."
+        depends_on:
+          *depends_on1
+suite: short

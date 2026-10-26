@@ -1,0 +1,55 @@
+about: Summarize forty parking notes with independent perspectives.
+design: "blueprint/design/testing.md#scenario-layer"
+goal: Summarize forty parking notes with independent perspectives.
+fixture: scenarios/parking
+agents:
+  - codex
+user:
+  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  facts:
+    scope: Delegation is explicitly requested for forty notes and independent views; three-note lookup must stay local.
+  mode: fixed
+skills:
+  - coordinate-delegate
+  - coordinate-delegate-council
+  - coordinate-delegate-fanout
+category: normal
+rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+turns:
+  - prompt: "Summarize all forty notes in notes/. Use helpers for independent batches, then check and combine their findings."
+    purpose: "Partition the forty notes, combine supported findings, verify helper claims and preserve minority concerns; unseen helper activity stays unknown."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:coordinate-delegate-fanout
+        criterion: "Partition the forty notes, combine supported findings, verify helper claims and preserve minority concerns; unseen helper activity stays unknown."
+  - prompt: "Give three independent views on moving the meeting time: residents, traders and evening workers. Use separate helpers before combining; retain disagreements."
+    purpose: "Gather independent perspectives before combining, preserve substantive disagreements and check support; missing independent controls are reported honestly."
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:coordinate-delegate-council
+        criterion: "Gather independent perspectives before combining, preserve substantive disagreements and check support; missing independent controls are reported honestly."
+  - prompt: "Just search notes/01.md, notes/02.md and notes/03.md for meeting-time concerns. Use no helpers for this small lookup."
+    purpose: Search only the three named notes without agents; distinguish their concerns accurately.
+    rubric:
+      - id: point
+        tag: habit:point-first
+        criterion: The visible answer uses plain English and leads with the main point or required question. No unnecessary preamble.
+      - id: scope
+        tag: habit:requested-scope
+        criterion: "Do exactly what this user turn asks, respecting the prior settled choices and approval boundaries."
+      - id: behavior
+        tag: skill:coordinate-delegate
+        criterion: Search only the three named notes without agents; distinguish their concerns accurately.
+suite: short

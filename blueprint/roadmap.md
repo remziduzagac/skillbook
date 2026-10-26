@@ -50,3 +50,5 @@ Skill names stay dashed: slashed names were tried and lowered Luna's routing fro
 Sets are agent-agnostic: plan, delegate, carryover and setup use the current agent’s controls with generic fallbacks; agent-specific install locations stay in the installer design and docs (D267).
 
 The test runner moves to TypeScript on pinned Bun, with YAML checked by a generated schema and a conversation model ready for scenarios; Python and TOML stay for comparison, and a terminal view is a later idea (D268).
+
+The main behavioral layer becomes fifteen realistic conversations, with fixed and constrained simulated users, calibrated rubric judging and pooled scores with intervals (D269).

@@ -3588,6 +3588,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D247: Test runs are judged on Sonnet (2026-10-24)
 
+> **Amended by D269 (2026-10-26):** The scenario layer uses GPT-6.1-Sol, calibrated against human ratings before answer scoring.
+
 > **Amended by D263 (2026-10-25):** Reads-only routing cases are not semantically judged. Behavioral runs retain their normal fresh-judge requirement.
 
 **Decision:**
@@ -3769,6 +3771,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Luna still misses discuss's whole-first order and closing, and incomplete payloads to callers. Round 3 cost Luna about US$0.66 by the runner's estimate. Sol and judging cost are unknown.
 
 ## D253: Build the remaining batches before model testing (2026-10-25)
+
+> **Amended by D269 (2026-10-26):** Conversations become the main behavioral layer, with three Luna runs and one Sol run of each short scenario; existing cases remain source material.
 
 > **Amended by D263 (2026-10-25):** Routing is tested first in a separate reads-only layer. Behavioral answer judging follows after routing holds.
 
@@ -4053,3 +4057,11 @@ The runner moves to small TypeScript modules on a pinned Bun version. YAML cases
 Python and TOML stay untouched for comparison. Port unit tests first, compare converted data, replay saved logs, then run the converted sample on GPT-6 Luna through both runners within about US$1 at API prices. Unknown cost stays unknown. This avoids building the scenario features twice and gives the port evidence independent of model variation.
 
 Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, type checking, schema freshness and 74 identical YAML/TOML conversions. Saved logs give 5,544 matching verdicts of 5,544 across 2,169 runs, including all 296 verdicts from the two routing-step3 runs. Another 258 saved entries lack replayable logs or a current case. The concurrent GPT-6 Luna comparison completed all 74 cases in each runner with no runner errors or unknown costs, at an estimated US$0.466 combined. Automatic checks passed in 55 Python cases and 59 TypeScript cases; the independent runs differed on 16 checks across 13 cases. Replaying both sets of live logs gives 474 matching verdicts of 474. Deleted sandboxes use retained file observations and unknown temporary-folder evidence; semantic reviews remain pending. Scenarios and simulated-user execution were not built.
+
+## D269: realistic conversations are the main behavioral test layer (2026-10-26)
+
+**Decision:** Add fifteen scenarios, fourteen short and one festival master, to the Bun runner. Keep the existing cases and routing layer. Fixed scripts are the default; a constrained GPT-6.1-Sol user can adapt them. Check fit in fixed mode. Tag and pool checks by habit and skill, preserve not-reached and unknown results, and report intervals. Calibrate a GPT-6.1-Sol rubric judge with user-rated saved answers before scoring answers. Follow the fixed-first comparison and model schedule in the testing design. A terminal view remains a later idea.
+
+**Why:** A skill must work through a conversation with other skills. Isolated prompts do not show continuity, late loading or whether a later turn still tests the intended behavior. Script and fit evidence separate agent failures from user-mode failures.
+
+**Tested:** Static checks pass with 91 Python tests, 644 TypeScript tests, schema freshness, 89 valid YAML cases and 74 unchanged conversions. The 58 fixed runs and 26 simulated comparison runs recorded 325 of 332 planned turns; three Luna timeouts remain unknown. Earlier oversized-input and stdin-adapter failures led to a generic read-descriptor transport fix, verified with a 250 KB test and the completed Sol master. The 62 routing cases, Python runner and legacy cases remain. All 208 semantic criteria have synthetic correct/wrong fixtures, but human calibration and model validation of those fixtures remain pending. No semantic skill pass rates are established. Original and rescored evidence, mode recommendations and known-cost estimates are in `/tmp/skillbook-scenarios/report.md`; actual total cost remains unknown.
