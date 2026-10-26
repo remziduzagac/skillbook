@@ -32,6 +32,13 @@ turns:
         tag: skill:act-verify
         criterion: "Produce both accurate labels, retaining the uncertain date and unknown maker; check against the catalogue."
   - prompt: Stopping for today. Write a carryover note at carryover.md so a fresh session can continue without this conversation.
+    tagged_checks:
+      - id: saved-note
+        tag: skill:coordinate-carryover
+        assert:
+          changed: [carryover.md]
+          file_contains:
+            carryover.md: ["(?i:label)", "(?i:next|remaining)"]
     purpose: "Write a self-contained carryover with goal, files, completed work, uncertainty and next steps; keep approvals bounded."
     rubric:
       - id: point

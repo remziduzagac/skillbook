@@ -4,14 +4,14 @@ Routes delegation, brief writing, carryovers, agent instructions, skillbook setu
 
 ## Instructions
 
-- **delegate** (`coordinate-delegate`): **Read `coordinate-delegate` when work goes to another agent, or several agents should answer, search or change things.** Follow the main skill’s delegation advice.
+- **delegate** (`coordinate-delegate`): **Read `coordinate-delegate` when you start another agent now, or several agents should answer, search or change things.** Follow the main skill’s delegation advice.
   - Not for: writing the brief (`coordinate-brief`), continuing later (`coordinate-carryover`), or choosing whether an independent check is needed (`act-verify`, which calls delegate to start it).
   - Gives back: actual work and verification status, cost where needed, task status and cleanup results.
-- **brief** (`coordinate-brief`): **Read `coordinate-brief` when you write instructions for an agent starting work now, whether forked or fresh.**
-  - Not for: choosing the agent, model or cost (`coordinate-delegate`), or recording state for later (`coordinate-carryover`).
+- **brief** (`coordinate-brief`): **Read `coordinate-brief` when you write instructions for an agent you are starting now, whether forked or fresh.**
+  - Not for: choosing the agent, model or cost (`coordinate-delegate`), or recording state for later or an agent the user starts (`coordinate-carryover`).
   - Gives back: the brief and the report it asks the worker to return.
-- **carryover** (`coordinate-carryover`): **Read `coordinate-carryover` when you write or resume a record of work for a later session or agent, or offer a handoff at a boundary in a long continuing session.**
-  - Not for: starting a worker now (`coordinate-delegate` and `coordinate-brief`) or recording a lasting lesson (`coordinate-learn`).
+- **carryover** (`coordinate-carryover`): **Read `coordinate-carryover` when the user asks for a note, says work will continue in a fresh session, after a break or with another agent, or you resume a note or offer one at a boundary in a long continuing session.**
+  - Not for: a worker you start now (`coordinate-delegate` and `coordinate-brief`) or recording a lasting lesson (`coordinate-learn`).
   - Gives back: the note with its actual review and approval status, or the differences checked on resumption and the authorized work that continues.
 
 - **instruct** (`coordinate-instruct`): **Read `coordinate-instruct` when you add, update or prune instructions that agents read.**

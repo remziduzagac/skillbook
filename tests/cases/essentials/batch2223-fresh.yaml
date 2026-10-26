@@ -1,0 +1,35 @@
+source: 'Issues #22 and #23; D271 and D272'
+fixture: continuation-lab
+agents:
+- codex
+category: normal
+version_control: true
+about: Fresh-session continuation without a specified note path
+skills:
+- coordinate-carryover
+covers:
+- coordinate-carryover:rule:1
+- coordinate-carryover:rule:5
+- coordinate:route:coordinate-carryover
+- essentials:rule:2
+rejects: Asks whether or where to write, or names a note without saving it.
+review:
+- Asks whether or where to write, or names a note without saving it. Require the useful requested result, not a
+  refusal or a bare filename.
+- A saved carryover must preserve the goal, current files, uncertainty, remaining work and bounded approvals. Keep
+  independent review pending when unavailable.
+turns:
+- prompt: We will continue tomorrow in a fresh session. The unfinished exhibit work is in project.md.
+checks:
+  names_no_skill: false
+  answer_not_contains:
+  - (?i:where (?:should|would|do).*?(?:save|write)|what (?:file|path|location).*?(?:use|prefer)|may I write|shall
+    I write)
+  written_under: {"": 1}
+  unchanged:
+  - project.md
+  - AGENTS.md
+  answer_contains:
+  - '[0-9]{4}[-_]?[0-9]{2}[-_]?[0-9]{2}'
+  - '[-_][0-9]{2}[-:]?[0-9]{2}[-_.]'
+  - '[A-Za-z][A-Za-z0-9_-]*\.md'

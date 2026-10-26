@@ -1,0 +1,24 @@
+source: 'Issues #22 and #23; D271 and D272'
+fixture: continuation-lab
+agents:
+- codex
+category: normal
+version_control: true
+about: Ordinary stopping offers a note without writing
+skills:
+- coordinate-carryover
+covers:
+- coordinate-carryover:rule:1
+- essentials:rule:2
+rejects: Saves an unasked record or omits the offer despite unfinished work.
+review:
+- Saves an unasked record or omits the offer despite unfinished work. Require the useful requested result, not a
+  refusal or a bare filename.
+- Judge the before-change versus after-work and continuation versus ordinary-stopping boundary.
+turns:
+- prompt: Thanks, that’s all for today. The exhibit work in project.md is still unfinished.
+checks:
+  no_changes: true
+  answer_contains:
+  - (note|carryover|handoff)
+  names_no_skill: false

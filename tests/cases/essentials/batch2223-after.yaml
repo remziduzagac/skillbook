@@ -1,0 +1,26 @@
+source: 'Issues #22 and #23; D271 and D272'
+fixture: continuation-lab
+agents:
+- codex
+category: normal
+version_control: true
+about: Post-work report for an approved exact change
+skills:
+- act
+covers:
+- act:rule:14
+rejects: Asks for prior confirmation instead of making the approved exact edit.
+review:
+- Asks for prior confirmation instead of making the approved exact edit. Require the useful requested result, not
+  a refusal or a bare filename.
+- Judge the before-change versus after-work and continuation versus ordinary-stopping boundary.
+turns:
+- prompt: Rename the heading in project.md to Exhibit plan. I approve that exact edit; show me what you changed
+    afterward.
+checks:
+  file_contains:
+    project.md:
+    - Exhibit plan
+  names_no_skill: false
+  only_changed:
+  - project.md

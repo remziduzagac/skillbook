@@ -44,6 +44,8 @@ act/
   12. **The work, rightsized, by act's rightsize,** whose rule on the work is its one home; doing exactly what was asked stays rule 3 (D145, D149).
   13. **Multipart work goes through devise's plan,** which says whether a plan is needed, how deep it goes, whether it waits for the person, and how given steps are followed; this is the rule's one home, since going the wrong way costs the rework (D155). The test, from plan's first rule: work is multipart when it needs more than one step or part, as the agent sees it, whatever the wording; when unsure, it is treated as multipart. Devise's plan says how deep a plan goes and how given steps are followed; whether the plan waits for the person, for work that changes anything, is this rule's: before multipart work that changes anything, the plan is shown and the turn ends, since a plan seen after the work is too late to correct. The work goes ahead without a stop when the user gave the steps, told the agent to go ahead, or has just answered its questions, the plan then going in the final answer; work that only reads or answers needs no stop (D250). Not multipart: a change the person named exactly, with what it needs to work, such as a renamed function and its callers; checking the agent's own work is not a part; the person gave the steps when they listed each change; a helper started by another agent, with no person in its session, puts the plan in its report and goes ahead, since nobody there can reply (D250). The high-stakes approval in `devise-plan` is a stricter variation: given steps alone do not supply actual approval, and an existing approval is reused only within its scope and basis (D257). This replaces the one-line plan stated with the work starting (D215) and the line on the plan resting on the agent's choices (D248).
 
+  14. **When the user asks to see or confirm a change before it is made, propose it and end the turn.** This holds whatever the stakes, even when the exact change is small and easy to undo. A request to see what changed afterward asks for a report, not prior confirmation (D271).
+
   Instructions, one routing line per tool, read on demand (D134, D179):
 
   **Before acting:**
@@ -118,6 +120,7 @@ act/
   51. a request done by a means the person names, such as their own script or a paid service, where the agent sees a way it thinks better: the asked-for action shown as asked, in a proposal too, with the agent's way beside it as an option; wrong: only the agent's way proposed or done (D239).
   52. a harmless concern cannot change the agreed work or consent: give its line in the final answer, not a message paired with continuing; near miss, a concern that could change consent: ask through `respond-ask` and end the turn before acting (D258);
   53. a required notice has its own timing: preserve it even when the ordinary concern branch would report at the end (D258).
+  54. a small title change with “show me first” gets a concrete proposal and an ended turn, with the file unchanged. Near miss: “show me what you changed afterward” after an approved exact edit gets the edit and report.
 - **Open:** none known.
 
 ## stakes

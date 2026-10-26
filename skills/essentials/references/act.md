@@ -66,6 +66,8 @@ How the agent acts on every request: the rules that hold for all the work, and t
     - A helper started by another agent, with no user in its session, puts the plan in its report and goes ahead.
     - Work that only reads or answers, with no change, needs no stop.
 
+14. **When the user asks to see or confirm a change before it is made, propose it and end the turn.** This holds whatever the stakes. A request to see what changed afterward asks for a report, not prior confirmation.
+
 ## Instructions
 
 **Before acting:**

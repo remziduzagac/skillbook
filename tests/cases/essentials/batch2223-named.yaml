@@ -1,0 +1,31 @@
+source: 'Issues #22 and #23; D271 and D272'
+fixture: continuation-lab
+agents:
+- codex
+category: normal
+version_control: true
+about: Carryover written to the user’s named path
+skills:
+- coordinate-carryover
+covers:
+- coordinate-carryover:rule:1
+- coordinate-carryover:rule:5
+rejects: Proposes writing handoff.md instead of saving a substantive note.
+review:
+- Proposes writing handoff.md instead of saving a substantive note. Require the useful requested result, not a refusal
+  or a bare filename.
+- A saved carryover must preserve the goal, current files, uncertainty, remaining work and bounded approvals. Keep
+  independent review pending when unavailable.
+turns:
+- prompt: Write the carryover note to handoff.md for the unfinished exhibit work in project.md.
+checks:
+  file_contains:
+    handoff.md:
+    - exhibit
+    - (next|remaining)
+  names_no_skill: false
+  answer_not_contains:
+  - (?i:where (?:should|would|do).*?(?:save|write)|what (?:file|path|location).*?(?:use|prefer)|may I write|shall
+    I write)
+  changed:
+  - handoff.md

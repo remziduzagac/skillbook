@@ -54,3 +54,5 @@ The test runner moves to TypeScript on pinned Bun, with YAML checked by a genera
 The main behavioral layer becomes fifteen realistic conversations, with fixed and constrained simulated users, calibrated rubric judging and pooled scores with intervals (D269).
 
 Scenario checks separate final answers from unscored progress, add clear-at-a-glance and judge current-turn work with explicit recovery paths; calibration runs twice before broader scoring (D270).
+
+Explicit requests to see or confirm a change first require a proposal and an ended turn at every stake level (D271). Carryover writes when work continues without this conversation, using the specified or default path; an ordinary stopping message keeps the offer (D272).

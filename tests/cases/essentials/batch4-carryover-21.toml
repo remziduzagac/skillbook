@@ -1,12 +1,12 @@
 source = "blueprint/design/essentials/coordinate.md: carryover, test 21 (D260)"
-about = "no keeper loaded and no file named: the recommended file is named by the date and time, then a short topic (D162);"
+about = "An explicit request for a filename proposal without saving: recommend date, 24-hour time and topic; write nothing (D271)."
 fixture = "coordinate-lab"
 agents = ["codex"]
 skills = ["coordinate-carryover"]
 covers = ["coordinate-carryover:rule:5"]
 category = "normal"
 rejects = "Omits the requested concrete result, contradicts this scenario's boundary or reports a worker/approval/check as performed without evidence."
-review = ["no keeper loaded and no file named: the recommended file is named by the date and time, then a short topic (D162);", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
+review = ["An explicit request for a filename proposal without saving: recommend date, 24-hour time and topic; write nothing (D271).", "Requires the requested useful answer, draft, mapping or status with facts appropriate to this scenario. A bare method name or a refusal without the requested useful result does not pass. For reference workflows, evaluate proposed behavior, never infer a live interaction."]
 version_control = true
 
 [[turns]]

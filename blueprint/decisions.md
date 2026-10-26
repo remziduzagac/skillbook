@@ -1396,6 +1396,8 @@ Which questions to ask and how deep stay clarify's; when a proposal is needed an
 
 ## D115: The review's outcome: one home per rule, and the contradictions settled (2026-10-13)
 
+> **Amended by D272 (2026-10-26):** D272 changes when a carryover is requested and supplies a default save location; ordinary stopping still uses the offer.
+
 > **Amended by D261 (2026-10-25):** Crew uses current plan approval and setup prepares the complete proposal before mutations.
 
 > **Amended by D233 (2026-10-24):** the instructions-and-data rule's one home is act's rule 9, since data arrives on turns that never load guardrails; guardrails points there.
@@ -1818,6 +1820,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 ## D147: brief and carryover, the two halves of writing for a reader who was not there (2026-10-17)
 
+> **Amended by D272 (2026-10-26):** D272 distinguishes a worker this agent starts now from later work or an agent the user starts.
+
 > **Amended by D260 (2026-10-25):** D260 reuses only shared brief writing rules for a later main session and adds the act-only worker bootstrap.
 
 
@@ -2011,6 +2015,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Why:** The person's refinement: compaction keeps the conversation going but summarises it in its own way, so a page written first lets the work resume from exact state; the note costs a page, and also serves if the person chooses a fresh session after all. As far as known, Claude Code gives the agent no way to compact: the person types the command, or the harness compacts by itself near a full window; the person asked that the flow say so.
 
 ## D162: carryovers in their own folder, named by date and time (2026-10-17)
+
+> **Amended by D272 (2026-10-26):** D272 uses an existing project carryover folder or a new date-time-topic file without asking when no location is specified.
 
 **Decision:** blueprint, as carryover's keeper (D156), keeps carryovers in a `carryovers/` folder at the blueprint's top, beside `notes/`; its folder layout names it, with no recording step of its own, since carryover already says what goes in. Each carryover is a new file, never written over an older one, named by the date and time it was written, then a short topic, in local 24-hour time, such as `2026-10-17-1530-open-topics.md`, so that sorting by name sorts by time; resuming reads the newest. Older ones stay as history, and lean can propose pruning them. carryover's own default, where no keeper is loaded, recommends a file named the same way, so the two never disagree. The name carryover stays. skillbook's own note moves to `blueprint/carryovers/2026-10-17-1748-initial-design.md`.
 
@@ -2614,6 +2620,8 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 > **Amended (2026-10-20):** the user set the threshold: a failure on one small model is noted and needs no action; when more than one model fails the same case, or a larger model fails it, what fails and why is looked into before anything changes. The runner's summary flags such cases.
 
 ## D215: Triggers and exits become tests the agent can apply, and the start files are trimmed (2026-10-20)
+
+> **Amended by D272 (2026-10-26):** A requested note or continuation without this conversation goes directly to carryover writing; other stopping messages retain the offer.
 
 > **Amended by D233 (2026-10-24):** removing temporary material a delegated agent made itself in this task is not outward, wherever it is, and a check that would need another agent goes into its report as a recommended second check.
 
@@ -4075,3 +4083,19 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 **Why:** The first comparison mixed progress with final answers, review with renewed permission, and failed prerequisites with acceptable recovery. A main point can lead while the list of results is still hard to scan. Separate checks make those differences visible without grading a user's preferred wording.
 
 **Tested:** Static checks pass with 91 Python and 654 TypeScript tests, 89 valid YAML cases and 74 unchanged conversions. All fifteen scenarios use the three shared final-answer checks; the authored fixture inventory is 269, without AI pair validation. The calibration passes are incomplete: 12 of 58 and 15 of 58 judgments returned, all agreeing with the human; 11 shared judgments match. Repeated timeouts, including isolated diagnostic calls, prevent a full agreement result. Progress review flags seven entries without scoring them. Partial records and the report are in `/tmp/skillbook-calibration2/`. No broader scoring was run; judge calibration remains unresolved.
+
+## D271: honor requests to confirm before a change (2026-10-26)
+
+**Decision:** The `act` skill proposes and ends the turn when the user asks to see or confirm a change before it is made, whatever the stakes. A request to see what changed afterward keeps the ordinary edit and report path.
+
+**Why:** Easy undo does not waive the user’s request to decide first. The explicit rule gives small models the boundary that was only implied by doing what was asked.
+
+**Tested:** With the same new YAML cases and a 600-second timeout, Codex with GPT-6 Luna passed all three prior-confirmation runs and all three post-work-report near misses on both original and changed wording (6/6 before, 6/6 after). The baseline already passed these samples. Codex with GPT-6.1-Sol passed both new confirmation cases once after the change, and the small availability probe passed. Semantic judging was excluded. The original skills and saved traces are in `/tmp/skillbook-2223/`.
+
+## D272: write carryovers when work continues without this conversation (2026-10-26)
+
+**Decision:** Write when the user asks for a note or says work continues in a fresh session, after a break or with another agent. Use the user’s, caller’s or project’s location. Without one, write without asking in an existing project carryover folder, otherwise a new local date-time-topic file. Name the saved path. Keep older notes. A worker this agent starts now gets a brief; later work or an agent the user starts gets a carryover. A completed task alone writes none; ordinary stopping keeps the existing offer. Saving precedes the outline review; that review and any commit approval retain their own roles.
+
+**Why:** A continuation request already asks to preserve the state. Asking whether or where to write loses the requested deliverable. The default makes the note available beyond the conversation while preserving review, bounded authority and honest provisional status.
+
+**Tested:** With matched original and final skills, identical cases and a 600-second timeout, Codex with GPT-6 Luna passed 0/9 requested carryover-writing runs before and 8/9 after. The remaining failure appended the note to the source file instead of creating a dated file. The ordinary-stopping near miss passed 3/3 before and after. Across all six new cases Luna passed 9/18 before and 17/18 after. Act routing passed 17/24 before and after; carryover routing passed 6/6 before and after. All three scenario 10 conversations completed and saved their notes on the writing turn. No Luna run timed out at 600 seconds. Codex with GPT-6.1-Sol passed 5/6 new cases; its later-agent case timed out at 600 seconds and is unknown, not failed. Semantic judging was excluded. Known API-price estimates and unknown costs, corrected assertion rescoring, raw results and the checklist are kept in `/tmp/skillbook-2223/`.

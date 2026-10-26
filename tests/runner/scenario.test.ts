@@ -113,8 +113,14 @@ test("every scenario assertion accepts a correct state and rejects a plausible w
     for (const path of a.absent ?? []) good.paths_present[path] = false;
     for (const path of a.changed ?? []) good.changes.push("changed " + path);
     for (const path of a.removed ?? []) good.changes.push("removed " + path);
-    if (a.file_contains) good.files["totals.py"] =
-      "def add(values):\n    sum = 0\n    for value in values:\n        sum += value\n    return sum\n";
+    const samples: Record<string, string> = {
+      "totals.py": "def add(values):\n    sum = 0\n    for value in values:\n        sum += value\n    return sum\n",
+      "carryover.md": "Goal: prepare museum labels. Remaining work: check the uncertain date. Next: read source.md.",
+    };
+    for (const path of Object.keys(a.file_contains ?? {})) {
+      expect(samples[path]).toBeDefined();
+      good.files[path] = samples[path];
+    }
     expect(evaluateTagged([tagged], good, {})[0]!.verdict).toBe(true);
     const wrong = structuredClone(good);
     if (a.absent?.length) wrong.paths_present[a.absent[0]!] = true;

@@ -74,8 +74,8 @@ Each line says in brief what the skill does. The skill files themselves are in [
     - **council:** collects independent answers to one question and keeps where they disagree.
     - **fanout:** splits a large reading job between agents, then checks and combines their findings.
     - **crew:** has agents change separate items in parallel, then joins and checks the whole result.
-  - **brief:** writes what an agent starting now needs to know, and the report it must return.
-  - **carryover:** writes a note that lets later work go on without the old conversation, and resumes from it.
+  - **brief:** writes what a worker this agent starts now needs to know, and the report it must return.
+  - **carryover:** writes a note when work will continue without this conversation, using the specified or default path, and resumes from it.
   - **instruct:** proposes instruction documents for agents, such as `AGENTS.md`.
   - **setup:** checks skillbook's install and prepares its pointers and settings.
   - **learn:** finds what a session taught and proposes where each lasting lesson should be kept.
