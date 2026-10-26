@@ -20,7 +20,7 @@ import { cost, DEFAULT_MODELS } from "./cost";
 import { check } from "./checks";
 import { progressFindings } from "./progress";
 import { structuredCall, simulate, fit, rubricJudge, judgeEvidence } from "./scenario";
-import { evaluateTagged, score, scoreRuns } from "./scoring";
+import { evaluateTagged, score, scoreRuns, scenarioReliability } from "./scoring";
 import { runStatus, summarize } from "./reports";
 import type { Agent, Case, Options, Event, Verdict } from "./types";
 export async function runOne(
@@ -197,9 +197,9 @@ export async function runOne(
       id: "no-skill-names", tag: "habit:no-skill-names",
       verdict: result.checks["answer names no skill or skill file"] ?? null,
     }] : [];
-    result.unreached_turn_checks = c.turns.slice(result.turns.length).flatMap(t =>
+    result.unreached_turn_checks = c.turns.slice(result.turns.length).flatMap((t, i) =>
       [...(t.tagged_checks ?? []), ...(t.rubric ?? [])].map(check =>
-        ({ id: check.id, tag: check.tag, verdict: null })));
+        ({ turn: result.turns.length + i + 1, id: check.id, tag: check.tag, verdict: null })));
     result.scores = score([...result.turns.flatMap((t: Event) => [...t.tagged_checks, ...(t.judgments ?? [])]),
       ...result.unreached_turn_checks, ...result.run_checks]);
     await endRun(groups, marker);
@@ -282,6 +282,7 @@ export async function runPlan(
   const results = [...done].sort(([a], [b]) => a - b).map(([, r]) => r);
   writeFileSync(join(out, "summary.json"), JSON.stringify(results, null, 2) + "\n");
   writeFileSync(join(out, "summary.md"), summarize(results, spent, unknown));
+  writeFileSync(join(out, "reliability.json"), JSON.stringify(scenarioReliability(results), null, 2) + "\n");
   writeFileSync(join(out, "scores.json"), JSON.stringify(scoreRuns(results as any), null, 2) + "\n");
   const sharedAfter = readdirSync("/tmp").filter((n) => !sharedBefore.has(n));
   if (sharedAfter.length)

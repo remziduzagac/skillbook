@@ -26,7 +26,8 @@
         "tag": "skill:devise-design",
         "verdict": true,
         "reason": "The answer chooses numbered paper checkout cards and explains that they let Saturday volunteers match borrowed tools to households, directly addressing the paper-only records and volunteer-run checkout needs."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "B",
@@ -51,7 +52,8 @@
         "tag": "skill:devise-design",
         "verdict": false,
         "reason": "The answer chooses numbered paper checkout cards but only says they are “the best design.” It gives no concrete reason tied to the 30 households, paper-only records, no deposits, or Saturday volunteers."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "C",
@@ -76,7 +78,8 @@
         "tag": "skill:devise-design",
         "verdict": false,
         "reason": "The shared spreadsheet conflicts with the user's explicit paper-only signup and loan-record requirement. Its reason assumes two desk volunteers need simultaneous access, which the prompt does not establish."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|3|fixed|1|behavior",
@@ -172,7 +175,8 @@
         "tag": "skill:understand-frame",
         "verdict": true,
         "reason": "The answer unifies fewer missed reservations, less staff phone work, and patrons’ reminder needs into one reservation reminder service. It bounds scope by excluding reservation-system replacement and a new database this quarter, and identifies channel, timing, and opt-out as unresolved decisions without starting implementation."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-01-lending|gpt-6.1-sol|1|fixed|1|behavior",
@@ -291,7 +295,8 @@
         "tag": "skill:understand-clarify-shallow",
         "verdict": false,
         "reason": "The response asks the user to choose between a website and help organising a lending scheme, but then recommends the website itself. It ends with that recommendation rather than the questions, contrary to the criterion."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|1|point",
@@ -386,7 +391,8 @@
         "tag": "habit:point-first",
         "verdict": false,
         "reason": "The visible answer opens with process narration—“I’ll read the required essentials guidance”—before stating the problem. The remainder uses plain English."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|1|scope",
@@ -481,7 +487,8 @@
         "tag": "habit:requested-scope",
         "verdict": true,
         "reason": "It frames the reservation problem from notes.md, preserves the no-new-database constraint and undecided reminder details, and does not implement changes; the recorded file diffs are empty."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|1|behavior",
@@ -576,7 +583,8 @@
         "tag": "skill:understand-frame",
         "verdict": true,
         "reason": "It connects missed reservations with staff phone work, sets a shared goal of helping patrons remember, and bounds the work to reservations while excluding broader library workflows and identifying unresolved channel, timing, and opt-out decisions."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|2|point",
@@ -715,7 +723,8 @@
         "tag": "habit:point-first",
         "verdict": false,
         "reason": "The answer opens with a process announcement, “I’ll outline distinct reminder approaches,” before providing the requested options. This is unnecessary preamble, though the language is plain."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|2|scope",
@@ -854,7 +863,8 @@
         "tag": "habit:requested-scope",
         "verdict": true,
         "reason": "Provides approach and name options with reasons, makes no selection, and leaves channel, timing, and opt-out open. No implementation changes are shown."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|2|behavior",
@@ -993,7 +1003,8 @@
         "tag": "skill:understand-brainstorm",
         "verdict": true,
         "reason": "Offers materially different approaches including a single reminder, a timed sequence, actionable messages, and staff-assisted contact. Names include descriptive, library-specific, and outcome-focused choices; none is selected."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|2|extra-1",
@@ -1132,7 +1143,8 @@
         "tag": "skill:understand-naming",
         "verdict": true,
         "reason": "Explains differing associations and fit: “Reservation Reminders” is literal, “Hold Reminder” depends on library terminology, “Ready Reminder” suggests a readiness stage, and “Fewer Missed Holds” emphasizes the outcome."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|3|point",
@@ -1303,7 +1315,8 @@
         "tag": "habit:point-first",
         "verdict": false,
         "reason": "The answer delays the channel question with two repetitive setup paragraphs: “I’ll focus on the reminder channel only” and “The open items are channel, then timing, then opt-out.” This is unnecessary preamble."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|3|scope",
@@ -1474,7 +1487,8 @@
         "tag": "habit:requested-scope",
         "verdict": true,
         "reason": "The answer asks only about channel and ends there without choosing a channel or discussing timing or opt-out beyond naming them as later items."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|3|behavior",
@@ -1645,7 +1659,8 @@
         "tag": "skill:understand-discuss",
         "verdict": false,
         "reason": "The answer leaves channel unresolved and asks about available channels, but merely lists SMS, email, phone calls, and an app or portal without offering reasons or tradeoffs for those options."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|4|point",
@@ -1830,7 +1845,8 @@
         "tag": "habit:point-first",
         "verdict": true,
         "reason": "The answer opens directly with “Channel is settled: email” and uses plain English before asking when the email should arrive."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|4|scope",
@@ -2019,7 +2035,8 @@
         "tag": "habit:requested-scope",
         "verdict": true,
         "reason": "It accepts the user's email choice, proposes timing for approval, and ends with a timing clarification. Mentioning opt-out as a remaining item does not open its discussion."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|4|behavior",
@@ -2208,7 +2225,8 @@
         "tag": "skill:understand-discuss",
         "verdict": true,
         "reason": "Email remains settled. The substantive discussion concerns sending the reminder about 24 hours before the action deadline, and the final sentence stays on timing when no deadline exists."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|5|point",
@@ -2407,7 +2425,8 @@
         "tag": "habit:point-first",
         "verdict": true,
         "reason": "The answer leads directly with “Timing is settled: send the email the day before,” then asks the remaining opt-out question in plain English."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|5|scope",
@@ -2610,7 +2629,8 @@
         "tag": "habit:requested-scope",
         "verdict": true,
         "reason": "It accepts the chosen timing, retains email as the channel, discusses only opt-out, and ends by asking whether to use the proposed policy."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-12-team|gpt-6-luna|2|fixed|5|behavior",
@@ -2813,7 +2833,8 @@
         "tag": "skill:understand-discuss",
         "verdict": true,
         "reason": "The preceding turn settled email and asked about timing without proceeding to opt-out. This answer settles the day-before timing, recommends opting out of reservation reminders only, and stops for the user's choice."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|1|point",
@@ -3023,7 +3044,8 @@
         "tag": "habit:point-first",
         "verdict": true,
         "reason": "The final answer leads with the outcome: “Created four topic pages and replaced `handbook.md` with navigation links,” using plain English without preamble."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|1|scope",
@@ -3233,7 +3255,8 @@
         "tag": "habit:requested-scope",
         "verdict": false,
         "reason": "The requested reorganization was completed, but the closing question asks the user to reconfirm a settled approval despite their explicit statement, “I approve this exact reorganization.”"
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|1|behavior",
@@ -3443,7 +3466,8 @@
         "tag": "skill:organize-split",
         "verdict": true,
         "reason": "The source and resulting diffs show every instruction preserved: opening retains key collection at 08:30 and unlocking; safety retains the clear fire exit and calling 112; closing retains locking at 18:00 and returning the key; contacts retains both rota email instructions verbatim. The final successful verification command reads all resulting pages and searches for the original instructions, and handbook.md links to all four topics."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|2|point",
@@ -3712,7 +3736,8 @@
         "tag": "habit:point-first",
         "verdict": true,
         "reason": "The answer uses plain English and opens directly with the intended contact merge, then reports the result without unrelated preamble."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|2|scope",
@@ -3985,7 +4010,8 @@
         "tag": "habit:requested-scope",
         "verdict": false,
         "reason": "The user explicitly approved the specific merge, but the answer asks again, “Does this merged result match what you approved?” The edit itself stays within the requested contact merge."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|2|behavior",
@@ -4258,7 +4284,8 @@
         "tag": "skill:organize-merge",
         "verdict": true,
         "reason": "The before-and-after diff shows two statements directing rota changes to rota@example.org consolidated into “For rota changes, email `rota@example.org`.” The address and purpose are preserved, and the duplicate heading is removed."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|4|point",
@@ -4619,7 +4646,8 @@
         "tag": "habit:point-first",
         "verdict": true,
         "reason": "The answer leads directly with adding the routines parent and updating navigation, using plain English without unnecessary preamble."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|4|scope",
@@ -4984,7 +5012,8 @@
         "tag": "habit:requested-scope",
         "verdict": false,
         "reason": "The requested parent was created, but the answer incorrectly treats the shared contact block as awaiting approval. The prior user explicitly said, 'I approve that normalization.'"
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|4|behavior",
@@ -5349,7 +5378,8 @@
         "tag": "skill:organize-compose",
         "verdict": true,
         "reason": "Previously, handbook.md linked directly to opening, safety, and closing. The resulting navigation links to 'Site routines,' whose introduction and three child links group those procedures meaningfully. The retained children preserve the original key collection, door locking, fire exit, and emergency instructions."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|5|point",
@@ -5778,7 +5808,8 @@
         "tag": "habit:point-first",
         "verdict": true,
         "reason": "The answer opens directly with the intended work: reviewing pages, grouping navigation by use, and tracing original facts. It uses plain English without an unrelated preamble."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|5|scope",
@@ -6211,7 +6242,8 @@
         "tag": "habit:requested-scope",
         "verdict": false,
         "reason": "The index work matches the request, but the answer unnecessarily asks whether it matches an explicitly approved change and says the shared contact normalization still awaits approval, despite the earlier user saying, 'I approve that normalization.'"
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|5|behavior",
@@ -6644,7 +6676,8 @@
         "tag": "skill:organize-cluster",
         "verdict": true,
         "reason": "The resulting index groups all five pages under 'Run the venue' and 'Handle rota changes.' Verification checks the original 08:30 collection, unlocking, fire exit, 112 emergency call, 18:00 locking, key return, and rota email against resulting content and checks direct links to their pages. Earlier diffs show those instructions preserved, with the duplicate contact merged as approved."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-06-handbook|gpt-6-luna|3|fixed|3|*",
@@ -6934,7 +6967,8 @@
       "answer": "I’ll inspect the handbook pages and references, then move the contact details into one shared block and link to it where they belong.\n\nThere’s one rota contact instruction now, on `handbook/contacts.md`, and `handbook.md` already links to that page. To make it a shared block, I propose moving the instruction to `handbook/contact-block.md` and linking to it from both `handbook.md` and `handbook/contacts.md`. The contact page would remain as a link to the shared block.\n\n### 1. Approve this map?\n\n**Recommended answer: yes.** It gives the contact instruction one home and provides references from both relevant pages.",
       "human": null,
       "human_reason": "",
-      "skip": "scripted request did not fit: the contact was already in one place after turn 2"
+      "skip": "scripted request did not fit: the contact was already in one place after turn 2",
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|1|point",
@@ -7080,7 +7114,8 @@
         "tag": "habit:point-first",
         "verdict": false,
         "reason": "The visible answer opens with process narration about loading guidance and reading files, rather than the result. The final paragraph does lead clearly with “Created labels.md.”"
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|1|scope",
@@ -7226,7 +7261,8 @@
         "tag": "habit:requested-scope",
         "verdict": true,
         "reason": "Created the approved labels.md with two short labels in A-then-B order and retained “about 1750.” The only recorded file change is labels.md."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|1|behavior",
@@ -7372,7 +7408,8 @@
         "tag": "skill:act-verify",
         "verdict": true,
         "reason": "The diff matches the catalogue: pottery bowl, about 1750, maker unknown; iron key, 1820, donated by M. Green. The actions read source.md and then read back labels.md, supporting the reported check."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|2|point",
@@ -7575,7 +7612,8 @@
         "tag": "habit:point-first",
         "verdict": true,
         "reason": "The answer opens directly with the intended carryover note and uses clear, plain English without unrelated preamble."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|2|scope",
@@ -7778,7 +7816,8 @@
         "tag": "habit:requested-scope",
         "verdict": false,
         "reason": "The user explicitly requested writing carryover.md. The answer instead asks, “Shall I write it with that outline?”, reopening an already authorized action; the recorded turn has no file changes."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|2|behavior",
@@ -7981,7 +8020,8 @@
         "tag": "skill:coordinate-carryover",
         "verdict": false,
         "reason": "The answer proposes topics for a carryover but does not provide or write the self-contained note. It omits the actual project location, concrete source and label contents, and bounded approval details needed by a fresh session."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|3|point",
@@ -8259,7 +8299,8 @@
         "tag": "habit:point-first",
         "verdict": false,
         "reason": "The visible answer opens with loading instructions and inspecting files rather than the finding or next step, adding unnecessary procedural preamble."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|3|scope",
@@ -8541,7 +8582,8 @@
         "tag": "habit:requested-scope",
         "verdict": "not reached",
         "reason": "Turn 2 requested writing carryover.md, but the assistant only proposed an outline and asked permission. The missing note makes the resume turn a different conversation from the intended handoff."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|3|behavior",
@@ -8823,7 +8865,8 @@
         "tag": "skill:coordinate-carryover",
         "verdict": "not reached",
         "reason": "The earlier failure to create carryover.md prevents evaluating the intended resume-from-note workflow. The fresh session instead checks files and reports that the note is missing."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|4|point",
@@ -9133,7 +9176,8 @@
         "tag": "habit:point-first",
         "verdict": false,
         "reason": "The visible answer opens with the process preamble “I’ll assess what this run showed,” before stating the proposed lesson and its destination."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|4|scope",
@@ -9443,7 +9487,8 @@
         "tag": "habit:requested-scope",
         "verdict": true,
         "reason": "It proposes a reusable lesson, assigns it to coordinate-carryover, and does not save anything; the turn shows no file changes."
-      }
+      },
+      "set": "tuning"
     },
     {
       "id": "essentials/scenario-10-project|gpt-6-luna|2|fixed|4|behavior",
@@ -9753,7 +9798,8 @@
         "tag": "skill:coordinate-learn",
         "verdict": true,
         "reason": "The missing-note fallback is supported by the prior session finding carryover.md absent and checking project files. The proposal names coordinate-carryover as its destination and remains unpersisted."
-      }
+      },
+      "set": "tuning"
     }
   ],
   "known_cost": 0,

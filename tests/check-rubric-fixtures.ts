@@ -1,3 +1,5 @@
+import { parseArgs } from "node:util";
+import { judgeTimeout } from "./runner/judge-options";
 import { mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
@@ -8,9 +10,13 @@ import { structuredCall } from "./runner/scenario";
 import { ownLogin, agentEnv } from "./runner/files";
 import { endRun } from "./runner/process";
 import type { Event } from "./runner/types";
-const [output, calibration] = Bun.argv.slice(2);
-if (!output || !Bun.argv.includes("--login"))
-  throw Error("usage: bun tests/check-rubric-fixtures.ts OUTPUT CALIBRATION --login");
+const { values, positionals } = parseArgs({ args: Bun.argv.slice(2), allowPositionals: true, options: {
+  login: { type: "boolean", default: false }, "judge-timeout": { type: "string" },
+} });
+const [output, calibration] = positionals;
+const timeout = judgeTimeout(values["judge-timeout"]);
+if (!output || !values.login)
+  throw Error("usage: bun tests/check-rubric-fixtures.ts OUTPUT CALIBRATION --login [--judge-timeout SECONDS]");
 const humanCalibration = requireCalibration(calibration);
 validateRubricFixtures();
 const root = mkdtempSync(join(tmpdir(), "skillbook-rubrics-")), groups: number[] = [];
@@ -21,7 +27,7 @@ try {
   copyFileSync(ownLogin("codex"), join(home, ".codex", "auth.json"));
   writeFileSync(join(home, ".codex", "config.toml"),
     '[features]\napps = false\nplugins = false\nremote_plugin = false\n');
-  const call = structuredCall(work, agentEnv(home, "codex", true, tmp), 300, groups, amount => {
+  const call = structuredCall(work, agentEnv(home, "codex", true, tmp), timeout, groups, amount => {
     known += amount ?? 0; unknown += Number(amount === null);
   });
   const byTurn = new Map<string, typeof rubricFixtures.checks>();

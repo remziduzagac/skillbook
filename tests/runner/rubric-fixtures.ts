@@ -3,13 +3,21 @@ import { loadCases } from "./cases";
 import type { Event } from "./types";
 
 export const rubricFixtures = book;
-export function resolveRubricTrace(ref: string) {
-  const traces = book.traces as Record<string, Event>, trace = traces[ref];
+export function rubricTrace(ref: string, seen = new Set<string>()): Event {
+  const trace = (book.traces as Record<string, Event>)[ref];
   if (!trace) throw Error("missing rubric trace " + ref);
+  if (seen.has(ref)) throw Error("cyclic rubric trace " + ref);
+  seen.add(ref);
+  if (!trace.base) return trace;
+  const base = rubricTrace(trace.base, seen);
+  return { ...base, observation: { ...base.observation, ...trace.observation } };
+}
+export function resolveRubricTrace(ref: string) {
+  const trace = rubricTrace(ref);
   const sources = (book.sources as Record<string, Record<string, string>>)[trace.case]!;
   let files = { ...sources };
   const turns = [...trace.prior, ref].map((key: string) => {
-    const observation = structuredClone(traces[key]!.observation), before = { ...files };
+    const observation = structuredClone(rubricTrace(key).observation), before = { ...files };
     Object.assign(files, observation.files_changed);
     for (const removed of observation.files_removed) delete files[removed];
     return { ...observation, files_before: before, files_after: { ...files } };

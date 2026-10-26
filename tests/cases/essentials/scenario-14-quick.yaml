@@ -1,93 +1,184 @@
 about: Handle a series of quick requests proportionately.
-design: "blueprint/design/testing.md#scenario-layer"
+design: blueprint/design/testing.md#scenario-layer
 goal: Handle a series of quick requests proportionately.
 fixture: scenarios/quick
 agents:
-  - codex
+- codex
 user:
-  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  description: You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access.
   facts:
     audience: Release announcement audience is club volunteers; release v1 adds saved searches. Rename is exactly local variable total to sum.
   mode: fixed
 skills:
-  - respond
-  - respond-layout
-  - understand-clarify
-  - understand-clarify-shallow
+- respond
+- respond-layout
+- understand-clarify
+- understand-clarify-shallow
 category: normal
-rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+rejects: Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity.
 turns:
-  - prompt: "Rename the local variable total to sum in totals.py, preserving behavior."
-    purpose: "Perform the exact unambiguous rename without clarification or unrelated edits. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-clarify
-        criterion: "Perform the exact unambiguous rename without clarification or unrelated edits. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
-    tagged_checks:
-      - id: rename
-        tag: skill:respond
-        assert:
-          changed:
-            - totals.py
-          file_contains:
-            totals.py:
-              - sum = 0
-              - sum \+= value
-              - return sum
-          only_changed:
-            - totals.py
-  - prompt: "Write the release announcement for v1, which adds saved searches."
-    purpose: "Ask who the announcement is for before writing it; do not invent an audience. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-clarify-shallow
-        criterion: "Ask who the announcement is for before writing it; do not invent an audience. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
-  - prompt: "For club volunteers. Write the announcement. Then answer this quick question: how many sides does a triangle have?"
-    purpose: Give the requested brief announcement and factual answer with no unnecessary headings on the factual answer.
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:respond
-        criterion: Give the requested brief announcement and factual answer with no unnecessary headings on the factual answer.
-  - prompt: Compare email and printed flyers for reaching our volunteers. Keep it readable in a narrow terminal.
-    purpose: Give a useful comparison whose lines and any table fit a narrow terminal; avoid a wide table.
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:respond-layout
-        criterion: Give a useful comparison whose lines and any table fit a narrow terminal; avoid a wide table.
+- prompt: Rename the local variable total to sum in totals.py, preserving behavior.
+  purpose: Perform the exact unambiguous rename without clarification or unrelated edits. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-clarify
+    criterion: Perform the exact requested rename.
+  - id: behavior-clarify
+    tag: skill:understand-clarify
+    criterion: Do not ask clarification for this exact unambiguous rename.
+  - id: behavior-unrelated
+    tag: skill:understand-clarify
+    criterion: Make no unrelated edits.
+  tagged_checks:
+  - id: rename-changed
+    tag: skill:respond
+    assert:
+      changed:
+      - totals.py
+  - id: rename-file_contains-1
+    tag: skill:respond
+    assert:
+      file_contains:
+        totals.py:
+        - sum = 0
+  - id: rename-file_contains-2
+    tag: skill:respond
+    assert:
+      file_contains:
+        totals.py:
+        - sum \+= value
+  - id: rename-file_contains-3
+    tag: skill:respond
+    assert:
+      file_contains:
+        totals.py:
+        - return sum
+  - id: rename-only_changed
+    tag: skill:respond
+    assert:
+      only_changed:
+      - totals.py
+- prompt: Write the release announcement for v1, which adds saved searches.
+  purpose: Ask who the announcement is for before writing it; do not invent an audience. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-clarify-shallow
+    criterion: Ask who the announcement is for before writing it; invent no audience. Recommendations beside questions are allowed.
+- prompt: 'For club volunteers. Write the announcement. Then answer this quick question: how many sides does a triangle have?'
+  purpose: Give the requested brief announcement and factual answer with no unnecessary headings on the factual answer.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:respond
+    criterion: Give the requested brief announcement.
+  - id: behavior-fact
+    tag: skill:respond
+    criterion: Give the requested factual answer.
+  - id: behavior-format
+    tag: skill:respond
+    criterion: Use no unnecessary headings on the factual answer.
+- prompt: Compare email and printed flyers for reaching our volunteers. Keep it readable in a narrow terminal.
+  purpose: Give a useful comparison whose lines and any table fit a narrow terminal; avoid a wide table.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:respond-layout
+    criterion: Give a useful comparison.
+  - id: behavior-width
+    tag: skill:respond-layout
+    criterion: Keep lines and any table within the requested narrow terminal.
 suite: short

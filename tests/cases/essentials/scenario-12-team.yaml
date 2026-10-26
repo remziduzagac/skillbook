@@ -1,98 +1,206 @@
 about: Agree the direction of a library reminder project.
-design: "blueprint/design/testing.md#scenario-layer"
+design: blueprint/design/testing.md#scenario-layer
 goal: Agree the direction of a library reminder project.
 fixture: scenarios/team
 agents:
-  - codex
+- codex
 user:
-  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  description: You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access.
   facts:
-    goal: "Reduce missed reservations without a new database this quarter. Open questions: reminder channel, timing, opt-out. User chooses email, day before, opt-out link in sequence."
+    goal: 'Reduce missed reservations without a new database this quarter. Open questions: reminder channel, timing, opt-out. User chooses email, day before, opt-out link in sequence.'
   mode: fixed
 skills:
-  - understand-brainstorm
-  - understand-discuss
-  - understand-frame
-  - understand-naming
+- understand-brainstorm
+- understand-discuss
+- understand-frame
+- understand-naming
 category: normal
-rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+rejects: Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity.
 turns:
-  - prompt: "Read notes.md. What exactly are we building? Frame one problem, goal and scope; do not start implementation."
-    purpose: "Give one coherent problem, goal and bounded scope based on the competing needs."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-frame
-        criterion: "Give one coherent problem, goal and bounded scope based on the competing needs."
-  - prompt: "Give distinct approach and name options for that project, with reasons for the names. Do not pick for me."
-    purpose: "Offer materially different approaches and suitable differentiated names, not near-identical variants; leave the choice open."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-brainstorm
-        criterion: "Offer materially different approaches and suitable differentiated names, not near-identical variants; leave the choice open."
-      - id: extra-1
-        tag: skill:understand-naming
-        criterion: "Give name options that differ in meaning or associations and explain their fit. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one."
-  - prompt: "Go through channel, timing and opt-out one at a time. Start with channel and end this turn there."
-    purpose: "Discuss only channel, offer reasons and end with that item unresolved for the user. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-discuss
-        criterion: "Discuss only channel, offer reasons and end with that item unresolved for the user. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one."
-  - prompt: Email. Settle channel and move to timing only; end there.
-    purpose: "Respect email as settled, discuss timing alone and end on that item. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-discuss
-        criterion: "Respect email as settled, discuss timing alone and end on that item. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
-  - prompt: The day before. Settle timing and discuss opt-out only; end there.
-    purpose: "Respect settled choices, discuss opt-out alone and stop for the user choice. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-discuss
-        criterion: "Respect settled choices, discuss opt-out alone and stop for the user choice. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts."
+- prompt: Read notes.md. What exactly are we building? Frame one problem, goal and scope; do not start implementation.
+  purpose: Give one coherent problem, goal and bounded scope based on the competing needs.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-frame
+    criterion: Frame one coherent problem from the competing needs.
+  - id: behavior-goal
+    tag: skill:understand-frame
+    criterion: Frame one coherent goal from those needs.
+  - id: behavior-scope
+    tag: skill:understand-frame
+    criterion: Give a bounded scope consistent with those needs.
+- prompt: Give distinct approach and name options for that project, with reasons for the names. Do not pick for me.
+  purpose: Offer materially different approaches and suitable differentiated names, not near-identical variants; leave the choice open.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-brainstorm
+    criterion: Offer materially different approaches rather than near-identical variants.
+  - id: behavior-names
+    tag: skill:understand-brainstorm
+    criterion: Offer suitable names differentiated in meaning.
+  - id: behavior-choice
+    tag: skill:understand-brainstorm
+    criterion: Leave the choice open to the user.
+  - id: extra-1
+    tag: skill:understand-naming
+    criterion: Give name options that differ in meaning or associations.
+  - id: extra-1-reasons
+    tag: skill:understand-naming
+    criterion: Explain name fit with grounded reasons or explain the lack of a basis.
+- prompt: Go through channel, timing and opt-out one at a time. Start with channel and end this turn there.
+  purpose: Discuss only channel, offer reasons and end with that item unresolved for the user. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-discuss
+    criterion: Discuss channel only this turn.
+  - id: behavior-reasons
+    tag: skill:understand-discuss
+    criterion: Give grounded reasons for channel options or explain why the facts give no basis.
+  - id: behavior-choice
+    tag: skill:understand-discuss
+    criterion: End with channel unresolved for the user. Recommendations are allowed; invented answers are not.
+- prompt: Email. Settle channel and move to timing only; end there.
+  purpose: Respect email as settled, discuss timing alone and end on that item. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-discuss
+    criterion: Respect email as the settled channel.
+  - id: behavior-topic
+    tag: skill:understand-discuss
+    criterion: Discuss timing only this turn.
+  - id: behavior-choice
+    tag: skill:understand-discuss
+    criterion: End with timing unresolved for the user. Recommendations are allowed; invented answers are not.
+- prompt: The day before. Settle timing and discuss opt-out only; end there.
+  purpose: Respect settled choices, discuss opt-out alone and stop for the user choice. A recommended answer beside a question is allowed while the choice stays with the user; do not treat it as the user's answer or invent user facts.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-discuss
+    criterion: Respect settled channel and timing.
+  - id: behavior-topic
+    tag: skill:understand-discuss
+    criterion: Discuss opt-out only this turn.
+  - id: behavior-choice
+    tag: skill:understand-discuss
+    criterion: End for the user opt-out choice. Recommendations are allowed; invented answers are not.
 suite: short

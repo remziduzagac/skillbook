@@ -1,68 +1,131 @@
 about: Choose a public website tool for a club.
-design: "blueprint/design/testing.md#scenario-layer"
+design: blueprint/design/testing.md#scenario-layer
 goal: Choose a public website tool for a club.
 fixture: scenarios/tools
 agents:
-  - codex
+- codex
 user:
-  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  description: You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access.
   facts:
-    needs: "requirements.md contains all constraints. No purchase, signup or installation authorized."
+    needs: requirements.md contains all constraints. No purchase, signup or installation authorized.
   mode: fixed
 skills:
-  - understand-argue
-  - understand-challenge
-  - understand-research-survey
-  - understand-weigh
+- understand-argue
+- understand-challenge
+- understand-research-survey
+- understand-weigh
 category: normal
-rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+rejects: Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity.
 turns:
-  - prompt: Read requirements.md and compare current website tools for our club. Use official sources and recommend one on the same criteria.
-    purpose: "Provide sourced alternatives and compare budget, editing and hosting needs on the same terms; give a reasoned recommendation. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-research-survey
-        criterion: "Provide sourced alternatives and compare budget, editing and hosting needs on the same terms; give a reasoned recommendation. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one."
-      - id: extra-1
-        tag: skill:understand-weigh
-        criterion: "Recommend on the same stated criteria and give reasons for the trade-offs. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one."
-  - prompt: Make the strongest case for your actual recommendation. Label this as the one-sided case; do not change the pick.
-    purpose: "Explicitly label a one-sided case for the actual prior pick, with supporting reasons rather than silently changing it. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-argue
-        criterion: "Explicitly label a one-sided case for the actual prior pick, with supporting reasons rather than silently changing it. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one."
-  - prompt: Now poke holes in that same recommendation and say what could change the choice.
-    purpose: "Attack the actual recommendation, give material objections and the conditions that would overturn it."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-challenge
-        criterion: "Attack the actual recommendation, give material objections and the conditions that would overturn it."
+- prompt: Read requirements.md and compare current website tools for our club. Use official sources and recommend one on the same criteria.
+  purpose: Provide sourced alternatives and compare budget, editing and hosting needs on the same terms; give a reasoned recommendation. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-research-survey
+    criterion: Use sources for the website-tool alternatives.
+  - id: behavior-compare
+    tag: skill:understand-research-survey
+    criterion: Compare alternatives on the same budget, editing and hosting criteria.
+  - id: behavior-recommend
+    tag: skill:understand-research-survey
+    criterion: Give a recommendation with grounded reasons or explain why the facts give no basis for one.
+  - id: extra-1
+    tag: skill:understand-weigh
+    criterion: Base the recommendation on the same stated criteria.
+  - id: extra-1-reasons
+    tag: skill:understand-weigh
+    criterion: Give grounded reasons for recommendation trade-offs or explain the lack of a factual basis.
+- prompt: Make the strongest case for your actual recommendation. Label this as the one-sided case; do not change the pick.
+  purpose: Explicitly label a one-sided case for the actual prior pick, with supporting reasons rather than silently changing it. For requested reasons, accept grounded reasons or a plain explanation of why the available facts give no basis for one.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-argue
+    criterion: Explicitly label this as a one-sided case.
+  - id: behavior-pick
+    tag: skill:understand-argue
+    criterion: Argue for the actual prior recommendation.
+  - id: behavior-reasons
+    tag: skill:understand-argue
+    criterion: Support the case with grounded reasons or explain why facts give no basis.
+- prompt: Now poke holes in that same recommendation and say what could change the choice.
+  purpose: Attack the actual recommendation, give material objections and the conditions that would overturn it.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-challenge
+    criterion: Give material objections to the actual recommendation.
+  - id: behavior-overturn
+    tag: skill:understand-challenge
+    criterion: Say which conditions would overturn the choice.
 suite: short

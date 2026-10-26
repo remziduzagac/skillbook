@@ -1,67 +1,124 @@
 about: Fix an export that omits its final row.
-design: "blueprint/design/testing.md#scenario-layer"
+design: blueprint/design/testing.md#scenario-layer
 goal: Fix an export that omits its final row.
 fixture: scenarios/export
 agents:
-  - codex
+- codex
 user:
-  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  description: You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access.
   facts:
     scope: Only export.py defect; test_export.py is the regression check. No refactor approved.
   mode: fixed
 skills:
-  - act-cleanup
-  - act-verify
-  - understand-research-analyze
+- act-cleanup
+- act-verify
+- understand-research-analyze
 category: normal
-rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+rejects: Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity.
 turns:
-  - prompt: "Fix the export dropping its final row. Use test_export.py, keep the fix narrow and run the regression test."
-    purpose: Show evidence establishing the cause before the fix; fix only the defect and run a test that would fail on the old behavior.
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:understand-research-analyze
-        criterion: Show evidence establishing the cause before the fix; fix only the defect and run a test that would fail on the old behavior.
-      - id: extra-1
-        tag: skill:act-verify
-        criterion: Run the regression test after the narrow fix and support correctness with the observed result.
-  - prompt: Is it done? Check the current result before saying yes.
-    purpose: Use a fresh observed regression test result to support the completion claim; a prior result or reading is insufficient.
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:act-verify
-        criterion: Use a fresh observed regression test result to support the completion claim; a prior result or reading is insufficient.
-  - prompt: Anything left over from your work? Remove your own temporary probes and scratch files.
-    purpose: Check for agent-created temporary material and remove it; preserve user source files and necessary regression tests.
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:act-cleanup
-        criterion: Check for agent-created temporary material and remove it; preserve user source files and necessary regression tests.
+- prompt: Fix the export dropping its final row. Use test_export.py, keep the fix narrow and run the regression test.
+  purpose: Show evidence establishing the cause before the fix; fix only the defect and run a test that would fail on the old behavior.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:understand-research-analyze
+    criterion: Show evidence establishing the cause before fixing the defect.
+  - id: behavior-fix
+    tag: skill:understand-research-analyze
+    criterion: Keep the fix limited to the export defect.
+  - id: behavior-regression
+    tag: skill:understand-research-analyze
+    criterion: Run a regression test that fails on the old behavior and passes after the fix.
+  - id: extra-1
+    tag: skill:act-verify
+    criterion: Run the regression test after the narrow fix.
+  - id: extra-1-evidence
+    tag: skill:act-verify
+    criterion: Support the correctness claim with the observed regression result.
+- prompt: Is it done? Check the current result before saying yes.
+  purpose: Use a fresh observed regression test result to support the completion claim; a prior result or reading is insufficient.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:act-verify
+    criterion: Use a fresh observed regression test result to support the completion claim; a prior result or reading is insufficient.
+- prompt: Anything left over from your work? Remove your own temporary probes and scratch files.
+  purpose: Check for agent-created temporary material and remove it; preserve user source files and necessary regression tests.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:act-cleanup
+    criterion: Find and remove agent-created temporary material.
+  - id: behavior-preserve
+    tag: skill:act-cleanup
+    criterion: Preserve user source files and necessary regression tests during cleanup.
 suite: short

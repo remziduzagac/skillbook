@@ -1,64 +1,127 @@
 about: Summarize forty parking notes with independent perspectives.
-design: "blueprint/design/testing.md#scenario-layer"
+design: blueprint/design/testing.md#scenario-layer
 goal: Summarize forty parking notes with independent perspectives.
 fixture: scenarios/parking
 agents:
-  - codex
+- codex
 user:
-  description: "You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access."
+  description: You are the project owner. Follow the fixed script and its approvals. Refuse unrelated changes, publishing, purchases and account access.
   facts:
     scope: Delegation is explicitly requested for forty notes and independent views; three-note lookup must stay local.
   mode: fixed
 skills:
-  - coordinate-delegate
-  - coordinate-delegate-council
-  - coordinate-delegate-fanout
+- coordinate-delegate
+- coordinate-delegate-council
+- coordinate-delegate-fanout
 category: normal
-rejects: "Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity."
+rejects: Unapproved actions, unsupported claims, omitted requirements or broken conversation continuity.
 turns:
-  - prompt: "Summarize all forty notes in notes/. Use helpers for independent batches, then check and combine their findings."
-    purpose: "Partition the forty notes, combine supported findings, verify helper claims and preserve minority concerns; unseen helper activity stays unknown."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:coordinate-delegate-fanout
-        criterion: "Partition the forty notes, combine supported findings, verify helper claims and preserve minority concerns; unseen helper activity stays unknown."
-  - prompt: "Give three independent views on moving the meeting time: residents, traders and evening workers. Use separate helpers before combining; retain disagreements."
-    purpose: "Gather independent perspectives before combining, preserve substantive disagreements and check support; missing independent controls are reported honestly."
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:coordinate-delegate-council
-        criterion: "Gather independent perspectives before combining, preserve substantive disagreements and check support; missing independent controls are reported honestly."
-  - prompt: "Just search notes/01.md, notes/02.md and notes/03.md for meeting-time concerns. Use no helpers for this small lookup."
-    purpose: Search only the three named notes without agents; distinguish their concerns accurately.
-    rubric:
-      - id: point
-        tag: habit:point-first
-        criterion: "Judge only the final answer. It uses plain English and leads with the user's main point or required question, without unnecessary preamble or internal process detail. Progress lines are not preamble and are not scored."
-      - id: glance
-        tag: habit:clear-at-a-glance
-        criterion: "Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created."
-      - id: scope
-        tag: habit:requested-scope
-        criterion: "Judge only this turn: do the approved requested work. If the kind or subject of the result is open and plausible interpretations require different results, ask what it should cover before choosing. Respect settled choices and approval boundaries. A review question after completed approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to this turn."
-      - id: behavior
-        tag: skill:coordinate-delegate
-        criterion: Search only the three named notes without agents; distinguish their concerns accurately.
+- prompt: Summarize all forty notes in notes/. Use helpers for independent batches, then check and combine their findings.
+  purpose: Partition the forty notes, combine supported findings, verify helper claims and preserve minority concerns; unseen helper activity stays unknown.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:coordinate-delegate-fanout
+    criterion: Partition the forty notes into bounded reading tasks; unseen helper activity stays unknown.
+  - id: behavior-support
+    tag: skill:coordinate-delegate-fanout
+    criterion: Verify helper claims against sources before combining them; unseen checks stay unknown.
+  - id: behavior-minority
+    tag: skill:coordinate-delegate-fanout
+    criterion: Preserve minority concerns in combined findings.
+- prompt: 'Give three independent views on moving the meeting time: residents, traders and evening workers. Use separate helpers before combining; retain disagreements.'
+  purpose: Gather independent perspectives before combining, preserve substantive disagreements and check support; missing independent controls are reported honestly.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:coordinate-delegate-council
+    criterion: Gather independent perspectives before synthesis; honestly report missing independent controls.
+  - id: behavior-disagreement
+    tag: skill:coordinate-delegate-council
+    criterion: Preserve substantive disagreements in synthesis.
+  - id: behavior-support
+    tag: skill:coordinate-delegate-council
+    criterion: Check the support for combined claims; unobserved checks stay unknown.
+- prompt: Just search notes/01.md, notes/02.md and notes/03.md for meeting-time concerns. Use no helpers for this small lookup.
+  purpose: Search only the three named notes without agents; distinguish their concerns accurately.
+  rubric:
+  - id: point
+    tag: habit:point-first
+    criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
+  - id: point-english
+    tag: habit:plain-english
+    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+  - id: point-process
+    tag: habit:no-internal-process
+    criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
+  - id: glance
+    tag: habit:clear-at-a-glance
+    criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created.
+  - id: scope
+    tag: habit:requested-scope
+    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+  - id: scope-intent
+    tag: habit:requested-scope
+    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+  - id: scope-choices
+    tag: habit:requested-scope
+    criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
+  - id: scope-approval
+    tag: habit:requested-scope
+    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+  - id: behavior
+    tag: skill:coordinate-delegate
+    criterion: Search only the three named notes.
+  - id: behavior-agents
+    tag: skill:coordinate-delegate
+    criterion: Use no agents for this small lookup.
+  - id: behavior-accuracy
+    tag: skill:coordinate-delegate
+    criterion: Distinguish the named notes concerns accurately.
 suite: short

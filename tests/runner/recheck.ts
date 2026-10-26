@@ -42,8 +42,8 @@ export function recheckScenario(original: Event, c: Case): Event {
     id: "no-skill-names", tag: "habit:no-skill-names",
     verdict: result.checks?.["answer names no skill or skill file"] ?? null,
   }] : [];
-  result.unreached_turn_checks = c.turns.slice(result.turns.length).flatMap(t =>
-    [...(t.tagged_checks ?? []), ...(t.rubric ?? [])].map(row => ({ id: row.id, tag: row.tag, verdict: null })));
+  result.unreached_turn_checks = c.turns.slice(result.turns.length).flatMap((t, i) =>
+    [...(t.tagged_checks ?? []), ...(t.rubric ?? [])].map(row => ({ turn: result.turns.length + i + 1, id: row.id, tag: row.tag, verdict: null })));
   result.scores = score([...result.turns.flatMap((t: Event) => [...t.tagged_checks, ...(t.judgments ?? [])]),
     ...result.unreached_turn_checks, ...result.run_checks]);
   result.rescored = "Current assertions; original scripts must match. Path absence uses recorded full deltas.";

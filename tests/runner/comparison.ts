@@ -1,4 +1,4 @@
-import { scoreRuns } from "./scoring";
+import { scoreRuns, scenarioReliability } from "./scoring";
 import type { Event } from "./types";
 
 export function offScriptCases(runs: Event[]): string[] {
@@ -32,7 +32,13 @@ export function compareModes(runs: Event[]): string {
     }
     lines.push("");
   }
-  lines.push("## Fit and mode choice", "",
+  lines.push("## Three-run reliability", "", "A null pass^3 is unknown; one run cannot establish three-run reliability.", "");
+  for (const [key, result] of Object.entries(scenarioReliability(runs))) {
+    lines.push(`- ${key}: average ${result.average ?? "unknown"}; pass^3 ${result.pass3 ?? "unknown"}`);
+    for (const [id, row] of Object.entries(result.checks))
+      lines.push(`  - ${id}: average ${row.average ?? "unknown"}; pass^3 ${row.pass3 ?? "unknown"}; unknown ${row.unknown}; not reached ${row.not_reached}`);
+  }
+  lines.push("", "## Fit and mode choice", "",
     "| Scenario | Fixed off-script | Unknown fit | Simulated runs | Recommendation |",
     "| --- | --- | --- | --- | --- |");
   for (const id of [...new Set(runs.map(r => r.case))].sort()) {

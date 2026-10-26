@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { simulate, fit, rubricJudge } from "./scenario";
+import { simulate, fit, rubricJudge, structuredCall } from "./scenario";
 import { normalize, validateCase, loadCases } from "./cases";
 import { parseArgs } from "./cli";
 import { evaluateTagged, scoreRuns } from "./scoring";
@@ -127,6 +127,9 @@ test("every scenario assertion accepts a correct state and rejects a plausible w
     else if (a.no_changes) wrong.changes.push("removed user-source.md");
     else if (a.removed?.length) wrong.changes = wrong.changes.filter((x: string) => x !== "removed " + a.removed![0]);
     else if (a.changed?.length) { wrong.changes = []; wrong.files = {}; }
+    else if (a.unchanged?.length) wrong.changes.push("changed " + a.unchanged[0]);
+    else if (a.only_changed) wrong.changes.push("changed unrelated.md");
+    else if (a.file_contains) for (const path of Object.keys(a.file_contains)) wrong.files[path] = "missing required content";
     expect(evaluateTagged([tagged], wrong, {})[0]!.verdict).toBe(false);
   }
 });
@@ -218,7 +221,7 @@ test("the allowed Codex startup notice is checked per turn in conversation-wide 
 
 test("every semantic criterion has distinct synthetic correct/wrong evidence and no expected label in judge input", async () => {
   const { validateRubricFixtures, rubricFixtures, resolveRubricTrace } = await import("./rubric-fixtures");
-  expect(validateRubricFixtures()).toBe(269);
+  expect(validateRubricFixtures()).toBe(rubricFixtures.checks.length);
   const trace = resolveRubricTrace(rubricFixtures.checks[0]!.positive);
   expect(trace.turns[0].final_answer).toContain("Who will borrow");
   expect(JSON.stringify(trace)).not.toContain('"expected"');
@@ -258,8 +261,29 @@ test("semantic scoring requires every current correct/wrong fixture judgment, wi
     check: `${row.case}:${row.turn}:${row.id}`, expected, judgment: { verdict: expected },
   })));
   const report = { model: "gpt-6.1-sol", fixture_hash: rubricFixtureHash(), results };
-  expect(validateRubricReport(report)).toBe(538);
+  expect(validateRubricReport(report)).toBe(rubricFixtures.checks.length * 2);
   expect(() => validateRubricReport({ ...report, results: results.slice(1) })).toThrow();
   expect(() => validateRubricReport({ ...report, results: [...results.slice(1), results[1]] })).toThrow();
   expect(() => validateRubricReport({ ...report, fixture_hash: "old" })).toThrow();
+});
+
+test("one structured-call timeout cannot terminate another judge worker", async () => {
+  const { mkdtempSync, rmSync } = await import("node:fs");
+  const { join } = await import("node:path");
+  const { tmpdir } = await import("node:os");
+  const { runTurn, endRun } = await import("./process");
+  const root = mkdtempSync(join(tmpdir(), "judge-isolation-")), groups: number[] = [];
+  const env = { ...process.env, TMPDIR: root, SKILLBOOK_TEST_RUN: root };
+  const driver = (delay: string): typeof runTurn => async (_cmd, work, callEnv, timeout, callGroups) => {
+    const ran = await runTurn(["sh", "-c", `sleep ${delay}`], work, callEnv, timeout, callGroups);
+    return { ...ran, stdout: JSON.stringify({ type: "item.completed", item: { type: "agent_message", text: '{"ok":true}' } }) };
+  };
+  try {
+    const slow = structuredCall(root, env, 0.05, groups, () => {}, driver("2"));
+    const other = structuredCall(root, env, 2, groups, () => {}, driver("0.2"));
+    const outcomes = await Promise.allSettled([slow("test", {}), other("test", {})]);
+    expect(outcomes[0]!.status).toBe("rejected");
+    expect(outcomes[1]).toMatchObject({ status: "fulfilled", value: { ok: true } });
+    expect(groups).toHaveLength(2);
+  } finally { await endRun(groups); rmSync(root, { recursive: true, force: true }); }
 });

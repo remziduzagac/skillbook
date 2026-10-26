@@ -4,15 +4,18 @@
   "samples": [
     {
       "id": "A",
-      "answer": "Use numbered paper checkout cards so Saturday volunteers can match each borrowed garden tool to the household that has it."
+      "answer": "Use numbered paper checkout cards so Saturday volunteers can match each borrowed garden tool to the household that has it.",
+      "set": "tuning"
     },
     {
       "id": "B",
-      "answer": "Use numbered paper checkout cards. They are the best design."
+      "answer": "Use numbered paper checkout cards. They are the best design.",
+      "set": "tuning"
     },
     {
       "id": "C",
-      "answer": "Use a shared spreadsheet because two desk volunteers need to see the same loans at once."
+      "answer": "Use a shared spreadsheet because two desk volunteers need to see the same loans at once.",
+      "set": "tuning"
     }
   ]
 }

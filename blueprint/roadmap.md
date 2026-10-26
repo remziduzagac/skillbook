@@ -56,3 +56,5 @@ The main behavioral layer becomes fifteen realistic conversations, with fixed an
 Scenario checks separate final answers from unscored progress, add clear-at-a-glance and judge current-turn work with explicit recovery paths; calibration runs twice before broader scoring (D270).
 
 Explicit requests to see or confirm a change first require a proposal and an ended turn at every stake level (D271). Carryover writes when work continues without this conversation, using the specified or default path; an ordinary stopping message keeps the offer (D272).
+
+Judge validation separates tuning from blind held-out ratings, reports agreement on human passes and fails, splits mixed checks and adds pass^3 beside averages (D273).

@@ -73,3 +73,45 @@ export function scoreRuns(
   }
   return Object.fromEntries(Object.entries(groups).map(([key, rows]) => [key, score(rows)]));
 }
+
+export function scenarioReliability(runs: any[]) {
+  const groups = new Map<string, any[]>();
+  for (const run of runs) {
+    const key = `${run.agent}/${run.model}/${run.user_mode ?? "fixed"}/${run.case}`;
+    const group = groups.get(key) ?? []; group.push(run); groups.set(key, group);
+  }
+  const summarize = (values: Verdict[]) => {
+    const known = values.filter(v => typeof v === "boolean");
+    return { runs: values.length, passed: known.filter(v => v === true).length,
+      average: known.length ? known.filter(v => v === true).length / known.length : null,
+      unknown: values.filter(v => v === null).length,
+      not_reached: values.filter(v => v === "not reached").length,
+      pass3: values.length !== 3 ? null : values.includes(false) ? false : values.every(v => v === true) ? true : null };
+  };
+  return Object.fromEntries([...groups].map(([key, group]) => {
+    const checks = new Set<string>();
+    const observations = group.map(run => {
+      const rows = new Map<string, Verdict>();
+      for (const [i, turn] of run.turns.entries()) {
+        for (const row of [...(turn.tagged_checks ?? []), ...(turn.judgments ?? [])])
+          rows.set(`${i + 1}:${row.id}`, row.verdict);
+        for (const row of turn.rubric_pending ?? []) rows.set(`${i + 1}:${row.id}`, null);
+      }
+      for (const row of run.unreached_turn_checks ?? []) rows.set(row.turn ? `${row.turn}:${row.id}` : `unlocated:${row.id}`, row.verdict);
+      for (const row of run.run_checks ?? []) rows.set(`run:${row.id}`, row.verdict);
+      for (const id of rows.keys()) checks.add(id);
+      return rows;
+    });
+    const uniqueRuns = new Set(group.map(r => r.run)).size === group.length;
+    const verdicts = observations.map((rows, index): Verdict => {
+      const values = [...checks].map(id => rows.get(id) ?? null);
+      if (values.includes(false)) return false;
+      if (group[index].error || group[index].turns.length < (group[index].expected_turns ?? 0) ||
+        !values.length || values.some(v => v !== true)) return null;
+      return true;
+    });
+    const summary = (values: Verdict[]) => ({ ...summarize(values), pass3: uniqueRuns ? summarize(values).pass3 : null });
+    return [key, { ...summary(verdicts), checks: Object.fromEntries([...checks].sort().map(id =>
+      [id, summary(observations.map(rows => rows.get(id) ?? null))])) }];
+  }));
+}

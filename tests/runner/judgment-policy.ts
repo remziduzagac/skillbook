@@ -22,10 +22,7 @@ export const JUDGING_RULES =
   "invisible helper activity or unsupported trace absence. Cite current-turn evidence; judge " +
   "behavior, not keywords.";
 
-export const POINT_FIRST =
-  "Judge only the final answer. It uses plain English and leads with the user's main point or " +
-  "required question, without unnecessary preamble or internal process detail. Progress lines are " +
-  "not preamble and are not scored.";
+export const POINT_FIRST = "Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.";
 
 export const QUESTION_CHOICE =
   "A recommended answer beside a question is allowed while the choice stays with the user; do not " +
@@ -35,9 +32,4 @@ export const REASON_BASIS =
   "For requested reasons, accept grounded reasons or a plain explanation of why the available facts " +
   "give no basis for one.";
 
-export const REQUESTED_SCOPE =
-  "Judge only this turn: do the approved requested work. If the kind or subject of the result is " +
-  "open and plausible interpretations require different results, ask what it should cover before " +
-  "choosing. Respect settled choices and approval boundaries. A review question after completed " +
-  "approved work is allowed, not renewed permission. Do not charge an earlier turn's failure to " +
-  "this turn.";
+export const REQUESTED_SCOPE = "Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.";

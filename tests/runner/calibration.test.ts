@@ -71,3 +71,71 @@ test("handbook normalization has repeated contact text after merge, then one sha
     expect(files["closing.md"]).toContain("18:00");
   }
 });
+
+test("calibration reports class intervals and self-agreement separately by set", () => {
+  const a = { ...sample("a", true), set: "tuning" as const, judgment: { tag: "x", verdict: true, reason: "yes" } };
+  const b = { ...sample("b", false), set: "heldout" as const, judgment: { tag: "x", verdict: false, reason: "no" } };
+  const report = calibrationReport([a, b], [a, b]);
+  expect(report.by_set.tuning.by_human.pass).toMatchObject({ agreed: 1, total: 1, rate: 1 });
+  expect(report.by_set.tuning.by_human.pass.interval[0]).toBeCloseTo(0.20655, 4);
+  expect(report.by_set.heldout.by_human.fail.total).toBe(1);
+  expect(report.by_set.tuning.self_agreement).toMatchObject({ agreed: 1, total: 1, unresolved: 0 });
+  expect(() => calibrationReport([a], [{ ...a, answer: "different" }])).toThrow("identical evidence");
+});
+test("held-out attempts require authorization and retain earlier dates", async () => {
+  const { authorizeCalibration } = await import("./calibration");
+  const source = { samples: [{ ...sample("h", true), set: "heldout" as const }], heldout_runs: ["first"] };
+  expect(() => authorizeCalibration(source, false)).toThrow("--heldout");
+  expect(authorizeCalibration(source, true, "second").heldout_runs).toEqual(["first", "second"]);
+  expect(source.heldout_runs).toEqual(["first"]);
+});
+
+test("the CLI refuses held-out data before writing output or starting a call", async () => {
+  const { mkdtempSync, writeFileSync, existsSync, rmSync, readFileSync } = await import("node:fs");
+  const { spawnSync } = await import("node:child_process");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const root = mkdtempSync(join(tmpdir(), "calibration-guard-"));
+  try {
+    const source = join(root, "source.json"), output = join(root, "output.json");
+    const text = JSON.stringify({ samples: [{ ...sample("h", true), set: "heldout" }] });
+    writeFileSync(source, text);
+    const result = spawnSync(process.execPath, ["tests/calibrate.ts", output, "--login", "--source", source], { encoding: "utf8" });
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain("requires --heldout");
+    expect(existsSync(output)).toBe(false);
+    expect(readFileSync(source, "utf8")).toBe(text);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+test("unknown judgments stay in class denominators and unresolved self-agreement pairs", () => {
+  const rows = [sample("pass", true), sample("fail", false)];
+  rows[0]!.judgment = { tag: "x", verdict: true, reason: "observed" };
+  const prior = structuredClone(rows);
+  rows[0]!.judgment!.verdict = null;
+  const report = calibrationReport(rows, prior).by_set.tuning;
+  expect(report.by_human.pass).toMatchObject({ agreed: 0, total: 1, rate: 0 });
+  expect(report.by_human.fail).toMatchObject({ agreed: 0, total: 1, rate: 0 });
+  expect(report.self_agreement).toMatchObject({ agreed: 0, total: 0, eligible: 2, unresolved: 2 });
+  rows[1]!.judgment = { tag: "x", verdict: false, reason: "observed fail" };
+  prior[1]!.judgment = { tag: "x", verdict: false, reason: "observed fail" };
+  expect(calibrationReport(rows, prior).by_set.tuning.self_agreement)
+    .toMatchObject({ agreed: 1, total: 1, rate: 1, eligible: 2, unresolved: 1 });
+});
+test("split fixture inheritance keeps evidence and uses concrete conditional counterexamples", async () => {
+  const { rubricFixtures, resolveRubricTrace } = await import("./rubric-fixtures");
+  for (const id of ["scope-intent", "scope-choices", "scope-approval", "continuity-loading", "continuity-reuse"]) {
+    const row = rubricFixtures.checks.find(r => r.id === id)!;
+    const good = resolveRubricTrace(row.positive).turns.at(-1)!;
+    const bad = resolveRubricTrace(row.negative).turns.at(-1)!;
+    expect(bad.final_answer).not.toBe(good.final_answer);
+    if (id === "scope-intent") {
+      expect(good.sent_message).toContain("undecided");
+      expect(bad.sent_message).toBe(good.sent_message);
+    }
+    if (id === "scope-approval") {
+      expect(bad.actions[0].tool).toBe("write_file");
+      expect(good.files_changed).toEqual({});
+    }
+    if (id === "continuity-reuse") expect(bad.actions[0]).toEqual(bad.actions[1]);
+  }
+});
