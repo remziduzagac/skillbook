@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: carryover, test 36 (D267)"
+about = "Keeps an unknown command honest and gives a usable note continuation."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-carryover"]
+covers = ["coordinate-carryover:step:6", "coordinate-carryover:last"]
+category = "edge"
+rejects = "Invents a fresh-session command, offers no usable note continuation, or claims a transition occurred."
+review = ["Says the fresh-session command or control is unknown rather than inventing syntax.", "Gives the named note path and a usable continuation request that reads it and checks current instructions/state, without claiming a transition."]
+version_control = true
+
+[[turns]]
+prompt = "For an on-paper handoff, assume the agent’s fresh-session command is unknown and no transition control is exposed. Give the useful instructions for continuing from notes/2026-10-24-0900-catalog.md. Invent no command, start no session and change nothing."
+
+[checks]
+no_changes = true
+names_no_skill = false

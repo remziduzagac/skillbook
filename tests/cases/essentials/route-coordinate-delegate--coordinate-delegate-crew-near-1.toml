@@ -1,4 +1,4 @@
-source = "skills/essentials/references/coordinate/delegate.md:61 (coordinate-delegate--coordinate-delegate-crew)"
+source = "skills/essentials/references/coordinate/delegate.md:55 (coordinate-delegate--coordinate-delegate-crew)"
 about = "Routing only: near for coordinate-delegate-crew"
 fixture = "routing-studio"
 agents = ["codex"]

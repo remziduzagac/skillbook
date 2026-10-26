@@ -2,7 +2,7 @@
 
 Chooses and manages permitted workers while keeping decisions, authority and verification with the caller.
 
-Needs: permitted agent tools. If unavailable, return the limitation and remaining work to the caller. Required independence stays outstanding by `act-verify` rule 2. Install nothing and bypass no opt-in.
+Needs: permitted agent tools. Without helper controls, do ordinary work in the main session and report the limitation. Required independence stays outstanding by `act-verify` rule 2. Install nothing and bypass no opt-in.
 
 ## Rules
 
@@ -18,7 +18,7 @@ Needs: permitted agent tools. If unavailable, return the limitation and remainin
    | Nothing; shared contracts, production or data | strong |
    | Nothing; schemas, public interfaces, auth or security | strong plus a second check |
 
-   Decisions other work builds on take strong and high effort. Judge their effects, not how easily their file is reverted. Use the strongest-model escalation only after strong falls short. Never use a light worker for judgment requiring review. User mappings override the dated harness defaults. Without either mapping, use the session model and report the limitation rather than guessing a model.
+   Decisions other work builds on take strong and high effort. Judge their effects, not how easily their file is reverted. Use the strongest-model escalation only after strong falls short. Never use a light worker for judgment requiring review. Use the user’s model mapping. Without one, use the session model and report the limitation rather than guessing a model. If a mapped model is unavailable, report the limitation rather than silently substituting one.
 4. **Choose effort separately from tier for fresh workers.** Use low effort to carry out known steps, search or collect facts. Use the harness default for ordinary work. Use high effort for judgment that no later step checks, validation, an unclear failure or a design decision. A later check can permit less effort. A tricky checked function can still need high effort. A mechanical security sweep with a validator can use standard and low effort. Keep a fork's model and effort. Change neither the main session's model nor its effort. Set worker effort only through a permitted exposed control.
 5. **Check an obstacle before escalating a failed worker.** Missing facts, permissions, network or tools need fixing or a question. A stronger model does not repair them.
 6. **Keep delegation inside the caller's authority.** The `act` skill's rule 10 bounds workers. Return questions, proposals for risky actions and approval prompts to the main caller. Do not answer for the user. Respect harness limits on nesting, concurrency, agent kinds and opt-in.
@@ -38,27 +38,21 @@ Needs: permitted agent tools. If unavailable, return the limitation and remainin
 ## Instructions
 
 1. **Choose the work pattern.** Use the caller's named pattern within its authority. Otherwise consider one worker first. Several earn their cost through large separate parts, independence or different lenses, accepted time savings, or a worker's limited window. Search first. Read the matching method below when several workers are needed. Run that method inside this active call after controls and approval are settled. A method's request for one worker uses this call's startup steps without selecting a method again. A single task needs no method child. Workers start no further workers.
-2. **Choose fork or fresh by the advice and independence rule.** Use only capabilities actually available.
-3. **Load the current harness child for its controls and mapping.**
-4. **claude** (`coordinate-delegate-claude`): **Read `coordinate-delegate-claude` when you need Claude Code’s agent controls, model or reasoning-effort mappings, or limits.**
-   - Not for: operating another harness or choosing authority, cost approval or independence policy.
-   - Gives back: available controls, selected mapping, actual worker status and unknown capabilities.
-5. **codex** (`coordinate-delegate-codex`): **Read `coordinate-delegate-codex` when you need Codex’s agent controls, model or reasoning-effort mappings, or limits.**
-   - Not for: operating another harness or changing the main session's model or settings.
-   - Gives back: available controls, selected mapping, actual worker status and unknown capabilities.
-6. **Choose a fresh worker's model and effort by rules 3 and 4.** Resolve cost by rule 8 before starting. Report a missing mapping or control. Do not invent one.
-7. **Write the worker's brief through `coordinate-brief`.**
-8. **Start the authorized worker and record its identity.** Respect limits and keep its actual state on the running list. Use permitted waits while the conversation continues.
-9. **Check the returned result by rule 7.** Handle obstacles by rule 5. Ask the worker to clean up before reporting and check its report through `act-cleanup`.
-10. **Return a short report to the caller.** Report the task outcome, decisions needed from the user, paths to evidence, missing work and cost where needed. Report cleanup under cleaned, kept and proposed. Distinguish failed or unfinished work from completed work.
+2. **Choose fork or fresh by the advice and independence rule.** Use only capabilities actually available. Without a fork, give a fresh worker the needed context.
+3. **Use the agent's own permitted controls for helpers.**
+4. **Choose a fresh worker's model and effort by rules 3 and 4.** Resolve cost by rule 8 before starting. Report a missing mapping or control. Do not invent one.
+5. **Write the worker's brief through `coordinate-brief`.**
+6. **Start the authorized worker and record its identity.** Respect limits and keep its actual state on the running list. Use permitted waits while the conversation continues.
+7. **Check the returned result by rule 7.** Handle obstacles by rule 5. Ask the worker to clean up before reporting and check its report through `act-cleanup`.
+8. **Return a short report to the caller.** Report the task outcome, decisions needed from the user, paths to evidence, missing work and cost where needed. Report cleanup under cleaned, kept and proposed. Distinguish failed or unfinished work from completed work.
 
-11. **council** (`coordinate-delegate-council`): **Read `coordinate-delegate-council` when several independent agents should answer the same question over the same material.**
+9. **council** (`coordinate-delegate-council`): **Read `coordinate-delegate-council` when several independent agents should answer the same question over the same material.**
     - Not for: separate parts or review lenses (`coordinate-delegate-fanout`), disjoint changes (`coordinate-delegate-crew`), or an unrequested recommendation.
     - Gives back: attributed answers, a summary preserving disagreement and missing members.
-12. **fanout** (`coordinate-delegate-fanout`): **Read `coordinate-delegate-fanout` when search cannot narrow the work enough and separate large reading tasks, search areas or review angles remain.**
+10. **fanout** (`coordinate-delegate-fanout`): **Read `coordinate-delegate-fanout` when search cannot narrow the work enough and separate large reading tasks, search areas or review angles remain.**
     - Not for: the same whole question to each worker (`coordinate-delegate-council`), parallel changes (`coordinate-delegate-crew`), or work one search settles.
     - Gives back: consolidated findings, actual validation status, sources and coverage limits.
-13. **crew** (`coordinate-delegate-crew`): **Read `coordinate-delegate-crew` when agents will change separate items in parallel, with one owner for each shared item.**
+11. **crew** (`coordinate-delegate-crew`): **Read `coordinate-delegate-crew` when agents will change separate items in parallel, with one owner for each shared item.**
     - Not for: changes all landing in one item (one writer), reading only (`coordinate-delegate-fanout`), or a plan-only request (return the plan).
     - Gives back: authorized changes, the final pass, actual verification and unfinished work.
 

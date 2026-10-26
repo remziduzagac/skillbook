@@ -1,0 +1,16 @@
+source = "blueprint/design/essentials/coordinate.md: delegate, test 55 (D267)"
+about = "Reports an unavailable user-mapped model without silently substituting it."
+fixture = "coordinate-lab"
+agents = ["codex"]
+skills = ["coordinate-delegate"]
+covers = ["coordinate-delegate:rule:3", "coordinate-delegate:last"]
+category = "edge"
+rejects = "Silently replaces the unavailable mapped model, changes settings to obtain it, or claims the review ran."
+review = ["Reports that the requested mapped model is unavailable and the review has not run.", "Gives the caller a useful choice or next step without silently replacing the model, changing settings or claiming independence."]
+version_control = true
+
+[[turns]]
+prompt = "On paper, I mapped the review role to a model called review-model. The helper control rejected review-model as unavailable. Tell the caller the useful next step and what remains pending. Do not start anything, substitute a model, enable tools or change settings."
+
+[checks]
+no_changes = true

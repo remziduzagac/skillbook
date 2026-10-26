@@ -1,7 +1,5 @@
-"""Account-free checks of consolidation and hook payloads in temporary directories."""
-import contextlib
+"""Account-free checks of consolidation in temporary directories."""
 import importlib.util
-import io
 import json
 from pathlib import Path
 import subprocess
@@ -21,7 +19,6 @@ def module(name, path):
 
 
 fanout = module("fanout", BASE / "delegate/fanout/scripts/consolidate.py")
-baseline = module("baseline", BASE / "setup/claude/scripts/baseline.py")
 
 
 class Consolidation(unittest.TestCase):
@@ -108,64 +105,3 @@ class Consolidation(unittest.TestCase):
         result = self.run_records([self.finding(quote="$(touch forbidden)")])
         self.assertEqual(result["findings"][0]["evidence"][0]["quote_status"], "matched")
         self.assertFalse((self.root / "forbidden").exists())
-
-
-class BaselinePayload(unittest.TestCase):
-    def test_large_start_files_do_not_inflate_context_output(self):
-        with tempfile.TemporaryDirectory() as folder:
-            root = Path(folder) / "project install"
-            for name in baseline.FILES:
-                path = root / name
-                path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text("x" * 40000)
-            result = baseline.payload(root)
-            text = result["hookSpecificOutput"]["additionalContext"]
-            self.assertLess(len(text), 8000)
-            for name in baseline.FILES:
-                self.assertIn(str(root / name), text)
-            self.assertNotIn("x" * 20, text)
-            self.assertEqual(result["hookSpecificOutput"]["hookEventName"], "SessionStart")
-
-    def test_missing_or_removed_installs_are_harmless(self):
-        with tempfile.TemporaryDirectory() as folder:
-            self.assertIsNone(baseline.payload(Path(folder) / "removed"))
-            done = subprocess.run([sys.executable, baseline.__file__, "--essentials", folder],
-                                  capture_output=True, text=True, check=False)
-            self.assertEqual((done.returncode, done.stdout, done.stderr), (0, "", ""))
-
-    def test_one_missing_file_is_not_claimed_as_a_complete_baseline(self):
-        with tempfile.TemporaryDirectory() as folder:
-            (Path(folder) / "SKILL.md").write_text("main only")
-            self.assertIsNone(baseline.payload(folder))
-
-    def test_installed_link_paths_stay_explicit(self):
-        with tempfile.TemporaryDirectory() as folder:
-            root = Path(folder) / "real"
-            for name in baseline.FILES:
-                path = root / name
-                path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text("baseline")
-            link = Path(folder) / "linked"
-            link.symlink_to(root, target_is_directory=True)
-            text = baseline.payload(link)["hookSpecificOutput"]["additionalContext"]
-            self.assertIn(str(link / "SKILL.md"), text)
-            self.assertNotIn(str(root / "SKILL.md"), text)
-
-    def test_removed_helper_command_succeeds_without_output(self):
-        with tempfile.TemporaryDirectory() as folder:
-            command = baseline.hook_command(folder, Path(folder) / "missing helper.py")
-            done = subprocess.run(["sh", "-c", command], capture_output=True, text=True, check=False)
-            self.assertEqual((done.returncode, done.stdout, done.stderr), (0, "", ""))
-
-    def test_command_quotes_paths_without_shell_expansion(self):
-        with tempfile.TemporaryDirectory() as folder:
-            root = Path(folder) / "install ' $(touch should-not-exist)"
-            for name in baseline.FILES:
-                path = root / name
-                path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text("baseline")
-            command = baseline.hook_command(root, Path(baseline.__file__))
-            done = subprocess.run(["sh", "-c", command], cwd=folder, capture_output=True, text=True, check=False)
-            self.assertEqual(done.returncode, 0)
-            self.assertEqual(json.loads(done.stdout), baseline.payload(root))
-            self.assertFalse((Path(folder) / "should-not-exist").exists())

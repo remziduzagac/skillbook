@@ -46,3 +46,5 @@ Essentials reads needed methods before each request’s work, routes with explic
 A step-list instruction before reading skills gave no measured gain, so each request keeps the plain read instruction, and two cases where a request needs two skills in a row stay (D265).
 
 Skill names stay dashed: slashed names were tried and lowered Luna's routing from 83% to 73% over three runs per case (D266).
+
+Sets are agent-agnostic: plan, delegate, carryover and setup use the current agent’s controls with generic fallbacks; agent-specific install locations stay in the installer design and docs (D267).

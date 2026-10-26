@@ -169,7 +169,7 @@ devise/
 
 ## plan
 
-- **Purpose:** planning multipart work before acting, and following a plan step by step, whether writing, research, design or code: whether a plan is needed, given items enhanced where they are not obvious, one line or a full plan, whose approval it waits for, and revising it when the work shows it wrong (D151, D155). Its two harness children hold capability mappings only. The work around it already has homes, listed under "It uses" in its Callers field; softeng's own plan adds breakdown, slices and sequence for software (D154, D155).
+- **Purpose:** planning multipart work before acting, and following a plan step by step, whether writing, research, design or code: whether a plan is needed, given items enhanced where they are not obvious, one line or a full plan, whose approval it waits for, and revising it when the work shows it wrong (D151, D155). It uses the current agent’s own controls with its text fallback (D267). The work around it already has homes, listed under "It uses" in its Callers field; softeng's own plan adds breakdown, slices and sequence for software (D154, D155).
 - **Description:** "Planning multipart work before acting, and following it step by step: whether a plan is needed, given items enhanced where they are not obvious, one line or a full plan, whose approval it waits for, and revising it when the work shows it wrong. Use before any work with more than one step or part, or when given steps to follow; an open shape met on the way is designed, through design, and the plan continues (D173)." A draft (D155).
 - **Callers** (D155):
   - devise's own skill, by its routing line in devise's flow (D164, D172);
@@ -187,15 +187,13 @@ devise/
   4. **Use `understand`'s whole who-decides rule.** It owns user intent, preferences, irreversible effects, conventions, agent defaults and visible choice timing. Plan defines no second ownership test (D257).
   5. **One line, or a full plan:** a full plan when stakes are high, as `act-stakes` rates them, or the work is long or wide; otherwise one line, holding the approach where a choice was made, the steps in order and the check. A full plan is divided through organize, and challenged through `understand-challenge` before it is shown, since others build on it (D150).
   6. **Following, whoever wrote the steps:** at three steps or more, since fewer are held in mind without one, the steps go in a checklist, the harness's task list where it has one; they are done in order, each checked by `act-verify` before the next, since a step that fails unnoticed costs every step built on it, and ticked off. A given step that looks wrong is raised before going on, as act's rule on concerns says; a step that fails stops the list and goes to re-planning.
-  7. **Approval, for either depth:** get the user's actual approval before executing a high-stakes plan. This is a stricter variation of `act` rule 13: its given-steps exception does not approve high-stakes work. Given steps alone are not approval. A request for a plan authorizes making the plan, not executing it. Reuse an unchanged approval only within its scope and basis. New questions go through `respond-ask`. For other changing work, follow `act` rule 13, including its given-steps and go-ahead exceptions. For read-only work needing no answer, put the plan in the final answer without stopping first. Where approval is required, use an available permitted plan mode and return the approval request; otherwise put it in the final message and end the turn. Mode changes alone are not approval. Plan approval never waives a separate guardrail. Harness details belong to the children (D257).
+  7. **Approval, for either depth:** get the user's actual approval before executing a high-stakes plan. This is a stricter variation of `act` rule 13: its given-steps exception does not approve high-stakes work. Given steps alone are not approval. A request for a plan authorizes making the plan, not executing it. Reuse an unchanged approval only within its scope and basis. New questions go through `respond-ask`. For other changing work, follow `act` rule 13, including its given-steps and go-ahead exceptions. For read-only work needing no answer, put the plan in the final answer without stopping first. Where approval is required, use an available permitted plan mode and return the approval request; otherwise put it in the final message and end the turn. Mode changes alone are not approval. Plan approval never waives a separate guardrail. Use the current agent’s own available plan and task controls, with the response fallback for missing controls (D267).
   8. **Re-planning:** when a step fails, or a fact the plan rests on changes, the plan is revised before going on, even when the step text has not changed, since steps planned on a failed step or a changed fact no longer hold, and approved again if the first one needed approval; when the steps were the person's own, the revised steps go back to them. When a failure shows the design the plan builds on wrong, the design changes first, by design's step 9, and the plan is revised after it (D168).
   9. **Where it is kept, plan's own part only** (D156): in the response when it fits on a screen; in a file when it is longer, the response giving the outline. Which file, and in what form, is a keeper's, such as blueprint's where the project's instruction files point to it, so plan never names one; by default, a file the agent names in the response.
 
   Advice (D116): long or wide means more than about five steps, more than one sitting, or parts that could each go to a different agent, the size where a plan keeps the work from wandering and lets parts be delegated. When unsure whether the work is multipart, it is treated as multipart (act's rule 13, D250); re-planning catches the rest when the work turns out bigger.
 
-  Harness routes, loaded only when needed:
-  - **claude** (`devise-plan-claude`): Read `devise-plan-claude` when you need Claude Code’s plan-mode or task-list controls. Not for operating another harness or deciding ownership/approval policy. Gives back available controls, their actual results and missing capabilities.
-  - **codex** (`devise-plan-codex`): Read `devise-plan-codex` when you need Codex’s plan-mode or task-list controls. Not for operating another harness or deciding ownership/approval policy. Gives back available controls, their actual results and missing capabilities.
+  Use the current agent’s own available plan and task controls; otherwise keep the plan and checklist in the response (D267).
 
   With neither capability, return an approval plan in the final message and end the turn. Track three or more steps in a plain-text checklist. Tick a step only after its check passes. With only one capability, use it and keep the fallback for the other. Install or enable nothing to obtain a capability (D257).
 
@@ -230,7 +228,7 @@ devise/
   Agents:   step 3 fanned out by folder
   ```
 
-- **Files:** `references/devise/plan.md`, `references/devise/plan/claude.md` and `references/devise/plan/codex.md`. The two harness children map capabilities and tools. Neither is required when its harness is absent; the parent's text approval and checklist fallback applies (D257).
+- **Files:** `references/devise/plan.md`. Use the current agent’s available plan/task controls and the parent’s text approval/checklist fallbacks (D267).
 - **Material:** superpowers' writing-plans ([../../research/skill-collections.md](../../research/skill-collections.md)); the harnesses' own plan modes and task lists.
 - **Tests** (D155):
   1. "fix the typo in the README": single-step, no plan, done directly; "delete the old folder": a proposal under guardrails, not a plan; a single-step change whose two options give the person different results: asked through `respond-ask` when the choice is the person's, or handled as an agent choice by the full `understand` rule, including its disclosure timing and exceptions (D217, D218);
@@ -255,58 +253,6 @@ devise/
   20. A mode transition or checked task box without a user answer is not approval or verification. (D257);
   21. A plan approval exists but an outward or irreversible action has its own guardrail: keep that check. (D257);
   22. A full plan contains independent work: phases retain their order while independent parts can be handed to available agents; no forced serial repetition within one part. (D257);
-- **Open:** live tool availability and approval flows need interactive validation. The official material confirms Codex plan entry and plan tracking but not a universal agent-callable mode switch or exit. Use the documented conditional fallback. Model behavior is untested under D253 (D257).
-
-### claude
-
-- **Purpose:** maps plan-mode and task controls for Claude Code. Policy stays in `devise-plan` (D257).
-- **Description:** "Plan-mode controls and task tracking for Claude Code. Use only in that harness, or to inspect its reference as documentation."
-- **Callers:** `devise-plan`, by its harness routing line.
-- **Flow:**
-  Claude Code documents `EnterPlanMode` and `ExitPlanMode`. Its task mapping is `TaskCreate`, `TaskGet`, `TaskList` and `TaskUpdate`, with `TodoWrite` only when that older control is actually exposed. Availability depends on the session; do not enable tools or change settings.
-
-  1. Inspect the session's exposed tools and mode. Treat plan mode and task tracking as separate capabilities. Do not infer availability from the product name.
-  2. Where a permitted mode control is available, use it when parent policy requires approval. Present the proposed plan through the supported approval flow. Recognise only the actual user answer or an explicit approval result. Mode changes alone do not approve it.
-  3. After approval, check whether the mode already permits acting. Use an exposed exit control only when still needed and permitted. If it remains restricted or the control is unknown, report that limit and use no forbidden write.
-  4. Use the session's task controls when available. Create the steps and update their status after the parent's checks. With no task tool use the parent's plain-text checklist.
-  5. With no permitted mode control, return an approval request in final text and end the turn. With neither capability, use both parent fallbacks. Never install tools, change configuration or relax permissions to acquire them.
-- **Result:** available controls, actual approval/tracking results, unknown capabilities and the next required user or caller action. It grants no extra approval.
-- **Files:** `references/devise/plan/claude.md`. Needs the corresponding harness's exposed capabilities; absent capabilities use the parent fallback.
-- **Material:** [official harness research](../../research/plan-harnesses.md), checked 2026-10-25. Product documentation is evidence, not proof that a tool is exposed in this session.
-- **Tests:**
-  1. Mode and task controls both available: use the supported approval flow and native tracking; tick only verified steps.
-  2. Mode only: use its approval flow, with a plain-text checklist.
-  3. Task controls only: final-text approval and native tracking.
-  4. Neither capability: final-text approval, end turn and a plain-text checklist; install nothing.
-  5. A mode exits without an actual user approval: do not execute the plan.
-  6. A user approval exists but edits remain prohibited: report the mode limit without bypassing it.
-  7. Task status changes without check evidence: never call the work verified or done.
-  8. A different harness asks about this reference: answer as documentation, never run another harness's controls. Live controls require an interactive check, not a simulated result.
-- **Open:** live capability availability and actual approval/tool results need interactive validation. Unknown controls use the fallback; no model test runs in this batch (D253).
-
-### codex
-
-- **Purpose:** maps plan-mode and task controls for Codex. Policy stays in `devise-plan` (D257).
-- **Description:** "Plan-mode controls and task tracking for Codex. Use only in that harness, or to inspect its reference as documentation."
-- **Callers:** `devise-plan`, by its harness routing line.
-- **Flow:**
-  Official Codex documentation confirms the user UI command `/plan` and the optional `update_plan` tool, whose steps use pending, in_progress and completed. It does not establish universal agent-callable mode entry/exit controls. Inspect the live tool definitions; unknown or absent controls use the fallback.
-
-  1. Inspect the session's exposed tools and mode. Treat plan mode and task tracking as separate capabilities. Do not infer availability from the product name.
-  2. Where a permitted mode control is available, use it when parent policy requires approval. Present the proposed plan through the supported approval flow. Recognise only the actual user answer or an explicit approval result. Mode changes alone do not approve it.
-  3. After approval, check whether the mode already permits acting. Use an exposed exit control only when still needed and permitted. If it remains restricted or the control is unknown, report that limit and use no forbidden write.
-  4. Use the session's task controls when available. Create the steps and update their status after the parent's checks. With no task tool use the parent's plain-text checklist.
-  5. With no permitted mode control, return an approval request in final text and end the turn. With neither capability, use both parent fallbacks. Never install tools, change configuration or relax permissions to acquire them.
-- **Result:** available controls, actual approval/tracking results, unknown capabilities and the next required user or caller action. It grants no extra approval.
-- **Files:** `references/devise/plan/codex.md`. Needs the corresponding harness's exposed capabilities; absent capabilities use the parent fallback.
-- **Material:** [official harness research](../../research/plan-harnesses.md), checked 2026-10-25. Product documentation is evidence, not proof that a tool is exposed in this session.
-- **Tests:**
-  1. Mode and task controls both available: use the supported approval flow and native tracking; tick only verified steps.
-  2. Mode only: use its approval flow, with a plain-text checklist.
-  3. Task controls only: final-text approval and native tracking.
-  4. Neither capability: final-text approval, end turn and a plain-text checklist; install nothing.
-  5. A mode exits without an actual user approval: do not execute the plan.
-  6. A user approval exists but edits remain prohibited: report the mode limit without bypassing it.
-  7. Task status changes without check evidence: never call the work verified or done.
-  8. A different harness asks about this reference: answer as documentation, never run another harness's controls. Live controls require an interactive check, not a simulated result.
-- **Open:** live capability availability and actual approval/tool results need interactive validation. Unknown controls use the fallback; no model test runs in this batch (D253).
+  23. An approved plan remains blocked by the session’s edit restriction. Reject: Treats approval as permission to bypass an edit restriction, invents an available exit control, or claims a live mode change. (D267).
+  24. Uses its own available planning controls with an honest text fallback. Reject: Executes a plan-only request, omits usable checked steps, or invents successful control calls or verified completion. (D267).
+- **Open:** live tool availability and approval flows need interactive validation. Available controls vary by agent and session. Use the conditional text fallback for missing controls (D267). Model behavior is untested under D253 (D257).

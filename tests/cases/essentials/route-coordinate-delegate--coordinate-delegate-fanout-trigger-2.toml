@@ -1,4 +1,4 @@
-source = "skills/essentials/references/coordinate/delegate.md:58 (coordinate-delegate--coordinate-delegate-fanout)"
+source = "skills/essentials/references/coordinate/delegate.md:52 (coordinate-delegate--coordinate-delegate-fanout)"
 about = "Routing only: trigger for coordinate-delegate-fanout"
 fixture = "routing-studio"
 agents = ["codex"]

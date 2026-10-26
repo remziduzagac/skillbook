@@ -401,30 +401,6 @@
        "tail": [],
        "kids": [],
        "desc": "several agents each change their own items of one job; a shared item has one owner, who applies the others' proposals; then one pass in sequence (D99, D107, D115)"
-      },
-      {
-       "path": [
-        "coordinate",
-        "delegate",
-        "claude"
-       ],
-       "mark": "●",
-       "src": "",
-       "tail": [],
-       "kids": [],
-       "desc": "current claude controls and dated mappings within delegate policy; actual capability checks and missing-control fallbacks (D260)"
-      },
-      {
-       "path": [
-        "coordinate",
-        "delegate",
-        "codex"
-       ],
-       "mark": "●",
-       "src": "",
-       "tail": [],
-       "kids": [],
-       "desc": "current codex controls and dated mappings within delegate policy; actual capability checks and missing-control fallbacks (D260)"
       }
      ]
     },
@@ -448,32 +424,7 @@
      "desc": "work carried over to a later session or agent, built on brief's shared writing rules: ten parts, top-down, from the goal and where it stands to the first next step and what it was written against, standing alone, as long as its reader needs, a fresh agent's cold read before readiness is claimed; unavailable review leaves an authorized provisional note (D260); offered at a task's, milestone's or phase's end in a long session, before compaction or a fresh session; one file each, named by date and time, the newest resumed (D65, D104, D147, D160, D161, D162, D169)",
      "src": "ws mp oc gs ar",
      "tail": [],
-     "kids": [
-      {
-       "path": [
-        "coordinate",
-        "carryover",
-        "claude"
-       ],
-       "mark": "●",
-       "src": "",
-       "tail": [],
-       "kids": [],
-       "desc": "current claude controls and dated mappings within carryover policy; actual capability checks and missing-control fallbacks (D260)"
-      },
-      {
-       "path": [
-        "coordinate",
-        "carryover",
-        "codex"
-       ],
-       "mark": "●",
-       "src": "",
-       "tail": [],
-       "kids": [],
-       "desc": "current codex controls and dated mappings within carryover policy; actual capability checks and missing-control fallbacks (D260)"
-      }
-     ]
+     "kids": []
     },
     {
      "path": [
@@ -495,32 +446,7 @@
      "desc": "skillbook setup on request: discover and propose the complete scope, apply approved pointers and settings, preserve existing guidance, and report observed loading or pending checks (D261)",
      "src": "cc lc",
      "tail": [],
-     "kids": [
-      {
-       "path": [
-        "coordinate",
-        "setup",
-        "claude"
-       ],
-       "mark": "●",
-       "desc": "current claude setup paths, preserved instruction precedence and conditional loading checks (D261)",
-       "src": "",
-       "tail": [],
-       "kids": []
-      },
-      {
-       "path": [
-        "coordinate",
-        "setup",
-        "codex"
-       ],
-       "mark": "●",
-       "desc": "current codex setup paths, preserved instruction precedence and conditional loading checks (D261)",
-       "src": "",
-       "tail": [],
-       "kids": []
-      }
-     ]
+     "kids": []
     },
     {
      "path": [

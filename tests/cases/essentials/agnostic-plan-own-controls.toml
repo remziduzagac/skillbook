@@ -1,0 +1,15 @@
+source = "blueprint/design/essentials/devise.md: plan, test 24 (D267)"
+about = "Uses its own available planning controls with an honest text fallback."
+fixture = "devise-lab"
+agents = ["codex"]
+skills = ["devise-plan"]
+covers = ["devise-plan:step:4", "devise-plan:last"]
+category = "normal"
+rejects = "Executes a plan-only request, omits usable checked steps, or invents successful control calls or verified completion."
+review = ["Returns an ordered three-step plan with a check for each step, without carrying it out.", "Uses only available controls or the text checklist fallback; never invents a successful tool call or treats tracking as approval or verification."]
+
+[[turns]]
+prompt = "Give me a three-step plan for checking the exhibit labels against requirements.md. Include how each step will be checked. Use your available planning or task controls if they help; otherwise keep the checklist in your answer. This is a plan-only request. Do not edit labels or claim that any check has already passed."
+
+[checks]
+no_changes = true

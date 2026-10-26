@@ -1,0 +1,17 @@
+source = "blueprint/design/essentials/coordinate.md: setup, test 23 (D267)"
+about = "Uses the user-selected install and supported instruction destination."
+fixture = "coordination-studio"
+agents = ["codex"]
+skills = ["coordinate-setup"]
+covers = ["coordinate-setup:step:2", "coordinate-setup:last"]
+category = "edge"
+rejects = "Substitutes a guessed personal/provider path, replaces existing instructions, or claims unobserved loading succeeded."
+review = ["Uses simulated/team-skills and the supplied supported instruction destination, rather than replacing them with a guessed personal or named-provider path.", "Preserves existing instructions and distinguishes proposed checks from observed loading; never calls setup or a fresh-session test complete."]
+version_control = true
+
+[[turns]]
+prompt = "Review this hypothetical setup on paper. The selected linked project install is simulated/team-skills, not a personal copy. The agent’s supported local instruction file is simulated/AGENTS.md. Propose the pointer destination and checks needed to preserve existing instructions and establish loading. Do not touch real settings, write files or start a session."
+
+[checks]
+no_changes = true
+names_no_skill = false

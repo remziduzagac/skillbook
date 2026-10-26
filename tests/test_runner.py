@@ -48,8 +48,8 @@ class SkillResources(unittest.TestCase):
                     "references/coordinate/delegate/scripts/help.md"]:
             with self.subTest(rel=rel):
                 self.assertIsNone(runner.skill_name("essentials", rel))
-        self.assertEqual(runner.skill_name("essentials", "references/coordinate/delegate/codex.md"),
-                         "coordinate-delegate-codex")
+        self.assertEqual(runner.skill_name("essentials", "references/coordinate/delegate/council.md"),
+                         "coordinate-delegate-council")
         self.assertTrue(all("assets" not in path.parts and "scripts" not in path.parts
                             for _, path in runner.skill_files()))
 

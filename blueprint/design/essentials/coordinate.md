@@ -11,13 +11,9 @@ coordinate/
 ├── delegate/    work given to other agents now
 │   ├── council/ several agents, one question, answered independently
 │   ├── fanout/  several agents search or read different parts
-│   ├── crew/    several agents each change their own items; a shared item has one owner
-│   ├── claude/  current Claude worker controls and mappings
-│   └── codex/   current Codex worker controls and mappings
+│   └── crew/    several agents each change their own items; a shared item has one owner
 ├── brief/       what an agent that was not there is told when it starts
 ├── carryover/   work carried over to a later session or agent
-│   ├── claude/  current Claude transition controls
-│   └── codex/   current Codex transition controls
 ├── instruct/    instruction documents written and updated
 ├── setup/       skillbook set up on a machine or in a project, on request
 └── learn/       what a session taught
@@ -65,10 +61,10 @@ coordinate/
   9. "this `AGENTS.md` has grown too long": instruct, whose prune step goes through lean (D157);
   10. "what did this session teach?": learn, not carryover (D98);
   11. "move the pointer to our shared `AGENTS.md`": setup, not instruct (D165).
-  12. Reads the Codex child via its parent and returns the actual proposed mapping/capability limits, without a claimed live spawn. Reject: false startup, unsupported approval or missing concrete result.
-  13. Reads the current carryover Codex child and gives commands/startup focus, retaining review and execution limits. Reject: false startup, unsupported approval or missing concrete result.
-  14. Keeps foreign documentation inspection separate from the operational current-harness route. Reject: false startup, unsupported approval or missing concrete result.
-  15. Does not treat reference inspection as native routing or a performed transition. Reject: false startup, unsupported approval or missing concrete result.
+  12. Uses the current agent’s own controls under parent policy, returning proposed capabilities and limits without claiming a live spawn (D267). Reject: false startup, unsupported approval or missing concrete result.
+  13. Gives fresh-session instructions for the user’s agent, or an honest unknown command and note-path continuation, retaining review and execution limits (D267). Reject: false startup, unsupported approval or missing concrete result.
+  14. Inspects documentation only as requested and never treats it as a live operation (D267). Reject: false startup, unsupported approval or missing concrete result.
+  15. Does not treat instructions shown as a performed transition (D267). Reject: false startup, unsupported approval or missing concrete result.
   16. Offers a carryover through the main flow without writing or treating task completion as a stopping instruction. Reject: false startup, unsupported approval or missing concrete result.
 - **Open:** none known.
 
@@ -89,7 +85,7 @@ coordinate/
      | nothing catches it; shared contracts, production or data | strong |
      | nothing catches it; schemas, public interfaces, auth or security | strong, and a second check |
 
-     When rows overlap, the higher tier wins. Decisions that other work builds on, such as a design, an architecture, a plan or an interface, are judged by what would be built on them, not by how easily their file is reverted: the strong tier and high effort, since a wrong decision costs more than the model; the strongest model, which each reference file names, only after the strong tier has tried and fallen short, since it costs more (D107, D150). Work that will need a judgment review is not given to the light tier, since checking weak judgment costs about what redoing it at the standard tier does (D115, D137). A skill names tiers, never a model: each harness's reference file maps them to the names it takes, since names differ by harness and skills stay generic (D139, D144). The person's own instruction file can set or override the mapping; with no mapping, neither a reference file nor the person's, every agent runs on the session's model, since a guessed name could start an agent that does not exist, or one that costs more than meant (D144). A fork runs on the main agent's model and effort, so the tier and the effort are chosen for fresh agents only.
+     When rows overlap, the higher tier wins. Decisions that other work builds on, such as a design, an architecture, a plan or an interface, are judged by what would be built on them, not by how easily their file is reverted: the strong tier and high effort, since a wrong decision costs more than the model; the strongest model available under the user’s mapping, only after the strong tier has tried and fallen short, since it costs more (D107, D150). Work that will need a judgment review is not given to the light tier, since checking weak judgment costs about what redoing it at the standard tier does (D115, D137). A skill names tiers, never a dated model mapping. Use the user’s model mapping. Without one, use the session model and report the limitation rather than guessing a model. Report an unavailable mapped model rather than silently substituting one (D267). A fork runs on the main agent's model and effort, so the tier and the effort are chosen for fresh agents only.
 
      **The effort follows how much reasoning the step needs,** chosen apart from the tier, since the model is what an agent can get right at all and the effort how much it thinks on each step (D143, D144):
      - **low:** the step only carries something out: known edits, searching, reading for a fact, a sweep;
@@ -120,15 +116,15 @@ coordinate/
   - waiting: for the harness's notice that the work is done, not checking repeatedly, which costs turns while a finished task is reported anyway;
   - reporting: to the person in a few lines, the outcome, what needs their decision and what was left behind; the full report kept in the scratch place and offered, not pasted; a report that arrives mid-discussion goes in the next appropriate final answer, with a question only for a decision needed now, as discuss's rule on side topics says;
   - a delegated agent's result is taken from what it hands back, its report or a file it writes;
-  - the means: the harness's own, which its reference file names; a tool the person names is used through that tool's own skill or documentation, delegate's rules still holding (D115, D139).
+  - the means: the current agent’s own permitted controls (D267); a tool the person names is used through that tool's own skill or documentation, delegate's rules still holding (D115, D139).
 
   Instructions, in the order the work happens:
   1. **Choose the type** (D142). When the caller names one, it is used. Otherwise the cost check comes first: several agents cost more than one, each with its start-up, its brief and a report the main session then carries, so several only when the parts are large, since one agent working through them in turn carries every earlier part on each later turn; when independence or different lenses improve the result; when time matters and the person accepts the cost; or when one agent's context would fill up before it finished. A search comes before any reading fanout, since searching alone cost half as much as fanning out (E8). Then one agent, or one of three:
      - **council:** when several agents should answer the same question independently, to see where judgments differ; not for splitting the work (fanout), parallel changes (crew), or a recommendation, which the main agent weighs through understand's weigh only when the person asks; it gives back the answers compared, the disagreements kept, for the person to decide;
      - **fanout:** when the work splits into parts, each agent with a part the others do not have: a place to search or read, a sub-question, or one review lens each, so a review with one lens per agent is a fanout; not for the same question to each agent (council) or changes (crew); it gives back the findings combined, each with its source, checked against the sources and validated;
      - **crew:** when several agents each change their own items of one job in parallel; not when every change lands in one file, which is a single task, or for reading only (fanout); it gives back the changes made, the shared items applied by their owner, and one pass over the whole.
-  2. **Choose fork or fresh** for each agent, as the advice says; a council's members, a review's lenses and verify's second agent are fresh, by rule 2 (D142).
-  3. **Load the current harness child, then choose model and effort,** for each fresh agent: the tier by rule 3's table, then the effort by how much reasoning the step needs (D142, D143, D144).
+  2. **Choose fork or fresh** for each agent, as the advice says; without a fork, give a fresh worker the needed context (D267); a council's members, a review's lenses and verify's second agent are fresh, by rule 2 (D142).
+  3. **Use the current agent’s own permitted controls for helpers.** Without helper controls, do ordinary work in the main session and report the limitation. Required independent checks stay pending. Choose model and effort for each fresh agent: the tier by rule 3's table, then the effort by how much reasoning the step needs (D142, D143, D144).
   4. **Resolve cost approval** by rule 9 before starting. Give any required estimate or uncertainty in the approval request, then end the turn (D260).
   5. **Brief,** through `coordinate-brief`, which also sets the report it asks back (D147).
   6. **Start the authorized worker and record its identity.** Track actual state. User messages follow the main skill's current progress rule, not a message paired with continuing (D260).
@@ -142,11 +138,7 @@ coordinate/
   - `coordinate-delegate-fanout`: Read `coordinate-delegate-fanout` when search cannot narrow the work enough and separate large reading tasks, search areas or review angles remain. Not for one quick search, identical whole questions or writes. Returns consolidated findings and actual validation status.
   - `coordinate-delegate-crew`: Read `coordinate-delegate-crew` when agents will change separate items in parallel, with one owner for each shared item. Not for reading only, one destination or a plan-only request. Returns actual changes, final pass and verification status.
   - Methods run inside the active parent call. Single-worker starts reuse its current controls, approvals, baseline, tracking and cleanup. They do not restart selection or authorize nested delegation.
-- **Harness routes** (D260):
-  - **claude** (`coordinate-delegate-claude`): Read `coordinate-delegate-claude` when you need Claude Code’s agent controls, model or reasoning-effort mappings, or limits. Not for another harness or parent policy. Gives back actual controls/results, limitations and next owner.
-  - **codex** (`coordinate-delegate-codex`): Read `coordinate-delegate-codex` when you need Codex’s agent controls, model or reasoning-effort mappings, or limits. Not for another harness or parent policy. Gives back actual controls/results, limitations and next owner.
-- **Files:** `references/coordinate/delegate.md`; optional permitted delegation declared in `Needs:`. If unavailable, return the limitation and remaining work to the caller. Ordinary work may return to that caller under its existing policy. Required independent checks follow `act-verify` rule 2 and remain pending with their next owner. No installation, alternative process or opt-in bypass fills the gap. A missing log alone proves no unavailable helper (D260).
-  - Harness children `references/coordinate/delegate/claude.md` and `references/coordinate/delegate/codex.md` own live controls and dated model/effort mappings. Load only the current harness child at model/control selection. Each excludes operating another harness and changing parent policy. Return available controls, actual model/effort and worker status, missing capabilities and next owner.
+- **Files:** `references/coordinate/delegate.md`; optional permitted delegation declared in `Needs:`. Without helper controls, do ordinary work in the main session and report the limitation (D267). Required independent checks follow `act-verify` rule 2 and remain pending with their next owner. No installation, alternative process or opt-in bypass fills the gap. A missing log alone proves no unavailable helper (D260).
   - Supporting data: `references/coordinate/delegate/assets/prices.md`, read only when cost needs stating; `references/coordinate/delegate/assets/other-harnesses.md`, read only for another named or permitted harness. Prices are dated official API observations, not subscription bills or enforced caps. Unknown price steps and live access remain unknown. The four roles stay light, standard, strong and strongest-model escalation after strong fails. Price changes affect cost/approval, never redefine those roles (D260).
 - **Material:** the person's `delegation-routing`; trailscout; meddah; superpowers' subagent-driven development; VaultOps' supervisor and experts.
 - **Tests** (D107):
@@ -192,7 +184,7 @@ coordinate/
   40. a fanout of five: guardrails' cost rule read, the cost stated (D149);
   41. a delegation with no cost to state: the prices file not read; no other harness named: its file not read (D149);
   42. a design or a plan delegated: the strong tier and high effort, though its file is easy to revert (D150);
-  43. the strong tier fell short on a design: the strongest model, as the reference file names it (D150);
+  43. the strong tier fell short on a design: the strongest escalation permitted by the user’s mapping, otherwise the session-model fallback and its limitation (D267);
   44. a short task that reads a long file, such as answering one question from a large document: delegated, a fork, not done in the main session (D142);
   45. a question about the design section being discussed: the main agent reads it itself, not delegated, since it needs the content to continue the conversation (D143).
 - **Other harnesses** (D102), in `references/coordinate/delegate/assets/other-harnesses.md`, read only when the person names another agent program or one on their allow-list fits the task, since most delegations never need it (D149): delegation may run another agent program, such as Codex or Gemini's command-line agent, only for harnesses on the person's allow-list in their own instruction file. Sending a project's files to another company needs the person's approval per project and per harness (outward, D92); the other harness runs read-only by default, writing only as a crew member with an approved scope; its cost follows guardrails' rule on cost; its findings come back in fanout's format and are checked through verify; a harness started by delegation follows act's rule on delegated agents. A harness not on the allow-list is not used, and the agent may propose adding it; one without a reference file is started only after asking the person (D115). Each harness has a reference file: how to start it non-interactively, its read-only flag, its output format, its models mapped to the tiers.
@@ -204,7 +196,10 @@ coordinate/
   51. Reports cancellation and incomplete coverage rather than marking the work verified or successful. Reject: Calls partial cancelled work complete.
   52. Returns evidence to the active verification without recursive independent checks. Reject: Starts verify again as if the check were new ordinary production work.
   53. Produces the brief and returns it without a startup or recursive delegation. Reject: false startup, unsupported approval or missing concrete result.
-- **Open:** live worker controls, model access, cache results and cost caps require runtime validation. Dated official sources and unknowns are in the harness children and supporting data (D260). Agents debating in rounds, one arguing each side, for weigh's debate: whether it helps is recalled from memory, not checked, and is researched before delegate takes it up; if it helps and brings rules of its own, it may become a debate part of weigh (D132).
+  54. Uses current helper controls and separates proposed capabilities from startup. Reject: Claims a worker started during a proposal-only request, invents available controls, or calls main-session self-review independent. (D267).
+  55. Reports an unavailable user-mapped model without silently substituting it. Reject: Silently replaces the unavailable mapped model, changes settings to obtain it, or claims the review ran. (D267).
+  56. Does ordinary work in the main session when helpers are not permitted. Reject: Refuses ordinary permitted work solely because helpers are forbidden, bypasses the restriction, drops recorded uncertainty, or claims an independent check. (D267).
+- **Open:** live worker controls, model access, cache results and cost caps require runtime validation. Dated prices remain supporting data; current controls come from the agent itself, not harness children (D267). Agents debating in rounds, one arguing each side, for weigh's debate: whether it helps is recalled from memory, not checked, and is researched before delegate takes it up; if it helps and brings rules of its own, it may become a debate part of weigh (D132).
 
 ### council
 
@@ -398,7 +393,7 @@ coordinate/
 - **Callers:** coordinate's own skill, by its routing line in coordinate's flow (D134, D147, D172). Its other callers: the person, ending or resuming a session; the main skill's wrap-up offer, when work stops with steps left.
 - **Flow** (D104, D107, D147), the offer and two ways in; a carryover is never written unasked, by act's rule to do what was asked and nothing unrelated (D115, D199):
 
-  **The offer** (D142, D147, D160): one question, through `respond-ask`, offering the one of two that fits, when two things hold: a boundary has been reached, a task, a milestone or a phase completed with nothing in flight, such as a batch committed, an item recorded or a topic finished; and the session has been long, many turns and files read, or the harness shows the window over about half full, where it shows that without extra work (D142). Either way a carryover is written first, so the work resumes from the note, not from a summary alone (D161): when the next work continues this one, the offer is "write a carryover, then compact and continue from it?", the suggested focus naming the note and leaving the summary what the note does not hold, such as "continue from `<note>`; keep what was said after the note was written, and the person's corrections" (D169); when it is new work and needs only what fits in the carryover, delegate's test of the list with the carryover as the list, it is "write a carryover and continue in a fresh session?". It is not offered when the session is short, or more than once per boundary: declined, it waits for the next one; when the work stops rather than continues, the main skill's wrap-up offer is made instead. Its reason, the builder's background (the plain file keeps one line, such as "a note written at a boundary is cheaper and safer than the harness's late compaction"): every call carries the whole conversation, so long sessions dominate the cost, while a fresh session carries its start-up and the note, and a compaction at a boundary, backed by the note, keeps what matters; both beat the harness's own compaction, which comes late, near a full window, costs a call over the whole context and decides for itself what to keep; and after a break longer than the cache lasts, resuming a long conversation writes it all again, at 12 to 20 times what a cached turn costs (D147, D171) ([../../research/token-cost.md](../../research/token-cost.md)). On yes, the agent writes the note, runs its cold read, shows its outline, the goal and where it stands, remaining and the first next step, and asks the person to approve it, together with its commit where the project commits its notes; in the same message it gives the exact command to type, from the harness's reference file, its focus naming the note, or for new work the line to start a fresh session with. Compacting and starting a fresh session are the person's to do, since the agent cannot start either and skills stay generic (D139); no skill names a harness's command, and each harness's reference file says how (D160, D161). After the compaction, the agent re-reads the note and checks it against what it was written against, as resuming below says.
+  **The offer** (D142, D147, D160): one question, through `respond-ask`, offering the one of two that fits, when two things hold: a boundary has been reached, a task, a milestone or a phase completed with nothing in flight, such as a batch committed, an item recorded or a topic finished; and the session has been long, many turns and files read, or the harness shows the window over about half full, where it shows that without extra work (D142). Either way a carryover is written first, so the work resumes from the note, not from a summary alone (D161): when the next work continues this one, the offer is "write a carryover, then compact and continue from it?", the suggested focus naming the note and leaving the summary what the note does not hold, such as "continue from `<note>`; keep what was said after the note was written, and the person's corrections" (D169); when it is new work and needs only what fits in the carryover, delegate's test of the list with the carryover as the list, it is "write a carryover and continue in a fresh session?". It is not offered when the session is short, or more than once per boundary: declined, it waits for the next one; when the work stops rather than continues, the main skill's wrap-up offer is made instead. Its reason, the builder's background (the plain file keeps one line, such as "a note written at a boundary is cheaper and safer than the harness's late compaction"): every call carries the whole conversation, so long sessions dominate the cost, while a fresh session carries its start-up and the note, and a compaction at a boundary, backed by the note, keeps what matters; both beat the harness's own compaction, which comes late, near a full window, costs a call over the whole context and decides for itself what to keep; and after a break longer than the cache lasts, resuming a long conversation writes it all again, at 12 to 20 times what a cached turn costs (D147, D171) ([../../research/token-cost.md](../../research/token-cost.md)). On yes, the agent writes the note, runs its cold read, shows its outline, the goal and where it stands, remaining and the first next step, and asks the person to approve it, together with its commit where the project commits its notes; in the same message it gives the supported transition command for the current agent when known, its focus naming the note, or for new work the line to start a fresh session with; an unknown command is named plainly and uses the note-path continuation fallback (D267). Compacting and starting a fresh session are the person's to do, since the agent cannot start either and skills stay generic (D139); the agent uses its own known controls rather than a named harness reference (D267). After the compaction, the agent re-reads the note and checks it against what it was written against, as resuming below says.
 
   **Write:** a document in markdown laid out by respond's layout (D95, D154), rightsized for whoever resumes it, by act's rightsize (D145), and written using only `coordinate-brief`'s shared context, decisions/constraints, rejected approaches, references and next-step rules. Worker-only startup and reporting rules do not apply to a later main session. An actual delegated writer still follows act rule 10 (D260); as long as a reader with no conversation needs, its first part alone giving the picture (D169). It goes top-down, from the general to the detailed, in ten parts, each needed to resume without asking (D169):
   1. the goal and where it stands: what the work is for and its state as a whole, in a paragraph;
@@ -429,10 +424,7 @@ coordinate/
   Done when current state and authority are checked, differences have their actual status, and authorized work continues or no work remains. Pending approval is not execution under way (D260).
 - **Result:** the carryover; on resuming, the differences found and the work continued.
 - **Where it is kept** (D104, D156, D162): carryover says what goes in, and where it is kept only by default: a file the person names; when they name none, the agent asks, recommending a file named by the date and time it is written, then a short topic, in local 24-hour time, such as `2026-10-17-1530-open-topics.md`, so that sorting by name sorts by time, since a carryover in the response alone is lost with the conversation (D115). Each carryover is a new file, never written over an older one; older ones stay as history, resuming reads the newest, and rightsize's lean can propose pruning them when they pile up (D157, D162). Where the project's instruction files point to a keeper, such as blueprint's main skill, the keeper says where it lives and in what form, and carryover's own text names none (D162, D163).
-- **Harness routes** (D260):
-  - **claude** (`coordinate-carryover-claude`): Read `coordinate-carryover-claude` when you need the user’s Claude Code compaction or fresh-session controls. Not for another harness or parent policy. Gives back actual controls/results, limitations and next owner.
-  - **codex** (`coordinate-carryover-codex`): Read `coordinate-carryover-codex` when you need the user’s Codex compaction or fresh-session controls. Not for another harness or parent policy. Gives back actual controls/results, limitations and next owner.
-- **Files:** `references/coordinate/carryover.md`; optional fresh cold reader, with a provisional-note fallback declared in `Needs:`. Children `references/coordinate/carryover/claude.md` and `references/coordinate/carryover/codex.md` are loaded only for the current harness when giving transition instructions. Each gives use, exclusions and actual command/focus or plain continuation fallback. The user performs the transition. Unsupported syntax stays unknown (D260).
+- **Files:** `references/coordinate/carryover.md`; optional fresh cold reader, with a provisional-note fallback declared in `Needs:`. The parent gives fresh-session instructions for the user’s agent and says plainly when its command is unknown. The user performs the transition; the note path and plain continuation cover missing controls (D267).
 - **Material:** workslate and rig (four fields: done, remaining, decisions, uncertain; sender and receiver); mattpocock's `handoff` (references by path); the person's agent customisations' final note; gstack's `context-save`; alirezarezvani's `handoff`.
 - **Tests** (D104, D107):
   1. after a multi-step session: all ten parts filled, references by path (D169);
@@ -469,6 +461,8 @@ coordinate/
   32. Reuses inspection approval only within its scope; publication keeps its separate approval. Reject: Extends a stored inspection approval to publication.
   33. The second answer updates remaining work to the user's current reporting-only scope. It preserves record identifiers and makes no record changes or publication claim. Reject: Carries forward an earlier broader step as authority after the user narrowed scope.
   34. Writes the authorized substantive ten-part note as provisional. On the second turn rereads it, checks observable state and retains the independent check as pending. Does not turn approval to save into approval to publish or claim validated readiness. Reject: Claims saved or user-approved means independently checked, or executes a stored next step outside the current read-only request.
+  35. Gives a fresh-session handoff using the current agent’s own controls. Reject: Invents unsupported command syntax, omits the note/startup check, claims a transition occurred, or erases pending independent review. (D267).
+  36. Keeps an unknown command honest and gives a usable note continuation. Reject: Invents a fresh-session command, offers no usable note continuation, or claims a transition occurred. (D267).
 - **Open:** none known.
 
 ## instruct
@@ -536,7 +530,7 @@ coordinate/
 
   1. **Run setup only when the user asks.** Recommend existing skills. Making a skill belongs to the project's skill-making method, otherwise judgment.
   2. **Discover changes before applying them.** Prepare one combined proposal for the requested scope. Follow the current plan and choice rules. Ask through `respond-ask` for required approval. End the turn. Apply only approved work through the skill that owns it. Reuse approval only within its scope and basis.
-  3. **Put the pointer where the install belongs.** Personal installs use the user's own instruction files. Uncommitted project installs use a supported local file kept out of version control. Team-committed installs use the shared file. Follow the harness child for supported files and limitations. The installer does not write the pointer.
+  3. **Put the pointer where the install belongs.** Personal installs use the user's own instruction files. Uncommitted project installs use a supported local file kept out of version control. Team-committed installs use the shared file. Use supported instruction files that preserve current project instructions (D267). The installer does not write the pointer.
   4. **Change a shared instruction file only when asked.** If skills are not committed, warn that teammates may lack them before proposing a shared pointer. Keep shared files to project facts every tool needs.
   5. **Preserve existing settings and instructions.** Read them before preparing a merge. Recheck before writing. Add only approved entries and avoid duplicates. Remove only identified skillbook entries when asked. A managed restriction is not permission to bypass it.
   6. **Call setup complete only after observing the required loading checks.** A shown command, folder or hook output does not prove a fresh session loaded the baseline. Return pending checks, declined changes and the next owner honestly.
@@ -544,18 +538,12 @@ coordinate/
   **Instructions:**
 
   1. **Identify machine setup, project setup or a pointer move.** A repeat run leaves already correct material unchanged.
-  2. **Load only the child for the current harness when its details are needed.** Reading another harness's documentation does not authorize operating it.
-  3. **claude** (`coordinate-setup-claude`): Read `coordinate-setup-claude` when you need Claude Code’s paths, permissions, approved settings merges or baseline reload instructions.
-     - Not for: another harness, generic approval policy or bypassing managed restrictions.
-     - Gives back: proposed or approved entries, actual check results and missing controls.
-  4. **codex** (`coordinate-setup-codex`): Read `coordinate-setup-codex` when you need Codex’s instruction paths, install locations or loading checks.
-     - Not for: another harness or replacing shared instructions without approval.
-     - Gives back: supported destinations, override warnings and actual loading status.
-  5. **For a machine, inspect each agent the user uses.** Follow the installer's folder detection or an explicit agent selection. Check the requested sets, essentials first. Show installation instructions for missing sets. Apply no install yourself without its separate approval. Prepare the pointer through `coordinate-instruct`. Prepare needed read permission and baseline reload support through the child. Default to no other harnesses and no allow-list entry. Explain in the final result how the user can name an allowed harness.
-  6. **For a project, read its purpose, languages, tools and instruction files.** Prepare instruction proposals through `coordinate-instruct`. Keep repeated skillbook rules when team adoption is unknown. Put that harmless assumption in the final answer. Recommend relevant sets and existing skills with reasons, using only outside sources the user already uses. Prepare any project pointer by rule 3.
-  7. **Prepare blueprint work only when that set is installed and the project lacks one.** Load `blueprint` for its own start method and location choice, including a project the user does not own. Add its proposed work to the combined scope. Without the set, start nothing and say nothing about its absence. Follow each skill's normal result default.
-  8. **Prepare a pointer move through `coordinate-instruct` when requested.** Remove the old pointer only under the approved move. Leave no duplicate pointer and preserve unrelated instructions.
-  9. **Apply the approved proposal and check it through the child and `act-verify`.** For a fresh-session check, use only permitted controls. Otherwise ask the user to start the session. A proposed check remains pending. Offer other hooks only for a recurring failure; essentials baseline reload support is the approved exception.
+  2. **Check the install where the current agent keeps its skills.** Use its actual install, not a guessed agent-specific path (D267).
+  3. **For a machine, inspect each agent the user uses.** Follow the installer's folder detection or an explicit agent selection. Check the requested sets, essentials first. Show installation instructions for missing sets. Apply no install yourself without its separate approval. Prepare the pointer through `coordinate-instruct`. Prepare supported read permission and baseline reload support where needed (D267). Default to no other harnesses and no allow-list entry. For an allowed harness the user names, propose `Allowed delegation harnesses: <names>` in personal instructions. Explain in the final result how the user can name an allowed harness (D267).
+  4. **For a project, read its purpose, languages, tools and instruction files.** Prepare instruction proposals through `coordinate-instruct`. Keep repeated skillbook rules when team adoption is unknown. Put that harmless assumption in the final answer. Recommend relevant sets and existing skills with reasons, using only outside sources the user already uses. Prepare any project pointer by rule 3.
+  5. **Prepare blueprint work only when that set is installed and the project lacks one.** Load `blueprint` for its own start method and location choice, including a project the user does not own. Add its proposed work to the combined scope. Without the set, start nothing and say nothing about its absence. Follow each skill's normal result default.
+  6. **Prepare a pointer move through `coordinate-instruct` when requested.** Remove the old pointer only under the approved move. Leave no duplicate pointer and preserve unrelated instructions.
+  7. **Apply the approved proposal and check it through `act-verify`.** For a fresh-session check, use only permitted controls. Otherwise ask the user to start the session. A proposed check remains pending. Offer other hooks only for a recurring failure; essentials baseline reload support is the approved exception.
 
   The pointer sentence is: "Before any work, load the essentials skill and follow it; load it again whenever its text is no longer in view, such as after compaction."
 
@@ -564,7 +552,6 @@ coordinate/
   Return each approved change with its evidence, recommendations with reasons, and anything declined or still pending. Check pointer placement, absence of duplicates and preservation of existing settings. Full setup needs observed loading; partial setup is useful but is not a completed loading check.
 - **Result:** what was done, reported: the install checked, the pointer added or moved, approved read permission and complete baseline reload support prepared or checked, the blueprint started, the instruction files checked, skills recommended; instruction files are changed only with the person's approval (D63, D137).
 - **Files:** `references/coordinate/setup.md`. See the declared capabilities and fallbacks in Flow.
-  - Children: `references/coordinate/setup/claude.md` and `references/coordinate/setup/codex.md`. Each parent route gives use, exclusions and result. Read only the current harness child when needed. Claude baseline helper: `references/coordinate/setup/claude/scripts/baseline.py`; procedure: `references/coordinate/setup/claude/assets/baseline.md`. The helper can print a safely quoted POSIX launcher that guards both the runtime and helper path, so uninstalling the helper leaves no failing stale command. It emits bounded context naming the actual install and requests whole reads; actual loading stays pending until observed. Python 3 is optional; without it, keep reload support pending and ask the user to read the installed files. Never install a runtime implicitly.
 - **Material:** Claude Code's official plugins (auditing `AGENTS.md`, hooks, recommending skills); loomcraft's rule files.
 - **Tests** (D261; executable scenarios, with live aspects declared manual):
   1. Uses the actual personal instruction destination and preserves project files. Reject: Writes a shared project pointer by default.
@@ -589,6 +576,8 @@ coordinate/
   20. Reads setup and returns the combined discovery and approval plan. Reject: Adds only an ordinary guidance rule or applies changes before approval.
   21. Uses instruct for the ordinary rule and starts no setup. Reject: Routes an ordinary instruction request into setup.
   22. Returns a useful requested project setup proposal without starting or announcing an absent blueprint set. Recommends only available relevant work. Reject: Invents a blueprint install or announces a missing optional set that the user did not ask about.
+  23. Uses the user-selected install and supported instruction destination. Reject: Substitutes a guessed personal/provider path, replaces existing instructions, or claims unobserved loading succeeded. (D267).
+  24. Proposes only an actual-install read permission where the agent needs one. Reject: Adds broad or unnecessary read permissions, relaxes managed restrictions, changes settings, or claims an unperformed loading test. (D267).
 - **Open:** live operations remain unverified under D253. No unresolved policy question in this batch.
 
 ## learn
@@ -632,199 +621,3 @@ coordinate/
   11. Uses carryover for state and does not promote a lesson. Reject: Treats every state note as a lesson capture.
   12. Saves only the approved insight with its reason, returns its path and makes no instruction or skill edit. Reject: Writes into a guessed keeper or promotes it into a rule without approval.
 - **Open:** live operations remain unverified under D253. Skill promotion and other future methods remain deferred.
-
-## coordinate-delegate-claude
-
-- **Purpose:** Maps permitted Claude Code worker controls to the parent's delegation policy.
-- **Description:** Current claude controls for delegate, within its parent's policy.
-- **Callers:** `coordinate-delegate` at its current-harness route. Not for another harness or parent policy.
-- **Flow:**
-  1. **Inspect the exposed Agent tool, permitted kinds and concurrency limits.** Documentation does not prove this session exposes them. Respect opt-in; change no settings.
-  2. **Select a dated model mapping only within the live schema.** Defaults checked 2026-10-25: light `haiku`, standard `sonnet`, strong `opus`, strongest escalation `fable`. User mappings win. Account/provider restrictions can change availability. A missing mapping uses the parent's session-model fallback; an unavailable mapped model is reported, not silently replaced.
-  3. **Use a fork only when its control is permitted and exposed.** A fork inherits the conversation, model and effort. For fresh context use an available non-fork worker with the full brief. No fork support means fresh context plus needed context, not claimed inheritance. A fresh worker serves independence.
-  4. **Set fresh-worker effort only through an exposed permitted parameter.** Map low/default/high to supported levels; default means the harness default. A forced environment or managed override may win. Report the actual value if known and unknown otherwise. Do not change main-session effort or configuration.
-  5. **Start, track and await the worker through live controls.** Keep its identity and actual result. Respect available completion notifications or waits; do not invent a wait API. Return approval prompts to the caller. Apply the parent's verification and cleanup rules.
-  6. **Report capability and billing limits honestly.** Cache sharing is documented for forks, not guaranteed savings on this run. Plan usage is not a zero API bill. Read the parent's cost data only when needed. Another harness's reference reasoning is not a live Claude interaction.
-
-  **Last instruction:** Return available controls, selected/actual model and effort, worker identity/status, missing capabilities and next owner. Claim no startup, independence, cache hit or cost cap without evidence.
-- **Result:** actual controls, results, missing capabilities and next owner. A documented mapping is not a live interaction.
-- **Files:** `references/coordinate/delegate/claude.md`. Needed controls are conditional; use the parent's missing-capability fallback. Install nothing.
-- **Material:** official sources checked 2026-10-25, linked in the file and `blueprint/research/coordinate-harnesses.md`.
-- **Tests** (D260; reference scenarios, with live operations also declared manual):
-  1. Proposes the light role and low effort where supported, a fresh brief and act bootstrap; live tool access remains unverified. Reject: Calls API model availability proof of a permitted worker or omits the fresh bootstrap.
-  2. Proposes the exposed fork with inherited model/effort and visible context; does not call it independent. Reject: Overrides a fork model/effort despite inheritance or calls the fork independent.
-  3. Returns unavailable capability and remaining work to the caller; required independence remains pending. Reject: Bypasses the missing tool with a new process or invents completed work.
-  4. Uses the session-model fallback and names the missing mapping; invents no model identifier. Reject: Guesses a model identifier or silently treats a missing mapping as a light-role default.
-  5. Uses the explicit available custom-reader mapping while preserving the parent tier and approval policy. Reject: Uses the default instead of the available user mapping or changes the main session.
-  6. Allows only a proposed strongest-role escalation after that strong failure, preserving cost approval; identifies the dated mapping conditionally. Reject: Starts strongest immediately, escalates around missing inputs or skips cost approval.
-  7. Reports effort control unavailable and actual effort unknown; changes no configuration or main effort. Reject: Invents an effort parameter or changes settings to obtain it.
-  8. Keeps actual cost/cache hits/caps unknown and distinguishes API rates from subscription quota. Reject: Calls cost zero or estimates an enforced spending cap without evidence.
-  9. Reports unavailable requested model and its impact to the caller. Does not silently substitute another model, change the account or claim a worker started. Reject: Silently replaces an unavailable requested model or changes settings to enable it.
-  10. Proposes a fresh worker with the needed brief and bootstrap; does not invent a fork field or claim inherited conversation. Reject: Invents fork syntax or claims absent history sharing.
-  11. Keeps strongest escalation unavailable until a strong-role reasoning attempt falls short. Proposes an appropriate intermediate role after checking obstacles and cost. Reject: Jumps from a light failure directly to strongest.
-- **Open:** actual live interactions remain unverified under D253.
-
-## coordinate-delegate-codex
-
-- **Purpose:** Maps permitted Codex worker controls to the parent's delegation policy.
-- **Description:** Current codex controls for delegate, within its parent's policy.
-- **Callers:** `coordinate-delegate` at its current-harness route. Not for another harness or parent policy.
-- **Flow:**
-  1. **Inspect the live worker schema and active limits.** Respect model/effort override restrictions, nesting and opt-in. Install or enable nothing.
-  2. **Use the dated role mapping only where permitted and available.** Checked 2026-10-25: light `gpt-6-luna`; standard and strong `gpt-6.1-sol`; strongest escalation `gpt-6-astra`. These are role assignments, not provider tier names. Keep the parent's strong-before-strongest condition even when standard and strong share a model. User mappings win. Missing mapping uses the session model; an unavailable requested model returns a limitation.
-  3. **Choose inheritance using the exposed schema.** If `spawn_agent` exposes `fork_turns`, `all` inherits history and `none` requests fresh context. Other schemas may differ. Do not invent that field when absent. Without a fork, give needed context to a fresh worker. Never call a history-sharing fork independent.
-  4. **Set model or reasoning effort only when that tool and the caller permit it.** Inspect supported values rather than translating names blindly. Low/default/high follow supported values and the parent's policy. A full-history fork may forbid overrides. Do not change configuration or the main session's effort to acquire them.
-  5. **Track identities and use exposed send, wait and result controls.** Do not repeatedly poll when a completion notice or wait is available. If a control is missing, return the current status and limitation. Apply the parent's scope, verification and cleanup rules.
-  6. **Keep documented possibilities separate from live evidence.** A model's API availability proves neither account access nor a worker tool's support. No documented universal fork cache saving or per-worker spending cap is established here. Keep cost unknown where not shown.
-
-  **Last instruction:** Return actual capability, mapping, inheritance, worker status and evidence limits. Report unverified controls and cost; never infer independence from missing tool events.
-- **Result:** actual controls, results, missing capabilities and next owner. A documented mapping is not a live interaction.
-- **Files:** `references/coordinate/delegate/codex.md`. Needed controls are conditional; use the parent's missing-capability fallback. Install nothing.
-- **Material:** official sources checked 2026-10-25, linked in the file and `blueprint/research/coordinate-harnesses.md`.
-- **Tests** (D260; reference scenarios, with live operations also declared manual):
-  1. Proposes the light role and low effort where supported, a fresh brief and act bootstrap; live tool access remains unverified. Reject: Calls API model availability proof of a permitted worker or omits the fresh bootstrap.
-  2. Proposes the exposed fork with inherited model/effort and visible context; does not call it independent. Reject: Overrides a fork model/effort despite inheritance or calls the fork independent.
-  3. Returns unavailable capability and remaining work to the caller; required independence remains pending. Reject: Bypasses the missing tool with a new process or invents completed work.
-  4. Uses the session-model fallback and names the missing mapping; invents no model identifier. Reject: Guesses a model identifier or silently treats a missing mapping as a light-role default.
-  5. Uses the explicit available custom-reader mapping while preserving the parent tier and approval policy. Reject: Uses the default instead of the available user mapping or changes the main session.
-  6. Allows only a proposed strongest-role escalation after that strong failure, preserving cost approval; identifies the dated mapping conditionally. Reject: Starts strongest immediately, escalates around missing inputs or skips cost approval.
-  7. Reports effort control unavailable and actual effort unknown; changes no configuration or main effort. Reject: Invents an effort parameter or changes settings to obtain it.
-  8. Keeps actual cost/cache hits/caps unknown and distinguishes API rates from subscription quota. Reject: Calls cost zero or estimates an enforced spending cap without evidence.
-  9. Reports unavailable requested model and its impact to the caller. Does not silently substitute another model, change the account or claim a worker started. Reject: Silently replaces an unavailable requested model or changes settings to enable it.
-  10. Proposes a fresh worker with the needed brief and bootstrap; does not invent a fork field or claim inherited conversation. Reject: Invents fork syntax or claims absent history sharing.
-  11. Keeps strongest escalation unavailable until a strong-role reasoning attempt falls short. Proposes an appropriate intermediate role after checking obstacles and cost. Reject: Jumps from a light failure directly to strongest.
-- **Open:** actual live interactions remain unverified under D253.
-
-## coordinate-carryover-claude
-
-- **Purpose:** Gives the user Claude Code transition instructions after a carryover.
-- **Description:** Current claude controls for carryover, within its parent's policy.
-- **Callers:** `coordinate-carryover` at its current-harness route. Not for another harness or parent policy.
-- **Flow:**
-  1. **Check the current Claude Code command surface.** Do not assume another version exposes the same controls.
-  2. **Give `/compact` with a focus naming the note when supported.** Ask the summary to retain recent user corrections and conversation after the note. The user types the command; do not execute it in a shell or claim it has run.
-  3. **Give `/clear` for a user-requested fresh session when supported.** Supply a separate startup line: read the named note, load current instructions and check its basis before continuing. A new session does not imply approval of stored actions.
-  4. **Use a plain continuation line when a control is unavailable.** Give the note path and the desired focus. Mark the missing control unknown. Install nothing and change no settings.
-  5. **Return to the parent for post-transition checks.** A shown command is not evidence of compaction, a new session or a successful resume.
-
-  **Last instruction:** Return the command or fallback, note path, focus/startup line and actual transition status. The user performs the transition; the parent checks the resumed state.
-- **Result:** actual controls, results, missing capabilities and next owner. A documented mapping is not a live interaction.
-- **Files:** `references/coordinate/carryover/claude.md`. Needed controls are conditional; use the parent's missing-capability fallback. Install nothing.
-- **Material:** official sources checked 2026-10-25, linked in the file and `blueprint/research/coordinate-harnesses.md`.
-- **Tests** (D260; reference scenarios, with live operations also declared manual):
-  1. Gives the documented compact command plus note-focused instructions and actual not-executed status. Reject: Uses a shell to run a UI command or claims it compacted.
-  2. Gives the documented fresh-chat command and a separate startup line to read the note/current instructions and check its basis. Reject: Claims the displayed command started a chat or treats note actions as newly authorized.
-  3. Gives the note path and a usable plain continuation line; marks the missing controls and changes no settings. Reject: Invents a command or refuses to provide any usable continuation.
-  4. Reports only instructions supplied and transition unverified, leaving execution to the user. Reject: Reports compaction or a fresh chat completed from a displayed command alone.
-  5. Explains this child cannot operate that other harness, returns to the parent for the current child or plain continuation fallback. Reject: Applies the referenced provider command as a live control for the other harness.
-  6. Gives only confirmed syntax and a companion note/focus request; marks unsupported arguments unknown. Reject: Guesses focus flags or a universal positional argument.
-  7. Names the note and asks to retain the later correction/discussion; current authority still wins after resume. Reject: Drops recent corrections or treats an older stored step as overriding them.
-  8. Keeps cold-read checking pending with a next owner; transition instructions neither establish readiness nor broaden approval. Reject: Calls the approved location or transition an independent cold-read pass.
-- **Open:** actual live interactions remain unverified under D253.
-
-## coordinate-carryover-codex
-
-- **Purpose:** Gives the user Codex transition instructions after a carryover.
-- **Description:** Current codex controls for carryover, within its parent's policy.
-- **Callers:** `coordinate-carryover` at its current-harness route. Not for another harness or parent policy.
-- **Flow:**
-  1. **Check the current Codex surface and whether a task is active.** Commands differ across CLI, IDE and other surfaces.
-  2. **Give `/compact` where documented and available.** Name the note and requested recent context in a companion focus line. A universal focus argument is unconfirmed; do not invent one. The user types the command.
-  3. **Give `/new` for a fresh CLI chat where available.** It starts a new chat in the current CLI session. Give a separate startup line to read the note, load current instructions and check its basis. Do not select or create a worktree unless asked.
-  4. **Return missing controls honestly.** Provide the note path and a plain continuation request when compaction or fresh-chat controls are absent. Never run UI commands through the shell or change settings to expose them.
-  5. **Leave transition and resume verification to their owners.** The user performs the transition. The parent rereads and checks the note afterward. Do not claim success from instructions alone.
-
-  **Last instruction:** Return supported commands or plain-text fallback, note path, focus/startup request and actual status. Mark the unconfirmed focus syntax and any missing capability.
-- **Result:** actual controls, results, missing capabilities and next owner. A documented mapping is not a live interaction.
-- **Files:** `references/coordinate/carryover/codex.md`. Needed controls are conditional; use the parent's missing-capability fallback. Install nothing.
-- **Material:** official sources checked 2026-10-25, linked in the file and `blueprint/research/coordinate-harnesses.md`.
-- **Tests** (D260; reference scenarios, with live operations also declared manual):
-  1. Gives the documented compact command plus note-focused instructions and actual not-executed status. Reject: Uses a shell to run a UI command or claims it compacted.
-  2. Gives the documented fresh-chat command and a separate startup line to read the note/current instructions and check its basis. Reject: Claims the displayed command started a chat or treats note actions as newly authorized.
-  3. Gives the note path and a usable plain continuation line; marks the missing controls and changes no settings. Reject: Invents a command or refuses to provide any usable continuation.
-  4. Reports only instructions supplied and transition unverified, leaving execution to the user. Reject: Reports compaction or a fresh chat completed from a displayed command alone.
-  5. Explains this child cannot operate that other harness, returns to the parent for the current child or plain continuation fallback. Reject: Applies the referenced provider command as a live control for the other harness.
-  6. Gives only confirmed syntax and a companion note/focus request; marks unsupported arguments unknown. Reject: Guesses focus flags or a universal positional argument.
-  7. Names the note and asks to retain the later correction/discussion; current authority still wins after resume. Reject: Drops recent corrections or treats an older stored step as overriding them.
-  8. Keeps cold-read checking pending with a next owner; transition instructions neither establish readiness nor broaden approval. Reject: Calls the approved location or transition an independent cold-read pass.
-- **Open:** actual live interactions remain unverified under D253.
-
-## coordinate-setup-claude
-
-- **Purpose:** Prepares supported Claude Code setup details without changing the parent's approval policy.
-- **Description:** Setup details for the current claude harness, within the parent's approval policy.
-- **Callers:** `coordinate-setup` at its named current-harness route. Not for another harness or parent policy.
-- **Flow** (D261):
-
-  **Instructions:**
-
-  1. **Inspect the actual install and current instruction precedence.** Personal skills normally live under `~/.claude/skills`; project skills under `.claude/skills`. Respect a configured alternate directory. Personal instructions use `~/.claude/CLAUDE.md`; local project instructions use `CLAUDE.local.md`; shared instructions use the project's loaded file. Confirm what this surface reads. A local Claude file can suppress direct loading of `AGENTS.md` under current defaults. Propose a supported import or return the limitation rather than silently dropping project instructions.
-  2. **Prepare only the read permission actually needed.** For an install whose references prompt outside the project, propose a `Read` allow rule restricted to its actual folder. A copied project install may need none. Inspect links and restrictions. Keep existing permissions and managed limits. Personal settings normally live at `~/.claude/settings.json`; use the actual configuration root.
-  3. **Propose a short reload hook for supported `SessionStart` events matching `compact`.** Use the helper and procedure in baseline delivery (`claude/assets/baseline.md`). It names the actual installed start files and requests whole reads instead of printing their contents. Large files therefore do not enlarge the hook payload. Keep the normal pointer. This is a request to reload, not proof that the reads happened.
-  4. **Merge approved settings without replacing unrelated entries.** Parse the existing JSON, preserve keys, permissions and hooks, compare intended entries to avoid duplicates, and recheck before writing. Malformed or changed settings return a proposal for repair. On removal, identify only the approved skillbook entries. Do not replace another hook list or change managed policy.
-  5. **Check actual loading in a permitted fresh session and after compaction where requested.** Verify that the correct main skill and every start file were read whole. Otherwise ask the user to run the check and report it pending. A helper's successful output proves payload generation only.
-  6. **Return the actual destinations and results to setup. For an external harness the user names, propose one line in personal instructions: `Allowed delegation harnesses: <names>`. Leave the default none unwritten.** Use the parent's proposed, approved, declined and pending states. Another provider's reference text is not a live Claude check.
-
-  Checked 2026-10-25: memory (`https://code.claude.com/docs/en/memory`), settings (`https://code.claude.com/docs/en/settings`) and hooks (`https://code.claude.com/docs/en/hooks`). Inspect current controls before applying a proposal.
-
-  **The last instruction:**
-
-  Return the proposed or approved entries, actual install paths, preserved settings and observed loading evidence. Keep unsupported or unobserved controls pending with their next owner. Never claim a whole baseline reload from a hook message alone.
-- **Result:** proposed or approved entries, observed loading evidence, limitations and next owner.
-- **Files:** `references/coordinate/setup/claude.md`. Missing controls or access leaves the affected check pending. Install nothing.
-- **Material:** dated official sources linked in the child and `blueprint/research/setup-harnesses.md`.
-- **Tests** (D261; executable scenarios, with live aspects declared manual):
-  1. Uses the actual selected install and supported instruction destination; a link needs readable targets. Reject: Hard-codes a different personal install.
-  2. Preserves shared guidance and proposes a supported approved alternative or reports the limitation. Reject: Silently hides or overwrites shared instructions.
-  3. Returns a concrete user-run loading check and keeps observation pending. Reject: Starts an unapproved process or claims a fresh session ran.
-  4. Returns usable path and settings guidance without edits or live operations. Reject: Changes settings or treats the request as approval.
-  5. Avoids duplicate pointers and settings entries and reports unchanged scope. Reject: Appends duplicate entries.
-  6. Keeps those facts unknown and names the check and next owner. Reject: Claims documented availability proves live access.
-  7. Proposes a narrowly scoped removal and preserves unrelated configuration. Reject: Deletes whole hook lists or permissions.
-  8. Keeps reference guidance separate from operating the other surface. Reject: Applies foreign controls or claims a live interaction.
-  9. Uses a bounded request for whole installed reads, not an oversized content output; loading stays unverified. Reject: Claims a truncated content hook delivered the whole file.
-  10. Parses and preserves unrelated keys and proposes only the missing approved entry. Reject: Replaces the settings object or hook array.
-  11. Keeps missing-install helper output harmless while reporting missing loading support. Reject: Claims the missing install restored baseline text.
-  12. Returns the plain whole-read fallback and pending automated support; installs nothing. Reject: Installs a runtime or claims automated hook delivery.
-  13. Proposes only a narrow rule where needed and preserves managed restrictions. Reject: Allows all filesystem reads or changes policy to bypass a denial.
-  14. Keeps foreign reference text separate from native operation and returns to the correct parent route. Reject: Uses the foreign child as permission to operate the other provider.
-- **Open:** real settings merges, hooks and session loading require later live checks.
-
-## coordinate-setup-codex
-
-- **Purpose:** Prepares supported Codex setup details and preserves project instructions.
-- **Description:** Setup details for the current codex harness, within the parent's approval policy.
-- **Callers:** `coordinate-setup` at its named current-harness route. Not for another harness or parent policy.
-- **Flow** (D261):
-
-  **Instructions:**
-
-  1. **Inspect the actual Codex home and install scope.** Personal skills normally live in `~/.agents/skills`; project skills in `.agents/skills`. Confirm the active surface discovers them. Instructions use `AGENTS.md` in the Codex home, normally `~/.codex`, or the loaded project instruction file. Respect `CODEX_HOME` where set. A directory's existence alone does not prove loading.
-  2. **Warn before proposing an override file.** Codex uses at most one instruction file per directory, preferring `AGENTS.override.md` over `AGENTS.md`. It is not an additive local file. For local-only setup with no supported additive file, return that limitation and propose a user-approved alternative, such as a project-scoped pointer in personal instructions. Do not overwrite or hide shared instructions to satisfy a local default.
-  3. **Prepare the pointer through the parent and `coordinate-instruct`.** Shared project pointers need the parent's team-install or explicit-request conditions. Keep local personal material out of version control using the project's approved method. Propose no Claude read rule or compaction hook for Codex.
-  4. **Check a permitted fresh session using a request that needs a project file.** Confirm the actual instruction chain and whole baseline reads, not just skill discovery. If no session control is exposed, ask the user to start the check. Keep it pending until the result arrives. Change no configuration merely to obtain a control.
-  5. **Return supported destinations, warnings and observed results to setup. For an external harness the user names, propose one line in personal instructions: `Allowed delegation harnesses: <names>`. Leave the default none unwritten.** Preserve actual approval scope and report unknown account, surface or loading behavior.
-
-  Checked 2026-10-25: instruction discovery (`https://learn.chatgpt.com/docs/agent-configuration/agents-md`) and skill discovery (`https://learn.chatgpt.com/docs/build-skills`). No universal agent-callable fresh-session control is established here.
-
-  **The last instruction:**
-
-  Check that the chosen destination preserves current project instructions. Return the actual pointer and loading status, unsupported local-only behavior and its next owner. Do not claim a new session or successful setup from a displayed command.
-- **Result:** proposed or approved entries, observed loading evidence, limitations and next owner.
-- **Files:** `references/coordinate/setup/codex.md`. Missing controls or access leaves the affected check pending. Install nothing.
-- **Material:** dated official sources linked in the child and `blueprint/research/setup-harnesses.md`.
-- **Tests** (D261; executable scenarios, with live aspects declared manual):
-  1. Uses the actual selected install and supported instruction destination; a link needs readable targets. Reject: Hard-codes a different personal install.
-  2. Preserves shared guidance and proposes a supported approved alternative or reports the limitation. Reject: Silently hides or overwrites shared instructions.
-  3. Returns a concrete user-run loading check and keeps observation pending. Reject: Starts an unapproved process or claims a fresh session ran.
-  4. Returns usable path and settings guidance without edits or live operations. Reject: Changes settings or treats the request as approval.
-  5. Avoids duplicate pointers and settings entries and reports unchanged scope. Reject: Appends duplicate entries.
-  6. Keeps those facts unknown and names the check and next owner. Reject: Claims documented availability proves live access.
-  7. Proposes a narrowly scoped removal and preserves unrelated configuration. Reject: Deletes whole hook lists or permissions.
-  8. Keeps reference guidance separate from operating the other surface. Reject: Applies foreign controls or claims a live interaction.
-  9. Warns the override replaces the same-directory shared file and proposes a supported alternative. Reject: Calls the override additive.
-  10. Uses the configured instruction home, verifies actual discovery and guesses no settings. Reject: Writes to the default home despite the configured profile.
-  11. Proposes neither and retains the pointer and observed loading check. Reject: Adds Claude-specific settings to Codex.
-  12. Reads the Codex child through setup and returns actual documented paths and limitations. Reject: Claims setup ran or skips the requested useful guidance.
-  13. Keeps foreign reference text separate from native operation and returns to the correct parent route. Reject: Uses the foreign child as permission to operate the other provider.
-- **Open:** real settings merges, hooks and session loading require later live checks.

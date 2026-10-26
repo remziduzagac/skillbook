@@ -7,6 +7,8 @@
 
 Essentials is skillbook's base set. It holds how an AI agent does any piece of work, whatever the project: understand what you want, act with care, and tell you plainly what it did. The other sets build on it.
 
+Essentials uses the current agent’s own controls. Missing controls use the skill’s text or main-session fallback; required independent checks remain pending.
+
 ## Its goal
 
 An agent without guidance often guesses what you meant, does more or less than you asked, takes risky steps without asking, claims work is done without checking, and reports in long text that hides the point. Essentials gives the agent rules and methods that stop these habits:
@@ -61,7 +63,6 @@ Each line says in brief what the skill does. The skill files themselves are in [
   - **design:** decides what something will be before it is made, with reasons its builder can use.
     - **review:** checks whether a design holds together, covers its requirements and can be built.
   - **plan:** makes and follows plans for work in several parts, with approval and progress kept visible.
-    - **claude** and **codex:** use each harness's own plan mode and task list where it has them.
 - **organize:** rearranges items, such as sections, files or modules, without changing what they mean.
   - **split:** divides one whole into parts, or sorts loose items into groups.
   - **merge:** combines duplicate versions of the same thing into one.
@@ -73,13 +74,10 @@ Each line says in brief what the skill does. The skill files themselves are in [
     - **council:** collects independent answers to one question and keeps where they disagree.
     - **fanout:** splits a large reading job between agents, then checks and combines their findings.
     - **crew:** has agents change separate items in parallel, then joins and checks the whole result.
-    - **claude** and **codex:** use each harness's own controls for starting agents.
   - **brief:** writes what an agent starting now needs to know, and the report it must return.
   - **carryover:** writes a note that lets later work go on without the old conversation, and resumes from it.
-    - **claude** and **codex:** say how to move to a fresh session in each harness.
   - **instruct:** proposes instruction documents for agents, such as `AGENTS.md`.
   - **setup:** checks skillbook's install and prepares its pointers and settings.
-    - **claude** and **codex:** the setup details for each harness.
   - **learn:** finds what a session taught and proposes where each lasting lesson should be kept.
 
 ## Status

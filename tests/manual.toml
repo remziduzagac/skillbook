@@ -30,58 +30,6 @@ id = "act-cleanup:advice:5"
 reason = "Keeping the record in a file so it survives compaction shows only after a real compaction in a long session, which a scripted run does not reach."
 
 [[aspect]]
-id = "devise-plan-claude:step:1"
-reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-claude:step:2"
-reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-claude:step:3"
-reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-claude:step:4"
-reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-claude:step:5"
-reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-claude:step:6"
-reason = "Live claude mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-codex:step:1"
-reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-codex:step:2"
-reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-codex:step:3"
-reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-codex:step:4"
-reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-codex:step:5"
-reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan-codex:step:6"
-reason = "Live codex mode availability, actual approval/exit controls and task operations require an interactive session with those controls. The batch-two Codex reference cases inspect the documented fallback logic only; they do not establish that these host operations ran. Test mode-only, list-only, both and neither without changing configuration."
-
-[[aspect]]
-id = "devise-plan:route:devise-plan-claude"
-reason = "Positive live selection of the Claude planning child requires a Claude Code session. The Codex-only suite checks its documentation and negative operation boundary, not real Claude routing or tool availability."
-
-[[aspect]]
 id = "organize:rule:3"
 reason = "The cases check self-inventory and reporting a required unavailable independent check. A real fresh helper, its independent judgment and its actual return need a live permitted delegation session; the Codex trace may not expose them. Never infer absence from missing events."
 
@@ -94,56 +42,16 @@ id = "organize:rule:8"
 reason = "The cases exercise generic code-preservation and the absent-specialist fallback. Actual architecture/implementation delegation to an installed external softeng set needs that set in a live session; its design is not a fixture substitute."
 
 [[aspect]]
-id = "coordinate-delegate-claude:step:1"
-reason = "Actual claude tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
-
-[[aspect]]
-id = "coordinate-delegate-claude:step:5"
-reason = "Actual claude tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
-
-[[aspect]]
-id = "coordinate-delegate-codex:step:1"
-reason = "Actual codex tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
-
-[[aspect]]
-id = "coordinate-delegate-codex:step:5"
-reason = "Actual codex tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
-
-[[aspect]]
-id = "coordinate-carryover-claude:step:1"
-reason = "Actual claude tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
-
-[[aspect]]
-id = "coordinate-carryover-claude:step:5"
-reason = "Actual claude tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
-
-[[aspect]]
-id = "coordinate-carryover-codex:step:1"
-reason = "Actual codex tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
-
-[[aspect]]
-id = "coordinate-carryover-codex:step:5"
-reason = "Actual codex tool availability, worker result or transition/resume needs a live session. The reference cases only inspect the documented mapping and never establish a real interaction."
-
-[[aspect]]
-id = "coordinate-delegate:step:8"
+id = "coordinate-delegate:step:6"
 reason = "Actual worker startup/identity/state is not established by proposal-only scenarios; Codex tool events may omit spawned workers. Check live, without treating a missing event as proof of no worker."
 
 [[aspect]]
-id = "coordinate-delegate:step:9"
+id = "coordinate-delegate:step:7"
 reason = "Actual returned work verification and cleanup need a real worker result and observation. Proposal scenarios test ownership and requested evidence only."
 
 [[aspect]]
 id = "coordinate-delegate:step:3"
 reason = "Selecting current native worker controls requires their live exposure; documentation inspection is not that exposure."
-
-[[aspect]]
-id = "coordinate-delegate:route:coordinate-delegate-claude"
-reason = "Positive native Claude routing needs a Claude session. Codex reference inspection cannot establish this operational route."
-
-[[aspect]]
-id = "coordinate-carryover:route:coordinate-carryover-claude"
-reason = "Positive native Claude transition routing needs a Claude session; reference-only Codex scenarios are not live transitions."
 
 [[aspect]]
 id = "coordinate-carryover:step:2"
@@ -162,12 +70,8 @@ id = "coordinate-delegate-fanout:step:4"
 reason = "Actual independent validation needs a fresh permitted worker and observed result; proposed missing-validator cases do not establish a live check."
 
 [[aspect]]
-id = "coordinate-setup:step:9"
+id = "coordinate-setup:step:7"
 reason = "Applying real approved settings and checking fresh-session loading is deferred. This build changes no real configuration; fixture proposals are not live setup."
-
-[[aspect]]
-id = "coordinate-setup:route:coordinate-setup-claude"
-reason = "The positive native Claude route requires a Claude session. Codex reference cases cannot prove native operation."
 
 [[aspect]]
 id = "coordinate-delegate-crew:step:3"
@@ -182,21 +86,21 @@ id = "coordinate-delegate-crew:rule:3"
 reason = "The post-write reread during real concurrency needs another writer; hypothetical safe-write cases test policy only."
 
 [[aspect]]
-id = "coordinate-setup-claude:step:4"
-reason = "A safe settings merge amid actual concurrent or managed settings changes needs an isolated live configuration check. No real settings are changed in this task."
-
-[[aspect]]
-id = "coordinate-setup-claude:step:5"
-reason = "Fresh-session and post-compaction whole-file loading must be observed in a live permitted Claude session. Payload tests prove generation only."
-
-[[aspect]]
-id = "coordinate-setup-codex:step:4"
-reason = "Actual fresh Codex session loading is deferred; no model or session is run during this build."
-
-[[aspect]]
 id = "understand-research-analyze:step:2"
 reason = "Actual permitted reproduction, instrumentation and probe observations require an isolated live investigation. Supplied traces and proposed tests establish interpretation and probe policy only."
 
 [[aspect]]
 id = "understand-research-analyze:step:6"
 reason = "Actual cleanup of the investigation's own processes, temporary edits and permitted retained evidence requires a live lifecycle. Unresolved and cancelled proposal cases cannot establish execution."
+
+[[aspect]]
+id = "devise-plan:step:4"
+reason = "Live plan and task controls vary by agent and session. Automated plan-only scenarios test the useful plan and honest fallback, not actual mode approval or task-tool operation."
+
+[[aspect]]
+id = "coordinate-carryover:step:6"
+reason = "Fresh-session command availability varies by agent and interface. Automated instructions are not evidence that a transition happened or that a command is supported in every interface."
+
+[[aspect]]
+id = "coordinate-setup:step:2"
+reason = "Actual install discovery and supported loading need an approved live install. Hypothetical selected-path scenarios validate proposals only, not live installation or loading."

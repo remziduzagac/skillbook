@@ -1790,6 +1790,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 **Why:** Model names belong to each harness, and skills stay generic (D139); guessing another provider's names could start an agent that does not exist, or one that costs more than meant. The light tier holds most of the saving: on today's prices Haiku 5.5 costs a twentieth of Sonnet 5.5, which costs half of Opus 5.5. Capability and deliberation are different dials, as the person's own delegation-routing material treats them: a sweep with a validator behind it needs neither a strong model nor deep thought, while a tricky function that tests will check needs thought but not the strongest model; one row for both forced them to move together.
 
+**Update (D267):** D267 removes dated per-agent model mappings from skills; user mappings and the session-model fallback remain.
+
 ## D145: rightsize, nothing missing and nothing extra for the reader (2026-10-17)
 
 > **Amended by D264 (2026-10-25):** D264 removes only the repeated rightsizing summary in respond; its response-specific requirements and explicit check remain.
@@ -2294,6 +2296,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 **Why:** setup already writes the person's files with approval (D165), the person's settings file may be managed elsewhere (a dotfiles repository), and a second writer would split the rule. A refused read that the agent hides makes a skill fail without anyone noticing, so the rule says to stop and say so.
 
+**Update (D267):** D267 moves agent-specific install and settings details out of skills to the installer and docs; approval and observed-loading checks remain.
+
 ## D194: The installed skills keep their set names, and setup's read step names no agent (2026-10-18)
 
 > **Amended by D197 (2026-10-18):** setup's per-agent files are children named after the agent, `coordinate-setup-claude` and `coordinate-setup-codex`, not `references/claude.md`.
@@ -2334,6 +2338,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Decision:** the name rule's last sentence becomes: "If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, say so plainly and go on with your own judgment." Its exact wording is now: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, say so plainly and go on with your own judgment." A read the harness refused is not worked around, which act's rule on the harness's limits already says. A skill's files for each agent, such as ask's for Claude Code's question tool, are children named after the agent, `respond-ask-claude` and `respond-ask-codex`, each read only when running in that agent; the same holds for plan, delegate, carryover and setup. shallow's hand-over sends a part back to whichever skill called it, clarify or deep, which sends it to deep. explain gains a step: asked to explain more, it goes one level deeper, on the piece asked about only.
 
 **Why:** the person pointed out that stopping goes further than the problem needed: the failure seen in the test was silent, the agent answering from the main skill alone, and saying so plainly fixes that, while a moved file can be found and the rest can go on with the agent's judgment; an agent's flow is stopped only where nothing else would work. A file for one agent under a skill's folder would read as a child by the name rule, so naming it as a child fits with nothing new. The writers of the baseline found the other two gaps: "clarify sends the part to deep" was unclear when deep had called shallow, and explain's test of "explain more" had no step in its flow.
+
+**Update (D267):** D267 removes agent-specific children from sets; their parents use generic controls and fallbacks.
 
 ## D198: A fork made when unsure is said in one line (2026-10-18)
 
@@ -2416,6 +2422,8 @@ The command is `cat "$HOME/.claude/skills/essentials/<file>" 2>/dev/null || true
 - **Cost:** about 23,300 characters, roughly 5,800 tokens, added again at each compaction.
 
 **Why:** after compaction, Claude Code's summary drops essentials' text. The baseline found that no agent read the files again (0 of 8 turns), and D199 added a reload sentence to the pointer and the main skill. The retest shows the sentence is not enough in Claude Code. The pointer alone worked once and then failed three times, and the summary carried the reload instruction each time without the agent following it. Printing the files through hooks does not depend on the agent choosing to reload. One hook for the main skill put it back in 2 of 2 runs, but the group files came back in only 1 of 2. Four hooks put all four files back whole in 2 of 2 runs. The cost is the extra tokens at each compaction. The user can decline the hooks, and the pointer still works as D199 says.
+
+**Update (D267):** D267 retires the Claude-specific baseline helper and fixed implementation from skills; generic supported reload and loading checks remain.
 
 ## D205: Codex keeps its own question style, and `respond-ask-codex` adapts ask's format to it (2026-10-19)
 
@@ -3843,6 +3851,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 **Tested:** No model test was run, by D253. The six files are built with executable scenarios from all 81 numbered devise tests, extra boundary pairs, and manual declarations for live harness operations. Correct and plausible wrong traces were checked by inspection; these are not observed model passes. Repository checks and coverage are reported in `../tests/batch2-build-report.md`. Actual harness dialogs and task operations remain unverified.
 
+**Update (D267):** D267 removes the two plan harness children while preserving the parent’s approval, checklist and missing-control policy.
+
 ## D258: Non-blocking concerns go in the final answer (2026-10-25)
 
 **Decision:**
@@ -3909,6 +3919,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 **Tested:** No model test was run, by D253. Eight files and supporting material are built with executable cases for each numbered design scenario and explicit manual operational aspects. Correct and plausible wrong traces were inspected; no observed model passes are claimed. Repository checks, case counts, coverage, design comparison and unknown harness facts are recorded in ../tests/batch4-build-report.md. Live worker startup, independent results and transition cycles remain unverified.
 
+**Update (D267):** D267 removes the delegate and carryover harness children, retaining generic controls, user mappings and honest capability/independence limits.
+
 ## D261: Settle and build the remaining coordinate methods and setup controls (2026-10-25)
 
 > **Amended by D262 (2026-10-25):** Research owns findings semantics; fanout retains its encoding, script, quote checks and independent validation states.
@@ -3933,6 +3945,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - The old hook template assumes fixed file sizes and a personal install. Current files exceed that assumption. A bounded request separates supported delivery from an observed whole-file read.
 
 **Tested:** No model test was run, by D253. Cases, local script tests, manual operational limits and the file-against-design review are recorded in `../tests/batch5-build-report.md`. Script checks use temporary fixtures only. No real settings, hooks or installs were changed. Live worker execution, independent validation, fresh-session and post-compaction loading remain unverified.
+
+**Update (D267):** D267 removes setup’s harness children and their Claude-only baseline helper; actual install paths/settings belong to the installer and docs.
 
 ## D262: Settle and build research with bounded verdicts and caller-owned results (2026-10-25)
 
@@ -4017,3 +4031,17 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 **Why:** Slashed names were meant to spare small models the step from name to path, since Luna sometimes tried dashed paths such as `references/respond-layout.md`. They removed those dashed paths, but Luna then read fewer of the skills a request needs. The rename touched every skill, design and test, so it would need a clear gain to be worth it.
 
 **Tested:** The frozen 60-case routing sample and the two sequence cases ran three times on Luna with each naming, 372 runs in all. Dashed names passed 149 of 180 sample runs (83%), slashed names 132 (73%). Triggers loaded 72 against 65 of 90; near misses handled 77 against 67 of 90. Every failure was a needed skill not read. Single runs of 60 with the same wording ranged from 46 to 52 passes, so a difference of under about six cases in one run is noise; the gap here is larger. Sixteen cases did worse with slashes and three better. The sequence cases passed 6 of 6 with both. One earlier run on Sol showed no difference: 57 of 60 with both.
+
+## D267: Keep sets agent-agnostic (2026-10-26)
+
+**Decision:** Sets use the current agent's own permitted controls. Remove the eight Claude/Codex children of plan, delegate, carryover and setup. Replace their routes with one generic line in each parent. Keep non-agent-specific requirements in their existing shared homes or the parent; preserve approval, verification, independence, authority and honest missing-capability reporting.
+
+Plan uses the agent's own plan and task controls where available, with the parent's text fallback otherwise. Delegate starts helpers through the agent's controls under its current policy; without helper controls, ordinary work stays in the main session and required independent checks stay pending. Without a fork, give a fresh worker the needed context. User model mappings apply; without one, use the session model and report the limitation. No dated agent defaults remain in skills.
+
+Carryover tells the user how to start a fresh session in their agent and says plainly when its command is unknown. Its note-path and plain-continuation fallback, user-performed transitions and current-state checks remain. Setup checks the actual install where the current agent keeps skills. Agent-specific skill, instruction and settings locations belong to the installer design and docs, not a skill. Preserve the generic allowed-harness entry, existing settings, approval and observed-loading requirements. Retire the removed setup child's agent-specific baseline helper, procedure and unit tests.
+
+Retire child-only routes and reference cases. Preserve generic scenarios through parent cases, rewriting duplicates once without agent-specific commands or simulated live-operation claims. Reconcile callers, exclusions, design fields and coverage IDs together. Keep original decision bodies and historical notes, research and reports unchanged; add short supersession notes under affected decisions.
+
+**Why:** Two named agents leave every other one to its own judgment. Controls and paths change with releases. An agent can use its own controls without our repeating a dated mapping. One generic instruction serves every agent and keeps testing focused on behavior.
+
+**Tested:** The matched suite contains 56 surviving routing cases and ten rewritten behavior cases. All 462 generation runs completed without timeout or infrastructure error: 198 on Luna before, 198 on Luna after and 66 on Sol after. Under the original locked checks, Luna passed 133/198 before and 128/198 after; Sol passed 58/66. A general assertion mismatch was then repaired for three instruction-producing cases: startup lines and install pointers may name the set the user needs to load. Rescoring the same saved traces, without new model calls, gives Luna 134/198 before and 131/198 after, and Sol 61/66. Routing alone is unchanged by that repair: Luna 107/168 to 104/168; Sol 51/56. These samples establish no causal routing gain. Ten fresh Sol judges rated behavior good in 23/30 Luna baseline runs, 25/30 Luna after runs and 9/10 Sol runs. All twenty correct/wrong calibration examples received the expected accept/reject outcome. Progress flags are separate and need a human spot-check; at least one may reject an allowed essentials announcement. Static checks pass with 91 unit tests, 788 current aspects and the same 42 uncovered aspects. Known standard API-price estimates total US$5.501568 for generation and judging; group-review costs and actual login billing remain unknown. Report, original and repaired scores, raw results and scope accounting remain in `/tmp/skillbook-agnostic/report.md` and its folder. No skill wording changed during measurement.
