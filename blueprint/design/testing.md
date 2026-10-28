@@ -190,3 +190,142 @@ Judge short, useful reports about requested helpers, results and verification li
 Fact-finding and selection checks test whether each reported fact matches both the source and the requested subject. A source-backed fact about another subject is not a matching result. Keep pass improvement notes separate from failure reasons and never turn them into failing human labels.
 
 Held-out result, 2026-10-27: GPT-6.1-Sol judged the 30 blind-rated items once with a 600-second call timeout. It passed 27/27 human passes (100%; Wilson 95% range 87.5–100%) and failed 2/3 human fails (66.7%; 20.8–93.9%). Unknown judgments: 0. Three fails give a very wide range for fail detection. The one disagreement was scenario 14, turn 2, `point` (walk index 23): the human rating failed because the audience question should have come first (an inferred reason, with none supplied by the user); the judge passed because the answer opened with “v1 is here: saved searches,” naming the release and feature without preamble. Cost is unknown for all 10 calls. Ratings, evidence, judgments and run history are in `tests/calibration/human-scenarios-v2.json`. No checks, judge instructions or tuning items changed.
+
+## Skill loading and rule outcomes (D278)
+
+Measure how skills are used through scenarios and what skillbook contributes. For each rule, show whether its skill was opened, whether the rule was followed, and what changed with skillbook installed versus absent. Scenarios are the main vehicle. Focused cases explain scenario results. The four-box grid below is the centre of the report.
+
+Build this measurement before further skill changes (issue #26). Its build order takes priority over earlier run schedules. This is a design; implementation and model runs follow separately.
+
+### The first build: skill-use records
+
+Keep an ordered record of skill access for each scenario turn. Use the same record for Codex and Claude Code.
+
+- Identify the scenario, repetition, agent, model, user mode, installed/no-skill condition, session and turn.
+- Record the skill file, tool and call id, event order, success or error, read/search operation, whole/partial/unknown extent, and truncation.
+- Keep the supporting event reference, reader version and reason for any unknown. Save the tested skill files with the results so later edits cannot change their meaning.
+- Record before/after/unknown timing against the first attempted project change. Also record whether a change was confirmed by results or file evidence. A failed write is still an attempt.
+
+Count a whole read only when the returned text proves the complete file was delivered. Supported line ranges may combine when they cover the same file without gaps. A partial read proves only the returned part. A search remains a search even if it finds the tested rule. A filename, a heading plus a last line, or the agent's claim proves no whole read.
+
+Count an explicit Skill load as whole only when its recorded delivery establishes the complete text. An acknowledgement alone leaves extent unknown. Apply the same test to text injected at startup; a catalogue description is insufficient.
+
+A skill read in an earlier turn still counts if its whole text is still in the conversation. Record the turn it was read and show reused versus newly opened text. Do not require another read. If the record cannot show that the whole text remains available, mark availability unknown. The first build may leave these cases unknown before a pilot.
+
+A read becomes available when its result arrives. Use the first attempted change as the deadline for rules that must apply before changes. Use the answer for response rules. Other checks name their action deadline. Keep late reads visible; they cannot repair an earlier missed deadline. A turn without changes records that fact.
+
+### Readers and validation
+
+Build on the native event records. Validate each reader before trusting its supported observations.
+
+- **Codex:** `tests/runner/agents.ts:38` requests JSON events. `tests/runner/trace.ts:67` reads completed commands and aggregated output. Match command starts and results, resolve actual skill paths, distinguish reads from searches, and inspect returned text and truncation. Replace the heading/last-line shortcut at line 35. Unsupported commands stay unknown.
+- **Claude Code:** `tests/runner/agents.ts:24` requests verbose stream JSON. `tests/runner/trace.ts:48` joins tool calls and results. Add Read/View returned ranges, Grep searches, Skill delivery evidence and Bash output handling. Lines 60–65 currently accept successful calls without establishing extent. Errors and missing results prove no successful delivery.
+- **Both:** replace the flattened set at `tests/runner/trace.ts:43` with per-turn access records for attribution. Keep legacy read assertions identifiable. Extend the conservative change detection at line 141 with result evidence. Save normalized access evidence before sandbox cleanup; the compact action ledger alone is insufficient.
+
+Use events when they establish delivery and order. Add an observational hook only for a demonstrated recording gap that the harness can expose. A filesystem-open hook proves access, not complete delivery. Hooks must not add instructions or change task behavior. Otherwise keep the observation unknown.
+
+Validate against about 20 recorded sessions per agent, selected for varied tools and misleading cases. This is a starting size, not a statistical guarantee. Cover whole/partial reads, searches, failed and truncated calls, compound commands, late reads, no-change turns and ordinary reuse. Add synthetic fixtures for parser branches, including missing middle text with matching first and last lines.
+
+**Proposed annotation workflow, pending the user's choice:** an agent labels access, extent and timing from raw events; the user checks about five sessions per agent, including uncertain cases. Keep labels and evidence pointers. Resolve disagreements before trusting the affected observation; unsupported cases remain unknown. Recheck after reader or event-format changes. Existing Codex recordings can seed this work. Claude needs suitable recordings before its reader is trusted; creating new sessions requires separate run authorization.
+
+### Edge cases and later additions
+
+Keep uncertain cases unknown in the first build. Add deeper handling only when a scenario result needs it.
+
+- **Compaction and resumed sessions:** a session id alone does not prove retained text; a summary is not the whole skill. Add context-retention inspection when this blocks useful measurements. A fresh session clears prior availability.
+- **Helpers:** a helper's read does not load the parent. Keep missing helper evidence unknown. Add actor-level attribution when delegated scenario results need it.
+- **Concurrent or opaque actions:** unordered reads and writes, unexplained file diffs and unknown shell effects leave timing unknown. Add finer ordering when it matters.
+- **Finer comparisons:** byte-level ranges and cross-version id mappings can follow a demonstrated need. The first build freezes one rule inventory and does not pool incompatible versions.
+
+### Checks name the rule
+
+Give every scored assertion and rubric criterion its coverage id from `just test-coverage`. Case-level `covers` and skill tags alone cannot support a rule grid.
+
+- Use the existing ids for rules, advice, routes, exclusions, steps and last instructions. For example, `understand-clarify:rule:1` tests an open choice; its parent's routing check has a separate id.
+- State applicability, required skill text, deadline, rejected behavior and needed evidence. Use the same check definitions in scenario turns and focused cases.
+- Map a habit to its rule when clear. Split independent requirements. Keep a useful unmapped habit in its own score with a reason; exclude it from per-rule attribution.
+- Count one applicable rule per turn as one opportunity. All applicable parts must pass; a known failure fails; otherwise an unknown part leaves behavior unknown. Classify availability at the earliest applicable deadline; unknown then means unknown. Later reads add to the late-read count. Retain each component's verdict, deadline and availability.
+- Freeze ids and full rule text with results. The ids are positional (`tests/run.py:331`, `tests/runner/inventory.ts:28`). Reject absent ids and compare only the same inventory in the first build.
+
+Show which cases the Python/TOML and TypeScript/YAML inventories include. Different case subsets are not a coverage regression. A declaration of coverage is not an observed pass.
+
+### The four-box report
+
+Report the installed grid per rule, agent and model. Identify the tested skill version and user mode. Split trigger and near-miss opportunities. Beside each eligible rule's grid, show its matched no-skill behavior pass rate with passes and scored opportunities. Keep unknowns and counts of checks with no no-skill equivalent visible.
+
+“Opened” means the whole file that holds the rule was available by the rule's earliest applicable deadline in that turn. A read in an earlier turn counts if the whole text is still in the conversation. Each parent file owns its own rules; score those rules and parent routing separately. A child file's read does not prove its parents were read. A complete record proving no whole read means “not opened.” Keep partial, search-only and late-read counts beside it. Missing evidence means unknown.
+
+| Availability by deadline | Behavior passed | Behavior failed |
+| --- | --- | --- |
+| Whole skill available | Opened and followed: works | Opened and not followed: wording |
+| Whole skill not available | Not opened and passed: model default or weak test | Not opened and failed: routing |
+
+When the installed not-opened and matched no-skill pass rates have overlapping 95% ranges, investigate model default if the check rejected its wrong-evidence fixture; a check that accepted wrong evidence is weak, and an unvalidated check leaves this interpretation unknown. If the opened pass rate is no higher than its matched no-skill rate, the sample shows no measured gain for that rule.
+
+Use these labels to guide investigation. They do not establish cause. Before changing wording or routing, check whether the prompt tests the rule. Check whether the agent saw part of the rule, whether the runner could record what happened, and what evidence supports the judge's verdict. For a near miss, following the rule may mean skipping a child. Mandatory start-of-conversation reads remain allowed.
+
+- Show each cell's count and share of classified opportunities, with a Wilson 95% range. Give explicit numerators and denominators; empty rows have no rate or range.
+- Show unknown loading only, unknown behavior only, both unknown, and not reached separately. These groups do not overlap. Preserve whichever side is known outside the grid.
+- A judge timeout leaves behavior unknown. An incomplete access record leaves loading unknown. Not reached requires a missing prerequisite, not an earlier quality failure.
+- Show distinct cases and conversations, reused reads and partial/search/late counts. Keep automatic checks and rubric results identifiable. Retain pass^3 where three repetitions exist.
+- Report **rules ever exercised** per agent/model and condition. Count distinct rules that applied at least once and received a behavior pass or fail. Divide by all rules in the frozen in-scope inventory. Count each rule once, whether passed or failed. List rules with only unknown verdicts and rules never reached. Opening alone does not exercise a rule.
+
+Repeated turns and checks are correlated. The ranges describe the observed sample; they do not establish real-world reliability. Keep untested rules and unmapped habits visible.
+
+### Scenarios and diagnostic cases
+
+Start with scenarios covering the four recent failure families: claims without recorded evidence, applying approved work, clarifying open intent, and useful final reporting. Include their parent routes. Then investigate normalization, explanations, narrow layouts, carryover recovery and factual selection.
+
+Past runs also found snapshot-check errors and a clarification prompt that did not require asking. Repair these measurement errors before treating a result as a skill failure. Preserve selected raw events and expected verdicts with fixtures so validation does not depend on temporary reports.
+
+Add focused trigger and near-miss cases where a scenario cannot explain a failure or boundary. Each rejects plausible wrong behavior. Test an always-required rule with contrasting compliant/violating behavior rather than inventing a skip. Check automatic and semantic criteria against correct and wrong evidence before using them.
+
+For clarification, label whether the request needs a question and identify the missing piece. Check whether the question targets that piece. Pair it with a request whose result is already settled. This adapts a useful idea from [LHAW](https://huggingface.co/datasets/ScaleAI/lhaw), whose card was read and whose licence is CC BY 4.0. LHAW is not a gold standard for our rules. Import none of its tasks, scoring or environments; no dataset items are required. If later importing adapted items, record exclusions, changes and source attribution, including MCP-Atlas where applicable.
+
+Freeze development and measurement banks before skill tuning. Use development scenario results and no-skill disagreements to choose diagnostic case families. Measure unseen variants. Keep important safeguards even when the no-skill runs already pass. Record held-out attempts and never tune on held-out answers or labels.
+
+The proposed expansion is five more scenarios, giving about ten for fixing and ten only for measuring. Leave membership and the split to the user. Scenarios already inspected cannot be described as fresh unseen evidence. Judge-calibration holdouts and skill-effect holdouts have separate purposes; scenarios 03, 07 and 14 have already supplied judge-validation evidence.
+
+### The no-skill comparison
+
+Run the same scenarios with skillbook installed and absent. Add an explicit no-skill option: `tests/runner/files.ts:177` installs unconditionally, while `pointer: false` at line 217 removes only the pointer.
+
+- Skip installation, project-skill copies, startup pointers and skill registrations in no-skill runs. Verify no inherited path or plugin supplies skillbook.
+- Preserve task facts, normal project constraints, model, permissions, account isolation, timeouts and repetitions. Remove fixture skillbook references only through a documented variant.
+- Use fresh conversations and homes for both conditions. Alternate their order. A matched pair shares scenario, repetition and settings, not identical random sampling.
+- Report per-rule and per-scenario pass rates, counts, Wilson ranges, percentage-point differences, paired pass/fail transitions, regressions and unknown pairs. No-skill loading is absent; eligible behavior checks are scored normally.
+- Blind semantic judges to condition labels while retaining evidence needed to judge the rule. Mark tasks without a no-skill equivalent ineligible. Keep routing and loading checks in installed grids only; label them “no no-skill equivalent” with reasons and counts. Compare the behavior they lead to instead, such as asking about a missing audience.
+
+### Basis
+
+Adapt the measurement ideas, not published performance claims, to skillbook.
+
+- [Skill Coverage](https://shuaijiumei.github.io/skillcoverage/) labels observable behavior constraints pass or fail. Its reported coverage is about 39–46%, with about 89% human/judge agreement. This motivates reporting rules exercised beside the grid; its judge accuracy does not transfer to ours.
+- [SRA-Bench](https://arxiv.org/abs/2604.24594) separates retrieval, incorporation and task execution. This supports keeping access evidence and behavior outcomes distinct.
+- [SkillsBench](https://arxiv.org/abs/2602.12670) and [SWE-Skills-Bench](https://arxiv.org/abs/2603.15401) compare matched runs with and without skills. This supports measuring contribution and regressions through our scenarios.
+- The [2026 survey](https://arxiv.org/html/2606.11435v1) supplies the broader evaluation context. The primary sources above support the specific methods. These sources were read; they do not validate skillbook's implementation.
+
+### Build order and cost
+
+Build the smallest measurement that answers the scenario question.
+
+1. Build per-turn access records and readers from existing recordings and fixtures; building needs no user choice. Validation needs the annotation and label-checking owners settled. Validate supported observations before trusting them; new Claude recordings need separate run authorization.
+2. Add coverage ids, rule grids and the no-skill home option; no user choice is needed. Account-free fixtures verify all four boxes, eligible no-skill rates, unknowns and isolation. Reject a report counting an unavailable no-skill read as a regression. With a complete record, two passing checks of one rule and its first read between their deadlines, assert “not opened and passed” and a denominator of one.
+3. Settle scenario membership, expansion, development/measurement split and held-out keeper with the user. Freeze the banks, rule/check mappings and skill files. Add diagnostics for unexplained failures. With models, repetitions and spending choices settled, run a bounded development pilot in both conditions; check recording quality, judging and actual cost.
+4. With full-run models, repetitions and spending choices settled, measure the frozen bank in both conditions. Report the grid and no-skill comparisons before proposing skill changes. Expand diagnostics where results need explanation.
+
+Keep later work driven by measured gaps. Defer byte ranges, full context-retention proofs, helper attribution and reordered-id comparisons as described above. Cut matched-pair resampling and missing-data bounds from this design: counts, explicit unknowns and ordinary ranges answer the present question. They are not prerequisites for the pilot.
+
+A full measurement names its scenario bank, diagnostic cases, model matrix and repetitions. With S scenarios, C diagnostic conversations and R repetitions, one agent/model combination needs 2 × R × (S + C) conversations. Sum over combinations; count actual turns and judging separately.
+
+The earlier 58-conversation Codex schedule would become 116 with no-skill runs. Doubling its old approximately US$4 allowance suggests about US$8 for that scenario slice, before diagnostics or Claude. This is a rough scheduling estimate. The total remains unknown. The four-fixes run recorded US$1.5430 in known agent cost, with further agent cost and all 262 judge calls unpriced. The earlier saved-judged run also left all 322 judge calls unpriced.
+
+Use pilot usage and known prices to estimate the chosen full measurement. Report agent, judge, retry and unknown costs separately. Keep existing known-spend safeguards and Claude's call cap; Codex has no hard spending cap. Unknown costs are not zero. Replay and static checks make no paid model calls.
+
+### Open choices for the user
+
+- Claude models and repetitions alongside Codex.
+- Known-spend threshold, and whether unknown spending stops new calls.
+- Held-out bank size and who keeps it blind.
+- Who annotates recorded sessions and checks the labels; the proposed agent annotation/user sample workflow is not settled.
+- Whether to add five scenarios and use about ten for fixing and ten only for measuring, and their membership.

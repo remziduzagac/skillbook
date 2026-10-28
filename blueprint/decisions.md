@@ -3986,6 +3986,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D263: Test routing by reads before judging answers (2026-10-25)
 
+> **Amended by D278 (2026-10-28):** Measure whole-skill availability and per-rule outcomes with a no-skill baseline before further skill changes; the attribution build order takes priority over earlier run schedules.
+
 > **Amended by D264 (2026-10-25):** D264 adds the matched Luna/Sol routing comparison, full parent-path assertions, 300-second timeouts treated as unknown, and explicit changed-rubric accounting.
 
 **Decision:**
@@ -4068,6 +4070,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 ## D269: realistic conversations are the main behavioral test layer (2026-10-26)
 
+> **Amended by D278 (2026-10-28):** Measure whole-skill availability and per-rule outcomes with a no-skill baseline before further skill changes; the attribution build order takes priority over earlier run schedules.
+
 > **Amended by D270 (2026-10-26):** Final answers are scored separately from progress; current-turn applicability and the new clarity habit refine scenario checks.
 
 **Decision:** Add fifteen scenarios, fourteen short and one festival master, to the Bun runner. Keep the existing cases and routing layer. Fixed scripts are the default; a constrained GPT-6.1-Sol user can adapt them. Check fit in fixed mode. Tag and pool checks by habit and skill, preserve not-reached and unknown results, and report intervals. Calibrate a GPT-6.1-Sol rubric judge with user-rated saved answers before scoring answers. Follow the fixed-first comparison and model schedule in the testing design. A terminal view remains a later idea.
@@ -4109,3 +4113,11 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 **Why:** One percentage hides failure detection when most labels pass. Tuning and measuring on the same evidence overstates quality. Mixed checks hide the cause of a failure. Average success hides whether a scenario works on all three attempts.
 
 **Tested:** `just check` passes with 91 Python and 670 TypeScript tests, schema freshness, 95 valid YAML cases and 74 unchanged conversions. The Sol availability probe answered correctly within 8.83 seconds. After one paired criterion replacement, tuning run 1 agrees on 22/129 human passes and 2/7 human fails, with 112 unresolved items affected by timeouts and shared-worker cleanup. A generic per-call isolation fix passes a concurrent-process regression test. Run 2 agrees on 126/129 human passes and 4/7 human fails, with no unknowns and six disagreements. Both runs agree on all 24 comparable Boolean pairs; 112 pairs remain unresolved. The 712 rubric checks have authored correct/wrong trace pairs, without AI fixture validation. Rating walks contain 30 failure candidates and 119 blind held-out check items. One old handbook point rating cannot map to the split parts; its concern already has a separate glance label. Actual cost is unknown across 39 calls. Reports and per-item reasons are in `/tmp/skillbook-calibration3/`; held-out scoring and broader answer judging did not run. Judge quality remains unvalidated.
+
+## D278: separate skill loading, rule outcomes and no-skill behavior (2026-10-28)
+
+**Decision:** Follow the skill-loading and rule-outcome design in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) for issue #26: a versioned per-turn access record, validated readers for Codex and Claude Code, checks tied to coverage ids, four-box reports with unknowns and each rule's matched no-skill pass rate, focused trigger and near-miss cases, and matched runs without installed skillbook. Keep skill changes waiting for this evidence. The open choices listed there remain for the user to settle.
+
+**Why:** A behavioral score alone cannot separate a missed load from a rule not followed, and a passing answer may be the model's default. Whole text, timing and context retention need evidence; a filename or successful command is insufficient. Comparing both conditions helps locate benefit and regressions without treating the grid as proof of causation.
+
+**Tested:** Design only. Read the runner, issue #26 and local historical reports; ran the account-free coverage inventory. No implementation or model run is part of this decision.

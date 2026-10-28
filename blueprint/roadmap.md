@@ -58,3 +58,5 @@ Scenario checks separate final answers from unscored progress, add clear-at-a-gl
 Explicit requests to see or confirm a change first require a proposal and an ended turn at every stake level (D271). Carryover writes when work continues without this conversation, using the specified or default path; an ordinary stopping message keeps the offer (D272).
 
 Judge validation separates tuning from blind held-out ratings, reports agreement on human passes and fails, splits mixed checks and adds pass^3 beside averages (D273).
+
+Before further skill changes, build validated per-agent skill-use records, per-rule grids and trigger/near-miss cases with no-skill runs, following the attribution build order and open measurement choices in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) (D278).
