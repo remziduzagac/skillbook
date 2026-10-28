@@ -226,7 +226,7 @@ Use events when they establish delivery and order. Add an observational hook onl
 
 Validate against about 20 recorded sessions per agent, selected for varied tools and misleading cases. This is a starting size, not a statistical guarantee. Cover whole/partial reads, searches, failed and truncated calls, compound commands, late reads, no-change turns and ordinary reuse. Add synthetic fixtures for parser branches, including missing middle text with matching first and last lines.
 
-**Proposed annotation workflow, pending the user's choice:** an agent labels access, extent and timing from raw events; the user checks about five sessions per agent, including uncertain cases. Keep labels and evidence pointers. Resolve disagreements before trusting the affected observation; unsupported cases remain unknown. Recheck after reader or event-format changes. Existing Codex recordings can seed this work. Claude needs suitable recordings before its reader is trusted; creating new sessions requires separate run authorization.
+**Annotation, settled with the user:** an agent labels access, extent and timing from raw events; the user checks about five sessions per agent, including uncertain cases. Keep labels and evidence pointers. Resolve disagreements before trusting the affected observation; unsupported cases remain unknown. Recheck after reader or event-format changes. Existing Codex recordings can seed this work. Claude needs suitable recordings before its reader is trusted; creating new sessions requires separate run authorization.
 
 ### Edge cases and later additions
 
@@ -284,7 +284,7 @@ For clarification, label whether the request needs a question and identify the m
 
 Freeze development and measurement banks before skill tuning. Use development scenario results and no-skill disagreements to choose diagnostic case families. Measure unseen variants. Keep important safeguards even when the no-skill runs already pass. Record held-out attempts and never tune on held-out answers or labels.
 
-The proposed expansion is five more scenarios, giving about ten for fixing and ten only for measuring. Leave membership and the split to the user. Scenarios already inspected cannot be described as fresh unseen evidence. Judge-calibration holdouts and skill-effect holdouts have separate purposes; scenarios 03, 07 and 14 have already supplied judge-validation evidence.
+Settled with the user: write five new scenarios. The measuring bank holds those five and the five existing scenarios least used for past skill fixes, ten in all, used only for measuring. The other ten existing scenarios are for fixing. Pick the five by the record of which scenario failures drove which fixes, and list the choice when freezing the banks. Keep the measuring scenarios in their own folder in the repository. Agents fixing skills do not open that folder and receive only grid totals from measuring runs: no prompts, answers or judge reasons. Whoever briefs a fixing agent keeps this rule. Scenarios already inspected cannot be described as fresh unseen evidence. Judge-calibration holdouts and skill-effect holdouts have separate purposes; scenarios 03, 07 and 14 have already supplied judge-validation evidence.
 
 ### The no-skill comparison
 
@@ -309,10 +309,10 @@ Adapt the measurement ideas, not published performance claims, to skillbook.
 
 Build the smallest measurement that answers the scenario question.
 
-1. Build per-turn access records and readers from existing recordings and fixtures; building needs no user choice. Validation needs the annotation and label-checking owners settled. Validate supported observations before trusting them; new Claude recordings need separate run authorization.
+1. Build per-turn access records and readers from existing recordings and fixtures; building needs no user choice. Validation uses the annotation workflow above. Validate supported observations before trusting them; new Claude recordings need separate run authorization.
 2. Add coverage ids, rule grids and the no-skill home option; no user choice is needed. Account-free fixtures verify all four boxes, eligible no-skill rates, unknowns and isolation. Reject a report counting an unavailable no-skill read as a regression. With a complete record, two passing checks of one rule and its first read between their deadlines, assert “not opened and passed” and a denominator of one.
-3. Settle scenario membership, expansion, development/measurement split and held-out keeper with the user. Freeze the banks, rule/check mappings and skill files. Add diagnostics for unexplained failures. With models, repetitions and spending choices settled, run a bounded development pilot in both conditions; check recording quality, judging and actual cost.
-4. With full-run models, repetitions and spending choices settled, measure the frozen bank in both conditions. Report the grid and no-skill comparisons before proposing skill changes. Expand diagnostics where results need explanation.
+3. Write the five new scenarios and pick the five existing ones for measuring. Freeze the banks, rule/check mappings and skill files. Add diagnostics for unexplained failures. Run a development pilot within the pilot limits below in both conditions; check recording quality, judging and actual cost.
+4. Measure the frozen bank within the full-run limits below in both conditions. Report the grid and no-skill comparisons before proposing skill changes. Expand diagnostics where results need explanation.
 
 Keep later work driven by measured gaps. Defer byte ranges, full context-retention proofs, helper attribution and reordered-id comparisons as described above. Cut matched-pair resampling and missing-data bounds from this design: counts, explicit unknowns and ordinary ranges answer the present question. They are not prerequisites for the pilot.
 
@@ -320,12 +320,10 @@ A full measurement names its scenario bank, diagnostic cases, model matrix and r
 
 The earlier 58-conversation Codex schedule would become 116 with no-skill runs. Doubling its old approximately US$4 allowance suggests about US$8 for that scenario slice, before diagnostics or Claude. This is a rough scheduling estimate. The total remains unknown. The four-fixes run recorded US$1.5430 in known agent cost, with further agent cost and all 262 judge calls unpriced. The earlier saved-judged run also left all 322 judge calls unpriced.
 
-Use pilot usage and known prices to estimate the chosen full measurement. Report agent, judge, retry and unknown costs separately. Keep existing known-spend safeguards and Claude's call cap; Codex has no hard spending cap. Unknown costs are not zero. Replay and static checks make no paid model calls.
+Use pilot usage and known prices to estimate the full measurement. Report agent, judge, retry and unknown costs separately. Unknown costs are not zero. Replay and static checks make no paid model calls.
 
-### Open choices for the user
+Models and limits, settled with the user:
 
-- Claude models and repetitions alongside Codex.
-- Known-spend threshold, and whether unknown spending stops new calls.
-- Held-out bank size and who keeps it blind.
-- Who annotates recorded sessions and checks the labels; the proposed agent annotation/user sample workflow is not settled.
-- Whether to add five scenarios and use about ten for fixing and ten only for measuring, and their membership.
+- **Models:** Codex with Sol and Luna, three repetitions each. Add Claude Code with Sonnet and Haiku, three repetitions each, once the user's Claude quota allows. No other models.
+- **Known spend:** stop new calls at about US$5 for the pilot and about US$30 for the full measurement, at API prices.
+- **Unknown spend:** unknown costs do not stop calls, since most judge calls report no price. A cap on the number of agent and judge calls does, set from the pilot's actual counts. Keep Claude's existing call cap.

@@ -59,4 +59,4 @@ Explicit requests to see or confirm a change first require a proposal and an end
 
 Judge validation separates tuning from blind held-out ratings, reports agreement on human passes and fails, splits mixed checks and adds pass^3 beside averages (D273).
 
-Before further skill changes, build validated per-agent skill-use records, per-rule grids and trigger/near-miss cases with no-skill runs, following the attribution build order and open measurement choices in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) (D278).
+Before further skill changes, build validated per-agent skill-use records, per-rule grids and trigger/near-miss cases with no-skill runs, following the attribution build order and settled choices in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) (D278).
