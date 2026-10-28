@@ -4,6 +4,7 @@ import { applicableClaims, assessedResults, measuredOpportunities, measurementPl
 import { CallLimits } from "./call-limits";
 import { accessTurn, frozenSkills, retainAccess } from "./access";
 import { inspectCodexRetention, withCodexRetention } from "./codex-retention";
+import { collectRoutingNotes, CODEX_REASONING_SUMMARY } from "./routing-notes";
 import {
   mkdtempSync,
   mkdirSync,
@@ -46,6 +47,8 @@ export async function runOne(
   const result: Event = {
     user_mode: mode,
     condition: noSkill ? "no-skill" : "installed",
+    thinking_settings: agent === "codex" ? { model_reasoning_summary: CODEX_REASONING_SUMMARY } :
+      { source: "harness thinking blocks; settings unchanged" },
     skill_sources: frozenSkills(),
     case: c.id,
     agent,
@@ -160,6 +163,7 @@ export async function runOne(
         ...observation,
         session: observedSession, turn: i,
         recording,
+        routing_notes: collectRoutingNotes(agent, turnEvents),
         skill_needs: turn.skill_needs ?? [], author_rule_marks: turn.rule_marks ?? [],
         scripted_message: turn.prompt,
         sent_message: sent.message,

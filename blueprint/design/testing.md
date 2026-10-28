@@ -280,6 +280,14 @@ Add a second view for each applicable rule and its skill’s observable promised
 
 Repeated turns and checks are correlated. The ranges describe the observed sample; they do not establish real-world reliability. Keep untested rules and unmapped habits visible.
 
+### Routing notes: diagnostic hints
+
+Collect thinking text or reasoning summaries that the harness already records, plus progress messages between tool calls, with their order in the turn. Add no request for extra agent output and change no skill. A note mentions a skill or rule when it names the skill, its file or a recognisable phrase of the rule before that rule's deadline. Keep the quoted lines and their source and order. An unknown deadline or unresolved order cannot establish a mention before the deadline.
+
+Beside each grid opportunity, show “considered” for a mention before the deadline, “not mentioned” when thinking was available but no such mention was found, or “no thinking available”. A recorded progress message can supply a mention even when thinking is missing. Keep later mentions visible as late. These hints are most useful for opened-and-not-followed rows (considered and rejected, or never noticed) and not-opened rows (considered and skipped, or never considered). A mention alone establishes neither a decision nor its execution. It never changes a cell, verdict or loading label and never supplies judge evidence.
+
+Use the same thinking settings in installed and no-skill runs. Summaries are partial and can be absent or redacted. “Not mentioned” is weak evidence; it does not prove the agent never considered the rule.
+
 ### Scenarios and diagnostic cases
 
 Start with checks from the rules and promised results behind four recent failure families: claims without recorded evidence, applying approved work, clarifying open intent, and useful final reporting. Include their parent routes. Then investigate normalization, explanations, narrow layouts, carryover recovery and factual selection.

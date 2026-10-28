@@ -26,6 +26,7 @@ import {
   TARGET_KEYS,
 } from "./trace";
 import type { Agent, Checks, Event, Observation } from "./types";
+import { CODEX_REASONING_SUMMARY } from "./routing-notes";
 export { skill_name } from "./shell";
 const IGNORED = new Set([".claude", ".codex", ".agents", "__pycache__", ".git"]);
 export function projectPaths(root: string): string[] {
@@ -215,7 +216,8 @@ export function prepareHome(
   else
     writeFileSync(
       join(dir, "config.toml"),
-      "[features]\napps = false\nplugins = false\nremote_plugin = false\n" +
+      `model_reasoning_summary = "${CODEX_REASONING_SUMMARY}"\n\n` +
+        "[features]\napps = false\nplugins = false\nremote_plugin = false\n" +
         "\n[sandbox_workspace_write]\nexclude_slash_tmp = true\n",
     );
   const lines = [...(c.pointer && !c.no_skill ? [POINTER] : []), ...(instruction ? [instruction] : [])];

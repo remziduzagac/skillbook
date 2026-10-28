@@ -1,18 +1,32 @@
 import { createHash } from "node:crypto";
-import { grid, exercised, compareConditions, loadingView, type Opportunity } from "./measurement";
+import { grid, exercised, compareConditions, loadingView, opportunity, type Opportunity } from "./measurement";
 import { ruleChecks } from "./rule-checks";
 import { resolveDeadline } from "./measure-turn";
 import type { Event } from "./types";
 import annotations from "../fixtures/access/annotations.json";
+import { consideredNotes } from "./routing-notes";
 export function measurementReport(runs: Event[]) {
-  const checks = ruleChecks(), rows = runs.flatMap(r => r.turns.flatMap((t: Event) => t.opportunities ?? [])) as Opportunity[];
-  const groupedRows = rows.map(row => ({ ...row, version: createHash("sha256").update(row.version).digest("hex") }));
+  const checks = ruleChecks();
+  const groupedRows = runs.flatMap(run => run.turns.flatMap((turn: Event) =>
+    (turn.opportunities ?? []).map((row: Opportunity) => ({ ...row,
+      version: createHash("sha256").update(row.version).digest("hex"), routing_context: { run, turn } }))));
   const groups = [...new Set(groupedRows.map(r => [r.agent,r.model,r.mode,r.version,r.trigger].join("/")))];
   const views = groups.map(group => {
     const own = groupedRows.filter(r => [r.agent,r.model,r.mode,r.version,r.trigger].join("/") === group);
     return { group, rules: [...new Set(own.map(r => r.id))].map(id => {
       const selected = own.filter(r => r.id === id);
       return { id, ...grid(selected.filter(r => r.condition === "installed")), no_skill_results: grid(selected.filter(r => r.condition === "no-skill")).results, comparison: compareConditions(selected),
+        routing_notes: selected.map(row => {
+          const { run, turn } = row.routing_context;
+          const definition = turn?.opportunity_inventory?.find((o: Event) => o.definition.id === row.id)?.definition ??
+            checks.find(c => c.id === row.id);
+          const source = definition?.source?.text ?? "";
+          const frozen = Object.values(run?.skill_sources ?? {}).some(text =>
+            typeof text === "string" && text.includes(source));
+          return { case: row.case, conversation: row.conversation, turn: row.turn, condition: row.condition,
+            ...opportunity(row.parts),
+            ...consideredNotes(turn?.routing_notes ?? [], row, frozen ? source : "") };
+        }),
         results_comparison: compareConditions(selected.filter(r => r.result !== "excluded").map(r =>
           ({ ...r, parts: [{ verdict: r.result === undefined ? null : r.result as any, deadline: 0, availability: "unknown" as const }] }))) };
     }), exercised: Object.fromEntries(["installed", "no-skill"].map(condition => [condition, exercised(own.filter(r => r.condition === condition), checks.map(c => c.id))])) };
@@ -36,7 +50,9 @@ export function measurementReport(runs: Event[]) {
     if (skill.needed === null || skill.availability === "unknown") counts.unknown!++;
     else counts[`${skill.needed ? "needed" : "not_needed"}_${skill.availability === "opened" ? "loaded" : "not_loaded"}`]!++;
   }
-  return { loading_counts, reader_validation: { codex: { reader: annotations.reader_version,
+  return { loading_counts, thinking_settings: runs.map(r => ({ case: r.case, agent: r.agent, model: r.model,
+    run: r.run, condition: r.condition, settings: r.thinking_settings ?? null })),
+    reader_validation: { codex: { reader: annotations.reader_version,
     sessions: annotations.sessions.length, agreement: annotations.agreement, user_check: "pending; timing is reader-assisted" },
     claude: "pending recordings" },
     views, scenarios: [...new Set(groupedRows.map(r => r.case))].map(id => ({ id,
@@ -50,5 +66,9 @@ export function measurementReport(runs: Event[]) {
       "Missing, changed, unsupported or compacted native history leaves Codex retention unknown; native boundaries leave current-turn loading unknown when order cannot be aligned.",
       "Claude reuse requires the same recorded session with no compaction/resume boundary; native reader validation is pending.",
       "Helpers and unsupported opaque command effects remain unknown.",
+      "Routing notes are unscored hints, never loading or judge evidence. " +
+        "Summaries can be missing or redacted; not mentioned is weak evidence.",
+      "Routing mentions use recorded names, paths and literal rule-label phrases; paraphrases can be missed. " +
+        "Compare only matching thinking settings.",
       "Result parts without completed evidence remain unknown; internal returns without visible requirements are excluded."] };
 }
