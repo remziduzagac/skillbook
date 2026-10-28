@@ -1,3 +1,9 @@
+import { ruleChecks } from "./rule-checks";
+import { measurementReport } from "./measurement-report";
+import { applicableClaims, assessedResults, measuredOpportunities, measurementPlan } from "./measure-turn";
+import { CallLimits } from "./call-limits";
+import { accessTurn, frozenSkills, retainAccess } from "./access";
+import { inspectCodexRetention, withCodexRetention } from "./codex-retention";
 import {
   mkdtempSync,
   mkdirSync,
@@ -19,7 +25,7 @@ import { parse_events, sessionId, turn_parts, action_evidence, redact } from "./
 import { cost, DEFAULT_MODELS } from "./cost";
 import { check } from "./checks";
 import { progressFindings } from "./progress";
-import { structuredCall, simulate, fit, rubricJudge, judgeEvidence } from "./scenario";
+import { structuredCall, simulate, fit, rubricBatch, judgeEvidence } from "./scenario";
 import { evaluateTagged, score, scoreRuns, scenarioReliability } from "./scoring";
 import { runStatus, summarize } from "./reports";
 import type { Agent, Case, Options, Event, Verdict } from "./types";
@@ -32,11 +38,15 @@ export async function runOne(
   out: string,
   budget: number,
   driver: typeof runTurn = runTurn,
+  limits?: CallLimits,
 ): Promise<Event> {
+  const noSkill = c.condition === "no-skill" || args.no_skill;
   const mode = args.user_mode ?? c.user?.mode ?? "fixed";
   if (mode === "simulated" && (!c.user || !c.goal)) throw Error("simulated mode needs scenario user facts and goal");
   const result: Event = {
     user_mode: mode,
+    condition: noSkill ? "no-skill" : "installed",
+    skill_sources: frozenSkills(),
     case: c.id,
     agent,
     model,
@@ -65,7 +75,7 @@ export async function runOne(
     if (c.version_control) commitFixture(work);
     if (agent === "claude" && existsSync(join(work, "AGENTS.md")) && !existsSync(join(work, "CLAUDE.md")))
       copyFileSync(join(work, "AGENTS.md"), join(work, "CLAUDE.md"));
-    prepareHome(home, agent, c, args.login, args.instruction);
+    prepareHome(home, agent, { ...c, no_skill: noSkill }, args.login, args.instruction);
     const before = snapshot(work),
       env = agentEnv(home, agent, args.login, tmp);
     result.initial_paths = Object.keys(before);
@@ -79,10 +89,15 @@ export async function runOne(
     if (args.login && agent === "codex") copyFileSync(join(home, ".codex/auth.json"),
       join(judgeHome, ".codex", "auth.json"));
     const judgeEnv = agentEnv(judgeHome, "codex", args.login, tmp);
-    const call = structuredCall(judgeWork, judgeEnv, args.timeout, groups, amount => {
+    const rawCall = structuredCall(judgeWork, judgeEnv, args.timeout, groups, amount => {
+      limits?.account(amount);
       result.cost += amount ?? 0;
       result.cost_unknown ||= amount === null;
     });
+    const call: typeof rawCall = async (instruction, data) => {
+      limits?.dispatch(instruction.startsWith("Play the user") ? "simulated_user" : "judge");
+      return rawCall(instruction, data);
+    };
     const events: Event[][] = [],
       turnChecks: Record<string, Verdict> = {},
       taggedHistory: Record<string, Verdict> = {};
@@ -100,6 +115,7 @@ export async function runOne(
       if (turn.fresh_session) session = undefined;
       const sent = mode === "simulated" ? await simulate(call, c, index, result.turns) :
         { message: turn.prompt, steered: false };
+      limits?.dispatch("agent");
       const ran = await driver(
           agentCommand(agent, model, sent.message, remaining, session),
           work,
@@ -111,19 +127,16 @@ export async function runOne(
       if (ran.status === null) result.error = `turn ${i}: took longer than ${args.timeout} seconds`;
       else if (failed) result.error = `turn ${i}: exit ${ran.status}: ${redact(ran.stderr.trim().slice(-300))}`;
       const turnEvents = parse_events(ran.stdout);
-      if (args.keep)
-        writeFileSync(
-          join(
-            out,
-            `${c.id.replaceAll("/", "--")}--${agent}--${model.replace(/[^A-Za-z0-9._-]+/g, "-")}--${n}--turn${i}.jsonl`,
-          ),
-          ran.stdout,
-        );
+      const recording = args.keep ? join(out,
+        `${c.id.replaceAll("/", "--")}--${agent}--${model.replace(/[^A-Za-z0-9._-]+/g, "-")}--${n}--${result.condition}--turn${i}.jsonl`) : null;
+      if (recording) writeFileSync(recording, ran.stdout);
       const turnCost = cost(agent, model, [turnEvents]);
+      limits?.account(turnCost);
       result.cost += turnCost ?? 0;
       result.cost_unknown ||= turnCost === null || failed;
       events.push(turnEvents);
-      session ??= sessionId(agent, turnEvents);
+      const observedSession = sessionId(agent, turnEvents);
+      session = observedSession ?? session;
       const taggedAssertions = Object.assign({}, ...(turn.tagged_checks ?? []).map((x) => x.assert));
       const observation = observe(agent, [turnEvents], c.set, previous, work, { ...taggedAssertions, ...turn.checks });
       observation.left_running = ran.left;
@@ -133,10 +146,21 @@ export async function runOne(
         [final, between] = turn_parts(agent, turnEvents);
       observation.final_answer = final;
       observation.between_tools = between;
+      let access = { ...accessTurn(agent, turnEvents, i, result.skill_sources, !failed),
+        change_confirmed: observation.changes.length > 0 };
+      if (agent === "codex") {
+        const prior = !turn.fresh_session && result.turns.at(-1)?.session === observedSession ? result.turns.at(-1) : undefined;
+        const sessionTurns = prior ? (prior.access.retention_evidence?.completed_turns ?? 0) + 1 : 1;
+        access = withCodexRetention(access, inspectCodexRetention(home, observedSession, sessionTurns, final,
+          prior?.access.retention_evidence));
+      }
       const tagged = evaluateTagged(turn.tagged_checks ?? [], observation, taggedHistory, c.fixture, ran.tmp_paths);
       for (const t of tagged) taggedHistory[`${i}:${t.id}`] = t.verdict;
       result.turns.push({
         ...observation,
+        session: observedSession, turn: i,
+        recording,
+        skill_needs: turn.skill_needs ?? [], author_rule_marks: turn.rule_marks ?? [],
         scripted_message: turn.prompt,
         sent_message: sent.message,
         steered: sent.steered,
@@ -144,31 +168,57 @@ export async function runOne(
         purpose: turn.purpose ?? "",
         final_answer: final,
         between_tools: between,
-        actions: action_evidence(agent, turnEvents),
+        claim_text: observation.answer,
+        claim_messages: turnEvents.flatMap((e, order) => agent === "codex" ?
+          e.type === "item.completed" && e.item?.type === "agent_message" ? [{ text: e.item.text, order }] : [] :
+          e.type === "assistant" && !e.parent_tool_use_id ? (e.message?.content ?? []).filter((b: Event) => b.type === "text").map((b: Event) => ({ text: b.text, order })) : []),
+        actions: action_evidence(agent, turnEvents).map(action => ({ ...action, order: turnEvents.findIndex(e =>
+          agent === "codex" ? e.item?.id === action.id && e.type === action.phase :
+            e.message?.content?.some((b: Event) => b.type === "tool_use" && b.id === action.id)),
+          ...(agent === "claude" ? { result_order: turnEvents.findIndex(e =>
+            e.message?.content?.some((b: Event) => b.type === "tool_result" && b.tool_use_id === action.id)) } : {}) })),
         file_diffs: fixtureDiffs(previousText, currentText),
         trace_complete: !failed,
+        access: retainAccess(access, observedSession, result.turns, turn.fresh_session),
         tagged_checks: tagged,
         rubric_pending: turn.rubric ?? [],
       });
       const evidence = result.turns.at(-1);
       evidence.judgments = [];
-      for (const rubric of turn.rubric ?? []) {
-        const dep = rubric.depends_on;
-        const prior = dep ? taggedHistory[`${dep.turn}:${dep.check}`] : true;
-        let judgment;
-        if (prior !== true) judgment = { id: rubric.id, tag: rubric.tag,
-          verdict: prior === false || prior === "not reached" ? "not reached" : null,
-          reason: "prerequisite not established" };
-        else if (!args.judge || failed) judgment = { id: rubric.id, tag: rubric.tag, verdict: null,
-          reason: failed ? "incomplete turn" : "calibrated judge not enabled" };
-        else {
-          try { judgment = await rubricJudge(call, { rubric, answer: final,
-            evidence: judgeEvidence(result.turns, result.fixture_sources) }); }
-          catch (error) { judgment = { id: rubric.id, tag: rubric.tag, verdict: null, reason: String(error) }; }
+      if (args.judge && !failed) {
+        try {
+          const applicability = await applicableClaims(call, evidence.claim_text, evidence.actions, sent.message, ruleChecks(), evidence.claim_messages);
+          evidence.claim_applicability = applicability.claims;
+          evidence.rule_applicability = applicability.marks;
         }
-        evidence.judgments.push(judgment);
-        taggedHistory[`${i}:${rubric.id}`] = judgment.verdict as Verdict;
+        catch (error) { evidence.claim_applicability_unknown = String(error); }
       }
+      const measurement = measurementPlan(evidence, turn.rubric ?? [], evidence.access);
+      evidence.opportunity_inventory = measurement.inventory;
+      const activeRubrics = measurement.rubrics;
+      evidence.result_parts = measurement.result_parts;
+      for (const part of evidence.result_parts.filter((p: Event) => !p.exclusion && (p.kind === "visible" || p.later_step)))
+        activeRubrics.push({ id: part.id, tag: `result:${part.skill}`, criterion:
+          `Check this promised result part when applicable: ${part.part}. Source: ${part.source.text}. ` +
+          (part.alternatives ? `This is the ${part.alternative} alternative in ${part.alternatives}; the source promises alternatives, not both. ` : "") +
+          "Return unknown if applicability is not established. Cite the visible answer, file or delegated report evidence." });
+      const pending = [];
+      for (const rubric of activeRubrics) {
+        const dep = rubric.depends_on, prior = dep ? taggedHistory[`${dep.turn}:${dep.check}`] : true;
+        if (prior !== true) evidence.judgments.push({ id: rubric.id, tag: rubric.tag,
+          verdict: prior === "not reached" ? "not reached" : null, reason: "prerequisite not established" });
+        else pending.push({ rubric, answer: final, evidence: judgeEvidence(result.turns, result.fixture_sources) });
+      }
+      try {
+        evidence.judgments.push(...(args.judge && !failed ? await rubricBatch(call, pending) : pending.map(r =>
+          ({ id: r.rubric.id, tag: r.rubric.tag, verdict: null, reason: "judge unavailable or incomplete turn" }))));
+      } catch (error) {
+        evidence.judgments.push(...pending.map(r => ({ id: r.rubric.id, tag: r.rubric.tag,
+          verdict: null, reason: String(error) })));
+      }
+      for (const judgment of evidence.judgments) taggedHistory[`${i}:${judgment.id}`] = judgment.verdict;
+      evidence.result_parts = assessedResults(evidence);
+      evidence.opportunities = measuredOpportunities(result, evidence, activeRubrics, evidence.access, evidence.opportunity_inventory);
       if (args.judge) evidence.rubric_pending = [];
       if (c.user && mode === "fixed" && c.turns[index + 1]) {
         try { evidence.fit = failed ? { off_script: null, reason: "incomplete agent turn" } :
@@ -216,6 +266,12 @@ export async function runOne(
 }
 export function planRuns(cases: Case[], args: Options): [Case, Agent, string, number][] {
   const plan: [Case, Agent, string, number][] = [];
+  if (args.pilot) {
+    for (const c of cases) for (const model of ["gpt-6.1-sol", "gpt-6-luna"]) for (let n = 1; n <= 3; n++)
+      for (const condition of (n % 2 ? ["installed", "no-skill"] : ["no-skill", "installed"]) as ("installed" | "no-skill")[])
+        plan.push([{ ...c, condition }, "codex", model, n]);
+    return plan;
+  }
   for (const c of cases)
     for (const agent of args.agents)
       if (c.agents.includes(agent)) {
@@ -232,6 +288,7 @@ export async function runPlan(
   runner: typeof runOne = runOne,
 ) {
   mkdirSync(out, { recursive: true });
+  const limits = args.pilot ? new CallLimits() : undefined;
   let next = 0,
     spent = 0,
     unknown = 0,
@@ -250,7 +307,7 @@ export async function runPlan(
         left = args.budget - spent;
       let result: Event;
       try {
-        result = await runner(...item, args, out, left);
+        result = await runner(...item, args, out, left, runTurn, limits);
       } catch (error) {
         const [c, agent, model, n] = item;
         result = {
@@ -271,7 +328,7 @@ export async function runPlan(
       spent += result.cost ?? 0;
       unknown += Number(result.cost_unknown || result.cost === null);
       console.log(`  ${result.case}  ${result.agent}  ${result.model} run ${result.run}: ${runStatus(result)}`);
-      if (result.error && /login|usage limit|capacity|runner error|network|connect|stream|resolve|dns/i.test(result.error)) stop = true;
+      if (result.error && /call cap|login|usage limit|capacity|runner error|network|connect|stream|resolve|dns/i.test(result.error)) stop = true;
     }
   }
   try {
@@ -280,8 +337,10 @@ export async function runPlan(
     process.off("SIGINT", interrupt);
   }
   const results = [...done].sort(([a], [b]) => a - b).map(([, r]) => r);
+  if (limits) writeFileSync(join(out, "calls.json"), JSON.stringify(limits, null, 2) + "\n");
   writeFileSync(join(out, "summary.json"), JSON.stringify(results, null, 2) + "\n");
   writeFileSync(join(out, "summary.md"), summarize(results, spent, unknown));
+  writeFileSync(join(out, "measurement.json"), JSON.stringify(measurementReport(results), null, 2) + "\n");
   writeFileSync(join(out, "reliability.json"), JSON.stringify(scenarioReliability(results), null, 2) + "\n");
   writeFileSync(join(out, "scores.json"), JSON.stringify(scoreRuns(results as any), null, 2) + "\n");
   const sharedAfter = readdirSync("/tmp").filter((n) => !sharedBefore.has(n));

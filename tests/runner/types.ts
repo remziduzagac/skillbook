@@ -30,12 +30,15 @@ export interface TaggedCheck {
   assert: Checks;
 }
 export interface Rubric {
+  source_check?: string;
   id: string;
   tag: string;
   criterion: string;
   depends_on?: { turn: number; check: string };
 }
 export interface Turn {
+  skill_needs?: { skill: string; deadline: number | "first change" | "answer" }[];
+  rule_marks?: { id: string; applies: boolean; deadline: number | "first change" | "answer"; near_miss?: boolean; missing_piece?: string }[];
   prompt: string;
   purpose?: string;
   fresh_session?: boolean;
@@ -67,6 +70,7 @@ export interface CaseFile {
   user?: { description: string; facts: Record<string, string>; mode: "fixed" | "simulated" };
 }
 export interface Case extends CaseFile {
+  condition?: "installed" | "no-skill";
   id: string;
   set: string;
   agents: Agent[];
@@ -107,6 +111,8 @@ export interface Observation {
   [key: string]: any;
 }
 export interface Options {
+  no_skill?: boolean;
+  pilot?: boolean;
   case: string;
   suite?: "short" | "master";
   user_mode?: "fixed" | "simulated";

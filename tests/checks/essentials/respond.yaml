@@ -1,0 +1,61 @@
+{
+  "skill": "respond",
+  "checks": [
+    {
+      "id": "respond:rule:1",
+      "key": "useful-final",
+      "kind": "shared",
+      "source": {
+        "file": "skills/essentials/references/respond.md",
+        "line": 9,
+        "text": "1. **Rightsize the response through `act-rightsize`.** Include no unasked side topic. Compare only when it helps the user decide. Asked which port the server uses, give the port, not the setting's history. Length follows the request, not what you found. Include facts learned on the way, such as files searched, only when the user needs them to act. After making something, such as a saved file or text to paste, give its location and basis in a line or two. Do not repeat it."
+      },
+      "applicability": "always",
+      "required_skill": "respond",
+      "deadline": "answer",
+      "expected": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two.",
+      "rejected": "Reporting process without naming the result; repeating a saved deliverable.",
+      "evidence": "Code first: ordered file/action evidence. Otherwise yes/no with a verbatim answer quote or recorded action id. Missing evidence is unknown.",
+      "user_choices": "Open intent, audience, result kind and any changed approval scope remain the user's.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "respond:rule:6",
+      "key": "actual-outcome",
+      "kind": "shared",
+      "source": {
+        "file": "skills/essentials/references/respond.md",
+        "line": 17,
+        "text": "6. **Report outcomes as they happened.** Say what was done, skipped and failed. Give verified results without hedging: \"two of three tests pass; the third fails on a timeout\". Report failures as their output shows them, such as the error line. Mark a cause not shown there as a guess, such as an expected limit. Claim a check only after seeing its result. If the harness refused an action, name the action and the refusal. Do not call it your own rule: the user needs to see how to allow it."
+      },
+      "applicability": "claim",
+      "required_skill": "respond",
+      "deadline": "answer",
+      "expected": "Report what was done, skipped and failed as observed. See a check result before claiming it. Mark unshown causes as guesses.",
+      "rejected": "Calling a check passed without a result; reporting a guessed timeout cause as known.",
+      "evidence": "Code first: ordered file/action evidence. Otherwise yes/no with a verbatim answer quote or recorded action id. Missing evidence is unknown.",
+      "user_choices": "Open intent, audience, result kind and any changed approval scope remain the user's.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "respond:rule:4",
+      "key": "plain-english",
+      "kind": "shared",
+      "source": {
+        "file": "skills/essentials/references/respond.md",
+        "line": 15,
+        "text": "4. **Use everyday words over terms of art.** Explain a term the user has not used when it first appears, such as \"idempotent (safe to run twice)\"."
+      },
+      "applicability": "always",
+      "required_skill": "respond",
+      "deadline": "answer",
+      "expected": "Judge only the final answer. Use plain English. Progress is not scored.",
+      "rejected": "Unexplained specialist vocabulary.",
+      "evidence": "Code first: ordered file/action evidence. Otherwise yes/no with a verbatim answer quote or recorded action id. Missing evidence is unknown.",
+      "user_choices": "Open intent, audience, result kind and any changed approval scope remain the user's.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [],
+  "validation": "Account-free correct/wrong fixtures; semantic failure detection remains unproven."
+}

@@ -1,0 +1,42 @@
+{
+  "skill": "understand",
+  "checks": [
+    {
+      "id": "essentials:step:1",
+      "key": "route-understand",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/SKILL.md",
+        "line": 50,
+        "text": "1. **Read `understand` when understanding any request.** Its rules leave no gap. Read `understand-clarify` when a choice or unknown would change the result.\n   - Not for: \"what do you think?\" (the `act` skill's rule), or the user not following you (the `respond` skill).\n   - Gives back: what was decided, what was parked and what comes next."
+      },
+      "applicability": "scenario",
+      "required_skill": "essentials",
+      "deadline": "before routed work",
+      "expected": "Read the complete needed child before its work.",
+      "rejected": "Child is only named or searched.",
+      "evidence": "Complete returned child text before its action.",
+      "user_choices": "Do not create another checkpoint.",
+      "no_skill_eligible": false
+    }
+  ],
+  "results": [
+    {
+      "part": "decided, parked and next steps",
+      "kind": "internal",
+      "exclusion": "Caller return has no general requirement to appear to the user; check only through a named later visible step.",
+      "source": {
+        "file": "skills/essentials/SKILL.md",
+        "line": 50,
+        "text": "1. **Read `understand` when understanding any request.** Its rules leave no gap. Read `understand-clarify` when a choice or unknown would change the result.\n   - Not for: \"what do you think?\" (the `act` skill's rule), or the user not following you (the `respond` skill).\n   - Gives back: what was decided, what was parked and what comes next."
+      },
+      "applicability": "Skill is needed; this promised part applies to the requested result.",
+      "required_skill": "understand",
+      "deadline": "caller return or final answer",
+      "expected": "decided, parked and next steps",
+      "rejected": "Missing promised part or a claim of delivery without observable evidence.",
+      "evidence": "Answer or file quote, or a recorded delegated-report action id. Internal parts without a required visible step are excluded with a reason."
+    }
+  ],
+  "validation": "Account-free correct/wrong fixtures; semantic failure detection remains unproven."
+}

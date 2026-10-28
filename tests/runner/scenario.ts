@@ -1,3 +1,5 @@
+import { ruleChecks } from "./rule-checks";
+import { verified } from "./measurement";
 import { MARKER } from "./paths";
 import { currentFinal } from "./answers";
 import { JUDGING_RULES } from "./judgment-policy";
@@ -94,9 +96,12 @@ export async function rubricBatch(call: StructuredCall, requests: JudgeRequest[]
     JSON.stringify(r.evidence) !== JSON.stringify(requests[0]!.evidence)))
     throw Error("rubric batches need the same answer and evidence");
   const rows = await call(
-    'Judge each criterion independently. Return {"results":[{"id":string,"verdict":boolean|null|"not reached","reason":string}]}. ' +
+    'Judge each criterion independently. Return {"results":[{"id":string,"verdict":boolean|null|"not reached","reason":string,"quote":string,"action":string}]}. Include a verbatim answer quote or recorded action id for every yes/no verdict. For a source rule, also return parts:[{verdict:boolean|null,quote:string,action:string,deadline_action:string|null}], one per applicable source-rule part; null deadline_action adds no earlier action deadline. Code retains the definition and author deadlines. ' +
     JUDGING_RULES,
-    { criteria: requests.map(r => r.rubric), answer: currentFinal(requests[0]!.answer, requests[0]!.evidence), evidence: requests[0]!.evidence },
+    { criteria: requests.map(r => ({ ...r.rubric, ...(r.rubric.source_check ? {
+      full_rule: ruleChecks().find(c => c.key === r.rubric.source_check)?.source.text,
+      scoring: "Score all applicable source-rule parts, with their deadlines; known failure fails, otherwise unknown remains unknown."
+    } : {}) })), answer: currentFinal(requests[0]!.answer, requests[0]!.evidence), evidence: requests[0]!.evidence },
   );
   if (!Array.isArray(rows.results) || rows.results.length !== requests.length ||
     new Set(rows.results.map((r: any) => r.id)).size !== requests.length) throw Error("invalid rubric batch");
@@ -104,6 +109,13 @@ export async function rubricBatch(call: StructuredCall, requests: JudgeRequest[]
     const row = rows.results.find((r: any) => r.id === request.rubric.id);
     if (!row || ![true, false, null, "not reached"].includes(row.verdict) ||
       typeof row.reason !== "string" || !row.reason.trim()) throw Error("invalid rubric batch judgment");
-    return { id: request.rubric.id, tag: request.rubric.tag, verdict: row.verdict, reason: row.reason };
+    const needsEvidence = !!request.rubric.source_check || request.rubric.id.startsWith("result:");
+    const actions = (request.evidence as any)?.turns?.at(-1)?.actions ?? [];
+    return { id: request.rubric.id, tag: request.rubric.tag,
+      verdict: needsEvidence && typeof row.verdict === "boolean" ? verified(row.verdict, row, request.answer, actions) : row.verdict,
+      reason: row.reason, ...(needsEvidence ? { quote: row.quote, action: row.action,
+        parts: Array.isArray(row.parts) ? row.parts.map((part: any) => ({ ...part,
+          verdict: verified(typeof part.verdict === "boolean" ? part.verdict : null, part, request.answer, actions),
+        })) : undefined } : {}) };
   });
 }

@@ -23,7 +23,7 @@ turns:
     criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
   - id: point-english
     tag: habit:plain-english
-    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+    criterion: check:plain-english
   - id: point-process
     tag: habit:no-internal-process
     criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
@@ -32,16 +32,16 @@ turns:
     criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created. A collective label such as both pages does not name its members; names later in a process report do not complete the result list.
   - id: scope
     tag: habit:requested-scope
-    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+    criterion: check:requested-work
   - id: scope-intent
     tag: habit:requested-scope
-    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+    criterion: check:open-intent
   - id: scope-choices
     tag: habit:requested-scope
     criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
   - id: scope-approval
     tag: habit:requested-scope
-    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+    criterion: check:approval
   - id: behavior
     tag: skill:act-rightsize-lean
     criterion: Give a concrete cut list.
@@ -64,7 +64,7 @@ turns:
     criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
   - id: point-english
     tag: habit:plain-english
-    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+    criterion: check:plain-english
   - id: point-process
     tag: habit:no-internal-process
     criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
@@ -73,16 +73,16 @@ turns:
     criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created. A collective label such as both pages does not name its members; names later in a process report do not complete the result list.
   - id: scope
     tag: habit:requested-scope
-    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+    criterion: check:requested-work
   - id: scope-intent
     tag: habit:requested-scope
-    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+    criterion: check:open-intent
   - id: scope-choices
     tag: habit:requested-scope
     criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
   - id: scope-approval
     tag: habit:requested-scope
-    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+    criterion: check:approval
   - id: behavior
     tag: skill:act-rightsize-lean
     criterion: Apply exactly the approved cuts.
@@ -103,7 +103,7 @@ turns:
     criterion: Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.
   - id: point-english
     tag: habit:plain-english
-    criterion: Judge only the final answer. Use plain English. Progress is not scored.
+    criterion: check:plain-english
   - id: point-process
     tag: habit:no-internal-process
     criterion: Judge only the final answer. Omit unnecessary internal process detail and internal skill narration. Progress is not scored.
@@ -112,16 +112,16 @@ turns:
     criterion: Judge only the final answer. Its result, finding or required question is clear at a glance. Each thing created, changed or found is named together in one place, not scattered across sentences or left for the reader to infer. Parallel results need equally explicit names; do not name some outputs and only describe the contents of another. No created-item list is needed when nothing was created. A collective label such as both pages does not name its members; names later in a process report do not complete the result list.
   - id: scope
     tag: habit:requested-scope
-    criterion: Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.
+    criterion: check:requested-work
   - id: scope-intent
     tag: habit:requested-scope
-    criterion: If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.
+    criterion: check:open-intent
   - id: scope-choices
     tag: habit:requested-scope
     criterion: Respect settled user choices in this turn. Judge no earlier failure as a current failure.
   - id: scope-approval
     tag: habit:requested-scope
-    criterion: Keep this turn within the actual approval boundary. A review question after completed approved work is allowed.
+    criterion: check:approval
   - id: behavior
     tag: skill:act-rightsize-enrich
     criterion: Give the source quote of 12400; invent no quote.

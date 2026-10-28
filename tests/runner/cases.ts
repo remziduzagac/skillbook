@@ -1,3 +1,4 @@
+import { resolveCriterion, ruleChecks } from "./rule-checks";
 import Ajv from "ajv";
 import { readFileSync, existsSync } from "node:fs";
 import { relative, dirname, basename, join, resolve } from "node:path";
@@ -35,6 +36,9 @@ export function validateCase(data: unknown): asserts data is CaseFile {
     )
       throw Error("routing-only cases have one turn, reads and reads_not only, and no review");
   }
+  const ruleIds = new Set(ruleChecks().map(c => c.id));
+  for (const turn of c.turns) for (const mark of turn.rule_marks ?? [])
+    if (!ruleIds.has(mark.id)) throw Error(`absent rule mark: ${mark.id}`);
   const ids = new Map<number, Set<string>>();
   for (const [i, t] of c.turns.entries()) {
     const current = new Set<string>();
@@ -83,6 +87,7 @@ export function normalize(data: CaseFile, id: string): Case {
   if (set === "essentials" && !data.routing_only) checks.names_no_skill ??= true;
   return {
     ...data,
+    turns: data.turns.map(t => ({ ...t, rubric: t.rubric?.map(r => ({ ...r, ...(r.criterion.startsWith("check:") ? { source_check: r.criterion.slice(6) } : {}), criterion: resolveCriterion(r.criterion) })) })),
     id,
     set,
     agents: data.agents ?? ["claude", "codex"],

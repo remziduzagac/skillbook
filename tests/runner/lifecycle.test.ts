@@ -208,3 +208,15 @@ test("reports expose runner errors and failures shared by models", () => {
   expect(report).toContain("Failed on more than one model");
   expect(report).toContain("every automatic check passed in 0 of 1 runs");
 });
+test("no-skill home omits installations, project skills and startup pointers for both agents", () =>
+  temporary(root => {
+    for (const agent of ["codex", "claude"] as const) {
+      const home=join(root,agent);
+      prepareHome(home,agent,{set:"essentials",pointer:true,project_skills:["skillbook-write"],no_skill:true},false);
+      expect(existsSync(join(home,".agents/skills"))).toBe(false);
+      expect(existsSync(join(home,".claude/skills"))).toBe(false);
+      expect(existsSync(join(home,agent === "codex" ? ".codex/AGENTS.md" : ".claude/CLAUDE.md"))).toBe(false);
+      const env=agentEnv(home,agent,true,join(root,"tmp"));
+      expect(env.HOME).toBe(home);expect(env.CLAUDE_CONFIG_DIR).toBeUndefined();
+    }
+  }));

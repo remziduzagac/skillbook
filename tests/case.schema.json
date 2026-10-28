@@ -282,6 +282,78 @@
     "Turn": {
       "type": "object",
       "properties": {
+        "skill_needs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "skill": {
+                "type": "string"
+              },
+              "deadline": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string",
+                    "const": "first change"
+                  },
+                  {
+                    "type": "string",
+                    "const": "answer"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "skill",
+              "deadline"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "rule_marks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "applies": {
+                "type": "boolean"
+              },
+              "deadline": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string",
+                    "const": "first change"
+                  },
+                  {
+                    "type": "string",
+                    "const": "answer"
+                  }
+                ]
+              },
+              "near_miss": {
+                "type": "boolean"
+              },
+              "missing_piece": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "applies",
+              "deadline"
+            ],
+            "additionalProperties": false
+          }
+        },
         "prompt": {
           "type": "string"
         },
@@ -351,6 +423,9 @@
     "Rubric": {
       "type": "object",
       "properties": {
+        "source_check": {
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },

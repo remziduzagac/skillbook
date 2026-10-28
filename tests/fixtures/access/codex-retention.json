@@ -1,0 +1,17 @@
+{
+  "provenance": "Synthetic two-turn fixture using the 0.163.0 shape observed in saved throwaway-home rollouts.",
+  "session": "synthetic-session",
+  "first": [
+    { "type": "session_meta", "payload": { "id": "synthetic-session", "session_id": "synthetic-session", "cli_version": "0.163.0", "source": "exec" } },
+    { "type": "event_msg", "payload": { "type": "task_started", "turn_id": "turn-1" } },
+    { "type": "turn_context", "payload": { "turn_id": "turn-1" } },
+    { "type": "response_item", "payload": { "type": "function_call_output", "call_id": "read", "output": "# respond\nwhole text\n" } },
+    { "type": "event_msg", "payload": { "type": "task_complete", "turn_id": "turn-1", "last_agent_message": "First answer" } }
+  ],
+  "next": [
+    { "type": "event_msg", "payload": { "type": "task_started", "turn_id": "turn-2" } },
+    { "type": "turn_context", "payload": { "turn_id": "turn-2" } },
+    { "type": "event_msg", "payload": { "type": "task_complete", "turn_id": "turn-2", "last_agent_message": "Second answer" } }
+  ],
+  "compaction": { "type": "compacted", "payload": { "message": "Summary", "replacement_history": [] } }
+}

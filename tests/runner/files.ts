@@ -165,15 +165,18 @@ export const ownLogin = (agent: Agent) =>
 export function prepareHome(
   home: string,
   agent: Agent,
-  c: { set: string; pointer: boolean; project_skills?: string[] },
+  c: { set: string; pointer: boolean; project_skills?: string[]; no_skill?: boolean },
   login: boolean,
   instruction = "",
 ) {
   // Refuse a real agent home even if a caller accidentally passes it here.
   if (resolve(home) === resolve(homedir()) || [".codex", ".claude", ".agents"].includes(home.split("/").at(-1)!))
     throw Error("home must be a throwaway root");
+  if (c.no_skill && [".agents/skills", ".claude/skills", ".codex/skills", ".claude/plugins", ".codex/plugins"].some(p => existsSync(join(home,p))))
+    throw Error("no-skill home contains inherited skills or plugins; use a fresh home");
   const dir = join(home, agent === "claude" ? ".claude" : ".codex");
   mkdirSync(dir, { recursive: true });
+  if (!c.no_skill) {
   const installed = spawnSync(join(REPO, "install.sh"), ["--agents", agent], {
     env: { ...process.env, HOME: home },
     encoding: "utf8",
@@ -185,6 +188,7 @@ export function prepareHome(
       recursive: true,
       filter: (p) => !p.split("/").at(-1)!.startsWith("."),
     });
+  }
   if (agent === "claude")
     writeFileSync(
       join(dir, "settings.json"),
@@ -214,7 +218,7 @@ export function prepareHome(
       "[features]\napps = false\nplugins = false\nremote_plugin = false\n" +
         "\n[sandbox_workspace_write]\nexclude_slash_tmp = true\n",
     );
-  const lines = [...(c.pointer ? [POINTER] : []), ...(instruction ? [instruction] : [])];
+  const lines = [...(c.pointer && !c.no_skill ? [POINTER] : []), ...(instruction ? [instruction] : [])];
   if (lines.length) writeFileSync(join(dir, agent === "claude" ? "CLAUDE.md" : "AGENTS.md"), lines.join("\n\n") + "\n");
   if (login) copyFileSync(ownLogin(agent), join(dir, agent === "claude" ? ".credentials.json" : "auth.json"));
 }

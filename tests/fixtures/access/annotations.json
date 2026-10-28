@@ -1,0 +1,1589 @@
+{
+  "annotation": "Agent labels; access/extent checked independently from command and returned text. Timing uses reader-assisted labels and has no independent agreement claim.",
+  "agreement": {
+    "matched": 120,
+    "total": 120
+  },
+  "claude": "Pending native recordings.",
+  "sessions": [
+    {
+      "recording": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17feb-8bee-7932-939f-5befe76615fc",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand-clarify",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-4faa-79a3-a88c-c96865f75e5c",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "after",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "after",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-9f6a-7623-8b5f-59900196116a",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-cd4f-7eb3-9423-855b851768f0",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-ff06-78b0-a22f-6d6c5ea3d898",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "coordinate",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "coordinate-carryover",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 12,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:13",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 12,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:13",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-ask",
+          "event": 14,
+          "call": "item_7",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:15",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 18,
+          "call": "item_9",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:19",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe7-62f4-7343-916c-49bdd444019e",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The skill is a cat operand; the later search targets other files. The returned historical text does not contain the full frozen current file.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The skill is a cat operand; the later search targets other files. The returned historical text does not contain the full frozen current file.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The skill is a cat operand; the later search targets other files. The returned historical text does not contain the full frozen current file.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 12,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:13",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act-cleanup",
+          "event": 12,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:13",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe7-c53e-75c0-a5e6-8cfd16d3d70f",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 13,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:14",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "after",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe8-26f7-7e83-aff9-2374d4d8b979",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe9-1693-70c2-8cdc-30329808f1db",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The skill is a cat operand; the later search targets other files. The returned historical text does not contain the full frozen current file.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The skill is a cat operand; the later search targets other files. The returned historical text does not contain the full frozen current file.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The skill is a cat operand; the later search targets other files. The returned historical text does not contain the full frozen current file.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe9-7642-7221-807e-517162d41e78",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act-cleanup",
+          "event": 17,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:18",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe9-e0bf-7d73-b7bb-e4561962c73b",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 16,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:17",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 16,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:17",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 16,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:17",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fea-5faa-7953-be85-c44e752286ea",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act-verify",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        }
+      ]
+    },
+    {
+      "recording": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-588f-7751-8ca6-dca0d01e9703",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand-research",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe9-5a0a-71d3-ab59-06603a974c30",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "organize",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "organize-split",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 13,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:14",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 13,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:14",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 13,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:14",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-ask",
+          "event": 26,
+          "call": "item_13",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:27",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "after",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17feb-6c22-7210-8bb0-01994649b134",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "organize",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "coordinate",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "devise",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "coordinate-delegate",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "coordinate-brief",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand-clarify",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "coordinate-delegate-fanout",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "organize-compose",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-guardrails",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 17,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:18",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 17,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:18",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fee-6cb3-7153-9f8b-bf6f7c6fc46c",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "The skill is a cat operand; the later search targets other files. Complete frozen source text is returned, even if a later command fails.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The skill is a cat operand; the later search targets other files. The returned historical text does not contain the full frozen current file.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The skill is a cat operand; the later search targets other files. The returned historical text does not contain the full frozen current file.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The skill is a cat operand; the later search targets other files. The returned historical text does not contain the full frozen current file.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn2.jsonl",
+      "session": "01a17feb-8bee-7932-939f-5befe76615fc",
+      "labels": []
+    },
+    {
+      "recording": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--2--turn2.jsonl",
+      "session": "01a17feb-8bfa-7420-9919-9ea6d1fc1c0c",
+      "labels": []
+    },
+    {
+      "recording": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--3--turn2.jsonl",
+      "session": "01a17feb-8c0f-7763-a78f-d854a68eb4d0",
+      "labels": [
+        {
+          "skill": "respond-layout",
+          "event": 3,
+          "call": "item_0",
+          "operation": "read",
+          "extent": "unknown",
+          "success": false,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--3--turn2.jsonl:4",
+          "reason": "Delivery does not establish the full frozen current file; old version or failed/search call.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 7,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--3--turn2.jsonl:8",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn2.jsonl",
+      "session": "01a17fe6-4faa-79a3-a88c-c96865f75e5c",
+      "labels": [
+        {
+          "skill": "respond-ask",
+          "event": 3,
+          "call": "item_0",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn2.jsonl:4",
+          "reason": "Complete current source text is returned, even if a later compound command fails.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ]
+    }
+  ],
+  "reader_version": "access-3",
+  "revalidation": {
+    "prior_reader": "access-1",
+    "initial_agreement": {
+      "matched": 92,
+      "total": 120
+    },
+    "corrected_access_labels": 28,
+    "corrected_timing_labels": 41,
+    "timing": "120/120 after corrections; reader-assisted, not independent agreement.",
+    "basis": "Raw command operands, literal complete-source comparison and native event order; no reader bug found in these 20 recordings. User spot-check remains pending.",
+    "latest_replay": {
+      "prior_reader": "access-2",
+      "reader": "access-3",
+      "matched": 120,
+      "total": 120,
+      "changed_access_labels": 0,
+      "changed_timing_labels": 0,
+      "unmatched_records": 0
+    }
+  }
+}
