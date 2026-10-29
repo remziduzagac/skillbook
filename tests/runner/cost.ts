@@ -1,6 +1,11 @@
 import type { Agent, Event } from "./types";
 export const DEFAULT_MODELS = { claude: "haiku", codex: "gpt-6-luna" };
-export const CODEX_PRICES: Record<string, [number, number, number]> = { "gpt-6-luna": [0.1, 0.01, 0.5] };
+// USD per 1M tokens: input, cached input, output (Standard rates; not billing totals).
+// Sol verified 2026-10-29: https://developers.openai.com/api/docs/models/gpt-6.1-sol
+export const CODEX_PRICES: Record<string, [number, number, number]> = {
+  "gpt-6-luna": [0.1, 0.01, 0.5],
+  "gpt-6.1-sol": [2, 0.1, 10],
+};
 export function cost(agent: Agent, model: string, events: Event[][]): number | null {
   let total = 0,
     seen = false;

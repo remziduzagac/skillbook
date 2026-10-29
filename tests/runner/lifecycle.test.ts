@@ -64,6 +64,23 @@ test("costs preserve zero, invalid usage and unknown model prices", () => {
     cost("codex", "unpriced", [[{ type: "turn.completed", usage: { input_tokens: 0, output_tokens: 0 } }]]),
   ).toBeNull();
 });
+test("Sol costs count uncached, cached and output tokens across completed turns", () => {
+  const events = [
+    [{
+      type: "turn.completed",
+      usage: { input_tokens: 1_000_000, cached_input_tokens: 800_000, output_tokens: 100_000 },
+    }],
+    [{
+      type: "turn.completed",
+      usage: { input_tokens: 500_000, cached_input_tokens: 100_000, output_tokens: 20_000 },
+    }],
+  ];
+  // $1.48 for the first turn and $1.01 for the second; cached tokens are included in input.
+  expect(cost("codex", "gpt-6.1-sol", events)).toBeCloseTo(2.49, 8);
+  expect(cost("codex", "gpt-6.1-sol", [[{
+    type: "turn.completed", usage: { input_tokens: 1, cached_input_tokens: 2, output_tokens: 0 },
+  }]])).toBeNull();
+});
 test("tag scores exclude unknown and not reached and retain a 95 percent interval", () => {
   const result = score([
     { tag: "habit", verdict: true },
