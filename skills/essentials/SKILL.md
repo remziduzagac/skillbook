@@ -84,4 +84,6 @@ For work an installed set holds, its main skill gives its name rule and shared r
 
 ## The last instruction
 
+**Read the `respond` skill before answering anything to the user.**
+
 Check the result through the skills used before returning it.
