@@ -39,34 +39,51 @@ The rules every request follows, and the route to the skill for each step of the
   - the conversation needs its content itself, not a report of a few lines, such as a file the user wants to go through with you line by line.
   - When unsure: fork (start an agent from this conversation), without a separate approval merely for the choice. Use `coordinate-delegate` within the harness's limits. Put the ordinary status in the final answer.
 
-## Instructions
+## Skill map
 
-**Read `references/understand.md`, `references/act.md` and `references/respond.md` when a conversation starts.** Read them together in one turn. Reread only when their text leaves view, such as after compaction. Each opens its needed skills top-down.
+Each entry describes a skill and the moment its method matters. Explore its children when more detail is needed.
 
-**For each request, read the skills it needs before doing the work.**
+- **understand**: rules for understanding any request, before the work starts. It returns decisions, parked items and next steps without doing the work.
+  - `understand-discuss`: work through several open parts of a topic with the user, when its step comes; not a single question or lasting work.
+  - `understand-clarify`: settle a choice or unknown that would change the result, before the work starts; facts already in files need a read instead. Children: deep interviews, questionnaires for others, shallow clarification.
+  - `understand-brainstorm`: generate options for one question, when its step comes; not comparison of named options or a whole design.
+  - `understand-frame`: define the problem, goal and good answer when these are missing or work drifts, before the work starts; not a crisp request.
+  - `understand-weigh`: compare named options and recommend one, when its step comes; not inventing options or checking one idea.
+  - `understand-challenge`: find weaknesses before relying on an idea, plan or decision, or when asked to attack one; not checking finished work or a claim of done.
+  - `understand-argue`: make the strongest honest one-sided case, when its step comes; not deciding between positions or finding factual truth.
+  - `understand-naming`: propose shared names and check terminology and collisions, before work depending on the name starts; not local code names or applying a rename.
+  - `understand-research`: investigate sourced facts, existing candidates or causes, when its step comes; not a quick local read that settles the answer. Children: analyze causes, fact checks, surveys.
+- **act**: rules for every action on every request, before the work starts. They shape the work and return nothing separately.
+  - `act-stakes`: judge how careful an action deserves to be, before work whose care depends on that judgment starts; not approval or verification.
+  - `act-guardrails`: define the scope, proposal and approval for risky or wide actions, before the work starts, even when requested exactly; also checks responses touching secrets, vulnerabilities or others' text.
+  - `act-cleanup`: manage things created or started for the task, when its step comes, including brief writing and before making something large; not tidying the user's work.
+  - `act-verify`: choose evidence and who checks claims of done, fixed, passing, correct or requirements met, before the work starts so needed evidence is retained; run checks before making those claims. Not approval or outside facts.
+  - `act-rightsize`: shape anything made, done or returned for its reader, before the work starts; nothing missing or extra. Children: enrich existing material with missing parts, lean to remove extra parts.
+- **devise**: choose how to decide what work will be and how its steps run, before the work starts; design usually comes first when designing and building a whole.
+  - `devise-design`: decide an open shape or review a design, before building starts; not one choice, arranging existing material or a reader document. Child: design review.
+  - `devise-plan`: plan multipart work, including given steps, before the work starts; not an exact single-step action or one risky action.
+- **organize**: arrange written or planned parts while preserving meaning, before rearranging starts; also check gaps and overlaps. Not content editing or planning work steps.
+  - `organize-split`: divide a whole into parts or sort all loose items into groups, when its step comes; not a shared parent or navigation view.
+  - `organize-merge`: combine duplicate accounts of one whole, preserving compatible unique details, when its step comes; not a repeated shared part or only a theme.
+  - `organize-compose`: add a parent explaining what selected items share, when its step comes; not sorting every item or only finding items.
+  - `organize-normalize`: give a repeated part one shared home and references, when its step comes; not combining duplicate whole accounts.
+  - `organize-cluster`: make a view for finding items with source content unchanged, when its step comes; not moving items or adding a shared parent.
+- **coordinate**: route work with agents, later sessions, instruction documents, setup and lessons, when its step comes; return each result to its caller.
+  - `coordinate-delegate`: choose and manage permitted agents starting now, before their work starts; not writing their brief or deciding whether independence is needed. Children: council, crew, fanout.
+  - `coordinate-brief`: write a starting worker's context and required report, before its work starts; not choosing agents or recording later-session state.
+  - `coordinate-carryover`: write or resume a later-session note, when requested, offered at a long session's boundary or resumed; not a worker starting now or a lasting lesson.
+  - `coordinate-instruct`: propose and apply agent instruction documents, before their changes start; not skills, installed pointers or later-session notes.
+  - `coordinate-setup`: check or prepare approved skillbook setup and pointer placement, when requested; not ordinary instruction rules or making skills.
+  - `coordinate-learn`: propose homes for reusable lessons, when asked or the stopping offer is accepted; not unasked recording or carrying work state forward.
+- **respond**: rules for every answer and message to the user, when preparing it. They shape its content, order and wording.
+  - `respond-layout`: lay out every response and anything written in Markdown, before writing starts; not wording or file-specific conventions.
+  - `respond-ask`: ask every question or proposal and take its answers, when its step comes; not deciding which questions are needed.
+  - `respond-explain`: clear up something you said that the user did not follow, when its step comes; not explaining a new topic or writing a reader document.
 
-Follow these steps in work order:
-
-1. **Read `understand` when understanding any request.** Its rules leave no gap. Read `understand-clarify` when a choice or unknown would change the result.
-   - Not for: "what do you think?" (the `act` skill's rule), or the user not following you (the `respond` skill).
-   - Gives back: what was decided, what was parked and what comes next.
-2. **Read `act` when a conversation starts.** Follow its rules throughout every request.
-   - Not for: what is said to the user (the `respond` skill), or the work that steps 4 to 6 route: arranging things, work with other agents, instruction documents or setup, and the user's own work.
-   - Gives back: nothing of its own. Its rules shape every action.
-3. **Read `devise` when the user needs a design, design review or multipart work, including given steps.** It selects the method by the main question and returns the design, findings or plan. Exact single-step work needs neither method.
-   - Not for: a view asked for ("what do you think?", the `act` skill's rule).
-   - Gives back: the design and plan the work follows, kept current as it goes.
-4. **Read `organize` when the request or a step changes how something is divided rather than what it says.** This includes splitting, outlining before writing, merging repeats, grouping under a parent, moving a shared part into one place, indexing, and checking overlaps and gaps.
-   - Not for: changing what the parts say, or planning the steps of the work (step 3).
-   - Gives back: the new arrangement.
-5. **Read `coordinate` when work goes to another agent, its result comes back, work passes to a later session, agents need instruction documents, skillbook needs setup, or a session’s lessons need recording.**
-   - Gives back: the agent's report, the carryover or the change made.
-6. **Do it,** always under the `act` skill's rules and these steps, using whichever skills fit:
-   - **Read the main skill of an installed set when it holds that kind of work.** Use its name rule after loading it. Never guess its paths: its main skill holds rules its skills rely on.
-   - **Read the skill for a file’s type when writing that file, as `act` rule 7 requires.**
-   - Anything else, including a request no skill covers, such as "rename these photos by the date they were taken": your own judgment.
-   - Gives back: the work done.
+For work an installed set holds, its main skill gives its name rule and shared rules. A file's type follows the skill the `act` skill names. Work no skill covers uses your own judgment.
 
 ## The last instruction
 
-**Read `respond` when preparing anything to say to the user.** Return nothing before its check has run.
+**Read the `respond` skill before answering anything to the user.**
+
+Check the result through the skills used before returning it.
