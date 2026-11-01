@@ -98,4 +98,4 @@ A request about your own work that fits no line is your own judgment, under the 
    - the `act-verify` guide: check claims against evidence.
    - the `act-rightsize` guide: shape work for its reader.
 
-4. **Before you return anything, follow the final step of Instructions of each tool you used.** Always do this last.
+4. **Before you return anything, follow the final step of each guide you used.** Always do this last.
