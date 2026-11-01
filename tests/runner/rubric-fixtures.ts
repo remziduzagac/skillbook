@@ -118,7 +118,7 @@ export function activeRubricBook(path: string | undefined, cases: Case[]) {
 }
 export function rubricFixtureHash(book: RubricBook = rubricFixtures) {
   // Active judgments expire on semantic definition drift as well as trace/criterion drift.
-  const contract = book.scope === "active" ? ["judge-protocol.ts","fixture-validation.ts","rubric-fixtures.ts","scenario.ts","trace.ts","helpers.ts","measurement.ts","measure-turn.ts","rule-outcomes.ts","rule-checks.ts","run.ts","judgment-policy.ts","../check-rubric-fixtures.ts"]
+  const contract = book.scope === "active" ? ["judge-protocol.ts","fixture-validation.ts","rubric-fixtures.ts","scenario.ts","trace.ts","legacy-reads.ts","access.ts","helpers.ts","measurement.ts","measure-turn.ts","rule-outcomes.ts","rule-checks.ts","run.ts","judgment-policy.ts","../check-rubric-fixtures.ts"]
     .map(file => [file,readFileSync(new URL(file,import.meta.url),"utf8")]) : undefined;
   const data = book.scope === "active" ? { book, rules: ruleChecks(), results: resultChecks(), contract } : book;
   return new Bun.CryptoHasher("sha256").update(JSON.stringify(data)).digest("hex");

@@ -28,7 +28,7 @@ export function skills_read(agent: Agent, events: Event[][], _home: unknown, set
     succeeded = new Set(),
     outputs: Record<string, string> = {};
   for (const e of all)
-    if (agent === "claude" && e.type === "user")
+    if (agent === "claude" && e.type === "user" && !e.parent_tool_use_id)
       for (const b of message_blocks(e))
         if (b.type === "tool_result" && !b.is_error) {
           succeeded.add(b.tool_use_id);
@@ -36,7 +36,7 @@ export function skills_read(agent: Agent, events: Event[][], _home: unknown, set
             typeof b.content === "string" ? b.content : (b.content ?? []).map((x: Event) => x.text ?? "").join("\n");
         }
   for (const e of all) {
-    if (agent === "claude" && e.type === "assistant")
+    if (agent === "claude" && e.type === "assistant" && !e.parent_tool_use_id)
       for (const b of message_blocks(e)) {
         if (b.type !== "tool_use" || !succeeded.has(b.id)) continue;
         if (b.name === "Skill") found.add((b.input?.skill ?? "").split(":").at(-1));

@@ -33,6 +33,7 @@ export function ruleChecks() {
   return walk(join(REPO, "tests/checks")).filter(p => p.endsWith(".yaml")).flatMap(p => {
     const doc = Bun.YAML.parse(readFileSync(p, "utf8")) as any;
     for (const check of doc.checks) {
+      for (const context of check.source_context ?? []) validateSource(context);
       if (!(check.id in inventory)) throw Error(`absent rule id: ${check.id}`);
       for (const field of ["source", "applicability", "required_skill", "deadline", "expected", "rejected", "evidence"])
         if (!check[field]) throw Error(`missing ${field}: ${check.id}`);

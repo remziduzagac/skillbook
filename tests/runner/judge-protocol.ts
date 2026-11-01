@@ -7,7 +7,7 @@ import type { Event, JudgeRequest, JudgeResult, Rubric } from "./types";
 export const JUDGE_INSTRUCTION =
   'Judge each criterion independently. Return {"results":[{"id":string,"verdict":boolean|null|"not reached","reason":string,"quote":string,"action":string}]}. ' +
   'Include a verbatim answer quote or recorded action id for every yes/no verdict. For a source rule, also return parts:[{verdict:boolean|null,quote:string,action:string,deadline_action:string|null}], one per applicable observable source-rule part; null deadline_action adds no earlier action deadline. Code retains the definition and author deadlines. ' +
-  'Judge observable returns and actions, not proof of private thinking or an internal wording check. Whole-guide delivery is scored separately from access records. For a rule with no applicable observable behavior, return null. A caller may use a guide result in a larger answer: score that result within its own scope. ' + JUDGING_RULES;
+  'Judge observable returns and actions, not proof of private thinking or an internal wording check. Whole-guide delivery is scored separately from access records. Claude actions with parent_tool_use_id belong to that helper; null identifies the main agent. Do not credit a helper read as a main-agent read. For a rule with no applicable observable behavior, return null. A caller may use a guide result in a larger answer: score that result within its own scope. ' + JUDGING_RULES;
 export const FIXTURE_INSTRUCTION = JUDGE_INSTRUCTION +
   ' Each criterion names a trace_ref. Use only that trace\'s answer and evidence. Shared traces are supplied once; never borrow another trace\'s facts.';
 export function structuredPrompt(instruction: string, data: unknown) {
@@ -22,7 +22,8 @@ export function judgeCriterion(rubric: Rubric, rules = ruleChecks()): Event {
   if (rubric.source_check && !source) throw Error("unknown source check: "+rubric.source_check);
   return {...rubric, ...(source ? {
     full_rule: source.source.text,
-    scoring: "Score all applicable observable source-rule parts, with their deadlines; known failure fails, otherwise unknown remains unknown. Guide delivery belongs to the separate loading view."
+    ...(source.source_context ? {source_context: source.source_context} : {}),
+    scoring: "Score all applicable observable source-rule parts, with their deadlines; known failure fails, otherwise unknown remains unknown. Source context explains referenced requirements of this target rule, not a separate criterion. Guide delivery belongs to the separate loading view."
   } : {})};
 }
 export function resultRubric(part: Event): Rubric {

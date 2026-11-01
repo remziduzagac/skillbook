@@ -16,7 +16,17 @@
       "expected": "Apply all applicable parts of act-rightsize-lean:rule:3: Keep everything a rule requires. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
       "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
       "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
-      "no_skill_eligible": true
+      "no_skill_eligible": true,
+      "source_context": [
+        {
+          "id": "act-rightsize:rule:6",
+          "source": {
+            "file": "skills/essentials/references/act/rightsize.md",
+            "line": 34,
+            "text": "6. **Keep everything a rule requires.** Examples: a failure, evidence, safety note or pending proposal. A rule makes it necessary by definition."
+          }
+        }
+      ]
     },
     {
       "id": "act-rightsize-lean:rule:4",

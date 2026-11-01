@@ -25,6 +25,8 @@ Runs use throwaway homes and project copies. Personal credentials are copied onl
 
 Each result records final answers, unscored progress, ordered actions, file diffs, relevant contents, helper evidence and completeness. A helper's start, brief, returned work, freshness and end are separate facts. Missing Codex helper details stay unknown; a wait call is not a start. A helper-unavailable answer must disclose the limit and any pending independent check. Refusal, a file name or a claim of execution alone cannot establish a promised result.
 
+Claude action records preserve `parent_tool_use_id`: null means the main agent, and an ID identifies the helper's parent call. Helpers' reads, context boundaries and session IDs do not establish main-agent loading or retention. Both the loading reader and compatibility read list exclude helper events. Judges retain the attributed actions and helper reports. With `--login`, auxiliary Codex fit/judge calls receive the Codex login in their own throwaway home even when Claude is the tested agent. A Claude-only run with no auxiliary call needs no Codex login.
+
 Semantic scoring requires calibrated judging and a validated active trace book. See [checks/README.md](checks/README.md#historical-and-active-validation) and [judge.md](judge.md). Automatic passes do not imply semantic passes. Correct, allowed-alternative and targeted wrong traces are in [festival-traces.json](calibration/festival-traces.json); account-free tests check their structure and exercise file assertions. The first semantic validation found trace and label faults; the corrected book requires a fresh report under the shared live-scoring contract. The scoring gate stays closed without a matching report.
 
 ## Chapters and evidence

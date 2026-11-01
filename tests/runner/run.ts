@@ -24,10 +24,10 @@ import {
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { FIXTURES, MARKER } from "./paths";
-import { prepareHome, agentEnv, snapshot, fixtureText, fixtureDiffs, commitFixture, observe } from "./files";
+import { prepareHome, agentEnv, ownLogin, snapshot, fixtureText, fixtureDiffs, commitFixture, observe } from "./files";
 import { runTurn, endRun, tmpPaths, addedTmpPaths } from "./process";
 import { agentCommand } from "./agents";
-import { parse_events, sessionId, turn_parts, action_evidence, redact } from "./trace";
+import { parse_events, sessionId, turn_parts, action_evidence, redact, sameClaudeAgent } from "./trace";
 import { cost, DEFAULT_MODELS } from "./cost";
 import { check } from "./checks";
 import { progressFindings } from "./progress";
@@ -102,7 +102,8 @@ export async function runOne(
     mkdirSync(join(judgeHome, ".codex"), { recursive: true });
     writeFileSync(join(judgeHome, ".codex", "config.toml"),
       '[features]\napps = false\nplugins = false\nremote_plugin = false\n');
-    if (args.login && agent === "codex") copyFileSync(join(home, ".codex/auth.json"),
+    const needsAuxiliary = agent === "codex" || args.judge || mode === "simulated" || result.expected_fit_transitions > 0;
+    if (args.login && needsAuxiliary) copyFileSync(ownLogin("codex"),
       join(judgeHome, ".codex", "auth.json"));
     const judgeEnv = agentEnv(judgeHome, "codex", args.login, tmp);
     // The Claude cap guards the tested agent's own spending; auxiliary Codex calls are billed apart and stay reported.
@@ -233,9 +234,9 @@ export async function runOne(
           e.type === "assistant" && !e.parent_tool_use_id ? (e.message?.content ?? []).filter((b: Event) => b.type === "text").map((b: Event) => ({ text: b.text, order })) : []),
         actions: action_evidence(agent, turnEvents).map(action => ({ ...action, order: turnEvents.findIndex(e =>
           agent === "codex" ? e.item?.id === action.id && e.type === action.phase :
-            e.message?.content?.some((b: Event) => b.type === "tool_use" && b.id === action.id)),
+            sameClaudeAgent(action,e) && e.message?.content?.some((b: Event) => b.type === "tool_use" && b.id === action.id)),
           ...(agent === "claude" ? { result_order: turnEvents.findIndex(e =>
-            e.message?.content?.some((b: Event) => b.type === "tool_result" && b.tool_use_id === action.id)) } : {}) })),
+            sameClaudeAgent(action,e) && e.message?.content?.some((b: Event) => b.type === "tool_result" && b.tool_use_id === action.id)) } : {}) })),
         file_diffs: fixtureDiffs(previousText, currentText),
         trace_complete: !failed,
         access: retainAccess(access, observedSession, chapterTurns, !!chapterStart || turn.fresh_session),

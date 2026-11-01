@@ -1,11 +1,78 @@
 import { test,expect } from "bun:test";
-import { readFileSync } from "node:fs";
-import { rubricTrace,fixtureJudgeEvidence,activeRubricBook,rubricCandidates } from "./rubric-fixtures";
+import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { join, dirname } from "node:path";
+import { tmpdir } from "node:os";
+import { rubricTrace,fixtureJudgeEvidence,activeRubricBook,rubricCandidates,resolveRubricTrace } from "./rubric-fixtures";
 import { loadCases } from "./cases";
 import { fixtureEntries,fixtureBatches,fixturePayload,loadingFixtureResults } from "./fixture-validation";
 import { structuredPrompt,FIXTURE_INSTRUCTION } from "./judge-protocol";
 const cases=loadCases(),book=activeRubricBook("tests/calibration/festival-traces.json",cases),c=cases[0]!;
 const observation=(ref:string)=>rubricTrace(ref,book).observation;
+test("source reads precede design writes, with real readback and a recorded failed helper fallback",()=>{
+  const design=fixtureJudgeEvidence("t7:correct",book,c).turns.at(-1)!;
+  const write=design.actions.find((a:any)=>a.tool==="file_change").order;
+  for(const path of ["decisions.md","council/update-2026.md","handbook.md"])
+    expect(design.actions.find((a:any)=>a.command===`cat ${path}`).order).toBeLessThan(write);
+  expect(design.actions.find((a:any)=>a.id==="read-saved-items").order).toBeGreaterThan(write);
+  for(const n of [7,17,22,23,24,26]){
+    const turn=fixtureJudgeEvidence(`t${n}:correct`,book,c).turns.at(-1)!;
+    expect(turn.actions.some((a:any)=>a.call==="spawn_agent"&&a.status==="failed")).toBe(true);
+    expect(turn.helpers.helpers.every((h:any)=>h.start===null)).toBe(true);
+    expect(turn.final_answer).not.toContain("controls were unavailable");
+  }
+  const crew=fixtureJudgeEvidence("t23:alternative",book,c).turns.at(-1)!;
+  expect(crew.actions.find((a:any)=>a.command==="cat decisions.md").order)
+    .toBeLessThan(Math.min(...crew.actions.filter((a:any)=>a.call==="spawn_agent").map((a:any)=>a.order)));
+});
+test("authored inventory, link, source and preservation checks execute and reject changed required content",()=>{
+  for(const [n,id,path,mutate] of [
+    [7,"check-design-inventory","design.md",(s:string)=>s.replaceAll("No alcohol","Alcohol permitted")],
+    [20,"check-index-coverage","handbook/index.md",(s:string)=>s.replace(/\]\([^)]+\)/g,"](#missing)")],
+    [21,"check-welcome-source-comparison","welcome.md",(s:string)=>s.replaceAll("hat","coat")],
+    [22,"check-kept-contacts","duplicate-contacts.csv",(s:string)=>s+"changed"],
+  ] as const){
+    const root=mkdtempSync(join(tmpdir(),"festival-authored-check-"));
+    try{
+      const trace=resolveForCheck(`t${n}:correct`);
+      for(const [p,s] of Object.entries(trace.files)){mkdirSync(dirname(join(root,p)),{recursive:true});writeFileSync(join(root,p),s as string);}
+      const action=observation(`t${n}:correct`).actions.find((a:any)=>a.id===id);
+      const run=()=>spawnSync("sh",["-c",action.command],{cwd:root,encoding:"utf8"});
+      const good=run();expect(good.status,good.stderr).toBe(0);
+      writeFileSync(join(root,path),mutate(trace.files[path]));
+      expect(run().status).not.toBe(0);
+    }finally{rmSync(root,{recursive:true,force:true});}
+  }
+});
+function resolveForCheck(ref:string){
+  const trace=resolveRubricTrace(ref,book);
+  return {files:trace.turns.at(-1)!.files_after};
+}
+test("the fanout trace's exact contract check accepts consolidation and rejects lost negative results",()=>{
+  const action=observation("t17:alternative").actions.find((a:any)=>a.id==="check-findings-contract-and-preservation");
+  const script=`
+import ast,json,os,shlex,subprocess,sys,tempfile
+from pathlib import Path
+data=json.load(sys.stdin);code=shlex.split(data['command'])[2]
+expected=next(ast.literal_eval(n.value) for n in ast.parse(code).body if isinstance(n,ast.Assign) and isinstance(n.targets[0],ast.Name) and n.targets[0].id=='expected')
+with tempfile.TemporaryDirectory(prefix='festival-contract-') as folder:
+    root=Path(folder);scratch=root/'scratch';scratch.mkdir()
+    for path,text in data['sources'].items():
+        if path.startswith('notes/'):
+            p=root/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+    for path,rows in expected.items():(scratch/path).write_text(''.join(json.dumps(r)+'\\n' for r in rows))
+    bundled=Path.cwd()/'skills/essentials/references/coordinate/delegate/fanout/scripts/consolidate.py'
+    result=subprocess.run(['python3','-I',str(bundled),'--source-root',str(root),*[str(scratch/p)for p in expected]],capture_output=True,text=True,check=True)
+    output=scratch/'consolidated.json';output.write_text(result.stdout)
+    env={**os.environ,'TMPDIR':str(scratch)}
+    assert subprocess.run(['python3','-c',code],cwd=root,env=env,capture_output=True).returncode==0
+    broken=json.loads(output.read_text());broken['not_found']=[];output.write_text(json.dumps(broken))
+    assert subprocess.run(['python3','-c',code],cwd=root,env=env,capture_output=True).returncode!=0
+`;
+  const result=spawnSync("python3",["-I","-c",script],{encoding:"utf8",input:JSON.stringify({command:action.command,
+    sources:book.chapter_sources!["essentials/festival:4"]})});
+  expect(result.status,result.stderr).toBe(0);
+});
 test("correct artifacts carry their required content and a checkable plan",()=>{
   expect(observation("t6:correct").files_changed["decisions.md"]).toContain("## Next steps");
   const design=observation("t7:correct").files_changed["design.md"];

@@ -225,7 +225,7 @@ Validate against about 20 recorded sessions per agent, selected for varied tools
 Keep uncertain cases unknown in the first build. Add deeper handling only when a scenario result needs it.
 
 - **Compaction and resumed sessions:** a session id alone does not prove retained text; a summary is not the whole skill. Add context-retention inspection when this blocks useful measurements. A fresh session clears prior availability.
-- **Helpers:** a helper's read does not load the parent. Keep missing helper evidence unknown. Add actor-level attribution when delegated scenario results need it.
+- **Helpers:** a helper's read does not load the parent. Claude actions keep `parent_tool_use_id`, with null identifying the main agent. Preserve helper actions for judging, but exclude helper reads, session IDs and context boundaries from main-agent loading and retention. Keep missing helper evidence unknown.
 - **Concurrent or opaque actions:** unordered reads and writes, unexplained file diffs and unknown shell effects leave timing unknown. Add finer ordering when it matters.
 - **Finer comparisons:** byte-level ranges and cross-version id mappings can follow a demonstrated need. The first build freezes one rule inventory and does not pool incompatible versions.
 
@@ -322,7 +322,7 @@ Build the smallest measurement that answers the scenario question.
 3. Build the festival scenario: its fixture and checkpoints, its rule and result checks for every guide it needs, and correct and wrong evidence for each check. Freeze the checks, source mappings and skill files. Run a pilot of one chapter in both conditions; check recording quality, judging and actual cost.
 4. Run the whole scenario in both conditions. Report the loading grid, rule-outcome/result view and no-skill comparisons before proposing skill changes. Add focused cases where results need explanation.
 
-Keep later work driven by measured gaps. Defer byte ranges, full context-retention proofs, helper attribution and reordered-id comparisons as described above. Cut matched-pair resampling and missing-data bounds from this design: counts, explicit unknowns and ordinary ranges answer the present question. They are not prerequisites for the pilot.
+Keep later work driven by measured gaps. Defer byte ranges, full context-retention proofs, unsupported helper attribution and reordered-id comparisons as described above. Cut matched-pair resampling and missing-data bounds from this design: counts, explicit unknowns and ordinary ranges answer the present question. They are not prerequisites for the pilot.
 
 A full measurement names its scenario bank, diagnostic cases, model matrix and repetitions. With S scenarios, C diagnostic conversations and R repetitions, one agent/model combination needs 2 × R × (S + C) conversations. Sum over combinations; count actual turns and judging separately.
 

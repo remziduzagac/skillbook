@@ -13,7 +13,7 @@
       "applicability": "scenario",
       "required_skill": "understand-clarify",
       "deadline": "first change",
-      "expected": "If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.",
+      "expected": "Ask about the user-owned choices this request leaves open when different answers would change the work, including choices within a requested question round. Do not re-ask settled choices. Make agent-owned routine choices with the source rule's required disclosure. Kind, subject and audience are examples, not the only user choices. Judge only this turn.",
       "rejected": "Choosing the audience or output kind for the user; irrelevant or unnecessary questions on settled requests.",
       "evidence": "Code first: ordered file/action evidence. Otherwise yes/no with a verbatim answer quote or recorded action id. Missing evidence is unknown.",
       "user_choices": "Open intent, audience, result kind and any changed approval scope remain the user's.",

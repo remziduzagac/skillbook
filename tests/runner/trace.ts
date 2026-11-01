@@ -27,7 +27,7 @@ export function agents_started(agent: Agent, events: Event[][]) {
   if (agent === "claude") {
     const failed = new Set(),
       answered = new Set();
-    for (const e of all)
+    for (const e of all.filter(e => !e.parent_tool_use_id))
       for (const b of message_blocks(e))
         if (b.type === "tool_result") {
           answered.add(b.tool_use_id);
@@ -52,18 +52,21 @@ export function agents_unseen(agent: Agent, events: Event[][], unexplained = fal
   return agent === "codex" && (unexplained || events.flat().some((e) => e.item?.type === "collab_tool_call"));
 }
 export const TARGET_KEYS = ["command", "file_path", "path", "pattern", "url"];
+export const sameClaudeAgent = (action: Event, event: Event) =>
+  (action.parent_tool_use_id ?? null) === (event.parent_tool_use_id ?? null);
 export function action_evidence(agent: Agent, events: Event[]) {
   const actions: Event[] = [],
     outcomes: Record<string, string> = {};
   if (agent === "claude")
     for (const e of events)
       for (const b of message_blocks(e))
-        if (b.type === "tool_result") outcomes[b.tool_use_id] = b.is_error ? "failed" : "succeeded";
+        if (b.type === "tool_result") outcomes[JSON.stringify([e.parent_tool_use_id ?? null,b.tool_use_id])] = b.is_error ? "failed" : "succeeded";
   for (const e of events) {
     if (agent === "claude" && e.type === "assistant") {
       for (const b of message_blocks(e))
         if (b.type === "tool_use") {
-          const action: Event = { tool: b.name, id: b.id ?? null, status: outcomes[b.id] ?? "unknown" };
+          const action: Event = { tool: b.name, id: b.id ?? null, parent_tool_use_id: e.parent_tool_use_id ?? null,
+            status: outcomes[JSON.stringify([e.parent_tool_use_id ?? null,b.id])] ?? "unknown" };
           for (const k of TARGET_KEYS) if (k in (b.input ?? {})) action[k] = b.input[k];
           if (["Agent", "Task"].includes(b.name)) action.input = b.input ?? null;
           actions.push(action);
@@ -85,7 +88,7 @@ export function text_before_change(agent: Agent, events: Event[][]): [string, bo
   const said: string[] = [];
   const answer = (changed = false, unknown = ""): [string, boolean, string] => [said.join("\n\n"), changed, unknown];
   for (const e of events.flat()) {
-    if (agent === "claude" && e.type === "assistant")
+    if (agent === "claude" && e.type === "assistant" && !e.parent_tool_use_id)
       for (const b of message_blocks(e)) {
         if (b.type === "text") said.push(b.text ?? "");
         else if (b.type === "tool_use") {
@@ -166,7 +169,7 @@ export const turn_parts = (a: Agent, e: Event[]) => {
 };
 export function sessionId(agent: Agent, events: Event[]): string | undefined {
   for (const e of events) {
-    if (agent === "claude" && e.session_id) return e.session_id;
+    if (agent === "claude" && !e.parent_tool_use_id && e.session_id) return e.session_id;
     if (agent === "codex" && e.type === "thread.started") return e.thread_id;
   }
   return undefined;

@@ -27,6 +27,11 @@ test("fixture criteria, sources and response verification are the live protocol"
   const part=resultChecks().find(p=>p.skill==="understand-clarify")!;
   expect(resultRubric(part).criterion).toContain(part.source.text);
   expect(resultRubric(part).criterion).toContain(part.alternatives);
+  const lean=entry();lean.request.rubric.source_check="act-rightsize-lean:rule:3";
+  const criterion=fixturePayload([lean]).criteria[0]!;
+  expect(criterion.source_context[0].id).toBe("act-rightsize:rule:6");
+  expect(criterion.source_context[0].source.text).toContain("pending proposal");
+  expect(judgeData([lean.request]).criteria[0]!.source_context).toEqual(criterion.source_context);
 });
 test("shared traces are sent once and full serialized prompt limits include envelopes and instructions", () => {
   const a=entry("a"),b=entry("b");

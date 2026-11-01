@@ -2,7 +2,32 @@ import { test, expect } from "bun:test";
 import { accessTurn } from "./access";
 import native from "../fixtures/access/claude-numbered-read.json";
 import type { Event } from "./types";
+import { action_evidence, skills_read, sameClaudeAgent, sessionId, text_before_change } from "./trace";
+import { judgeEvidence } from "./scenario";
 const read = (events: Event[]) => accessTurn("claude",events,1,native.sources);
+
+test("Claude helper actions retain their owner while main loading and context exclude helper events",()=>{
+  // The kept Haiku chapter has no helper events; this uses the parent_tool_use_id event contract.
+  const helper=structuredClone(native.events) as Event[];
+  for(const e of helper){e.parent_tool_use_id="worker";e.session_id="worker-session";}
+  const events=[...helper,{type:"system",subtype:"compact_boundary",parent_tool_use_id:"worker"},
+    {type:"assistant",parent_tool_use_id:"worker",message:{content:[{type:"tool_use",id:"write",name:"Write",input:{file_path:"report.md"}}]}},
+    ...structuredClone(native.events)] as Event[];
+  events.at(-1)!.message.content[0].is_error=true;
+  events.at(-1)!.message.content[0].content="Denied";
+  events.at(-1)!.tool_use_result.file.content="Denied";
+  const access=read(events),actions=action_evidence("claude",events);
+  expect(access.records).toHaveLength(1);expect(access.records[0]!.call_success).toBe(false);
+  expect(access.records[0]!.extent).not.toBe("whole");
+  expect(access.boundaries).toEqual([]);expect(access.first_attempt).toBeNull();
+  expect([...skills_read("claude",[events],null,"essentials")]).toEqual([]);
+  expect(sessionId("claude",events)).toBeUndefined();expect(text_before_change("claude",[events])[1]).toBe(false);
+  expect(actions.filter(a=>a.id==="read-understand").map(a=>[a.parent_tool_use_id,a.status])).toEqual([["worker","succeeded"],[null,"failed"]]);
+  expect(sameClaudeAgent(actions[0]!,events[0]!)).toBe(true);
+  expect(sameClaudeAgent(actions[0]!,events.at(-2)!)).toBe(false);
+  expect(judgeEvidence([{actions}]).turns[0]!.actions).toEqual(actions);
+  expect(read(helper).records).toEqual([]);
+});
 
 test("native Claude numbered Read preserves indentation and verifies the complete frozen guide",()=>{
   expect(read(native.events).records.find(r=>r.skill==="understand")).toMatchObject({extent:"whole",operation:"read",success:true});

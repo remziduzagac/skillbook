@@ -8,8 +8,49 @@ import { normalize, validateCase } from "./cases";
 import { tmpPaths } from "./process";
 import { recheckScenario } from "./recheck";
 import type { Event } from "./types";
+import { spawnSync } from "node:child_process";
 const message = (text: string) => ({ type: "item.completed", item: { type: "agent_message", text } });
 const args = () => parseArgs(["--agents", "codex", "--yes"]);
+
+test("a Claude run gives its auxiliary fit call the Codex login in an isolated home",()=>{
+  const fakeHome=mkdtempSync(join(tmpdir(),"runner-fit-login-"));
+  try{
+    mkdirSync(join(fakeHome,".claude"));mkdirSync(join(fakeHome,".codex"));
+    writeFileSync(join(fakeHome,".claude/.credentials.json"),'fixture-claude-login');
+    writeFileSync(join(fakeHome,".codex/auth.json"),'fixture-codex-login');
+    const script=`
+      import {runOne} from './tests/runner/run';
+      import {normalize} from './tests/runner/cases';
+      import {parseArgs} from './tests/runner/cli';
+      import {readFileSync,existsSync,unlinkSync} from 'node:fs';
+      import {join} from 'node:path';
+      const options=parseArgs(['--agents','claude','--login','--yes']);
+      const c=normalize({fixture:'tiny-weather',goal:'Finish',user:{description:'Resident',facts:{task:'Finish'},mode:'fixed'},
+        turns:[{prompt:'First'},{prompt:'Second'}]},'essentials/fit-login');
+      let fitHome='',fitCalls=0;
+      const result=await runOne(c,'claude','sonnet',1,options,process.env.HOME!,1,async(cmd,work,env)=>{
+        const auxiliary=cmd[0]==='codex';
+        if(auxiliary){
+          fitCalls++;fitHome=env.HOME!;
+          if(env.CODEX_HOME!==join(fitHome,'.codex')||readFileSync(join(env.CODEX_HOME!,'auth.json'),'utf8')!=='fixture-codex-login')
+            throw Error('fit call lacks isolated Codex login');
+        }
+        const events=auxiliary?[{type:'item.completed',item:{type:'agent_message',text:JSON.stringify({off_script:false,reason:'Fits'})}}]:
+          [{type:'assistant',session_id:'main',message:{content:[{type:'text',text:'Done'}]}},{type:'result',total_cost_usd:0.001}];
+        return {stdout:events.map(e=>JSON.stringify(e)).join('\\n'),stderr:'',status:0,left:[],left_why:null,tmp:null,tmp_paths:[]};
+      });
+      if(fitCalls!==1||result.turns[0]?.fit?.off_script!==false||existsSync(fitHome)||result.error)
+        throw Error('fit or cleanup contract failed');
+      unlinkSync(join(process.env.HOME!,'.codex/auth.json'));
+      const single=await runOne({...c,turns:[c.turns[0]!] },'claude','sonnet',1,options,process.env.HOME!,1,async()=>({
+        stdout:JSON.stringify({type:'result',total_cost_usd:0.001}),stderr:'',status:0,left:[],left_why:null,tmp:null,tmp_paths:[]}));
+      if(single.error)throw Error('a Claude-only turn unnecessarily required a Codex login');
+      console.log('Claude fit login and cleanup passed');
+    `;
+    const ran=spawnSync(process.execPath,['--eval',script],{cwd:process.cwd(),env:{...process.env,HOME:fakeHome},encoding:'utf8'});
+    expect(ran.status,ran.stderr).toBe(0);expect(ran.stdout).toContain('Claude fit login and cleanup passed');
+  }finally{rmSync(fakeHome,{recursive:true,force:true});}
+});
 const sample = () =>
   normalize(
     {

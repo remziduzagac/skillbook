@@ -5,7 +5,7 @@ import { shellAccesses } from "./access-shell";
 import type { Agent, Event } from "./types";
 import type { CodexRetention } from "./codex-retention";
 
-export const READER_VERSION = "access-4";
+export const READER_VERSION = "access-5";
 export const frozenSkills = () => Object.fromEntries(skillFiles().map(([name, path]) => [name, readFileSync(path, "utf8")]));
 export interface Access {
   skill: string; file: string; tool: string; call: string; turn: number;
@@ -97,6 +97,7 @@ export function accessTurn(agent: Agent, events: Event[], turn = 1, sources = fr
     }
   };
   for (const [order, e] of events.entries()) {
+    if (agent === "claude" && e.parent_tool_use_id) continue;
     if (contextBoundary(e)) { boundaries.push(order); coverage.clear(); }
     if (agent === "codex" && ["item.started", "item.completed"].includes(e.type)) {
       const item = e.item ?? {}, id = String(item.id ?? `event-${order}`);
