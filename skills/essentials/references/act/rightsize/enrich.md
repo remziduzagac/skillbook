@@ -35,25 +35,21 @@ The material with missing parts added, each addition’s source, and gaps that c
 
 ## Instructions
 
-Answer the reader’s remaining questions with checked sources. Find each missing answer before proposing an addition.
+Fill the reader’s remaining gaps from checked sources. Distinguish an answer you have not looked for from one a completed search could not find. **Find the reader’s questions, source each needed answer, then apply and verify only approved additions.**
 
-1. **Find the reader and purpose.** This helps judge what is missing.
-2. **Read as the reader to find their remaining questions.** This helps find the reader’s unanswered questions. Use a skill in the harness’s list that checks a document from its reader’s point of view, if one fits. Otherwise list what this reader still needs to understand or act.
-3. **Find its answer by rule 2.** This helps ground each addition.
-   - the project's files first;
-   - the user, through the `respond-ask` guide, when only they know, such as which versions are supported;
-   - outside sources for outside facts.
-   - Mark a gap only as rule 2 says.
-4. **Apply approved additions with their sources.** This helps fill the agreed gaps. Get approval by rule 4. Follow rule 5 for code.
-5. **Check them by rule 3.** This helps confirm the additions are true.
-
-6. **Check the result before returning it.** Always do this last.
-
-   Before you return anything, check:
-
-   - Nothing is invented;
-   - Every addition has a current, authoritative source and was checked;
-   - Nothing is there that the reader would not ask for;
-   - The gaps are listed;
-   - Where the user's or others' work changed, the list was approved;
-   - For code, the tests pass.
+1. **Identify reader and purpose through the `act-rightsize` guide.** Without a reader's goal, adding more facts can pad the material while its real gap remains.
+   - Name what this reader needs to understand or do without asking again.
+2. **Read as that reader under rule 1.** Familiarity can hide a missing install step, evidence or next action that a new reader cannot supply.
+   - Use a fitting reader-check skill in the harness's list. Otherwise list the questions this reader still needs answered.
+3. **Find each answer from checked sources under rule 2.** Invented additions read as facts, while premature gaps pass research you could do back to the user.
+   - Search project files first. Ask through the `respond-ask` guide when only the user knows, such as supported versions. Use outside sources for outside facts.
+   - Mark a gap only after checking project sources and, for outside facts, outside sources. Keep what would settle the missing answer visible.
+4. **Obtain approval for additions before applying, by rule 4.** This order is firm: filling another writer's work changes what later readers rely on.
+   - List each addition, source and reason through the `respond-ask` guide and end the turn. Apply only the approved list.
+   - Follow rule 5 and the `act-rightsize` guide's code rule for code changes, with a fitting skill or project tests before and after.
+5. **Verify each addition under rule 3.** A citation to a stale page or contradicted comment cannot establish that the new answer is true.
+   - Use the `act-verify` guide for project facts, such as install steps checked against the current build file or tried. Use current authoritative sources for outside facts.
+   - Give file and line, observed command or source page. Remove padding that answers no reader question.
+6. **Check additions, gaps and “Gives back” before returning.** Always do this last. A fuller document still fails if its new material is unsupported.
+   - Check nothing is invented, every addition has an applicable current source and was checked, unresolved gaps are listed and no unnecessary part was added.
+   - Check the list was approved where others' work changed, and code tests pass. Fix unsupported or missing parts before reporting the actual additions and gaps.

@@ -23,11 +23,17 @@ A B C → P over A, B, C
 
 ## Instructions
 
-Give selected items a useful shared parent. Find what they share before proposing that parent.
+Add a parent that explains what selected items share. The parent should earn its place by saying something useful while leaving each item’s content intact. **Find the shared statement, test whether a parent helps, then propose its boundary and placement.**
 
-1. **Find what the selected items share.** This helps give the parent a useful meaning.
-2. **Require at least two items and a useful shared statement before adding a parent.** This helps avoid a redundant parent. The parent must say something no item says alone. A redundant parent adds navigation without meaning.
-3. **Name the parent and write its boundary in one sentence.** This helps make the parent’s scope clear. Cover everything that belongs and exclude what does not. Follow the `organize` guide's rule for choices shared by its operations.
-4. **Prepare the selected items' placement under the parent.** This helps keep selected content unchanged. Move them only where folders hold the arrangement and only under the approved map. Preserve their content. Leave unselected items in place. Include every selected item that belongs and no unrelated item.
-
-5. **Return the proposed or approved parent, what the selected items share and where each item belongs.** Always do this last. Check that the parent earns its place and the items keep their content. Keep the `organize` guide's inventory and approval checkpoints.
+1. **Find what the selected items share under the `organize` guide.** A parent based only on a vague theme adds a level readers must open without learning anything.
+   - Look at the selected items' purposes and content. Keep this distinct from sorting the whole collection.
+2. **Require at least two items and a useful shared statement before adding the parent.** A redundant parent adds navigation cost for every reader.
+   - Check it says something no item says alone. If it does not, add no parent.
+3. **Name the parent and give its one-sentence boundary by the `organize` guide.** A broad or unclear parent can pull unrelated items into the arrangement.
+   - Say what belongs and what does not. Follow the parent's shared choice rule for the name and parent choice.
+4. **Prepare item placement under the `organize` guide's approved map.** Moving beyond the selected set can disturb work the user did not ask to rearrange.
+   - Include every selected item that belongs and no unrelated item. Keep unselected items in place and preserve selected content.
+   - Move items only where folders hold the arrangement. Show the map and end the turn for required approval before any change.
+5. **Check the parent and “Gives back” before returning.** Always do this last. A new heading alone does not show that the arrangement is useful or preserved.
+   - Check the shared statement, useful parent, boundary and each selected item's place. Fix lost content or unrelated placements before returning.
+   - Return the proposed or approved parent with inventory evidence. Keep the `organize` guide's approval before change and user confirmation after checking.

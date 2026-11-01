@@ -37,15 +37,24 @@ The requested options or candidates. Add a comparison and a decision, or why the
 
 ## Instructions
 
-Generate distinct options that answer one question. Follow frame, generate, develop and return, adding a choice only when requested.
+Generate options that differ in kind for one question. Listing before judging keeps the first idea from crowding out useful alternatives. **Frame, generate, develop and return the requested options; add a choice only when requested.**
 
 Use the `understand-research` guide for a fact an option depends on, and the `understand-research-survey` guide for needed existing alternatives or prior art. Return those results here without taking over generation or choice. Use the `understand-clarify` guide for unclear user intent. Return a whole-design need to the caller. Return any remaining development need rather than calling an active caller back.
 
 Return the question and requested options or candidates. When the user requests a choice, add the comparison and decision or explain why you parked it. Keep no lasting record yourself, by the `understand` guide. Return the developed options, open or parked options and any decision for the skill that saves records. If no skill saves records, offer a long result as a file the user names.
 
-1. **Frame one question before generating options.** Mixed questions produce options that cannot be compared. Use the `understand-frame` guide. Name several questions separately. Take them one at a time or park them. A topic with several open parts goes to the `understand-discuss` guide.
-2. **List options before judging any.** Early judgment narrows everything to the first idea, the failure this guide prevents. Generate options that differ in kind, by rule 1.
-3. **Develop promising options as needed.** Concrete options are easier to use. Make one or two concrete, combine strengths and use the `understand-challenge` guide. Reuse a current challenge instead of repeating it.
-4. **Return what the caller requested.** A tool must not decide its caller’s question. Return options or candidates without a selection round. For a requested choice, weigh them through the `understand-weigh` guide and return a decision or park it, by rules 2 and 3.
-
-5. **Check that you have returned what the caller requested: options, candidates, or a choice you weighed and decided or parked.** Always do this last. Check distinctness, earlier options, factual gaps and side topics. Follow the `understand` guide's rules. Make no lasting change and start no unrequested choice round.
+1. **Frame one question with the `understand-frame` guide before generating.** Mixed questions produce options that answer different needs and cannot be compared.
+   - Name separate questions and take them one at a time or park them. Use the `understand-discuss` guide for a topic with several open parts.
+   - Ask for the user's picture first when they likely have one; offered options can steer it.
+2. **List distinct options before judging any, by rule 1.** Early judgment can turn every later option into a version of the first.
+   - Read earlier proposals, list them first and mark them earlier. Aim for about three to seven options and stop when additions repeat.
+   - Consider easy-to-miss options, such as doing nothing or changing the question. Rewordings count as one idea.
+3. **Develop promising options to the depth the caller needs.** A bare name can hide whether an option is usable or has a serious weakness.
+   - Make one or two concrete where useful, combine strengths and use the `understand-challenge` guide. Reuse a current challenge.
+   - Use the `understand-research` guide for deciding facts and the `understand-research-survey` guide for existing alternatives. Return those findings here. Place side topics rather than following them.
+4. **Return options or a requested choice under rules 2 and 3.** Choosing for a caller that asked only for candidates takes over a decision it still owns.
+   - Return requested options or candidates without a selection round. For a requested choice, use the `understand-weigh` guide and return the decision or why it is parked and what would settle it.
+   - Use the `understand` guide's who-decides rule for visible choices. Return a whole-design or remaining development need to the caller without calling an active caller back.
+5. **Check the options and “Gives back” before returning.** Always do this last. A list of renamed duplicates or an unrequested winner does not meet the request.
+   - Check distinctness, earlier proposals, factual gaps and side topics. Include developed and open or parked options, with any requested decision.
+   - Fix what falls short, follow the `understand` guide's rules and keep lasting records with their owner. Start no unrequested choice round.

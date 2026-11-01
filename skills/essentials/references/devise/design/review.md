@@ -32,15 +32,26 @@ Ranked findings with fixes, or a list of checks run when no problem was found. M
 
 ## Instructions
 
-Give the design owner findings they can act on. Check the design against its basis without changing it.
+Give the design owner evidence-backed findings they can fix, accept or park. Keep review separate from editing and distinguish a returned report from completion of every required check. **Read the design’s basis, run the review lenses, then return ranked findings with actual review status.**
 
-1. **Read the design and its basis.** This helps understand what the design must satisfy. Include the frame, requirements and decisions.
-2. **Run the consistency lens.** This helps find contradictions. Find conflicting parts, decisions or requirements and terms used two ways.
-3. **Walk the builder through main and edge cases.** This helps check that someone can build it. Each must have a responsible part and enough information to act.
-4. **Check coverage and overlap through the `organize` guide.** This helps find missing or overlapping parts. Use its bounded check and return here. Set parts against requirements: none missing, none owned twice.
-5. **Use the `understand-challenge` guide for assumptions that could change a decision that is hard to undo or shapes much of the work.** This helps test assumptions that matter. Reuse a current result only with the same idea, goal, constraints and evidence. Check again when those inputs change.
-6. **Identify what the `act-rightsize-lean` guide would remove.** This helps find parts that add no value. Report proposed cuts, not an applied removal.
-7. **Use a skill in the harness’s list for that review, if one fits.** This helps check software architecture where supported. Otherwise skip that review and report the skip.
-8. **Return ranked findings with evidence.** This helps give the owner actionable findings. Use must fix before approval, should fix and note. For each finding, give its location, the problem, why it matters and a suggested fix. If you find no problems, name the lenses you ran. Name unfinished checks and who should arrange them.
-
-9. **Check that every required lens has a result or is marked unfinished.** Always do this last. Support findings with evidence. Leave the design unchanged. Return the findings to the caller to fix, accept or park before design approval. Never claim independent completion without another reviewer's result.
+1. **Read the design and its frame, requirements and decisions.** A review without its basis can mistake a deliberate constraint for a fault or miss a real requirement.
+   - Arrange the independent reviewer under rule 2 through the `coordinate-delegate` guide. A writer's reread or shared-context fork is not independent.
+   - If unavailable, keep the check pending and name who should arrange it. Return useful findings without claiming independent completion.
+2. **Run the consistency lens under rule 1.** Conflicting parts let builders follow different versions of the design.
+   - Check parts against decisions and requirements. Find terms used for different meanings.
+3. **Walk a builder through main, edge and failure cases under rule 1.** A design can look complete yet leave the builder no owner or instructions at the point of failure.
+   - For each case, find the responsible part and enough information to act. Judge from a builder without this conversation.
+4. **Check coverage and overlap through the `organize` guide's bounded check.** A responsibility owned twice can conflict; one owned nowhere can be omitted.
+   - Set parts against every requirement. Return here after the check without restarting the parent operation chooser.
+5. **Challenge assumptions that could change consequential decisions through the `understand-challenge` guide.** A hidden false assumption can invalidate much of the design after building starts.
+   - Target decisions hard to undo or shaping much of the work. Reuse a challenge only with the same idea, goal, constraints and evidence.
+6. **Identify proposed cuts through the `act-rightsize-lean` guide.** Extra parts cost builders effort without serving a requirement.
+   - Report what could go and why. Apply no removal; the owner decides under rule 3.
+7. **Use a fitting specialist review skill from the harness's list.** Generic consistency checks alone do not establish a specialist architecture review.
+   - If no fitting skill is available, skip that review and report the skip rather than claiming it was performed.
+8. **Return ranked findings under rules 3 and 4.** Findings without locations, effects or fixes leave the owner to repeat the review.
+   - Rank must fix before approval, should fix and note. Give location, problem, why it matters and a suggested fix for each.
+   - If no problems were found, name the lenses run. Name unfinished checks and their next owner. Return without waiting for resolution or changing the design.
+9. **Check findings and “Gives back” before returning.** Always do this last. A finished report must not hide an unfinished independent review.
+   - Check every required lens has a result or pending status, and every finding has evidence. Fix unsupported findings or missing statuses.
+   - Leave the design unchanged. Return to the owner for fixes, acceptance or parking before approval. Claim independence only after another reviewer's result is seen.

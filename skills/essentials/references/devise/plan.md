@@ -42,7 +42,7 @@ The one-line or full plan, its actual approval status, and the checklist showing
 
 ## Instructions
 
-Keep multipart work clear, approved where needed and checked as it proceeds. Build on the current plan or given steps.
+Keep multipart work tied to its goal, current facts and checked progress. Build on given steps or the open plan so new input does not erase unfinished work. **Read the open plan and any given steps, expand only unclear steps, then follow only the approved work and revise as facts change.**
 
 A full plan's default shape, omitting empty fields:
 
@@ -56,11 +56,26 @@ Agents:  work handed to agents
 
 Keep a plan in the response when it fits on a screen. For a longer plan, write a file and give an outline in the response. Use the place and format chosen by the caller or the loaded skill that saves records. If neither has chosen a place, name the file in the response. Follow the `act` guide before writing. Return the plan with its actual approval status and the steps you checked. Do not assume the work is complete.
 
-1. **Keep planning separate from execution.** This helps return the requested plan. A plan-only request authorizes no action.
-2. **Inspect the existing plan and given steps by rules 2 and 9.** This helps preserve the user’s steps. Read the project facts before assuming what a step needs. Keep obvious steps short.
-3. **Make the plan at the depth rule 5 sets.** This helps make every step clear enough to do. Use the `understand-frame` guide for a full plan's goal and done. Use the `organize` guide for splitting unknown parts, merging duplicate steps, grouping phases and isolating repeated shared work. Planning parts for something new does not rearrange existing work. Follow this guide's approval rules. This guide decides the order of steps.
-4. **Use the agent's own available plan and task controls.** This helps keep progress visible. Otherwise keep the plan and checklist in the response.
-5. **Get the approval required by rules 7 and 8 before execution.** This helps keep execution under user control. Use a permitted available plan mode when approval is needed. Mode changes alone are not approval. If no plan mode is available, put the approval request in the final message. End the turn. If no task tool is available, keep a plain-text checklist. If both capabilities are missing, use both fallbacks. Install or enable nothing to acquire controls.
-6. **Follow the steps you are allowed to do by rule 6.** This helps advance only from checked work. Use the `coordinate-delegate` guide to give independent parts to available agents when the caller permits delegation. Use the `coordinate-delegate-crew` guide within that active call for parallel changes to separate items. Raise a wrong given step by the `act` guide's concern rule before relying on it. A failure goes to rule 9, not the next dependent step.
-
-7. **Check that the work needs a plan.** Always do this last. Check that you kept open items, marked additions, reflected new user input and marked finished items. Check that each step is obvious. Check that you divided a full plan into parts and challenged it. Omit empty fields. Check that approval still covers the work and the facts it rests on. Return the result to the caller. Report actual checked progress and outstanding work.
+1. **Keep planning separate from execution under rule 1.** A useful plan is still a read-only result when the user asked only for a view or plan.
+   - Return plan-only work without starting execution. Keep an open design need with the `devise-design` guide rather than treating an undecided shape as an obvious action.
+2. **Inspect the existing plan and given steps under rules 2 and 9.** Starting afresh can lose open work or silently change the user's order.
+   - Read relevant project facts. Keep given items, mark additions and ask before dropping or reordering the user's steps.
+   - Incorporate later user input, mark finished items and preserve what remains open, even if one item remains. Keep obvious steps short.
+3. **Make each step executable and checkable, at rule 5's depth.** A step with an open choice or missing fact can fail only after dependent work has begun.
+   - Expand under rule 3 until each step can be done now, has a check and has no result-changing unknown. Research facts and clarify user choices; return to this plan.
+   - Use a full plan for high stakes or long or wide work. Otherwise give the way, ordered steps and check in one line.
+   - For a full plan, use the `understand-frame` guide for goal and done, and the `organize` guide for distinct parts and phases. Group shared work once. This guide owns step order.
+   - Challenge a full plan through the `understand-challenge` guide, reusing only a current check. Omit empty fields in the default shape above.
+4. **Track the plan with available harness controls, by rule 6.** Untracked progress can let an unfinished prerequisite look done on the next turn.
+   - Use the harness plan or task list where available. Track three or more steps in a checklist; otherwise use plain text in the response.
+5. **Obtain required approval before execution, under rules 7 and 8.** A mode change or an unchecked task box is not the user's approval.
+   - A high-stakes plan needs actual approval even with given steps. Reuse approval only within its work and unchanged basis; separate guardrails still apply.
+   - For other changing work, use the `act` guide's plan rule and its exceptions. Put a read-only plan in the final answer when no user answer is needed.
+   - Use an available permitted plan mode, or put the approval request in the final message and end the turn. With no task tool, use a plain-text checklist. Install or enable no controls.
+6. **Follow allowed steps in dependency order, checking before advancing, by rules 6 and 9.** An unnoticed failure can invalidate every step built on it.
+   - Use the `act-verify` guide before ticking each step. Independent parts may share a phase. Give permitted independent work to the `coordinate-delegate` guide, using the `coordinate-delegate-crew` guide for parallel changes to separate items.
+   - Raise a wrong given step through the `act` guide's concern rule. On failure, changed facts or new input, revise this plan rather than advancing dependent work.
+   - Revise a failed design through the `devise-design` guide first. Ask about changes to user-given steps and renew required approval before affected work.
+7. **Check the plan, progress and “Gives back” before returning.** Always do this last. A checklist is not evidence that the work passed.
+   - Check open items, additions, new input, completed items and each step's executable detail. Check full-plan parts and challenge status.
+   - Fix omissions and verify approval still covers the work and facts. Return actual checked progress, remaining work and approval status to the active caller without claiming unfinished work complete.

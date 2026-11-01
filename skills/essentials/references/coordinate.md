@@ -27,18 +27,21 @@ Each used method’s result and its actual status, returned to the task that ask
 
 ## Instructions
 
-The goal is to return the needed method’s result to the active task. Use the child guides that the task needs. There is no fixed order across these methods.
+Coordinating keeps this conversation small and the work moving. Other agents do the tasks, later sessions pick up where this one stopped, and instructions and lessons go where the next agent will find them. Every file read and every output printed here is carried again on every later turn, so work done elsewhere saves tokens and keeps this conversation free for the user. **Decide who does each part, use the method that part needs, and check what comes back.**
 
-- the `coordinate-delegate` guide: choose and manage workers.
-- the `coordinate-brief` guide: write a starting worker’s context.
-- the `coordinate-carryover` guide: write or resume later-session context.
-
-- the `coordinate-instruct` guide: prepare agent instruction documents.
-- the `coordinate-setup` guide: prepare approved skillbook setup.
-- the `coordinate-learn` guide: find homes for reusable lessons.
-
-For a skill's design or files, use the project's method for making skills, otherwise judgment. A request fitting no route uses judgment under the `act` guide. Return each result to its active caller.
-
-1. **Check each used method’s result.** Always do this last.
-
-   Apply the final step of Instructions in each child guide used. Report the actual status of the child's work. Return the result without restarting the caller's work.
+1. **Decide, for each part of the approach, whether another agent should do it.** Work done here fills this conversation with reading and output the user never needs.
+   - Delegate by default, as the advice above says. Do a part yourself only for one of its exceptions: it is too small, the user decides as it goes, or the conversation needs the content itself.
+   - When unsure, fork without asking.
+2. **Hand the work over with the method it needs.** The wrong way wastes tokens or weakens the result.
+   - the `coordinate-delegate` guide: choose and manage workers, from a fork to several agents, with each worker's model and effort matched to the risk. Track them, check what they return and clean up after them.
+   - the `coordinate-brief` guide: write a starting worker's context, with pointers instead of pasted files, and ask for a short report.
+   - the `coordinate-carryover` guide: write or resume the context for a later session, or for an agent the user starts.
+3. **Keep instructions, setup and lessons where the next agent will find them.** An instruction or a lesson in the wrong place is not read when it is needed.
+   - the `coordinate-instruct` guide: prepare agent instruction documents.
+   - the `coordinate-setup` guide: prepare approved skillbook setup.
+   - the `coordinate-learn` guide: find homes for reusable lessons.
+   - For a skill's design or files, use the project's method for making skills, otherwise your judgment. A request fitting no line uses judgment under the `act` guide.
+4. **Check each result before you use it, and return its actual status.** Always do this last. A worker's report of success is not the work itself, and an unchecked result passes its faults on as yours.
+   - Follow the final step of each child guide you used.
+   - Report the actual status of each child's work, such as finished and checked, finished but unchecked, or still running.
+   - Return each result to its active caller without restarting the caller's work.

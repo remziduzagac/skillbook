@@ -47,33 +47,29 @@ Decisions and their reasons, questions set aside and why, and next steps. Give t
 
 ## Instructions
 
-Work out what the request needs before acting. Use the child method each part needs; these methods have no fixed order.
+Understanding comes before acting, so the work answers what the user meant, not a guess. What matters is to find every open point that would change the result, and settle it: from the sources where they can, and with the user where only they can. **Explore first, settle what is open, then hand back one result.**
 
-**With the user:**
-
-- the `understand-discuss` guide: work through open topic parts.
-
-- the `understand-clarify` guide: settle choices that change the result.
-
-**Exploring options:**
-
-- the `understand-brainstorm` guide: generate distinct options.
-
-**Thinking it through:**
-
-- the `understand-frame` guide: define the problem and goal.
-- the `understand-weigh` guide: compare named options.
-- the `understand-challenge` guide: find weaknesses in an idea.
-- the `understand-argue` guide: make an honest one-sided case.
-
-**Names:**
-
-- the `understand-naming` guide: check and propose shared names.
-
-**Finding out from sources:**
-
-- the `understand-research` guide: investigate sourced questions.
-
-A whole design belongs to the work designing it. Anything else about understanding that fits no line here is your own judgment, under the rules above. Use the `understand-research` guide for facts needing sourced investigation.
-
-1. **Check the rules above before returning anything.** Always do this last. Check the result shape, marked guesses, named unknowns and no lasting changes. Follow the final step of Instructions in each used guide too.
+1. **Explore the sources before you ask or assume anything.** A question the files already answer wastes the user's time and hides what only they know, by rule 4.
+   - Read the conversation, the files the request touches and any other source that can answer a question, such as which version, plan or audience is meant.
+   - Keep track of what the sources settle and what stays open.
+2. **Name what is still open, and decide who settles each point.** An open point left unnamed becomes a guess that the work relies on as a fact, by rule 3.
+   - List each unknown or choice that would change the result, with what would settle it.
+   - Leave to the user what is theirs: their intent, taste, anything hard to undo, and what only they know. Settle what is yours: what the project's conventions settle, and defaults easy to undo, by rule 5.
+   - If a choice or unknown would change the result, read the `understand-clarify` guide before the first change, by rule 7, even when the answer seems plain.
+3. **Ask the user, round by round, until you could state the intent, the goal and what done looks like.** Work built on a guess has to be undone, and the user pays for it.
+   - Ask through the `respond-ask` guide, with a recommended answer. After each answer, ask again only about what is still open.
+   - If the result rests on choices you made yourself, show them in one "Going with" message, then end the turn before any change, by rule 5. If the user told you to choose, or has just answered, put the line in your final answer instead.
+   - A request with nothing open after steps 1 and 2 needs no questions.
+4. **Use the method each open part needs.** Each guide below does one kind of understanding well. A request may need several, in any order. A part that fits none is your own judgment, under the rules above.
+   - With the user: the `understand-discuss` guide works through the open parts of a topic. The `understand-clarify` guide settles choices that change the result.
+   - Options: the `understand-brainstorm` guide generates distinct options.
+   - Thinking it through: the `understand-frame` guide defines the problem and goal. The `understand-weigh` guide compares named options. The `understand-challenge` guide finds weaknesses in an idea. The `understand-argue` guide makes an honest one-sided case.
+   - Names: the `understand-naming` guide checks and proposes shared names.
+   - Sources: the `understand-research` guide investigates questions that need sourced facts.
+   - A whole design belongs to the work designing it.
+5. **Hand back the result in one shape, and keep nothing yourself.** The caller acts on the result, so it must find each part without knowing which guide made it, by rules 1 and 2.
+   - Give what was decided and why, what was set aside and why, and what comes next. Add each used guide's own part.
+   - Make no lasting change while understanding, by rule 6. Put probes in a scratch place, or remove them through the `act-cleanup` guide before you return.
+6. **Check the result before you return it.** Always do this last. A wrong understanding passes its fault into all the work built on it.
+   - Check the result shape, the marked guesses, the named unknowns, and that no lasting change was made.
+   - Follow the final step of each guide you used. Fix what falls short before you return.

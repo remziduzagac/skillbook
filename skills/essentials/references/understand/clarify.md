@@ -45,17 +45,14 @@ Follow the `understand` guide for facts first, who decides, keeping nothing, res
 
 ## Instructions
 
-Settle the choices that would change the result. Use the child method for the depth and answer holder; these methods have no fixed order.
+Settle the choices that would change the result before affected work starts. Depth depends on whether answers open further choices and who holds them. **Use the child method that fits the open choices, then check readiness before acting.**
 
 - the `understand-clarify-shallow` guide: see a whole level of choices.
 - the `understand-clarify-deep` guide: resolve dependent choices.
 - the `understand-clarify-questionnaire` guide: write questions for someone else.
 - **Ask whether independent work should proceed while a questionnaire is out.** Ask through the `respond-ask` guide only if independent work remains. Otherwise say what waits for answers. Park the questionnaire's questions until answers return. Start no dependent work.
 
-1. **Check readiness before acting.** Always do this last.
-
-   Before you act on anything an open question could change, check:
-
-   - Every question that is the user's to decide is answered, taken with its recommended answer by the user's acceptance, parked, or in a questionnaire.
-   - "Going with" is said, with the choices the work rests on, or the summary is confirmed, or it is shown where the user told you to start the work.
-   - The `understand` guide's rules hold.
+1. **Check readiness against “Gives back” and the `understand` guide before acting.** Always do this last. An unanswered choice can send the work in a direction the user never chose.
+   - Check each user-owned question is answered, accepted with its recommended answer, parked, or in a questionnaire. Under rule 2, start no work that an open answer could change.
+   - Check the user has seen the choices the work rests on in “Going with”, or confirmed the deep summary. Follow the `understand` guide's who-decides rule when the user already told you to start.
+   - Check the chosen child's result and final step. Keep unconfirmed assumptions visible. Fix any missing answer, disclosure or status before handing the result back.

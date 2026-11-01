@@ -57,29 +57,33 @@ A judgment that fits none of the named methods is your own, under these rules.
 
 ## Instructions
 
-Choose care that fits the effects of a mistake. Judge the action from facts using the four questions above.
+Judge the care an action needs from the effects of a mistake, rather than its size or label. Undo, reach, catch and cost give the caller one grounded level without taking action here. **Identify the actual action, answer the four questions, then return the level and any cheap ways to lower it.**
 
-1. **Identify the action and where it lands.** This helps judge the real effects. Find missing facts first, such as who calls a function, by the `understand` guide's facts-first rule.
-2. **Answer the four questions from facts, guesses marked.** This helps base care on facts. A plainly low case takes a glance.
-3. **Set the level by the definitions above.** This helps choose the right amount of care. When unsure, the higher one.
-4. **Check the level against every guardrail and instruction to be careful.** This helps keep required safeguards.
-5. **Name cheap ways to lower the stakes when the work is not plainly low.** This helps reduce the cost of mistakes.
-6. **Return the judgment in this shape.** This helps give the caller a usable judgment. For plainly low work, use one line: "plainly low" and why.
+1. **Identify the action and where it lands, by rule 1.** A small edit on a public or live surface can have effects its label hides.
+   - Read facts that show callers, coverage, backups or recipients through the `understand` guide's facts-first rule.
+   - Judge effects caused by this action. Keep pre-existing problems separate, while counting an action that hides them as weaker checking.
+2. **Answer Undo, Reach, Catch and Cost from facts, by rule 1.** A feeling about risk can change from one guide to another and leave the user with inconsistent care.
+   - Say how a mistake is undone, who or what it reaches, what catches it before harm and its cost in time, data, money, trust or security. Mark guesses.
+   - A plainly low case needs only a glance and its reason. Work through all four answers otherwise.
+3. **Choose low, medium or high from the definitions above, by rule 2.** Understating an uncertain level can leave a mistake uncaught when it matters.
+   - Take the higher level when unsure. Judge real consequences: a sent message or a fix needing another release is harder to undo than editing its source file.
+4. **Keep care at or above guardrails and instructions, by rule 3.** A low label must not become permission to skip a required safeguard.
+   - Check the `act` guide's never-rules, always-proposed kinds in the `act-guardrails` guide, and user or project instructions requiring more care.
+5. **Offer cheap ways to lower stakes for work that is not plainly low, using Advice.** Reducing exposure can cost less than adding a large review to the same risky action.
+   - Consider a backup, dry run, branch, feature flag or test. Offer them to the caller rather than applying them here.
+6. **Return the judgment under rule 4.** The caller needs a usable level, not a second guide making its action or approval decision.
 
    ```text
-   Undo:    how a mistake would be undone, or that it could not be
-   Reach:   how far it would go
-   Catch:   what would catch it, or nothing
-   Cost:    what it would cost
-   Level:   low, medium or high, and why in one line
-   Lower:   what would lower it cheaply, if anything
+   Undo:    the real way back, or none
+   Reach:   where a mistake goes
+   Catch:   what catches it before harm, or nothing
+   Cost:    what the mistake costs
+   Level:   low, medium or high, with a one-line reason
+   Lower:   cheap ways to lower it, if any
    ```
 
-   How much the user hears:
-   - nothing, when the level changes nothing the caller would do anyway;
-   - one line with the reason, when it changes what happens, such as asking first, a stronger model, the user checking the result, or a debate of the options;
-   - the full shape when the user asks about risk. For plainly low work, give only the line naming low and why, even when asked. Four answers add nothing there. A long report hides the point. Omit facts gathered to judge it, such as every use of a name.
-
-   The `act-stakes` guide keeps nothing. The caller records the judgment where it matters: a decision's reason, a proposal's risk or a delegated brief's model choice.
-
-7. **Check the judgment before returning it.** Always do this last. Include the four answers or "plainly low" with its reason. Give the level and a one-line reason. Check that care is not below a rule. Take no action and ask no question here.
+   - For plainly low work, give only “plainly low” and why, even when asked about risk. Otherwise use the full shape when the user asks, one line when it changes the caller's action, or nothing when it changes nothing.
+   - Keep facts gathered only to judge it out of the user-facing result. The caller records the level where it matters. Rejudge under rule 5 when scope, destination, checks or undo changes.
+7. **Check the judgment and “Gives back” before returning.** Always do this last. A correct-looking level without its basis cannot guide consistent care.
+   - Check the four answers or a plainly low reason, level, uncertainty and required safeguards. Fix any unsupported basis or level below a rule.
+   - Return without taking action or asking a question here. Leave the caller to use the judgment.

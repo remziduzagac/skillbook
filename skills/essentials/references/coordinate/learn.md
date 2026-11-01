@@ -27,14 +27,21 @@ Approved lessons and where they were saved, highlights dropped with reasons, and
 
 ## Instructions
 
-The goal is to keep approved reusable lessons with their status clear. Review the requested highlights with the steps below.
+Find reusable lessons within the requested session and propose where they belong. Separate approved promotions from dropped highlights and decisions still waiting for the user. **Collect, judge and propose lessons, then record only what was approved through its owning method.**
 
-1. **Collect the highlights the request covers.** This keeps the review within the requested session scope. Look for user corrections, mistakes, decisions and methods that worked or failed. Do not start an unasked lasting collection.
-2. **Judge whether each highlight is reusable and where it belongs.** This finds lessons worth keeping. Drop a highlight with a reason when it teaches nothing useful beyond the session.
-3. **Propose each reusable lesson through the `respond-ask` guide.** This keeps recording under user control. You must obtain approval before recording a lesson. Give its content, destination and reason. End the turn before recording it. Use the user’s earlier approval only for the same work, while the facts behind it still hold.
-4. **Put an approved rule through the `coordinate-instruct` guide.** This puts the lesson in its proper home. Put an approved decision or insight through a loaded skill that saves records, which owns location and form. If no skill saves records, list it in the response and offer a file the user names. A file offer grants no approval to write it.
-5. **Return a list of what went where or why it was dropped.** This makes every highlight’s status clear. Record each approved promotion where it lands. Preserve pending user decisions and report when nothing reusable was found.
-
-6. **Check each highlight’s status.** Always do this last.
-
-   Check that each highlight has one clear status: promoted with approval, dropped with a reason, or explicitly pending. Claim completed promotion only for what was actually recorded. Return the destinations and remaining questions to the caller. Keep skill lessons as insights rather than making unapproved skill changes.
+1. **Collect highlights within “When to use” and the requested scope.** An unasked lasting collection can record material the user never chose to keep.
+   - Look for corrections, mistakes, decisions and methods that worked or failed. Start no collection beyond the request or accepted stopping offer.
+2. **Judge each highlight's reusable value and home under rules 2 and 3.** A one-off event turned into a standing rule can mislead later sessions.
+   - Ask what a later session would otherwise get wrong or have to rediscover. Drop a highlight that teaches nothing beyond this session, giving why.
+   - Keep skill lessons as insights for the skill-making method rather than writing substitute rules into instructions.
+3. **Propose each reusable lesson through the `respond-ask` guide before recording.** This order is firm: lasting guidance needs the user's decision.
+   - Give proposed content, destination and reason. End the turn; record nothing before approval.
+   - Reuse prior approval only for the same work while its basis holds. Keep pending proposals visible rather than promoting or dropping them silently.
+4. **Record approved content through its owning guide or skill.** A lesson in the wrong place may not reach the later reader who needs it.
+   - Put an approved instruction rule through the `coordinate-instruct` guide. Put a decision or insight through a loaded skill that saves records, using its location and form.
+   - With none, list it in the response and offer a file the user names. The offer is not approval to write.
+5. **Return each highlight's destination or reason for dropping it.** Without a complete status list, the user cannot tell which lesson was kept.
+   - Name what was actually recorded and where. Keep pending user decisions visible and report when nothing reusable was found.
+6. **Check statuses and “Gives back” before returning.** Always do this last. Approval of a lesson does not prove it was saved.
+   - Check every highlight is promoted with approval and a real destination, dropped with why, or explicitly pending. Correct missing or overstated statuses before returning.
+   - Return destinations and remaining questions to the caller. Make no unapproved skill changes.

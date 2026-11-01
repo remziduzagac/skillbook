@@ -39,7 +39,7 @@ A comparison and recommendation, or no clear winner with what would settle it. R
 
 ## Instructions
 
-Compare the named options fairly and give a grounded recommendation or tie. Work through the comparison with these steps.
+Compare named options on common terms and recommend one, or explain what would settle a tie. Evidence and an honest search for downsides matter more than a score that merely looks exact. **Set the terms first, compare every option, then return the recommendation or unresolved choice.**
 
 Use the `understand-research` guide or a permitted test for a fact that would decide the choice. When candidate discovery is needed, the `understand-research-survey` guide returns it to this active comparison without another weigh call. Use the `understand-challenge` guide for one option. Return undeveloped options to the caller with the specific development they need. The caller owns the next generation pass. When a council returns disagreements, preserve them. Compare its members' answers when the user asks for a recommendation.
 
@@ -55,9 +55,19 @@ Would change:  unknowns and what would settle them
 
 Use the `respond-layout` guide: a short table may serve, and a list remains valid when rows would fit. Keep no lasting record yourself. Return the comparison, why a chosen option won and the options set aside for the skill that saves records. The shared who-decides rule sets what the user sees of an agent-made choice.
 
-1. **Set the terms before scoring options.** Terms chosen later tend to fit the favorite. Use the `understand-frame` guide’s good-answer terms where present, otherwise what matters to the question.
-2. **Compare the options on the terms.** Common terms make the differences useful. Give each option’s benefits, costs, risks and unknowns under the rules above.
-3. **Resolve or name deciding unknowns.** A missing fact or preference can change the recommendation. Use research, a permitted test or clarification by rule 3.
-4. **Return the recommendation or tie.** The caller needs to judge the result. Give why one option beats the next best or what would settle the choice, under rules 4 and 5.
-
-5. **Check all options have the same terms and grounded evidence, including an honest downside search.** Always do this last. Return a recommendation, a tie with what would settle it, or a specific development need preventing comparison. Reuse current checks. Follow the `understand` guide's rules and leave decisions and changes with their owner.
+1. **Set comparison terms from the `understand-frame` guide before scoring.** Terms chosen after a favorite appears can make the comparison justify it rather than test it.
+   - Reuse the frame's good-answer terms, otherwise what matters to the question. Screen options that break constraints and name each exclusion.
+   - Scale depth with the `act-stakes` guide. Include the cost of being wrong and how easily the choice can be undone.
+2. **Compare every option on every term, by rules 1 and 2.** Unequal scrutiny can make the least examined option look safest.
+   - Give benefits, costs, risks and unknowns, including later costs. Search for real downsides; if none is found, say where you looked rather than inventing one.
+   - At high stakes or for a requested debate, use the `understand-argue` guide and the `understand-challenge` guide equally for each option. Reuse only current checks; keep case and challenge verdict separate.
+   - Use scores or weights only when the measure means something. A short table or list may carry the comparison.
+3. **Resolve or name deciding unknowns under rule 3.** A missing fact or user preference can reverse the recommendation after the user relies on it.
+   - Use the `understand-research` guide or a permitted test for facts, and the `understand-clarify` guide for the user's preference. Give what would settle each gap.
+   - Return survey findings to this active comparison. Return undeveloped options or a needed combination to the caller without restarting generation.
+4. **Return the recommendation or tie under rules 4 and 5.** A winner without a reason cannot be judged; forcing one conceals a real tie.
+   - Explain why it beats the next best, or give “no clear winner” with what would settle it. Include exclusions and what would change the result.
+   - Return a caller's comparison without starting its choice round. For a direct request, give the recommendation as the recommended answer for the user's choice. Preserve council disagreements.
+5. **Check the comparison and “Gives back” before returning it.** Always do this last. The caller needs a grounded basis for choice, including its limits.
+   - Check common terms, evidence, downside searches, current challenges and deciding unknowns. Return a recommendation, a tie or a specific development need preventing comparison.
+   - Fix unsupported or unequal parts before returning under the `understand` guide's rules. Leave decisions and lasting changes with their owner.

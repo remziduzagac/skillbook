@@ -5,13 +5,15 @@ description: "Load this at the start of every request, before you act or answer.
 
 # essentials
 
-This skill helps you do any piece of work well. It holds the rules for every request, a map of its guides, and how the work goes. Its guides are files inside this skill, not skills in your harness's list.
+## Purpose
+
+This skill helps you do any piece of work well. It holds the rules for every request, a map of its guides, and instructions for how the work goes. Its guides are files inside this skill, not skills in your harness's list.
 
 ## Rules
 
 These rules hold for every request, whatever guides it uses.
 
-- **Read the six main guides on every request:** `understand`, `devise`, `organize`, `coordinate`, `act` and `respond`. Each one shapes a stage of the work, as "How the work goes" below says.
+- **Read the six main guides on every request:** `understand`, `devise`, `organize`, `coordinate`, `act` and `respond`. Each one shapes a stage of the work, as "Instructions" below says.
 - **Read each guide whole, before the stage that needs it.** A guide read in part, or after the first change, cannot shape the work.
   - Find a guide's file by the paths in the "Guide map" section, or by the name rule there. Do not search instead: a search finds matching lines and misses the rest of the guide. An answer made without its rules looks complete and is not.
   - Read the guides you chose together, in one turn. Each extra turn carries the whole context again.
@@ -78,7 +80,7 @@ So `act-rightsize-lean` is `references/act/rightsize/lean.md`, read after `refer
 
 Your harness's other skills and tools do the work itself. When one of them fits part of the request, such as writing code or a document, use it, and let these guides shape how you act and answer. Use your own judgment for work nothing covers.
 
-## How the work goes
+## Instructions
 
 These are guidelines, not a fixed procedure. Fit them into your harness's own flow, such as its plan mode or task list. What matters is the goal of each stage: the right guides shape the work before it starts, and the user gets a clear answer. **Prepare by step 0, then go through every stage the request needs, in this order.**
 
@@ -114,11 +116,11 @@ These are guidelines, not a fixed procedure. Fit them into your harness's own fl
    - When work continues in a later session, or with an agent the user starts, write a note with the `coordinate-carryover` guide.
 5. **Do the work under the `act` guide, and keep every action safe, in scope and checked.** This is the stage where mistakes reach the user's work, and some cannot be undone. The `act` guide's rules hold for every action, from the first one.
    - Do what was asked, completely, and nothing unrelated. Include what makes it work, such as the callers of a renamed function. Offer a better way beside what was asked, never in its place. Report a problem outside the task in one line, and leave it.
-   - Before a risky or wide action, such as deleting, overwriting what cannot be brought back, publishing or spending money, read the `act-guardrails` guide. Propose the action, then end the turn. Do this even when the user asked for exactly that, because they may not know what cannot be brought back.
+   - Before a risky or wide action, such as deleting, overwriting what cannot be brought back, publishing or spending money, read the `act-guardrails` guide. Propose the action, then end the turn. Do this even when the user asked for exactly that, because they may not know what cannot be brought back. Only their words that waive it, or their approval of this exact action, skip it.
    - Before work with several parts that changes anything, show the plan, then end the turn. Go ahead without stopping only when the user gave the steps, told you to go ahead, or has just answered your questions. When the user asks to see a change first, propose it and end the turn.
    - Keep the evidence your claims will need, and check each claim before you make it. A claim that work is done, fixed, passing or correct needs the `act-verify` guide. Say plainly what you did not run.
    - Write each file by the conventions for its type, as the `act` guide says.
-   - Stop after about three failed attempts at the same step. Report what you tried and what failed, and ask the user.
+   - Stop after about three failed attempts at the same step. Try a clearly different way once only where the `act` guide's rule 8 allows it. Otherwise report what you tried and what failed, and ask the user.
    - When something new shows up, update your approach, and read any newly needed guide before that step.
    - Before you finish, remove what you created or started for the task, through the `act-cleanup` guide.
 6. **Check the result, then answer through the `respond` guide.** Always do this last, before anything reaches the user. The answer is all the user sees of the work, so it must be true, complete and easy to use.

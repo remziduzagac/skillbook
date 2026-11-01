@@ -4184,6 +4184,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 > **Amended by D285 (2026-11-01):** no separate last-instruction section; the final check is the last step of Instructions, marked to come last, always.
 
+> **Amended by D287 (2026-11-01):** how Instructions are written, opening, steps, why, how, firm steps, rules held elsewhere and the last step, lives in skillbook-design's check 8.
+
 ## D284: delegation advice moves to the coordinate guide (2026-11-01)
 
 **Decision:** The main skill holds no advice section. "Delegate by default", with its exceptions (too small, the user decides as it goes, the conversation needs the content) and its fork-when-unsure line, moves word for word to the coordinate guide's Advice. Stage 4 of the main skill's instructions becomes "decide who does the work with the coordinate guide".
@@ -4208,3 +4210,18 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 **Tested:** Not yet.
 
+## D287: every Instructions section is written like the main skill's stages (2026-11-01)
+
+**Decision:** Every Instructions section, in the main skill, each guide and the two project skills, is written as guidelines with a goal, in the shape skillbook-design's check 8 now holds:
+
+- an opening that says what the steps are for and what matters most, ending with one clear instruction in bold;
+- numbered steps in the order the work happens, each a bold action naming the guide or section it uses, then what goes wrong without the step and who pays, then bullets saying what doing it thoroughly means;
+- firm steps that say so, with their visible action;
+- a rule held elsewhere applied in words, with its home named, not by its number alone;
+- the final check last, marked "Always do this last", naming what it checks and run before every return, including a firm step that ends the turn partway.
+
+The six main guides gain their own flows, with each child's line under the step that uses it: understand explores, names what is open and who settles it, asks round by round, uses the method each part needs and hands back one result; devise settles the approach, then designs or plans; organize builds and shows the map before changing anything; coordinate decides who does each part, hands the work over and keeps instructions and lessons where they are found; act shows where its rules come into the work; respond lays out, asks, explains and fits the content before its check. The 42 guides under them keep their steps' order where it holds, with filler reasons replaced and the steps filled from their own rules and designs. A step that summarises a rule keeps the rule's exceptions, such as a waiver of a proposal or a go-ahead that skips the plan stop, so the step and its rule read alike. skillbook-design's and skillbook-write's Instructions become numbered steps in the same shape, with skillbook-write's test cases written before the files they test; skillbook-design's Names and checklist move above its Instructions, so its final check comes last. The main skill's opening becomes its `## Purpose` section, and "How the work goes" becomes `## Instructions`, as D283 already said.
+
+**Why:** Most guides' steps were bare commands with a filler reason, such as "Choose evidence by rule 1. This helps test the actual claim." The reader had to jump to a rule to learn what to do, and the reason did not say what goes wrong. The main skill's stages, rewritten under D286, showed a shape that works: a reader of that section alone knows what to do, why it matters and what doing it well means, and can fit the steps into its harness's own flow. The project skills hold the shape, so every later skill is written and reviewed to it, and they follow it themselves, since a builder copies what they do. The main guides had child lists without a flow, left open under D279; with the stages written, each main guide holds the method its stage summarises.
+
+**Tested:** Not yet. The test runner's aspect ids for steps and routes need moving with the test work.

@@ -49,22 +49,36 @@ cluster     A B C            → view over A, B, C
 
 ## Instructions
 
-Give every required part a clear place without changing its meaning. Build the map before applying an arrangement.
+Organizing gives every required part one clear place without changing what it means. What matters most is the map: built and checked before anything moves, and approved by the user, because a part lost or changed is hard to see once the work is done. **Build the map first, then change only what the user approved.**
 
-1. **Find the whole, its purpose, the unit and the dividing principle.** This helps define the arrangement. Units can be sentences, sections, files, skills, functions, modules or system components. Follow rule 5 of the `understand` guide for who chooses and when choices are shown. The same rule governs which item survives a merge, which parent to add and where a shared part belongs.
-2. **Return findings directly for a check-only request.** This helps keep a check-only request read-only. Compare written or planned parts with everything they must cover. Report gaps, overlaps, mixed levels and conflicting terms. Check a proposed new item against content already placed too. Change nothing. Ask for neither approval before a change nor confirmation afterward. This bounded check returns to its active caller without running the operation chooser again.
-3. **Load the operation by what happens to the items.** This helps choose the right kind of arrangement. Children prepare a proposal first. Each child applies its proposal only under the `organize` guide's approved map.
-
+1. **Find the whole, its purpose, the unit and one dividing principle.** Two principles mixed, or one changed halfway, leave parts that overlap, by rule 1.
+   - Name the unit: sentences, sections, files, skills, functions, modules or system components.
+   - Choose one question that sorts every item, such as topic, reader or time.
+   - Follow rule 5 of the `understand` guide for who chooses and when choices are shown. The same rule decides which item survives a merge, which parent to add and where a shared part belongs.
+2. **For a check only, return the findings and change nothing.** The user asked to see the state of the parts, not to change them.
+   - Compare the written or planned parts with everything they must cover. Report gaps, overlaps, mixed levels and conflicting terms. Check a proposed new item against content already placed too.
+   - Ask for no approval before a change and no confirmation after it. Return to the active caller without choosing an operation again.
+3. **Choose the operation by what happens to the items.** Each operation guards against its own kind of loss, so the wrong one misses it. Each child prepares a proposal first, and applies it only under this guide's approved map.
    - the `organize-split` guide: divide a whole into parts.
    - the `organize-merge` guide: combine duplicate whole accounts.
    - the `organize-compose` guide: add a shared parent.
    - the `organize-normalize` guide: give repeated parts one home.
    - the `organize-cluster` guide: build a view for finding items.
-
-   Use several operations when needed, such as normalize then cluster. A request fitting none uses judgment under the `act` guide. Renaming, reordering or moving one item is the work itself. Deletion uses the `act-guardrails` guide. For content editing, use a skill in the harness’s list for editing documents or code, if one fits. Otherwise return that edit to the caller under the `act` guide. Your own leftovers use the `act-cleanup` guide.
-
-4. **Prepare the before-and-after map.** This helps let the user judge the change. Include every item's destination, boundaries, reference changes, retirements and exclusions. Show it whole when it fits on a screen. Otherwise put it in a named file and give the path, parts, counts and exceptions. Get rule 4's approval and end the turn before applying. For planning only, return the proposed parts to the active caller instead.
-5. **Apply the approved map through the chosen child.** This helps keep the change within approval. Keep to the work the user approved and the facts behind that approval. Follow rule 8 for code.
-6. **Check and return the actual result.** This helps show the actual checked result. Use the `act-verify` guide and rule 3's inventory or rule 8's code checks. Include the principle, boundaries, before-and-after map, each item's place, exceptions, evidence and what was retired, edited or relinked. Report which approvals the user gave, whether the check was independent and whether the user confirmed the result. Follow rules 5 and 6 for confirmation or rejection. The caller keeps the result; without a caller, keep it in the response.
-
-7. **Distinguish findings, an unapplied proposal, a checked result awaiting confirmation and confirmed completion.** Always do this last. Required in-scope items have one home in a completed change. Preserve approved exclusions and mark retired items. Report actual checks, missing independent checks and approvals. Return the result to the caller without restarting its work. Apply each used child's final step of Instructions.
+   - Use several when needed, such as normalize then cluster. A request fitting none uses judgment under the `act` guide. Renaming, reordering or moving one item is the work itself. Deletion uses the `act-guardrails` guide. For content editing, use a skill in the harness's list for editing documents or code, if one fits. Otherwise return that edit to the caller under the `act` guide. Your own leftovers use the `act-cleanup` guide.
+4. **Show the before-and-after map, then end the turn.** This step must not move: nothing changes until the user approves, by rule 4. The user can judge a change only from its map, and a part lost unseen is hard to find later.
+   - Include every item's destination, each part's boundary in one sentence, reference changes, retirements and exclusions.
+   - Check the map for gaps and overlaps, then run step 7's check on it before you show it.
+   - Show it whole when it fits on a screen. Otherwise put it in a named file and give the path, parts, counts and exceptions.
+   - Ask through the `respond-ask` guide. When you only plan a whole not yet written, return the proposed parts to the active caller instead, by rule 10.
+5. **Apply the approved map through the chosen operation's guide.** A change beyond the approval is one the user never judged.
+   - Keep to the work the user approved and the facts behind that approval. Follow rule 8 for code.
+6. **Check the applied result, then return it and end the turn for the user's confirmation.** A change looks complete before anyone has checked that nothing was lost, by rules 3 and 5.
+   - Check through the `act-verify` guide, with rule 3's inventory or rule 8's code checks.
+   - Return the principle, boundaries, before-and-after map, each item's place, exceptions, evidence, and what was retired, edited or relinked.
+   - Report which approvals the user gave, whether the check was independent and whether the user confirmed the result.
+   - Run step 7's check before you return it. Follow rules 5 and 6 for confirmation or rejection. The caller keeps the result. Without a caller, keep it in the response.
+7. **Check every result before you return it, and say which state it is in.** Always do this last, before each return: findings, a map shown for approval, a plan for a new whole, or a changed arrangement. A proposal reported as done, or a check reported as confirmed, misleads the user about what changed.
+   - The states: findings, an unapplied proposal, a checked result awaiting confirmation, or confirmed completion.
+   - In a completed change, every required in-scope item has one home, approved exclusions are kept and retired items are marked.
+   - Report the checks actually run, any missing independent check, and the approvals. Return the result to the caller without restarting its work.
+   - Follow the final step of each guide you used.

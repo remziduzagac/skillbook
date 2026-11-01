@@ -45,7 +45,7 @@ The chosen name, reasons and rejected words, or proposed glossary changes. Say w
 
 ## Instructions
 
-Propose a shared name or glossary entry that fits existing terms. Check and prepare the proposal with these steps.
+Find a shared name or glossary entry that fits the project’s existing words. An open name needs a choice; a supplied name needs checks without another candidate round. **Read existing terminology first, handle the name’s actual status, then return the proposal and check results.**
 
 Use the `understand-research-fact` guide for public-name availability from the relevant registry, domain or trademark sources. Return the actual checks and limits here without another naming choice. A limited check is not broader legal or availability certainty.
 
@@ -70,8 +70,17 @@ List unresolved ambiguities with both meanings. Keep no lasting record and write
 
 Propose the existing glossary as destination. With no existing glossary, propose `GLOSSARY.md` at the project root. The caller creates it when the user approves an entry. Code, docs and contributors share it. In someone else's project, use the location a loaded skill that saves records gives. If no skill saves records, ask the user for the location. These are destination defaults, not permission to write.
 
-1. **Read the glossary and existing usage first.** Clashes give one word two meanings. Check code, docs and design before proposing names.
-2. **Handle the open naming choice or supplied name.** An open choice needs candidates; a settled name needs checks. For an open name, ask the `understand-brainstorm` guide for candidates only, compare once through the `understand-weigh` guide on the naming criteria, and ask through the `respond-ask` guide. For a supplied name, use rule 4’s checks without reopening a settled choice.
-3. **Return the name or proposed glossary changes.** The caller needs the decision and rejected words to apply or record it. Include check results, reasons, rejected words and any unresolved ambiguities, under the rules above. Write and rename nothing.
-
-4. **Check existing terminology and collisions, clear criteria, reasons and rejected words.** Always do this last. Respect a supplied name unless a real conflict needs raising. Return a chosen name or proposed glossary changes, with any unresolved ambiguity. Leave every write and rename to its owner. Follow the `understand` guide's rules.
+1. **Read the glossary and existing usage before proposing, under rules 1–3.** A familiar word used for two concepts forces readers to guess its meaning.
+   - Check code, documents and design. Identify the thing in words a newcomer can understand and check whether it already has a term.
+   - Look for a part named after its whole, nearby field terms and possible tool or command clashes. Favor plain, short, searchable words that fit project patterns.
+2. **Handle an open or supplied name under rule 4.** Another choice round wastes the user's settled decision; skipping checks can leave a real conflict hidden.
+   - For an open name, ask the `understand-brainstorm` guide for candidates only. Compare once through the `understand-weigh` guide on naming criteria, then ask through the `respond-ask` guide.
+   - For a supplied name, check glossary, existing usage and possible collisions. Report the checks even when nothing clashes. Reopen only a real conflict through the `act` guide's concern rule.
+   - For public availability, use the `understand-research-fact` guide and report the actual registry, domain or trademark checks and their limits. A narrow check gives no broader certainty.
+3. **Return the name or proposed glossary changes under rules 5–8.** Without rejected words and check results, the caller can repeat old proposals or apply only half a rename.
+   - Give the chosen name and reasons, rejected words and why, checked clashes and words to avoid. For a glossary entry, give one sentence per term and an example where needed.
+   - List unresolved ambiguities with both meanings. Propose the existing glossary or the destination default above, without treating that as permission to write.
+   - Leave every write and rename to the caller, or the main work flow for a direct request. A wide rename follows the `act-guardrails` guide.
+4. **Check the proposal and “Gives back” before returning it.** Always do this last. A plausible name is insufficient if its meaning or checked scope is unclear.
+   - Check terminology, collisions, naming criteria, reasons, rejected words and proposed definitions. Respect a supplied name without hiding a real conflict.
+   - Fix missing checks or unclear meanings before returning under the `understand` guide's rules. Report unresolved ambiguities and write or rename nothing here.

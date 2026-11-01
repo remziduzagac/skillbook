@@ -30,24 +30,24 @@ Ask first the questions that others depend on. There is no fixed number of quest
 
 ## Instructions
 
-See the whole level and settle what sets its direction. Work through one round with these steps.
+See the whole level before exploring any part more deeply. Ask the smallest round that sets direction so the user can answer the important choices together. **Read across the level, ask one round, then show the basis for the work and any offer of deep questions.**
 
 You are done when every question in the round is answered, taken with its recommended answer, parked, or in a questionnaire, or when its part has been offered to deep and the user has said yes or no.
 
-1. **Read across the whole level first.** The whole level shows which choices matter. Ask about unsettled choices belonging to the user by clarify's first rule, such as newsletter length. For your own choices settled only by a likely value, choose it. Show it in "going with", never quietly. Example: rows per page in a new list view.
-2. **Leave out questions clarify's rules exclude.** Questions that change nothing waste a turn. If no user choice remains, ask nothing. Show "going with" by the `understand` guide's who-decides rule.
-3. **Ask one round through the `respond-ask` guide.** One round lets the user answer the level together. Give each question its recommended answer and a short reason.
-4. **End the turn with the round.** The answers belong to the user. Follow the `respond-ask` guide. Take answers when the user replies.
-5. **Offer deep for a part with dependent answers that would change the work.** Dependent choices may need further rounds. Offer it if unsure too. This ends shallow for that part. Follow the final step of Instructions in this `understand-clarify-shallow` guide for the offer. Ask no deep question before a yes. Deep can take many rounds. The user may not see why more questions come or may prefer your guesses.
-   - After a yes, the part goes back to clarify, which loads deep.
-   - If deep called shallow, the user has said yes already. Make no offer; the part goes back to deep.
-
-6. **Show "Going with: …" for the rest before work starts.** Always do this last. Follow rule 3: decisions, assumptions, parked questions and questionnaire items.
-
-   In the same response, offer deep for each part handed over:
-
-   - Name the part, and say why it needs more questions: its answers depend on each other and would change the work.
-   - Ask, as the `respond-ask` guide says, whether to question the user on it. Recommend yes, with a short reason. "Go ahead" accepts it.
-   - If the user declines, treat that part's open questions as the `respond-ask` guide does when the user stops. Take recommendations as assumed. Park questions without recommendations. Supply no fact only the user knows. Show both in "going with" before work on the part.
-
-   Hand it back to clarify. What comes next is the work, or deep on a part after a yes.
+1. **Read across the whole level using the `understand-clarify` guide's first rule.** Starting with one detail can hide a choice elsewhere that changes it.
+   - Find the unsettled choices belonging to the user, such as a newsletter's length. Ask first about choices that others depend on.
+   - Make choices that belong to you. Put a likely value the work rests on in “Going with”, such as rows per page in a new list view.
+2. **Remove questions the `understand-clarify` guide's rules exclude.** Asking what files settle or what changes nothing makes the user repeat work you can do.
+   - If no user choice remains, ask nothing. Handle visible choices by the `understand` guide's who-decides rule.
+3. **Ask one round through the `respond-ask` guide, with grounded recommended answers.** A round without reasons leaves the user to work out the trade-offs alone.
+   - Keep the round small enough to set direction. Save questions that are not needed yet.
+4. **End the turn with the round, as the `respond-ask` guide requires.** This step comes before any work an answer could change. Answering your own questions would take the user's choice away.
+   - Take the answers when the user replies. Keep unanswered, parked and questionnaire items distinct.
+5. **Identify parts to offer to the `understand-clarify-deep` guide.** One answer may open further choices that the first round cannot settle.
+   - Offer deep for dependent answers that would change the work, including when you are unsure whether depth is needed. Ask no deep question before a yes.
+   - After a yes, hand the part to the `understand-clarify` guide for deep. If deep called this guide, return the part to it without another offer.
+6. **Show “Going with: …” and check “Gives back” before handing back the level.** Always do this last. The user cannot correct a basis they have not seen.
+   - By rule 3, show decisions, assumptions, parked questions and questionnaire items that the work rests on. Avoid repeating latest answers except where you interpreted them.
+   - In the same response, name each part needing deep questions and why its answers depend on each other. Ask through the `respond-ask` guide, recommend yes with a reason, then end the turn.
+   - If deep is declined, assume only grounded recommendations and park questions without one. Supply no fact only the user knows. Show both before work on that part.
+   - Check every question's status and the `understand` guide's rules. Fix omissions before returning to clarification.

@@ -59,25 +59,33 @@ What counts, when you created or started it in this task:
 
 ## Instructions
 
-Leave no unwanted task leftovers. Track what you create and clean it when its job ends.
+Leave a checked account of task material that was removed, deliberately kept or needs approval to remove. Track exact identities from creation so cleanup never depends on guessing what belongs to you. **Record what you create, clean it when its job ends, then verify and report its final status.**
 
-1. **Choose the place and check the size before creating something, as the advice says.** This helps avoid oversized leftovers.
-2. **Record each thing as you create or start it.** This helps keep every leftover findable. Clean it when its job ends.
-3. **Tell a delegated agent to clean up before reporting.** This helps leave no forgotten worker material. Say explicitly to remove what it made and stop what it started. Report fields alone do not instruct it. Ask it to report cleaned, kept and proposed items. On return, check each report against visible files or processes.
-4. **List the contents of your usual places if the record is incomplete.** This helps recover an incomplete record. This includes after a crash or forgotten item. Propose anything not certainly yours. Do not remove it.
-5. **Go through the record before ending the task or stopping.** This helps finish with no unwanted leftovers. Follow the `act` guide's rule 11, including a wrap-up offer or carryover. Clean your own items. Propose the rest through the `act-guardrails` guide and the `respond-ask` guide.
-6. **Use the `act-verify` guide.** This helps confirm cleanup worked.
-7. **Give this report at the end of the response.** This helps make the cleanup status clear.
+1. **Choose a temporary place and check size before creating large material, using Advice.** An unexpected large copy can exhaust disk or memory before the task is finished.
+   - Prefer the harness's scratch and lifecycle tools, otherwise one task folder. Use shallow or partial clones for reading where suitable and explain a departure from the one-place advice.
+2. **Record each created or started thing under rules 2–4.** Forgotten files or processes can keep consuming resources, and later cleanup by name can hit the user's work.
+   - Record identity, exact location and process ID where relevant. Make processes findable and give them a shared lifetime or timeout where available.
+   - In long work, keep the record in the scratch place. Clean items when no longer needed rather than accumulating them until the end.
+3. **Tell workers to clean and check their own material through the `act-cleanup` guide.** Report fields alone do not tell a worker to stop its server or remove a temporary copy.
+   - Explicitly ask it to remove what it made, stop what it started and report cleaned, kept and proposed items. Check the report against visible files or processes when it returns.
+4. **Recover an incomplete record by listing the usual task places.** A crash or forgotten entry does not make every nearby item yours to remove.
+   - Identify only what you can establish as this task's material. Propose uncertain items rather than removing them.
+5. **Review the record before ending the task or stopping, under rules 1, 4 and 5.** A finished answer can leave scaffolding running and surprise the user later.
+   - Remove only exact recorded paths or IDs within your authority. Propose others' material and outward removal through the `act-guardrails` and `respond-ask` guides; end the turn for required approval.
+   - Keep only user-requested material or items your own next step will use soon. Do not keep copies for another agent or later check without the user's request; say how to recreate them.
+   - Include a wrap-up offer or carryover under the `act` guide's cleanup rule. Remove temporary work edits unless the user asked to keep them, and say how to add them back.
+6. **Verify removal through the `act-verify` guide, by rule 6.** A kill can fail or a watcher can restart a process after an apparent success.
+   - Check removed paths no longer exist and stopped processes are gone. Report a failed check rather than assuming cleanup succeeded.
+7. **Prepare the cleanup report at the end of the response, using “Gives back”.** Unexplained leftovers look forgotten, and proposed removal is not completed cleanup.
 
    ```text
-   Cleaned:   each item and where it was, checked as gone; sizes for large ones
-   Kept:      each item, where it is, and why
-   Proposed:  each item not yours to remove, with why; it waits for the user
+   Cleaned:   items and locations, checked as gone; sizes for large ones
+   Kept:      items, locations and reasons
+   Proposed:  items needing approval and why; awaiting the user
    ```
 
-   - Say nothing when you created nothing.
-   - Say one line when everything was cleaned and nothing is kept or proposed, such as "Cleaned up: the unpacked photo archive (640 MB) and the preview server".
-   - Give the full report when something is kept or proposed.
-   - Use the same three fields in a delegated report so the main agent checks one list. Put kept items in a carryover note when work continues later. Nothing else is kept: leftovers belong to the session, not the project.
-
-8. **Check the record before ending the task or stopping.** Always do this last. Every item is cleaned and checked as gone, kept with location and reason, or proposed. The report says which.
+   - Say nothing if nothing was created. Use one line if all material was cleaned and none kept or proposed; otherwise use the full report.
+   - Use the same fields in a worker report. Put permitted kept items in a carryover when work continues later, rather than making a project record of session leftovers.
+8. **Check the record, report and “Gives back” before ending.** Always do this last. An item without a final status may still consume resources after the task closes.
+   - Check each recorded item is removed and verified, kept with location and reason, or proposed for approval. Check the report matches actual files and processes.
+   - Fix unaccounted items or failed cleanup within your authority before returning. Keep pending removal visible rather than reporting it as done.

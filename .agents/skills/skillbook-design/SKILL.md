@@ -26,23 +26,6 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
 - Few strong findings beat many weak ones; group those that share one cause.
 - Usually extra: decision history or numbers, repeated rules, pointers to files that only repeat them, examples teaching nothing, and options no case needs. Usually missing: reasons, "when not" cases, child results, fallbacks for uninstalled skills, and tests distinguishing cases.
 
-## Instructions
-
-- **Place or move a skill with the knowledge it needs and where its most frequent calling flow runs.** The tree is `blueprint/design/skill-tree.md`, rendered from `blueprint/design/tree/tree.json`. Other skills point to its home. Follow "Names" below.
-- **Write a design section in `blueprint/design/<set>/<group>.md`.** Use that file's fields and the checklist below. Review it next. Follow skillbook-write's Plain English rule: the user and other readers may not be native speakers.
-- **Reviewing a skill: check every guide and main skill against checks 1–9 and 11–13.** Add check 10 for parents. Review each child the same way.
-  - Several skills may share a pass. Report each separately.
-  - For several groups at once, use one reviewer per group, each loading this skill, so findings stay independent. Recheck their findings before they reach the user.
-  - Report each skill by name, then its findings. Each finding names file and line, check number, problem and fix. Name a general pattern, never a single case to special-case.
-  - Add one line naming the checks with no findings.
-  - End with coverage: what was reviewed, which checks applied and what remains unverified.
-- **Trimming or filling an existing skill: show the change list first.** End the turn for approval, by essentials' `act-rightsize` approval rule. Unseen cuts can drop requirements. Unseen additions can lack design support. Apply only approved changes.
-  - For a grown skill, list what goes and why.
-  - For a skill leaving questions, list additions with design sources. Mark unsourced additions as gaps for the user to settle in the design. Write no rule or default for a gap meanwhile.
-  - A trim or fill request is not approval of the list. Show it first. Offer the list if you noticed the need unasked.
-- **Writing a skill's files:** skillbook-write, this repository's other project skill.
-- **Last, always: recheck every finding against the rules before returning a review.** Check a design against the checklist before showing it.
-
 ## Names
 
 - Name skills you do with bare verbs. Name skills about something, including groups, with nouns. Give leaves short verbs or nouns. Coin a name only when no plain word works.
@@ -83,8 +66,16 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
     - `## When to use`, `## When not` and `## Gives back`, by check 9;
     - `## Rules`, only if the guide has musts: each a bold must, then its reason;
     - `## Advice`, only if it has advice. Strong advice is marked inside it, not in a section of its own;
-    - `## Instructions`, always: it opens with its goal and one clear instruction, then numbered steps, each a bold action, why it matters, and how. Steps are guidelines by default, to fit into the harness's own flow; a step that must not move, such as approval before a change, says so in its own words. The last step is the check before anything is returned, marked to come last, always: a separate section would repeat the end of the steps.
-    - A main skill follows the same order after its frontmatter, with its guide map between Advice and Instructions.
+    - `## Instructions`, always, written as the next bullet says;
+    - A main skill follows the same order after its frontmatter, with its guide map between Advice and Instructions. A project skill puts its reference sections, such as a checklist, there too, so Instructions come last.
+    - **Write Instructions as guidelines, not a fixed procedure.** Each harness has its own flow, such as a plan mode or a task list. An agent that knows each step's goal can fit the steps into that flow. A bare list of commands it can only follow or drop:
+      - **opening:** say what the steps are for and what matters most, in two or three sentences. End with one clear instruction in bold, such as "Prepare by step 0, then go through every stage the request needs, in this order.";
+      - **steps:** number them in the order the work happens. Open each with a bold action that names the guide or section it uses and says when the step is done well, such as "Understand the request with the `understand` guide, until its intent, goal and details are clear.";
+      - **why:** after the action, say what goes wrong without the step and who pays for it. Cut a reason that only repeats the action, such as "This helps make the check precise.";
+      - **how:** give bullets that say what doing the step thoroughly means: what to look at, decide and check, with examples from varied work. Give most detail where agents cut corners, such as acting on a guess or calling work done without a check;
+      - **firm steps:** a step that must not move, such as approval before a change, says so in its own words and names its visible action, such as "Show the map, then end the turn.";
+      - **rules held elsewhere:** a step that applies a rule says the action in words and names the rule's home. "Choose evidence by rule 1" makes the reader jump. "Choose evidence that would fail if the claim were false, by rule 1" does not, and the rule keeps its one home;
+      - **last step:** the check before anything is returned, marked "Always do this last". It names what is checked, such as the "Gives back" and each part of the work, and fixes what falls short first. It runs before every return, including a firm step that ends the turn partway, such as a proposal. A separate section would repeat the end of the steps.
 9. **Give each guide its own boundary at the top of its file:** "When to use", "When not" and "Gives back".
     - **When to use:** the need the skill meets, as a test the agent can apply, with a qualifying example. Give the timing where it matters, such as "before the first change".
     - **When not:** each near case, with what fits better instead and why: another skill by name, or the agent's judgment.
@@ -103,7 +94,7 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
     - **turns:** combine independent calls. Read skills for the same step in one turn. Repeat no check without need;
     - **writing:** rightsize outputs by the first rule. Use pointers where they replace pasted content. Ask no question that is not truly open;
     - **delegation:** delegate steps that should go to an agent. Use the lightest capable agent. Brief with pointers, not pasted files. Do not fan out when a search suffices;
-    - **loading:** reach other skills only when needed. Keep the skill file short. Put work needed only sometimes in linked files. Trim grown files by "Trimming or filling an existing skill";
+    - **loading:** reach other skills only when needed. Keep the skill file short. Put work needed only sometimes in linked files. Trim grown files by the instructions' "Trim or fill an existing skill" step;
     - **the main context:** put bulk output in a named file, not the main session;
     - **checks:** choose the cheapest evidence that would fail if the claim were false;
     - **evidence quality:** fit evidence to the claim. Use file and line for project contents, an observed command and output for behaviour, and a current, authoritative source for outside facts. A source alone does not prove support. Passing tests do not prove nothing needed was lost: public interfaces, documented behaviour and untested requirements count too.
@@ -123,3 +114,35 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
     - **one action:** give each trigger one visible action, such as "end the turn", as skillbook-write's Sharp instructions rule says. Search the skill for a message paired with going on, such as "say … then go ahead", "show … and start" or "write the line and continue". Report each one, with a fix in one of two shapes: show it and end the turn, or put it in the final answer. Pairing soft and strong actions loses the soft one;
     - **proportion:** scale questions, confirmations and checks to stakes, undo and whether work is a deliverable or intermediate. Use a light path for routine work. Heavy paths everywhere cost turns and attention for little. Keep mandatory checks, such as secrets and irreversible actions, cheap on every path. Scale only the rest;
     - **varied examples:** draw from varied work, not just code. Give a different example at each repetition of a rule. Repeated examples teach the example, not the rule.
+
+## Instructions
+
+These steps take a skill from its place in the tree to a design a builder can follow, and check it against the checklist above. They are guidelines, not a fixed procedure: use the steps your task needs, in this order, and fit them into your harness's own flow. A review needs steps 1, 5 and 6. Writing the files comes after the design, with skillbook-write. **Read what the skill touches first, then go through each step your task needs.**
+
+1. **Read the skill and what surrounds it before you place, design or review it.** A design or review built on part of the picture misses rules that live elsewhere, and the builder or the user pays for it later.
+   - Read its section in `blueprint/design/<set>/<group>.md`, if it has one, and its files, if it is built.
+   - Read the decisions it cites in `blueprint/decisions.md`, with the notes under them.
+   - Read the skills and guides it names, and those that name it, so a change in one place does not leave another behind.
+   - For a review, read all of this, as the rule "Read the whole skill for a review" says.
+2. **Place the skill with the knowledge it needs, where its most frequent calling flow runs.** A skill in the wrong place is read when it is not needed, or missed when it is.
+   - The tree is `blueprint/design/skill-tree.md`, rendered from `blueprint/design/tree/tree.json`.
+   - Name it by "Names" above. Other skills point to its home instead of repeating it.
+3. **Write its design section in `blueprint/design/<set>/<group>.md`, so a builder can write the files from it alone.** A builder who has to guess writes a different skill.
+   - Use the fields every section in that file has.
+   - Write it to the checklist: a boundary by check 9, a reason for each restriction by check 4, the shape by check 8, and a test for every aspect by check 7.
+   - Write in plain English, by skillbook-write's Plain English rule: the user and other readers may not be native speakers.
+   - Review the design next, by step 5. When it is agreed, write the files with skillbook-write.
+4. **Trim or fill an existing skill: show the change list, then end the turn.** This step must not move. Unseen cuts can drop requirements, and unseen additions can lack design support. Apply only the changes the user approves, by the approval rule of essentials' `act-rightsize` guide.
+   - For a grown skill, list what goes and why.
+   - For a skill that leaves questions, list additions with their design sources. Mark unsourced additions as gaps for the user to settle in the design. Write no rule or default for a gap meanwhile.
+   - A trim or fill request is not approval of the list. Show the list first. If you noticed the need unasked, offer the list.
+5. **Review the skill against the checklist, so the user gets findings they can act on.** A missed check leaves a fault in place. A preference reported as a finding costs the user a change they did not need.
+   - Check every guide and main skill against checks 1–9 and 11–13. Add check 10 for parents. Review each child the same way.
+   - Several skills may share a pass. Report each one separately.
+   - For several groups at once, use one reviewer per group, each loading this skill, so findings stay independent. Recheck their findings before they reach the user.
+   - Report each skill by name, then its findings. Each finding names file and line, check number, problem and fix. Name a general pattern, never a single case to special-case.
+   - Add one line naming the checks with no findings.
+   - End with coverage: what was reviewed, which checks applied and what remains unverified.
+6. **Check your work before you return it.** Always do this last. A design or review that fails the checklist passes its fault on to the builder.
+   - Recheck every finding against the rules before you return a review: its line, its check, and whether it is only a preference.
+   - Check a design against the checklist before you show it.

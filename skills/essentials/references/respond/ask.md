@@ -39,20 +39,22 @@ Each answer taken as accepted, changed or parked, or assumed when the user stops
 
 ## Instructions
 
-Ask in a form the user can answer and keep every choice accounted for. Prepare the round and take its answers with these steps:
+Ask questions in a form the user can answer and keep every choice accounted for. A recommendation needs a basis, and an unanswered proposal never becomes approval. **Choose the question form, present the round, then take actual answers without filling the user’s choices yourself.**
 
-1. **Choose the question tool or text.** The tool saves keystrokes and cannot be misread for a closed choice. Text keeps explanations, lets "ok" accept every question at once and keeps the user's refinements.
-   - You must use the tool when all three hold: at most four questions, each with a few short choices, and all reasoning fits above the tool.
-   - Otherwise use numbered text, by rules 2 and 3. Use text for explanations per option, likely free answers, more than four questions, or item-by-item work accepted with "ok".
-   - The user's own instruction file can set a preference: always the tool, always text, or this default. That preference wins.
-   - In the tool, the other requirements hold in its form: the recommended option must come first and be marked, and partial answers must be named back.
-   - Rule 5 applies to delegated agents. Where the harness has no question tool, use text.
-2. **Present one round, or one question at a time on request.** Keeping the round prevents lost choices. You must keep all questions and their numbers. At each step, name the question's number and those remaining. Put proposals to approve the same way. Recommend approval when you recommend the proposal. End the turn as rule 6 requires.
-3. **Take the answers and update affected questions.** This keeps the user's choices distinct from assumptions. You must take "go ahead" as accepting recommendations for all unanswered questions. Say them back. Partial answers alone leave the rest open: the user has neither accepted nor stopped. Name open questions with answers you would take. End the turn, by rule 6. When another answer changes a question, you must update it and say what changed. Apply rule 4 to parked and assumed questions.
-
-4. **Check the question round before returning it.** Always do this last. Before a round goes out, check:
-
-   - Every question is numbered under its own heading, with a recommended answer. Where only the user knows, the question says it has none.
-   - Or, where instruction 1 says, the questions go through the question tool, with the recommended option first and marked.
-   - Any partial answer is named back, with what would be taken, and the turn ends with it.
-   - The turn ends with the round or proposal, unless the question tool returned the user's answers: you answered nothing yourself and did no work an answer could change.
+1. **Choose the question tool or numbered text using rules 2, 3 and 5.** The wrong form can hide needed explanation or make a simple closed choice harder to answer.
+   - Use the tool when all three hold: at most four questions, a few short choices each and all reasoning fits above it. Otherwise use numbered text, including likely free answers, explanations per option, larger rounds or item-by-item work accepted with “ok”.
+   - Follow the user's instruction-file preference. With no question tool, use text. Delegated agents put questions in their report rather than using the tool.
+   - In the tool, put the recommended option first and mark it; keep the other requirements in its form. Challenge consequential recommendations under rule 2, without adding a challenge to routine questions.
+2. **Present one round, or one question at a time when requested, under rule 6.** Losing question numbers or remaining choices makes the user's partial answer hard to interpret.
+   - Keep all questions and their numbers. For item-by-item work, name the current question and those remaining. In text, give each its own numbered heading.
+   - Give a grounded recommended answer and short reason. For a fact only the user knows, explain why there is none. Present proposals the same way and recommend approval when you recommend the proposal.
+   - End the turn with the round or proposal before work an answer could change. Never answer it yourself. Continue settled work if the tool actually returns answers in this turn; an empty or cancelled result is no answer.
+3. **Take replies and update affected questions under rule 4.** Treating silence or a partial answer as acceptance can change the result without the user's decision.
+   - Take “go ahead” as accepting grounded recommendations for unanswered questions and say those answers back. Facts without recommendations stay open.
+   - For partial answers, name what is still open and the answers you would take, then end the turn. If an answer changes another question, update it and say what changed.
+   - Keep accepted, changed and parked answers distinct. When the user stops, take open recommendations as assumed and park those without one. Keep parked and assumed questions listed until answered.
+   - Never assume proposal approval. Park it and apply nothing it covers. Challenge consequential decisions made without or against a recommendation before relying on them, by rule 2.
+4. **Check the round, answers and “Gives back” before returning.** Always do this last. A tidy question list can still conceal an unanswered choice or unapproved action.
+   - Check numbering, form, grounded recommendations or stated absence, and any required challenge verdict. In the tool, check the recommended option is first and marked.
+   - Check partial answers are named back, statuses remain distinct and proposed approval was not assumed. Fix missing questions or incorrect statuses.
+   - End with the round or proposal, without self-answered questions or answer-dependent work, except where the tool returned actual answers under rule 6.

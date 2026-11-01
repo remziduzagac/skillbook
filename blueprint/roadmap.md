@@ -14,7 +14,7 @@ Status: **Design**, the initial design is open (D27): changes go straight into t
 - [ ] **The parts:** a design document and an ideas document per root and for the main skill (D80), filled in this order: essentials first, act, respond, understand, organize, coordinate and devise, until it is complete, then softeng's implement, test, review, ship and maintain, and authoring, then the main skill (D166). design starts from the blueprint method, maintain's repo from greenrepo.
 - [x] **Review essentials against the new checks (D211):** a fresh agent reports judgment-word triggers, wide exits, missing boundary examples and vague verbs, changing nothing; its findings fixed in two batches (D212, D215), 2026-10-20.
 - [x] **essentials' layout,** generic layout rules for essentials' outputs: authoring's markdown's structure layer, moved into a skill under respond, designed before the baseline is built (D154, D158), 2026-10-17.
-- [ ] **The guide map (D279, D280):** the main skill as rules, a guide map with paths and one stage per main guide, each guide's boundary at the top of its file; then the main guides as flows of their own, designed one by one.
+- [ ] **The guide map (D279, D280):** the main skill as rules, a guide map with paths and one stage per main guide, each guide's boundary at the top of its file; one shape for every guide (D283, D285); the main guides as flows of their own, and every Instructions section written like the main skill's stages (D286, D287); then tested.
 - [ ] **The glossary and SCOPE.md,** brought in line with the tree.
 
 ## Build: later

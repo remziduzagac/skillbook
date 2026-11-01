@@ -36,20 +36,21 @@ The material with extra parts removed, plus what was removed and why.
 
 ## Instructions
 
-Keep what the reader needs and remove what adds nothing. Judge each part before proposing cuts.
+Remove parts that add nothing while keeping what the reader and every rule need. Judge the contents before proposing cuts so a shorter result still does its job. **Identify the reader, inventory each part’s job, then apply and check only the approved cuts.**
 
-1. **Find the reader and purpose.** This helps judge what the reader needs.
-2. **List each part and its job for that reader.** This helps see which parts earn their place. Use a script when listing is mechanical. Use the `coordinate-delegate` guide for the listing if the material exceeds one whole read, such as several files or a file returned only in part. A delegated agent does not delegate again. Never read everything twice in the main session: each read costs again on later turns.
-3. **Mark what goes by rules 2 and 3.** This helps choose cuts without losing needed content.
-4. **Apply the approved list.** This helps keep changes within the agreement. Get approval by rule 4. Follow rule 5 for code.
-5. **Check that every needed part remains or has a working pointer.** This helps preserve every needed part. For code, check passing tests and preservation of public interfaces, documented behaviour and untested requirements.
-
-6. **Check the result before returning it.** Always do this last.
-
-   Before you return anything, check:
-
-   - Nothing a rule requires was cut;
-   - Every pointer resolves;
-   - The list of what went, with why, is ready;
-   - Where the user's or others' work changed, the list was approved;
-   - For code, the tests pass, and no public interface, documented behaviour or untested requirement was removed.
+1. **Identify reader and purpose through rule 1 of the `act-rightsize` guide.** A part that looks extra to you may be essential to the reader using it.
+   - Name what the reader must understand or do, such as follow a report's recommendation or maintain a public interface.
+2. **List each part and its job for that reader.** Cutting by length alone can remove the part that makes the rest usable.
+   - Use a script for mechanical listing. When the material exceeds one whole read, use the `coordinate-delegate` guide for the inventory; a worker delegates no further.
+   - Avoid reading everything twice in the main session. Keep evidence that shows what each needed part did.
+3. **Mark removable parts under rules 2 and 3.** Duplicate or pasted content costs attention, while required content cannot be cut just to meet a target.
+   - Cut what loses nothing, replace paste with a usable pointer and keep repeats in one home. Merge duplicate whole items within the material being trimmed.
+   - Keep every rule-required part. For repeats or duplicate wholes across files, use the appropriate `organize-normalize` or `organize-merge` guide instead.
+4. **Obtain approval for the list before applying, by rule 4.** This order is firm: unseen cuts can remove something the user needs.
+   - List each removal or pointer replacement with its reason through the `respond-ask` guide, then end the turn. Apply only approved cuts.
+   - For code, follow rule 5 and the `act-rightsize` guide's code rule, using a fitting skill or project tests before and after.
+5. **Check every needed part remains or has a working pointer.** A passing test or shorter document alone cannot prove nothing useful was lost.
+   - Compare the kept result with the inventory. For code, check tests, public interfaces, documented behavior and untested requirements.
+6. **Check the result and “Gives back” before returning.** Always do this last. The reader needs the useful result and the account of what was removed.
+   - Check required parts, resolving pointers, approved cuts and the list of removals with reasons. Check code preservation as well as passing tests.
+   - Repair losses or broken references before returning. Report actual results without treating tests alone as proof of preserved behavior.

@@ -29,14 +29,24 @@ A → A1 A2 A3
 
 ## Instructions
 
-Give every item a distinct place. List what the whole contains or must cover before grouping it.
+Divide a written or planned whole so every required item has one place. The inventory and one dividing principle keep useful material from disappearing between parts. **List the whole before grouping, then map and check every item before applying an approved arrangement.**
 
-1. **Frame the whole and what its parts are for.** This helps divide for the right purpose. Choose the dividing principle to serve the whole's purpose.
-2. **List everything the whole contains or must cover.** This helps avoid losing required items. Do this before grouping. For a future whole, list its requirements.
-3. **Choose one dividing principle.** This helps keep groups distinct. Follow the parent's shared choice rule.
-4. **Write each part's boundary in one sentence.** This helps make each part’s scope clear.
-5. **Map every item to exactly one part.** This helps give every item a home. Name any item that fits no part or fits more than one part.
-6. **Resolve missing or double homes.** This helps resolve missing or overlapping places. Sharpen overlapping boundaries. Add a part for a required item with no home. Exclusions need user approval and remain preserved outside the changed scope. Otherwise return the unresolved placement in the proposal. Do not silently drop an item.
-7. **Use the `organize` guide's bounded check for overlaps and gaps.** This helps check the proposed parts before applying them. Return to this operation after the check. Do not restart the `organize` guide's step for choosing an operation. Apply the arrangement only under the parent's approved map.
-
-8. **Return parts, boundaries, each item's place and any exceptions to the parent.** Always do this last. A proposal or check may report unresolved placements. A completed change has one home for each required item and preserves approved exclusions. Follow the `organize` guide's inventory check and approval checkpoints. Check that parts can be read on their own and fit how they are read.
+1. **Frame the whole and its parts' purpose under the `organize` guide.** Parts chosen without a purpose can be tidy yet make the reader's work harder.
+   - Identify the whole, what the parts are for and the unit being divided, such as sections, files or modules.
+2. **Inventory everything the whole contains or must cover before grouping.** Starting with groups can leave inconvenient items out of the map.
+   - For existing material, list its contents. For a future whole, use its requirements as the inventory.
+3. **Choose one dividing principle by rule 1 of the `organize` guide.** Mixed principles make an item belong to several parts.
+   - Use the parent's shared choice rule for who chooses and when it must be shown. Keep the principle tied to the whole's purpose.
+4. **Write each part's one-sentence boundary by rule 2 of the `organize` guide.** Unstated boundaries leave readers guessing which part owns a new item.
+   - Make each part understandable on its own. Size it for whole reading or searching, using headings or a map where needed.
+5. **Map every item to exactly one part under the parent's inventory rule.** A count of parts does not show whether their contents survived.
+   - Name items with no home or more than one. Keep their unresolved placement visible in a proposal.
+6. **Resolve missing or double homes under rule 9 of the `organize` guide.** Dropping an awkward item silently changes the whole's meaning.
+   - Sharpen overlapping boundaries or add a part for a required item. User-approved exclusions remain preserved outside the changed scope.
+   - Return unresolved placements in the proposal when they cannot be settled. Exclude nothing silently.
+7. **Check gaps and overlaps through the `organize` guide's bounded check.** A proposed map can still duplicate responsibility or miss a requirement.
+   - Return here after that check, without restarting the operation chooser.
+   - For existing material, show the map and end the turn for the parent's required approval before applying. Future-only planning uses its creating guide's approvals.
+8. **Check parts and “Gives back” before returning to the parent.** Always do this last. A partially placed collection is not a completed arrangement.
+   - Check boundaries, each item's place, independent readability, size and exceptions. Repair missing or duplicate homes before claiming a completed change.
+   - Return proposals or unresolved findings honestly. For applied work, include the parent's inventory evidence and request for user confirmation; claim confirmed completion only after that reply.

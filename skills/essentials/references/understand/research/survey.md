@@ -40,12 +40,25 @@ Candidates compared on the same terms, sources, excluded and unexamined candidat
 
 ## Instructions
 
-Find existing candidates and compare them on common terms. Build the comparison with these steps.
+Find existing candidates and compare them on terms chosen before the search. Keep excluded candidates separate from ones you have not examined so the caller can see what the survey actually covers. **Set scope, search wide, screen, then compare and return the evidence without taking over the caller’s choice.**
 
-1. **Establish scope and terms by rule 1.** Common terms make candidates comparable. Ask user-owned consequential questions through the `understand-clarify` guide when needed. Reuse a current caller frame.
-2. **Search wide before deep.** A wide search can find less visible candidates. Use the `coordinate-delegate` guide with the `coordinate-delegate-fanout` guide only for separate large parts that search cannot narrow enough. Otherwise search serially. Keep fanout's common worker limits and actual validation states.
-3. **Screen each candidate against scope.** Screening keeps the comparison in scope. Name the reason for each exclusion and distinguish unexamined candidates.
-4. **Compare on the agreed terms with evidence.** The same basis supports a fair comparison. Give every compared candidate each term or an honest gap. A short table may help; use a list when the medium, width or user preference favors it.
-5. **Return the requested comparison by rule 8.** The caller needs a usable view of what exists. Add scope, terms, screened-out candidates, the unexamined long tail, search coverage and date to the parent's result shape. Keep findings and unknowns with their actual evidence status.
-
-6. **Check all compared candidates use the same terms and traceable evidence.** Always do this last. Report exclusions, unexamined candidates, negative results, coverage and date honestly. Keep any choice and lasting record with its owner. Follow the final step of Instructions in the `understand-research` guide and return without recursively calling the caller.
+1. **Set scope and comparison terms under rule 1.** Terms chosen after seeing candidates can favor the most visible one and waste the caller's later comparison.
+   - Reuse the caller's criteria or current frame. Use the `understand-frame` guide for missing terms and the `understand-clarify` guide for consequential user-owned questions.
+   - Add no survey-only approval checkpoint, by rule 7. Shared choice, plan and worker-cost approvals still come before affected work; end the turn when one is needed.
+2. **Search wide before deep, by rule 2.** Deep reading of the first candidate can hide better options elsewhere.
+   - Search several relevant kinds of source where available. Earlier lists and comparisons are leads to recheck.
+   - Search serially unless separate large parts remain after narrowing; then use the `coordinate-delegate` guide with the `coordinate-delegate-fanout` guide. Preserve its limits and validation states.
+3. **Screen candidates against scope, by rule 4.** A silent omission can look like an evidence-backed rejection.
+   - Name each excluded candidate and its reason. List the unexamined long tail separately with why it was not compared.
+   - Fully compare a useful handful by default. Stop when new searches repeat candidates and report that actual limit.
+4. **Compare every examined candidate on every term, by rules 3 and 5.** Unequal terms or favoritism hides information the user needs for a later choice.
+   - Give evidence or “not found” for every value, including the user's own option. Explain supported strengths, weaknesses and who each candidate suits or does not.
+   - Treat themes with few independent origins as anecdotes to investigate, not a vote. Use no score without a meaningful measure.
+   - Use a short table or list that fits the medium. When refreshing a survey, report changes and recheck facts needed for the current answer.
+5. **Return the comparison to its owner under rules 6–8.** A survey that silently chooses can bypass the caller's decision and conceal incomplete coverage.
+   - Give scope, terms, comparison, exclusions, unexamined candidates, searched and skipped areas, date and unverified findings. Add these to the parent's result shape.
+   - For a direct request that includes choosing, use the `understand-weigh` guide after comparison. Otherwise return to the active caller without restarting weighing or generation.
+   - With no user decision needed, put scope, terms and how you searched in the final answer. Keep lasting records with their owner.
+6. **Check the survey and “Gives back” before returning it.** Always do this last. A names-only list cannot stand in for a completed comparison.
+   - Check common terms, traceable evidence, honest gaps, exclusions, unexamined candidates, negative results, coverage and date. Preserve actual validation states.
+   - Fix missing values or overstated coverage before returning under the `understand-research` guide's final step. Leave the choice with its owner.

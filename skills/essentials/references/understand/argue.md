@@ -46,7 +46,7 @@ For the `respond` guide's faithful reflection of a view already in the conversat
 
 ## Instructions
 
-Build an honest case for the requested position. Develop and check the case with these steps.
+Build the strongest honest case for the requested position. Evidence, strong objections and admitted weaknesses let the reader judge the case without mistaking it for a verdict. **Define the position, support its reasons, meet objections, then return it labelled one-sided.**
 
 If no honest case exists, show the best found and rate it weak. Invent nothing.
 
@@ -54,12 +54,20 @@ Return the position (including any narrowing), goal, constraints and audience; r
 
 Keep no lasting record yourself. Return the chosen option's case and open weaknesses for the skill that saves records. Return a current challenge separately to a caller for reuse. Its verdict stays outside the one-sided case.
 
-1. **Give the position through the `understand-frame` guide.** A precise position keeps the case focused. Handle audience by rule 1.
-2. **Gather reasons and evidence.** Evidence grounds the case. Use the `understand-research-fact` guide for sourced factual checks. Return its result here without restarting the current challenge or choosing for the caller. Mark unchecked reasons as assumptions.
-3. **Get the strongest objections through the `understand-challenge` guide.** The strongest opposition tests the case. Reuse a current result by rule 3.
-4. **Meet each objection.** An honest case addresses objections. Answer, concede or narrow the position.
-5. **Admit remaining weaknesses.** Its strength depends on what remains unanswered. Rate the case strong, moderate or weak from its evidence, with why and what would strengthen or break it.
-
-6. **Check the case before returning it.** Always do this last. The caller needs a complete one-sided case. Include the position, supported or marked reasons, objections met, weaknesses, strength and one-sided label. Apply the `understand` guide's rules.
-
-   Check fidelity to the requested position, evidence and marked assumptions, strong objections, admitted weaknesses, strength and next evidence. Keep the label and choice boundary. Reuse current checks and follow the `understand` guide's rules. A light reflection needs fidelity, not a new investigation.
+1. **Give the precise position through the `understand-frame` guide, by rule 1.** A vague claim can shift whenever challenged, leaving the caller with a case for something they did not ask for.
+   - Give claim, goal and constraints. Get the audience from the caller or known context.
+   - If an unknown audience would change the case, ask through the `understand-clarify` guide and end the turn. Otherwise mark it unknown and invent no concerns.
+2. **Gather supported reasons under rule 2.** An unchecked premise can make a persuasive case fail as soon as someone relies on it.
+   - Use the `understand-research-fact` guide for sourced factual checks and return the result here. Mark unchecked reasons as assumptions.
+   - Give sources, strength and limits. Lead with a few strong reasons tied to the goal and known audience concerns. Check forecasts against how often such things succeed.
+3. **Get the strongest objections through the `understand-challenge` guide, by rule 3.** Weak opposition makes the case look stronger without testing what a well-informed opponent would say.
+   - Reuse a current challenge from the caller. Changed position or evidence needs a new one. That guide owns the independent check under the `act-verify` guide's rule 2.
+4. **Answer, concede or narrow the position for each objection, by rule 3.** Leaving an objection unanswered hides a cost the reader may discover too late.
+   - Check facts, argue interpretation and set rhetoric aside. Ask whether the position stands if the objection's checkable facts are true.
+   - Explain any narrowing and why it was needed. Mention a stronger position beside the requested one rather than replacing it.
+5. **Admit remaining weaknesses and rate the case, by rule 4.** A confident label without the open objections gives the caller no way to judge its limits.
+   - Name thin reasons and objections still standing. Rate strong, moderate or weak from the evidence, with why and what could strengthen or break it.
+6. **Check the case and “Gives back” before returning it.** Always do this last. A one-sided case must remain honest about its evidence and purpose.
+   - Check fidelity, any narrowing, goal, constraints, audience, reasons, evidence or assumption labels, objections met, open weaknesses, strength and next evidence. Fix omissions first.
+   - Keep the one-sided label and leave the choice to the user or the `understand-weigh` guide. Return the current challenge separately for reuse; its verdict stays outside the case.
+   - Apply the `understand` guide's rules and the caller's needed result shape. A light reflection needs fidelity and no unsupported new claim, rather than a new investigation.

@@ -37,7 +37,7 @@ The problem, goal, limits and test for a good answer, plus unknowns and what wou
 
 ## Instructions
 
-Define one problem and how to judge its answer. Build the frame with these steps.
+Define one problem and how to recognize a good answer. Make known facts, guesses and missing choices visible so later work aims at the same goal. **Read what is known, fill the frame, then route each gap to what can settle it.**
 
 Return this short default form, with guesses marked:
 
@@ -52,9 +52,18 @@ Unknown:       missing facts or choices and what would settle them
 
 Keep no lasting record yourself. Return the frame to the caller. The `understand-brainstorm` guide opens with it, the `understand-weigh` guide uses its good-answer terms, and any design caller carries it into its purpose. The skill that saves records needs the frame and discussion it opens. Return an updated frame for the caller to replace an old record. Describe the change in the returned result. Two frames for one problem let work aim at the old one.
 
-1. **State what is known first.** Facts can settle questions before the user is asked. Read the request, conversation and project files before asking, by the `understand` guide’s facts-first rule.
-2. **Fill the frame.** Missing parts can become assumptions. Cover the problem, goal, exclusions, constraints and a good answer under the rules above.
-3. **Route unknowns by what would settle them.** A missing fact must not become an unnecessary question or assumed preference. Read available facts first. Use the `understand-research` guide for factual gaps needing sources. Return its fact to this active frame without another framing round. Use the `understand-clarify` guide for user choices or knowledge that would change the result. Mark other gaps unknown without forcing a question.
-4. **Show the frame with the read-only answer.** A wrong frame wastes later work, so show relevant assumptions and the problem. Add no checkpoint of your own. Before changes, follow the `understand` guide’s who-decides rule and the `act` guide’s plan rule.
-
-5. **Check that you have filled each part or marked it unknown.** Always do this last. Check that you have marked guesses and routed each gap by what would settle it. Return the frame under the `understand` guide's rules. Add no separate turn-ending checkpoint and make no lasting change.
+1. **Read known facts through the `understand` guide before asking.** Asking the user for what the project already says wastes their time and can miss a fixed constraint.
+   - Read the request, conversation and relevant project files. Include what exists now and what has already been tried.
+2. **Fill the frame's parts under rules 1–3.** An empty scope or judging term lets later work invent its own target.
+   - Give one problem, its goal, exclusions, constraints and a good answer. Keep the frame at the requested level.
+   - Make the good answer checkable with a test, measure or example where possible. Include anti-goals: ways the result could technically work yet fail its purpose.
+   - Mark guesses where they stand and missing parts unknown. Return a second problem to the caller rather than forcing it into this frame.
+3. **Route each unknown to the source or decision that can settle it.** A factual gap turned into a preference question makes the user do the research; a preference treated as fact takes away their choice.
+   - Read available facts first. Use the `understand-research` guide for sourced factual gaps and return the fact here without another framing round.
+   - Use the `understand-clarify` guide for user choices or knowledge that would change the result. Leave other gaps marked unknown, with what would settle them.
+4. **Show the frame with the read-only answer, under the `understand` guide's rules.** An unseen interpretation can send later work toward the wrong problem.
+   - Include relevant assumptions and the problem. Add no frame-only approval checkpoint.
+   - Before changes, follow the `understand` guide's who-decides rule and the `act` guide's plan rule. Return an updated frame and explain its change instead of keeping two current frames.
+5. **Check the frame against “Gives back” before returning it.** Always do this last. The caller needs a usable target rather than a form with hidden gaps.
+   - Check every part is filled or unknown, guesses are marked and each gap has a way to settle it. Check the result concerns one problem.
+   - Fix missing parts before returning under the `understand` guide's rules. Make no lasting change and add no separate checkpoint.

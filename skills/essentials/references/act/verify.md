@@ -65,14 +65,28 @@ Your own evidence for a claim of done or correct is seen or measured, never only
 
 ## Instructions
 
-Make each claim checkable. Match it to fresh evidence and the right checker before reporting it.
+Make each claim about completed or correct work rest on fresh evidence the reader can judge. Choose evidence and a checker before it is lost or the work is reported. **Name the claim, obtain the right check on the current result, then report only what its evidence shows.**
 
-1. **Name the claim you are about to make.** This helps make the check precise.
-2. **Choose evidence by rule 1.** This helps test the actual claim.
-3. **Choose the checker by rule 2.** This helps get the right kind of check.
-4. **Run the check fresh and whole by rule 3.** This helps check the current work.
-5. **Compare the evidence with the claim and report it by rule 4.** This helps give an honest result.
-6. **Run the four checks in rule 5 for a plan’s task, commit or pull request.** This checks the whole item, not just an individual claim.
-7. **Return each claim with its evidence or actual status to the caller.** This helps keep the evidence with the claim. If it matters beyond the conversation, such as a finished task, give it to the skill the project's instructions name for saving records. If none is named, keep it in the response.
-
-8. **Check before calling anything done or correct.** Always do this last. Each claim has evidence beside it or is marked unverified. Never call your own check independent. Never call a check done or independent if you did not see its result. High-stakes work has a fresh agent's check or an explicit pending check. A plan's task, commit or pull request has the four checks, scaled to stakes. The third manual run has its automation offer, by rule 6.
+1. **Name the exact claim you are about to make.** A broad claim such as “done” can hide an unchecked part the user will rely on.
+   - Identify whether you are claiming a passing test, fixed symptom, met requirement, preserved content or a correct result. Keep needed before-change evidence, such as original report figures or an inventory.
+2. **Choose evidence that would fail if the claim were false, by rule 1.** A changed file or plausible explanation does not prove the user's problem was solved.
+   - Use a current run for passing tests, the original symptom now gone for a fix, and a requirement checklist for coverage. Compare each made part with its source or recalculate figures.
+   - Inspect another agent's actual changes. For a merge or split, use the original inventory rather than judging by appearance.
+3. **Choose the checker under rule 2.** Your own second look can repeat the error, while asking the user to reread cannot replace required independence.
+   - Check what commands or files can show yourself. For high stakes, requested independence or judgment you cannot give your own work, use the `coordinate-delegate` guide for a fresh checker.
+   - Use the `act-stakes` guide if stakes are not settled. Count independence only after seeing another agent's or person's result. If unavailable, name the pending check and who should arrange it.
+   - Leave meaning, taste, irreversible results and things no check can see to the user, after any required fresh check.
+4. **Run the check now on the current work, by rule 3.** An earlier passing run cannot show what a later edit broke.
+   - Read the exit code, failure count and failing lines. Read full output on failure rather than carrying routine full logs in the conversation.
+5. **Compare evidence with the claim and report the actual result, by rule 4.** Calling a timeout a pass or guessing its cause gives the user false confidence.
+   - Keep evidence beside each confirmed claim. Otherwise give the observed status, including failures, skips or an unverified check.
+   - Say what a simulation or mock actually shows and what remains to check in reality. Describe wording changes and checks without deciding the user's taste.
+6. **Run contradiction, duplication, drift and coverage checks for a plan's task, commit or pull request, by rule 5.** Individual passing checks can miss a conflict with the rest of the work.
+   - Search names and decision terms; compare with decisions, design, plan and every requirement. Use the `organize` guide's bounded check for duplication.
+   - Scale to stakes. Name missing design, plan or decisions and skip only checks needing them. Keep outside findings as one-line follow-ups rather than widening the task.
+7. **Return each claim with evidence or actual status to the caller.** Evidence separated from the claim is easy to lose when the result is reported again.
+   - For results needing a lasting record, use the skill the project's instructions name; otherwise keep them in the response.
+   - On the third manual run of the same check, end the answer with rule 6's one-line offer to automate it. Write no automation unasked.
+8. **Check the claims and “Gives back” before saying done or correct.** Always do this last. The user should never have to infer which claim remains unverified.
+   - Check evidence is beside every claim or its unverified status is explicit. Check actual checker identity, required independence or pending owner, and the scaled four checks where required.
+   - Fix unsupported claims or missing checks before reporting. Include the automation offer when due; claim no result or independent check you did not see.

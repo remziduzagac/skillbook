@@ -31,18 +31,31 @@ Approved changes and observed loading checks, recommendations, declined work and
 
 ## Instructions
 
-The goal is approved setup with honest loading results. Prepare the requested setup with the steps below.
+Prepare the requested machine, project or pointer setup from the actual installation. Preserve existing guidance and distinguish changes made from loading behavior that was observed. **Discover the whole requested scope, propose it together, then apply approved work and report actual loading checks.**
 
-1. **Identify machine setup, project setup or a pointer move.** This sets the requested scope. A repeat run leaves already correct material unchanged.
-2. **Check the install where the current agent keeps its skills.** This bases setup on the actual install. Use its actual location rather than a guessed agent-specific path.
-3. **Inspect each agent the user uses for machine setup.** This prepares setup for the agents in scope. Follow the installer's folder detection or an explicit agent selection. Check the requested sets, essentials first. Show installation instructions for missing sets. Do not install anything yourself without separate approval for that installation. Prepare the pointer through the `coordinate-instruct` guide. Prepare supported read permission and baseline reload support where needed. Default to no other harnesses and no allow-list entry. For an allowed harness the user names, propose `Allowed delegation harnesses: <names>` in personal instructions. Explain in the final result how the user can name an allowed harness.
-4. **Read the project’s purpose, languages, tools and instruction files.** This makes project setup fit the project. Prepare instruction proposals through the `coordinate-instruct` guide. Keep repeated skillbook rules when team adoption is unknown. Put that harmless assumption in the final answer. Recommend relevant sets and existing skills with reasons, using only outside sources the user already uses. Prepare any project pointer by rule 3.
-5. **Prepare a project’s design record only where it belongs.** This leaves record-making to the method that covers it. Use a skill in the harness’s list for that work, if there is one and the project lacks a record. Follow that skill’s own method and location rules, including for a project the user does not own. Add its proposed work to the combined scope. Without a matching skill, start nothing and say nothing about its absence. Follow each skill’s normal result default.
-6. **Prepare a requested pointer move through the `coordinate-instruct` guide.** This moves the pointer without duplicates. Remove the old pointer only under the approved move. Leave no duplicate pointer and preserve unrelated instructions.
-7. **Obtain approval for the combined proposal.** This keeps changes within the requested setup. You must complete discovery and obtain required approval under rule 2 before applying changes. Prepare one combined proposal for the requested scope. Follow the current plan and choice rules. Ask through the `respond-ask` guide for required approval. End the turn. After approval, apply only the approved work through the skill that owns it. Check the result through the `act-verify` guide. For a fresh-session check, use only permitted controls. Otherwise ask the user to start the session. Keep a check pending until it has actually run. Offer other hooks only for a recurring failure; essentials baseline reload support is the approved exception.
+1. **Identify the setup request using “When to use”.** Treating a pointer move as a new installation can duplicate guidance or change unrelated settings.
+   - Choose machine setup, project setup or pointer move. Leave already correct material unchanged on a repeat run.
+2. **Check the actual install under “Needs”.** A guessed agent path can point later sessions to skills that are not there.
+   - Use the current agent's real skill location. Leave inaccessible checks pending and ask for needed access through the `respond-ask` guide; bypass no restriction.
+3. **Inspect in-scope agents for machine setup under rules 1–3 and 5.** An existing folder does not show that the selected agent can load the intended sets.
+   - Follow installer detection or the user's explicit selection. Check requested sets, essentials first. Show missing-set installation instructions and obtain separate approval before installation.
+   - Prepare pointers through the `coordinate-instruct` guide and supported read permission and baseline reload support where needed. Preserve current settings and avoid duplicates.
+   - Default to no other harnesses or allow-list entry. For a named allowed harness, propose `Allowed delegation harnesses: <names>` in personal instructions. Explain how to name one in the final result.
+4. **Read project purpose, tools and instruction files for project setup.** Generic setup can discard guidance teammates still need or recommend irrelevant skills.
+   - Prepare instruction proposals through the `coordinate-instruct` guide. Keep repeated skillbook rules when team adoption is unknown and give that assumption in the final answer.
+   - Recommend relevant existing sets and skills with reasons, using outside sources the user already uses. Place pointers by rule 3 and warn before a shared pointer when teammates may lack the skills.
+5. **Prepare a missing project design record only through a fitting skill.** Setup should not invent a record-making method or destination.
+   - Use a matching skill in the harness's list and follow its method, location and result defaults, including in another person's project. Include the proposed work in the combined scope.
+   - Without a matching skill, start nothing and say nothing about its absence.
+6. **Prepare a requested pointer move through the `coordinate-instruct` guide.** A copied pointer can leave two startup instructions that drift apart.
+   - Include removal of the old pointer only within the approved move. Preserve unrelated instructions and leave no duplicate pointer.
+7. **Obtain approval for the combined scope before applying, by rule 2.** This order is firm: setup changes what future sessions read and may affect the machine.
+   - Finish discovery, prepare one combined proposal and follow current plan and choice rules. Ask through the `respond-ask` guide and end the turn for required approval.
+   - Apply only approved work through its owner. Recheck settings and instructions before writing. Check the result through the `act-verify` guide.
+   - Use only permitted controls for fresh-session checks, otherwise ask the user to start the session. Keep checks pending until observed. Offer other hooks only for recurring failure; approved essentials baseline reload support is the exception.
 
    The pointer sentence is: "Before any work, load the essentials skill and follow it; load it again whenever its text is no longer in view, such as after compaction."
 
-8. **Check setup changes and pending work.** Always do this last.
-
-   Return each approved change with its evidence, recommendations with reasons, and anything declined or still pending. Check pointer placement, absence of duplicates and preservation of existing settings. Full setup requires evidence that the session loaded the skills. You may return partial setup work without claiming that the loading check passed.
+8. **Check setup and “Gives back” before returning.** Always do this last. A shown command or hook output does not prove the baseline loaded in a fresh session.
+   - Check pointer placement, duplicates, preserved settings and approved scope. Fix incorrect changes within that scope before returning.
+   - Give evidence for actual changes and observed loading, recommendations with reasons, declined work and pending checks with their next owner. Report partial setup without claiming an unobserved loading pass.

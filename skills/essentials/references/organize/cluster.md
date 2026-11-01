@@ -28,12 +28,21 @@ A B C → view over A, B, C (source content unchanged)
 
 ## Instructions
 
-Help readers find the items they need. Prepare a navigation view that preserves source content.
+Build a view that helps readers find items while preserving their source content. The view also needs a way to stay accurate as items change. **Choose a reader-focused grouping and form, check tag effects, then write only the approved navigation view.**
 
-1. **Find who needs to find what.** This helps make the view useful to its readers. The readers' purpose determines the grouping.
-2. **Use one grouping principle by the parent's rule.** This helps keep groups consistent. Give each item one main group. "See also" links are allowed.
-3. **Choose the view's form by the parent's shared choice rule.** This helps fit the view to its destination. Use an index, table of contents, README map or external tag map as appropriate. Keep the view outside source items by default. Navigation tags may be written into items only when the user asks for that form. List the exact tag edits in the approved map. Check what tags actually do. Return effects on publishing, access, automation or other behavior beyond navigation to the caller and the `act-guardrails` guide. Do not silently treat such effects as navigation.
-4. **Choose how the view stays current.** This helps keep the view accurate. Use a script or a check when items change. Check for omitted items and entries pointing to nothing.
-5. **Write the view only under the parent's approved map.** This helps preserve the agreed source content. Check every in-scope item is reachable and every entry resolves. For requested in-item tags, check the exact edits and that all other content is unchanged.
-
-6. **Return the view or proposal, its maintenance method and any exact requested tag edits.** Always do this last. Source content is otherwise unchanged. Follow the `organize` guide's inventory check and both approval checkpoints. Report missing items, entries that point to nothing and effects beyond navigation. Do not claim the view is complete when those problems remain.
+1. **Find who needs to find what, under the `organize` guide.** A view organized for its writer may still make readers search every item.
+   - Use the readers' purpose to decide what the view should help them locate.
+2. **Use one grouping principle by rule 1 of the `organize` guide.** Mixed principles can hide an item under several competing categories.
+   - Give each item one main group. Add “see also” links where helpful.
+3. **Choose the view's form through the parent's shared choice rule.** Navigation that also changes access or publishing can have effects the user never approved.
+   - Use an index, table of contents, README map or external tag map that fits the destination. Keep it outside source items by default.
+   - Write in-item navigation tags only when requested and list each exact edit in the approved map. Check what those tags actually do.
+   - Return publishing, access, automation or other effects beyond navigation to the caller and the `act-guardrails` guide.
+4. **Choose how the view stays current under Advice.** Stale entries make readers trust a path that no longer works.
+   - Use a script or check as items change. Check for missing items and entries pointing to nothing.
+5. **Write the view only under the `organize` guide's approved map.** A helpful-looking view can still omit material or alter source content.
+   - Show the map and end the turn for required approval before writing. Check every in-scope item is reachable and every entry resolves.
+   - For requested tags, check the exact edits and that all other source content is unchanged.
+6. **Check the view and “Gives back” before returning.** Always do this last. An index with broken entries is not complete merely because it was written.
+   - Check grouping, reachability, maintenance method, exact tag edits and preserved source content against the parent's inventory.
+   - Fix missing items and broken entries before claiming completion. Report remaining problems or effects beyond navigation and keep both parent approval checkpoints.

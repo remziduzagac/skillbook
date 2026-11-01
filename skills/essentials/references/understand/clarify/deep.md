@@ -39,12 +39,18 @@ Follow the `understand` guide for facts and decisions: you find facts, the user 
 
 ## Instructions
 
-Resolve the choices that materially affect the agreed work. Question each level with these steps.
+Resolve the choices that materially affect the agreed work, level by level. Answers determine which questions can usefully come next. **See each level whole, ask in rounds, then get the summary confirmed before affected work.**
 
-1. **See each new level whole before going down.** Skipping a level leaves its parts assumed. Use the `understand-clarify-shallow` guide at each new level inside the part.
-2. **Ask only what can be answered now.** Unanswered questions may change dependent questions. Save those for a later round. This sets order, with nothing to draw or keep. Use the `respond-ask` guide for rounds and answers, and end the turn after each round.
-3. **Summarize when the questioning ends.** The user needs to see what the work rests on. List decided, parked, accepted and assumed items under rule 1. List recommendations accepted by “go ahead” as accepted. Get confirmation before acting, except when the user told you to start, as rule 1 says.
-
-   You are done when no level is left with anything assumed that would materially change the agreed work, the rest listed, and the user has confirmed the summary, or seen it where they told you to start the work.
-
-4. **Check the summary before acting.** Always do this last. The user has confirmed it, or saw it after telling you to start. Hand it back in the `understand` guide's result shape.
+1. **See each new level whole with the `understand-clarify-shallow` guide before descending.** Skipping across levels leaves unseen parts assumed, and the user discovers those choices only in the result.
+   - Apply shallow inside each newly reached part. Its whole-level view decides which choices need further depth.
+2. **Ask only questions whose prerequisites are answered, through the `respond-ask` guide.** A question built on an unknown answer may ask the user to decide something that later disappears.
+   - Let the last answers shape the next numbered round. Keep dependent questions for later.
+   - End the turn after each round. “Go ahead” accepts that round's recommended answers; questioning continues where material choices remain.
+3. **Summarize decided, parked, accepted and assumed items under rule 1.** A summary that hides assumptions lets work start on choices the user did not make.
+   - Use the `respond-ask` guide's meanings of parked and assumed. Mark recommendations accepted by “go ahead” as accepted.
+   - When the user stops early, assume recommendations, park questions without one and park facts only they know. Never assume proposal approval.
+   - Show the summary and ask for confirmation through the `respond-ask` guide. End the turn before acting. If the user told you to start, show it without asking again, by rule 1.
+   - Record only when asked, by rule 2. Offer recording when length risks losing decisions, using the destinations in Advice.
+4. **Check the summary and “Gives back” before affected work.** Always do this last. A finished interview still leaves the user exposed if its basis was never confirmed or shown.
+   - Check no unresolved level holds an assumption that would materially change the agreed work. List what remains.
+   - Check the user confirmed the summary, or saw it after telling you to start. Fix missing statuses or confirmation before handing it back in the `understand` guide's result shape.

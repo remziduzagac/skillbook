@@ -70,17 +70,21 @@ The rules and the final step of Instructions here shape what is being made now. 
 
 ## Instructions
 
-Fit existing material to its reader. Use the method needed for the parts being reworked; these methods have no fixed order.
+Fit what you read, do, make or return to the reader’s purpose. Keep necessary facts and required checks while removing parts whose absence loses nothing. **Use the appropriate child method for requested rework, then check the result before another reader receives it.**
 
 - the `act-rightsize-lean` guide: remove extra parts.
 - the `act-rightsize-enrich` guide: add missing parts.
 
 How a response is worded is the `respond` guide's.
 
-1. **Check before returning or writing anything.** Always do this last. Scale to stakes. For intermediate probes, scratch files or notes for your next step, use questions 2 and 5. For anything another reader receives, use all five. A full check on every step costs more than it finds. Ask silently so the user sees only the result:
+1. **Check the result against “Gives back” and rules 1–10 before writing or returning it.** Always do this last. Missing parts cost the reader questions or rework; extras consume attention on every read.
+   - Scale to stakes. For an intermediate probe, scratch file or note for your own next step, use questions 2 and 5 below. For another reader's result, use all five. Keep this check in thinking.
 
-   1. Who reads it, and what for?
-   2. What could go without losing anything they need? Remove it.
-   3. What would they still have to ask? Add it.
-   4. Is it top-down, and do its parts cover everything without overlap?
-   5. Was anything a rule requires cut? Put it back.
+   1. Who reads it, and what for? Identify the purpose that makes a part needed.
+   2. What could go without losing anything they need? Remove it from the draft.
+   3. What would they still have to ask? Add the missing part to the draft.
+   4. Is the point first, followed by its basis and detail? Do divided parts cover everything once?
+   5. Was anything a rule requires cut? Put it back, including failures, evidence and pending proposals.
+
+   - For existing material, apply only an approved change list under rule 9 through the `act-rightsize-lean` or `act-rightsize-enrich` guide. Do not turn this draft check into unapproved rework.
+   - Fix shortfalls before returning the fitted result and any rework change list. Wording belongs to the `respond` guide; the sizing check itself stays in thinking.

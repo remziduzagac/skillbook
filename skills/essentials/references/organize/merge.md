@@ -23,12 +23,20 @@ A A' A" → A (the others retired, references moved)
 
 ## Instructions
 
-Keep one complete account of a duplicated whole. Compare the accounts before preparing the merge.
+Combine duplicate accounts of one whole without losing compatible details. A statement map makes preservation checkable and shows which references need to move. **Compare the accounts, prepare one survivor and its map, then apply only the approved merge.**
 
-1. **Compare the duplicate accounts of the same whole.** This helps keep compatible details.
-2. **Choose the survivor by the `organize` guide's shared choice rule.** This helps keep the right account. Consider the most complete item, the most linked item or the user's choice.
-3. **Prepare the combined content part by part.** This helps preserve compatible details. Keep repeated content once. Keep each compatible detail that appears in only one item. Combine lists as their union. Ask about contradictions that change meaning through the `respond-ask` guide. End the turn before applying. Do not silently choose a version.
-4. **Map every original statement to its place in the survivor.** This helps account for every statement. Include reference changes and retirements in the parent's proposed map.
-5. **Apply only under the parent's approved map.** This helps keep the merge within approval. Write the survivor. Keep the other items with retirement notices pointing to it. Update links, references and imports that pointed to them. Keep unknown external references marked unverified.
-
-6. **Return the proposal and its map, or the result of the approved change.** Always do this last. Include evidence from checking references and accounting for every original statement. Keep every compatible detail. In a completed result, no known reference points to a retired item. Report unresolved contradictions and unknown references honestly. The `organize` guide gets the user's confirmation of the result. Do not claim confirmed completion before the user replies.
+1. **Compare the duplicate accounts under the `organize` guide's preservation rule.** Similar headings can hide unique facts that disappear in a quick merge.
+   - Identify what repeats, what appears once and what conflicts. Confirm these are accounts of the same whole rather than items sharing a theme.
+2. **Choose the survivor by the `organize` guide's shared choice rule.** An arbitrary survivor can discard the account readers already find or rely on.
+   - Consider completeness, existing links and the user's choice. Follow the shared rule for showing choices before changes.
+3. **Prepare combined content part by part under the parent's preservation rule.** Silent choices between contradictions can change meaning without the user's knowledge.
+   - Keep repeats once, each compatible unique detail and the union of lists.
+   - Ask about meaning-changing contradictions through the `respond-ask` guide. End the turn before applying; choose no version silently.
+4. **Map every original statement to the survivor under the parent's inventory rule.** A complete-looking survivor can still omit a statement readers need.
+   - Include every reference change and retirement in the proposed map, not just where paragraphs move.
+5. **Apply only the `organize` guide's approved map.** A merge outside the map can leave readers following obsolete references.
+   - Show the map and end the turn for required approval before writing. Write the survivor and keep retired items with notices pointing to it.
+   - Update known links, references and imports. Mark unknown external references unverified rather than claiming all links were checked.
+6. **Check the merge and “Gives back” before returning.** Always do this last. Tests or a readable survivor alone cannot prove every detail survived.
+   - Account for every original statement, compatible detail, reference and retirement. Repair lost details and failed known references before reporting a completed result.
+   - Return the proposal and map, or the applied result with evidence and unresolved limits. The parent obtains user confirmation after checking; do not claim confirmed completion before that reply.

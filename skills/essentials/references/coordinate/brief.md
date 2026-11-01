@@ -36,15 +36,26 @@ The worker’s starting instructions and the report it must return. The task tha
 
 ## Instructions
 
-The goal is a brief that lets the worker start and return a useful report. Prepare the brief with the steps below.
+Give a worker starting now enough context to act without guessing and return a report the caller can use. Supply missing decisions in words and readable facts as references. **Identify what the worker lacks, write its brief and explicit report request, then return them to the caller for startup.**
 
-1. **Identify the worker and its missing context.** This shows what the worker needs to start. Identify its task, allowed work and what its context lacks.
-2. **Write the task context by rules 1–6.** This lets the worker start without guessing.
-3. **Include the report and cleanup request by rules 7 and 9.** This gives the caller a report it can use.
-4. **Include the baseline by rule 8 when it is not already visible.** This gives the worker its work and response rules. Point to the main skill's guide map and name rule. Do not paste the name rule or repeat its paths here.
-5. **Lay out the brief through the `respond-layout` guide.** This makes the brief easy to read.
-6. **Return the brief and its requested report shape to the caller.** This keeps startup with the caller. The caller sends it. Drafting a brief does not start a worker.
-
-7. **Check the brief before returning it.** Always do this last.
-
-   Check that the worker can use the inputs. Check that the brief includes decisions recorded nowhere else, constraints, rejected ways of doing the work, the first step and the success criterion. Check that the worker has access to the main skill’s guide map and name rule. Check that the `act` guide, the `respond` guide and the `respond-layout` guide are already visible or named for it to read. The report and cleanup request are explicit. Apply the `act-rightsize` guide. Do not claim an incomplete brief lets the reader start without asking.
+1. **Identify the worker, its task and its missing context under rule 1.** A brief that assumes shared knowledge can send a fresh worker toward the wrong result.
+   - Name allowed work and what the worker actually holds. A fork may need only task, success criterion and report request; after context loss it needs the missing instructions too.
+2. **Write task context with usable references, by rules 1–6.** Missing decisions make workers guess, while pasted files make both sessions pay for the same content.
+   - Include context, decisions and constraints recorded nowhere else. Give rejected or tried approaches and why they were ruled out.
+   - Give the first step and success criterion. Point to readable paths and lines rather than pasting their contents; mark missing or inaccessible inputs as gaps.
+   - Describe actions without tools available only to you. Follow a user-chosen tool through its skill or documentation.
+3. **Request a usable report and checked cleanup, by rules 7 and 9.** A success sentence can hide unfinished work and leave the caller with forgotten processes or files.
+   - Ask for outcome, user decisions, proposals, evidence paths and missing work. Put a changed or narrowed task first and request task context when work is long, combined or kept later.
+   - Size the report through the `act-rightsize` guide. Put bulk detail in a named scratch file and request its path and useful summary.
+   - Explicitly ask the worker to use the `act-cleanup` guide: remove temporary material, stop what it started, check removal and report cleaned, kept and proposed items.
+4. **Include the missing operating baseline under rule 8.** A task brief without authority limits can make a worker treat a called guide as permission to exceed its task.
+   - Mark delegated work and give the absolute essentials folder. Tell the worker to load the `essentials` skill and use its guide map and name rule.
+   - Tell it to read the `act`, `respond` and `respond-layout` guides whole when absent from visible context. Name other needed guides with their parents, including `understand` where needed.
+   - Keep rule 10 of the `act` guide as the worker's authority home rather than copying another rule set. Return unresolved questions to the caller.
+5. **Lay out the brief through the `respond-layout` guide.** Buried scope or report requirements are easy for the worker to miss.
+   - Make task, references, first step, success criterion and requested report easy to find.
+6. **Return the brief and requested report shape to the caller.** Drafting startup instructions alone does not choose or authorize a running worker.
+   - Leave sending and startup with the caller. Start no worker from this guide.
+7. **Check the brief and “Gives back” before returning.** Always do this last. A readable brief can still be unusable if an essential reference is inaccessible.
+   - Check inputs, missing decisions, constraints, rejected approaches, first step and success criterion. Check the baseline is visible or explicitly requested and the guide map can be reached.
+   - Check report and cleanup requests are explicit. Fix omissions through the `act-rightsize` guide and report remaining gaps rather than claiming the worker can start without asking.

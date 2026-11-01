@@ -53,30 +53,45 @@ Helps you turn a design into a skill's files: the main skill, its guides and the
 
 ## Instructions
 
-- **Start a main skill with frontmatter:**
-  - `name`: the set's name;
-  - `description`: give what it does and when to load it. Use at most 1,024 characters, no angle brackets and no overlap with another main skill;
-  - `compatibility`: a capability the set needs, if any.
+These steps turn a design into a skill's files and their tests. They are guidelines, not a fixed procedure: use the steps your task needs, in this order, and fit them into your harness's own flow. What matters is that the files say what the design says, in a form an agent follows. **Read the design first, then go through each step your task needs.**
 
-  Write the body in the order of skillbook-design's check 8. Put the guide map, with the exact name rule at its top, between the advice and the instructions.
-- **Write a guide in the shape of skillbook-design's check 8:** a `#` heading with its dashed name, `## Purpose`, `Needs:` if needed, the three boundary sections by check 9, then Rules and Advice where it has them, and Instructions, whose last step is the final check.
-- **Turn the design's Files into scripts and templates at skillbook-design's paths.** Turn Tests into cases as below. Leave Callers and Material in the design.
-- **Test cases: turn each designed test into an AI case, run the way a user meets the skill.** Follow blueprint/design/testing.md for case format, runner and rules. The writing part follows:
-  - **Follow the user's test schedule.** When model runs are deferred, write cases and record that they have not run.
-  - **Test first when model runs are due.** Cover new, changed or failing behaviour. Do not test every existing rule at once. Write a case in `tests/cases/<set>/`, run it with `tests/run.py` on small models and see it fail. Change wording, rerun and see it pass. Record before and after in the decision's Tested line. If it already passes, record that baseline. Change the skill only with evidence of a gap.
-  - **Keep a prompt consistent with its checks.** A prompt that forbids feedback cannot test suggested improvements to a dance routine.
-  - **Require advice only when it affects the result.** Accept a justified omission.
-  - **Distinguish a strength rating from a choice.** A weak case for a telescope upgrade chooses no winner.
-  - **Leave what the run record cannot show unknown.** Follow the [Codex record-limit decision](../../../blueprint/decisions.md#d242-codex-test-runs-cannot-write-the-shared-tmp-and-what-codexs-record-cannot-show-stays-unknown-2026-10-24) (D242). Never fail a case on that limit alone.
-  - Check each case against a correct trace and a plausible wrong one. Require the first to pass and the second to fail before trusting it. A check passed by refusal or a merely named file measures nothing.
-  - Run only on the user's machine in a throwaway home, never their own. Default to small models. Cover each rule with about three or more different cases, once each. Varied prompts show more for the same cost than three runs of one case. Repeat only on failure or conflicting results. A small-model-only failure is a signal, not an immediate reason for more text.
-  - Use prompts unlike the skill's examples. Keep at least one held-out case per rule. Copied examples can pass by matching without showing the rule works.
-  - List tested aspects in each case's `covers`, using `just test-coverage` ids. Put person-only aspects, such as the harness's question tool, in `tests/manual.toml` with a reason. Before reporting, run `just test-coverage`. Cover every aspect of what you wrote or changed, or name each gap and why. Claim coverage only where checks or review can fail, not where a case merely touches an aspect.
-  - Judge behaviour: answers and changes, not wording. Check skill reads only when reading is the tested behaviour, such as routing. Otherwise check results: models can reach them without the file. Have every run judged against its rubric by `tests/judge.md`. Report verdicts beside automatic results. Checks alone pass weak answers and fail good ones.
-  - Report results per agent and model, such as "Codex with GPT-6 Luna". One model does not represent its agent or provider. Note a single small-model failure and move on. For the same failure on several models, or on a larger model, find the cause before changes. It is then likely in the skill.
-  - Give a case one decision to test. A fixture detail that raises a second question, such as a file that differs in more than the change asked for, makes a failure ambiguous. Read a failing answer before you change the skill.
-  - Before you blame a change for a failing case, run that case a few times on the old text and on the new, judged the same way. Single runs vary, and the old text may fail too.
-  - Fix patterns shared by failures, never individual cases. A failure is a sample. Case-specific rules or examples turn skills into scripts and stop tests measuring anything.
-  - Give cost before running. Match budget claims to runner guarantees. Separate enforced and estimated limits. Unknown cost stays unknown, never zero. Keep large, personal raw runs out of the repository. Record what they showed in the decision's Tested line.
-- **Changing a built skill: if the change alters what the design says, agree the design change with the user first.** Then change the design, then the files. A fix that keeps the design true, such as a typo or a lint error, goes to the files only. Follow skillbook-design's instruction to trim or fill.
-- **Last, always: run repository checks and skillbook-design's checklist before reporting.** Check every file written. List design differences with file and line. Change the design only with the user.
+1. **Read the design and the files it touches before you write.** Files written from memory drift from the design, and the drift shows only when an agent fails.
+   - Find the design where skillbook-design says designs live, with the decisions it cites and the notes under them.
+   - Read the files you will change, and the guides that name them.
+   - Compare files and design, and act on what you find by the rule "Write from the design": list gaps for the user and end the turn, change nothing where the files already do what was asked, and ask which is wrong when they disagree.
+2. **Change a built skill's design before its files.** This step must not move. A file changed beyond its design leaves the design wrong, and the next builder copies it.
+   - If the change alters what the design says, agree the design change with the user first, through skillbook-design. Then change the design, then the files.
+   - A fix that keeps the design true, such as a typo or a lint error, goes to the files only.
+   - To trim or fill a skill, follow skillbook-design's "Trim or fill an existing skill" step.
+3. **Turn each designed test into an AI case before you write the files it tests.** A rule that no case can fail can break unseen. When model runs are due, this order is firm: write the case and see it fail before steps 4 and 5, then rerun it after them. A case written after the change cannot show that the change made it pass. Follow `blueprint/design/testing.md` for case format, runner and rules. The writing part follows:
+   - **Follow the user's test schedule.** When model runs are deferred, write cases and record that they have not run.
+   - **Test first when model runs are due.** Cover new, changed or failing behaviour. Do not test every existing rule at once. Write a case in `tests/cases/<set>/`, run it with `tests/run.py` on small models and see it fail. Change wording, rerun and see it pass. Record before and after in the decision's Tested line. If it already passes, record that baseline. Change the skill only with evidence of a gap.
+   - **Keep a prompt consistent with its checks.** A prompt that forbids feedback cannot test suggested improvements to a dance routine.
+   - **Require advice only when it affects the result.** Accept a justified omission.
+   - **Distinguish a strength rating from a choice.** A weak case for a telescope upgrade chooses no winner.
+   - **Leave what the run record cannot show unknown.** Follow the [Codex record-limit decision](../../../blueprint/decisions.md#d242-codex-test-runs-cannot-write-the-shared-tmp-and-what-codexs-record-cannot-show-stays-unknown-2026-10-24) (D242). Never fail a case on that limit alone.
+   - Check each case against a correct trace and a plausible wrong one. Require the first to pass and the second to fail before trusting it. A check passed by refusal or a merely named file measures nothing.
+   - Run only on the user's machine in a throwaway home, never their own. Default to small models. Cover each rule with about three or more different cases, once each. Varied prompts show more for the same cost than three runs of one case. Repeat only on failure or conflicting results. A small-model-only failure is a signal, not an immediate reason for more text.
+   - Use prompts unlike the skill's examples. Keep at least one held-out case per rule. Copied examples can pass by matching without showing the rule works.
+   - List tested aspects in each case's `covers`, using `just test-coverage` ids. Put person-only aspects, such as the harness's question tool, in `tests/manual.toml` with a reason. Before reporting, run `just test-coverage`. Cover every aspect of what you wrote or changed, or name each gap and why. Claim coverage only where checks or review can fail, not where a case merely touches an aspect.
+   - Judge behaviour: answers and changes, not wording. Check skill reads only when reading is the tested behaviour, such as routing. Otherwise check results: models can reach them without the file. Have every run judged against its rubric by `tests/judge.md`. Report verdicts beside automatic results. Checks alone pass weak answers and fail good ones.
+   - Report results per agent and model, such as "Codex with GPT-6 Luna". One model does not represent its agent or provider. Note a single small-model failure and move on. For the same failure on several models, or on a larger model, find the cause before changes. It is then likely in the skill.
+   - Give a case one decision to test. A fixture detail that raises a second question, such as a file that differs in more than the change asked for, makes a failure ambiguous. Read a failing answer before you change the skill.
+   - Before you blame a change for a failing case, run that case a few times on the old text and on the new, judged the same way. Single runs vary, and the old text may fail too.
+   - Fix patterns shared by failures, never individual cases. A failure is a sample. Case-specific rules or examples turn skills into scripts and stop tests measuring anything.
+   - Give cost before running. Match budget claims to runner guarantees. Separate enforced and estimated limits. Unknown cost stays unknown, never zero. Keep large, personal raw runs out of the repository. Record what they showed in the decision's Tested line.
+4. **Write the main skill so the harness loads it for the right requests and the agent finds every guide.** A description that misses the request leaves the skill unloaded. A map without the name rule leaves guides unread.
+   - Start with frontmatter:
+     - `name`: the set's name;
+     - `description`: what it does and when to load it, in at most 1,024 characters, with no angle brackets and no overlap with another main skill;
+     - `compatibility`: a capability the set needs, if any.
+   - Write the body in the order of skillbook-design's check 8. Put the guide map, with the exact name rule at its top, between the advice and the instructions.
+5. **Write each guide in the shape of skillbook-design's check 8.** The same shape in every guide lets a reader find each part in the same place.
+   - Give it a `#` heading with its dashed name, `## Purpose`, `Needs:` if needed, and the three boundary sections by check 9. Then add Rules and Advice where it has them, and Instructions, whose last step is the final check.
+   - Write the Instructions as check 8 says: an opening that ends in one clear instruction, then steps that each give the action, why it matters and what doing it well means.
+   - Apply the wording rules above to every line, and keep the file to about 100 lines.
+   - Turn the design's Files into scripts and templates at skillbook-design's paths. Leave Callers and Material in the design: the loading agent does not need them.
+6. **Check every file before you report.** Always do this last. A file that fails the checks or drifts from its design reaches every agent that loads it.
+   - Run the repository checks and skillbook-design's checklist on every file you wrote.
+   - Account for every required rule, route and fallback, as the rule "Write from the design" says.
+   - List differences from the design with file and line. Change the design only with the user.

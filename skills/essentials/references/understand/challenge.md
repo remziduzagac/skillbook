@@ -43,7 +43,7 @@ Weak points that matter to the goal, including costs or risks even when success 
 
 ## Instructions
 
-Find meaningful weaknesses and give an honest verdict on the idea. Test it with these steps.
+Test the strongest fair version of an idea against its goal and constraints. Look for weaknesses that block the goal or create material cost or risk, rather than collecting unrelated flaws. **Frame the idea fairly, examine its assumptions, then give an honest verdict without changing it.**
 
 To settle a factual doubt found during the challenge, use the `understand-research` guide or a permitted test. Return the result here. Keep this guide's ownership of the independent check.
 
@@ -59,8 +59,17 @@ Verdict:      holds, holds with changes (which), or does not hold (why)
 
 Keep no lasting record yourself. Return the challenge, the weaknesses you considered, how each was met, fixed or accepted as a risk with its reason, and open weaknesses for the skill that saves records. For your own idea analyzed quietly, show the verdict and serious weaknesses with reasons unless the user asks for more.
 
-1. **Give the idea fairly at its strongest first.** Attacking a weak version finds weaknesses the idea does not have. Use its author’s case and the `understand-frame` guide’s goal and constraints.
-2. **Examine assumptions and weaknesses.** Unchecked assumptions are where most ideas break. Mark assumptions checked or unchecked and give each weakness its seriousness, evidence and remedy, under the rules above.
-3. **Return the verdict.** The caller needs an honest basis for deciding. Give holds, holds with changes, or does not hold, with the meaningful weaknesses. Change nothing yourself.
-
-4. **Check assumptions, evidence, seriousness and remedies.** Always do this last. Give the honest verdict without changing the idea or work. Reuse only current checks. Follow the `understand` guide's rules and the `act-verify` guide's rule 2 for independence.
+1. **Give the idea at its strongest using the author's case and the `understand-frame` guide.** Attacking a weaker version leaves the real idea untested and gives its owner false reassurance.
+   - Reuse the goal and constraints. If the idea is unclear, settle that first through framing or clarification.
+2. **Examine assumptions and meaningful weaknesses under rules 1–3 and 6.** Unchecked assumptions can break the work after the caller has committed to it.
+   - Mark assumptions checked or unchecked. Look for missing evidence, terms, constraints and dependencies.
+   - Try relevant failure scenarios, such as tenfold size, a year later or a changed dependency. Keep findings tied to the goal, cost or risk.
+   - Give each weakness evidence, a remedy and seriousness: stops it, costs or minor. Group common causes and put the most serious first.
+   - Use the `understand-research` guide or a permitted test for factual doubts. This guide owns independent objections under the `act-verify` guide's rule 2; use the `coordinate-delegate` guide for the required worker.
+   - When the `respond-ask` guide calls, apply rule 6's stakes levels. Reuse a challenge only while the idea, goal, constraints and evidence stay unchanged.
+3. **Return an honest verdict under rules 4 and 5.** Invented objections waste the owner's effort; softened ones hide a reason to change course.
+   - Give holds, holds with changes, or does not hold, with reasons. Say plainly when nothing meaningful was found.
+   - Return weaknesses and how each was met, fixed or accepted as a risk. For your own quietly analyzed idea, show the verdict and serious weaknesses with reasons. Change nothing here.
+4. **Check the challenge and “Gives back” before returning it.** Always do this last. A verdict without support or remedies cannot guide the caller's decision.
+   - Check the fair idea, frame, assumption labels, evidence, seriousness and remedies. Check reused results are current and required independence follows the `act-verify` guide's rule 2.
+   - Fix weak or unsupported findings before returning under the `understand` guide's rules. Keep lasting records and revisions with their owner.

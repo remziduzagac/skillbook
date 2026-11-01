@@ -34,11 +34,20 @@ The answer or claim verdict, supporting and opposing evidence, limits and missin
 
 ## Instructions
 
-Answer the sourced question or give a bounded verdict on the claim. Check the evidence with these steps.
+Answer one sourced question or judge one claim within the evidence’s actual scope. A completed search without support differs from a check that access or coverage prevented. **Reuse the question, search relevant evidence both ways for a claim, then return the bounded answer or verdict.**
 
-1. **Reuse or identify the question and claim through the parent's first rule.** The evidence must answer the intended question. Do not reframe an already crisp question or restart an active caller.
-2. **Search the nearest relevant sources first.** Nearby relevant sources usually cost less to check. Follow the parent's source guides, rules on where evidence applies, and search for and against claims.
-3. **Rank findings through the parent's rule for how evidence was obtained.** The strength depends on how the evidence was obtained. Keep contrary evidence and unknown results visible. A source count or a matched quote alone does not establish truth.
-4. **Return the answer or rule 3's verdict.** A bounded answer makes the result’s limits clear. Give evidence for and against, what was checked, missing checks and what would settle them. A naming or comparison caller receives the factual result, not another naming or choice round.
-
-5. **Check that a claim was searched both ways and that the answer fits the actual version and scope.** Always do this last. Use the parent's finding fields and result shape. Distinguish unsupported from unknown without claiming either is disproof. Return to the active caller and follow the final step of Instructions in the `understand-research` guide.
+1. **Identify or reuse the question through rule 1 of the `understand-research` guide.** Evidence for a neighboring question can mislead the caller just as much as a wrong fact.
+   - Keep an already crisp question and current frame. Start no new framing or choice round for an active caller.
+2. **Search relevant sources using the `understand-research` guide and rule 1 here.** Looking only for support can turn the first plausible account into a false certainty.
+   - Start with the nearest relevant source and the source guide for its content kind. Check version, platform and date.
+   - For a claim, search opposing terms, counterexamples, negations and later evidence as seriously as support. About a third against is guidance, not a quota.
+   - A claim of impossibility needs an observed error, applicable documentation or a permitted probe. Otherwise keep it only said.
+3. **Rank findings by how they were obtained, through rule 3 of the `understand-research` guide.** Repeated copies or an exact quote can look strong without supporting the actual claim.
+   - Keep supporting, contrary and missing evidence visible. Use relevant strength rather than source count, by rule 2 here.
+   - Mark memory, inference and unread source leads honestly. Keep the cases the evidence applies to beside its strength.
+4. **Return the answer or a bounded verdict under rule 3.** Conflating unknown with unsupported can make the caller reject a claim that was never adequately checked.
+   - For a claim, choose supported, mixed, unsupported or unknown from the actual check. Neither unsupported nor unknown alone proves false.
+   - Give evidence for and against, checked scope, limits, missing checks and what could change the verdict. Return the factual result to naming or comparison without taking over their choice.
+5. **Check the answer and “Gives back” before returning it.** Always do this last. The caller needs the evidence and the limit together to use the result safely.
+   - Check claims were searched both ways and evidence fits the actual version and scope. Use the parent's finding fields and result shape.
+   - Correct an overstated verdict or missing check before returning. Apply the final step of the `understand-research` guide without restarting the active caller.

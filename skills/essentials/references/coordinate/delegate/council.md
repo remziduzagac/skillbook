@@ -32,14 +32,20 @@ Each member’s answer with its name, a summary that keeps disagreements, and wh
 
 ## Instructions
 
-The goal is independent answers with disagreements kept for the user. Collect the answers with the steps below.
+Collect independent answers to the same question and keep their disagreements available to the user. Comparable material and attributed answers matter more than agreement by count. **Set the common question, brief fresh members through the active delegate call, then return their actual answers and missing work.**
 
-1. **Scope the question and common material.** This makes answers comparable. Follow the shared choice rules for gaps that would change the result.
-2. **Choose the members within the active delegate call.** This keeps independent views within authority. Use the active delegate call's permitted controls, model mapping, approved cost and task tracking. Do not restart the parent's method selection or let a worker start another worker.
-3. **Prepare each member’s brief through the `coordinate-brief` guide.** This gives each member enough context. Include the common question and material, required baseline, scope, success criterion, report and cleanup request.
-4. **Collect each member’s actual result.** This keeps actual work status visible. Follow the parent for waiting, obstacles, verification and cleanup. Keep running, blocked, failed and cancelled states distinct from answered work.
-5. **Return the summary with each answer accessible beside it.** This preserves disagreements for the user. Name each member whose answer is missing. Give the reason when it is known. Preserve disagreements. The user decides or asks for more. Use the `understand-weigh` guide only for a requested recommendation.
-
-6. **Check the council’s independence and results.** Always do this last.
-
-   Check that members were independent and that no brief supplied the main agent's opinion as evidence. Return the summary and each member's answer to the active caller. Report work that is actually missing. A partial council is not a completed set of independent answers. Report any pending check and its next owner.
+1. **Scope the common question and material under rule 1.** Different questions or evidence make disagreement impossible to interpret.
+   - Settle result-changing gaps through the shared choice rules. Exclude the main agent's opinion from task evidence while keeping required operating instructions.
+2. **Choose independent members through the active `coordinate-delegate` guide call, by rule 2.** A fork shares the main agent's reasoning and cannot provide the requested independence.
+   - Use fresh workers at standard tier or above, with the parent's mapping, effort, cost approval, controls and tracking. About three is guidance, not a fixed quota.
+   - Follow the parent's harness and data permissions. Restart no method selection and let no worker delegate again.
+3. **Prepare each brief through the `coordinate-brief` guide.** A common question alone does not give a worker its scope or report obligations.
+   - Give the same question and material, baseline, success criterion, report and cleanup request to every member.
+4. **Collect each member's actual result through the parent's lifecycle.** A started or waiting member is not an answered question.
+   - Use its waiting, obstacle, verification and cleanup steps. Keep running, blocked, failed and cancelled states distinct from answers.
+5. **Return a summary with each member's answer accessible, by rule 3.** Flattening disagreement into a majority view takes away information the user asked to see.
+   - Attribute each view, preserve disagreements and name missing answers with known reasons. The user decides or asks for more.
+   - Use the `understand-weigh` guide only for a requested recommendation.
+6. **Check council results and “Gives back” before returning.** Always do this last. A partial council must not read as a completed set of independent views.
+   - Check independence, common material and absence of the main agent's opinion as evidence. Check every answer is accessible and missing answers are named.
+   - Fix misleading summaries or statuses. Return to the active caller with pending checks and next owners, without inventing agreement.
