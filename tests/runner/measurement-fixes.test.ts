@@ -185,13 +185,14 @@ test("compaction clears partial-range coverage and a later whole read can be reu
 
 test("clarify alternatives each supply a present result and preserve the other exclusion", () => {
   const parts = resultChecks().filter(p => p.skill === "understand-clarify");
-  expect(parts.every(p => p.source.line === 44)).toBe(true);
+  expect(parts).toHaveLength(3);
+  for (const part of parts) expect(() => validateSource(part)).not.toThrow();
   for (const selected of parts) {
     const answer = selected.alternative === "questionnaire" ? "Who is the intended audience?" : "Going with: the project's default format. Assuming UTF-8 input.";
     const t = turn({ final_answer: answer, result_parts: parts, judgments: [{ id: selected.id, verdict: true, quote: answer }] });
     const scored = assessedResults(t);
     expect(promised(scored)).toBe(true);
-    expect(scored.filter(p => p.exclusion)).toHaveLength(1);
+    expect(scored.filter(p => p.exclusion)).toHaveLength(parts.length - 1);
     expect(scored.find(p => p.exclusion)!.exclusion).toContain(selected.alternative);
     const rows = measuredOpportunities(run, { ...t, author_rule_marks: [{ id: "understand-clarify:rule:1", applies: true, deadline: "answer" }],
       judgments: [...t.judgments, { id: "open-intent", verdict: true, quote: answer, parts: [{ verdict: true, quote: answer }] }] }, [rubric("open-intent")], accessTurn("codex", [], 1, sources));

@@ -7,8 +7,8 @@
       "kind": "shared",
       "source": {
         "file": "skills/essentials/references/act.md",
-        "line": 16,
-        "text": "4. **Get evidence before making a claim.** Nobody can trust a claim they cannot check. Use the kind it needs: file and line, or \"not found\", for project contents; command and output for behaviour. If you did not run it, say the claim comes from reading and why it was not run. For outside facts, use a current, authoritative source. Every source must meet that test. An old note does not.\n   - **Read `act-verify` before claiming work is done, fixed, passing, correct or meets requirements.** Read it before answering whether it does too. Such claims need more, such as who checks them. \"Is the export in the format the spec sets?\" needs it. \"Which file defines the export?\" does not.\n   - Treat reporting a change as made as such a claim when, as far as you know, its result reaches other people before anyone checks it again, or a mistake in it cannot be undone. Examples: work sent, published or used by them. A catalogue price going to print tomorrow needs `act-verify`. A test renamed on a branch going to review does not."
+        "line": 30,
+        "text": "4. **Get evidence before making a claim.** Nobody can trust a claim they cannot check. Use the kind it needs: file and line, or \"not found\", for project contents; command and output for behaviour. If you did not run it, say the claim comes from reading and why it was not run. For outside facts, use a current, authoritative source. Every source must meet that test. An old note does not.\n   - **Read the `act-verify` guide before claiming work is done, fixed, passing, correct or meets requirements.** Read it before answering whether it does too. Such claims need more, such as who checks them. \"Is the export in the format the spec sets?\" needs it. \"Which file defines the export?\" does not.\n   - Treat reporting a change as made as such a claim when, as far as you know, its result reaches other people before anyone checks it again, or a mistake in it cannot be undone. Examples: work sent, published or used by them. A catalogue price going to print tomorrow needs the `act-verify` guide. A test renamed on a branch going to review does not."
       },
       "applicability": "claim",
       "required_skill": "act",
@@ -25,31 +25,31 @@
       "kind": "shared",
       "source": {
         "file": "skills/essentials/references/act.md",
-        "line": 9,
-        "text": "3. **Raise action-changing concerns before starting.** Also raise a concern if it could change whether the user agrees to the action.\n   - If a concern would change what is done, such as a request that seems based on a mistake, put it to the user as a question through `respond-ask`, which ends the turn.\n   - **Put a concern that changes neither the work nor consent in one line in the final answer.**\n   - Give required notices when their own rules require them.\n   - Do what was asked, including what makes it complete and working, such as callers of a renamed function. Do nothing unrelated. The user must review work they did not ask for.\n   - Offer a better way beside what was asked, never in its place. In a proposal too, show the asked-for action as asked, such as the exact change or the user's own script. Then offer yours. The choice is the user's. They may know a reason you do not.\n   - Report a problem outside the task as a follow-up, even when serious. Give one line saying what and where. Add no section, worked-out cause, check or offer to fix it. The user decides whether it becomes work. While fixing a typo, name the broken link you saw and leave it."
+        "line": 23,
+        "text": "3. **Raise action-changing concerns before starting.** Also raise a concern if it could change whether the user agrees to the action.\n   - If a concern would change what is done, such as a request that seems based on a mistake, put it to the user as a question through the `respond-ask` guide, which ends the turn.\n   - **Put a concern that changes neither the work nor consent in one line in the final answer.**\n   - Give required notices when their own rules require them.\n   - Do what was asked, including what makes it complete and working, such as callers of a renamed function. Do nothing unrelated. The user must review work they did not ask for.\n   - Offer a better way beside what was asked, never in its place. In a proposal too, show the asked-for action as asked, such as the exact change or the user's own script. Then offer yours. The choice is the user's. They may know a reason you do not.\n   - Report a problem outside the task as a follow-up, even when serious. Give one line saying what and where. Add no section, worked-out cause, check or offer to fix it. The user decides whether it becomes work. While fixing a typo, name the broken link you saw and leave it."
       },
       "applicability": "always",
       "required_skill": "act",
       "deadline": "answer",
-      "expected": "Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.",
+      "expected": "Judge this turn: do the requested complete work within scope and approval, raise action-changing concerns before work, give other concerns and outside follow-ups in one final line each, and offer alternatives beside the requested action.",
       "rejected": "Refusing or proposing instead of doing already approved work; unrelated changes.",
       "evidence": "Code first: ordered file/action evidence. Otherwise yes/no with a verbatim answer quote or recorded action id. Missing evidence is unknown.",
       "user_choices": "Open intent, audience, result kind and any changed approval scope remain the user's.",
       "no_skill_eligible": true
     },
     {
-      "id": "essentials:step:2",
+      "id": "essentials:step:0",
       "key": "route-act",
       "kind": "rule",
       "source": {
         "file": "skills/essentials/SKILL.md",
-        "line": 53,
-        "text": "2. **Read `act` when a conversation starts.** Follow its rules throughout every request.\n   - Not for: what is said to the user (the `respond` skill), or the work that steps 4 to 6 route: arranging things, work with other agents, instruction documents or setup, and the user's own work.\n   - Gives back: nothing of its own. Its rules shape every action."
+        "line": 87,
+        "text": "0. **Prepare before your first action.** Guides only help if they shape the work from its start.\n   - Go through the \"Guide map\". For each stage below, pick every guide whose entry fits any part of the request, not only its first step. Most requests need several guides, such as `understand-clarify` for an open choice and `act-verify` for the check at the end. Some matter from the very start, such as `act-verify`, which needs evidence from before a change.\n   - Read the six main guides, the guides you picked and `respond-layout` by their paths in the map, whole, in one turn.\n   - Check each picked guide's \"When to use\" and \"When not\". Use it if it fits. Put it aside if it does not.\n   - In your thinking, name which guide you use for which part."
       },
       "applicability": "scenario",
       "required_skill": "essentials",
-      "deadline": "before routed work",
-      "expected": "Read the complete needed child before its work.",
+      "deadline": "first change",
+      "expected": "Before the first action, select every needed guide from the map, read the six main guides, selected guides and respond-layout whole in one turn, check boundaries, and name the approach in thinking.",
       "rejected": "Child is only named or searched.",
       "evidence": "Complete returned child text before its action.",
       "user_choices": "Do not create another checkpoint.",
@@ -62,9 +62,9 @@
       "kind": "internal",
       "exclusion": "The parent promises no separate result.",
       "source": {
-        "file": "skills/essentials/SKILL.md",
-        "line": 53,
-        "text": "2. **Read `act` when a conversation starts.** Follow its rules throughout every request.\n   - Not for: what is said to the user (the `respond` skill), or the work that steps 4 to 6 route: arranging things, work with other agents, instruction documents or setup, and the user's own work.\n   - Gives back: nothing of its own. Its rules shape every action."
+        "file": "skills/essentials/references/act.md",
+        "line": 17,
+        "text": "No separate result. These rules shape the work."
       },
       "applicability": "Skill is needed; this promised part applies to the requested result.",
       "required_skill": "act",

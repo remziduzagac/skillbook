@@ -93,7 +93,7 @@ test("supported ranges combine only with verified middle text", () => {
 test("redacted native Codex fragments retain their annotated labels", async () => {
   const fixtures=await Bun.file("tests/fixtures/access/codex.json").json();
   for (const f of fixtures) {
-    const access=accessTurn("codex",f.events);
+    const access=accessTurn("codex",f.events, 1, { essentials: fixtures[0].events[1].item.aggregated_output });
     for (const expected of f.expected) expect(access.records.find(r=>r.skill===expected.skill)).toMatchObject(expected);
   }
 });
@@ -102,14 +102,16 @@ test("prior full reads stay unknown when retention cannot be proved; fresh sessi
   expect(availability({...a,prior_whole:["act"]},"act",3)).toBe("unknown");
   expect(availability(a,"act",3)).toBe("not opened");
 });
-test("pilot schedules 24 fresh conversations and 108 turns, alternating both conditions", async () => {
-  const {parseArgs}=await import("./cli"), {loadCases}=await import("./cases"), {planRuns}=await import("./run");
-  const args=parseArgs(["--pilot"]), cases=loadCases().filter(c=>/scenario-(06-handbook|14-quick)$/.test(c.id));
-  const plan=planRuns(cases,args);
-  expect(plan.length).toBe(24);expect(plan.reduce((n,[c])=>n+c.turns.length,0)).toBe(108);
-  expect(new Set(plan.map(([c])=>c.condition))).toEqual(new Set(["installed","no-skill"]));
-  expect(args.user_mode).toBe("fixed");expect(args.budget).toBe(5);
+test("pilot alternates both conditions for synthetic conversations", async () => {
+  const {parseArgs}=await import("./cli"), {normalize}=await import("./cases"), {planRuns}=await import("./run");
+  const args=parseArgs(["--pilot"]), c=normalize({fixture:"tiny-weather",turns:[{prompt:"Inspect"}]}, "essentials/unit");
+  const plan=planRuns([c],args);
+  expect(plan.length).toBe(12);
+  expect(plan.slice(0, 2).map(([c])=>c.condition)).toEqual(["installed","no-skill"]);
+  expect(plan.slice(2, 4).map(([c])=>c.condition)).toEqual(["no-skill","installed"]);
+  expect(args.user_mode).toBe("fixed");
 });
+
 test("absence checks need established applicability and reject affected changes", async () => {
   const {codeOutcome}=await import("./rule-outcomes");
   const base={applies:true,access:read(sources.act),actions:[],changed:[],affected:["x"]};

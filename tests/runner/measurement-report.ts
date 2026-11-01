@@ -34,9 +34,9 @@ export function measurementReport(runs: Event[]) {
   const loading = runs.flatMap(run => run.turns.filter((t: Event) => t.access).map((t: Event) => {
     const needs = (t.opportunities ?? []).filter((o: Opportunity) => o.needed !== false && o.trigger !== "near-miss").map((o: Opportunity) =>
       ({ skill: o.skill, needed: o.needed, deadline: o.deadline === null ? null : Math.min(...o.parts.map(p => p.deadline)), origin: o.origin }));
-    for (const need of t.skill_needs ?? []) needs.push({ skill: need.skill, needed: true, origin: "scenario",
+    for (const need of t.resolved_needs ?? (t.skill_needs ?? []).map((n: Event) => ({...n, needed: true, origin: "scenario"}))) needs.push({ skill: need.skill, needed: need.needed, origin: need.origin,
       deadline: resolveDeadline(need.deadline, t.access) });
-    for (const skill of ["essentials", "act", "understand", "respond"])
+    for (const skill of t.resolved_needs ? [] : ["essentials", "act", "understand", "respond"])
       needs.push({ skill, needed: true, deadline: resolveDeadline("first change", t.access), origin: "mandatory startup" });
     return { case: run.case, agent: run.agent, model: run.model, condition: run.condition, turn: t.access.turn,
       skills: run.condition === "no-skill" ? [] : loadingView(t.access, needs, Object.keys(run.skill_sources ?? {})) };

@@ -1,5 +1,6 @@
+import { selectedTurns } from "./chapters";
 import { readFileSync } from "node:fs";
-import { validateRubricReport } from "./rubric-fixtures";
+import { activeRubricBook, validateRubricReport } from "./rubric-fixtures";
 import { requireCalibration } from "./calibration";
 import { parseArgs as parse } from "node:util";
 import { join } from "node:path";
@@ -26,8 +27,10 @@ export function parseArgs(argv: string[]): Options {
   const { values: v } = parse({
     args: expanded,
     options: {
+      chapter: { type: "string" },
       suite: { type: "string" },
       "user-mode": { type: "string" },
+      "rubric-book": { type: "string" },
       "rubric-validation": { type: "string" },
       calibration: { type: "string" },
       pilot: { type: "boolean", default: false },
@@ -60,17 +63,20 @@ export function parseArgs(argv: string[]): Options {
     if (!Number.isFinite(n) || n < minimum || (integer && !Number.isInteger(n))) throw Error(`invalid --${name}`);
     return n;
   };
+  if (v.chapter && (!Number.isInteger(Number(v.chapter)) || Number(v.chapter) < 1)) throw Error("invalid --chapter");
   if (v.suite && !["short", "master"].includes(v.suite)) throw Error("invalid --suite");
   if (v["user-mode"] && !["fixed", "simulated"].includes(v["user-mode"])) throw Error("invalid --user-mode");
   if (v.pilot && (v["no-skill"] || v["user-mode"] === "simulated"))
     throw Error("--pilot uses both conditions and fixed users");
   return {
+    chapter: v.chapter ? Number(v.chapter) : undefined,
     suite: v.suite as Options["suite"],
     user_mode: v.pilot ? "fixed" : v["user-mode"] as Options["user_mode"],
     pilot: v.pilot,
     no_skill: v["no-skill"],
     judge: v.judge,
     calibration: v.calibration,
+    rubric_book: v["rubric-book"],
     rubric_validation: v["rubric-validation"],
     case: v.case!,
     agents,
@@ -94,9 +100,9 @@ export function parseArgs(argv: string[]): Options {
 export async function main(argv = Bun.argv.slice(2)): Promise<number> {
   if (argv.includes("--help")) {
     console.log(
-      "bun tests/run.ts [--case TEXT] [--agents claude,codex] [--model agent=model] " +
+      "bun tests/run.ts [--case TEXT] [--chapter N] [--agents claude,codex] [--model agent=model] " +
         "[--runs N] [--jobs N] [--budget USD] [--timeout SECONDS] [--login] [--keep] [--out DIR] " +
-        "[--no-skill] [--pilot] [--suite short|master] [--user-mode fixed|simulated] [--judge --calibration FILE --rubric-validation FILE] [--dry-run] [--yes] [--validate] [--coverage] [--summary] [--to-judge DIR]",
+        "[--no-skill] [--pilot] [--suite short|master] [--user-mode fixed|simulated] [--judge --calibration FILE --rubric-validation FILE --rubric-book FILE] [--dry-run] [--yes] [--validate] [--coverage] [--summary] [--to-judge DIR]",
     );
     return 0;
   }
@@ -117,7 +123,7 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
   }
   if (!cases.length) throw Error(`no case matches ${args.case}`);
   const plan = planRuns(cases, args),
-    turns = plan.reduce((n, [c]) => n + c.turns.length, 0);
+    turns = plan.reduce((n, [c]) => n + selectedTurns(c, args.chapter).length, 0);
   console.log(`${plan.length} runs, ${turns} turns; estimated cost up to about $${(turns * 0.02).toFixed(2)}`);
   console.log(
     `budget: no new run starts after known spending reaches $${args.budget.toFixed(2)}; ` +
@@ -132,7 +138,7 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
   if (args.judge) {
     console.log("Judge calibration:", requireCalibration(args.calibration));
     if (!args.rubric_validation) throw Error("--judge needs --rubric-validation FILE");
-    console.log("Rubric trace judgments:", validateRubricReport(JSON.parse(readFileSync(args.rubric_validation, "utf8"))));
+    console.log("Rubric trace judgments:", validateRubricReport(JSON.parse(readFileSync(args.rubric_validation, "utf8")), activeRubricBook(args.rubric_book, cases)));
   }
   const usable = plan.filter(([, a]) => {
     const problem = loginProblem(a, args.login);

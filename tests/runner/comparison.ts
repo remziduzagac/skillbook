@@ -46,7 +46,7 @@ export function compareModes(runs: Event[]): string {
     const sim = runs.filter(r => r.case === id && r.user_mode === "simulated");
     const fits = fixed.flatMap(r => r.turns.flatMap((t: Event) => t.fit ? [t.fit] : []));
     const off = fits.filter(f => f.off_script === true).length;
-    const expected = fixed.reduce((n, r) => n + Math.max(0, (r.expected_turns ?? r.turns.length) - 1), 0);
+    const expected = fixed.reduce((n, r) => n + (r.expected_fit_transitions ?? Math.max(0, (r.expected_turns ?? r.turns.length) - 1)), 0);
     const unknown = fits.filter(f => f.off_script === null).length + Math.max(0, expected - fits.length);
     const incomplete = fixed.some(r => r.error);
     const recommendation = off ? (sim.length ? "pending calibrated comparison" : "rerun simulated") :

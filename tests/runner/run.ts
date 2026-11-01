@@ -1,3 +1,6 @@
+import { selectedTurns, putCheckpoint, commitCheckpoint } from "./chapters";
+import { resolvedNeeds } from "./needs";
+import { helperEvidence } from "./helpers";
 import { ruleChecks } from "./rule-checks";
 import { measurementReport } from "./measurement-report";
 import { applicableClaims, assessedResults, measuredOpportunities, measurementPlan } from "./measure-turn";
@@ -41,6 +44,7 @@ export async function runOne(
   driver: typeof runTurn = runTurn,
   limits?: CallLimits,
 ): Promise<Event> {
+  const selected = selectedTurns(c, args.chapter);
   const noSkill = c.condition === "no-skill" || args.no_skill;
   const mode = args.user_mode ?? c.user?.mode ?? "fixed";
   if (mode === "simulated" && (!c.user || !c.goal)) throw Error("simulated mode needs scenario user facts and goal");
@@ -64,7 +68,12 @@ export async function runOne(
     review: c.review ?? [],
     turns: [],
     routing_only: c.routing_only ?? false,
-    expected_turns: c.turns.length,
+    expected_turns: selected.length,
+    selected_turns: selected.map(t => t.index + 1),
+    chapter_checkpoints: {},
+    chapter_errors: [],
+    expected_fit_transitions: selected.filter((t, i) => selected[i + 1]?.chapter?.number === t.chapter?.number &&
+      selected[i + 1]?.index === t.index + 1).length,
   };
   const root = mkdtempSync(join(tmpdir(), "skillbook-test-ts-")),
     groups: number[] = [];
@@ -74,13 +83,15 @@ export async function runOne(
       work = join(root, "work"),
       tmp = join(root, "tmp");
     mkdirSync(tmp);
-    cpSync(join(FIXTURES, c.fixture), work, { recursive: true });
-    if (c.version_control) commitFixture(work);
+    if (!c.chapters) {
+      cpSync(join(FIXTURES, c.fixture), work, { recursive: true });
+      if (c.version_control) commitFixture(work);
+    } else mkdirSync(work);
     if (agent === "claude" && existsSync(join(work, "AGENTS.md")) && !existsSync(join(work, "CLAUDE.md")))
       copyFileSync(join(work, "AGENTS.md"), join(work, "CLAUDE.md"));
     prepareHome(home, agent, { ...c, no_skill: noSkill }, args.login, args.instruction);
-    const before = snapshot(work),
-      env = agentEnv(home, agent, args.login, tmp);
+    let before = snapshot(work);
+    const env = agentEnv(home, agent, args.login, tmp);
     result.initial_paths = Object.keys(before);
     result.fixture_sources = fixtureText(work);
     marker = env[MARKER];
@@ -92,11 +103,13 @@ export async function runOne(
     if (args.login && agent === "codex") copyFileSync(join(home, ".codex/auth.json"),
       join(judgeHome, ".codex", "auth.json"));
     const judgeEnv = agentEnv(judgeHome, "codex", args.login, tmp);
+    let chapterCostUnknown = false;
     const rawCall = structuredCall(judgeWork, judgeEnv, args.timeout, groups, amount => {
       limits?.account(amount);
       result.cost += amount ?? 0;
       result.cost_unknown ||= amount === null;
-    });
+      chapterCostUnknown ||= amount === null;
+    }, driver);
     const call: typeof rawCall = async (instruction, data) => {
       limits?.dispatch(instruction.startsWith("Play the user") ? "simulated_user" : "judge");
       return rawCall(instruction, data);
@@ -107,16 +120,42 @@ export async function runOne(
     let session: string | undefined,
       previous = before,
       previousText = result.fixture_sources,
+      baseline = before, baselineText = result.fixture_sources,
+      chapterNumber: number | undefined,
+      chapterEvents: Event[] = [],
+      chapterTurns: Event[] = [],
+      failedChapter: number | undefined,
       lastTmp: string[] | null = null;
-    for (const [index, turn] of c.turns.entries()) {
+    for (const {index, turn, chapter} of selected) {
+      const chapterStart = chapter && chapter.number !== chapterNumber;
+      if (chapterStart) {
+        await endRun(groups, marker); groups.length = 0;
+        // Temporary material cannot leak into a new working session.
+        rmSync(tmp, { recursive: true, force: true }); mkdirSync(tmp);
+        putCheckpoint(work, chapter, c.gitignore);
+        if (agent === "claude" && existsSync(join(work, "AGENTS.md")) && !existsSync(join(work, "CLAUDE.md")))
+          copyFileSync(join(work, "AGENTS.md"), join(work, "CLAUDE.md"));
+        commitCheckpoint(work, chapter.number);
+        previous = baseline = snapshot(work); previousText = baselineText = fixtureText(work);
+        if (!result.turns.length) {
+          before = baseline; result.initial_paths = Object.keys(before); result.fixture_sources = baselineText;
+        }
+        result.chapter_checkpoints[chapter.number] = { sources: baselineText, paths: Object.keys(baseline), snapshot: baseline };
+        chapterNumber = chapter.number; chapterEvents = []; chapterTurns = []; session = undefined; chapterCostUnknown = false;
+        for (const key of Object.keys(taggedHistory)) delete taggedHistory[key];
+      }
+      if (chapter && failedChapter === chapter.number) continue;
       const i = index + 1,
         remaining = Math.max(0, budget - result.cost);
-      if (agent === "claude" && (remaining <= 0 || result.cost_unknown)) {
+      if (agent === "claude" && (remaining <= 0 || (c.chapters ? chapterCostUnknown : result.cost_unknown))) {
         result.error = `turn ${i}: remaining budget is exhausted or unknown`;
-        break;
+        if (!chapter || remaining <= 0) break;
+        failedChapter = chapter.number;
+        result.chapter_errors.push({chapter: chapter.number, turn: i, error: result.error});
+        continue;
       }
       if (turn.fresh_session) session = undefined;
-      const sent = mode === "simulated" ? await simulate(call, c, index, result.turns) :
+      const sent = mode === "simulated" ? await simulate(call, c, index, chapterTurns, baselineText) :
         { message: turn.prompt, steered: false };
       limits?.dispatch("agent");
       const ran = await driver(
@@ -125,7 +164,8 @@ export async function runOne(
           env,
           args.timeout,
           groups,
-        ),
+        ).catch(error => ({ stdout: "", stderr: `runner error: ${String(error)}`, status: 1,
+          left: null, left_why: "transport threw", tmp: null, tmp_paths: null })),
         failed = ran.status !== 0;
       if (ran.status === null) result.error = `turn ${i}: took longer than ${args.timeout} seconds`;
       else if (failed) result.error = `turn ${i}: exit ${ran.status}: ${redact(ran.stderr.trim().slice(-300))}`;
@@ -137,7 +177,9 @@ export async function runOne(
       limits?.account(turnCost);
       result.cost += turnCost ?? 0;
       result.cost_unknown ||= turnCost === null || failed;
+      chapterCostUnknown ||= turnCost === null || failed;
       events.push(turnEvents);
+      chapterEvents.push(...turnEvents);
       const observedSession = sessionId(agent, turnEvents);
       session = observedSession ?? session;
       const taggedAssertions = Object.assign({}, ...(turn.tagged_checks ?? []).map((x) => x.assert));
@@ -145,14 +187,17 @@ export async function runOne(
       observation.left_running = ran.left;
       observation.left_unknown_because = ran.left_why;
       observation.tmp_listing = ran.tmp;
+      observation.baseline_files = baselineText;
+      observation.baseline_snapshot = baseline;
       const currentText = fixtureText(work),
         [final, between] = turn_parts(agent, turnEvents);
+      observation.files = currentText;
       observation.final_answer = final;
       observation.between_tools = between;
       let access = { ...accessTurn(agent, turnEvents, i, result.skill_sources, !failed),
         change_confirmed: observation.changes.length > 0 };
       if (agent === "codex") {
-        const prior = !turn.fresh_session && result.turns.at(-1)?.session === observedSession ? result.turns.at(-1) : undefined;
+        const prior = !turn.fresh_session && chapterTurns.at(-1)?.session === observedSession ? chapterTurns.at(-1) : undefined;
         const sessionTurns = prior ? (prior.access.retention_evidence?.completed_turns ?? 0) + 1 : 1;
         access = withCodexRetention(access, inspectCodexRetention(home, observedSession, sessionTurns, final,
           prior?.access.retention_evidence));
@@ -161,14 +206,15 @@ export async function runOne(
       for (const t of tagged) taggedHistory[`${i}:${t.id}`] = t.verdict;
       result.turns.push({
         ...observation,
-        session: observedSession, turn: i,
+        session: observedSession, turn: i, chapter: chapterNumber,
+        helpers: helperEvidence(agent, chapterEvents),
         recording,
         routing_notes: collectRoutingNotes(agent, turnEvents),
         skill_needs: turn.skill_needs ?? [], author_rule_marks: turn.rule_marks ?? [],
         scripted_message: turn.prompt,
         sent_message: sent.message,
         steered: sent.steered,
-        fresh_session: turn.fresh_session ?? false,
+        fresh_session: !!chapterStart || (turn.fresh_session ?? false),
         purpose: turn.purpose ?? "",
         final_answer: final,
         between_tools: between,
@@ -183,12 +229,21 @@ export async function runOne(
             e.message?.content?.some((b: Event) => b.type === "tool_result" && b.tool_use_id === action.id)) } : {}) })),
         file_diffs: fixtureDiffs(previousText, currentText),
         trace_complete: !failed,
-        access: retainAccess(access, observedSession, result.turns, turn.fresh_session),
+        access: retainAccess(access, observedSession, chapterTurns, !!chapterStart || turn.fresh_session),
         tagged_checks: tagged,
         rubric_pending: turn.rubric ?? [],
       });
       const evidence = result.turns.at(-1);
+      chapterTurns.push(evidence);
       evidence.judgments = [];
+      if (args.judge && !failed && turn.if_taken?.some(n => !n.taken_when)) {
+        try {
+          const marked = await call('Mark only paths taken in this turn. Return {"marks":[{"path":string,"taken":boolean,"quote":string,"action":string|null}]}. Cite a verbatim answer quote or recorded action id; leave unsupported paths unmarked.',
+            { paths: turn.if_taken.filter(n => !n.taken_when), answer: evidence.answer, actions: evidence.actions });
+          evidence.path_marks = Array.isArray(marked.marks) ? marked.marks : [];
+        } catch (error) { evidence.path_applicability_unknown = String(error); }
+      }
+      evidence.resolved_needs = resolvedNeeds(turn, evidence, true);
       if (args.judge && !failed) {
         try {
           const applicability = await applicableClaims(call, evidence.claim_text, evidence.actions, sent.message, ruleChecks(), evidence.claim_messages);
@@ -211,7 +266,7 @@ export async function runOne(
         const dep = rubric.depends_on, prior = dep ? taggedHistory[`${dep.turn}:${dep.check}`] : true;
         if (prior !== true) evidence.judgments.push({ id: rubric.id, tag: rubric.tag,
           verdict: prior === "not reached" ? "not reached" : null, reason: "prerequisite not established" });
-        else pending.push({ rubric, answer: final, evidence: judgeEvidence(result.turns, result.fixture_sources) });
+        else pending.push({ rubric, answer: final, evidence: judgeEvidence(chapterTurns, baselineText) });
       }
       try {
         evidence.judgments.push(...(args.judge && !failed ? await rubricBatch(call, pending) : pending.map(r =>
@@ -224,7 +279,8 @@ export async function runOne(
       evidence.result_parts = assessedResults(evidence);
       evidence.opportunities = measuredOpportunities(result, evidence, activeRubrics, evidence.access, evidence.opportunity_inventory);
       if (args.judge) evidence.rubric_pending = [];
-      if (c.user && mode === "fixed" && c.turns[index + 1]) {
+      if (c.user && mode === "fixed" && c.turns[index + 1] &&
+        (!c.chapters || selected.find(t => t.index === index + 1)?.chapter?.number === chapterNumber)) {
         try { evidence.fit = failed ? { off_script: null, reason: "incomplete agent turn" } :
           await fit(call, observation.answer, c.turns[index + 1]!.prompt); }
         catch (error) { evidence.fit = { off_script: null, reason: String(error) }; }
@@ -234,10 +290,18 @@ export async function runOne(
         turnChecks[`turn ${i}: ${name}`] = value;
       previous = snapshot(work);
       previousText = currentText;
-      if (failed) break;
+      if (failed) {
+        if (!chapter) break;
+        failedChapter = chapter.number;
+        result.chapter_errors.push({ chapter: chapter.number, turn: i, error: result.error });
+      }
     }
     if (events.length) {
       Object.assign(result, observe(agent, events, c.set, before, work, c.checks));
+      if (c.chapters) {
+        result.changes = [...new Set(result.turns.flatMap((t: Event) => t.changes))].sort();
+        result.baseline_files = baselineText; result.baseline_snapshot = baseline;
+      }
       result.left_running = result.turns.at(-1).left_running;
       result.checks = { ...turnChecks, ...check(c.checks, result, c.fixture, lastTmp) };
 
@@ -251,9 +315,11 @@ export async function runOne(
       id: "no-skill-names", tag: "habit:no-skill-names",
       verdict: result.checks["answer names no skill or skill file"] ?? null,
     }] : [];
-    result.unreached_turn_checks = c.turns.slice(result.turns.length).flatMap((t, i) =>
-      [...(t.tagged_checks ?? []), ...(t.rubric ?? [])].map(check =>
-        ({ turn: result.turns.length + i + 1, id: check.id, tag: check.tag, verdict: null })));
+    result.unreached_turns = selected.filter(t => !result.turns.some((r: Event) => r.turn === t.index + 1))
+      .map(t => ({ turn: t.index + 1, chapter: t.chapter?.number, reason: t.chapter ? "chapter interrupted" : "run interrupted" }));
+    result.unreached_turn_checks = selected.filter(t => !result.turns.some((r: Event) => r.turn === t.index + 1))
+      .flatMap(({turn, index, chapter}) => [...(turn.tagged_checks ?? []), ...(turn.rubric ?? [])].map(check =>
+        ({ turn: index + 1, chapter: chapter?.number, id: check.id, tag: check.tag, verdict: null })));
     result.scores = score([...result.turns.flatMap((t: Event) => [...t.tagged_checks, ...(t.judgments ?? [])]),
       ...result.unreached_turn_checks, ...result.run_checks]);
     await endRun(groups, marker);

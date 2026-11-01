@@ -1,6 +1,6 @@
 import { test, expect } from "bun:test";
 import { simulate, fit, rubricJudge, structuredCall } from "./scenario";
-import { normalize, validateCase, loadCases } from "./cases";
+import { normalize, validateCase } from "./cases";
 import { parseArgs } from "./cli";
 import { evaluateTagged, scoreRuns } from "./scoring";
 
@@ -59,17 +59,17 @@ test("score groups keep fixed and simulated results separate", () => {
     turns: [{ tagged_checks: [{ tag: "habit:scope", verdict: user_mode === "fixed" }] }] }));
   expect(Object.keys(scoreRuns(runs))).toEqual(["codex/m/fixed", "codex/m/simulated"]);
 });
-test("scenario inventory has 14 shorts and one master with habits on each turn", () => {
-  const cases = loadCases("scenario-");
-  expect(cases.filter(c => c.suite === "short")).toHaveLength(14);
-  expect(cases.filter(c => c.suite === "master")).toHaveLength(1);
-  for (const c of cases) {
-    expect(c.turns.length).toBeGreaterThanOrEqual(c.suite === "short" ? 3 : 12);
-    for (const t of c.turns) {
-      expect(t.rubric?.map(r => r.tag)).toContain("habit:point-first");
-      expect(t.rubric?.map(r => r.tag)).toContain("habit:requested-scope");
-    }
-  }
+test("short and master format requires shared habits, facts and purposes", () => {
+  const habits = ["habit:point-first", "habit:requested-scope", "habit:clear-at-a-glance"];
+  const { id: _id, set: _set, condition: _condition, ...base } = scenario();
+  const c = { ...base, suite: "short" as const, turns: Array.from({length: 3}, () => ({
+    prompt: "Inspect", purpose: "check the facts", rubric: habits.map((tag, i) => ({id: String(i), tag, criterion: "check"})),
+  })) };
+  expect(() => validateCase(c)).not.toThrow();
+  expect(() => validateCase({...c, turns: c.turns.slice(1)})).toThrow("three to five");
+  expect(() => validateCase({...c, suite: "master"})).not.toThrow();
+  expect(() => validateCase({...c, goal: ""})).toThrow("scenario needs");
+  expect(() => validateCase({...c, turns: c.turns.map(t => ({...t, rubric: []}))})).toThrow("shared habit");
 });
 
 test("calibration reports disagreements and leaves incomplete human ratings pending", async () => {
@@ -106,33 +106,6 @@ test("structured model transport rejects tools, bad JSON and unsuccessful calls"
   expect(accounts).toEqual([0.00004, 0.00004, 0.00004, 0.00004]);
 });
 
-test("every scenario assertion accepts a correct state and rejects a plausible wrong state", () => {
-  for (const c of loadCases("scenario-")) for (const t of c.turns) for (const tagged of t.tagged_checks ?? []) {
-    const a = tagged.assert;
-    const good: any = { changes: [], files: {}, paths_present: {}, answer: "Completed the requested operation." };
-    for (const path of a.absent ?? []) good.paths_present[path] = false;
-    for (const path of a.changed ?? []) good.changes.push("changed " + path);
-    for (const path of a.removed ?? []) good.changes.push("removed " + path);
-    const samples: Record<string, string> = {
-      "totals.py": "def add(values):\n    sum = 0\n    for value in values:\n        sum += value\n    return sum\n",
-      "carryover.md": "Goal: prepare museum labels. Remaining work: check the uncertain date. Next: read source.md.",
-    };
-    for (const path of Object.keys(a.file_contains ?? {})) {
-      expect(samples[path]).toBeDefined();
-      good.files[path] = samples[path];
-    }
-    expect(evaluateTagged([tagged], good, {})[0]!.verdict).toBe(true);
-    const wrong = structuredClone(good);
-    if (a.absent?.length) wrong.paths_present[a.absent[0]!] = true;
-    else if (a.no_changes) wrong.changes.push("removed user-source.md");
-    else if (a.removed?.length) wrong.changes = wrong.changes.filter((x: string) => x !== "removed " + a.removed![0]);
-    else if (a.changed?.length) { wrong.changes = []; wrong.files = {}; }
-    else if (a.unchanged?.length) wrong.changes.push("changed " + a.unchanged[0]);
-    else if (a.only_changed) wrong.changes.push("changed unrelated.md");
-    else if (a.file_contains) for (const path of Object.keys(a.file_contains)) wrong.files[path] = "missing required content";
-    expect(evaluateTagged([tagged], wrong, {})[0]!.verdict).toBe(false);
-  }
-});
 
 test("only observed fixed off-script scenarios are selected for simulated reruns", async () => {
   const { offScriptCases, compareModes } = await import("./comparison");

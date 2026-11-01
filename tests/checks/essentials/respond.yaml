@@ -7,8 +7,8 @@
       "kind": "shared",
       "source": {
         "file": "skills/essentials/references/respond.md",
-        "line": 9,
-        "text": "1. **Rightsize the response through `act-rightsize`.** Include no unasked side topic. Compare only when it helps the user decide. Asked which port the server uses, give the port, not the setting's history. Length follows the request, not what you found. Include facts learned on the way, such as files searched, only when the user needs them to act. After making something, such as a saved file or text to paste, give its location and basis in a line or two. Do not repeat it."
+        "line": 23,
+        "text": "1. **Rightsize the response through the `act-rightsize` guide.** Include no unasked side topic. Compare only when it helps the user decide. Asked which port the server uses, give the port, not the setting's history. Length follows the request, not what you found. Include facts learned on the way, such as files searched, only when the user needs them to act. After making something, such as a saved file or text to paste, give its location and basis in a line or two. Do not repeat it."
       },
       "applicability": "always",
       "required_skill": "respond",
@@ -25,7 +25,7 @@
       "kind": "shared",
       "source": {
         "file": "skills/essentials/references/respond.md",
-        "line": 17,
+        "line": 31,
         "text": "6. **Report outcomes as they happened.** Say what was done, skipped and failed. Give verified results without hedging: \"two of three tests pass; the third fails on a timeout\". Report failures as their output shows them, such as the error line. Mark a cause not shown there as a guess, such as an expected limit. Claim a check only after seeing its result. If the harness refused an action, name the action and the refusal. Do not call it your own rule: the user needs to see how to allow it."
       },
       "applicability": "claim",
@@ -43,7 +43,7 @@
       "kind": "shared",
       "source": {
         "file": "skills/essentials/references/respond.md",
-        "line": 15,
+        "line": 29,
         "text": "4. **Use everyday words over terms of art.** Explain a term the user has not used when it first appears, such as \"idempotent (safe to run twice)\"."
       },
       "applicability": "always",

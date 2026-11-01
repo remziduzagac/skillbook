@@ -3,9 +3,30 @@ import { join } from "node:path";
 import { aspects, walk } from "./inventory";
 import { REPO } from "./paths";
 export function validateSource(check: any) {
+  if (!Number.isInteger(check.source?.line) || check.source.line < 1 || !check.source.text?.trim())
+    throw Error(`invalid source: ${check.id ?? check.part}`);
   const source = readFileSync(join(REPO, check.source.file), "utf8").split("\n");
-  if (source.slice(check.source.line - 1).join("\n").indexOf(check.source.text) !== 0)
+  const start = check.source.line - 1;
+  if (!source.slice(start).join("\n").startsWith(check.source.text))
     throw Error(`source drift: ${check.id ?? check.part}`);
+  const preceding = source.slice(0, start).filter(line => line.trim()).at(-1);
+  if (preceding === "## Gives back") {
+    let end = source.findIndex((line, i) => i > start && line.startsWith("## "));
+    if (end < 0) end = source.length;
+    if (source.slice(start, end).join("\n").trimEnd() !== check.source.text.trimEnd())
+      throw Error(`source must freeze the full block: ${check.id ?? check.part}`);
+  }
+  if (/^\d+\. /.test(source[start]!)) {
+    let end = source.findIndex((line, i) => i > start && /^(?:\d+\. |## )/.test(line));
+    if (end < 0) end = source.length;
+    const prose = source.findIndex((line, i) => i > start && i < end && line && !line.startsWith(" "));
+    if (prose >= 0) end = prose;
+    if (source.slice(start, end).join("\n").trimEnd() !== check.source.text.trimEnd())
+      throw Error(`source must freeze the full block: ${check.id ?? check.part}`);
+    const number = check.id?.match(/:(?:rule|step):(\d+)$/)?.[1];
+    if (number !== undefined && !source[start]!.startsWith(number + ". "))
+      throw Error(`source number does not match id: ${check.id}`);
+  }
 }
 export function ruleChecks() {
   const inventory = aspects();

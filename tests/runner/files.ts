@@ -132,10 +132,13 @@ export function observe(
     said = "";
     uncertain = "a change no action shows";
   }
-  const paths = new Set([...Object.keys(checks.file_contains ?? {}), ...(checks.shorter ?? [])]),
+  const paths = new Set([...Object.keys(checks.file_contains ?? {}), ...(checks.shorter ?? []),
+    ...Object.keys(checks.words_under ?? {}), ...Object.keys(checks.only_replacement ?? {}),
+    ...Object.keys(checks.index_links ?? {}), ...(checks.keeps_lines ?? [])]),
     folders = Object.keys(checks.folder_lacks ?? {});
   for (const p of written(delta)) if (folders.some((f) => p.startsWith(f))) paths.add(p);
   return {
+    project_snapshot: snapshot(work),
     reads: [...skills_read(agent, events, null, set)].sort(),
     changes: delta,
     answer: events

@@ -43,7 +43,7 @@ A refusal, a generic preamble or a matching word does not establish the intended
 
 Every essentials case also checks that no answer text, between tool calls included, names a skill, a skill's file or a route to one, which the respond skill's rule 1 keeps from the user. The pattern, `SKILL_TALK` in `run.py`, takes the names from the skill files: a dashed name such as `act-verify`; a skill's name or one of its parts next to "skill", as in "the verify skill"; a name in backticks before "skill"; a word rare in ordinary prose, such as guardrails or clarify, after a verb such as need or load, or before "reference"; and a skill file's path, such as `references/act.md`. An ordinary word alone, such as verify, layout or clarify, does not count. A case where the user needs a skill's name, such as a set to install, opts out with `names_no_skill = false`. Codex's harness tells it to say which skills it uses, so for Codex one short line that says it loads or uses essentials, and gives no reason, is left out. The examples it must catch and pass are listed in `test_runner.py`.
 
-Some checks need evidence beyond a matching word. `states_before_change` can list patterns, such as the files a wide change touches, that the text before the first change must hold, so a bare count passes none. `agent_started_or_answer` passes on an agent started in the recorded actions, a Claude Agent or Task call that did not fail or a Codex call that spawns or names an agent, or on the answer's own words, such as a part marked unverified. Codex's record shows neither an agent it starts nor that agent's actions, only some calls about agents, so on Codex any such call, or a change no recorded action explains, leaves the check unknown rather than failed, and the summary says an agent may have run unseen. `answer_path_has` looks under each absolute path the answer names inside a system temporary folder, the run's own or not, and passes when what it holds matches. `actions_lack` searches every recorded command, target path and search pattern; `only_changed` fails on a change to any other project file; `removed` passes only when the named file is gone.
+Some checks need evidence beyond a matching word. `states_before_change` can list patterns, such as the files a wide change touches, that the text before the first change must hold, so a bare count passes none. `agent_started_or_answer` passes on an agent started in the recorded actions, a Claude Agent or Task call that did not fail or a successful Codex spawn call, or on the answer's own words, such as a part marked unverified. Codex can omit a helper's startup or actions. A call naming a helper, or a change no recorded action explains, can therefore leave the check unknown. A successful spawn establishes startup; it does not establish freshness, returned work or cleanup. `answer_path_has` looks under each absolute path the answer names inside a system temporary folder, the run's own or not, and passes when what it holds matches. `actions_lack` searches every recorded command, target path and search pattern; `only_changed` fails on a change to any other project file; `removed` passes only when the named file is gone.
 
 Codex's `workspace-write` sandbox would also let a run write the machine's real `/tmp`, not only its own `TMPDIR`: a run that hard-coded `/tmp` left its copy there, outside the throwaway folder and its checks. So the throwaway `config.toml` takes `/tmp` out of the writable places (`exclude_slash_tmp`), and the run's own `TMPDIR` stays writable. As a backstop, a round with Codex runs lists the names new in `/tmp` once it ends, never their contents; they may belong to something else running on the machine.
 
@@ -59,8 +59,39 @@ The TypeScript runner runs beside Python during the port. Install the exact Bun 
 
 The only runtime package is Ajv 8.20.0, for JSON Schema validation. Development packages are TypeScript 5.9.3 for type checking, `@types/bun` 1.3.13 for the runtime's types and `ts-json-schema-generator` 2.4.0 to generate `tests/case.schema.json` from `tests/runner/types.ts`. Bun supplies YAML, TOML and the test framework. All direct versions are exact; `bun.lock` pins their dependencies. Regenerate the schema with `bun run schema` after changing the case types.
 
-Cases are conversations. Existing prompts use `turns[].prompt`; a turn may also have `purpose`, `tagged_checks` and `rubric`. A tagged check has an `id`, a habit or skill `tag`, an `assert` object using the usual checks and an optional `depends_on` naming a check in an earlier turn. A failed or unknown dependency yields `not reached`. JSON results keep each turn's scripted and sent message, observations and verdicts. `scores.json` groups tagged verdicts across runs separately for each agent and model, with a Wilson 95% interval and separate unknown and not-reached counts. Rubrics remain pending until a judge supplies a judgment. A simulated user is represented in the format but cannot run until the scenario layer supplies it.
+Cases are conversations. Existing prompts use `turns[].prompt`; a turn may also have `purpose`, `tagged_checks` and `rubric`. A tagged check has an `id`, a habit or skill `tag`, an `assert` object using the usual checks and an optional `depends_on` naming a check in an earlier turn. A failed or unknown dependency yields `not reached`. JSON results keep each turn's scripted and sent message, observations and verdicts. `scores.json` groups tagged verdicts across runs separately for each agent and model, with a Wilson 95% interval and separate unknown and not-reached counts. Rubrics remain pending until a judge supplies a judgment. A scenario user can run in fixed or simulated mode; simulated messages use the recorded facts sheet.
 
 Replay uses Python only as a comparison oracle, never as part of the TypeScript runner. Prepare expectations with `python3 tests/runner/replay-oracle.py /tmp/replay-input.json /tmp/saved-run`, then run `bun tests/runner/replay.ts /tmp/replay-input.json /tmp/replay-result.json`. Both rebuild reads, answers, actions, sequencing and costs from kept event logs. Deleted sandbox files use retained observations. Temporary paths that are gone cannot be reconstructed; both runners get unknown temporary-folder evidence. The replay report lists every verdict mismatch and every run it could not replay.
 
-The account-free contracts include expected outputs captured from the unchanged Python runner tests. They cover shell reads, successful tool evidence, sequencing, answers, assertions and cost handling. Filesystem and process tests separately exercise isolation, cleanup, temporary paths, resume and budget scheduling. They do not validate a model's behavior. The converted sample retains all 62 frozen routing cases and uses 12 behavior cases to exercise every existing assertion type and case setting; the unit suite checks that inventory.
+The account-free contracts include expected outputs captured from the unchanged Python runner tests. They cover shell reads, successful tool evidence, sequencing, answers, assertions and cost handling. Filesystem and process tests separately exercise isolation, cleanup, temporary paths, resume and budget scheduling. They do not validate a model's behavior. The converted sample retains all 62 frozen routing cases and uses 12 behavior cases to exercise every existing assertion type and case setting; unit contracts use temporary case definitions and frozen reader sources independently of that corpus.
+
+## Chaptered cases
+
+The Bun runner accepts `chapters` alongside the existing `turns`. Each chapter has a consecutive `number`, a global `start_turn` and a `checkpoint` with `fixture`, optional ordered `overlays` and optional `remove` paths, all relative to `tests/fixtures/` except removals, which are project-relative. The case's `gitignore` is a list of lines written after restoration. For example:
+
+```yaml
+fixture: tiny-weather
+chapters:
+  - number: 1
+    start_turn: 1
+    checkpoint:
+      fixture: tiny-weather
+  - number: 2
+    start_turn: 3
+    checkpoint:
+      fixture: tiny-weather
+      remove: [NOTES.md]
+gitignore: ['*.csv']
+turns:
+  - prompt: Inspect the project.
+  - prompt: Explain the result.
+  - prompt: Inspect this fresh working session.
+```
+
+At each chapter start the runner ends leftover processes, restores the project exactly, writes `.gitignore`, commits the checkpoint on `main`, starts a fresh session and clears guide retention. A failed process leaves that chapter's remaining turns unknown; the next checkpoint still runs. `--chapter N` runs one chapter with the scenario's original turn numbers. Dependencies must stay inside one chapter. Judges, simulated users and rating walks receive only that chapter's conversation and checkpoint files. Made files and helper evidence are retained before cleanup. Comparisons with the start use that checkpoint, including when a saved run is rechecked.
+
+`skill_needs` and `also_called` hold guide names and deadlines (`first change`, `answer` or an event number). `if_taken` additionally names a `path`; optional `taken_when` assertions establish it automatically. Otherwise verified judge path marks establish applicability, with unsupported paths unknown. Needed parents inherit each deadline. Every turn also needs the main skill, six main guides, `respond-layout` and `act-rightsize`. A needed guide's result parts are checked even without a marked rule.
+
+The new automatic assertions are `words_under` (strict word-count limits by file), `only_replacement` (literal `from`/`to` pairs by file), `unchanged_under` (complete folder snapshots), `index_links` (index file to page folder) and `keeps_lines` (earlier lines retained in order). They use saved checkpoint contents and snapshots. Missing evidence stays unknown; an observed missing required file fails.
+
+[The check library](checks/README.md#historical-and-active-validation) explains the separate historical and active trace-validation gates. Runner unit tests use injected transports for agent, judge and simulated-user calls and make no model calls.

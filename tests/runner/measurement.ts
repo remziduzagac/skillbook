@@ -131,7 +131,7 @@ export function compareConditions(rows: Opportunity[]) {
 }
 export function loadingView(access: AccessTurn, needs: { skill: string; deadline: number | null; origin: string; needed?: boolean | null }[], inventory: string[]) {
   return inventory.map(skill => {
-    const applicable = needs.filter(n => n.skill === skill), deadline = applicable.some(n => n.deadline === null) ? null :
+    const applicable = needs.filter(n => n.skill === skill && n.needed !== false), deadline = applicable.some(n => n.deadline === null) ? null :
       applicable.length ? Math.min(...applicable.map(n => n.deadline!)) : Infinity;
     const records = access.records.filter(r => r.skill === skill);
     return { skill, needed: applicable.some(n => n.needed !== null && n.needed !== false) ? true : applicable.length ? null : false, origins: applicable.map(n => n.origin), deadline,

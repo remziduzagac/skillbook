@@ -1,4 +1,15 @@
 export type Agent = "claude" | "codex";
+export type Deadline = number | "first change" | "answer";
+export interface SkillNeed { skill: string; deadline: Deadline }
+export interface ConditionalNeed extends SkillNeed {
+  path: string;
+  taken_when?: Checks;
+}
+export interface Chapter {
+  number: number;
+  start_turn: number;
+  checkpoint: { fixture: string; overlays?: string[]; remove?: string[] };
+}
 export interface Checks {
   reads?: string[];
   reads_not?: string[];
@@ -10,6 +21,11 @@ export interface Checks {
   only_changed?: string[];
   file_contains?: Record<string, string[]>;
   shorter?: string[];
+  words_under?: Record<string, number>;
+  only_replacement?: Record<string, { from: string; to: string }>;
+  unchanged_under?: string[];
+  index_links?: Record<string, string>;
+  keeps_lines?: string[];
   states_before_change?: boolean | string[];
   answer_contains?: string[];
   answer_not_contains?: string[];
@@ -37,7 +53,9 @@ export interface Rubric {
   depends_on?: { turn: number; check: string };
 }
 export interface Turn {
-  skill_needs?: { skill: string; deadline: number | "first change" | "answer" }[];
+  skill_needs?: SkillNeed[];
+  also_called?: SkillNeed[];
+  if_taken?: ConditionalNeed[];
   rule_marks?: { id: string; applies: boolean; deadline: number | "first change" | "answer"; near_miss?: boolean; missing_piece?: string }[];
   prompt: string;
   purpose?: string;
@@ -53,6 +71,8 @@ export interface CaseFile {
   design?: string;
   source?: string;
   fixture: string;
+  chapters?: Chapter[];
+  gitignore?: string[];
   agents?: Agent[];
   runs?: number;
   pointer?: boolean;
@@ -113,12 +133,14 @@ export interface Observation {
 export interface Options {
   no_skill?: boolean;
   pilot?: boolean;
+  chapter?: number;
   case: string;
   suite?: "short" | "master";
   user_mode?: "fixed" | "simulated";
   judge?: boolean;
   calibration?: string;
   rubric_validation?: string;
+  rubric_book?: string;
   agents: Agent[];
   runs: number;
   model: string[];

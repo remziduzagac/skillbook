@@ -1,3 +1,4 @@
+import { inside, chapterAt } from "./chapters";
 import { resolveCriterion, ruleChecks } from "./rule-checks";
 import Ajv from "ajv";
 import { readFileSync, existsSync } from "node:fs";
@@ -17,6 +18,29 @@ export function validateCase(data: unknown): asserts data is CaseFile {
   const fixture = resolve(FIXTURES, c.fixture);
   if (relative(FIXTURES, fixture).startsWith("..") || !existsSync(fixture))
     throw Error(`no fixture named ${c.fixture}`);
+  if (c.chapters) {
+    if (!c.chapters.length || c.chapters[0]!.start_turn !== 1) throw Error("chapters must start at turn 1");
+    for (const [i, ch] of c.chapters.entries()) {
+      if (ch.number !== i + 1 || !Number.isInteger(ch.start_turn) || ch.start_turn > c.turns.length ||
+        (i > 0 && ch.start_turn <= c.chapters[i - 1]!.start_turn))
+        throw Error("chapters need ordered consecutive numbers and increasing start turns");
+      for (const path of [ch.checkpoint.fixture, ...(ch.checkpoint.overlays ?? [])])
+        if (!existsSync(inside(FIXTURES, path))) throw Error(`no checkpoint fixture named ${path}`);
+      for (const path of ch.checkpoint.remove ?? []) {
+        inside(FIXTURES, path);
+        if (path.split("/").includes(".git")) throw Error("checkpoint removal cannot name .git");
+      }
+    }
+  }
+  for (const turn of c.turns) {
+    for (const need of [...(turn.skill_needs ?? []), ...(turn.also_called ?? []), ...(turn.if_taken ?? [])]) {
+      if (!/^[a-z][a-z0-9-]*$/.test(need.skill) ||
+        typeof need.deadline === "number" && (!Number.isInteger(need.deadline) || need.deadline < 0))
+        throw Error("needs require a guide name and a valid deadline");
+    }
+    for (const need of turn.if_taken ?? []) if (!need.path.trim() || need.taken_when && !Object.keys(need.taken_when).length)
+      throw Error("conditional needs require a path and nonempty taken_when when supplied");
+  }
   if (c.suite) {
     if (!c.goal?.trim() || !c.user?.description.trim() || !Object.keys(c.user.facts).length)
       throw Error("scenario needs a goal, user description and facts");
@@ -48,14 +72,16 @@ export function validateCase(data: unknown): asserts data is CaseFile {
       if (!tagged.id.trim() || !tagged.tag.trim() || ("assert" in tagged ? !Object.keys(tagged.assert).length : !tagged.criterion.trim()))
         throw Error("tagged checks need an id, a tag and a nonempty assertion");
       const dep = tagged.depends_on;
-      if (dep && (!Number.isInteger(dep.turn) || dep.turn < 1 || dep.turn > i || !ids.get(dep.turn)?.has(dep.check)))
+      if (dep && (!Number.isInteger(dep.turn) || dep.turn < 1 || dep.turn > i || !ids.get(dep.turn)?.has(dep.check) ||
+        chapterAt(c, dep.turn)?.number !== chapterAt(c, i + 1)?.number))
         throw Error("dependency must name a check in an earlier turn");
     }
     ids.set(i + 1, current);
   }
   for (const checks of [
     c.checks,
-    ...c.turns.flatMap((t) => [t.checks, ...(t.tagged_checks ?? []).map((x) => x.assert)]),
+    ...c.turns.flatMap((t) => [t.checks, ...(t.tagged_checks ?? []).map((x) => x.assert),
+      ...(t.if_taken ?? []).map(n => n.taken_when)]),
   ].filter(Boolean) as Checks[]) {
     for (const key of [
       "answer_contains",
@@ -70,7 +96,15 @@ export function validateCase(data: unknown): asserts data is CaseFile {
     if (Array.isArray(checks.states_before_change)) for (const p of checks.states_before_change) regex(p);
     for (const p of [...Object.values(checks.file_contains ?? {}), ...Object.values(checks.folder_lacks ?? {})].flat())
       regex(p);
+    for (const limit of Object.values(checks.words_under ?? {}))
+      if (!Number.isInteger(limit) || limit <= 0) throw Error("word bounds must be positive integers");
+    for (const replacement of Object.values(checks.only_replacement ?? {}))
+      if (!replacement.from || replacement.from === replacement.to) throw Error("replacement must change nonempty text");
     for (const p of [
+      ...Object.keys(checks.words_under ?? {}), ...Object.keys(checks.only_replacement ?? {}),
+      ...Object.keys(checks.index_links ?? {}), ...Object.values(checks.index_links ?? {}),
+      ...(checks.keeps_lines ?? []), ...(checks.unchanged_under ?? []),
+      ...Object.keys(checks.written_under ?? {}), ...Object.keys(checks.folder_lacks ?? {}),
       ...(checks.changed ?? []),
       ...(checks.unchanged ?? []),
       ...(checks.removed ?? []),

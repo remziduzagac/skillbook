@@ -27,6 +27,18 @@
         "fixture": {
           "type": "string"
         },
+        "chapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Chapter"
+          }
+        },
+        "gitignore": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "agents": {
           "type": "array",
           "items": {
@@ -130,6 +142,47 @@
       ],
       "additionalProperties": false
     },
+    "Chapter": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "number"
+        },
+        "start_turn": {
+          "type": "number"
+        },
+        "checkpoint": {
+          "type": "object",
+          "properties": {
+            "fixture": {
+              "type": "string"
+            },
+            "overlays": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "remove": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "fixture"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "number",
+        "start_turn",
+        "checkpoint"
+      ],
+      "additionalProperties": false
+    },
     "Agent": {
       "type": "string",
       "enum": [
@@ -195,6 +248,49 @@
           }
         },
         "shorter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "words_under": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "only_replacement": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "unchanged_under": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "index_links": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "keeps_lines": {
           "type": "array",
           "items": {
             "type": "string"
@@ -285,32 +381,19 @@
         "skill_needs": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "skill": {
-                "type": "string"
-              },
-              "deadline": {
-                "anyOf": [
-                  {
-                    "type": "number"
-                  },
-                  {
-                    "type": "string",
-                    "const": "first change"
-                  },
-                  {
-                    "type": "string",
-                    "const": "answer"
-                  }
-                ]
-              }
-            },
-            "required": [
-              "skill",
-              "deadline"
-            ],
-            "additionalProperties": false
+            "$ref": "#/definitions/SkillNeed"
+          }
+        },
+        "also_called": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkillNeed"
+          }
+        },
+        "if_taken": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConditionalNeed"
           }
         },
         "rule_marks": {
@@ -381,6 +464,60 @@
       },
       "required": [
         "prompt"
+      ],
+      "additionalProperties": false
+    },
+    "SkillNeed": {
+      "type": "object",
+      "properties": {
+        "skill": {
+          "type": "string"
+        },
+        "deadline": {
+          "$ref": "#/definitions/Deadline"
+        }
+      },
+      "required": [
+        "skill",
+        "deadline"
+      ],
+      "additionalProperties": false
+    },
+    "Deadline": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "const": "first change"
+        },
+        {
+          "type": "string",
+          "const": "answer"
+        }
+      ]
+    },
+    "ConditionalNeed": {
+      "type": "object",
+      "properties": {
+        "skill": {
+          "type": "string"
+        },
+        "deadline": {
+          "$ref": "#/definitions/Deadline"
+        },
+        "path": {
+          "type": "string"
+        },
+        "taken_when": {
+          "$ref": "#/definitions/Checks"
+        }
+      },
+      "required": [
+        "deadline",
+        "path",
+        "skill"
       ],
       "additionalProperties": false
     },

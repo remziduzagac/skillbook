@@ -1,24 +1,32 @@
 import { parseArgs } from "node:util";
 import { judgeTimeout } from "./runner/judge-options";
-import { mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { requireCalibration } from "./runner/calibration";
-import { rubricFixtures, resolveRubricTrace, validateRubricFixtures, rubricFixtureHash } from "./runner/rubric-fixtures";
+import { rubricFixtures, resolveRubricTrace, validateRubricFixtures, rubricFixtureHash, activeRubricBook, rubricCandidates } from "./runner/rubric-fixtures";
+import { loadCases } from "./runner/cases";
 import { JUDGING_RULES } from "./runner/judgment-policy";
 import { structuredCall } from "./runner/scenario";
 import { ownLogin, agentEnv } from "./runner/files";
 import { endRun } from "./runner/process";
 import type { Event } from "./runner/types";
 const { values, positionals } = parseArgs({ args: Bun.argv.slice(2), allowPositionals: true, options: {
+  book: { type: "string" }, historical: { type: "boolean" },
   login: { type: "boolean", default: false }, "judge-timeout": { type: "string" },
 } });
 const [output, calibration] = positionals;
 const timeout = judgeTimeout(values["judge-timeout"]);
 if (!output || !values.login)
-  throw Error("usage: bun tests/check-rubric-fixtures.ts OUTPUT CALIBRATION --login [--judge-timeout SECONDS]");
+  throw Error("usage: bun tests/check-rubric-fixtures.ts OUTPUT CALIBRATION --login (--book FILE | --historical) [--judge-timeout SECONDS]");
+if (!values.book && !values.historical) throw Error("choose --book FILE for active validation or --historical");
+if (values.book && values.historical) throw Error("choose one rubric scope");
+const activeData = values.book ? JSON.parse(readFileSync(values.book, "utf8")) : undefined;
+const activeIds = new Set<string>(activeData?.checks?.map((r: Event) => r.case) ?? []);
+const activeCases = values.book ? loadCases().filter(c => activeIds.has(c.id)) : undefined;
+const selectedBook = values.book ? activeRubricBook(values.book, activeCases!) : rubricFixtures;
 const humanCalibration = requireCalibration(calibration);
-validateRubricFixtures();
+validateRubricFixtures(selectedBook, activeCases);
 const root = mkdtempSync(join(tmpdir(), "skillbook-rubrics-")), groups: number[] = [];
 let known = 0, unknown = 0, next = 0;
 try {
@@ -31,7 +39,7 @@ try {
     known += amount ?? 0; unknown += Number(amount === null);
   });
   const byTurn = new Map<string, typeof rubricFixtures.checks>();
-  for (const check of rubricFixtures.checks) {
+  for (const check of selectedBook.checks) {
     const key = `${check.case}:${check.turn}`;
     const rows = byTurn.get(key) ?? []; rows.push(check); byTurn.set(key, rows);
   }
@@ -39,10 +47,10 @@ try {
   async function worker() {
     while (next < units.length) {
       const [key, checks] = units[next++]!, candidates: Record<string, Event> = {}, labels: Event[] = [];
-      for (const row of checks) for (const [ref, expected] of [[row.positive, true], [row.negative, false]] as const) {
+      for (const row of checks) for (const {ref, expected} of rubricCandidates(selectedBook).filter(c => c.check === `${row.case}:${row.turn}:${row.id}`)) {
         const id = `candidate-${labels.length + 1}`;
-        candidates[id] = { criterion: row.criterion, evidence: resolveRubricTrace(ref) };
-        labels.push({ id, expected, check: `${row.case}:${row.turn}:${row.id}` });
+        candidates[id] = { criterion: row.criterion, evidence: resolveRubricTrace(ref, selectedBook) };
+        labels.push({ id, ref, expected, check: `${row.case}:${row.turn}:${row.id}` });
       }
       try {
         const response = await call(
@@ -60,8 +68,8 @@ try {
           results.push({ ...label, judgment, matches: judgment.verdict === label.expected });
         }
       } catch (error) { results.push({ unit: key, error: String(error), matches: false }); }
-      writeFileSync(output, JSON.stringify({ model: "gpt-6.1-sol", fixture_hash: rubricFixtureHash(), humanCalibration, known_cost: known, unknown_cost_calls: unknown,
-        expected_judgments: rubricFixtures.checks.length * 2, results }, null, 2) + "\n");
+      writeFileSync(output, JSON.stringify({ model: "gpt-6.1-sol", fixture_hash: rubricFixtureHash(selectedBook), humanCalibration, known_cost: known, unknown_cost_calls: unknown,
+        expected_judgments: rubricCandidates(selectedBook).length, results }, null, 2) + "\n");
     }
   }
   console.log("Rubric fixtures only: known-cost scheduling is unavailable for Sol; actual cost remains unknown.");

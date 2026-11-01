@@ -1,6 +1,6 @@
 import { finalAnswer } from "./answers";
 import { readFileSync, existsSync, statSync, realpathSync, readdirSync } from "node:fs";
-import { join, resolve, relative } from "node:path";
+import { join, resolve, relative, posix } from "node:path";
 import { tmpdir } from "node:os";
 import { matches, regex } from "./regex";
 import { skillFiles, walk } from "./inventory";
@@ -130,8 +130,71 @@ export function check(
     for (const pattern of patterns) out[`${p} keeps /${pattern}/`] = matches(pattern, result.files?.[p] ?? "");
   for (const p of checks.shorter ?? []) {
     const text = result.files?.[p],
-      original = fixture ? readFileSync(join(FIXTURES, fixture, p), "utf8") : "";
-    out[`${p} shorter`] = text != null && text.length < original.length;
+      original = result.baseline_files ? result.baseline_files[p] :
+        fixture ? readFileSync(join(FIXTURES, fixture, p), "utf8") : undefined;
+    out[`${p} shorter`] = text == null || original == null ? null : text.length < original.length;
+  }
+  const baseline = (p: string): string | undefined => {
+    if (result.baseline_files) return result.baseline_files[p];
+    try { return fixture ? readFileSync(join(FIXTURES, fixture, p), "utf8") : undefined; }
+    catch { return undefined; }
+  };
+  const availableFile = (p: string) => result.files?.[p] != null &&
+    !/^\((?:content withheld:|binary file,|symlink to )/.test(result.files[p]!);
+  const missingFile = (p: string) => result.project_snapshot && !(p in result.project_snapshot) ? false : null;
+  for (const [p, limit] of Object.entries(checks.words_under ?? {})) {
+    const text = availableFile(p) ? result.files![p] : null;
+    out[`${p} has fewer than ${limit} words`] = text == null ? missingFile(p) :
+      (text.trim() ? text.trim().split(/\s+/u).length : 0) < limit;
+  }
+  for (const [p, replacement] of Object.entries(checks.only_replacement ?? {})) {
+    const before = baseline(p), after = result.files?.[p];
+    out[`${p} changes only ${JSON.stringify(replacement.from)} to ${JSON.stringify(replacement.to)}`] =
+      before == null || !availableFile(p) ? missingFile(p) : before.includes(replacement.from) &&
+        before !== after && after === before.split(replacement.from).join(replacement.to);
+  }
+  for (const folder of checks.unchanged_under ?? []) {
+    const prefix = folder.replace(/\/$/, "") + "/";
+    const before = result.baseline_snapshot, after = result.project_snapshot;
+    out[`every file under ${folder} unchanged`] = !before || !after ? null :
+      Object.keys(before).some(p => p.startsWith(prefix)) && [...new Set([...Object.keys(before), ...Object.keys(after)])].filter(p => p.startsWith(prefix))
+        .every(p => before[p] === after[p]);
+  }
+  for (const [index, folder] of Object.entries(checks.index_links ?? {})) {
+    const text = availableFile(index) ? result.files![index] : null, snapshot = result.project_snapshot;
+    const prefix = folder.replace(/\/$/, "") + "/";
+    const key = `${index} links reach every page under ${folder}`;
+    if (text == null || !snapshot) { out[key] = missingFile(index); continue; }
+    const markdown = text.replace(/<!--[\s\S]*?-->/g, "")
+      .replace(/^ {0,3}(`{3,}|~{3,})[^\n]*\n[\s\S]*?^ {0,3}\1[^\n]*$/gm, "")
+      .replace(/(`+)[^`]*?\1/g, "");
+    const references = new Map([...markdown.matchAll(/^\s{0,3}\[([^\]]+)\]:\s*<?([^\s>]+)>?/gm)]
+      .map(m => [m[1]!.toLowerCase(), m[2]!]));
+    const body = markdown.replace(/!\[[^\]]*\](?:\([^)]*\)|\[[^\]]*\])?/g, "")
+      .replace(/^\s{0,3}\[[^\]]+\]:[^\n]*$/gm, "")
+      .replace(/^(?: {4}|\t)[^\n]*$/gm, "");
+    const destinations = [...body.matchAll(/(?<!!)\[[^\]]*\]\(<?([^\s)>]+)>?(?:\s+["'][^"']*["'])?\)/g)]
+      .map(m => m[1]!);
+    for (const m of body.matchAll(/(?<!!)\[([^\]]+)\](?:\[([^\]]*)\])?(?!\()/g)) {
+      const ref = references.get((m[2] || m[1]!).toLowerCase());
+      if (ref) destinations.push(ref);
+    }
+    const reached = new Set(destinations.flatMap(href => {
+      if (/^(?:[a-z]+:|\/)/i.test(href)) return [];
+      try { return [posix.normalize(posix.join(posix.dirname(index), decodeURIComponent(href.split(/[?#]/)[0]!)))]; }
+      catch { return []; }
+    }));
+    const pages = Object.keys(snapshot).filter(p => p.startsWith(prefix) && p !== index && /\.md$/i.test(p));
+    out[key] = pages.length > 0 && pages.every(p => reached.has(p));
+  }
+  for (const p of checks.keeps_lines ?? []) {
+    const before = baseline(p), after = result.files?.[p];
+    let position = 0;
+    const lines = after?.split("\n") ?? [];
+    out[`${p} keeps its earlier lines`] = before == null || !availableFile(p) ? missingFile(p) :
+      before.replace(/\n$/, "").split("\n").every(line => {
+        const found = lines.indexOf(line, position); position = found + 1; return found >= 0;
+      });
   }
   for (const [folder, least] of Object.entries(checks.written_under ?? {}))
     out[`at least ${least} files written under ${folder}`] = paths.filter((p) => p.startsWith(folder)).length >= least;

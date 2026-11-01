@@ -96,6 +96,8 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
     for (const r of runs) {
       lines.push(`- run ${r.run}: ${runStatus(r)}`);
       if (r.error) lines.push(`- error: ${r.error}`);
+      if (r.unreached_turns?.length) lines.push("- turns not run: " + r.unreached_turns.map((t: Event) =>
+        `${t.turn}${t.chapter ? ` (chapter ${t.chapter})` : ""}`).join(", "));
       if (r.changes?.length) lines.push(`- changed: ${r.changes.join(", ")}`);
       for (const [name, value] of Object.entries(r.checks ?? {}))
         lines.push(`- ${name}: ${value === null ? "0 of 1; 1 unknown" : value ? "1 of 1" : "0 of 1"}`);
@@ -108,7 +110,7 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
         for (const item of r.review) lines.push(`- [ ] ${item}`);
       }
       for (const [i, t] of (r.turns ?? []).entries()) {
-        lines.push("", `Run ${r.run}, turn ${i + 1}, final answer:`, "", t.final_answer ?? t.answer ?? "(No answer.)");
+        lines.push("", `Run ${r.run}, turn ${t.turn ?? i + 1}${t.chapter ? ` (chapter ${t.chapter})` : ""}, final answer:`, "", t.final_answer ?? t.answer ?? "(No answer.)");
         lines.push("", "Scripted message: " + (t.scripted_message ?? ""),
           "Sent message: " + (t.sent_message ?? ""), "Steered: " + String(t.steered ?? false));
         if (t.fit) lines.push("Fit: " + JSON.stringify(t.fit));

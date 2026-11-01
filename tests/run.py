@@ -342,11 +342,13 @@ def aspects():
                 continue
             top = re.match(r"^(?:\d+\.|-) (.*)", line)
             if top and section in SECTION_KINDS:
-                index += 1
+                number = re.match(r"^(\d+)\.", line)
+                index = int(number.group(1)) if number else index + 1
                 found[f"{name}:{SECTION_KINDS[section]}:{index}"] = summary_of(top.group(1))
             elif top and section == "Instructions":
                 route = re.search(r"\(`([a-z][a-z0-9-]*)`\)", top.group(1))
-                index += 1
+                number = re.match(r"^(\d+)\.", line)
+                index = int(number.group(1)) if number else index + 1
                 current = route.group(1) if route else f"step-{index}"
                 key = f"route:{current}" if route else f"step:{index}"
                 found[f"{name}:{key}"] = summary_of(top.group(1))
@@ -809,8 +811,7 @@ TARGET_KEYS = ("command", "file_path", "path", "pattern", "url")
 
 def agents_started(agent, events):
     """How many agents the main agent started with a call that did not fail: Claude's Agent or Task tool with a
-    successful result, or Codex collaboration calls: one that spawns an agent, or the distinct agents the calls name.
-    A Codex wait that names no agent starts nothing and does not count."""
+    successful result, or successful Codex spawn calls. Waiting for a named helper does not establish its start."""
     count = 0
     if agent == "claude":
         failed = {b.get("tool_use_id") for e in (e for turn in events for e in turn) for b in message_blocks(e)
@@ -822,16 +823,9 @@ def agents_started(agent, events):
                 count += sum(b.get("type") == "tool_use" and b.get("name") in {"Agent", "Task"}
                              and b.get("id") in answered - failed for b in message_blocks(e))
     else:
-        named, spawns = set(), 0
-        for e in (e for turn in events for e in turn):
-            item = e.get("item", {})
-            if (e.get("type") == "item.completed" and item.get("type") == "collab_tool_call"
-                    and item.get("status") != "failed"):
-                spawns += "spawn" in str(item.get("tool", ""))
-                ids = item.get("receiver_thread_ids")
-                if isinstance(ids, list):
-                    named.update(str(i) for i in ids if i)
-        count = max(spawns, len(named))
+        count = sum(e.get("type") == "item.completed" and e.get("item", {}).get("type") == "collab_tool_call"
+                    and e["item"].get("status") == "completed" and "spawn" in str(e["item"].get("tool", ""))
+                    for turn in events for e in turn)
     return count
 
 

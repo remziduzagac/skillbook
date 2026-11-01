@@ -1,8 +1,8 @@
 # Rule and result checks
 
-D278 checks for evidence claims, approved work, open intent and useful final reporting. The YAML files are JSON-form YAML. Each freezes a positional coverage id, source file, line and full source block. Loading rejects absent ids and changed source text. Update checks and affected scenarios together when a rule changes.
+D278 checks for evidence claims, approved work, open intent and useful final reporting. The YAML files are JSON-form YAML. Each freezes a coverage id using the number displayed in the guide, source file, line and full source block. Loading rejects absent ids and changed source text. Update checks and affected scenarios together when a rule changes.
 
-Scenario criteria beginning with `check:` resolve through the definition's key. Other criteria still run unchanged. The migrated criteria retain their calibration wording. Measurement also supplies the full source rule to the outcome batch. Coverage declarations are not observed passes.
+Scenario criteria beginning with `check:` resolve through the definition's key. Other criteria still run unchanged. The current definitions follow the current guide text. Historical trace judgments do not validate rewritten criteria. Measurement also supplies the full source rule to the outcome batch. Coverage declarations are not observed passes.
 
 Definitions declare `always`, `scenario`, `action` or `claim` applicability. A single per-turn inventory combines author labels, recorded actions and verified claim/mark evidence before outcome judging. Checks of the same rule become parts of one opportunity, using its earliest deadline. `no_skill_eligible: true` includes a check in matched comparisons. Result definitions validate their source mappings; named alternative groups require one applicable return, with other alternatives excluded when a verified return supplies it.
 
@@ -21,3 +21,17 @@ Unknown applicability, unsupported shell effects, unproved context retention and
 Routing notes are diagnostic hints beside each grid opportunity. The runner retains ordered Codex reasoning summaries, Claude thinking blocks and existing progress messages between tool calls. Final answers and helper thinking are excluded. Redacted thinking has no usable text. A name, file or literal phrase from the frozen rule label before its deadline yields `considered`; otherwise the report says `not mentioned` or `no thinking available`. Quotes keep source and event/block order, with late and unplaced mentions separate. Summaries can omit the relevant thought, and paraphrases can escape the literal matcher. A hint proves neither a decision nor loading. These notes never enter judge evidence or change scores, grid cells or loading labels.
 
 Every Codex test home uses `model_reasoning_summary = "auto"`, in both installed and no-skill conditions. Runs retain their thinking settings for comparison. The pinned [0.163.0 configuration schema](https://github.com/openai/codex/blob/rust-v0.163.0/codex-rs/core/config.schema.json) defines this key; the [exec JSON writer](https://github.com/openai/codex/blob/rust-v0.163.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs) emits nonempty summaries as reasoning items. Enabling summaries does not guarantee that the model returns one. Missing text stays `no thinking available`.
+
+## Chapters and evidence
+
+Chaptered cases restore a checkpoint before every working session. Needed-guide labels include `skill_needs`, `also_called` and conditional `if_taken` paths. Parents inherit deadlines. Conditional labels use `taken_when` assertions or verified path marks; unsupported path applicability stays unknown. The main skill, six main guides, `respond-layout` and `act-rightsize` are always needed. Result parts are selected from needed-guide labels as well as rule opportunities.
+
+A wait call naming a helper does not count as an observed start. Helper records preserve each observed start, brief, returned result, freshness and end separately. A returned report does not establish a fresh start or disposal. Unsupported helper actions and missing lifecycle fields stay unknown.
+
+## Historical and active validation
+
+The frozen `tests/calibration/scenario-traces.json` book resolves and validates independently of executable cases. It remains historical evidence. `bun tests/check-rubric-fixtures.ts OUTPUT CALIBRATION --historical --login` explicitly selects it.
+
+Active scoring requires a separate book with `scope: active`, selected with `--rubric-book FILE` in the runner and saved-answer judge. The fixture validator selects it with `--book FILE`. Its criteria must match the selected current cases. Positive, alternative and negative trace references must be distinct. Every allowed alternative requires its own successful judgment. Active report hashes include the book and current rule/result definitions. A historical report cannot enable active scoring. No active book or model validation is supplied by the runner unit tests.
+
+Active trace books can supply `chapter_sources`, keyed by `case:chapter`, for checkpoint-specific source files. Trace history cannot cross a case or chapter. Rechecking uses saved chapter checkpoints and global turn numbers. Retired case selectors fail before output creation or model calls; historical rechecking requires the tagged checkout.

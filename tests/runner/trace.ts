@@ -45,15 +45,8 @@ export function agents_started(agent: Agent, events: Event[][]) {
         0,
       );
   }
-  let spawns = 0;
-  const named = new Set();
-  for (const e of all)
-    if (e.type === "item.completed" && e.item?.type === "collab_tool_call" && e.item.status !== "failed") {
-      spawns += Number(String(e.item.tool ?? "").includes("spawn"));
-      if (Array.isArray(e.item.receiver_thread_ids))
-        for (const id of e.item.receiver_thread_ids) if (id) named.add(String(id));
-    }
-  return Math.max(spawns, named.size);
+  return all.filter(e => e.type === "item.completed" && e.item?.type === "collab_tool_call" &&
+    e.item.status === "completed" && String(e.item.tool ?? "").includes("spawn")).length;
 }
 export function agents_unseen(agent: Agent, events: Event[][], unexplained = false) {
   return agent === "codex" && (unexplained || events.flat().some((e) => e.item?.type === "collab_tool_call"));
@@ -72,6 +65,7 @@ export function action_evidence(agent: Agent, events: Event[]) {
         if (b.type === "tool_use") {
           const action: Event = { tool: b.name, id: b.id ?? null, status: outcomes[b.id] ?? "unknown" };
           for (const k of TARGET_KEYS) if (k in (b.input ?? {})) action[k] = b.input[k];
+          if (["Agent", "Task"].includes(b.name)) action.input = b.input ?? null;
           actions.push(action);
         }
     } else if (agent === "codex" && ["item.started", "item.completed"].includes(e.type)) {
@@ -79,7 +73,7 @@ export function action_evidence(agent: Agent, events: Event[]) {
       if (["agent_message", "reasoning"].includes(item.type)) continue;
       const action: Event = { ...(item.id ? { id: item.id } : {}), tool: item.type ?? null, phase: e.type };
       if (item.type === "collab_tool_call") {
-        for (const k of ["receiver_thread_ids", "agents_states", "status"]) if (k in item) action[k] = item[k];
+        for (const k of ["receiver_thread_ids", "sender_thread_id", "agents_states", "status", "prompt", "fork_context"]) if (k in item) action[k] = item[k];
         action.call = item.tool ?? null;
       } else for (const k of ["command", "exit_code", "changes", "server", "tool"]) if (k in item) action[k] = item[k];
       actions.push(action);

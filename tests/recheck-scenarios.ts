@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync, mkdirSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { loadCases } from "./runner/cases";
-import { recheckScenario } from "./runner/recheck";
+import { recheckScenario, requireSavedCases } from "./runner/recheck";
 import { summarize } from "./runner/reports";
 import { scoreRuns } from "./runner/scoring";
 const [source, output] = Bun.argv.slice(2);
@@ -9,6 +9,7 @@ if (!source || !output || source === output) throw Error("usage: bun tests/reche
 const cases = new Map(loadCases().map(c => [c.id, c]));
 const original = existsSync(join(source, "summary.json")) ? JSON.parse(readFileSync(join(source, "summary.json"), "utf8")) :
   readdirSync(source).filter(p => /^run-\d+\.json$/.test(p)).map(p => JSON.parse(readFileSync(join(source, p), "utf8")));
+requireSavedCases(original, cases);
 const runs = original.map((r: any) => recheckScenario(r, cases.get(r.case)!));
 mkdirSync(output, { recursive: true });
 writeFileSync(join(output, "summary.json"), JSON.stringify(runs, null, 2) + "\n");

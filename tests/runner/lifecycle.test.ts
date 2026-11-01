@@ -100,7 +100,12 @@ test("tag scores exclude unknown and not reached and retain a 95 percent interva
   ).toEqual([{ id: "b", tag: "habit", verdict: "not reached" }]);
 });
 test("YAML is validated before filtering and unknown checks fail", () => {
-  expect(loadCases("route-").length).toBe(62);
+  temporary(root => {
+    writeFileSync(join(root, "route-test.yaml"), Bun.YAML.stringify({ fixture: "routing-studio",
+      routing_only: true, checks: { reads: ["act"] }, turns: [{ prompt: "Inspect" }] }));
+    expect(loadCases("route-", root)).toHaveLength(1);
+    expect(loadCases("missing", root)).toHaveLength(0);
+  });
   expect(() => validateCase({ fixture: "routing-studio", turns: [{ prompt: "x" }], checks: { reed: [] } })).toThrow();
   expect(() => validateCase({ fixture: "routing-studio", turns: [] })).toThrow();
 });
@@ -170,7 +175,7 @@ test("agent adapters preserve sandbox and resume controls", async () => {
 test("aspect inventory includes routes, exclusions and project checks", async () => {
   const { aspects } = await import("./inventory");
   const inventory = aspects();
-  for (const id of ["act:rule:5", "act:route:act-rightsize", "essentials:step:1", "skillbook-design:check:13"])
+  for (const id of ["act:rule:5", "act:step:4", "essentials:step:1", "skillbook-design:check:13"])
     expect(inventory[id]).toBeDefined();
 });
 

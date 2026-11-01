@@ -94,8 +94,8 @@ export function scenarioReliability(runs: any[]) {
       const rows = new Map<string, Verdict>();
       for (const [i, turn] of run.turns.entries()) {
         for (const row of [...(turn.tagged_checks ?? []), ...(turn.judgments ?? [])])
-          rows.set(`${i + 1}:${row.id}`, row.verdict);
-        for (const row of turn.rubric_pending ?? []) rows.set(`${i + 1}:${row.id}`, null);
+          rows.set(`${turn.turn ?? i + 1}:${row.id}`, row.verdict);
+        for (const row of turn.rubric_pending ?? []) rows.set(`${turn.turn ?? i + 1}:${row.id}`, null);
       }
       for (const row of run.unreached_turn_checks ?? []) rows.set(row.turn ? `${row.turn}:${row.id}` : `unlocated:${row.id}`, row.verdict);
       for (const row of run.run_checks ?? []) rows.set(`run:${row.id}`, row.verdict);

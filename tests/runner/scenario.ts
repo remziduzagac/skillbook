@@ -1,3 +1,4 @@
+import { chapterAt } from "./chapters";
 import { ruleChecks } from "./rule-checks";
 import { verified } from "./measurement";
 import { MARKER } from "./paths";
@@ -47,13 +48,17 @@ export function structuredCall(
   };
 }
 
-export async function simulate(call: StructuredCall, c: Case, index: number, history: Event[]) {
+export async function simulate(call: StructuredCall, c: Case, index: number, history: Event[], sources: Record<string, string> = {}) {
   const result = await call(
     'Play the user. Return {"message":string,"steered":boolean}. Start from the current fixed message; ' +
     "keep its purpose and the script's turn count and order. Change only what the actual agent reply needs. " +
     "Answer questions using only the facts sheet and description. Steer back when needed without mentioning a test. " +
     "Add no facts, requests or approvals beyond the description and facts. If it already fits, send it unchanged.",
-    { goal: c.goal, user: c.user ? { description: c.user.description, facts: c.user.facts } : undefined, script: c.turns.map(t => ({ prompt: t.prompt, purpose: t.purpose })), index,
+    { goal: c.goal, user: c.user ? { description: c.user.description, facts: c.user.facts } : undefined, script: c.turns.flatMap((t, i) => {
+      const chapter = chapterAt(c, index + 1);
+      return !chapter || chapterAt(c, i + 1)?.number === chapter.number ? [{ prompt: t.prompt, purpose: t.purpose }] : [];
+    }), index: c.chapters ? index + 1 - chapterAt(c, index + 1)!.start_turn : index,
+      turn: index + 1, sources,
       history: history.map(t => ({ scripted_message: t.scripted_message, sent_message: t.sent_message,
         answer: t.answer ?? t.final_answer })),
     },
@@ -86,8 +91,10 @@ export async function rubricJudge(call: StructuredCall, request: JudgeRequest): 
 
 export function judgeEvidence(turns: Event[], sources: Record<string, string> = {}) {
   const keys = ["scripted_message", "sent_message", "final_answer", "between_tools", "actions", "file_diffs",
-    "trace_complete", "agents_started", "agents_unseen", "reads", "changes", "files", "paths_present", "fresh_session"];
-  return { sources, current_turn: turns.length, progress_role: "unscored evidence", turns: turns.map(t => Object.fromEntries(keys.filter(k => k in t).map(k => [k, t[k]]))) };
+    "trace_complete", "agents_started", "agents_unseen", "reads", "changes", "files", "paths_present", "fresh_session", "helpers", "turn", "chapter"];
+  const chapter = turns.at(-1)?.chapter;
+  const visible = chapter === undefined ? turns : turns.filter(t => t.chapter === chapter);
+  return { sources, current_turn: turns.at(-1)?.turn ?? turns.length, progress_role: "unscored evidence", turns: visible.map(t => Object.fromEntries(keys.filter(k => k in t).map(k => [k, t[k]]))) };
 }
 
 export async function rubricBatch(call: StructuredCall, requests: JudgeRequest[]): Promise<JudgeResult[]> {

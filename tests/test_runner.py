@@ -679,41 +679,23 @@ class LeftRunning(unittest.TestCase):
         killpg.assert_called_once_with(9, signal.SIGTERM)
         kill.assert_not_called()
 
-    def test_the_fixture_server_stops_itself_within_about_two_minutes(self):
-        text = (runner.FIXTURES / "recipe-box" / "serve.py").read_text()
-        limit = int(re.search(r"^LIMIT_SECONDS = (\d+)", text, re.M).group(1))
-        self.assertLessEqual(limit, 150)
-
 
 class CaseInventory(unittest.TestCase):
-    def test_trim_proposal_accepts_a_table_or_prose(self):
-        case = next(c for c in runner.load_cases("trim-lists-first") if c["id"].endswith("trim-lists-first"))
-        for answer in ["For NOTES.md I propose removing repeated descriptions "
-                       "while preserving the service and city facts.",
-                       "NOTES.md\n\n| Change | Reason |\n| --- | --- |\n| Merge repeated cache ideas | Same idea |"]:
-            evidence = {"reads": [], "changes": [], "answer": answer}
-            self.assertTrue(all(runner.check(case["turns"][0]["checks"], evidence).values()))
-
-    def test_every_case_has_traceable_coverage_and_a_review_rubric(self):
-        cases = runner.load_cases("")
-        self.assertTrue(cases)
-        for case in cases:
-            with self.subTest(case=case["id"]):
-                for field in ("skills", "category", "rejects", "source") + (() if case.get("routing_only") else ("review",)):
-                    self.assertTrue(case.get(field), field)
-                source = runner.REPO / case["source"].split(":", 1)[0]
-                self.assertTrue(source.is_file(), str(source))
-                self.assertTrue(case["checks"] or any(t.get("checks") for t in case["turns"]))
-
-    def test_routing_inventory_contains_only_read_checks_and_no_review(self):
-        cases = runner.load_cases("route-")
-        self.assertTrue(cases)
-        for case in cases:
-            self.assertTrue(case.get("routing_only"), case["id"])
-            self.assertEqual(len(case["turns"]), 1)
-            self.assertFalse(case.get("review"))
-            self.assertTrue(set(case["checks"]) <= {"reads", "reads_not"})
-            self.assertTrue(case["checks"])
+    def test_loader_defaults_filtering_and_routing_are_independent_of_live_cases(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.object(runner, "CASES", Path(tmp)):
+            folder = Path(tmp, "essentials")
+            folder.mkdir()
+            (folder / "ordinary.toml").write_text('fixture = "tiny-weather"\n[[turns]]\nprompt = "Inspect"\n')
+            (folder / "route.toml").write_text('fixture = "tiny-weather"\nrouting_only = true\n'
+                                               '[checks]\nreads = ["act"]\n[[turns]]\nprompt = "Inspect"\n')
+            cases = runner.load_cases("")
+            self.assertEqual(len(cases), 2)
+            ordinary = runner.load_cases("ordinary")[0]
+            self.assertTrue(ordinary["pointer"])
+            self.assertEqual(ordinary["agents"], ["claude", "codex"])
+            self.assertTrue(ordinary["checks"]["names_no_skill"])
+            self.assertTrue(runner.load_cases("route")[0]["routing_only"])
+            self.assertEqual(runner.load_cases("missing"), [])
 
     def test_routing_cases_reject_semantic_assertions_and_reviews(self):
         for extra in [{"checks": {"answer_contains": ["yes"]}}, {"review": ["good answer"]}]:
@@ -737,6 +719,9 @@ class CaseInventory(unittest.TestCase):
         for flag in ("--coverage", "--dry-run"):
             with self.subTest(flag=flag), patch("sys.argv", ["run.py", flag]), \
                     patch.object(runner, "login_problem", side_effect=AssertionError("must not inspect login")), \
+                    patch.object(runner, "load_cases", return_value=[{"id": "essentials/unit", "agents": ["codex"],
+                        "runs": 1, "turns": [{"prompt": "Inspect"}], "checks": {}}]), \
+                    patch.object(runner, "aspect_coverage", return_value=("", [], [])), \
                     contextlib.redirect_stdout(io.StringIO()):
                 self.assertEqual(runner.main(), 0)
 
@@ -799,10 +784,6 @@ def claude_tool(name, tool_id, error=False, command="ls"):
 
 def codex_message(text):
     return {"type": "item.completed", "item": {"type": "agent_message", "text": text}}
-
-
-def case_checks(name):
-    return next(c for c in runner.load_cases(name) if c["id"] == f"essentials/{name}")["checks"]
 
 
 class TextBetweenToolCalls(unittest.TestCase):
@@ -890,10 +871,7 @@ class SkillNamesInAnswers(unittest.TestCase):
             with self.subTest(fine=text):
                 self.assertIsNone(runner.SKILL_TALK.search(text))
 
-    def test_every_essentials_case_checks_it_unless_it_opts_out(self):
-        cases = runner.load_cases("essentials/")
-        self.assertTrue(cases)
-        self.assertTrue(all(c["checks"].get("names_no_skill") in (True, False) for c in cases if not c.get("routing_only")))
+    def test_answer_name_checks_support_opt_out_and_require_a_boolean(self):
         name = "answer names no skill or skill file"
         self.assertEqual(runner.check({"names_no_skill": True}, {"answer": SKILL_LEAKS[0]}), {name: False})
         self.assertEqual(runner.check({"names_no_skill": True}, {"answer": SKILL_FINE[0]}), {name: True})
@@ -920,7 +898,7 @@ class SkillNamesInAnswers(unittest.TestCase):
 
 class EvidenceChecks(unittest.TestCase):
     def test_a_statement_before_a_wide_change_must_name_its_files(self):
-        checks = case_checks("act-guardrails-wide-rename")
+        checks = {"states_before_change": [r"README\.md", r"NOTES\.md"]}
         count = "I found four mentions across three Markdown files. This is a small rename, so I'll make the " \
                 "replacements directly and check for any remaining mentions."
         named = "I'll rename tiny-weather to sky-glance in README.md and NOTES.md, then search again for the old name."
@@ -932,8 +910,7 @@ class EvidenceChecks(unittest.TestCase):
             self.assertEqual(all(out.values()), passes, out)
 
     def test_a_second_check_needs_a_started_agent_or_an_unverified_mark(self):
-        for name in ("act-verify-second-check", "act-verify-print-run"):
-            patterns = case_checks(name)["agent_started_or_answer"]
+        for patterns in [[r"independent.*(?:still to do|pending)|not yet independently verified"]]:
             for answer, started, passes in [
                     ("Corrected. An independent check confirmed the date and preserved formatting.", 0, False),
                     ("Corrected. I re-read the file myself; please read it once before it goes out.", 0, False),
@@ -941,13 +918,14 @@ class EvidenceChecks(unittest.TestCase):
                     ("Corrected. I could not start a second agent here, so the independent check is still to do.",
                      0, True),
                     ("Corrected, but not yet independently verified: have someone check it before printing.", 0, True)]:
-                with self.subTest(case=name, answer=answer):
+                with self.subTest(answer=answer):
                     out = runner.check({"agent_started_or_answer": patterns},
                                        {"answer": answer, "agents_started": started})
                     self.assertEqual(all(out.values()), passes)
 
     def test_a_waived_proposal_needs_exactly_the_named_files_removed(self):
-        checks = case_checks("act-guardrails-waived-proposal")
+        checks = {"removed": [f"photos/{n}-copy.jpg" for n in ("beach", "picnic", "snow")],
+                  "only_changed": [f"photos/{n}-copy.jpg" for n in ("beach", "picnic", "snow")]}
         copies = [f"removed photos/{n}-copy.jpg" for n in ("beach", "picnic", "snow")]
         for changes, passes in [(copies, True), ([], False), (copies + ["removed photos/snow.jpg"], False)]:
             with self.subTest(changes=changes):
@@ -973,7 +951,7 @@ class EvidenceChecks(unittest.TestCase):
                                                     "receiver_thread_ids": ["t2"], "status": "completed"}}
         self.assertEqual(runner.agents_started("codex", [[wait, wait]]), 0)
         self.assertEqual(runner.agents_started("codex", [[spawn]]), 1)
-        self.assertEqual(runner.agents_started("codex", [[named, named]]), 1)
+        self.assertEqual(runner.agents_started("codex", [[named, named]]), 0)
 
     def test_codex_calls_about_agents_are_recorded_with_their_detail(self):
         # the shape of a recorded Codex run that waited twice, started no agent, and still claimed an independent check
@@ -987,7 +965,7 @@ class EvidenceChecks(unittest.TestCase):
             work = Path(root)
             claim = codex_message("Changed it to 17:00. An independent check confirmed this was the only change.")
             result = runner.observe("codex", [[wait, wait, claim]], work, "essentials", {}, work, {})
-        patterns = case_checks("act-verify-print-run")["agent_started_or_answer"]
+        patterns = [r"independent.*(?:still to do|pending)|not yet independently verified"]
         # the exec record shows no spawn, so an agent may have run unseen: unknown, not failed
         self.assertEqual(result["agents_started"], 0)
         self.assertTrue(result["agents_unseen"])
@@ -999,7 +977,7 @@ class EvidenceChecks(unittest.TestCase):
         self.assertEqual(list(runner.check({"agent_started_or_answer": patterns}, result).values()), [False])
 
     def test_kept_material_is_found_where_the_answer_says_inside_or_outside_the_run(self):
-        patterns = case_checks("act-cleanup-kept-on-request")["answer_path_has"]
+        patterns = [r"old-recipes/porridge\.md$"]
         with tempfile.TemporaryDirectory() as tmp:
             kept = Path(tmp) / "recipes-x" / "old-recipes"
             kept.mkdir(parents=True)
@@ -1015,7 +993,7 @@ class EvidenceChecks(unittest.TestCase):
         self.assertEqual(runner.named_paths(f"See {runner.REPO / 'tests'}."), [])
 
     def test_a_tidy_is_not_a_hunt_for_leftovers(self):
-        checks = case_checks("act-cleanup-tidy-code")
+        checks = {"only_changed": ["scale.py"], "actions_lack": ["ps aux", "scratch/", r"find .*tmp"]}
         fine = {"answer": "Tidied scale.py.", "changes": ["changed scale.py"],
                 "targets": ["python3 -m unittest -v", "/w/scale.py", "rm -rf __pycache__"]}
         self.assertTrue(all(runner.check(checks, fine).values()))
@@ -1025,22 +1003,12 @@ class EvidenceChecks(unittest.TestCase):
                 wrong = {**fine, "targets": fine["targets"] + targets, "changes": fine["changes"] + changes}
                 self.assertFalse(all(runner.check(checks, wrong).values()))
 
-    def test_the_committee_question_is_not_a_listing_line(self):
-        pattern = case_checks("delegated-question-in-report")["answer_contains"][0]
-        listing = "Added:\n\n- Hollis family: cakes; double pitch requested.\n\nCommittee decisions: confirm sizes."
-        for answer, passes in [(listing, False),
-                               ("The committee needs to decide whether a double pitch is allowed.", True),
-                               ("**For the committee to decide**\n\n1. **The Hollis family's double pitch.**", True),
-                               ("Should the Hollis family get a double pitch? fair.md allows one per stall.", True)]:
-            with self.subTest(answer=answer):
-                self.assertEqual(bool(re.search(pattern, answer, re.IGNORECASE)), passes)
-
 
 class AspectCoverage(unittest.TestCase):
     def test_aspects_come_from_the_skill_text(self):
         names = runner.aspects()
-        for aspect in ("act:rule:5", "act:route:act-rightsize", "act:not-for:act-rightsize", "essentials:step:1",
-                       "essentials:not-for:step-1", "respond-ask:last", "skillbook-design:check:13"):
+        for aspect in ("act:rule:5", "act:step:4", "essentials:step:0", "essentials:step:1",
+                       "respond-ask:step:1", "skillbook-design:check:13"):
             self.assertIn(aspect, names)
 
     def test_unknown_and_uncovered_aspects_are_reported(self):

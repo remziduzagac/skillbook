@@ -7,12 +7,12 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/clarify.md",
-        "line": 7,
-        "text": "1. **Ask only what is the user's to decide and would change the work.** An unneeded question costs the user a turn, and an unstated choice is one they cannot correct.\n   - Test likely answers. If all lead to the same work, decide and continue. If two lead to different work or results, use the `understand` skill's who-decides rule. It also settles choices of both kinds:\n     - the user's: ask. \"Write the project overview\" (for whom) and \"clean up the old branches\" (which ones go) ask.\n     - yours: make it. Show it before work in a \"going with\" line, by the `understand` skill's who-decides rule. \"Add retries to the API client\" can use the project's HTTP library and three tries, shown first.\n   - \"Rename `foo` to `bar` in this file\" and \"fix the typo in the README\" leave no such choice.\n   - The result is not always code or files. It can be a document, a decision, an action or anything else."
+        "line": 27,
+        "text": "1. **Ask only what is the user's to decide and would change the work.** An unneeded question costs the user a turn, and an unstated choice is one they cannot correct.\n   - For the choices this request leaves open, follow the `understand` guide's who-decides rule:\n     - the user's: ask. \"Write the project overview\" (for whom) and \"clean up the old branches\" (which ones go) ask.\n     - yours: make it. Show it before work in a \"going with\" line, by the `understand` guide's who-decides rule. \"Add retries to the API client\" can use the project's HTTP library and three tries, shown first.\n   - The result is not always code or files. It can be a document, a decision, an action or anything else."
       },
       "applicability": "scenario",
       "required_skill": "understand-clarify",
-      "deadline": "dependent action",
+      "deadline": "first change",
       "expected": "If the kind or subject of the requested result is open and plausible interpretations need different results, ask which result the user wants before choosing. Judge only this turn.",
       "rejected": "Choosing the audience or output kind for the user; irrelevant or unnecessary questions on settled requests.",
       "evidence": "Code first: ordered file/action evidence. Otherwise yes/no with a verbatim answer quote or recorded action id. Missing evidence is unknown.",
@@ -25,31 +25,31 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/clarify.md",
-        "line": 13,
-        "text": "2. **Act on nothing an open question could change until the answers are in.**\n   - Reading and finding facts go on meanwhile.\n   - Work that no answer would change may go ahead; say so in a line.\n   - \"Go ahead\" accepts the recommended answers, as `respond-ask` says.\n   - This is stricter than the `understand` skill's ban on lasting changes while understanding. It varies that rule because it is the user's own wish."
+        "line": 32,
+        "text": "2. **Act on nothing an open question could change until the answers are in.**\n   - Reading and finding facts go on meanwhile.\n   - Work that no answer would change may go ahead. Report that work in one line in the final answer.\n   - \"Go ahead\" accepts the recommended answers, as the `respond-ask` guide says.\n   - This is stricter than the `understand` guide's ban on lasting changes while understanding. It varies that rule because it is the user's own wish."
       },
       "applicability": "scenario",
       "required_skill": "understand-clarify",
       "deadline": "first change",
-      "expected": "Change no affected file before answers arrive. Reading and independent work may continue.",
+      "expected": "Change no affected file before answers arrive. Reading and independent work may continue; report independent work in one final-answer line.",
       "rejected": "Writing a dependent draft before the open choice is answered.",
       "evidence": "Code first: ordered file/action evidence. Otherwise yes/no with a verbatim answer quote or recorded action id. Missing evidence is unknown.",
       "user_choices": "Open intent, audience, result kind and any changed approval scope remain the user's.",
       "no_skill_eligible": true
     },
     {
-      "id": "understand:route:understand-clarify",
+      "id": "understand:step:4",
       "key": "route-understand-clarify",
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand.md",
-        "line": 26,
-        "text": "7. **Read `understand-clarify` before the first change** if a request leaves a choice or unknown that would change the result. Do this even when the answer seems plain. That skill decides whether to ask or show a choice, and requires a shown choice before work."
+        "line": 63,
+        "text": "4. **Use the method each open part needs.** Each guide below does one kind of understanding well. A request may need several, in any order. A part that fits none is your own judgment, under the rules above.\n   - With the user: the `understand-discuss` guide works through the open parts of a topic. The `understand-clarify` guide settles choices that change the result.\n   - Options: the `understand-brainstorm` guide generates distinct options.\n   - Thinking it through: the `understand-frame` guide defines the problem and goal. The `understand-weigh` guide compares named options. The `understand-challenge` guide finds weaknesses in an idea. The `understand-argue` guide makes an honest one-sided case.\n   - Names: the `understand-naming` guide checks and proposes shared names.\n   - Sources: the `understand-research` guide investigates questions that need sourced facts.\n   - A whole design belongs to the work designing it."
       },
       "applicability": "scenario",
       "required_skill": "understand",
-      "deadline": "before routed work",
-      "expected": "Read the complete needed child before its work.",
+      "deadline": "first change",
+      "expected": "Use clarify for an open choice that changes the result; use discuss for joint decisions, and choose other methods by the question. Read needed guides whole before dependent work.",
       "rejected": "Child is only named or searched.",
       "evidence": "Complete returned child text before its action.",
       "user_choices": "Do not create another checkpoint.",
@@ -61,11 +61,11 @@
       "part": "going with line and assumptions",
       "kind": "visible",
       "source": {
-        "file": "skills/essentials/references/understand.md",
-        "line": 44,
-        "text": "  - Gives back: the \"going with\" line and what was assumed, or a questionnaire for whoever holds the answers."
+        "file": "skills/essentials/references/understand/clarify.md",
+        "line": 23,
+        "text": "The visible “Going with” line and assumptions, the summary from the `understand-clarify-deep` guide, or a questionnaire for the person who holds the answers."
       },
-      "applicability": "One alternative of the clarification return: the going-with line and assumptions, or a questionnaire.",
+      "applicability": "One allowed clarification return: going-with assumptions, deep interview summary, or a questionnaire for the answer holder.",
       "required_skill": "understand-clarify",
       "deadline": "caller return or final answer",
       "expected": "going with line and assumptions",
@@ -78,11 +78,11 @@
       "part": "questionnaire when applicable",
       "kind": "visible",
       "source": {
-        "file": "skills/essentials/references/understand.md",
-        "line": 44,
-        "text": "  - Gives back: the \"going with\" line and what was assumed, or a questionnaire for whoever holds the answers."
+        "file": "skills/essentials/references/understand/clarify.md",
+        "line": 23,
+        "text": "The visible “Going with” line and assumptions, the summary from the `understand-clarify-deep` guide, or a questionnaire for the person who holds the answers."
       },
-      "applicability": "One alternative of the clarification return: the going-with line and assumptions, or a questionnaire.",
+      "applicability": "One allowed clarification return: going-with assumptions, deep interview summary, or a questionnaire for the answer holder.",
       "required_skill": "understand-clarify",
       "deadline": "caller return or final answer",
       "expected": "questionnaire when applicable",
@@ -90,6 +90,23 @@
       "evidence": "Answer or file quote, or a recorded delegated-report action id. Internal parts without a required visible step are excluded with a reason.",
       "alternatives": "clarify-return",
       "alternative": "questionnaire"
+    },
+    {
+      "part": "summary from the deep interview",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/clarify.md",
+        "line": 23,
+        "text": "The visible “Going with” line and assumptions, the summary from the `understand-clarify-deep` guide, or a questionnaire for the person who holds the answers."
+      },
+      "applicability": "One allowed clarification return: going-with assumptions, deep interview summary, or a questionnaire for the answer holder.",
+      "required_skill": "understand-clarify",
+      "deadline": "caller return or final answer",
+      "expected": "summary from the deep interview",
+      "rejected": "Missing promised part or a claim of delivery without observable evidence.",
+      "evidence": "Answer or file quote, or a recorded delegated-report action id. Internal parts without a required visible step are excluded with a reason.",
+      "alternatives": "clarify-return",
+      "alternative": "deep-summary"
     }
   ],
   "validation": "Account-free correct/wrong fixtures; semantic failure detection remains unproven."

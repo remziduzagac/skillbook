@@ -7,7 +7,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/act/verify.md",
-        "line": 7,
+        "line": 23,
         "text": "1. **Choose evidence that would fail if the claim were false.** An unchecked claim reads as true:\n\n   | Claim | Evidence | Not enough |\n   | --- | --- | --- |\n   | tests pass | the test run: 0 failures | an earlier run, \"should pass\" |\n   | bug fixed | the original symptom, now gone | the code changed |\n   | requirements met | a line-by-line checklist | tests passing |\n   | another agent's work done | its changes, seen | its own report of success |\n   | nothing lost in a merge or split | the inventory of what was there | \"looks complete\" |\n   | something made is correct | each part against its source, or each figure worked out again | \"reads right\" |"
       },
       "applicability": "claim",
@@ -25,7 +25,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/act/verify.md",
-        "line": 29,
+        "line": 45,
         "text": "3. **Run the check now on the current work.** Earlier runs do not count. Read what would fail if the claim were false: exit code, failure count and failing lines. Read full output only on failure. Full logs in the main session cost again on every later turn."
       },
       "applicability": "claim",
@@ -43,8 +43,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/act/verify.md",
-        "line": 30,
-        "text": "4. **Report the actual result with evidence beside it.** If confirmed, give the claim. Otherwise give the actual status, by the `respond` skill's outcomes rule.\n   - Report only causes and results shown by output, by the `respond` skill's outcomes rule. Report a timed-out test as timed out, not as a guessed slow network.\n   - Say what a stand-in, such as a simulated setting or mocked service, actually shows. Mark the real check unverified. Give what would confirm it.\n   - Leave taste to the user, by rule 2. For warmer wording, for example, say what you changed and checked. Leave the judgment to them."
+        "line": 46,
+        "text": "4. **Report the actual result with evidence beside it.** If confirmed, give the claim. Otherwise give the actual status, by the `respond` guide's outcomes rule.\n   - Report only causes and results shown by output, by the `respond` guide's outcomes rule. Report a timed-out test as timed out, not as a guessed slow network.\n   - Say what a stand-in, such as a simulated setting or mocked service, actually shows. Mark the real check unverified. Give what would confirm it.\n   - Leave taste to the user, by rule 2. For warmer wording, for example, say what you changed and checked. Leave the judgment to them."
       },
       "applicability": "claim",
       "required_skill": "act-verify",
@@ -58,17 +58,17 @@
   ],
   "results": [
     {
-      "part": "each claim with evidence or actual status",
+      "part": "each claim with evidence, whether confirmed, and who checked it, with evidence beside the claim",
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/act/verify.md",
-        "line": 58,
-        "text": "7. **Return each claim with its evidence or actual status to the caller.** If it matters beyond the conversation, such as a finished task, give it to the keeper in the project's instruction files. Without one, keep it in the response."
+        "line": 19,
+        "text": "Each claim with its evidence, whether it was confirmed, and who checked it. Put the evidence beside the claim in the report."
       },
       "applicability": "Skill is needed; this promised part applies to the requested result.",
       "required_skill": "act-verify",
       "deadline": "caller return or final answer",
-      "expected": "each claim with evidence or actual status",
+      "expected": "each claim with evidence, whether confirmed, and who checked it, with evidence beside the claim",
       "rejected": "Missing promised part or a claim of delivery without observable evidence.",
       "evidence": "Answer or file quote, or a recorded delegated-report action id. Internal parts without a required visible step are excluded with a reason."
     }

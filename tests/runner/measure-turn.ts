@@ -77,7 +77,7 @@ export function inventoryRubrics(rubrics: Rubric[], inventory: TurnOpportunity[]
 }
 export function measurementPlan(turn: Event, rubrics: Rubric[], access: AccessTurn) {
   const inventory = opportunityInventory(turn, rubrics, access);
-  const needed = new Set(inventory.filter(o => o.applies !== false && o.trigger !== "near-miss").map(o => o.definition.required_skill));
+  const needed = new Set([...(turn.resolved_needs ?? []).filter((n: Event) => n.needed === true).map((n: Event) => n.skill), ...inventory.filter(o => o.applies !== false && o.trigger !== "near-miss").map(o => o.definition.required_skill)]);
   return { inventory, rubrics: inventoryRubrics(rubrics, inventory), result_parts: resultChecks().filter(p => needed.has(p.skill)) };
 }
 export function assessedResults(turn: Event) {
