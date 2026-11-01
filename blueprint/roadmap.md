@@ -26,7 +26,7 @@ Starts with the baseline (D108); the rest once the person declares the initial d
 
 - [ ] **The test setup** (D208, [design/testing.md](design/testing.md)), built in this order:
   1. Install tests in CI: `just test-install` for `install.sh`, run in GitHub CI on Linux and macOS. Built: 16 tests in `tests/install-test.sh`.
-  2. The runner `tests/run.py`, run by `just test-agents`. Built: 48 cases, 67 scripted turns per agent, covering every built essentials and project skill, most with normal, boundary and edge scenarios, with per-turn assertions and semantic review rubrics (D219); `just test-coverage` reports the inventory. Twenty-five account-free runner tests join `just check`, covering retained evidence, unknown sequencing and interrupted spending as well as case checks. The expanded scenarios have not run on models yet. Earlier results remain in the decisions' Tested lines; they do not validate the new cases.
+  2. The runner, now `tests/run.ts` on Bun, run by `just test-agents-ts`, with account-free unit tests in `just check` (D219, D268). Every earlier case is retired, tagged `essentials-old-tests`; [the festival scenario](design/scenarios/festival.md) replaces them, designed and not yet built (D288). Earlier results remain in the decisions' Tested lines; they do not validate the new scenario.
   3. `just try claude` and `just try codex`, the manual sandbox.
 - [ ] **The repository's checks:** the check script (names matching paths, every dashed name a skill uses resolving to a file, the head of a plain skill file, D188, D190), release-please (D192).
 - [ ] **The first skills,** as their parts are designed.
@@ -60,4 +60,4 @@ Explicit requests to see or confirm a change first require a proposal and an end
 
 Judge validation separates tuning from blind held-out ratings, reports agreement on human passes and fails, splits mixed checks and adds pass^3 beside averages (D273).
 
-Before further skill changes, build validated per-agent skill-use records, shared and rule checks from skill text, result checks from promised returns, loading/outcome grids and outcome/result views, with trigger/near-miss cases and no-skill comparisons, following the attribution build order and settled choices in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) (D278).
+Build the festival scenario and pilot one chapter (D288). Before further skill changes, build validated per-agent skill-use records, shared and rule checks from skill text, result checks from promised returns, loading/outcome grids and outcome/result views, with trigger/near-miss cases and no-skill comparisons, following the attribution build order and settled choices in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) (D278).

@@ -4225,3 +4225,19 @@ The six main guides gain their own flows, with each child's line under the step 
 **Why:** Most guides' steps were bare commands with a filler reason, such as "Choose evidence by rule 1. This helps test the actual claim." The reader had to jump to a rule to learn what to do, and the reason did not say what goes wrong. The main skill's stages, rewritten under D286, showed a shape that works: a reader of that section alone knows what to do, why it matters and what doing it well means, and can fit the steps into its harness's own flow. The project skills hold the shape, so every later skill is written and reviewed to it, and they follow it themselves, since a builder copies what they do. The main guides had child lists without a flow, left open under D279; with the stages written, each main guide holds the method its stage summarises.
 
 **Tested:** Not yet. The test runner's aspect ids for steps and routes need moving with the test work.
+
+## D288: one long scenario built from promised results replaces every earlier test case (2026-11-01)
+
+**Decision:** Every earlier test case is removed: the single-prompt cases, the routing cases, the fifteen scenarios and the project-skill cases. They tested wording and step ids that D283 to D287 replaced. The last commit that holds them is tagged `essentials-old-tests`. In their place, one long scenario, [the festival scenario](design/scenarios/festival.md), extends the old festival story into six chapters and 28 turns that need every essentials guide at least once and many guides several times. More scenarios follow later, each built the same way.
+
+- **Checks come from what guides promise.** Each turn names the guides it needs and why, the results their "Gives back" promises, the rules it exercises by id, the plausible wrong behaviour it rejects and what code can check. Checks on every turn (loading the always-needed guides, the answer habits and the main skill's rules) are written once.
+- **Near misses sit inside the story.** A request that looks like a guide's job but is not, by its "When not", passes when the guide's action is skipped.
+- **Chapters start from known files.** Each chapter is a fresh session that starts from a checkpoint the scenario's author wrote, so one chapter's failure does not spoil the next and a chapter can be rerun alone.
+- **Prompts stay unlike the guides' examples,** as D213 says.
+- **Fixes stay general.** Only patterns shared by failures are fixed, and a fix counts as proven only after it also holds on a second, different scenario.
+
+The runner, the judge, the calibration tools with the human ratings, the rule-check machinery and the measurement layer of D278 stay. Rules no turn exercises stay listed by the coverage report until later scenarios cover them.
+
+**Why:** The old cases checked behaviour against wording that has changed, and their positional ids no longer point at the same steps, so their results would mislead. Over a thousand small cases also tested guides one at a time, while users meet them mixed in long conversations, with guides read early and reused later. One long story tests what the guides are for, their promised results, in the order real work needs them, and shows which guides are missed, read late or read without need. Building it from "Gives back" ties each check to a promise the guide makes, so a failing check points at a guide's text, not at a test's wording.
+
+**Tested:** Not yet. The scenario is designed; its cases and fixtures are not built.
