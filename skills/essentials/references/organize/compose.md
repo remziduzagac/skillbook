@@ -1,5 +1,7 @@
 # organize-compose
 
+## Purpose
+
 Adds a parent that states what selected items share, keeping their content unchanged.
 
 ## When to use
@@ -21,11 +23,11 @@ A B C → P over A, B, C
 
 ## Instructions
 
-1. To give the parent a useful meaning, find what the selected items share.
-2. To avoid a redundant parent, require at least two items and a useful shared statement before adding a parent. The parent must say something no item says alone. A redundant parent adds navigation without meaning.
-3. To make the parent’s scope clear, name the parent and write its boundary in one sentence. Cover everything that belongs and exclude what does not. Follow the `organize` guide's rule for choices shared by its operations.
-4. To keep selected content unchanged, prepare the selected items' placement under the parent. Move them only where folders hold the arrangement and only under the approved map. Preserve their content. Leave unselected items in place. Include every selected item that belongs and no unrelated item.
+Give selected items a useful shared parent. Find what they share before proposing that parent.
 
-## The last instruction
+1. **Find what the selected items share.** This helps give the parent a useful meaning.
+2. **Require at least two items and a useful shared statement before adding a parent.** This helps avoid a redundant parent. The parent must say something no item says alone. A redundant parent adds navigation without meaning.
+3. **Name the parent and write its boundary in one sentence.** This helps make the parent’s scope clear. Cover everything that belongs and exclude what does not. Follow the `organize` guide's rule for choices shared by its operations.
+4. **Prepare the selected items' placement under the parent.** This helps keep selected content unchanged. Move them only where folders hold the arrangement and only under the approved map. Preserve their content. Leave unselected items in place. Include every selected item that belongs and no unrelated item.
 
-Return the proposed or approved parent, what the selected items share and where each item belongs. Check that the parent earns its place and the items keep their content. Keep the `organize` guide's inventory and approval checkpoints.
+5. **Return the proposed or approved parent, what the selected items share and where each item belongs.** Always do this last. Check that the parent earns its place and the items keep their content. Keep the `organize` guide's inventory and approval checkpoints.

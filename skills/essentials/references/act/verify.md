@@ -1,5 +1,7 @@
 # act-verify
 
+## Purpose
+
 Checks claims that work is done or correct, using fresh evidence and a clear choice of who checks it.
 
 ## When to use
@@ -63,14 +65,14 @@ Your own evidence for a claim of done or correct is seen or measured, never only
 
 ## Instructions
 
-1. To make the check precise, name the claim you are about to make.
-2. To test the actual claim, choose evidence by rule 1.
-3. To get the right kind of check, choose the checker by rule 2.
-4. To check the current work, run the check fresh and whole by rule 3.
-5. To give an honest result, compare the evidence with the claim and report it by rule 4.
-6. To check a plan's task, commit or pull request as a whole, run the four checks in rule 5.
-7. To keep the evidence with the claim, return each claim with its evidence or actual status to the caller. If it matters beyond the conversation, such as a finished task, give it to the skill the project's instructions name for saving records. If none is named, keep it in the response.
+Make each claim checkable. Match it to fresh evidence and the right checker before reporting it.
 
-## The last instruction
+1. **Name the claim you are about to make.** This helps make the check precise.
+2. **Choose evidence by rule 1.** This helps test the actual claim.
+3. **Choose the checker by rule 2.** This helps get the right kind of check.
+4. **Run the check fresh and whole by rule 3.** This helps check the current work.
+5. **Compare the evidence with the claim and report it by rule 4.** This helps give an honest result.
+6. **Run the four checks in rule 5 for a plan’s task, commit or pull request.** This checks the whole item, not just an individual claim.
+7. **Return each claim with its evidence or actual status to the caller.** This helps keep the evidence with the claim. If it matters beyond the conversation, such as a finished task, give it to the skill the project's instructions name for saving records. If none is named, keep it in the response.
 
-**Check before calling anything done or correct.** Each claim has evidence beside it or is marked unverified. Never call your own check independent. Never call a check done or independent if you did not see its result. High-stakes work has a fresh agent's check or an explicit pending check. A plan's task, commit or pull request has the four checks, scaled to stakes. The third manual run has its automation offer, by rule 6.
+8. **Check before calling anything done or correct.** Always do this last. Each claim has evidence beside it or is marked unverified. Never call your own check independent. Never call a check done or independent if you did not see its result. High-stakes work has a fresh agent's check or an explicit pending check. A plan's task, commit or pull request has the four checks, scaled to stakes. The third manual run has its automation offer, by rule 6.

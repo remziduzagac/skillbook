@@ -1,5 +1,7 @@
 # understand-research
 
+## Purpose
+
 Finds sourced answers, existing options and causes with evidence the reader can check.
 
 Needs: access to the sources the question requires. Local reading, search, browsing or experiments may be needed. Without a needed capability, return usable findings, missing checks and what would settle them. Do not install anything or bypass a restriction to get access.
@@ -44,17 +46,18 @@ Sourced findings and their limits: an answer or claim verdict, compared candidat
 
 ## Instructions
 
-1. To keep the investigation focused, set the question by rule 1. Route factual gaps to sources and user-owned choices through the `understand-clarify` guide. Separate several questions at the caller rather than forcing them into one frame.
-2. To use the right source checks, load the source guide when its kind is first searched. Read [code](research/assets/code.md), [documentation](research/assets/documentation.md), [web](research/assets/web.md), [papers](research/assets/papers.md) or [products](research/assets/products.md) only for that kind. The guide does not replace these shared rules.
-3. The `understand-research-fact` guide: answer one sourced question.
-4. The `understand-research-survey` guide: compare existing candidates.
-5. The `understand-research-analyze` guide: investigate causes.
-6. To keep the answer traceable, return the requested result with its evidence. Several questions may use several methods. Return each method's part to the active caller without restarting it. With many findings, give those supporting the answer and a path to the full list. Keep requested records with their owner rather than inventing a place to save records.
+Return a sourced answer with evidence the reader can check. Investigate the question with these steps.
 
-Each finding gives its claim in one sentence, the exact source, quoted words when needed, the strength under rule 3, and any relevant version, platform or date. These fields describe meaning, not a required file format for every short answer.
+1. **Set the question by rule 1.** A clear question keeps the investigation focused. Route factual gaps to sources and user-owned choices through the `understand-clarify` guide. Separate several questions at the caller rather than forcing them into one frame.
+2. **Load the source guide when its kind is first searched.** Different source kinds need different checks. Read [code](research/assets/code.md), [documentation](research/assets/documentation.md), [web](research/assets/web.md), [papers](research/assets/papers.md) or [products](research/assets/products.md) only for that kind. The guide does not replace these shared rules.
+3. **Use the method the question needs.** Facts, comparisons and causes need different work. These methods have no fixed order:
+   - the `understand-research-fact` guide: answer one sourced question.
+   - the `understand-research-survey` guide: compare existing candidates.
+   - the `understand-research-analyze` guide: investigate causes.
+4. **Return the requested result with its evidence.** Evidence makes the answer traceable. Several questions may use several methods. Return each method's part to the active caller without restarting it. With many findings, give those supporting the answer and a path to the full list. Keep requested records with their owner rather than inventing a place to save records.
 
-Use the `understand` guide's result shape, adding the question where needed, answer or verdict, findings, what was not found, what was not covered, open gaps and what would settle them. For claims, group evidence for and against. Omit empty fields except a meaningful negative result. Put the answer first and its supporting findings next. Research keeps nothing itself; the caller or loaded skill that saves records owns lasting records. A direct request without one stays in the response, with a long result offered as a file the user names.
+   Each finding gives its claim in one sentence, the exact source, quoted words when needed, the strength under rule 3, and any relevant version, platform or date. These fields describe meaning, not a required file format for every short answer.
 
-## The last instruction
+   Use the `understand` guide's result shape, adding the question where needed, answer or verdict, findings, what was not found, what was not covered, open gaps and what would settle them. For claims, group evidence for and against. Omit empty fields except a meaningful negative result. Put the answer first and its supporting findings next. Research keeps nothing itself; the caller or loaded skill that saves records owns lasting records. A direct request without one stays in the response, with a long result offered as a file the user names.
 
-Check that the answer addresses the question, sources can be found, and each finding shows how it was obtained and where it applies. Check conflicting evidence. Report negative results and coverage limits. Preserve actual validation status. Return an answer or an honest unfinished result with what would settle it. Follow each used child's last instruction. Start no extra choice round, lasting change or repeated caller operation.
+5. **Check that the answer addresses the question, sources can be found, and each finding shows how it was obtained and where it applies.** Always do this last. Check conflicting evidence. Report negative results and coverage limits. Preserve actual validation status. Return an answer or an honest unfinished result with what would settle it. Follow the final step of Instructions in each used child guide. Start no extra choice round, lasting change or repeated caller operation.

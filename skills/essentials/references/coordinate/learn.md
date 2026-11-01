@@ -1,6 +1,8 @@
 # coordinate-learn
 
-Judges what a session taught and proposes an approved home for each reusable lesson.
+## Purpose
+
+Judges what a session taught and proposes a home for each reusable lesson, so approved lessons can be kept.
 
 ## When to use
 
@@ -25,12 +27,14 @@ Approved lessons and where they were saved, highlights dropped with reasons, and
 
 ## Instructions
 
-1. To stay within the requested session review, collect the highlights the request covers. Look for user corrections, mistakes, decisions and methods that worked or failed. Do not start an unasked lasting collection.
-2. To find lessons worth keeping, judge whether each highlight is reusable and where it belongs. Drop a highlight with a reason when it teaches nothing useful beyond the session.
-3. To keep recording under user control, propose each reusable lesson through the `respond-ask` guide. Give its content, destination and reason. End the turn before recording it. Use the user’s earlier approval only for the same work, while the facts behind it still hold.
-4. To put the lesson in its proper home, put an approved rule through the `coordinate-instruct` guide. Put an approved decision or insight through a loaded skill that saves records, which owns location and form. If no skill saves records, list it in the response and offer a file the user names. A file offer grants no approval to write it.
-5. To make every highlight’s status clear, return a list of what went where or why it was dropped. Record each approved promotion where it lands. Preserve pending user decisions and report when nothing reusable was found.
+The goal is to keep approved reusable lessons with their status clear. Review the requested highlights with the steps below.
 
-## The last instruction
+1. **Collect the highlights the request covers.** This keeps the review within the requested session scope. Look for user corrections, mistakes, decisions and methods that worked or failed. Do not start an unasked lasting collection.
+2. **Judge whether each highlight is reusable and where it belongs.** This finds lessons worth keeping. Drop a highlight with a reason when it teaches nothing useful beyond the session.
+3. **Propose each reusable lesson through the `respond-ask` guide.** This keeps recording under user control. You must obtain approval before recording a lesson. Give its content, destination and reason. End the turn before recording it. Use the user’s earlier approval only for the same work, while the facts behind it still hold.
+4. **Put an approved rule through the `coordinate-instruct` guide.** This puts the lesson in its proper home. Put an approved decision or insight through a loaded skill that saves records, which owns location and form. If no skill saves records, list it in the response and offer a file the user names. A file offer grants no approval to write it.
+5. **Return a list of what went where or why it was dropped.** This makes every highlight’s status clear. Record each approved promotion where it lands. Preserve pending user decisions and report when nothing reusable was found.
 
-Check that each highlight has one clear status: promoted with approval, dropped with a reason, or explicitly pending. Claim completed promotion only for what was actually recorded. Return the destinations and remaining questions to the caller. Keep skill lessons as insights rather than making unapproved skill changes.
+6. **Check each highlight’s status.** Always do this last.
+
+   Check that each highlight has one clear status: promoted with approval, dropped with a reason, or explicitly pending. Claim completed promotion only for what was actually recorded. Return the destinations and remaining questions to the caller. Keep skill lessons as insights rather than making unapproved skill changes.

@@ -1,6 +1,8 @@
 # act-rightsize-lean
 
-Removes extra parts from existing material. Judges each part for its reader. Cuts useless parts, replaces pasted content with pointers and merges repeats. Keeps everything a rule requires.
+## Purpose
+
+Removes extra parts from existing material while keeping everything its reader and the rules need.
 
 ## When to use
 
@@ -34,18 +36,20 @@ The material with extra parts removed, plus what was removed and why.
 
 ## Instructions
 
-1. To judge what the reader needs, find the reader and purpose.
-2. To see which parts earn their place, list each part and its job for that reader. Use a script when listing is mechanical. Use the `coordinate-delegate` guide for the listing if the material exceeds one whole read, such as several files or a file returned only in part. A delegated agent does not delegate again. Never read everything twice in the main session: each read costs again on later turns.
-3. To choose cuts without losing needed content, mark what goes by rules 2 and 3.
-4. To keep changes within the agreement, apply the approved list. Get approval by rule 4. Follow rule 5 for code.
-5. To preserve every needed part, check that every needed part remains or has a working pointer. For code, check passing tests and preservation of public interfaces, documented behaviour and untested requirements.
+Keep what the reader needs and remove what adds nothing. Judge each part before proposing cuts.
 
-## The last instruction
+1. **Find the reader and purpose.** This helps judge what the reader needs.
+2. **List each part and its job for that reader.** This helps see which parts earn their place. Use a script when listing is mechanical. Use the `coordinate-delegate` guide for the listing if the material exceeds one whole read, such as several files or a file returned only in part. A delegated agent does not delegate again. Never read everything twice in the main session: each read costs again on later turns.
+3. **Mark what goes by rules 2 and 3.** This helps choose cuts without losing needed content.
+4. **Apply the approved list.** This helps keep changes within the agreement. Get approval by rule 4. Follow rule 5 for code.
+5. **Check that every needed part remains or has a working pointer.** This helps preserve every needed part. For code, check passing tests and preservation of public interfaces, documented behaviour and untested requirements.
 
-Before you return anything, check:
+6. **Check the result before returning it.** Always do this last.
 
-- Nothing a rule requires was cut;
-- Every pointer resolves;
-- The list of what went, with why, is ready;
-- Where the user's or others' work changed, the list was approved;
-- For code, the tests pass, and no public interface, documented behaviour or untested requirement was removed.
+   Before you return anything, check:
+
+   - Nothing a rule requires was cut;
+   - Every pointer resolves;
+   - The list of what went, with why, is ready;
+   - Where the user's or others' work changed, the list was approved;
+   - For code, the tests pass, and no public interface, documented behaviour or untested requirement was removed.

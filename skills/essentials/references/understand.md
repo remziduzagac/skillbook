@@ -1,5 +1,7 @@
 # understand
 
+## Purpose
+
 Works out what a request means, with the user and from sources. The main task applies the result.
 
 ## When to use
@@ -45,6 +47,8 @@ Decisions and their reasons, questions set aside and why, and next steps. Give t
 
 ## Instructions
 
+Work out what the request needs before acting. Use the child method each part needs; these methods have no fixed order.
+
 **With the user:**
 
 - the `understand-discuss` guide: work through open topic parts.
@@ -72,6 +76,4 @@ Decisions and their reasons, questions set aside and why, and next steps. Give t
 
 A whole design belongs to the work designing it. Anything else about understanding that fits no line here is your own judgment, under the rules above. Use the `understand-research` guide for facts needing sourced investigation.
 
-## The last instruction
-
-**Check the rules above before returning anything.** Check the result shape, marked guesses, named unknowns and no lasting changes. Follow the used guide's last instruction too.
+1. **Check the rules above before returning anything.** Always do this last. Check the result shape, marked guesses, named unknowns and no lasting changes. Follow the final step of Instructions in each used guide too.

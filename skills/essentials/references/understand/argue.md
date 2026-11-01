@@ -1,5 +1,7 @@
 # understand-argue
 
+## Purpose
+
 Makes the strongest honest case for a position, labelled one-sided.
 
 ## When to use
@@ -44,12 +46,7 @@ For the `respond` guide's faithful reflection of a view already in the conversat
 
 ## Instructions
 
-1. To make the position precise, give the position through the `understand-frame` guide. Handle audience by rule 1.
-2. To ground the case in evidence, gather reasons and evidence. Use the `understand-research-fact` guide for sourced factual checks. Return its result here without restarting the current challenge or choosing for the caller. Mark unchecked reasons as assumptions.
-3. To test the strongest opposition, get the strongest objections through the `understand-challenge` guide. Reuse a current result by rule 3.
-4. To make the case honest, meet each objection. Answer, concede or narrow the position.
-5. To show how strong the case is, admit remaining weaknesses. Rate the case strong, moderate or weak from its evidence, with why and what would strengthen or break it.
-6. To return a complete one-sided case, check the case before returning it. Include the position, supported or marked reasons, objections met, weaknesses, strength and one-sided label. Apply the `understand` guide's rules.
+Build an honest case for the requested position. Develop and check the case with these steps.
 
 If no honest case exists, show the best found and rate it weak. Invent nothing.
 
@@ -57,6 +54,12 @@ Return the position (including any narrowing), goal, constraints and audience; r
 
 Keep no lasting record yourself. Return the chosen option's case and open weaknesses for the skill that saves records. Return a current challenge separately to a caller for reuse. Its verdict stays outside the one-sided case.
 
-## The last instruction
+1. **Give the position through the `understand-frame` guide.** A precise position keeps the case focused. Handle audience by rule 1.
+2. **Gather reasons and evidence.** Evidence grounds the case. Use the `understand-research-fact` guide for sourced factual checks. Return its result here without restarting the current challenge or choosing for the caller. Mark unchecked reasons as assumptions.
+3. **Get the strongest objections through the `understand-challenge` guide.** The strongest opposition tests the case. Reuse a current result by rule 3.
+4. **Meet each objection.** An honest case addresses objections. Answer, concede or narrow the position.
+5. **Admit remaining weaknesses.** Its strength depends on what remains unanswered. Rate the case strong, moderate or weak from its evidence, with why and what would strengthen or break it.
 
-Check fidelity to the requested position, evidence and marked assumptions, strong objections, admitted weaknesses, strength and next evidence. Keep the label and choice boundary. Reuse current checks and follow the `understand` guide's rules. A light reflection needs fidelity, not a new investigation.
+6. **Check the case before returning it.** Always do this last. The caller needs a complete one-sided case. Include the position, supported or marked reasons, objections met, weaknesses, strength and one-sided label. Apply the `understand` guide's rules.
+
+   Check fidelity to the requested position, evidence and marked assumptions, strong objections, admitted weaknesses, strength and next evidence. Keep the label and choice boundary. Reuse current checks and follow the `understand` guide's rules. A light reflection needs fidelity, not a new investigation.

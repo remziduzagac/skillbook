@@ -1,5 +1,7 @@
 # understand-research-survey
 
+## Purpose
+
 Finds existing candidates and compares them on common terms without taking over the caller's choice.
 
 ## When to use
@@ -38,12 +40,12 @@ Candidates compared on the same terms, sources, excluded and unexamined candidat
 
 ## Instructions
 
-1. To make candidates comparable, establish scope and terms by rule 1. Ask user-owned consequential questions through the `understand-clarify` guide when needed. Reuse a current caller frame.
-2. To avoid missing less visible candidates, search wide before deep. Use the `coordinate-delegate` guide with the `coordinate-delegate-fanout` guide only for separate large parts that search cannot narrow enough. Otherwise search serially. Keep fanout's common worker limits and actual validation states.
-3. To keep the comparison in scope, screen each candidate against scope. Name the reason for each exclusion and distinguish unexamined candidates.
-4. To compare on the same basis, compare on the agreed terms with evidence. Give every compared candidate each term or an honest gap. A short table may help; use a list when the medium, width or user preference favors it.
-5. To return a useful view of what exists, return the requested comparison by rule 8. Add scope, terms, screened-out candidates, the unexamined long tail, search coverage and date to the parent's result shape. Keep findings and unknowns with their actual evidence status.
+Find existing candidates and compare them on common terms. Build the comparison with these steps.
 
-## The last instruction
+1. **Establish scope and terms by rule 1.** Common terms make candidates comparable. Ask user-owned consequential questions through the `understand-clarify` guide when needed. Reuse a current caller frame.
+2. **Search wide before deep.** A wide search can find less visible candidates. Use the `coordinate-delegate` guide with the `coordinate-delegate-fanout` guide only for separate large parts that search cannot narrow enough. Otherwise search serially. Keep fanout's common worker limits and actual validation states.
+3. **Screen each candidate against scope.** Screening keeps the comparison in scope. Name the reason for each exclusion and distinguish unexamined candidates.
+4. **Compare on the agreed terms with evidence.** The same basis supports a fair comparison. Give every compared candidate each term or an honest gap. A short table may help; use a list when the medium, width or user preference favors it.
+5. **Return the requested comparison by rule 8.** The caller needs a usable view of what exists. Add scope, terms, screened-out candidates, the unexamined long tail, search coverage and date to the parent's result shape. Keep findings and unknowns with their actual evidence status.
 
-Check all compared candidates use the same terms and traceable evidence. Report exclusions, unexamined candidates, negative results, coverage and date honestly. Keep any choice and lasting record with its owner. Follow the parent's last instruction and return without recursively calling the caller.
+6. **Check all compared candidates use the same terms and traceable evidence.** Always do this last. Report exclusions, unexamined candidates, negative results, coverage and date honestly. Keep any choice and lasting record with its owner. Follow the final step of Instructions in the `understand-research` guide and return without recursively calling the caller.

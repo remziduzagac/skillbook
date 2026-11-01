@@ -1,5 +1,7 @@
 # devise-design-review
 
+## Purpose
+
 Checks whether a design holds together, covers its requirements and can be built.
 
 Needs: an independent reviewer for the required review. If one cannot start, follow the `act-verify` guide's rule 2 and return findings with the independent check still pending. Name the unfinished check and who should arrange it.
@@ -30,15 +32,15 @@ Ranked findings with fixes, or a list of checks run when no problem was found. M
 
 ## Instructions
 
-1. To understand what the design must satisfy, read the design and its basis. Include the frame, requirements and decisions.
-2. To find contradictions, run the consistency lens. Find conflicting parts, decisions or requirements and terms used two ways.
-3. To check that someone can build it, walk the builder through main and edge cases. Each must have a responsible part and enough information to act.
-4. To find missing or overlapping parts, check coverage and overlap through the `organize` guide. Use its bounded check and return here. Set parts against requirements: none missing, none owned twice.
-5. To test assumptions that matter, use the `understand-challenge` guide for assumptions that could change a decision that is hard to undo or shapes much of the work. Reuse a current result only with the same idea, goal, constraints and evidence. Check again when those inputs change.
-6. To find parts that add no value, identify what the `act-rightsize-lean` guide would remove. Report proposed cuts, not an applied removal.
-7. To check software architecture where supported, use a skill in the harness’s list for that review, if one fits. Otherwise skip that review and report the skip.
-8. To give the owner actionable findings, return ranked findings with evidence. Use must fix before approval, should fix and note. For each finding, give its location, the problem, why it matters and a suggested fix. If you find no problems, name the lenses you ran. Name unfinished checks and who should arrange them.
+Give the design owner findings they can act on. Check the design against its basis without changing it.
 
-## The last instruction
+1. **Read the design and its basis.** This helps understand what the design must satisfy. Include the frame, requirements and decisions.
+2. **Run the consistency lens.** This helps find contradictions. Find conflicting parts, decisions or requirements and terms used two ways.
+3. **Walk the builder through main and edge cases.** This helps check that someone can build it. Each must have a responsible part and enough information to act.
+4. **Check coverage and overlap through the `organize` guide.** This helps find missing or overlapping parts. Use its bounded check and return here. Set parts against requirements: none missing, none owned twice.
+5. **Use the `understand-challenge` guide for assumptions that could change a decision that is hard to undo or shapes much of the work.** This helps test assumptions that matter. Reuse a current result only with the same idea, goal, constraints and evidence. Check again when those inputs change.
+6. **Identify what the `act-rightsize-lean` guide would remove.** This helps find parts that add no value. Report proposed cuts, not an applied removal.
+7. **Use a skill in the harness’s list for that review, if one fits.** This helps check software architecture where supported. Otherwise skip that review and report the skip.
+8. **Return ranked findings with evidence.** This helps give the owner actionable findings. Use must fix before approval, should fix and note. For each finding, give its location, the problem, why it matters and a suggested fix. If you find no problems, name the lenses you ran. Name unfinished checks and who should arrange them.
 
-Check that every required lens has a result or is marked unfinished. Support findings with evidence. Leave the design unchanged. Return the findings to the caller to fix, accept or park before design approval. Never claim independent completion without another reviewer's result.
+9. **Check that every required lens has a result or is marked unfinished.** Always do this last. Support findings with evidence. Leave the design unchanged. Return the findings to the caller to fix, accept or park before design approval. Never claim independent completion without another reviewer's result.

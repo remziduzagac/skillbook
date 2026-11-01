@@ -18,6 +18,8 @@ organize/    arranging things: the shared rules and the check
 ## organize
 
 - **Purpose:** arranging things: dividing, joining and grouping items so that every item has exactly one home (D61, D85). Each operation is a child guide, sorted by what happens to the items (D85, D112, D141). It works on any unit with boundaries (D86), and on wholes already written or still being planned, whose items are then what the whole must cover (D148).
+- **Guide purpose** (D283): Arranges existing or planned parts without changing their meaning, and checks for missing or overlapping parts.
+- **Guide shape** (D283): Instructions opens with: “Give every required part a clear place without changing its meaning. Build the map before applying an arrangement.” No Rules move. Child names become bullets under Instruction 3 rather than separate work steps. Old Instructions 9–11 become 4–6; the Rule 4 reference to old step 9 becomes step 4. Rules 1–10 keep their numbers. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "Arranging anything with boundaries: splitting, merging, putting a parent above, taking a shared part out, or indexing; every item in one home, its meaning unchanged, the plan and the result approved. Use when things are to be divided, joined, grouped or indexed, a whole not yet written is planned into parts, or existing parts are checked for overlaps and gaps." A draft (D107, D141, D148).
 - **When to use** (D279): Use when existing or planned parts need arranging without changing what they mean. Also use to check for missing or overlapping parts, such as whether planned sections cover every requirement.
 - **When not** (D279):
@@ -55,7 +57,7 @@ organize/    arranging things: the shared rules and the check
   4. **Plan:** obtain each child's proposed map without applying it. Include every item, boundary, reference change, retirement and approved exclusion. An applied change may exclude only items the user approved, preserved outside the changed scope. A check or unapplied proposal may report unresolved placements. Get required approval by rule 4 (D259).
   5. **Apply:** call the chosen child to apply only the approved map. For code, follow rule 6. A planning-only call returns the parts to its caller without applying an arrangement (D259).
   6. **Check meaning:** run rule 3's checks when something changed. Follow rule 4 for repair, result confirmation or rejection. Return actual check and approval status, including an unfinished required independent check (D259).
-  7. **Last instruction, before anything is returned:** distinguish diagnostic findings, an unapplied proposal, an applied result awaiting confirmation, and a confirmed result. Never label a partly resolved change complete. Required in-scope items have one home in a completed arrangement. Approved exclusions remain preserved outside the changed scope. Checks, independence and approval status are honest. Retired items are marked. Return to the active caller (D259).
+  7. **Check the result before returning it.** Always do this last. Before anything is returned: distinguish diagnostic findings, an unapplied proposal, an applied result awaiting confirmation, and a confirmed result. Never label a partly resolved change complete. Required in-scope items have one home in a completed arrangement. Approved exclusions remain preserved outside the changed scope. Checks, independence and approval status are honest. Retired items are marked. Return to the active caller (D259).
 
 - **Gives back** (D279): The grouping principle, each part’s boundary, each item’s place, and any missing or overlapping parts. After a change, also return the before-and-after map, checks, approvals and what was moved, changed or marked as replaced.
 - **Diagram** (D88), the five operations side by side, near the top of its plain file:
@@ -123,6 +125,8 @@ organize/    arranging things: the shared rules and the check
 ### split
 
 - **Purpose:** one item into several parts that do not overlap and together cover it; also grouping loose items, and planning a whole not yet written into parts from what it must cover (D148).
+- **Guide purpose** (D283): Divides one written or planned whole into parts, or sorts all loose items into groups.
+- **Guide shape** (D283): Instructions opens with: “Give every item a distinct place. List what the whole contains or must cover before grouping it.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "One item, written or still planned, divided into parts, or loose items moved into groups, so that the parts do not overlap and together cover everything. Use when one item, written or still planned, is to be divided into parts, or loose items are to be moved into groups that together cover them." A draft (D107, D148).
 - **When to use** (D279): Use when one existing or planned whole needs separate parts, or all loose items need sorting by one principle. The parts may be sections, files or modules.
 - **When not** (D279):
@@ -132,6 +136,11 @@ organize/    arranging things: the shared rules and the check
   - Duplicate accounts of one whole: use the `organize-merge` guide. Those accounts need combining, not dividing.
 - **Callers:** the `organize` guide, from the main map, with its parent path read first (D279).
 - **Flow** (D85):
+
+  Advice (D148), both while creating and when rearranging:
+  - each part is readable on its own: it says what it is and needs no sibling to make sense;
+  - a part's size follows how it is read: short when it is read whole or on every turn, with headings or a map when it is searched.
+
   1. **Frame:** what whole is being divided, and what the parts are for; the purpose decides the principle.
   2. **List the items:** everything the whole contains, or, for a whole not yet written, everything it must cover, before grouping anything (D148).
   3. **Choose one dividing principle.**
@@ -140,11 +149,9 @@ organize/    arranging things: the shared rules and the check
   6. **Resolve:** sharpen a boundary when two homes fit. Add a part for a missing required item. An exclusion needs the user's approval and leaves its content preserved outside the change. Otherwise report the unresolved placement; do not drop it (D259).
   7. **Check,** with the `organize` guide's check, for overlaps and gaps.
 
-  A check or unapplied proposal may return named gaps. A completed change gives every required in-scope item one home and preserves approved exclusions outside the changed scope. Return the proposal or authorized result to the parent for its checks and confirmations (D259).
+  8. **Return parts, boundaries, each item's place and any exceptions to the parent.** Always do this last. A proposal or check may report unresolved placements. A completed change has one home for each required item and preserves approved exclusions. Follow the `organize` guide's inventory check and approval checkpoints. Check that parts can be read on their own and fit how they are read.
 
-  Advice (D148), both while creating and when rearranging:
-  - each part is readable on its own: it says what it is and needs no sibling to make sense;
-  - a part's size follows how it is read: short when it is read whole or on every turn, with headings or a map when it is searched.
+     A check or unapplied proposal may return named gaps. A completed change gives every required in-scope item one home and preserves approved exclusions outside the changed scope. Return the proposal or authorized result to the parent for its checks and confirmations (D259).
 - **Gives back** (D279): Parts, their boundaries and each item’s place, with any placement still unresolved.
 - **Diagram** (D88), near the top of its plain file:
 
@@ -171,6 +178,8 @@ organize/    arranging things: the shared rules and the check
 ### merge
 
 - **Purpose:** duplicate accounts of the same whole combined into one survivor, keeping compatible unique details; links that pointed at the others now point at it (D85).
+- **Guide purpose** (D283): Combines duplicate accounts of the same whole into one survivor, keeping compatible unique details and updating references.
+- **Guide shape** (D283): Instructions opens with: “Keep one complete account of a duplicated whole. Compare the accounts before preparing the merge.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "Duplicate accounts of the same whole combined into one survivor, keeping compatible unique details, with every link moved to it. Use when duplicate accounts of the same whole should become one." A draft (D107).
 - **When to use** (D279): Use when duplicate accounts of the same whole need combining while keeping details that can agree. For example, one account may contain a useful fact absent from the others.
 - **When not** (D279):
@@ -185,7 +194,9 @@ organize/    arranging things: the shared rules and the check
   4. **Map** every statement of every item to where it lands in the survivor.
   5. **Apply only under the parent's approved map:** write the survivor, retire the others with "merged into …", and update everything that pointed at them: links, references, imports.
 
-  Return the mapped proposal before approval. After authorized application, return the survivor and reference/inventory evidence to the parent as awaiting its result confirmation. A completed result holds every compatible detail and leaves no known reference pointing to a retired item; unknown external references stay explicitly unverified (D259).
+  6. **Return the proposal and its map, or the result of the approved change.** Always do this last. Include evidence from checking references and accounting for every original statement. Keep every compatible detail. In a completed result, no known reference points to a retired item. Report unresolved contradictions and unknown references honestly. The `organize` guide gets the user's confirmation of the result. Do not claim confirmed completion before the user replies.
+
+     Return the mapped proposal before approval. After authorized application, return the survivor and reference/inventory evidence to the parent as awaiting its result confirmation. A completed result holds every compatible detail and leaves no known reference pointing to a retired item; unknown external references stay explicitly unverified (D259).
 - **Gives back** (D279): The combined account or proposal, a map of every original statement, updated references and items marked as replaced.
 - **Diagram** (D88), near the top of its plain file:
 
@@ -212,6 +223,8 @@ organize/    arranging things: the shared rules and the check
 ### compose
 
 - **Purpose:** a new parent over the items that share something, stating the generalization they share; the items are moved under it where the arrangement holds them in folders, such as child guides under their parent, and their content is unchanged (D85, D174).
+- **Guide purpose** (D283): Adds a parent that states what selected items share, keeping their content unchanged.
+- **Guide shape** (D283): Instructions opens with: “Give selected items a useful shared parent. Find what they share before proposing that parent.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "A new parent over the items that share something, stating what they share, the items moved under it where needed and their content unchanged. Use when items that share something are to get a parent that states what they share." A draft (D107).
 - **When to use** (D279): Use when selected items need a parent that explains what they share. For example, selected files may belong under a folder with a useful shared purpose.
 - **When not** (D279):
@@ -225,7 +238,9 @@ organize/    arranging things: the shared rules and the check
   3. **Name the parent and write its boundary,** comprehensive and exclusive.
   4. **Place the items under it only after the parent's map is approved,** their content unchanged, moving them where the arrangement holds them in folders (D174); nothing that belongs is left outside, nothing outside slips in.
 
-  Done when the parent states what its items share, every item that belongs is under it, and the items' content is unchanged.
+  5. **Return the proposed or approved parent, what the selected items share and where each item belongs.** Always do this last. Check that the parent earns its place and the items keep their content. Keep the `organize` guide's inventory and approval checkpoints.
+
+     Done when the parent states what its items share, every item that belongs is under it, and the items' content is unchanged.
 - **Gives back** (D279): The new parent, what the selected items share, and where those items belong. Their content stays unchanged.
 - **Diagram** (D88), near the top of its plain file:
 
@@ -252,6 +267,8 @@ organize/    arranging things: the shared rules and the check
 ### normalize
 
 - **Purpose:** the part several items share taken out into one place they all use; the items are edited to point to it (D85).
+- **Guide purpose** (D283): Extracts a repeated part into one shared home, preserving item-specific details and meaning.
+- **Guide shape** (D283): Instructions opens with: “Give repeated content one shared home. Check that the copies mean the same thing before combining them.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "A part repeated across items taken out into one place, and each item pointed to it, meaning unchanged. Use when a part repeated across items should live in one place they all point to." A draft (D107).
 - **When to use** (D279): Use when several items repeat a part that should have one shared home and references. A repeated definition may belong in a glossary; shared code may belong in one function.
 - **When not** (D279):
@@ -265,7 +282,9 @@ organize/    arranging things: the shared rules and the check
   4. **Prepare it once,** general enough for all eligible users and no more. Writing waits for the parent's approved map (D259).
   5. **Replace each eligible copy with a working reference only after the parent's map is approved.** Keep item-specific details. Leave differing copies unchanged and list them as excluded from normalization (D259).
 
-  Done with the child's operation when the shared part exists once, every eligible copy points to it and each item keeps its meaning. Differing copies stay unchanged and listed. Return the proposal or authorized result to the parent, which owns both approvals (D259).
+  6. **Return the proposal or approved result to the parent.** Always do this last. The shared part exists once after applying. Every eligible copy points to it and keeps its meaning. Differing copies remain unchanged and listed. Follow the `organize` guide's inventory check and both approval checkpoints.
+
+     Done with the child's operation when the shared part exists once, every eligible copy points to it and each item keeps its meaning. Differing copies stay unchanged and listed. Return the proposal or authorized result to the parent, which owns both approvals (D259).
 - **Gives back** (D279): The shared part and working references to it. List copies with different meanings and leave them unchanged.
 - **Diagram** (D88), near the top of its plain file:
 
@@ -291,6 +310,8 @@ organize/    arranging things: the shared rules and the check
 ### cluster
 
 - **Purpose:** a view added for finding items, with source content unchanged. Navigation tags may be written into items only when the user asks for that form (D85).
+- **Guide purpose** (D283): Builds a view that helps readers find items while keeping source content unchanged apart from navigation tags the user requests.
+- **Guide shape** (D283): Instructions opens with: “Help readers find the items they need. Prepare a navigation view that preserves source content.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "A view for finding items, with source content unchanged. Navigation tags may be written into items only when the user asks for that form. Use when a way to find items is wanted, such as an index, a table of contents or a map." A draft (D107).
 - **When to use** (D279): Use when readers need a view for finding items while their source content stays unchanged. A map or index is one example. Write navigation tags inside items only when the user asks for that form. Leave all other source content unchanged.
 - **When not** (D279):
@@ -300,14 +321,17 @@ organize/    arranging things: the shared rules and the check
   - Effects beyond navigation: return them to the main task and the `act-guardrails` guide. Tags may also change publishing, access or automation.
 - **Callers:** the `organize` guide, from the main map, with its parent path read first (D279).
 - **Flow** (D87), within the `organize` guide's shared rules:
+
+  Advice (D148): for items agents read often, a map pays, since a reader opens only the part it needs rather than reading everything to find it.
+
   1. **Who needs to find what:** the purpose decides the grouping.
   2. **One grouping principle,** by the `organize` guide's rule 1; each item has one main group, with "see also" allowed.
   3. **Choose the view's form,** following rule 5 of the `understand` guide: an index, table of contents, README map or external tag map. Navigation tags may be written into items only when the user asks for that form. List exact tag edits in the parent's approved map. Check what tags do: publishing, access, automation or other effects beyond finding items return to the caller and the `act-guardrails` guide. Never silently treat such effects as navigation (D259).
   4. **How it stays current:** a script, or a check when items change; it also finds items missing from the view and entries pointing to nothing.
 
-  Prepare the view before approval and write it only under the parent's approved map. Return it to the parent for meaning checks and confirmation. Done with the operation when every in-scope item is reachable, all entries resolve and source content is unchanged except the requested navigation tags. Verify exact tag edits and all other content unchanged (D259).
+     Prepare the view before approval and write it only under the parent's approved map. Return it to the parent for meaning checks and confirmation. Done with the operation when every in-scope item is reachable, all entries resolve and source content is unchanged except the requested navigation tags. Verify exact tag edits and all other content unchanged (D259).
 
-  Advice (D148): for items agents read often, a map pays, since a reader opens only the part it needs rather than reading everything to find it.
+  5. **Return the view or proposal, its maintenance method and any exact requested tag edits.** Always do this last. Source content is otherwise unchanged. Follow the `organize` guide's inventory check and both approval checkpoints. Report missing items, entries that point to nothing and effects beyond navigation. Do not claim the view is complete when those problems remain.
 - **Gives back** (D279): The view, how it will stay current and any requested tag edits. All other source content stays unchanged.
 - **Diagram** (D88), near the top of its plain file:
 

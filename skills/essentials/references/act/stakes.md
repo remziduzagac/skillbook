@@ -1,5 +1,7 @@
 # act-stakes
 
+## Purpose
+
 Judges how careful an action needs to be from the effects of a mistake and how it could be caught or undone.
 
 ## When to use
@@ -55,12 +57,14 @@ A judgment that fits none of the named methods is your own, under these rules.
 
 ## Instructions
 
-1. To judge the real effects, identify the action and where it lands. Find missing facts first, such as who calls a function, by the `understand` guide's facts-first rule.
-2. To base care on facts, answer the four questions from facts, guesses marked. A plainly low case takes a glance.
-3. To choose the right amount of care, set the level by the definitions above. When unsure, the higher one.
-4. To keep required safeguards, check the level against every guardrail and instruction to be careful.
-5. To reduce the cost of mistakes, name cheap ways to lower the stakes when the work is not plainly low.
-6. To give the caller a usable judgment, return the judgment in this shape. For plainly low work, use one line: "plainly low" and why.
+Choose care that fits the effects of a mistake. Judge the action from facts using the four questions above.
+
+1. **Identify the action and where it lands.** This helps judge the real effects. Find missing facts first, such as who calls a function, by the `understand` guide's facts-first rule.
+2. **Answer the four questions from facts, guesses marked.** This helps base care on facts. A plainly low case takes a glance.
+3. **Set the level by the definitions above.** This helps choose the right amount of care. When unsure, the higher one.
+4. **Check the level against every guardrail and instruction to be careful.** This helps keep required safeguards.
+5. **Name cheap ways to lower the stakes when the work is not plainly low.** This helps reduce the cost of mistakes.
+6. **Return the judgment in this shape.** This helps give the caller a usable judgment. For plainly low work, use one line: "plainly low" and why.
 
    ```text
    Undo:    how a mistake would be undone, or that it could not be
@@ -78,6 +82,4 @@ A judgment that fits none of the named methods is your own, under these rules.
 
    The `act-stakes` guide keeps nothing. The caller records the judgment where it matters: a decision's reason, a proposal's risk or a delegated brief's model choice.
 
-## The last instruction
-
-**Check the judgment before returning it.** Include the four answers or "plainly low" with its reason. Give the level and a one-line reason. Check that care is not below a rule. Take no action and ask no question here.
+7. **Check the judgment before returning it.** Always do this last. Include the four answers or "plainly low" with its reason. Give the level and a one-line reason. Check that care is not below a rule. Take no action and ask no question here.

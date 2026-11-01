@@ -1,12 +1,14 @@
 # coordinate-delegate
 
-Chooses and manages permitted workers while keeping decisions, authority and verification with the caller.
+## Purpose
+
+Chooses and manages permitted workers, so their work is checked while decisions and authority stay with the caller.
 
 Needs: permitted agent tools. Without helper controls, do ordinary work in the main session and report the limitation. Required independence stays outstanding by the `act-verify` guide's rule 2. Install nothing and bypass no opt-in.
 
 ## When to use
 
-Use when starting another agent now, or when several agents should answer, search or change things. For example, separate work or an independent check may need a worker. Follow the main skill’s delegation advice.
+Use when starting another agent now, or when several agents should answer, search or change things. For example, separate work or an independent check may need a worker. Follow the `coordinate` guide’s advice.
 
 ## When not
 
@@ -20,7 +22,7 @@ The actual work and check results, task status, cost where needed and cleanup re
 
 ## Rules
 
-1. **Keep conversation, tracking and user decisions in the main session.** Follow the main skill's delegation advice for whether work should leave it. Large tool output distracts from the user's thread.
+1. **Keep conversation, tracking and user decisions in the main session.** Follow the `coordinate` guide's advice for whether work should leave it. Large tool output distracts from the user's thread.
 2. **Use a fresh worker when independence is required.** A fork shares the writer's history and blind spots. Do not use a fork for a review, a second check or a council member. Follow the `act-verify` guide's rule 2 to check whether a helper is available and what evidence the check needs. Missing log events do not prove that no helper was available.
 3. **Choose a fresh worker's tier by the cost of being wrong.** Use the `act-stakes` guide when the applicable row is not plain. If rows overlap, take the higher tier.
 
@@ -42,7 +44,7 @@ The actual work and check results, task status, cost where needed and cleanup re
 
 ## Advice
 
-- List the context the worker needs: decisions, files, constraints and user intent. A brief list favors fresh context for long work. A long list needing the discussion favors a fork. A short known task leaving little behind stays in the main session by its advice. A short task that reads or produces a large amount of material favors a fork. Independence still requires fresh context.
+- List the context the worker needs: decisions, files, constraints and user intent. A brief list favors fresh context for long work. A long list needing the discussion favors a fork. A short known task leaving little behind stays in the main session by the `coordinate` guide’s advice. A short task that reads or produces a large amount of material favors a fork. Independence still requires fresh context.
 - For long work with little context, use fresh context and a lighter model when mechanical or checked. For long work needing much context, use a fork. If the harness shows its window nearly full, give the needed context in a file to a fresh worker. Do not inspect transcripts or calculate token counts for routine choices. Context is paid again each turn, so smaller context helps most on long work.
 - Search before a reading fanout. Delegate a broad reading task to light workers only when the material left after searching is much larger than the workers' startup context, briefs and reports. About 80,000–100,000 tokens is a historical estimate. Do not calculate tokens to use that estimate as a trigger. A stronger model can help self-contained hard work.
 - Keep a running list of tasks. For each task, record the worker, whether it is a fork or fresh, its tier, its start time, its expected result and its actual status. Use the main skill's progress rule for intermediate messages. Put results and ordinary notices in the final answer. Keep required notices and approval questions at their own timing.
@@ -51,20 +53,23 @@ The actual work and check results, task status, cost where needed and cleanup re
 
 ## Instructions
 
-1. To match workers to the work, choose the work pattern. Use the caller's named pattern within its authority. Otherwise consider one worker first. Several earn their cost through large separate parts, independence or different lenses, accepted time savings, or a worker's limited window. Search first. Read the matching method below when several workers are needed. Run that method inside this active call after controls and approval are settled. A method's request for one worker uses this call's startup steps without selecting a method again. A single task needs no method child. Workers start no further workers.
-2. To give the worker the right context, choose fork or fresh by the advice and independence rule. Use only capabilities actually available. Without a fork, give a fresh worker the needed context.
-3. To stay within available permissions, use the agent's own permitted controls for helpers.
-4. To match ability and cost to the risk, choose a fresh worker's model and effort by rules 3 and 4. Resolve cost by rule 8 before starting. Report a missing mapping or control. Do not invent one.
-5. To give the worker enough context, write the worker's brief through the `coordinate-brief` guide.
-6. To keep the worker trackable, start the allowed worker and record its identity. Respect limits and keep its actual state on the running list. Use permitted waits while the conversation continues.
-7. To check work beyond its success report, check the returned result by rule 7. Handle obstacles by rule 5. Ask the worker to clean up before reporting and check its report through the `act-cleanup` guide.
-8. To give the caller the actual outcome, return a short report to the caller. Report the task outcome, decisions needed from the user, paths to evidence, missing work and cost where needed. Report cleanup under cleaned, kept and proposed. Distinguish failed or unfinished work from completed work.
-9. The `coordinate-delegate-council` guide: collect independent answers.
-10. The `coordinate-delegate-fanout` guide: combine findings from separate parts.
-11. The `coordinate-delegate-crew` guide: coordinate parallel changes.
+The goal is checked worker results within the caller’s authority. Manage the workers with the steps below.
+
+- The `coordinate-delegate-council` guide: collect independent answers.
+- The `coordinate-delegate-fanout` guide: combine findings from separate parts.
+- The `coordinate-delegate-crew` guide: coordinate parallel changes.
 
 Read [cost data](delegate/assets/prices.md) only when needed. Read [other-harness rules](delegate/assets/other-harnesses.md) only when another program is named or an allowed one fits.
 
-## The last instruction
+1. **Choose the work pattern.** This matches workers to the work. Use the caller's named pattern within its authority. Otherwise consider one worker first. Several earn their cost through large separate parts, independence or different lenses, accepted time savings, or a worker's limited window. Search first. Read the matching method when several workers are needed. Run that method inside this active call after controls and approval are settled. A method's request for one worker uses this call's startup steps without selecting a method again. A single task needs no method child. Workers start no further workers.
+2. **Choose fork or fresh by the advice and independence rule.** This gives the worker the right context. Use only capabilities actually available. Without a fork, give a fresh worker the needed context.
+3. **Use the agent’s own permitted controls for helpers.** This keeps startup within available permissions. Follow rule 9 and the capability fallback above.
+4. **Choose a fresh worker’s model and effort by rules 3 and 4.** This matches ability and cost to the risk. You must resolve cost by rule 8 before starting a worker. Report a missing mapping or control. Do not invent one.
+5. **Write the worker’s brief through the `coordinate-brief` guide.** This gives the worker enough context. The brief must be ready before the worker starts.
+6. **Start the allowed worker and record its identity.** This keeps the worker trackable. Respect limits and keep its actual state on the running list. Use permitted waits while the conversation continues.
+7. **Check the returned result by rule 7.** A success report alone does not establish that the work passed. Handle obstacles by rule 5. Ask the worker to clean up before reporting and check its report through the `act-cleanup` guide.
+8. **Return a short report to the caller.** This gives the caller the actual outcome. Report the task outcome, decisions needed from the user, paths to evidence, missing work and cost where needed. Report cleanup under cleaned, kept and proposed. Distinguish failed or unfinished work from completed work.
 
-Every reported completion has checked evidence or an explicit unverified status. The running list preserves failures and pending work. Return a verification worker to its active caller. Report cost and cleanup honestly. Never widen authority or answer a user's approval prompt yourself.
+9. **Check the delegated work before reporting.** Always do this last.
+
+   Every reported completion has checked evidence or an explicit unverified status. The running list preserves failures and pending work. Return a verification worker to its active caller. Report cost and cleanup honestly. Never widen authority or answer a user's approval prompt yourself.

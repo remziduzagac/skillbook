@@ -1,5 +1,7 @@
 # organize-split
 
+## Purpose
+
 Divides one written or planned whole into parts, or sorts all loose items into groups.
 
 ## When to use
@@ -27,14 +29,14 @@ A → A1 A2 A3
 
 ## Instructions
 
-1. To divide for the right purpose, frame the whole and what its parts are for. Choose the dividing principle to serve the whole's purpose.
-2. To avoid losing required items, list everything the whole contains or must cover. Do this before grouping. For a future whole, list its requirements.
-3. To keep groups distinct, choose one dividing principle. Follow the parent's shared choice rule.
-4. To make each part’s scope clear, write each part's boundary in one sentence.
-5. To give every item a home, map every item to exactly one part. Name any item that fits no part or fits more than one part.
-6. To resolve missing or overlapping places, resolve missing or double homes. Sharpen overlapping boundaries. Add a part for a required item with no home. Exclusions need user approval and remain preserved outside the changed scope. Otherwise return the unresolved placement in the proposal. Do not silently drop an item.
-7. To check the proposed parts before applying them, use the `organize` guide's bounded check for overlaps and gaps. Return to this operation after the check. Do not restart the `organize` guide's step for choosing an operation. Apply the arrangement only under the parent's approved map.
+Give every item a distinct place. List what the whole contains or must cover before grouping it.
 
-## The last instruction
+1. **Frame the whole and what its parts are for.** This helps divide for the right purpose. Choose the dividing principle to serve the whole's purpose.
+2. **List everything the whole contains or must cover.** This helps avoid losing required items. Do this before grouping. For a future whole, list its requirements.
+3. **Choose one dividing principle.** This helps keep groups distinct. Follow the parent's shared choice rule.
+4. **Write each part's boundary in one sentence.** This helps make each part’s scope clear.
+5. **Map every item to exactly one part.** This helps give every item a home. Name any item that fits no part or fits more than one part.
+6. **Resolve missing or double homes.** This helps resolve missing or overlapping places. Sharpen overlapping boundaries. Add a part for a required item with no home. Exclusions need user approval and remain preserved outside the changed scope. Otherwise return the unresolved placement in the proposal. Do not silently drop an item.
+7. **Use the `organize` guide's bounded check for overlaps and gaps.** This helps check the proposed parts before applying them. Return to this operation after the check. Do not restart the `organize` guide's step for choosing an operation. Apply the arrangement only under the parent's approved map.
 
-Return parts, boundaries, each item's place and any exceptions to the parent. A proposal or check may report unresolved placements. A completed change has one home for each required item and preserves approved exclusions. Follow the `organize` guide's inventory check and approval checkpoints. Check that parts can be read on their own and fit how they are read.
+8. **Return parts, boundaries, each item's place and any exceptions to the parent.** Always do this last. A proposal or check may report unresolved placements. A completed change has one home for each required item and preserves approved exclusions. Follow the `organize` guide's inventory check and approval checkpoints. Check that parts can be read on their own and fit how they are read.

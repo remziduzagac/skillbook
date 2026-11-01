@@ -1,6 +1,8 @@
 # act
 
-Rules for acting on every request.
+## Purpose
+
+Sets the rules for acting on every request so the work stays understood, scoped and checked.
 
 ## When to use
 
@@ -82,24 +84,18 @@ No separate result. These rules shape the work.
 
 ## Instructions
 
-**Before acting:**
-
-- the `act-stakes` guide: judge how careful to be.
-- the `act-guardrails` guide: scope and approval for risky actions.
-
-A request that is both, such as "can I archive these without checking with anyone?", reads the `act-stakes` guide, then the `act-guardrails` guide.
-
-**While working:**
-
-- the `act-cleanup` guide: remove your task leftovers.
-
-**Before saying done:**
-
-- the `act-verify` guide: check claims against evidence.
-- the `act-rightsize` guide: shape work for its reader.
+Keep the work understood, within scope and checked. Apply these rules throughout the request.
 
 A request about your own work that fits no line is your own judgment, under the rules above.
 
-## The last instruction
+1. **Judge care and approval before acting.** This sets the safeguards before they are needed.
+   - the `act-stakes` guide: judge how careful to be.
+   - the `act-guardrails` guide: scope and approval for risky actions.
 
-Before you return anything, follow the last instruction of each tool you used.
+   A request that is both, such as "can I archive these without checking with anyone?", reads the `act-stakes` guide, then the `act-guardrails` guide.
+2. **Handle task leftovers while working.** This keeps them from piling up. Use the `act-cleanup` guide to remove your task leftovers.
+3. **Check claims and fit the result to its reader before saying done.** This gives the reader a usable result backed by evidence.
+   - the `act-verify` guide: check claims against evidence.
+   - the `act-rightsize` guide: shape work for its reader.
+
+4. **Before you return anything, follow the final step of Instructions of each tool you used.** Always do this last.

@@ -1,6 +1,8 @@
 # coordinate-instruct
 
-Proposes and applies approved instruction documents for agents.
+## Purpose
+
+Prepares instruction documents for agents and applies approved changes, so later sessions receive the intended guidance.
 
 ## When to use
 
@@ -32,13 +34,15 @@ The proposed or approved instruction document, its location and whether it was a
 
 ## Instructions
 
-1. To write for the actual reader, identify the reader and when the document is read. Use the `act-rightsize` guide to judge its cost and needed detail.
-2. To define what the document must support, list the questions and requests the document must let the agent answer. Use them as the document's tests.
-3. To preserve what remains true, read the current document before updating it. Preserve what remains true.
-4. To show the user a concrete document, draft the proposal under the rules above. Use the `organize` guide for a new document's parts, with its requirements as the items to divide.
-5. To keep occasional work out of shared instructions, remove extra material through the right method. Use the `act-rightsize` guide for a new draft and the `act-rightsize-lean` guide for existing material. Propose moving occasional procedures instead of dropping their content.
-6. To save only checked and approved changes, check the draft against step 2 and obtain rule 6's approval. Apply only the approved changes. Check and report the saved result through the `act-verify` guide.
+The goal is useful instruction guidance saved only with approval. Prepare the document with the steps below.
 
-## The last instruction
+1. **Identify the reader and when the document is read.** This makes the document fit the actual reader. Use the `act-rightsize` guide to judge its cost and needed detail.
+2. **List the questions and requests the document must let the agent answer.** This defines what the document must support. Use them as the document's tests.
+3. **Read the current document before updating it.** This helps preserve what remains true. You must read it before changing it. Keep the parts that remain true.
+4. **Draft the proposal under the rules above.** This gives the user a concrete document to judge. Use the `organize` guide for a new document's parts, with its requirements as the items to divide.
+5. **Remove extra material through the right method.** This keeps occasional work out of shared instructions. Use the `act-rightsize` guide for a new draft and the `act-rightsize-lean` guide for existing material. Propose moving occasional procedures instead of dropping their content.
+6. **Check the draft against step 2 and obtain rule 6’s approval.** This keeps saved changes checked and approved. You must obtain required approval before applying the changes. Apply only the approved changes. Check and report the saved result through the `act-verify` guide.
 
-Return the proposal or approved document and its location. Check that it answers its intended questions, keeps required facts, uses resolvable references and has actual approval before saving. Never report a proposed change as already saved.
+7. **Check the proposed or approved document.** Always do this last.
+
+   Return the proposal or approved document and its location. Check that it answers its intended questions, keeps required facts, uses resolvable references and has actual approval before saving. Never report a proposed change as already saved.

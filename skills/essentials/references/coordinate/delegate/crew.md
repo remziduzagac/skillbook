@@ -1,5 +1,7 @@
 # coordinate-delegate-crew
 
+## Purpose
+
 Coordinates parallel changes to separate items, then joins and checks the whole result.
 
 Needs: permitted workers through the active the `coordinate-delegate` guide call. If unavailable, return the limitation and unstarted work. Report partial changes and unfinished checks honestly.
@@ -26,12 +28,14 @@ The approved changes, the final pass over the whole, actual check results and un
 
 ## Instructions
 
-1. To give each item one owner, plan the parts through the `devise-plan` guide. It uses the `organize` guide to divide future work. Name each worker's scope, shared items, owners and checks. Existing material rearranged by a step still uses the `organize` guide's approvals.
-2. To keep a planning request read-only, return a plan-only request without starting workers. For execution, obtain the approvals required by rule 2 before the active parent starts workers.
-3. To avoid overlapping changes, run allowed changes to separate items through the active delegate call. Use the active delegate call's controls and briefs. Keep its required baseline, actual task status, verification and cleanup. Workers start no further workers. Return approval questions to the caller.
-4. To join the separate parts, make one pass over the whole in sequence. The main agent joins what parallel work left separate and applies approved shared-item proposals. Stay inside the approved scope. Several reading views may use the `coordinate-delegate-fanout` guide before the final pass.
-5. To show whether the whole job works, check the whole result through the `act-verify` guide. A failed or cancelled part leaves its dependent work unfinished. Report partial changes and the next owner. Do not claim completion or silently undo unrelated or later edits.
+The goal is separate approved changes joined into one checked result. Coordinate the work with the steps below.
 
-## The last instruction
+1. **Plan the parts through the `devise-plan` guide.** This gives each item one owner. It uses the `organize` guide to divide future work. Name each worker's scope, shared items, owners and checks. Existing material rearranged by a step still uses the `organize` guide's approvals.
+2. **Return a plan-only request without starting workers.** Planning alone does not approve changes. For execution, you must obtain the approvals required by rule 2 before the active parent starts workers.
+3. **Run allowed changes to separate items through the active delegate call.** This avoids overlapping changes. Use the active delegate call's controls and briefs. Keep its required baseline, actual task status, verification and cleanup. Workers start no further workers. Return approval questions to the caller.
+4. **Make one pass over the whole in sequence.** This joins the separate parts. The final pass must follow the parallel changes. The main agent joins what parallel work left separate and applies approved shared-item proposals. Stay inside the approved scope. Several reading views may use the `coordinate-delegate-fanout` guide before the final pass.
+5. **Check the whole result through the `act-verify` guide.** This shows whether the whole job works. The whole-result check must follow the final pass. A failed or cancelled part leaves its dependent work unfinished. Report partial changes and the next owner. Do not claim completion or silently undo unrelated or later edits.
 
-Return the changes actually made and evidence of verification to the active caller. Report the result of the final pass over the whole job. Claim completion only when the whole allowed job passed its checks. Keep pending work, user decisions and cleanup visible. Never restart the parent's method selection.
+6. **Check the joined work and its status.** Always do this last.
+
+   Return the changes actually made and evidence of verification to the active caller. Report the result of the final pass over the whole job. Claim completion only when the whole allowed job passed its checks. Keep pending work, user decisions and cleanup visible. Never restart the parent's method selection.

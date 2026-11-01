@@ -1,5 +1,7 @@
 # devise-plan
 
+## Purpose
+
 Makes and follows plans for multipart work, keeping approval and progress explicit.
 
 ## When to use
@@ -40,12 +42,7 @@ The one-line or full plan, its actual approval status, and the checklist showing
 
 ## Instructions
 
-1. To return the requested plan, keep planning separate from execution. A plan-only request authorizes no action.
-2. To preserve the user’s steps, inspect the existing plan and given steps by rules 2 and 9. Read the project facts before assuming what a step needs. Keep obvious steps short.
-3. To make every step clear enough to do, make the plan at the depth rule 5 sets. Use the `understand-frame` guide for a full plan's goal and done. Use the `organize` guide for splitting unknown parts, merging duplicate steps, grouping phases and isolating repeated shared work. Planning parts for something new does not rearrange existing work. Follow this guide's approval rules. This guide decides the order of steps.
-4. To keep progress visible, use the agent's own available plan and task controls. Otherwise keep the plan and checklist in the response.
-5. To keep execution under user control, apply approval by rules 7 and 8. Use a permitted available plan mode when approval is needed. Mode changes alone are not approval. If no plan mode is available, put the approval request in the final message. End the turn. If no task tool is available, keep a plain-text checklist. If both capabilities are missing, use both fallbacks. Install or enable nothing to acquire controls.
-6. To advance only from checked work, follow the steps you are allowed to do by rule 6. Use the `coordinate-delegate` guide to give independent parts to available agents when the caller permits delegation. Use the `coordinate-delegate-crew` guide within that active call for parallel changes to separate items. Raise a wrong given step by the `act` guide's concern rule before relying on it. A failure goes to rule 9, not the next dependent step.
+Keep multipart work clear, approved where needed and checked as it proceeds. Build on the current plan or given steps.
 
 A full plan's default shape, omitting empty fields:
 
@@ -59,6 +56,11 @@ Agents:  work handed to agents
 
 Keep a plan in the response when it fits on a screen. For a longer plan, write a file and give an outline in the response. Use the place and format chosen by the caller or the loaded skill that saves records. If neither has chosen a place, name the file in the response. Follow the `act` guide before writing. Return the plan with its actual approval status and the steps you checked. Do not assume the work is complete.
 
-## The last instruction
+1. **Keep planning separate from execution.** This helps return the requested plan. A plan-only request authorizes no action.
+2. **Inspect the existing plan and given steps by rules 2 and 9.** This helps preserve the user’s steps. Read the project facts before assuming what a step needs. Keep obvious steps short.
+3. **Make the plan at the depth rule 5 sets.** This helps make every step clear enough to do. Use the `understand-frame` guide for a full plan's goal and done. Use the `organize` guide for splitting unknown parts, merging duplicate steps, grouping phases and isolating repeated shared work. Planning parts for something new does not rearrange existing work. Follow this guide's approval rules. This guide decides the order of steps.
+4. **Use the agent's own available plan and task controls.** This helps keep progress visible. Otherwise keep the plan and checklist in the response.
+5. **Get the approval required by rules 7 and 8 before execution.** This helps keep execution under user control. Use a permitted available plan mode when approval is needed. Mode changes alone are not approval. If no plan mode is available, put the approval request in the final message. End the turn. If no task tool is available, keep a plain-text checklist. If both capabilities are missing, use both fallbacks. Install or enable nothing to acquire controls.
+6. **Follow the steps you are allowed to do by rule 6.** This helps advance only from checked work. Use the `coordinate-delegate` guide to give independent parts to available agents when the caller permits delegation. Use the `coordinate-delegate-crew` guide within that active call for parallel changes to separate items. Raise a wrong given step by the `act` guide's concern rule before relying on it. A failure goes to rule 9, not the next dependent step.
 
-Check that the work needs a plan. Check that you kept open items, marked additions, reflected new user input and marked finished items. Check that each step is obvious. Check that you divided a full plan into parts and challenged it. Omit empty fields. Check that approval still covers the work and the facts it rests on. Return the result to the caller. Report actual checked progress and outstanding work.
+7. **Check that the work needs a plan.** Always do this last. Check that you kept open items, marked additions, reflected new user input and marked finished items. Check that each step is obvious. Check that you divided a full plan into parts and challenged it. Omit empty fields. Check that approval still covers the work and the facts it rests on. Return the result to the caller. Report actual checked progress and outstanding work.

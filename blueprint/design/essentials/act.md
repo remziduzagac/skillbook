@@ -20,6 +20,8 @@ act/
 ## act
 
 - **Purpose:** how the agent acts, loaded at the start of every conversation; its rules hold for every request (D63, D72, D178). act is also the group for how the agent works: its plain file holds the `act` guide's shared rules and each child's name and purpose (D279).
+- **Guide purpose** (D283): Sets the rules for acting on every request so the work stays understood, scoped and checked.
+- **Guide shape** (D283): Instructions opens with: “Keep the work understood, within scope and checked. Apply these rules throughout the request.” No Rules move. The existing before-acting, while-working and before-saying-done stages become three numbered Instructions; each keeps its child guides and timing. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "How the agent acts on every request: clarify before acting, an opinion is not a task, plan before multipart work, evidence before any claim, guardrails before a risky action, do exactly what was asked, and read and do only what the task needs. Its tools, loaded as needed: how much care something deserves, risky actions, the agent's own leftovers, evidence before 'done', and nothing missing or extra for the reader." A draft; the `act` guide's own file is a plain file under the main skill, so the description is read by whoever opens it and is never listed to the model (D107, D188).
 - **When to use** (D279): Use on every request, before acting and throughout the work. Even a one-word edit follows these rules.
 - **When not** (D279): Every request follows these rules.
@@ -48,23 +50,23 @@ act/
 
   14. **When the user asks to see or confirm a change before it is made, propose it and end the turn.** This holds whatever the stakes, even when the exact change is small and easy to undo. A request to see what changed afterward asks for a report, not prior confirmation (D271).
 
-  Instructions, child names and purposes (D279):
+  Instructions, child names and purposes (D279, D283):
 
-  **Before acting:**
-  - the `act-stakes` guide: judge how careful to be.
-  - the `act-guardrails` guide: scope and approval for risky actions.
-  - A request that is both, such as "is it safe to do this without asking?", reads stakes, then guardrails, since how careful to be comes before what the action needs (D133, D233).
-
-  **While working:**
-  - the `act-cleanup` guide: remove your task leftovers.
-
-  **Before saying done:**
-  - the `act-verify` guide: check claims against evidence.
-  - the `act-rightsize` guide: shape work for its reader.
+  Keep the work understood, within scope and checked. Apply these rules throughout the request.
 
   A request about the agent's own work that fits no line is done with the agent's own judgment, under the `act` guide's rules (D115).
 
-  **Last instruction, before anything is returned:** the child guide's own last instruction holds (D134).
+  1. **Judge care and approval before acting.** This sets the safeguards before they are needed.
+     - the `act-stakes` guide: judge how careful to be.
+     - the `act-guardrails` guide: scope and approval for risky actions.
+
+     A request that is both, such as "is it safe to do this without asking?", reads stakes, then guardrails, since how careful to be comes before what the action needs (D133, D233).
+  2. **Handle task leftovers while working.** This keeps them from piling up. Use the `act-cleanup` guide to remove your task leftovers.
+  3. **Check claims and fit the result to its reader before saying done.** This gives the reader a usable result backed by evidence.
+     - the `act-verify` guide: check claims against evidence.
+     - the `act-rightsize` guide: shape work for its reader.
+
+  4. **Check the result before returning it.** Always do this last. Before anything is returned: the child guide's own final step of Instructions holds (D134).
 - **Gives back** (D279): No separate result. These rules shape the work.
 - **Files:** `references/act.md` only (D84).
 - **Length** (D282): a little over 100 lines to keep the shared action rules together. The guide itself carries no length note.
@@ -129,6 +131,8 @@ act/
 ## stakes
 
 - **Purpose:** how much care something deserves, judged once and the same way for every guide that decides how careful to be (D121, D133). Four questions, each about a mistake in the action judged, such as a wrong value written or the wrong item changed (D237): **Undo,** whether a mistake could be undone and how easily, by version control, from a backup, or not at all; **Reach,** how far it would go, this file, the project, shared contracts, production, other people, the public; **Catch,** what would catch a mistake before it does harm, tests, lint, a validator, a review, the person, or nothing; **Cost,** what a mistake would cost, time, data, money, trust, security. The four answers, in a few words each, give one level: **low,** a mistake would be caught, or cheaply undone, and stays inside the task; **high,** nothing would catch a mistake in time, and any one of: it is hard to undo; it reaches beyond the task, to shared contracts, production, other people or the public; it would cost data, money or security; **medium,** everything between. stakes judges and the caller acts.
+- **Guide purpose** (D283): Judges how careful an action needs to be from the effects of a mistake and how it could be caught or undone.
+- **Guide shape** (D283): Instructions opens with: “Choose care that fits the effects of a mistake. Judge the action from facts using the four questions above.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "How much care something deserves: whether a mistake could be undone, how far it would reach, what would catch it and what it would cost, rated low, medium or high. Use when deciding how careful to be, such as which tier to delegate to, who checks, or how much to weigh, or when asked how risky something is." A draft (D133).
 - **When to use** (D279): Use when a guide or the user needs to know how careful an action should be. For example: “how bad would it be if the price import went wrong?”
 - **When not** (D279):
@@ -168,7 +172,8 @@ act/
   3. **Set the level** by the definitions; when unsure, the higher one.
   4. **Check against the rules:** nothing below a guardrail kind or an instruction to be careful.
   5. **Name what would lower it,** when that is cheap and the work is not plainly low, since a way to lower plainly low stakes turned a one-line answer into a report (D239).
-  6. **Last instruction, before the judgment is returned:** the four answers, or "plainly low" with its reason; the level with a one-line reason; nothing below a rule; handed back to the caller.
+  6. **Return the judgment in the Gives back shape.** This gives the caller a usable judgment. For plainly low work, use one line: "plainly low" and why.
+  7. **Check the result before returning it.** Always do this last. Before the judgment is returned: the four answers, or "plainly low" with its reason; the level with a one-line reason; nothing below a rule; handed back to the caller. Take no action and ask no question here.
 - **Gives back** (D133, D279), in one short shape: The risk level and a short reason, with the four answers or a “plainly low” judgment. The task that asked receives it and decides what the user needs to see.
 
   ```text
@@ -212,6 +217,8 @@ act/
 ## guardrails
 
 - **Purpose:** the details behind the `act` guide's rule to propose before a risky action, and behind the `respond` guide's final check (D41, D63, D78, D82, D107).
+- **Guide purpose** (D283): Sets the limits for a risky action, gets approval where needed and checks that the result stays within the approved scope.
+- **Guide shape** (D283): Instructions opens with: “Keep risky actions within the user’s approval. Follow this flow for an action of a kind that needs a proposal.” The reference to the act guide’s never-rules and instructions-and-data rule moves from the old opening to Rules. Rules 1–7 keep their numbers. The proposal, approval and application steps stay firm in Instructions. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "Risky actions: irreversible, wide, outward, outside the task, costly, fetched code, weaker checks or secrets; proposed with their scope, approved, applied exactly, checked. Use before an action that may be risky, and for the `respond` guide's final check." A draft (D107).
 - **When to use** (D279): Use before an action that is risky or wide under the `act` guide’s rule 5. Examples include deleting the user’s work, sending something outside the project or changing files chosen by a search. Also use before a response that touches secrets, vulnerability details, others’ text or an action covered by that rule.
 - **When not** (D279):
@@ -233,15 +240,20 @@ act/
   | weaker checks | skipped tests or commit checks, looser lint, wider permissions or hooks | propose first |
   | secrets and security | keys, passwords, vulnerability details | the `act` guide's never-rules; else proposed first |
 
-  - **Instructions and data** (D115): the `act` guide's rule 9 holds the rule, its one home, since data arrives on turns that never load guardrails; guardrails points there in its opening line, and its "others' text and code" kind adds only that code from others runs if approved (D233).
+  - **Instructions and data** (D115): the `act` guide's rule 9 holds the rule, its one home, since data arrives on turns that never load guardrails; guardrails points there at the start of Rules, and its "others' text and code" kind adds only that code from others runs if approved (D233).
   - **Trivial cost** (D107): below a figure the person sets in their own instruction file, US$1 by default, or a cost already accepted in this conversation for the same kind of work. This is the only place the cost rule lives; delegate, its council and its rules for other harnesses point here.
   - **The project's own commands** (D107): the commands a project documents for building, testing and checking, with pinned dependencies, run without asking each time; installing anything new, or running a downloaded script, needs approval.
   - **Safe writes** belong to "can't be undone": before writing a file, check it has not changed since it was read; never empty a file that held content, unless emptying it is the task, such as clearing a log the person asked to clear; append rather than rewrite where possible, since a write over a file changed meanwhile, or an emptied one, loses what was there (D91, D233). An empty new file, such as an empty `__init__.py`, loses nothing and is allowed.
   - **The network** (D92): reading from it is allowed, and what comes back is data; local data sent to it is outward; anything fetched from it and run locally (scripts, binaries, packages, containers) runs only after approval, its source named, pinned and known sources preferred. The places never visited are the `act` guide's never-rule, its one home, since following a link is a read that never loads guardrails (D233).
   - **Proportion** (D92): a change that is reversible and inside the task's scope needs no proposal, such as editing a file under version control; proposals are kept for what matters. act still asks whenever something is not understood, and an instruction from the person or the project to propose more often wins (the `act` guide's rule on which instruction wins, D107). Proportion covers only changes that are reversible and inside the task: a wide change is planned first: the plan shows every file or item it touches and the turn ends, with nothing changed until the person replies, since a plan written as text between tool calls was written only in thinking, which Claude Code hides, in every run that tried it, and a list seen after the change is too late to correct (D238, D244); not wide is a change the person named exactly, with what it needs to work, such as a renamed function and its callers, which goes ahead (D244); a command that moves, renames or rewrites files is a change too, since the runs that skipped the plan changed files through a command, not an edit (D239), and, once the person replies, proceeds when it is reversible and inside the task; a kind whose rule is to propose or ask (can't be undone, outward, outside the task, costly, weaker checks, secrets, others' code to run) always needs it, whatever proportion says (D115). Reversible means the person can undo it their usual way, such as from version control; a copy the agent makes itself, such as a backup in a temporary folder, does not count, since the person does not know of it and it may not last; and size does not change the kind, since one deleted file is still a deletion (D238). Whether a change is reversible and how far it reaches is judged by stakes; what each kind needs stays here (D133).
-  - **Never-rules** (D107): the `act` guide's rule 5 holds them, their one home, and the `act` guide's rule 9 the rule on instructions and data, since both apply on turns that never load guardrails (D233). guardrails names them in one line at its top and keeps only its own detail: secrets and security as a kind, proposed first where no never-rule forbids the action outright, and a last instruction that checks nothing breaks them.
+  - **Never-rules** (D107): the `act` guide's rule 5 holds them, their one home, and the `act` guide's rule 9 the rule on instructions and data, since both apply on turns that never load guardrails (D233). guardrails names them in one line at the start of Rules and keeps only its own detail: secrets and security as a kind, proposed first where no never-rule forbids the action outright, and a final step of Instructions that checks nothing breaks them.
 
-- **Flow** for a risky action (D91, D92):
+  An approval covers one action and its stated scope, by the means proposed, whenever it was given; another means is a new proposal, even for the same result, since what it does on the way was not approved: approval to run a project's release script does not cover publishing its files by hand (D234): a step the person approved earlier in the conversation is applied when the agent reaches it, the approval named, and anything found meanwhile outside its scope is proposed on its own (D218, D232); it does not extend to the next action or to another place or context (D91). Done when the approved action is applied and checked, or it was declined and nothing changed (D107).
+
+- **Instructions** for a risky action (D91, D92, D285):
+
+  Keep risky actions within the user’s approval. Follow this flow for an action of a kind that needs a proposal.
+
   1. **Propose:** what, why, the exact scope (paths, items), by the means the person asked for, with a way the agent prefers only beside it, by the `act` guide's rule 3 (D239), and how to undo it or that it cannot be undone; with a dry run's output where the tool offers one, such as a preview of what would be deleted or changed.
   2. **Wait** for approval. A request for the action is not its approval, even when it names the exact file, list or target, since the person may not know what cannot be got back; nor is the harness's permission to run it; words that approve a stated scope, and words that waive the proposal, are approval, even before the proposal, as the approval rule below says (D237, D240).
   3. **Checkpoint** first where possible: a commit, a copy.
@@ -249,7 +261,7 @@ act/
   5. **Stop on surprise:** if the action does more or other than proposed, an unexpected file touched, an error halfway, stop, report and ask how to go on, through the `respond-ask` guide, since a stop reported with no question left the person with no next step (D238); no continuing, no quiet repair, since what was not proposed was not approved. A formatter that touches lines outside the scope counts (D115).
   6. **Check and report** the result, through verify.
 
-  An approval covers one action and its stated scope, by the means proposed, whenever it was given; another means is a new proposal, even for the same result, since what it does on the way was not approved: approval to run a project's release script does not cover publishing its files by hand (D234): a step the person approved earlier in the conversation is applied when the agent reaches it, the approval named, and anything found meanwhile outside its scope is proposed on its own (D218, D232); it does not extend to the next action or to another place or context (D91). Done when the approved action is applied and checked, or it was declined and nothing changed (D107).
+  7. **Check before returning anything.** Always do this last. The action is applied exactly and checked, declined, or still waiting with nothing changed. Nothing outside approved scope changed. Neither work nor response breaks the `act` guide's never-rules.
 - **Gives back** (D279): A proposal with clear limits. After approval, return what was done and checked, or what was declined or still awaits approval.
 - **Files:** `references/act/guardrails.md` only: the table, the flow, the approval rule, trivial cost, the project's commands, safe writes, the network, proportion, and a pointer to the `act` guide's never-rules and its rule on instructions and data (D91, D92, D107, D233).
 - **Material:** VaultOps, slipbox and infoloom on safe change (propose, approve, apply; an edit scope; plan then apply; a checkpoint first; safe note writes); gstack's guard skills; the person's current `AGENTS.md`.
@@ -281,6 +293,8 @@ act/
 ## cleanup
 
 - **Purpose:** the agent removes what it created and no longer needs, so nothing unused keeps holding disk, memory or CPU and nothing it left behind surprises the person later; only the agent's own leftovers, never tidying the person's work (D126, D129). In scope is whatever it created or started in this task: temporary files and folders, downloads, extracted archives, scratch output and run homes; clones and copied trees; background processes, dev servers, watchers, test runners left hanging and ports held open; containers, with the images, volumes and networks it built for the task; worktrees, local branches and stashes it made; sub-agents, background tasks and panes it started; wake-ups, timers, cron jobs, monitors and loops it set; temporary edits in the work, such as debug output, a probe or a setting switched for a test; and things outside the machine, such as a preview deployment, a cloud resource, a pushed branch or a temporary token, whose removal is always proposed.
+- **Guide purpose** (D283): Removes things created or started for a task when they are no longer needed, leaving a checked cleanup status.
+- **Guide shape** (D283): Instructions opens with: “Leave no unwanted task leftovers. Track what you create and clean it when its job ends.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "Removing what the agent itself created and no longer needs, so nothing unused holds disk, memory or CPU: temporary files, copies, processes, containers, worktrees, agents, scheduled work and temporary edits, with what was kept said and why. Use at the end of a task, before stopping, when delegated work comes back, or when asked to clean up after itself." A draft (D129).
 - **When to use** (D279): Use before ending a task if you created or started anything. Also use when writing an agent brief, before making something large, when disk or memory runs short, or when temporary material is no longer needed. Example: “remove what you left lying around”.
 - **When not** (D279):
@@ -324,7 +338,8 @@ act/
   4. **When the record is incomplete,** after a crash or something forgotten: the places the agent uses are looked in and what is there is listed; anything it cannot be sure is its own is proposed, not removed.
   5. **Before the response that ends the task, by the `act` guide's rule 11, or before stopping, at a carryover or the wrap-up offer:** the record gone through, the agent's own cleaned, the rest proposed through guardrails and ask.
   6. **Check** with verify.
-  7. **Last instruction, before anything is returned:** every item in the record is cleaned, kept with its reason, or proposed, and the report says which.
+  7. **Give the cleanup report at the end of the response.** This makes the cleanup status clear. Use the Gives back shape and report-size rules below.
+  8. **Check the result before returning it.** Always do this last. Before anything is returned: every item in the record is cleaned and checked as gone, kept with its location and reason, or proposed, and the report says which. Check before ending the task or stopping.
 - **Gives back** (D129, D279): What was removed, what was kept with its location and reason, and what still needs approval to remove.
 
   ```text
@@ -369,6 +384,8 @@ act/
 ## verify
 
 - **Purpose:** evidence before saying done, or that something made is correct, such as a document, a figure or code, and who checks (D63, D233). A fact about the outside world, such as whether a library still supports an old version, stays with the `understand` guide, so "is this correct?" has one home for what was made and one for the world outside (D233).
+- **Guide purpose** (D283): Checks claims that work is done or correct, using fresh evidence and a clear choice of who checks it.
+- **Guide shape** (D283): Instructions opens with: “Make each claim checkable. Match it to fresh evidence and the right checker before reporting it.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "Evidence before claiming that work is done, fixed, passing, correct or meets its requirements, or answering whether it does: the check chosen, run fresh, and who checks it." A draft (D107, D233, D235).
 - **When to use** (D279): Use before claiming that work is done, fixed, passing, correct or meets its requirements, and when the user asks whether it does. Read it before work starts so needed evidence can be kept. For example, a report’s original numbers may be lost when it is rewritten. Run the checks before making the claim.
 - **When not** (D279):
@@ -376,7 +393,7 @@ act/
   - Getting approval before a risky action: use the `act-guardrails` guide. Verification checks what happened, not permission to act.
   - Reviewing finished work about to land: use a skill in the harness’s list for reviewing that kind of work, if one fits. Otherwise use your judgment under the `act` guide. That review examines the work, not just a claim about it.
   - Checking whether an idea holds, an outside fact is true, or a research finding is well supported: use the `understand` guide. These are questions about reasoning or sources.
-- **Callers:** the `act` guide itself, from the main map, with its parent path read first (D279). Its other callers: the `act` guide's rule on evidence, for every claim that work is done, fixed, passing or meets its requirements (D84, D107); the `devise-plan` guide, after each step (D155); delegate, checking delegated work; the `organize` guide, for the inventory or the tests that show meaning kept (D86); guardrails' last step.
+- **Callers:** the `act` guide itself, from the main map, with its parent path read first (D279). Its other callers: the `act` guide's rule on evidence, for every claim that work is done, fixed, passing or meets its requirements (D84, D107); the `devise-plan` guide, after each step (D155); delegate, checking delegated work; the `organize` guide, for the inventory or the tests that show meaning kept (D86); guardrails' verification step.
 - **Flow** (D89):
   1. **Name the claim** about to be made.
   2. **Choose the evidence:** the check that would fail if the claim were false.
@@ -390,7 +407,7 @@ act/
 
   Gaps: a fact about the outside world, and how strong the evidence is for a claim that is not about something made, ranked from seen or measured to only said, go to the `understand-research` guide, beside its findings format; verify's own evidence for a claim of done or correct is seen or measured (D140, D233).
 
-  A rule, not advice, since as advice it was skipped and the offer costs one line (D236): by the third time in a conversation the same check is run by hand, on the same item or another, a script, a test or a lint rule is offered in one line, ending the answer, since two could be chance and three show it repeats; it is never written unasked, since that is work the person did not ask for (D89, D107, D116). Verify's last instruction checks for the offer. The guide words it as one action: on the third time the same check is run by hand, the answer ends with a one-line offer (D250).
+  A rule, not advice, since as advice it was skipped and the offer costs one line (D236): by the third time in a conversation the same check is run by hand, on the same item or another, a script, a test or a lint rule is offered in one line, ending the answer, since two could be chance and three show it repeats; it is never written unasked, since that is work the person did not ask for (D89, D107, D116). Verify's final step of Instructions checks for the offer. The guide words it as one action: on the third time the same check is run by hand, the answer ends with a one-line offer (D250).
 - **Claims and their evidence** (D89), in `references/act/verify.md`:
 
   | Claim | Evidence | Not enough |
@@ -402,6 +419,18 @@ act/
   | nothing lost (the `organize` guide) | the inventory | "looks complete" |
   | something made is correct | each part against its source, or the figure worked out again | "reads right" |
 
+- **Instructions** (D283, D285), with references to the built guide's Rules:
+
+  Make each claim checkable. Match it to fresh evidence and the right checker before reporting it.
+
+  1. **Name the claim you are about to make.** This helps make the check precise.
+  2. **Choose evidence by rule 1.** This helps test the actual claim.
+  3. **Choose the checker by rule 2.** This helps get the right kind of check.
+  4. **Run the check fresh and whole by rule 3.** This helps check the current work.
+  5. **Compare the evidence with the claim and report it by rule 4.** This helps give an honest result.
+  6. **Run the four checks in rule 5 for a plan’s task, commit or pull request.** This checks the whole item, not just an individual claim.
+  7. **Return each claim with its evidence or actual status to the caller.** This helps keep the evidence with the claim. If it matters beyond the conversation, such as a finished task, give it to the skill the project's instructions name for saving records. If none is named, keep it in the response.
+  8. **Check before calling anything done or correct.** Always do this last. Each claim has evidence beside it or is marked unverified. Never call your own check independent. Never call a check done or independent if you did not see its result. High-stakes work has a fresh agent's check or an explicit pending check. A plan's task, commit or pull request has the four checks, scaled to stakes. The third manual run has its automation offer, by rule 6.
 - **Gives back** (D279): Each claim with its evidence, whether it was confirmed, and who checked it. Put the evidence beside the claim in the report.
 - **Files:** `references/act/verify.md` only, the table included (D89).
 - **Material:** superpowers' `verification-before-completion` (its substance, not its capitals); meddah (prove invariants by diff, distrust confident findings); workslate (choose the verifier; the four upward checks); mattpocock's retro (a mechanical rule gets a mechanical check).
@@ -411,6 +440,8 @@ act/
 ## rightsize
 
 - **Purpose:** what anything given back, made or done needs for its reader: nothing missing, nothing extra, parts that cover everything without overlap, the point first; and for the work, only what the task needs read and done (D145). It is one judgment that many guides need, like stakes, so they call it rather than restate it; each guide or skill that makes something keeps only what is specific to its output. Its two child guides rework what already exists: lean removes what is extra, enrich adds what is missing; rightsize itself shapes what is being made now, and the line between them is whether the thing existed before this task (D157).
+- **Guide purpose** (D283): Fits work and its results to the reader’s purpose, with nothing missing or extra and the point first.
+- **Guide shape** (D283): Instructions opens with: “Fit existing material to its reader. Use the method needed for the parts being reworked; these methods have no fixed order.” No Rules move. Instructions keeps the lean and enrich methods without a fixed order; no ordered steps are invented. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "Rightsizing anything given back, made or done: nothing missing and nothing extra for its reader, parts that cover everything without overlap, the point first. Use before returning a response or report, writing a file, code or a design, and when deciding how much to read or do; its parts lean and enrich rework what already exists." A draft (D145, D157).
 - **When to use** (D279): Use when deciding what to read, do, make or return for a reader. Read before changing existing material that the user asks you to trim, shorten, fill or complete, or check for missing or extra parts. Examples: “trim the meeting notes”, “complete the onboarding page” or “what is this README missing?”.
 - **When not** (D279): The rules and final check still apply to anything made, done or returned. The alternatives below concern a rework pass, not those general rules.
@@ -422,7 +453,7 @@ act/
   - A named change, such as a given section to add: make that edit. A fill or complete request still needs this method because you must find what goes in.
 - **Callers** (D145):
   - the `act` guide itself, from the main map, with its parent path read first (D279);
-  - the `act` guide's own rules, for the work (rule 12), and, through the main skill, the `respond` guide, whose last instruction runs the check before every response, so rightsize is loaded with the first response and stays (D149, D158, D178);
+  - the `act` guide's own rules, for the work (rule 12), and, through the main skill, the `respond` guide, whose final step of Instructions runs the check before every response, so rightsize is loaded with the first response and stays (D149, D158, D178);
   - through the main skill: the `organize` guide, whose boundary rule it serves; the `coordinate-brief` guide, for what an agent is told and the report it asks back; the `coordinate-carryover` guide, when the carryover is written; the `coordinate-instruct` guide, for its reader step and, through lean, its prune step on an existing document (D157);
   - other guides and available skills: the `devise-design` guide for a design; a skill in the harness’s list for markdown files or code changes, if one fits, before that work is returned (D281);
   - the person.
@@ -440,7 +471,10 @@ act/
   - usually missing: the reason behind a recommendation; what failed or was skipped; the next step; where the evidence is; the assumption the result rests on; the error path in code; the requirement each part of a design serves;
   - length follows the reader and the question, not a word count of the agent's own; a limit the person or the format sets holds (D116, D199).
 
-  Instructions (D157), for something that already exists; what is being made now takes only the last instruction below:
+  Instructions (D157, D283), for something that already exists; what is being made now takes only the final step of Instructions below:
+
+  Fit existing material to its reader. Use the method needed for the parts being reworked; these methods have no fixed order.
+
   - the `act-rightsize-lean` guide: remove extra parts.
   - the `act-rightsize-enrich` guide: add missing parts.
 
@@ -452,12 +486,12 @@ act/
 
   Gaps: whether something is correct or done goes to verify; how to divide, to the `organize` guide; how careful to be, to stakes; how a response is worded, to the `respond` guide; reworking what already exists, to lean and enrich, above (D157).
 
-  **Last instruction, before anything is returned or written,** in proportion to what is at stake (D217): intermediate work, such as a probe, a scratch file or notes for the agent's next step, gets a light check, questions 2 and 5; what the person or another reader receives gets all five, since a full check on every step costs more than it finds:
-  1. Who reads it, and what for?
-  2. What could go without losing anything they need? It goes.
-  3. What would they still have to ask? It is added.
-  4. Is it top-down, and do its parts cover everything without overlap?
-  5. Was anything a rule requires cut? It is put back.
+  1. **Check the result before returning it.** Always do this last. Before anything is returned or written: in proportion to what is at stake (D217): intermediate work, such as a probe, a scratch file or notes for the agent's next step, gets a light check, questions 2 and 5; what the person or another reader receives gets all five, since a full check on every step costs more than it finds:
+     1. Who reads it, and what for?
+     2. What could go without losing anything they need? It goes.
+     3. What would they still have to ask? It is added.
+     4. Is it top-down, and do its parts cover everything without overlap?
+     5. Was anything a rule requires cut? It is put back.
 - **Gives back** (D279): The output or work plan fitted to its reader, with the point first. For reworked material, also return the list of changes. The sizing check itself stays in thinking.
 - **Files:** `references/act/rightsize.md`, `references/act/rightsize/lean.md` and `references/act/rightsize/enrich.md` (D188, D279).
 - **Material** (D145), adapted, never copied (D120): the person's definition, given 2026-10-17; respond's former first and fourth rules, necessary and sufficient and top-down (D60, D81, D83); instruct's prune step; mattpocock's no-op test for each sentence ([../../research/mattpocock-skills.md](../../research/mattpocock-skills.md), item 18); the cost mechanism ([../../research/token-cost.md](../../research/token-cost.md)).
@@ -481,6 +515,8 @@ act/
 ### lean
 
 - **Purpose:** something that already exists, reworked by removing what is extra: each part judged by what it does for its reader, what does nothing cut, pasted content turned into pointers, repeats merged, nothing a rule requires lost (D157).
+- **Guide purpose** (D283): Removes extra parts from existing material while keeping everything its reader and the rules need.
+- **Guide shape** (D283): Instructions opens with: “Keep what the reader needs and remove what adds nothing. Judge each part before proposing cuts.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "Removing what is extra from something that exists: each part judged by what it does for its reader, what does nothing cut, pasted content turned into pointers, repeats merged, nothing a rule requires lost. Use when a file, document, design or code carries more than its reader needs, or a file carried every turn is to be trimmed." A draft (D157).
 - **When to use** (D279): Use when the user asks to trim or shorten existing material, or you notice parts that do nothing for its reader. Examples include a report that repeats itself, an instruction file grown to 400 lines, an unused code option or a design part that serves no requirement.
 - **When not** (D279):
@@ -509,7 +545,7 @@ act/
   3. **Mark what goes,** by rules 2 and 3.
   4. **Apply,** after the approval rule 4 asks for; for code, by rule 5.
   5. **Check:** every needed part still there or reachable by its pointer, and every pointer resolving; for code, the tests passing, and no public interface, documented behaviour or untested requirement removed (D217).
-  6. **Last instruction, before anything is returned:** nothing a rule requires was cut; every pointer resolves; the list of what went, with why, is ready; where the person's or others' work changed, the list was approved; for code, the tests pass and no public interface, documented behaviour or untested requirement was removed.
+  6. **Check the result before returning it.** Always do this last. Before anything is returned: nothing a rule requires was cut; every pointer resolves; the list of what went, with why, is ready; where the person's or others' work changed, the list was approved; for code, the tests pass and no public interface, documented behaviour or untested requirement was removed.
 - **Gives back** (D279): The material with extra parts removed, plus what was removed and why.
 - **Files:** `references/act/rightsize/lean.md` only (D157).
 - **Material:** rightsize's advice on what is usually extra; instruct's prune step; mattpocock's no-op test for each sentence ([../../research/mattpocock-skills.md](../../research/mattpocock-skills.md), item 18).
@@ -530,6 +566,8 @@ act/
 ### enrich
 
 - **Purpose:** something that already exists, reworked by adding what is missing: what its reader would still ask, answered from the project, the person or research, each addition sourced and checked, what cannot be found marked as a gap (D157).
+- **Guide purpose** (D283): Adds missing parts to existing material from checked sources and marks answers that could not be found as gaps.
+- **Guide shape** (D283): Instructions opens with: “Answer the reader’s remaining questions with checked sources. Find each missing answer before proposing an addition.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285).
 - **Description:** "Adding what is missing to something that exists: what its reader would still ask, answered from the project, the person or research, each addition sourced and checked, what cannot be found marked as a gap. Use when a file, document, design or code leaves its reader asking." A draft (D157).
 - **When to use** (D279): Use when existing material leaves its reader unable to understand or act without asking again. Examples include a README without install steps, a report without evidence or a next step, or a guide missing its “when not” cases.
 - **When not** (D279):
@@ -555,7 +593,7 @@ act/
   3. **Find each answer,** by rule 2: the project's files first; the person, through the `respond-ask` guide, when only they know, such as which versions are supported; the `understand-research` guide for outside facts. What is not found is marked as a gap.
   4. **Apply,** after the approval rule 4 asks for, each addition with its source; for code, by rule 5.
   5. **Check,** by rule 3.
-  6. **Last instruction, before anything is returned:** nothing invented; every addition has its source and was checked; nothing the reader would not ask for; the gaps are listed; where the person's or others' work changed, the list was approved; for code, the tests pass.
+  6. **Check the result before returning it.** Always do this last. Before anything is returned: nothing invented; every addition has its source and was checked; nothing the reader would not ask for; the gaps are listed; where the person's or others' work changed, the list was approved; for code, the tests pass.
 - **Gives back** (D279): The material with missing parts added, each addition’s source, and gaps that could not be filled.
 - **Files:** `references/act/rightsize/enrich.md` only (D157).
 - **Material:** rightsize's advice on what is usually missing; authoring's reader, once designed.

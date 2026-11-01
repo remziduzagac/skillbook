@@ -6,7 +6,7 @@ The tree of skills, by set, as decided; a skill marked (an idea) is placed but n
 
 - **Each skill has a short name in its parent's path;** its name, shown before its description, is that path joined by dashes: `devise/design/` is `devise-design` (D43, D71). A set's main skill is a folder with a `SKILL.md`, and every other skill is a plain file under its `references/`, at the path its name gives: `devise-design` is `references/devise/design.md`, its own scripts and templates in `scripts/` and `assets/` inside the folder `references/devise/design/` (D44, D188); the sample below shows it once.
 - **Each set's main skill** is model-invoked, its description in the agent's context every turn (D56, D152). Every other skill, the roots included, is a **sub-skill**: a plain file that costs nothing until read, read as the file its name gives, by its set's name rule, when a skill names it; the person does not type it, but asks for it in words, such as "use devise-design" (D188).
-- **essentials' main skill,** on the `essentials/` line, sits above the roots: its rules and advice come first; its instructions say when to use each root, in the order the work happens; and every response is checked against respond before it is returned (D56, D63, D81, D112, D178). Beside the roots, **act** holds how the agent works and **respond** everything said to the person, in every root (D179).
+- **essentials' main skill,** on the `essentials/` line, sits above the roots: its rules come first; delegation by default is strong advice in the `coordinate` guide (D284); its instructions say when to use each root, in the order the work happens; and every response is checked against respond before it is returned (D56, D63, D81, D112, D178). Beside the roots, **act** holds how the agent works and **respond** everything said to the person, in every root (D179).
 - **(an idea)** marks a skill with no worked-out material anywhere yet; **→** marks a skill it calls.
 - **The roots:** the stages, named by bare verbs (D35, D36, D76): softeng's are implement, test, review, ship and maintain, with its own design and plan; essentials' design and plan sit under devise, not at the top (D154, D164); understand is a verb too, and act, respond, coordinate, organize and authoring, groups, are nouns or set names (D40, D67, D154). A knowledge base and routines are later sets (D64, D152), their skills ideas in [../ideas/later.md](../ideas/later.md) (D167).
 
@@ -29,13 +29,12 @@ essentials/                              the main skill's folder, the only skill
 The tree shows each skill by its path. Each set's folder is `skills/<set>/` (D190); the tree is one block per set, each starting with a line for the set's main skill, and a part whose set differs from its root's stands in its own set's block, design's recording steps in blueprint's, design's architecture in softeng's (D152, D154).
 
 ```text
-essentials/                       essentials, essentials' main skill, listed to the model like every set's main skill
-│                                 and the one loaded first for any work: four rules for every request (every skill a
-│                                 request needs is used, delegation by default, the wrap-up offer, the name rule), then
-│                                 six steps, each loading its group when its step comes: understand the request, act's
-│                                 rules throughout, devise, organize and coordinate when needed, and do it under act's
-│                                 rules; respond always, as its last instruction; of the other sets, authoring's
-│                                 markdown for now (D56, D152, D153, D171, D177, D178, D179, D203)
+essentials/                       essentials, essentials' main skill, the only skill its set lists to the model and
+│                                 loaded first for every request: rules, a guide map with paths, and Instructions; read
+│                                 the six main guides and needed guides before work, then understand, devise, organize,
+│                                 coordinate, act and respond; coordinate holds the strong advice to delegate by
+│                                 default; the final numbered step checks the result, then answers through respond
+│                                 (D279, D280, D284, D285)
 │
 ├── understand/                   understand: understanding before acting, with the person and from sources: its own
 │   │                             skill holds the rules for the whole scope (keeps nothing, one result shape, guesses

@@ -1,5 +1,7 @@
 # understand-weigh
 
+## Purpose
+
 Compares named options on common terms and recommends one, or says what would settle the choice.
 
 ## When to use
@@ -19,12 +21,11 @@ A comparison and recommendation, or no clear winner with what would settle it. R
 
 ## Rules
 
-1. **Set the terms before scoring options.** Use the `understand-frame` guide's good-answer terms where present, otherwise what matters to the question. Terms chosen later tend to fit the favorite.
-2. **Compare every option on every term.** Different terms cannot support a comparison.
-3. **Give benefits, costs, risks and unknowns for each option.** Search for real downsides. If none is found within the agreed terms, say so with where you looked. A forced downside invents evidence; an unexamined option hides costs.
-4. **Name unknowns that could change the recommendation.** Use the `understand-research` guide or a permitted test for deciding facts. Use the `understand-clarify` guide for the user's preference. Give what would settle each unknown.
-5. **Recommend with why it beats the next best, or say "no clear winner".** Give what would settle a tie. Giving no recommendation leaves the decision undone. Forcing a recommendation hides a tie.
-6. **Follow the `understand` guide's who-decides rule.** When a caller asks for a comparison, return it without starting that caller's choice round. When the user asks directly, give your recommendation as the recommended answer for their choice. Give the reason. Apply the shared rule to agent-made choices. A bare choice cannot be judged.
+1. **Compare every option on every term.** Different terms cannot support a comparison.
+2. **Give benefits, costs, risks and unknowns for each option.** Search for real downsides. If none is found within the agreed terms, say so with where you looked. A forced downside invents evidence; an unexamined option hides costs.
+3. **Name unknowns that could change the recommendation.** Use the `understand-research` guide or a permitted test for deciding facts. Use the `understand-clarify` guide for the user's preference. Give what would settle each unknown.
+4. **Recommend with why it beats the next best, or say "no clear winner".** Give what would settle a tie. Giving no recommendation leaves the decision undone. Forcing a recommendation hides a tie.
+5. **Follow the `understand` guide's who-decides rule.** When a caller asks for a comparison, return it without starting that caller's choice round. When the user asks directly, give your recommendation as the recommended answer for their choice. Give the reason. Apply the shared rule to agent-made choices. A bare choice cannot be judged.
 
 ## Advice
 
@@ -35,6 +36,10 @@ A comparison and recommendation, or no clear winner with what would settle it. R
 - Include costs that appear only later.
 - Use scores and weights only with a meaningful measure. Words usually say more than an unsupported number.
 - If a combination may beat options that fail on different terms, return the development need to the caller. Do not call the active `understand-brainstorm` guide again.
+
+## Instructions
+
+Compare the named options fairly and give a grounded recommendation or tie. Work through the comparison with these steps.
 
 Use the `understand-research` guide or a permitted test for a fact that would decide the choice. When candidate discovery is needed, the `understand-research-survey` guide returns it to this active comparison without another weigh call. Use the `understand-challenge` guide for one option. Return undeveloped options to the caller with the specific development they need. The caller owns the next generation pass. When a council returns disagreements, preserve them. Compare its members' answers when the user asks for a recommendation.
 
@@ -50,6 +55,9 @@ Would change:  unknowns and what would settle them
 
 Use the `respond-layout` guide: a short table may serve, and a list remains valid when rows would fit. Keep no lasting record yourself. Return the comparison, why a chosen option won and the options set aside for the skill that saves records. The shared who-decides rule sets what the user sees of an agent-made choice.
 
-## The last instruction
+1. **Set the terms before scoring options.** Terms chosen later tend to fit the favorite. Use the `understand-frame` guide’s good-answer terms where present, otherwise what matters to the question.
+2. **Compare the options on the terms.** Common terms make the differences useful. Give each option’s benefits, costs, risks and unknowns under the rules above.
+3. **Resolve or name deciding unknowns.** A missing fact or preference can change the recommendation. Use research, a permitted test or clarification by rule 3.
+4. **Return the recommendation or tie.** The caller needs to judge the result. Give why one option beats the next best or what would settle the choice, under rules 4 and 5.
 
-Check all options have the same terms and grounded evidence, including an honest downside search. Return a recommendation, a tie with what would settle it, or a specific development need preventing comparison. Reuse current checks. Follow the `understand` guide's rules and leave decisions and changes with their owner.
+5. **Check all options have the same terms and grounded evidence, including an honest downside search.** Always do this last. Return a recommendation, a tie with what would settle it, or a specific development need preventing comparison. Reuse current checks. Follow the `understand` guide's rules and leave decisions and changes with their owner.

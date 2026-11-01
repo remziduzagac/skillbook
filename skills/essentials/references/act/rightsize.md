@@ -1,6 +1,8 @@
 # act-rightsize
 
-What anything given back, made or done needs for its reader: nothing missing, nothing extra, parts that cover everything without overlap, the point first. For the work, it means reading and doing only what the task needs.
+## Purpose
+
+Fits work and its results to the reader’s purpose, with nothing missing or extra and the point first.
 
 ## When to use
 
@@ -20,7 +22,7 @@ The rules and final check still apply to anything made, done or returned. The al
 
 The output or work plan fitted to its reader, with the point first. For reworked material, also return the list of changes. The sizing check itself stays in thinking.
 
-The rules and the last instruction here shape what is being made now. The `act-rightsize-lean` and `act-rightsize-enrich` guides, below, rework what already existed before this task.
+The rules and the final step of Instructions here shape what is being made now. The `act-rightsize-lean` and `act-rightsize-enrich` guides, below, rework what already existed before this task.
 
 ## Rules
 
@@ -41,7 +43,7 @@ The rules and the last instruction here shape what is being made now. The `act-r
    - A named change, such as a given section to add, is the edit itself and needs no such approval. Filling, completing or making something sufficient is filling even if the request names what is lacking: you still find what goes in.
    - For work written by the user or others, put the change list through the `respond-ask` guide. Give each change's reason or source. End the turn. Apply nothing before approval.
    - Report the result and its check.
-   - Your own draft in this conversation needs no approval. It is still being made and the last instruction covers it.
+   - Your own draft in this conversation needs no approval. It is still being made and the final step of Instructions covers it.
    - One approval is enough. Show how you will change it and the parts touched, at a level the user can judge, not finished text. The later check is enough evidence. A list as long as the result costs as much to read.
    - Report later changes outside the list. Ask about them instead of folding them in.
 10. **Propose code changes before making them in the `act-rightsize-lean` or `act-rightsize-enrich` guide.** Use a skill in the harness’s list for changing code, if one fits. Otherwise edit directly under the project’s tests, run before and after.
@@ -68,17 +70,17 @@ The rules and the last instruction here shape what is being made now. The `act-r
 
 ## Instructions
 
+Fit existing material to its reader. Use the method needed for the parts being reworked; these methods have no fixed order.
+
 - the `act-rightsize-lean` guide: remove extra parts.
 - the `act-rightsize-enrich` guide: add missing parts.
 
 How a response is worded is the `respond` guide's.
 
-## The last instruction
+1. **Check before returning or writing anything.** Always do this last. Scale to stakes. For intermediate probes, scratch files or notes for your next step, use questions 2 and 5. For anything another reader receives, use all five. A full check on every step costs more than it finds. Ask silently so the user sees only the result:
 
-**Check before returning or writing anything.** Scale to stakes. For intermediate probes, scratch files or notes for your next step, use questions 2 and 5. For anything another reader receives, use all five. A full check on every step costs more than it finds. Ask silently so the user sees only the result:
-
-1. Who reads it, and what for?
-2. What could go without losing anything they need? Remove it.
-3. What would they still have to ask? Add it.
-4. Is it top-down, and do its parts cover everything without overlap?
-5. Was anything a rule requires cut? Put it back.
+   1. Who reads it, and what for?
+   2. What could go without losing anything they need? Remove it.
+   3. What would they still have to ask? Add it.
+   4. Is it top-down, and do its parts cover everything without overlap?
+   5. Was anything a rule requires cut? Put it back.

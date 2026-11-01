@@ -1,5 +1,7 @@
 # understand-clarify-questionnaire
 
+## Purpose
+
 Questions only someone other than the user can answer, written as a document its reader can answer without the conversation.
 
 ## When to use
@@ -34,13 +36,13 @@ The question document, in the response by default for the user to send. Later, r
 
 ## Instructions
 
-1. To give the recipient enough context, ask for missing facts the document needs. Look in the conversation first, by the `understand` guide's rules. Usually these are its reader, what is needed back and destination. Default to the response for the user to send.
-2. To make the questions answerable, write the document as the advice says.
-3. To avoid acting on missing answers while the document is out, park its questions as clarify says.
-4. To bring answers back into the decision, resume clarify with returned answers. Keep unanswered questions open and listed. The user has them asked again or parks them.
+Write questions their recipient can answer without the conversation. Prepare the document and handle its answers with these steps.
 
 You are done when the document is where the user said. Later, you are done when the decisions from its answers are confirmed.
 
-## The last instruction
+1. **Ask for missing facts the document needs.** The recipient needs enough context to answer. Look in the conversation first, by the `understand` guide's rules. Usually these are its reader, what is needed back and destination. Default to the response for the user to send.
+2. **Write the document.** Answerable questions need context and reasons. Follow the advice above.
+3. **Park its questions while the document is out.** Missing answers must not become assumptions in the work. Follow the `understand-clarify` guide for parked questions.
+4. **Resume clarify with returned answers.** The returned answers inform the user’s decisions. Keep unanswered questions open and listed. The user has them asked again or parks them.
 
-**Check the document before returning it.** It reads without the conversation. Each question says why it matters. It gives its destination and what is needed back.
+5. **Check the document before returning it.** Always do this last. It reads without the conversation. Each question says why it matters. It gives its destination and what is needed back.

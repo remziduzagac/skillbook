@@ -28,6 +28,8 @@ understand/
 ## understand
 
 - **Purpose:** understanding before acting, with the user and from sources (D50, D131). It keeps the rules shared by the understanding methods and each child's name and purpose (D279). It makes no lasting changes; the main task uses its results. The order within a discussion or brainstorm stays in the `understand-discuss` guide and the `understand-brainstorm` guide (D131).
+- **Guide purpose** (D283): Works out what a request means, with the user and from sources. The main task applies the result.
+- **Shape** (D283, D285): Child methods have no fixed order; keep their names and purposes as a list rather than inventing a parent flow. No method moved from Rules. The final check is Instructions step 1, marked to come last, always.
 - **Description:** "Understanding before acting, with the person and from sources: a topic discussed item by item, what the person means clarified, facts found out, options explored, a problem framed, a choice weighed, an idea challenged, a case made for a position, a name chosen. Use when a request is unclear, the person wants to discuss something or be questioned, options or a choice are wanted, an idea should be tested before it's relied on, a position should be argued at its strongest, a question needs facts from sources, or something needs a name." A draft (D131, D132).
 - **When to use** (D279): Use before acting when the request leaves something open or needs facts, options or a decision. For example, an audience that has not been named can change the answer.
 - **When not** (D279):
@@ -80,7 +82,7 @@ understand/
 
   Gaps: a whole design is design's; anything else about understanding that fits no line is the agent's own judgment, under the `understand` guide's rules.
 
-  **Last instruction, before anything is returned:** the `understand` guide's rules hold, the result in its shape, guesses marked, unknowns named with what would settle them, nothing in the work changed for good; the child guide's own last instruction holds too.
+  1. **Check the result before returning anything.** Always do this last. The `understand` guide's rules hold, the result in its shape, guesses marked, unknowns named with what would settle them, nothing in the work changed for good; the final step of Instructions in each used child guide holds too.
 - **Gives back** (D50, D131, D279): Decisions and their reasons, questions set aside and why, and next steps. Give these to the caller, or in the response for a direct request. Add each used method’s own results; save nothing here.
 - **Files:** `references/understand.md` only (D131, D252).
 - **Material:** understand's earlier proposals in its ideas document (the discussion as an order to follow, now discuss; one at a time or in rounds, now respond's ask; what reaches understand; the first description and tests); the early decisions that its skills keep nothing and share one result shape, and that the discussion was its own flow (D50, D53); the shape every main skill takes (D112); the sub-skills' own designs, whose routing lines its instructions hold (D172); the person's agent discuss mode, routing to clarify or ideation by intent.
@@ -121,6 +123,8 @@ understand/
 ### discuss
 
 - **Purpose:** working through a topic with the person, item by item, until each item is decided, parked or handed on (D130). The topic is framed and split into items and the whole is shown first; then one item at a time, each using what it needs; the person decides each item through the `respond-ask` guide; it ends with what was decided, what was parked and what comes next. Any topic with several open parts, in a project or outside one: a design, a plan, a decision with several parts, a proposal gone through together, a skill's design. It is set apart from clarify, which draws out what the person already means, the person holding the answers: discuss works out what is not decided yet, the agent proposing and the person deciding.
+- **Guide purpose** (D283): Works through a topic with the user so each item is decided, parked or handed on.
+- **Shape** (D283, D285): No method moved from Rules. Keep the existing steps, with a goal and clear instruction at the start and a bold action, reason and method in each step. The final check is Instructions step 8, marked to come last, always.
 - **Description:** "Working through a topic with the person, item by item: the whole shown first, then one item at a time, each using what it needs (clarify, research, brainstorm, weigh, challenge, argue or naming), and each decided by the person, parked or handed on. Use when the person wants to discuss or go through a topic with several open parts, such as a design, a plan or a proposal." A draft (D130).
 - **When to use** (D279): Use when the user wants to work through several open parts of a topic, plan, design or proposal. A brainstorm with several questions is one example.
 - **When not** (D279):
@@ -161,7 +165,7 @@ understand/
   5. **Delegate independent analysis** through the `coordinate-delegate` guide when it does not need the user. Hand any lasting work back to the caller. Discussion changes nothing itself (D252).
   6. **Hand a requested action back to the work-owning caller.** This includes an action asked for midway, such as "agreed, clean them". The caller applies the `act` guide and the `act-guardrails` guide, including the current planning rule. Resume discussion from its result. Agreement to an item alone authorizes no change (D252).
   7. **Offer recording when a topic is complete or a long discussion risks losing decisions.** Put the offer through the `respond-ask` guide. End the turn. Once requested, hand the record to the caller as the result says (D252).
-  8. **Last instruction:** before an item turn, check the normal layout: an agreed line where useful, one item, real open questions and Remaining. These are defaults, not empty fields to fill. Follow the `respond-ask` guide when no recommendation has a basis. A closing turn needs only the result and next step. Before ending, close every item and place every side topic. Apply the `understand` guide's rules; discussion itself leaves no lasting change (D252).
+  8. **Check each returned turn.** Always do this last. Before an item turn, check the normal layout: an agreed line where useful, one item, real open questions and Remaining. These are defaults, not empty fields to fill. Follow the `respond-ask` guide when no recommendation has a basis. A closing turn needs only the result and next step. Before ending, close every item and place every side topic. Apply the `understand` guide's rules; discussion itself leaves no lasting change (D252).
 - **Gives back** (D50, D130, D279): What was decided, set aside or passed to another task, with reasons. Include side topics and next steps; give the user the agreed summary.
 
   ```text
@@ -205,6 +209,8 @@ understand/
 ### clarify
 
 - **Purpose:** finding out what the person means before acting (D45, D109). Its own plain file keeps the shared question rules and each part’s name and purpose (D279). The chosen part asks the questions. It is the one home for what to the `respond-ask` guide and how deep; the `act` guide's rule on clarifying names it rather than restating it (D115). It mirrors the `respond-explain` guide: clarify is for when the agent does not yet understand the person, explain for when the person did not follow the agent.
+- **Guide purpose** (D283): Finds which choices need answers before work starts, who should decide, and how deep to question.
+- **Shape** (D283, D285): Child methods have no fixed order; keep their names and purposes as a list rather than inventing a parent flow. No method moved from Rules. The final check is Instructions step 1, marked to come last, always.
 - **Description:** "Finding out what the person means before acting: the whole level first, in one round of questions with recommended answers; then deeper where a part needs it; or a questionnaire for whoever else holds the answers. Use when a request is not clear yet, or the person asks for an interview to find their open choices." A draft (D109, D114, D135).
 - **When to use** (D279): Use before acting if two likely answers would lead to different work or results. This includes choices left open in a plan, answers held by someone else, and a request for an interview to find open choices. For example, “Clean up the old branches” leaves which ones go and which stay.
 - **When not** (D279):
@@ -236,7 +242,7 @@ understand/
 
   Gaps: the person not following the agent goes to the `respond-explain` guide; a topic to decide together, to the `understand-discuss` guide; options, to the `understand-brainstorm` guide; "what do you think?", to the `act` guide's rule that an opinion is not a task.
 
-  **Last instruction, before anything an open question could change is acted on:** every question that would change the work answered, taken with its recommended answer by the person's acceptance, parked, or in a questionnaire; "going with" said, or the summary confirmed, or shown where the person told the agent to start the work; the `understand` guide's rules hold (D199, D215).
+  1. **Check readiness before acting on anything an open question could change.** Always do this last. Every question that would change the work answered, taken with its recommended answer by the person's acceptance, parked, or in a questionnaire; "going with" said, or the summary confirmed, or shown where the person told the agent to start the work; the `understand` guide's rules hold (D199, D215).
 - **Gives back** (D50, D109, D279): The visible “Going with” line and assumptions, the summary from the `understand-clarify-deep` guide, or a questionnaire for the person who holds the answers.
 - **Files:** `references/understand/clarify.md` only.
 - **Material:** the person's agent customisations; mattpocock's skills.
@@ -266,6 +272,8 @@ understand/
 #### shallow
 
 - **Purpose:** the full picture of the level being analysed: every part of that level seen, and the smallest round of questions that sets its direction asked, before any part is explored further; later questions come when their answers become needed (D45, D109, D199, D217). The level is the request's top level when clarify starts, and a level inside a part when deep reaches one (D115).
+- **Guide purpose** (D283): Gets the whole level before going deeper, using the smallest round that sets direction and recommendations where grounded. Shows "going with" for answers and choices.
+- **Shape** (D283, D285): No method moved from Rules. Keep the existing steps, with a goal and clear instruction at the start and a bold action, reason and method in each step. The final check is Instructions step 6, marked to come last, always.
 - **Description:** "The full picture of a level before going further: the smallest round of questions that sets its direction, with a recommended answer where there is a basis; then 'going with' what was answered and chosen. Use when a level is not yet seen whole, at the start of most clarifying." A draft (D109, D114).
 - **When to use** (D279): Use when clarification starts finding open choices without a request for an interview. Also use when deep reaches a new level inside a part, such as questions about a newsletter’s length.
 - **When not** (D279):
@@ -286,8 +294,8 @@ understand/
   2. **Leave out** what clarify's rules say not to the `respond-ask` guide; if no choice is left for the user, ask nothing. Follow the `understand` guide's who-decides rule for disclosure and continuation (D212, D217, D244, D252).
   3. **Ask in one round,** each question with its recommended answer and a short reason, as the `respond-ask` guide says.
   4. **End the turn** with the round, as the `respond-ask` guide says, which holds the rule; the answers are taken when the user replies (D114, D210, D212).
-  5. **Hand over:** a part whose answers depend on each other and would change the work, or one where it is unclear whether they do, ends shallow for that part. Shallow offers deep on it (the offer is in the last instruction) and asks no deep question before a yes, because deep can take many rounds, and the user may not see why more questions come or may prefer to go on with the agent's guesses. After a yes the part goes back to shallow's caller, clarify, which loads deep; where deep called shallow, the user has said yes already, so there is no offer and the part goes back to deep (D197, D207).
-  6. **Last instruction, before work starts:** "going with: …" said for the rest, as rule 3 says: the decisions and assumptions the work rests on, and what was parked or is in a questionnaire (D218); in the same response, the offer of deep for each part handed over. The offer names the part, says why it needs more questions (its answers depend on each other and would change the work), and asks, as the `respond-ask` guide says, whether to question the user on it, with yes as the recommended answer and a short reason. "Go ahead" accepts it. If the user declines, that part's open questions are treated as the `respond-ask` guide treats questions left open when the user stops: one with a recommended answer is taken with it, one without is parked, and nothing only the user knows is supplied; both are said in "going with" before any work on the part starts (D207, D218).
+  5. **Hand over:** a part whose answers depend on each other and would change the work, or one where it is unclear whether they do, ends shallow for that part. Shallow offers deep on it (the offer is in the final step of Instructions in this `understand-clarify-shallow` guide) and asks no deep question before a yes, because deep can take many rounds, and the user may not see why more questions come or may prefer to go on with the agent's guesses. After a yes the part goes back to shallow's caller, clarify, which loads deep; where deep called shallow, the user has said yes already, so there is no offer and the part goes back to deep (D197, D207).
+  6. **Show "Going with: …" for the rest before work starts.** Always do this last. "going with: …" said for the rest, as rule 3 says: the decisions and assumptions the work rests on, and what was parked or is in a questionnaire (D218); in the same response, the offer of deep for each part handed over. The offer names the part, says why it needs more questions (its answers depend on each other and would change the work), and asks, as the `respond-ask` guide says, whether to question the user on it, with yes as the recommended answer and a short reason. "Go ahead" accepts it. If the user declines, that part's open questions are treated as the `respond-ask` guide treats questions left open when the user stops: one with a recommended answer is taken with it, one without is parked, and nothing only the user knows is supplied; both are said in "going with" before any work on the part starts (D207, D218).
 
   Done when every question in the round is answered, taken with its recommended answer, parked, or in a questionnaire, or its part has been offered to deep and answered yes or no (D199, D207, D217).
 - **Gives back** (D279): The visible “Going with” line, plus an offer of deep questions for parts whose answers depend on each other.
@@ -313,6 +321,8 @@ understand/
 #### deep
 
 - **Purpose:** a part, or a whole plan, questioned until what materially affects the agreed work is resolved, the rest listed as assumptions (D45, D58, D109, D217). Where shallow sees all of one level, deep goes down through a part until no level is left.
+- **Guide purpose** (D283): Questions a part or whole plan until what materially affects the agreed work is resolved, listing the rest as assumptions. Uses numbered rounds and grounded recommendations, level by level.
+- **Shape** (D283, D285): Old rule 2 moves to instruction 1 and old rule 1 to instruction 2. Old rules 3 and 4 become rules 1 and 2. Instruction 3 applies the existing summary requirement. Each level is seen whole before descending, dependent questions wait for answers, each round ends the turn and the summary is confirmed or shown under rule 1 before acting. The final check is Instructions step 4, marked to come last, always.
 - **Description:** "Questioning a part, or a whole plan, until what materially affects the agreed work is resolved: numbered rounds, each question with a recommended answer where there is a basis; one by one on request, without losing the round. Use when a part's answers open questions that would change the work, or the person asks for an interview to find their open choices." A draft (D109).
 - **When to use** (D279): Use when the user accepts an offer to explore a part whose answers open further questions that would change the work. Start at once, without another offer, when the user asks for an interview to find open choices. Example: “question me on this plan”.
 - **When not** (D279):
@@ -323,10 +333,8 @@ understand/
   - Questions only someone else can answer: use the `understand-clarify-questionnaire` guide for that person.
 - **Callers:** clarify, from the main map, with its parent path read first (D279), after the user accepts shallow's offer of deep, or at once when the user asks for an interview to find open choices (D207).
 - **Flow** (D58, D109, D115, D135). Rules, each with its reason:
-  1. **A question that depends on an unanswered one waits** for a later round, since that answer may change it; each round asks what can be answered now, an order to the `respond-ask` guide in, with nothing to draw or keep.
-  2. **Level by level:** at each new level inside the part, deep first sees that level whole, as clarify's shallow does, then goes down (D115); a level skipped leaves its parts assumed.
-  3. **The summary is confirmed before anything is acted on:** what is decided, parked, accepted and assumed, parked and assumed as the `respond-ask` guide defines them; if the person stops early, each open question is taken as the `respond-ask` guide says: assumed with its recommended answer, or parked where it has none, such as a fact only the person knows, which the agent never supplies, and a proposal is never assumed; the summary is shown before acting (D218); where the person tells the agent to start the work, such as "enough questions, just build it", showing it is enough, since nothing assumed is acted on unseen (D58, D199). "Go ahead" is not that: it accepts the current round's recommended answers, and the questioning goes on (D215).
-  4. **Recording is never done unasked:** recording writes to the project, and the `act` guide's rule is to do exactly what was asked (D115).
+  1. **The summary is confirmed before anything is acted on:** what is decided, parked, accepted and assumed, parked and assumed as the `respond-ask` guide defines them; if the person stops early, each open question is taken as the `respond-ask` guide says: assumed with its recommended answer, or parked where it has none, such as a fact only the person knows, which the agent never supplies, and a proposal is never assumed; the summary is shown before acting (D218); where the person tells the agent to start the work, such as "enough questions, just build it", showing it is enough, since nothing assumed is acted on unseen (D58, D199). "Go ahead" is not that: it accepts the current round's recommended answers, and the questioning goes on (D215).
+  2. **Recording is never done unasked:** recording writes to the project, and the `act` guide's rule is to do exactly what was asked (D115).
 
   Facts and decisions as the `understand` guide's rules say: the agent finds the facts; the decisions are the person's. Rounds are put and answers taken as the `respond-ask` guide says, and each round ends the turn, as the `respond-ask` guide says (D210, D212); recommended answers accepted by "go ahead" before the end are listed as accepted in the summary (D114, D115).
 
@@ -334,7 +342,15 @@ understand/
   - the answers shape the next round;
   - in a long session, recording the decisions so far is offered where the caller keeps them, so that compaction cannot lose them; the signs are ones the agent can see: the harness says its context is filling up, a summary has replaced earlier turns, or the rounds reach about five, each adding decisions compaction could lose (D215); used directly, with no caller, the offer is where the loaded keeper says, and with none, a file the person names (D163).
 
-  **Last instruction, before anything is acted on:** the summary confirmed by the person, or shown where they told the agent to start the work (D215).
+  **Instructions** (D283):
+
+  Resolve the choices that materially affect the agreed work. Question each level with these steps.
+
+  1. **See each new level whole before going down.** Skipping a level leaves its parts assumed. Use the `understand-clarify-shallow` guide at each new level inside the part.
+  2. **Ask only what can be answered now.** Unanswered questions may change dependent questions. Save those for a later round. This sets order, with nothing to draw or keep. Use the `respond-ask` guide for rounds and answers, and end the turn after each round.
+  3. **Summarize when the questioning ends.** The user needs to see what the work rests on. List decided, parked, accepted and assumed items under rule 1. List recommendations accepted by “go ahead” as accepted. Get confirmation before acting, except when the user told you to start, as rule 1 says.
+
+  4. **Check the summary before acting.** Always do this last. The summary confirmed by the person, or shown where they told the agent to start the work (D215).
 
   Done when no level is left with anything assumed that would materially change the agreed work, the rest listed, and the person has confirmed the summary, or seen it where they told the agent to start the work (D217).
 - **Gives back** (D279): The summary of decided, parked, accepted and assumed items. The user has confirmed it, or seen it after telling you to start the work.
@@ -359,6 +375,8 @@ understand/
 #### questionnaire
 
 - **Purpose:** answers from someone who was not in the conversation: the questions only someone other than the person can answer, written so that they can be answered without the conversation (D49, D50, D109).
+- **Guide purpose** (D283): Questions only someone other than the user can answer, written as a document its reader can answer without the conversation.
+- **Shape** (D283, D285): No method moved from Rules. Keep the existing steps, with a goal and clear instruction at the start and a bold action, reason and method in each step. The final check is Instructions step 5, marked to come last, always.
 - **Description:** "Questions only someone else can answer, written as a document they can answer without the conversation: who it is for, the context in plain words, numbered questions with why each matters. Use when questions remain that only someone other than the person can answer." A draft (D109).
 - **When to use** (D279): Use after the user has answered their questions if only someone else can answer the rest. For example, another team may hold a needed fact. If the user has not said who holds the answer, ask before deciding that someone else must answer.
 - **When not** (D279):
@@ -382,7 +400,7 @@ understand/
   2. **Write it,** as the advice says.
   3. **While it is out,** its questions are parked, as clarify says.
   4. **When the answers come back,** clarify continues with them; questions left unanswered stay open and listed, and the person has them asked again or parks them.
-  5. **Last instruction, before the document is returned:** it reads without the conversation, every question says why it matters, and where it goes and what is needed back are said.
+  5. **Check the document before returning it.** Always do this last. It reads without the conversation, every question says why it matters, and where it goes and what is needed back are said.
 
   Done when the document is where the person said; later, when the decisions from its answers are confirmed.
 - **Gives back** (D279): The question document, in the response by default for the user to send. Later, return its answers to clarification.
@@ -403,6 +421,8 @@ understand/
 ### frame
 
 - **Purpose:** state one question or problem, its goal, scope, constraints and what a good answer looks like (D118, D119). Mark missing parts unknown. Route facts that readable sources can settle to the `understand-research` guide. Route user choices or knowledge to the `understand-clarify` guide when they would change the result. Keep other gaps marked. These parts are the one home of the lenses used by the `understand-clarify-shallow` guide (D252).
+- **Guide purpose** (D283): States one problem, its goal, scope, constraints and a good answer.
+- **Shape** (D283, D285): Old rules 1, 4 and 6 move to instructions 1, 3 and 4. Old rules 2, 3 and 5 become rules 1, 2 and 3. Instruction 2 applies the existing frame requirements. Read facts before asking and show the frame with the read-only answer; existing choice and plan rules still govern changes. The final check is Instructions step 5, marked to come last, always.
 - **Description:** "Frames a question or problem from known facts, with goal, scope, constraints and a good answer. Marks and routes unknowns by what would settle them. Use for an unstated problem or when work loops or drifts. Adds no checkpoint of its own." A draft (D119, D252).
 - **When to use** (D279): Use when the problem, goal or way to judge an answer is missing, or work loops or drifts. Also use when the user asks what is being solved. For example, repeated work that does not move toward a stated goal may need a new frame.
 - **When not** (D279):
@@ -417,12 +437,9 @@ understand/
   - the `devise-design` guide for its starting problem and the `devise-plan` guide for a task's goal (D252);
   - the person, typing it.
 - **Flow** (D119). Rules, each with its reason:
-  1. **State what is known first.** Read the request, conversation and project files before asking, by the `understand` guide's facts-first rule (D252).
-  2. **Every part filled or marked unknown,** the `understand` guide's rule on unknowns applied to the frame's parts: the statement, the goal, what is out of scope, the constraints, what a good answer looks like. An empty part gets silently assumed, and that is how work heads the wrong way.
-  3. **Mark guesses where they stand** with "(guess)", by the `understand` guide's rule. The user can then correct them (D252).
-  4. **Route unknowns by what would settle them.** Read available facts first. Send factual gaps that readable sources can settle to the `understand-research` guide. Use the `understand-clarify` guide for the user's choices or knowledge when the answer would change the result. Keep other gaps marked unknown without forcing a question. Otherwise a missing fact becomes an unnecessary question or an assumed preference (D252).
-  5. **One problem per frame:** a second problem found while framing is named and handed back, since two problems cannot share one good answer.
-  6. **Show the frame with the read-only answer.** It needs no separate checkpoint. For a change built on it, follow the `understand` guide's who-decides rule and the `act` guide's plan rule. Frame defines no second timing rule. A wrong frame wastes later work, so the user needs to see the relevant problem and assumptions (D252).
+  1. **Every part filled or marked unknown,** the `understand` guide's rule on unknowns applied to the frame's parts: the statement, the goal, what is out of scope, the constraints, what a good answer looks like. An empty part gets silently assumed, and that is how work heads the wrong way.
+  2. **Mark guesses where they stand** with "(guess)", by the `understand` guide's rule. The user can then correct them (D252).
+  3. **One problem per frame:** a second problem found while framing is named and handed back, since two problems cannot share one good answer.
 
   Advice:
   - the statement, about one to three sentences (D116): long enough to state the problem, short enough to hold in mind;
@@ -432,6 +449,17 @@ understand/
   - specific, not vague: a part that could describe any project is pushed until it describes this one, and a term the work depends on is defined;
   - the right altitude: frame at the level the work is at; one question asked does not call for framing the whole product;
   - when work loops, reframe: the question itself may be wrong, and changing it is an option.
+
+  **Instructions** (D283):
+
+  Define one problem and how to judge its answer. Build the frame with these steps.
+
+  1. **State what is known first.** Facts can settle questions before the user is asked. Read the request, conversation and project files before asking, by the `understand` guide’s facts-first rule.
+  2. **Fill the frame.** Missing parts can become assumptions. Cover the problem, goal, exclusions, constraints and a good answer under the rules above.
+  3. **Route unknowns by what would settle them.** A missing fact must not become an unnecessary question or assumed preference. Read available facts first. Use the `understand-research` guide for factual gaps needing sources. Return its fact to this active frame without another framing round. Use the `understand-clarify` guide for user choices or knowledge that would change the result. Mark other gaps unknown without forcing a question.
+  4. **Show the frame with the read-only answer.** A wrong frame wastes later work, so show relevant assumptions and the problem. Add no checkpoint of your own. Before changes, follow the `understand` guide’s who-decides rule and the `act` guide’s plan rule.
+
+  5. **Check that you have filled each part or marked it unknown.** Always do this last. Check that you have marked guesses and routed each gap by what would settle it. Return the frame under the `understand` guide's rules. Add no separate turn-ending checkpoint and make no lasting change.
 
   Gaps: facts needing sources go to the `understand-research` guide; several problems go to the `organize-split` guide. Done when each part is stated or marked unknown and the frame is returned. Apply the `understand` guide's rules. No separate turn-ending checkpoint comes from framing (D252).
 - **Gives back** (D119, D279): The problem, goal, limits and test for a good answer, plus unknowns and what would settle them.
@@ -469,6 +497,8 @@ understand/
 ### brainstorm
 
 - **Purpose:** distinct options for one open question (D53, D118). Return options when asked for options, candidates when called for candidates, or a comparison and decision or park when asked to choose. The caller owns what follows (D252).
+- **Guide purpose** (D283): Generates distinct options for one question and returns what its caller asked for.
+- **Shape** (D283, D285): Old rules 1 and 2 move to instructions 1 and 2. Old rules 3–5 become rules 1–3. The frame-generate-develop-return advice becomes the instruction order; development advice moves to instruction 3. Instruction 4 applies the existing return and requested-choice rules. Framing stays before generation and listing stays before judgment. The final check is Instructions step 5, marked to come last, always.
 - **Description:** "Distinct options for one open question: framed and developed enough to use. Returns options or requested candidates. When a choice is requested, weighs them and follows the decision owner. Use when new options are needed." A draft (D118, D252).
 - **When to use** (D279): Use when one question needs new options, including a request for candidates without a choice. For example, the task may need ideas that differ in kind rather than several wordings of one idea.
 - **When not** (D279):
@@ -485,20 +515,27 @@ understand/
   - the `devise-design` guide, the `devise-plan` guide, and any other caller that needs new options, such as a skill in the harness’s list for changing code (D252, D281);
   - the person, typing it.
 - **Flow** (D118). Rules, each with its reason:
-  1. **Frame one question through the `understand-frame` guide before generating options.** Name several questions separately. Take them one at a time or park them. A topic with several open parts belongs to the `understand-discuss` guide. Options for mixed questions cannot be compared (D252).
-  2. **Options are listed before any is judged:** judging early narrows everything to the first idea, the failure brainstorm exists to prevent.
-  3. **Options differ in kind, not in wording:** three phrasings of one idea are one option.
-  4. **Use the `understand-weigh` guide when a choice was requested.** Compare the options on the same terms. A request for options or candidates needs no selection round. The caller decides what to do with the returned options (D252).
-  5. **Who decides follows the `understand` guide's rule.** For a requested choice, use the recommendation as the recommended answer, or park it with why and what would settle it. For an agent-made choice, use that rule for disclosure. Candidate-only calls return before any choice. This prevents a tool from deciding its caller's question (D252).
+  1. **Options differ in kind, not in wording:** three phrasings of one idea are one option.
+  2. **Use the `understand-weigh` guide when a choice was requested.** Compare the options on the same terms. A request for options or candidates needs no selection round. The caller decides what to do with the returned options (D252).
+  3. **Who decides follows the `understand` guide's rule.** For a requested choice, use the recommendation as the recommended answer, or park it with why and what would settle it. For an agent-made choice, use that rule for disclosure. Candidate-only calls return before any choice. This prevents a tool from deciding its caller's question (D252).
 
   Advice:
-  - the order: frame, generate, develop, return. A requested choice adds weighing and a decision or park (D252);
   - start from what exists: options already proposed on the question, wherever the project keeps them, are listed first and marked as earlier;
   - about three to seven options (D116), stopping when new ones only repeat, with the ones easy to miss: doing nothing, or changing the question;
   - options steer: when the person likely has a picture of their own, they are asked to describe it before any option is offered;
-  - develop promising options when needed to answer the request: make one or two concrete, combine strengths, and use the `understand-challenge` guide. Reuse a current challenge rather than repeat it (D252);
   - show what the request needs, by the `respond` guide's first rule. Follow the `understand` guide's who-decides rule for agent-made choices. Show every option when asked. Quiet analysis does not replace a required visible result (D252);
   - a new topic that comes up is named and parked, not followed.
+
+  **Instructions** (D283):
+
+  Generate distinct options that answer one question. Follow frame, generate, develop and return, adding a choice only when requested.
+
+  1. **Frame one question before generating options.** Mixed questions produce options that cannot be compared. Use the `understand-frame` guide. Name several questions separately. Take them one at a time or park them. A topic with several open parts goes to the `understand-discuss` guide.
+  2. **List options before judging any.** Early judgment narrows everything to the first idea, the failure this guide prevents. Generate options that differ in kind, by rule 1.
+  3. **Develop promising options as needed.** Concrete options are easier to use. Make one or two concrete, combine strengths and use the `understand-challenge` guide. Reuse a current challenge instead of repeating it.
+  4. **Return what the caller requested.** A tool must not decide its caller’s question. Return options or candidates without a selection round. For a requested choice, weigh them through the `understand-weigh` guide and return a decision or park it, by rules 2 and 3.
+
+  5. **Check that you have returned what the caller requested: options, candidates, or a choice you weighed and decided or parked.** Always do this last. Check distinctness, earlier options, factual gaps and side topics. Follow the `understand` guide's rules. Make no lasting change and start no unrequested choice round.
 
   Gaps: a fact an option depends on goes to the `understand-research` guide; unclear user intent to the `understand-clarify` guide; a whole design to the `devise-design` guide. Done when the requested options or candidates are returned, or a requested choice is decided or parked with the options weighed. Return any remaining development need to the caller (D252).
 - **Gives back** (D279): The requested options or candidates. Add a comparison and a decision, or why the choice is set aside, only when a choice was requested.
@@ -528,6 +565,8 @@ understand/
 ### weigh
 
 - **Purpose:** compare named options on the same terms and recommend one, or say "no clear winner" with what would settle it (D118, D122). Use the frame's "a good answer" where present, otherwise what matters to the question. Give benefits, costs, risks and unknowns for each option. Look for real downsides without inventing one. A council keeps disagreements and does not use weigh unless the user asks for a recommendation. The caller owns the decision and any further option development (D252).
+- **Guide purpose** (D283): Compares named options on common terms and recommends one, or says what would settle the choice.
+- **Shape** (D283, D285): Old rule 1 moves to instruction 1, still before scoring. Old rules 2–6 become rules 1–5. Instructions 2–4 apply the existing comparison, unknowns and recommendation requirements. The final check is Instructions step 5, marked to come last, always.
 - **Description:** "Options compared side by side on the same terms, what each gives, costs, could get wrong and leaves unknown, then a recommendation, or what would settle it. Use when two or more options are already named and one is to be chosen." A draft (D122).
 - **When to use** (D279): Use when two or more named options need comparison and a recommendation. A requested debate is one example.
 - **When not** (D279):
@@ -545,12 +584,11 @@ understand/
 
   It uses the "a good answer" terms from the `understand-frame` guide where a frame exists. A debate uses the `understand-argue` guide and the `understand-challenge` guide, with one current challenge per option (D132, D252).
 - **Flow** (D122). Rules, each with its reason:
-  1. **The terms are stated before any option is scored:** terms chosen afterwards tend to fit the favourite.
-  2. **Every option is weighed on every term,** since options judged on different terms cannot be compared.
-  3. **For each option, give benefits, costs, risks and unknowns.** Search for real downsides. If none is found within the agreed terms, say so with where you looked. A forced downside invents evidence; an unexamined option hides costs (D252).
-  4. **An unknown that would change the recommendation is named, as the `understand` guide's rule says, with what settles it here:** a fact, through the `understand-research` guide or a test; the person's preference, through the `understand-clarify` guide.
-  5. **It ends in a recommendation, with why it beats the next best, or in "no clear winner"** with what would settle it: a comparison with no call leaves the decision undone, and a forced call hides a tie.
-  6. **Who decides follows the `understand` guide's rule.** Called for a comparison, return it without starting the caller's choice round. Used directly, the recommendation is the recommended answer for the user's choice. Give why it beats the next best. Apply the shared rule to disclosure of agent-made choices. A bare choice leaves the user or caller unable to judge it (D252).
+  1. **Every option is weighed on every term,** since options judged on different terms cannot be compared.
+  2. **For each option, give benefits, costs, risks and unknowns.** Search for real downsides. If none is found within the agreed terms, say so with where you looked. A forced downside invents evidence; an unexamined option hides costs (D252).
+  3. **An unknown that would change the recommendation is named, as the `understand` guide's rule says, with what settles it here:** a fact, through the `understand-research` guide or a test; the person's preference, through the `understand-clarify` guide.
+  4. **It ends in a recommendation, with why it beats the next best, or in "no clear winner"** with what would settle it: a comparison with no call leaves the decision undone, and a forced call hides a tie.
+  5. **Who decides follows the `understand` guide's rule.** Called for a comparison, return it without starting the caller's choice round. Used directly, the recommendation is the recommended answer for the user's choice. Give why it beats the next best. Apply the shared rule to disclosure of agent-made choices. A bare choice leaves the user or caller unable to judge it (D252).
 
   Advice:
   - screen first: an option that breaks a constraint is dropped before weighing, with the reason;
@@ -560,6 +598,17 @@ understand/
   - what will be annoying later, the cost that shows only with time;
   - no false precision: scores and weights only where they mean something; words usually say more than "7 out of 10";
   - when options fail on different terms, a combination may beat both. Return that development need to the caller instead of calling the active `understand-brainstorm` guide again (D252);
+
+  **Instructions** (D283):
+
+  Compare the named options fairly and give a grounded recommendation or tie. Work through the comparison with these steps.
+
+  1. **Set the terms before scoring options.** Terms chosen later tend to fit the favorite. Use the `understand-frame` guide’s good-answer terms where present, otherwise what matters to the question.
+  2. **Compare the options on the terms.** Common terms make the differences useful. Give each option’s benefits, costs, risks and unknowns under the rules above.
+  3. **Resolve or name deciding unknowns.** A missing fact or preference can change the recommendation. Use research, a permitted test or clarification by rule 3.
+  4. **Return the recommendation or tie.** The caller needs to judge the result. Give why one option beats the next best or what would settle the choice, under rules 4 and 5.
+
+  5. **Check all options have the same terms and grounded evidence, including an honest downside search.** Always do this last. Return a recommendation, a tie with what would settle it, or a specific development need preventing comparison. Reuse current checks. Follow the `understand` guide's rules and leave decisions and changes with their owner.
 
   Gaps: a fact that decides goes to the `understand-research` guide or a test; one option to the `understand-challenge` guide. Return undeveloped options to the caller as a development need. The caller owns another generation pass. Done when the requested comparison is returned with a recommendation or "no clear winner" and what would settle it, or when the caller receives a specific development need that prevents that comparison (D252).
 - **Gives back** (D122, D279), in one short shape: A comparison and recommendation, or no clear winner with what would settle it. Return options needing more development to the task that asked; do not start another brainstorm.
@@ -602,8 +651,10 @@ understand/
 ### challenge
 
 - **Purpose:** an idea, a plan or a decision attacked before it is relied on, to find where it breaks: its assumptions, how it fails, scenarios such as ten times the size, a year later or the main assumption wrong, and what is missing, such as evidence, a definition, a constraint or a dependency; ending in a verdict, holds, holds with changes, or does not hold (D118, D124). A skill in the harness’s list for finished-work review, if one fits, judges work about to land, and challenge attacks what is not yet relied on; the `devise-design-review` guide uses the `understand-challenge` guide for its adversarial part and keeps its own lenses; the `act-verify` guide asks whether a claim of done is true, and fanout's validator, refuting findings against their sources, is a check of that kind and stays fanout's.
+- **Guide purpose** (D283): Attacks an idea, plan or decision before it is relied on and returns meaningful weaknesses and a verdict.
+- **Shape** (D283, D285): Old rule 2 moves to instruction 1, still before attacking the idea. Rule 1 stays rule 1; old rules 3–7 become rules 2–6. Instructions 2 and 3 apply the existing assumptions, weaknesses and verdict requirements. The final check is Instructions step 4, marked to come last, always.
 - **Description:** "An idea, a plan or a decision attacked before it is relied on: its assumptions, how it fails, scenarios and what is missing, ending in a verdict. Use before relying on a plan or a decision, or when asked what could go wrong." A draft (D124).
-- **When to use** (D279): Use before relying on an idea, plan or decision, or when asked to find its weak points. For example, an unchecked assumption may break a plan. When the `respond-ask` guide calls this guide, follow its test for a decision that is hard to undo or shapes much of the work, and the levels in rule 7 below.
+- **When to use** (D279): Use before relying on an idea, plan or decision, or when asked to find its weak points. For example, an unchecked assumption may break a plan. When the `respond-ask` guide calls this guide, follow its test for a decision that is hard to undo or shapes much of the work, and the levels in rule 6 below.
 - **When not** (D279):
 
   - Several options to compare: use the `understand-weigh` guide to judge them on the same terms.
@@ -616,18 +667,17 @@ understand/
   - the `understand` guide itself, from the main map, with its parent path read first (D279);
   - its siblings, by name: the `understand-brainstorm` guide for development; the `understand-weigh` guide for a single option or a debate; the `understand-argue` guide for objections to its case, taking only the weaknesses (D132);
   - the `devise-design-review` guide for its adversarial part, the `devise-plan` guide for a full plan before it is shown, and the `devise-design` guide for consequential decisions (D155, D252);
-  - the `respond-ask` guide, for consequential recommendations and consequential decisions made without or against a recommendation, at the depth rule 7 sets (D150, D252);
+  - the `respond-ask` guide, for consequential recommendations and consequential decisions made without or against a recommendation, at the depth rule 6 sets (D150, D252);
   - the person, typing it.
 
-  It uses the `understand-frame` guide for the goal, constraints and "a good answer". The `act-stakes` guide judges care. The caller decides whether to request a challenge. For who supplies independent objections, follow the `act-verify` guide's rule 2. The `respond-ask` guide trigger follows rule 7 below (D121, D133, D150, D252).
+  It uses the `understand-frame` guide for the goal, constraints and "a good answer". The `act-stakes` guide judges care. The caller decides whether to request a challenge. For who supplies independent objections, follow the `act-verify` guide's rule 2. The `respond-ask` guide trigger follows rule 6 below (D121, D133, D150, D252).
 - **Flow** (D124). Rules, each with its reason:
   1. **Measured against the frame: report weaknesses that block the goal or create material cost or risk within the decision's scope.** Rank them by seriousness even when the goal remains feasible. Exclude unrelated preferences. Otherwise any flaw counts and the list never ends (D252).
-  2. **The idea is stated fairly first,** at its strongest, as its author would put it: attacking a weak version finds weaknesses the idea does not have.
-  3. **The assumptions it rests on are named,** each marked checked or unchecked: an unchecked assumption is where most ideas break.
-  4. **Each weakness comes with how serious it is (stops it, costs, minor), what shows it, and what would address it:** a weakness without these cannot be acted on.
-  5. **The verdict is honest:** holds, holds with changes, or does not hold; nothing softened to please, nothing invented to look thorough, and "nothing found" said plainly. A challenge that flatters is worse than none.
-  6. **Who acts on the verdict:** challenge changes nothing, by the `understand` guide's rules; brainstorm develops, design revises, the person decides;
-  7. **When the `respond-ask` guide calls it, use that guide's consequential-choice trigger.** Routine questions need no challenge merely because they occur in a plan or design (D150, D252).
+  2. **The assumptions it rests on are named,** each marked checked or unchecked: an unchecked assumption is where most ideas break.
+  3. **Each weakness comes with how serious it is (stops it, costs, minor), what shows it, and what would address it:** a weakness without these cannot be acted on.
+  4. **The verdict is honest:** holds, holds with changes, or does not hold; nothing softened to please, nothing invented to look thorough, and "nothing found" said plainly. A challenge that flatters is worse than none.
+  5. **Who acts on the verdict:** challenge changes nothing, by the `understand` guide's rules; brainstorm develops, design revises, the person decides;
+  6. **When the `respond-ask` guide calls it, use that guide's consequential-choice trigger.** Routine questions need no challenge merely because they occur in a plan or design (D150, D252).
      - Scale depth within that trigger with the `act-stakes` guide: low, none; medium, the strongest one or two objections thought through, with objections shown if they hold and change the recommendation or add a caveat; high, a full challenge. Put the verdict beside the recommendation as the `respond-ask` guide requires.
      - Reuse an earlier challenge only while the idea, goal, constraints and evidence are unchanged. Accepting an unchanged recommendation needs no second pass. Changed inputs can invalidate its findings.
 
@@ -638,6 +688,16 @@ understand/
   - a claim without evidence, such as "users want this", is treated as an assumption and pushed to evidence (the `understand-research` guide ranks evidence, D140);
   - fresh eyes: independent objections follow the `act-verify` guide's rule 2. This check belongs to the `understand-challenge` guide and may be reused by the `understand-argue` guide and the `understand-weigh` guide while its inputs stay unchanged (D252);
   - few strong weaknesses over many weak ones, the most serious first, grouped by cause.
+
+  **Instructions** (D283):
+
+  Find meaningful weaknesses and give an honest verdict on the idea. Test it with these steps.
+
+  1. **Give the idea fairly at its strongest first.** Attacking a weak version finds weaknesses the idea does not have. Use its author’s case and the `understand-frame` guide’s goal and constraints.
+  2. **Examine assumptions and weaknesses.** Unchecked assumptions are where most ideas break. Mark assumptions checked or unchecked and give each weakness its seriousness, evidence and remedy, under the rules above.
+  3. **Return the verdict.** The caller needs an honest basis for deciding. Give holds, holds with changes, or does not hold, with the meaningful weaknesses. Change nothing yourself.
+
+  4. **Check assumptions, evidence, seriousness and remedies.** Always do this last. Give the honest verdict without changing the idea or work. Reuse only current checks. Follow the `understand` guide's rules and the `act-verify` guide's rule 2 for independence.
 
   Gaps: a doubt a fact can settle goes to the `understand-research` guide or a test; several options, to the `understand-weigh` guide; an unclear idea, to the `understand-frame` guide or the `understand-clarify` guide; finished work, to a skill in the harness’s list for reviewing that kind of work, if one fits, otherwise judgment. Done when the assumptions are named, each weakness has its seriousness and what would address it, and the verdict is stated.
 - **Gives back** (D124, D279), in one short shape: Weak points that matter to the goal, including costs or risks even when success remains possible. Give each one’s seriousness and remedy, then an honest verdict.
@@ -682,6 +742,8 @@ understand/
 ### argue
 
 - **Purpose:** the strongest honest case for a position: the position stated precisely, its best reasons with their evidence, the strongest objections met, its weaknesses admitted, and the result labelled one-sided (D132). It is challenge's mirror: challenge makes the case against an idea, argue the case for it. It builds a case and decides nothing, which is weigh's or the person's. Whether a claim is true is the `understand-research-fact` guide, which searches both ways for a verdict; argue builds one side on purpose, and says so. A debate, "debate X versus Y", is weigh's, which puts each option through the `understand-argue` guide and the `understand-challenge` guide when the stakes are high or the person asks for a debate.
+- **Guide purpose** (D283): Makes the strongest honest case for a position, labelled one-sided.
+- **Shape** (D283, D285): No method moved from Rules. Keep the existing steps, with a goal and clear instruction at the start and a bold action, reason and method in each step. The final check is Instructions step 6, marked to come last, always.
 - **Description:** "The strongest honest case for a position: the position stated, its best reasons with evidence, the strongest objections answered, its weaknesses admitted, and the result labelled as one-sided. Use when asked to argue for something, make the case for it, or state a view at its strongest." A draft (D132).
 - **When to use** (D279): Use when the user wants the strongest honest case for one position, such as a pitch for a four-day week. Also use the light path when a response needs to reflect an existing view fairly.
 - **When not** (D279):
@@ -725,7 +787,7 @@ understand/
   3. **Find the strongest objections** through the `understand-challenge` guide, reusing a current result by rule 3 (D252).
   4. **Meet each objection:** answer it, concede it, or narrow the position.
   5. **Admit what is left** as weaknesses, and rate the case.
-  6. **Last instruction, before the case is returned:** the position stated; every reason with its evidence or marked; the strongest objections met; the weaknesses named; the case rated; the one-sided label present; the `understand` guide's rules hold.
+  6. **Check the case before returning it.** Always do this last. The position stated; every reason with its evidence or marked; the strongest objections met; the weaknesses named; the case rated; the one-sided label present; the `understand` guide's rules hold.
 
   Gaps: the case against goes to the `understand-challenge` guide; a choice, to the `understand-weigh` guide; whether a claim is true, to the `understand-research-fact` guide. When no honest case exists, the best found is shown and rated weak, and nothing is invented, as challenge says "nothing found" plainly.
 - **Gives back** (D132, D279): The case, evidence, objections answered, remaining weaknesses, strength and what could change it. Label it one-sided. Return the current challenge separately for reuse; its verdict is not part of the case.
@@ -769,6 +831,8 @@ understand/
 ### naming
 
 - **Purpose:** propose names people will read and rely on, and keep a project's vocabulary to one word per concept (D67, D125). For an open name, get candidates from the `understand-brainstorm` guide, compare them once through the `understand-weigh` guide against naming criteria, and put the choice through the `respond-ask` guide. Return the chosen name with rejected words and reasons. For vocabulary work, propose definitions, words to avoid and flagged ambiguities after checking the glossary and code. An already supplied name needs checks, not another candidate round. Naming writes nothing (D252).
+- **Guide purpose** (D283): Proposes shared names and glossary entries without writing or renaming anything.
+- **Shape** (D283, D285): Old rule 1 moves to instruction 1, still before proposing names. Old rules 2–9 become rules 1–8. The open-name candidate, comparison and user-choice method inside old rule 5 moves to instruction 2; its global choice, supplied-name and no-reopening requirements stay in new rule 4. Instruction 3 applies the existing return requirements. The final check is Instructions step 4, marked to come last, always.
 - **Description:** "Proposes names and glossary entries. Chooses open names from candidates, with reasons and rejected words. Checks already chosen names for real conflicts without reopening the choice. Keeps vocabulary to one word per concept. Use for public or shared names, new terms or ambiguous vocabulary." A draft (D125, D252).
 - **When to use** (D279): Use when a shared or public name is open, a new concept needs a term, terms clash, glossary changes need proposing, or a supplied name needs checks. For example, one word used for two concepts needs a terminology check.
 - **When not** (D279):
@@ -787,17 +851,14 @@ understand/
 
   It uses the `understand-brainstorm` guide for candidates only. It applies naming criteria through the `understand-weigh` guide once. The `respond-ask` guide handles an open naming choice (D252).
 - **Flow** (D125). Rules for both halves, each with its reason:
-  1. **Read first:** the glossary, and how the word is already used in the project's code, docs and design, before anything is proposed: a name that clashes with an existing term gives one word two meanings.
-  2. **One word per concept, one concept per word:** no new synonym for a term already in the glossary, and no word that already means something else in the project or nearby in its field, since the reader could not tell which meaning is meant.
-  3. **A part is not named after its whole,** since the whole's name would then mean two things.
-  4. **A plain word wherever one will do;** a word is coined only where none will, and the reason is said: a plain word is understood, a coined one has to be learned.
-  5. **A name others will rely on is the user's choice.** For an open choice, get candidates through the `understand-brainstorm` guide, compare them once through the `understand-weigh` guide, and ask through the `respond-ask` guide. For a name the user already chose, keep the glossary and collision checks. Reopen it only for a real conflict, raised under the `act` guide's concern rule. Settled choices need no new candidate or approval round (D252).
-  6. **Return rejected words and their reasons with the decision.** The caller can then record them so the same word is not proposed again (D252).
-  7. **Naming proposes; it writes and renames nothing.** The work-owning caller applies approved names and glossary entries under the `act` guide. A wide rename follows the `act-guardrails` guide. Propose the old word under "avoid". Half a rename leaves two words for one thing. For a direct user request, the main work flow owns the change (D252).
-
-  Rules for the glossary:
-  8. **Propose each term's definition once, in the glossary:** one sentence, words to avoid, and an example where needed. Definitions in two places drift. The caller writes approved entries (D252).
-  9. **A term used two ways is flagged and resolved,** split into two terms or held to one meaning; until then it stays listed as a flagged ambiguity, so the clash is not forgotten.
+  1. **One word per concept, one concept per word:** no new synonym for a term already in the glossary, and no word that already means something else in the project or nearby in its field, since the reader could not tell which meaning is meant.
+  2. **A part is not named after its whole,** since the whole's name would then mean two things.
+  3. **A plain word wherever one will do;** a word is coined only where none will, and the reason is said: a plain word is understood, a coined one has to be learned.
+  4. **A name others will rely on is the user's choice.** Readers will rely on the chosen term. For a name the user already chose, keep the glossary and collision checks. Reopen it only for a real conflict, raised under the `act` guide's concern rule. Settled choices need no new candidate or approval round (D252).
+  5. **Return rejected words and their reasons with the decision.** The caller can then record them so the same word is not proposed again (D252).
+  6. **Naming proposes; it writes and renames nothing.** The work-owning caller applies approved names and glossary entries under the `act` guide. A wide rename follows the `act-guardrails` guide. Propose the old word under "avoid". Half a rename leaves two words for one thing. For a direct user request, the main work flow owns the change (D252).
+  7. **Propose each term's definition once, in the glossary:** one sentence, words to avoid, and an example where needed. Definitions in two places drift. The caller writes approved entries (D252).
+  8. **A term used two ways is flagged and resolved,** split into two terms or held to one meaning; until then it stays listed as a flagged ambiguity, so the clash is not forgotten.
 
   Advice, what makes a good name, the terms weigh uses:
   - it says what the thing is to someone who has not seen it;
@@ -806,6 +867,16 @@ understand/
   - it does not clash with a well-known term in the field, a tool or a command;
   - it starts from the person's own words when they already have one for it;
   - no abbreviation unless it is established, and no joke a newcomer will not get.
+
+  **Instructions** (D283):
+
+  Propose a shared name or glossary entry that fits existing terms. Check and prepare the proposal with these steps.
+
+  1. **Read the glossary and existing usage first.** Clashes give one word two meanings. Check code, docs and design before proposing names.
+  2. **Handle the open naming choice or supplied name.** An open choice needs candidates; a settled name needs checks. For an open name, ask the `understand-brainstorm` guide for candidates only, compare once through the `understand-weigh` guide on the naming criteria, and ask through the `respond-ask` guide. For a supplied name, use rule 4’s checks without reopening a settled choice.
+  3. **Return the name or proposed glossary changes.** The caller needs the decision and rejected words to apply or record it. Include check results, reasons, rejected words and any unresolved ambiguities, under the rules above. Write and rename nothing.
+
+  4. **Check existing terminology and collisions, clear criteria, reasons and rejected words.** Always do this last. Respect a supplied name unless a real conflict needs raising. Return a chosen name or proposed glossary changes, with any unresolved ambiguity. Leave every write and rename to its owner. Follow the `understand` guide's rules.
 
   Gaps: whether a public name is free, on a package registry, as a domain or as a trademark, goes to the `understand-research` guide; a local name in code, to the project's conventions, through a skill in the harness’s list for changing code, if one fits; a repeated definition, to the `organize-normalize` guide. Done when the name is chosen with its reasons and rejected words, or the glossary changes are proposed.
 - **Gives back** (D125, D279), one shape per half. A naming decision: The chosen name, reasons and rejected words, or proposed glossary changes. Say which existing terms and possible name clashes you checked. Write or rename nothing here.
@@ -855,6 +926,8 @@ understand/
 ### research
 
 - **Purpose:** finding out from sources: the project's code and files, documentation, the web, papers and other products (D59, D128). Its own plain file holds what its three parts share and chooses among them, answering nothing itself, as clarify's does. A part exists only where the steps differ. How each kind of source is read and trusted is the same whatever the question, so the kinds of source are reference files, not parts (D128). research is the one home of the findings format.
+- **Guide purpose** (D283): Finds sourced answers, existing options and causes with evidence the reader can check.
+- **Shape** (D283, D285): No method moved from Rules. The existing question, source checks and return steps remain. The three child methods become an unordered list within instruction 3, rather than successive steps; old instruction 6 becomes instruction 4. The final check is Instructions step 5, marked to come last, always.
 - **Description:** "Finding out from sources, such as the project's code and files, documentation, the web, papers and other products: a question answered, a claim checked, what exists on a subject compared, or why something happens. Every finding comes with its source, whether it was read or inferred, and how strong it is, and what was not found is listed. Use when a question or claim needs facts from several sources or from outside the project, an overview of what exists, or a cause that is not obvious." A draft (D128).
 - **When to use** (D279): Use when a question needs sourced facts, a view of existing options or an investigation into a cause. For example, an option may depend on a fact that must be checked at its source.
 - **When not** (D279):
@@ -899,18 +972,17 @@ understand/
 
   1. **Set the question by rule 1.** Route factual gaps to sources and user-owned choices through the `understand-clarify` guide. Separate several questions at the caller rather than forcing them into one frame.
   2. **Load the source guide when its kind is first searched.** Read code (`research/assets/code.md`), documentation (`research/assets/documentation.md`), web (`research/assets/web.md`), papers (`research/assets/papers.md`) or products (`research/assets/products.md`) only for that kind. The guide does not replace these shared rules.
-  3. The `understand-research-fact` guide: answer one sourced question.
-  4. The `understand-research-survey` guide: compare existing candidates.
-  5. The `understand-research-analyze` guide: investigate causes.
-  6. **Return the requested result with its evidence.** Several questions may use several methods. Return each method's part to the active caller without restarting it. With many findings, give those supporting the answer and a path to the full list. Keep requested records with their owner rather than inventing a keeper path.
+  3. **Use the method the question needs.** Facts, comparisons and causes need different work. These methods have no fixed order:
+     - the `understand-research-fact` guide: answer one sourced question.
+     - the `understand-research-survey` guide: compare existing candidates.
+     - the `understand-research-analyze` guide: investigate causes.
+  4. **Return the requested result with its evidence.** Several questions may use several methods. Return each method's part to the active caller without restarting it. With many findings, give those supporting the answer and a path to the full list. Keep requested records with their owner rather than inventing a keeper path.
 
-  The semantic fields of each finding are its claim in one sentence, exact source, quoted words where needed, strength under rule 3, and applicable version, platform or date where relevant. These describe meaning, not a mandatory machine format for every short answer.
+     The semantic fields of each finding are its claim in one sentence, exact source, quoted words where needed, strength under rule 3, and applicable version, platform or date where relevant. These describe meaning, not a mandatory machine format for every short answer.
 
-  Use the `understand` guide's result shape, adding the question where needed, answer or verdict, findings, what was not found, what was not covered, open gaps and what would settle them. For claims, group evidence for and against. Omit empty fields except a meaningful negative result. Put the answer first and its supporting findings next. Research keeps nothing itself; the caller or loaded keeper owns lasting records. A direct request without one stays in the response, with a long result offered as a file the user names.
+     Use the `understand` guide's result shape, adding the question where needed, answer or verdict, findings, what was not found, what was not covered, open gaps and what would settle them. For claims, group evidence for and against. Omit empty fields except a meaningful negative result. Put the answer first and its supporting findings next. Research keeps nothing itself; the caller or loaded keeper owns lasting records. A direct request without one stays in the response, with a long result offered as a file the user names.
 
-  **The last instruction:**
-
-  Check the requested question, traceable sources, provenance, applicability and conflicts. Report negative results and coverage limits. Preserve actual validation status. Return an answer or an honest unfinished result with what would settle it. Follow each used child's last instruction. Start no extra choice round, lasting change or repeated caller operation.
+  5. **Check the sourced answer before returning it.** Always do this last. Check the requested question, traceable sources, provenance, applicability and conflicts. Report negative results and coverage limits. Preserve actual validation status. Return an answer or an honest unfinished result with what would settle it. Follow the final step of Instructions in each used child guide. Start no extra choice round, lasting change or repeated caller operation.
 - **Gives back** (D50, D59, D128, D279): Sourced findings and their limits: an answer or claim verdict, compared candidates, or evidence for possible causes. Return them to the task that asked for the research.
 
   ```text
@@ -997,6 +1069,8 @@ understand/
 #### fact
 
 - **Purpose:** one question a quick local read does not settle, or one claim checked from sources: the answer, or a verdict with the evidence for and against (D128). Typical cases: how something behaves in a given version, a provider's limit, whether a name is free, whether a claim holds.
+- **Guide purpose** (D283): Answers one sourced question or gives a bounded verdict on one claim.
+- **Shape** (D283, D285): No method moved from Rules. Keep the existing steps, with a goal and clear instruction at the start and a bold action, reason and method in each step. The final check is Instructions step 5, marked to come last, always.
 - **Description:** "One question a quick local read does not settle, or one claim checked from sources: the answer with its findings, or a verdict (supported, mixed, unsupported or unknown) with the evidence for and against. Use when a single fact needs source investigation beyond a quick local read, such as how something behaves, a limit, whether a name is free, or whether a claim is true." A draft (D128).
 - **When to use** (D279): Use when an investigation needs one sourced answer or a verdict on one claim that a quick local read does not settle. For example, a claim that something cannot be done needs evidence for that limit.
 - **When not** (D279):
@@ -1028,9 +1102,7 @@ understand/
   3. **Rank findings through the parent's provenance rule.** Keep contrary evidence and unknown results visible. A source count or a matched quote alone does not establish truth.
   4. **Return the answer or rule 3's verdict.** Give evidence for and against, what was checked, missing checks and what would settle them. A naming or comparison caller receives the factual result, not another naming or choice round.
 
-  **The last instruction:**
-
-  Check that a claim was searched both ways and that the answer fits the actual version and scope. Use the parent's semantic findings and result shape. Distinguish unsupported from unknown without claiming either is disproof. Return to the active caller and follow the parent's last instruction.
+  5. **Check the answer or verdict before returning it.** Always do this last. Check that a claim was searched both ways and that the answer fits the actual version and scope. Use the parent's semantic findings and result shape. Distinguish unsupported from unknown without claiming either is disproof. Return to the active caller and follow the final step of Instructions in the `understand-research` guide.
 - **Gives back** (D279): The answer or claim verdict, supporting and opposing evidence, limits and missing checks.
 - **Files:** `references/understand/research/fact.md`. Inherits the research capability and unavailable-access result. Research needs the sources applicable to the question; missing access returns partial findings and missing checks rather than an invented result.
 - **Material:** alirezarezvani's dossier (the hypothesis, the patterns for searching against it, the verdict weighed by evidence) and deep-research (falsifiable hypotheses); mattpocock's research (a claim followed to the source that owns it); gstack's investigate (a claimed limitation needs the error, the documented statement or a probe).
@@ -1056,6 +1128,8 @@ understand/
 #### survey
 
 - **Purpose:** what exists on a subject, found widely and compared on the same terms: tools, libraries, approaches, products and competitors, prior art or papers (D59, D128). survey finds what exists: it does not invent options (brainstorm) and does not choose (weigh).
+- **Guide purpose** (D283): Finds existing candidates and compares them on common terms without taking over the caller's choice.
+- **Shape** (D283, D285): No method moved from Rules. Keep the existing steps, with a goal and clear instruction at the start and a bold action, reason and method in each step. The final check is Instructions step 6, marked to come last, always.
 - **Description:** "What exists on a subject, found widely and compared on the same terms, such as tools, libraries, approaches, products, prior art or papers, with what was screened out and what was not covered. Use when asked what's out there, for existing alternatives or competitors, or for an overview of a field." A draft (D128).
 - **When to use** (D279): Use when the user needs to know what already exists on a subject, compared on the same terms. Examples include existing tools, papers or alternatives.
 - **When not** (D279):
@@ -1094,9 +1168,7 @@ understand/
   4. **Compare on the agreed terms with evidence.** Give every compared candidate each term or an honest gap. A short table may help; use a list when the medium, width or user preference favors it.
   5. **Return the requested comparison by rule 8.** Add scope, terms, screened-out candidates, the unexamined long tail, search coverage and date to the parent's result shape. Keep findings and unknowns with their actual evidence status.
 
-  **The last instruction:**
-
-  Check all compared candidates use the same terms and traceable evidence. Report exclusions, unexamined candidates, negative results, coverage and date honestly. Keep any choice and lasting record with its owner. Follow the parent's last instruction and return without recursively calling the caller.
+  6. **Check the comparison before returning it.** Always do this last. Check all compared candidates use the same terms and traceable evidence. Report exclusions, unexamined candidates, negative results, coverage and date honestly. Keep any choice and lasting record with its owner. Follow the final step of Instructions in the `understand-research` guide and return without recursively calling the caller.
 - **Gives back** (D279): Candidates compared on the same terms, sources, excluded and unexamined candidates, search coverage and date.
 
   ```text
@@ -1138,6 +1210,8 @@ understand/
 #### analyze
 
 - **Purpose:** why something happens, worked back from what is seen to its cause, the cause tested before it is called one (D59, D128). Any problem: code, a build, a process, a product's numbers, an incident. It finds the cause; fixing it is the caller's. It traces a chain from the symptom back to the trigger, one chain per contributing cause, rather than a tree of root causes, which pushes agents to invent branches (D128).
+- **Guide purpose** (D283): Investigates why something happens and returns evidence for its cause or an honest unresolved result.
+- **Shape** (D283, D285): No method moved from Rules. Keep the existing steps, with a goal and clear instruction at the start and a bold action, reason and method in each step. The final check is Instructions step 7, marked to come last, always.
 - **Description:** "Why something happens: the symptom stated exactly, one testable cause at a time, and the chain traced back to its trigger, with each link's evidence and what was ruled out. Use when the cause of a problem is not obvious, or when asked why something happens." A draft (D128).
 - **When to use** (D279): Use when the user asks why something happens and the cause needs investigation. For example, a process may have become slower after a change.
 - **When not** (D279):
@@ -1178,9 +1252,7 @@ understand/
   5. **Return a question under rule 6 when the investigation stalls.** Ask whether to continue, instrument further or reframe. A delegated worker returns this need to its caller. Start no answer-dependent continuation yourself.
   6. **Return the investigation after rule 7's cleanup.** Give the symptom, causal or hypothetical chain, rejected causes with their evidence, missing checks and the next owner. A code fix or incident action belongs to its caller's work; use the caller's specialist set where installed, otherwise its judgment under the `act` guide. For a direct request, give the next investigation or fix step without applying it.
 
-  **The last instruction:**
-
-  Check every claimed causal link has evidence or a hypothesis label. Report rejected causes and unresolved limits. Confirm cleanup or report permitted kept material and its reason. Return the result and next owner without applying a fix. Follow the parent's last instruction.
+  7. **Check the causal evidence before returning it.** Always do this last. Check every claimed causal link has evidence or a hypothesis label. Report rejected causes and unresolved limits. Confirm cleanup or report permitted kept material and its reason. Return the result and next owner without applying a fix. Follow the final step of Instructions in the `understand-research` guide.
 - **Gives back** (D279): The symptom, supported causes or marked hypotheses, rejected causes, and who should investigate or fix it next.
 
   ```text

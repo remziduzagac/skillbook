@@ -1,6 +1,8 @@
 # organize-cluster
 
-Builds a view that helps readers find items while keeping source content unchanged. Navigation tags may be written into items only when the user asks for that form.
+## Purpose
+
+Builds a view that helps readers find items while keeping source content unchanged apart from navigation tags the user requests.
 
 ## When to use
 
@@ -26,12 +28,12 @@ A B C → view over A, B, C (source content unchanged)
 
 ## Instructions
 
-1. To make the view useful to its readers, find who needs to find what. The readers' purpose determines the grouping.
-2. To keep groups consistent, use one grouping principle by the parent's rule. Give each item one main group. "See also" links are allowed.
-3. To fit the view to its destination, choose the view's form by the parent's shared choice rule. Use an index, table of contents, README map or external tag map as appropriate. Keep the view outside source items by default. Navigation tags may be written into items only when the user asks for that form. List the exact tag edits in the approved map. Check what tags actually do. Return effects on publishing, access, automation or other behavior beyond navigation to the caller and the `act-guardrails` guide. Do not silently treat such effects as navigation.
-4. To keep the view accurate, choose how the view stays current. Use a script or a check when items change. Check for omitted items and entries pointing to nothing.
-5. To preserve the agreed source content, write the view only under the parent's approved map. Check every in-scope item is reachable and every entry resolves. For requested in-item tags, check the exact edits and that all other content is unchanged.
+Help readers find the items they need. Prepare a navigation view that preserves source content.
 
-## The last instruction
+1. **Find who needs to find what.** This helps make the view useful to its readers. The readers' purpose determines the grouping.
+2. **Use one grouping principle by the parent's rule.** This helps keep groups consistent. Give each item one main group. "See also" links are allowed.
+3. **Choose the view's form by the parent's shared choice rule.** This helps fit the view to its destination. Use an index, table of contents, README map or external tag map as appropriate. Keep the view outside source items by default. Navigation tags may be written into items only when the user asks for that form. List the exact tag edits in the approved map. Check what tags actually do. Return effects on publishing, access, automation or other behavior beyond navigation to the caller and the `act-guardrails` guide. Do not silently treat such effects as navigation.
+4. **Choose how the view stays current.** This helps keep the view accurate. Use a script or a check when items change. Check for omitted items and entries pointing to nothing.
+5. **Write the view only under the parent's approved map.** This helps preserve the agreed source content. Check every in-scope item is reachable and every entry resolves. For requested in-item tags, check the exact edits and that all other content is unchanged.
 
-Return the view or proposal, its maintenance method and any exact requested tag edits. Source content is otherwise unchanged. Follow the `organize` guide's inventory check and both approval checkpoints. Report missing items, entries that point to nothing and effects beyond navigation. Do not claim the view is complete when those problems remain.
+6. **Return the view or proposal, its maintenance method and any exact requested tag edits.** Always do this last. Source content is otherwise unchanged. Follow the `organize` guide's inventory check and both approval checkpoints. Report missing items, entries that point to nothing and effects beyond navigation. Do not claim the view is complete when those problems remain.

@@ -1,6 +1,8 @@
 # understand-discuss
 
-Works through a topic with the user, one item at a time.
+## Purpose
+
+Works through a topic with the user so each item is decided, parked or handed on.
 
 ## When to use
 
@@ -45,14 +47,7 @@ What was decided, set aside or passed to another task, with reasons. Include sid
 
 ## Instructions
 
-1. To show the whole topic first, frame the topic through the `understand-frame` guide. Divide it into items. Put the whole list with the first item in the question round.
-2. To help settle the current item, use what the item needs. Use the `understand-frame` guide for its problem, the `understand-clarify` guide for user intent, the `understand-brainstorm` guide for options, the `understand-weigh` guide for comparison, the `understand-challenge` guide for an attack, the `understand-argue` guide for a requested case and the `understand-naming` guide for names. Use the `understand-research` guide for an item's factual needs and return to that item. Any other guide or skill may serve an item. Otherwise give your view with reasons. Put open decisions through the `respond-ask` guide. Agent-made choices follow the `understand` guide's who-decides rule.
-3. To keep each item’s status clear, close the item. Update remaining items.
-4. To avoid losing side topics, place each side topic by rule 5. Keep the current item visible.
-5. To keep discussion separate from action, keep independent analysis separate from lasting work. Use available means for analysis that needs no user decision. Return lasting work to the caller. Discussion changes nothing itself.
-6. To keep action with its owner, return a requested action to its work-owning caller. This includes an action asked for midway. The caller follows the `act` guide, its plan rule and the `act-guardrails` guide. Resume from its result. Agreement to an item alone authorizes no action.
-7. To avoid losing decisions from a long discussion, offer recording when a long discussion risks losing decisions. Use the `respond-ask` guide. End the turn. For a completed topic, follow rule 7. Once the user requests recording, return the record to the caller.
-8. To return a usable discussion turn, check each returned turn. Normal item layout is a useful agreed line, one item, actual open questions and remaining items. Use these as defaults, not empty fields to fill. Give recommended answers by rule 3. When no items remain, follow rule 7.
+Work through the topic until each item is decided, parked or handed on. Handle each discussion turn with these steps.
 
 Return the `understand` guide's result shape, adding:
 
@@ -66,7 +61,15 @@ Next:         next steps
 
 Use agreed lines to carry the result so far. Gather it in the final summary. Keep no lasting record yourself. The caller passes a requested record to a loaded skill that saves records. If no skill is loaded to save records, the main work flow writes a file the user names. The caller reports what it wrote and where. Commit only when the user asks. When the user says they are stopping, follow the main skill's rule to offer a record of what the session taught and where the work stands. That offer uses the `coordinate-carryover` guide when work remains.
 
-## The last instruction
+1. **Frame the topic through the `understand-frame` guide.** The whole topic helps the user judge the first item. Divide it into items. Put the whole list with the first item in the question round.
+2. **Use what the item needs.** Each item needs the method that can settle it. Use the `understand-frame` guide for its problem, the `understand-clarify` guide for user intent, the `understand-brainstorm` guide for options, the `understand-weigh` guide for comparison, the `understand-challenge` guide for an attack, the `understand-argue` guide for a requested case and the `understand-naming` guide for names. Use the `understand-research` guide for an item's factual needs and return to that item. Any other guide or skill may serve an item. Otherwise give your view with reasons. Put open decisions through the `respond-ask` guide. Agent-made choices follow the `understand` guide's who-decides rule.
+3. **Close the item.** A clear status prevents silent assumptions. Update remaining items.
+4. **Place each side topic by rule 5.** A side topic can otherwise get lost. Keep the current item visible.
+5. **Keep independent analysis separate from lasting work.** Analysis and lasting work have different owners. Use available means for analysis that needs no user decision. Return lasting work to the caller. Discussion changes nothing itself.
+6. **Return a requested action to its work-owning caller.** The work-owning caller handles action. This includes an action asked for midway. The caller follows the `act` guide, its plan rule and the `act-guardrails` guide. Resume from its result. Agreement to an item alone authorizes no action.
+7. **Offer recording when a long discussion risks losing decisions.** Compaction can lose decisions from a long discussion. Use the `respond-ask` guide. End the turn. For a completed topic, follow rule 7. Once the user requests recording, return the record to the caller.
 
-To close a completed topic, follow rule 7.
-Check that you have closed every item and placed every side topic. Use the normal item layout where it helps. Apply the `understand` guide's rules. Make no lasting change yourself.
+8. **Check each returned turn.** Always do this last. The layout should help the user answer the current item. Normal item layout is a useful agreed line, one item, actual open questions and remaining items. Use these as defaults, not empty fields to fill. Give recommended answers by rule 3. When no items remain, follow rule 7.
+
+   To close a completed topic, follow rule 7.
+   Check that you have closed every item and placed every side topic. Use the normal item layout where it helps. Apply the `understand` guide's rules. Make no lasting change yourself.

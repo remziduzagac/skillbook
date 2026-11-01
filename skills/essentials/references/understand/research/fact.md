@@ -1,5 +1,7 @@
 # understand-research-fact
 
+## Purpose
+
 Answers one sourced question or gives a bounded verdict on one claim.
 
 ## When to use
@@ -32,11 +34,11 @@ The answer or claim verdict, supporting and opposing evidence, limits and missin
 
 ## Instructions
 
-1. To answer the intended question, reuse or identify the question and claim through the parent's first rule. Do not reframe an already crisp question or restart an active caller.
-2. To find relevant evidence cheaply, search the nearest relevant sources first. Follow the parent's source guides, rules on where evidence applies, and search for and against claims.
-3. To show how much the evidence supports, rank findings through the parent's rule for how evidence was obtained. Keep contrary evidence and unknown results visible. A source count or a matched quote alone does not establish truth.
-4. To give a bounded answer, return the answer or rule 3's verdict. Give evidence for and against, what was checked, missing checks and what would settle them. A naming or comparison caller receives the factual result, not another naming or choice round.
+Answer the sourced question or give a bounded verdict on the claim. Check the evidence with these steps.
 
-## The last instruction
+1. **Reuse or identify the question and claim through the parent's first rule.** The evidence must answer the intended question. Do not reframe an already crisp question or restart an active caller.
+2. **Search the nearest relevant sources first.** Nearby relevant sources usually cost less to check. Follow the parent's source guides, rules on where evidence applies, and search for and against claims.
+3. **Rank findings through the parent's rule for how evidence was obtained.** The strength depends on how the evidence was obtained. Keep contrary evidence and unknown results visible. A source count or a matched quote alone does not establish truth.
+4. **Return the answer or rule 3's verdict.** A bounded answer makes the result’s limits clear. Give evidence for and against, what was checked, missing checks and what would settle them. A naming or comparison caller receives the factual result, not another naming or choice round.
 
-Check that a claim was searched both ways and that the answer fits the actual version and scope. Use the parent's finding fields and result shape. Distinguish unsupported from unknown without claiming either is disproof. Return to the active caller and follow the parent's last instruction.
+5. **Check that a claim was searched both ways and that the answer fits the actual version and scope.** Always do this last. Use the parent's finding fields and result shape. Distinguish unsupported from unknown without claiming either is disproof. Return to the active caller and follow the final step of Instructions in the `understand-research` guide.

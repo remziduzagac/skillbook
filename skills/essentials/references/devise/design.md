@@ -1,5 +1,7 @@
 # devise-design
 
+## Purpose
+
 Decides what something will be before it is made, with reasons its builder can use.
 
 ## When to use
@@ -30,18 +32,7 @@ A short or full design with its actual approval status, or ranked review finding
 
 ## Instructions
 
-1. For a review-only result, use the `devise-design-review` guide and return findings without changing the design. A design-only request authorizes no execution.
-2. To preserve the supplied basis, read a supplied design before replacing anything. Follow it and check gaps. Label proposed additions as added. Read available project facts before asking.
-3. To choose enough design detail, choose short or full. Use full when a mistake could have serious effects, parts depend on decisions in other parts, or another builder relies on this as a contract. Judge effects and undo with the `act-stakes` guide. A small reversible change is short only when no full trigger applies. How long the result will last does not by itself require a full design. A shared evacuation route has serious effects; a private seating sketch with independent choices may stay short.
-4. To define a good result, frame through the `understand-frame` guide. Get goal, constraints, scope, audience and a good result from the caller or known context. Use the `understand-clarify` guide for user intent that would change it. Include the frame in the read-only answer. Do not ask for separate approval of the frame.
-5. To ground decisions in existing facts, analyse the existing work and earlier decisions. Use the `understand-research` guide for outside facts where needed. Return the findings to this design without starting another design or plan. List assumptions and unknowns. Say what would settle each one.
-6. To give every requirement a home, divide the requirements through the `organize` guide. Give each part a boundary in one sentence and explain connections. Use a skill in the harness’s list for software architecture, if one fits. Otherwise give generic parts and connections only.
-7. To settle the open items, work through open items with the `understand-discuss` guide. Use the `understand-brainstorm` guide for options and the `understand-weigh` guide for comparisons. Reuse a current comparison. Use the `understand-challenge` guide for decisions that are hard to undo or shape much of the work; reuse a challenge only while its idea, goal, constraints and evidence hold. Follow the `understand` guide for who decides and visible choices. The caller is responsible for lasting changes.
-8. To make the design usable by a builder, write the design top-down. A full design uses the shape below without empty boilerplate. A short design gives purpose, parts, choices and reasons briefly. List any open questions. Draw a text diagram in a code block only when connections become clearer.
-9. To settle the short design’s remaining user choices, ask for any user answer the short design needs through the `respond-ask` guide. End the turn. Resume after the answer without adding a full review. With no answer needed, give the short design in one response. Before either path changes anything, follow the `act` guide's rules on when to ask or show choices.
-10. The `devise-design-review` guide: check a design for its builder.
-11. To keep execution under user control, get actual user approval before executing a full design. Include any unfinished checks when asking for approval. Delivering a draft or rereading it yourself does not complete independent review. For a short design, also follow the shared rules on user choices and when to show them.
-12. To keep the next step with the caller, return a called design to its active caller. A direct whole-design-and-build request hands on to the `devise-plan` guide once after approval. A design-only request ends with its result. When building finds a gap, return to analysis or discussion first, then revise the plan before continuing.
+Give the builder a settled design with reasons. Work from the goal to the parts and details.
 
 A full design's default contents:
 
@@ -58,6 +49,17 @@ Open:         questions, assumptions and what settles each
 
 Keep results where the caller or loaded skill that saves records says. Without either, keep a short design in the response. Put a full design in a file the user names. If they have not named one, ask through the `respond-ask` guide. Recommend a descriptive filename where the project keeps documents. End the turn. A user preference for response-only output follows the `act` guide's defaults rule. Use the `respond-layout` guide and the `act-rightsize` guide. Use the `organize-split` guide for a grown design, with parts sized for how they are read.
 
-## The last instruction
+1. **Use the `devise-design-review` guide for a review-only result.** This keeps review separate from changing the design. Return findings without changing it. A design-only request authorizes no execution.
+2. **Read a supplied design before replacing anything.** This helps preserve the supplied basis. Follow it and check gaps. Label proposed additions as added. Read available project facts before asking.
+3. **Choose short or full.** This helps choose enough design detail. Use full when a mistake could have serious effects, parts depend on decisions in other parts, or another builder relies on this as a contract. Judge effects and undo with the `act-stakes` guide. A small reversible change is short only when no full trigger applies. How long the result will last does not by itself require a full design. A shared evacuation route has serious effects; a private seating sketch with independent choices may stay short.
+4. **Frame through the `understand-frame` guide.** This helps define a good result. Get goal, constraints, scope, audience and a good result from the caller or known context. Use the `understand-clarify` guide for user intent that would change it. Include the frame in the read-only answer. Do not ask for separate approval of the frame.
+5. **Analyse the existing work and earlier decisions.** This helps ground decisions in existing facts. Use the `understand-research` guide for outside facts where needed. Return the findings to this design without starting another design or plan. List assumptions and unknowns. Say what would settle each one.
+6. **Divide the requirements through the `organize` guide.** This helps give every requirement a home. Give each part a boundary in one sentence and explain connections. Use a skill in the harness’s list for software architecture, if one fits. Otherwise give generic parts and connections only.
+7. **Work through open items with the `understand-discuss` guide.** This helps settle the open items. Use the `understand-brainstorm` guide for options and the `understand-weigh` guide for comparisons. Reuse a current comparison. Use the `understand-challenge` guide for decisions that are hard to undo or shape much of the work; reuse a challenge only while its idea, goal, constraints and evidence hold. Follow the `understand` guide for who decides and visible choices. The caller is responsible for lasting changes.
+8. **Write the design top-down.** This helps make the design usable by a builder. A full design uses the default contents above without empty boilerplate. A short design gives purpose, parts, choices and reasons briefly. List any open questions. Draw a text diagram in a code block only when connections become clearer.
+9. **Ask for any user answer the short design needs through the `respond-ask` guide.** This helps settle the short design’s remaining user choices. End the turn. Resume after the answer without adding a full review. With no answer needed, give the short design in one response. Before either path changes anything, follow the `act` guide's rules on when to ask or show choices.
+10. **Use the `devise-design-review` guide.** It checks a design for its builder.
+11. **Get actual user approval before executing a full design.** This helps keep execution under user control. Include any unfinished checks when asking for approval. Delivering a draft or rereading it yourself does not complete independent review. For a short design, also follow the shared rules on user choices and when to show them.
+12. **Return a called design to its active caller.** This helps keep the next step with the caller. A direct whole-design-and-build request hands on to the `devise-plan` guide once after approval. A design-only request ends with its result. When building finds a gap, return to analysis or discussion first, then revise the plan before continuing.
 
-Check that you did not design work whose shape was already settled. Check that additions to a supplied design are marked. Check that the result includes reasons and unknowns. Report the actual status of full-design findings and checks, including any unresolved ones. Obtain required approval before execution. Preserve caller ownership and follow the `understand` guide and the `act` guides before any lasting change.
+13. **Check that you did not design work whose shape was already settled.** Always do this last. Check that additions to a supplied design are marked. Check that the result includes reasons and unknowns. Report the actual status of full-design findings and checks, including any unresolved ones. Obtain required approval before execution. Preserve caller ownership and follow the `understand` guide and the `act` guides before any lasting change.

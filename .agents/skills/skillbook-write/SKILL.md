@@ -5,7 +5,9 @@ description: "Writes and changes the files of skillbook's skills from their desi
 
 # skillbook-write
 
-How to write a skill's files in this repository, from its design. This is a project skill. It is never shipped in a set.
+## Purpose
+
+Helps you turn a design into a skill's files: the main skill, its guides and their tests. The goal is files an agent follows as intended, in plain English, at a size it reads whole, and true to the design. This is a project skill. It is never shipped in a set.
 
 ## Rules
 
@@ -57,7 +59,7 @@ How to write a skill's files in this repository, from its design. This is a proj
   - `compatibility`: a capability the set needs, if any.
 
   Write the body in the order of skillbook-design's check 8. Put the guide map, with the exact name rule at its top, between the advice and the instructions.
-- **Start a guide with a `#` heading holding its dashed name.** Add one line saying what it does. If needed, add `Needs:` with its capability and fallback. Then add `## When to use`, `## When not` and `## Gives back`, by skillbook-design's check 9. Write the body after them in the order of skillbook-design's check 8.
+- **Write a guide in the shape of skillbook-design's check 8:** a `#` heading with its dashed name, `## Purpose`, `Needs:` if needed, the three boundary sections by check 9, then Rules and Advice where it has them, and Instructions, whose last step is the final check.
 - **Turn the design's Files into scripts and templates at skillbook-design's paths.** Turn Tests into cases as below. Leave Callers and Material in the design.
 - **Test cases: turn each designed test into an AI case, run the way a user meets the skill.** Follow blueprint/design/testing.md for case format, runner and rules. The writing part follows:
   - **Follow the user's test schedule.** When model runs are deferred, write cases and record that they have not run.
@@ -77,7 +79,4 @@ How to write a skill's files in this repository, from its design. This is a proj
   - Fix patterns shared by failures, never individual cases. A failure is a sample. Case-specific rules or examples turn skills into scripts and stop tests measuring anything.
   - Give cost before running. Match budget claims to runner guarantees. Separate enforced and estimated limits. Unknown cost stays unknown, never zero. Keep large, personal raw runs out of the repository. Record what they showed in the decision's Tested line.
 - **Changing a built skill: if the change alters what the design says, agree the design change with the user first.** Then change the design, then the files. A fix that keeps the design true, such as a typo or a lint error, goes to the files only. Follow skillbook-design's instruction to trim or fill.
-
-## The last instruction
-
-**Run repository checks and skillbook-design's checklist before reporting.** Check every file written. List design differences with file and line. Change the design only with the user.
+- **Last, always: run repository checks and skillbook-design's checklist before reporting.** Check every file written. List design differences with file and line. Change the design only with the user.

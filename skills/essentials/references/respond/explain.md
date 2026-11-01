@@ -1,5 +1,7 @@
 # respond-explain
 
+## Purpose
+
 Clears up something the agent itself said that did not land.
 
 ## When to use
@@ -18,11 +20,11 @@ The earlier point explained from the main idea to its details, with references i
 
 ## Instructions
 
-1. To make the missed point clear, explain in the shape the `respond` guide gives. Put the point in one plain sentence. Give an example for a general rule or idea the user has not seen applied. Omit it for a concrete point, such as a named file or failed step.
-2. To make references understandable, replace unresolved references with their meanings.
-3. To keep the explanation focused, stop once the point is made. Add no closing offer to explain more. The user's next message shows whether it landed.
-4. To answer the actual follow-up, go one level deeper on the named or quoted piece when asked for more. Do not expand everything. A bare "explain more" means the point you just made.
+Make the earlier point clear. Explain it from the main idea to its details with these steps:
 
-## The last instruction
+1. **Explain in the shape the `respond` guide gives.** This makes the missed point clear. Put the point in one plain sentence. Give an example for a general rule or idea the user has not seen applied. Omit it for a concrete point, such as a named file or failed step.
+2. **Replace unresolved references with their meanings.** The user needs to understand them without looking them up.
+3. **Stop once the point is made.** This keeps the explanation focused. Add no closing offer to explain more. The user's next message shows whether it landed.
+4. **Go one level deeper on the named or quoted piece when asked for more.** This answers the actual follow-up. Do not expand everything. A bare "explain more" means the point you just made.
 
-You are done when every term and reference in the explanation is one the user knows or one it explains, and nothing is there that the point does not need.
+5. **Check the explanation before returning it.** Always do this last. You are done when every term and reference in the explanation is one the user knows or one it explains, and nothing is there that the point does not need.

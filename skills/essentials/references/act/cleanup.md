@@ -1,6 +1,8 @@
 # act-cleanup
 
-Removes things created or started for a task when they are no longer needed.
+## Purpose
+
+Removes things created or started for a task when they are no longer needed, leaving a checked cleanup status.
 
 ## When to use
 
@@ -57,13 +59,15 @@ What counts, when you created or started it in this task:
 
 ## Instructions
 
-1. To avoid oversized leftovers, choose the place and check the size before creating something, as the advice says.
-2. To keep every leftover findable, record each thing as you create or start it. Clean it when its job ends.
-3. To leave no forgotten worker material, tell a delegated agent to clean up before reporting. Say explicitly to remove what it made and stop what it started. Report fields alone do not instruct it. Ask it to report cleaned, kept and proposed items. On return, check each report against visible files or processes.
-4. To recover an incomplete record, list the contents of your usual places if the record is incomplete. This includes after a crash or forgotten item. Propose anything not certainly yours. Do not remove it.
-5. To finish with no unwanted leftovers, go through the record before ending the task or stopping. Follow the `act` guide's rule 11, including a wrap-up offer or carryover. Clean your own items. Propose the rest through the `act-guardrails` guide and the `respond-ask` guide.
-6. To confirm cleanup worked, use the `act-verify` guide.
-7. To make the cleanup status clear, give this report at the end of the response:
+Leave no unwanted task leftovers. Track what you create and clean it when its job ends.
+
+1. **Choose the place and check the size before creating something, as the advice says.** This helps avoid oversized leftovers.
+2. **Record each thing as you create or start it.** This helps keep every leftover findable. Clean it when its job ends.
+3. **Tell a delegated agent to clean up before reporting.** This helps leave no forgotten worker material. Say explicitly to remove what it made and stop what it started. Report fields alone do not instruct it. Ask it to report cleaned, kept and proposed items. On return, check each report against visible files or processes.
+4. **List the contents of your usual places if the record is incomplete.** This helps recover an incomplete record. This includes after a crash or forgotten item. Propose anything not certainly yours. Do not remove it.
+5. **Go through the record before ending the task or stopping.** This helps finish with no unwanted leftovers. Follow the `act` guide's rule 11, including a wrap-up offer or carryover. Clean your own items. Propose the rest through the `act-guardrails` guide and the `respond-ask` guide.
+6. **Use the `act-verify` guide.** This helps confirm cleanup worked.
+7. **Give this report at the end of the response.** This helps make the cleanup status clear.
 
    ```text
    Cleaned:   each item and where it was, checked as gone; sizes for large ones
@@ -76,6 +80,4 @@ What counts, when you created or started it in this task:
    - Give the full report when something is kept or proposed.
    - Use the same three fields in a delegated report so the main agent checks one list. Put kept items in a carryover note when work continues later. Nothing else is kept: leftovers belong to the session, not the project.
 
-## The last instruction
-
-**Check the record before ending the task or stopping.** Every item is cleaned and checked as gone, kept with location and reason, or proposed. The report says which.
+8. **Check the record before ending the task or stopping.** Always do this last. Every item is cleaned and checked as gone, kept with location and reason, or proposed. The report says which.

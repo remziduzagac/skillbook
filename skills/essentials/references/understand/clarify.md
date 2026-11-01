@@ -1,5 +1,7 @@
 # understand-clarify
 
+## Purpose
+
 Finds which choices need answers before work starts, who should decide, and how deep to question.
 
 ## When to use
@@ -43,15 +45,17 @@ Follow the `understand` guide for facts first, who decides, keeping nothing, res
 
 ## Instructions
 
+Settle the choices that would change the result. Use the child method for the depth and answer holder; these methods have no fixed order.
+
 - the `understand-clarify-shallow` guide: see a whole level of choices.
 - the `understand-clarify-deep` guide: resolve dependent choices.
 - the `understand-clarify-questionnaire` guide: write questions for someone else.
 - **Ask whether independent work should proceed while a questionnaire is out.** Ask through the `respond-ask` guide only if independent work remains. Otherwise say what waits for answers. Park the questionnaire's questions until answers return. Start no dependent work.
 
-## The last instruction
+1. **Check readiness before acting.** Always do this last.
 
-Before you act on anything an open question could change, check:
+   Before you act on anything an open question could change, check:
 
-- Every question that is the user's to decide is answered, taken with its recommended answer by the user's acceptance, parked, or in a questionnaire.
-- "Going with" is said, with the choices the work rests on, or the summary is confirmed, or it is shown where the user told you to start the work.
-- The `understand` guide's rules hold.
+   - Every question that is the user's to decide is answered, taken with its recommended answer by the user's acceptance, parked, or in a questionnaire.
+   - "Going with" is said, with the choices the work rests on, or the summary is confirmed, or it is shown where the user told you to start the work.
+   - The `understand` guide's rules hold.

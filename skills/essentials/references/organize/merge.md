@@ -1,5 +1,7 @@
 # organize-merge
 
+## Purpose
+
 Combines duplicate accounts of the same whole into one survivor, keeping compatible unique details and updating references.
 
 ## When to use
@@ -21,12 +23,12 @@ A A' A" → A (the others retired, references moved)
 
 ## Instructions
 
-1. To keep compatible details, compare the duplicate accounts of the same whole.
-2. To keep the right account, choose the survivor by the `organize` guide's shared choice rule. Consider the most complete item, the most linked item or the user's choice.
-3. To preserve compatible details, prepare the combined content part by part. Keep repeated content once. Keep each compatible detail that appears in only one item. Combine lists as their union. Ask about contradictions that change meaning through the `respond-ask` guide. End the turn before applying. Do not silently choose a version.
-4. To account for every statement, map every original statement to its place in the survivor. Include reference changes and retirements in the parent's proposed map.
-5. To keep the merge within approval, apply only under the parent's approved map. Write the survivor. Keep the other items with retirement notices pointing to it. Update links, references and imports that pointed to them. Keep unknown external references marked unverified.
+Keep one complete account of a duplicated whole. Compare the accounts before preparing the merge.
 
-## The last instruction
+1. **Compare the duplicate accounts of the same whole.** This helps keep compatible details.
+2. **Choose the survivor by the `organize` guide's shared choice rule.** This helps keep the right account. Consider the most complete item, the most linked item or the user's choice.
+3. **Prepare the combined content part by part.** This helps preserve compatible details. Keep repeated content once. Keep each compatible detail that appears in only one item. Combine lists as their union. Ask about contradictions that change meaning through the `respond-ask` guide. End the turn before applying. Do not silently choose a version.
+4. **Map every original statement to its place in the survivor.** This helps account for every statement. Include reference changes and retirements in the parent's proposed map.
+5. **Apply only under the parent's approved map.** This helps keep the merge within approval. Write the survivor. Keep the other items with retirement notices pointing to it. Update links, references and imports that pointed to them. Keep unknown external references marked unverified.
 
-Return the proposal and its map, or the result of the approved change. Include evidence from checking references and accounting for every original statement. Keep every compatible detail. In a completed result, no known reference points to a retired item. Report unresolved contradictions and unknown references honestly. The `organize` guide gets the user's confirmation of the result. Do not claim confirmed completion before the user replies.
+6. **Return the proposal and its map, or the result of the approved change.** Always do this last. Include evidence from checking references and accounting for every original statement. Keep every compatible detail. In a completed result, no known reference points to a retired item. Report unresolved contradictions and unknown references honestly. The `organize` guide gets the user's confirmation of the result. Do not claim confirmed completion before the user replies.

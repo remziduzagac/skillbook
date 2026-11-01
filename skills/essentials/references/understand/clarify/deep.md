@@ -1,6 +1,8 @@
 # understand-clarify-deep
 
-Questions a part or whole plan until what materially affects the agreed work is resolved. Lists the rest as assumptions. Uses numbered rounds and grounded recommendations, level by level.
+## Purpose
+
+Questions a part or whole plan until what materially affects the agreed work is resolved, listing the rest as assumptions. Uses numbered rounds and grounded recommendations, level by level.
 
 ## When to use
 
@@ -19,15 +21,13 @@ The summary of decided, parked, accepted and assumed items. The user has confirm
 
 ## Rules
 
-1. **Save dependent questions for a later round.** Unanswered questions may change them. Ask only what can be answered now. This sets order, with nothing to draw or keep.
-2. **Use the `understand-clarify-shallow` guide at each new level inside the part.** See that level whole before going down. Skipping it leaves parts assumed.
-3. **Get the user's confirmation of the summary before acting.** List decided, parked, accepted and assumed items. Use the `respond-ask` guide's definitions of parked and assumed.
+1. **Get the user's confirmation of the summary before acting.** List decided, parked, accepted and assumed items. Use the `respond-ask` guide's definitions of parked and assumed.
    - If the user stops early, take open questions by the `respond-ask` guide: assume recommendations and park those without one. Park facts only the user knows. Never supply them. Never assume a proposal. Show the summary before acting.
    - If told to start, such as "enough questions, just build it", show the summary without asking confirmation. No assumption is then acted on unseen.
    - "Go ahead" is not that: it accepts the current round's recommended answers, and the questioning goes on.
-4. **Record only when asked.** Recording writes to the project. The `act` guide requires exactly the work asked for.
+2. **Record only when asked.** Recording writes to the project. The `act` guide requires exactly the work asked for.
 
-Follow the `understand` guide for facts and decisions: you find facts, the user decides. Use the `respond-ask` guide for rounds and answers. End the turn after each round. In the summary, list recommendations accepted by "go ahead" as accepted.
+Follow the `understand` guide for facts and decisions: you find facts, the user decides.
 
 ## Advice
 
@@ -37,8 +37,14 @@ Follow the `understand` guide for facts and decisions: you find facts, the user 
   - used directly, with no caller: where the loaded skill that saves records says;
   - if no skill saves records: in a file the user names.
 
-You are done when no level is left with anything assumed that would materially change the agreed work, the rest listed, and the user has confirmed the summary, or seen it where they told you to start the work.
+## Instructions
 
-## The last instruction
+Resolve the choices that materially affect the agreed work. Question each level with these steps.
 
-**Check the summary before acting.** The user has confirmed it, or saw it after telling you to start. Hand it back in the `understand` guide's result shape.
+1. **See each new level whole before going down.** Skipping a level leaves its parts assumed. Use the `understand-clarify-shallow` guide at each new level inside the part.
+2. **Ask only what can be answered now.** Unanswered questions may change dependent questions. Save those for a later round. This sets order, with nothing to draw or keep. Use the `respond-ask` guide for rounds and answers, and end the turn after each round.
+3. **Summarize when the questioning ends.** The user needs to see what the work rests on. List decided, parked, accepted and assumed items under rule 1. List recommendations accepted by “go ahead” as accepted. Get confirmation before acting, except when the user told you to start, as rule 1 says.
+
+   You are done when no level is left with anything assumed that would materially change the agreed work, the rest listed, and the user has confirmed the summary, or seen it where they told you to start the work.
+
+4. **Check the summary before acting.** Always do this last. The user has confirmed it, or saw it after telling you to start. Hand it back in the `understand` guide's result shape.

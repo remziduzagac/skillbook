@@ -4174,3 +4174,37 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 **Tested:** Not yet. The description changes whether essentials loads at all, so it is re-run through the test harness before it is relied on (D136).
 
+## D283: one shape for every guide (2026-11-01)
+
+**Decision:** Every guide has the same sections, in this order: `# <name>`; `## Purpose`, what the guide is for and what it achieves; `Needs:` only where a capability is needed; `## When to use`, `## When not` and `## Gives back`; `## Rules` and `## Advice` only where the guide has them, with strong advice marked inside Advice; `## Instructions`, always, opening with its goal and one clear instruction, then numbered steps, each a bold action, why it matters and how; `## The last instruction`, always. Steps are guidelines by default; a step that must not move, such as approval before a change, says so in its own words. The main skill follows the same order, with its guide map between Advice and Instructions.
+
+**Why:** A reader, agent or person, finds each part in the same place in every guide. A purpose section states the goal once, at the top, so the rest can follow from it. Nine guides had their method only in their rules, with no Instructions, so the "how" was hard to find. Guidelines fit each harness's own flow, while firm steps keep what must not move.
+
+**Tested:** Not yet.
+
+> **Amended by D285 (2026-11-01):** no separate last-instruction section; the final check is the last step of Instructions, marked to come last, always.
+
+## D284: delegation advice moves to the coordinate guide (2026-11-01)
+
+**Decision:** The main skill holds no advice section. "Delegate by default", with its exceptions (too small, the user decides as it goes, the conversation needs the content) and its fork-when-unsure line, moves word for word to the coordinate guide's Advice. Stage 4 of the main skill's instructions becomes "decide who does the work with the coordinate guide".
+
+**Why:** The advice was kept in the main skill only until its home could take it (D217). The coordinate guide is now a main guide, read on every request, so the advice is still seen every time, and the main skill keeps to its rules, map and instructions. The main skill keeps its guide map whole: the user chose length over shortened entries.
+
+**Tested:** Not yet.
+
+## D285: the final check is the last step of Instructions (2026-11-01)
+
+**Decision:** No guide and no main skill has a separate "The last instruction" section. The check before anything is returned becomes the last numbered step of Instructions, marked to come last, always. In the main skill, step 6 is "check the result, then answer through the respond guide".
+
+**Why:** The last instruction began when a skill's instructions were routing lines, one per child, so the final check needed a place of its own (D112). Instructions are now steps in work order, and the final check is simply the last of them; a separate section repeated the end of the steps, as the respond step once repeated the last instruction (D203). Marking the step "always, last" keeps it firm among steps that are otherwise guidelines.
+
+**Tested:** Not yet.
+
+## D286: each stage says what doing it thoroughly means (2026-11-01)
+
+**Decision:** The main skill's understand stage tells the agent to be thorough: explore the files, the conversation and other sources first; then ask the user, round by round through respond-ask, what only they know (what they want, why, and each detail that would change the result) until it could state the intent, the goal and what done looks like in words the user would agree with. It asks nothing the sources settle and nothing the user left to the agent; those choices go in a "going with" line. A request already clear needs only this check. The devise stage is thought through the same way: start from the intent, goal and done; look at what the work touches before choosing a way; when the way is not obvious, consider more than one and choose by goal, risk and cost; name for each part the guide, the skills and tools, the order and how the result will be checked; check that every part of the request has a place and nothing unasked is added. A small request still needs only a one-line approach. The organize stage comes before content is written or moved: one principle to divide by, a one-sentence boundary per part, every existing item mapped to its new place and the map checked for gaps and overlaps, then shown to the user with the turn ended before anything changes; planning the parts of something new needs no such stop. The coordinate stage delegates by default to keep the conversation small and token-efficient: for each part of the approach, whether another agent should do it; the way to delegate chosen with coordinate-delegate (fork, fresh agent, council, crew or fanout, with model and effort by the cost of a mistake); fresh agents briefed by pointers with a short report and bulk output in a file; agents tracked, their results checked, their leftovers cleaned up; a carryover for later sessions.
+
+**Why:** The stages only pointed to guides, so an agent could pass them with a glance: act on a guess, which the user then has to undo, take the first way that came to mind, rearrange material before the parts were clear, or do every task in the main conversation until its context is full of file reads and output the user never needed. Saying in each stage what thorough means makes it a step the agent does, not a guide it may or may not open. The stage text summarises; each guide stays the home of its rules. Naming how each part will be checked at this point also brings verification to the start, where its evidence can still be kept. The limits keep it from asking what files answer or what the user left to the agent, the over-asking seen when agents confirmed work already approved.
+
+**Tested:** Not yet.
+

@@ -5,7 +5,9 @@ description: "How skillbook's skills are placed in the skill tree, named, design
 
 # skillbook-design
 
-How skillbook's skills are placed in the skill tree, named, designed and reviewed. A project skill, never shipped in any set.
+## Purpose
+
+Helps you place, name, design and review skillbook's skills and guides, so each one has one clear home, a shape every reader knows, and a design a builder can follow without asking again. It holds the checklist that designs are written to and reviews check against. A project skill, never shipped in any set.
 
 ## Rules
 
@@ -28,7 +30,7 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
 
 - **Place or move a skill with the knowledge it needs and where its most frequent calling flow runs.** The tree is `blueprint/design/skill-tree.md`, rendered from `blueprint/design/tree/tree.json`. Other skills point to its home. Follow "Names" below.
 - **Write a design section in `blueprint/design/<set>/<group>.md`.** Use that file's fields and the checklist below. Review it next. Follow skillbook-write's Plain English rule: the user and other readers may not be native speakers.
-- **Reviewing a skill: check every skill against checks 1–7, 9 and 11–13.** Add checks 8 and 10 for parents. Review each child the same way.
+- **Reviewing a skill: check every guide and main skill against checks 1–9 and 11–13.** Add check 10 for parents. Review each child the same way.
   - Several skills may share a pass. Report each separately.
   - For several groups at once, use one reviewer per group, each loading this skill, so findings stay independent. Recheck their findings before they reach the user.
   - Report each skill by name, then its findings. Each finding names file and line, check number, problem and fix. Name a general pattern, never a single case to special-case.
@@ -39,6 +41,7 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
   - For a skill leaving questions, list additions with design sources. Mark unsourced additions as gaps for the user to settle in the design. Write no rule or default for a gap meanwhile.
   - A trim or fill request is not approval of the list. Show it first. Offer the list if you noticed the need unasked.
 - **Writing a skill's files:** skillbook-write, this repository's other project skill.
+- **Last, always: recheck every finding against the rules before returning a review.** Check a design against the checklist before showing it.
 
 ## Names
 
@@ -73,9 +76,15 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
     - **told apart:** test each "when to use" against its "when not". Cover near misses, not just obvious triggers;
     - **held out:** use prompts unlike skill examples. A pass must show the rule, not an example match;
     - **can fail:** name a plausible wrong behaviour each test rejects. A test that cannot fail measures nothing;
-    - **every aspect:** design a test for every rule, advice item, step, route, "Not for" line and last instruction. Otherwise give a reason, such as behaviour visible only in a live session. Untested aspects can break unseen;
+    - **every aspect:** design a test for every rule, advice item, step, boundary line and final check. Otherwise give a reason, such as behaviour visible only in a live session. Untested aspects can break unseen;
     - **kinds kept apart:** distinguish designed tests (design's Tests list), executable cases (`tests/cases/`) and observed results (decision's Tested line). Never report one as another.
-8. **Order a parent's sections as follows:** rules for its whole scope; advice; instructions in work order; last instruction before anything is returned.
+8. **Give every guide the same shape,** so a reader finds each part in the same place:
+    - `# <name>`, then `## Purpose`: what the guide is for and what it achieves, in a sentence or two. `Needs:` follows, only if the guide needs a capability, with its fallback;
+    - `## When to use`, `## When not` and `## Gives back`, by check 9;
+    - `## Rules`, only if the guide has musts: each a bold must, then its reason;
+    - `## Advice`, only if it has advice. Strong advice is marked inside it, not in a section of its own;
+    - `## Instructions`, always: it opens with its goal and one clear instruction, then numbered steps, each a bold action, why it matters, and how. Steps are guidelines by default, to fit into the harness's own flow; a step that must not move, such as approval before a change, says so in its own words. The last step is the check before anything is returned, marked to come last, always: a separate section would repeat the end of the steps.
+    - A main skill follows the same order after its frontmatter, with its guide map between Advice and Instructions.
 9. **Give each guide its own boundary at the top of its file:** "When to use", "When not" and "Gives back".
     - **When to use:** the need the skill meets, as a test the agent can apply, with a qualifying example. Give the timing where it matters, such as "before the first change".
     - **When not:** each near case, with what fits better instead and why: another skill by name, or the agent's judgment.
@@ -114,7 +123,3 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
     - **one action:** give each trigger one visible action, such as "end the turn", as skillbook-write's Sharp instructions rule says. Search the skill for a message paired with going on, such as "say … then go ahead", "show … and start" or "write the line and continue". Report each one, with a fix in one of two shapes: show it and end the turn, or put it in the final answer. Pairing soft and strong actions loses the soft one;
     - **proportion:** scale questions, confirmations and checks to stakes, undo and whether work is a deliverable or intermediate. Use a light path for routine work. Heavy paths everywhere cost turns and attention for little. Keep mandatory checks, such as secrets and irreversible actions, cheap on every path. Scale only the rest;
     - **varied examples:** draw from varied work, not just code. Give a different example at each repetition of a rule. Repeated examples teach the example, not the rule.
-
-## The last instruction
-
-**Recheck every finding against the rules before returning a review.** Check a design against the checklist before showing it.

@@ -5,13 +5,13 @@ description: "Load this at the start of every request, before you act or answer.
 
 # essentials
 
-This skill helps you do any piece of work well. It holds the rules for every request, a map of its guides, and instructions for how the work goes. Its guides are files inside this skill, not skills in your harness's list.
+This skill helps you do any piece of work well. It holds the rules for every request, a map of its guides, and how the work goes. Its guides are files inside this skill, not skills in your harness's list.
 
 ## Rules
 
 These rules hold for every request, whatever guides it uses.
 
-- **Read the six main guides on every request:** `understand`, `devise`, `organize`, `coordinate`, `act` and `respond`. Each one shapes a stage of the work, as the "Instructions" section says.
+- **Read the six main guides on every request:** `understand`, `devise`, `organize`, `coordinate`, `act` and `respond`. Each one shapes a stage of the work, as "How the work goes" below says.
 - **Read each guide whole, before the stage that needs it.** A guide read in part, or after the first change, cannot shape the work.
   - Find a guide's file by the paths in the "Guide map" section, or by the name rule there. Do not search instead: a search finds matching lines and misses the rest of the guide. An answer made without its rules looks complete and is not.
   - Read the guides you chose together, in one turn. Each extra turn carries the whole context again.
@@ -30,14 +30,6 @@ These rules hold for every request, whatever guides it uses.
 - **Offer a record when the user says they are stopping,** such as "let's stop here" or "that's it for today". What the session taught and where the work stands are lost when it ends without a record. A finished task is not stopping.
   - When the user asks for a note, or says the work continues without this conversation, write it with the `coordinate-carryover` guide.
   - Otherwise ask one question through the `respond-ask` guide. Offer the `coordinate-learn` guide for a lesson that a later session would otherwise get wrong or have to find again. Offer a carryover only if steps are left.
-
-## Advice
-
-- **Delegate by default.** An agent does the task, so this conversation keeps its room for the user and their decisions. This is strong advice: follow it unless the case gives a reason not to, and say when you depart from it. Do it yourself only when:
-  - it is too small: you know the change or answer, it takes about three tool calls or fewer, and its reading and output are short, such as renaming a heading you have seen. Summarising a folder of reports is not small;
-  - the user must decide things as it goes, not only at the start;
-  - the conversation needs the content itself, such as a file the user wants to go through line by line.
-  - When unsure, fork (start an agent from this conversation) without asking. Use the `coordinate-delegate` guide within the harness's limits.
 
 ## Guide map
 
@@ -86,7 +78,7 @@ So `act-rightsize-lean` is `references/act/rightsize/lean.md`, read after `refer
 
 Your harness's other skills and tools do the work itself. When one of them fits part of the request, such as writing code or a document, use it, and let these guides shape how you act and answer. Use your own judgment for work nothing covers.
 
-## Instructions
+## How the work goes
 
 These are guidelines, not a fixed procedure. Fit them into your harness's own flow, such as its plan mode or task list. What matters is the goal of each stage: the right guides shape the work before it starts, and the user gets a clear answer. **Prepare by step 0, then go through every stage the request needs, in this order.**
 
@@ -95,13 +87,30 @@ These are guidelines, not a fixed procedure. Fit them into your harness's own fl
    - Read the six main guides, the guides you picked and `respond-layout` by their paths in the map, whole, in one turn.
    - Check each picked guide's "When to use" and "When not". Use it if it fits. Put it aside if it does not.
    - In your thinking, name which guide you use for which part.
-1. **Understand the request with the `understand` guide.** Acting on a guess makes the user undo it. Know what is asked and what is still open before you act. A clear request needs only a moment. For anything still open, use the `understand` guide you picked, such as `understand-clarify` for a choice that would change the result.
-2. **Decide how to do the work with the `devise` guide.** Going the wrong way costs rework. Every request gets an approach in your thinking: which guide shapes which part, and in what order. An open shape needs `devise-design`. Work with several parts, or a plan from an earlier turn that is still open, needs `devise-plan`.
-3. **Arrange the parts with the `organize` guide** when the work divides, merges or groups things, or plans the parts of something not yet written. Arranging first keeps parts from overlapping or going missing.
-4. **Hand work on with the `coordinate` guide** when it goes to another agent now or to a later session. This keeps the user's decisions in this conversation, and the handed-off work comes back with its status.
+1. **Understand the request with the `understand` guide, until its intent, goal and details are clear.** Work built on a guess has to be undone, and the user pays for it. Be thorough here: a question asked now costs far less than work redone later.
+   - Explore first. Read the files, the conversation and any other source that can answer a question, so you ask the user only what those cannot.
+   - Ask the user what only they know: what they want, why they want it, and each detail that would change the result. Ask through the `respond-ask` guide, and keep asking, round by round, until you could state the intent, the goal and what done looks like in words the user would agree with.
+   - Do not ask about what the sources settle, or about choices the user left to you. Make those choices and list them in a "going with" line, as the `understand` guide says.
+   - A request that is already clear needs only this check. For parts still open, use the guides you picked, such as `understand-clarify` for a choice that would change the result.
+2. **Decide how to do the work with the `devise` guide, and think it through before you start.** Going the wrong way costs rework, and the first idea is not always the best one. Every request gets an approach in your thinking.
+   - Start from the intent, the goal and what done looks like, as you understood them.
+   - Look at what the work touches before you choose a way, such as the files, the people or the systems it reaches.
+   - When the way is not obvious, consider more than one, and choose by the goal, the risk and the cost. Know why you chose it.
+   - For each part, name the guide that shapes it, the skills and tools you will use, the order, and how you will check the result.
+   - Check the approach against the request: every part of the request has a place in it, and nothing is added that nobody asked for.
+   - A small request needs one line, such as "rightsize, then answer". An open shape needs `devise-design`. Work with several parts, or a plan from an earlier turn that is still open, needs `devise-plan`, which also shows the plan when the user must see it.
+3. **Arrange the parts with the `organize` guide, before content is written or moved.** Parts that overlap or go missing are hard to see once the work is done, and a structure fixed afterwards costs a rewrite.
+   - Use this stage when the work divides, merges or groups things, or plans the parts of something not yet written, such as the chapters of a report, groups for loose notes, or one home for a section repeated in many files. Rewording what the parts say does not need it.
+   - Choose one principle to divide or group by, such as topic, reader or time, and keep to it. Mixed principles create overlaps.
+   - Give each part a boundary in one sentence, so every item has exactly one place.
+   - When existing material moves, map every item to its new place first, so nothing is lost, added or changed in meaning. Check the map for gaps and overlaps.
+   - Show that map to the user, then end the turn. Change nothing until they approve, as the `organize` guide requires. Planning the parts of something new needs no such stop.
+   - Pick the guide for each operation from the map, such as `organize-split` to divide or `organize-merge` to combine.
+4. **Decide who does the work with the `coordinate` guide, and delegate by default.** Every file you read and every output you print stays in this conversation and is carried again on every later turn. Giving work to another agent keeps this conversation small, saves tokens, and keeps it free for the user and their decisions.
+   - For each part of your approach, ask whether another agent should do it. Do a part yourself only when the `coordinate` guide's advice allows it, such as a task of about three tool calls with short output, or one where the user decides as it goes.
+   - Choose the way to delegate with the `coordinate-delegate` guide, because the wrong way wastes tokens or weakens the result. A fork carries this conversation's context. A fresh agent starts clean and gives an independent view, which a review or a second check needs. Several agents answer one question with `coordinate-delegate-council`, change separate items with `coordinate-delegate-crew`, or cover a large search with `coordinate-delegate-fanout`. Choose each agent's model and effort by the cost of a mistake, as that guide says.
+   - Brief each fresh agent with the `coordinate-brief` guide: point to files instead of pasting them, and ask for a short report, with any bulk output saved to a file.
+   - Track each agent's task, check what it returns, and clean up after it.
+   - When work continues in a later session, or with an agent the user starts, write a note with the `coordinate-carryover` guide.
 5. **Do the work under the `act` guide.** Its rules hold for every action, from the first one. When something new shows up, update your approach. Check the map for any newly needed guide, and read it before that step.
-6. **Answer through the `respond` guide.** Everything you say to the user follows it.
-
-## The last instruction
-
-**Check the result through the guides you used, then answer through the `respond` guide.** The guides promised what the result should give; this is the last chance to see that it does.
+6. **Check the result, then answer through the `respond` guide.** Always do this last, before anything reaches the user. Check the result through the guides you used: they promised what it should give, and this is the last chance to see that it does. Then answer through the `respond` guide, which everything you say to the user follows.

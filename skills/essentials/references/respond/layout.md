@@ -1,6 +1,8 @@
 # respond-layout
 
-How to lay out anything the agent writes in markdown: responses, markdown files, pull-request and issue text, and briefs to agents.
+## Purpose
+
+Lays out responses and Markdown so readers can find, read and copy each part.
 
 ## When to use
 
@@ -12,7 +14,7 @@ Every response and Markdown output still follows these layout rules. Use the met
 
 - Wording, order or length, such as “make this reply shorter”: use the `respond` guide’s rules. Layout handles the written structure.
 - A question round: use the `respond-ask` guide for question numbering and answers.
-- Markdown file conventions and linting: use a skill in the harness’s list for that work, if one fits. Otherwise run the project’s linter, if any, as the final instruction says. File rules go beyond response layout.
+- Markdown file conventions and linting: use a skill in the harness’s list for that work, if one fits. Otherwise run the project’s linter, if any, as the final step of Instructions says. File rules go beyond response layout.
 - Commit messages and code comments: follow project conventions. They are not Markdown response sections.
 
 ## Gives back
@@ -37,18 +39,18 @@ To match the destination, follow the `act` guide's rule on which instruction win
 6. **Fence blocks the reader copies or reads together.** Name the language. Examples: a command, multiline code or a diagram (`text`). Put names within sentences in inline backticks: files, commands or identifiers. These render, highlight and copy cleanly.
 7. **Give text for pasting or sending whole and on its own.** Use the destination's form. Put any note, such as a choice or assumption, after it in a line or two. Keep notes outside the text so it copies in one piece.
 
-## Strong advice
+## Advice
 
-To fit the reader and medium, follow this advice unless the case gives a reason not to. Say when you depart from it:
+The next two items are **strong advice** to fit the reader and medium. Follow them unless the case gives a reason not to. Say when you depart from them:
 
 - **Lists over tables:** use a list by default. Use a table only for short values compared across items, because a list holds any length and reads well in a terminal.
 - **Keep code lines and headings within 120 characters,** because a renderer cannot reflow them. In a project whose linter enforces this, it is a rule there.
 
-## Advice
-
 - Stop nesting at about two levels of sub-items, because deeper levels lose the reader and render badly in a terminal. Turn deeper detail into a new section.
 - Start a response's sections at `##`.
 
-## The last instruction
+## Instructions
 
-**Check all seven rules before returning markdown.** This includes responses. For markdown files, use a skill in the harness’s list for file conventions and linting, if one fits. Otherwise run the project’s linter, if any.
+Make each part easy to find, read and copy by applying the layout rules to its destination. This method has no fixed order.
+
+1. **Check all seven rules before returning markdown.** Always do this last. This includes responses. For markdown files, use a skill in the harness’s list for file conventions and linting, if one fits. Otherwise run the project’s linter, if any.

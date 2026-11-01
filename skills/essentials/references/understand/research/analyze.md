@@ -1,5 +1,7 @@
 # understand-research-analyze
 
+## Purpose
+
 Investigates why something happens and returns evidence for its cause or an honest unresolved result.
 
 ## When to use
@@ -39,13 +41,13 @@ The symptom, supported causes or marked hypotheses, rejected causes, and who sho
 
 ## Instructions
 
-1. To make the investigation precise, give the symptom and reuse the current question or frame. Use the `understand-frame` guide only for the missing framing need, not another pass over a settled question.
-2. To test a cause against real observations, gather the evidence needed for the hypothesis. Inspect recent changes, execution paths, logs and a reproduction. Run probes only within the `understand` guide's temporary-work limits and the `act` guide's rules, including guardrails. No lasting change is made here.
-3. To isolate what causes the symptom, test causes one at a time by rules 2 and 3. Use the `understand-research-fact` guide for an individual sourced fact when needed. Keep observed results distinct from hypotheses.
-4. To find where the cause begins, trace supported causes back to their triggers. Keep each contributing chain and its evidence. Report a stopping point when further tracing is not supported.
-5. To let the user choose the next investigation, return a question under rule 6 when the investigation stalls. Ask whether to continue, instrument further or reframe. A delegated worker returns this need to its caller. Start no answer-dependent continuation yourself.
-6. To return findings without leaving scaffolding, return the investigation after rule 7's cleanup. Give the symptom, causal or hypothetical chain, rejected causes with their evidence, missing checks and the next owner. A code fix or incident action belongs to its caller's work; use the caller's specialist set where installed, otherwise its judgment under the `act` guide. For a direct request, give the next investigation or fix step without applying it.
+Find the cause with evidence or return an honest unresolved result. Investigate the symptom with these steps.
 
-## The last instruction
+1. **Give the symptom and reuse the current question or frame.** A precise symptom narrows possible explanations. Use the `understand-frame` guide only for the missing framing need, not another pass over a settled question.
+2. **Gather the evidence needed for the hypothesis.** A cause needs real observations. Inspect recent changes, execution paths, logs and a reproduction. Run probes only within the `understand` guide's temporary-work limits and the `act` guide's rules, including guardrails. No lasting change is made here.
+3. **Test causes one at a time by rules 2 and 3.** One cause at a time isolates what matters. Use the `understand-research-fact` guide for an individual sourced fact when needed. Keep observed results distinct from hypotheses.
+4. **Trace supported causes back to their triggers.** The trigger shows where the cause begins. Keep each contributing chain and its evidence. Report a stopping point when further tracing is not supported.
+5. **Return a question under rule 6 when the investigation stalls.** The user decides whether to extend the investigation. Ask whether to continue, instrument further or reframe. A delegated worker returns this need to its caller. Start no answer-dependent continuation yourself.
+6. **Return the investigation after rule 7's cleanup.** Cleanup prevents investigation scaffolding from outliving its use. Give the symptom, causal or hypothetical chain, rejected causes with their evidence, missing checks and the next owner. A code fix or incident action belongs to its caller's work; use the caller's specialist set where installed, otherwise its judgment under the `act` guide. For a direct request, give the next investigation or fix step without applying it.
 
-Check every claimed causal link has evidence or a hypothesis label. Report rejected causes and unresolved limits. Confirm cleanup or report permitted kept material and its reason. Return the result and next owner without applying a fix. Follow the parent's last instruction.
+7. **Check every claimed causal link has evidence or a hypothesis label.** Always do this last. Report rejected causes and unresolved limits. Confirm cleanup or report permitted kept material and its reason. Return the result and next owner without applying a fix. Follow the final step of Instructions in the `understand-research` guide.

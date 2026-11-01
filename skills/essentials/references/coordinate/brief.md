@@ -1,6 +1,8 @@
 # coordinate-brief
 
-Writes the task context a worker starting now needs and the report it must return.
+## Purpose
+
+Writes the task context a worker starting now needs, so it can begin without guessing and return a useful report.
 
 ## When to use
 
@@ -34,13 +36,15 @@ The worker’s starting instructions and the report it must return. The task tha
 
 ## Instructions
 
-1. To find the worker’s missing context, identify the worker, task, work it is allowed to do and what its context lacks.
-2. To let the worker start without guessing, write the task context by rules 1–6.
-3. To get a report the caller can use, include the report and cleanup request by rules 7 and 9.
-4. To give the worker its work and response rules, include the baseline by rule 8 when it is not already visible. Point to the main skill's guide map and name rule. Do not paste the name rule or repeat its paths here.
-5. To make the brief easy to read, lay out the brief through the `respond-layout` guide.
-6. To keep startup with the caller, return the brief and its requested report shape to the caller. The caller sends it. Drafting a brief does not start a worker.
+The goal is a brief that lets the worker start and return a useful report. Prepare the brief with the steps below.
 
-## The last instruction
+1. **Identify the worker and its missing context.** This shows what the worker needs to start. Identify its task, allowed work and what its context lacks.
+2. **Write the task context by rules 1–6.** This lets the worker start without guessing.
+3. **Include the report and cleanup request by rules 7 and 9.** This gives the caller a report it can use.
+4. **Include the baseline by rule 8 when it is not already visible.** This gives the worker its work and response rules. Point to the main skill's guide map and name rule. Do not paste the name rule or repeat its paths here.
+5. **Lay out the brief through the `respond-layout` guide.** This makes the brief easy to read.
+6. **Return the brief and its requested report shape to the caller.** This keeps startup with the caller. The caller sends it. Drafting a brief does not start a worker.
 
-Check that the worker can use the inputs. Check that the brief includes decisions recorded nowhere else, constraints, rejected ways of doing the work, the first step and the success criterion. Check that the worker has access to the main skill’s guide map and name rule. Check that the `act` guide, the `respond` guide and the `respond-layout` guide are already visible or named for it to read. The report and cleanup request are explicit. Apply the `act-rightsize` guide. Do not claim an incomplete brief lets the reader start without asking.
+7. **Check the brief before returning it.** Always do this last.
+
+   Check that the worker can use the inputs. Check that the brief includes decisions recorded nowhere else, constraints, rejected ways of doing the work, the first step and the success criterion. Check that the worker has access to the main skill’s guide map and name rule. Check that the `act` guide, the `respond` guide and the `respond-layout` guide are already visible or named for it to read. The report and cleanup request are explicit. Apply the `act-rightsize` guide. Do not claim an incomplete brief lets the reader start without asking.

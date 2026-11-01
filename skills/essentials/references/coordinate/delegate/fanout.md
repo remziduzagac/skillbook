@@ -1,6 +1,8 @@
 # coordinate-delegate-fanout
 
-Combines findings from separate reading tasks, checks their sources and validates the answer's evidence.
+## Purpose
+
+Combines findings from separate reading tasks and validates their evidence, so the answer uses checked sources.
 
 Needs: permitted workers and Python 3 for the consolidation script. If either is unavailable, return available findings, the unfinished stage and its next owner. Do not claim that the script combined the findings or that an independent worker validated them when those steps did not run.
 
@@ -32,12 +34,14 @@ Combined findings, their actual check status, sources and coverage limits.
 
 ## Instructions
 
-1. To give each worker a separate part, divide the material or questions into separate parts. Use the active delegate call to select permitted controls, handle cost approval, track tasks and start workers. Do not restart its selection step or delegate from a worker.
-2. To get findings in a usable form, brief workers through the `coordinate-brief` guide. Use low effort for reading workers through permitted controls because validation follows. Keep the parent's tier and fork restrictions. Report an unavailable effort control rather than claiming it was set. Include the findings contract, their own output file, scope, baseline, report and cleanup requirements.
-3. To preserve findings and source checks, consolidate the returned files with `fanout/scripts/consolidate.py` beside this guide. Supply an explicit allowed source root. The script reads local approved source files or snapshots. It never fetches a URL or executes source text. If a source cannot be read, report that the source check is unverified. Malformed input returns an error rather than a trusted partial output.
-4. To check the claims independently, get the validation in rule 4 through the active parent. A missing validator leaves the required check pending. The main agent's own second look is not independent validation.
-5. To support the answer with checked evidence, write the answer from the validated evidence. Return it with sources, coverage limits and paths to the full findings. Preserve each worker's actual status and cleanup result through the parent.
+The goal is an answer supported by validated findings from separate reading tasks. Combine the findings with the steps below.
 
-## The last instruction
+1. **Divide the material or questions into separate parts.** This gives each worker a separate part. Use the active delegate call to select permitted controls, handle cost approval, track tasks and start workers. Do not restart its selection step or delegate from a worker.
+2. **Brief workers through the `coordinate-brief` guide.** This gets findings in a usable form. Use low effort for reading workers through permitted controls because validation follows. Keep the parent's tier and fork restrictions. Report an unavailable effort control rather than claiming it was set. Include the findings contract, their own output file, scope, baseline, report and cleanup requirements.
+3. **Consolidate the returned files with `fanout/scripts/consolidate.py` beside this guide.** This preserves findings and source checks. Consolidation must use the returned findings files. Supply an explicit allowed source root. The script reads local approved source files or snapshots. It never fetches a URL or executes source text. If a source cannot be read, report that the source check is unverified. Malformed input returns an error rather than a trusted partial output.
+4. **Get the validation in rule 4 through the active parent.** This checks the claims independently. Validation must follow consolidation and come before claims support the answer. A missing validator leaves the required check pending. The main agent's own second look is not independent validation.
+5. **Write the answer from the validated evidence.** This supports the answer with checked evidence. Return it with sources, coverage limits and paths to the full findings. Preserve each worker's actual status and cleanup result through the parent.
 
-Check that all input findings and negative results survived consolidation. Separate quote matches from claim validation. Relevant findings are validated, refuted with evidence, or explicitly unverified with what would settle them. Return unfinished stages and their next owner. Never turn uncertainty or missing capability into a successful check.
+6. **Check findings and evidence status.** Always do this last.
+
+   Check that all input findings and negative results survived consolidation. Separate quote matches from claim validation. Relevant findings are validated, refuted with evidence, or explicitly unverified with what would settle them. Return unfinished stages and their next owner. Never turn uncertainty or missing capability into a successful check.

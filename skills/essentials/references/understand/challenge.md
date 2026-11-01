@@ -1,10 +1,12 @@
 # understand-challenge
 
+## Purpose
+
 Attacks an idea, plan or decision before it is relied on and returns meaningful weaknesses and a verdict.
 
 ## When to use
 
-Use before relying on an idea, plan or decision, or when asked to find its weak points. For example, an unchecked assumption may break a plan. When the `respond-ask` guide calls this guide, follow its test for a decision that is hard to undo or shapes much of the work, and the levels in rule 7 below.
+Use before relying on an idea, plan or decision, or when asked to find its weak points. For example, an unchecked assumption may break a plan. When the `respond-ask` guide calls this guide, follow its test for a decision that is hard to undo or shapes much of the work, and the levels in rule 6 below.
 
 ## When not
 
@@ -22,12 +24,11 @@ Weak points that matter to the goal, including costs or risks even when success 
 ## Rules
 
 1. **Measure against the frame.** Use the `understand-frame` guide's goal and constraints. Report weaknesses that block the goal or create material cost or risk in scope, even if success remains feasible. Exclude unrelated preferences. Otherwise any flaw counts and the list never ends.
-2. **Give the idea fairly at its strongest first.** Use its author's case. Attacking a weak version finds weaknesses the idea does not have.
-3. **Name assumptions as checked or unchecked.** Unchecked assumptions are where most ideas break.
-4. **Give each weakness its seriousness, evidence and remedy.** Rank it as stops it, costs, or minor. Without these, a finding cannot be acted on.
-5. **Give an honest verdict.** Use holds, holds with changes, or does not hold. Say nothing found plainly. Soften nothing to please and invent nothing to look thorough. A flattering challenge is worse than none.
-6. **Change nothing.** The `understand` guide's rules hold. The caller develops or revises the idea. The user decides.
-7. **Use the `respond-ask` guide's test for a decision that is hard to undo or shapes much of the work when it calls you.** Routine questions need no challenge merely because they are in a plan or design.
+2. **Name assumptions as checked or unchecked.** Unchecked assumptions are where most ideas break.
+3. **Give each weakness its seriousness, evidence and remedy.** Rank it as stops it, costs, or minor. Without these, a finding cannot be acted on.
+4. **Give an honest verdict.** Use holds, holds with changes, or does not hold. Say nothing found plainly. Soften nothing to please and invent nothing to look thorough. A flattering challenge is worse than none.
+5. **Change nothing.** The `understand` guide's rules hold. The caller develops or revises the idea. The user decides.
+6. **Use the `respond-ask` guide's test for a decision that is hard to undo or shapes much of the work when it calls you.** Routine questions need no challenge merely because they are in a plan or design.
    - Scale your check with the `act-stakes` guide: at low stakes, make no challenge; at medium stakes, think through the strongest one or two objections; at high stakes, make a full challenge. Show medium-stakes objections when they hold and change the recommendation or add a caveat. Put the verdict beside the recommendation as the `respond-ask` guide requires.
    - Reuse an earlier challenge only while the idea, goal, constraints and evidence stay unchanged. Accepting the same recommendation needs no second pass. Changed inputs can invalidate findings.
 
@@ -39,6 +40,10 @@ Weak points that matter to the goal, including costs or risks even when success 
 - Treat an unsupported claim as an assumption. Seek evidence rather than treating demand or preference as known.
 - For who supplies independent objections, follow the `act-verify` guide's rule 2 and use the `coordinate-delegate` guide for the required worker. This guide owns that check. The `understand-argue` guide and the `understand-weigh` guide may reuse it while inputs remain unchanged.
 - Prefer a few strong weaknesses. Put the most serious first and group common causes.
+
+## Instructions
+
+Find meaningful weaknesses and give an honest verdict on the idea. Test it with these steps.
 
 To settle a factual doubt found during the challenge, use the `understand-research` guide or a permitted test. Return the result here. Keep this guide's ownership of the independent check.
 
@@ -54,6 +59,8 @@ Verdict:      holds, holds with changes (which), or does not hold (why)
 
 Keep no lasting record yourself. Return the challenge, the weaknesses you considered, how each was met, fixed or accepted as a risk with its reason, and open weaknesses for the skill that saves records. For your own idea analyzed quietly, show the verdict and serious weaknesses with reasons unless the user asks for more.
 
-## The last instruction
+1. **Give the idea fairly at its strongest first.** Attacking a weak version finds weaknesses the idea does not have. Use its author’s case and the `understand-frame` guide’s goal and constraints.
+2. **Examine assumptions and weaknesses.** Unchecked assumptions are where most ideas break. Mark assumptions checked or unchecked and give each weakness its seriousness, evidence and remedy, under the rules above.
+3. **Return the verdict.** The caller needs an honest basis for deciding. Give holds, holds with changes, or does not hold, with the meaningful weaknesses. Change nothing yourself.
 
-Check assumptions, evidence, seriousness and remedies. Give the honest verdict without changing the idea or work. Reuse only current checks. Follow the `understand` guide's rules and the `act-verify` guide's rule 2 for independence.
+4. **Check assumptions, evidence, seriousness and remedies.** Always do this last. Give the honest verdict without changing the idea or work. Reuse only current checks. Follow the `understand` guide's rules and the `act-verify` guide's rule 2 for independence.
