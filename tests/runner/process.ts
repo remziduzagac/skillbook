@@ -84,6 +84,11 @@ export function tmpPaths(root?: string): string[] | null {
     return null;
   }
 }
+export function addedTmpPaths(before: string[] | null, after: string[] | null): string[] | null {
+  if (before === null || after === null) return null;
+  const existing = new Set(before);
+  return after.filter(path => !existing.has(path));
+}
 export function tmpListing(root?: string, cap = 50) {
   const paths = tmpPaths(root);
   if (paths === null) return null;

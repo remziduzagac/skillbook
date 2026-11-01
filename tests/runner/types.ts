@@ -24,7 +24,7 @@ export interface Checks {
   words_under?: Record<string, number>;
   only_replacement?: Record<string, { from: string; to: string }>;
   unchanged_under?: string[];
-  index_links?: Record<string, string>;
+  index_links?: Record<string, string | {folder: string; contains?: string[]}>;
   keeps_lines?: string[];
   states_before_change?: boolean | string[];
   answer_contains?: string[];
@@ -54,6 +54,7 @@ export interface Rubric {
   depends_on?: { turn: number; check: string };
 }
 export interface Turn {
+  timeout?: number;
   skill_needs?: SkillNeed[];
   also_called?: SkillNeed[];
   if_taken?: ConditionalNeed[];

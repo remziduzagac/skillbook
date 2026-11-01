@@ -3,7 +3,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, existsSync, symlinkSync, linkSyn
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { prepareHome, agentEnv, snapshot, fixtureText, observe } from "./files";
-import { runTurn, endRun, owned } from "./process";
+import { runTurn, endRun, owned, addedTmpPaths } from "./process";
 import { check } from "./checks";
 import { cost } from "./cost";
 import { score, evaluateTagged } from "./scoring";
@@ -19,6 +19,14 @@ function temporary(fn: (root: string) => void) {
     rmSync(root, { recursive: true, force: true });
   }
 }
+test("temporary cleanup checks use paths added this turn, including children of existing directories",()=>{
+  const baseline=["cc-socks/","claude-501/","node-compile-cache/","native-token/","native-token/lock"];
+  expect(addedTmpPaths(baseline,baseline)).toEqual([]);
+  const delta=addedTmpPaths(baseline,[...baseline,"analysis/","analysis/notes.json","claude-501/left-by-agent"]);
+  expect(check({tmp_lacks:["."]},{},null,delta)["temporary folder lacks /./"]).toBe(false);
+  expect(delta).toContain("claude-501/left-by-agent");
+  expect(addedTmpPaths(null,[])).toBeNull();expect(addedTmpPaths([],null)).toBeNull();
+});
 test("home installs only into the supplied sandbox and suppresses account features", () =>
   temporary((root) => {
     const home = join(root, "home");

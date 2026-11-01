@@ -134,8 +134,9 @@ export function observe(
   }
   const paths = new Set([...Object.keys(checks.file_contains ?? {}), ...(checks.shorter ?? []),
     ...Object.keys(checks.words_under ?? {}), ...Object.keys(checks.only_replacement ?? {}),
-    ...Object.keys(checks.index_links ?? {}), ...(checks.keeps_lines ?? [])]),
+    ...Object.keys(checks.index_links ?? {}).filter(p => p !== "*"), ...(checks.keeps_lines ?? [])]),
     folders = Object.keys(checks.folder_lacks ?? {});
+  if (checks.index_links?.["*"]) for (const p of written(delta)) if (/\.md$/i.test(p)) paths.add(p);
   for (const p of written(delta)) if (folders.some((f) => p.startsWith(f))) paths.add(p);
   return {
     project_snapshot: snapshot(work),

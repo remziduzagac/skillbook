@@ -160,32 +160,39 @@ export function check(
       Object.keys(before).some(p => p.startsWith(prefix)) && [...new Set([...Object.keys(before), ...Object.keys(after)])].filter(p => p.startsWith(prefix))
         .every(p => before[p] === after[p]);
   }
-  for (const [index, folder] of Object.entries(checks.index_links ?? {})) {
-    const text = availableFile(index) ? result.files![index] : null, snapshot = result.project_snapshot;
-    const prefix = folder.replace(/\/$/, "") + "/";
+  for (const [index, spec] of Object.entries(checks.index_links ?? {})) {
+    const folder = typeof spec === "string" ? spec : spec.folder;
     const key = `${index} links reach every page under ${folder}`;
-    if (text == null || !snapshot) { out[key] = missingFile(index); continue; }
-    const markdown = text.replace(/<!--[\s\S]*?-->/g, "")
-      .replace(/^ {0,3}(`{3,}|~{3,})[^\n]*\n[\s\S]*?^ {0,3}\1[^\n]*$/gm, "")
-      .replace(/(`+)[^`]*?\1/g, "");
-    const references = new Map([...markdown.matchAll(/^\s{0,3}\[([^\]]+)\]:\s*<?([^\s>]+)>?/gm)]
-      .map(m => [m[1]!.toLowerCase(), m[2]!]));
-    const body = markdown.replace(/!\[[^\]]*\](?:\([^)]*\)|\[[^\]]*\])?/g, "")
-      .replace(/^\s{0,3}\[[^\]]+\]:[^\n]*$/gm, "")
-      .replace(/^(?: {4}|\t)[^\n]*$/gm, "");
-    const destinations = [...body.matchAll(/(?<!!)\[[^\]]*\]\(<?([^\s)>]+)>?(?:\s+["'][^"']*["'])?\)/g)]
-      .map(m => m[1]!);
-    for (const m of body.matchAll(/(?<!!)\[([^\]]+)\](?:\[([^\]]*)\])?(?!\()/g)) {
-      const ref = references.get((m[2] || m[1]!).toLowerCase());
-      if (ref) destinations.push(ref);
-    }
-    const reached = new Set(destinations.flatMap(href => {
-      if (/^(?:[a-z]+:|\/)/i.test(href)) return [];
-      try { return [posix.normalize(posix.join(posix.dirname(index), decodeURIComponent(href.split(/[?#]/)[0]!)))]; }
-      catch { return []; }
-    }));
-    const pages = Object.keys(snapshot).filter(p => p.startsWith(prefix) && p !== index && /\.md$/i.test(p));
-    out[key] = pages.length > 0 && pages.every(p => reached.has(p));
+    const candidates = index === "*" ? paths.filter(p => /\.md$/i.test(p)) : [index];
+    if (!result.project_snapshot || index === "*" && !result.changes) { out[key] = null; continue; }
+    const verdicts = candidates.map((index): Verdict => {
+      const text = availableFile(index) ? result.files![index] : null, snapshot = result.project_snapshot;
+      const prefix = folder.replace(/\/$/, "") + "/";
+      if (text == null) return missingFile(index);
+      if (typeof spec !== "string" && !(spec.contains ?? []).every(pattern => matches(pattern,text))) return false;
+      const markdown = text.replace(/<!--[\s\S]*?-->/g, "")
+        .replace(/^ {0,3}(`{3,}|~{3,})[^\n]*\n[\s\S]*?^ {0,3}\1[^\n]*$/gm, "")
+        .replace(/(`+)[^`]*?\1/g, "");
+      const references = new Map([...markdown.matchAll(/^\s{0,3}\[([^\]]+)\]:\s*<?([^\s>]+)>?/gm)]
+        .map(m => [m[1]!.toLowerCase(), m[2]!]));
+      const body = markdown.replace(/!\[[^\]]*\](?:\([^)]*\)|\[[^\]]*\])?/g, "")
+        .replace(/^\s{0,3}\[[^\]]+\]:[^\n]*$/gm, "")
+        .replace(/^(?: {4}|\t)[^\n]*$/gm, "");
+      const destinations = [...body.matchAll(/(?<!!)\[[^\]]*\]\(<?([^\s)>]+)>?(?:\s+["'][^"']*["'])?\)/g)]
+        .map(m => m[1]!);
+      for (const m of body.matchAll(/(?<!!)\[([^\]]+)\](?:\[([^\]]*)\])?(?!\()/g)) {
+        const ref = references.get((m[2] || m[1]!).toLowerCase());
+        if (ref) destinations.push(ref);
+      }
+      const reached = new Set(destinations.flatMap(href => {
+        if (/^(?:[a-z]+:|\/)/i.test(href)) return [];
+        try { return [posix.normalize(posix.join(posix.dirname(index), decodeURIComponent(href.split(/[?#]/)[0]!)))]; }
+        catch { return []; }
+      }));
+      const pages = Object.keys(snapshot).filter(p => p.startsWith(prefix) && p !== index && /\.md$/i.test(p));
+      return pages.length > 0 && pages.every(p => reached.has(p));
+    });
+    out[key] = verdicts.includes(true) ? true : verdicts.includes(null) ? null : false;
   }
   for (const p of checks.keeps_lines ?? []) {
     const before = baseline(p), after = result.files?.[p];
@@ -210,10 +217,14 @@ export function check(
       );
   if (checks.nothing_left_running)
     out["nothing left running"] = result.left_running == null ? null : result.left_running.length === 0;
-  for (const p of checks.tmp_has ?? [])
-    out[`temporary folder has /${p}/`] = tmp === null ? null : tmp.some((x) => matches(p, x));
-  for (const p of checks.tmp_lacks ?? [])
-    out[`temporary folder lacks /${p}/`] = tmp === null ? null : !tmp.some((x) => matches(p, x));
+  for (const p of checks.tmp_has ?? []) {
+    const key = `temporary folder has /${p}/`;
+    out[key] = tmp === null ? result.tmp_checks?.[key] ?? null : tmp.some((x) => matches(p, x));
+  }
+  for (const p of checks.tmp_lacks ?? []) {
+    const key = `temporary folder lacks /${p}/`;
+    out[key] = tmp === null ? result.tmp_checks?.[key] ?? null : !tmp.some((x) => matches(p, x));
+  }
   for (const p of checks.answer_contains ?? []) out[`answer has /${p}/`] = matches(p, answer);
   for (const p of checks.answer_not_contains ?? []) out[`answer lacks /${p}/`] = !matches(p, answer);
   if (checks.names_no_skill) out["answer names no skill or skill file"] = result.turns?.length ?

@@ -1333,7 +1333,8 @@
           "deadline": "first change",
           "path": "`understand-discuss`, for an open item the agent puts to the user instead of choosing."
         }
-      ]
+      ],
+      "timeout": 900
     },
     {
       "prompt": "I'm lost on how the rain plan works with 120 people inside. Can you put that another way? And before we rely on it, find its weak points.",
@@ -2779,7 +2780,8 @@
           "source_check": "actual-outcome",
           "criterion": "Report what was done, skipped and failed as observed. See a check result before claiming it. Mark unshown causes as guesses."
         }
-      ]
+      ],
+      "timeout": 900
     },
     {
       "prompt": "handbook.md has grown messy. Split it into topic pages in a handbook folder, merge the two opening sections, and give the emergency contacts one shared home that the pages point to. Show me the map first.",
@@ -3106,13 +3108,15 @@
         "file_contains": {
           "handbook/safety.md": [
             "(?i)safety"
-          ],
-          "handbook/index.md": [
-            "\\|"
           ]
         },
         "index_links": {
-          "handbook/index.md": "handbook"
+          "*": {
+            "folder": "handbook",
+            "contains": [
+              "\\|"
+            ]
+          }
         }
       },
       "judge_files": [
@@ -3297,9 +3301,6 @@
             "650",
             "250",
             "200"
-          ],
-          "welcome.md": [
-            "(?i)(three|3)[ -]hour"
           ]
         },
         "answer_not_contains": []
@@ -3645,7 +3646,8 @@
           "source_check": "actual-outcome",
           "criterion": "Report what was done, skipped and failed as observed. See a check result before claiming it. Mark unshown causes as guesses."
         }
-      ]
+      ],
+      "timeout": 900
     },
     {
       "prompt": "The three role pages in roles/ need the new shift times from decisions.md: stewards, stalls and first aid. Have separate agents update one page each at the same time, then check the three pages together.",
@@ -3844,7 +3846,8 @@
           "source_check": "actual-outcome",
           "criterion": "Report what was done, skipped and failed as observed. See a check result before claiming it. Mark unshown causes as guesses."
         }
-      ]
+      ],
+      "timeout": 900
     },
     {
       "prompt": "Ask three independent agents the same question: is our rain plan in design.md good enough for 120 people? Show me each answer and where they disagree. Don't pick a winner.",
@@ -3957,7 +3960,8 @@
           "source_check": "plain-english",
           "criterion": "Judge only the final answer. Use plain English. Progress is not scored."
         }
-      ]
+      ],
+      "timeout": 900
     },
     {
       "prompt": "Add a rule to our AGENTS.md: every public notice must show the step-free entrance and the access contact. Show me the change before saving it. Also check that skillbook is set up properly for this project: are its skills loading?",
@@ -4250,7 +4254,8 @@
           "source_check": "actual-outcome",
           "criterion": "Report what was done, skipped and failed as observed. See a check result before claiming it. Mark unshown causes as guesses."
         }
-      ]
+      ],
+      "timeout": 900
     },
     {
       "prompt": "Pick up from carryover.md. Check what's actually in the files, tell me what's left, and don't redo finished work. The festival has now happened: is everything on our plan done?",

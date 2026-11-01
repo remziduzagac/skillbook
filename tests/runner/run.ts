@@ -25,7 +25,7 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { FIXTURES, MARKER } from "./paths";
 import { prepareHome, agentEnv, snapshot, fixtureText, fixtureDiffs, commitFixture, observe } from "./files";
-import { runTurn, endRun } from "./process";
+import { runTurn, endRun, tmpPaths, addedTmpPaths } from "./process";
 import { agentCommand } from "./agents";
 import { parse_events, sessionId, turn_parts, action_evidence, redact } from "./trace";
 import { cost, DEFAULT_MODELS } from "./cost";
@@ -159,17 +159,18 @@ export async function runOne(
       if (turn.fresh_session) session = undefined;
       const sent = mode === "simulated" ? await simulate(call, c, index, chapterTurns, baselineText) :
         { message: turn.prompt, steered: false };
+      const beforeTmp = tmpPaths(tmp), timeout = turn.timeout ?? args.timeout;
       limits?.dispatch("agent");
       const ran = await driver(
           agentCommand(agent, model, sent.message, remaining, session),
           work,
           env,
-          args.timeout,
+          timeout,
           groups,
         ).catch(error => ({ stdout: "", stderr: `runner error: ${String(error)}`, status: 1,
           left: null, left_why: "transport threw", tmp: null, tmp_paths: null })),
         failed = ran.status !== 0;
-      if (ran.status === null) result.error = `turn ${i}: took longer than ${args.timeout} seconds`;
+      if (ran.status === null) result.error = `turn ${i}: took longer than ${timeout} seconds`;
       else if (failed) result.error = `turn ${i}: exit ${ran.status}: ${redact(ran.stderr.trim().slice(-300))}`;
       const turnEvents = parse_events(ran.stdout);
       const recording = args.keep ? join(out,
@@ -190,6 +191,11 @@ export async function runOne(
       observation.left_running = ran.left;
       observation.left_unknown_because = ran.left_why;
       observation.tmp_listing = ran.tmp;
+      const turnTmp = addedTmpPaths(beforeTmp, ran.tmp_paths);
+      observation.tmp_check_basis = "paths added during this turn";
+      const tmpAssertions = [turn.checks, ...(turn.tagged_checks ?? []).map(t => t.assert)];
+      observation.tmp_checks = check({tmp_has: tmpAssertions.flatMap(c => c?.tmp_has ?? []),
+        tmp_lacks: tmpAssertions.flatMap(c => c?.tmp_lacks ?? [])}, observation, c.fixture, turnTmp);
       observation.baseline_files = baselineText;
       observation.baseline_snapshot = baseline;
       const currentText = sourceSnapshots(work, fixtureText(work), c.source_snapshots),
@@ -205,7 +211,7 @@ export async function runOne(
         access = withCodexRetention(access, inspectCodexRetention(home, observedSession, sessionTurns, final,
           prior?.access.retention_evidence));
       }
-      const tagged = evaluateTagged(turn.tagged_checks ?? [], observation, taggedHistory, c.fixture, ran.tmp_paths);
+      const tagged = evaluateTagged(turn.tagged_checks ?? [], observation, taggedHistory, c.fixture, turnTmp);
       for (const t of tagged) taggedHistory[`${i}:${t.id}`] = t.verdict;
       result.turns.push({
         ...observation,
@@ -288,7 +294,7 @@ export async function runOne(
         catch (error) { evidence.fit = { off_script: null, reason: String(error) }; }
       }
       lastTmp = ran.tmp_paths;
-      for (const [name, value] of Object.entries(check(turn.checks ?? {}, observation, c.fixture, lastTmp)))
+      for (const [name, value] of Object.entries(check(turn.checks ?? {}, observation, c.fixture, turnTmp)))
         turnChecks[`turn ${i}: ${name}`] = value;
       previous = snapshot(work);
       previousText = currentText;

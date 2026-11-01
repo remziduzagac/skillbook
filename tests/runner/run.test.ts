@@ -4,7 +4,9 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { runOne, runPlan, planRuns } from "./run";
 import { parseArgs } from "./cli";
-import { normalize } from "./cases";
+import { normalize, validateCase } from "./cases";
+import { tmpPaths } from "./process";
+import { recheckScenario } from "./recheck";
 import type { Event } from "./types";
 const message = (text: string) => ({ type: "item.completed", item: { type: "agent_message", text } });
 const args = () => parseArgs(["--agents", "codex", "--yes"]);
@@ -21,6 +23,28 @@ const sample = () =>
     },
     "essentials/port-unit",
   );
+
+test("turn timeout reaches the transport and cleanup checks ignore pre-existing runtime paths",async()=>{
+  const out=mkdtempSync(join(tmpdir(),"runner-turn-limits-")),timeouts:number[]=[];
+  const c=normalize({fixture:"tiny-weather",turns:[{prompt:"first"},{prompt:"second",timeout:900,
+    checks:{tmp_lacks:["."]},tagged_checks:[{id:"cleanup",tag:"cleanup",assert:{tmp_lacks:["."]}}]}]},"essentials/cleanup-unit");
+  try{
+    const result=await runOne(c,"codex","gpt-6.1-sol",1,args(),out,1,async(_cmd,_work,env,timeout)=>{
+      timeouts.push(timeout);
+      if(timeouts.length===1){mkdirSync(join(env.TMPDIR!,"runtime"));writeFileSync(join(env.TMPDIR!,"runtime/lock"),"");}
+      return {stdout:JSON.stringify(message("Done")),stderr:"",status:0,left:[],left_why:null,tmp:null,tmp_paths:tmpPaths(env.TMPDIR)};
+    });
+    expect(timeouts).toEqual([300,900]);
+    expect(result.checks["turn 2: temporary folder lacks /./"]).toBe(true);
+    expect(result.turns[1].tagged_checks[0].verdict).toBe(true);
+    expect(recheckScenario(result,c).checks["turn 2: temporary folder lacks /./"]).toBe(true);
+    expect(JSON.stringify(result.turns[1].tmp_checks)).not.toContain("runtime");
+    const timed=await runOne({...c,turns:[c.turns[1]!] },"codex","gpt-6.1-sol",1,args(),out,1,
+      async()=>({stdout:"",stderr:"",status:null,left:[],left_why:null,tmp:null,tmp_paths:null}));
+    expect(timed.error).toContain("900 seconds");
+    for(const timeout of [0,-1,Infinity,NaN])expect(()=>validateCase({fixture:"tiny-weather",turns:[{prompt:"x",timeout}]})).toThrow();
+  }finally{rmSync(out,{recursive:true,force:true});}
+});
 
 test("turn observations, resume, kept logs and copied homes have separate lifetimes", async () => {
   const out = mkdtempSync(join(tmpdir(), "runner-output-"));

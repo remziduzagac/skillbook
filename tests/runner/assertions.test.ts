@@ -45,6 +45,28 @@ test("indexes must link every nested page, resolving relative, encoded, fragment
     expect(verdict(c, {...observation, files: {"handbook/index.md": text}})).toBe(false);
   expect(verdict(c, {})).toBeNull();
 });
+test("a chosen index is one changed Markdown file covering every page, wherever it is saved",()=>{
+  const c={index_links:{"*":"pages"}};
+  for(const index of ["pages/README.md","retired.md","elsewhere/contents.md"]){
+    const links=index.startsWith("pages/")?"[A](a.md) [B](b.md)":index.includes("/")?
+      "[A](../pages/a.md) [B](../pages/b.md)":"[A](pages/a.md) [B](pages/b.md)";
+    const project_snapshot={[index]:"index","pages/a.md":"a","pages/b.md":"b"};
+    const base={changes:[`changed ${index}`],project_snapshot,files:{[index]:links}};
+    expect(verdict(c,base)).toBe(true);
+    expect(verdict(c,{...base,changes:[]})).toBe(false);
+    expect(verdict(c,{...base,files:{[index]:"[A](a.md)"}})).toBe(false);
+    expect(verdict(c,{...base,files:{[index]:"(content withheld: a hard link or credential-like content)"}})).toBeNull();
+  }
+  // Two incomplete files do not collectively become the requested single index.
+  expect(verdict(c,{changes:["added first.md","added second.md"],project_snapshot:{"pages/a.md":"a","pages/b.md":"b"},
+    files:{"first.md":"[A](pages/a.md)","second.md":"[B](pages/b.md)"}})).toBe(false);
+  expect(verdict(c,{})).toBeNull();
+  const table={index_links:{"*":{folder:"pages",contains:["\\|"]}}};
+  const both={changes:["changed index.md","changed other.md"],project_snapshot:{"pages/a.md":"a"},
+    files:{"index.md":"[A](pages/a.md)","other.md":"| unrelated table |"}};
+  expect(verdict(table,both)).toBe(false);
+  expect(verdict(table,{...both,files:{...both.files,"index.md":"| [A](pages/a.md) |"}})).toBe(true);
+});
 test("instruction preservation allows inserted lines and requires earlier lines in order with repetitions", () => {
   const c = {keeps_lines: ["AGENTS.md"]}, base = {baseline_files: {"AGENTS.md": "one\n\ntwo\none\n"}};
   expect(verdict(c, {...base, files: {"AGENTS.md": "prefix\none\n\ntwo\nnew\none\nsuffix\n"}})).toBe(true);
@@ -56,7 +78,9 @@ test("automatic assertion configuration rejects invalid bounds, no-op replacemen
   const base = {fixture: "tiny-weather", turns: [{prompt: "Inspect"}]};
   for (const checks of [{words_under: {"a.md": 0}}, {words_under: {"a.md": 1.5}},
     {only_replacement: {"a.md": {from: "", to: "x"}}}, {only_replacement: {"a.md": {from: "x", to: "x"}}},
-    {unchanged_under: ["../outside"]}, {index_links: {"index.md": "../outside"}}, {keeps_lines: ["/outside"]}])
+    {unchanged_under: ["../outside"]}, {index_links: {"index.md": "../outside"}},
+    {index_links:{"*":{folder:"../outside"}}}, {index_links:{"*":{folder:"pages",contains:["["]}}},
+    {keeps_lines: ["/outside"]}])
     expect(() => validateCase({...base, checks})).toThrow();
 });
 

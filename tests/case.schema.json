@@ -328,7 +328,29 @@
         "index_links": {
           "type": "object",
           "additionalProperties": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "folder": {
+                    "type": "string"
+                  },
+                  "contains": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "folder"
+                ],
+                "additionalProperties": false
+              }
+            ]
           }
         },
         "keeps_lines": {
@@ -428,6 +450,9 @@
     "Turn": {
       "type": "object",
       "properties": {
+        "timeout": {
+          "type": "number"
+        },
         "skill_needs": {
           "type": "array",
           "items": {

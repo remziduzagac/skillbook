@@ -42,6 +42,8 @@ export function validateCase(data: unknown): asserts data is CaseFile {
     }
   }
   for (const turn of c.turns) {
+    if (turn.timeout !== undefined && (!Number.isFinite(turn.timeout) || turn.timeout <= 0))
+      throw Error("turn timeout must be positive seconds");
     for (const path of turn.judge_files ?? []) inside(FIXTURES, path);
     for (const need of [...(turn.skill_needs ?? []), ...(turn.also_called ?? []), ...(turn.if_taken ?? [])]) {
       if (!/^[a-z][a-z0-9-]*$/.test(need.skill) ||
@@ -106,13 +108,15 @@ export function validateCase(data: unknown): asserts data is CaseFile {
     if (Array.isArray(checks.states_before_change)) for (const p of checks.states_before_change) regex(p);
     for (const p of [...Object.values(checks.file_contains ?? {}), ...Object.values(checks.folder_contains ?? {}), ...Object.values(checks.folder_lacks ?? {})].flat())
       regex(p);
+    for (const spec of Object.values(checks.index_links ?? {}))
+      if (typeof spec !== "string") for (const p of spec.contains ?? []) regex(p);
     for (const limit of Object.values(checks.words_under ?? {}))
       if (!Number.isInteger(limit) || limit <= 0) throw Error("word bounds must be positive integers");
     for (const replacement of Object.values(checks.only_replacement ?? {}))
       if (!replacement.from || replacement.from === replacement.to) throw Error("replacement must change nonempty text");
     for (const p of [
       ...Object.keys(checks.words_under ?? {}), ...Object.keys(checks.only_replacement ?? {}),
-      ...Object.keys(checks.index_links ?? {}), ...Object.values(checks.index_links ?? {}),
+      ...Object.keys(checks.index_links ?? {}), ...Object.values(checks.index_links ?? {}).map(s => typeof s === "string" ? s : s.folder),
       ...(checks.keeps_lines ?? []), ...(checks.unchanged_under ?? []),
       ...Object.keys(checks.written_under ?? {}), ...Object.keys(checks.folder_lacks ?? {}), ...Object.keys(checks.folder_contains ?? {}),
       ...(checks.changed ?? []),

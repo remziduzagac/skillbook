@@ -5,7 +5,7 @@ import { shellAccesses } from "./access-shell";
 import type { Agent, Event } from "./types";
 import type { CodexRetention } from "./codex-retention";
 
-export const READER_VERSION = "access-3";
+export const READER_VERSION = "access-4";
 export const frozenSkills = () => Object.fromEntries(skillFiles().map(([name, path]) => [name, readFileSync(path, "utf8")]));
 export interface Access {
   skill: string; file: string; tool: string; call: string; turn: number;
@@ -27,8 +27,10 @@ function text(value: any): string {
 }
 function delivered(output: string, source: string) {
   // Native Read/View and numbered shell output. Never use endpoints as proof of the middle.
-  const plain = output.replace(/^\s*\d+(?:\t|→|\|) ?/gm, "").replace(/\r/g, "");
-  return !!source.trim() && plain.includes(source.replace(/\r/g, "").trimEnd());
+  const raw = output.replace(/\r/g, ""), frozen = source.replace(/\r/g, "").trimEnd();
+  // A tab is the entire modern Read separator; following spaces belong to the file.
+  const plain = raw.replace(/^[ \t]*\d+(?:\t|→|\| ?)/gm, "");
+  return !!frozen.trim() && (raw.includes(frozen) || plain.includes(frozen));
 }
 function contextBoundary(e: Event) {
   return ["context.compacted", "session.resumed", "thread.resumed"].includes(e.type) ||
@@ -46,9 +48,14 @@ export function accessTurn(agent: Agent, events: Event[], turn = 1, sources = fr
     if (effect === "unknown") opaque ??= order;
   };
   const record = (id: string, tool: string, input: any, start: number, result: number | null,
-    output: string, success: boolean | null) => {
+    output: string, success: boolean | null, file?: Event) => {
     const command = input.command ?? "", path = input.file_path ?? input.path ?? "";
     const attributed = shellAccesses(command);
+    const clipped = /(?:output truncated|truncated output|tokens truncated|… truncated)/i.test(output);
+    const native = ["Read", "View"].includes(tool) && file && file.filePath === path &&
+      typeof file.content === "string" && [file.startLine,file.numLines,file.totalLines].every(n => Number.isInteger(n) && n > 0) &&
+      file.startLine + file.numLines - 1 <= file.totalLines ? file : undefined;
+    if (native) output = native.content;
     const nativeSkills = [...path.matchAll(fullPath)].map(m => skill_name(m[1]!, m[2]!));
     nativeSkills.push(skill_name("essentials", path));
     const names = new Map<string, string>();
@@ -60,7 +67,7 @@ export function accessTurn(agent: Agent, events: Event[], turn = 1, sources = fr
     // Keep delivered but unattributed text visible without claiming a supported read.
     for (const [name, source] of Object.entries(sources)) if (delivered(output, source)) names.set(name, names.get(name) ?? name);
     for (const [skill, file] of names) {
-      const truncated = /(?:output truncated|truncated output|tokens truncated|… truncated)/i.test(output);
+      const truncated = clipped || /(?:output truncated|truncated output|tokens truncated|… truncated)/i.test(output);
       const matching = attributed.filter(a => a.skill === skill), operations = new Set(matching.map(a => a.operation));
       // A successful && chain proves its full-file reader ran; searches cannot erase that delivery.
       const independentRead = success === true && matching.some(a => a.operation === "read" && a.whole_file);
@@ -69,8 +76,8 @@ export function accessTurn(agent: Agent, events: Event[], turn = 1, sources = fr
         operations.size === 1 ? matching[0]!.operation : independentRead ? "read" : "unknown";
       let rangesWhole = false;
       if (success && !truncated && operation === "read" && sources[skill]) {
-        const from = matching.length === 1 ? matching[0]!.from : input.offset;
-        const count = matching.length === 1 ? matching[0]!.count : input.limit;
+        const from = native?.startLine ?? (matching.length === 1 ? matching[0]!.from : input.offset);
+        const count = native?.numLines ?? (matching.length === 1 ? matching[0]!.count : input.limit);
         if (Number.isInteger(from) && from > 0 && Number.isInteger(count) && count > 0 && names.size === 1) {
           const lines = sources[skill]!.trimEnd().split("\n"), slice = lines.slice(from - 1, from - 1 + count);
           if (slice.length && delivered(output, slice.join("\n"))) {
@@ -80,7 +87,8 @@ export function accessTurn(agent: Agent, events: Event[], turn = 1, sources = fr
           }
         }
       }
-      const whole = rangesWhole || ["read", "load"].includes(operation) && result !== null && !truncated && delivered(output, sources[skill] ?? "");
+      const fullRange = !native || native.startLine === 1 && native.numLines === native.totalLines;
+      const whole = rangesWhole || fullRange && ["read", "load"].includes(operation) && result !== null && !truncated && delivered(output, sources[skill] ?? "");
       const extent = whole ? "whole" : output && success === true && ["read", "search"].includes(operation) ? "partial" : "unknown";
       records.push({ skill, file, tool, call: id, turn, start, result, success: whole ? true : success, call_success: success, operation, extent, truncated,
         timing: "unknown", evidence: `turn:${turn}/event:${result ?? start}/call:${id}`, reader: READER_VERSION,
@@ -105,7 +113,7 @@ export function accessTurn(agent: Agent, events: Event[], turn = 1, sources = fr
       if (b.type === "tool_result") {
         const call = calls.get(b.tool_use_id); if (!call) continue;
         const ok = !b.is_error; change(call.tool, call.input, call.start, ok);
-        record(b.tool_use_id, call.tool, call.input, call.start, order, text(b.content), ok); calls.delete(b.tool_use_id);
+        record(b.tool_use_id, call.tool, call.input, call.start, order, text(b.content), ok, e.tool_use_result?.file); calls.delete(b.tool_use_id);
       }
     }
   }

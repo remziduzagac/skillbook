@@ -110,7 +110,7 @@ for (const no_skill of [false, true]) test(`festival runs all chapters with an i
     expect(result.turns.every((t: Event) => t.judgments.every((j: Event) => j.verdict === null))).toBe(true);
     const replay = recheckScenario(result, c).checks;
     for (const [name, verdict] of Object.entries(replay))
-      expect(verdict).toBe(name.includes("temporary folder") ? null : result.checks[name]);
+      expect(verdict).toBe(result.checks[name]);
     if (!no_skill) writeFileSync("/tmp/phase-b-judge-input-estimates.json", JSON.stringify({outcomes:sizes, calls:inputs}, null, 2)+"\n");
     writeFileSync(join(out, "status.json"), JSON.stringify({turns: count, checks: result.checks}));
   } finally { rmSync(out, {recursive: true, force: true}); }
@@ -155,7 +155,10 @@ test("every festival file assertion accepts its correct trace and rejects a plau
     for (const p of x.shorter ?? []) atom({shorter:[p]}, b => b.files[p] = b.baseline_files[p]);
     for (const [p, pair] of Object.entries(x.only_replacement ?? {})) atom({only_replacement:{[p]:pair}}, b => b.files[p]+="Unrequested edit\n");
     for (const p of x.unchanged_under ?? []) atom({unchanged_under:[p]}, b => b.project_snapshot[`${p}/extra.md`] = "extra");
-    for (const [p, folder] of Object.entries(x.index_links ?? {})) atom({index_links:{[p]:folder}}, b => b.files[p] = "# Index\n");
+    for (const [p, folder] of Object.entries(x.index_links ?? {})) atom({index_links:{[p]:folder}}, b => {
+      if (p === "*") for (const path of Object.keys(b.files)) b.files[path] = "# Index\n";
+      else b.files[p] = "# Index\n";
+    });
     for (const p of x.keeps_lines ?? []) atom({keeps_lines:[p]}, b => b.files[p] = "Only the new rule\n");
     for (const [folder, patterns] of Object.entries(x.folder_contains ?? {})) for (const pattern of patterns)
       atom({folder_contains:{[folder]:[pattern]}}, b => { for (const p in b.files) if (p.startsWith(folder+"/")) b.files[p] = ""; });
