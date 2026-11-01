@@ -2,6 +2,21 @@
 
 Answers one sourced question or gives a bounded verdict on one claim.
 
+## When to use
+
+Use when an investigation needs one sourced answer or a verdict on one claim that a quick local read does not settle. For example, a claim that something cannot be done needs evidence for that limit.
+
+## When not
+
+- Existing alternatives: use the `understand-research-survey` guide to find and compare candidates.
+- Causes: use the `understand-research-analyze` guide to test why something happens.
+- A quick local read that settles the answer: read directly. No sourced investigation is needed.
+- User intent: use the `understand-clarify` guide. A source cannot decide what the user wants.
+
+## Gives back
+
+The answer or claim verdict, supporting and opposing evidence, limits and missing checks.
+
 ## Rules
 
 1. **Search against a claim as seriously as for it.** Searching only for support rewards confirmation. Keep the actual evidence found on each side, including no evidence found.
@@ -17,11 +32,11 @@ Answers one sourced question or gives a bounded verdict on one claim.
 
 ## Instructions
 
-1. **Reuse or identify the question and claim through the parent's first rule.** Do not reframe an already crisp question or restart an active caller.
-2. **Search the nearest relevant sources first.** Follow the parent's source guides, applicability rules and both-way search for claims.
-3. **Rank findings through the parent's provenance rule.** Keep contrary evidence and unknown results visible. A source count or a matched quote alone does not establish truth.
-4. **Return the answer or rule 3's verdict.** Give evidence for and against, what was checked, missing checks and what would settle them. A naming or comparison caller receives the factual result, not another naming or choice round.
+1. To answer the intended question, reuse or identify the question and claim through the parent's first rule. Do not reframe an already crisp question or restart an active caller.
+2. To find relevant evidence cheaply, search the nearest relevant sources first. Follow the parent's source guides, rules on where evidence applies, and search for and against claims.
+3. To show how much the evidence supports, rank findings through the parent's rule for how evidence was obtained. Keep contrary evidence and unknown results visible. A source count or a matched quote alone does not establish truth.
+4. To give a bounded answer, return the answer or rule 3's verdict. Give evidence for and against, what was checked, missing checks and what would settle them. A naming or comparison caller receives the factual result, not another naming or choice round.
 
 ## The last instruction
 
-Check that a claim was searched both ways and that the answer fits the actual version and scope. Use the parent's semantic findings and result shape. Distinguish unsupported from unknown without claiming either is disproof. Return to the active caller and follow the parent's last instruction.
+Check that a claim was searched both ways and that the answer fits the actual version and scope. Use the parent's finding fields and result shape. Distinguish unsupported from unknown without claiming either is disproof. Return to the active caller and follow the parent's last instruction.

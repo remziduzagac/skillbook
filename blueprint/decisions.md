@@ -514,6 +514,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 **Why:** Without either, Claude Code answered a third of the test requests without any skill. The description ended that and kept trivial requests light; the pointer makes the main skill load for every request, so its rules hold in every answer ([research/skill-loading.md](research/skill-loading.md), "Making the main skill load"). The personal instruction files are not tested yet.
 
+> **Amended by D282 (2026-11-01):** essentials' description says to load it at the start of every request and what it holds, without the list of kinds of work; not yet re-run through the test harness.
+
 ## D58: Asking until nothing is left assumed (2026-10-11)
 
 > **Amended by D63 (2026-10-11):** the principle moves from the main skill to conduct's act.
@@ -1901,6 +1903,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 **Why:** People install only what they need: someone with their own engineering skills can use blueprint alone. Splitting saves no tokens, since a hidden skill costs nothing until it is used; its gains are choice and clear boundaries, and each set's main skill adds one description to the listing, where six or thirteen listed roots routed as well as one. A dependency on essentials was considered and dropped, since a short fallback keeps each set whole without it. The tests fix the mechanism: a namespace has one level, the plugin's name; only a listed skill can be called by name from another package; a hidden skill is read by its path only inside its own package; Codex ignores a plugin's dependencies ([research/skill-loading.md](research/skill-loading.md)).
 
+> **Amended by D281 (2026-11-01):** `essentials` names no other set; its guides say generically to use a skill in the harness's list that covers the work. Other sets may still name `essentials` and the sets they build on.
+
 ## D153: The core set is named essentials (2026-10-17)
 
 **Decision:** The set any work needs, holding conduct, understand, design and plan, is named essentials, and its main skill `essentials`. The set's description where it is offered for install carries what it does, such as "skillbook essentials: the working habits that make your agent careful, efficient and organized"; the main skill's own description keeps telling the agent to load it first for any work.
@@ -1983,6 +1987,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Decision:** essentials gains a conduct skill, layout, beside respond rather than inside it, since files, briefs to agents, and pull-request and issue text use it too, while respond is about responses: how anything the agent writes in markdown is laid out ([design/conduct.md](design/essentials/respond.md)). It is the small skill with generic rules that the sets left to design, and its rules are authoring's markdown's structure layer, moved, not copied: sections get headings, not bold lines; bold for a label or a key phrase inside a section; tables for short values, lists for big ones; prose not wrapped by hand; numbers where things are referred to by number, bullets otherwise; code, commands and text diagrams fenced with the language named. Its strong advice adds the person's rule, lists over tables: a list by default, a table only for short values compared across items and fitting within 120 characters; and table rows, code lines and headings stay within 120 characters. Its advice: nesting stops at about two levels, and a response's sections start at `##`. essentials' main skill reads it with act, respond and rightsize, together in one turn, and its rule on layout points here; respond's layout rule, act for any markdown file, brief and authoring's markdown point here too; how a round of questions is laid out stays ask's. authoring's markdown keeps the file layer: the file rules, a project's lint configuration winning in its files, the advice for fitting a table and the linter check, added where authoring is installed; where essentials is not installed, markdown carries a one-line fallback: headings for sections, lists over wide tables, prose unwrapped, code fenced. Without authoring, a markdown file gets layout and the project's linter through verify. It is named layout: plain, saying what it does, and not already a term. Rejected: format, which reads as code formatters and file formats; style, writing style and the harness's own style; presentation, long; shape, the shape every skill takes.
 
 **Why:** The person did not want markdown moved into essentials, and asked for a small skill with generic rules instead. markdown's two layers split cleanly along the contract between sets (D156): the structure layer was written for every response and is generic, the file layer is specific to files; so essentials lays out every output, authoring adds the file rules, and nothing is said twice.
+
+> **Amended by D281 (2026-11-01):** `essentials` no longer names `authoring` for markdown files; the `respond-layout` guide says to use a skill in the harness's list for markdown files, if any, and otherwise the project's linter.
 
 ## D159: the question tool, in ask (2026-10-17)
 
@@ -2152,6 +2158,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 **Why:** The person found the main skill and its design unnecessarily complex, and described how it should open instead: a few musts and advice at the top, then one line per child, each loaded lazily, so that every main skill blooms level by level; the person confirmed that each skill may still use any other skill or sub-skill when it needs one.
 
+> **Amended by D279 (2026-11-01):** the main skill shows a map of the first- and second-level skills, and each plain skill's file holds its own "When to use", "When not" and "Gives back"; parents no longer route, and give each child only its name and purpose. Reading each path top-down stays.
+
 ## D178: the main skill as three rules and seven steps (2026-10-17)
 
 > **Amended by D186 (2026-10-18):** a call between essentials skills names the skill, and the main skill's name rule turns the name into its file, so the proposal of calls by path is settled; the folder layout is still open.
@@ -2163,6 +2171,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Decision:** essentials' main skill holds at its top only what holds for every request and has no skill of its own: every skill a request needs is used; delegation by default, as strong advice, its reasons and the choice of agent being delegate's; and the wrap-up offer. Then seven steps, in the order the work happens: understand the request, leaving no gap (understand); throughout, act's rules (act); what it will be and its steps, when needed (devise); arranging things, when needed (organize); handing work to other agents, now or later, when needed (coordinate); doing it, through another set's main skill where one holds that kind of work, otherwise directly, under act's rules; and responding, always (respond), nothing returned before respond's check. understand, act and respond load at the start of every conversation, the others when their step comes. The main skill no longer reads act, respond, rightsize and layout by path; act's and respond's own skills load their tools. Its design document is cut down: a short purpose, callers as a list, eighteen tests on what the main skill itself does, the others moved to the skills they test. Calls between essentials skills by path, rather than through the main skill, were proposed and wait for the folder layout.
 
 **Why:** The person found the main skill and its document unnecessarily complex and sketched it as these steps; it now only opens the tree and holds what has no other home.
+
+> **Amended by D279 and D280 (2026-11-01):** the main skill holds its rules, a guide map with each guide's path, and "Instructions": guidelines with a preparing step 0 and one stage per main guide, understand, devise, organize, coordinate, act and respond.
 
 ## D179: conduct becomes act, and respond a group at the top (2026-10-17)
 
@@ -2373,6 +2383,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 - **skillbook-write:** a new rule that an instruction blocks only where going on would cause real harm, with check 4 as the test; what the design does not hold and must not be invented is behaviour, while wording, examples and order are the writer's, and a fix that leaves the design true, such as a typo or a lint failure, goes to the files alone; the progress rule names notes such as "until X exists" rather than the bare word "until".
 
 **Why:** the person asked that skills not block or close a direction unless necessary. A review of every essentials file and of skillbook-write found several absolutes whose reasons were narrower than what they forbade: act's ban on searching forbade the name rule's own fallback; clarifying "before any action" forbade the reading understand requires before asking; "no more" forbade the callers a rename needs; a different approach after failures could not be tried even inside the task; deep asked for confirmation from a person who had already said to go on; a recommended answer was forced where the agent had no basis, so "go ahead" turned a guess into a decision. The baseline test, in Claude Code and Codex, found three more. After compaction Claude Code re-attached only the last five files read, not the main skill or the three group files, and, in the test's words, "No post-compaction turn re-read anything on Claude (0 of 8 turns)", while the main skill said not to load them again. For a new request after compaction neither agent used essentials again (0 of 9), with or without the pointer: the main skill's text, and any reload instruction inside it, was gone, while the pointer in an instruction file survives compaction and was present in every pointer run; without compaction the pointer made no difference (essentials loaded in 18 of 18 runs without it), so its job is after compaction. Codex wrote tables of 164 to 191 characters in 3 of 3 runs with the limit only in the strong advice. The files read at every start measured about 20,000 characters, roughly 5,000 tokens, in Claude Code.
+
+> **Amended by D279 and D280 (2026-11-01):** the files read on every request are the main skill, the six main guides and respond-layout, by the paths in the guide map.
 
 ## D200: The main skill names all seven steps, and "do it" stays under act and the main skill (2026-10-18)
 
@@ -4030,6 +4042,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 **Tested:** Before the change, the frozen 60-case sample completed on both models without timeouts or infrastructure errors. Luna loaded 13/30 triggers and passed 14/30 full near contracts. Sol loaded 28/30 triggers and passed 28/30 full near contracts. Both kept all 30 near targets clear. Four raw failures were shared; three had the boundary uncertainties settled above. After the approved change, both models completed the same 60 requests without timeout or infrastructure error. Luna passed 47/60 current contracts; Sol passed 57/60. On the 57 unchanged contracts, Luna improved from 27 to 44 passes (19 improved, two pass-to-fail), while Sol moved from 56 to 54 (two pass-to-fail). Three contracts changed under the approved boundaries and are reported separately. Comparable method triggers were 13/29 to 21/29 for Luna and 28/29 to 27/29 for Sol. Unchanged near contracts were 14/28 to 23/28 and 28/28 to 27/28 respectively. Three research cases still have shared missing reads. Static checks passed with 97 unit tests; coverage names resolve. The checker reports start files at 38,953 versus 38,388 before; the advisory warning remains. No semantic answer judgment ran. Baseline and comparison evidence: `../tests/routing-proposal.md`.
 
+> **Amended by D279 (2026-11-01):** needed skills are chosen from the main skill's map for the whole request and read before the first change; a skill needed only after a later discovery is still read before its step.
+
 ## D265: Keep the per-request read instruction without a step list (2026-10-26)
 
 **Decision:** Each main skill keeps one instruction: "For each request, read the skills it needs before doing the work." It adds no instruction to list the request's steps and the skill for each in thinking. Two reads-only cases stay: one request needs clarify then design, the other design then plan.
@@ -4037,6 +4051,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 **Why:** A step-list instruction was tried and gave no measured gain. The existing instruction already covers later steps, since every step of a request needs its skill. A line in the main skill costs tokens on every request, and a list kept in thinking cannot be checked.
 
 **Tested:** The frozen 60-case routing sample ran once per case with the step-list wording. Luna passed 44/60 against 47/60 with the existing wording: 4 cases improved and 7 failed, within one-run noise. Sol passed 57/60 with both wordings, with no case changing. The two sequence cases passed 2/2 on each model with the step-list wording, and 2/2 on each model with the existing wording, so the step list added nothing there either. Results are one or two runs per case, not proof of a causal change. Full comparison: `../tests/routing-proposal.md`, Step 2.
+
+> **Amended by D279 and D280 (2026-11-01):** the main skill has a flow again, as guidelines: step 0 chooses and reads the guides, then one stage per main guide, each with its goal and reason.
 
 ## D266: Keep dashed skill names (2026-10-26)
 
@@ -4123,3 +4139,38 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 **Why:** A behavioral score alone cannot separate a missed load from a rule not followed, and a passing answer may be the model's default. Whole text, timing and context retention need evidence; a filename or successful command is insufficient. A rule outcome shows behavior, not its cause. Checking the promised result also asks whether the rules deliver what the skill offers. Comparing both conditions helps locate benefit and regressions without treating either view as proof of causation; quoted judge evidence keeps uncertain judgments open to review.
 
 **Tested:** Design only. Read the runner, issue #26 and local historical reports; ran the account-free coverage inventory. No implementation or model run is part of this decision.
+
+## D279: a skill map in the main skill, boundaries in each skill's file (2026-11-01)
+
+**Decision:** The essentials main skill holds its rules, a map of the first- and second-level skills and six steps. Each map entry gives in 1 to 3 short lines what the skill is for, when to use it and when not. The steps: choose skills from the map for the whole request; read them whole, in one turn, and check each file's boundary; decide the approach in thinking, which skill guides which part, one line for a small request; use devise-plan for a plan of steps, which it keeps up to date across turns as new input comes; do the work; answer through respond. `act` and `respond` are used on every request. Each plain skill's file starts with "When to use", "When not" and "Gives back"; the file is the source and the map line summarises it. The main skill has no such sections: its description says when to load it. Parents no longer route: each child gets one line with its purpose, and the first-level skills become flows of their own in a later design. The name rule and reading each parent path top-down stay. The main skill may pass about 100 lines where the map needs it, with the reason in its first lines. Instructions, map entries and boundaries are written goal first: what a step or skill is for, then the action, then why; a short bold must stays only for a real must, with its reason.
+
+**Why:** Recorded sessions read verify and rightsize after the first change. Two causes: nesting hid most skills until their parent was opened, and routing lines timed a skill by the moment of its use, not by when its rules shape the work. A map shows every first- and second-level skill at the start. A skill read whole and then not used costs only tokens; a skill read in part to decide is used without its rules, so no partial read decides fit. The approach is not called a plan, so it is not mixed up with a plan of steps or a harness's plan mode or task list; every plan of steps has one home, devise-plan, which also carries it across turns.
+
+**Tested:** Not yet. Two short Codex rounds of an earlier map, without boundaries in the files (12 conversations each, GPT-6-Luna and GPT-6.1-Sol), read verify before the first change in 11 of 12 conversations against 8 of 12 for the nested version, and guardrails in 4 of 12 against 0; respond was read in 9 of 12 against 12 of 12, and one Luna conversation read no skill at all. Single runs; hints, not a measurement.
+
+> **Amended by D280 (2026-11-01):** the files under the main skill are guides, the map is the guide map with each guide's path, all six main guides are read on every request, and the six steps become "Instructions": step 0 and one stage per main guide, with the approach in devise's stage.
+
+## D280: guides, a guide map with paths, and one stage per main guide (2026-11-01)
+
+**Decision:** Only a set's main skill is called a skill. Every file under its `references/` is a guide, and the six first-level guides are the main guides. Guides name each other by name, with the word "guide" where a bare name could be read as a skill, such as "the `act` guide". Paths appear only in the main skill's guide map: one per entry, under the exact name rule, now worded "a guide named `a-b-c`". All six main guides are read on every request. "Instructions", the section name every guide uses, replaces the step list: guidelines, not a fixed procedure, fitted into the harness's own flow, with one instruction to prepare by step 0 and then go through the stages in order. Step 0 picks guides from the map for every part of the request and reads them, the main guides and respond-layout whole, by their paths, in one turn, then checks each picked guide's boundary. One stage per main guide follows, in natural order: understand, devise, organize, coordinate, act, respond. The approach, the agent's choice of which guide shapes which part, belongs to devise's stage, beside design and plan; a plan of steps is devise-plan's, which keeps it across turns.
+
+**Why:** An agent told to use the `act` skill looks for it in its harness's skill list, does not find it, and searches or gives up; the start files were given paths for that reason (D210). The word "guide" removes the cause, and one convention replaces paths for some files and names for others. Names stay in the guides, since a path written inside a guide can be read against the project folder or the current file; the name rule resolves from the skill's own folder. A map that shows every path lets step 0 read everything in one turn. Each harness has its own flow, such as a plan mode or a task list, and a fixed procedure would compete with it; stages with their goals let the agent fit them in. One stage per main guide gives the reader a story to follow and makes the main guides the flows they are meant to become. Reading all six main guides costs about 100 more lines on every turn than reading four; the user chose to keep organize and coordinate as stages of their own for now.
+
+**Tested:** Not yet.
+
+## D281: essentials names no other set (2026-11-01)
+
+**Decision:** No file in `essentials` names another set or a method inside one. Where another kind of work comes up, such as code, a document or a project's design method, a guide says to use a skill in the harness's list that covers that work, if there is one, and what to do otherwise, such as follow the project's conventions or use judgment. A set may still name `essentials` and the sets it builds on, with a fallback for one not installed.
+
+**Why:** `essentials` is installed on its own and cannot know which sets exist; two of the sets it named are not built yet. The harness already lists every installed skill, so the agent finds them without a name. Naming methods inside another set, such as its implement method or its reader test, ties `essentials` to their internals, which drift as those sets change. Dependencies then run one way: other sets build on `essentials`, never the reverse.
+
+**Tested:** Not yet.
+
+## D282: a plain "every request" description, and no length notes in files (2026-11-01)
+
+**Decision:** The essentials description says to load it at the start of every request and what it holds, without a list of kinds of work. A file no longer explains its own length; the reason goes in its design. The main skill's rule "use every guide the request needs" goes: step 0 already picks every guide that fits any part of the request, and now says that most requests need several.
+
+**Why:** The harness picks a skill from its description, and essentials is meant for every request, so the plainest description says that. A sentence about a file's length does nothing for the agent reading it. The removed rule was hard to follow, and its content already had a home in step 0.
+
+**Tested:** Not yet. The description changes whether essentials loads at all, so it is re-run through the test harness before it is relied on (D136).
+

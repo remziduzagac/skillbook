@@ -1,6 +1,21 @@
 # act-stakes
 
-Judges the care an action deserves as low, medium or high, from four questions. Returns the judgment to the caller, which decides what to do.
+Judges how careful an action needs to be from the effects of a mistake and how it could be caught or undone.
+
+## When to use
+
+Use when a guide or the user needs to know how careful an action should be. For example: “how bad would it be if the price import went wrong?”
+
+## When not
+
+- Deciding whether an action needs approval: use the `act-guardrails` guide. A risk level does not grant approval.
+- Finding weak points in an idea: use the `understand` guide. That question concerns the idea, not the care an action needs.
+- Checking whether work is done or correct: use the `act-verify` guide for evidence.
+- Reviewing code security: use a skill in the harness’s list for code security review, if one fits. Otherwise use your judgment under the `act` guide. This guide only judges the care needed.
+
+## Gives back
+
+The risk level and a short reason, with the four answers or a “plainly low” judgment. The task that asked receives it and decides what the user needs to see.
 
 The four questions, each about a mistake in the action judged, such as a wrong value written or the wrong item changed:
 
@@ -11,18 +26,18 @@ The four questions, each about a mistake in the action judged, such as a wrong v
 
 The level, from the four answers:
 
-- **low:** a mistake would be caught, or cheaply undone, and stays inside the task;
-- **high:** nothing would catch a mistake in time, and at least one of these holds: it is hard to undo; it reaches beyond the task, to shared contracts, production, other people or the public; it would cost data, money or security;
-- **medium:** everything between.
+- **Low:** a mistake would be caught, or cheaply undone, and stays inside the task;
+- **High:** nothing would catch a mistake in time, and at least one of these holds: it is hard to undo; it reaches beyond the task, to shared contracts, production, other people or the public; it would cost data, money or security;
+- **Medium:** everything between.
 
 ## Rules
 
-1. **Judge the actual action from facts.** Read what shows its effects: interface users, test coverage or an existing backup. Mark guesses. A judgment from a feeling changes between skills or runs.
+1. **Judge the actual action from facts.** Read what shows its effects: interface users, test coverage or an existing backup. Mark guesses. A judgment from a feeling changes between guides or runs.
    - Judge where the action lands, not its label. "A quick settings tweak" on the live payment service is not quick.
    - Judge the action asked about. Existing problems, such as other errors in the same spreadsheet, are not its reach or cost. They exist either way. Name them separately as findings.
-   - Count what the action does to an existing problem, such as hiding a known failure from people reading a check. Hiding a problem weakens the check. `act-guardrails` always requires a proposal for that, whatever the level.
+   - Count what the action does to an existing problem, such as hiding a known failure from people reading a check. Hiding a problem weakens the check. The `act-guardrails` guide always requires a proposal for that, whatever the level.
 2. **Take the higher level when unsure.** An unneeded question costs a moment. An unguarded mistake cannot always be undone.
-3. **Keep care at or above every rule.** The `act` skill's never-rules, `act-guardrails`' always-proposed kinds, and user or project instructions for more care hold at every level. The `act-stakes` skill can raise care, never lower it below a rule. Otherwise "low stakes" bypasses guardrails.
+3. **Keep care at or above every rule.** The `act` guide's never-rules, the `act-guardrails` guide' always-proposed kinds, and user or project instructions for more care hold at every level. The `act-stakes` guide can raise care, never lower it below a rule. Otherwise "low stakes" bypasses guardrails.
 4. **Return the answers and level without acting or asking.** The caller decides what the level means for its work. Judgment has one home. Each response to it stays where it is used.
 5. **Judge again when the basis changes.** Examples: a change grows, moves from a local copy to production, loses a test, or has no backup after all. The starting level goes stale.
 
@@ -36,16 +51,16 @@ The level, from the four answers:
 - **Cost includes the user's time and trust,** not only data and money.
 - **Offer ways to lower stakes to the caller.** Never apply them here. Examples: a backup, dry run, branch, feature flag or test before the change. Lowering stakes is often cheaper than extra care.
 
-Not here: what could go wrong with an idea is a different question, under the `understand` skill's rules; what a risky action needs is `act-guardrails`'; whether work is done or correct is `act-verify`'s. A judgment that fits none of these is your own, under these rules.
+A judgment that fits none of the named methods is your own, under these rules.
 
 ## Instructions
 
-1. **Identify the action and where it lands.** Find missing facts first, such as who calls a function, by the `understand` skill's facts-first rule.
-2. **Answer the four questions** from facts, guesses marked. A plainly low case takes a glance.
-3. **Set the level** by the definitions above. When unsure, the higher one.
-4. **Check it against the rules:** nothing below a guardrail's kind or an instruction to be careful.
-5. **Name what would lower it,** when that is cheap and the work is not plainly low.
-6. **Return the judgment in this shape.** For plainly low work, use one line: "plainly low" and why.
+1. To judge the real effects, identify the action and where it lands. Find missing facts first, such as who calls a function, by the `understand` guide's facts-first rule.
+2. To base care on facts, answer the four questions from facts, guesses marked. A plainly low case takes a glance.
+3. To choose the right amount of care, set the level by the definitions above. When unsure, the higher one.
+4. To keep required safeguards, check the level against every guardrail and instruction to be careful.
+5. To reduce the cost of mistakes, name cheap ways to lower the stakes when the work is not plainly low.
+6. To give the caller a usable judgment, return the judgment in this shape. For plainly low work, use one line: "plainly low" and why.
 
    ```text
    Undo:    how a mistake would be undone, or that it could not be
@@ -61,7 +76,7 @@ Not here: what could go wrong with an idea is a different question, under the `u
    - one line with the reason, when it changes what happens, such as asking first, a stronger model, the user checking the result, or a debate of the options;
    - the full shape when the user asks about risk. For plainly low work, give only the line naming low and why, even when asked. Four answers add nothing there. A long report hides the point. Omit facts gathered to judge it, such as every use of a name.
 
-   The `act-stakes` skill keeps nothing. The caller records the judgment where it matters: a decision's reason, a proposal's risk or a delegated brief's model choice.
+   The `act-stakes` guide keeps nothing. The caller records the judgment where it matters: a decision's reason, a proposal's risk or a delegated brief's model choice.
 
 ## The last instruction
 

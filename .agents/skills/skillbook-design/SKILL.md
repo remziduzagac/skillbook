@@ -28,7 +28,7 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
 
 - **Place or move a skill with the knowledge it needs and where its most frequent calling flow runs.** The tree is `blueprint/design/skill-tree.md`, rendered from `blueprint/design/tree/tree.json`. Other skills point to its home. Follow "Names" below.
 - **Write a design section in `blueprint/design/<set>/<group>.md`.** Use that file's fields and the checklist below. Review it next. Follow skillbook-write's Plain English rule: the user and other readers may not be native speakers.
-- **Reviewing a skill: check every skill against checks 1–7 and 11–13.** Add checks 8–10 for parents. Review each child the same way.
+- **Reviewing a skill: check every skill against checks 1–7, 9 and 11–13.** Add checks 8 and 10 for parents. Review each child the same way.
   - Several skills may share a pass. Report each separately.
   - For several groups at once, use one reviewer per group, each loading this skill, so findings stay independent. Recheck their findings before they reach the user.
   - Report each skill by name, then its findings. Each finding names file and line, check number, problem and fix. Name a general pattern, never a single case to special-case.
@@ -44,15 +44,15 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
 
 - Name skills you do with bare verbs. Name skills about something, including groups, with nouns. Give leaves short verbs or nouns. Coin a name only when no plain word works.
 - Each set's main skill is named after its set: `essentials`, `blueprint`, `softeng`, `authoring`.
-- Put every non-main skill in a plain file under the main skill's `references/`. Join its path with dashes for its name: `references/coordinate/delegate/fanout.md` is `coordinate-delegate-fanout`. Put its scripts and templates in `scripts/` and `assets/` inside a same-named folder beside its file. Neither folder can be a child name. Sets distinguish identical names across sets.
-- Copy this name rule word for word into every main skill: "Names: a skill named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer." A call names only the skill. For `organize-merge`, read `references/organize.md` then `references/organize/merge.md`. A group holds rules shared by everything below it.
+- Put every non-main skill in a plain file under the main skill's `references/`. Call it a **guide**: only the main skill is a skill in the harness's list, and a guide called a skill makes agents look for it there. The six first-level guides are the **main guides**. Join its path with dashes for its name: `references/coordinate/delegate/fanout.md` is `coordinate-delegate-fanout`. Put its scripts and templates in `scripts/` and `assets/` inside a same-named folder beside its file. Neither folder can be a child name. Sets distinguish identical names across sets.
+- Copy this name rule word for word into every main skill: "Names: a guide named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer." Put it in the main skill's guide map, beside every first- and second-level guide's path. Guides name each other by name, with the word "guide" where a bare name could be read as a skill, such as "the `act` guide"; paths appear only in the map. For `organize-merge`, read `references/organize.md` then `references/organize/merge.md`. A parent holds rules shared by everything below it.
 - Each set's folder is `skills/<set>/` in the repository.
 - Install the four main skills under their set names without prefixes. The install script catches clashes with personal skills. It never overwrites a folder it did not install.
-- How a plain skill file opens, and how a design becomes files, are skillbook-write's.
+- How a guide's file opens, and how a design becomes files, are skillbook-write's.
 
 ## The checklist
 
-1. **Name every needed skill.** For another set, load its main skill, then use its name rule. Give a one-line fallback if that set is not installed. Each skill says only its part: caller for when and why, doer for how and inputs, keeper for location and form. Give location or form as a one-line default.
+1. **Name every needed guide.** A set may name `essentials` and the sets it builds on: load that skill, then use its name rule, with a one-line fallback if it is not installed. `essentials` names no other set, since it is installed on its own and cannot know which sets exist. Where another kind of work comes up, it says generically to use a skill in the harness's list that covers it, such as code or documents, and what to do otherwise. Each skill says only its part: caller for when and why, doer for how and inputs, keeper for location and form. Give location or form as a one-line default.
 2. **Remove ambiguity, contradictions and unstated cases:**
     - **one reading:** give each instruction one reading. Contradict no other skill;
     - **gaps named:** name every uncovered case and its destination: another skill or the agent's judgment;
@@ -76,11 +76,19 @@ How skillbook's skills are placed in the skill tree, named, designed and reviewe
     - **every aspect:** design a test for every rule, advice item, step, route, "Not for" line and last instruction. Otherwise give a reason, such as behaviour visible only in a live session. Untested aspects can break unseen;
     - **kinds kept apart:** distinguish designed tests (design's Tests list), executable cases (`tests/cases/`) and observed results (decision's Tested line). Never report one as another.
 8. **Order a parent's sections as follows:** rules for its whole scope; advice; instructions in work order; last instruction before anything is returned.
-9. **Give each child's use, exclusions and result.**
-10. **Open children level by level.** At the top, keep only rules and advice shared by everything below and lacking their own skill. Give one line per direct child saying when to load it. For each request, read the methods already needed before its work. Read their parent paths top-down. Reuse whole text still in view. A method needed only after a later discovery opens then. Leave unrelated children unopened. Each child opens its own children the same way.
-    - Introduce no grandchildren in those lines. Explain exceptions, such as the `respond` skill, loaded for every response.
-    - Any skill may use any other skill or sub-skill when needed. This limits opening, not use.
+9. **Give each guide its own boundary at the top of its file:** "When to use", "When not" and "Gives back".
+    - **When to use:** the need the skill meets, as a test the agent can apply, with a qualifying example. Give the timing where it matters, such as "before the first change".
+    - **When not:** each near case, with what fits better instead and why: another skill by name, or the agent's judgment.
+    - **Gives back:** what the skill returns, and whether the user sees it.
+    - A main skill has none of the three sections: its description says when to load it, and its map holds the others' boundaries.
+    - The file is the source. The main skill's map summarises it in 1 to 3 sentences: what the skill helps with, when it is needed, and what fits better in a near case. Change both together.
+    - Keep the skill's rules and instructions in line with its boundary. Do not repeat a trigger test in a rule.
+10. **Make a parent a flow, not a router.** The main skill's map is where the agent chooses skills. The agent reads each path top-down and each file whole.
+    - At a parent's top, keep only rules and advice shared by everything below and lacking their own skill.
+    - Give each direct child one line: its name and its purpose. Introduce no grandchildren there.
     - Use if-then-else only to impose order. Leave child internals to the child. A parent doing the child's work makes the agent stop there. Turn complicated instructions into children.
+    - Any guide may use any other guide when needed.
+    - A main skill holds the guide map: one entry per main guide and per guide under it, with its path, what it is for, when to use it and when not. It may pass about 100 lines where the map needs it, with the reason in its design.
 11. **Spend tokens only where they buy quality.** Every turn carries the whole context again:
     - **reading:** search first, read needed parts and follow pointers. Read nothing twice;
     - **turns:** combine independent calls. Read skills for the same step in one turn. Repeat no check without need;
