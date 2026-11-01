@@ -53,7 +53,8 @@
       "rejected": "Child is only named or searched.",
       "evidence": "Complete returned child text before its action.",
       "user_choices": "Do not create another checkpoint.",
-      "no_skill_eligible": false
+      "no_skill_eligible": false,
+      "outcome": "loading"
     },
     {
       "id": "act:rule:5",

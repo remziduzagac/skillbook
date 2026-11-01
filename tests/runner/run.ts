@@ -1,3 +1,4 @@
+import { resultRubric } from "./judge-protocol";
 import { selectedTurns, putCheckpoint, commitCheckpoint } from "./chapters";
 import { resolvedNeeds } from "./needs";
 import { sourceSnapshots } from "./source-snapshots";
@@ -104,12 +105,12 @@ export async function runOne(
     if (args.login && agent === "codex") copyFileSync(join(home, ".codex/auth.json"),
       join(judgeHome, ".codex", "auth.json"));
     const judgeEnv = agentEnv(judgeHome, "codex", args.login, tmp);
-    let chapterCostUnknown = false;
+    // The Claude cap guards the tested agent's own spending; auxiliary Codex calls are billed apart and stay reported.
+    let chapterCostUnknown = false, agentCostUnknown = false;
     const rawCall = structuredCall(judgeWork, judgeEnv, args.timeout, groups, amount => {
       limits?.account(amount);
       result.cost += amount ?? 0;
       result.cost_unknown ||= amount === null;
-      chapterCostUnknown ||= amount === null;
     }, driver);
     const call: typeof rawCall = async (instruction, data) => {
       limits?.dispatch(instruction.startsWith("Play the user") ? "simulated_user" : "judge");
@@ -148,7 +149,7 @@ export async function runOne(
       if (chapter && failedChapter === chapter.number) continue;
       const i = index + 1,
         remaining = Math.max(0, budget - result.cost);
-      if (agent === "claude" && (remaining <= 0 || (c.chapters ? chapterCostUnknown : result.cost_unknown))) {
+      if (agent === "claude" && (remaining <= 0 || (c.chapters ? chapterCostUnknown : agentCostUnknown))) {
         result.error = `turn ${i}: remaining budget is exhausted or unknown`;
         if (!chapter || remaining <= 0) break;
         failedChapter = chapter.number;
@@ -179,6 +180,7 @@ export async function runOne(
       result.cost += turnCost ?? 0;
       result.cost_unknown ||= turnCost === null || failed;
       chapterCostUnknown ||= turnCost === null || failed;
+      agentCostUnknown ||= turnCost === null || failed;
       events.push(turnEvents);
       chapterEvents.push(...turnEvents);
       const observedSession = sessionId(agent, turnEvents);
@@ -260,10 +262,7 @@ export async function runOne(
       const activeRubrics = measurement.rubrics;
       evidence.result_parts = measurement.result_parts;
       for (const part of evidence.result_parts.filter((p: Event) => !p.exclusion && (p.kind === "visible" || p.later_step)))
-        if (!activeRubrics.some(r => r.id === part.id)) activeRubrics.push({ id: part.id, tag: `result:${part.skill}`, criterion:
-          `Check this promised result part when applicable: ${part.part}. Source: ${part.source.text}. ` +
-          (part.alternatives ? `This is the ${part.alternative} alternative in ${part.alternatives}; the source promises alternatives, not both. ` : "") +
-          "Return unknown if applicability is not established. Cite the visible answer, file or delegated report evidence." });
+        if (!activeRubrics.some(r => r.id === part.id)) activeRubrics.push(resultRubric(part));
       const pending = [];
       for (const rubric of activeRubrics) {
         const dep = rubric.depends_on, prior = dep ? taggedHistory[`${dep.turn}:${dep.check}`] : true;

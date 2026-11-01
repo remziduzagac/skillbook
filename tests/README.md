@@ -25,7 +25,7 @@ Runs use throwaway homes and project copies. Personal credentials are copied onl
 
 Each result records final answers, unscored progress, ordered actions, file diffs, relevant contents, helper evidence and completeness. A helper's start, brief, returned work, freshness and end are separate facts. Missing Codex helper details stay unknown; a wait call is not a start. A helper-unavailable answer must disclose the limit and any pending independent check. Refusal, a file name or a claim of execution alone cannot establish a promised result.
 
-Semantic scoring requires calibrated judging and a validated active trace book. See [checks/README.md](checks/README.md#historical-and-active-validation) and [judge.md](judge.md). Automatic passes do not imply semantic passes. Correct, allowed-alternative and targeted wrong traces are in [festival-traces.json](calibration/festival-traces.json); account-free tests check their structure and exercise file assertions. Semantic judge failure detection remains unobserved until separately authorised validation. The scoring gate stays closed without that report.
+Semantic scoring requires calibrated judging and a validated active trace book. See [checks/README.md](checks/README.md#historical-and-active-validation) and [judge.md](judge.md). Automatic passes do not imply semantic passes. Correct, allowed-alternative and targeted wrong traces are in [festival-traces.json](calibration/festival-traces.json); account-free tests check their structure and exercise file assertions. The first semantic validation found trace and label faults; the corrected book requires a fresh report under the shared live-scoring contract. The scoring gate stays closed without a matching report.
 
 ## Chapters and evidence
 

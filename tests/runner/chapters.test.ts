@@ -243,3 +243,18 @@ test("Claude process failure also resumes at the next checkpoint with total unkn
     expect(result.cost_unknown).toBe(true);
     expect(result.turns.map((t: Event) => t.turn)).toEqual([1, 3, 4]);
   }));
+
+test("an auxiliary call of unknown cost does not stop a Claude run, and stays reported", () =>
+  fixture(async (c, out) => {
+    const prompts: string[] = [];
+    const withUser = { ...c, user: { mode: "fixed" as const, description: "A resident", facts: {note: "One fact"} }, goal: "Finish" };
+    const result = await runOne(withUser, "claude", "sonnet", 1, options(), out, 1, async cmd => {
+      if (cmd[0] !== "claude") return encode([answer('{"off_script":false,"reason":"The next message fits."}')]);
+      prompts.push(cmd[2]!);
+      return encode([{type: "assistant", session_id: "s", message: {content: [{type: "text", text: "result"}]}},
+        {type: "result", total_cost_usd: 0.001}]);
+    });
+    expect(prompts).toEqual(["Turn 1", "Turn 2", "Turn 3", "Turn 4"]);
+    expect(result.error ?? "").not.toContain("budget");
+    expect(result.cost_unknown).toBe(true);
+  }));

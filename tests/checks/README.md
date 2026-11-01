@@ -37,3 +37,11 @@ Active scoring requires a separate book with `scope: active`, selected with `--r
 Active trace books can supply `chapter_sources`, keyed by `case:chapter`, for checkpoint-specific source files. Trace history cannot cross a case or chapter. Rechecking uses saved chapter checkpoints and global turn numbers. Retired case selectors fail before output creation or model calls; historical rechecking requires the tagged checkout.
 
 Each turn selects checkpoint evidence through `judge_files`: exact files or folder prefixes. Changed and made files are included with their sources. Selection never pulls files from another chapter. Full snapshots remain available locally for assertions and replay. Judge input estimates measure serialized evidence bytes, not observed tokens or dollars.
+
+## Validation contract
+
+Active fixture validation and live scoring use `runner/judge-protocol.ts` for full source-rule and promised-return criteria, citation checks and rule-part aggregation. Fixture traces pass through the same live evidence allowlist and native helper extractors. Author-only access assertions, raw command output and helper-control claims are excluded. Native helper prompts, states and returned reports remain evidence.
+
+The book may name `expectations` by trace reference, including `null` for an unobservable or inapplicable fact. Unknown matches are reported as unknown, never as observed semantic passes. Whole-guide delivery belongs to the access/loading view; its semantic-only candidates produce unknown without a model call. Caller-owned follow-up work is judged in the caller’s scope.
+
+`fixture-validation.ts` shares each trace once per call, checks the complete structured request against 600,000 characters, and rejects an indivisible oversized candidate before dispatch. A batch is accepted only after every returned row is validated; errors record its candidate identities without a successful prefix. Active report hashes include the shaping, prompting, verification and measurement code as well as frozen sources and book data, so reports from an earlier contract expire. Historical book data and hashes remain unchanged.

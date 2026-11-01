@@ -45,7 +45,7 @@
         "line": 19,
         "text": "The visible “Going with” line, plus an offer of deep questions for parts whose answers depend on each other."
       },
-      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "applicability": "A Going with line is needed for consequential agent-made choices the work rests on, not when none were made. Offer deep questions only for parts whose answers depend on each other. An initial question round can be the current return.",
       "required_skill": "understand-clarify-shallow",
       "deadline": "caller return or final answer",
       "expected": "The visible “Going with” line, plus an offer of deep questions for parts whose answers depend on each other.",

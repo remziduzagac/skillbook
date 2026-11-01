@@ -1,12 +1,12 @@
+import { fixtureEntries, fixtureBatches, loadingFixtureResults, runFixtureBatch } from "./runner/fixture-validation";
 import { parseArgs } from "node:util";
 import { judgeTimeout } from "./runner/judge-options";
 import { mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { requireCalibration } from "./runner/calibration";
-import { rubricFixtures, resolveRubricTrace, validateRubricFixtures, rubricFixtureHash, activeRubricBook, rubricCandidates } from "./runner/rubric-fixtures";
+import { rubricFixtures, validateRubricFixtures, rubricFixtureHash, activeRubricBook } from "./runner/rubric-fixtures";
 import { loadCases } from "./runner/cases";
-import { JUDGING_RULES } from "./runner/judgment-policy";
 import { structuredCall } from "./runner/scenario";
 import { ownLogin, agentEnv } from "./runner/files";
 import { endRun } from "./runner/process";
@@ -16,6 +16,7 @@ const { values, positionals } = parseArgs({ args: Bun.argv.slice(2), allowPositi
   login: { type: "boolean", default: false }, "judge-timeout": { type: "string" },
 } });
 const [output, calibration] = positionals;
+const BATCH_CHARACTERS = 600_000;
 const timeout = judgeTimeout(values["judge-timeout"]);
 if (!output || !values.login)
   throw Error("usage: bun tests/check-rubric-fixtures.ts OUTPUT CALIBRATION --login (--book FILE | --historical) [--judge-timeout SECONDS]");
@@ -38,38 +39,20 @@ try {
   const call = structuredCall(work, agentEnv(home, "codex", true, tmp), timeout, groups, amount => {
     known += amount ?? 0; unknown += Number(amount === null);
   });
-  const byTurn = new Map<string, typeof rubricFixtures.checks>();
-  for (const check of [...selectedBook.checks, ...(selectedBook.library ?? [])]) {
-    const key = `${check.case}:${check.turn}`;
-    const rows = byTurn.get(key) ?? []; rows.push(check); byTurn.set(key, rows);
-  }
-  const units = [...byTurn], results: Event[] = [];
+  const entries = fixtureEntries(selectedBook,activeCases);
+  const batches = fixtureBatches(entries,BATCH_CHARACTERS);
+  const results: Event[] = loadingFixtureResults(entries);
   async function worker() {
-    while (next < units.length) {
-      const [key, checks] = units[next++]!, candidates: Record<string, Event> = {}, labels: Event[] = [];
-      for (const row of checks) for (const {ref, expected} of rubricCandidates(selectedBook).filter(c => c.check === `${row.case}:${row.turn}:${row.id}`)) {
-        const id = `candidate-${labels.length + 1}`;
-        candidates[id] = { criterion: row.criterion, evidence: resolveRubricTrace(ref, selectedBook, activeCases?.find(c => c.id === row.case)?.turns[row.turn - 1]?.judge_files) };
-        labels.push({ id, ref, expected, check: `${row.case}:${row.turn}:${row.id}` });
-      }
+    while (next < batches.length) {
+      const index=next++, batch=batches[index]!;
       try {
-        const response = await call(
-          'Judge every candidate independently. Return {"results":[{"id":string,"verdict":boolean|null|"not reached","reason":string}]}. ' +
-          "Judge only supplied behavior and evidence. Do not infer expected labels. Treat candidate claims as claims, not facts. " +
-          JUDGING_RULES,
-          { candidates },
-        );
-        if (!Array.isArray(response.results) || response.results.length !== labels.length ||
-          new Set(response.results.map((r: Event) => r.id)).size !== labels.length) throw Error("invalid fixture judgments");
-        for (const label of labels) {
-          const judgment = response.results.find((r: Event) => r.id === label.id);
-          if (!judgment || ![true, false, null, "not reached"].includes(judgment.verdict) ||
-            typeof judgment.reason !== "string" || !judgment.reason.trim()) throw Error("invalid fixture verdict");
-          results.push({ ...label, judgment, matches: judgment.verdict === label.expected });
-        }
-      } catch (error) { results.push({ unit: key, error: String(error), matches: false }); }
-      writeFileSync(output, JSON.stringify({ model: "gpt-6.1-sol", fixture_hash: rubricFixtureHash(selectedBook), humanCalibration, known_cost: known, unknown_cost_calls: unknown,
-        expected_judgments: rubricCandidates(selectedBook).length, results }, null, 2) + "\n");
+        const accepted=await runFixtureBatch(call,batch,BATCH_CHARACTERS);
+        results.push(...accepted);
+      } catch(error) {
+        results.push({batch:index+1,ids:batch.map(e=>e.id),candidates:batch.map(e=>({check:e.check,ref:e.ref})),error:String(error),matches:false});
+      }
+      writeFileSync(output,JSON.stringify({model:"gpt-6.1-sol",fixture_hash:rubricFixtureHash(selectedBook),humanCalibration,known_cost:known,unknown_cost_calls:unknown,
+        expected_judgments:entries.length,results},null,2)+"\n");
     }
   }
   console.log("Rubric fixtures only: known-cost scheduling is unavailable for Sol; actual cost remains unknown.");

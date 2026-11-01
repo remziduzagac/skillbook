@@ -13,3 +13,8 @@ Quotes received in May 2026. No booking is authorized.
 ## Contacts
 
 - School: Ana Ruiz, caretaker, `office@school.example.org`.
+
+## CSV records
+
+- old-signups.csv holds last year's sign-ups and has no other copy.
+- duplicate-contacts.csv is still in use for the group's current contacts.
