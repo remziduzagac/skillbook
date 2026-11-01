@@ -37,11 +37,11 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   - the number of runs, 1 by default: a rule is covered by several different cases rather than by repeating one, since varied prompts show more for the same cost; a case is repeated only when it fails or its results disagree (D213);
   - whether the pointer is in the user's instruction file, yes by default;
   - `skills`, the implemented skills whose behaviour or routing boundary it exercises; `category`, normal, boundary or edge; `rejects`, the plausible wrong behaviour;
-  - `covers`, the aspects of the skills it tests, by the ids `tests/run.py --coverage` names from the skill files: each rule, piece of advice, step, route, "Not for" line, checklist item and final check step, such as `act:rule:5` or `act:not-for:act-rightsize`; only what its checks or review can fail on;
+  - `covers`, the aspects of the skills it tests, by the ids `bun tests/run.ts --coverage` names from the skill files: each rule, piece of advice, step, route, "Not for" line, checklist item and final check step, such as `act:rule:5` or `organize:rule:6`; only what its checks or review can fail on;
   - `routing_only = true`, the reads-only, one-turn routing layer described above;
   - `review`, semantic acceptance criteria for behavioral cases; automatic success leaves these pending, and the summary includes each turn's answer for review. After each behavioral run, passed or failed, it is judged against them by fresh agents on Sonnet, another model only with the person's approval (D247), as `tests/judge.md` says, and the person spot-checks unclear verdicts and those the automatic checks disagree with;
   - `project_skills`, the repository's own skills copied into the isolated agent skill folder for a project-skill exercise only, never added to the shipped set;
-  - the checks a script can make from the event log, for the whole run under `[checks]`, or for one turn under `[turns.checks]`, judged on that turn's answer and changes (D216):
+  - the checks a script can make from the event log, for the whole run in `checks`, or for one turn in `turns[].checks`, judged on that turn's answer and changes (D216):
     - the skills read or not read (`reads`, `reads_not`), by name, for the run or one turn: a read counts only with a successful matching tool result or a supported reading command that exits 0; a path merely named, as by `echo` or `ls`, does not count; a step counts only where a zero exit proves it ran and succeeded: every step of `a && b`, and only what follows the last `;`, new line or `||`; a step holding a pipe or a redirection, and a command with a command substitution or a background job, is left uncounted; a command that exits non-zero proves no read, even where a later step such as a search found nothing;
     - nothing changed in the toy project (`no_changes`), named files changed or created (`changed`), or named files left unchanged (`unchanged`);
     - a file that still holds given facts (`file_contains`) or got shorter (`shorter`);
@@ -81,7 +81,7 @@ The project skills have no shipped-set design sections. These designed scenarios
 
 ## Build validation schedule
 
-Build the scenario, its fixture and its checks before any model test, and validate every check against correct and wrong evidence without a model. Then pilot one chapter on Codex with GPT-6.1 Sol and GPT-6 Luna, with its cost given first. Then run the whole scenario once on each model. Investigate patterns both models share, fix those patterns, and rerun only the affected chapters. A fix counts as proven only after it also holds on a second, different scenario (D253, D288).
+Build the scenario, its fixture and its checks before any model test, and validate every check against correct and wrong evidence without a model. Then pilot one chapter on Codex with GPT-6.1 Sol and GPT-6 Luna, with its cost given first. Then run the whole scenario once on each of the four selected models: Claude Code with Sonnet and Haiku, Codex with GPT-6.1-Sol and GPT-6 Luna. Investigate patterns both models share, fix those patterns, and rerun only the affected chapters. A fix counts as proven only after it also holds on a second, different scenario (D253, D288).
 
 ## The runner's rules
 

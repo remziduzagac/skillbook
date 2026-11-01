@@ -89,12 +89,17 @@ export async function rubricJudge(call: StructuredCall, request: JudgeRequest): 
   return { ...result, id: request.rubric.id, tag: request.rubric.tag };
 }
 
-export function judgeEvidence(turns: Event[], sources: Record<string, string> = {}) {
+export function judgeEvidence(turns: Event[], sources: Record<string, string> = {}, selected?: string[]) {
   const keys = ["scripted_message", "sent_message", "final_answer", "between_tools", "actions", "file_diffs",
     "trace_complete", "agents_started", "agents_unseen", "reads", "changes", "files", "paths_present", "fresh_session", "helpers", "turn", "chapter"];
   const chapter = turns.at(-1)?.chapter;
   const visible = chapter === undefined ? turns : turns.filter(t => t.chapter === chapter);
-  return { sources, current_turn: turns.at(-1)?.turn ?? turns.length, progress_role: "unscored evidence", turns: visible.map(t => Object.fromEntries(keys.filter(k => k in t).map(k => [k, t[k]]))) };
+  const changed = new Set(Object.keys(visible.at(-1)?.file_diffs ?? {}));
+  const wanted = (path: string) => selected === undefined || changed.has(path) ||
+    selected.some(p => p.endsWith("/") ? path.startsWith(p) : path === p);
+  const keep = (files: Record<string, unknown>) => Object.fromEntries(Object.entries(files).filter(([p]) => wanted(p)));
+  return { sources: keep(sources), current_turn: turns.at(-1)?.turn ?? turns.length, progress_role: "unscored evidence", turns: visible.map(t => Object.fromEntries(keys.filter(k => k in t).map(k =>
+    [k, ["files", "file_diffs"].includes(k) ? keep(t[k]) : t[k]]))) };
 }
 
 export async function rubricBatch(call: StructuredCall, requests: JudgeRequest[]): Promise<JudgeResult[]> {

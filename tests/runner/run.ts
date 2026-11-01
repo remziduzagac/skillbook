@@ -1,5 +1,6 @@
 import { selectedTurns, putCheckpoint, commitCheckpoint } from "./chapters";
 import { resolvedNeeds } from "./needs";
+import { sourceSnapshots } from "./source-snapshots";
 import { helperEvidence } from "./helpers";
 import { ruleChecks } from "./rule-checks";
 import { measurementReport } from "./measurement-report";
@@ -93,7 +94,7 @@ export async function runOne(
     let before = snapshot(work);
     const env = agentEnv(home, agent, args.login, tmp);
     result.initial_paths = Object.keys(before);
-    result.fixture_sources = fixtureText(work);
+    result.fixture_sources = sourceSnapshots(work, fixtureText(work), c.source_snapshots, true);
     marker = env[MARKER];
     const judgeWork = join(root, "judge"), judgeHome = join(root, "judge-home");
     mkdirSync(judgeWork);
@@ -136,7 +137,7 @@ export async function runOne(
         if (agent === "claude" && existsSync(join(work, "AGENTS.md")) && !existsSync(join(work, "CLAUDE.md")))
           copyFileSync(join(work, "AGENTS.md"), join(work, "CLAUDE.md"));
         commitCheckpoint(work, chapter.number);
-        previous = baseline = snapshot(work); previousText = baselineText = fixtureText(work);
+        previous = baseline = snapshot(work); previousText = baselineText = sourceSnapshots(work, fixtureText(work), c.source_snapshots, true);
         if (!result.turns.length) {
           before = baseline; result.initial_paths = Object.keys(before); result.fixture_sources = baselineText;
         }
@@ -189,7 +190,7 @@ export async function runOne(
       observation.tmp_listing = ran.tmp;
       observation.baseline_files = baselineText;
       observation.baseline_snapshot = baseline;
-      const currentText = fixtureText(work),
+      const currentText = sourceSnapshots(work, fixtureText(work), c.source_snapshots),
         [final, between] = turn_parts(agent, turnEvents);
       observation.files = currentText;
       observation.final_answer = final;
@@ -246,7 +247,9 @@ export async function runOne(
       evidence.resolved_needs = resolvedNeeds(turn, evidence, true);
       if (args.judge && !failed) {
         try {
-          const applicability = await applicableClaims(call, evidence.claim_text, evidence.actions, sent.message, ruleChecks(), evidence.claim_messages);
+          const applicability = await applicableClaims(call, evidence.claim_text, evidence.actions, sent.message, ruleChecks().filter(def => def.applicability !== "scenario" ||
+            turn.rule_marks?.some(mark => mark.id === def.id) ||
+            evidence.resolved_needs.some((need: Event) => need.needed === true && need.skill === def.required_skill)), evidence.claim_messages);
           evidence.claim_applicability = applicability.claims;
           evidence.rule_applicability = applicability.marks;
         }
@@ -257,7 +260,7 @@ export async function runOne(
       const activeRubrics = measurement.rubrics;
       evidence.result_parts = measurement.result_parts;
       for (const part of evidence.result_parts.filter((p: Event) => !p.exclusion && (p.kind === "visible" || p.later_step)))
-        activeRubrics.push({ id: part.id, tag: `result:${part.skill}`, criterion:
+        if (!activeRubrics.some(r => r.id === part.id)) activeRubrics.push({ id: part.id, tag: `result:${part.skill}`, criterion:
           `Check this promised result part when applicable: ${part.part}. Source: ${part.source.text}. ` +
           (part.alternatives ? `This is the ${part.alternative} alternative in ${part.alternatives}; the source promises alternatives, not both. ` : "") +
           "Return unknown if applicability is not established. Cite the visible answer, file or delegated report evidence." });
@@ -266,7 +269,7 @@ export async function runOne(
         const dep = rubric.depends_on, prior = dep ? taggedHistory[`${dep.turn}:${dep.check}`] : true;
         if (prior !== true) evidence.judgments.push({ id: rubric.id, tag: rubric.tag,
           verdict: prior === "not reached" ? "not reached" : null, reason: "prerequisite not established" });
-        else pending.push({ rubric, answer: final, evidence: judgeEvidence(chapterTurns, baselineText) });
+        else pending.push({ rubric, answer: final, evidence: judgeEvidence(chapterTurns, baselineText, turn.judge_files) });
       }
       try {
         evidence.judgments.push(...(args.judge && !failed ? await rubricBatch(call, pending) : pending.map(r =>
@@ -336,18 +339,14 @@ export async function runOne(
 }
 export function planRuns(cases: Case[], args: Options): [Case, Agent, string, number][] {
   const plan: [Case, Agent, string, number][] = [];
-  if (args.pilot) {
-    for (const c of cases) for (const model of ["gpt-6.1-sol", "gpt-6-luna"]) for (let n = 1; n <= 3; n++)
-      for (const condition of (n % 2 ? ["installed", "no-skill"] : ["no-skill", "installed"]) as ("installed" | "no-skill")[])
-        plan.push([{ ...c, condition }, "codex", model, n]);
-    return plan;
-  }
   for (const c of cases)
     for (const agent of args.agents)
       if (c.agents.includes(agent)) {
         const models = args.model.filter((m) => m.startsWith(agent + "=")).map((m) => m.slice(agent.length + 1));
-        for (const model of models.length ? models : [DEFAULT_MODELS[agent]])
+        for (const model of models.length ? models : c.models?.[agent] ?? [DEFAULT_MODELS[agent]]) {
+          if (c.models?.[agent] && !c.models[agent]!.includes(model)) throw Error(`model ${model} is not allowed by ${c.id}`);
           for (let n = 1; n <= (args.runs || c.runs); n++) plan.push([c, agent, model, n]);
+        }
       }
   return plan;
 }
@@ -358,7 +357,7 @@ export async function runPlan(
   runner: typeof runOne = runOne,
 ) {
   mkdirSync(out, { recursive: true });
-  const limits = args.pilot ? new CallLimits() : undefined;
+  const limits: CallLimits | undefined = undefined;
   let next = 0,
     spent = 0,
     unknown = 0,

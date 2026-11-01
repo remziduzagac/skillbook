@@ -33,7 +33,6 @@ export function parseArgs(argv: string[]): Options {
       "rubric-book": { type: "string" },
       "rubric-validation": { type: "string" },
       calibration: { type: "string" },
-      pilot: { type: "boolean", default: false },
       "no-skill": { type: "boolean", default: false },
       judge: { type: "boolean", default: false },
       case: { type: "string", default: "" },
@@ -66,13 +65,10 @@ export function parseArgs(argv: string[]): Options {
   if (v.chapter && (!Number.isInteger(Number(v.chapter)) || Number(v.chapter) < 1)) throw Error("invalid --chapter");
   if (v.suite && !["short", "master"].includes(v.suite)) throw Error("invalid --suite");
   if (v["user-mode"] && !["fixed", "simulated"].includes(v["user-mode"])) throw Error("invalid --user-mode");
-  if (v.pilot && (v["no-skill"] || v["user-mode"] === "simulated"))
-    throw Error("--pilot uses both conditions and fixed users");
   return {
     chapter: v.chapter ? Number(v.chapter) : undefined,
     suite: v.suite as Options["suite"],
-    user_mode: v.pilot ? "fixed" : v["user-mode"] as Options["user_mode"],
-    pilot: v.pilot,
+    user_mode: v["user-mode"] as Options["user_mode"],
     no_skill: v["no-skill"],
     judge: v.judge,
     calibration: v.calibration,
@@ -84,8 +80,8 @@ export function parseArgs(argv: string[]): Options {
     model: v.model!,
     login: v.login!,
     instruction: v.instruction!,
-    budget: v.pilot ? 5 : number("budget", 0, false),
-    jobs: v.pilot ? 1 : number("jobs", 1, true),
+    budget: number("budget", 0, false),
+    jobs: number("jobs", 1, true),
     timeout: number("timeout", 0.001, false),
     keep: v.keep!,
     out: v.out,
@@ -102,7 +98,7 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
     console.log(
       "bun tests/run.ts [--case TEXT] [--chapter N] [--agents claude,codex] [--model agent=model] " +
         "[--runs N] [--jobs N] [--budget USD] [--timeout SECONDS] [--login] [--keep] [--out DIR] " +
-        "[--no-skill] [--pilot] [--suite short|master] [--user-mode fixed|simulated] [--judge --calibration FILE --rubric-validation FILE --rubric-book FILE] [--dry-run] [--yes] [--validate] [--coverage] [--summary] [--to-judge DIR]",
+        "[--no-skill] [--suite short|master] [--user-mode fixed|simulated] [--judge --calibration FILE --rubric-validation FILE --rubric-book FILE] [--dry-run] [--yes] [--validate] [--coverage] [--summary] [--to-judge DIR]",
     );
     return 0;
   }
@@ -112,7 +108,7 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
     return 0;
   }
   const all = loadCases(),
-    cases = all.filter((c) => args.pilot ? /scenario-(06-handbook|14-quick)$/.test(c.id) : c.id.includes(args.case) && (!args.suite || c.suite === args.suite));
+    cases = all.filter((c) => c.id.includes(args.case) && (!args.suite || c.suite === args.suite));
   if (args.validate) {
     console.log(`${all.length} YAML cases valid; ${compareConversions()} TOML conversions identical`);
     return 0;

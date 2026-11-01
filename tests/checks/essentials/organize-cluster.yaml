@@ -1,0 +1,26 @@
+{
+  "skill": "organize-cluster",
+  "checks": [],
+  "results": [
+    {
+      "part": "The view, how it will stay current and any requested tag edits. All other source content stays unchanged.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/organize/cluster.md",
+        "line": 19,
+        "text": "The view, how it will stay current and any requested tag edits. All other source content stays unchanged.\n\n```text\nA B C → view over A, B, C (source content unchanged)\n```"
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "organize-cluster",
+      "deadline": "caller return or final answer",
+      "expected": "The view, how it will stay current and any requested tag edits. All other source content stays unchanged.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "result:organize-cluster:0"
+  ]
+}

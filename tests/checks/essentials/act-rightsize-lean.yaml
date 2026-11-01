@@ -1,0 +1,63 @@
+{
+  "skill": "act-rightsize-lean",
+  "checks": [
+    {
+      "id": "act-rightsize-lean:rule:3",
+      "key": "act-rightsize-lean:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/act/rightsize/lean.md",
+        "line": 33,
+        "text": "3. **Keep everything a rule requires.** Follow the `act-rightsize` guide's sixth rule. What a rule requires is needed by definition."
+      },
+      "applicability": "scenario",
+      "required_skill": "act-rightsize-lean",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of act-rightsize-lean:rule:3: Keep everything a rule requires. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "act-rightsize-lean:rule:4",
+      "key": "act-rightsize-lean:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/act/rightsize/lean.md",
+        "line": 34,
+        "text": "4. **Get approval for the list first.** Use the `act-rightsize` guide's approval rule and the `respond-ask` guide. List every part to remove or replace with a pointer. Give each reason."
+      },
+      "applicability": "scenario",
+      "required_skill": "act-rightsize-lean",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of act-rightsize-lean:rule:4: Get approval for the list first. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The material with extra parts removed, plus what was removed and why.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/act/rightsize/lean.md",
+        "line": 21,
+        "text": "The material with extra parts removed, plus what was removed and why."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "act-rightsize-lean",
+      "deadline": "caller return or final answer",
+      "expected": "The material with extra parts removed, plus what was removed and why.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "act-rightsize-lean:rule:3",
+    "act-rightsize-lean:rule:4",
+    "result:act-rightsize-lean:0"
+  ]
+}

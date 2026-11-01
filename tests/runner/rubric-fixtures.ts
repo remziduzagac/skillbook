@@ -8,6 +8,7 @@ export interface RubricBook {
   sources: Record<string, Record<string, string>>;
   chapter_sources?: Record<string, Record<string, string>>;
   traces: Record<string, Event>;
+  library?: RubricBook["checks"];
   checks: { case: string; turn: number; id: string; tag: string; criterion: string;
     positive: string; negative: string; alternatives?: string[] }[];
 }
@@ -22,7 +23,7 @@ export function rubricTrace(ref: string, book: RubricBook = rubricFixtures, seen
   const base = rubricTrace(trace.base, book, seen);
   return { ...base, observation: { ...base.observation, ...trace.observation } };
 }
-export function resolveRubricTrace(ref: string, book: RubricBook = rubricFixtures) {
+export function resolveRubricTrace(ref: string, book: RubricBook = rubricFixtures, selected?: string[]) {
   const trace = rubricTrace(ref, book);
   const sources = trace.chapter === undefined ? book.sources[trace.case] : book.chapter_sources?.[`${trace.case}:${trace.chapter}`];
   if (!sources) throw Error("missing rubric sources: " + trace.case);
@@ -35,15 +36,31 @@ export function resolveRubricTrace(ref: string, book: RubricBook = rubricFixture
     for (const removed of observation.files_removed ?? []) delete files[removed];
     return { ...observation, files_before: before, files_after: { ...files } };
   });
-  return { sources, turns };
+  if (selected === undefined) return { sources, turns };
+  const changed = new Set<string>([...Object.keys(turns.at(-1)?.files_changed ?? {}), ...(turns.at(-1)?.files_removed ?? [])]);
+  const wanted = (p: string) => changed.has(p) || selected.some(s => s.endsWith("/") ? p.startsWith(s) : p === s);
+  const keep = (files: Record<string, string>) => Object.fromEntries(Object.entries(files).filter(([p]) => wanted(p)));
+  return { sources: keep(sources), turns: turns.map(t => ({ ...t, files_before: keep(t.files_before),
+    files_after: keep(t.files_after), files_changed: keep(t.files_changed ?? {}) })) };
 }
 export function validateRubricFixtures(book: RubricBook = rubricFixtures, cases?: Case[]) {
   if (book.scope === "active" && !cases) throw Error("active rubric validation requires current cases");
   const expected = cases ? new Map<string, { tag: string; criterion: string }>(cases.flatMap(c => c.turns.flatMap((t, i) =>
     (t.rubric ?? []).map(r => [`${c.id}:${i + 1}:${r.id}`, r] as const)))) : undefined;
   if (!book.checks.length) throw Error("rubric book has no checks");
+  if (book.library) {
+    if (!expected) throw Error("library validation requires current cases");
+    for (const part of resultChecks().filter(p => !p.exclusion)) {
+      const row = book.library.find(r => r.id === part.id);
+      if (!row || !cases!.some(c => c.id === row.case)) throw Error("library has uncovered result checks: " + part.id);
+      expected.set(`${row.case}:${row.turn}:${row.id}`, {tag: `result:${part.skill}`, criterion: part.expected});
+    }
+    const keys = new Set(cases!.flatMap(c => c.turns.flatMap(t => (t.rubric ?? []).map(r => r.source_check))));
+    for (const rule of ruleChecks()) if (!keys.has(rule.key)) throw Error("library has uncovered rule checks: " + rule.id);
+  }
+  if (cases?.some(c => c.chapters) && !book.library) throw Error("chaptered active books need library validation");
   const seen = new Set<string>();
-  for (const row of book.checks) {
+  for (const row of [...book.checks, ...(book.library ?? [])]) {
     const key = `${row.case}:${row.turn}:${row.id}`, criterion = expected?.get(key);
     if (seen.has(key) || !row.tag?.trim() || !row.criterion?.trim() ||
       expected && (!criterion || criterion.tag !== row.tag || criterion.criterion !== row.criterion))
@@ -73,7 +90,7 @@ export function rubricFixtureHash(book: RubricBook = rubricFixtures) {
   return new Bun.CryptoHasher("sha256").update(JSON.stringify(data)).digest("hex");
 }
 export function rubricCandidates(book: RubricBook = rubricFixtures) {
-  return book.checks.flatMap(row => [
+  return [...book.checks, ...(book.library ?? [])].flatMap(row => [
     { ref: row.positive, expected: true },
     ...(row.alternatives ?? []).map(ref => ({ ref, expected: true })),
     { ref: row.negative, expected: false },

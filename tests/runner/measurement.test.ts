@@ -102,14 +102,12 @@ test("prior full reads stay unknown when retention cannot be proved; fresh sessi
   expect(availability({...a,prior_whole:["act"]},"act",3)).toBe("unknown");
   expect(availability(a,"act",3)).toBe("not opened");
 });
-test("pilot alternates both conditions for synthetic conversations", async () => {
+test("retired pilot option fails and explicit conditions retain generic scheduling", async () => {
   const {parseArgs}=await import("./cli"), {normalize}=await import("./cases"), {planRuns}=await import("./run");
-  const args=parseArgs(["--pilot"]), c=normalize({fixture:"tiny-weather",turns:[{prompt:"Inspect"}]}, "essentials/unit");
-  const plan=planRuns([c],args);
-  expect(plan.length).toBe(12);
-  expect(plan.slice(0, 2).map(([c])=>c.condition)).toEqual(["installed","no-skill"]);
-  expect(plan.slice(2, 4).map(([c])=>c.condition)).toEqual(["no-skill","installed"]);
-  expect(args.user_mode).toBe("fixed");
+  expect(()=>parseArgs(["--pilot"])).toThrow();
+  const args=parseArgs(["--agents", "codex", "--runs", "3"]);
+  const c=normalize({fixture:"tiny-weather",turns:[{prompt:"Inspect"}]}, "essentials/unit");
+  expect(planRuns([c, {...c, condition:"no-skill"}], args)).toHaveLength(6);
 });
 
 test("absence checks need established applicability and reject affected changes", async () => {

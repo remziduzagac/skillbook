@@ -59,7 +59,7 @@ try {
           verdict: prior === false || prior === "not reached" ? "not reached" : null,
           reason: "prerequisite or complete trace unavailable" });
         else pending.push({ rubric, answer: finalAnswer(t),
-          evidence: judgeEvidence(result.turns.slice(0, index + 1), result.chapter_checkpoints?.[t.chapter]?.sources ?? result.fixture_sources) });
+          evidence: judgeEvidence(result.turns.slice(0, index + 1), result.chapter_checkpoints?.[t.chapter]?.sources ?? result.fixture_sources, c.turns[(t.turn ?? index + 1) - 1]!.judge_files) });
       }
       try { t.judgments.push(...await rubricBatch(call, pending)); }
       catch (error) { t.judgments.push(...pending.map(p => ({ id: p.rubric.id, tag: p.rubric.tag,

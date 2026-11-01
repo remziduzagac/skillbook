@@ -145,7 +145,7 @@ export function check(
   for (const [p, limit] of Object.entries(checks.words_under ?? {})) {
     const text = availableFile(p) ? result.files![p] : null;
     out[`${p} has fewer than ${limit} words`] = text == null ? missingFile(p) :
-      (text.trim() ? text.trim().split(/\s+/u).length : 0) < limit;
+      (text.trim() ? text.trim().split(/\s+/u).filter(token => /[\p{L}\p{N}]/u.test(token)).length : 0) < limit;
   }
   for (const [p, replacement] of Object.entries(checks.only_replacement ?? {})) {
     const before = baseline(p), after = result.files?.[p];
@@ -195,6 +195,11 @@ export function check(
       before.replace(/\n$/, "").split("\n").every(line => {
         const found = lines.indexOf(line, position); position = found + 1; return found >= 0;
       });
+  }
+  for (const [folder, patterns] of Object.entries(checks.folder_contains ?? {})) {
+    const texts = Object.entries(result.files ?? {}).filter(([p]) => p.startsWith(folder.replace(/\/$/, "") + "/"));
+    for (const pattern of patterns) out[`pages under ${folder} contain /${pattern}/`] = !result.files ? null :
+      texts.some(([, value]) => matches(pattern, value ?? ""));
   }
   for (const [folder, least] of Object.entries(checks.written_under ?? {}))
     out[`at least ${least} files written under ${folder}`] = paths.filter((p) => p.startsWith(folder)).length >= least;

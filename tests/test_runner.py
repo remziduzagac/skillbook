@@ -339,10 +339,12 @@ class TurnLifecycle(unittest.TestCase):
         self.assertEqual([(a["tool"], a["file_path"]) for a in actions], [("Read", "fees.md")])
 
     def run_main(self, fake_run, runs=0, budget=1.0, jobs=4):
-        args = SimpleNamespace(case="history-out-of-email", agents="claude,codex", runs=runs, model=[], login=False,
+        args = SimpleNamespace(case="lifecycle-unit", agents="claude,codex", runs=runs, model=[], login=False,
                                instruction="", budget=budget, timeout=1, keep=False, dry_run=False, coverage=False,
                                summary=False, yes=True, jobs=jobs, to_judge=None)
         with tempfile.TemporaryDirectory() as output, \
+                patch.object(runner, "load_cases", return_value=[{"id": "essentials/lifecycle-unit",
+                    "agents": ["claude", "codex"], "runs": 1, "turns": [{"prompt": "Inspect"}], "checks": {}}]), \
                 patch.object(runner, "run_one", side_effect=fake_run), \
                 patch.object(runner, "login_problem", return_value=None), \
                 patch.object(runner, "parse_args", return_value=args), \

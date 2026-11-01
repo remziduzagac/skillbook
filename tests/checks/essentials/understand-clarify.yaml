@@ -109,5 +109,14 @@
       "alternative": "deep-summary"
     }
   ],
-  "validation": "Account-free correct/wrong fixtures; semantic failure detection remains unproven."
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-clarify:rule:1",
+    "understand-clarify:rule:2",
+    "understand:step:4",
+    "result:understand-clarify:0",
+    "result:understand-clarify:1",
+    "result:understand-clarify:2"
+  ]
 }

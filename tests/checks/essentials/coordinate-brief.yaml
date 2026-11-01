@@ -1,0 +1,135 @@
+{
+  "skill": "coordinate-brief",
+  "checks": [
+    {
+      "id": "coordinate-brief:rule:1",
+      "key": "coordinate-brief:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/brief.md",
+        "line": 22,
+        "text": "1. **Give the worker what it needs to start without guessing.** Include context unavailable in the files. Give paths and line numbers for information the worker can read in files. Report a missing input as a gap. Never invent the missing fact."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-brief",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of coordinate-brief:rule:1: Give the worker what it needs to start without guessing. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-brief:rule:4",
+      "key": "coordinate-brief:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/brief.md",
+        "line": 25,
+        "text": "4. **Give the first step and a success criterion.** Otherwise the worker can stop early or continue indefinitely."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-brief",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of coordinate-brief:rule:4: Give the first step and a success criterion. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-brief:rule:5",
+      "key": "coordinate-brief:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/brief.md",
+        "line": 26,
+        "text": "5. **Point to references instead of pasting their contents.** Give file paths, line numbers and the location of recorded decisions. Pasting file contents costs output tokens when you write the brief and input tokens when the worker reads it. Check the references are usable by that reader. Report an inaccessible input rather than claiming the brief is sufficient."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-brief",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of coordinate-brief:rule:5: Point to references instead of pasting their contents. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-brief:rule:7",
+      "key": "coordinate-brief:rule:7",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/brief.md",
+        "line": 28,
+        "text": "7. **Ask for a report sized for its main-agent reader.** Use the `act-rightsize` guide to size the report. Ask for the task outcome, decisions needed from the user, proposals, paths to evidence, and missing or unfinished work. Ask the worker to report cleanup under cleaned, kept and proposed. Put a changed or narrowed task first. Ask for a line on what was asked and why when tasks run together, the work is long, or the report will be kept for later. Put longer detail in a named scratch file. Ask the worker to return its path and the summary the caller needs."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-brief",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of coordinate-brief:rule:7: Ask for a report sized for its main-agent reader. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-brief:rule:8",
+      "key": "coordinate-brief:rule:8",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/brief.md",
+        "line": 29,
+        "text": "8. **Bootstrap a fresh worker through the actual essentials folder.** Mark the task as delegated work. Give the worker the essentials folder's absolute path. Tell it to load the `essentials` skill and use its guide map and name rule. Tell it to read the `act` guide, the `respond` guide and the `respond-layout` guide whole when their text is absent from its visible context. These rules shape its work and report. Rule 10 of the `act` guide bounds every step. Name other needed guides and have the worker read their parents by the main skill's name rule. This includes the `understand` guide. A settled brief does not prevent the worker from discovering an unknown that would change the result. Do not copy rule 10 of the `act` guide into a second rule set."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-brief",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of coordinate-brief:rule:8: Bootstrap a fresh worker through the actual essentials folder. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-brief:rule:9",
+      "key": "coordinate-brief:rule:9",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/brief.md",
+        "line": 30,
+        "text": "9. **Ask the worker to clean up before reporting.** Ask the worker to follow the `act-cleanup` guide: remove its temporary material, stop what it started and respect its limits. Ask it to report what it cleaned, kept or proposes to remove, and to check the cleanup result. A read-only task can still create a report or a process. Do not infer no leftovers from its label."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-brief",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of coordinate-brief:rule:9: Ask the worker to clean up before reporting. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The worker’s starting instructions and the report it must return. The task that asked for the brief sends it; writing it starts no worker.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/coordinate/brief.md",
+        "line": 18,
+        "text": "The worker’s starting instructions and the report it must return. The task that asked for the brief sends it; writing it starts no worker."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "coordinate-brief",
+      "deadline": "caller return or final answer",
+      "expected": "The worker’s starting instructions and the report it must return. The task that asked for the brief sends it; writing it starts no worker.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "coordinate-brief:rule:1",
+    "coordinate-brief:rule:4",
+    "coordinate-brief:rule:5",
+    "coordinate-brief:rule:7",
+    "coordinate-brief:rule:8",
+    "coordinate-brief:rule:9",
+    "result:coordinate-brief:0"
+  ]
+}

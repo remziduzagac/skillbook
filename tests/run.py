@@ -62,8 +62,6 @@ def main():
         print(runs_to_judge([Path(f) for f in args.to_judge]), end="")
         return 0
     cases = load_cases(args.case)
-    if not cases:
-        sys.exit(f"no case matches {args.case!r} under {CASES.relative_to(REPO)}")
     if args.coverage:
         if not args.summary:
             print(coverage(cases))
@@ -79,6 +77,9 @@ def main():
         if unknown_ids:
             return 1  # a case or the manual list names an aspect that no longer exists
         return 0
+
+    if not cases:
+        sys.exit(f"no case matches {args.case!r} under {CASES.relative_to(REPO)}")
 
     agents = [a for a in args.agents.split(",") if a]
     models = {agent: models_for(agent, args) for agent in agents}

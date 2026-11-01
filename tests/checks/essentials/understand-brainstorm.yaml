@@ -1,0 +1,63 @@
+{
+  "skill": "understand-brainstorm",
+  "checks": [
+    {
+      "id": "understand-brainstorm:rule:1",
+      "key": "understand-brainstorm:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/brainstorm.md",
+        "line": 26,
+        "text": "1. **Make options differ in kind.** Rewordings of one idea are one option."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-brainstorm",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-brainstorm:rule:1: Make options differ in kind. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-brainstorm:rule:2",
+      "key": "understand-brainstorm:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/brainstorm.md",
+        "line": 27,
+        "text": "2. **Use the `understand-weigh` guide only for a requested choice.** Compare on the same terms. Requested options or candidates need no selection round. Their caller owns what follows."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-brainstorm",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-brainstorm:rule:2: Use the `understand-weigh` guide only for a requested choice. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The requested options or candidates. Add a comparison and a decision, or why the choice is set aside, only when a choice was requested.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/brainstorm.md",
+        "line": 22,
+        "text": "The requested options or candidates. Add a comparison and a decision, or why the choice is set aside, only when a choice was requested."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-brainstorm",
+      "deadline": "caller return or final answer",
+      "expected": "The requested options or candidates. Add a comparison and a decision, or why the choice is set aside, only when a choice was requested.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-brainstorm:rule:1",
+    "understand-brainstorm:rule:2",
+    "result:understand-brainstorm:0"
+  ]
+}

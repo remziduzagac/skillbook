@@ -50,7 +50,7 @@ Skill names stay dashed: slashed names were tried and lowered Luna's routing fro
 
 Sets are agent-agnostic: plan, delegate, carryover and setup use the current agent’s controls with generic fallbacks; agent-specific install locations stay in the installer design and docs (D267).
 
-The test runner moves to TypeScript on pinned Bun, with YAML checked by a generated schema and a conversation model ready for scenarios; Python and TOML stay for comparison, and a terminal view is a later idea (D268).
+The test runner uses TypeScript on pinned Bun, with YAML checked by a generated schema. Python stays for replay and assertion comparison; its TOML cases are retired (D268, D288). A terminal view is a later idea.
 
 The main behavioral layer becomes fifteen realistic conversations, with fixed and constrained simulated users, calibrated rubric judging and pooled scores with intervals (D269).
 
@@ -60,4 +60,4 @@ Explicit requests to see or confirm a change first require a proposal and an end
 
 Judge validation separates tuning from blind held-out ratings, reports agreement on human passes and fails, splits mixed checks and adds pass^3 beside averages (D273).
 
-Build the festival scenario and pilot one chapter (D288). Before further skill changes, build validated per-agent skill-use records, shared and rule checks from skill text, result checks from promised returns, loading/outcome grids and outcome/result views, with trigger/near-miss cases and no-skill comparisons, following the attribution build order and settled choices in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) (D278).
+The festival scenario is built as six chapters and 28 turns, with authored correct/alternative/wrong traces and no model results yet. Validate semantic judging, then pilot one chapter (D288). Before further skill changes, build validated per-agent skill-use records, shared and rule checks from skill text, result checks from promised returns, loading/outcome grids and outcome/result views, with trigger/near-miss cases and no-skill comparisons, following the attribution build order and settled choices in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) (D278).

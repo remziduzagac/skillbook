@@ -83,3 +83,17 @@ test("unused reference definitions and reference-style images cannot satisfy an 
     expect(verdict({index_links: {"pages/index.md": "pages"}}, {files: {"pages/index.md": text},
       project_snapshot: {"pages/index.md": "i", "pages/a.md": "a"}})).toBe(false);
 });
+
+test("word allowance ignores standalone Markdown and punctuation but includes Unicode letters and digits", () => {
+  const c = {words_under: {"summary.md": 150}};
+  const list = '#\n' + Array.from({length: 145}, (_, i) => `- ${i % 2 ? "komşu" : "2026"}`).join('\n');
+  expect(verdict(c, {files: {"summary.md": list + '\n--- *** | > &'}})).toBe(true);
+  expect(verdict(c, {files: {"summary.md": list + ' one two three four five'}})).toBe(false);
+  expect(verdict({words_under: {"summary.md": 3}}, {files: {"summary.md": '# 日本語 ١٢٣ !'}})).toBe(true);
+});
+test("folder content checks accept chosen page names and reject missing or outside-only facts", () => {
+  const c = {folder_contains: {handbook: ["alarm", "112"]}};
+  expect(verdict(c, {files: {"handbook/a.md": "alarm", "handbook/nested/b.md": "112"}})).toBe(true);
+  expect(verdict(c, {files: {"handbook/a.md": "alarm", "handbook-old/b.md": "112"}})).toBe(false);
+  expect(verdict(c, {})).toBeNull();
+});

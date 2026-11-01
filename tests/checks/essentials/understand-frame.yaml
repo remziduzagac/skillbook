@@ -1,0 +1,81 @@
+{
+  "skill": "understand-frame",
+  "checks": [
+    {
+      "id": "understand-frame:rule:1",
+      "key": "understand-frame:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/frame.md",
+        "line": 24,
+        "text": "1. **Fill every part or mark it unknown.** Cover the problem, goal, exclusions, constraints and a good answer. Leaving a part empty lets later work treat an assumption as a fact and head the wrong way."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-frame",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-frame:rule:1: Fill every part or mark it unknown. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-frame:rule:2",
+      "key": "understand-frame:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/frame.md",
+        "line": 25,
+        "text": "2. **Mark guesses where they stand.** Use \"(guess)\", by the `understand` guide's rule, so the user can correct them."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-frame",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-frame:rule:2: Mark guesses where they stand. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-frame:rule:3",
+      "key": "understand-frame:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/frame.md",
+        "line": 26,
+        "text": "3. **Frame one problem.** Name a second problem and return it to the caller. Two problems cannot share one good answer."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-frame",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-frame:rule:3: Frame one problem. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The problem, goal, limits and test for a good answer, plus unknowns and what would settle them.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/frame.md",
+        "line": 20,
+        "text": "The problem, goal, limits and test for a good answer, plus unknowns and what would settle them."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-frame",
+      "deadline": "caller return or final answer",
+      "expected": "The problem, goal, limits and test for a good answer, plus unknowns and what would settle them.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-frame:rule:1",
+    "understand-frame:rule:2",
+    "understand-frame:rule:3",
+    "result:understand-frame:0"
+  ]
+}

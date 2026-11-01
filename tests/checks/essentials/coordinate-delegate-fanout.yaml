@@ -1,0 +1,117 @@
+{
+  "skill": "coordinate-delegate-fanout",
+  "checks": [
+    {
+      "id": "coordinate-delegate-fanout:rule:1",
+      "key": "coordinate-delegate-fanout:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/delegate/fanout.md",
+        "line": 25,
+        "text": "1. **Give each worker a different part or review lens.** Search first. Use one worker when a search or a small task suffices. The same question over the same material uses the `coordinate-delegate-council` guide."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-delegate-fanout",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-delegate-fanout:rule:1: Give each worker a different part or review lens. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-delegate-fanout:rule:2",
+      "key": "coordinate-delegate-fanout:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/delegate/fanout.md",
+        "line": 26,
+        "text": "2. **Keep findings in files until the answer needs them.** Each worker writes its own findings file and returns its path, count and what it could not find. Large raw findings would fill the main conversation."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-delegate-fanout",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-delegate-fanout:rule:2: Keep findings in files until the answer needs them. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-delegate-fanout:rule:3",
+      "key": "coordinate-delegate-fanout:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/delegate/fanout.md",
+        "line": 27,
+        "text": "3. **Consolidate through the bundled script.** Follow [the findings contract](fanout/assets/findings.md), using the `understand-research` guide for the shared finding fields and ranking of how evidence was obtained. Preserve every finding, source, conflict and negative result. Checking a quote proves only whether those words occur in the supplied source."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-delegate-fanout",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-delegate-fanout:rule:3: Consolidate through the bundled script. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-delegate-fanout:rule:4",
+      "key": "coordinate-delegate-fanout:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/delegate/fanout.md",
+        "line": 28,
+        "text": "4. **Validate the evidence the answer may rely on and every conflicting pair.** Use a fresh validator at high effort, its tier chosen by the parent. Ask it to try to refute each claim against its sources. Keep uncertain claims unverified. Mark a claim refuted only when evidence goes against it. List the other findings as not validated."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-delegate-fanout",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-delegate-fanout:rule:4: Validate the evidence the answer may rely on and every conflicting pair. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-delegate-fanout:rule:5",
+      "key": "coordinate-delegate-fanout:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/delegate/fanout.md",
+        "line": 29,
+        "text": "5. **Support the answer only with validated findings.** Report what was skipped, not found or left unverified, and what would settle relevant unknowns. You may read information about search coverage without using an unverified claim as supporting evidence."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-delegate-fanout",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-delegate-fanout:rule:5: Support the answer only with validated findings. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "Combined findings, their actual check status, sources and coverage limits.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/coordinate/delegate/fanout.md",
+        "line": 21,
+        "text": "Combined findings, their actual check status, sources and coverage limits."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "coordinate-delegate-fanout",
+      "deadline": "caller return or final answer",
+      "expected": "Combined findings, their actual check status, sources and coverage limits.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "coordinate-delegate-fanout:rule:1",
+    "coordinate-delegate-fanout:rule:2",
+    "coordinate-delegate-fanout:rule:3",
+    "coordinate-delegate-fanout:rule:4",
+    "coordinate-delegate-fanout:rule:5",
+    "result:coordinate-delegate-fanout:0"
+  ]
+}

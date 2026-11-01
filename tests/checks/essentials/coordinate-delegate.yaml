@@ -1,0 +1,63 @@
+{
+  "skill": "coordinate-delegate",
+  "checks": [
+    {
+      "id": "coordinate-delegate:rule:2",
+      "key": "coordinate-delegate:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/delegate.md",
+        "line": 26,
+        "text": "2. **Use a fresh worker when independence is required.** A fork shares the writer's history and blind spots. Do not use a fork for a review, a second check or a council member. Follow the `act-verify` guide's rule 2 to check whether a helper is available and what evidence the check needs. Missing log events do not prove that no helper was available."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-delegate",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of coordinate-delegate:rule:2: Use a fresh worker when independence is required. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-delegate:rule:7",
+      "key": "coordinate-delegate:rule:7",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/delegate.md",
+        "line": 41,
+        "text": "7. **Check returned work through the `act-verify` guide.** A success report alone is not evidence. If verify started the worker, return its report to that active verification instead of starting another verification cycle."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-delegate",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-delegate:rule:7: Check returned work through the `act-verify` guide. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The actual work and check results, task status, cost where needed and cleanup results.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/coordinate/delegate.md",
+        "line": 21,
+        "text": "The actual work and check results, task status, cost where needed and cleanup results."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "coordinate-delegate",
+      "deadline": "caller return or final answer",
+      "expected": "The actual work and check results, task status, cost where needed and cleanup results.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "coordinate-delegate:rule:2",
+    "coordinate-delegate:rule:7",
+    "result:coordinate-delegate:0"
+  ]
+}

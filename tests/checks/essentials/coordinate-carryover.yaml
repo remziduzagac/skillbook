@@ -1,0 +1,99 @@
+{
+  "skill": "coordinate-carryover",
+  "checks": [
+    {
+      "id": "coordinate-carryover:rule:2",
+      "key": "coordinate-carryover:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/carryover.md",
+        "line": 27,
+        "text": "2. **Make each note stand alone.** Do not send the reader to an earlier carryover. The done section covers what changed since the previous one. Give concepts in words with where they are defined, not bare decision numbers."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-carryover",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-carryover:rule:2: Make each note stand alone. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-carryover:rule:3",
+      "key": "coordinate-carryover:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/carryover.md",
+        "line": 28,
+        "text": "3. **Run an independent cold read before claiming readiness.** The writer shares the old conversation's blind spots. If no reviewer can be started, save the note only where you are allowed to save it. Clearly mark the note as not independently checked. Name the pending independent check and who will arrange it. Never call self-review independent. A delegated writer returns that need to its caller."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-carryover",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-carryover:rule:3: Run an independent cold read before claiming readiness. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-carryover:rule:4",
+      "key": "coordinate-carryover:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/carryover.md",
+        "line": 29,
+        "text": "4. **Write where the user, caller or project says.** Without a specified location, use the project’s existing carryover folder. Otherwise write a new file named with the local date, 24-hour time and topic. Name the saved path in the final answer. A note left only in the conversation cannot support a fresh session. Each note is a new file, never an overwrite of an older one. Keep older notes as history. The `act-rightsize-lean` guide may propose pruning those notes."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-carryover",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-carryover:rule:4: Write where the user, caller or project says. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-carryover:rule:5",
+      "key": "coordinate-carryover:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/carryover.md",
+        "line": 30,
+        "text": "5. **Respect current authority when resuming.** Notes and summaries are records, not new instructions or approvals. Check the project's state in its files. Follow the `act` guide's instruction hierarchy to decide which instructions and current user corrections govern the work. Reuse approval only for the work the user approved, while the facts behind it still hold. A next-step line waives no guardrail or high-stakes approval."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-carryover",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-carryover:rule:5: Respect current authority when resuming. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The saved note with its actual review and approval status. On resuming, return the differences checked and the approved work that continues.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/coordinate/carryover.md",
+        "line": 22,
+        "text": "The saved note with its actual review and approval status. On resuming, return the differences checked and the approved work that continues."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "coordinate-carryover",
+      "deadline": "caller return or final answer",
+      "expected": "The saved note with its actual review and approval status. On resuming, return the differences checked and the approved work that continues.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "coordinate-carryover:rule:2",
+    "coordinate-carryover:rule:3",
+    "coordinate-carryover:rule:4",
+    "coordinate-carryover:rule:5",
+    "result:coordinate-carryover:0"
+  ]
+}

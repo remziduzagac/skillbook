@@ -18,6 +18,15 @@ export function validateCase(data: unknown): asserts data is CaseFile {
   const fixture = resolve(FIXTURES, c.fixture);
   if (relative(FIXTURES, fixture).startsWith("..") || !existsSync(fixture))
     throw Error(`no fixture named ${c.fixture}`);
+  for (const [agent, models] of Object.entries(c.models ?? {}))
+    if (!c.agents?.includes(agent as any) || !models.length || new Set(models).size !== models.length || models.some(m => !m.trim()))
+      throw Error("models must name nonempty unique choices for a case agent");
+  for (const snapshot of c.source_snapshots ?? []) {
+    inside(FIXTURES, snapshot.path);
+    if (!/^[0-9a-f]{64}$/.test(snapshot.sha256) || !snapshot.text.trim()) throw Error("invalid source snapshot");
+  }
+  if (new Set(c.source_snapshots?.map(s => s.path)).size !== (c.source_snapshots?.length ?? 0))
+    throw Error("duplicate source snapshot");
   if (c.chapters) {
     if (!c.chapters.length || c.chapters[0]!.start_turn !== 1) throw Error("chapters must start at turn 1");
     for (const [i, ch] of c.chapters.entries()) {
@@ -33,6 +42,7 @@ export function validateCase(data: unknown): asserts data is CaseFile {
     }
   }
   for (const turn of c.turns) {
+    for (const path of turn.judge_files ?? []) inside(FIXTURES, path);
     for (const need of [...(turn.skill_needs ?? []), ...(turn.also_called ?? []), ...(turn.if_taken ?? [])]) {
       if (!/^[a-z][a-z0-9-]*$/.test(need.skill) ||
         typeof need.deadline === "number" && (!Number.isInteger(need.deadline) || need.deadline < 0))
@@ -94,7 +104,7 @@ export function validateCase(data: unknown): asserts data is CaseFile {
     ] as const)
       for (const p of checks[key] ?? []) regex(p);
     if (Array.isArray(checks.states_before_change)) for (const p of checks.states_before_change) regex(p);
-    for (const p of [...Object.values(checks.file_contains ?? {}), ...Object.values(checks.folder_lacks ?? {})].flat())
+    for (const p of [...Object.values(checks.file_contains ?? {}), ...Object.values(checks.folder_contains ?? {}), ...Object.values(checks.folder_lacks ?? {})].flat())
       regex(p);
     for (const limit of Object.values(checks.words_under ?? {}))
       if (!Number.isInteger(limit) || limit <= 0) throw Error("word bounds must be positive integers");
@@ -104,7 +114,7 @@ export function validateCase(data: unknown): asserts data is CaseFile {
       ...Object.keys(checks.words_under ?? {}), ...Object.keys(checks.only_replacement ?? {}),
       ...Object.keys(checks.index_links ?? {}), ...Object.values(checks.index_links ?? {}),
       ...(checks.keeps_lines ?? []), ...(checks.unchanged_under ?? []),
-      ...Object.keys(checks.written_under ?? {}), ...Object.keys(checks.folder_lacks ?? {}),
+      ...Object.keys(checks.written_under ?? {}), ...Object.keys(checks.folder_lacks ?? {}), ...Object.keys(checks.folder_contains ?? {}),
       ...(checks.changed ?? []),
       ...(checks.unchanged ?? []),
       ...(checks.removed ?? []),

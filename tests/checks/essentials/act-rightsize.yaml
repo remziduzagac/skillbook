@@ -1,0 +1,45 @@
+{
+  "skill": "act-rightsize",
+  "checks": [
+    {
+      "id": "act-rightsize:rule:9",
+      "key": "act-rightsize:rule:9",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/act/rightsize.md",
+        "line": 42,
+        "text": "9. **Get approval for a list before trimming or filling existing material.** This covers work in the `act-rightsize-lean` and `act-rightsize-enrich` guides whether you load them or not.\n   - A named change, such as a given section to add, is the edit itself and needs no such approval. Filling, completing or making something sufficient is filling even if the request names what is lacking: you still find what goes in.\n   - For work written by the user or others, put the change list through the `respond-ask` guide. Give each change's reason or source. End the turn. Apply nothing before approval.\n   - Report the result and its check.\n   - Your own draft in this conversation needs no approval. It is still being made and the final step of Instructions covers it.\n   - One approval is enough. Show how you will change it and the parts touched, at a level the user can judge, not finished text. The later check is enough evidence. A list as long as the result costs as much to read.\n   - Report later changes outside the list. Ask about them instead of folding them in."
+      },
+      "applicability": "scenario",
+      "required_skill": "act-rightsize",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of act-rightsize:rule:9: Get approval for a list before trimming or filling existing material. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The output or work plan fitted to its reader, with the point first. For reworked material, also return the list of changes. The sizing check itself stays in thinking.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/act/rightsize.md",
+        "line": 23,
+        "text": "The output or work plan fitted to its reader, with the point first. For reworked material, also return the list of changes. The sizing check itself stays in thinking.\n\nThe rules and the final step of Instructions here shape what is being made now. The `act-rightsize-lean` and `act-rightsize-enrich` guides, below, rework what already existed before this task."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "act-rightsize",
+      "deadline": "caller return or final answer",
+      "expected": "The output or work plan fitted to its reader, with the point first. For reworked material, also return the list of changes. The sizing check itself stays in thinking.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "act-rightsize:rule:9",
+    "result:act-rightsize:0"
+  ]
+}

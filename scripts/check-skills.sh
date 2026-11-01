@@ -88,6 +88,13 @@ main() {
 		problems=$((problems + $(echo "$copied" | wc -l)))
 	fi
 
+	# YAML is the active corpus. Its parser also covers block and folded prompts.
+	if [ -f "$repo/tests/check-examples.ts" ]; then
+		if ! bun "$repo/tests/check-examples.ts" "$repo"; then
+			problems=$((problems + 1))
+		fi
+	fi
+
 	if [ "$problems" -gt 0 ]; then
 		echo "$problems problem(s)"
 		exit 1

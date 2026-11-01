@@ -1,0 +1,63 @@
+{
+  "skill": "coordinate-setup",
+  "checks": [
+    {
+      "id": "coordinate-setup:rule:2",
+      "key": "coordinate-setup:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/setup.md",
+        "line": 26,
+        "text": "2. **Discover changes before applying them.** Setup changes can affect later sessions. Apply only approved work through the skill that owns it. Reuse approval only for the work the user approved, while the facts behind it still hold."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-setup",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of coordinate-setup:rule:2: Discover changes before applying them. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-setup:rule:6",
+      "key": "coordinate-setup:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/setup.md",
+        "line": 30,
+        "text": "6. **Call setup complete only after observing the required loading checks.** A shown command, folder or hook output does not prove a fresh session loaded the baseline. Return pending checks, declined changes and the next owner honestly."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-setup",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-setup:rule:6: Call setup complete only after observing the required loading checks. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "Approved changes and observed loading checks, recommendations, declined work and pending checks.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/coordinate/setup.md",
+        "line": 21,
+        "text": "Approved changes and observed loading checks, recommendations, declined work and pending checks."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "coordinate-setup",
+      "deadline": "caller return or final answer",
+      "expected": "Approved changes and observed loading checks, recommendations, declined work and pending checks.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "coordinate-setup:rule:2",
+    "coordinate-setup:rule:6",
+    "result:coordinate-setup:0"
+  ]
+}

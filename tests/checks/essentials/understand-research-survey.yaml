@@ -1,0 +1,117 @@
+{
+  "skill": "understand-research-survey",
+  "checks": [
+    {
+      "id": "understand-research-survey:rule:1",
+      "key": "understand-research-survey:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/survey.md",
+        "line": 23,
+        "text": "1. **Set the scope and comparison terms before searching.** Reuse the caller's criteria or current frame. Otherwise follow the `understand-frame` guide and the shared who-decides rule. Terms chosen afterward favor the first candidates found."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-survey",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-survey:rule:1: Set the scope and comparison terms before searching. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-survey:rule:3",
+      "key": "understand-research-survey:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/survey.md",
+        "line": 25,
+        "text": "3. **Compare every fully examined candidate on every term.** Give evidence or \"not found\" for each value. Use no guess or score without a meaningful measure."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-survey",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-survey:rule:3: Compare every fully examined candidate on every term. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-survey:rule:4",
+      "key": "understand-research-survey:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/survey.md",
+        "line": 26,
+        "text": "4. **Name screened-out candidates with their reasons.** List an unexamined long tail separately as not compared, with the reason and coverage limit. A names-only list is not a completed comparison or an evidence-backed rejection."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-survey",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-survey:rule:4: Name screened-out candidates with their reasons. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-survey:rule:6",
+      "key": "understand-research-survey:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/survey.md",
+        "line": 28,
+        "text": "6. **Report search coverage and its date.** Say where you searched, what you skipped and what remains unverified. A survey is a snapshot, not proof that nothing else exists."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-survey",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-survey:rule:6: Report search coverage and its date. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-survey:rule:8",
+      "key": "understand-research-survey:rule:8",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/survey.md",
+        "line": 30,
+        "text": "8. **Return the comparison to its active caller.** That caller owns the choice. For a direct user request that includes choosing, obtain the `understand-weigh` guide after the comparison. Do not call an already active weigh operation or restart candidate generation. A request for existing options alone starts no choice round."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-survey",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-survey:rule:8: Return the comparison to its active caller. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "Candidates compared on the same terms, sources, excluded and unexamined candidates, search coverage and date.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/research/survey.md",
+        "line": 19,
+        "text": "Candidates compared on the same terms, sources, excluded and unexamined candidates, search coverage and date."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-research-survey",
+      "deadline": "caller return or final answer",
+      "expected": "Candidates compared on the same terms, sources, excluded and unexamined candidates, search coverage and date.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-research-survey:rule:1",
+    "understand-research-survey:rule:3",
+    "understand-research-survey:rule:4",
+    "understand-research-survey:rule:6",
+    "understand-research-survey:rule:8",
+    "result:understand-research-survey:0"
+  ]
+}

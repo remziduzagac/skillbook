@@ -1,0 +1,81 @@
+{
+  "skill": "understand-naming",
+  "checks": [
+    {
+      "id": "understand-naming:rule:4",
+      "key": "understand-naming:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/naming.md",
+        "line": 28,
+        "text": "4. **Leave a shared name to the user’s choice.** Readers will rely on the chosen term.\n   - **For a supplied name, check the glossary, existing usage and potential collisions.**\n   - **For a supplied name, report the check results in `Checked`, even when nothing clashes.** The caller needs to know what was checked.\n   - Reopen a supplied name for a real conflict under the `act` guide’s concern rule. When the user has settled the name, start no new candidate or approval round."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-naming",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-naming:rule:4: Leave a shared name to the user’s choice. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-naming:rule:5",
+      "key": "understand-naming:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/naming.md",
+        "line": 32,
+        "text": "5. **Return rejected words and reasons.** The caller can record them so they are not proposed again."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-naming",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-naming:rule:5: Return rejected words and reasons. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-naming:rule:6",
+      "key": "understand-naming:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/naming.md",
+        "line": 33,
+        "text": "6. **Write and rename nothing.** The caller applies approved names and glossary entries under the `act` guide. A wide rename follows the `act-guardrails` guide. Propose the old word under Avoid. Half a rename leaves two words for one thing. For a direct request, the main work flow owns the change."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-naming",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of understand-naming:rule:6: Write and rename nothing. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The chosen name, reasons and rejected words, or proposed glossary changes. Say which existing terms and possible name clashes you checked. Write or rename nothing here.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/naming.md",
+        "line": 21,
+        "text": "The chosen name, reasons and rejected words, or proposed glossary changes. Say which existing terms and possible name clashes you checked. Write or rename nothing here."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-naming",
+      "deadline": "caller return or final answer",
+      "expected": "The chosen name, reasons and rejected words, or proposed glossary changes. Say which existing terms and possible name clashes you checked. Write or rename nothing here.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-naming:rule:4",
+    "understand-naming:rule:5",
+    "understand-naming:rule:6",
+    "result:understand-naming:0"
+  ]
+}

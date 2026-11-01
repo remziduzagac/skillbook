@@ -54,6 +54,23 @@
       "evidence": "Code first: ordered file/action evidence. Otherwise yes/no with a verbatim answer quote or recorded action id. Missing evidence is unknown.",
       "user_choices": "Open intent, audience, result kind and any changed approval scope remain the user's.",
       "no_skill_eligible": true
+    },
+    {
+      "id": "act-verify:rule:2",
+      "key": "act-verify:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/act/verify.md",
+        "line": 34,
+        "text": "2. **Who checks:**\n   - you, for what a command or a file can show;\n   - **a fresh agent: before you report high-stakes work, start one that did not do the work to check it.** Your own read of your own work misses what you got wrong.\n     - Judge the stakes with the `act-stakes` guide first if they are not judged yet. Judge by reach and undo, not by the size of the change or the time left. One wrong digit in a bank transfer about to go out is high.\n     - Start one too when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary is fair to its source.\n     - Start the agent through the `coordinate-delegate` guide. Brief it with the claim and what would show it false.\n     - Count a check as independent only after you see another agent's or person's result. Your own second look does not count. Neither does starting or waiting on an agent without seeing its result.\n     - If you cannot start one, write in your report that this check is still to do, and who should do it. This includes delegated agents and harnesses without agents. Follow the `act` guide's rule 10 for your report;\n   - the user: for meaning, taste, irreversible results and anything no check can see. Get any required fresh agent's check first. The user's check does not replace it: asking them to reread is not independent checking.\n\n   How much rides on the work, and whether it can be undone, is the `act-stakes` guide' judgment. The user's check here is of the result; approving a risky action before it is taken is the `act-guardrails` guide'."
+      },
+      "applicability": "scenario",
+      "required_skill": "act-verify",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of act-verify:rule:2: Who checks: Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
     }
   ],
   "results": [
@@ -73,5 +90,13 @@
       "evidence": "Answer or file quote, or a recorded delegated-report action id. Internal parts without a required visible step are excluded with a reason."
     }
   ],
-  "validation": "Account-free correct/wrong fixtures; semantic failure detection remains unproven."
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "act-verify:rule:1",
+    "act-verify:rule:3",
+    "act-verify:rule:4",
+    "act-verify:rule:2",
+    "result:act-verify:0"
+  ]
 }

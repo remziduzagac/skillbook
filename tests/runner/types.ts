@@ -32,6 +32,7 @@ export interface Checks {
   names_no_skill?: boolean;
   written_under?: Record<string, number>;
   folder_lacks?: Record<string, string[]>;
+  folder_contains?: Record<string, string[]>;
   nothing_left_running?: boolean;
   tmp_has?: string[];
   tmp_lacks?: string[];
@@ -57,6 +58,7 @@ export interface Turn {
   also_called?: SkillNeed[];
   if_taken?: ConditionalNeed[];
   rule_marks?: { id: string; applies: boolean; deadline: number | "first change" | "answer"; near_miss?: boolean; missing_piece?: string }[];
+  judge_files?: string[];
   prompt: string;
   purpose?: string;
   fresh_session?: boolean;
@@ -70,10 +72,12 @@ export interface CaseFile {
   suite?: "short" | "master";
   design?: string;
   source?: string;
+  source_snapshots?: { path: string; sha256: string; text: string }[];
   fixture: string;
   chapters?: Chapter[];
   gitignore?: string[];
   agents?: Agent[];
+  models?: Partial<Record<Agent, string[]>>;
   runs?: number;
   pointer?: boolean;
   routing_only?: boolean;
@@ -132,7 +136,6 @@ export interface Observation {
 }
 export interface Options {
   no_skill?: boolean;
-  pilot?: boolean;
   chapter?: number;
   case: string;
   suite?: "short" | "master";

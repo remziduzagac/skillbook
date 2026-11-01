@@ -39,7 +39,7 @@ try {
     known += amount ?? 0; unknown += Number(amount === null);
   });
   const byTurn = new Map<string, typeof rubricFixtures.checks>();
-  for (const check of selectedBook.checks) {
+  for (const check of [...selectedBook.checks, ...(selectedBook.library ?? [])]) {
     const key = `${check.case}:${check.turn}`;
     const rows = byTurn.get(key) ?? []; rows.push(check); byTurn.set(key, rows);
   }
@@ -49,7 +49,7 @@ try {
       const [key, checks] = units[next++]!, candidates: Record<string, Event> = {}, labels: Event[] = [];
       for (const row of checks) for (const {ref, expected} of rubricCandidates(selectedBook).filter(c => c.check === `${row.case}:${row.turn}:${row.id}`)) {
         const id = `candidate-${labels.length + 1}`;
-        candidates[id] = { criterion: row.criterion, evidence: resolveRubricTrace(ref, selectedBook) };
+        candidates[id] = { criterion: row.criterion, evidence: resolveRubricTrace(ref, selectedBook, activeCases?.find(c => c.id === row.case)?.turns[row.turn - 1]?.judge_files) };
         labels.push({ id, ref, expected, check: `${row.case}:${row.turn}:${row.id}` });
       }
       try {

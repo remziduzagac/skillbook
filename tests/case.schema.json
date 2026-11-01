@@ -24,6 +24,29 @@
         "source": {
           "type": "string"
         },
+        "source_snapshots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
         "fixture": {
           "type": "string"
         },
@@ -44,6 +67,24 @@
           "items": {
             "$ref": "#/definitions/Agent"
           }
+        },
+        "models": {
+          "type": "object",
+          "properties": {
+            "claude": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "codex": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
         },
         "runs": {
           "type": "number"
@@ -339,6 +380,15 @@
             }
           }
         },
+        "folder_contains": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
         "nothing_left_running": {
           "type": "boolean"
         },
@@ -435,6 +485,12 @@
               "deadline"
             ],
             "additionalProperties": false
+          }
+        },
+        "judge_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         },
         "prompt": {

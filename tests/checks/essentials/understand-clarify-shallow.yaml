@@ -1,0 +1,63 @@
+{
+  "skill": "understand-clarify-shallow",
+  "checks": [
+    {
+      "id": "understand-clarify-shallow:rule:1",
+      "key": "understand-clarify-shallow:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/clarify/shallow.md",
+        "line": 23,
+        "text": "1. **See the whole level before going deeper into any part.** Start at the request's top level, or an inner level reached by deep. Depth becomes clear only after seeing the whole. Ask the smallest round that sets direction. Ask later questions when needed. Long routine rounds cost more than they settle."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-clarify-shallow",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-clarify-shallow:rule:1: See the whole level before going deeper into any part. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-clarify-shallow:rule:2",
+      "key": "understand-clarify-shallow:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/clarify/shallow.md",
+        "line": 24,
+        "text": "2. **Ask one round through the `respond-ask` guide.** The user answers at once and sees the whole level."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-clarify-shallow",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-clarify-shallow:rule:2: Ask one round through the `respond-ask` guide. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The visible “Going with” line, plus an offer of deep questions for parts whose answers depend on each other.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/clarify/shallow.md",
+        "line": 19,
+        "text": "The visible “Going with” line, plus an offer of deep questions for parts whose answers depend on each other."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-clarify-shallow",
+      "deadline": "caller return or final answer",
+      "expected": "The visible “Going with” line, plus an offer of deep questions for parts whose answers depend on each other.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-clarify-shallow:rule:1",
+    "understand-clarify-shallow:rule:2",
+    "result:understand-clarify-shallow:0"
+  ]
+}
