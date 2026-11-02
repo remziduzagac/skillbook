@@ -84,7 +84,7 @@ test("Sol costs count uncached, cached and output tokens across completed turns"
     }],
   ];
   // $1.48 for the first turn and $1.01 for the second; cached tokens are included in input.
-  expect(cost("codex", "gpt-6.1-sol", events)).toBeCloseTo(2.49, 8);
+  expect(cost("codex", "gpt-6.1-sol", events,[{fresh:true},{fresh:true}])).toBeCloseTo(2.49, 8);
   expect(cost("codex", "gpt-6.1-sol", [[{
     type: "turn.completed", usage: { input_tokens: 1, cached_input_tokens: 2, output_tokens: 0 },
   }]])).toBeNull();

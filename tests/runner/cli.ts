@@ -120,7 +120,8 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
   if (!cases.length) throw Error(`no case matches ${args.case}`);
   const plan = planRuns(cases, args),
     turns = plan.reduce((n, [c]) => n + selectedTurns(c, args.chapter).length, 0);
-  console.log(`${plan.length} runs, ${turns} turns; estimated cost up to about $${(turns * 0.02).toFixed(2)}`);
+  console.log(`${plan.length} runs, ${turns} turns; cost estimate unavailable: ` +
+    "token usage, helper work and auxiliary calls are not forecast.");
   console.log(
     `budget: no new run starts after known spending reaches $${args.budget.toFixed(2)}; ` +
       `up to ${args.jobs} running calls finish. Claude has a per-call cap; ` +

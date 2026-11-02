@@ -28,7 +28,7 @@ import { prepareHome, agentEnv, ownLogin, snapshot, fixtureText, fixtureDiffs, c
 import { runTurn, endRun, tmpPaths, addedTmpPaths } from "./process";
 import { agentCommand } from "./agents";
 import { parse_events, sessionId, turn_parts, action_evidence, redact, sameClaudeAgent } from "./trace";
-import { cost, DEFAULT_MODELS } from "./cost";
+import { CostTracker, DEFAULT_MODELS } from "./cost";
 import { check } from "./checks";
 import { progressFindings } from "./progress";
 import { structuredCall, simulate, fit, rubricBatch, judgeEvidence } from "./scenario";
@@ -47,6 +47,7 @@ export async function runOne(
   limits?: CallLimits,
 ): Promise<Event> {
   const selected = selectedTurns(c, args.chapter);
+  const costs = new CostTracker(agent,model);
   const noSkill = c.condition === "no-skill" || args.no_skill;
   const mode = args.user_mode ?? c.user?.mode ?? "fixed";
   if (mode === "simulated" && (!c.user || !c.goal)) throw Error("simulated mode needs scenario user facts and goal");
@@ -177,7 +178,7 @@ export async function runOne(
       const recording = args.keep ? join(out,
         `${c.id.replaceAll("/", "--")}--${agent}--${model.replace(/[^A-Za-z0-9._-]+/g, "-")}--${n}--${result.condition}--turn${i}.jsonl`) : null;
       if (recording) writeFileSync(recording, ran.stdout);
-      const turnCost = cost(agent, model, [turnEvents]);
+      const turnCost = costs.next(turnEvents,{fresh:!session,expectedSession:session});
       limits?.account(turnCost);
       result.cost += turnCost ?? 0;
       result.cost_unknown ||= turnCost === null || failed;

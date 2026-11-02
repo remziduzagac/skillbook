@@ -46,7 +46,7 @@ export function replay(input: { rows: Event[]; skipped: Event[] }) {
   let total = 0,
     matched = 0;
   for (const r of input.rows) {
-    const events = r.paths.map((p: string) => parse_events(readFileSync(p, "utf8"))),
+    const events: Event[][] = r.paths.map((p: string) => parse_events(readFileSync(p, "utf8"))),
       whole = observation(r.agent, events, r.set, r.base);
     const actual = check(r.checks, whole, r.fixture, null),
       expected: Record<string, unknown> = { ...r.expected };
@@ -75,9 +75,12 @@ export function replay(input: { rows: Event[]; skipped: Event[] }) {
     }
     if (JSON.stringify(whole.reads) !== JSON.stringify(r.reads))
       mismatches.push({ folder: r.folder, case: r.case, kind: "reads", python: r.reads, typescript: whole.reads });
-    const estimated = cost(r.agent, r.model, events);
+    const estimated = cost(r.agent, r.model, events, events.map((_,i) =>
+      ({fresh:i === 0 || r.local[i]?.base?.fresh_session === true,
+        expectedSession:i > 0 && !r.local[i]?.base?.fresh_session ? r.local[i-1]?.base?.session : undefined})));
     if ((estimated === null) !== (r.cost === null) || (estimated !== null && Math.abs(estimated - r.cost) > 1e-12))
-      mismatches.push({ folder: r.folder, case: r.case, kind: "cost", python: r.cost, typescript: estimated });
+      mismatches.push({ folder: r.folder, case: r.case, kind: "cost", python: r.cost, typescript: estimated,
+        reason:"Current accounting subtracts cumulative counters; the frozen Python oracle summed snapshots." });
   }
   return {
     runs: input.rows.length,
