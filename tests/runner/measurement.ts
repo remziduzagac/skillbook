@@ -50,8 +50,8 @@ export function verified(verdict: boolean | null, evidence: { quote?: string; ac
   const ids = Array.isArray(citation) ? citation : typeof citation === "string" ?
     list ? citation.split(";").map(id => id.trim()) : [citation] : [];
   const valid = ids.length > 0 && ids.every(id => typeof id === "string" && id.length > 0 && actions.some(a => a.id === id));
-  // A quote cannot rescue a list containing an invented action.
-  if (list && !valid) return null;
+  // A quote cannot rescue a list containing an invented action; an empty list cites no action.
+  if (list && ids.length > 0 && !valid) return null;
   return (typeof evidence.quote === "string" && evidence.quote.trim() && answer.includes(evidence.quote)) || valid ?
     verdict : null;
 }

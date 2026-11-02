@@ -43,6 +43,9 @@ test("semantic outcomes require matching quotes or action ids, even failures", (
   expect(verified(false,{action:"r"},"",[{id:"r"}])).toBe(false);
   expect(verified(false,{quote:"not present"},"passed",[])).toBeNull();
   expect(verified(true,{action:"invented"},"",[])).toBeNull();
+  expect(verified(false,{quote:"rewrote it",action:[]},"I rewrote it",[])).toBe(false);
+  expect(verified(true,{quote:"",action:[]},"passed",[])).toBeNull();
+  expect(verified(true,{quote:"passed",action:["invented"]},"passed",[])).toBeNull();
 });
 test("internal returns need a visible later step; exclusions are not passes or missing", () => {
   expect(promised([{kind:"internal",verdict:false,exclusion:"no visible requirement"}])).toBe("excluded");
