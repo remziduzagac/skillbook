@@ -30694,7 +30694,7 @@
       "turn": 1,
       "id": "rule:essentials:step:0",
       "tag": "rule:essentials:step:0",
-      "criterion": "Before the first action, select every needed guide from the map, read the six main guides, selected guides and respond-layout whole in one turn, check boundaries, and name the approach in thinking.",
+      "criterion": "Before the first action, select every needed guide from the map, read the six main guides, selected guides and respond-layout whole, one file per read, in one turn, check boundaries, and name the approach in thinking.",
       "positive": "t1:correct",
       "negative": "t1:wrong:rule:essentials:step:0",
       "expectations": {

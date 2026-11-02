@@ -445,7 +445,7 @@
           "id": "rule:essentials:step:0",
           "tag": "rule:essentials:step:0",
           "source_check": "route-act",
-          "criterion": "Before the first action, select every needed guide from the map, read the six main guides, selected guides and respond-layout whole in one turn, check boundaries, and name the approach in thinking."
+          "criterion": "Before the first action, select every needed guide from the map, read the six main guides, selected guides and respond-layout whole, one file per read, in one turn, check boundaries, and name the approach in thinking."
         },
         {
           "id": "rule:essentials:step:1",

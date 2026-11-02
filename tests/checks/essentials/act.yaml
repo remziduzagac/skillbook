@@ -43,13 +43,13 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/SKILL.md",
-        "line": 87,
-        "text": "0. **Prepare before your first action.** Guides only help if they shape the work from its start.\n   - Go through the \"Guide map\". For each stage below, pick every guide whose entry fits any part of the request, not only its first step. Most requests need several guides, such as `understand-clarify` for an open choice and `act-verify` for the check at the end. Some matter from the very start, such as `act-verify`, which needs evidence from before a change.\n   - Read the six main guides, the guides you picked and `respond-layout` by their paths in the map, whole, in one turn.\n   - Check each picked guide's \"When to use\" and \"When not\". Use it if it fits. Put it aside if it does not.\n   - In your thinking, name which guide you use for which part."
+        "line": 95,
+        "text": "0. **Prepare before your first action.** Guides only help if they shape the work from its start.\n   - Go through the \"Guide map\". For each stage below, pick every guide whose entry fits any part of the request, not only its first step. Most requests need several guides, such as `understand-clarify` for an open choice and `act-verify` for the check at the end. Some matter from the very start, such as `act-verify`, which needs evidence from before a change.\n   - Read the six main guides, the guides you picked and `respond-layout` by their paths in the map, whole, one file per read, in one turn.\n   - Check each picked guide's \"When to use\" and \"When not\". Use it if it fits. Put it aside if it does not.\n   - In your thinking, name which guide you use for which part."
       },
       "applicability": "scenario",
       "required_skill": "essentials",
       "deadline": "first change",
-      "expected": "Before the first action, select every needed guide from the map, read the six main guides, selected guides and respond-layout whole in one turn, check boundaries, and name the approach in thinking.",
+      "expected": "Before the first action, select every needed guide from the map, read the six main guides, selected guides and respond-layout whole, one file per read, in one turn, check boundaries, and name the approach in thinking.",
       "rejected": "Child is only named or searched.",
       "evidence": "Complete returned child text before its action.",
       "user_choices": "Do not create another checkpoint.",

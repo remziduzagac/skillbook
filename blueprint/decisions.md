@@ -4243,3 +4243,23 @@ The runner, the judge, the calibration tools with the human ratings, the rule-ch
 **Tested:** Not yet. The scenario is designed; its cases and fixtures are not built.
 
 **2026-11-02 update:** Merge festival chapters 3 and 4 into one session, turns 12–22, using chapter 3's 8 June checkpoint. The scenario now has five chapters and 28 turns. The removed break tested nothing the retained breaks do not, and a fresh session cost about four later turns in the kept Haiku chapter ($0.018 versus about $0.004). The breaks before chapters 2, 4 and 5 retain the decisions, handover-state and carryover recovery tests.
+
+## D289: a short direct answer reads no guide, and each guide is read on its own (2026-11-02)
+
+**Decision:** The main skill's first rule gains one exception. A request that a direct answer finishes reads no guide. A reply is direct only when all of these hold:
+
+- it changes nothing, such as a file, a system or a message to someone;
+- everything it needs is already in the conversation;
+- no question, plan or approval of the agent's is open, and the user is not saying they are stopping;
+- it fits in about five lines.
+
+Every other request reads the six main guides, as before, and the main skill's own rules hold for a direct answer too. The reading rule changes as well. Each guide file is read on its own, with the file-reading tool, and all the reads go in one turn. A read that comes back cut short, or saved elsewhere, is read to its end before the work goes on.
+
+**Why:** The 2026-11-02 festival run showed two problems with reading six guides on every request.
+
+- **Models skip a rule that costs this much.** Sonnet read 66 guide files in 28 turns, against Sol's 206, and only one at the start of the third chapter. A narrow exit for short replies keeps the full path believable for real work.
+- **"Read the guides together, in one turn" was read as one command.** Sonnet printed all the guides with one shell command. Claude Code cut the 50–83 KB output to a short preview, and Sonnet went on with what it saw; in turn 28 it said it worked from the first 2 KB.
+
+The exit's conditions are exact because agents take an exit eagerly. A test such as "straightforward" would let through a comparison whose choice the user had kept, the turn where Sonnet chose for the user. The stopping condition is there because the wrap-up offer needs the `respond-ask` guide.
+
+**Tested:** Not yet. No festival turn is a direct answer.

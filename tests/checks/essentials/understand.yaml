@@ -7,7 +7,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/SKILL.md",
-        "line": 92,
+        "line": 100,
         "text": "1. **Understand the request with the `understand` guide, until its intent, goal and details are clear.** Work built on a guess has to be undone, and the user pays for it. Be thorough here: a question asked now costs far less than work redone later.\n   - Explore first. Read the files, the conversation and any other source that can answer a question, so you ask the user only what those cannot.\n   - Ask the user what only they know: what they want, why they want it, and each detail that would change the result. Ask through the `respond-ask` guide, and keep asking, round by round, until you could state the intent, the goal and what done looks like in words the user would agree with.\n   - Do not ask about what the sources settle, or about choices the user left to you. Make those choices and list them in a \"going with\" line, as the `understand` guide says.\n   - A request that is already clear needs only this check. For parts still open, use the guides you picked, such as `understand-clarify` for a choice that would change the result."
       },
       "applicability": "scenario",

@@ -13,10 +13,18 @@ This skill helps you do any piece of work well. It holds the rules for every req
 
 These rules hold for every request, whatever guides it uses.
 
-- **Read the six main guides on every request:** `understand`, `devise`, `organize`, `coordinate`, `act` and `respond`. Each one shapes a stage of the work, as "Instructions" below says.
+- **Read the six main guides on every request, unless a direct answer finishes it:** `understand`, `devise`, `organize`, `coordinate`, `act` and `respond`. Each one shapes a stage of the work, as "Instructions" below says.
+  - A direct answer is a short reply that needs no guide. Guides read for it cost tokens on every later turn and change nothing in it. Give one, reading no guide, only when all of these hold:
+    - The reply changes nothing, such as a file, a system or a message to someone.
+    - Everything it needs is already in this conversation, so nothing has to be looked up.
+    - No question, plan or approval of yours is open, and the user is not saying they are stopping.
+    - It fits in about five lines.
+  - For example, "which branch did we merge?" right after the merge gets a direct answer. These do not: "does this licence allow resale?" needs the licence file, "yes to 1 and 3" answers your questions, and "rename the heading" changes a file.
+  - The rules in this file still hold for a direct answer.
 - **Read each guide whole, before the stage that needs it.** A guide read in part, or after the first change, cannot shape the work.
   - Find a guide's file by the paths in the "Guide map" section, or by the name rule there. Do not search instead: a search finds matching lines and misses the rest of the guide. An answer made without its rules looks complete and is not.
-  - Read the guides you chose together, in one turn. Each extra turn carries the whole context again.
+  - Read one guide file per read, with your file-reading tool, and send all the reads in one turn. Each extra turn carries the whole context again. A command that prints several files at once can be cut short, and you then work from only the part you saw.
+  - If a read comes back cut short or saved elsewhere, read the rest before you go on.
   - Reuse a guide's text while it is still whole in view. Read it again when it drops out, such as after compaction.
 - **Keep guide choice out of what the user sees.** The user cares about the work, not about which file told you what. Text between tool calls goes to the user, just like the response, so choose guides and your approach in your thinking.
   - The user cannot see your thinking. So anything they must see before a change goes in text: a plan for approval, the files it touches, or a "going with" line.
@@ -82,11 +90,11 @@ Your harness's other skills and tools do the work itself. When one of them fits 
 
 ## Instructions
 
-These are guidelines, not a fixed procedure. Fit them into your harness's own flow, such as its plan mode or task list. What matters is the goal of each stage: the right guides shape the work before it starts, and the user gets a clear answer. **Prepare by step 0, then go through every stage the request needs, in this order.**
+These are guidelines, not a fixed procedure. Fit them into your harness's own flow, such as its plan mode or task list. What matters is the goal of each stage: the right guides shape the work before it starts, and the user gets a clear answer. A direct answer, by the first rule, skips these steps. **Prepare by step 0, then go through every stage the request needs, in this order.**
 
 0. **Prepare before your first action.** Guides only help if they shape the work from its start.
    - Go through the "Guide map". For each stage below, pick every guide whose entry fits any part of the request, not only its first step. Most requests need several guides, such as `understand-clarify` for an open choice and `act-verify` for the check at the end. Some matter from the very start, such as `act-verify`, which needs evidence from before a change.
-   - Read the six main guides, the guides you picked and `respond-layout` by their paths in the map, whole, in one turn.
+   - Read the six main guides, the guides you picked and `respond-layout` by their paths in the map, whole, one file per read, in one turn.
    - Check each picked guide's "When to use" and "When not". Use it if it fits. Put it aside if it does not.
    - In your thinking, name which guide you use for which part.
 1. **Understand the request with the `understand` guide, until its intent, goal and details are clear.** Work built on a guess has to be undone, and the user pays for it. Be thorough here: a question asked now costs far less than work redone later.
