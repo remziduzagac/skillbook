@@ -30647,8 +30647,8 @@
         "t7:alternative"
       ],
       "expectations": {
-        "t7:correct": null,
-        "t7:alternative": null
+        "t7:correct": true,
+        "t7:alternative": true
       }
     },
     {
@@ -30708,7 +30708,7 @@
         "t7:alternative"
       ],
       "expectations": {
-        "t7:alternative": false
+        "t7:alternative": true
       }
     },
     {
@@ -31767,7 +31767,7 @@
       "positive": "t15:correct",
       "negative": "t15:wrong:rule:understand:rule:5",
       "expectations": {
-        "t15:correct": null
+        "t15:correct": true
       }
     },
     {
@@ -32076,7 +32076,7 @@
         "t17:alternative"
       ],
       "expectations": {
-        "t17:alternative": null,
+        "t17:alternative": true,
         "t17:correct": null
       }
     },
@@ -33492,7 +33492,7 @@
       "positive": "t25:correct",
       "negative": "t25:wrong:rule:coordinate-setup:rule:2",
       "expectations": {
-        "t25:correct": null
+        "t25:correct": true
       }
     },
     {

@@ -127,14 +127,14 @@ test("fallback labels separate missing requested helper outcomes from observable
     candidates.find(e=>e.check===`essentials/festival:${n}:${id}` && e.ref===ref)!.expected;
   for(const n of [7,17,23,24])
     for(const id of ["scope","outcomes","rule:act:rule:3"])expect(expected(n,id)).toBe(false);
-  for(const [n,rule,value] of [[7,4,false],[7,8,true],[7,9,false],[17,5,false],[17,7,false],[17,8,true],[17,9,false]] as const)
+  for(const [n,rule,value] of [[7,4,true],[7,8,true],[7,9,false],[17,5,false],[17,7,false],[17,8,true],[17,9,false]] as const)
     expect(expected(n,`rule:coordinate-brief:rule:${rule}`)).toBe(value);
   // This user's deletion is delivered; the guide explicitly permits reporting the pending check.
   expect(expected(22,"outcomes")).toBe(true);
   for(const [n,id] of [[7,"result:devise-design-review:0"],[17,"result:coordinate-delegate-fanout:0"],
     [23,"result:coordinate-delegate-crew:0"],[23,"result:coordinate-delegate:0"],
     [23,"result:coordinate:0"],[24,"result:coordinate-delegate-council:0"]] as const)expect(expected(n,id)).toBe(true);
-  expect(expected(17,"rule:coordinate-delegate-fanout:rule:4")).toBeNull();
+  expect(expected(17,"rule:coordinate-delegate-fanout:rule:4")).toBe(true);
   expect(expected(23,"rule:coordinate-delegate-crew:rule:3")).toBeNull();
   for(const n of [23,24]){
     const fallback=fixtureJudgeEvidence(`t${n}:alternative`,book,c).turns.at(-1)!;
