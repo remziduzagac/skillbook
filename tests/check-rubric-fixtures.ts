@@ -1,4 +1,4 @@
-import { fixtureEntries, fixtureBatches, fixtureManifest, candidateKey, rerunFixtureMisses, previewEntries, loadingFixtureResults, runFixtureBatch } from "./runner/fixture-validation";
+import { fixtureEntries, fixtureBatches, fixtureManifest, candidateKey, rerunFixtureMisses, previewEntries, loadingFixtureResults, runFixtureBatch, FIXTURE_RETRY_POLICY } from "./runner/fixture-validation";
 import { parseArgs } from "node:util";
 import { judgeTimeout } from "./runner/judge-options";
 import { mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync, readFileSync } from "node:fs";
@@ -48,7 +48,8 @@ const entries = missed ? allEntries.filter(e=>missed.has(candidateKey(e))) : val
 const batches = fixtureBatches(entries,BATCH_CHARACTERS), manifest = fixtureManifest(entries);
 const mode=full ? "rerun" : values.preview ? "preview" : "full";
 const reportBase = {mode, ...(mode!=="full" ? {scoring_authorized:false} : {}),
-  model:"gpt-6.1-sol",fixture_hash:rubricFixtureHash(selectedBook),expected_judgments:entries.length,candidates:manifest};
+  model:"gpt-6.1-sol",fixture_hash:rubricFixtureHash(selectedBook),expected_judgments:entries.length,candidates:manifest,
+  retry_policy:FIXTURE_RETRY_POLICY};
 if (values["dry-run"]) {
   writeFileSync(output,JSON.stringify({...reportBase,status:"planned",model_calls:0,
     ...(full ? {rounds:2} : {}),batches:batches.map(batch=>batch.map(entry=>entry.id)),results:[]},null,2)+"\n");
@@ -71,17 +72,20 @@ try {
   const save=(report:Event)=>writeFileSync(output,JSON.stringify(report,null,2)+"\n");
   async function round(phaseEntries:typeof entries, ordinal:number|undefined, checkpoint:(report:Event)=>void) {
     let next=0;
-    const startKnown=known,startUnknown=unknown,results:Event[]=loadingFixtureResults(phaseEntries);
+    const startKnown=known,startUnknown=unknown,results:Event[]=loadingFixtureResults(phaseEntries),retries:Event[]=[];
     const phaseBatches=fixtureBatches(phaseEntries,BATCH_CHARACTERS);
     const report=()=>({...reportBase,...(ordinal ? {round:ordinal} : {}),humanCalibration,
       expected_judgments:phaseEntries.length,candidates:fixtureManifest(phaseEntries),
-      known_cost:known-startKnown,unknown_cost_calls:unknown-startUnknown,results});
+      known_cost:known-startKnown,unknown_cost_calls:unknown-startUnknown,retries,results});
     checkpoint(report());
     async function worker() {
       while (next < phaseBatches.length) {
         if (rubricFixtureHash(selectedBook)!==reportBase.fixture_hash) throw Error("rubric contract changed during validation");
         const index=next++,batch=phaseBatches[index]!;
-        try {results.push(...await runFixtureBatch(call,batch,BATCH_CHARACTERS));}
+        try {results.push(...await runFixtureBatch(call,batch,BATCH_CHARACTERS,{onRetry:retry=>{
+          retries.push({batch:index+1,candidates:batch.map(e=>({check:e.check,ref:e.ref})),...retry});
+          checkpoint(report());
+        }}));}
         catch(error) {results.push({batch:index+1,ids:batch.map(e=>e.id),
           candidates:batch.map(e=>({check:e.check,ref:e.ref})),error:String(error),matches:false});}
         checkpoint(report());

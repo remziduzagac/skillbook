@@ -114,8 +114,28 @@ export function loadingFixtureResults(entries:FixtureEntry[]) {
   });
 }
 
-export async function runFixtureBatch(call:(instruction:string,data:unknown)=>Promise<Event>, batch:FixtureEntry[], limit=600_000) {
+export const FIXTURE_RETRY_POLICY = {max_attempts:3,delay_ms:2_000};
+export interface FixtureRetry {failed_attempt:number;next_attempt:number;delay_ms:number;error:string}
+function transientJudgeError(error:unknown) {
+  const message=error instanceof Error ? error.message : String(error);
+  return /^scenario model failed \(exit \d+\):/i.test(message) &&
+    !/insufficient.quota|quota exceeded|authentication|invalid.api.key|permission denied/i.test(message) &&
+    /at capacity|overloaded|temporarily unavailable|service unavailable|too many requests|rate limit|(?:http|status(?: code)?)\s*[:=]?\s*(?:429|502|503|504)\b/i.test(message);
+}
+export async function runFixtureBatch(call:(instruction:string,data:unknown)=>Promise<Event>, batch:FixtureEntry[], limit=600_000,
+  retry:{onRetry?:(event:FixtureRetry)=>void;wait?:(ms:number)=>Promise<void>}={}) {
   const data=fixturePayload(batch);
   if (structuredPrompt(FIXTURE_INSTRUCTION,data).length>limit) throw Error("fixture request exceeds complete prompt character bound");
-  return checkedFixtureBatch(batch,await call(FIXTURE_INSTRUCTION,data));
+  let response:Event;
+  for(let attempt=1;;attempt++) {
+    try {response=await call(FIXTURE_INSTRUCTION,data);break;}
+    catch(error) {
+      if(attempt>=FIXTURE_RETRY_POLICY.max_attempts || !transientJudgeError(error))throw error;
+      const delay_ms=FIXTURE_RETRY_POLICY.delay_ms*attempt;
+      retry.onRetry?.({failed_attempt:attempt,next_attempt:attempt+1,delay_ms,error:String(error)});
+      await (retry.wait ?? Bun.sleep)(delay_ms);
+    }
+  }
+  // Protocol and semantic validation failures are never service retries.
+  return checkedFixtureBatch(batch,response);
 }

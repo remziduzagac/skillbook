@@ -113,6 +113,22 @@ test("an actual dispatch checks the complete request before calling and stays at
   await expect(runFixtureBatch(call,[e],10)).rejects.toThrow("complete prompt");expect(calls).toBe(0);
   expect((await runFixtureBatch(call,[e]))[0]!.judgment.verdict).toBeNull();expect(calls).toBe(1);
 });
+test("a batch retries a busy judge a bounded number of times and never retries other failures", async () => {
+  const {runFixtureBatch,FIXTURE_RETRY_POLICY}=await import("./fixture-validation");
+  const e=entry(),busy=Error("scenario model failed (exit 1): Selected model is at capacity. Please try a different model.");
+  const flaky=(failures:number,error=busy)=>{let calls=0;return {count:()=>calls,call:async()=>{
+    if(++calls<=failures)throw error;return {results:[{id:e.id,verdict:null,reason:"unobserved"}]};}};};
+  const retries:unknown[]=[],wait=async()=>{};
+  const once=flaky(1);
+  expect((await runFixtureBatch(once.call,[e],undefined,{onRetry:r=>retries.push(r),wait}))[0]!.judgment.verdict).toBeNull();
+  expect(once.count()).toBe(2);expect(retries).toHaveLength(1);
+  const always=flaky(99);
+  await expect(runFixtureBatch(always.call,[e],undefined,{wait})).rejects.toThrow("at capacity");
+  expect(always.count()).toBe(FIXTURE_RETRY_POLICY.max_attempts);
+  const denied=flaky(1,Error("scenario model failed (exit 1): authentication failed"));
+  await expect(runFixtureBatch(denied.call,[e],undefined,{wait})).rejects.toThrow("authentication");
+  expect(denied.count()).toBe(1);
+});
 test("explicit unknown expectations survive the structural gate without being called semantic passes", () => {
   const b=JSON.parse(readFileSync("tests/calibration/festival-traces.json","utf8")) as RubricBook;
   const c=loadCases(), entries=fixtureEntries(b,c), direct=loadingFixtureResults(entries);
