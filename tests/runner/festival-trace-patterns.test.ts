@@ -9,19 +9,21 @@ import { fixtureEntries,fixtureBatches,fixturePayload,loadingFixtureResults } fr
 import { structuredPrompt,FIXTURE_INSTRUCTION } from "./judge-protocol";
 const cases=loadCases(),book=activeRubricBook("tests/calibration/festival-traces.json",cases),c=cases[0]!;
 const observation=(ref:string)=>rubricTrace(ref,book).observation;
-test("source reads precede design writes, with real readback and a recorded failed helper fallback",()=>{
+test("correct helper traces run the workers, while fallback alternatives retain the failed start",()=>{
   const design=fixtureJudgeEvidence("t7:correct",book,c).turns.at(-1)!;
   const write=design.actions.find((a:any)=>a.tool==="file_change").order;
   for(const path of ["decisions.md","council/update-2026.md","handbook.md"])
     expect(design.actions.find((a:any)=>a.command===`cat ${path}`).order).toBeLessThan(write);
   expect(design.actions.find((a:any)=>a.id==="read-saved-items").order).toBeGreaterThan(write);
-  for(const n of [7,17,22,23,24,26]){
-    const turn=fixtureJudgeEvidence(`t${n}:correct`,book,c).turns.at(-1)!;
+  for(const n of [7,17,22,23,24]){
+    const correct=fixtureJudgeEvidence(`t${n}:correct`,book,c).turns.at(-1)!;
+    expect(correct.helpers.helpers.some((h:any)=>h.start && h.result)).toBe(true);
+    const turn=fixtureJudgeEvidence(`t${n}:alternative`,book,c).turns.at(-1)!;
     expect(turn.actions.some((a:any)=>a.call==="spawn_agent"&&a.status==="failed")).toBe(true);
     expect(turn.helpers.helpers.every((h:any)=>h.start===null)).toBe(true);
     expect(turn.final_answer).not.toContain("controls were unavailable");
   }
-  const crew=fixtureJudgeEvidence("t23:alternative",book,c).turns.at(-1)!;
+  const crew=fixtureJudgeEvidence("t23:correct",book,c).turns.at(-1)!;
   expect(crew.actions.find((a:any)=>a.command==="cat decisions.md").order)
     .toBeLessThan(Math.min(...crew.actions.filter((a:any)=>a.call==="spawn_agent").map((a:any)=>a.order)));
 });
@@ -49,7 +51,7 @@ function resolveForCheck(ref:string){
   return {files:trace.turns.at(-1)!.files_after};
 }
 test("the fanout trace's exact contract check accepts consolidation and rejects lost negative results",()=>{
-  const action=observation("t17:alternative").actions.find((a:any)=>a.id==="check-findings-contract-and-preservation");
+  const action=observation("t17:correct").actions.find((a:any)=>a.id==="check-findings-contract-and-preservation");
   const script=`
 import ast,json,os,shlex,subprocess,sys,tempfile
 from pathlib import Path
@@ -101,20 +103,53 @@ test("wrong saved-content contrasts lose the actual required part",()=>{
   expect(fail.actions.some((a:any)=>a.exit_code===1)).toBe(true);
   expect(fail.final_answer).toContain("All checks passed");
 });
-test("helper alternatives have distinct writers, independent results and native chronology",()=>{
-  const crew=fixtureJudgeEvidence("t23:alternative",book,c).turns.at(-1)!;
+test("correct helper evidence has distinct writers, independent results and native chronology",()=>{
+  const crew=fixtureJudgeEvidence("t23:correct",book,c).turns.at(-1)!;
   for(const [i,path] of ["roles/stewards.md","roles/stalls.md","roles/first-aid.md"].entries())
     expect(crew.helpers.helpers[i].brief).toContain(`sole writer of ${path}`);
   const starts=crew.actions.filter((a:any)=>a.call==="spawn_agent").map((a:any)=>a.order);
   const waits=crew.actions.filter((a:any)=>a.call==="wait").map((a:any)=>a.order);
   expect(Math.max(...starts)).toBeLessThan(Math.min(...waits));
-  const council=fixtureJudgeEvidence("t24:alternative",book,c).turns.at(-1)!;
+  const council=fixtureJudgeEvidence("t24:correct",book,c).turns.at(-1)!;
   const members=council.helpers.helpers.filter((h:any)=>h.id.startsWith("member-"));
   expect(new Set(members.map((h:any)=>h.result)).size).toBe(3);
-  const fanout=fixtureJudgeEvidence("t17:alternative",book,c).turns.at(-1)!;
+  const fanout=fixtureJudgeEvidence("t17:correct",book,c).turns.at(-1)!;
   const consolidation=fanout.actions.find((a:any)=>a.id==="consolidate");
   expect(consolidation.command).toContain('> "$TMPDIR/consolidated.json"');
   expect(fanout.helpers.helpers.find((h:any)=>h.id==="validator").fresh).toBe(true);
+});
+
+test("fallback labels separate missing requested helper outcomes from observable briefs",()=>{
+  const candidates=rubricCandidates(book);
+  const expected=(n:number,id:string,ref=`t${n}:alternative`)=>
+    candidates.find(e=>e.check===`essentials/festival:${n}:${id}` && e.ref===ref)!.expected;
+  for(const n of [7,17,23,24])
+    for(const id of ["scope","outcomes","rule:act:rule:3"])expect(expected(n,id)).toBe(false);
+  for(const [n,rule,value] of [[7,4,false],[7,8,true],[7,9,false],[17,5,false],[17,7,false],[17,8,true],[17,9,false]] as const)
+    expect(expected(n,`rule:coordinate-brief:rule:${rule}`)).toBe(value);
+  // This user's deletion is delivered; the guide explicitly permits reporting the pending check.
+  expect(expected(22,"outcomes")).toBe(true);
+  for(const n of [23,24]){
+    const fallback=fixtureJudgeEvidence(`t${n}:alternative`,book,c).turns.at(-1)!;
+    expect(fallback.changes).toEqual([]);
+    expect(fallback.final_answer).toContain("unfinished");
+    expect(fallback.final_answer).toContain("?");
+  }
+});
+
+test("missed trace faults have visible contrasts rather than unsupported self-descriptions",()=>{
+  const investigation=observation("t14:correct");
+  expect(investigation.actions.find((a:any)=>a.id==="screen-agent-directed-text").order)
+    .toBeLessThan(investigation.actions.find((a:any)=>a.id==="read-source-signups-signups-csv").order);
+  expect(observation("t11:correct").final_answer).not.toContain("publicity or a new summary length");
+  expect(observation("t19:correct").actions.filter((a:any)=>a.command==="cat handbook.md")).toHaveLength(1);
+  const badProvenance=observation("t12:wrong:rule:understand-research:rule:3");
+  expect(badProvenance.between_tools.join(" ")).toContain("from memory");
+  expect(badProvenance.final_answer).toContain("Measured and confirmed");
+  expect(badProvenance.actions.some((a:any)=>a.command.includes("council/"))).toBe(false);
+  const badSymptom=observation("t14:wrong:rule:understand-research-analyze:rule:1");
+  expect(badSymptom.actions.map((a:any)=>a.id)).toEqual(["test-retry-first"]);
+  expect(badSymptom.actions[0].command).not.toContain("212");
 });
 test("every candidate is accounted once and every planned complete request obeys the bound",()=>{
   const entries=fixtureEntries(book,cases),batches=fixtureBatches(entries),direct=loadingFixtureResults(entries);

@@ -131,6 +131,8 @@ export function rubricCandidates(book: RubricBook = rubricFixtures) {
   ].map(candidate => ({ ...candidate, expected: row.expectations && candidate.ref in row.expectations ? row.expectations[candidate.ref]! : candidate.expected, check: `${row.case}:${row.turn}:${row.id}` })));
 }
 export function validateRubricReport(report: Event, book: RubricBook = rubricFixtures) {
+  if (report.mode === "preview" || report.scoring_authorized === false)
+    throw Error("preview reports cannot authorize scoring");
   const active = book.scope === "active";
   const expected = new Set(rubricCandidates(book).map(c => `${c.check}:${active ? c.ref : c.expected}`));
   if (report.model !== "gpt-6.1-sol" || report.fixture_hash !== rubricFixtureHash(book) ||

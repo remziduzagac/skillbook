@@ -115,7 +115,8 @@ export function measuredOpportunities(run: Event, turn: Event, rubrics: Rubric[]
         const named = p.deadline_action ? typeof action?.order === "number" ? action.order : null : ANSWER_DEADLINE;
         const at = entry.deadline === null || named === null ? null : Math.min(entry.deadline, named);
         const verdict = typeof p.verdict === "boolean" ? verified(p.verdict, p, turn.final_answer ?? "", turn.actions ?? []) : null;
-        parts.push(partAt(access, def.required_skill, at, verdict, entry.applies, p.quote ?? p.action));
+        const evidence = p.quote || (Array.isArray(p.action) ? p.action.join("; ") : p.action);
+        parts.push(partAt(access, def.required_skill, at, verdict, entry.applies, evidence));
       }
       else parts.push(partAt(access, def.required_skill, entry.deadline, null, entry.applies));
       if (judgment?.verdict === false && verified(false, judgment, turn.final_answer ?? "", turn.actions ?? []) === false)

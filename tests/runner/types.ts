@@ -116,6 +116,7 @@ export interface JudgeRequest {
 }
 export interface JudgeResult extends TaggedResult {
   reason: string;
+  raw?: Event;
 }
 export type RubricJudge = (request: JudgeRequest) => Promise<JudgeResult>;
 // External agent events are untrusted records with different shapes for each harness.

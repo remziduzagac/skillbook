@@ -1,9 +1,13 @@
 import { test, expect } from "bun:test";
-import { readFileSync } from "node:fs";
+import { readFileSync, mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { join } from "node:path";
+import { tmpdir } from "node:os";
 import { checkedJudgment, FIXTURE_INSTRUCTION, judgeData, resultRubric, structuredPrompt } from "./judge-protocol";
-import { fixturePayload, fixtureBatches, checkedFixtureBatch, fixtureEntries, loadingFixtureResults, type FixtureEntry } from "./fixture-validation";
+import { fixturePayload, fixtureBatches, checkedFixtureBatch, fixtureEntries, fixtureManifest, previewEntries,
+  candidateKey, loadingFixtureResults, type FixtureEntry } from "./fixture-validation";
 import { rubricBatch } from "./scenario";
-import { fixtureJudgeEvidence, rubricFixtureHash, rubricFixtures, type RubricBook } from "./rubric-fixtures";
+import { fixtureJudgeEvidence, rubricFixtureHash, rubricFixtures, validateRubricReport, type RubricBook } from "./rubric-fixtures";
 import { ruleChecks, resultChecks } from "./rule-checks";
 import { loadCases } from "./cases";
 import { helperEvidence } from "./helpers";
@@ -64,11 +68,11 @@ test("whole-guide checks have no semantic model call, while native access is kep
 });
 test("fixture evidence uses native helper extraction and the live allowlist", () => {
   const c=loadCases()[0]!, book=JSON.parse(readFileSync("tests/calibration/festival-traces.json","utf8")) as RubricBook;
-  const proof=fixtureJudgeEvidence("t23:alternative",book,c), turn=proof.turns.at(-1)!;
+  const proof=fixtureJudgeEvidence("t23:correct",book,c), turn=proof.turns.at(-1)!;
   expect(turn).not.toHaveProperty("access");expect(turn).not.toHaveProperty("helper_controls");
   expect(turn).not.toHaveProperty("files_before");expect(turn).not.toHaveProperty("files_after");
   for(const a of turn.actions){expect(a).not.toHaveProperty("output");expect(a).not.toHaveProperty("extent");}
-  const events=book.traces["t23:alternative"]!.observation.helper_events;
+  const events=book.traces["t23:correct"]!.observation.helper_events;
   const identity=(h:any)=>({id:h.id,brief:h.brief,result:h.result,fresh:h.fresh,start:h.start?.action,end:h.end?.action});
   expect(turn.helpers.helpers.map(identity)).toEqual(helperEvidence("codex",events).helpers.map(identity));
   for(const h of turn.helpers.helpers)expect(h.start.order).toBe(turn.actions.find((a:any)=>a.id===h.start.action).order);
@@ -101,16 +105,90 @@ test("explicit unknown expectations survive the structural gate without being ca
 test("source aggregation matches the final live opportunity, including part-only evidence", async () => {
   const {accessTurn}=await import("./access"), {measuredOpportunities}=await import("./measure-turn"), {opportunity}=await import("./measurement");
   const e=entry();
+  (e.request.evidence as any).turns[0].actions.push({id:"second",order:1});
   for(const row of [
     {verdict:true,reason:"part proof",parts:[{verdict:true,action:"check"}]},
+    {verdict:true,reason:"several checks",parts:[{verdict:true,action:["check","second"]}]},
     {verdict:null,reason:"part failure",parts:[{verdict:false,action:"check"}]},
     {verdict:true,reason:"no parts",quote:"Finished."},
     {verdict:false,reason:"supported overall failure",quote:"Finished.",parts:[{verdict:true,action:"check"}]},
   ]) {
     const judgment=checkedJudgment(e.request,row);
-    const turn={final_answer:e.request.answer,actions:[{id:"check",order:0}],judgments:[judgment]};
+    const turn={final_answer:e.request.answer,actions:[{id:"check",order:0},{id:"second",order:1}],judgments:[judgment]};
     const run={case:"unit",agent:"codex",model:"test",run:1,user_mode:"fixed",condition:"installed",skill_sources:{}};
     const live=measuredOpportunities(run,turn,[e.request.rubric],accessTurn("codex",[],1,{})).find(o=>o.id==="act:rule:3")!;
     expect(judgment.verdict).toBe(opportunity(live.parts).verdict);
+    expect(live.parts.every(p=>p.evidence===undefined || typeof p.evidence==="string")).toBe(true);
   }
 });
+
+test("several action citations survive shared verification, with the original response retained", async () => {
+  const e=entry();
+  (e.request.evidence as any).turns[0].actions.push({id:"second",order:1});
+  expect(checkedJudgment(e.request,{verdict:true,reason:"quote only",quote:"Finished.",action:null,
+    parts:[{verdict:true,quote:"Finished.",action:null}]}).verdict).toBe(true);
+  for (const action of [["check","second"],"check; second"]) {
+    const raw={id:e.id,verdict:true,reason:"Both checks are recorded",action,
+      parts:[{verdict:true,action,deadline_action:null}]};
+    const judged=checkedJudgment(e.request,raw);
+    expect(judged.verdict).toBe(true);
+    expect(checkedFixtureBatch([e],{results:[raw]})[0]!.judgment).toEqual(judged);
+    expect((await rubricBatch(async()=>({results:[{...raw,id:e.request.rubric.id}]}),[e.request]))[0]!.verdict).toBe(true);
+    expect(judged.raw).toEqual(raw);expect(judged.raw).not.toBe(raw);
+  }
+  for (const action of [["check","invented"],"check; invented",["check",""]]) {
+    const raw={verdict:true,reason:"bad reference",quote:"Finished.",action,
+      parts:[{verdict:true,quote:"Finished.",action}]};
+    const judged=checkedJudgment(e.request,raw);
+    expect(judged.verdict).toBeNull();
+    expect((judged as any).parts[0].verdict).toBeNull();
+    expect(judged.raw?.verdict).toBe(true);expect(judged.raw?.parts[0].verdict).toBe(true);
+    expect(raw.parts[0]!.verdict).toBe(true);
+  }
+});
+
+test("preview selects stable names, prior misses and changed trace requests or expectations", () => {
+  const old=[entry("a"),entry("b"),entry("c"),entry("d")];
+  old.forEach(e=>e.ref=e.id);
+  const report={candidates:fixtureManifest(old),results:old.map(e=>({...e,matches:e.id!=="b"}))};
+  const current=structuredClone(old);
+  current[2]!.request.answer="Different trace";
+  current[3]!.expected=null;
+  expect(previewEntries(current,[old[0]!],report).map(e=>e.id)).toEqual(["a","b","c","d"]);
+  expect(previewEntries(current,[],{results:report.results},old).map(e=>e.id)).toEqual(["b","c","d"]);
+  expect(previewEntries(current,[old[0]!,old[0]!]).map(candidateKey)).toEqual([candidateKey(old[0]!)]);
+  expect(()=>previewEntries(current,[],{results:report.results})).toThrow("--baseline-book");
+  expect(()=>previewEntries(current,[{check:"absent",ref:"absent"}])).toThrow("unknown preview");
+  expect(()=>previewEntries(current)).toThrow("no candidates");
+  expect(previewEntries(current,[],{...report,results:[{error:"failed",candidates:[old[0]]}]}).map(e=>e.id))
+    .toEqual(["a","c","d"]);
+});
+
+test("even a complete matching preview can never open the scoring gate", () => {
+  const results=fixtureEntries(rubricFixtures).map(e=>({check:e.check,ref:e.ref,
+    expected:e.expected,judgment:{verdict:e.expected}}));
+  const complete={model:"gpt-6.1-sol",fixture_hash:rubricFixtureHash(),results};
+  expect(validateRubricReport(complete)).toBe(results.length);
+  expect(()=>validateRubricReport({...complete,mode:"preview"})).toThrow("cannot authorize");
+  expect(()=>validateRubricReport({...complete,scoring_authorized:false})).toThrow("cannot authorize");
+});
+
+test("preview CLI writes an exact account-free plan and rejects invalid selection before dispatch", () => {
+  const root=mkdtempSync(join(tmpdir(),"rubric-preview-"));
+  try {
+    const output=join(root,"plan.json"), names=join(root,"candidates.json");
+    const first=fixtureEntries(rubricFixtures)[0]!;
+    writeFileSync(names,JSON.stringify([{check:first.check,ref:first.ref}]));
+    const args=["tests/check-rubric-fixtures.ts",output,"--historical","--dry-run","--candidates",names];
+    const run=spawnSync(process.execPath,[...args,"--preview"],{encoding:"utf8"});
+    expect(run.status,run.stderr).toBe(0);
+    const plan=JSON.parse(readFileSync(output,"utf8"));
+    expect(plan).toMatchObject({mode:"preview",scoring_authorized:false,expected_judgments:1,model_calls:0,results:[]});
+    expect(plan.candidates.map(candidateKey)).toEqual([candidateKey(first)]);
+    expect(run.stdout).toContain("no model calls");
+    expect(spawnSync(process.execPath,args,{encoding:"utf8"}).stderr).toContain("require --preview");
+    writeFileSync(names,JSON.stringify([{check:"typo",ref:"typo"}]));
+    const bad=spawnSync(process.execPath,[...args,"--preview"],{encoding:"utf8"});
+    expect(bad.status).not.toBe(0);expect(bad.stderr).toContain("unknown preview candidate");
+  } finally {rmSync(root,{recursive:true,force:true});}
+},30000);

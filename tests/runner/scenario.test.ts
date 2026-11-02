@@ -141,7 +141,8 @@ test("batched saved-answer judgments validate ids and cannot see earlier verdict
   expect(JSON.stringify(evidence)).not.toContain("verdict");
   const request = { rubric: { id: "a", tag: "skill:a", criterion: "a" }, answer: "Done", evidence };
   expect(await rubricBatch(async () => ({ results: [{ id: "a", verdict: false, reason: "missing result" }] }),
-    [request])).toEqual([{ id: "a", tag: "skill:a", verdict: false, reason: "missing result" }]);
+    [request])).toEqual([{ id: "a", tag: "skill:a", verdict: false, reason: "missing result",
+      raw:{id:"a",verdict:false,reason:"missing result"} }]);
   expect(rubricBatch(async () => ({ results: [{ id: "wrong", verdict: true, reason: "x" }] }), [request]))
     .rejects.toThrow();
 });

@@ -4,6 +4,43 @@ import { FIXTURE_INSTRUCTION, structuredPrompt, judgeCriterion, resultRubric, ch
 import type { Case, Event, JudgeRequest } from "./types";
 
 export interface FixtureEntry { id: string; ref: string; check: string; expected: import("./types").Verdict; request: JudgeRequest }
+export interface CandidateName { check: string; ref: string }
+export const candidateKey = (entry: CandidateName) => `${entry.check}@${entry.ref}`;
+export function candidateFingerprint(entry: FixtureEntry, rules = ruleChecks()) {
+  return new Bun.CryptoHasher("sha256").update(JSON.stringify({expected:entry.expected,
+    criterion:judgeCriterion(entry.request.rubric,rules),answer:entry.request.answer,evidence:entry.request.evidence})).digest("hex");
+}
+export function fixtureManifest(entries: FixtureEntry[]) {
+  const rules=ruleChecks();
+  return entries.map(entry => ({check:entry.check,ref:entry.ref,fingerprint:candidateFingerprint(entry,rules)}));
+}
+// Preview selection is a union of explicit names, prior misses and changed requests/labels.
+// Older reports need their exact book supplied because they did not save candidate fingerprints.
+export function previewEntries(entries: FixtureEntry[], names: CandidateName[] = [], since?: Event,
+  baseline?: FixtureEntry[]): FixtureEntry[] {
+  if (!Array.isArray(names) || names.some(n => !n || typeof n.check !== "string" || typeof n.ref !== "string"))
+    throw Error("preview candidates must be an array of {check,ref}");
+  const wanted = new Set(names.map(candidateKey)), current = new Set(entries.map(candidateKey));
+  for (const key of wanted) if (!current.has(key)) throw Error("unknown preview candidate: " + key);
+  if (since) {
+    if (!Array.isArray(since.results)) throw Error("preview baseline report needs results");
+    for (const row of since.results) {
+      const missed = row.error ? row.candidates : row.matches === false ? [row] : [];
+      if (!Array.isArray(missed)) throw Error("baseline error lacks candidate names");
+      for (const miss of missed) if (current.has(candidateKey(miss))) wanted.add(candidateKey(miss));
+    }
+    const manifest = since.candidates ?? (baseline && fixtureManifest(baseline));
+    if (!Array.isArray(manifest))
+      throw Error("baseline report has no fingerprints; supply --baseline-book from that revision");
+    const previous = new Map(manifest.map((row:Event) =>
+      [candidateKey({check:row.check,ref:row.ref}),row.fingerprint]));
+    const rules=ruleChecks();
+    for (const entry of entries) if (previous.get(candidateKey(entry)) !== candidateFingerprint(entry,rules))
+      wanted.add(candidateKey(entry));
+  }
+  if (!wanted.size) throw Error("preview selected no candidates");
+  return entries.filter(entry => wanted.has(candidateKey(entry)));
+}
 export function fixtureEntries(book: RubricBook, cases: Case[] = []): FixtureEntry[] {
   const rows = [...book.checks,...book.library ?? []], parts = resultChecks();
   const evidence = new Map<string, unknown>();

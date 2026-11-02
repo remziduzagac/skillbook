@@ -43,10 +43,17 @@ export function opportunity(parts: Part[]) {
   return { verdict: combine(parts.map(p => p.verdict)), availability:
     parts.some(p => p.deadline_known === false) || atDeadline.includes("unknown") ? "unknown" : atDeadline.includes("not opened") ? "not opened" : "opened" };
 }
-export function verified(verdict: boolean | null, evidence: { quote?: string; action?: string }, answer: string, actions: { id: string }[]): Verdict {
+export function verified(verdict: boolean | null, evidence: { quote?: string; action?: string | string[] }, answer: string, actions: { id: string }[]): Verdict {
   if (verdict === null) return null;
-  return (evidence.quote?.trim() && answer.includes(evidence.quote)) ||
-    (evidence.action && actions.some(a => a.id === evidence.action)) ? verdict : null;
+  const citation = evidence.action;
+  const list = Array.isArray(citation) || typeof citation === "string" && citation.includes(";");
+  const ids = Array.isArray(citation) ? citation : typeof citation === "string" ?
+    list ? citation.split(";").map(id => id.trim()) : [citation] : [];
+  const valid = ids.length > 0 && ids.every(id => typeof id === "string" && id.length > 0 && actions.some(a => a.id === id));
+  // A quote cannot rescue a list containing an invented action.
+  if (list && !valid) return null;
+  return (typeof evidence.quote === "string" && evidence.quote.trim() && answer.includes(evidence.quote)) || valid ?
+    verdict : null;
 }
 export interface ResultPart {
   verdict: Verdict; kind: "visible" | "internal"; later_step?: string; exclusion?: string;

@@ -47,3 +47,14 @@ A definition may include `source_context` for a referenced source rule needed to
 The book may name `expectations` by trace reference, including `null` for an unobservable or inapplicable fact. Unknown matches are reported as unknown, never as observed semantic passes. Whole-guide delivery belongs to the access/loading view; its semantic-only candidates produce unknown without a model call. Caller-owned follow-up work is judged in the caller’s scope.
 
 `fixture-validation.ts` shares each trace once per call, checks the complete structured request against 600,000 characters, and rejects an indivisible oversized candidate before dispatch. A batch is accepted only after every returned row is validated; errors record its candidate identities without a successful prefix. Active report hashes include the shaping, prompting, verification and measurement code as well as frozen sources and book data, so reports from an earlier contract expire. Historical book data and hashes remain unchanged.
+
+Action citations accept one exact ID, an array of exact IDs, or a legacy semicolon-separated string. Every cited ID must exist in the current turn; a list with an unknown ID is rejected even beside a valid quote. Stored judgments keep `raw` with the original model response, including part verdicts before verification. Fallback fixtures follow the [testing design's helper policy](../../blueprint/design/testing.md#helper-unavailability-in-validation-traces).
+
+Use `--preview --candidates FILE` to judge only an array of stable `{check,ref}` names. `--preview --since REPORT` selects the report's misses plus changed evidence, criteria and expectations; a report without candidate fingerprints also needs `--baseline-book FILE` from that revision. These selectors form a union. New full and preview reports retain fingerprints. Preview reports are marked `mode: preview` and `scoring_authorized: false`; the scoring gate always rejects them. Use `--dry-run` with preview to write its plan without login, calibration or model calls. Full validation remains the command above without preview selectors.
+
+```sh
+bun tests/check-rubric-fixtures.ts /tmp/preview-plan.json --book tests/calibration/festival-traces.json \
+  --preview --candidates /tmp/candidates.json --dry-run
+bun tests/check-rubric-fixtures.ts /tmp/preview.json /tmp/calibration.json \
+  --book tests/calibration/festival-traces.json --preview --candidates /tmp/candidates.json --login
+```

@@ -5,8 +5,8 @@ import { JUDGING_RULES } from "./judgment-policy";
 import type { Event, JudgeRequest, JudgeResult, Rubric } from "./types";
 
 export const JUDGE_INSTRUCTION =
-  'Judge each criterion independently. Return {"results":[{"id":string,"verdict":boolean|null|"not reached","reason":string,"quote":string,"action":string}]}. ' +
-  'Include a verbatim answer quote or recorded action id for every yes/no verdict. For a source rule, also return parts:[{verdict:boolean|null,quote:string,action:string,deadline_action:string|null}], one per applicable observable source-rule part; null deadline_action adds no earlier action deadline. Code retains the definition and author deadlines. ' +
+  'Judge each criterion independently. Return {"results":[{"id":string,"verdict":boolean|null|"not reached","reason":string,"quote":string,"action":string|string[]}]}. ' +
+  'Include a verbatim answer quote or recorded action id for every yes/no verdict. To cite several actions, use an array of exact ids; every id must exist in this turn. For a source rule, also return parts:[{verdict:boolean|null,quote:string,action:string|string[],deadline_action:string|null}], one per applicable observable source-rule part; null deadline_action adds no earlier action deadline. Code retains the definition and author deadlines. ' +
   'Judge observable returns and actions, not proof of private thinking or an internal wording check. Whole-guide delivery is scored separately from access records. Claude actions with parent_tool_use_id belong to that helper; null identifies the main agent. Do not credit a helper read as a main-agent read. For a rule with no applicable observable behavior, return null. A caller may use a guide result in a larger answer: score that result within its own scope. ' + JUDGING_RULES;
 export const FIXTURE_INSTRUCTION = JUDGE_INSTRUCTION +
   ' Each criterion names a trace_ref. Use only that trace\'s answer and evidence. Shared traces are supplied once; never borrow another trace\'s facts.';
@@ -54,7 +54,7 @@ export function checkedJudgment(request: JudgeRequest, row: Event): JudgeResult 
     // Live measurement combines verified parts and any separately supported overall failure.
     verdict=verdict === false ? false : outcome;
   }
-  return {id:request.rubric.id,tag:request.rubric.tag,verdict,reason:row.reason,
+  return {id:request.rubric.id,tag:request.rubric.tag,verdict,reason:row.reason,raw:structuredClone(row),
     ...(needsEvidence ? {quote:row.quote,action:row.action,parts} : {})};
 }
 export function checkedBatch(requests: JudgeRequest[], response: Event): JudgeResult[] {
