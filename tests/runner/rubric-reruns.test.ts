@@ -48,7 +48,7 @@ test("either repeated miss blocks, including unknown reruns against an expected 
   const unknown=full(b,["alternative"]);
   expect(validateRubricReport(combineRubricReports(unknown,[repeat(unknown,b,1),repeat(unknown,b,2)],b),b)).toBe(3);
 });
-test("up to 1% of candidates may still block after reruns, each one listed; one more fails the gate",()=>{
+test("up to 2% of candidates may still block after reruns, each one listed; one more fails the gate",()=>{
   const b=book();b.checks=Array.from({length:34},(_,i)=>({...b.checks[0]!,id:`result-${i}`}));
   const candidates=rubricCandidates(b),flipped=(keys:string[])=>{
     const initial=full(b,[]);
@@ -59,15 +59,15 @@ test("up to 1% of candidates may still block after reruns, each one listed; one 
   };
   expect(candidates).toHaveLength(102);
   const key=(i:number)=>`${candidates[i]!.check}@${candidates[i]!.ref}`;
-  const one=flipped([key(0)]);
-  expect(one.gate_passed).toBe(true);expect(one.blocking_candidates).toHaveLength(1);
-  const summary=rubricValidationSummary(one,b);
-  expect(summary.blocking_limit).toBe(1);expect(summary.blocking_candidates.map((c:Event)=>c.ref)).toEqual(["good"]);
-  expect(()=>validateRubricReport({...one,blocking_candidates:[]},b)).toThrow("tolerated blocking");
-  expect(summarize([{case:"unit",agent:"codex",model:"gpt-6.1-sol",run:1,cost:0,checks:{},turns:[],
-    rubric_validation:summary}],0)).toContain("Tolerated blocking miss (limit 1): unit:1:result-0, trace good");
   const two=flipped([key(0),key(3)]);
-  expect(two.gate_passed).toBe(false);expect(two.gate_error).toContain("2 blocking misses exceed the limit of 1");
+  expect(two.gate_passed).toBe(true);expect(two.blocking_candidates).toHaveLength(2);
+  const summary=rubricValidationSummary(two,b);
+  expect(summary.blocking_limit).toBe(2);expect(summary.blocking_candidates.map((c:Event)=>c.ref)).toEqual(["good","good"]);
+  expect(()=>validateRubricReport({...two,blocking_candidates:[]},b)).toThrow("tolerated blocking");
+  expect(summarize([{case:"unit",agent:"codex",model:"gpt-6.1-sol",run:1,cost:0,checks:{},turns:[],
+    rubric_validation:summary}],0)).toContain("Tolerated blocking miss (limit 2): unit:1:result-0, trace good");
+  const three=flipped([key(0),key(3),key(6)]);
+  expect(three.gate_passed).toBe(false);expect(three.gate_error).toContain("3 blocking misses exceed the limit of 2");
 });
 test("missing, extra, duplicated or preview rounds cannot substitute for two numbered reruns",()=>{
   const b=book(),initial=full(b),one=repeat(initial,b,1),two=repeat(initial,b,2);

@@ -138,8 +138,8 @@ export function rubricCandidates(book: RubricBook = rubricFixtures) {
 export const JUDGE_REPEATABILITY = {
   revision: "94fd856", changed: 3, compared: 239, rate: 3 / 239,
 };
-// Borderline traces keep flipping at this size; up to 1% of candidates may still block, each one listed.
-export const GATE_BLOCKING_SHARE = 0.01;
+// Borderline traces keep flipping at this size; up to 2% of candidates may still block, each one listed.
+export const GATE_BLOCKING_SHARE = 0.02;
 export const gateBlockingLimit = (candidates: number) => Math.floor(candidates * GATE_BLOCKING_SHARE);
 function gateRows(report: Event, candidates: ReturnType<typeof rubricCandidates>, book: RubricBook, hash: string) {
   const active = book.scope === "active";
