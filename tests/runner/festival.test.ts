@@ -218,7 +218,8 @@ test("every festival file assertion accepts its correct trace and rejects a plau
     for (const [folder, patterns] of Object.entries(x.folder_contains ?? {})) for (const pattern of patterns)
       atom({folder_contains:{[folder]:[pattern]}}, b => { for (const p in b.files) if (p.startsWith(folder+"/")) b.files[p] = ""; });
     for (const [folder, patterns] of Object.entries(x.folder_lacks ?? {})) for (const pattern of patterns)
-      atom({folder_lacks:{[folder]:[pattern]}}, b => b.files[folder+"/premature.md"] = pattern.includes("Safety") ? "# Safety\n" : "# index\n");
+      atom({folder_lacks:{[folder]:[pattern]}}, b => b.files[folder+"/premature.md"] = pattern.includes("Safety") ? "# Safety\n" :
+        pattern.includes("\\|") ? "# Pages\n\n| Page | For |\n| --- | --- |\n" : "# index\n");
     for (const pattern of x.tmp_lacks ?? []) atom({tmp_lacks:[pattern]}, () => {}, ["probe.txt"]);
   }
   expect(assertions).toBeGreaterThan(80);

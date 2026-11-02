@@ -2915,12 +2915,12 @@
         "folder_lacks": {
           "handbook": [
             "(?i)^# Safety(?:\\s|$)",
-            "(?i)^# (?:Volunteer )?(?:handbook )?index"
+            "(?i)^# (?:Volunteer )?(?:handbook )?index",
+            "(?m)^\\s*\\|"
           ]
         },
         "absent": [
-          "handbook/safety.md",
-          "handbook/index.md"
+          "handbook/safety.md"
         ],
         "folder_contains": {
           "handbook": [

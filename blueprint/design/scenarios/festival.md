@@ -388,7 +388,7 @@ Fresh session. Checkpoint: chapter 3's files.
   - `act-verify:rule:1`: an inventory of statements, not "looks complete".
   - `respond-layout:rule:3`: short table values.
 - **Rejected:** the Safety page or index made before approval; a statement lost; completion claimed before the user confirms.
-- **Automatic:** pages exist under `handbook/`; between them they hold "08:30", "alarm", "112", "18:00" and `rota@example.org`; the Lost children page keeps its own emergency text; no Safety page or index yet.
+- **Automatic:** pages exist under `handbook/`; between them they hold "08:30", "alarm", "112", "18:00" and `rota@example.org`; the Lost children page keeps its own emergency text; no Safety page and no table index yet. A plain page of links that the approved map named is allowed.
 
 ### Turn 20: make them, and list what to add and cut
 
