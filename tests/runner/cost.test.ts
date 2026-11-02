@@ -46,6 +46,13 @@ test("Claude root cost includes helpers once; real kept records telescope to the
   expect(amounts[1]!).toBeCloseTo(.00432670,12);
   expect(amounts.reduce<number>((sum,n)=>sum+n!,0)).toBeCloseTo(.03926992,12);
 });
+test("Claude background wakes end with several session totals; the last counts once",()=>{
+  expect(cost("claude","sonnet",[[...claude(.48),...claude(.48)]])).toBeCloseTo(.48);
+  const tracker=new CostTracker("claude","sonnet");tracker.next(claude(.1),{fresh:true});
+  expect(tracker.next([...claude(.3),...claude(.35)],{fresh:false,expectedSession:"a"})).toBeCloseTo(.25);
+  for(const bad of [[...claude(.3),...claude(.2)],[...claude(.3),...claude(undefined)],[...claude(.3),...claude(.4,"b")]])
+    expect(cost("claude","sonnet",[bad])).toBeNull();
+});
 test("Codex thread-total input, cached and output counters are differenced before pricing",()=>{
   const tracker=new CostTracker("codex","gpt-6.1-sol");
   expect(tracker.next(codex(1000,800,100),{fresh:true})).toBeCloseTo(.00148,12);

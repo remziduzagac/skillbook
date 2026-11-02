@@ -14,12 +14,16 @@ function counter(agent: Agent, events: Event[]): Counter | undefined {
     e.type === "thread.started" ? e.thread_id : undefined).filter(s => typeof s === "string" && s))];
   if (sessions.length > 1) return;
   const results = main.filter(e => e.type === (agent === "claude" ? "result" : "turn.completed"));
-  if (results.length !== 1) return;
-  const result = results[0]!;
+  // Claude wakes the session again for each finished background helper; every wake ends with a result
+  // carrying the session total, so the last one counts once.
+  if (!results.length || agent === "codex" && results.length !== 1) return;
+  const result = results.at(-1)!;
   if (agent === "claude") {
-    const value = result.total_cost_usd;
-    if (typeof value !== "number" || !Number.isFinite(value) || value < 0 ||
-      value === 0 && result.subtype === "error_during_execution") return;
+    const values = results.map(r => r.total_cost_usd);
+    if (values.some((v,i) => typeof v !== "number" || !Number.isFinite(v) || v < 0 || i > 0 && v < values[i - 1]))
+      return;
+    const value = values.at(-1) as number;
+    if (value === 0 && result.subtype === "error_during_execution") return;
     return {session:sessions[0],values:[value]};
   }
   const u = result.usage;
