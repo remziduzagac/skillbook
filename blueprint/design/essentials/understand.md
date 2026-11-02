@@ -1009,7 +1009,7 @@ understand/
 
   ```text
   Question:     the question, as framed
-  Answer:       a few sentences; for a claim, the verdict: supported, mixed, unsupported or unknown
+  Answer:       a few sentences; for a claim, the verdict: supported, mixed, unsupported, contradicted or unknown
   Findings:     one per line, in the findings format; for a claim, grouped under For and Against
   Not found:    what was looked for, and where
   Not covered:  what was skipped or cut short, and why
@@ -1095,7 +1095,7 @@ understand/
 - **Purpose:** one question that one local source does not answer by itself, or one claim checked from sources (D292): the answer, or a verdict with the evidence for and against (D128). Typical cases: how something behaves in a given version, a provider's limit, whether a name is free, whether a claim holds.
 - **Guide purpose** (D283): Answers one sourced question or gives a bounded verdict on one claim.
 - **Shape** (D283, D285): No method moved from Rules. Keep the existing steps, with a goal and clear instruction at the start and a bold action, reason and method in each step. The final check is Instructions step 5, marked to come last, always. Reuse the question, search nearest applicable sources and opposing evidence, rank by provenance, return a bounded verdict and check scope and limits. Keep five steps and the distinction between unsupported, unknown and disproved. Each step gives its action, concrete failure cost and sourced method; the final step checks “Gives back” and fixes shortfalls before return (D287).
-- **Description:** "One question a quick local read does not settle, or one claim checked from sources: the answer with its findings, or a verdict (supported, mixed, unsupported or unknown) with the evidence for and against. Use when a single fact needs source investigation beyond a quick local read, such as how something behaves, a limit, whether a name is free, or whether a claim is true." A draft (D128).
+- **Description:** "One question a quick local read does not settle, or one claim checked from sources: the answer with its findings, or a verdict (supported, mixed, unsupported, contradicted or unknown) with the evidence for and against. Use when a single fact needs source investigation beyond a quick local read, such as how something behaves, a limit, whether a name is free, or whether a claim is true." A draft (D128).
 - **When to use** (D279, D292): Use when an investigation needs one sourced answer or a verdict on one claim that one local source does not answer by itself. For example, a claim that something cannot be done needs evidence for that limit.
 - **When not** (D279):
 
@@ -1110,7 +1110,7 @@ understand/
 
   1. **Search against a claim as seriously as for it.** Searching only for support rewards confirmation. Keep the actual evidence found on each side, including no evidence found.
   2. **Judge by relevant evidence strength rather than the number of findings.** One current applicable primary statement can outweigh many copies. Stale authority or evidence for another case does not override the actual case.
-  3. **Keep verdicts distinct from missing checks.** Supported means the relevant evidence supports the claim. Mixed means relevant evidence supports and challenges it. Unsupported means no adequate support was found after the scoped check was completed. Unknown means access, coverage or evidence prevented a reliable verdict. Unsupported and unknown alone do not prove false. Give the evidence, limits and what would change the verdict.
+  3. **Keep verdicts distinct from missing checks.** Supported means the relevant evidence supports the claim. Mixed means relevant evidence supports and challenges it. Unsupported means no adequate support was found after the scoped check was completed. Contradicted means relevant evidence that applies to the case shows the claim is false, such as a newer rule that replaces the one the claim rests on. Unknown means access, coverage or evidence prevented a reliable verdict. When applicable evidence outweighs the rest by rule 2, the verdict is supported or contradicted, not mixed: stale or inapplicable evidence on the other side does not make it mixed. Unsupported and unknown alone do not prove false; only contradicted does, since a check that found no support is not evidence against the claim (D297). Give the evidence, limits and what would change the verdict.
 
   **Advice:**
 
@@ -1146,6 +1146,7 @@ understand/
   13. Gives meaningful counterexample, contrary-term or comparison searches without treating a fraction as a rigid quota. Reject: Only rephrases the claim in favorable terms.
   14. Checks applicability and evidence quality instead of blindly preferring the publisher category. Reject: Always chooses the official source even for the wrong case.
   15. Marks the inability only said rather than measured or confirmed. Reject: Converts the assertion into a proven limitation.
+  16. A claim that a newer applicable source shows false, such as an opening time a current timetable changed: returns contradicted, with the older and newer sources side by side (D297). Reject: Returns unsupported or mixed, or calls it false with no source.
 
 - **Open:** none known.
 

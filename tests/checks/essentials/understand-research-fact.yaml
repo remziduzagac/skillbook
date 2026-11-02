@@ -42,7 +42,7 @@
       "source": {
         "file": "skills/essentials/references/understand/research/fact.md",
         "line": 26,
-        "text": "3. **Keep verdicts distinct from missing checks.** Use one of four verdicts:\n   - supported: the relevant evidence supports the claim;\n   - mixed: relevant evidence both supports and challenges it;\n   - unsupported: you finished the check and found no adequate support;\n   - unknown: access, coverage or evidence kept you from a reliable verdict.\n\n   Neither unsupported nor unknown proves the claim false. Give the evidence, its limits and what would change the verdict."
+        "text": "3. **Keep verdicts distinct from missing checks.** Use one of five verdicts:\n   - supported: the relevant evidence supports the claim;\n   - mixed: relevant evidence both supports and challenges it;\n   - unsupported: you finished the check and found no adequate support;\n   - contradicted: relevant evidence that applies to the case shows the claim is false, such as a newer rule that replaces the one the claim rests on;\n   - unknown: access, coverage or evidence kept you from a reliable verdict.\n\n   When applicable evidence outweighs the rest by rule 2, the verdict is supported or contradicted, not mixed. Stale or inapplicable evidence on the other side does not make it mixed.\n\n   Only contradicted shows the claim false. A check that found no support is not evidence against the claim, so unsupported and unknown never do. Give the evidence, its limits and what would change the verdict."
       },
       "applicability": "scenario",
       "required_skill": "understand-research-fact",

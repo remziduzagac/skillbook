@@ -77,7 +77,7 @@
       "source": {
         "file": "skills/essentials/references/understand/research.md",
         "line": 23,
-        "text": "Sourced findings and their limits: an answer or claim verdict, compared candidates, or evidence for possible causes. Return them to the task that asked for the research, in this default shape:\n\n```text\nQuestion:     the question, as framed\nAnswer:       a few sentences; for a claim, the verdict: supported, mixed, unsupported or unknown\nFindings:     one per line, in the findings format; for a claim, grouped under For and Against\nNot found:    what was looked for, and where\nNot covered:  what was skipped or cut short, and why\nOpen:         what would change the answer, and what would settle it\nNext:         what comes next\n```"
+        "text": "Sourced findings and their limits: an answer or claim verdict, compared candidates, or evidence for possible causes. Return them to the task that asked for the research, in this default shape:\n\n```text\nQuestion:     the question, as framed\nAnswer:       a few sentences; for a claim, the verdict: supported, mixed, unsupported, contradicted or unknown\nFindings:     one per line, in the findings format; for a claim, grouped under For and Against\nNot found:    what was looked for, and where\nNot covered:  what was skipped or cut short, and why\nOpen:         what would change the answer, and what would settle it\nNext:         what comes next\n```"
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
       "required_skill": "understand-research",

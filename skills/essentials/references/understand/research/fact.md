@@ -23,13 +23,16 @@ The answer or claim verdict, supporting and opposing evidence, limits and missin
 
 1. **Search against a claim as seriously as for it.** Searching only for support rewards confirmation. Keep the actual evidence found on each side, including no evidence found.
 2. **Judge by relevant evidence strength rather than the number of findings.** One current applicable primary statement can outweigh many copies. Stale authority or evidence for another case does not override the actual case.
-3. **Keep verdicts distinct from missing checks.** Use one of four verdicts:
+3. **Keep verdicts distinct from missing checks.** Use one of five verdicts:
    - supported: the relevant evidence supports the claim;
    - mixed: relevant evidence both supports and challenges it;
    - unsupported: you finished the check and found no adequate support;
+   - contradicted: relevant evidence that applies to the case shows the claim is false, such as a newer rule that replaces the one the claim rests on;
    - unknown: access, coverage or evidence kept you from a reliable verdict.
 
-   Neither unsupported nor unknown proves the claim false. Give the evidence, its limits and what would change the verdict.
+   When applicable evidence outweighs the rest by rule 2, the verdict is supported or contradicted, not mixed. Stale or inapplicable evidence on the other side does not make it mixed.
+
+   Only contradicted shows the claim false. A check that found no support is not evidence against the claim, so unsupported and unknown never do. Give the evidence, its limits and what would change the verdict.
 
 ## Advice
 
@@ -52,7 +55,7 @@ Answer one sourced question or judge one claim within the evidence’s actual sc
    - Keep supporting, contrary and missing evidence visible. Use relevant strength rather than source count, by rule 2 here.
    - Mark memory, inference and unread source leads honestly. Keep the cases the evidence applies to beside its strength.
 4. **Return the answer or a bounded verdict under rule 3.** Conflating unknown with unsupported can make the caller reject a claim that was never adequately checked.
-   - For a claim, choose supported, mixed, unsupported or unknown from the actual check. Neither unsupported nor unknown alone proves false.
+   - For a claim, choose supported, mixed, unsupported, contradicted or unknown from the actual check. Only contradicted shows the claim false; unsupported and unknown never do.
    - Give evidence for and against, checked scope, limits, missing checks and what could change the verdict. Return the factual result to naming or comparison without taking over their choice.
 5. **Check the answer and “Gives back” before returning it.** Always do this last. The caller needs the evidence and the limit together to use the result safely.
    - Check claims were searched both ways and evidence fits the actual version and scope. Use the parent's finding fields and result shape.

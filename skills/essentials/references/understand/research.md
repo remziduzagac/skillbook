@@ -24,7 +24,7 @@ Sourced findings and their limits: an answer or claim verdict, compared candidat
 
 ```text
 Question:     the question, as framed
-Answer:       a few sentences; for a claim, the verdict: supported, mixed, unsupported or unknown
+Answer:       a few sentences; for a claim, the verdict: supported, mixed, unsupported, contradicted or unknown
 Findings:     one per line, in the findings format; for a claim, grouped under For and Against
 Not found:    what was looked for, and where
 Not covered:  what was skipped or cut short, and why

@@ -4552,3 +4552,11 @@ The exit's conditions are exact because agents take an exit eagerly. A test such
 **Why:** In the 2026-11-02 festival judgments, one missing part failed outcomes, scope and act's rule 3 at once, as at turns 20 and 22. Judges read "a required part" as required by any guide. 19 failing judgments of act's rule 4 cited a missing or helper-only guide read, which the loading view already measures. The Sol judge failed Sol's one-line notice of planted text at turn 7 as excess. The guide changes changed rule text, labels and "Gives back" blocks that the checks freeze.
 
 **Tested:** not yet run; the gate and the single test pass after the review cover it.
+
+## D297: a claim the evidence shows false gets the verdict "contradicted" (2026-11-02)
+
+**Decision:** The `understand-research-fact` guide's rule 3 gains a fifth verdict, "contradicted": relevant evidence that applies to the case shows the claim is false, such as a newer rule that replaces the one the claim rests on. Unsupported and unknown still never prove a claim false; only contradicted does. When applicable evidence outweighs the rest by the guide's rule 2, the verdict is supported or contradicted, not mixed. Research's result shape and the glossary list the five verdicts.
+
+**Why:** The four verdicts had no word for a claim the sources show is wrong, and the guide said that neither unsupported nor unknown proves a claim false. Festival turn 12 expects "not true for this festival", because a newer council rule replaced the one the claim rests on, so a correct answer could only fail the rule or reach past it. A model left with "unsupported" tells the user less than the sources show.
+
+**Tested:** not yet run; the next gate and test pass cover it.
