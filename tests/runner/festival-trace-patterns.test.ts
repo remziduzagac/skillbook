@@ -127,7 +127,7 @@ test("fallback labels separate missing requested helper outcomes from observable
     candidates.find(e=>e.check===`essentials/festival:${n}:${id}` && e.ref===ref)!.expected;
   for(const n of [7,17,23,24])
     for(const id of ["scope","outcomes","rule:act:rule:3"])expect(expected(n,id)).toBe(false);
-  for(const [n,rule,value] of [[7,4,true],[7,8,true],[7,9,false],[17,5,false],[17,7,false],[17,8,true],[17,9,false]] as const)
+  for(const [n,rule,value] of [[7,4,true],[7,8,true],[7,9,false],[17,5,true],[17,7,false],[17,8,true],[17,9,false]] as const)
     expect(expected(n,`rule:coordinate-brief:rule:${rule}`)).toBe(value);
   // This user's deletion is delivered; the guide explicitly permits reporting the pending check.
   expect(expected(22,"outcomes")).toBe(true);
