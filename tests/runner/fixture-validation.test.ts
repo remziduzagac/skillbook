@@ -11,6 +11,7 @@ import { fixtureJudgeEvidence, rubricFixtureHash, rubricFixtures, validateRubric
 import { ruleChecks, resultChecks } from "./rule-checks";
 import { loadCases } from "./cases";
 import { helperEvidence } from "./helpers";
+import { USER_REQUEST_DELIVERY } from "./judgment-policy";
 const entry = (id="one"): FixtureEntry => ({id,ref:"trace",check:"unit:1:check",expected:true,
   request:{rubric:{id:"rule",tag:"rule",criterion:"Return an answer",source_check:"requested-work"},answer:"Finished.",
     evidence:{current_turn:1,turns:[{final_answer:"Finished.",actions:[{id:"check",order:0}]}]}}});
@@ -36,6 +37,24 @@ test("fixture criteria, sources and response verification are the live protocol"
   expect(criterion.source_context[0].id).toBe("act-rightsize:rule:6");
   expect(criterion.source_context[0].source.text).toContain("pending proposal");
   expect(judgeData([lean.request]).criteria[0]!.source_context).toEqual(criterion.source_context);
+});
+test("shared user-delivery criteria differ from guide stage returns in both live and fixture requests",()=>{
+  for(const rubric of [
+    {id:"scope",tag:"habit:requested-scope",criterion:"Scope"},
+    {id:"outcomes",tag:"task:outcomes",criterion:"Outcome"},
+    {id:"rule",tag:"rule:act:rule:3",source_check:"requested-work",criterion:"Requested work"},
+  ]){
+    const e=entry();e.request.rubric=rubric;
+    const fixture=fixturePayload([e]).criteria[0]!,live=judgeData([e.request]).criteria[0]!;
+    expect(fixture.criterion).toBe(live.criterion);
+    expect(live.criterion).toContain(USER_REQUEST_DELIVERY);
+    expect(rubric.criterion).not.toContain(USER_REQUEST_DELIVERY);
+  }
+  const e=entry(),part=resultChecks().find(p=>p.skill==="coordinate-delegate-crew")!;
+  e.request.rubric=resultRubric(part);
+  expect(fixturePayload([e]).criteria[0]!.criterion).not.toContain(USER_REQUEST_DELIVERY);
+  e.request.rubric={id:"rule",tag:"rule:understand:rule:5",source_check:"understand:rule:5",criterion:"Choice"};
+  expect(judgeData([e.request]).criteria[0]!.criterion).toBe("Choice");
 });
 test("shared traces are sent once and full serialized prompt limits include envelopes and instructions", () => {
   const a=entry("a"),b=entry("b");

@@ -1,7 +1,7 @@
 import { ruleChecks } from "./rule-checks";
 import { currentFinal } from "./answers";
 import { verified, combine } from "./measurement";
-import { JUDGING_RULES } from "./judgment-policy";
+import { JUDGING_RULES, USER_REQUEST_DELIVERY } from "./judgment-policy";
 import type { Event, JudgeRequest, JudgeResult, Rubric } from "./types";
 
 export const JUDGE_INSTRUCTION =
@@ -20,7 +20,9 @@ export function loadingOnly(rubric: Rubric, rules = ruleChecks()) {
 export function judgeCriterion(rubric: Rubric, rules = ruleChecks()): Event {
   const source=rubric.source_check ? rules.find(c => c.key === rubric.source_check) : undefined;
   if (rubric.source_check && !source) throw Error("unknown source check: "+rubric.source_check);
-  return {...rubric, ...(source ? {
+  const delivery = rubric.tag === "habit:requested-scope" || rubric.tag === "task:outcomes" ||
+    source?.key === "requested-work";
+  return {...rubric, criterion:rubric.criterion + (delivery ? " " + USER_REQUEST_DELIVERY : ""), ...(source ? {
     full_rule: source.source.text,
     ...(source.source_context ? {source_context: source.source_context} : {}),
     scoring: "Score all applicable observable source-rule parts, with their deadlines; known failure fails, otherwise unknown remains unknown. Source context explains referenced requirements of this target rule, not a separate criterion. Guide delivery belongs to the separate loading view."

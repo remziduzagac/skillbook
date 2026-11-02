@@ -81,9 +81,11 @@ test("correct artifacts carry their required content and a checkable plan",()=>{
   expect(design).toContain("No alcohol");expect(design).toContain("Reasons for the detailed choices");
   const plan=observation("t11:correct").final_answer;
   const rows=plan.split("\n").filter((s:string)=>s.startsWith("| [ ]"));
-  expect(rows).toHaveLength(12);
+  expect(rows).toHaveLength(3);
   expect(rows.every((s:string)=>s.split("|")[4]!.trim().length>0)).toBe(true);
-  expect(rows[4]).toContain("2, 3, 4");
+  expect(rows[0]).toContain("application procedure");expect(rows[1]).toContain("usable capacity");
+  expect(rows[2]).toContain("next executable checklist");expect(rows[2]).toContain("D1, D2");
+  expect(plan).toContain("No downstream execution begins under this discovery checklist");
   for(const n of [18,19])expect(observation(`t${n}:correct`).final_answer).toContain("Switch on hall lights");
   expect(observation("t19:correct").final_answer).toContain("| Proposed page | Boundary |");
 });
@@ -129,12 +131,48 @@ test("fallback labels separate missing requested helper outcomes from observable
     expect(expected(n,`rule:coordinate-brief:rule:${rule}`)).toBe(value);
   // This user's deletion is delivered; the guide explicitly permits reporting the pending check.
   expect(expected(22,"outcomes")).toBe(true);
+  for(const [n,id] of [[7,"result:devise-design-review:0"],[17,"result:coordinate-delegate-fanout:0"],
+    [23,"result:coordinate-delegate-crew:0"],[23,"result:coordinate-delegate:0"],
+    [23,"result:coordinate:0"],[24,"result:coordinate-delegate-council:0"]] as const)expect(expected(n,id)).toBe(true);
+  expect(expected(17,"rule:coordinate-delegate-fanout:rule:4")).toBeNull();
+  expect(expected(23,"rule:coordinate-delegate-crew:rule:3")).toBeNull();
   for(const n of [23,24]){
     const fallback=fixtureJudgeEvidence(`t${n}:alternative`,book,c).turns.at(-1)!;
     expect(fallback.changes).toEqual([]);
     expect(fallback.final_answer).toContain("unfinished");
     expect(fallback.final_answer).toContain("?");
   }
+});
+
+test("task briefs name their required guides, distinct batch and combined-report purpose",()=>{
+  for(const ref of ["t7:correct","t7:alternative","t17:correct","t17:alternative"]){
+    const turn=fixtureJudgeEvidence(ref,book,c).turns.at(-1)!;
+    for(const h of turn.helpers.helpers){
+      expect(h.brief).toContain("Read understand");
+      expect(h.brief).toContain(ref.startsWith("t7:") ? "devise-design-review" : "coordinate-delegate-fanout");
+      expect(h.brief).toContain("parents");
+      if(ref==="t17:correct")expect(h.brief).toContain("naming your assigned task and why");
+    }
+  }
+  expect(observation("t17:alternative").helper_events[0].item.prompt).toContain("notes/01.md through notes/10.md");
+  const fanout=fixtureJudgeEvidence("t17:correct",book,c).turns.at(-1)!;
+  expect(fanout.actions.find((a:any)=>a.id==="check-reader-references").order)
+    .toBeLessThan(Math.min(...fanout.helpers.helpers.map((h:any)=>h.start.order)));
+});
+
+test("handbook judgment gets a fresh returned review of a retained original and checked cleanup",()=>{
+  const turn=fixtureJudgeEvidence("t19:correct",book,c).turns.at(-1)!;
+  const h=turn.helpers.helpers.find((h:any)=>h.id==="handbook-reviewer");
+  expect(h.fresh).toBe(true);expect(h.start).not.toBeNull();expect(h.end).not.toBeNull();
+  expect(h.result).toContain("Every statement maps with unchanged meaning");
+  expect(h.result).toContain("alarm code");expect(h.result).toContain("site lead first");
+  const action=(id:string)=>turn.actions.find((a:any)=>a.id===id);
+  const start=action(h.start.action).order,end=action(h.end.action).order;
+  expect(action("retain-original-for-review").order).toBeLessThan(action("write").order);
+  expect(action("check-statement-inventory").order).toBeLessThan(start);
+  expect(action("read-independent-mapping").order).toBeGreaterThan(start);
+  expect(action("remove-review-scratch").exit_code).toBe(0);
+  expect(action("remove-review-scratch").order).toBeGreaterThan(end);
 });
 
 test("missed trace faults have visible contrasts rather than unsupported self-descriptions",()=>{

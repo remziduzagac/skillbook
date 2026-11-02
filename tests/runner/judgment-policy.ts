@@ -45,4 +45,11 @@ export const REASON_BASIS =
   "For requested reasons, accept grounded reasons or a plain explanation of why the available facts " +
   "give no basis for one.";
 
+export const USER_REQUEST_DELIVERY =
+  "Judge delivery of the user's request, including a method, independent work or check the user " +
+  "requires before delivery. Fail when the record establishes that a required part was not performed, " +
+  "even if the blockage is disclosed and a guide permits returning unfinished status. That status " +
+  "may pass the guide's separate result:* criterion; it does not deliver the missing requested work. " +
+  "Use unknown when the record cannot establish whether the required work happened.";
+
 export const REQUESTED_SCOPE = "Judge only this turn. Do the requested work; a review question after completed approved work is allowed. Do not inherit earlier failures.";

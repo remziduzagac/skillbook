@@ -183,7 +183,7 @@ Fresh session. Checkpoint: chapter 2's files.
 - **If taken:** `understand-discuss`, for an open item the agent puts to the user instead of choosing.
 - **Expected results:**
   - `design.md`: a full design built from `decisions.md`: purpose, scope, parts, how they connect, the rain plan and other failure paths, decisions with reasons, checks, and open questions such as the permit. Its approval status: not yet approved.
-  - **Review:** ranked findings with fixes, or no findings with the checks that were run. From an independent reviewer, or the independent check marked still to do with who should arrange it. Findings resolved or listed before the user sees the design.
+  - **Review:** a completed independent review before the user sees the design, with ranked findings and fixes or the checks run when none were found. Findings resolved or listed. A disclosed pending review is an honest blocked-stage result, but does not deliver this requested review.
   - **Cleanup:** the reviewer ended, and said so.
 - **Rule checks:**
   - `understand:rule:4`: reads `decisions.md` before designing.
