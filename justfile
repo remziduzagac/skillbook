@@ -8,7 +8,7 @@ lint-markdown:
 
 # Every local link and anchor resolves.
 links:
-    lychee --offline --include-fragments --no-progress --exclude-path node_modules '**/*.md'
+    lychee --offline --include-fragments --no-progress --exclude-path node_modules --exclude-path tmp '**/*.md'
 
 # Shell scripts: ShellCheck, and shfmt with the settings in .editorconfig.
 lint-shell:
