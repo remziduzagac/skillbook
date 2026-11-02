@@ -11,6 +11,8 @@ Use before acting when the request leaves something open or needs facts, options
 ## When not
 
 - Project changes you will keep after this analysis, or putting a decision into practice: return that work to the main task. This guide keeps no changes in the project.
+- A view, such as "what do you think of this pricing page?": follow the `act` guide's rule 2. A view is not a task, so nothing needs settling before it.
+- The user did not follow you: use the `respond-explain` guide. The gap is in your explanation, not in their request.
 
 ## Gives back
 
@@ -42,7 +44,7 @@ Decisions and their reasons, questions set aside and why, and next steps. Give t
 ## Advice
 
 - Give as much understanding as the decision deserves; a plan needs more.
-- The question itself may be wrong. Reframing it is always an option.
+- The question itself may be wrong. Reframing it with the `understand-frame` guide is always an option.
 - Show what the user would want to correct, such as how you framed the question or what you assumed.
 
 ## Instructions
@@ -56,17 +58,18 @@ Understanding comes before acting, so the work answers what the user meant, not 
    - List each unknown or choice that would change the result, with what would settle it.
    - Leave to the user what is theirs: their intent, taste, anything hard to undo, and what only they know. Settle what is yours: what the project's conventions settle, and defaults easy to undo, by rule 5.
    - If a choice or unknown would change the result, read the `understand-clarify` guide before the first change, by rule 7, even when the answer seems plain.
-3. **Ask the user, round by round, until you could state the intent, the goal and what done looks like.** Work built on a guess has to be undone, and the user pays for it.
-   - Ask through the `respond-ask` guide, with a recommended answer. After each answer, ask again only about what is still open.
+3. **Settle what only the user can decide through the `understand-clarify` guide, round by round, until you could state the intent, the goal and what done looks like.** Work built on a guess has to be undone, and the user pays for it.
+   - That guide, and the child guide it sends you to, choose the questions and how deep to go. The `respond-ask` guide sets how each question is put, with a recommended answer.
+   - After each answer, ask again only about what is still open.
    - If the result rests on choices you made yourself, show them in one "Going with" message, then end the turn before any change, by rule 5. If the user told you to choose, or has just answered, put the line in your final answer instead.
    - A request with nothing open after steps 1 and 2 needs no questions.
 4. **Use the method each open part needs.** Each guide below does one kind of understanding well. A request may need several, in any order. A part that fits none is your own judgment, under the rules above.
-   - With the user: the `understand-discuss` guide works through the open parts of a topic. The `understand-clarify` guide settles choices that change the result.
+   - With the user: the `understand-discuss` guide works through the open parts of a topic. The `understand-clarify` guide settles choices that change the result: in a round of questions, in an interview the user asks for, or in questions for someone else who holds the answers.
    - Options: the `understand-brainstorm` guide generates distinct options.
    - Thinking it through: the `understand-frame` guide defines the problem and goal. The `understand-weigh` guide compares named options. The `understand-challenge` guide finds weaknesses in an idea. The `understand-argue` guide makes an honest one-sided case.
    - Names: the `understand-naming` guide checks and proposes shared names.
-   - Sources: the `understand-research` guide investigates questions that need sourced facts.
-   - A whole design belongs to the work designing it.
+   - Sources: the `understand-research` guide finds sourced facts, existing options or the cause of a problem, even from local files.
+   - A whole design belongs to the `devise-design` guide.
 5. **Hand back the result in one shape, and keep nothing yourself.** The caller acts on the result, so it must find each part without knowing which guide made it, by rules 1 and 2.
    - Give what was decided and why, what was set aside and why, and what comes next. Add each used guide's own part.
    - Make no lasting change while understanding, by rule 6. Put probes in a scratch place, or remove them through the `act-cleanup` guide before you return.

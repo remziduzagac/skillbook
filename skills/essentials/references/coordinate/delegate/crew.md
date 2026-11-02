@@ -4,7 +4,7 @@
 
 Coordinates parallel changes to separate items, then joins and checks the whole result.
 
-Needs: permitted workers through the active the `coordinate-delegate` guide call. If unavailable, return the limitation and unstarted work. Report partial changes and unfinished checks honestly.
+Needs: permitted workers through the active call of the `coordinate-delegate` guide. If unavailable, return the limitation and unstarted work. Report partial changes and unfinished checks honestly.
 
 ## When to use
 
@@ -23,8 +23,11 @@ The approved changes, the final pass over the whole, actual check results and un
 ## Rules
 
 1. **Assign one writer to each item.** Parallel writes to the same item overwrite work. Give every shared item one owner. Other workers send that owner proposals, or leave them for the final pass.
-2. **Apply the current plan and choice approvals before changing anything.** Use the `devise-plan` guide and the `understand` guide. Their exact exceptions and scoped approval reuse apply. A request for a plan authorizes no execution. Keep cost and other guardrails separate.
-3. **Reread each written item from disk after writing it.** Another worker may have changed nearby material. This check follows, rather than replaces, the `act-guardrails` guide' check before writing.
+2. **Apply the current plan and choice approvals before changing anything.** Parallel workers change several items at once, so a wrong plan costs several undos.
+   - Show the plan and end the turn before workers start, by the `act` guide's rule 13. Go ahead without that stop only in the cases that rule names. Then put each worker's item with its result, and the final pass, in your final answer, by the same rule.
+   - High-stakes work still needs the `devise-plan` guide's own approval. Settle open choices through the `understand` guide first. Reuse an approval only for the work it covered.
+   - A request for a plan authorizes no execution. Keep cost and other guardrails separate.
+3. **Reread each written item from disk after writing it.** Another worker may have changed nearby material. This check follows, rather than replaces, the `act-guardrails` guide's check before writing.
 
 ## Instructions
 

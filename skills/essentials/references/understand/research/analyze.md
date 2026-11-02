@@ -16,7 +16,14 @@ Use when the user asks why something happens and the cause needs investigation. 
 
 ## Gives back
 
-The symptom, supported causes or marked hypotheses, rejected causes, and who should investigate or fix it next.
+The symptom, supported causes or marked hypotheses, rejected causes, and who should investigate or fix it next, in this default shape:
+
+```text
+Symptom:    what is seen, where, since when, how often
+Cause:      the chain from the symptom back to the trigger, each link with its evidence, confirmed or hypothesis
+Ruled out:  each cause tested and rejected, with the evidence
+Fix:        where a fix belongs, at the trigger, handed to the caller
+```
 
 ## Rules
 
@@ -25,12 +32,12 @@ The symptom, supported causes or marked hypotheses, rejected causes, and who sho
 3. **Confirm a cause through evidence rather than fit.** Reproduce it, observe it through a probe or show that removing it removes the symptom. Until supported, label it a hypothesis. A familiar explanation is not an observation.
 4. **Trace the chain back to its trigger.** Give evidence for each link. If a link cannot be traced further, say so. A change where the symptom appears can leave its cause intact.
 5. **Return the cause before offering a fix as the answer.** The main task owns any fix. Without a confirmed cause, return hypotheses, missing evidence and what would settle them rather than inventing a fix or a completed chain.
-6. **Stop and ask when hypotheses keep failing without a new lead.** Follow the `respond-ask` guide and end the turn. Further work may need instrumentation, continued investigation or a new frame.
+6. **Stop and ask after about three failed hypotheses without a new lead.** Ask through the `respond-ask` guide, then end the turn. More guesses use the user's time without better evidence. The user can choose to go on, add instrumentation or reframe.
 7. **Clean investigation scaffolding when its actual lifecycle ends.** Use the `act-cleanup` guide for unresolved and cancelled investigations as well as confirmed ones. Stop your own no-longer-needed processes and remove your probes or temporary edits. Preserve the caller's work and requested evidence. Keep only what cleanup permits, with where and why. Missing confirmation is not a reason to leave scaffolding running.
 
 ## Advice
 
-- After about three failed hypotheses without a new lead, use rule 6. The framing or evidence may be wrong. Follow the `act` guide's failure limits too.
+- Follow the `act` guide's failure limits too. The framing or the evidence may be wrong.
 - For a regression, inspect recent changes first, then the path the failure takes and a reproduction.
 - Compare with a working case and list the differences. Inspect inputs and outputs at component boundaries to locate the break.
 - Bisect changes, steps or inputs when that can isolate the trigger.

@@ -30,10 +30,11 @@ Add a parent that explains what selected items share. The parent should earn its
 2. **Require at least two items and a useful shared statement before adding the parent.** A redundant parent adds navigation cost for every reader.
    - Check it says something no item says alone. If it does not, add no parent.
 3. **Name the parent and give its one-sentence boundary by the `organize` guide.** A broad or unclear parent can pull unrelated items into the arrangement.
-   - Say what belongs and what does not. Follow the parent's shared choice rule for the name and parent choice.
-4. **Prepare item placement under the `organize` guide's approved map.** Moving beyond the selected set can disturb work the user did not ask to rearrange.
-   - Include every selected item that belongs and no unrelated item. Keep unselected items in place and preserve selected content.
-   - Move items only where folders hold the arrangement. Show the map and end the turn for required approval before any change.
+   - Say what belongs and what does not. Follow the `understand` guide's who-decides rule for the name and the choice of parent.
+4. **Prepare where each selected item goes, for the `organize` guide's map.** Moving beyond the selected set can disturb work the user did not ask to rearrange.
+   - Include every selected item that belongs and no other item. Leave unselected items where they are, and keep every item's content.
+   - Where folders hold the arrangement, such as files in a folder tree, map the selected items to move under the parent.
+   - Show the map and end the turn before any change, by the `organize` guide's rule 4.
 5. **Check the parent and “Gives back” before returning.** Always do this last. A new heading alone does not show that the arrangement is useful or preserved.
    - Check the shared statement, useful parent, boundary and each selected item's place. Fix lost content or unrelated placements before returning.
-   - Return the proposed or approved parent with inventory evidence. Keep the `organize` guide's approval before change and user confirmation after checking.
+   - Return the proposed or approved parent with inventory evidence. After applying, return the checked result to the `organize` guide's step 6, which asks the user to confirm it.

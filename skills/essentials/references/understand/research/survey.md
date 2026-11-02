@@ -16,7 +16,15 @@ Use when the user needs to know what already exists on a subject, compared on th
 
 ## Gives back
 
-Candidates compared on the same terms, sources, excluded and unexamined candidates, search coverage and date.
+Candidates compared on the same terms, with sources, excluded and unexamined candidates, search coverage and dates, in this default shape:
+
+```text
+Scope:         what counts, what doesn't
+Terms:         what each candidate is compared on
+Comparison:    each fully compared candidate on each term, with its evidence or "not found"
+Screened out:  each candidate left out, with why
+Coverage:      where you searched, what you did not search, the survey's date and each source's date
+```
 
 ## Rules
 
@@ -25,9 +33,9 @@ Candidates compared on the same terms, sources, excluded and unexamined candidat
 3. **Compare every fully examined candidate on every term.** Give evidence or "not found" for each value. Use no guess or score without a meaningful measure.
 4. **Name screened-out candidates with their reasons.** List an unexamined long tail separately as not compared, with the reason and coverage limit. A names-only list is not a completed comparison or an evidence-backed rejection.
 5. **Treat the user's own option like every other candidate.** Give each candidate's supported strengths and weaknesses. Favoring one candidate hides information needed for the later choice.
-6. **Report search coverage and its date.** Say where you searched, what you skipped and what remains unverified. A survey is a snapshot, not proof that nothing else exists.
-7. **Add no survey-only approval checkpoint.** Follow the shared choice, plan and cost rules. End the turn for a required answer or approval. With no user decision needed, put the search scope, comparison terms and how you searched in the final answer. Never pair a message with going on. Actual worker cost approval still happens before startup.
-8. **Return the comparison to its active caller.** That caller owns the choice. For a direct user request that includes choosing, obtain the `understand-weigh` guide after the comparison. Do not call an already active weigh operation or restart candidate generation. A request for existing options alone starts no choice round.
+6. **Report search coverage and its date.** Say where you searched, and name the kinds of source you did not search, even when the user limited where to look. Give the date you searched, and each source's own date where it has one. Say what remains unverified. A survey is a snapshot, not proof that nothing else exists.
+7. **Add no survey-only approval checkpoint.** A survey reads and compares; it changes nothing. Ask first only for a choice the user owns, by the `understand` guide's rule 5, or for a worker cost that needs approval, by the `coordinate-delegate` guide's rule 8. Then end the turn. Otherwise put the scope, the terms and how you searched in the final answer.
+8. **Return the comparison to its active caller.** That is the guide or task that asked for the survey, and it owns the choice. When the user asked you to choose, compare the candidates with the `understand-weigh` guide after the survey. When the `understand-weigh` guide asked for this survey, return to it; do not start it again. Start no new candidate generation. A request for existing options alone starts no choice round and gets no recommendation.
 
 ## Advice
 
@@ -44,7 +52,7 @@ Find existing candidates and compare them on terms chosen before the search. Kee
 
 1. **Set scope and comparison terms under rule 1.** Terms chosen after seeing candidates can favor the most visible one and waste the caller's later comparison.
    - Reuse the caller's criteria or current frame. Use the `understand-frame` guide for missing terms and the `understand-clarify` guide for consequential user-owned questions.
-   - Add no survey-only approval checkpoint, by rule 7. Shared choice, plan and worker-cost approvals still come before affected work; end the turn when one is needed.
+   - Start without an approval step, by rule 7. Ask first only for a choice the user owns or a worker cost that needs approval, then end the turn.
 2. **Search wide before deep, by rule 2.** Deep reading of the first candidate can hide better options elsewhere.
    - Search several relevant kinds of source where available. Earlier lists and comparisons are leads to recheck.
    - Search serially unless separate large parts remain after narrowing; then use the `coordinate-delegate` guide with the `coordinate-delegate-fanout` guide. Preserve its limits and validation states.
@@ -56,9 +64,9 @@ Find existing candidates and compare them on terms chosen before the search. Kee
    - Treat themes with few independent origins as anecdotes to investigate, not a vote. Use no score without a meaningful measure.
    - Use a short table or list that fits the medium. When refreshing a survey, report changes and recheck facts needed for the current answer.
 5. **Return the comparison to its owner under rules 6–8.** A survey that silently chooses can bypass the caller's decision and conceal incomplete coverage.
-   - Give scope, terms, comparison, exclusions, unexamined candidates, searched and skipped areas, date and unverified findings. Add these to the parent's result shape.
-   - For a direct request that includes choosing, use the `understand-weigh` guide after comparison. Otherwise return to the active caller without restarting weighing or generation.
+   - Give scope, terms, comparison, exclusions, unexamined candidates, where you searched, the kinds of source you did not search, the survey's date, each source's date and unverified findings. Add these to the parent's result shape.
+   - For a direct request that includes choosing, use the `understand-weigh` guide after comparison. Otherwise return to the guide or task that asked, without starting weighing or generation again.
    - With no user decision needed, put scope, terms and how you searched in the final answer. Keep lasting records with their owner.
 6. **Check the survey and “Gives back” before returning it.** Always do this last. A names-only list cannot stand in for a completed comparison.
-   - Check common terms, traceable evidence, honest gaps, exclusions, unexamined candidates, negative results, coverage and date. Preserve actual validation states.
+   - Check common terms, traceable evidence, honest gaps, exclusions, unexamined candidates, negative results, coverage and dates. Preserve actual validation states.
    - Fix missing values or overstated coverage before returning under the `understand-research` guide's final step. Leave the choice with its owner.

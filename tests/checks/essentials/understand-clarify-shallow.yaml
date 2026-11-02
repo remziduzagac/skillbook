@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/understand/clarify/shallow.md",
         "line": 23,
-        "text": "1. **See the whole level before going deeper into any part.** Start at the request's top level, or an inner level reached by deep. Depth becomes clear only after seeing the whole. Ask the smallest round that sets direction. Ask later questions when needed. Long routine rounds cost more than they settle."
+        "text": "1. **See the whole level before going deeper into any part.** Look across it through the parts of a frame, as the `understand-frame` guide names them: the problem, the goal, what is in and out of scope, the constraints, such as time or cost, and what a good result looks like. Start at the request's top level, or at an inner level reached by deep. Depth becomes clear only after seeing the whole.\n   - Ask the smallest round that sets direction. It covers every part that the sources leave open and the user owns, not only the first.\n   - Ask later questions when their answers are needed. Long routine rounds cost more than they settle."
       },
       "applicability": "scenario",
       "required_skill": "understand-clarify-shallow",
@@ -24,7 +24,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/clarify/shallow.md",
-        "line": 24,
+        "line": 26,
         "text": "2. **Ask one round through the `respond-ask` guide.** The user answers at once and sees the whole level."
       },
       "applicability": "scenario",

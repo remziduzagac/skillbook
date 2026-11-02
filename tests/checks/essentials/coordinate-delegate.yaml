@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/coordinate/delegate.md",
         "line": 26,
-        "text": "2. **Use a fresh worker when independence is required.** A fork shares the writer's history and blind spots. Do not use a fork for a review, a second check or a council member. Follow the `act-verify` guide's rule 2 to check whether a helper is available and what evidence the check needs. Missing log events do not prove that no helper was available."
+        "text": "2. **Use a fresh worker when independence is required.** A fork shares the writer's history and blind spots. Do not use a fork for a review, a second check or a council member. Follow the `act-verify` guide's rule 2 to check whether a helper is available and what evidence the check needs."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-delegate",

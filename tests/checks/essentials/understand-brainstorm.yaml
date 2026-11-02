@@ -25,7 +25,7 @@
       "source": {
         "file": "skills/essentials/references/understand/brainstorm.md",
         "line": 27,
-        "text": "2. **Use the `understand-weigh` guide only for a requested choice.** Compare on the same terms. Requested options or candidates need no selection round. Their caller owns what follows."
+        "text": "2. **Use the `understand-weigh` guide only for a requested choice.** Compare the options on the same terms there. Return a requested list of options or candidates without a choice. Choosing for a caller that asked only for candidates takes over a decision it still owns."
       },
       "applicability": "scenario",
       "required_skill": "understand-brainstorm",

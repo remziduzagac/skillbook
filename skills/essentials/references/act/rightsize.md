@@ -20,9 +20,7 @@ The rules and final check still apply to anything made, done or returned. The al
 
 ## Gives back
 
-The output or work plan fitted to its reader, with the point first. For reworked material, also return the list of changes. The sizing check itself stays in thinking.
-
-The rules and the final step of Instructions here shape what is being made now. The `act-rightsize-lean` and `act-rightsize-enrich` guides, below, rework what already existed before this task.
+The output or work plan fitted to its reader, with the point first. For reworked material, also return the list of changes for approval, then the result and its check once the list is applied. The sizing check itself stays in thinking.
 
 ## Rules
 
@@ -38,13 +36,13 @@ The rules and the final step of Instructions here shape what is being made now. 
    - Make independent calls together.
    - Stop when the result answers the request and you have evidence. Do not search for more of the same. Asked a library's pinned version, stop at the line that pins it.
    - Why: every read and every call is paid for again on later turns. Doing exactly what was asked stays the `act` guide's rule 3.
-8. **Use the `act-rightsize-lean` or `act-rightsize-enrich` guide to rework existing material on request.** Propose it when you notice the need. Never do it unasked beyond the task, by the `act` guide's rule 3.
+8. **Use the `act-rightsize-lean` or `act-rightsize-enrich` guide to rework material that existed before this task, on request.** Propose it when you notice the need. Never do it unasked beyond the task, by the `act` guide's rule 3.
 9. **Get approval for a list before trimming or filling existing material.** This covers work in the `act-rightsize-lean` and `act-rightsize-enrich` guides whether you load them or not.
    - A named change, such as a given section to add, is the edit itself and needs no such approval. Filling, completing or making something sufficient is filling even if the request names what is lacking: you still find what goes in.
    - For work written by the user or others, put the change list through the `respond-ask` guide. Give each change's reason or source. End the turn. Apply nothing before approval.
-   - Report the result and its check.
+   - After applying the approved list, report the result and its check. Point to the list for each change's reason or source instead of repeating them: the user already has it.
    - Your own draft in this conversation needs no approval. It is still being made and the final step of Instructions covers it.
-   - One approval is enough. Show how you will change it and the parts touched, at a level the user can judge, not finished text. The later check is enough evidence. A list as long as the result costs as much to read.
+   - One approval is enough, and the later check is enough evidence. Show each change and the parts it touches, at a level the user can judge. The list need not hold the finished text: for long material, a list as long as the result costs as much to read. A draft may go beside the list, but never replaces it, because a draft does not show what changes or why.
    - Report later changes outside the list. Ask about them instead of folding them in.
 10. **Propose code changes before making them in the `act-rightsize-lean` or `act-rightsize-enrich` guide.** Use a skill in the harness’s list for changing code, if one fits. Otherwise edit directly under the project’s tests, run before and after.
 

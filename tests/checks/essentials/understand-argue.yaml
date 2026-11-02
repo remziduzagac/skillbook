@@ -7,7 +7,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/argue.md",
-        "line": 25,
+        "line": 38,
         "text": "1. **Give the precise position through the `understand-frame` guide.** Give its claim, goal and constraints. A vague position can be defended against anything and proves nothing.\n   - Get the audience from the caller or known context.\n   - **If an unknown audience would change the case, ask through the `understand-clarify` guide.** Then end the turn.\n   - If the unknown audience would not change the case, mark it unknown. Invent no audience concerns."
       },
       "applicability": "scenario",
@@ -24,7 +24,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/argue.md",
-        "line": 29,
+        "line": 42,
         "text": "2. **Support each reason with evidence or mark it as an assumption.** Give its source, strength and limits. A reason from memory counts as unchecked until a source confirms it. State nothing false or overstated. False premises fail when relied on."
       },
       "applicability": "scenario",
@@ -41,8 +41,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/argue.md",
-        "line": 30,
-        "text": "3. **Meet the strongest objections.** Reuse a current the `understand-challenge` guide result from the caller, otherwise obtain one. Answer each objection with evidence, concede it or narrow the position. Say what was narrowed and why. Changed position or evidence needs a new challenge. Answering weak objections is a strawman turned around."
+        "line": 43,
+        "text": "3. **Meet the strongest objections.** Answer each one with evidence, concede it, or narrow the position. Say which you did for each, and what you narrowed and why. Answering only weak objections is a strawman turned around.\n   - Find the objections with the `understand-challenge` guide, or reuse a current challenge the caller gave you, by that guide's rule 7. A narrowed position or new evidence needs a new challenge.\n   - Use the challenge's weaknesses as objections, and keep its verdict out of the case."
       },
       "applicability": "scenario",
       "required_skill": "understand-argue",
@@ -58,7 +58,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/argue.md",
-        "line": 31,
+        "line": 46,
         "text": "4. **Admit weaknesses.** Name objections still standing and thin reasons. Hidden weaknesses are found later at a worse time."
       },
       "applicability": "scenario",
@@ -75,8 +75,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/argue.md",
-        "line": 32,
-        "text": "5. **Label the result one-sided.** It is a case for, not a verdict or recommendation. The choice stays with the `understand-weigh` guide or the user. An unlabelled case reads as a recommendation."
+        "line": 47,
+        "text": "5. **Label the result one-sided.** Put one line beside the case, such as \"This is the case for, not a verdict.\" The choice stays with the user or the `understand-weigh` guide. An unlabelled case reads as a recommendation."
       },
       "applicability": "scenario",
       "required_skill": "understand-argue",
@@ -89,17 +89,17 @@
   ],
   "results": [
     {
-      "part": "The case, evidence, objections answered, remaining weaknesses, strength and what could change it. Label it one-sided. Return the current challenge separately for reuse; its verdict is not part of the case.",
+      "part": "The case, labelled one-sided: the precise position, reasons with their evidence and strength or marked as assumptions, the strongest objections each answered, conceded or met by narrowing, the weaknesses that still stand, how strong the case is and why, and the evidence that would strengthen or break it. The challenge's verdict is never part of the case.",
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/understand/argue.md",
         "line": 21,
-        "text": "The case, evidence, objections answered, remaining weaknesses, strength and what could change it. Label it one-sided. Return the current challenge separately for reuse; its verdict is not part of the case."
+        "text": "The case, labelled one-sided, in this default shape:\n\n```text\nPosition:    stated precisely; if narrowed, from what and why\nArgued for:  the goal, constraints and audience\nReasons:     strongest first, each with its evidence and strength, or marked as an assumption\nObjections:  the strongest, each answered, conceded, or met by narrowing\nWeaknesses:  what still stands against it\nStrength:    strong, moderate or weak, from the evidence, and why\nNext:        the evidence that would strengthen or break the case\nOne-sided:   the case for, not a verdict\n```\n\nA direct request gets the full shape. The `understand-weigh` guide uses each option's strongest reasons and weaknesses, and gets the challenge separately for reuse. A document-writing task turns the case into its argument and keeps weaknesses where readers need them. The light reflection path needs one or two faithful lines, not this shape. The skill that saves records gets the chosen option's case and its open weaknesses. The challenge's verdict is never part of the case."
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
       "required_skill": "understand-argue",
       "deadline": "caller return or final answer",
-      "expected": "The case, evidence, objections answered, remaining weaknesses, strength and what could change it. Label it one-sided. Return the current challenge separately for reuse; its verdict is not part of the case.",
+      "expected": "The case, labelled one-sided: the precise position, reasons with their evidence and strength or marked as assumptions, the strongest objections each answered, conceded or met by narrowing, the weaknesses that still stand, how strong the case is and why, and the evidence that would strengthen or break it. The challenge's verdict is never part of the case.",
       "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
       "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
     }

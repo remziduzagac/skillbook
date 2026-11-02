@@ -45,10 +45,10 @@ devise/
 - **Guide purpose** (D283): Decides what something will be before it is made, with reasons its builder can use.
 - **Guide shape** (D283): Instructions opens with: “Give the builder a settled design with reasons. Work from the goal to the parts and details.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285). Read the supplied basis, choose short or full, frame, analyze, divide, discuss and write top-down; short questions, full review and approval precede the caller handback. Keep thirteen steps, with full-review scope explicit in step 10 and final checks of additions, reasons, unknowns and actual status. Each step gives its action, concrete failure cost and sourced method; the final step checks “Gives back” and fixes shortfalls before return (D287).
 - **Description:** "How to design anything: what something will be, decided before it's made: its purpose, its parts and how they connect, its behaviour and its decisions, framed, divided, discussed, written and reviewed. Use when something new or changed is to be made and what it will be isn't settled, or a design is asked for." A draft (D168).
-- **When to use** (D279): Use when what to make is not settled, or the user asks for a design or design review. A private seating sketch and a shared evacuation route both need choices about their parts; the care they need differs.
-- **When not** (D279):
+- **When to use** (D279, D293): Use when what to make is not settled, or the user asks for a design or a design review. For example, a new returns process for an online shop, whose steps and forms nobody has decided.
+- **When not** (D279, D293):
 
-  - One open choice: follow the `understand` guide’s who-decides rule. A whole design method adds little.
+  - One open choice: settle it with the `understand-clarify` guide, which applies the `understand` guide's who-decides rule. A whole design method adds little.
   - An unclear goal: use the `understand-clarify` guide so the design solves the right problem.
   - Arranging existing material: use the `organize` guide to preserve its meaning.
   - A document for readers: use a skill in the harness’s list for writing that kind of document, if one fits. Otherwise use your judgment under the `act` guide. This method decides the design rather than writing the reader’s document.
@@ -67,7 +67,7 @@ devise/
   **Rules,** each with its reason:
   - **top-down:** the goal before the parts, the parts before the details; details decided before the goal get redone;
   - **a correction goes up to the level it belongs to:** fixed lower, the cause stays;
-  - **every decision carries its reason,** so it can be revisited when the reason changes;
+  - **every decision carries its reason,** so it can be revisited when the reason changes and a builder sees which values move with it. A value the agent chose, such as a timeout or a page size, is a decision too. One stated basis can cover many values. A value the user or a source already settled needs only its source (D293);
   - **settled before it is built, and it follows the build back:** building on an unsettled design wastes the build, and a build that drifts unannounced leaves the design wrong;
   - **one home per decision:** written in two places, it drifts apart;
   - **written for its builder:** someone could build from it without asking. Use a skill in the harness’s list that checks a document from its reader’s point of view, if one fits. Otherwise this rule’s own question is the test: "can a builder build from it?" (D281).
@@ -94,7 +94,7 @@ devise/
   1. **frame,** through the `understand-frame` guide: the goal, constraints, scope and a good answer. Get the audience from the caller or known context. Use the `understand-clarify` guide for user intent that would change the result. Return the frame with the read-only design answer. Apply the `understand` guide's who-decides rule and the `act` guide's plan rule before changes; frame adds no checkpoint (D252);
   2. **analyse what exists:** the current thing, its documents and earlier decisions read before anything is asked; outside facts, such as how others solve it or a tool's limits, through the `understand-research` guide;
   3. **divide into parts,** through the `organize` guide, planning a whole not yet written: the requirements are the items, split into parts with each boundary in one sentence (D148); for software, use a skill in the harness’s list for software architecture, if one fits; otherwise give this design’s own generic parts and connections only (D281);
-  4. **discuss and decide:** open questions through the `understand-discuss` guide, one item at a time. Use the `understand-brainstorm` guide for options and the `understand-weigh` guide for a comparison when needed. Reuse a comparison already returned instead of weighing twice. Use the `understand-challenge` guide for consequential decisions before relying on them, reusing a current challenge while its inputs remain unchanged. The agent recommends; the user decides. The caller owns lasting changes and records (D252);
+  4. **discuss and decide:** open questions through the `understand-discuss` guide, one item at a time. Use the `understand-brainstorm` guide for options and the `understand-weigh` guide for a comparison when needed. Reuse a comparison already returned instead of weighing twice. Use the `understand-challenge` guide for consequential decisions before relying on them, reusing an earlier challenge only as that guide's rule 7 allows. The agent recommends; the user decides. The caller owns lasting changes and records (D252);
   5. **write** the design, top-down, holding the contents listed above;
   6. The `devise-design-review` guide: check a design for its builder.
      Return review findings to discussion before approval (D279).
@@ -103,8 +103,8 @@ devise/
   9. **adjust from building:** when building shows the design wrong or missing something, the design changes first, through step 4, before building goes on, and the plan is then revised by plan's re-planning; the build never quietly wins.
 
   10. **Check the result before returning it.** Always do this last. Before a design is shown or kept: settled work got no design; a given design's additions are marked as added; every decision carries its reason; open questions are listed with what would settle each, every assumption marked; a full design was reviewed, each finding fixed, accepted with a reason or parked, and approved by the person before plan; a short one asks for the user answers it needs and follows the shared pre-change timing; it is kept where "Where it is kept" says.
-- **Gives back** (D279): A short or full design with its actual approval status, or ranked review findings. A full design also gives its review status.
-- **Where it is kept** (D156, D163, D168): a short design stays in the response. A full design goes in a file the person names; when they name none, the agent asks, recommending a file named for what is designed, where the project keeps its documents, since a full design lost with the conversation would have to be redone. Where the project's instruction files point to a keeper, a record-saving skill in the harness’s list, it is kept where the keeper says, and design names none of the keeper's steps.
+- **Gives back** (D279, D293): A short or full design with its actual approval status, such as "not yet approved", or ranked review findings. A full design also gives what its review found, how each finding was resolved, and any check still open.
+- **Where it is kept** (D156, D163, D168, D293): a short design stays in the response. A full design goes in a file the person names; when they name none, the agent writes it to a new file named for what is designed, where the project keeps its documents, and names the file in the final answer, since a full design lost with the conversation would have to be redone. A new file is easy to move, so its place needs no question of its own. A user who wants the design only in the response gets that, by the `act` guide's rule 9. Where the project's instruction files point to a keeper, a record-saving skill in the harness’s list, it is kept where the keeper says, and design names none of the keeper's steps.
 - **Files:** `references/devise/design.md` (D257).
 - **Material:** the draft flow in [../../ideas/skill-tree.md](../../ideas/skill-tree.md); the blueprint method ([../../../docs/blueprint/idea.md](../../../docs/blueprint/idea.md)) and its worked example; this repository's own way of designing, as a worked example; adapted, never copied (D120).
 - **Tests** (D168):
@@ -114,7 +114,7 @@ devise/
   4. "where should this helper live?": one question, so brainstorm or the agent's own choice, not design;
   5. a small page with two independent controls, low consequences and no separate builder: short; a user answer adds an ask/end-turn round, not a full review (D257);
   6. building shows the design is wrong: the design changes first, through discuss and decide, then building resumes;
-  7. a full design with no record-saving skill loaded and no file named: the agent asks, recommending a file; with a matching record-saving skill loaded, kept where that skill says, none of its steps named (D281);
+  7. a full design with no record-saving skill loaded and no file named: the agent writes it to a new file named for what is designed and names the file in the final answer, asking nothing about the place (D293); with a matching record-saving skill loaded, kept where that skill says, none of its steps named (D281);
   8. a software design: architecture added through a skill in the harness’s list for that work, if one fits; otherwise this design’s own generic parts and connections only (D281);
   9. a design grown large: divided into documents through the `organize` guide;
   10. a decision others will build on: challenged before approval;
@@ -127,6 +127,7 @@ devise/
   17. A full review returns missing checks: design accounts for them before approval and does not claim independent completion. (D257);
   18. A full design has no relevant risks or open questions: omit empty fields, preserve the actual requirements and reasons. (D257);
   19. Already available project facts settle a short-design question: read them instead of asking. A lasting edit still follows the `act` guide's timing. (D257);
+  20. A design whose chosen values include times, counts or sizes: each chosen value has a reason, or a stated basis that covers it with others; a value from the user or a source names that source. Reject: reasons only for the main choices, with the chosen values left bare (D293).
 - **Open:** none known.
 
 ### review
@@ -135,7 +136,7 @@ devise/
 - **Guide purpose** (D283): Checks whether a design holds together, covers its requirements and can be built.
 - **Guide shape** (D283): Instructions opens with: “Give the design owner findings they can act on. Check the design against its basis without changing it.” Existing Rules stay in Rules with their numbers. The existing ordered method stays in Instructions, with bold actions and reasons. The check is the final numbered step of Instructions, always last (D285). Read the design basis with independence arranged, run consistency, builder, coverage, challenge, sizing and available specialist lenses, then return ranked findings. Keep nine steps; check evidence, pending lenses and independence without editing or waiting for resolution. Each step gives its action, concrete failure cost and sourced method; the final step checks “Gives back” and fixes shortfalls before return (D287).
 - **Description:** "A design checked before approval: consistency, a builder walk-through, coverage and overlap, challenge, lean, and architecture when a skill in the harness’s list covers that review; findings ranked, each with a fix, the reviewer only proposing. Use before a full design is approved, after a large change to one, or when a design review is asked for." A draft (D168, D281).
-- **When to use** (D279): Use for a full design, a large change or a request to review a design. For example, walk through whether a builder can handle the design’s main cases and failure paths.
+- **When to use** (D279, D293): Use for a full design, a large change to a design, or a request to review a design. For example, walk through whether a builder can handle the design’s main cases and failure paths.
 - **When not** (D279):
 
   - Code review: use a skill in the harness’s list for reviewing code, if one fits. Otherwise use your judgment. This review checks a design, not its implementation.
@@ -151,9 +152,9 @@ devise/
   1. **consistency,** its own: no part contradicts another part, a decision or the requirements, and each term is used one way;
   2. **builder walk-through,** its own: the main cases and the edge cases walked through the parts, each with a part that handles it, and a builder able to follow it without asking;
   3. **coverage and overlap:** the `organize` guide's check, on the design's parts against its requirements, through the main skill;
-  4. **challenge,** through the `understand-challenge` guide, for consequential decisions others will build on. Reuse the earlier challenge only while the idea, goal, constraints and evidence remain unchanged. Changed inputs need renewed scrutiny (D252);
+  4. **challenge,** through the `understand-challenge` guide, for consequential decisions others will build on. Reuse an earlier challenge only as that guide's rule 7 allows (D252, D293);
   5. **lean:** what lean would remove; removing it is lean's (D157);
-  6. **architecture:** use a skill in the harness’s list for reviewing software architecture, if one fits; otherwise skip that review and report the skip (D281).
+  6. **architecture,** for a software design only: use a skill in the harness’s list for reviewing software architecture, if one fits; otherwise say in the findings that this review was not done. Designs that are not software skip this lens, since reporting its skip there is noise (D281, D293).
 
   Review finishes when it returns ranked findings from the required lenses, with missing checks marked. It does not wait for the caller to resolve them. Design owns fixing, accepting or parking findings and accounts for outstanding checks before approval (D257).
 
@@ -177,7 +178,7 @@ devise/
   7. "review this code change": a skill in the harness’s list for code review, if one fits, otherwise judgment, not this design review (D281);
   8. no findings: the report names the lenses that ran;
   9. a decision already challenged with unchanged inputs: reuse that challenge; changed evidence or constraints: challenge again before relying on it (D252);
-  10. no skill in the harness’s list covers software architecture review: skip that review and report the skip (D281).
+  10. no skill in the harness’s list covers software architecture review: for a software design, skip that review and report the skip; a design that is not software reports nothing about it (D281, D293).
   11. No independent agent can start: return provisional findings with the check outstanding and next owner; never count a second self-read as independent. (D257);
   12. The reviewer is delegated and cannot start agents: return the outstanding check to its caller, without further delegation. (D257);
   13. Return findings before the caller resolves them; design, not review, fixes, accepts or parks them. (D257);
@@ -212,10 +213,10 @@ devise/
   2. **Given steps are followed, and enhanced where they are not obvious:** steps count as given when they come from the person, a guide's or skill's ordered instructions, tasks a keeper holds, a plan already approved and carried over, or a checklist the project keeps. People usually name the main items and leave the rest to the agent, so given items are the top of the plan: missing items are added and marked, by the `organize` guide's check, the items set against the goal; items that are not obvious are expanded; obvious ones are left. The person's items keep their place and their wording, and reordering or dropping one is asked first, since they were the person's choice.
   3. **The obvious test sets how far any plan goes:** a step is obvious when the agent could do it now, knows how it will be checked, and has no choice left that would change the result and nothing to find out first. What failed says what to do: parts not yet known, the `organize-split` guide; an unclear goal or done, the `understand-clarify` guide; an open choice, handled by the `understand` guide's who-decides rule, with the `understand-brainstorm` guide for new options or the `understand-weigh` guide for comparison. The caller owns continuation from their results (D252); an open shape, parts or choices that depend on each other, through design, its sibling, by name, the plan continuing from its result (D173); something to find out, a quick look or the `understand-research` guide. Each new step is tested again, and expanding stops when every step passes: nothing obvious is expanded and nothing unclear is left, the `act-rightsize` guide applied to a plan (D145).
   4. **Use the `understand` guide's whole who-decides rule.** It owns user intent, preferences, irreversible effects, conventions, agent defaults and visible choice timing. Plan defines no second ownership test (D257).
-  5. **One line, or a full plan:** a full plan when stakes are high, as the `act-stakes` guide rates them, or the work is long or wide; otherwise one line, holding the chosen way to do the work, the steps in order and the check. A full plan is divided through the `organize` guide, and challenged through the `understand-challenge` guide before it is shown, since others build on it (D150).
-  6. **Following, whoever wrote the steps:** at three steps or more, since fewer are held in mind without one, the steps go in a checklist, the harness's task list where it has one; they are done in order, each checked by the `act-verify` guide before the next, since a step that fails unnoticed costs every step built on it, and ticked off. A given step that looks wrong is raised before going on, as the `act` guide's rule on concerns says; a step that fails stops the list and goes to re-planning.
-  7. **Approval, for either depth:** get the user's actual approval before executing a high-stakes plan. This is a stricter variation of the `act` guide's rule 13: its given-steps exception does not approve high-stakes work. Given steps alone are not approval. A request for a plan authorizes making the plan, not executing it. Reuse an unchanged approval only within its scope and basis. New questions go through the `respond-ask` guide. For other changing work, follow the `act` guide's rule 13, including its given-steps and go-ahead exceptions. For read-only work needing no answer, put the plan in the final answer without stopping first. Where approval is required, use an available permitted plan mode and return the approval request; otherwise put it in the final message and end the turn. Mode changes alone are not approval. Plan approval never waives a separate guardrail. Use the current agent’s own available plan and task controls, with the response fallback for missing controls (D267).
-  8. **Re-planning:** revise the current plan after a failed step, a changed fact it depends on, or new user input in a later turn. Start from the existing plan so open work is not lost. Keep open items, add the requested work, change or remove what the new input replaces, and mark finished items. Revise even when the old step text has not changed. Get approval again when the original plan required it. Ask the user about proposed changes to steps they gave. If a failure shows that the design is wrong, revise the design first and then the plan (D168, D279).
+  5. **One line, or a full plan:** a full plan when stakes are high, as the `act-stakes` guide rates them, or the work is long or wide; otherwise one line, holding the chosen way to do the work, the steps in order and the check. A full plan is divided through the `organize` guide, and challenged through the `understand-challenge` guide before it is shown, since others build on it (D150). What the challenge found goes in the plan's "Challenge" field, so the user sees it with the plan; an earlier challenge is reused only as that guide's rule 7 allows (D293).
+  6. **Following, whoever wrote the steps:** at three steps or more, since fewer are held in mind without one, the steps go in a checklist, the harness's task list where it has one, otherwise a plain-text list in the response (D293); they are done in order, each checked by the `act-verify` guide before the next, since a step that fails unnoticed costs every step built on it, and ticked off. A given step that looks wrong is raised before going on, as the `act` guide's rule on concerns says; a step that fails stops the list and goes to re-planning.
+  7. **Approval, for either depth:** get the user's actual approval before executing a high-stakes plan. This is a stricter variation of the `act` guide's rule 13: its given-steps exception does not approve high-stakes work, since steps the user listed may not show what could go wrong, and high-stakes work is hard to undo (D293). Given steps alone are not approval. A request for a plan authorizes making the plan, not executing it. Reuse an unchanged approval only within its scope and basis. New questions go through the `respond-ask` guide. For other changing work, follow the `act` guide's rule 13, including its given-steps and go-ahead exceptions. When the work goes ahead without a stop, the final answer gives each step with its result, as the `act` guide's rule 13 says; plan points there and does not restate it. Read-only work needing no answer also goes ahead without stopping first, its steps and results in the final answer (D293). Where approval is required, use an available permitted plan mode and return the approval request; otherwise put it in the final message and end the turn. Mode changes alone are not approval. Plan approval never waives a separate guardrail. Use the current agent’s own available plan and task controls, with the response fallback for missing controls (D267).
+  8. **Re-planning:** revise the current plan after a failed step, a changed fact it depends on, or new user input in a later turn. Start from the existing plan so open work is not lost. Keep open items, add the requested work, change or remove what the new input replaces, and mark an item finished only after its check, by rule 6 (D293). Revise even when the old step text has not changed. Get approval again when the original plan required it. Ask the user about proposed changes to steps they gave. If a failure shows that the design is wrong, revise the design first and then the plan (D168, D279).
   9. **Where it is kept, plan's own part only** (D156): in the response when it fits on a screen; in a file when it is longer, the response giving the outline. Which file, and in what form, is a keeper's, as chosen by the project’s instruction files, so plan never names one; by default, a file the agent names in the response.
 
   Advice (D116): long or wide means more than about five steps, more than one sitting, or parts that could each go to a different agent, the size where a plan keeps the work from wandering and lets parts be delegated. When unsure whether the work is multipart, it is treated as multipart (the `act` guide's rule 13, D250); re-planning catches the rest when the work turns out bigger.
@@ -229,30 +230,32 @@ devise/
   1. **Return the requested plan.** Keep planning separate from execution; asking for a plan does not approve the work (D279).
   2. **Keep the current work.** Read the existing plan and given steps. Keep open items, mark additions and finished items, and check each step with the obvious test (D279).
   3. **Make the plan** where none is given: the goal; the steps, expanded by the obvious test; then one line or a full plan, by rule 5. A full plan is divided through the `organize` guide, by its rules: split for the parts; merge where two steps do the same thing; compose where steps group into phases; normalize where a step repeats across parts, so it is done once. The order of the steps is plan's own, since the `organize` guide arranges boundaries, not sequence. The `organize` guide's two approvals do not apply, since nothing existing changes; plan's approval does (D148).
-  4. **Challenge** a full plan through the `understand-challenge` guide.
+  4. **Challenge** a full plan through the `understand-challenge` guide, and put what it found in the plan's "Challenge" field (D293).
   5. **Approval,** by rule 7.
   6. **Follow,** by rule 6, and **re-plan** by rule 8.
-  7. **Check the result before returning it.** Always do this last. Before a plan is shown: a new single-step action needs no plan, but an existing plan is kept even with one item left. Open items stay, additions and finished items are marked, and new user input is reflected. Every step passes the obvious test. A full plan is divided, challenged, and leaves out empty sections. Get approval where rule 7 requires it (D279).
-- **Gives back** (D155, D279): The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed.
+  7. **Check the result before returning it.** Always do this last. Before a plan is shown: a new single-step action needs no plan, but an existing plan is kept even with one item left. Open items stay, additions and finished items are marked, and new user input is reflected. Every step passes the obvious test. A full plan is divided, challenged with its findings shown, and leaves out empty sections. Get approval where rule 7 requires it (D279, D293).
+- **Gives back** (D155, D279, D293): The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed. A full plan also shows what its challenge found.
 
   ```text
-  Goal:     what is wanted, and how it is known to be done
-  Steps:    in order, each with its check; added items marked
-  Out:      what is out of scope
-  Risks:    each risk, and what catches it
-  Agents:   what goes to agents
+  Goal:       what is wanted, and how it is known to be done
+  Steps:      in order, each with its check; added items marked
+  Out:        what is out of scope
+  Risks:      each risk, and what catches it
+  Agents:     what goes to agents
+  Challenge:  what the plan's challenge found, and what it changed
   ```
 
   For example, "move the docs site to a new generator", divided by page set into phases, the build set up once:
 
   ```text
-  Goal:     the same pages at the same addresses, the build passing
-  Steps:    prepare: 1. list every page   2. convert one page as a trial, the build set up once here
-            convert: 3. convert the rest, by folder
-            check:   4. add redirects   5. compare the page list before and after
-  Out:      rewriting any content
-  Risks:    broken links, caught by the link checker; a lost page, caught by step 5
-  Agents:   step 3 fanned out by folder
+  Goal:       the same pages at the same addresses, the build passing
+  Steps:      prepare: 1. list every page   2. convert one page as a trial, the build set up once here
+              convert: 3. convert the rest, by folder
+              check:   4. add redirects   5. compare the page list before and after
+  Out:        rewriting any content
+  Risks:      broken links, caught by the link checker; a lost page, caught by step 5
+  Agents:     step 3 fanned out by folder
+  Challenge:  the menu may not list every page; step 1 now lists the built site's files instead
   ```
 
 - **Files:** `references/devise/plan.md`. Use the current agent’s available plan/task controls and the parent’s text approval/checklist fallbacks (D267).
@@ -262,7 +265,7 @@ devise/
   2. "add dark mode and release it": the person's two items kept at the top; a test that both themes render added and marked; "add dark mode" expanded, its parts found and "follow the system setting, or a switch in the app?" asked; "release it" left as it is where the project keeps release steps; the checklist followed;
   3. "delete the old folder, then copy the files out of it": the order raised before acting, since it would lose the files; a step of the person's own that fails: the revised steps go back to them before the work goes on;
   4. a multipart link correction with no given steps: show the plan and end the turn before changes; given exact corrections with permission to proceed: rule 13 of the `act` guide and its exception applies (D257); "write the release notes": one line and, at four steps, the checklist;
-  5. "migrate the user data to the new database": high stakes, so a full plan, challenged; "compare twenty tools for us": wide, so a full plan divided through the `organize` guide; a full plan with nothing out of scope: no "Out" section;
+  5. "migrate the user data to the new database": high stakes, so a full plan, challenged, what the challenge found shown in its "Challenge" field (D293); "compare twenty tools for us": wide, so a full plan divided through the `organize` guide; a full plan with nothing out of scope: no "Out" section;
   6. approval: the migration plan waits; "move the docs site to a new generator": holds the person's choice of generator, so it waits; the twenty-tool plan, read-only and needing no answer: proceed and give the plan in the final answer; a plan the person asked for: waits;
   7. a plan that waits, in a harness with a plan mode: the mode used; in one without: the plan in the response, the agent waiting;
   8. where it is kept: a plan that fits on a screen, in the response; a longer one, in a file the response names, with the outline; a project whose instructions name a record-saving skill: the file and form that skill says, plan’s own text naming none (D156, D281);

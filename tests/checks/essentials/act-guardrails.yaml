@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/act/guardrails.md",
         "line": 44,
-        "text": "3. **Apply only the approved action, scope and means.** Approval holds whenever given. New means need a new proposal, even for the same result: their effects on the way were not approved. Approval to run the release script does not cover publishing its files by hand.\n   - Apply a step already approved in this conversation when you reach it. Name that approval.\n   - Do not extend approval to another action, place or context. Approval for a test site does not cover publishing live.\n   - Propose anything later found outside scope separately."
+        "text": "3. **Apply only the approved action, scope and means.** Approval holds whenever given. New means need a new proposal, even for the same result: their effects on the way were not approved. Approval to run the release script does not cover publishing its files by hand.\n   - Apply a step already approved in this conversation when you reach it. Name that approval in the final answer.\n   - Do not extend approval to another action, place or context. Approval for a test site does not cover publishing live.\n   - Propose anything later found outside scope separately."
       },
       "applicability": "action",
       "required_skill": "act-guardrails",

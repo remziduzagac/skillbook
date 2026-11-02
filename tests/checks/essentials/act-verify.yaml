@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/act/verify.md",
         "line": 23,
-        "text": "1. **Choose evidence that would fail if the claim were false.** An unchecked claim reads as true:\n\n   | Claim | Evidence | Not enough |\n   | --- | --- | --- |\n   | tests pass | the test run: 0 failures | an earlier run, \"should pass\" |\n   | bug fixed | the original symptom, now gone | the code changed |\n   | requirements met | a line-by-line checklist | tests passing |\n   | another agent's work done | its changes, seen | its own report of success |\n   | nothing lost in a merge or split | the inventory of what was there | \"looks complete\" |\n   | something made is correct | each part against its source, or each figure worked out again | \"reads right\" |"
+        "text": "1. **Choose evidence that would fail if the claim were false.** An unchecked claim reads as true:\n\n   | Claim | Evidence | Not enough |\n   | --- | --- | --- |\n   | tests pass | the test run: 0 failures | an earlier run, \"should pass\" |\n   | bug fixed | the original symptom, now gone | the code changed |\n   | requirements met | a line-by-line checklist | tests passing |\n   | another agent's work done | its changes, seen | its own report of success |\n   | a step marked done | its result, seen in the files or confirmed by its owner | the tick, or a note saying so |\n   | nothing lost in a merge or split | each original item in its new place | \"looks complete\", keyword or link checks |\n   | something made is correct | each part against its source, or each figure worked out again | \"reads right\" |"
       },
       "applicability": "claim",
       "required_skill": "act-verify",
@@ -25,7 +25,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/act/verify.md",
-        "line": 45,
+        "line": 48,
         "text": "3. **Run the check now on the current work.** Earlier runs do not count. Read what would fail if the claim were false: exit code, failure count and failing lines. Read full output only on failure. Full logs in the main session cost again on every later turn."
       },
       "applicability": "claim",
@@ -43,7 +43,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/act/verify.md",
-        "line": 46,
+        "line": 49,
         "text": "4. **Report the actual result with evidence beside it.** If confirmed, give the claim. Otherwise give the actual status, by the `respond` guide's outcomes rule.\n   - Report only causes and results shown by output, by the `respond` guide's outcomes rule. Report a timed-out test as timed out, not as a guessed slow network.\n   - Say what a stand-in, such as a simulated setting or mocked service, actually shows. Mark the real check unverified. Give what would confirm it.\n   - Leave taste to the user, by rule 2. For warmer wording, for example, say what you changed and checked. Leave the judgment to them."
       },
       "applicability": "claim",
@@ -61,8 +61,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/act/verify.md",
-        "line": 34,
-        "text": "2. **Who checks:**\n   - you, for what a command or a file can show;\n   - **a fresh agent: before you report high-stakes work, start one that did not do the work to check it.** Your own read of your own work misses what you got wrong.\n     - Judge the stakes with the `act-stakes` guide first if they are not judged yet. Judge by reach and undo, not by the size of the change or the time left. One wrong digit in a bank transfer about to go out is high.\n     - Start one too when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary is fair to its source.\n     - Start the agent through the `coordinate-delegate` guide. Brief it with the claim and what would show it false.\n     - Count a check as independent only after you see another agent's or person's result. Your own second look does not count. Neither does starting or waiting on an agent without seeing its result.\n     - If you cannot start one, write in your report that this check is still to do, and who should do it. This includes delegated agents and harnesses without agents. Follow the `act` guide's rule 10 for your report;\n   - the user: for meaning, taste, irreversible results and anything no check can see. Get any required fresh agent's check first. The user's check does not replace it: asking them to reread is not independent checking.\n\n   How much rides on the work, and whether it can be undone, is the `act-stakes` guide' judgment. The user's check here is of the result; approving a risky action before it is taken is the `act-guardrails` guide'."
+        "line": 35,
+        "text": "2. **Who checks:**\n   - you, for what a command or a file can show;\n   - **a fresh agent: before you report high-stakes work, start one that did not do the work to check it.** Your own read of your own work misses what you got wrong.\n     - Judge the stakes with the `act-stakes` guide first if they are not judged yet. Judge by reach and undo, not by the size of the change or the time left. One wrong digit in a bank transfer about to go out is high.\n     - For high-stakes work, skip the fresh agent only when the whole claim is a result a command shows on its face, such as a service no longer running or an exit code, and you show that output. A second agent would only run the same command. A claim that something made is right, fixed or complete is never such a result, even when a test run passes. The user's request for an independent check still needs one.\n     - Start one too when the user asks for an independent check, or when the check needs judgment you cannot give your own work, such as whether a summary you wrote is fair to its source.\n       - A small set of findings, as the `coordinate-delegate-fanout` guide defines it, needs no fresh agent for this judgment: other agents read the sources, and you merged their findings and checked each one against its source yourself. A fresh agent would only repeat that short read. Say in your answer that you checked them yourself. High stakes or the user's request still need a fresh agent.\n     - Start the agent through the `coordinate-delegate` guide. Brief it with the claim and what would show it false.\n     - Count a check as independent only after you see another agent's or person's result. Your own second look does not count. Neither does starting or waiting on an agent without seeing its result.\n     - If you cannot start one, write in your report that this check is still to do, and who should do it. This includes delegated agents and harnesses without agents. Follow the `act` guide's rule 10 for your report;\n   - the user: for meaning, taste, irreversible results and anything no check can see. Get any required fresh agent's check first. The user's check does not replace it: asking them to reread is not independent checking.\n\n   How much rides on the work, and whether it can be undone, is the `act-stakes` guide's judgment. The user's check here is of the result. Approving a risky action before it is taken is a job for the `act-guardrails` guide."
       },
       "applicability": "scenario",
       "required_skill": "act-verify",

@@ -18,7 +18,7 @@ Use when the user asks to trim or shorten existing material, or you notice parts
 
 ## Gives back
 
-The material with extra parts removed, plus what was removed and why.
+The material with extra parts removed. The approval list gives each removal and why. The report after applying gives the result and its check.
 
 ## Rules
 
@@ -30,7 +30,7 @@ The material with extra parts removed, plus what was removed and why.
    - Merge whole items that say the same thing into one.
    - Keep this work inside the thing being trimmed. Use the `organize-normalize` guide for repeats across files and the `organize-merge` guide for duplicate whole files. Keep single-file trimming here.
    - Why: an extra part costs the reader's attention and, for an agent, tokens on every later turn.
-3. **Keep everything a rule requires.** Follow the `act-rightsize` guide's sixth rule. What a rule requires is needed by definition.
+3. **Keep everything a rule requires in the material you trim.** Examples: a legal notice in a newsletter, or an error path in code. Follow the `act-rightsize` guide's sixth rule. What a rule requires is needed by definition.
 4. **Get approval for the list first.** Use the `act-rightsize` guide's approval rule and the `respond-ask` guide. List every part to remove or replace with a pointer. Give each reason.
 5. **Follow the `act-rightsize` guide's code rule for proposed code changes.** Examples: unused options, dead code or duplication. Passing tests alone do not prove nothing needed was lost. Public interfaces, documented behaviour and untested requirements count too.
 
@@ -46,11 +46,11 @@ Remove parts that add nothing while keeping what the reader and every rule need.
 3. **Mark removable parts under rules 2 and 3.** Duplicate or pasted content costs attention, while required content cannot be cut just to meet a target.
    - Cut what loses nothing, replace paste with a usable pointer and keep repeats in one home. Merge duplicate whole items within the material being trimmed.
    - Keep every rule-required part. For repeats or duplicate wholes across files, use the appropriate `organize-normalize` or `organize-merge` guide instead.
-4. **Obtain approval for the list before applying, by rule 4.** This order is firm: unseen cuts can remove something the user needs.
+4. **Get approval for the list before applying, by rule 4.** This order is firm: unseen cuts can remove something the user needs.
    - List each removal or pointer replacement with its reason through the `respond-ask` guide, then end the turn. Apply only approved cuts.
    - For code, follow rule 5 and the `act-rightsize` guide's code rule, using a fitting skill or project tests before and after.
 5. **Check every needed part remains or has a working pointer.** A passing test or shorter document alone cannot prove nothing useful was lost.
-   - Compare the kept result with the inventory. For code, check tests, public interfaces, documented behavior and untested requirements.
+   - Compare the kept result with the inventory. For code, check tests, public interfaces, documented behaviour and untested requirements.
 6. **Check the result and “Gives back” before returning.** Always do this last. The reader needs the useful result and the account of what was removed.
    - Check required parts, resolving pointers, approved cuts and the list of removals with reasons. Check code preservation as well as passing tests.
-   - Repair losses or broken references before returning. Report actual results without treating tests alone as proof of preserved behavior.
+   - Repair losses or broken references before returning. Report actual results without treating tests alone as proof of preserved behaviour.

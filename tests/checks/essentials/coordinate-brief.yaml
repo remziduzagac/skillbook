@@ -76,7 +76,7 @@
       "source": {
         "file": "skills/essentials/references/coordinate/brief.md",
         "line": 29,
-        "text": "8. **Bootstrap a fresh worker through the actual essentials folder.** Mark the task as delegated work. Give the worker the essentials folder's absolute path. Tell it to load the `essentials` skill and use its guide map and name rule. Tell it to read the `act` guide, the `respond` guide and the `respond-layout` guide whole when their text is absent from its visible context. These rules shape its work and report. Rule 10 of the `act` guide bounds every step. Name other needed guides and have the worker read their parents by the main skill's name rule. This includes the `understand` guide. A settled brief does not prevent the worker from discovering an unknown that would change the result. Do not copy rule 10 of the `act` guide into a second rule set."
+        "text": "8. **Bootstrap a fresh worker through the actual essentials folder.** Mark the task as delegated work. Give the worker the essentials folder's absolute path. Tell it to load the `essentials` skill and use its guide map and name rule; the main skill says which guides a delegated worker reads. Name every guide its task needs beyond the `act`, `act-rightsize`, `respond` and `respond-layout` guides, such as `act-verify` when it must show that a fix works. The worker reads each named guide with its parents, and a guide you do not name is not read. A settled brief can still meet an unknown that would change the result, so the worker may read the `understand` guide when one appears. Rule 10 of the `act` guide bounds every step. Do not copy it into the brief."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-brief",

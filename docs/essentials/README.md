@@ -21,7 +21,7 @@ An agent without guidance often guesses what you meant, does more or less than y
 ## How it works
 
 - **Essentials is the skill in the agent’s skill list.** The files inside it are guides, rather than separate skills to look for in that list.
-- **Six main guides are read on every request:** `understand`, `devise`, `organize`, `coordinate`, `act` and `respond`. They shape understanding, choosing how to work, arranging parts, sharing work, acting and answering.
+- **Six main guides are read on every request:** `understand`, `devise`, `organize`, `coordinate`, `act` and `respond`. They shape understanding, choosing how to work, arranging parts, sharing work, acting and answering. Two more are read with them: `respond-layout`, since every answer is laid out, and `act-rightsize`, since everything made is sized. A short direct answer, such as a fact already said in the conversation, reads none. An agent started by another agent reads `act`, `act-rightsize`, `respond`, `respond-layout` and the guides its brief names.
 - **The guide map helps the agent choose further guides.** Each entry in the essentials skill gives a guide’s path, what it helps with, when to use it and what fits better in a nearby case. A guide’s own file gives its full boundary and the result it returns.
 - **Guides are read whole before the work that needs them.** The agent reads the chosen guides and their parents together, and reuses their text while it remains in view. If the text drops out, it reads them again.
 

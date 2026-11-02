@@ -7,13 +7,13 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/SKILL.md",
-        "line": 101,
-        "text": "1. **Understand the request with the `understand` guide, until its intent, goal and details are clear.** Work built on a guess has to be undone, and the user pays for it. Be thorough here: a question asked now costs far less than work redone later.\n   - Explore first. Read the files, the conversation and any other source that can answer a question, so you ask the user only what those cannot.\n   - Ask the user what only they know: what they want, why they want it, and each detail that would change the result. Ask through the `respond-ask` guide, and keep asking, round by round, until you could state the intent, the goal and what done looks like in words the user would agree with.\n   - Do not ask about what the sources settle, or about choices the user left to you. Make those choices and list them in a \"going with\" line, as the `understand` guide says.\n   - A request that is already clear needs only this check. For parts still open, use the guides you picked, such as `understand-clarify` for a choice that would change the result."
+        "line": 104,
+        "text": "1. **Understand the request with the `understand` guide, until its intent, goal and details are clear.** Work built on a guess has to be undone, and the user pays for it. Be thorough here: a question asked now costs far less than work redone later.\n   - Explore first. Read the files, the conversation and any other source that can answer a question, so you ask the user only what those cannot.\n   - Ask the user what only they know: what they want, why they want it, and each detail that would change the result. Settle these through the `understand-clarify` guide, which picks the questions and how deep to go, round by round, until you could state the intent, the goal and what done looks like in words the user would agree with.\n   - Do not ask about what the sources settle, or about choices the user left to you. Make those choices. If the result rests on them, show them in one \"Going with\" message, then end the turn before any change, by the `understand` guide's who-decides rule. If the user told you to choose, or has just answered your questions, put the line in your final answer instead.\n   - A request that is already clear needs only this check. For parts still open, use the guides you picked, such as `understand-clarify` for a choice that would change the result."
       },
       "applicability": "scenario",
       "required_skill": "essentials",
       "deadline": "first change",
-      "expected": "Understand intent, goal and result before dependent work; read sources first, ask only user-held choices and show own choices as going with.",
+      "expected": "Understand intent, goal and result before dependent work. Read sources first and ask only about choices the user holds, round by round. Show your own choices the result rests on in one \"Going with\" message and end the turn before any change; when the user told you to choose or has just answered, put the line in the final answer instead.",
       "rejected": "Child is only named or searched.",
       "evidence": "Complete returned child text before its action.",
       "user_choices": "Do not create another checkpoint.",
@@ -25,7 +25,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand.md",
-        "line": 29,
+        "line": 31,
         "text": "4. **Read the facts before asking or assuming.** Read what can settle a question, such as which version, plan or provider is meant. Asking what the files already say wastes the user's time and hides what only they know."
       },
       "applicability": "scenario",
@@ -42,7 +42,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand.md",
-        "line": 30,
+        "line": 32,
         "text": "5. **Who decides:** some choices are the user's, and some are yours.\n   - The user's: their intent, taste or preferences, anything hard to undo, and what only they know. Ask through the `respond-ask` guide, with a recommended answer.\n   - Yours: what the project's conventions settle, and a default easy to undo. Make it.\n   - **Show your choices before you change anything.** If the result rests on choices you made, write one \"Going with: …\" message that lists them. Then end the turn. Change nothing until the user replies, because a choice they see only after the work is too late to correct.\n   - If the user told you to choose, or has just answered your questions, go ahead. Put the \"Going with\" line in your final answer, with the work. They have already shaped the work, so the line only needs to be seen.\n   - A change made by a command counts too, such as one that rewrites, moves or renames files.\n   - Minor choices need no line. Give the reason if the user asks.\n   - A choice of both kinds is the user's: a wedding toast's style, though easy to rewrite. Ease of undoing decides only what they left to you.\n   - Easy to undo means the effects, not just the file: a change that sends messages, migrates data or reaches users is hard to undo."
       },
       "applicability": "scenario",
@@ -59,7 +59,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand.md",
-        "line": 39,
+        "line": 41,
         "text": "6. **Make no lasting change while understanding.** A change now decides for the user. Put probes and experiments in a scratch place. Otherwise remove them through the `act-cleanup` guide before returning the result. Acting on it is the caller's job, or waits for the user."
       },
       "applicability": "scenario",
@@ -77,7 +77,7 @@
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/understand.md",
-        "line": 17,
+        "line": 19,
         "text": "Decisions and their reasons, questions set aside and why, and next steps. Give these to the caller, or in the response for a direct request. Add each used method’s own results; save nothing here."
       },
       "applicability": "For a direct request, return the applicable decisions, reasons, parked questions and next steps in the answer. For a caller, judge its recorded return or later visible use. Do not require later decisions before the current question is answered.",

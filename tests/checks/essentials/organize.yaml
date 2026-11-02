@@ -7,7 +7,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/organize.md",
-        "line": 32,
+        "line": 35,
         "text": "1. **Use one dividing principle at a time.** One question sorts the items. Mixing principles creates overlaps."
       },
       "applicability": "scenario",
@@ -24,7 +24,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/organize.md",
-        "line": 33,
+        "line": 36,
         "text": "2. **Give each part a boundary in one sentence.** Follow the `act-rightsize` guide for parts that cover everything without overlap. An unstated boundary hides overlaps."
       },
       "applicability": "scenario",
@@ -41,8 +41,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/organize.md",
-        "line": 34,
-        "text": "3. **Preserve meaning when rearranging existing material.** Map every original statement to its new place with the same meaning. Nothing substantive is lost, added or changed. Use scripts for mechanical checks. Use the `coordinate-delegate` guide to have available agents check decisions that need judgment, where delegation is permitted. Without a helper, compare each old part with its new place yourself and report the inventory as self-checked. This fallback permits rereading. Avoid carrying the whole collection twice when smaller comparisons suffice. A count alone does not check meaning. Follow the `act-verify` guide's rule 2 when independence is required. Report an unfinished independent check and who should arrange it. User confirmation does not replace it."
+        "line": 37,
+        "text": "3. **Preserve meaning when rearranging existing material.** Nothing substantive may be lost, added or changed. A statement lost in a move is hard to see once the move is done.\n   - Before any change, map every original statement, or each section that moves unchanged, to its new place. This map is the inventory, and it is the map you show for approval.\n   - After the change, check the result against the inventory, by step 6. A count alone does not check meaning: the same number of lines can hide one changed rule.\n   - Call the check independent only by the `act-verify` guide's rule 2. If a required independent check cannot run, report it as still open, with who should arrange it. The user's confirmation does not replace it."
       },
       "applicability": "scenario",
       "required_skill": "organize",
@@ -58,7 +58,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/organize.md",
-        "line": 35,
+        "line": 41,
         "text": "4. **Get the user's approval before changing any item or view.** Show the map by step 4. Ask through the `respond-ask` guide. End the turn before applying. Reuse approval only for the work the user approved, while the facts behind it still hold. The two checkpoints still apply when the user gives the steps, when the `act` guide's rule 13 allows work to proceed, or when the `act-rightsize` guide requires one approval. Meaning is at stake. A mode change, task box or unanswered question is not approval. A delegated worker returns questions to its caller."
       },
       "applicability": "scenario",
@@ -75,7 +75,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/organize.md",
-        "line": 36,
+        "line": 42,
         "text": "5. **Get the user's confirmation after checking the applied result.** Return the evidence and mark the result as awaiting the user's confirmation. End the turn. Claim confirmed completion only after the user replies to confirm the result. Repair lost statements or failed checks and rerun the check before asking for confirmation. A rejected plan returns to planning, or to step 1 if the principle was rejected."
       },
       "applicability": "scenario",
@@ -92,7 +92,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/organize.md",
-        "line": 38,
+        "line": 44,
         "text": "7. **Keep retired items marked with where their content went.** Links and history may still lead there. Use a notice such as \"merged into …\". Deleting them is a separate action through the `act-guardrails` guide."
       },
       "applicability": "scenario",
@@ -110,7 +110,7 @@
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/organize.md",
-        "line": 20,
+        "line": 23,
         "text": "The grouping principle, each part’s boundary, each item’s place, and any missing or overlapping parts. After a change, also return the before-and-after map, checks, approvals and what was moved, changed or marked as replaced.\n\n```text\nsplit       A               → A1 A2 A3\nmerge       A A' A\"          → A\ncompose     A B C            → P over A, B, C\nnormalize   A[x] B[x]        → A[→X] B[→X] X\ncluster     A B C            → view over A, B, C\n```"
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",

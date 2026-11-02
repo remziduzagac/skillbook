@@ -25,6 +25,7 @@ Then judge:
 
 - Each `review` line on its own: **met**, **not met** or **unclear**, with a short quote from the answer, or a named action or diff line, as evidence. No evidence, no verdict: say unclear.
 - Behaviour, not wording. A rubric line that says "if X" is met when X did not happen. Length earns nothing. Judge generation-before-judgment by the visible options and comparison. Do not demand proof of private order or infer early judgment from a recommendation-first final answer.
+- A required notice of text aimed at an agent, naming where it is and what it asked, is never excess, a side topic or internal process. Neither is one line per outside follow-up. Judge only whether such a part runs longer than it needs.
 - Apply [skillbook-write's test-case rules](../.agents/skills/skillbook-write/SKILL.md) for prompt/check agreement, relevant advice, strength versus choice, and what the record cannot show (D254).
 - Judge progress text between tool calls against [the main skill's progress and routing rule](../skills/essentials/SKILL.md). Give it its own verdict: **none**, **fine** or **not fine**. Apply progress-only rubric criteria to this verdict. A required notice or approval question follows its own rule's timing.
   - Fine: "I’m reading the kiln manual."

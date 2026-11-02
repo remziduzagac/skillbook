@@ -36,17 +36,20 @@ Divide a written or planned whole so every required item has one place. The inve
 2. **Inventory everything the whole contains or must cover before grouping.** Starting with groups can leave inconvenient items out of the map.
    - For existing material, list its contents. For a future whole, use its requirements as the inventory.
 3. **Choose one dividing principle by rule 1 of the `organize` guide.** Mixed principles make an item belong to several parts.
-   - Use the parent's shared choice rule for who chooses and when it must be shown. Keep the principle tied to the whole's purpose.
+   - Use the `understand` guide's who-decides rule for who chooses and when it must be shown. Keep the principle tied to the whole's purpose.
 4. **Write each part's one-sentence boundary by rule 2 of the `organize` guide.** Unstated boundaries leave readers guessing which part owns a new item.
    - Make each part understandable on its own. Size it for whole reading or searching, using headings or a map where needed.
-5. **Map every item to exactly one part under the parent's inventory rule.** A count of parts does not show whether their contents survived.
+5. **Map every item to exactly one part, by the `organize` guide's rule 3.** A count of parts does not show whether their contents survived.
    - Name items with no home or more than one. Keep their unresolved placement visible in a proposal.
 6. **Resolve missing or double homes under rule 9 of the `organize` guide.** Dropping an awkward item silently changes the whole's meaning.
    - Sharpen overlapping boundaries or add a part for a required item. User-approved exclusions remain preserved outside the changed scope.
    - Return unresolved placements in the proposal when they cannot be settled. Exclude nothing silently.
-7. **Check gaps and overlaps through the `organize` guide's bounded check.** A proposed map can still duplicate responsibility or miss a requirement.
+7. **Check gaps and overlaps through the `organize` guide's gap-and-overlap check.** A proposed map can still duplicate responsibility or miss a requirement.
    - Return here after that check, without restarting the operation chooser.
-   - For existing material, show the map and end the turn for the parent's required approval before applying. Future-only planning uses its creating guide's approvals.
-8. **Check parts and “Gives back” before returning to the parent.** Always do this last. A partially placed collection is not a completed arrangement.
+8. **Apply only the approved map, by the `organize` guide's step 5.** A split beyond the map moves content the user never saw placed.
+   - For existing material, show the map and end the turn first. Planning a whole not yet written uses its creating guide's approvals instead.
+   - Write each part, move each item to its mapped part, and update links to moved items.
+   - Mark the original whole with where its content went, by the `organize` guide's rule 7.
+9. **Check parts and “Gives back” before returning to the parent.** Always do this last. A partially placed collection is not a completed arrangement.
    - Check boundaries, each item's place, independent readability, size and exceptions. Repair missing or duplicate homes before claiming a completed change.
    - Return proposals or unresolved findings honestly. For applied work, include the parent's inventory evidence and request for user confirmation; claim confirmed completion only after that reply.

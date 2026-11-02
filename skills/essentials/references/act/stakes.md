@@ -6,7 +6,7 @@ Judges how careful an action needs to be from the effects of a mistake and how i
 
 ## When to use
 
-Use when a guide or the user needs to know how careful an action should be. For example: “how bad would it be if the price import went wrong?”
+Use when the user asks how risky an action is or what a mistake would cost, or when a guide needs to know how careful an action should be. For example: “how bad would it be if the price import went wrong?”
 
 ## When not
 
@@ -17,7 +17,7 @@ Use when a guide or the user needs to know how careful an action should be. For 
 
 ## Gives back
 
-The risk level and a short reason, with the four answers or a “plainly low” judgment. The task that asked receives it and decides what the user needs to see.
+The risk level and a short reason, with the four answers or a “plainly low” judgment. When the user asked about the risk, they see the level and the four answers in plain words, unless it is plainly low. Otherwise the task that asked decides what the user needs to see.
 
 The four questions, each about a mistake in the action judged, such as a wrong value written or the wrong item changed:
 
@@ -39,7 +39,7 @@ The level, from the four answers:
    - Judge the action asked about. Existing problems, such as other errors in the same spreadsheet, are not its reach or cost. They exist either way. Name them separately as findings.
    - Count what the action does to an existing problem, such as hiding a known failure from people reading a check. Hiding a problem weakens the check. The `act-guardrails` guide always requires a proposal for that, whatever the level.
 2. **Take the higher level when unsure.** An unneeded question costs a moment. An unguarded mistake cannot always be undone.
-3. **Keep care at or above every rule.** The `act` guide's never-rules, the `act-guardrails` guide' always-proposed kinds, and user or project instructions for more care hold at every level. The `act-stakes` guide can raise care, never lower it below a rule. Otherwise "low stakes" bypasses guardrails.
+3. **Keep care at or above every rule.** The `act` guide's never-rules, the `act-guardrails` guide's always-proposed kinds, and user or project instructions for more care hold at every level. The `act-stakes` guide can raise care, never lower it below a rule. Otherwise "low stakes" bypasses guardrails.
 4. **Return the answers and level without acting or asking.** The caller decides what the level means for its work. Judgment has one home. Each response to it stays where it is used.
 5. **Judge again when the basis changes.** Examples: a change grows, moves from a local copy to production, loses a test, or has no backup after all. The starting level goes stale.
 
@@ -53,7 +53,7 @@ The level, from the four answers:
 - **Cost includes the user's time and trust,** not only data and money.
 - **Offer ways to lower stakes to the caller.** Never apply them here. Examples: a backup, dry run, branch, feature flag or test before the change. Lowering stakes is often cheaper than extra care.
 
-A judgment that fits none of the named methods is your own, under these rules.
+A judgment that fits none of the guides under "When not" is your own, under these rules.
 
 ## Instructions
 
@@ -82,7 +82,7 @@ Judge the care an action needs from the effects of a mistake, rather than its si
    Lower:   cheap ways to lower it, if any
    ```
 
-   - For plainly low work, give only “plainly low” and why, even when asked about risk. Otherwise use the full shape when the user asks, one line when it changes the caller's action, or nothing when it changes nothing.
+   - For plainly low work, give only “plainly low” and why, even when asked about risk. Otherwise use the full shape when the user asks about the risk, one line when it changes the caller's action, or nothing when it changes nothing.
    - Keep facts gathered only to judge it out of the user-facing result. The caller records the level where it matters. Rejudge under rule 5 when scope, destination, checks or undo changes.
 7. **Check the judgment and “Gives back” before returning.** Always do this last. A correct-looking level without its basis cannot guide consistent care.
    - Check the four answers or a plainly low reason, level, uncertainty and required safeguards. Fix any unsupported basis or level below a rule.

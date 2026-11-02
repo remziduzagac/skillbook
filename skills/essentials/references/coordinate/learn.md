@@ -21,7 +21,7 @@ Approved lessons and where they were saved, highlights dropped with reasons, and
 
 ## Rules
 
-1. **Keep the stopping offer in the main skill.** A useful lesson may remain even when no work remains.
+1. **Draw each lesson from what happened in this session, with its evidence.** Name the correction, mistake or result it comes from. A lesson without a case from the session is a generic tip, and the user cannot judge whether it is worth keeping.
 2. **Promote lessons only with the user's approval.** A reusable lesson applies beyond this session. A one-off event need not become a rule. A pending proposal is neither promoted nor silently dropped.
 3. **Leave skill changes to the skill-making method.** Keep a lesson that belongs in a skill as an insight. Do not turn that skill lesson into a rule in an instruction file to bypass the skill-making method.
 
@@ -35,7 +35,7 @@ Find reusable lessons within the requested session and propose where they belong
    - Ask what a later session would otherwise get wrong or have to rediscover. Drop a highlight that teaches nothing beyond this session, giving why.
    - Keep skill lessons as insights for the skill-making method rather than writing substitute rules into instructions.
 3. **Propose each reusable lesson through the `respond-ask` guide before recording.** This order is firm: lasting guidance needs the user's decision.
-   - Give proposed content, destination and reason. End the turn; record nothing before approval.
+   - Give proposed content, its evidence from the session by rule 1, destination and reason. End the turn; record nothing before approval.
    - Reuse prior approval only for the same work while its basis holds. Keep pending proposals visible rather than promoting or dropping them silently.
 4. **Record approved content through its owning guide or skill.** A lesson in the wrong place may not reach the later reader who needs it.
    - Put an approved instruction rule through the `coordinate-instruct` guide. Put a decision or insight through a loaded skill that saves records, using its location and form.

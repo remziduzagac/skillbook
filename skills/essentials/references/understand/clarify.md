@@ -12,7 +12,7 @@ Use before acting if two likely answers would lead to different work or results.
 
 - An exact question supplied by the user: use the `respond-ask` guide. The question has already been chosen.
 - Facts already in files: read them first, by the `understand` guide’s rule 4. The user need not supply what you can find.
-- A topic to decide together: use the `understand-discuss` guide. The goal is a joint decision rather than finding the user’s meaning.
+- A topic to decide together: use the `understand-discuss` guide. The goal is a joint decision rather than finding the user’s meaning. If the user also asks you to ask what only they can decide, use this guide first. One round settles what they already hold. Discussion then takes the parts still open.
 - The user did not follow you: use the `respond-explain` guide. The gap is in your explanation.
 - A view such as “What do you think?”: follow the `act` guide’s rule 2. Give the view without treating it as a task.
 - Generating options: use the `understand-brainstorm` guide for new ideas.
@@ -35,24 +35,24 @@ The visible “Going with” line and assumptions, the summary from the `underst
    - "Go ahead" accepts the recommended answers, as the `respond-ask` guide says.
    - This is stricter than the `understand` guide's ban on lasting changes while understanding. It varies that rule because it is the user's own wish.
 
-Follow the `understand` guide for facts first, who decides, keeping nothing, result shape and marked guesses. Use the `respond-ask` guide for questions and recommended answers. Return the `understand` guide shape with assumptions left unconfirmed. Each part's own form is in its file.
-
 ## Advice
 
-- Start shallow. Load deep directly when the user asks for an interview to find open choices. Depth becomes clear only after seeing the whole level. One round costs little. Many small tasks end there.
-- Use dependence to trigger deep, never question count. An answer must open questions that would change the work. Plans and designs usually have dependent parts. Usually offer deep after shallow for those.
+- Use dependence to trigger deep, never question count. An answer must open questions that would change the work. Plans and designs usually have dependent parts. Usually offer deep for those, in the shallow round or after it.
 - When, after the shallow round, you are unsure whether a part needs depth, offer deep rather than going deep.
 
 ## Instructions
 
-Settle the choices that would change the result before affected work starts. Depth depends on whether answers open further choices and who holds them. **Use the child method that fits the open choices, then check readiness before acting.**
+Settle the choices that would change the result before the work they affect starts. Each child guide asks in its own way, so read the right one before your first question. **Read the child guide that fits, ask through it, then check readiness before you act.**
 
-- the `understand-clarify-shallow` guide: see a whole level of choices.
-- the `understand-clarify-deep` guide: resolve dependent choices.
-- the `understand-clarify-questionnaire` guide: write questions for someone else.
-- **Ask whether independent work should proceed while a questionnaire is out.** Ask through the `respond-ask` guide only if independent work remains. Otherwise say what waits for answers. Park the questionnaire's questions until answers return. Start no dependent work.
-
-1. **Check readiness against “Gives back” and the `understand` guide before acting.** Always do this last. An unanswered choice can send the work in a direction the user never chose.
-   - Check each user-owned question is answered, accepted with its recommended answer, parked, or in a questionnaire. Under rule 2, start no work that an open answer could change.
+1. **Read the child guide that fits before your first question: the `understand-clarify-shallow` guide by default.** A round asked without its guide misses parts of the request, and the user finds the unasked choices only in the result.
+   - The `understand-clarify-shallow` guide sees a whole level of choices in one round. Read it in every case not listed below. Which part needs depth shows only once the whole level is seen. One round costs little, and many small tasks end there.
+   - The `understand-clarify-deep` guide resolves choices that depend on each other. Read it at once when the user asks you to interview them about their open choices, such as "quiz me on this course outline". Read it for a part after the user accepts your offer of deeper questions on it.
+   - The `understand-clarify-questionnaire` guide writes questions for someone else. Read it when only someone other than the user can answer, such as a landlord.
+2. **While a questionnaire is out, start no work that depends on its answers.** A missing reply turned into a guess decides for the user.
+   - Park its questions until the answers return.
+   - Name in your answer the choices that wait for the answers.
+   - If work that does not depend on them is left, and the user has not asked for it already, ask through the `respond-ask` guide whether it goes ahead. Then end the turn.
+3. **Check readiness against “Gives back” and the `understand` guide before acting.** Always do this last. An unanswered choice can send the work in a direction the user never chose.
+   - Check each user-owned question is answered, accepted with its recommended answer, parked, or in a questionnaire. Under rule 2, start no work that an open answer could change. While a questionnaire is out, check that your answer names the choices that wait for it.
    - Check the user has seen the choices the work rests on in “Going with”, or confirmed the deep summary. Follow the `understand` guide's who-decides rule when the user already told you to start.
    - Check the chosen child's result and final step. Keep unconfirmed assumptions visible. Fix any missing answer, disclosure or status before handing the result back.

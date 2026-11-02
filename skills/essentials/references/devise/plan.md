@@ -20,7 +20,7 @@ Use these alternatives when the work needs no plan. If one is needed for a part 
 
 ## Gives back
 
-The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed.
+The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed. A full plan also shows what its challenge found.
 
 ## Rules
 
@@ -28,11 +28,16 @@ The one-line or full plan, its actual approval status, and the checklist showing
 2. **Keep given items and enhance what is not obvious.** Given items include the user's steps, a guide's or skill's ordered instructions, tasks from a skill that saves records, an approved plan from an earlier session or a project checklist. Mark added items. Ask before reordering or dropping the user's items. Their wording and order express their choice.
 3. **Expand only until every step is obvious.** A step is obvious when you can do it now, know how to check it, and have no open choice or missing fact that would change it. Split parts whose steps are unknown. Use the `understand-clarify` guide when the goal or what counts as done is unclear. Use the `understand-research` guide for missing facts that need sources. Return its result to this active plan. Reapply this test to each new step. Expanding an obvious step wastes attention.
 4. **Use the `understand` guide for who decides.** It owns conventions, agent defaults, user preferences and visible choice timing. Use the `understand-brainstorm` guide for options or the `understand-weigh` guide for comparison. Return from their result to this plan.
-5. **Make a full plan for high stakes or long or wide work.** Judge stakes through the `act-stakes` guide. Otherwise give one line with the chosen way to do the work, ordered steps and check. Use the `organize` guide to divide full plans into non-overlapping parts and phases. Check a full plan through the `understand-challenge` guide before showing it; reuse a current challenge by that guide's rule.
+5. **Make a full plan for high stakes or long or wide work.** A one-line plan for such work hides the steps, risks and checks that matter most. Judge stakes through the `act-stakes` guide. Advice says what long or wide means.
+   - Otherwise give one line: the way to do the work, the steps in order and the check.
+   - Divide a full plan into parts and phases that do not overlap, through the `organize` guide.
+   - Challenge a full plan through the `understand-challenge` guide before you show it, and put what it found in the plan's "Challenge" field. Reuse an earlier challenge only as that guide's rule 7 allows.
 6. **Track three or more steps in a checklist.** Use the available harness list, otherwise plain text. Work in dependency order. Check a step through the `act-verify` guide before ticking it and advancing dependent work. An unnoticed failure invalidates later steps. Independent parts may share a phase.
-7. **Get actual user approval before executing a high-stakes plan.** This is stricter than the `act` guide's rule 13's given-steps exception. Given steps alone are not approval. A request for a plan authorizes no execution. Reuse approval only for the work the user approved, while the facts behind it still hold. Plan approval does not waive a separate guardrail.
-8. **Follow the `act` guide's rule 13 for other changing work.** Use its given-steps and go-ahead exceptions. Put a read-only plan in the final answer when no user answer is needed. Ask open user questions through the `respond-ask` guide. Put an approval request in the final message. End the turn. Follow the `respond-ask` guide if its question tool returns the user's answer in the same turn.
-9. **Revise the current plan after a failed step, a changed fact it depends on, or new user input in a later turn.** Start from the existing plan so open work is not lost. Keep its open items. Add what the new input asks for. Change or remove what it replaces. Mark finished items. Revise even if the old step text is unchanged. Obtain renewed approval when the original required it. Ask the user about proposed changes to the steps they gave. If the design failed, revise it through the `devise-design` guide first. Continuing on a false basis multiplies rework.
+7. **Get actual user approval before executing a high-stakes plan.** This is stricter than the `act` guide's rule 13's given-steps exception. Steps the user listed may not show what could go wrong, and high-stakes work is hard to undo. Given steps alone are not approval. A request for a plan authorizes no execution. Reuse approval only for the work the user approved, while the facts behind it still hold. Plan approval does not waive a separate guardrail.
+8. **Follow the `act` guide's rule 13 for other changing work.** Use its given-steps and go-ahead exceptions.
+   - When the work goes ahead without a stop, give each step with its result in the final answer, as that rule says. Work that only reads or answers, and needs no answer from the user, goes ahead the same way.
+   - When a stop is needed, put the plan and the approval request in the final message, ask open questions through the `respond-ask` guide, and end the turn. If the question tool returns the user's answer in the same turn, follow the `respond-ask` guide.
+9. **Revise the current plan after a failed step, a changed fact it depends on, or new user input in a later turn.** Start from the existing plan so open work is not lost. Keep its open items. Add what the new input asks for. Change or remove what it replaces. Mark an item finished only after its check, by rule 6. Revise even if the old step text is unchanged. Obtain renewed approval when the original required it. Ask the user about proposed changes to the steps they gave. If the design failed, revise it through the `devise-design` guide first. Continuing on a false basis multiplies rework.
 10. **Return a design need to the `devise-design` guide without restarting this plan.** Use it for an open shape or dependent choices, not one isolated choice. Resume this list from its result. A plan step can itself be design work.
 
 ## Advice
@@ -44,14 +49,15 @@ The one-line or full plan, its actual approval status, and the checklist showing
 
 Keep multipart work tied to its goal, current facts and checked progress. Build on given steps or the open plan so new input does not erase unfinished work. **Read the open plan and any given steps, expand only unclear steps, then follow only the approved work and revise as facts change.**
 
-A full plan's default shape, omitting empty fields:
+A full plan's default shape:
 
 ```text
-Goal:    wanted result and how done is known
-Steps:   in order, each with its check; added items marked
-Out:     work outside scope
-Risks:   each and what catches it
-Agents:  work handed to agents
+Goal:       wanted result and how done is known
+Steps:      in order, each with its check; added items marked
+Out:        work outside scope
+Risks:      each and what catches it
+Agents:     work handed to agents
+Challenge:  what the plan's challenge found, and what it changed
 ```
 
 Keep a plan in the response when it fits on a screen. For a longer plan, write a file and give an outline in the response. Use the place and format chosen by the caller or the loaded skill that saves records. If neither has chosen a place, name the file in the response. Follow the `act` guide before writing. Return the plan with its actual approval status and the steps you checked. Do not assume the work is complete.
@@ -65,12 +71,12 @@ Keep a plan in the response when it fits on a screen. For a longer plan, write a
    - Expand under rule 3 until each step can be done now, has a check and has no result-changing unknown. Research facts and clarify user choices; return to this plan.
    - Use a full plan for high stakes or long or wide work. Otherwise give the way, ordered steps and check in one line.
    - For a full plan, use the `understand-frame` guide for goal and done, and the `organize` guide for distinct parts and phases. Group shared work once. This guide owns step order.
-   - Challenge a full plan through the `understand-challenge` guide, reusing only a current check. Omit empty fields in the default shape above.
+   - Write a full plan in the shape above. Leave out a field only when it has nothing, such as no work for agents. Challenge it before you show it, by rule 5.
 4. **Track the plan with available harness controls, by rule 6.** Untracked progress can let an unfinished prerequisite look done on the next turn.
-   - Use the harness plan or task list where available. Track three or more steps in a checklist; otherwise use plain text in the response.
+   - Track three or more steps in a checklist: the harness's task list where it has one, otherwise a plain-text list in the response. Fewer steps need no checklist.
 5. **Obtain required approval before execution, under rules 7 and 8.** A mode change or an unchecked task box is not the user's approval.
    - A high-stakes plan needs actual approval even with given steps. Reuse approval only within its work and unchanged basis; separate guardrails still apply.
-   - For other changing work, use the `act` guide's plan rule and its exceptions. Put a read-only plan in the final answer when no user answer is needed.
+   - For other changing work, use the `act` guide's plan rule and its exceptions. When the work goes ahead or only reads, give each step with its result in the final answer, by rule 8.
    - Use an available permitted plan mode, or put the approval request in the final message and end the turn. With no task tool, use a plain-text checklist. Install or enable no controls.
 6. **Follow allowed steps in dependency order, checking before advancing, by rules 6 and 9.** An unnoticed failure can invalidate every step built on it.
    - Use the `act-verify` guide before ticking each step. Independent parts may share a phase. Give permitted independent work to the `coordinate-delegate` guide, using the `coordinate-delegate-crew` guide for parallel changes to separate items.

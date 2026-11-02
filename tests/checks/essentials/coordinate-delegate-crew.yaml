@@ -24,8 +24,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/coordinate/delegate/crew.md",
-        "line": 27,
-        "text": "3. **Reread each written item from disk after writing it.** Another worker may have changed nearby material. This check follows, rather than replaces, the `act-guardrails` guide' check before writing."
+        "line": 30,
+        "text": "3. **Reread each written item from disk after writing it.** Another worker may have changed nearby material. This check follows, rather than replaces, the `act-guardrails` guide's check before writing."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-delegate-crew",

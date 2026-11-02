@@ -3,17 +3,17 @@
   "checks": [],
   "results": [
     {
-      "part": "The earlier point explained from the main idea to its details, with references in words. Stop once it is clear.",
+      "part": "The earlier point, explained again to the user from the main idea to its details, with every reference in words.",
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/respond/explain.md",
         "line": 19,
-        "text": "The earlier point explained from the main idea to its details, with references in words. Stop once it is clear."
+        "text": "The earlier point, explained again to the user from the main idea to its details, with every reference in words."
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
       "required_skill": "respond-explain",
       "deadline": "caller return or final answer",
-      "expected": "The earlier point explained from the main idea to its details, with references in words. Stop once it is clear.",
+      "expected": "The earlier point, explained again to the user from the main idea to its details, with every reference in words.",
       "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
       "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
     }

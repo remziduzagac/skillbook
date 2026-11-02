@@ -7,8 +7,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/discuss.md",
-        "line": 25,
-        "text": "1. **Show the whole before the first item.** Frame the topic through the `understand-frame` guide. Divide it into items. A later item can undo an earlier decision. The list lets the user reorder or drop items."
+        "line": 26,
+        "text": "1. **Show the whole before the first item.** List the items, from the user's own list where they gave one. Frame the topic first with the `understand-frame` guide when its problem, goal or way to judge a good result is missing. A later item can undo an earlier decision. The list lets the user reorder or drop items."
       },
       "applicability": "scenario",
       "required_skill": "understand-discuss",
@@ -24,7 +24,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/discuss.md",
-        "line": 26,
+        "line": 27,
         "text": "2. **Discuss one item in each item turn.** Discussing several items at once blurs which answer belongs where. Show the remaining items as a default. Follow the user's request to see more at once. When you close the discussion, invent no extra discussion item, question or recommendation."
       },
       "applicability": "scenario",
@@ -41,7 +41,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/discuss.md",
-        "line": 27,
+        "line": 28,
         "text": "3. **Give a recommended answer for each question when the files or conversation give a basis.** Give its reason through the `respond-ask` guide. Otherwise the user does all the thinking.\n   - Give no recommendation for a fact only the user knows. Explain why it has none, by the `respond-ask` guide's rule 2.\n   - Count an item as decided only after the user agrees. An unagreed choice would become a decision."
       },
       "applicability": "scenario",
@@ -58,7 +58,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/discuss.md",
-        "line": 30,
+        "line": 31,
         "text": "4. **Close every item.** Mark the item decided, parked with its reason, or handed on with its destination. An item left silently open becomes an assumption later."
       },
       "applicability": "scenario",
@@ -75,8 +75,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/discuss.md",
-        "line": 33,
-        "text": "7. **When a topic is complete, give each decision with its reason.** Mark a reason not given as unknown. Invent no reason.\n   **Give the next step.**\n   **Offer recording through the `respond-ask` guide.**\n   **Then end the turn.**"
+        "line": 34,
+        "text": "7. **When a topic is complete, give each decision with its reason.** Give this summary in your answer, even when you also save it. The user checks the result there, and a file shows them nothing until they open it.\n   - Give the reason someone gave for each decision. Put the decisions with no stated reason in one line, such as \"Reason not given: the launch week, the colour scheme.\" Invent no reason: a later reader takes it as fact.\n   - Give each parked item with why, and what would reopen it.\n   - Give the next step.\n   - If the user has not asked for a record, offer one through the `respond-ask` guide. Then end the turn."
       },
       "applicability": "scenario",
       "required_skill": "understand-discuss",
@@ -93,7 +93,7 @@
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/understand/discuss.md",
-        "line": 21,
+        "line": 22,
         "text": "What was decided, set aside or passed to another task, with reasons. Include side topics and next steps; give the user the agreed summary."
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",

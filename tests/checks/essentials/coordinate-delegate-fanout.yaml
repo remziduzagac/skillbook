@@ -7,7 +7,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/coordinate/delegate/fanout.md",
-        "line": 25,
+        "line": 27,
         "text": "1. **Give each worker a different part or review lens.** Search first. Use one worker when a search or a small task suffices. The same question over the same material uses the `coordinate-delegate-council` guide."
       },
       "applicability": "scenario",
@@ -24,8 +24,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/coordinate/delegate/fanout.md",
-        "line": 26,
-        "text": "2. **Keep findings in files until the answer needs them.** Each worker writes its own findings file and returns its path, count and what it could not find. Large raw findings would fill the main conversation."
+        "line": 28,
+        "text": "2. **Keep findings in files until the answer needs them.** Each worker writes its own findings file and returns its path, count and what it could not find. Large raw findings would fill the main conversation. On a small set, a worker may return its findings in its report instead, each with its source."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-delegate-fanout",
@@ -41,13 +41,13 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/coordinate/delegate/fanout.md",
-        "line": 27,
-        "text": "3. **Consolidate through the bundled script.** Follow [the findings contract](fanout/assets/findings.md), using the `understand-research` guide for the shared finding fields and ranking of how evidence was obtained. Preserve every finding, source, conflict and negative result. Checking a quote proves only whether those words occur in the supplied source."
+        "line": 29,
+        "text": "3. **Consolidate through the bundled script on a large set.** Follow [the findings contract](fanout/assets/findings.md), using the `understand-research` guide for the shared finding fields and ranking of how evidence was obtained. A hand merge of many findings can drop a conflict or a negative result unseen. A small set may be merged by hand instead. Either way, keep every finding, source, conflict and negative result. Checking a quote proves only whether those words occur in the supplied source."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-delegate-fanout",
       "deadline": "answer",
-      "expected": "Apply all applicable parts of coordinate-delegate-fanout:rule:3: Consolidate through the bundled script. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "expected": "Apply all applicable parts of coordinate-delegate-fanout:rule:3: Consolidate through the bundled script on a large set. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
       "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
       "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
       "no_skill_eligible": true
@@ -58,8 +58,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/coordinate/delegate/fanout.md",
-        "line": 28,
-        "text": "4. **Validate the evidence the answer may rely on and every conflicting pair.** Use a fresh validator at high effort, its tier chosen by the parent. Ask it to try to refute each claim against its sources. Keep uncertain claims unverified. Mark a claim refuted only when evidence goes against it. List the other findings as not validated."
+        "line": 30,
+        "text": "4. **Validate the evidence the answer may rely on and every conflicting pair.** Ask the checker to try to refute each claim against its sources. Keep uncertain claims unverified. Mark a claim refuted only when evidence goes against it.\n   - On a large set, use a fresh validator at high effort, its tier chosen by the parent. Reading every source yourself would fill this conversation.\n   - On a small set, check the findings against their sources yourself when the `act-verify` guide's rule 2 lets you skip the fresh agent. Otherwise use a fresh validator, as on a large set."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-delegate-fanout",
@@ -75,8 +75,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/coordinate/delegate/fanout.md",
-        "line": 29,
-        "text": "5. **Support the answer only with validated findings.** Report what was skipped, not found or left unverified, and what would settle relevant unknowns. You may read information about search coverage without using an unverified claim as supporting evidence."
+        "line": 33,
+        "text": "5. **Support the answer only with validated findings.** In the answer, say how the findings were combined, by the script or by hand, and who validated them, a fresh validator or you. Name the findings left unvalidated, what was skipped or not found, and what would settle relevant unknowns. Without this, the user cannot tell a checked finding from a worker's guess. You may read information about search coverage without using an unverified claim as supporting evidence."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-delegate-fanout",
@@ -89,17 +89,17 @@
   ],
   "results": [
     {
-      "part": "Combined findings, their actual check status, sources and coverage limits.",
+      "part": "Combined findings, how they were combined and who checked them, their actual check status, sources and coverage limits.",
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/coordinate/delegate/fanout.md",
         "line": 21,
-        "text": "Combined findings, their actual check status, sources and coverage limits."
+        "text": "Combined findings, how they were combined and who checked them, their actual check status, sources and coverage limits."
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
       "required_skill": "coordinate-delegate-fanout",
       "deadline": "caller return or final answer",
-      "expected": "Combined findings, their actual check status, sources and coverage limits.",
+      "expected": "Combined findings, how they were combined and who checked them, their actual check status, sources and coverage limits.",
       "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
       "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
     }

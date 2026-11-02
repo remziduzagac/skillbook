@@ -34,5 +34,5 @@ id = "devise-plan:step:4"
 reason = "Native plan and task controls and approval transitions vary by live interface. The festival checks the plan and its approval status, not unavailable UI controls."
 
 [[aspect]]
-id = "coordinate-carryover:step:6"
+id = "coordinate-carryover:step:5"
 reason = "An actual transition to a fresh interactive session and its supported command needs a live interface. The festival checks the saved note, outline and honest command fallback."

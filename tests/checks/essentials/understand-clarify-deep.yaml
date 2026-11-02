@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/understand/clarify/deep.md",
         "line": 24,
-        "text": "1. **Get the user's confirmation of the summary before acting.** List decided, parked, accepted and assumed items. Use the `respond-ask` guide's definitions of parked and assumed.\n   - If the user stops early, take open questions by the `respond-ask` guide: assume recommendations and park those without one. Park facts only the user knows. Never supply them. Never assume a proposal. Show the summary before acting.\n   - If told to start, such as \"enough questions, just build it\", show the summary without asking confirmation. No assumption is then acted on unseen.\n   - \"Go ahead\" is not that: it accepts the current round's recommended answers, and the questioning goes on."
+        "text": "1. **Get the user's confirmation of the summary before acting.** Work built on an unconfirmed summary can rest on a choice the user never made.\n   - Give each question's status with the `respond-ask` guide's labels: accepted, changed, assumed or parked, as its rule 4 defines them.\n   - When the user stops the questions, such as \"I think that covers it\", take each open question as the `respond-ask` guide's rule 4 says: assume its recommended answer, or park it when it has none. Assume nothing you did not recommend, take no proposal as approved, and supply no fact only the user knows. Then show the summary and ask for confirmation. Stopping the questions does not start the work.\n   - Asking to confirm the summary is not another question round. Ask it even after the user has asked for no more questions.\n   - When the user tells you to start the work, such as \"skip the rest and draft the report\", ask no confirmation. Put the summary in your final answer, with the work. The user chose to skip the check, so the summary only needs to be seen.\n   - \"Go ahead\" is not a start. It accepts the current round's recommended answers, and the questioning goes on."
       },
       "applicability": "scenario",
       "required_skill": "understand-clarify-deep",
@@ -24,7 +24,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/clarify/deep.md",
-        "line": 28,
+        "line": 30,
         "text": "2. **Record only when asked.** Recording writes to the project. The `act` guide requires exactly the work asked for."
       },
       "applicability": "scenario",
@@ -38,17 +38,17 @@
   ],
   "results": [
     {
-      "part": "The summary of decided, parked, accepted and assumed items. The user has confirmed it, or seen it after telling you to start the work.",
+      "part": "The summary of accepted, changed, assumed and parked items. The user has confirmed it, or got it in your final answer after telling you to start the work.",
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/understand/clarify/deep.md",
         "line": 20,
-        "text": "The summary of decided, parked, accepted and assumed items. The user has confirmed it, or seen it after telling you to start the work."
+        "text": "The summary of accepted, changed, assumed and parked items. The user has confirmed it, or got it in your final answer after telling you to start the work."
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
       "required_skill": "understand-clarify-deep",
       "deadline": "caller return or final answer",
-      "expected": "The summary of decided, parked, accepted and assumed items. The user has confirmed it, or seen it after telling you to start the work.",
+      "expected": "The summary of accepted, changed, assumed and parked items. The user has confirmed it, or got it in your final answer after telling you to start the work.",
       "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
       "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
     }

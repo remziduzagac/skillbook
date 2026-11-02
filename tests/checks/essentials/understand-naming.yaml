@@ -7,8 +7,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/naming.md",
-        "line": 28,
-        "text": "4. **Leave a shared name to the user’s choice.** Readers will rely on the chosen term.\n   - **For a supplied name, check the glossary, existing usage and potential collisions.**\n   - **For a supplied name, report the check results in `Checked`, even when nothing clashes.** The caller needs to know what was checked.\n   - Reopen a supplied name for a real conflict under the `act` guide’s concern rule. When the user has settled the name, start no new candidate or approval round."
+        "line": 48,
+        "text": "4. **Leave a shared name to the user’s choice.** Readers will rely on the chosen term.\n   - **For a supplied name, check the glossary, existing usage and potential collisions.**\n   - **For a supplied name, report the check results in `Checked`, even when nothing clashes.** The caller needs to know what was checked.\n   - **When a supplied name has a real conflict, ask the user through the `respond-ask` guide whether to keep it, then end the turn.** In the question, name the clash and how serious it is, such as a well-known tool with the same name in the same field. This is the `act` guide's concern rule. When the user has settled the name, start no new candidate or approval round."
       },
       "applicability": "scenario",
       "required_skill": "understand-naming",
@@ -24,8 +24,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/naming.md",
-        "line": 32,
-        "text": "5. **Return rejected words and reasons.** The caller can record them so they are not proposed again."
+        "line": 52,
+        "text": "5. **Return rejected words and reasons.** Do this whether or not a name is chosen yet. A word left out for a clash counts. The caller can record them, so they are not proposed again."
       },
       "applicability": "scenario",
       "required_skill": "understand-naming",
@@ -41,7 +41,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/naming.md",
-        "line": 33,
+        "line": 53,
         "text": "6. **Write and rename nothing.** The caller applies approved names and glossary entries under the `act` guide. A wide rename follows the `act-guardrails` guide. Propose the old word under Avoid. Half a rename leaves two words for one thing. For a direct request, the main work flow owns the change."
       },
       "applicability": "scenario",
@@ -55,17 +55,17 @@
   ],
   "results": [
     {
-      "part": "The chosen name, reasons and rejected words, or proposed glossary changes. Say which existing terms and possible name clashes you checked. Write or rename nothing here.",
+      "part": "For an open name, the candidates, each with why it fits, or the chosen name and why. For a glossary change, the proposed entries. Add the rejected words with their reasons, and which existing terms and possible clashes you checked. Write or rename nothing here.",
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/understand/naming.md",
         "line": 21,
-        "text": "The chosen name, reasons and rejected words, or proposed glossary changes. Say which existing terms and possible name clashes you checked. Write or rename nothing here."
+        "text": "For an open name, the candidates, each with why it fits, or the chosen name and why. For a glossary change, the proposed entries. Add the rejected words with their reasons, and which existing terms and possible clashes you checked. Write or rename nothing here.\n\nUse one of these default shapes:\n\n```text\nThing:       what is named\nCandidates:  each name and why it fits, while the user still chooses\nChosen:      the name and why, once chosen\nRejected:    words considered and why not\nChecked:     what each name was checked against, and the result\nAvoid:       words to list under the term\n```\n\n```text\nTerm:        the word\nDefinition:  one sentence\nAvoid:       synonyms and nearby meanings\nExample:     where needed\n```\n\nPropose the existing glossary as destination. With no existing glossary, propose `GLOSSARY.md` at the project root. The caller creates it when the user approves an entry. Code, docs and contributors share it. In someone else's project, use the location a loaded skill that saves records gives. If no skill saves records, ask the user for the location. These are destination defaults, not permission to write."
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
       "required_skill": "understand-naming",
       "deadline": "caller return or final answer",
-      "expected": "The chosen name, reasons and rejected words, or proposed glossary changes. Say which existing terms and possible name clashes you checked. Write or rename nothing here.",
+      "expected": "For an open name, the candidates, each with why it fits, or the chosen name and why. For a glossary change, the proposed entries. Add the rejected words with their reasons, and which existing terms and possible clashes you checked. Write or rename nothing here.",
       "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
       "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
     }

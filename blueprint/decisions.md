@@ -472,6 +472,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 **Why:** What the person needs when they ask for an explanation is the missing context, in order, without being overwhelmed. mattpocock's `wait-what` aims at a shorter re-pitch; here the answer may be longer, but every part of it can be followed.
 
+> **Amended by D290 (2026-11-02):** an explanation no longer opens with where the conversation is. The point comes first, with one line on where things stand only when the reader has lost track. This settles D54 against D145 on D145's side.
+
 ## D55: skillbook has a main skill above the roots (2026-10-11)
 
 > **Amended by D56 (2026-10-11):** the main skill is the only skill listed to the model.
@@ -1019,6 +1021,8 @@ Each hands back the before-and-after map, the inventory or test result, and what
 
 **Why:** Once skill-making left the plugin (D77), instruct's skill-file half duplicated skillbook-tree; what remains is a job of its own, asked for at any time, apart from setup, which configures skillbook for a project or machine.
 
+> **Amended by D294 (2026-11-02):** "one example per rule" becomes "at most one example per rule".
+
 ## D95: Responses follow the markdown skill, which holds structure for all markdown (2026-10-12)
 
 > **Amended by D107 (2026-10-12):** respond's markdown rule is one pointer; the structure layer sits at the top of the markdown skill's `SKILL.md`, its file rules in its references.
@@ -1493,6 +1497,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 **Why:** Framing, weighing and challenging are needed by design, plan, research and a council's summary as much as by brainstorm, so each gets one home. A brainstorm happens inside a discussion, and the blueprint already splits a discussion into notes, ideas and decisions.
 
+> **Amended by D291 (2026-11-02):** discuss and brainstorm frame only when the problem, goal or test is missing.
+
 ## D119: frame states a question or problem before work on it (2026-10-13)
 
 > **Amended by D252 (2026-10-25):** Frame shows its result with a read-only answer and adds no checkpoint. Unknown facts go to research; user choices or knowledge go to clarify when they would change the result. Audience is a caller input, not a required frame field.
@@ -1615,6 +1621,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 
 **Why:** Discussing is the same work whatever the topic, as this session's own way of working shows, and nothing in it is specific to design; a parent that handles one case itself mixes its shared rules with that case, as research's did before fact.
 
+> **Amended by D291 (2026-11-02):** discuss and brainstorm frame only when the problem, goal or test is missing.
+
 ## D131: understand's own skill designed (2026-10-14)
 
 > **Amended by D252 (2026-10-25):** The group's routes and tests follow the revised result contracts. Agent-made choices point to its who-decides rule. The group and seven thinking tools declare their plain reference files.
@@ -1650,6 +1658,8 @@ Three thinking moves it shares with other work become sub-skills of understand, 
 **Decision:** conduct's stakes is designed ([design/conduct.md](design/essentials/act.md)). It answers four questions from facts, Undo, Reach, Catch and Cost, and gives one level: low, when a mistake would be caught or cheaply undone and stays inside the task; high, when nothing would catch a mistake in time and any one of: it is hard to undo; it reaches beyond the task, to shared contracts, production, other people or the public; it would cost data, money or security; medium between. Its rules: judged from facts, on what is actually done; the higher level when unsure; never below a rule, guardrails' never-rules, its kinds that must always be proposed and any instruction to be more careful holding whatever stakes says; stakes judges and the caller acts, each caller keeping its own mapping, such as delegate's tier table; judged again when what it rests on changes. What is plainly low takes a glance. Ways to lower the stakes, such as a backup or a dry run, are offered to the caller. The person hears the level only when it changes what happens, in one line with the reason, or in full when they ask. act does not name stakes; guardrails' proportion, delegate's tiers, verify's who checks, weigh's reversibility advice, challenge and understand's proportion now point to it.
 
 **Why:** Four skills judged the same thing in four wordings, and others said "when the stakes are high" with nothing behind it. One judgment, made from facts and never lowering a rule, gives every caller the same answer, while each keeps what that answer means for its own work.
+
+> **Amended by D295 (2026-11-02):** act's first step reads stakes on demand, and stakes covers a user asking what a mistake would cost.
 
 ## D134: conduct's own skill, its routing lines, and act, respond and ask in the shape (2026-10-15)
 
@@ -1974,6 +1984,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 **Why:** The person's idea: rightsize shapes things as they are made, but things that already exist drift long or thin, and reworking them needs its own steps in each direction. lean, the word the person first chose for the principle, now names exactly the removing half; enrich names the adding half. Approval follows whose work it is, and code stays under tests, as organize's change to code does.
 
+> **Amended by D295 (2026-11-02):** enrich's gaps go into the proposal, and the report after applying points to the approved list.
+
 ## D158: layout, essentials' skill for laying out outputs (2026-10-17)
 
 > **Amended by D179 (2026-10-17):** layout is respond's, always loaded by it.
@@ -2084,6 +2096,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 **Why:** design was the one part of essentials left empty. Its draft flow dated from before the sets; with the recording steps the blueprint set's and architecture softeng's, what remains is the method itself, gone through with the person in five items. The checks that overlapped across verify, organize, review, challenge and skillbook-tree, left to settle here (D123), now have one home each.
 
+> **Amended by D293 (2026-11-02):** a full design with no file named is written to a new file, not asked for.
+
 ## D169: a carryover that carries the whole context (2026-10-17)
 
 > **Amended by D260 (2026-10-25):** D260 permits an authorized provisional note when the independent cold reader is unavailable. It never claims validated readiness.
@@ -2141,6 +2155,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 **Decision:** verify's choice of who checks adds a third: a fresh agent, through coordinate's delegate, when the person asks for one, when delegate's table calls for a second check, or when the check needs judgment the writer cannot give its own work.
 
 **Why:** coordinate, conduct's tests and stakes all relied on verify choosing a second agent, which verify's own choice did not offer.
+
+> **Amended by D295 (2026-11-02):** the judgment trigger for a fresh checker excludes a small set of others' findings checked against short sources.
 
 ## D176: devise in one file, a README per set folder, and organize's and coordinate's ideas in their own files (2026-10-17)
 
@@ -2386,6 +2402,8 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 > **Amended by D279 and D280 (2026-11-01):** the files read on every request are the main skill, the six main guides and respond-layout, by the paths in the guide map.
 
+> **Amended by D291 (2026-11-02):** where the user says to start, deep's summary goes in the final answer; a stop gets a request to confirm.
+
 ## D200: The main skill names all seven steps, and "do it" stays under act and the main skill (2026-10-18)
 
 > **Amended by D203 (2026-10-18):** the respond step is folded into the main skill's last instruction; six steps remain.
@@ -2477,6 +2495,8 @@ Fighting these rules in ask's shared rules would add text for every agent to fix
 - The change is in [design/understand.md](design/essentials/understand.md): clarify's advice, routing lines and tests 2 and 12, shallow's hand-over, last instruction and tests, and deep's callers.
 
 **Why:** before, clarify sent a part to deep on its own after the shallow round, and went deep when unsure. The user was not told why more questions were coming and had no easy way to say no, and deep can take many rounds. A clear yes before deep starts keeps that decision with the user. It costs one turn each time deep is offered. The other option, saying why and starting in the same turn with a way to skip, was weighed and not chosen.
+
+> **Amended by D291 (2026-11-02):** the deep offer comes with the shallow round when the dependence shows up front; a declined offer's assumptions go in "Going with" in the final answer, not before the work.
 
 ## D208: Three kinds of test; AI tests run on the user's machine only (2026-10-19)
 
@@ -2604,6 +2624,8 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 
 > **Amended (2026-10-20):** in this decision's results, "Claude" means Claude Haiku and "Codex" means Codex with GPT-6 Luna, its small model; they say nothing about either agent's larger models. Results are reported per agent and model (skillbook-write, "Test cases").
 
+> **Amended by D291 (2026-11-02):** the questionnaire's sending proposal only when the agent would send it; none when the user sends it.
+
 ## D213: Examples vary, and test prompts are held out (2026-10-20)
 
 **Decision:**
@@ -2667,6 +2689,8 @@ Each cause applies to any skill, so the fix is a rule for all of them. Essential
 No AI test was run for this batch, as the user asked.
 
 **Why:** D211's checks and D214's rule to fix the pattern, never the case. The review behind D212 also found these; D212 fixed the ones that could cause harm. Each fix states a test where a judgment word stood, so each model draws the line in the same place. The ask fix follows from rules already there: a question is assumed only when the user stops, and a round of questions ends the turn. The two numbers, about three tool calls and about five rounds, are advice with their reasons, and can be changed without changing the rule.
+
+> **Amended by D291 (2026-11-02):** where the user says to start, deep's summary goes in the final answer; a stop gets a request to confirm.
 
 ## D216: The built act holds the instructions-and-data rule, and the test runner measures honestly (2026-10-20)
 
@@ -2746,6 +2770,8 @@ No AI test was run for this batch.
 **Why:** a third outside review of essentials and the project skills found a rule that borrowed another skill's terms in part, a light path that skipped a check another rule requires, categories that overlapped with no order, and tests and wording that lagged the boundary D217 moved. The user asked that the solutions stay general, so each finding became a general rule with one home, applied where the review found it (D214).
 
 > **Amended by the main agent's follow-up (2026-10-20), within D218:** shallow's decline path now treats open questions as respond's ask does when the user stops (taken with a recommended answer, parked without one, nothing only the user knows supplied), the same shared-terms fix as deep's; understand's "make minor choices quietly, and say the reason" now reads "without a 'going with' line; give the reason if the user asks"; clarify's caching example became "add retries to the API client", so "add caching to the API" is a held-out prompt in every test.
+
+> **Amended by D295 (2026-11-02):** the approval list "need not" hold the finished text, and a draft may go beside it.
 
 ## D219: The test suite covers every built skill, and its kept summaries hold review evidence, never secrets (2026-10-20)
 
@@ -3043,6 +3069,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 - Every model, Sonnet included, missed "ask whether the rest goes ahead" in that case. Nothing was left to go ahead with, so the line and the rubric were both wrong there.
 - A question with no work behind it costs the user a turn for nothing.
+
+> **Amended by D291 (2026-11-02):** the choices waiting on a questionnaire are always named, not only when no other work is left.
 
 ## D229: Text to paste elsewhere comes whole, notes after it (2026-10-22)
 
@@ -3711,6 +3739,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 **Tested:** nothing was run yet. The person asked that tests wait.
 
+> **Amended by D295 (2026-11-02):** rule 13's "put the plan in the final answer" becomes each step and its result, with steps the user gave not restated; verify's fresh-agent must gains the command-result exception.
+
 ## D251: The project skills are reviewed and fixed; the name rule names an unread file in the answer (2026-10-24)
 
 **Decision:**
@@ -3789,6 +3819,10 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - The seven cases that failed on both models, 3 runs each, round 1 text against the new text: Sol 7 to 15 good of 21, Luna 2 to 3.
 - All 151 cases, round 2 and round 3 answers judged in one pass: Sol 126 to 130 good. Luna's cases with a missed rubric line fell from 35 to 24, while its good count fell from 82 to 75, nearly all from progress text the stricter guide now fails.
 - Luna still misses discuss's whole-first order and closing, and incomplete payloads to callers. Round 3 cost Luna about US$0.66 by the runner's estimate. Sol and judging cost are unknown.
+
+> **Amended by D291 (2026-11-02):** discuss's closing rule from round 3 is lighter, as above.
+
+> **Amended by D292 (2026-11-02):** argue returns the challenge separately only to a caller that reuses it; weigh drops a constraint-breaking option but still shows a user-named one's values.
 
 ## D253: Build the remaining batches before model testing (2026-10-25)
 
@@ -3877,6 +3911,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 **Update (D267):** D267 removes the two plan harness children while preserving the parent’s approval, checklist and missing-control policy.
 
+> **Amended by D293 (2026-11-02):** the architecture lens is for software designs only; a full plan shows its challenge; plan points to act's rule 13 for the final answer after going ahead.
+
 ## D258: Non-blocking concerns go in the final answer (2026-10-25)
 
 **Decision:**
@@ -3889,6 +3925,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 **Why:** A message paired with going on is often lost into private thinking. Delaying a consent-changing concern would deprive the user of the chance to stop. The final-answer branch therefore covers only a concern that cannot change the work or consent.
 
 **Tested:** No model test was run. Cases were checked against an exact authorized edit with its final caveat and a losing action that must remain unperformed pending consent. Static checks are reported in `../tests/batch2-build-report.md`; the semantic outcomes remain untested on models.
+
+> **Amended by D295 (2026-11-02):** a concern is asked before the part it affects, including one found partway.
 
 ## D259: Settle and build organize with explicit approvals and preserved meaning (2026-10-25)
 
@@ -3916,6 +3954,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - Passing tests do not establish preservation of untested public behavior. Conditional specialist calls need an honest fallback.
 
 **Tested:** No model test was run, by D253. The six files and their caller routes are built. The numbered design scenarios have executable cases inspected against correct and plausible wrong traces, including separate approval/application/confirmation turns. Static checks, case counts, coverage, manual limits and the file-against-design review are recorded in `../tests/batch3-build-report.md`. These are not observed model passes.
+
+> **Amended by D293 (2026-11-02):** rule 3's inventory is the approval map, and the checked inventory is the returned before-and-after map; a section that moves unchanged counts as one entry; the design's rules carry the file's ten numbers; normalize proposes a missing home inside the map.
 
 ## D260: Build coordinate's core with an act bootstrap and honest worker and carryover status (2026-10-25)
 
@@ -3945,6 +3985,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 **Update (D267):** D267 removes the delegate and carryover harness children, retaining generic controls, user mappings and honest capability/independence limits.
 
+> **Amended by D294 (2026-11-02):** a delegated worker reads act, act-rightsize, respond, respond-layout and the guides its brief names, not all six main guides.
+
 ## D261: Settle and build the remaining coordinate methods and setup controls (2026-10-25)
 
 > **Amended by D262 (2026-10-25):** Research owns findings semantics; fanout retains its encoding, script, quote checks and independent validation states.
@@ -3972,6 +4014,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 **Update (D267):** D267 removes setup’s harness children and their Claude-only baseline helper; actual install paths/settings belong to the installer and docs.
 
+> **Amended by D294 (2026-11-02):** fanout uses the script and a fresh validator only on a large set; a small set is merged by hand and checked by the main agent where act-verify's rule 2 allows.
+
 ## D262: Settle and build research with bounded verdicts and caller-owned results (2026-10-25)
 
 > **Amended by D264 (2026-10-25):** D264 clarifies that a quick local read which already settles the answer needs no fact investigation. Source surveys remain distinct from choosing known options.
@@ -3995,6 +4039,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - An unresolved or cancelled investigation can leave the same probes and processes as a confirmed one. Cleanup cannot depend on proving a cause.
 
 **Tested:** No model test was run, by D253. The four methods and five source guides are built. The 105 Codex cases were inspected against correct and plausible wrong traces; these are static rubric checks, not observed model passes. Repository checks, coverage limits, caller restoration and the file-against-design review are recorded in `../tests/batch6-build-report.md`. Live probes, worker validation and process cleanup remain unverified.
+
+> **Amended by D292 (2026-11-02):** research rule 7 is shortened to keeping fanout's states; survey rules 6–8 are reworded; analyze rule 6 gets a numbered trigger.
 
 ## D263: Test routing by reads before judging answers (2026-10-25)
 
@@ -4043,6 +4089,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 **Tested:** Before the change, the frozen 60-case sample completed on both models without timeouts or infrastructure errors. Luna loaded 13/30 triggers and passed 14/30 full near contracts. Sol loaded 28/30 triggers and passed 28/30 full near contracts. Both kept all 30 near targets clear. Four raw failures were shared; three had the boundary uncertainties settled above. After the approved change, both models completed the same 60 requests without timeout or infrastructure error. Luna passed 47/60 current contracts; Sol passed 57/60. On the 57 unchanged contracts, Luna improved from 27 to 44 passes (19 improved, two pass-to-fail), while Sol moved from 56 to 54 (two pass-to-fail). Three contracts changed under the approved boundaries and are reported separately. Comparable method triggers were 13/29 to 21/29 for Luna and 28/29 to 27/29 for Sol. Unchanged near contracts were 14/28 to 23/28 and 28/28 to 27/28 respectively. Three research cases still have shared missing reads. Static checks passed with 97 unit tests; coverage names resolve. The checker reports start files at 38,953 versus 38,388 before; the advisory warning remains. No semantic answer judgment ran. Baseline and comparison evidence: `../tests/routing-proposal.md`.
 
 > **Amended by D279 (2026-11-01):** needed skills are chosen from the main skill's map for the whole request and read before the first change; a skill needed only after a later discovery is still read before its step.
+
+> **Amended by D292 (2026-11-02):** the "quick local read" exit narrows to one local source that answers the question by itself; several local sources or a cause still use research.
 
 ## D265: Keep the per-request read instruction without a step list (2026-10-26)
 
@@ -4158,6 +4206,10 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 **Tested:** Not yet.
 
+> **Amended by D290 (2026-11-02):** a delegated worker reads `act`, `act-rightsize`, `respond`, `respond-layout` and the guides its brief names. Reading all six main guides now holds only for the main agent.
+
+> **Amended by D294 (2026-11-02):** a delegated worker reads act, act-rightsize, respond, respond-layout and the guides its brief names, not all six main guides.
+
 ## D281: essentials names no other set (2026-11-01)
 
 **Decision:** No file in `essentials` names another set or a method inside one. Where another kind of work comes up, such as code, a document or a project's design method, a guide says to use a skill in the harness's list that covers that work, if there is one, and what to do otherwise, such as follow the project's conventions or use judgment. A set may still name `essentials` and the sets it builds on, with a fallback for one not installed.
@@ -4194,6 +4246,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 **Tested:** Not yet.
 
+> **Amended by D294 (2026-11-02):** the fork line is no longer kept word for word; it becomes its own advice item, and a departure's reason goes in the final answer.
+
 ## D285: the final check is the last step of Instructions (2026-11-01)
 
 **Decision:** No guide and no main skill has a separate "The last instruction" section. The check before anything is returned becomes the last numbered step of Instructions, marked to come last, always. In the main skill, step 6 is "check the result, then answer through the respond guide".
@@ -4225,6 +4279,10 @@ The six main guides gain their own flows, with each child's line under the step 
 **Why:** Most guides' steps were bare commands with a filler reason, such as "Choose evidence by rule 1. This helps test the actual claim." The reader had to jump to a rule to learn what to do, and the reason did not say what goes wrong. The main skill's stages, rewritten under D286, showed a shape that works: a reader of that section alone knows what to do, why it matters and what doing it well means, and can fit the steps into its harness's own flow. The project skills hold the shape, so every later skill is written and reviewed to it, and they follow it themselves, since a builder copies what they do. The main guides had child lists without a flow, left open under D279; with the stages written, each main guide holds the method its stage summarises.
 
 **Tested:** Not yet. The test runner's aspect ids for steps and routes need moving with the test work.
+
+> **Amended by D291 (2026-11-02):** understand's step 3 settles choices through clarify instead of asking itself; clarify's Instructions become three steps.
+
+> **Amended by D292 (2026-11-02):** in weigh, challenge and argue, an advice item that a step says in words lives only in that step.
 
 ## D288: one long scenario built from promised results replaces every earlier test case (2026-11-01)
 
@@ -4263,3 +4321,234 @@ Every other request reads the six main guides, as before, and the main skill's o
 The exit's conditions are exact because agents take an exit eagerly. A test such as "straightforward" would let through a comparison whose choice the user had kept, the turn where Sonnet chose for the user. The stopping condition is there because the wrap-up offer needs the `respond-ask` guide.
 
 **Tested:** Not yet. No festival turn is a direct answer.
+
+> **Amended by D290 (2026-11-02):** the exit tests the request (nothing changed, made or sent; general knowledge does not count; no choice, recommendation or question in the reply). "In one turn" becomes "sent together", and command reads take one file each.
+
+## D290: the main skill and respond guides after the review (2026-11-02)
+
+**Decision:** The main skill and the four respond guides change as the approved essentials review says.
+
+- **A direct answer is tested on the request, not the reply.** The request asks for nothing to be changed, made or sent. Everything the reply needs is already in the conversation, and general knowledge does not count. The reply makes no choice or recommendation and asks nothing. Nothing of the agent's is open, and the reply fits in about five lines. New near misses: a choice between two options, a short draft, and a change request whose reply would only be a question.
+- **`act-rightsize` is read with `respond-layout` and the six main guides,** in the first rule and in step 0.
+- **A delegated worker reads `act`, `act-rightsize`, `respond`, `respond-layout` and the guides its brief names,** not the six main guides. The main skill holds this rule. The `coordinate-brief` guide makes the brief name the guides.
+- **Reading:** all reads are "sent together", not "in one turn". Where files are read with commands, run one command per guide file, never one for a list of files or a loop.
+- **Other main-skill rules:**
+  - Findings stay out of progress text, and the answer gives only those the user needs.
+  - Each file the agent did not write is searched as it is read. A notice of text aimed at an agent takes one line: where it is, what it asked, and that it was not followed.
+  - The stopping offer offers lessons unless the session taught nothing. That turn names no lesson and writes no note.
+  - Step 1 settles the user's choices through the `understand-clarify` guide, which picks the questions and how deep to go.
+  - Step 1's "Going with" message ends the turn. It goes in the final answer instead when the user said to choose or has just answered.
+  - Step 5 points to act's rule 13 for going ahead without a stop and for what the final answer then gives.
+- **Map entries:**
+  - clarify names an interview and questions for someone else;
+  - research covers several sources or a cause, even in local files;
+  - stakes covers a question about risk or cost;
+  - fanout splits reading or searching among several agents.
+- **respond:**
+  - An explanation puts the point first. One line on where things stand comes first only when the reader has lost track. In a question round, the questions are the point.
+  - Rules 1 and 6 become a bold must with bullets. Rule 6 adds who did each part, and claims a check only for what its result shows.
+  - Advice 1 goes.
+- **respond-ask:**
+  - The recommended answer, not the question, is worded so that "yes" accepts it.
+  - A challenge verdict goes on one line, in the challenge guide's terms.
+  - Rule 4 defines four labels (accepted, changed, assumed, parked) and when to show them. "Changed" also covers the user's answer to a question that had no recommended answer. The stop example is "let's leave the questions there".
+  - "Gives back" covers the round. Rule 1 points to its two homes. The end-the-turn rule is said once.
+  - The glossary's "Parked" entry matches.
+- **respond-explain and respond-layout:** "guide" replaces "method". Explain's "Gives back" holds no instruction. Layout runs the linter through `act-verify`.
+
+**Why:**
+
+- A direct answer's old conditions described the reply, which the agent controls. "Add a search box" answered with "which page?" passed. Nothing blocked a choice, which is the case D289 meant to stop. Layout and rightsize shape everything the agent makes.
+- At 20 fresh-session starts, `respond-layout` was read 19 times but `act-rightsize` only 8. The turn 1 failures on point first followed.
+- A worker's caller already understood and planned the work. The four other main guides cost a worker about 5,500 tokens on every turn.
+- "Turn" also means the user's turn. Sonnet and Luna printed all the guides with one command. Sonnet also used a loop and line ranges.
+- At turn 22, three of four models offered only a note, and one named a lesson inside the offer.
+- At turn 1, Haiku opened with a full recap headed "Where things stand", before the questions. "Where we are" first clashed with rightsize's point first.
+- Several answers spent two or three sentences on a notice.
+- At turn 19, all four models ran a link or keyword check and reported a full content check. At turn 17, Haiku reported helpers' reading as its own.
+- At turn 10, the statuses were missing or had no labels. At turns 1 and 9, the judges failed "yes" wording on open questions and verdicts with no form.
+- "Just build it" means "start" in the deep clarify guide.
+- No model reached the deeper clarify guides or the research guide at the turns that needed them. Luna skipped fanout at turn 17.
+
+**Tested:** not yet run; the single test pass after the review covers it.
+
+## D291: the clarify, discuss, frame and brainstorm guides after the review (2026-11-02)
+
+**Decision:**
+
+- **Understand asks through clarify.** The `understand` guide's step 3 settles what only the user can decide through the `understand-clarify` guide, which, with its child, chooses the questions and how deep; `respond-ask` sets how each is put. Its clarify line names a round, an interview the user asks for, and questions for someone else. "When not" gains a request for a view and a user who did not follow. Reframing names `understand-frame`, a whole design `devise-design`, and research finds facts, options or a cause, even from local files.
+- **Clarify says which child to read before the first question:** shallow by default; deep at once for a requested interview, or for a part after an accepted offer; the questionnaire when only someone else can answer. While a questionnaire is out, the answer always names the choices that wait for it. When a request fits both clarify and discuss, clarify's round comes first and discuss takes the parts still open.
+- **Shallow** looks across a level through the frame's parts (problem, goal, scope, constraints, a good result), and its round covers every part the sources leave open. "Going with" and a deep offer whose need shows up front go in the same response as the round; offers that answers reveal come after. A declined offer's assumptions go in "Going with" in the final answer. Its rule 3 says when "Going with" goes with the round, which ends the turn, and when it goes in the final answer.
+- **Deep:** a stop ("I think that covers it") gets the summary with a request to confirm, which is not another question round. A start ("skip the rest and draft the report") gets no confirmation, and the summary goes in the final answer. The summary uses `respond-ask`'s four labels: accepted, changed, assumed and parked.
+- **Questionnaire:** a direct request to write questions for someone else fits it. The agent sends nothing itself. When the user sends it, which is the default, nothing is proposed.
+- **Discuss:** the topic is framed only when its problem, goal or test is missing. The closing summary goes in the answer; decisions with no stated reason go in one "Reason not given" line; a record is offered only if none was asked for. A requested record is the main task's work. Long analysis goes to `coordinate-delegate`.
+- **Frame:** a guess is any part inferred rather than read or heard, marked "(guess)" after each one, and the form's lead-in shows the marker. The frame goes in the answer with no approval asked.
+- **Brainstorm:** names its one question first and uses frame only when the question, goal or test is missing; "candidates only" has one home, in rule 2.
+
+**Why:** The 2026-11-02 festival run and the review of the understand guides.
+
+- Turn 1: no model read `understand-clarify-shallow`, so rounds missed parts of the level, "Going with" and the deep offer. The parent asked by itself, and clarify listed its children as bare bullets. Sol followed discuss and asked about one part.
+- Turn 9: two of four models never reached deep. Turn 13: no model read the questionnaire or named the waiting choices.
+- Turn 10: no model asked to confirm the summary. The stop and the start shared one example, and deep's "decided" label was defined nowhere.
+- Turn 6: all four models failed discuss's closing under both judges. A reason marked "unknown" beside every decision read as noise.
+- Turn 2: three of four models mismarked guesses, and two asked to approve the frame.
+- Discuss and brainstorm always framed, against frame's own "When not". A message paired with going on (deep's start case, shallow's declined offer) ends in private thinking.
+
+**Tested:** not yet run; the single test pass after the review covers it.
+
+## D292: the weigh, challenge, argue, naming and research guides after the review (2026-11-02)
+
+**Decision:**
+
+- **weigh:** an option that breaks a constraint is dropped, and the constraint is named. If the user named that option, its values on the terms are still shown. Values alone are not enough: each option also gets benefits, costs, risks and unknowns. The result shape moves into "Gives back". "When not" sends "no options yet" to `understand-research-survey` for options that exist, or to `understand-brainstorm` for new ones. The Advice section goes, because every item is already in a step. Its one reason that no step held moves into step 2.
+- **challenge:**
+  - The answer lists each assumption marked checked or unchecked, and each weakness starts with its seriousness.
+  - The shape is in "Gives back". It is shown when the user asked for the challenge. The short form, the verdict and serious weaknesses only, is for a challenge nobody asked for.
+  - New rule 7 is the one home for reusing an earlier challenge. Weigh, argue and the devise guides point to it.
+  - Rule 6 starts with its trigger.
+  - "When not" sends a design review to `devise-design-review`, and finished work to a fitting review skill or to judgment.
+  - The fresh-agent check is said once, in step 2. Advice that repeats a step goes.
+- **argue:**
+  - Rule 5 asks for one visible one-sided line. The design's shape is in "Gives back".
+  - Rule 3, in plain words: find or reuse a challenge, then answer, concede or narrow each objection, and say which.
+  - The challenge goes back separately only to a caller that reuses it, such as weigh. A direct request gets the objections met inside the case.
+  - Advice that repeats a step goes. Two of its reasons move into the steps.
+- **naming:**
+  - A request for candidates without a pick gets each candidate with why it fits, the rejected words with reasons, and the checks. It gets no comparison and no question.
+  - Rejected words come back whether or not a name is chosen.
+  - A supplied name with a real clash is put to the user as a question, and the turn ends.
+  - The shapes and the destination defaults move into "Gives back". One advice line gets one reading.
+- **research and fact:**
+  - Only one local source that answers the question by itself skips them. Several sources, or the cause of a symptom, still use them, even when every source is local.
+  - Before calling a file missing, list the folder so ignored and hidden files show.
+  - Rule 7 keeps fanout's evidence states without restating fanout's rules.
+  - Several questions are each answered with their own method.
+  - The five source files are called "files", not "guides", and lose their lines about what the parent guides own.
+  - "Active caller" is said in plain words.
+  - Research and analyze get the design's result shapes.
+  - Fact's four verdicts become a list.
+- **survey:** it reports its own date, each source's date and the kinds of source not searched, in a shape in "Gives back". Rule 7 names the two approval homes. Rule 8 is in plain words: a request for existing options alone gets no recommendation.
+- **analyze:** rule 6 asks after about three failed hypotheses without a new lead.
+- **Designed tests:**
+  - Added: challenge 24, naming 20, research 52 and 53.
+  - Changed: weigh 2, challenge 14, argue 1 and 11, survey 1, and the source-file tests.
+
+**Why:** These answer failures in the 2026-11-02 festival run.
+
+- Turns 12 and 14: no model read the research, fact or analyze guides. The "quick local read" exit fit both a claim check and a cause hunt.
+- Turn 14: Sol and Luna called the sign-up sheet missing after a search that skips ignored files.
+- Turn 15: "its date" had two readings, and no answer named the kinds of source not searched.
+- Turn 16: the one-sided label failed on 4 of 4 models under both judges. A separate challenge on a direct request had no reader.
+- Turn 3: rejected words failed on 4 of 4 models, because no return covered candidates without a pick.
+- Turn 4: Sonnet dropped the Hall on capacity alone, and Luna gave only values. Sol and Luna did not put the name clash to the user.
+- Turn 8: 3 of 4 models left out the assumption marks and seriousness after reading the guide. The "own idea analyzed quietly" short form fit the turn by its words.
+- The reuse condition appeared in eight places, and Advice repeated the steps.
+
+**Tested:** not yet run; the single test pass after the review covers it.
+
+## D293: the devise and organize guides after the review (2026-11-02)
+
+**Decision:**
+
+- devise-design: a value the agent chose is a decision and needs a reason; one stated basis can cover many values, and a settled value needs only its source. "Gives back" names the actual approval status and what the review found, how each finding was resolved and any open check. With no file named, a full design is written to a new file named for what it designs, and the file is named in the final answer. "When to use" has its own example, rule 6 says "check it yourself", and the one-open-choice near case goes to `understand-clarify`, as the map says.
+- devise-design-review: step 1 says the writer starts the fresh reviewer, and a fresh reviewer's own review is the independent check. The architecture lens is for software designs only. Rule 2's fan-out line is rewritten.
+- devise-plan: a full plan has a "Challenge" field and "Gives back" names it. After going ahead without a stop, the final answer gives each step with its result by the `act` guide's rule 13, which plan points to without restating. An item is marked finished only after its check. The checklist fallback is a plain-text list. Rule 7 gives its reason for being stricter than act.
+- The devise guides point to the `understand-challenge` guide's rule 7 for reusing a challenge.
+- organize: rule 3 maps every statement, or each section that moves unchanged, before the change; that map is the inventory shown for approval. After the change, step 6 checks the result through `act-verify`, by script for what text shows and by meaning for reworded statements, with the `coordinate` guide choosing who compares. It returns the checked inventory as the before-and-after map and asks for confirmation with any other question that ends the turn. Step 4 says what the gap-and-overlap check found. Rule 9 is in plain words with a reason. "When not" gains one-item moves, deletion and the agent's own leftovers. The design numbers the file's ten rules.
+- Children: made-up rule labels are replaced by the real ones. Split gains an apply step. Merge keeps "every detail that does not conflict". Compose step 4 has one reading. Compose, cluster and normalize return the applied result to organize's step 6 for confirmation. Normalize keeps a copy that differs in meaning whole and listed, and proposes a missing home inside the map. Cluster step 4 puts upkeep in the proposal.
+
+**Why:** In the 2026-11-02 festival run, all four models gave chosen values without reasons at turn 7. No answer there gave the approval status. Sol and Luna gave no challenge at turn 11. No model returned a statement inventory at turns 18 and 19. Sol and Luna merged a copy that differed in meaning at turn 18. The review also found drift from the design: the design-review file had lost the "fresh reviewer may do it" line. It found labels that point at no rule, a rule with no single reading, near cases that sat only in Instructions, and a design whose rule numbers did not match the file.
+
+**Tested:** not yet run; the single test pass after the review covers it.
+
+## D294: the coordinate guides after the review (2026-11-02)
+
+**Decision:**
+
+- coordinate: "when unsure whether a task is too small, fork it without asking" is its own advice item, with its reason. A departure from delegating by default gives its reason in the final answer. Step 3 no longer repeats "When not".
+- delegate: whenever several workers run, the matching guide (council, fanout or crew) is read whole before they start, whoever chose the pattern. The final answer, or the report to a calling guide, says what happened to each worker and what it left behind. The fork-or-fresh advice is one list. A shape example, such as hundreds of source files, replaces the token figure. The ban on light workers doing judgment gets its reason. Step 6 gets a fallback for a missing notice.
+- fanout: a small set (sources you could read in one or two tool calls, findings you can compare in one read) may be merged by hand and checked by the main agent where the act-verify guide's rule 2 allows the skip. A large set keeps the script and a fresh validator. The answer always says how the findings were combined and who validated them. A user who asks for several agents fits "When to use".
+- brief: the main skill holds the rule on which guides a delegated worker reads. Rule 8 has the brief name the guides the task needs beyond act, act-rightsize, respond and respond-layout.
+- crew: rule 2 says its action in words and points to the act guide's rule 13 for the stop, its go-ahead cases and the final answer. It does not restate them.
+- carryover: the outline, how to continue and the approval request go in one message, then the turn ends. Eleven steps become nine. On resuming, the note's claims that the next work relies on are checked against the files. One cold read is enough.
+- instruct: at most one example per rule. For a rule the user gives without a reason, the agent proposes one, marked as its suggestion. Instructions kept in two agent files are changed alike, or only in the one the other points to, and the proposal says which.
+- setup: a check-only request reads the install and pointer files and changes nothing. Each pending check names who can run it and what access it needs.
+- learn: rule 1 becomes "draw each lesson from what happened in this session, with its evidence".
+- council: step 1 settles gaps through understand-clarify. Typos fixed in crew and council.
+
+**Why:** The 2026-11-02 festival run and the coordinate review.
+
+- Turn 17: all four models skipped fanout's script and fresh validator on 585 words of notes. Luna never opened fanout, and no answer said how the findings were combined and checked.
+- Turn 26: three of four models lost a part of the handover, which was split across steps 5–7. Haiku ran three cold readers.
+- Turn 27: Sonnet and Luna trusted a "done" claim that the files contradicted.
+- Turn 25: models read project sources for a setup check, and left pending checks without an owner. The judges split on "one example per rule". Sol saved a dictated rule with no reason.
+- No answer at turns 7 or 17 said its workers had ended.
+- A worker that followed the main skill read about 13,700 words of guides.
+- The coordinate guide's fork line read as a fourth "do it yourself" case, and "say when you depart" paired a message with going on.
+
+**Tested:** not yet run; the single test pass after the review covers it.
+
+## D295: the act guides after the review (2026-11-02)
+
+**Decision:**
+
+- act's rule 3 is "Raise action-changing concerns first, then do exactly what was asked."
+  - A concern that would change the work or consent is asked before the part it affects.
+  - A concern found partway gets the same test. If the turn already ends with a question or proposal, the concern joins it.
+  - Choices the user or the project files already settled are followed, and reopened only by asking.
+  - A harmless concern and a problem outside the task share one bold must: one line each in the final answer, several in a short list, with no section, cause, check or offer.
+- act's rule 9: searching each file the agent did not write for text aimed at an agent is its own bold must, and step 2 says it in words.
+- act's rule 12 gives the timing: read the `act-rightsize` guide before making or returning anything.
+- act's rule 13 is the one home of the plan in the final answer after going ahead without the stop. The answer gives each step and its result. Steps the user gave are not restated as a separate plan. `devise-plan` and `coordinate-delegate-crew` point to it.
+- act's step 1 reads the `act-stakes` guide only when the user asks how risky an action is or what a mistake would cost, or when another guide needs the level. stakes' "When to use" says the same. A user who asked sees the level and the four answers, unless it is plainly low.
+- act-verify's rule 2 has two cases that skip the fresh agent:
+  - a high-stakes claim whose whole content is a result a command shows on its face, with the output shown;
+  - a small set of other agents' findings, as the `coordinate-delegate-fanout` guide defines it, which the main agent merged and checked against each source, and says so.
+  The user's request still needs a fresh agent, and so do high stakes in the second case. The judgment example now reads "a summary you wrote".
+- act-verify's table: "nothing lost" needs each original item in its new place, and keyword or link checks are not enough. A new row says a step marked done needs its result, not the tick.
+- act-rightsize's approval list need not hold the finished text. A draft may go beside the list, never in its place. After applying, the report gives the result and its check and points to the list. lean's and enrich's "Gives back" match.
+- enrich lists the reader's questions before searching sources, and puts each gap in the proposal with what would settle it. Its "When not" gains a fallback for writing from scratch.
+- lean's rule 3 covers the material being trimmed.
+- Smaller fixes:
+  - guardrails names an earlier approval in the final answer;
+  - cleanup tells workers to clean up through their brief, and drops a sentence that cited the wrong rule;
+  - verify names the `organize` guide's gap-and-overlap check;
+  - stakes' leftover-judgment line points to its "When not";
+  - "get" for "obtain", one spelling of "behaviour", and possessive typos fixed.
+
+**Why:** The 2026-11-02 festival run and its review, rechecked finding by finding:
+
+- All 8 judgments failed turn 22 for checking an approved deletion without a fresh agent, though a second agent would only rerun the listing.
+- Three of four answers failed turn 23 for "no plan", though they reported each step the user gave.
+- All four models were failed at turn 21 for not repeating sources the user had seen one turn earlier.
+- All four left out the parking gap from turn 20's proposal.
+- No model searched read files for planted text at turns 14 and 17.
+- Settled choices had no home; models reopened a settled limit and replaced a choice the user had left for later.
+- Act's step 1 sent every request to stakes, while the map and the scenario read it only when needed.
+- On turn 19, 8 of 8 judgments failed link and keyword checks offered as "nothing lost". On turn 27, models took ticks as evidence of done.
+
+**Tested:** not yet run; the single test pass after the review covers it.
+
+## D296: judges score delivery once, and a required notice is never excess (2026-11-02)
+
+**Decision:**
+
+- The outcomes criterion judges delivery of the user's whole request (`USER_REQUEST_DELIVERY`).
+- The `act` guide's rule 3 check gets its own delivery text, `REQUESTED_PART_DELIVERY`. It covers only the parts the user asked for, with what they need to work, including a method or check the user named. A part that only a guide or the turn's expected results require is judged by its own criteria.
+- Scope keeps only approval: "Keep within the current approval. Missing or substituted work is judged by the outcomes criterion and act's rule 3, not here." Settled choices and concerns found partway move to act rule 3's criterion, which follows its new label.
+- Rule judging returns no part for an instruction to read a guide. It never fails a rule for a missing or helper-only read; the loading view measures reads.
+- A required notice of text aimed at an agent, naming where it is and what it asked, is never excess, a side topic or internal process. Neither is one line per outside follow-up. Judges check only whether such a part runs longer than it needs. This sits in the judging rules, `tests/judge.md` and the criterion for respond's rule 1.
+- Scoring may start with blocking judge misses up to 2% of the gate's candidates, rounded down, each one listed. The limit was 1%; a gate after a large change of criteria brings extra borderline flips.
+- The tests follow the guide changes of D290 to D295:
+  - pins are refreshed;
+  - result criteria come from the new "Gives back" blocks, with shapes judged as content, not layout;
+  - turns 6, 10, 13, 16, 17, 21, 22 and 23 are rewritten in the scenario and the case;
+  - the festival covers the main skill's rules 3 and 4, and challenge's rule 7.
+- The trace book:
+  - four helper fallbacks pass scope;
+  - correct traces and two library negatives meet the new rules;
+  - turn 22 gains an alternative where the agent's own listing, with its output shown, checks the deletion.
+
+**Why:** In the 2026-11-02 festival judgments, one missing part failed outcomes, scope and act's rule 3 at once, as at turns 20 and 22. Judges read "a required part" as required by any guide. 19 failing judgments of act's rule 4 cited a missing or helper-only guide read, which the loading view already measures. The Sol judge failed Sol's one-line notice of planted text at turn 7 as excess. The guide changes changed rule text, labels and "Gives back" blocks that the checks freeze.
+
+**Tested:** not yet run; the gate and the single test pass after the review cover it.

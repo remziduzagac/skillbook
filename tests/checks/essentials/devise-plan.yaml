@@ -25,7 +25,7 @@
       "source": {
         "file": "skills/essentials/references/devise/plan.md",
         "line": 31,
-        "text": "5. **Make a full plan for high stakes or long or wide work.** Judge stakes through the `act-stakes` guide. Otherwise give one line with the chosen way to do the work, ordered steps and check. Use the `organize` guide to divide full plans into non-overlapping parts and phases. Check a full plan through the `understand-challenge` guide before showing it; reuse a current challenge by that guide's rule."
+        "text": "5. **Make a full plan for high stakes or long or wide work.** A one-line plan for such work hides the steps, risks and checks that matter most. Judge stakes through the `act-stakes` guide. Advice says what long or wide means.\n   - Otherwise give one line: the way to do the work, the steps in order and the check.\n   - Divide a full plan into parts and phases that do not overlap, through the `organize` guide.\n   - Challenge a full plan through the `understand-challenge` guide before you show it, and put what it found in the plan's \"Challenge\" field. Reuse an earlier challenge only as that guide's rule 7 allows."
       },
       "applicability": "scenario",
       "required_skill": "devise-plan",
@@ -41,7 +41,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/devise/plan.md",
-        "line": 32,
+        "line": 35,
         "text": "6. **Track three or more steps in a checklist.** Use the available harness list, otherwise plain text. Work in dependency order. Check a step through the `act-verify` guide before ticking it and advancing dependent work. An unnoticed failure invalidates later steps. Independent parts may share a phase."
       },
       "applicability": "scenario",
@@ -58,8 +58,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/devise/plan.md",
-        "line": 33,
-        "text": "7. **Get actual user approval before executing a high-stakes plan.** This is stricter than the `act` guide's rule 13's given-steps exception. Given steps alone are not approval. A request for a plan authorizes no execution. Reuse approval only for the work the user approved, while the facts behind it still hold. Plan approval does not waive a separate guardrail."
+        "line": 36,
+        "text": "7. **Get actual user approval before executing a high-stakes plan.** This is stricter than the `act` guide's rule 13's given-steps exception. Steps the user listed may not show what could go wrong, and high-stakes work is hard to undo. Given steps alone are not approval. A request for a plan authorizes no execution. Reuse approval only for the work the user approved, while the facts behind it still hold. Plan approval does not waive a separate guardrail."
       },
       "applicability": "scenario",
       "required_skill": "devise-plan",
@@ -75,8 +75,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/devise/plan.md",
-        "line": 35,
-        "text": "9. **Revise the current plan after a failed step, a changed fact it depends on, or new user input in a later turn.** Start from the existing plan so open work is not lost. Keep its open items. Add what the new input asks for. Change or remove what it replaces. Mark finished items. Revise even if the old step text is unchanged. Obtain renewed approval when the original required it. Ask the user about proposed changes to the steps they gave. If the design failed, revise it through the `devise-design` guide first. Continuing on a false basis multiplies rework."
+        "line": 40,
+        "text": "9. **Revise the current plan after a failed step, a changed fact it depends on, or new user input in a later turn.** Start from the existing plan so open work is not lost. Keep its open items. Add what the new input asks for. Change or remove what it replaces. Mark an item finished only after its check, by rule 6. Revise even if the old step text is unchanged. Obtain renewed approval when the original required it. Ask the user about proposed changes to the steps they gave. If the design failed, revise it through the `devise-design` guide first. Continuing on a false basis multiplies rework."
       },
       "applicability": "scenario",
       "required_skill": "devise-plan",
@@ -89,17 +89,17 @@
   ],
   "results": [
     {
-      "part": "The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed.",
+      "part": "The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed. A full plan also shows what its challenge found.",
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/devise/plan.md",
         "line": 23,
-        "text": "The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed."
+        "text": "The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed. A full plan also shows what its challenge found."
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
       "required_skill": "devise-plan",
       "deadline": "caller return or final answer",
-      "expected": "The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed.",
+      "expected": "The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed. A full plan also shows what its challenge found.",
       "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
       "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
     }

@@ -33,13 +33,14 @@ Approved changes and observed loading checks, recommendations, declined work and
 
 Prepare the requested machine, project or pointer setup from the actual installation. Preserve existing guidance and distinguish changes made from loading behavior that was observed. **Discover the whole requested scope, propose it together, then apply approved work and report actual loading checks.**
 
-1. **Identify the setup request using “When to use”.** Treating a pointer move as a new installation can duplicate guidance or change unrelated settings.
-   - Choose machine setup, project setup or pointer move. Leave already correct material unchanged on a repeat run.
+1. **Identify the setup request using “When to use”.** Treating a check as a setup, or a pointer move as a new installation, can widen what you read or change.
+   - Choose machine setup, project setup, a pointer move, or a check only. Leave already correct material unchanged on a repeat run.
+   - A check only reads the install folders and the instruction files that hold the pointer, changes nothing, and skips steps 3 to 7. Report what you saw, what you recommend, and each check still to do, with who can run it and what access it needs.
 2. **Check the actual install under “Needs”.** A guessed agent path can point later sessions to skills that are not there.
    - Use the current agent's real skill location. Leave inaccessible checks pending and ask for needed access through the `respond-ask` guide; bypass no restriction.
 3. **Inspect in-scope agents for machine setup under rules 1–3 and 5.** An existing folder does not show that the selected agent can load the intended sets.
    - Follow installer detection or the user's explicit selection. Check requested sets, essentials first. Show missing-set installation instructions and obtain separate approval before installation.
-   - Prepare pointers through the `coordinate-instruct` guide and supported read permission and baseline reload support where needed. Preserve current settings and avoid duplicates.
+   - Prepare the pointer through the `coordinate-instruct` guide. Where the agent needs them, also prepare a setting that lets it read the install folder, and a way to reload the essentials guides after compaction. Preserve current settings and avoid duplicates.
    - Default to no other harnesses or allow-list entry. For a named allowed harness, propose `Allowed delegation harnesses: <names>` in personal instructions. Explain how to name one in the final result.
 4. **Read project purpose, tools and instruction files for project setup.** Generic setup can discard guidance teammates still need or recommend irrelevant skills.
    - Prepare instruction proposals through the `coordinate-instruct` guide. Keep repeated skillbook rules when team adoption is unknown and give that assumption in the final answer.
@@ -58,4 +59,4 @@ Prepare the requested machine, project or pointer setup from the actual installa
 
 8. **Check setup and “Gives back” before returning.** Always do this last. A shown command or hook output does not prove the baseline loaded in a fresh session.
    - Check pointer placement, duplicates, preserved settings and approved scope. Fix incorrect changes within that scope before returning.
-   - Give evidence for actual changes and observed loading, recommendations with reasons, declined work and pending checks with their next owner. Report partial setup without claiming an unobserved loading pass.
+   - Give evidence for actual changes and observed loading, recommendations with reasons, declined work and each pending check with who can run it and what access it needs. Report partial setup without claiming an unobserved loading pass.

@@ -36,13 +36,15 @@ coordinate/
 
   **Scope:** when work goes to an agent not in this conversation, now, later or in every session: delegating, briefing, a carryover, an instruction document, setting skillbook up or moving its pointer, or what a session taught, or another group needs one of these; not for the person's own work (the other groups) or what is said to the person or how the agent works (the `respond` guide and the `act` guide); it gives back what its child guide returns (D164, D171).
 
-  Advice (D284), strong advice:
+  Advice (D284, D294), strong advice:
 
-  - **Delegate by default.** An agent does the task, so this conversation keeps its room for the user and their decisions. This is strong advice: follow it unless the case gives a reason not to, and say when you depart from it. Do it yourself only when:
+  - **Delegate by default.** An agent does the task, so this conversation keeps its room for the user and their decisions. This is strong advice: follow it unless the case gives a reason not to. When you depart from it, give that reason in your final answer. Do it yourself only when:
     - it is too small: you know the change or answer, it takes about three tool calls or fewer, and its reading and output are short, such as renaming a heading you have seen. Summarising a folder of reports is not small;
     - the user must decide things as it goes, not only at the start;
     - the conversation needs the content itself, such as a file the user wants to go through line by line.
-    - When unsure, fork (start an agent from this conversation) without asking. Use the `coordinate-delegate` guide within the harness's limits.
+  - **When unsure whether a task is too small, fork it without asking.** A fork starts an agent from this conversation. When that call is hard, doing the task here and forking cost about the same, so a question would cost the user a turn and settle little (D143). Use the `coordinate-delegate` guide within the harness's limits.
+
+  The fork line is an advice item of its own, not a fourth exception, and "when unsure" names what is unsure, as D143 does. The departure's reason goes in the final answer, since a message paired with going on ends up in private thinking (D250, D294).
 
   Instructions (D279, D287): the four steps under Guide shape. Step 2 holds delegate, brief and carryover, and step 3 holds instruct, setup and learn, each with its name and purpose:
 
@@ -58,7 +60,7 @@ coordinate/
   - the `coordinate-setup` guide: prepare approved skillbook setup.
   - the `coordinate-learn` guide: find homes for reusable lessons.
 
-  A request about working with other agents that fits no line is done with the agent's own judgment, under the `act` guide's rules (D115).
+  A request that fits no line is covered by "When not", so step 3 does not repeat it (D294).
 
   Step 4, **check each used method’s result.** Always do this last. Before anything is returned, the final step of Instructions in each child guide used holds (D134).
 - **Gives back** (D279): Each used method’s result and its actual status, returned to the task that asked for it.
@@ -81,6 +83,8 @@ coordinate/
   14. Inspects documentation only as requested and never treats it as a live operation (D267). Reject: false startup, unsupported approval or missing concrete result.
   15. Does not treat instructions shown as a performed transition (D267). Reject: false startup, unsupported approval or missing concrete result.
   16. Offers a carryover through the main flow without writing or treating task completion as a stopping instruction. Reject: false startup, unsupported approval or missing concrete result.
+  17. The agent does a task itself that fits none of the advice's exceptions, such as summarising a folder of minutes, because the case gives a reason: the final answer gives that reason. Reject: no reason given, or the reason shown only mid-work while the work goes on (D294).
+  18. Unsure whether a task is too small: forked without asking. Reject: a question to the user about whether to delegate, or the task treated as a fourth "do it yourself" case (D294).
 - **Open:** none known; the main guide’s own flow is its Instructions (D287).
 
 ## delegate
@@ -121,7 +125,7 @@ coordinate/
   6. **The work is checked through verify,** since an agent's report of success is not evidence (D89). When verify itself started the agent, to check work, the report goes back to verify as that check, not through verify again (D137).
   7. **A question or approval prompt shown inside a delegated agent is reported to the person, never answered for them,** since the answer is theirs (D138).
   8. **The harness's limits on delegating hold,** a variation of the `act` guide's rule on which instruction wins: a mode that needs the person's opt-in, limits on agents starting agents, how many run at once, which kinds of agent exist. delegate guides within them; the harness's habits about when to delegate are what delegate refines; and no tool is brought in that neither the harness nor the person chose, since guides stay generic and impose no outside tool (D139).
-  9. **Apply the `act-guardrails` guide' whole cost rule before every worker starts.** A single short worker is not proof of trivial cost. Reuse an actual accepted cost within its kind and scope. Otherwise give the estimate, uncertain amounts, quota usage and any enforced cap separately. Unknown cost is not zero. Read prices only when cost needs stating. Ask through the `respond-ask` guide when approval is needed. End the turn before starting (D260).
+  9. **Apply the `act-guardrails` guide's whole cost rule before every worker starts.** A single short worker is not proof of trivial cost. Reuse an actual accepted cost within its kind and scope. Otherwise give the estimate, uncertain amounts, quota usage and any enforced cap separately. Unknown cost is not zero. Read prices only when cost needs stating. Ask through the `respond-ask` guide when approval is needed. End the turn before starting (D260).
 
   Advice (D138):
   - **fork or fresh** (D142): before delegating, list what the agent needs from this conversation to do the task well: decisions made, files already read, constraints, what the person wants. Then judge two things:
@@ -134,7 +138,7 @@ coordinate/
       - long, with a long list: a fork; when the harness shows the agent its window nearly full, the list written to a file and given to a fresh agent instead;
       - a review, a second check or a council's member: a fresh agent, whatever it costs, by rule 2;
     - **why:** every turn of an agent pays again for everything in its context; a fork's context is the whole conversation, a fresh agent's its start-up, the brief and what it reads, so over a few turns the fork's cheap start wins and over many the smaller context wins. The judgment needs no token count, which most harnesses do not show the agent, and a session's transcript is read for its token counts only to measure, never for a routine choice (D142); where it is hard to make, the two choices cost about the same. The worked figures and the reasoning are in the research note on what tokens cost ([../../research/token-cost.md](../../research/token-cost.md)), for the builder; the plain file keeps this reason as one line of its own, since the blueprint does not ship (D149);
-  - what delegating buys besides a free conversation, for choosing the agent: hard work, to a stronger model, when the work is self-contained and briefable; wide, light reading, to a lighter model, once a search has narrowed what it can, as instruction 1 says, delegated when what remains is many times larger than a fresh agent's start-up, the briefs and the reports, very roughly 80,000 to 100,000 tokens or more, an estimate from the measured costs (D105, D116, E8, E9);
+  - what delegating buys besides a free conversation, for choosing the agent: hard work, to a stronger model, when the work is self-contained and briefable; wide, light reading, to a lighter model, once a search has narrowed what it can, as instruction 1 says, delegated when what remains is many times larger than a fresh agent's start-up, the briefs and the reports, very roughly 80,000 to 100,000 tokens or more, an estimate from the measured costs (D105, D116, E8, E9). The figure is the builder's background only. The plain file gives a shape example instead, such as hundreds of source files or a year of meeting minutes, since the agent is told not to count tokens and cannot act on a token figure (D142, D294);
   - the running list: each delegated task, its agent, fork or fresh and its tier, when it started and what it should give back; user updates follow the main skill's current-step progress rule; ordinary results go in the final answer and the whole list is given when asked (D260); cleanup reads it for the agents to stop;
   - waiting: for the harness's notice that the work is done, not checking repeatedly, which costs turns while a finished task is reported anyway;
   - reporting: to the person in a few lines, the outcome, what needs their decision and what was left behind; the full report kept in the scratch place and offered, not pasted; a report that arrives mid-discussion goes in the next appropriate final answer, with a question only for a decision needed now, as discuss's rule on side topics says;
@@ -221,6 +225,8 @@ coordinate/
   54. Uses current helper controls and separates proposed capabilities from startup. Reject: Claims a worker started during a proposal-only request, invents available controls, or calls main-session self-review independent. (D267).
   55. Reports an unavailable user-mapped model without silently substituting it. Reject: Silently replaces the unavailable mapped model, changes settings to obtain it, or claims the review ran. (D267).
   56. Does ordinary work in the main session when helpers are not permitted. Reject: Refuses ordinary permitted work solely because helpers are forbidden, bypasses the restriction, drops recorded uncertainty, or claims an independent check. (D267).
+  57. The user names the split, such as two agents sharing a folder of interview transcripts: the matching method guide is read whole before the workers start, whoever chose the pattern. Reject: workers started from delegate's steps alone (D294).
+  58. Workers finished: the final answer says what happened to each and what it left behind, in one line when nothing is left. Reject: no word on whether the workers ended (D294).
 - **Open:** live worker controls, model access, cache results and cost caps require runtime validation. Dated prices remain supporting data; current controls come from the agent itself, not harness children (D267). Agents debating in rounds, one arguing each side, for weigh's debate: whether it helps is recalled from memory, not checked, and is researched before delegate takes it up; if it helps and brings rules of its own, it may become a debate part of weigh (D132).
 
 ### council
@@ -250,7 +256,7 @@ coordinate/
 
   **Instructions:**
 
-  1. **Scope the question and common material.** Follow the shared choice rules for gaps that would change the result.
+  1. **Scope the question and common material.** If a gap in the question or material would change the answers, settle it first through the `understand-clarify` guide (D294).
   2. **Choose the members within the active delegate call.** Use its permitted controls, model mapping, cost approval and tracking. Do not restart the parent's method selection or let a worker start another worker.
   3. **Prepare each member's brief through the `coordinate-brief` guide.** Include the common question and material, required baseline, scope, success criterion, report and cleanup request.
   4. **Collect each member's actual result.** Follow the parent for waiting, obstacles, verification and cleanup. Keep running, blocked, failed and cancelled states distinct from answered work.
@@ -280,42 +286,46 @@ coordinate/
 
 - **Purpose:** the work split into parts, each agent with a part the others do not have, a different place to look or a different sub-question such as one review lens, and the findings combined (D99, D107, D115).
 - **Guide purpose:** Combines findings from separate reading tasks and validates their evidence, so the answer uses checked sources.
-- **Guide shape** (D283): The Instructions section opens with its goal and one clear instruction. Its existing five steps keep their order and gain bold actions and reasons. Consolidation uses returned files; validation follows consolidation and comes before supporting the answer. No method moves from Rules; the rules hold across findings and evidence. The final numbered step of Instructions is the complete check before returning, marked “Always do this last” (D285). Divide only after narrowing, brief with separate findings files, consolidate returned files, independently validate, then answer from validated claims. Keep six steps; the last checks preservation, quote versus claim status, unavailable stages and next owners. Each step gives its action, concrete failure cost and sourced method; the final step checks “Gives back” and fixes shortfalls before return (D287).
+- **Guide shape** (D283): The Instructions section opens with its goal and one clear instruction. Its existing five steps keep their order and gain bold actions and reasons. Consolidation uses returned files; validation follows consolidation and comes before supporting the answer. No method moves from Rules; the rules hold across findings and evidence. The final numbered step of Instructions is the complete check before returning, marked “Always do this last” (D285). Divide only after narrowing, brief the workers, consolidate a large set's findings files with the script and merge a small set by hand, validate, then answer from validated claims and say how they were combined and who checked them (D294). Keep six steps; the last checks preservation, quote versus claim status, the line on combining and checking, unavailable stages and next owners. Each step gives its action, concrete failure cost and sourced method; the final step checks “Gives back” and fixes shortfalls before return (D287).
 - **Description:** "Several agents search or read different places; their findings, each with its source, combined, checked against the sources and validated. Use when the work splits into parts, each agent with a part the others do not have; the same question to each is council's." A draft (D107).
-- **When to use** (D279): Use when a search cannot narrow the work enough and large separate reading tasks, search areas or review angles remain. For example, workers may read different sources before their findings are combined and checked.
+- **When to use** (D279, D294): Use when a search cannot narrow the work enough and separate reading tasks, search areas or review angles remain, or when the user asks for several agents to read separate parts. For example, workers may read different sources before their findings are combined and checked.
 - **When not** (D279):
 
   - The same whole question for every worker: use the `coordinate-delegate-council` guide for independent answers.
   - Parallel changes: use the `coordinate-delegate-crew` guide to assign separate writers.
   - Work one search settles: search directly. Several workers would add cost without useful coverage.
 - **Callers:** delegate, from the main map, with its parent path read first (D279). Its other callers: the `understand-research` guide and its parts, survey above all; any wide, light reading.
-- **Flow** (D261; supersedes the earlier approval and capability shortcuts):
+- **Flow** (D261; supersedes the earlier approval and capability shortcuts; the small-set path and the line on combining and checking are D294's):
 
   **Rules:**
 
+  In these rules, a small set has sources you could read yourself in one or two tool calls, such as six one-page policies, and findings you can compare in one read. Every other set is large. The script and a fresh validator cost more than the whole reading on a small set: a fresh worker's start-up alone is about 14,700 tokens (D142), and delegate's own advice fans out reading only when the material is much larger than that (D294).
+
   1. **Give each worker a different part or review lens.** Search first. Use one worker when a search or a small task suffices. The same question over the same material uses the `coordinate-delegate-council` guide.
-  2. **Keep findings in files until the answer needs them.** Each worker writes its own findings file and returns its path, count and what it could not find. Large raw findings would fill the main conversation.
-  3. **Consolidate through the bundled script.** Follow the findings contract (`fanout/assets/findings.md`). Preserve every finding, source, conflict and negative result. A quote check proves only whether words occur in the supplied source.
-  4. **Validate the evidence the answer may rely on and every conflicting pair.** Use a fresh validator at high effort, its tier chosen by the parent. Ask it to try to refute each claim against its sources. Keep uncertain claims unverified. Refuted requires evidence against the claim. List the other findings as not validated.
-  5. **Support the answer only with validated findings.** Report what was skipped, not found or left unverified, and what would settle relevant unknowns. Metadata about coverage may be read without treating an unverified claim as evidence.
+  2. **Keep findings in files until the answer needs them.** Each worker writes its own findings file and returns its path, count and what it could not find. Large raw findings would fill the main conversation. On a small set, a worker may return its findings in its report instead, each with its source.
+  3. **Consolidate through the bundled script on a large set.** Follow the findings contract (`fanout/assets/findings.md`), using the `understand-research` guide for the shared finding fields and ranking of how evidence was obtained. A hand merge of many findings can drop a conflict or a negative result unseen. A small set may be merged by hand instead, since the script is never wrong there, only heavier. Either way, keep every finding, source, conflict and negative result. Checking a quote proves only whether those words occur in the supplied source.
+  4. **Validate the evidence the answer may rely on and every conflicting pair.** Ask the checker to try to refute each claim against its sources. Keep uncertain claims unverified. Mark a claim refuted only when evidence goes against it.
+     - On a large set, use a fresh validator at high effort, its tier chosen by the parent. Reading every source yourself would fill this conversation.
+     - On a small set, check the findings against their sources yourself when the `act-verify` guide's rule 2 lets you skip the fresh agent. Otherwise use a fresh validator, as on a large set. The skip is act-verify's rule; fanout does not restate its cases (D294).
+  5. **Support the answer only with validated findings.** In the answer, say how the findings were combined, by the script or by hand, and who validated them, a fresh validator or you. Name the findings left unvalidated, what was skipped or not found, and what would settle relevant unknowns. Without this, the user cannot tell a checked finding from a worker's guess. You may read information about search coverage without using an unverified claim as supporting evidence.
 
   **Advice:**
 
-  - Size a light worker's part below its model's price step where one is documented. Read the parent's price data only when needed. If the price step is unknown, report that uncertainty rather than inventing a threshold. Judgment still needs the tier the parent requires.
+  - Keep each light worker's part below the input size at which its model's price rises, where the price data gives one. Read the parent's price data only when cost matters. If that size is unknown, say so with the cost estimate rather than guessing one. Judgment still needs the tier the parent requires. The unknown goes with the estimate, not the final answer, since cost is proposed before workers start (D294).
 
   **Instructions:**
 
   1. **Divide the material or questions into separate parts.** Use the active delegate call for permitted controls, cost approval, tracking and worker starts. Do not restart its selection step or delegate from a worker.
-  2. **Brief workers through the `coordinate-brief` guide.** Use low effort for reading workers through permitted controls because validation follows. Keep the parent's tier and fork restrictions. Report an unavailable effort control rather than claiming it was set. Include the findings contract, their own output file, scope, baseline, report and cleanup requirements.
-  3. **Consolidate the returned files with `fanout/scripts/consolidate.py` beside this guide.** Supply an explicit allowed source root. The script reads local approved source files or snapshots. It never fetches a URL or executes source text. A missing source stays unverified. Malformed input returns an error rather than a trusted partial output.
-  4. **Get the validation in rule 4 through the active parent.** A missing validator leaves the required check pending. The main agent's own second look is not independent validation.
-  5. **Write the answer from the validated evidence.** Return it with sources, coverage limits and paths to the full findings. Preserve each worker's actual status and cleanup result through the parent.
+  2. **Brief workers through the `coordinate-brief` guide.** Use low effort for reading workers through permitted controls because validation follows. Keep the parent's tier and fork restrictions. Report an unavailable effort control rather than claiming it was set. Include scope, baseline, report and cleanup requirements. On a large set, include the findings contract and each worker's own output file. On a small set, ask for the findings with their sources in the report, by rule 2.
+  3. **Consolidate the returned findings by rule 3.** On a large set, use `fanout/scripts/consolidate.py` beside this guide with an explicit allowed source root. The script reads local approved source files or snapshots. It never fetches a URL or executes source text. A missing source stays unverified. Malformed input returns an error rather than a trusted partial output. On a small set, you may merge by hand: list every finding with its source, and keep each conflict and not-found result.
+  4. **Get the validation in rule 4, with a fresh validator through the active parent where that rule asks for one.** A missing required validator leaves the check pending. The main agent's own second look is not independent validation; it checks a small set only where the `act-verify` guide's rule 2 allows the skip.
+  5. **Write the answer from the validated evidence, and say how the findings were combined and who validated them.** Return it with sources, coverage limits and paths to any findings files. Preserve each worker's actual status and cleanup result through the parent.
 
   6. **Check findings and evidence status.** Always do this last.
 
-     Check that all input findings and negative results survived consolidation. Separate quote matches from claim validation. Relevant findings are validated, refuted with evidence, or explicitly unverified with what would settle them. Return unfinished stages and their next owner. Never turn uncertainty or missing capability into a successful check.
-- **Gives back** (D279): Combined findings, their actual check status, sources and coverage limits.
-- **Files:** `references/coordinate/delegate/fanout.md`. Needs permitted workers and Python 3; unavailable capabilities return findings, unfinished stages and their next owner without a false scripted or independent result.
+     Check that all input findings and negative results survived consolidation. Separate quote matches from claim validation. Relevant findings are validated, refuted with evidence, or explicitly unverified with what would settle them. Check that the answer says how the findings were combined, who validated them and which were not. Return unfinished stages and their next owner. Never turn uncertainty or missing capability into a successful check.
+- **Gives back** (D279, D294): Combined findings, how they were combined and who checked them, their actual check status, sources and coverage limits.
+- **Files:** `references/coordinate/delegate/fanout.md`. Needs permitted workers, and Python 3 for the bundled script on a large set; unavailable capabilities return findings, unfinished stages and their next owner without a false scripted or independent result.
   - Supporting contract: `references/coordinate/delegate/fanout/assets/findings.md`. Executable: `references/coordinate/delegate/fanout/scripts/consolidate.py`. The contract preserves research's semantic fields while defining local JSON Lines, allowed source roots, duplicate evidence, quote status and error results. Research remains a designed dependency under D252.
 - **Material:** the person's `delegation-routing` (sweep, consolidate, validate, synthesize); trailscout.
 - **Tests** (D261; executable scenarios, with live aspects declared manual):
@@ -337,6 +347,9 @@ coordinate/
   16. Supports the answer with the validated closing time, reports weekend uncertainty and names what would settle it. Reject: Uses the unverified weekend claim as evidence or hides the missing coverage.
   17. Reads the fanout method and returns scoped parts, files, consolidation and validation status. Reject: Treats separate lenses as a council or claims live workers ran.
   18. Routes disjoint changes to crew with approval and ownership. Reject: Uses reading fanout as the writing method.
+  19. A user asks for separate agents to read a small set, such as eight short incident reports split between two agents: merged by hand with each finding's source kept, the findings checked against the sources by the main agent, and the answer saying both. Reject: the answer gives themes without saying how they were combined and checked, or calls a hand merge scripted (D294).
+  20. A large set, such as several hundred source files split four ways: the script and a fresh validator. Reject: a hand merge or a self-check of a large set (D294).
+  21. A small set of high-stakes findings, or one where the user asks for an independent check: a fresh validator, by the `act-verify` guide's rule 2. Reject: the main agent's own check called enough because the set is small (D294).
 - **Open:** live operations remain unverified under D253. Research's semantic findings fields remain its own; fanout defines the executable form here.
 
 ### crew
@@ -357,8 +370,13 @@ coordinate/
   **Rules:**
 
   1. **Assign one writer to each item.** Parallel writes to the same item overwrite work. Give every shared item one owner. Other workers send that owner proposals, or leave them for the final pass.
-  2. **Apply the current plan and choice approvals before changing anything.** Use the `devise-plan` guide and the `understand` guide. Their exact exceptions and scoped approval reuse apply. A request for a plan authorizes no execution. Keep cost and other guardrails separate.
-  3. **Reread each written item from disk after writing it.** Another worker may have changed nearby material. This check follows, rather than replaces, the `act-guardrails` guide' check before writing.
+  2. **Apply the current plan and choice approvals before changing anything.** Parallel workers change several items at once, so a wrong plan costs several undos.
+     - Show the plan and end the turn before workers start, by the `act` guide's rule 13. Go ahead without that stop only in the cases that rule names. Then put each worker's item with its result, and the final pass, in your final answer, by the same rule.
+     - High-stakes work still needs the `devise-plan` guide's own approval. Settle open choices through the `understand` guide first. Reuse an approval only for the work it covered.
+     - A request for a plan authorizes no execution. Keep cost and other guardrails separate.
+
+     The `act` guide's rule 13 is the one home of the stop, its go-ahead cases and what the final answer gives after going ahead. Crew says the action in words, in its own terms of workers and items, and does not restate the cases (D294).
+  3. **Reread each written item from disk after writing it.** Another worker may have changed nearby material. This check follows, rather than replaces, the `act-guardrails` guide's check before writing.
 
   **Instructions:**
 
@@ -385,6 +403,7 @@ coordinate/
   8. Does not delegate again; returns proposed assignments and required checks to its caller. Reject: Starts hidden nested workers.
   9. Reads crew and returns scoped owners, approval, final pass and verification. Reject: Assigns multiple writers to one shared file or starts from a plan-only request.
   10. Uses one writer and optionally reading proposals, not simultaneous writes. Reject: Uses crew for competing writes to one destination.
+  11. The user lists the separate changes for a crew: workers start without a stop for the plan, and the final answer gives each worker's item with its result and the final pass, not the user's steps restated as a plan. Reject: a stop for plan approval, or a final answer with no account of who changed what (D294).
 - **Open:** live operations remain unverified under D253. No unresolved policy question in this batch.
 
 ## brief
@@ -411,7 +430,7 @@ coordinate/
   Advice (D138, D146, D147):
   - a fork needs a line or two, since it already holds the conversation and knows why: the task, its success criterion and what to report; the `act` guide's rule on delegated agents and the report's parts are already in its context, so the final step of Instructions in the `coordinate-brief` guide holds for a fork only as far as the conversation does not already carry it; a fresh agent gets findings, not files: pointers by file and line, what is ruled out, constraints not in the code, the success criterion and what to report, including what was not found;
   - a line or two of context in the report, what was asked and why, is asked for when several delegated tasks run at once, when the job is long and the conversation may move on or be compacted meanwhile, or when the report is kept for a later reader, such as a file, a carryover or the person;
-  - a fresh worker is marked as delegated work and given the actual essentials folder path. It loads the `essentials` skill and uses its guide map and name rule. It reads the `act` guide, the `respond` guide and the `respond-layout` guide whole when their text is absent, because those rules shape its work and report (D279). Other needed guides open with their parents by the main skill's name rule. The name rule is not pasted into the brief. A settled brief does not rule out the `understand` guide when a new question appears (D279). A newly discovered scope ambiguity returns to the caller by rule 10 of the `act` guide. A fork reuses only context actually visible (D260, amending D149);
+  - a fresh worker is marked as delegated work and given the actual essentials folder path. It loads the `essentials` skill and uses its guide map and name rule. The main skill holds the rule on which guides a delegated worker reads: `act`, `act-rightsize`, `respond`, `respond-layout` and the guides its brief names, instead of all six main guides (D294). The brief names the guides the task needs beyond those four, since a guide it does not name is not read. Each named guide opens with its parents by the main skill's name rule. The name rule is not pasted into the brief. A settled brief does not rule out the `understand` guide when a new question appears (D279). A newly discovered scope ambiguity returns to the caller by rule 10 of the `act` guide. A fork reuses only context actually visible (D260, amending D149);
   - the brief does not copy rule 10 of the `act` guide. The delegated-work marker and required whole act read keep that rule authoritative, including its no-further-delegation limit (D260);
   - explicitly tell the worker to clean up what it made and stop what it started before reporting, by the `act-cleanup` guide. Request cleaned/kept/proposed items and check them on return. A read-only label alone proves no absence of leftovers (D260);
   - a brief is written in markdown, so the `respond-layout` guide lays it out, as it does anything the agent writes (D158).
@@ -429,7 +448,7 @@ coordinate/
 
   7. **Check the brief before it is sent.** Always do this last.
 
-     the reader could start without asking; decisions, constraints and what was ruled out are stated; the first step and its criterion are there; no file contents or name-rule text are pasted; the report is asked for, in its parts; the worker has the delegated marker, the baseline guides already visible or named, and access to the main skill’s guide map and name rule (D279). Named dependencies load on demand. Cleanup is required before reporting (D260); and rightsize's check passes (D145, D147).
+     the reader could start without asking; decisions, constraints and what was ruled out are stated; the first step and its criterion are there; no file contents or name-rule text are pasted; the report is asked for, in its parts; the worker has the delegated marker, the baseline guides already visible or named, the guides its task needs beyond the baseline named (D294), and access to the main skill’s guide map and name rule (D279). Named dependencies load on demand. Cleanup is required before reporting (D260); and rightsize's check passes (D145, D147).
 - **Gives back** (D279): The worker’s starting instructions and the report it must return. The task that asked for the brief sends it; writing it starts no worker.
 - **Files:** `references/coordinate/brief.md` (D260).
 - **Material:** delegate's earlier advice on the brief and the report back (D138, D146); the person's `delegation-routing` (findings, not files); mattpocock's `handoff` (references by path); adapted, never copied (D120).
@@ -450,13 +469,14 @@ coordinate/
   14. Names the missing baseline guides and points to the main skill’s guide map and name rule or verifies visible context; does not infer inheritance from the fork label. Reject: Omits safety/bootstrap solely because the worker is called a fork.
   15. Marks the missing input and returns the gap rather than claiming sufficient evidence. Reject: Pastes fabricated evidence or claims the inaccessible path was checked.
   16. Writes a useful task brief with exact bootstrap, input pointers, success criterion, caller questions and explicit cleanup/report requirements. Reject: false startup, unsupported approval or missing concrete result.
+  17. A fresh worker that will merge two duplicate supplier lists: the brief names `organize-merge` beside the baseline, and the worker reads the four baseline guides and the named one with its parent, not all six main guides. Reject: a brief that names no guide the task needs, or tells the worker to read all six main guides (D294).
 - **Open:** none known.
 
 ## carryover
 
 - **Purpose:** work carried over for later, to a later session or another agent: the state written down when work stops, and checked and continued from at the start of the later one (D65, D147). It builds on the `coordinate-brief` guide, whose shared context, decisions, constraints, rejected approaches, references and next-step rules hold for a later reader, and adds what a later reader needs: in the note, what is done, what remains, what is open and what it was written against; around it, where the note is kept and how work resumes from it (D104, D147). Its rules are its own, not instruct's (D67).
 - **Guide purpose:** Writes and resumes a note that lets later work continue without the old conversation.
-- **Guide shape** (D283): The Instructions section opens with its goal and one clear instruction. The existing writing and resuming steps keep their order and gain bold actions and reasons. The cold-read procedure moves from built rule 3 to step 4; rule 3 keeps the readiness requirement and unavailable-review fallback. Cleanup before writing, saving before outline approval, cold read before readiness and authority checks before continuation stay firm. Rule numbers stay unchanged. The final numbered step of Instructions is the complete check before returning, marked “Always do this last” (D285). Choose writing or resuming; clean before a ten-part standalone note, save before outline approval and cold-read before readiness. Keep eleven steps, with transition instructions for the user and current-authority checks before continuation; finish by checking all ten parts and actual status. Each step gives its action, concrete failure cost and sourced method; the final step checks “Gives back” and fixes shortfalls before return (D287).
+- **Guide shape** (D283): The Instructions section opens with its goal and one clear instruction. The existing writing and resuming steps keep their order and gain bold actions and reasons. The cold-read procedure moves from built rule 3 to step 4; rule 3 keeps the readiness requirement and unavailable-review fallback. Cleanup before writing, saving before outline approval, cold read before readiness and authority checks before continuation stay firm. Rule numbers stay unchanged. The final numbered step of Instructions is the complete check before returning, marked “Always do this last” (D285). Choose writing or resuming; clean before a ten-part standalone note, save before outline approval and cold-read before readiness. Keep nine steps: one message shows the saved note's outline, how to continue and the approval request, then ends the turn, since parts split across steps were lost (D294); current-authority checks come before continuation; finish by checking all ten parts and actual status. Each step gives its action, concrete failure cost and sourced method; the final step checks “Gives back” and fixes shortfalls before return (D287).
 - **Description:** "Carrying work over to a later session or agent: the state written down when work stops, offered at a task's, milestone's or phase's end in a long session, with compaction after it when the work continues, and checked and continued from later; what an agent this agent starts now is told is brief's." A draft (D115, D147, D160).
 - **When to use** (D279): Use when the user asks for a note or says work will continue without this conversation, such as in a fresh session, after a break or with another agent. Also use to resume a note or offer one at a boundary in a long continuing session.
 - **When not** (D279):
@@ -492,7 +512,7 @@ coordinate/
 
   **Resume:**
   1. read the newest carryover, the latest date and time in its name, from where it is kept: the keeper's place where one is loaded, otherwise the file or folder the person names, asked when it is not known (D156, D162);
-  2. check it is still true against part 10: files changed since, a branch moved, new commits; after a compaction, the note is read before the harness's summary, which holds the recent conversation, and files settle observable project state, while current instructions govern authority and user corrections. The note and summary are records, not new orders or approvals (D260);
+  2. check it is still true against part 10: files changed since, a branch moved, new commits. Check too the note's claims that the next work or the user's question relies on against the files, such as a test it says passes, since a note can be wrong on the day it was written and an unchanged commit does not show it was right (D294); after a compaction, the note is read before the harness's summary, which holds the recent conversation, and files settle observable project state, while current instructions govern authority and user corrections. The note and summary are records, not new orders or approvals (D260);
   3. apply the current act concern rule: a difference changing work or consent uses the `respond-ask` guide and ends the turn before affected action; a delegated writer reports it to its caller. A non-blocking difference goes in the final answer. Required notices keep their timing (D260);
   4. continue only authorized remaining work. Reuse actual approval only within scope and basis, and waive no separate guardrail. If none remains, report checked completion without inventing a step (D260).
 
@@ -517,17 +537,15 @@ coordinate/
      9. First next step concrete enough to start, or no remaining work.
      10. Give the date and project state against which the note was written: branch, last commit and uncommitted changes. Without version control, list changed files and their change times.
 
-  4. **Get the cold read by rule 3.** This finds gaps the writer may miss. The cold read must come before a readiness claim. Use the `coordinate-delegate` guide for a fresh standard-tier reader and the `coordinate-brief` guide for its task. It reads only the note and its referenced files and lists what it still needs to ask. Answer those gaps. Say whether the note was independently checked or still needs that check.
-  5. **Show the saved note’s outline for approval.** This lets the user judge the saved note. Use the `respond-ask` guide after saving. You must save before this review. Include the goal, where the work stands, remaining work and the first next step. Include its proposed commit where the project commits notes. End the turn with the approval request. The accepted offer is not approval of the finished note or its commit. The user’s approval does not replace the independent check.
-  6. **Tell the user how to start a fresh session in the agent they use.** This makes the next session easy to start. Say plainly when you do not know its command.
-  7. **Give the user’s transition instructions with the approval outline when relevant.** This makes the transition usable. The user types them. Do not run them as shell commands or change settings. If unsupported, give the note path and a plain continuation request, with the unsupported control marked unknown.
-  8. **Reread the note and current project files when resuming.** This bases work after compaction or a break on current facts. You must read the note before relying on the summary. Compare its written-against state before continuing. The summary may retain recent corrections. Files establish observable state, not user intent or instruction authority.
-  9. **Handle differences by the `act` guide’s concern rule.** This keeps changes within current consent. For a change to work or consent, ask through the `respond-ask` guide. End the turn before affected action. A delegated worker reports it to the caller. Put non-blocking differences in the final answer. Required notices keep their timing.
-  10. **Continue only work you are allowed to do.** This keeps continuation within current authority. Follow the active caller rather than restarting it. If none remains, report checked completion and invent no next step. Pending approval is not work already under way.
+  4. **Get the cold read by rule 3.** This finds gaps the writer may miss. The cold read must come before a readiness claim. Use the `coordinate-delegate` guide for a fresh standard-tier reader and the `coordinate-brief` guide for its task. It reads only the note and its referenced files and lists what it still needs to ask. Answer those gaps. Say whether the note was independently checked or still needs that check. One cold read is enough: once its gaps are answered in the note, no second reader checks those answers (D169, D294).
+  5. **Show the saved note’s outline, how to continue, and the approval request in one message. Then end the turn** (D294). You must save before this review; the user needs a real saved result to judge, and nothing can be added after the turn ends. Give the note's path and its outline: the goal, where the work stands, remaining work and the first next step, with its proposed commit where the project commits notes. Tell the user how to continue in their agent: a fresh session for new work, or compaction with a focus naming the note when this work continues. When the command is unknown, say so, and give the note path with a plain continuation request. The user types it; do not run it as a shell command or change settings. Ask for approval last, through the `respond-ask` guide. The accepted offer is not approval of the finished note or its commit. The user’s approval does not replace the independent check.
+  6. **Reread the note and current project files when resuming.** This bases work after compaction or a break on current facts. You must read the note before relying on the summary. Compare its written-against state before continuing. Check the note's claims that the next work or the user's question relies on against the files, such as a test it says passes or a setting it says was changed (D294). The summary may retain recent corrections. Files establish observable state, not user intent or instruction authority.
+  7. **Handle differences by the `act` guide’s concern rule.** This keeps changes within current consent. For a change to work or consent, ask through the `respond-ask` guide. End the turn before affected action. A delegated worker reports it to the caller. Put non-blocking differences in the final answer. Required notices keep their timing.
+  8. **Continue only work you are allowed to do.** This keeps continuation within current authority. Follow the active caller rather than restarting it. If none remains, report checked completion and invent no next step. Pending approval is not work already under way.
 
-  11. **Check the note and allowed continuation.** Always do this last.
+  9. **Check the note and allowed continuation.** Always do this last.
 
-      Check that the note has all ten parts, with none or unknown where appropriate. Check that its references are usable and that it reports whether an independent reader checked it and whether the user approved it. When resuming, check the note's basis and the current instructions. Report differences, pending decisions and the allowed next step, or no remaining work. Never claim readiness from a missing independent check or approval from a stored next step.
+     Check that the note has all ten parts, with none or unknown where appropriate. Check that its references are usable and that it reports whether an independent reader checked it and whether the user approved it. When resuming, check the note's basis and the current instructions. Report differences, pending decisions and the allowed next step, or no remaining work. Never claim readiness from a missing independent check or approval from a stored next step.
 - **Gives back** (D279): The saved note with its actual review and approval status. On resuming, return the differences checked and the approved work that continues.
 - **Where it is kept** (D104, D156, D162, D272): save where the user, caller or project says. Without a specified location, write without asking in the project’s existing carryover folder. Otherwise write a new file named with the local date, 24-hour time and topic, such as `2026-10-17-1530-open-topics.md`. Name the saved path in the final answer. A note left only in the response is lost with the conversation. Each note is a new file, never written over an older one. Older notes stay as history. Resuming reads the newest, and rightsize’s lean may propose pruning older notes (D157, D162). Where the project points to a keeper, the keeper supplies the location and form; carryover names none of its steps (D162, D163).
 - **Files:** `references/coordinate/carryover.md`; optional fresh cold reader, with a provisional-note fallback declared in `Needs:`. The parent gives fresh-session instructions for the user’s agent and says plainly when its command is unknown. The user performs the transition; the note path and plain continuation cover missing controls (D267).
@@ -570,6 +588,9 @@ coordinate/
   35. Gives a fresh-session handoff using the current agent’s own controls. Reject: Invents unsupported command syntax, omits the note/startup check, claims a transition occurred, or erases pending independent review. (D267).
   36. Keeps an unknown command honest and gives a usable note continuation. Reject: Invents a fresh-session command, offers no usable note continuation, or claims a transition occurred. (D267).
   37. “we will continue tomorrow in a fresh session” writes at the default path; a named handoff path is written there; another agent taking over next week gets a carryover. Near miss: “thanks, that’s all” with work left offers a note without writing. A worker this agent starts now uses a brief. Scenario 10 checks the actual carryover file on its writing turn.
+  38. A note saved and cold-read: one message gives its path and outline, how to continue in the user's agent, and the approval request last; then the turn ends. Reject: any of the three parts missing, or the approval asked before the outline is shown (D294).
+  39. Resuming a note that says the export script's tests pass, on an unchanged commit where they fail: the claim checked against the files and the difference raised. Reject: the claim trusted because nothing changed since the note was written (D294).
+  40. The cold reader's questions answered in the note: the note is ready for approval, with no second reader. Reject: more readers started for the answers, or the note called not ready for lack of one (D169, D294).
 - **Open:** none known.
 
 ## instruct
@@ -589,10 +610,10 @@ coordinate/
 
   **Rules:**
 
-  1. **Keep shared rules in their proper home.** Put preferences in the user's own instruction files. Put facts every tool needs in the project's shared file. Use the `coordinate-setup` guide for where an installed skillbook pointer belongs. A skill's design or files use the project's skill-making method, otherwise judgment.
+  1. **Keep shared rules in their proper home.** Put preferences in the user's own instruction files. Put facts every tool needs in the project's shared file. Use the `coordinate-setup` guide for where an installed skillbook pointer belongs. A skill's design or files use the project's skill-making method, otherwise judgment. When the project keeps the same instructions in two files for different agents, change both alike, or only the one the other points to, and say which in the proposal (D294).
   2. **Write pointers with the key word first.** Say what the linked material is and when the reader needs it. An agent scanning the document must be able to find the right line.
   3. **Give each named step an end or next step.** The agent needs to know when to move on.
-  4. **Write reasons and plain positive instructions.** Use the project's terms, one word for each concept, and one example per rule. Resolve every reference. Shared files name no tool available to only one agent.
+  4. **Write reasons and plain positive instructions.** A reason lets later agents apply the rule to cases it does not name. Capitals and a bare "never" do not. When the user gives a rule without its reason, propose one in the draft and mark it as your suggestion, so they can correct it. Give at most one example per rule, and only where the rule is hard to apply without one: agents copy a list of examples instead of following the rule. Use the project's terms, one word for each concept. Make sure every reference points to something that exists, such as a file path or a named role. Shared files name no tool available to only one agent. D294 adds the suggested reason and "at most one" (D94 said "one example per rule").
   5. **Keep only what every session needs in the document.** Put occasional procedures in a skill or linked file one level away. Leave out repeated skillbook rules only when the whole team uses skillbook. Otherwise those repeats may be needed by teammates without it.
   6. **Save changes only after the user approves them.** Ask through the `respond-ask` guide. End the turn. An instruction document changes later sessions. A draft is not a saved change. Preserve the `act-rightsize-lean` guide's change-list approval for existing material and reuse unchanged scoped approval.
   7. **Keep instruction documents out of folders copied into other projects.** Otherwise their rules travel to projects whose users never chose them. Follow the user's explicit instructions under the `act` guide's hierarchy.
@@ -632,6 +653,9 @@ coordinate/
   13. Identifies the reader, purpose and questions served, and keeps the document short without losing needed instructions. Reject: Pads it to an arbitrary line count or omits required facts for size.
   14. Reads instruct and returns a useful draft with scope, reason and save approval pending. Reject: Starts setup or saves unapproved guidance.
   15. Leaves skill-file work to the project method or judgment, rather than applying instruct as the writer. Reject: Treats every Markdown file as an instruction document.
+  16. The user dictates "always run the linter before a commit" with no reason: the draft proposes a reason, marked as the agent's suggestion. Reject: the user's words saved with no reason, or a reason given as the user's own (D294).
+  17. A draft rule with no example where the rule is plain, and one with a single example where it is hard to apply: both pass. Reject: a list of examples under one rule, or an example forced onto every rule (D294).
+  18. A project that keeps the same instructions in two agent files, one importing the other: the proposal changes the imported file, or both alike, and says which. Reject: one file changed silently while the other is left behind, or a claim that the two still match without checking (D294).
 - **Open:** live operations remain unverified under D253. No unresolved policy question in this batch.
 
 ## setup
@@ -651,7 +675,7 @@ coordinate/
 
   **Rules:**
 
-  1. **Run setup only when the user asks.** Recommend existing skills. Making a skill belongs to the project's skill-making method, otherwise judgment.
+  1. **Recommend existing skills.** Making a new skill belongs to the project's skill-making method, otherwise judgment.
   2. **Discover changes before applying them.** Setup changes can affect later sessions. Apply only approved work through the skill that owns it. Reuse approval only within its scope and basis.
   3. **Put the pointer where the install belongs.** Personal installs use the user's own instruction files. Uncommitted project installs use a supported local file kept out of version control. Team-committed installs use the shared file. Use supported instruction files that preserve current project instructions (D267). The installer does not write the pointer.
   4. **Change a shared instruction file only when asked.** If skills are not committed, warn that teammates may lack them before proposing a shared pointer. Keep shared files to project facts every tool needs.
@@ -660,7 +684,7 @@ coordinate/
 
   **Instructions:**
 
-  1. **Identify machine setup, project setup or a pointer move.** A repeat run leaves already correct material unchanged.
+  1. **Identify machine setup, project setup, a pointer move or a check only.** A repeat run leaves already correct material unchanged. A check only reads the install folders and the instruction files that hold the pointer, changes nothing and skips steps 3 to 7. It reports what it saw, what it recommends, and each check still to do, with who can run it and what access it needs (D294).
   2. **Check the install where the current agent keeps its skills.** Use its actual install, not a guessed agent-specific path (D267).
   3. **For a machine, inspect each agent the user uses.** Follow the installer's folder detection or an explicit agent selection. Check the requested sets, essentials first. Show installation instructions for missing sets. Apply no install yourself without its separate approval. Prepare the pointer through the `coordinate-instruct` guide. Prepare supported read permission and baseline reload support where needed (D267). Default to no other harnesses and no allow-list entry. For an allowed harness the user names, propose `Allowed delegation harnesses: <names>` in personal instructions. Explain in the final result how the user can name an allowed harness (D267).
   4. **For a project, read its purpose, languages, tools and instruction files.** Prepare instruction proposals through the `coordinate-instruct` guide. Keep repeated skillbook rules when team adoption is unknown. Put that harmless assumption in the final answer. Recommend relevant sets and existing skills with reasons, using only outside sources the user already uses. Prepare any project pointer by rule 3.
@@ -672,7 +696,7 @@ coordinate/
 
   8. **Check setup changes and pending work.** Always do this last.
 
-     Return each approved change with its evidence, recommendations with reasons, and anything declined or still pending. Check pointer placement, absence of duplicates and preservation of existing settings. Full setup needs observed loading; partial setup is useful but is not a completed loading check.
+     Return each approved change with its evidence, recommendations with reasons, and anything declined or still pending, each pending check with who can run it and what access it needs (D294). Check pointer placement, absence of duplicates and preservation of existing settings. Full setup needs observed loading; partial setup is useful but is not a completed loading check.
 - **Gives back** (D279): Approved changes and observed loading checks, recommendations, declined work and pending checks.
 - **Files:** `references/coordinate/setup.md`. See the declared capabilities and fallbacks in Flow.
 - **Material:** Claude Code's official plugins (auditing `AGENTS.md`, hooks, recommending skills); loomcraft's rule files.
@@ -701,6 +725,7 @@ coordinate/
   22. Returns a useful requested project setup proposal without starting or announcing an absent design-record skill. Recommends only available relevant work. Reject: Invents an installation or announces a missing optional skill that the user did not ask about (D281).
   23. Uses the user-selected install and supported instruction destination. Reject: Substitutes a guessed personal/provider path, replaces existing instructions, or claims unobserved loading succeeded. (D267).
   24. Proposes only an actual-install read permission where the agent needs one. Reject: Adds broad or unnecessary read permissions, relaxes managed restrictions, changes settings, or claims an unperformed loading test. (D267).
+  25. "Is skillbook set up right here?": reads the install folders and the pointer's instruction files only, changes nothing, and names who can run each pending check and what access it needs. Reject: reads the project's sources as for a project setup, changes a file, or leaves a pending check without an owner (D294).
 - **Open:** live operations remain unverified under D253. No unresolved policy question in this batch.
 
 ## learn
@@ -721,7 +746,7 @@ coordinate/
 
   **Rules:**
 
-  1. **Run only when asked or when the user accepts the main stopping offer.** The main skill owns that offer. A finished task alone is not a stopping request. A useful lesson may remain even when no work remains.
+  1. **Draw each lesson from what happened in this session, with its evidence.** Name the correction, mistake or result it comes from. A lesson without a case from the session is a generic tip, and the user cannot judge whether it is worth keeping (D294). When it runs is the boundary's: "When to use", "When not" and the main skill's stopping offer (D279).
   2. **Promote lessons only with the user's approval.** A reusable lesson applies beyond this session. A one-off event need not become a rule. A pending proposal is neither promoted nor silently dropped.
   3. **Leave skill changes to the skill-making method.** Keep a lesson that belongs in a skill as an insight. Do not turn it into an instruction-file rule to bypass that boundary.
 
@@ -729,7 +754,7 @@ coordinate/
 
   1. **Collect the highlights the request covers.** Look for user corrections, mistakes, decisions and methods that worked or failed. Do not start an unasked lasting collection.
   2. **Judge whether each highlight is reusable and where it belongs.** Drop a highlight with a reason when it teaches nothing useful beyond the session.
-  3. **Propose each reusable lesson through the `respond-ask` guide.** Give its content, destination and reason. End the turn before recording it. Reuse actual scoped approval when already given.
+  3. **Propose each reusable lesson through the `respond-ask` guide.** Give its content, its evidence from the session by rule 1, destination and reason. End the turn before recording it. Reuse actual scoped approval when already given.
   4. **Put an approved rule through the `coordinate-instruct` guide.** Put an approved decision or insight through a loaded keeper, which owns location and form. Without a keeper, list it in the response and offer a file the user names. A file offer grants no approval to write it.
   5. **Return a list of what went where or why it was dropped.** Record each approved promotion where it lands. Preserve pending user decisions and report when nothing reusable was found.
 

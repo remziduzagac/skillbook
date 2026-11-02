@@ -10,7 +10,7 @@ Use when preparing any response, writing Markdown, or answering a layout questio
 
 ## When not
 
-Every response and Markdown output still follows these layout rules. Use the methods below for the parts that layout does not cover.
+Every response and Markdown output still follows these layout rules. For the parts layout does not cover, use what each line below names.
 
 - Wording, order or length, such as “make this reply shorter”: use the `respond` guide’s rules. Layout handles the written structure.
 - A question round: use the `respond-ask` guide for question numbering and answers.
@@ -58,4 +58,4 @@ Make each part easy for its reader to find, read and copy. Match the destination
    - Use lists by default. Keep tables for short compared values and rows within the applicable width; turn wide content into lists. Keep prose on one line per paragraph or item.
    - Number ordered or referable items. Fence copied or grouped blocks with a language and put names inside sentences in inline backticks. Give paste-ready text whole, with notes outside it.
    - Check heading order, code-line width and nesting against the medium and Advice. Say when departing from strong advice.
-   - For files, use a fitting skill in the harness's list for Markdown conventions and linting. Otherwise run the project's linter if present. Fix layout or lint failures before returning; the wording check remains with the `respond` guide.
+   - For files, use a fitting skill in the harness's list for Markdown conventions and linting. Otherwise run the project's linter, if it has one, through the `act-verify` guide. Fix layout or lint failures before returning; the wording check remains with the `respond` guide.

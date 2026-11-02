@@ -25,7 +25,7 @@
       "source": {
         "file": "skills/essentials/references/understand/frame.md",
         "line": 25,
-        "text": "2. **Mark guesses where they stand.** Use \"(guess)\", by the `understand` guide's rule, so the user can correct them."
+        "text": "2. **Mark guesses where they stand.** A guess is any part you inferred rather than read in a source or heard from the user, such as an audience you assumed from the topic. Put \"(guess)\" after each one. A heading such as \"proposed\" does not mark the lines under it. The user can then see and correct each guess, by the `understand` guide's rule on guesses."
       },
       "applicability": "scenario",
       "required_skill": "understand-frame",

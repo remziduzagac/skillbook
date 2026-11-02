@@ -22,7 +22,7 @@ The problem, goal, limits and test for a good answer, plus unknowns and what wou
 ## Rules
 
 1. **Fill every part or mark it unknown.** Cover the problem, goal, exclusions, constraints and a good answer. Leaving a part empty lets later work treat an assumption as a fact and head the wrong way.
-2. **Mark guesses where they stand.** Use "(guess)", by the `understand` guide's rule, so the user can correct them.
+2. **Mark guesses where they stand.** A guess is any part you inferred rather than read in a source or heard from the user, such as an audience you assumed from the topic. Put "(guess)" after each one. A heading such as "proposed" does not mark the lines under it. The user can then see and correct each guess, by the `understand` guide's rule on guesses.
 3. **Frame one problem.** Name a second problem and return it to the caller. Two problems cannot share one good answer.
 
 ## Advice
@@ -39,18 +39,18 @@ The problem, goal, limits and test for a good answer, plus unknowns and what wou
 
 Define one problem and how to recognize a good answer. Make known facts, guesses and missing choices visible so later work aims at the same goal. **Read what is known, fill the frame, then route each gap to what can settle it.**
 
-Return this short default form, with guesses marked:
+Return this short default form. Put "(guess)" after each part you inferred, by rule 2:
 
 ```text
 Problem:       one to three sentences
 Goal:          what it serves and why
 Out of scope:  what the work will not do
 Constraints:   what is fixed
-A good answer: how it will be recognized, checkable where possible
-Unknown:       missing facts or choices and what would settle them
+A good answer: a test, number or example that shows it worked
+Unknown:       each missing fact or choice, with what would settle it
 ```
 
-Keep no lasting record yourself. Return the frame to the caller. The `understand-brainstorm` guide opens with it, the `understand-weigh` guide uses its good-answer terms, and any design caller carries it into its purpose. The skill that saves records needs the frame and discussion it opens. Return an updated frame for the caller to replace an old record. Describe the change in the returned result. Two frames for one problem let work aim at the old one.
+Keep no lasting record yourself. Return the frame to the caller. A skill that saves records needs the frame and the discussion it opens.
 
 1. **Read known facts through the `understand` guide before asking.** Asking the user for what the project already says wastes their time and can miss a fixed constraint.
    - Read the request, conversation and relevant project files. Include what exists now and what has already been tried.
@@ -61,9 +61,11 @@ Keep no lasting record yourself. Return the frame to the caller. The `understand
 3. **Route each unknown to the source or decision that can settle it.** A factual gap turned into a preference question makes the user do the research; a preference treated as fact takes away their choice.
    - Read available facts first. Use the `understand-research` guide for sourced factual gaps and return the fact here without another framing round.
    - Use the `understand-clarify` guide for user choices or knowledge that would change the result. Leave other gaps marked unknown, with what would settle them.
-4. **Show the frame with the read-only answer, under the `understand` guide's rules.** An unseen interpretation can send later work toward the wrong problem.
-   - Include relevant assumptions and the problem. Add no frame-only approval checkpoint.
-   - Before changes, follow the `understand` guide's who-decides rule and the `act` guide's plan rule. Return an updated frame and explain its change instead of keeping two current frames.
+4. **Put the frame in your answer, and ask no approval of it.** An unseen frame can send later work toward the wrong problem. An approval stop costs the user a turn, and they can correct a marked guess whenever they read it.
+   - Include the problem and the guesses that matter.
+   - Before changes, follow the `understand` guide's who-decides rule and the `act` guide's plan rule.
+   - When the frame changes, return the updated frame and say what changed, so no two frames stand for one problem.
 5. **Check the frame against “Gives back” before returning it.** Always do this last. The caller needs a usable target rather than a form with hidden gaps.
    - Check every part is filled or unknown, guesses are marked and each gap has a way to settle it. Check the result concerns one problem.
-   - Fix missing parts before returning under the `understand` guide's rules. Make no lasting change and add no separate checkpoint.
+   - Check the frame is in your answer, with no request to approve it.
+   - Fix missing parts before returning, under the `understand` guide's rules. Make no lasting change.

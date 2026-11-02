@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/coordinate/instruct.md",
         "line": 26,
-        "text": "4. **Write reasons and plain positive instructions.** Use the project's terms, one word for each concept, and one example per rule. Resolve every reference. Shared files name no tool available to only one agent."
+        "text": "4. **Write reasons and plain positive instructions.** A reason lets later agents apply the rule to cases it does not name. Capitals and a bare \"never\" do not. When the user gives a rule without its reason, propose one in the draft and mark it as your suggestion, so they can correct it. Give at most one example per rule, and only where the rule is hard to apply without one: agents copy a list of examples instead of following the rule. Use the project's terms, one word for each concept. Make sure every reference points to something that exists, such as a file path or a named role. Shared files name no tool available to only one agent."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-instruct",

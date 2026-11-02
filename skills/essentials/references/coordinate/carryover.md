@@ -60,23 +60,21 @@ Let later work continue from a complete note and current facts rather than an ol
 4. **Get the independent cold read under rule 3 before claiming readiness.** The writer can overlook context they remember but never wrote down.
    - Use the `coordinate-delegate` guide and the `coordinate-brief` guide for a fresh standard-tier reader. It reads only the note and references, then lists what it still needs to ask. Answer those gaps.
    - Without a reviewer, save or return only where allowed. Mark the note not independently checked and name the pending check and who will arrange it.
-5. **Show the saved note's outline for approval through the `respond-ask` guide.** This order is firm: the user needs a real saved result to judge.
-   - Include goal, state, remaining work, first step and proposed commit where the project commits notes. End the turn with the approval request.
-   - An accepted offer does not approve the finished note or its commit. User approval does not replace the cold read.
-6. **Tell the user how to start a fresh session in their agent.** A note without a usable transition can leave the user unsure how to continue.
-   - Say plainly when the command is unknown rather than inventing one.
-7. **Give relevant transition instructions with the approval outline.** Instructions hidden elsewhere are hard to use at the handover.
-   - The user performs compaction or starts the session. Run no transition command and change no settings.
-   - If unsupported, give the note path and a plain continuation request; mark the unsupported control unknown.
-8. **Reread the note and current files before resuming under rule 5.** A summary or recorded next step can be stale after a break.
-   - Read the note before relying on a summary. Compare its written-against state with current project files.
+   - One cold read is enough: its questions show the gaps, and your answers close them. Start no second reader to check those answers.
+5. **Show the saved note's outline, how to continue, and the approval request in one message. Then end the turn.** This order is firm: the user needs a real saved result to judge, and nothing can be added after the turn ends.
+   - Give the note's path and its outline: goal, where the work stands, remaining work and the first next step. Add the proposed commit where the project commits notes.
+   - Tell the user how to continue in their agent: a fresh session for new work, or compaction with a focus naming the note when this work continues. When you do not know the command, say so, and give the note's path with a plain request to continue from it. The user runs it; run no transition command and change no settings.
+   - Ask for approval last, through the `respond-ask` guide. An accepted offer does not approve the finished note or its commit. The user's approval does not replace the cold read.
+6. **Reread the note and the current files before resuming, under rule 5.** A summary or recorded next step can be stale after a break, and a note can be wrong on the day it was written.
+   - Read the note before relying on a summary. Compare its written-against state with the current project.
+   - Check the note's claims that the next work or the user's question relies on against the files, such as a test it says passes or a setting it says was changed. An unchanged commit shows only that nothing changed since; it does not show that the note was right.
    - Keep recent user corrections and current instruction authority distinct from observable file state.
-9. **Handle differences through the `act` guide's concern rule.** Continuing past a changed basis can act outside current consent.
+7. **Handle differences through the `act` guide's concern rule.** Continuing past a changed basis can act outside current consent.
    - Ask through the `respond-ask` guide and end the turn before action affected by changed work or consent. A worker returns that need to its caller.
    - Put non-blocking differences in the final answer and keep required notices at their required timing.
-10. **Continue only allowed work under rule 5.** A stored next step cannot waive an approval or guardrail.
-    - Reuse approval only for the approved work while its basis still holds. Follow the active caller without restarting it.
-    - If no work remains, report checked completion. Invent no next step or work from pending approval.
-11. **Check the note, continuation and “Gives back” before returning.** Always do this last. Saving a note alone establishes neither readiness nor permission.
-    - Check all ten parts, usable references, independent review and actual user approval status. Fix missing parts or false status before returning the saved path.
-    - When resuming, check current instructions and basis, differences, pending decisions and the allowed next step, or no remaining work. Claim no readiness from a missing independent check.
+8. **Continue only allowed work under rule 5.** A stored next step cannot waive an approval or guardrail.
+   - Reuse approval only for the approved work while its basis still holds. Follow the active caller without restarting it.
+   - If no work remains, report checked completion. Invent no next step or work from pending approval.
+9. **Check the note, continuation and “Gives back” before returning.** Always do this last. Saving a note alone establishes neither readiness nor permission.
+   - Check all ten parts, usable references, independent review and actual user approval status. Fix missing parts or false status before returning the saved path.
+   - When resuming, check current instructions and basis, the note's claims you relied on, differences, pending decisions and the allowed next step, or no remaining work. Claim no readiness from a missing independent check.

@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/devise/design.md",
         "line": 28,
-        "text": "3. **Give every decision its reason.** The decision can then be revisited when its basis changes."
+        "text": "3. **Give every decision its reason.** A builder can then revisit a decision when its basis changes, and see which values move with it.\n   - A value you chose, such as a timeout, a page size or a retry count, is a decision too.\n   - One stated basis can cover many values, such as \"match the existing API's naming\" for every field name.\n   - A value the user or a source already settled needs only its source, such as \"from the brand guide\"."
       },
       "applicability": "scenario",
       "required_skill": "devise-design",
@@ -24,7 +24,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/devise/design.md",
-        "line": 29,
+        "line": 32,
         "text": "4. **Settle the design before building it.** When building disproves it, revise the design first. Silent drift leaves the record wrong."
       },
       "applicability": "scenario",
@@ -41,8 +41,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/devise/design.md",
-        "line": 31,
-        "text": "6. **Write for a builder without this conversation.** Use a skill in the harness’s list that checks a document from its reader’s point of view, if one fits. Otherwise ask whether the builder can build without asking again."
+        "line": 34,
+        "text": "6. **Write for a builder without this conversation.** Use a skill in the harness’s list that checks a document from its reader’s point of view, if one fits. Otherwise check it yourself: could a builder build from it without asking again?"
       },
       "applicability": "scenario",
       "required_skill": "devise-design",
@@ -55,17 +55,17 @@
   ],
   "results": [
     {
-      "part": "A short or full design with its actual approval status, or ranked review findings. A full design also gives its review status.",
+      "part": "A short or full design with its actual approval status, such as \"not yet approved\", or ranked review findings. A full design also gives what its review found, how each finding was resolved, and any check still open.",
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/devise/design.md",
         "line": 22,
-        "text": "A short or full design with its actual approval status, or ranked review findings. A full design also gives its review status."
+        "text": "A short or full design with its actual approval status, such as \"not yet approved\", or ranked review findings. A full design also gives what its review found, how each finding was resolved, and any check still open."
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
       "required_skill": "devise-design",
       "deadline": "caller return or final answer",
-      "expected": "A short or full design with its actual approval status, or ranked review findings. A full design also gives its review status.",
+      "expected": "A short or full design with its actual approval status, such as \"not yet approved\", or ranked review findings. A full design also gives what its review found, how each finding was resolved, and any check still open.",
       "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
       "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
     }

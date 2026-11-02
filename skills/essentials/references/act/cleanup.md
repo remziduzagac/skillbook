@@ -66,14 +66,14 @@ Leave a checked account of task material that was removed, deliberately kept or 
 2. **Record each created or started thing under rules 2–4.** Forgotten files or processes can keep consuming resources, and later cleanup by name can hit the user's work.
    - Record identity, exact location and process ID where relevant. Make processes findable and give them a shared lifetime or timeout where available.
    - In long work, keep the record in the scratch place. Clean items when no longer needed rather than accumulating them until the end.
-3. **Tell workers to clean and check their own material through the `act-cleanup` guide.** Report fields alone do not tell a worker to stop its server or remove a temporary copy.
+3. **Tell each worker in its brief to clean and check its own material, through the `coordinate-brief` guide.** Report fields alone do not tell a worker to stop its server or remove a temporary copy.
    - Explicitly ask it to remove what it made, stop what it started and report cleaned, kept and proposed items. Check the report against visible files or processes when it returns.
 4. **Recover an incomplete record by listing the usual task places.** A crash or forgotten entry does not make every nearby item yours to remove.
    - Identify only what you can establish as this task's material. Propose uncertain items rather than removing them.
 5. **Review the record before ending the task or stopping, under rules 1, 4 and 5.** A finished answer can leave scaffolding running and surprise the user later.
    - Remove only exact recorded paths or IDs within your authority. Propose others' material and outward removal through the `act-guardrails` and `respond-ask` guides; end the turn for required approval.
    - Keep only user-requested material or items your own next step will use soon. Do not keep copies for another agent or later check without the user's request; say how to recreate them.
-   - Include a wrap-up offer or carryover under the `act` guide's cleanup rule. Remove temporary work edits unless the user asked to keep them, and say how to add them back.
+   - Remove temporary work edits unless the user asked to keep them, and say how to add them back.
 6. **Verify removal through the `act-verify` guide, by rule 6.** A kill can fail or a watcher can restart a process after an apparent success.
    - Check removed paths no longer exist and stopped processes are gone. Report a failed check rather than assuming cleanup succeeded.
 7. **Prepare the cleanup report at the end of the response, using “Gives back”.** Unexplained leftovers look forgotten, and proposed removal is not completed cleanup.

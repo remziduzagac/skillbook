@@ -26,15 +26,16 @@ Give a repeated part one shared home without erasing meaningful differences. Sim
 
 1. **Find the repeated part under the `organize` guide.** Extracting an entire item when only one part repeats can lose its local purpose.
    - Identify the shared content and the surrounding item-specific details.
-2. **Check equivalent meaning under the parent's preservation rule.** Similar words can express different rules, and merging them would change what readers follow.
-   - Compare meaning in each eligible item. Leave differing copies unchanged and list them as exclusions from normalization.
-3. **Choose one home every eligible reader can reach, using the parent's shared choice rule.** A shared definition that some readers cannot load leaves those items incomplete.
+2. **Check that each copy means the same, by the `organize` guide's rule 3.** Similar words can express different rules, and merging them would change what readers follow.
+   - A copy that differs in meaning stays whole and unchanged, even where part of it matches the shared part, such as the same price inside a different refund rule. List it as left out of the normalization, with the difference.
+   - A copy with the same meaning may sit beside details of its own item, such as a local note. Those details stay in the item, by step 5.
+3. **Choose one home every eligible reader can reach, by the `understand` guide's who-decides rule.** A shared definition that some readers cannot load leaves those items incomplete.
    - A definition may belong in a glossary, a rule in its owning guide or skill, or code in a shared function.
-   - If no home exists, propose one through the `respond-ask` guide and end the turn.
+   - If no home exists, propose one in the map, by the `organize` guide's step 4. The map's stop covers it, so it needs no turn of its own.
 4. **Prepare the shared part to serve all eligible copies.** A version tailored to one item can silently weaken another.
    - Make it general enough for all eligible users and no broader. Write it only after the `organize` guide's map is approved.
 5. **Replace eligible copies with references under the approved map.** Leaving one copy behind lets shared content drift again.
    - Keep local details and meaning. Check each reference reaches the shared part.
 6. **Check the shared home and “Gives back” before returning to the parent.** Always do this last. One shared file does not prove all eligible items use it correctly.
    - Check the part exists once after application, each eligible item points to it and local meaning survives. Keep differing copies unchanged and listed.
-   - Fix broken references or lost details before returning. Include the inventory check and retain both approval checkpoints from the `organize` guide.
+   - Fix broken references or lost details before returning. Include the inventory check. After applying, return the checked result to the `organize` guide's step 6, which asks the user to confirm it.

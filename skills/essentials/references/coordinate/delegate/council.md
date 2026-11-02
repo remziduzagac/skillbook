@@ -4,7 +4,7 @@
 
 Collects independent answers to one question and preserves disagreements, so the user can judge the different views.
 
-Needs: permitted fresh workers through the active the `coordinate-delegate` guide call. If unavailable, return the limitation, missing answers and next owner. Required independence stays pending.
+Needs: permitted fresh workers through the active call of the `coordinate-delegate` guide. If unavailable, return the limitation, missing answers and next owner. Required independence stays pending.
 
 ## When to use
 
@@ -35,7 +35,7 @@ Each member’s answer with its name, a summary that keeps disagreements, and wh
 Collect independent answers to the same question and keep their disagreements available to the user. Comparable material and attributed answers matter more than agreement by count. **Set the common question, brief fresh members through the active delegate call, then return their actual answers and missing work.**
 
 1. **Scope the common question and material under rule 1.** Different questions or evidence make disagreement impossible to interpret.
-   - Settle result-changing gaps through the shared choice rules. Exclude the main agent's opinion from task evidence while keeping required operating instructions.
+   - If a gap in the question or material would change the answers, settle it first through the `understand-clarify` guide. Exclude the main agent's opinion from task evidence while keeping required operating instructions.
 2. **Choose independent members through the active `coordinate-delegate` guide call, by rule 2.** A fork shares the main agent's reasoning and cannot provide the requested independence.
    - Use fresh workers at standard tier or above, with the parent's mapping, effort, cost approval, controls and tracking. About three is guidance, not a fixed quota.
    - Follow the parent's harness and data permissions. Restart no method selection and let no worker delegate again.

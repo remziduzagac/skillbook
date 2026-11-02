@@ -7,8 +7,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/weigh.md",
-        "line": 24,
-        "text": "1. **Compare every option on every term.** Different terms cannot support a comparison."
+        "line": 34,
+        "text": "1. **Compare every option on every term.** Different terms cannot support a comparison.\n   - Drop an option that breaks a constraint, and name the constraint. If the user named that option, still give its values on the terms, so they can see why it lost. A dropped option needs no risks or unknowns."
       },
       "applicability": "scenario",
       "required_skill": "understand-weigh",
@@ -24,8 +24,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/weigh.md",
-        "line": 25,
-        "text": "2. **Give benefits, costs, risks and unknowns for each option.** Search for real downsides. If none is found within the agreed terms, say so with where you looked. A forced downside invents evidence; an unexamined option hides costs."
+        "line": 36,
+        "text": "2. **Give benefits, costs, risks and unknowns for each option.** Values on the terms are not enough: risks and unknowns show what could go wrong. Search for real downsides. If you find none within the terms, say where you looked. A forced downside invents evidence, and an unexamined option hides costs."
       },
       "applicability": "scenario",
       "required_skill": "understand-weigh",
@@ -41,7 +41,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/weigh.md",
-        "line": 26,
+        "line": 37,
         "text": "3. **Name unknowns that could change the recommendation.** Use the `understand-research` guide or a permitted test for deciding facts. Use the `understand-clarify` guide for the user's preference. Give what would settle each unknown."
       },
       "applicability": "scenario",
@@ -58,7 +58,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/weigh.md",
-        "line": 27,
+        "line": 38,
         "text": "4. **Recommend with why it beats the next best, or say \"no clear winner\".** Give what would settle a tie. Giving no recommendation leaves the decision undone. Forcing a recommendation hides a tie."
       },
       "applicability": "scenario",
@@ -72,17 +72,17 @@
   ],
   "results": [
     {
-      "part": "A comparison and recommendation, or no clear winner with what would settle it. Return options needing more development to the task that asked; do not start another brainstorm.",
+      "part": "A comparison and recommendation, or no clear winner with what would settle it: the terms that matter, each option's values on the terms with its benefits, costs, risks and unknowns, the options dropped with reasons, why the recommended option beats the next best and how easily the choice can be undone, and the unknowns that would change it. Return options needing more development to the task that asked; do not start another brainstorm.",
       "kind": "visible",
       "source": {
         "file": "skills/essentials/references/understand/weigh.md",
         "line": 20,
-        "text": "A comparison and recommendation, or no clear winner with what would settle it. Return options needing more development to the task that asked; do not start another brainstorm."
+        "text": "A comparison and recommendation, or no clear winner with what would settle it. Return options needing more development to the task that asked; do not start another brainstorm. The skill that saves records gets the comparison, why the chosen option won and the options set aside.\n\n```text\nTerms:         what matters to the question\nOptions:       each one's values on the terms, then its benefits, costs, risks and unknowns\nDropped:       excluded options and reasons\nRecommended:   why it beats the next best; easy or hard to undo; or no clear winner\nWould change:  unknowns and what would settle them\n```\n\nA short table or a list may carry it, by the `respond-layout` guide."
       },
       "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
       "required_skill": "understand-weigh",
       "deadline": "caller return or final answer",
-      "expected": "A comparison and recommendation, or no clear winner with what would settle it. Return options needing more development to the task that asked; do not start another brainstorm.",
+      "expected": "A comparison and recommendation, or no clear winner with what would settle it: the terms that matter, each option's values on the terms with its benefits, costs, risks and unknowns, the options dropped with reasons, why the recommended option beats the next best and how easily the choice can be undone, and the unknowns that would change it. Return options needing more development to the task that asked; do not start another brainstorm.",
       "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
       "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
     }

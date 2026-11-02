@@ -42,7 +42,7 @@
       "source": {
         "file": "skills/essentials/references/understand/research/fact.md",
         "line": 26,
-        "text": "3. **Keep verdicts distinct from missing checks.** Supported means the relevant evidence supports the claim. Mixed means relevant evidence supports and challenges it. Unsupported means no adequate support was found after the scoped check was completed. Unknown means access, coverage or evidence prevented a reliable verdict. Unsupported and unknown alone do not prove false. Give the evidence, limits and what would change the verdict."
+        "text": "3. **Keep verdicts distinct from missing checks.** Use one of four verdicts:\n   - supported: the relevant evidence supports the claim;\n   - mixed: relevant evidence both supports and challenges it;\n   - unsupported: you finished the check and found no adequate support;\n   - unknown: access, coverage or evidence kept you from a reliable verdict.\n\n   Neither unsupported nor unknown proves the claim false. Give the evidence, its limits and what would change the verdict."
       },
       "applicability": "scenario",
       "required_skill": "understand-research-fact",
