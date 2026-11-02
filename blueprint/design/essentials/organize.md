@@ -76,7 +76,7 @@ organize/    arranging things: the shared rules and the check
   ```
 
 - **Files:** `references/organize.md`. Optional delegation, declared with a `Needs:` line: without it, scripts plus the main-session comparison above; required independent checks follow the `act-verify` guide's rule 2 (D259). It is written about items, parts and boundaries, never one kind of unit: each rule is stated generically and is clear without its example; its examples span writing, code and design, so no kind looks like the only one; a kind is named in the rule itself only where the rule differs for it, as for code’s tests and a matching skill in the harness’s list making the change (D86, D141, D148).
-- **Material:** VaultOps' structural operations (`VaultOps_Drafts/VaultOps Pipelines.md`, and the task operations in `VaultOps Tasks.md`, in the person's Obsidian sandbox); MECE as a general method.
+- **Material:** a private notes system's structural operations, including its operations on tasks; MECE as a general method.
 - **Tests** (D259):
   1. Maps A1/B2 to images, C3/D4 to letters, E5/F6 to recordings. Leaves every record intact pending approval. Reject: Moves records before approval or groups only selected records.
   2. Chooses a survivor with a reason, maps the three facts and reference updates, and proposes retirement notices without deleting files. Reject: Treats unique receipt detail as disposable or merely adds an index.
@@ -164,7 +164,7 @@ organize/    arranging things: the shared rules and the check
   ```
 
 - **Files:** `references/organize/split.md` (D259).
-- **Material:** VaultOps' decompose, which turns the original into a parent with new children.
+- **Material:** the private notes system's decompose, which turns the original into a parent with new children.
 - **Tests** (D259):
   1. Maps every stable ID once, with one type principle and exhaustive exclusive boundaries. Reject: Drops a record or mixes owners and kinds.
   2. Gives each required topic one section and makes each section understandable on its own. Reject: Applies an existing-material inventory or omits emergency contacts.
@@ -207,7 +207,7 @@ organize/    arranging things: the shared rules and the check
   ```
 
 - **Files:** `references/organize/merge.md` (D259).
-- **Material:** VaultOps' merge: a survivor chosen, content combined field by field, the others soft-deleted with the reason "merged into", links updated.
+- **Material:** the private notes system's merge: a survivor chosen, content combined field by field, the others soft-deleted with the reason "merged into", links updated.
 - **Tests** (D259):
   1. Recognizes duplicate whole accounts and retains all compatible unique detail. Reject: Refuses all consolidation because wording or detail differs.
   2. Keeps accession-before-shelving, sender receipt and the private scan detail, with each source fact mapped. Reject: Keeps only their intersection or loses the scan detail.
@@ -251,7 +251,7 @@ organize/    arranging things: the shared rules and the check
   ```
 
 - **Files:** `references/organize/compose.md` (D259).
-- **Material:** VaultOps' compose ("create parent/generalization"; tasks grouped under a new parent) and its breadth rule (a new sub-topic only once two or three items gather).
+- **Material:** the private notes system's compose ("create parent/generalization"; tasks grouped under a new parent) and its breadth rule (a new sub-topic only once two or three items gather).
 - **Tests** (D259):
   1. The parent explains their image category, covers the two selected items and excludes unrelated records. Reject: Moves or claims the four unselected records.
   2. Explains that the operation requires at least two items and does not invent another selected item. Reject: Adds a one-item parent as if it met the trigger.
@@ -291,7 +291,7 @@ organize/    arranging things: the shared rules and the check
   ```
 
 - **Files:** `references/organize/normalize.md` (D259).
-- **Material:** VaultOps' normalize ("extract shared logic").
+- **Material:** the private notes system's normalize ("extract shared logic").
 - **Tests** (D259):
   1. Recognizes equivalent meaning despite different words and retains each desk responsibility. Reject: Requires identical wording or drops one desk's facts.
   2. Includes the custody copies only and lists the finance copy as genuinely different and unchanged. Reject: Forces the finance meaning into the custody definition to satisfy every-copy wording.
@@ -337,7 +337,7 @@ organize/    arranging things: the shared rules and the check
   ```
 
 - **Files:** `references/organize/cluster.md` (D259).
-- **Material:** VaultOps' cluster ("group for navigation") and its orphan check.
+- **Material:** the private notes system's cluster ("group for navigation") and its orphan check.
 - **Tests** (D259):
   1. Maps every ID once in its primary group, source content untouched and all links resolved in the proposal. Reject: Moves source records or leaves one ID out.
   2. Finds omitted F6 and nonexistent ghost.md separately, with file evidence. Reject: Reports only one of the gap and dangling entry.
