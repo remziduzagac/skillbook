@@ -4253,7 +4253,7 @@ The runner, the judge, the calibration tools with the human ratings, the rule-ch
 - no question, plan or approval of the agent's is open, and the user is not saying they are stopping;
 - it fits in about five lines.
 
-Every other request reads the six main guides, as before, and the main skill's own rules hold for a direct answer too. The reading rule changes as well. Each guide file is read on its own, with the file-reading tool, and all the reads go in one turn. A read that comes back cut short, or saved elsewhere, is read to its end before the work goes on.
+Every other request reads the six main guides, as before, and the main skill's own rules hold for a direct answer too. The check is the first bullet of the Instructions' step 0, before any guide is read, so the agent meets it where the work starts; the conditions stay only in the first rule. The reading rule changes as well. Each guide file is read on its own, with the file-reading tool, and all the reads go in one turn. A read that comes back cut short, or saved elsewhere, is read to its end before the work goes on.
 
 **Why:** The 2026-11-02 festival run showed two problems with reading six guides on every request.
 

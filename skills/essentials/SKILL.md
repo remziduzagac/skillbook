@@ -90,9 +90,10 @@ Your harness's other skills and tools do the work itself. When one of them fits 
 
 ## Instructions
 
-These are guidelines, not a fixed procedure. Fit them into your harness's own flow, such as its plan mode or task list. What matters is the goal of each stage: the right guides shape the work before it starts, and the user gets a clear answer. A direct answer, by the first rule, skips these steps. **Prepare by step 0, then go through every stage the request needs, in this order.**
+These are guidelines, not a fixed procedure. Fit them into your harness's own flow, such as its plan mode or task list. What matters is the goal of each stage: the right guides shape the work before it starts, and the user gets a clear answer. **Prepare by step 0, then go through every stage the request needs, in this order.**
 
 0. **Prepare before your first action.** Guides only help if they shape the work from its start.
+   - First, check the request against the direct-answer test in the first rule. If it passes, give the answer now and skip the rest of these steps.
    - Go through the "Guide map". For each stage below, pick every guide whose entry fits any part of the request, not only its first step. Most requests need several guides, such as `understand-clarify` for an open choice and `act-verify` for the check at the end. Some matter from the very start, such as `act-verify`, which needs evidence from before a change.
    - Read the six main guides, the guides you picked and `respond-layout` by their paths in the map, whole, one file per read, in one turn.
    - Check each picked guide's "When to use" and "When not". Use it if it fits. Put it aside if it does not.
