@@ -2,7 +2,7 @@ import { test, expect } from "bun:test";
 import { accessTurn } from "./access";
 import native from "../fixtures/access/claude-numbered-read.json";
 import type { Event } from "./types";
-import { action_evidence, skills_read, sameClaudeAgent, sessionId, text_before_change } from "./trace";
+import { action_evidence, skills_read, sameClaudeAgent, sessionId, text_before_change, turn_parts } from "./trace";
 import { judgeEvidence } from "./scenario";
 const read = (events: Event[]) => accessTurn("claude",events,1,native.sources);
 
@@ -74,4 +74,17 @@ test("Claude cd then cat attributes every delivered guide, without promoting a p
   expect(partial.records.find(r=>r.skill==="understand")!.extent).toBe("whole");
   const searched=read(events(native.sources.understand+native.sources.act,command.replace("cat","grep ''")));
   expect(searched.records.every(r=>r.extent!=="whole")).toBe(true);
+});
+
+test("Claude's earlier background wakes are progress messages; only the last wake's text is the answer",()=>{
+  const init={type:"system",subtype:"init",session_id:"a"},result={type:"result",subtype:"success",session_id:"a"};
+  const say=(text:string)=>({type:"assistant",session_id:"a",message:{content:[{type:"text",text}]}});
+  const tool={type:"assistant",session_id:"a",message:{content:[{type:"tool_use",id:"t",name:"Agent",input:{}}]}};
+  // As recorded: every wake starts with init, and the results arrive together at the end.
+  expect(turn_parts("claude",[init,tool,say("Two helpers are reading."),init,say("One is back."),init,
+    say("Both read: the answer."),result,result,result] as Event[]))
+    .toEqual(["Both read: the answer.",["Two helpers are reading.","One is back."]]);
+  // One wake keeps every text after its last tool call as the answer.
+  expect(turn_parts("claude",[init,say("Checking."),tool,say("Part one."),say("Part two."),result] as Event[]))
+    .toEqual(["Part one.\n\nPart two.",["Checking."]]);
 });

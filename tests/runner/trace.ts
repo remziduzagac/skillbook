@@ -138,7 +138,16 @@ export function text_before_change(agent: Agent, events: Event[][]): [string, bo
 }
 export function turn_texts(agent: Agent, events: Event[]): [string, boolean][] {
   const texts: [string, boolean][] = [];
+  // Claude wakes the session again for each finished background helper, and each wake starts with a new init.
+  // The user saw each earlier wake's text as its own message, so only the last wake's text can be the answer.
+  let woke = false;
   for (const e of events) {
+    if (agent === "claude" && e.type === "system" && e.subtype === "init" && !e.parent_tool_use_id && texts.length)
+      woke = true;
+    if (agent === "claude" && e.type === "assistant" && !e.parent_tool_use_id) {
+      if (woke) for (const t of texts) t[1] = true;
+      woke = false;
+    }
     if (agent === "claude" && e.type === "assistant" && !e.parent_tool_use_id)
       for (const b of message_blocks(e)) {
         if (b.type === "text" && b.text) texts.push([b.text, false]);
