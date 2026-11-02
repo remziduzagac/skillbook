@@ -1,4 +1,4 @@
-"""Write the festival scenario's files: the base fixture (chapter 1) and the overlays for chapters 2 to 6.
+"""Write the festival scenario's files: the base fixture (chapter 1) and the overlays for chapters 2 to 5.
 
 Run from the repository root, after removing both folders:
 python3 -I tests/fixtures/make-festival.py tests/fixtures/scenarios/festival tests/fixtures/scenarios/festival-checkpoints
@@ -532,13 +532,10 @@ at(3, "signups/forms-count.md", """# Forms received
 - Total: 130
 """)
 
-at(4, "AGENTS.md", agents("Monday 15 June 2026"))
-at(4, "welcome.md", (root / "welcome.md").read_text().replace("recieve", "receive"))
+at(4, "AGENTS.md", agents("Monday 22 June 2026"))
+at(4, "decisions.md", festival + volunteers + shifts + parked_known)
 
-at(5, "AGENTS.md", agents("Monday 22 June 2026"))
-at(5, "decisions.md", festival + volunteers + shifts + parked_known)
-
-at(5, "welcome.md", """# Welcome, volunteers
+at(4, "welcome.md", """# Welcome, volunteers
 
 Thank you for helping at our neighbourhood festival! You will receive your shift by email a week before the day.
 
@@ -549,7 +546,7 @@ On the day, come to the information tent at the school gate. Wear the green T-sh
 - **Who to call:** the site lead, on 07700 900123. For rota changes, email `rota@example.org`.
 """)
 
-at(5, "council-summary.md", """# Summary for the council
+at(4, "council-summary.md", """# Summary for the council
 
 Last year's neighbourhood festival was run entirely by volunteers.
 
@@ -563,7 +560,7 @@ People enjoyed the music, the food and meeting their neighbours. They told us th
 This year we want to make the festival more accessible, with step-free routes, clear signs and a quiet space. We hope the council will support us again.
 """)
 
-at(5, "handbook.md", """# Volunteer handbook
+at(4, "handbook.md", """# Volunteer handbook
 
 This handbook has moved to the [handbook folder](handbook/index.md), one page per topic. Each section went here:
 
@@ -658,9 +655,9 @@ When you add or remove a page, update this table.
 """,
 }
 for name, text in pages.items():
-    at(5, f"handbook/{name}", text)
+    at(4, f"handbook/{name}", text)
 
-at(6, "AGENTS.md", agents("Monday 6 July 2026", """
+at(5, "AGENTS.md", agents("Monday 6 July 2026", """
 ## Public notices
 
 Every public notice must show the step-free entrance and the access contact. Visitors who need step-free access must know where to go and whom to ask before they arrive.
@@ -672,17 +669,17 @@ for role, duties in [
     ("first-aid", "Staff the first aid point and keep the log book."),
 ]:
     title = role.replace("-", " ").capitalize()
-    at(6, f"roles/{role}.md", f"""# {title}
+    at(5, f"roles/{role}.md", f"""# {title}
 
 {duties}
 
 Shifts: three shifts of three hours, 09:00 to 12:00, 12:00 to 15:00 and 15:00 to 18:00.
 """)
 
-at(6, "plan.md", marked({1, 2, 3, 4, 5, 6, 7, 8, 9, 11}))
-at(6, "council-summary.md", (root / "council-summary.md").read_text())
+at(5, "plan.md", marked({1, 2, 3, 4, 5, 6, 7, 8, 9, 11}))
+at(5, "council-summary.md", (root / "council-summary.md").read_text())
 
-at(6, "carryover.md", """# Carryover: Common Ground festival
+at(5, "carryover.md", """# Carryover: Common Ground festival
 
 Written on Monday 22 June 2026. Read it whole before you act on it.
 
@@ -751,7 +748,8 @@ Branch main. All the work of 22 June is committed, with no uncommitted changes.
 The project files at the start of each chapter of the [festival scenario](../../../../blueprint/design/scenarios/festival.md). The base fixture, `../festival/`, is chapter 1.
 
 - Chapter N is the base, then the overlays `chapter-2/` to `chapter-N/` copied over it in order.
-- Chapter 5 also removes `old-signups.csv`.
+- Chapters 4 and 5 also remove `old-signups.csv`.
+- Chapter 3 runs turns 12–22 in one session; the turn 13 typo fix carries into turn 17 without an overlay.
 - `../../make-festival.py` writes the base and these overlays. Change it and run it again rather than editing the files by hand.
 - The runner writes the project's `.gitignore`, holding `*.csv`, before the first commit. A `.gitignore` inside these folders would hide their CSV files from this repository.
 """)

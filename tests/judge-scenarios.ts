@@ -4,7 +4,7 @@ import { finalAnswer } from "./runner/answers";
 import { readFileSync, writeFileSync, mkdirSync, mkdtempSync, copyFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { activeRubricBook, validateRubricReport } from "./runner/rubric-fixtures";
+import { activeRubricBook, rubricValidationSummary } from "./runner/rubric-fixtures";
 import { requireCalibration } from "./runner/calibration";
 import { loadCases } from "./runner/cases";
 import { recheckScenario, requireSavedCases } from "./runner/recheck";
@@ -28,7 +28,7 @@ const cases = new Map(loadCases().map(c => [c.id, c]));
 const original: Event[] = JSON.parse(readFileSync(join(source, "summary.json"), "utf8"));
 requireSavedCases(original, cases);
 const book = activeRubricBook(values["rubric-book"], [...cases.values()].filter(c => original.some(r => r.case === c.id)));
-validateRubricReport(JSON.parse(readFileSync(validation, "utf8")), book);
+const validationSummary=rubricValidationSummary(JSON.parse(readFileSync(validation, "utf8")), book);
 const root = mkdtempSync(join(tmpdir(), "skillbook-judge-")), groups: number[] = [];
 let known = 0, unknown = 0;
 console.log("Saved-answer judging only. Sol cost is unknown; no hard spending cap. Originals remain unchanged.");
@@ -70,6 +70,7 @@ try {
     result.scores = score([...result.turns.flatMap((t: Event) => [...t.tagged_checks, ...t.judgments]),
       ...result.unreached_turn_checks, ...result.run_checks]);
     result.calibration = calibrated;
+    result.rubric_validation = validationSummary;
     results.push(result);
     writeFileSync(join(output, `run-${results.length}.json`), JSON.stringify(result, null, 2) + "\n");
   }

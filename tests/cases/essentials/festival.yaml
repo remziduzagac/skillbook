@@ -1,5 +1,5 @@
 {
-  "about": "Common Ground festival, six independent checkpoints and 28 scripted turns.",
+  "about": "Common Ground festival, five independent checkpoints and 28 scripted turns.",
   "goal": "Help the residents plan, investigate, document and review the festival within their approvals.",
   "suite": "master",
   "design": "blueprint/design/scenarios/festival.md",
@@ -35,26 +35,13 @@
     },
     {
       "number": 4,
-      "start_turn": 17,
-      "checkpoint": {
-        "fixture": "scenarios/festival",
-        "overlays": [
-          "scenarios/festival-checkpoints/chapter-2",
-          "scenarios/festival-checkpoints/chapter-3",
-          "scenarios/festival-checkpoints/chapter-4"
-        ]
-      }
-    },
-    {
-      "number": 5,
       "start_turn": 23,
       "checkpoint": {
         "fixture": "scenarios/festival",
         "overlays": [
           "scenarios/festival-checkpoints/chapter-2",
           "scenarios/festival-checkpoints/chapter-3",
-          "scenarios/festival-checkpoints/chapter-4",
-          "scenarios/festival-checkpoints/chapter-5"
+          "scenarios/festival-checkpoints/chapter-4"
         ],
         "remove": [
           "old-signups.csv"
@@ -62,7 +49,7 @@
       }
     },
     {
-      "number": 6,
+      "number": 5,
       "start_turn": 27,
       "checkpoint": {
         "fixture": "scenarios/festival",
@@ -70,8 +57,7 @@
           "scenarios/festival-checkpoints/chapter-2",
           "scenarios/festival-checkpoints/chapter-3",
           "scenarios/festival-checkpoints/chapter-4",
-          "scenarios/festival-checkpoints/chapter-5",
-          "scenarios/festival-checkpoints/chapter-6"
+          "scenarios/festival-checkpoints/chapter-5"
         ],
         "remove": [
           "old-signups.csv"

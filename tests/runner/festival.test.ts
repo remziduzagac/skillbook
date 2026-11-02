@@ -1,5 +1,6 @@
 import { test, expect } from "bun:test";
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync, readdirSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { loadCases } from "./cases";
@@ -9,8 +10,11 @@ import { ruleChecks, resultChecks } from "./rule-checks";
 import { activeRubricBook, rubricCandidates, validateRubricFixtures, resolveRubricTrace, rubricTrace } from "./rubric-fixtures";
 import { judgeEvidence } from "./scenario";
 import { check } from "./checks";
-import { recheckScenario } from "./recheck";
+import { recheckScenario, requireSavedCases } from "./recheck";
 import { aspectCoverage } from "./inventory";
+import { putCheckpoint } from "./chapters";
+import { sourceSnapshots } from "./source-snapshots";
+import { fixtureText } from "./files";
 import type { Event, Checks } from "./types";
 const path = "tests/calibration/festival-traces.json";
 const festival = () => loadCases("essentials/festival")[0]!;
@@ -19,9 +23,9 @@ const encode = (text: string, events: Event[] = []) => ({stdout: [...events,
   {type: "turn.completed", usage: {input_tokens: 10, output_tokens: 2}},
 ].map(e => JSON.stringify(e)).join("\n"), stderr: "", status: 0, left: [], left_why: null, tmp: null, tmp_paths: []});
 
-test("the active inventory is exactly the six-chapter, 28-turn festival with four permitted models", () => {
+test("the active inventory is exactly the five-chapter, 28-turn festival with four permitted models", () => {
   const all = loadCases(); expect(all.map(c => c.id)).toEqual(["essentials/festival"]);
-  const c = all[0]!; expect(c.turns).toHaveLength(28); expect(c.chapters!.map(ch => ch.start_turn)).toEqual([1,7,12,17,23,27]);
+  const c = all[0]!; expect(c.turns).toHaveLength(28); expect(c.chapters!.map(ch => ch.start_turn)).toEqual([1,7,12,23,27]);
   const plan = planRuns(all, parseArgs(["--dry-run"]));
   expect(plan.map(([, a, m]) => [a, m])).toEqual([["claude","sonnet"],["claude","haiku"],["codex","gpt-6.1-sol"],["codex","gpt-6-luna"]]);
   for (const model of ["claude=opus", "claude=fable", "codex=gpt-6-astra"])
@@ -51,6 +55,48 @@ test("the active trace gate covers source rules, visible returns and distinct wr
   expect(() => validateRubricFixtures(changed, [c])).toThrow("uncovered result");
   const missing = structuredClone(c); missing.turns[0]!.rubric = missing.turns[0]!.rubric!.filter(r => r.source_check !== "route-act");
   expect(() => validateRubricFixtures(b, [missing])).toThrow("uncovered rule");
+  const stale=structuredClone(b);stale.traces["t17:correct"]!.chapter=4;
+  expect(()=>validateRubricFixtures(stale,[c])).toThrow("current chapter");
+});
+
+test("saved six-chapter evidence cannot be silently judged or relabelled as the merged session",()=>{
+  const c=festival(),cases=new Map([[c.id,c]]);
+  const old={case:c.id,turns:[{turn:17,chapter:4,fresh_session:true}]};
+  expect(()=>requireSavedCases([old],cases)).toThrow("chapter/session layout differs");
+  expect(()=>recheckScenario(old,c)).toThrow("matching case revision");
+  expect(()=>requireSavedCases([{...old,turns:[{turn:17,chapter:3,fresh_session:true}]}],cases))
+    .toThrow("chapter/session layout differs");
+  expect(()=>requireSavedCases([{...old,turns:[{turn:17,chapter:3,fresh_session:false}]}],cases)).not.toThrow();
+});
+
+test("generated five-chapter checkpoints and trace sources match the design, including the unfixed initial typo",()=>{
+  const root=mkdtempSync(join(tmpdir(),"festival-generator-"));
+  try {
+    const base=join(root,"base"), overlays=join(root,"overlays");
+    const ran=spawnSync("python3",["-I","tests/fixtures/make-festival.py",base,overlays],{encoding:"utf8"});
+    expect(ran.status,ran.stderr).toBe(0);
+    const compare=(actual:string,generated:string)=>{
+      const names=readdirSync(actual,{withFileTypes:true});
+      expect(names.map(n=>n.name).sort()).toEqual(readdirSync(generated).sort());
+      for(const n of names)if(n.isDirectory())compare(join(actual,n.name),join(generated,n.name));
+      else expect(readFileSync(join(actual,n.name))).toEqual(readFileSync(join(generated,n.name)));
+    };
+    compare("tests/fixtures/scenarios/festival",base);
+    compare("tests/fixtures/scenarios/festival-checkpoints",overlays);
+    const c=festival(),b=activeRubricBook(path,[c]),work=join(root,"work");
+    const dates=["4 May","11 May","8 June","22 June","6 July"];
+    for(const ch of c.chapters!){
+      putCheckpoint(work,ch,c.gitignore);
+      const sources=sourceSnapshots(work,fixtureText(work),c.source_snapshots,true);
+      expect(sources).toEqual(b.chapter_sources![`${c.id}:${ch.number}`]);
+      expect(sources["AGENTS.md"]).toContain(dates[ch.number-1]!);
+      if(ch.number===3)expect(sources["welcome.md"]).toContain("recieve");
+      if(ch.number>=4)expect(sources).not.toHaveProperty("old-signups.csv");
+    }
+    const history=resolveRubricTrace("t17:correct",b).turns;
+    expect(history.map(t=>t.turn)).toEqual([12,13,14,15,16,17]);
+    expect(history.at(-1)!.files_before["welcome.md"]).toContain("receive");
+  } finally {rmSync(root,{recursive:true,force:true});}
 });
 
 for (const no_skill of [false, true]) test(`festival runs all chapters with an injected transport (${no_skill ? "no skill" : "installed"})`, async () => {
@@ -73,6 +119,8 @@ for (const no_skill of [false, true]) test(`festival runs all chapters with an i
           if (input.includes("Mark only paths")) return encode(JSON.stringify({marks: []}));
           if (data.criteria) {
             outcomes++;
+            if (data.evidence.current_turn===17)
+              expect(data.evidence.turns.map((t:Event)=>t.turn)).toEqual([12,13,14,15,16,17]);
             sizes.push({turn: data.evidence.current_turn, criteria: data.criteria.length,
               source_files: Object.keys(data.evidence.sources).length,
               source_bytes: JSON.stringify(data.evidence.sources).length,
@@ -91,7 +139,14 @@ for (const no_skill of [false, true]) test(`festival runs all chapters with an i
           }
           fits++; return encode(JSON.stringify({off_script: false, reason: "synthetic fit"}));
         }
-        const n = ++count, row = rubricTrace(`t${n}:correct`, book);
+        const n = ++count;
+        if (n===17) {
+          expect(cmd).toContain("resume");
+          expect(readFileSync(join(work,"welcome.md"),"utf8")).toContain("receive");
+          expect(readFileSync(join(work,"welcome.md"),"utf8")).not.toContain("recieve");
+          expect(readFileSync(join(work,"AGENTS.md"),"utf8")).toContain("Monday 8 June 2026");
+        }
+        const row = rubricTrace(`t${n}:correct`, book);
         expect(cmd.at(-1)).toBe(c.turns[n-1]!.prompt);
         const fresh = c.chapters!.some(ch => ch.start_turn === n);
         expect(cmd.includes("resume")).toBe(!fresh);
@@ -102,8 +157,8 @@ for (const no_skill of [false, true]) test(`festival runs all chapters with an i
         return encode(row.observation.final_answer, [{type: "thread.started", thread_id: `chapter-${row.chapter}`},
           {type: "item.completed", item: {id: `work-${n}`, type: "command_execution", command: "git status --short", exit_code: 0, aggregated_output: ""}}]);
       });
-    expect(result.error).toBeNull(); expect(count).toBe(28); expect(outcomes).toBe(28); expect(fits).toBe(22);
-    expect(result.turns.filter((t: Event) => t.fresh_session).map((t: Event) => t.turn)).toEqual([1,7,12,17,23,27]);
+    expect(result.error).toBeNull(); expect(count).toBe(28); expect(outcomes).toBe(28); expect(fits).toBe(23);
+    expect(result.turns.filter((t: Event) => t.fresh_session).map((t: Event) => t.turn)).toEqual([1,7,12,23,27]);
     expect(Object.entries(result.checks).filter(([,v]) => v !== true)).toEqual([]);
     expect(result.turns[26].baseline_files["council-summary.md"].split(/\s+/).length).toBeGreaterThan(150);
     expect(result.turns[26].changes).toEqual([]); expect(result.unreached_turns).toEqual([]);

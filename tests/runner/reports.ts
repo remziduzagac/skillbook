@@ -46,6 +46,18 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
     "Results are per agent and model. Automatic checks leave semantic review pending.",
     "",
   ];
+  const validations=new Map(results.filter(r=>r.rubric_validation).map(r=>
+    [r.rubric_validation.fixture_hash,r.rubric_validation]));
+  if (validations.size) lines.push("## Judge validation", "");
+  for (const validation of validations.values()) {
+    const f=validation.flip_rate;
+    lines.push(`- Contract ${validation.fixture_hash}: ${validation.validated} candidates validated; ` +
+      `measured flips ${f.changed}/${f.compared} (${(100*f.rate).toFixed(1)}%) at ${f.revision}.`);
+    lines.push(...(validation.noise_candidates.length ? validation.noise_candidates.map((c:Event)=>
+      `- Nonblocking noise: ${c.check}, trace ${c.ref}; initial ${c.initial}; expected ${c.expected}; ` +
+        `reruns ${c.reruns.map(String).join(", ")}.`) :
+      ["- Nonblocking noise: none."]), "");
+  }
   for (const [group, scores] of Object.entries(scoreRuns(results as any))) {
     lines.push(`## Scores: ${group}`, "", "95% Wilson intervals over scored checks; correlated turns are not independent trials.", "");
     for (const [tag, s] of Object.entries(scores))

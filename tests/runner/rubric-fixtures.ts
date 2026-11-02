@@ -3,6 +3,7 @@ import { judgeEvidence } from "./scenario";
 import { action_evidence } from "./trace";
 import { helperEvidence } from "./helpers";
 import { fixtureDiffs } from "./files";
+import { chapterAt } from "./chapters";
 import { readFileSync } from "node:fs";
 import { ruleChecks, resultChecks } from "./rule-checks";
 import type { Case, Event } from "./types";
@@ -103,6 +104,10 @@ export function validateRubricFixtures(book: RubricBook = rubricFixtures, cases?
     for (const ref of refs) {
       const trace = rubricTrace(ref, book);
       if (trace.case !== row.case) throw Error("rubric trace belongs to another case");
+      const current=cases?.find(c=>c.id===row.case);
+      if (book.scope==="active" && current &&
+        trace.chapter!==chapterAt(current,trace.observation.turn ?? row.turn)?.number)
+        throw Error("rubric trace does not match the current chapter: " + ref);
       resolveRubricTrace(ref, book);
     }
   }
@@ -118,7 +123,7 @@ export function activeRubricBook(path: string | undefined, cases: Case[]) {
 }
 export function rubricFixtureHash(book: RubricBook = rubricFixtures) {
   // Active judgments expire on semantic definition drift as well as trace/criterion drift.
-  const contract = book.scope === "active" ? ["judge-protocol.ts","fixture-validation.ts","rubric-fixtures.ts","scenario.ts","trace.ts","legacy-reads.ts","access.ts","helpers.ts","measurement.ts","measure-turn.ts","rule-outcomes.ts","rule-checks.ts","run.ts","judgment-policy.ts","../check-rubric-fixtures.ts"]
+  const contract = book.scope === "active" ? ["judge-protocol.ts","fixture-validation.ts","rubric-fixtures.ts","chapters.ts","scenario.ts","trace.ts","legacy-reads.ts","access.ts","helpers.ts","measurement.ts","measure-turn.ts","rule-outcomes.ts","rule-checks.ts","run.ts","judgment-policy.ts","../check-rubric-fixtures.ts"]
     .map(file => [file,readFileSync(new URL(file,import.meta.url),"utf8")]) : undefined;
   const data = book.scope === "active" ? { book, rules: ruleChecks(), results: resultChecks(), contract } : book;
   return new Bun.CryptoHasher("sha256").update(JSON.stringify(data)).digest("hex");
@@ -130,21 +135,97 @@ export function rubricCandidates(book: RubricBook = rubricFixtures) {
     { ref: row.negative, expected: false },
   ].map(candidate => ({ ...candidate, expected: row.expectations && candidate.ref in row.expectations ? row.expectations[candidate.ref]! : candidate.expected, check: `${row.case}:${row.turn}:${row.id}` })));
 }
-export function validateRubricReport(report: Event, book: RubricBook = rubricFixtures) {
+export const JUDGE_REPEATABILITY = {
+  revision: "94fd856", changed: 3, compared: 239, rate: 3 / 239,
+};
+function gateRows(report: Event, candidates: ReturnType<typeof rubricCandidates>, book: RubricBook, hash: string) {
+  const active = book.scope === "active";
+  const key = (row: Event) => `${row.check}:${active ? row.ref : row.expected}`;
+  const expected = new Map(candidates.map(c => [key(c),c]));
+  if (report.model !== "gpt-6.1-sol" || report.fixture_hash !== hash ||
+    !Array.isArray(report.results) || report.results.length !== expected.size ||
+    report.expected_judgments !== undefined && report.expected_judgments !== expected.size)
+    throw Error("rubric validation is incomplete or stale");
+  const seen = new Map<string,Event>();
+  for (const row of report.results) {
+    const id=key(row), candidate=expected.get(id);
+    if (!candidate || seen.has(id) || row.error || row.expected !== candidate.expected ||
+      !row.judgment || ![true,false,null,"not reached"].includes(row.judgment.verdict))
+      throw Error("rubric correct/wrong trace validation is incomplete or invalid");
+    seen.set(id,row);
+  }
+  return new Map(candidates.map(c => [`${c.check}@${c.ref}`,seen.get(key(c))!]));
+}
+export function rubricMisses(report: Event, book: RubricBook = rubricFixtures) {
+  if (!report || report.mode !== "full" || report.scoring_authorized === false)
+    throw Error("reruns require a full report, never a preview or combined report");
+  const candidates=rubricCandidates(book), rows=gateRows(report,candidates,book,rubricFixtureHash(book));
+  return candidates.filter(c => rows.get(`${c.check}@${c.ref}`)!.judgment.verdict !== c.expected);
+}
+function gateReruns(reruns: Event[], misses: ReturnType<typeof rubricCandidates>, book: RubricBook, hash: string) {
+  if (!Array.isArray(reruns) || reruns.length !== 2) throw Error("each miss needs two reruns on the same contract");
+  return reruns.map((rerun:Event,index:number) => {
+    if (!rerun || rerun.mode !== "rerun" || rerun.round !== index+1) throw Error("invalid or duplicated rerun round");
+    return gateRows(rerun,misses,book,hash);
+  });
+}
+function gateAnalysis(report: Event, book: RubricBook) {
   if (report.mode === "preview" || report.scoring_authorized === false)
     throw Error("preview reports cannot authorize scoring");
-  const active = book.scope === "active";
-  const expected = new Set(rubricCandidates(book).map(c => `${c.check}:${active ? c.ref : c.expected}`));
-  if (report.model !== "gpt-6.1-sol" || report.fixture_hash !== rubricFixtureHash(book) ||
-    !Array.isArray(report.results) || report.results.length !== expected.size)
-    throw Error("rubric validation is incomplete or stale");
-  const seen = new Set<string>();
-  for (const row of report.results) {
-    const key = `${row.check}:${active ? row.ref : row.expected}`;
-    const candidate = rubricCandidates(book).find(c => c.check === row.check && (active ? c.ref === row.ref : c.expected === row.expected));
-    if (!expected.has(key) || seen.has(key) || row.expected !== candidate?.expected || row.judgment?.verdict !== candidate?.expected)
-      throw Error("rubric correct/wrong trace validation did not pass");
-    seen.add(key);
+  if (report.mode !== undefined && !["full","combined"].includes(report.mode))
+    throw Error("only a full or combined report can authorize scoring");
+  const candidates=rubricCandidates(book), hash=rubricFixtureHash(book);
+  const rows=gateRows(report,candidates,book,hash);
+  const misses=candidates.filter(c => rows.get(`${c.check}@${c.ref}`)!.judgment.verdict !== c.expected);
+  const noise: Event[]=[];
+  if (report.mode === "combined") {
+    const repeats=gateReruns(report.reruns,misses,book,hash);
+    for (const c of misses) {
+      const key=`${c.check}@${c.ref}`, verdicts=repeats.map(r => r.get(key)!.judgment.verdict);
+      if (verdicts.some(v => v !== c.expected)) throw Error("a miss repeated in a rerun; rubric validation did not pass");
+      noise.push({check:c.check,ref:c.ref,expected:c.expected,initial:rows.get(key)!.judgment.verdict,reruns:verdicts});
+    }
+  } else if (misses.length) throw Error("rubric correct/wrong trace validation did not pass");
+  return {validated:candidates.length,fixture_hash:hash,noise_candidates:noise,flip_rate:{...JUDGE_REPEATABILITY}};
+}
+export function combineRubricReports(full: Event, reruns: Event[], book: RubricBook = rubricFixtures) {
+  rubricMisses(full,book);
+  const report={...full,mode:"combined",reruns};
+  // Keep incomplete or repeated misses reportable; only validation decides whether scoring is allowed.
+  let noise_candidates: Event[]=[];
+  if (reruns.length === 2) {
+    const misses=rubricMisses(full,book), hash=rubricFixtureHash(book);
+    try {
+      const rows=gateReruns(reruns,misses,book,hash);
+      noise_candidates=misses.filter(c => rows.every(r=>r.get(`${c.check}@${c.ref}`)!.judgment.verdict===c.expected))
+        .map(c=>({check:c.check,ref:c.ref,expected:c.expected,
+          initial:full.results.find((r:Event)=>r.check===c.check && r.expected===c.expected && (book.scope!=="active" || r.ref===c.ref))!.judgment.verdict,
+          reruns:rows.map(r=>r.get(`${c.check}@${c.ref}`)!.judgment.verdict)}));
+    } catch { /* Failed or incomplete rounds remain visible and block the gate. */ }
   }
-  return seen.size;
+  const noiseKeys=new Set(noise_candidates.map(c=>`${c.check}@${c.ref}`));
+  const combined={...report,noise_candidates,flip_rate:{...JUDGE_REPEATABILITY},
+    blocking_candidates:rubricMisses(full,book).filter(c=>!noiseKeys.has(`${c.check}@${c.ref}`))};
+  let gate_passed=false,gate_error:string|undefined;
+  try {validateRubricReport(combined,book);gate_passed=true;} catch (error) {gate_error=String(error);}
+  return {...combined,gate_passed,...(gate_error ? {gate_error} : {})};
+}
+export function validateRubricReport(report: Event, book: RubricBook = rubricFixtures) {
+  const analysis=gateAnalysis(report,book);
+  if (report.mode === "combined") {
+    const noise=report.noise_candidates,keys=Array.isArray(noise) ? noise.map((c:Event)=>`${c.check}@${c.ref}`) : [];
+    const retained=Array.isArray(noise) && noise.length===analysis.noise_candidates.length &&
+      new Set(keys).size===keys.length && analysis.noise_candidates.every(c=>noise.some((row:Event)=>
+        row.check===c.check && row.ref===c.ref && row.expected===c.expected && row.initial===c.initial &&
+        Array.isArray(row.reruns) && row.reruns.length===2 && row.reruns.every((v:unknown)=>v===c.expected)));
+    const rate=report.flip_rate,expected=analysis.flip_rate;
+    if (!retained || !rate || rate.revision!==expected.revision || rate.changed!==expected.changed ||
+      rate.compared!==expected.compared || rate.rate!==expected.rate)
+      throw Error("combined report must retain its noise candidates and measured flip rate");
+  }
+  return analysis.validated;
+}
+export function rubricValidationSummary(report: Event, book: RubricBook = rubricFixtures) {
+  validateRubricReport(report,book);
+  return gateAnalysis(report,book);
 }

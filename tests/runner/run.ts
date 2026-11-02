@@ -399,6 +399,7 @@ export async function runPlan(
           review: c.review ?? [],
         };
       }
+      if (args.rubric_validation_summary) result.rubric_validation = args.rubric_validation_summary;
       done.set(index, result);
       writeFileSync(join(out, `run-${index + 1}.json`), JSON.stringify(result, null, 2) + "\n");
       spent += result.cost ?? 0;

@@ -1,4 +1,4 @@
-import { rubricCandidates, resolveRubricTrace, fixtureJudgeEvidence, type RubricBook } from "./rubric-fixtures";
+import { rubricCandidates, resolveRubricTrace, fixtureJudgeEvidence, rubricMisses, combineRubricReports, type RubricBook } from "./rubric-fixtures";
 import { resultChecks, ruleChecks } from "./rule-checks";
 import { FIXTURE_INSTRUCTION, structuredPrompt, judgeCriterion, resultRubric, checkedJudgment, loadingOnly, loadingJudgment } from "./judge-protocol";
 import type { Case, Event, JudgeRequest } from "./types";
@@ -13,6 +13,20 @@ export function candidateFingerprint(entry: FixtureEntry, rules = ruleChecks()) 
 export function fixtureManifest(entries: FixtureEntry[]) {
   const rules=ruleChecks();
   return entries.map(entry => ({check:entry.check,ref:entry.ref,fingerprint:candidateFingerprint(entry,rules)}));
+}
+export async function rerunFixtureMisses(full: Event, book: RubricBook, entries: FixtureEntry[],
+  judgeRound: (selected: FixtureEntry[], ordinal: number, checkpoint: (report: Event) => void) => Promise<Event>,
+  checkpoint: (report: Event) => void = () => {}) {
+  const names=new Set(rubricMisses(full,book).map(candidateKey));
+  const selected=entries.filter(e=>names.has(candidateKey(e)));
+  if (selected.length!==names.size) throw Error("rerun entries do not cover every miss");
+  const rounds:Event[]=[];
+  for (let ordinal=1;ordinal<=2;ordinal++) {
+    rubricMisses(full,book); // Reject a tree change before either round starts.
+    rounds.push(await judgeRound(selected,ordinal,current=>
+      checkpoint(combineRubricReports(full,[...rounds,current],book))));
+  }
+  const report=combineRubricReports(full,rounds,book);checkpoint(report);return report;
 }
 // Preview selection is a union of explicit names, prior misses and changed requests/labels.
 // Older reports need their exact book supplied because they did not save candidate fingerprints.

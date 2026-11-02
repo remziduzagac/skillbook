@@ -72,7 +72,7 @@ with tempfile.TemporaryDirectory(prefix='festival-contract-') as folder:
     assert subprocess.run(['python3','-c',code],cwd=root,env=env,capture_output=True).returncode!=0
 `;
   const result=spawnSync("python3",["-I","-c",script],{encoding:"utf8",input:JSON.stringify({command:action.command,
-    sources:book.chapter_sources!["essentials/festival:4"]})});
+    sources:book.chapter_sources![`${c.id}:${rubricTrace("t17:correct",book).chapter}`]})});
   expect(result.status,result.stderr).toBe(0);
 });
 test("correct artifacts carry their required content and a checkable plan",()=>{

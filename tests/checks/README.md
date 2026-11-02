@@ -32,7 +32,7 @@ A wait call naming a helper does not count as an observed start. Helper records 
 
 The frozen `tests/calibration/scenario-traces.json` book resolves and validates independently of executable cases. It remains historical evidence. `bun tests/check-rubric-fixtures.ts OUTPUT CALIBRATION --historical --login` explicitly selects it.
 
-Active scoring requires a separate book with `scope: active`, selected with `--rubric-book FILE` in the runner and saved-answer judge. The fixture validator selects it with `--book FILE`. Its criteria must match the selected current cases and the promised-return library. Positive, alternative and negative trace references must be distinct. Every allowed alternative requires its own successful judgment. Active report hashes include the book and current rule/result definitions. A historical report cannot enable active scoring. Account-free transport tests cannot enable it either. The active festival book is `tests/calibration/festival-traces.json`. Its `library` records cover every visible return, including each clarification alternative; every rule definition has at least one scenario criterion. Tests check this inventory and source drift without a model. They do not create a semantic validation report.
+Active scoring requires a separate book with `scope: active`, selected with `--rubric-book FILE` in the runner and saved-answer judge. The fixture validator selects it with `--book FILE`. Its criteria must match the selected current cases and the promised-return library. Positive, alternative and negative trace references must be distinct. Every allowed alternative requires its own matching judgment or two matching reruns of an initial miss under the current contract. Active report hashes include the book and current rule/result definitions. A historical report cannot enable active scoring. Account-free transport tests cannot enable it either. The active festival book is `tests/calibration/festival-traces.json`. Its `library` records cover every visible return, including each clarification alternative; every rule definition has at least one scenario criterion. Tests check this inventory and source drift without a model. They do not create a semantic validation report.
 
 Active trace books can supply `chapter_sources`, keyed by `case:chapter`, for checkpoint-specific source files. Trace history cannot cross a case or chapter. Rechecking uses saved chapter checkpoints and global turn numbers. Retired case selectors fail before output creation or model calls; historical rechecking requires the tagged checkout.
 
@@ -58,3 +58,12 @@ bun tests/check-rubric-fixtures.ts /tmp/preview-plan.json --book tests/calibrati
 bun tests/check-rubric-fixtures.ts /tmp/preview.json /tmp/calibration.json \
   --book tests/calibration/festival-traces.json --preview --candidates /tmp/candidates.json --login
 ```
+
+For a full report with misses, run the two-round gate step on the same tree:
+
+```sh
+bun tests/check-rubric-fixtures.ts /tmp/combined.json /tmp/calibration.json \
+  --book tests/calibration/festival-traces.json --rerun-misses /tmp/full.json --login
+```
+
+The command judges only the full report's misses, twice, in separate fresh calls. Both reruns must match each missed candidate; either repeated miss blocks scoring. Incomplete, duplicated, extra or stale rounds cannot open the gate. The combined report retains original judgments, both rounds, noise candidates and the measured 3/239 (1.3%) flip rate at `94fd856`. Live and saved-run summaries keep the accepted noise list and that measurement. Add `--dry-run` to write a non-authorizing two-round plan without login or calibration. Rerun output must differ from the original full report; a preview cannot be its source.

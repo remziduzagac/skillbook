@@ -1,6 +1,6 @@
 # Skill tests
 
-The active case is [festival.yaml](cases/essentials/festival.yaml): six chapters and 28 turns from [the scenario design](../blueprint/design/scenarios/festival.md). Each chapter starts a fresh session from an authored checkpoint. It is a development scenario, not unseen evidence of skill effectiveness. Executable checks and authored traces are not observed model results.
+The active case is [festival.yaml](cases/essentials/festival.yaml): five chapters and 28 turns from [the scenario design](../blueprint/design/scenarios/festival.md). Each chapter starts a fresh session from an authored checkpoint. It is a development scenario, not unseen evidence of skill effectiveness. Executable checks and authored traces are not observed model results.
 
 ## Inspect without a model
 

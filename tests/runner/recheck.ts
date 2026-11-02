@@ -7,13 +7,25 @@ import { check } from "./checks";
 import { evaluateTagged, score } from "./scoring";
 import type { Case, Event, Verdict } from "./types";
 
+function requireSavedLayout(run: Event, c: Case) {
+  if (c.chapters) for (const [index,turn] of (run.turns ?? []).entries()) {
+    const number=turn.turn ?? index+1, chapter=chapterAt(c,number);
+    const fresh=chapter?.start_turn===number || c.turns[number-1]?.fresh_session===true;
+    if (turn.chapter!==chapter?.number || typeof turn.fresh_session==="boolean" && turn.fresh_session!==fresh)
+      throw Error(`saved chapter/session layout differs at turn ${number}; use the saved run's matching case revision`);
+  }
+}
 export function requireSavedCases(runs: Event[], cases: Map<string, Case>) {
-  for (const run of runs) if (!cases.has(run.case))
-    throw Error(`missing or retired case: ${run.case}; recheck historical runs in the essentials-old-tests checkout`);
+  for (const run of runs) {
+    const c=cases.get(run.case);
+    if (!c) throw Error(`missing or retired case: ${run.case}; recheck historical runs in the essentials-old-tests checkout`);
+    requireSavedLayout(run,c);
+  }
 }
 // Replays use saved checkpoints. Current disk fixtures are a legacy fallback only.
 export function recheckScenario(original: Event, c: Case): Event {
   if (!c) throw Error(`missing or retired case: ${original.case}`);
+  requireSavedLayout(original,c);
   const result = structuredClone(original);
   const selected: number[] = original.selected_turns ?? c.turns.map((_, i) => i + 1);
   result.expected_turns = selected.length;

@@ -145,6 +145,7 @@ export interface Options {
   judge?: boolean;
   calibration?: string;
   rubric_validation?: string;
+  rubric_validation_summary?: Event;
   rubric_book?: string;
   agents: Agent[];
   runs: number;

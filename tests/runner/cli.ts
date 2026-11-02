@@ -1,6 +1,6 @@
 import { selectedTurns } from "./chapters";
 import { readFileSync } from "node:fs";
-import { activeRubricBook, validateRubricReport } from "./rubric-fixtures";
+import { activeRubricBook, rubricValidationSummary } from "./rubric-fixtures";
 import { requireCalibration } from "./calibration";
 import { parseArgs as parse } from "node:util";
 import { join } from "node:path";
@@ -135,7 +135,9 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
   if (args.judge) {
     console.log("Judge calibration:", requireCalibration(args.calibration));
     if (!args.rubric_validation) throw Error("--judge needs --rubric-validation FILE");
-    console.log("Rubric trace judgments:", validateRubricReport(JSON.parse(readFileSync(args.rubric_validation, "utf8")), activeRubricBook(args.rubric_book, cases)));
+    args.rubric_validation_summary = rubricValidationSummary(JSON.parse(readFileSync(args.rubric_validation, "utf8")),
+      activeRubricBook(args.rubric_book, cases));
+    console.log("Rubric trace judgments:", args.rubric_validation_summary);
   }
   const usable = plan.filter(([, a]) => {
     const problem = loginProblem(a, args.login);
