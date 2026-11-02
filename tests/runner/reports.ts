@@ -56,7 +56,10 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
     lines.push(...(validation.noise_candidates.length ? validation.noise_candidates.map((c:Event)=>
       `- Nonblocking noise: ${c.check}, trace ${c.ref}; initial ${c.initial}; expected ${c.expected}; ` +
         `reruns ${c.reruns.map(String).join(", ")}.`) :
-      ["- Nonblocking noise: none."]), "");
+      ["- Nonblocking noise: none."]));
+    lines.push(...(validation.blocking_candidates ?? []).map((c:Event)=>
+      `- Tolerated blocking miss (limit ${validation.blocking_limit}): ${c.check}, trace ${c.ref}; initial ${c.initial}; ` +
+        `expected ${c.expected}; reruns ${c.reruns.map(String).join(", ")}.`), "");
   }
   for (const [group, scores] of Object.entries(scoreRuns(results as any))) {
     lines.push(`## Scores: ${group}`, "", "95% Wilson intervals over scored checks; correlated turns are not independent trials.", "");

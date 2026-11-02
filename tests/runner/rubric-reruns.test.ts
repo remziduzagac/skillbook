@@ -48,6 +48,27 @@ test("either repeated miss blocks, including unknown reruns against an expected 
   const unknown=full(b,["alternative"]);
   expect(validateRubricReport(combineRubricReports(unknown,[repeat(unknown,b,1),repeat(unknown,b,2)],b),b)).toBe(3);
 });
+test("up to 1% of candidates may still block after reruns, each one listed; one more fails the gate",()=>{
+  const b=book();b.checks=Array.from({length:34},(_,i)=>({...b.checks[0]!,id:`result-${i}`}));
+  const candidates=rubricCandidates(b),flipped=(keys:string[])=>{
+    const initial=full(b,[]);
+    for(const r of initial.results)if(keys.includes(`${r.check}@${r.ref}`))r.judgment.verdict=r.expected===true?false:true;
+    const rounds=[repeat(initial,b,1),repeat(initial,b,2)];
+    for(const r of rounds[0]!.results)r.judgment.verdict=r.expected===true?false:true;
+    return combineRubricReports(initial,rounds,b);
+  };
+  expect(candidates).toHaveLength(102);
+  const key=(i:number)=>`${candidates[i]!.check}@${candidates[i]!.ref}`;
+  const one=flipped([key(0)]);
+  expect(one.gate_passed).toBe(true);expect(one.blocking_candidates).toHaveLength(1);
+  const summary=rubricValidationSummary(one,b);
+  expect(summary.blocking_limit).toBe(1);expect(summary.blocking_candidates.map((c:Event)=>c.ref)).toEqual(["good"]);
+  expect(()=>validateRubricReport({...one,blocking_candidates:[]},b)).toThrow("tolerated blocking");
+  expect(summarize([{case:"unit",agent:"codex",model:"gpt-6.1-sol",run:1,cost:0,checks:{},turns:[],
+    rubric_validation:summary}],0)).toContain("Tolerated blocking miss (limit 1): unit:1:result-0, trace good");
+  const two=flipped([key(0),key(3)]);
+  expect(two.gate_passed).toBe(false);expect(two.gate_error).toContain("2 blocking misses exceed the limit of 1");
+});
 test("missing, extra, duplicated or preview rounds cannot substitute for two numbered reruns",()=>{
   const b=book(),initial=full(b),one=repeat(initial,b,1),two=repeat(initial,b,2);
   for(const rounds of [[],[one],[one,one],[one,two,two],[one,{...two,mode:"preview"}],

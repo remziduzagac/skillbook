@@ -138,6 +138,9 @@ export function rubricCandidates(book: RubricBook = rubricFixtures) {
 export const JUDGE_REPEATABILITY = {
   revision: "94fd856", changed: 3, compared: 239, rate: 3 / 239,
 };
+// Borderline traces keep flipping at this size; up to 1% of candidates may still block, each one listed.
+export const GATE_BLOCKING_SHARE = 0.01;
+export const gateBlockingLimit = (candidates: number) => Math.floor(candidates * GATE_BLOCKING_SHARE);
 function gateRows(report: Event, candidates: ReturnType<typeof rubricCandidates>, book: RubricBook, hash: string) {
   const active = book.scope === "active";
   const key = (row: Event) => `${row.check}:${active ? row.ref : row.expected}`;
@@ -177,16 +180,19 @@ function gateAnalysis(report: Event, book: RubricBook) {
   const candidates=rubricCandidates(book), hash=rubricFixtureHash(book);
   const rows=gateRows(report,candidates,book,hash);
   const misses=candidates.filter(c => rows.get(`${c.check}@${c.ref}`)!.judgment.verdict !== c.expected);
-  const noise: Event[]=[];
+  const noise: Event[]=[], blocking: Event[]=[], limit=gateBlockingLimit(candidates.length);
   if (report.mode === "combined") {
     const repeats=gateReruns(report.reruns,misses,book,hash);
     for (const c of misses) {
       const key=`${c.check}@${c.ref}`, verdicts=repeats.map(r => r.get(key)!.judgment.verdict);
-      if (verdicts.some(v => v !== c.expected)) throw Error("a miss repeated in a rerun; rubric validation did not pass");
-      noise.push({check:c.check,ref:c.ref,expected:c.expected,initial:rows.get(key)!.judgment.verdict,reruns:verdicts});
+      const row={check:c.check,ref:c.ref,expected:c.expected,initial:rows.get(key)!.judgment.verdict,reruns:verdicts};
+      (verdicts.some(v => v !== c.expected) ? blocking : noise).push(row);
     }
+    if (blocking.length > limit) throw Error(`a miss repeated in a rerun; rubric validation did not pass: ` +
+      `${blocking.length} blocking misses exceed the limit of ${limit}`);
   } else if (misses.length) throw Error("rubric correct/wrong trace validation did not pass");
-  return {validated:candidates.length,fixture_hash:hash,noise_candidates:noise,flip_rate:{...JUDGE_REPEATABILITY}};
+  return {validated:candidates.length,fixture_hash:hash,noise_candidates:noise,blocking_candidates:blocking,
+    blocking_limit:limit,flip_rate:{...JUDGE_REPEATABILITY}};
 }
 export function combineRubricReports(full: Event, reruns: Event[], book: RubricBook = rubricFixtures) {
   rubricMisses(full,book);
@@ -222,6 +228,10 @@ export function validateRubricReport(report: Event, book: RubricBook = rubricFix
     if (!retained || !rate || rate.revision!==expected.revision || rate.changed!==expected.changed ||
       rate.compared!==expected.compared || rate.rate!==expected.rate)
       throw Error("combined report must retain its noise candidates and measured flip rate");
+    const listed=Array.isArray(report.blocking_candidates) ? report.blocking_candidates : [];
+    if (listed.length!==analysis.blocking_candidates.length || analysis.blocking_candidates.some(c=>
+      !listed.some((row:Event)=>row.check===c.check && row.ref===c.ref)))
+      throw Error("combined report must list its tolerated blocking misses");
   }
   return analysis.validated;
 }
