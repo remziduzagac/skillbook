@@ -1,4 +1,5 @@
 import { resultRubric } from "./judge-protocol";
+import { wordCount } from "./answers";
 import { selectedTurns, putCheckpoint, commitCheckpoint } from "./chapters";
 import { resolvedNeeds } from "./needs";
 import { sourceSnapshots } from "./source-snapshots";
@@ -228,6 +229,7 @@ export async function runOne(
         fresh_session: !!chapterStart || (turn.fresh_session ?? false),
         purpose: turn.purpose ?? "",
         final_answer: final,
+        final_words: wordCount(final),
         between_tools: between,
         claim_text: observation.answer,
         claim_messages: turnEvents.flatMap((e, order) => agent === "codex" ?

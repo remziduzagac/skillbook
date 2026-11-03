@@ -1,4 +1,5 @@
 import { scoreRuns } from "./scoring";
+import { lengthSummary } from "./answers";
 import { readFileSync } from "node:fs";
 import { walk } from "./inventory";
 import type { Event } from "./types";
@@ -69,6 +70,11 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
         `${s.unknown} unknown; ${s.not_reached} not reached`);
     lines.push("");
   }
+  const lengths = results.filter(r => r.turns?.length).map(r => ({ r, ...lengthSummary(r.turns) }));
+  if (lengths.length) lines.push("## Final-answer length", "",
+    "Words in each turn's final answer. A number to read beside the scores, never a verdict.", "",
+    ...lengths.map(({ r, turns, median, total }) => `- ${r.case}, ${r.agent} (${r.model}), run ${r.run}: ` +
+      `median ${median} words, total ${total} words, over ${turns} turns`), "");
   const fits: Record<string, { off: number; unknown: number; total: number }> = {};
   for (const r of results) if (r.user_mode === "fixed") {
     const counts = fits[r.case] ??= { off: 0, unknown: 0, total: 0 };

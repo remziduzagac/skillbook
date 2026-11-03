@@ -13,7 +13,7 @@
       "applicability": "always",
       "required_skill": "respond",
       "deadline": "answer",
-      "expected": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics.",
+      "expected": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics.",
       "rejected": "Reporting process without naming the result; repeating a saved deliverable.",
       "evidence": "Code first: ordered file/action evidence. Otherwise yes/no with a verbatim answer quote or recorded action id. Missing evidence is unknown.",
       "user_choices": "Open intent, audience, result kind and any changed approval scope remain the user's.",

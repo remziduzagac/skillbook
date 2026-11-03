@@ -404,7 +404,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -414,7 +414,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -430,13 +430,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -530,7 +530,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -540,7 +540,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -556,13 +556,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -653,7 +653,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -663,7 +663,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -679,13 +679,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -799,7 +799,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -809,7 +809,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -830,13 +830,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -914,7 +914,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -924,7 +924,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -940,13 +940,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -1036,7 +1036,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -1046,7 +1046,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -1062,13 +1062,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -1263,7 +1263,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -1273,7 +1273,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -1289,13 +1289,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -1410,7 +1410,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -1420,7 +1420,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -1441,13 +1441,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -1528,7 +1528,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -1538,7 +1538,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -1554,13 +1554,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -1636,7 +1636,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -1646,7 +1646,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -1662,13 +1662,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -1767,7 +1767,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -1777,7 +1777,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -1793,13 +1793,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -1913,7 +1913,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -1923,7 +1923,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -1939,13 +1939,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -2035,12 +2035,12 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -2050,7 +2050,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -2071,7 +2071,7 @@
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -2190,7 +2190,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -2200,7 +2200,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -2216,13 +2216,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -2360,7 +2360,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -2370,7 +2370,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -2386,13 +2386,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -2516,7 +2516,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -2526,7 +2526,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -2547,13 +2547,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -2717,7 +2717,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -2727,7 +2727,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -2743,13 +2743,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -2854,7 +2854,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -2864,7 +2864,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -2880,13 +2880,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -3011,7 +3011,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -3021,7 +3021,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -3042,13 +3042,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -3212,7 +3212,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -3222,7 +3222,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -3243,13 +3243,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -3438,7 +3438,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -3448,7 +3448,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -3469,13 +3469,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -3592,7 +3592,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -3602,7 +3602,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -3623,13 +3623,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -3792,7 +3792,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -3802,7 +3802,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -3823,13 +3823,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -3918,7 +3918,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -3928,7 +3928,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -3949,13 +3949,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -4041,7 +4041,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -4051,7 +4051,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -4067,13 +4067,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -4209,7 +4209,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -4219,7 +4219,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -4235,13 +4235,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -4357,7 +4357,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -4367,7 +4367,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -4383,13 +4383,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",
@@ -4451,7 +4451,7 @@
         {
           "id": "point",
           "tag": "habit:point-first",
-          "criterion": "Put the main answer, result or necessary question first; use plain English and keep internal process out."
+          "criterion": "Put the main answer, result or needed question in the first line or two."
         },
         {
           "id": "scope",
@@ -4461,7 +4461,7 @@
         {
           "id": "glance",
           "tag": "habit:clear-at-a-glance",
-          "criterion": "Show the whole result at a glance in a form that fits the reader; no excess internal explanation."
+          "criterion": "Name each thing created, changed or found together in one place, with the result."
         },
         {
           "id": "outcomes",
@@ -4477,13 +4477,13 @@
           "id": "rule:act:rule:3",
           "tag": "rule:act:rule:3",
           "source_check": "requested-work",
-          "criterion": "Judge this turn: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work, and nothing unrelated. Give other concerns and outside follow-ups one final line each. Offer alternatives beside the requested action, never in its place."
+          "criterion": "Judge this turn's work only: raise action-changing concerns first, then do exactly what was asked. Ask about a concern that would change the work or the user's consent before the part it affects, including one found partway. Follow choices the user or the project files already settled, and reopen one only by asking. Do the parts the user asked for, with what they need to work. Do and change nothing unrelated. Offer alternatives beside the requested action, never in its place. How long the answer's follow-ups or side remarks run is judged by the respond guide's rule 1 check, not here."
         },
         {
           "id": "rule:respond:rule:1",
           "tag": "rule:respond:rule:1",
           "source_check": "useful-final",
-          "criterion": "Include what the user needs to act, without unasked side topics or repeated deliverables. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
+          "criterion": "Include what the user needs to act. Fail only when you can quote a part of the answer that the request does not need, and say why. Such a part is a side topic the user did not ask about, a plan or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern that runs longer than one line. Saying needed content in more words is not extra. Give the location and basis of saved work in a line or two. Parts another rule requires, such as a notice of text aimed at an agent, one line per outside follow-up or a failure, are not side topics."
         },
         {
           "id": "rule:respond:rule:4",

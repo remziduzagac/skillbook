@@ -15,6 +15,8 @@ import { aspectCoverage } from "./inventory";
 import { putCheckpoint } from "./chapters";
 import { sourceSnapshots } from "./source-snapshots";
 import { fixtureText } from "./files";
+import { wordCount } from "./answers";
+import { summarize } from "./reports";
 import type { Event, Checks } from "./types";
 const path = "tests/calibration/festival-traces.json";
 const festival = () => loadCases("essentials/festival")[0]!;
@@ -159,6 +161,9 @@ for (const no_skill of [false, true]) test(`festival runs all chapters with an i
       });
     expect(result.error).toBeNull(); expect(count).toBe(28); expect(outcomes).toBe(28); expect(fits).toBe(23);
     expect(result.turns.filter((t: Event) => t.fresh_session).map((t: Event) => t.turn)).toEqual([1,7,12,23,27]);
+    // Each turn records its final answer's word count, and the report prints the median and total beside the scores.
+    expect(result.turns.every((t: Event) => t.final_words === wordCount(t.final_answer) && t.final_words > 0)).toBe(true);
+    expect(summarize([result], 0)).toContain("## Final-answer length");
     expect(Object.entries(result.checks).filter(([,v]) => v !== true)).toEqual([]);
     expect(result.turns[26].baseline_files["council-summary.md"].split(/\s+/).length).toBeGreaterThan(150);
     expect(result.turns[26].changes).toEqual([]); expect(result.unreached_turns).toEqual([]);

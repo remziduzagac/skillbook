@@ -4,6 +4,7 @@ import { FIXTURES } from "./paths";
 import { chapterAt } from "./chapters";
 import { progressFindings } from "./progress";
 import { check } from "./checks";
+import { finalAnswer, wordCount } from "./answers";
 import { evaluateTagged, score } from "./scoring";
 import type { Case, Event, Verdict } from "./types";
 
@@ -49,6 +50,7 @@ export function recheckScenario(original: Event, c: Case): Event {
     observation.baseline_files ??= checkpoint?.sources ?? result.fixture_sources;
     observation.baseline_snapshot ??= checkpoint?.snapshot;
     complete &&= observation.trace_complete !== false;
+    observation.final_words ??= wordCount(finalAnswer(observation));
     for (const change of observation.changes ?? []) {
       const [kind, ...parts] = change.split(" "), path = parts.join(" ");
       if (kind === "removed") present.delete(path);

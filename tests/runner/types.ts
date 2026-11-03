@@ -170,6 +170,7 @@ export interface TurnResult extends Observation {
   sent_message: string;
   purpose: string;
   final_answer: string;
+  final_words?: number;
   between_tools: string[];
   actions: Event[];
   file_diffs: Record<string, string>;

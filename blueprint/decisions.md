@@ -4154,6 +4154,9 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 **Tested:** Static checks pass with 91 Python and 654 TypeScript tests, 89 valid YAML cases and 74 unchanged conversions. All fifteen scenarios use the three shared final-answer checks; the authored fixture inventory is 269, without AI pair validation. The calibration passes are incomplete: 12 of 58 and 15 of 58 judgments returned, all agreeing with the human; 11 shared judgments match. Repeated timeouts, including isolated diagnostic calls, prevent a full agreement result. Progress review flags seven entries without scoring them. Partial records and the report are in `/tmp/skillbook-calibration2/`. No broader scoring was run; judge calibration remains unresolved.
 
+> **Amended by D299 (2026-11-03):** point-first judges position only, and clear-at-a-glance judges only whether each thing created, changed or found is named together, with the result. Plain English, internal process and extra content each have their own check.
+
+
 ## D271: honor requests to confirm before a change (2026-10-26)
 
 **Decision:** The `act` skill proposes and ends the turn when the user asks to see or confirm a change before it is made, whatever the stakes. A request to see what changed afterward keeps the ordinary edit and report path.
@@ -4561,6 +4564,9 @@ The exit's conditions are exact because agents take an exit eagerly. A test such
 
 **Tested:** not yet run; the gate and the single test pass after the review cover it.
 
+> **Amended by D299 (2026-11-03):** only the `respond` guide's rule 1 check judges whether a required notice or a follow-up runs longer than it needs; the `act` guide's rule 3 check judges the work only.
+
+
 ## D297: a claim the evidence shows false gets the verdict "contradicted" (2026-11-02)
 
 **Decision:** The `understand-research-fact` guide's rule 3 gains a fifth verdict, "contradicted": relevant evidence that applies to the case shows the claim is false, such as a newer rule that replaces the one the claim rests on. Unsupported and unknown still never prove a claim false; only contradicted does. When applicable evidence outweighs the rest by the guide's rule 2, the verdict is supported or contradicted, not mixed. Research's result shape and the glossary list the five verdicts.
@@ -4596,3 +4602,19 @@ A delegated worker reads the base and the guides its brief names, and applies no
 - **Reverses and amends:** this reverses the part of D279 and D280 that reads all six main guides on every request, and amends D290's worker-reading rule and D284's home for the delegation advice.
 
 **Tested:** not yet run; the gate and the chapter runs after this change cover it.
+
+## D299: one check per behaviour, and style is never a failure (2026-11-03)
+
+**Decision:** Each behaviour of a festival final answer has one home among the checks, and style is never scored as a failure. This amends D270 and D296.
+
+- **Point first** judges position only: "Put the main answer, result or needed question in the first line or two." Plain English stays with the `respond` guide's rule 4 check. Internal process and skill names stay with the guide-names check and the `respond` guide's rule 1 check.
+- **Extra content** has one home, the `respond` guide's rule 1 check: side topics, plans or alternatives nobody asked for written out in the answer, repeated deliverables, narrated process, and an outside follow-up or concern longer than one line. It fails only when the judge can quote the extra part and say why the request does not need it. The location and basis of saved work in a line or two, and the parts another rule requires, stay allowed.
+- **The `act` guide's rule 3 check** judges the work only: action-changing concerns raised first, settled choices followed, the parts asked for done with what they need, nothing unrelated done or changed, and alternatives beside the requested action. It no longer judges how long follow-ups run.
+- **Clear-at-a-glance** has a concrete test: "Name each thing created, changed or found together in one place, with the result." "A form that fits the reader" and "no excess internal explanation" are dropped.
+- **Every judge gets the rule:** "Style is not a failure: more words for needed content or a fuller explanation pass every check. Layout is judged only by the `respond-layout` guide's own checks. Fail a check about extra or unclear content only when you can quote the part and say what makes it extra." The skill-name sentence applies to the guide-names check and the `respond` guide's rule 1 check only, and only rule 1 judges how long a required notice or follow-up runs.
+- **Length is a number, never a verdict:** each turn's final-answer word count is saved, the run summary prints the median and total per run, and `tests/compare-runs.ts` compares a model with its own earlier judged run, with the share of checks that flipped between the runs.
+- **The trace book follows:** the wrong clear-at-a-glance and `respond` rule 1 traces show their own fault, and turns 2, 8, 12, 20, 25 and 28 carry a fuller correct answer, about three times the words, as a passing alternative, so the gate tests the line between a full answer and a too-long one.
+
+**Why:** In one Sonnet run, 35 length and scope failures came from 16 turns, with three or four failures on 7 of them: a long answer with a side topic failed point-first, clear-at-a-glance, `respond` rule 1 and `act` rule 3 together. The point check mixed position, plain English and process. The glance check judged "excess internal explanation" and "a form that fits the reader", which have no measure. Rule 3 also judged follow-up length. Saying the needed things in more words is a model's style; adding content nobody asked for is behaviour the guides forbid. Failing only the second, and only on a quotable part, keeps the score about behaviour, while length stays visible as a number. The trace book's correct answers had a median of 118 words against Sonnet's 468, so the gate never showed a judge a long answer that was still fine. Two runs of the same chapters showed 23% of Sonnet's decided checks and 8% of Sol's flipping between runs, so a model is compared with its own earlier runs, with that share beside the result.
+
+**Tested:** not yet run; the gate and a re-judging of saved answers cover it.

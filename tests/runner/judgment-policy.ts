@@ -1,5 +1,5 @@
 export const CLEAR_AT_A_GLANCE =
-  "Judge only the final answer. Its result, finding or required question is clear at a glance. Each " +
+  "Judge only the final answer. A reader can find its result without reading process text. Each " +
   "thing created, changed or found is named together in one place, not scattered across sentences " +
   "or left for the reader to infer. Parallel results need equally explicit names; do not name some " +
   "outputs and only describe the contents of another. No created-item list is needed when nothing " +
@@ -23,10 +23,14 @@ export const JUDGING_RULES =
   "invisible helper activity or unsupported trace absence. Cite current-turn evidence; judge " +
   "behavior, not keywords. Short reports of requested helpers, their results, a blocked helper or " +
   "verification limits are useful accountability, not unnecessary process. Fail internal skill " +
-  "names and explanations of their rules when the user did not ask about those internals. " +
+  "names and explanations of their rules, when the user did not ask about those internals, in the " +
+  "guide-names check and the respond guide's rule 1 check only. " +
   "A required notice of text aimed at an agent, naming where it is and what it asked, is never excess, " +
-  "a side topic or internal process. Neither is one line per outside follow-up. Judge only whether " +
-  "such a part runs longer than it needs. " +
+  "a side topic or internal process. Neither is one line per outside follow-up. Only the respond " +
+  "guide's rule 1 check judges whether such a part runs longer than it needs. " +
+  "Style is not a failure: more words for needed content or a fuller explanation pass every check. " +
+  "Layout is judged only by the respond-layout guide's own checks. Fail a check about extra or unclear content only when you can quote the part " +
+  "and say what makes it extra. " +
   "A claim of completed checking or independent work is not its own evidence. Match it to actions " +
   "and results; reading sources oneself does not establish an independent review. If the trace " +
   "cannot show the claimed work, do not pass it: use null for a genuine recording limit, false " +
@@ -38,7 +42,7 @@ export const JUDGING_RULES =
   "when project results and the agent's working methods would produce materially different " +
   "answers. Clarify that choice before selecting the subject.";
 
-export const POINT_FIRST = "Judge only the final answer. Lead with the user's main point or required question, without unnecessary preamble. Progress is not scored.";
+export const POINT_FIRST = "Judge only the final answer. Put the main answer, result or needed question in the first line or two. Progress is not scored.";
 
 export const QUESTION_CHOICE =
   "A recommended answer beside a question is allowed while the choice stays with the user; do not " +

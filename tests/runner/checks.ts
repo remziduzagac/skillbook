@@ -1,4 +1,4 @@
-import { finalAnswer } from "./answers";
+import { finalAnswer, wordCount } from "./answers";
 import { readFileSync, existsSync, statSync, realpathSync, readdirSync } from "node:fs";
 import { join, resolve, relative, posix } from "node:path";
 import { tmpdir } from "node:os";
@@ -145,7 +145,7 @@ export function check(
   for (const [p, limit] of Object.entries(checks.words_under ?? {})) {
     const text = availableFile(p) ? result.files![p] : null;
     out[`${p} has fewer than ${limit} words`] = text == null ? missingFile(p) :
-      (text.trim() ? text.trim().split(/\s+/u).filter(token => /[\p{L}\p{N}]/u.test(token)).length : 0) < limit;
+      wordCount(text) < limit;
   }
   for (const [p, replacement] of Object.entries(checks.only_replacement ?? {})) {
     const before = baseline(p), after = result.files?.[p];
