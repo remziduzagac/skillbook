@@ -4684,7 +4684,14 @@ The design (`blueprint/design/essentials/respond.md`) follows in rule 1, step 5 
 
 Sol already passes the rule, so the risk is a dropped needed step. The sub-bullets keep offers other rules require, a better way beside what was asked, and steps only the user can take.
 
-**Tested:** not yet run; the full gate and one full festival run on Sonnet and Sol, judged by the Sol judge, cover it.
+**Tested:** one full festival run, 28 turns, on Claude Code with Sonnet and Codex with GPT-6.1 Sol, judged by the Sol judge, compared with the last full pass's saved answers re-judged with the same checks. The full gate passed with 3 blocking misses out of 997 candidates, all on checks these decisions did not change: turn 17's `act` rule 9, turn 20's outcomes and turn 25's `coordinate-setup` rule 2. Every changed check matched its traces, including turn 22's stopping offer.
+
+- **Sonnet:** failed the `respond` rule 1 check on 16 turns, against 12. Its answers had offer wording, such as "Do you want me to revise the rain plan… now?", on 8 turns against 10. Its total answer length was 13,094 words against 13,401. Its other rule 1 failures were the same kinds as before: accounts of how the work was done, outside problems worked out, and copies of saved files.
+- **Sol:** failed the check on 3 turns against 2, with offer wording on 4 turns against 4.
+- **All checks:** Sonnet failed 113 against 96 and Sol 59 against 51. The saved answers predate reading the stage guides at their stage (D298), so one run cannot separate that from the spread between runs. The stage guides' own checks stayed flat: Sonnet 28 to 29, Sol 18 to 19.
+- **Result:** no measurable effect, so D304 removes the bullet.
+
+> **Amended by D304 (2026-11-03):** the bullet against offers of more work, with its two sub-bullets, is removed from the `respond` guide's rule 1. Step 5's concrete action stays.
 
 ## D303: the checks judge content, never length (2026-11-03)
 
@@ -4700,4 +4707,15 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 
 **Why:** D299 made length a number, never a verdict, but three criteria still counted lines: an outside follow-up "longer than one line", the location and basis of saved work "in a line or two", and "one short harness-required line". A part is extra for what it holds, not for its size. A guide's own line limits stay as advice to the agent.
 
-**Tested:** not yet run; the full gate and one full festival run on Sonnet and Sol, judged by the Sol judge, cover it.
+**Tested:** the last full pass's saved answers, all 28 turns, re-judged by the Sol judge, with the D299 checks and then the D303 checks. The full gate passed with 3 blocking misses out of 997 candidates, all on checks these decisions did not change: turn 17's `act` rule 9, turn 20's outcomes and turn 25's `coordinate-setup` rule 2. Every changed check matched its traces, including turn 22's stopping offer.
+
+- **Sonnet:** 105 fails against 96. `respond` rule 1 went from 14 to 12, and the other `act` and `respond` checks from 38 to 32.
+- **Sol:** 51 against 51. `respond` rule 1 went from 0 to 2. Both new failures quote plans of future work, so they are about content, not length.
+
+## D304: no offers bullet in the respond guide (2026-11-03)
+
+**Decision:** The bullet against offers of more work, with its two sub-bullets, is removed from the `respond` guide's rule 1. This amends D302. Step 5's concrete action stays, and so do the D303 checks. The festival's rule 1 criterion keeps an offer of more work as extra, since the `act-rightsize` guide's common extras name a closing offer and step 5 points to them. The design keeps one test of that, under step 5, and drops the two tests that only guarded the bullet's exceptions.
+
+**Why:** In one full run the bullet had no measurable effect (D302's Tested line), and it cost about 440 characters on every request. Sonnet's extra content spreads over many kinds, which fits a model's general style better than one missing rule. It stays visible in the checks and in the word counts.
+
+**Tested:** not run. It restores rule 1's earlier wording. The pinned `respond` text changes, so the next judging needs a new full gate first.

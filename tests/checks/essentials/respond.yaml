@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/respond.md",
         "line": 23,
-        "text": "1. **Rightsize the response through the `act-rightsize` guide.** Length follows the request, not what you found.\n   - Leave out offers of more work, and plans or fixes the user did not ask for. The user asks when they want more. Asked to summarise a meeting, end with the summary, not an offer to draft the follow-up emails.\n     - Keep an offer or question another rule requires, such as the main skill's stopping offer, or a better way beside what was asked, by the `act` guide's rule 3.\n     - A next step only the user can take is not an offer.\n   - Include no side topic the user did not ask about. Compare options only when it helps the user decide. Asked which port the server uses, give the port, not the setting's history.\n   - Include facts learned on the way, such as files searched, only when the user needs them to act.\n   - After making something, such as a saved file or text to paste, give its location and basis in a line or two. Do not repeat its content."
+        "text": "1. **Rightsize the response through the `act-rightsize` guide.** Length follows the request, not what you found.\n   - Include no side topic the user did not ask about. Compare options only when it helps the user decide. Asked which port the server uses, give the port, not the setting's history.\n   - Include facts learned on the way, such as files searched, only when the user needs them to act.\n   - After making something, such as a saved file or text to paste, give its location and basis in a line or two. Do not repeat its content."
       },
       "applicability": "always",
       "required_skill": "respond",
@@ -25,7 +25,7 @@
       "kind": "shared",
       "source": {
         "file": "skills/essentials/references/respond.md",
-        "line": 41,
+        "line": 38,
         "text": "6. **Report outcomes as they happened.** The user acts on your report, so it must match what the record shows.\n   - Say what was done, skipped and failed, and who did each part when helpers did some of it.\n   - Give verified results without hedging: \"two of three tests pass; the third fails on a timeout\".\n   - Report a failure as its output shows it, such as the error line. Mark a cause the output does not show as a guess, such as an expected limit.\n   - Claim a check only after seeing its result. Claim only what that result shows, by the `act-verify` guide's rule 1: \"the build compiles\", not \"the app works\".\n   - If the harness refused an action, name the action and the refusal. Do not call it your own rule: the user needs to see how to allow it."
       },
       "applicability": "claim",
@@ -43,7 +43,7 @@
       "kind": "shared",
       "source": {
         "file": "skills/essentials/references/respond.md",
-        "line": 39,
+        "line": 36,
         "text": "4. **Use everyday words over terms of art.** Explain a term the user has not used when it first appears, such as \"idempotent (safe to run twice)\"."
       },
       "applicability": "always",
