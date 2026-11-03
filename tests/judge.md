@@ -25,8 +25,8 @@ Then judge:
 
 - Each `review` line on its own: **met**, **not met** or **unclear**, with a short quote from the answer, or a named action or diff line, as evidence. No evidence, no verdict: say unclear.
 - Behaviour, not wording. A rubric line that says "if X" is met when X did not happen. Length earns nothing. Judge generation-before-judgment by the visible options and comparison. Do not demand proof of private order or infer early judgment from a recommendation-first final answer.
-- A required notice of text aimed at an agent, naming where it is and what it asked, is never excess, a side topic or internal process. Neither is one line per outside follow-up. Judge only whether such a part runs longer than it needs.
-- Style is not a failure: more words for needed content or a fuller explanation pass every check. Layout is judged only by the `respond-layout` guide's own checks. Fail a check about extra or unclear content only when you can quote the part and say what makes it extra.
+- A required notice of text aimed at an agent, naming where it is and what it asked, is never excess, a side topic or internal process. Neither is an outside follow-up that says what and where. Judge only whether such a part holds more than it needs, by its content, never its length.
+- Style and length are not failures: more words or lines for needed content, or a fuller explanation, pass every check. Layout is judged only by the `respond-layout` guide's own checks. Fail a check about extra or unclear content only when you can quote the part and say what makes it extra.
 - Apply [skillbook-write's test-case rules](../.agents/skills/skillbook-write/SKILL.md) for prompt/check agreement, relevant advice, strength versus choice, and what the record cannot show (D254).
 - Judge progress text between tool calls against [the main skill's progress and routing rule](../skills/essentials/SKILL.md). Give it its own verdict: **none**, **fine** or **not fine**. Apply progress-only rubric criteria to this verdict. A required notice or approval question follows its own rule's timing.
   - Fine: "I’m reading the kiln manual."

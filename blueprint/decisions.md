@@ -4635,6 +4635,8 @@ Re-judging the last full pass's saved answers, all 28 turns, with the new checks
 - **Left open:** most of the gap between Sonnet and Sol under the Sol judge remains, in the guides' rule and result checks (60 fails against 29), `respond` rule 1 (14 against 0) and outcomes. Clear-at-a-glance failed one of 112 judged answers across both judges and both models.
 
 > **Amended by D301 (2026-11-03):** the clear-at-a-glance check is removed. Point-first covers where the result goes, the `respond-layout` guide's own checks cover layout, and the `respond` guide's rule 1 check covers extra content.
+>
+> **Amended by D303 (2026-11-03):** no check fails an answer for its line or word count. The extra-content check judges what a part holds, and an outside follow-up is extra only when it is worked out beyond what it is and where.
 
 ## D300: read devise on every request, with act and respond (2026-11-03)
 
@@ -4662,3 +4664,40 @@ Re-judging the last full pass's saved answers, all 28 turns, with the new checks
 **Why:** After D299 gave the check a concrete test, the gate's judge passed 8 of its 28 wrong traces (turns 1, 8, 9, 10, 12, 14, 24 and 27), because items in one paragraph count as "together in one place". Re-judging the last full pass with both judges, it failed 1 of 112 answers. A check that real answers never fail, and that cannot fail its own wrong traces, measures nothing and costs a judgment on every turn.
 
 **Tested:** the full gate passed with 13 blocking misses out of 997 candidates, under the 2% limit. The six fuller correct answers passed every check they are still attached to. Two correct traces now show faults the judge reads the same way three times, behind 8 of the 13: turn 20's cut list names welcome language the summary does not have, which fails five of its checks, `act` rule 3 among them, and turn 15 leaves out one sheet's date, which fails three. With those two fixed, and the turn 17, 25 and 26 traces the judge also faulted, the next full gate had 4 blocking misses out of 997.
+
+## D302: leave out offers of more work (2026-11-03)
+
+**Decision:** The `respond` guide's rule 1 gains a first bullet: leave out offers of more work, and plans or fixes the user did not ask for. The user asks when they want more. Two sub-bullets keep what other rules need:
+
+- **Kept:** an offer or question another rule requires, such as the main skill's stopping offer, or a better way beside what was asked, by the `act` guide's rule 3.
+- **Not an offer:** a next step only the user can take.
+
+The word "alternatives" is left out of the bullet, since the `act` guide's rule 3 allows a better way beside what was asked and the two must not contradict. Instructions step 5 now names the action for rule 1: read the response again and remove each part the request did not ask for, by rule 1's bullets and the `act-rightsize` guide's common extras. The list of common extras keeps its one home, the `act-rightsize` guide's Advice, and is not copied into the `respond` guide.
+
+The design (`blueprint/design/essentials/respond.md`) follows in rule 1, step 5 and three designed tests: an answer that ends with an offer of more work (wrong), the stopping offer when the user stops (kept), and a better way named beside the requested action (kept). The rule 1 criterion in the festival case and the trace book names an offer of more work as extra (D303 holds its wording).
+
+**Why:** Re-judging the last full pass's 28 turns with the D299 checks, the Sol judge failed Sonnet's `respond` rule 1 check on 14 turns and Sol's on none; the Sonnet judge saw 10 against 4. The failed parts were offers or plans of more work (turns 2, 3, 4, 22 and 27), accounts of how the work was done (1, 12, 13 and 28), pasted copies of saved files (7 and 23), unrequested fixes or plans (9 and 14), and a follow-up longer than one line (25). Three causes sat in the guide:
+
+- Offers of more work were named nowhere in rule 1.
+- The list of common extras, which names a closing offer, lives only in the `act-rightsize` guide's Advice.
+- Step 5's "the `act-rightsize` guide's check" named no action a model could take.
+
+Sol already passes the rule, so the risk is a dropped needed step. The sub-bullets keep offers other rules require, a better way beside what was asked, and steps only the user can take.
+
+**Tested:** not yet run; the full gate and one full festival run on Sonnet and Sol, judged by the Sol judge, cover it.
+
+## D303: the checks judge content, never length (2026-11-03)
+
+**Decision:** No festival check fails an answer for its line or word count. This amends D299. The guides keep their own wording, such as "in a line or two" and "one line in the final answer", as advice to the agent. Only the tests change: a check fails a part only for what it holds.
+
+- **The `respond` rule 1 criterion** is rewritten. It fails only a quotable part the request does not need: a side topic, an offer of more work (D302), a plan, fix or alternative nobody asked for written out in the answer, a deliverable repeated after it was made, narrated process, or an outside follow-up or concern worked out beyond what it is and where, such as with its cause, a check or a fix. It says: "Judge content, never length: needed content in more words or more lines is not extra." The location and basis of saved work are not extra. Parts another rule requires are not extra: a notice of text aimed at an agent, an outside follow-up, a failure, the stopping offer, a needed question and a better way beside what was asked.
+- **The `act` rule 3 criterion** ends: "Whether the answer's follow-ups or side remarks hold more than they need is judged by the respond guide's rule 1 check, not here."
+- **The guide-names criterion** allows "a line the harness requires", not "one short harness-required line".
+- **The point criterion** stays: "the first line or two" says where the answer starts, not how long it runs. The outcomes criteria of turns 20 and 21 keep "under 150 words", the scenario's own requirement.
+- **The shared judge rules** (`tests/runner/judgment-policy.ts`, `tests/judge.md`) drop "Short" from the reports of requested helpers, say an outside follow-up that says what and where is never excess, say rule 1's check judges what such a part holds, "by its content, never its length", and say: "Style and length are not failures: more words or lines for needed content, or a fuller explanation, pass every check."
+- **The same text in the checks and the designs** follows: `tests/checks/essentials/respond.yaml` and `act.yaml`, `blueprint/design/testing.md` and `blueprint/design/scenarios/festival.md`.
+- **The trace book** needs no new trace. The wrong `respond` rule 1 traces fail on content: plans, fixes or side topics in the outside paragraphs of turns 3, 8, 13, 14, 17, 22 and 25, and offers of more work in turns 5, 12, 24 and 28. Turn 22's correct trace ends with the stopping offer, which the criterion keeps.
+
+**Why:** D299 made length a number, never a verdict, but three criteria still counted lines: an outside follow-up "longer than one line", the location and basis of saved work "in a line or two", and "one short harness-required line". A part is extra for what it holds, not for its size. A guide's own line limits stay as advice to the agent.
+
+**Tested:** not yet run; the full gate and one full festival run on Sonnet and Sol, judged by the Sol judge, cover it.
