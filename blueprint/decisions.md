@@ -4646,7 +4646,10 @@ Re-judging the last full pass's saved answers, all 28 turns, with the new checks
 
 **Why:** In one run of festival chapters 3 and 5 on Sonnet and Sol (D298), neither model read `devise` on turns 18, 20, 21 or 27, where its stage test fires, and both skipped `devise-plan` on turn 27, which they read when every main guide loaded by default. The same miss on two models points to the skill, not the model. The guide is about 550 words, against about 1,500 for `understand`, so reading it every time costs little. Every request already gets an approach in thinking.
 
-**Tested:** not yet run; the gate and a run of festival chapter 2 cover it.
+**Tested:** one run of festival chapter 2 (turns 7–11) on Claude Code with Sonnet and Codex with GPT-6.1 Sol, compared with the last full pass's answers for the same turns, when every main guide loaded by default. Both judged with the D299 checks, without clear-at-a-glance.
+
+- **Loading:** both models read `devise` on turn 7, with `devise-design` there and `devise-plan` on turn 11; no needed `devise` guide went unread.
+- **Scores:** no loss. The Sol judge failed Sonnet 22 times against 22 before and Sol 10 against 17; the Sonnet judge failed Sonnet 11 against 10 and Sol 12 against 17, out of 65 checks each. On the nine `devise` checks, the Sol judge moved two of Sonnet's from pass to fail (`devise-plan` rule 6, `devise-design-review` rule 2) and none of Sol's; the design-values check, `devise-design` rule 3, failed on both models, as it did before.
 
 ## D301: no clear-at-a-glance check (2026-11-03)
 
@@ -4658,4 +4661,4 @@ Re-judging the last full pass's saved answers, all 28 turns, with the new checks
 
 **Why:** After D299 gave the check a concrete test, the gate's judge passed 8 of its 28 wrong traces (turns 1, 8, 9, 10, 12, 14, 24 and 27), because items in one paragraph count as "together in one place". Re-judging the last full pass with both judges, it failed 1 of 112 answers. A check that real answers never fail, and that cannot fail its own wrong traces, measures nothing and costs a judgment on every turn.
 
-**Tested:** not yet run; the gate covers it.
+**Tested:** the full gate passed with 13 blocking misses out of 997 candidates, under the 2% limit. The six fuller correct answers passed every check they are still attached to. Two correct traces now show faults the judge reads the same way three times, behind 8 of the 13: turn 20's cut list names welcome language the summary does not have, which fails five of its checks, `act` rule 3 among them, and turn 15 leaves out one sheet's date, which fails three.
