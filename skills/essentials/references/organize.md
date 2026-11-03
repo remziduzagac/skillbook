@@ -38,12 +38,29 @@ cluster     A B C            → view over A, B, C
    - Before any change, map every original statement, or each section that moves unchanged, to its new place. This map is the inventory, and it is the map you show for approval.
    - After the change, check the result against the inventory, by step 6. A count alone does not check meaning: the same number of lines can hide one changed rule.
    - Call the check independent only by the `act-verify` guide's rule 2. If a required independent check cannot run, report it as still open, with who should arrange it. The user's confirmation does not replace it.
-4. **Get the user's approval before changing any item or view.** Show the map by step 4. Ask through the `respond-ask` guide. End the turn before applying. Reuse approval only for the work the user approved, while the facts behind it still hold. The two checkpoints still apply when the user gives the steps, when the `act` guide's rule 13 allows work to proceed, or when the `act-rightsize` guide requires one approval. Meaning is at stake. A mode change, task box or unanswered question is not approval. A delegated worker returns questions to its caller.
-5. **Get the user's confirmation after checking the applied result.** Return the evidence and mark the result as awaiting the user's confirmation. End the turn. Claim confirmed completion only after the user replies to confirm the result. Repair lost statements or failed checks and rerun the check before asking for confirmation. A rejected plan returns to planning, or to step 1 if the principle was rejected.
+4. **Get the user's approval before changing any item or view.** Meaning is at stake.
+   - Show the map by step 4. Ask through the `respond-ask` guide. End the turn before applying.
+   - Reuse approval only for the work the user approved, while the facts behind it still hold.
+   - Both checkpoints, this approval and the confirmation in rule 5, still apply when the user gives the steps, when the `act` guide's rule 13 allows work to proceed, or when the `act-rightsize` guide requires one approval.
+   - A mode change, task box or unanswered question is not approval.
+   - A delegated worker returns questions to its caller.
+5. **Get the user's confirmation after checking the applied result.**
+   - Repair lost statements or failed checks, and rerun the check, before asking for confirmation.
+   - Return the evidence and mark the result as awaiting the user's confirmation. End the turn.
+   - Claim confirmed completion only after the user replies to confirm the result.
+   - A rejected plan returns to planning, or to step 1 if the principle was rejected.
 6. **Undo only this operation's changes when its result is rejected.** Check for later edits first. Preserve later and unrelated work. If safe undo cannot be shown or needs a risky new action, report the state and ask about recovery through the `act-guardrails` guide. Do not overwrite others' work to restore an old snapshot. After safe undo, plan again.
 7. **Keep retired items marked with where their content went.** Links and history may still lead there. Use a notice such as "merged into …". Deleting them is a separate action through the `act-guardrails` guide.
-8. **Use the whole code-preservation check for code and packages.** Use a skill in the harness’s list that covers software architecture and code changes, if one fits. Without one, propose generic parts and connections, then make only approved changes directly. Run project tests before and after. Keep public interfaces, documented behavior and untested requirements, by the `act-rightsize` guide’s code rule. Passing tests alone do not prove that public interfaces, documented behavior and untested requirements were preserved. Report unavailable checks. Claim no specialist architecture review from the fallback.
-9. **Leave each item the user agreed to exclude unchanged, outside the scope you change.** An excluded item still holds content someone may need. Every other required in-scope item gets one home in a completed arrangement. A check or an unapplied proposal may still report gaps. A partly resolved change is not complete.
+8. **Use the whole code-preservation check for code and packages.**
+   - Use a skill in the harness’s list that covers software architecture and code changes, if one fits.
+   - Without one, propose generic parts and connections, then make only approved changes directly. Claim no specialist architecture review from this fallback.
+   - Run project tests before and after. Keep public interfaces, documented behavior and untested requirements, by the `act-rightsize` guide’s code rule.
+   - Passing tests alone do not prove that public interfaces, documented behavior and untested requirements were preserved.
+   - Report unavailable checks.
+9. **Leave each item the user agreed to exclude unchanged, outside the scope you change.** An excluded item still holds content someone may need.
+   - Every other required in-scope item gets one home in a completed arrangement.
+   - A check or an unapplied proposal may still report gaps.
+   - A partly resolved change is not complete.
 10. **Use the creating guide's or skill's approvals when only planning a future whole.** Its requirements are the items to divide. Rules 3–7 do not apply because planning a future whole changes no existing arrangement. Writing a view over existing items still uses both checkpoints. A mixed request keeps the safeguards for existing material.
 
 ## Advice
@@ -74,7 +91,8 @@ Organizing gives every required part one clear place without changing what it me
 4. **Show the before-and-after map, then end the turn.** This step must not move: nothing changes until the user approves, by rule 4. The user can judge a change only from its map, and a part lost unseen is hard to find later.
    - Include every item's destination, each part's boundary in one sentence, reference changes, retirements and exclusions.
    - Check the map against the source: every original statement or unchanged section has one place, with the same meaning. Then check the map for gaps and overlaps.
-   - Say what the gap and overlap check found, or that it found none. Run step 7's check before you show the map.
+   - Say what the gap and overlap check found, or that it found none.
+   - Run step 7's check before you show the map.
    - Show the map whole when it fits on a screen. Otherwise put it in a named file and give the path, parts, counts and exceptions.
    - Ask through the `respond-ask` guide. When you only plan a whole not yet written, return the proposed parts to the active caller instead, by rule 10.
 5. **Apply the approved map through the chosen operation's guide.** A change beyond the approval is one the user never judged.
@@ -85,7 +103,10 @@ Organizing gives every required part one clear place without changing what it me
    - Choose who compares by the `coordinate` guide. Use a fresh agent when the `act-verify` guide's rule 2 asks for an independent check. Report a comparison you made yourself as self-checked.
    - Return the checked inventory as the before-and-after map: each original statement or unchanged section, its new place and the result of its check. Show it whole when it fits on a screen. Otherwise save it in a named file, and give the path and any exceptions.
    - Give the principle and boundaries, or say they are as approved. Name what was retired, edited or relinked, and which approvals the user gave.
-   - Run step 7's check. Then ask the user to confirm the result, together with any other question that ends the turn, and end the turn, by rule 5. Follow rule 6 if the user rejects it. The caller keeps the result. Without a caller, keep it in the response.
+   - Run step 7's check.
+   - Then ask the user to confirm the result, together with any other question that ends the turn. End the turn, by rule 5.
+   - Follow rule 6 if the user rejects it.
+   - The caller keeps the result. Without a caller, keep it in the response.
 7. **Check every result before you return it, and say which state it is in.** Always do this last, before each return: findings, a map shown for approval, a plan for a new whole, or a changed arrangement. A proposal reported as done, or a check reported as confirmed, misleads the user about what changed.
    - The states: findings, an unapplied proposal, a checked result awaiting confirmation, or confirmed completion.
    - In a completed change, every required in-scope item has one home, approved exclusions are kept and retired items are marked.

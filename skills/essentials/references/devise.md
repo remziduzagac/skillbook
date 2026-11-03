@@ -20,7 +20,7 @@ The approach stays in thinking. Return any used child’s result to the active t
 
 Every request gets an approach before work starts: which way to go, which guides shape each part, and how the result will be checked. Going the wrong way costs rework, and the first idea is not always the best one. **Think the approach through before you start, and use design or planning where the work needs them.**
 
-Design and plan may call each other for a different part of the work. Do not start the caller again.
+Design and plan may call each other for a different part of the work. A guide called this way returns its result to its caller. It does not start the caller again.
 
 1. **Settle the approach in your thinking before you start.** A way chosen before you see what the work needs is often the wrong one.
    - Start from the intent, the goal and what a good result looks like.

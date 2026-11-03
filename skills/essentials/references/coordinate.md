@@ -19,7 +19,7 @@ Each used method’s result and its actual status, returned to the task that ask
 
 ## Advice
 
-- **Delegate by default.** An agent does the task, so this conversation keeps its room for the user and their decisions. This is strong advice: follow it unless the case gives a reason not to. When you depart from it, give that reason in your final answer. Do it yourself only when:
+- **Delegate by default.** An agent does the task, so this conversation keeps its room for the user and their decisions. This is strong advice: follow it unless the case gives a reason not to. When you depart from it, give that reason in your final answer. Do the task yourself only when one of these holds:
   - it is too small: you know the change or answer, it takes about three tool calls or fewer, and its reading and output are short, such as renaming a heading you have seen. Summarising a folder of reports is not small;
   - the user must decide things as it goes, not only at the start;
   - the conversation needs the content itself, such as a file the user wants to go through line by line.

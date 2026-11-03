@@ -29,7 +29,7 @@ To match the destination, follow the `act` guide's rule on which instruction win
 - The user's instruction in the conversation wins over both.
 - The lists, heading levels and widths below are defaults. They give way to where the output goes, such as a message that does not render markdown or a narrow window, and to the user's preferences.
 
-1. **Give headings to sections readers may seek or jump to.** Use them for two or more such parts. One short point needs none. Keep heading levels in order. Name each section in a few words. Bold lines cannot be navigated or linked to. Use the `respond-ask` guide for question rounds.
+1. **Give headings to sections readers may seek or jump to.** Use them for two or more such parts. One short point needs none. Keep heading levels in order. Name each section in a few words. Bold lines cannot be navigated or linked to. For question rounds, follow the `respond-ask` guide.
 2. **Bold is for a label or a key phrase inside a section.** A section's title is a heading, by rule 1.
 3. **Keep tables to short values.** Example: three options with two short attributes. Keep rows within 120 characters. Wider rows wrap into noise in a terminal. Turn wide content into a list with sub-items. Follow the strong advice below on whether to use a table.
 4. **Write one line per paragraph or list item.** Do not wrap prose by hand.
