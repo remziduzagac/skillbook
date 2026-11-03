@@ -4601,7 +4601,11 @@ A delegated worker reads the base and the guides its brief names, and applies no
 - **Known risk, skipping:** when loading was left to Sonnet in an earlier run, it read guides a third as often as Sol. So each stage test is something the agent can apply to the request, with an example that qualifies and one that does not, not "if needed" (skillbook-design check 13), and the musts that matter most stay in the stage text where they are read every time.
 - **Reverses and amends:** this reverses the part of D279 and D280 that reads all six main guides on every request, and amends D290's worker-reading rule and D284's home for the delegation advice.
 
-**Tested:** not yet run; the gate and the chapter runs after this change cover it.
+**Tested:** one run each of festival chapters 3 and 5 (turns 12–22, 27–28) on Claude Code with Sonnet and Codex with GPT-6.1 Sol, compared with the last full pass's answers for the same turns, both judged with the D299 checks.
+
+- **Loading:** `organize` and `coordinate` were read on every turn whose stage test fired. Neither model read `devise` on turns 18, 20, 21 or 27, where its test fires, and both skipped `devise-plan` on turn 27, which they read when all six guides loaded by default. Sonnet skipped `understand` and the children it needed on turns 12, 13 and 16; Sol read it on turn 12.
+- **Scores:** no change beyond run-to-run noise. The Sol judge failed Sonnet 66 times against 55 before and Sol 24 times against 24; the Sonnet judge failed Sonnet 27 against 33 and Sol 30 against 33, out of 201 checks each. Sonnet's `understand` failures on turns 12 to 16 were the same when it read the guide by default, apart from one. These chapters hold one `devise` check, left undecided both times, so the skipped `devise` reads are not yet measured; the `devise-design` and `devise-plan` checks sit on turns 7 and 11.
+- **Cost and length:** the runs cost $2.57 against $3.04 for the same chapters before (Sol 30% less, Sonnet 7% less). Final answers were shorter: Sonnet 5,046 words against 6,262, Sol 2,645 against 2,960.
 
 ## D299: one check per behaviour, and style is never a failure (2026-11-03)
 
@@ -4617,4 +4621,11 @@ A delegated worker reads the base and the guides its brief names, and applies no
 
 **Why:** In one Sonnet run, 35 length and scope failures came from 16 turns, with three or four failures on 7 of them: a long answer with a side topic failed point-first, clear-at-a-glance, `respond` rule 1 and `act` rule 3 together. The point check mixed position, plain English and process. The glance check judged "excess internal explanation" and "a form that fits the reader", which have no measure. Rule 3 also judged follow-up length. Saying the needed things in more words is a model's style; adding content nobody asked for is behaviour the guides forbid. Failing only the second, and only on a quotable part, keeps the score about behaviour, while length stays visible as a number. The trace book's correct answers had a median of 118 words against Sonnet's 468, so the gate never showed a judge a long answer that was still fine. Two runs of the same chapters showed 23% of Sonnet's decided checks and 8% of Sol's flipping between runs, so a model is compared with its own earlier runs, with that share beside the result.
 
-**Tested:** not yet run; the gate and a re-judging of saved answers cover it.
+**Tested:** the full gate passed with 13 blocking misses out of 1,066 candidates, under the 2% limit. Eight of the 13 are wrong clear-at-a-glance traces the judge passes, because their items sit together in one paragraph. The six fuller correct answers passed every check they are attached to.
+
+Re-judging the last full pass's saved answers, all 28 turns, with the new checks, against the same answers' earlier judgments:
+
+- **Sol judge on Sonnet:** 105 fails against 116. The four changed checks went from 31 fails to 24: clear-at-a-glance 7 to 0, `act` rule 3 12 to 8, point-first 3 to 2, and `respond` rule 1 9 to 14, where extra content now has its one home.
+- **Sol judge on Sol:** 51 fails against 51, so the change did not loosen the checks for a model with short answers.
+- **Sonnet judge:** Sonnet 51 against 44 and Sol 57 against 53, within that judge's own noise: 7% and 11% of the checks decided both times flipped, in both directions.
+- **Left open:** most of the gap between Sonnet and Sol under the Sol judge remains, in the guides' rule and result checks (60 fails against 29), `respond` rule 1 (14 against 0) and outcomes. Clear-at-a-glance failed one of 112 judged answers across both judges and both models.
