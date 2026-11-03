@@ -4313,6 +4313,17 @@ The runner, the judge, the calibration tools with the human ratings, the rule-ch
 
 **2026-11-02 update:** Merge festival chapters 3 and 4 into one session, turns 12–22, using chapter 3's 8 June checkpoint. The scenario now has five chapters and 28 turns. The removed break tested nothing the retained breaks do not, and a fresh session cost about four later turns in the kept Haiku chapter ($0.018 versus about $0.004). The breaks before chapters 2, 4 and 5 retain the decisions, handover-state and carryover recovery tests.
 
+**2026-11-03 no-skill baseline:** The festival has now run once without skillbook installed, as the no-skill comparison in `blueprint/design/testing.md` asks.
+
+- **Run:** all five chapters, 28 turns, once with the runner's no-skill option, on Claude Code with Sonnet and on Codex with GPT-6.1 Sol. The Sol judge judged it after a fresh full gate, which passed with 5 blocking misses out of 997 candidates.
+- **Compared with:** two runs with the skill installed, judged by the same judge with the same checks: the last full pass's saved answers, re-judged, and the later full run (D302). The same 385 checks per model were judged in all three.
+- **Fails:** installed run 1, installed run 2 and no skill. Sonnet 96, 113 and 136. Sol 51, 59 and 98. The gap without the skill is larger than the spread between the two installed runs (Sonnet 17, Sol 8). It comes from one no-skill run.
+- **Checks that changed with the skill:** 29 Sonnet checks and 37 Sol checks pass in both installed runs and fail without the skill. The reverse happened for 4 Sonnet checks and 1 Sol check.
+- **Where the skill helps most:** fails with the skill (the two installed runs averaged) against fails without it, both models together. The outcomes check 38 against 48; `act-verify` 5.5 against 13; `respond` 24 against 31; `act` 22 against 28; `organize` 4 against 9; `understand-argue` 1 against 5; `act-cleanup` 0 against 4; `respond-ask` 5.5 against 9.
+- **No difference:** the point-first and guide-names checks, and several child guides, such as `understand-research-fact`, `devise-design`, `coordinate-delegate-council` and `understand-brainstorm`. Some of these fail zero times without the skill. Each has 2 to 5 checks per model, too few to judge a guide by.
+- **Cost and length:** the no-skill runs cost $3.09, against $6.62 with the skill. Final answers were about 10% shorter: Sonnet 11,625 words against 13,094, Sol 5,447 against 6,104.
+- **Outcomes:** the outcomes check fails on most turns in every run, with or without the skill, on both models: about two thirds of the turns with the skill.
+
 ## D289: a short direct answer reads no guide, and each guide is read on its own (2026-11-02)
 
 **Decision:** The main skill's first rule gains one exception. A request that a direct answer finishes reads no guide. A reply is direct only when all of these hold:
