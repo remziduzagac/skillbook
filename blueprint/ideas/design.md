@@ -22,7 +22,7 @@ Ideas and open questions for design, not decided. What is decided is in [../desi
 
 ### decide
 
-- Converge (VaultOps): a decision recorded with its reasons and tradeoffs, from understand's weigh; to design with decide (D121).
+- Converge (a private notes system): a decision recorded with its reasons and tradeoffs, from understand's weigh; to design with decide (D121).
 
 
 ### evidence

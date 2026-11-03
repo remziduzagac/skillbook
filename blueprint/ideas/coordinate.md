@@ -6,7 +6,7 @@ Ideas and open questions for coordinate, not decided. What is decided is in [../
 
 - Decided (D99): the two reasons, the tiers, the brief, council, fanout and crew.
 - Reshaped (D138), as the baseline review found (D137).
-- Supervisor and experts with "stuck" and "stale" timers (AgentCrew, AgentTree): whether a long delegated job needs them.
+- Supervisor and experts with "stuck" and "stale" timers (private agent-orchestration specs): whether a long delegated job needs them.
 - Codex's subagents and models, for its reference file.
 - Decided (D138): delegation is the default for any task that is not too small, the person asked only when the agent cannot tell; the main session keeps the conversation, the tracking and the person's decisions; a fork for decided work, a fresh agent for independence or another tier; a running list; delegate reshaped, with routing lines for council, fanout and crew. Raised by the person 2026-10-13 and 2026-10-14. Skills name no outside tool for running agents, and the harness's limits hold (D139).
 - Decided (D142): the type first, after a cost check, then fork or fresh, judged from the list of what the agent needs from the conversation and whether the task's answer is known, then the model; no token thresholds; the window's fullness only where the harness shows it. Raised by the person 2026-10-17, to cut token use; the mechanism is in [../research/token-cost.md](../research/token-cost.md).
@@ -40,6 +40,6 @@ Ideas and open questions for coordinate, not decided. What is decided is in [../
 
 ## learn
 
-- The six-way sort after a task: a skill change, an insight, a decision, a session record, a note, or nothing (workslate).
-- Prune skills that are never used (workslate, rig).
+- The six-way sort after a task: a skill change, an insight, a decision, a session record, a note, or nothing (a private agent-workflow project).
+- Prune skills that are never used (the private agent-workflow project, its predecessor).
 - The retro with an unconditional yardstick (mattpocock, gstack).

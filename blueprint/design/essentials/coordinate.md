@@ -158,7 +158,7 @@ coordinate/
   - Methods run inside the active parent call. Single-worker starts reuse its current controls, approvals, baseline, tracking and cleanup. They do not restart selection or authorize nested delegation.
 - **Files:** `references/coordinate/delegate.md`; optional permitted delegation declared in `Needs:`. Without helper controls, do ordinary work in the main session and report the limitation (D267). Required independent checks follow the `act-verify` guide's rule 2 and remain pending with their next owner. No installation, alternative process or opt-in bypass fills the gap. A missing log alone proves no unavailable helper (D260).
   - Supporting data: `references/coordinate/delegate/assets/prices.md`, read only when cost needs stating; `references/coordinate/delegate/assets/other-harnesses.md`, read only for another named or permitted harness. Prices are dated official API observations, not subscription bills or enforced caps. Unknown price steps and live access remain unknown. The four roles stay light, standard, strong and strongest-model escalation after strong fails. Price changes affect cost/approval, never redefine those roles (D260).
-- **Material:** the person's `delegation-routing`; trailscout; meddah; superpowers' subagent-driven development; VaultOps' supervisor and experts.
+- **Material:** the person's `delegation-routing`; trailscout; a private narrative-game project; superpowers' subagent-driven development; a private notes system's supervisor and experts.
 - **Tests** (D107):
   1. a question one search answers: searched directly, too small to delegate (D138);
   2. a subagent failing on a permission error: the permission fixed or asked about, not a stronger model;
@@ -259,7 +259,7 @@ coordinate/
      Check that members were independent and that no brief supplied the main agent's opinion as evidence. Return the summary, attributed answers and actual missing work to the active caller. A partial council is not a completed set of independent answers. Report any pending check and its next owner.
 - **Gives back** (D279): Each member’s answer with its name, a summary that keeps disagreements, and which answers are missing.
 - **Files:** `references/coordinate/delegate/council.md`. Needs permitted fresh workers through the active delegate call; return limitations and pending independence when unavailable.
-- **Material:** rig and workslate (posts, a spokesman, the person as authority).
+- **Material:** a private agent-workflow project and its predecessor (posts, a spokesman, the person as authority).
 - **Tests** (D261; executable scenarios, with live aspects declared manual):
   1. Returns both attributed views and their disagreement; does not invent missing evidence or a majority decision. Reject: Chooses a winner or silently removes one view.
   2. Keeps the common question and material while excluding the main agent's opinion; retains required worker instructions. Reject: Leaks the main conclusion as evidence or removes the worker baseline.
@@ -383,7 +383,7 @@ coordinate/
      Return actual changes, the final pass and verification evidence to the active caller. Claim completion only when the whole authorized job passed its checks. Keep pending work, user decisions and cleanup visible. Never restart the parent's method selection.
 - **Gives back** (D279): The approved changes, the final pass over the whole, actual check results and unfinished work.
 - **Files:** `references/coordinate/delegate/crew.md`. Needs permitted fresh workers through the active delegate call; return limitations and pending independence when unavailable.
-- **Material:** meddah's parallel writing.
+- **Material:** the private narrative-game project's parallel writing.
 - **Tests** (D261; executable scenarios, with live aspects declared manual):
   1. Assigns disjoint writes and keeps plan approval and verification explicit. Reject: Starts work from a proposal or assigns competing writers to one card.
   2. Gives the index one owner and other writers proposal-only access. Reject: Lets every worker write the index independently.
@@ -541,7 +541,7 @@ coordinate/
 - **Gives back** (D279): The saved note with its actual review and approval status. On resuming, return the differences checked and the approved work that continues.
 - **Where it is kept** (D104, D156, D162, D272): save where the user, caller or project says. Without a specified location, write without asking in the project’s existing carryover folder. Otherwise write a new file named with the local date, 24-hour time and topic, such as `2026-10-17-1530-open-topics.md`. Name the saved path in the final answer. A note left only in the response is lost with the conversation. Each note is a new file, never written over an older one. Older notes stay as history. Resuming reads the newest, and rightsize’s lean may propose pruning older notes (D157, D162). Where the project points to a keeper, the keeper supplies the location and form; carryover names none of its steps (D162, D163).
 - **Files:** `references/coordinate/carryover.md`; optional fresh cold reader, with a provisional-note fallback declared in `Needs:`. The parent gives fresh-session instructions for the user’s agent and says plainly when its command is unknown. The user performs the transition; the note path and plain continuation cover missing controls (D267).
-- **Material:** workslate and rig (four fields: done, remaining, decisions, uncertain; sender and receiver); mattpocock's `handoff` (references by path); the person's agent customisations' final note; gstack's `context-save`; alirezarezvani's `handoff`.
+- **Material:** the private agent-workflow project and its predecessor (four fields: done, remaining, decisions, uncertain; sender and receiver); mattpocock's `handoff` (references by path); the person's agent customisations' final note; gstack's `context-save`; alirezarezvani's `handoff`.
 - **Tests** (D104, D107):
   1. after a multi-step session: all ten parts filled, references by path (D169);
   2. resuming after a commit was added since: the change assessed before affected action; blocking changes ask/end turn and non-blocking differences go in the final answer;
@@ -628,7 +628,7 @@ coordinate/
      Return the proposal or approved document and its location. Check that it answers its intended questions, keeps required facts, uses resolvable references and has actual approval before saving. Never report a proposed change as already saved.
 - **Gives back** (D279): The proposed or approved instruction document, its location and whether it was actually saved.
 - **Files:** `references/coordinate/instruct.md`. See the declared capabilities and fallbacks in Flow.
-- **Material:** mattpocock's `writing-for-agents`; superpowers' `writing-skills`; workslate's and the person's agent customisations' rules for principles files; meddah; the writing guides compared in [../../research/skill-writing-guides.md](../../research/skill-writing-guides.md).
+- **Material:** mattpocock's `writing-for-agents`; superpowers' `writing-skills`; the private agent-workflow project's and the person's agent customisations' rules for principles files; the private narrative-game project; the writing guides compared in [../../research/skill-writing-guides.md](../../research/skill-writing-guides.md).
 - **Tests** (D261; executable scenarios, with live aspects declared manual):
   1. Places the fact in the shared project instructions with a reason; waits for actual save approval. Reject: Writes the file or turns a project fact into a global personal preference.
   2. Uses lean for existing material and proposes moving occasional procedures while preserving needed facts. Reject: Deletes needed content without an approved change list.
@@ -691,7 +691,7 @@ coordinate/
      Return each approved change with its evidence, recommendations with reasons, and anything declined or still pending, each pending check with who can run it and what access it needs (D294). Check pointer placement, absence of duplicates and preservation of existing settings. Full setup needs observed loading; partial setup is useful but is not a completed loading check.
 - **Gives back** (D279): Approved changes and observed loading checks, recommendations, declined work and pending checks.
 - **Files:** `references/coordinate/setup.md`. See the declared capabilities and fallbacks in Flow.
-- **Material:** Claude Code's official plugins (auditing `AGENTS.md`, hooks, recommending skills); loomcraft's rule files.
+- **Material:** Claude Code's official plugins (auditing `AGENTS.md`, hooks, recommending skills); a private documentation system's rule files.
 - **Tests** (D261; executable scenarios, with live aspects declared manual):
   1. Uses the actual personal instruction destination and preserves project files. Reject: Writes a shared project pointer by default.
   2. Keeps the repeat and reports the harmless assumption in the final answer. Reject: Removes it because this one user has skillbook.
@@ -755,7 +755,7 @@ coordinate/
      Check that each highlight is approved and promoted, dropped with a reason, or explicitly pending. Claim completed promotion only for what was actually recorded. Return the destinations and remaining questions to the caller. Keep skill lessons as insights rather than making unapproved skill changes.
 - **Gives back** (D279): Approved lessons and where they were saved, highlights dropped with reasons, and decisions still waiting for the user.
 - **Files:** `references/coordinate/learn.md`. See the declared capabilities and fallbacks in Flow.
-- **Material:** workslate's sort of what was learned; mattpocock's and gstack's retro; Claude Code's official plugins.
+- **Material:** the private agent-workflow project's sort of what was learned; mattpocock's and gstack's retro; Claude Code's official plugins.
 - **Tests** (D261; executable scenarios, with live aspects declared manual):
   1. Proposes a useful rule through instruct in the right scope with approval still pending. Reject: Silently writes a global rule or ignores the repeated correction.
   2. Lists the decision with its reason and offers a named file without silently writing one. Reject: Invents a keeper path or records it without approval.

@@ -134,8 +134,8 @@ essentials/                       essentials, essentials' main skill, the only s
 │   │                             units of any kind, examples across writing, code and design (D61, D85, D86, D107,
 │   │                             D141, D148, D164)
 │   ├── split/                    organize-split: one item, written or still planned, into several parts that do not
-│   │                             overlap and cover it; each part readable on its own and sized to how it is read;
-│   │                             VaultOps' decompose (D85, D148)
+│   │                             overlap and cover it; each part readable on its own and sized to how it is read; a
+│   │                             private notes system's decompose (D85, D148)
 │   ├── merge/                    organize-merge: several redundant items fused into one survivor, links pointing at the
 │   │                             others updated (D85)
 │   ├── compose/                  organize-compose: a new parent over the items that share something, stating what they
@@ -350,7 +350,7 @@ authoring/                        authoring: author renamed (D154): writing work
 ├── rigs/                         rigs: the programs agents drive: git and the GitHub CLI, other agent programs for
 │                                 delegation, herdr, nvim, containers; one home per program for delegate, council and
 │                                 setup; to design (D103) (an idea)
-├── (no folder)                   a knowledge base, once vaultops; its skills as ideas in ideas/later.md (D152, D167)
+├── (no folder)                   a knowledge base; its skills as ideas in ideas/later.md (D152, D167)
 └── (no folder)                   routines; its skills as ideas in ideas/later.md (D152, D167)
 ```
 
@@ -379,7 +379,7 @@ authoring/                        authoring: author renamed (D154): writing work
 
 ## Where the material comes from
 
-For each skill, the sources that already hold material for it: read them before writing it (D30). sk is skillbook's first design; mp mattpocock/skills, sp superpowers, an Anthropic's skills, cc Claude Code's official plugins, gs gstack, ar alirezarezvani/claude-skills, vc vercel's agent skills; own the person's current skills; and the person's projects: ws workslate and rig, vo VaultOps and the agent specs, oc the person's agent customisations, lc loomcraft and infoloom, sb slipbox, ts trailscout, hs herdsman, md meddah.
+For each skill, the sources that already hold material for it: read them before writing it (D30). sk is skillbook's first design; mp mattpocock/skills, sp superpowers, an Anthropic's skills, cc Claude Code's official plugins, gs gstack, ar alirezarezvani/claude-skills, vc vercel's agent skills; own the person's current skills; and the person's projects: ws a private agent-workflow project and its predecessor, vo the private notes system and the agent specs, oc the person's agent customisations, lc two private documentation systems, sb slipbox, ts trailscout, hs herdsman, md a private narrative-game project.
 
 - **understand:** understand-discuss (own, oc, sp); understand-clarify (oc, mp); understand-clarify-shallow (oc); understand-clarify-deep (mp); understand-clarify-questionnaire (mp); understand-frame (oc, vo); understand-brainstorm (oc, sp, vo); understand-weigh (oc, vo); understand-challenge (vo); understand-argue (gs, ar); understand-naming (md, mp); understand-research (mp, ar, own); understand-research-fact (ar, mp, gs); understand-research-survey (ts, an, own, ar); understand-research-analyze (ws, gs, sp, ar).
 - **act:** act-stakes (own); act-guardrails (vo, sb, lc, gs, ts); act-cleanup (own, sp, ar, an); act-verify (sp, md, ws); act-rightsize (own, mp); act-rightsize-lean (own, mp); act-rightsize-enrich (own).

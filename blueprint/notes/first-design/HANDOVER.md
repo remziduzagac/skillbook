@@ -81,7 +81,7 @@ The documents came from a private working folder. Before the first push, and aga
 
 - **trailscout,** an earlier, private project of the person's, is named as the working example in blueprint/design/blueprint.md ("From trailscout"), blueprint/notes/ and the design-documentation research.
 - **herdsman details** appear throughout the research (its gaps, workflows, settings). herdsman is public, but a list of its security gaps may be something the person prefers to fix before publishing.
-- **The person's other projects** (workslate, VaultOps, loomcraft, infoloom, slipbox, meddah and others) are named in blueprint/notes/draft-ideas.md and skillbook-tree.md, as sources of ideas.
+- **The person's other projects** (a private agent-workflow project, a private notes system, two private documentation systems, slipbox, a private narrative-game project and others) are described in blueprint/notes/draft-ideas.md and skillbook-tree.md, as sources of ideas.
 - Local paths were replaced by repository-relative ones; search again for home-directory paths after any copy.
 
 ## How the person works

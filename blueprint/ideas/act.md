@@ -14,7 +14,7 @@ Ideas and open questions for act, not decided. What is decided is in [../design/
 
 ## guardrails
 
-- A review status on what an agent touched (VaultOps): parked with the project folder (D91).
+- A review status on what an agent touched (a private notes system): parked with the project folder (D91).
 
 ## cleanup
 
