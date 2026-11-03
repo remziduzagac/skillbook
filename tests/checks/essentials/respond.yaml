@@ -25,7 +25,7 @@
       "kind": "shared",
       "source": {
         "file": "skills/essentials/references/respond.md",
-        "line": 34,
+        "line": 38,
         "text": "6. **Report outcomes as they happened.** The user acts on your report, so it must match what the record shows.\n   - Say what was done, skipped and failed, and who did each part when helpers did some of it.\n   - Give verified results without hedging: \"two of three tests pass; the third fails on a timeout\".\n   - Report a failure as its output shows it, such as the error line. Mark a cause the output does not show as a guess, such as an expected limit.\n   - Claim a check only after seeing its result. Claim only what that result shows, by the `act-verify` guide's rule 1: \"the build compiles\", not \"the app works\".\n   - If the harness refused an action, name the action and the refusal. Do not call it your own rule: the user needs to see how to allow it."
       },
       "applicability": "claim",
@@ -43,7 +43,7 @@
       "kind": "shared",
       "source": {
         "file": "skills/essentials/references/respond.md",
-        "line": 32,
+        "line": 36,
         "text": "4. **Use everyday words over terms of art.** Explain a term the user has not used when it first appears, such as \"idempotent (safe to run twice)\"."
       },
       "applicability": "always",

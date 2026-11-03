@@ -59,7 +59,7 @@
       "source": {
         "file": "skills/essentials/references/organize.md",
         "line": 41,
-        "text": "4. **Get the user's approval before changing any item or view.** Show the map by step 4. Ask through the `respond-ask` guide. End the turn before applying. Reuse approval only for the work the user approved, while the facts behind it still hold. The two checkpoints still apply when the user gives the steps, when the `act` guide's rule 13 allows work to proceed, or when the `act-rightsize` guide requires one approval. Meaning is at stake. A mode change, task box or unanswered question is not approval. A delegated worker returns questions to its caller."
+        "text": "4. **Get the user's approval before changing any item or view.** Meaning is at stake.\n   - Show the map by step 4. Ask through the `respond-ask` guide. End the turn before applying.\n   - Reuse approval only for the work the user approved, while the facts behind it still hold.\n   - Both checkpoints, this approval and the confirmation in rule 5, still apply when the user gives the steps, when the `act` guide's rule 13 allows work to proceed, or when the `act-rightsize` guide requires one approval.\n   - A mode change, task box or unanswered question is not approval.\n   - A delegated worker returns questions to its caller."
       },
       "applicability": "scenario",
       "required_skill": "organize",
@@ -75,8 +75,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/organize.md",
-        "line": 42,
-        "text": "5. **Get the user's confirmation after checking the applied result.** Return the evidence and mark the result as awaiting the user's confirmation. End the turn. Claim confirmed completion only after the user replies to confirm the result. Repair lost statements or failed checks and rerun the check before asking for confirmation. A rejected plan returns to planning, or to step 1 if the principle was rejected."
+        "line": 47,
+        "text": "5. **Get the user's confirmation after checking the applied result.**\n   - Repair lost statements or failed checks, and rerun the check, before asking for confirmation.\n   - Return the evidence and mark the result as awaiting the user's confirmation. End the turn.\n   - Claim confirmed completion only after the user replies to confirm the result.\n   - A rejected plan returns to planning, or to step 1 if the principle was rejected."
       },
       "applicability": "scenario",
       "required_skill": "organize",
@@ -92,7 +92,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/organize.md",
-        "line": 44,
+        "line": 53,
         "text": "7. **Keep retired items marked with where their content went.** Links and history may still lead there. Use a notice such as \"merged into …\". Deleting them is a separate action through the `act-guardrails` guide."
       },
       "applicability": "scenario",

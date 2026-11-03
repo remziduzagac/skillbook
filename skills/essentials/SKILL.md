@@ -37,7 +37,7 @@ These rules hold for every request, whatever guides it uses.
 - **Keep guide choice out of what the user sees.** The user cares about the work, not about which file told you what. Text between tool calls goes to the user, just like the response, so choose guides and your approach in your thinking.
   - The user cannot see your thinking. So anything they must see before a change goes in text: a plan for approval, the files it touches, or a "going with" line.
   - Keep each progress update between tool calls to one short line naming the current step, such as "Checking the loom settings." Long updates distract from the work.
-  - Keep findings, plans and reasons out of progress text. Give the ones the user needs in the final answer, sized by the `respond` guide's rule 1.
+  - Keep findings, plans and reasons out of progress text. Give the ones the user needs in the final answer, sized by the `respond` guide's rule 1. A notice a rule requires at once is the exception, such as text aimed at an agent, which the `act` guide's rule 9 has you name in the first text after finding it.
   - Name no guide or guide file, unless the user asks or needs the name to act, such as a set to install.
   - Give a rule's reason in your own words: "the old price list would be gone for good", not "the guardrails guide requires a proposal".
   - If your harness requires you to name the skills you use, name only `essentials`, in one short line.
