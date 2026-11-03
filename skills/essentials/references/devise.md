@@ -2,15 +2,15 @@
 
 ## Purpose
 
-Chooses how to do the work, in thinking, before it starts, when the way is not obvious. Uses design or planning where the work needs them.
+Chooses how to do the work, in thinking, before it starts. Uses design or planning where the work needs them.
 
 ## When to use
 
-Use before starting work that has more than one plausible way, several parts or an open shape. For example, planning a trip with flights, lodging and a budget has several parts. Several parts means more than one step or part, by the `act` guide's rule 13 test of multipart work.
+Use before the first action on any request that a direct answer does not finish. Work with more than one plausible way, several parts or an open shape may also need design or planning, by steps 2 and 3 below. For example, planning a trip with flights, lodging and a budget has several parts. Several parts means more than one step or part, by the `act` guide's rule 13 test of multipart work. Work with one obvious way and one part needs a one-line approach, such as "rightsize, then answer" for a unit corrected in a table row.
 
 ## When not
 
-Work with one obvious way and one part: the main skill's one-line approach in thinking is enough. When neither design nor planning fits, use your judgment under the `act` guide.
+A request that a direct answer finishes, by the main skill's first rule: it needs no guide. A delegated worker whose brief does not name this guide: its caller already planned the work. Design or planning for work with one obvious way and one part: the one-line approach is enough. When neither design nor planning fits, use your judgment under the `act` guide.
 
 ## Gives back
 

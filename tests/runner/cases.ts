@@ -59,7 +59,7 @@ export function validateCase(data: unknown): asserts data is CaseFile {
     if (c.suite === "short" && (c.turns.length < 3 || c.turns.length > 5))
       throw Error("short scenario needs three to five turns");
     for (const turn of c.turns) if (!turn.purpose?.trim() ||
-      !["habit:point-first", "habit:requested-scope", "habit:clear-at-a-glance"].every(tag => turn.rubric?.some(r => r.tag === tag)))
+      !["habit:point-first", "habit:requested-scope"].every(tag => turn.rubric?.some(r => r.tag === tag)))
       throw Error("scenario turns need purposes and all shared habit checks");
   }
   if (c.routing_only) {

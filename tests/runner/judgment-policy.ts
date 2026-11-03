@@ -1,15 +1,7 @@
-export const CLEAR_AT_A_GLANCE =
-  "Judge only the final answer. A reader can find its result without reading process text. Each " +
-  "thing created, changed or found is named together in one place, not scattered across sentences " +
-  "or left for the reader to infer. Parallel results need equally explicit names; do not name some " +
-  "outputs and only describe the contents of another. No created-item list is needed when nothing " +
-  "was created. A collective label such as both pages does not name its members; names later in " +
-  "a process report do not complete the result list.";
-
 export const JUDGING_RULES =
   "Judge only the current turn, which is the last turn in the evidence. Earlier turns provide " +
-  "context and state, not inherited failures. The answer field is the final answer. Point-first and " +
-  "clear-at-a-glance apply only to it. Progress in between_tools is unscored evidence: it may " +
+  "context and state, not inherited failures. The answer field is the final answer. Point-first " +
+  "applies only to it. Progress in between_tools is unscored evidence: it may " +
   "support a claim about work only when backed by actions. Never score its length, clarity, " +
   "internal skill names or placement. A review question after completed approved work is allowed; " +
   "distinguish it from asking permission instead of doing the work. A recommendation beside a " +

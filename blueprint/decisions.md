@@ -4156,6 +4156,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 > **Amended by D299 (2026-11-03):** point-first judges position only, and clear-at-a-glance judges only whether each thing created, changed or found is named together, with the result. Plain English, internal process and extra content each have their own check.
 
+> **Amended by D301 (2026-11-03):** the clear-at-a-glance check is removed. Point-first covers where the result goes, the `respond-layout` guide's own checks cover layout, and the `respond` guide's rule 1 check covers extra content.
+
 
 ## D271: honor requests to confirm before a change (2026-10-26)
 
@@ -4607,6 +4609,8 @@ A delegated worker reads the base and the guides its brief names, and applies no
 - **Scores:** no change beyond run-to-run noise. The Sol judge failed Sonnet 66 times against 55 before and Sol 24 times against 24; the Sonnet judge failed Sonnet 27 against 33 and Sol 30 against 33, out of 201 checks each. Sonnet's `understand` failures on turns 12 to 16 were the same when it read the guide by default, apart from one. These chapters hold one `devise` check, left undecided both times, so the skipped `devise` reads are not yet measured; the `devise-design` and `devise-plan` checks sit on turns 7 and 11.
 - **Cost and length:** the runs cost $2.57 against $3.04 for the same chapters before (Sol 30% less, Sonnet 7% less). Final answers were shorter: Sonnet 5,046 words against 6,262, Sol 2,645 against 2,960.
 
+> **Amended by D300 (2026-11-03):** the main agent also reads `devise` on every request that a direct answer does not finish, so its stage 2 has no test. `understand`, `organize` and `coordinate` stay at their stage, and a delegated worker's base stays the four guides.
+
 ## D299: one check per behaviour, and style is never a failure (2026-11-03)
 
 **Decision:** Each behaviour of a festival final answer has one home among the checks, and style is never scored as a failure. This amends D270 and D296.
@@ -4629,3 +4633,29 @@ Re-judging the last full pass's saved answers, all 28 turns, with the new checks
 - **Sol judge on Sol:** 51 fails against 51, so the change did not loosen the checks for a model with short answers.
 - **Sonnet judge:** Sonnet 51 against 44 and Sol 57 against 53, within that judge's own noise: 7% and 11% of the checks decided both times flipped, in both directions.
 - **Left open:** most of the gap between Sonnet and Sol under the Sol judge remains, in the guides' rule and result checks (60 fails against 29), `respond` rule 1 (14 against 0) and outcomes. Clear-at-a-glance failed one of 112 judged answers across both judges and both models.
+
+> **Amended by D301 (2026-11-03):** the clear-at-a-glance check is removed. Point-first covers where the result goes, the `respond-layout` guide's own checks cover layout, and the `respond` guide's rule 1 check covers extra content.
+
+## D300: read devise on every request, with act and respond (2026-11-03)
+
+**Decision:** On every request that a direct answer does not finish, the main agent reads `devise` with `act`, `act-rightsize`, `respond` and `respond-layout`. This amends D298. `understand`, `organize` and `coordinate` stay at their stage, each by the test written in that stage of the main skill's Instructions. A delegated worker reads no `devise` by default: its caller already understood the request and planned the work (D290), so the worker's base stays `act`, `act-rightsize`, `respond` and `respond-layout`.
+
+- **Stage 2** loses its test, with its example and near miss, and keeps its must: every request gets an approach in thinking.
+- **The `devise` guide** says it is read on every request that a direct answer does not finish. Work with more than one plausible way, several parts or an open shape may also need design or planning. Work with one obvious way and one part gets a one-line approach.
+- **The tests follow:** the runner's always-needed set is the main skill, `act`, `respond`, `respond-layout`, `act-rightsize` and `devise`, so festival turns 18, 19, 20, 21 and 26 no longer list `devise` themselves.
+
+**Why:** In one run of festival chapters 3 and 5 on Sonnet and Sol (D298), neither model read `devise` on turns 18, 20, 21 or 27, where its stage test fires, and both skipped `devise-plan` on turn 27, which they read when every main guide loaded by default. The same miss on two models points to the skill, not the model. The guide is about 550 words, against about 1,500 for `understand`, so reading it every time costs little. Every request already gets an approach in thinking.
+
+**Tested:** not yet run; the gate and a run of festival chapter 2 cover it.
+
+## D301: no clear-at-a-glance check (2026-11-03)
+
+**Decision:** The festival has no clear-at-a-glance check (tag `habit:clear-at-a-glance`). This amends D299 and D270. Point-first covers where the result goes, the `respond-layout` guide's own checks cover layout, and the `respond` guide's rule 1 check covers extra content.
+
+- **The case and the trace book:** the check is removed from all 28 festival turns, with its 28 wrong traces. The six fuller correct answers stay attached to the point, `respond` rule 1 and `act` rule 3 checks.
+- **The runner:** a scenario turn needs the point-first and requested-scope checks, and the shared judge rules name point-first only.
+- **Human calibration:** the 16 clear-at-a-glance labels in `tests/calibration/human-scenarios-v2.json` stay as the record of how the judge read that check (D270). No active check uses them, and the gate reads a calibration file only to see that it is complete.
+
+**Why:** After D299 gave the check a concrete test, the gate's judge passed 8 of its 28 wrong traces (turns 1, 8, 9, 10, 12, 14, 24 and 27), because items in one paragraph count as "together in one place". Re-judging the last full pass with both judges, it failed 1 of 112 answers. A check that real answers never fail, and that cannot fail its own wrong traces, measures nothing and costs a judgment on every turn.
+
+**Tested:** not yet run; the gate covers it.

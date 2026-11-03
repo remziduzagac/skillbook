@@ -60,7 +60,7 @@ test("score groups keep fixed and simulated results separate", () => {
   expect(Object.keys(scoreRuns(runs))).toEqual(["codex/m/fixed", "codex/m/simulated"]);
 });
 test("short and master format requires shared habits, facts and purposes", () => {
-  const habits = ["habit:point-first", "habit:requested-scope", "habit:clear-at-a-glance"];
+  const habits = ["habit:point-first", "habit:requested-scope"];
   const { id: _id, set: _set, condition: _condition, ...base } = scenario();
   const c = { ...base, suite: "short" as const, turns: Array.from({length: 3}, () => ({
     prompt: "Inspect", purpose: "check the facts", rubric: habits.map((tag, i) => ({id: String(i), tag, criterion: "check"})),

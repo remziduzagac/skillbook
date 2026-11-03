@@ -7,7 +7,7 @@ What belongs in skillbook, and the bar a change must clear.
 - The person's skills for keeping projects well: blueprint, greenrepo, and the skills they rely on.
 - Skills used in every project. A skill that belongs to one project stays in that project.
 
-Each set is installed as one skill; its files under `references/` are guides. Essentials reads four guides on every request, reads its other main guides when their stage has work, and uses its guide map to choose further guides. It names no other set. Other sets may build on essentials; essentials uses whatever skills the agent has available for the work itself, with judgment where nothing fits.
+Each set is installed as one skill; its files under `references/` are guides. Essentials reads five guides on every request, reads its other main guides when their stage has work, and uses its guide map to choose further guides. It names no other set. Other sets may build on essentials; essentials uses whatever skills the agent has available for the work itself, with judgment where nothing fits.
 
 ## The bar for a change
 
