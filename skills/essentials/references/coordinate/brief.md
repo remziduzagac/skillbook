@@ -50,7 +50,7 @@ Give a worker starting now enough context to act without guessing and return a r
    - Explicitly ask the worker to use the `act-cleanup` guide: remove temporary material, stop what it started, check removal and report cleaned, kept and proposed items.
 4. **Include the missing operating baseline under rule 8.** A task brief without authority limits can make a worker treat a called guide as permission to exceed its task.
    - Mark delegated work and give the absolute essentials folder. Tell the worker to load the `essentials` skill and use its guide map and name rule.
-   - Name the guides its task needs beyond `act`, `act-rightsize`, `respond` and `respond-layout`, which a delegated worker reads instead of all six main guides. Include the `understand` guide where the task needs it.
+   - Name the guides its task needs beyond `act`, `act-rightsize`, `respond` and `respond-layout`, which every worker reads. A worker reads no other main guide unless the brief names it, so include the `understand`, `devise`, `organize` or `coordinate` guide where the task needs it.
    - Keep rule 10 of the `act` guide as the worker's authority home rather than copying another rule set. Return unresolved questions to the caller.
 5. **Lay out the brief through the `respond-layout` guide.** Buried scope or report requirements are easy for the worker to miss.
    - Make task, references, first step, success criterion and requested report easy to find.

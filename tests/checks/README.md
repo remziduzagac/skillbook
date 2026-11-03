@@ -24,7 +24,7 @@ Every Codex test home uses `model_reasoning_summary = "auto"`, in both installed
 
 ## Chapters and evidence
 
-Chaptered cases restore a checkpoint before every working session. Needed-guide labels include `skill_needs`, `also_called` and conditional `if_taken` paths. Parents inherit deadlines. Conditional labels use `taken_when` assertions or verified path marks; unsupported path applicability stays unknown. The main skill, six main guides, `respond-layout` and `act-rightsize` are always needed. Result parts are selected from needed-guide labels as well as rule opportunities.
+Chaptered cases restore a checkpoint before every working session. Needed-guide labels include `skill_needs`, `also_called` and conditional `if_taken` paths. Parents inherit deadlines. Conditional labels use `taken_when` assertions or verified path marks; unsupported path applicability stays unknown. The main skill, `act`, `respond`, `respond-layout` and `act-rightsize` are always needed. The other four main guides are needed on a turn only where its label lists them or one of their children. Result parts are selected from needed-guide labels as well as rule opportunities.
 
 A wait call naming a helper does not count as an observed start. Helper records preserve each observed start, brief, returned result, freshness and end separately. A returned report does not establish a fresh start or disposal. Unsupported helper actions and missing lifecycle fields stay unknown.
 

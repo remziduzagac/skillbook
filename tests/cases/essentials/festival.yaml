@@ -448,7 +448,7 @@
           "id": "rule:essentials:step:0",
           "tag": "rule:essentials:step:0",
           "source_check": "route-act",
-          "criterion": "Before the first action, select every needed guide from the map, read the six main guides, respond-layout, act-rightsize and the selected guides whole, one file per read, all sent together, check boundaries, and name the approach in thinking."
+          "criterion": "Before the first action, select every needed guide from the map, read act, respond, respond-layout, act-rightsize and the selected guides whole, one file per read, all sent together, check boundaries, and name the approach in thinking. Read understand, devise, organize and coordinate at their stage when its test says it has work."
         },
         {
           "id": "rule:essentials:step:1",
@@ -2791,6 +2791,10 @@
         {
           "skill": "respond-ask",
           "deadline": "first change"
+        },
+        {
+          "skill": "devise",
+          "deadline": "first change"
         }
       ],
       "also_called": [],
@@ -2910,6 +2914,14 @@
         },
         {
           "skill": "organize-cluster",
+          "deadline": "first change"
+        },
+        {
+          "skill": "devise",
+          "deadline": "first change"
+        },
+        {
+          "skill": "coordinate",
           "deadline": "first change"
         }
       ],
@@ -3080,6 +3092,18 @@
         },
         {
           "skill": "respond-ask",
+          "deadline": "first change"
+        },
+        {
+          "skill": "understand",
+          "deadline": "first change"
+        },
+        {
+          "skill": "devise",
+          "deadline": "first change"
+        },
+        {
+          "skill": "coordinate",
           "deadline": "first change"
         }
       ],
@@ -3269,6 +3293,10 @@
         },
         {
           "skill": "act-guardrails",
+          "deadline": "first change"
+        },
+        {
+          "skill": "devise",
           "deadline": "first change"
         }
       ],
@@ -4097,6 +4125,10 @@
         },
         {
           "skill": "respond-ask",
+          "deadline": "first change"
+        },
+        {
+          "skill": "devise",
           "deadline": "first change"
         }
       ],

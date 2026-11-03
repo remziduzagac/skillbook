@@ -38,7 +38,7 @@ understand/
   - A view, such as "what do you think of this pricing page?": follow the `act` guide's rule 2. A view is not a task, so nothing needs settling before it.
   - The user did not follow you: use the `respond-explain` guide. The gap is in your explanation, not in their request.
 - **Callers** (D131):
-  - the main skill, from the main map, with its parent path read first (D279);
+  - the main skill, from the main map or at its stage 1 when the stage's test says it has work, with its parent path read first (D279, D298);
   - the `act` guide's first rule, for clarify, through the main skill and this file (D115);
   - other groups and sets, through the main skill, each named in the Callers of the child guide it uses (D137, D155);
   - the person, typing the `understand` guide or one of its child guides.

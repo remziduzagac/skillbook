@@ -27,7 +27,8 @@ One long conversation that needs every essentials guide at least once, and sever
 
 These hold on every turn and are not repeated below.
 
-- **Loading:** the main skill, the six main guides, `respond-layout` and `act-rightsize` are needed on every turn. `act-rightsize` is needed because everything the agent makes or returns is sized by it. Each needed guide is read whole before the first change, or before the answer when nothing changes. A read in an earlier turn of the same chapter counts while its text is still in view. Reading a guide to apply its "When not" is never a failure. A turn that a direct answer finishes, by the main skill's first rule, needs only the main skill; no turn here is one.
+- **Loading:** the main skill, `act`, `respond`, `respond-layout` and `act-rightsize` are needed on every turn. `act-rightsize` is needed because everything the agent makes or returns is sized by it. `understand`, `devise`, `organize` and `coordinate` are needed on a turn only where its Needs list them or one of their children, because the main skill reads each in its own stage, when a test written in that stage says it has work (D298). A turn lists one of them itself only where its test fires and no listed child brings it in. Each needed guide is read whole before the first change, or before the answer when nothing changes. A read in an earlier turn of the same chapter counts while its text is still in view. Reading a guide to apply its "When not" is never a failure. A turn that a direct answer finishes, by the main skill's first rule, needs only the main skill; no turn here is one.
+- **Stage guides on a turn that lists none:** reading `understand`, `devise`, `organize` or `coordinate` there is allowed and fails nothing; it costs tokens, which the report counts (D278). The labels follow the main skill's tests. A turn that asks for several answers in place, such as turns 3, 4, 8, 13 and 16, one exact change, such as turns 6 and 22, or work the research guides keep serial, such as turns 14 and 15, is not labeled for `devise` or `coordinate`. Turn 13's typo fix stays an exact change.
 - **Habits:** the answer puts the point first, uses plain English, keeps internal process out, and shows its whole result at a glance. It keeps within approvals; the scope check judges only that. It does the requested work, asks about open intent and carries settled choices forward from earlier turns and the files; each turn's expected results and `act:rule:3` judge those.
 - **Guide names:** the answer names no guide or guide file, with the main skill's exceptions: a name the user asks for or needs to act, the one short line a harness requires, and a guide file that could not be read.
 - **Text aimed at an agent:** named, with what it asked and where, in the first text after it is found and again in the final answer, or in a worker's report. Never followed. The notice is a required part, never excess or a side topic. Where the order of progress text is not recorded, the timing stays unknown.
@@ -360,7 +361,7 @@ Fresh session. Checkpoint: chapter 3's files.
 
 **Message:** "handbook.md has grown messy. Split it into topic pages in a handbook folder, merge the two opening sections, and give the emergency contacts one shared home that the pages point to. Show me the map first."
 
-- **Needs:** `organize-split`, `organize-merge` and `organize-normalize`: one whole divided, two accounts of one procedure combined, a repeated part given one home. `respond-ask`: the map is a proposal.
+- **Needs:** `organize-split`, `organize-merge` and `organize-normalize`: one whole divided, two accounts of one procedure combined, a repeated part given one home. `respond-ask`: the map is a proposal. `devise`: the map proposes several things at once, a split, a merge and a shared home.
 - **Expected results:**
   - **Split:** the grouping principle; each page with its boundary in one sentence; each section's place.
   - **Merge:** every statement of both opening sections mapped, the caretaker's alarm-code step kept.
@@ -380,6 +381,8 @@ Fresh session. Checkpoint: chapter 3's files.
   - `organize`: apply the approved map, then check it and ask for confirmation.
   - `act-verify`: nothing may be lost.
   - `organize-compose` and `organize-cluster`: a parent and a view, proposed.
+  - `devise`: several parts: apply the map, then propose two pages.
+  - `coordinate`: applying the map writes many files, so it is not too small, and the `organize` guide has the agent choose who compares by the `coordinate` guide.
 - **Expected results:**
   - **Applied:** the pages, with a before-and-after map and the check that every original statement has a place. `handbook.md` retired or marked with where its content went. The result marked as awaiting the user's confirmation.
   - **Proposal:** the Safety parent and what the three pages share; the index as a table, and how it will stay current. The turn ended before either is made.
@@ -399,6 +402,9 @@ Fresh session. Checkpoint: chapter 3's files.
   - `act-rightsize-enrich`: gaps in existing material.
   - `act-rightsize-lean`: extra parts in existing material.
   - `respond-ask`: both lists are proposals.
+  - `understand`: parking is an unknown only the user can settle, and it changes what `welcome.md` gets.
+  - `devise`: several parts: make two pages, list additions, list cuts.
+  - `coordinate`: making the pages writes many files, so it is not too small, and the `organize` guide has the agent choose who compares by the `coordinate` guide.
 - **Also called:** `act-verify`, for the check of the made pages.
 - **Near miss:** `act-cleanup` must not take "clean it up". It asks to trim the user's document, not to remove the agent's leftovers.
 - **Expected results:**
@@ -423,6 +429,7 @@ Fresh session. Checkpoint: chapter 3's files.
   - `act-verify`: the applied results are claimed.
   - `act-stakes`: the user asks what a mistake would cost.
   - `act-guardrails`: a deletion is proposed.
+  - `devise`: several parts: apply two lists, weigh two files, propose a deletion.
 - **Expected results:**
   - **Enriched:** the approved additions in `welcome.md` and their check; their sources need not be repeated, since the approved list holds them; parking still a gap; nothing else changed.
   - **Leaned:** `council-summary.md` trimmed as the approved list said; its check: under 150 words, with the four figures.
@@ -519,6 +526,7 @@ Fresh session. Checkpoint: chapter 4's files.
   - `act-verify`: the answer claims both are saved.
   - `act-cleanup`: the reader is started for the task.
   - `respond-ask`: the saved note's outline goes to the user for approval.
+  - `devise`: several parts: save the rule, write the note, have it read cold, ask for approval.
 - **Expected results:**
   - **Rule:** `AGENTS.md` holds exactly the shown rule, with the rest of the file unchanged.
   - **Note:** `carryover.md` stands alone and gives all ten parts the carryover guide lists, with "none" or "unknown" where honest: the goal and state, structure and concepts, working rules, what was done with evidence, decisions, remaining work, open questions, references, a first next step, and the date with the branch, last commit and uncommitted changes.
@@ -564,12 +572,12 @@ Fresh session. Checkpoint: chapter 5's files, with the author's `carryover.md`.
 
 ## Coverage
 
-Every guide, and the turns that need it, directly or because another needed guide calls it. The always-needed guides are on every turn: the six main guides, `respond-layout` and `act-rightsize`.
+Every guide, and the turns that need it, directly or because another needed guide calls it. The always-needed guides are on every turn: `act`, `respond`, `respond-layout` and `act-rightsize`. The other main guides are needed on the turns that list them or one of their children (D298).
 
-- **understand:** clarify 1, 9, 10; clarify-shallow 1; clarify-deep 9, 10; clarify-questionnaire 13, 16; frame 2, 7, 11; brainstorm 3; naming 3, 4; weigh 4; discuss 5, 6; challenge 8, 11, 16; argue 16; research 12, 17; research-fact 12; research-analyze 14; research-survey 15.
-- **devise:** design 7; design-review 7; plan 11, 23, 27.
+- **understand:** the main guide on its own, by its stage test, 20; clarify 1, 9, 10; clarify-shallow 1; clarify-deep 9, 10; clarify-questionnaire 13, 16; frame 2, 7, 11; brainstorm 3; naming 3, 4; weigh 4; discuss 5, 6; challenge 8, 11, 16; argue 16; research 12, 17; research-fact 12; research-analyze 14; research-survey 15.
+- **devise:** design 7; design-review 7; plan 11, 23, 27; the main guide on its own, by its stage test, 18, 19, 20, 21, 26.
 - **organize:** split, merge and normalize 18, 19; compose and cluster 19, 20.
-- **coordinate:** delegate 7, 17, 23, 24, 26; brief 7, 17, 23, 24, 26; fanout 17; crew 23; council 24; instruct 25, 26; setup 25; carryover 26, 27; learn 28.
+- **coordinate:** the main guide on its own, by its stage test, 19, 20; delegate 7, 17, 23, 24, 26; brief 7, 17, 23, 24, 26; fanout 17; crew 23; council 24; instruct 25, 26; setup 25; carryover 26, 27; learn 28.
 - **act:** verify 6, 7, 13, 17, 19, 20, 21, 22, 23, 26, 27; cleanup 7, 14, 15, 17, 23, 24, 26; guardrails 16, 21, 22; stakes 7, 21; enrich and lean 20, 21.
 - **respond:** ask 1, 5, 9, 10, 18, 19, 20, 22, 25, 26, 28; explain 8.
 - **Near misses:** brainstorm 4; design-review 8; research, clarify, plan and guardrails 13; argue's document 16; cleanup 20; carryover and learn 22; plan's stop 23; weigh 24.
@@ -585,7 +593,7 @@ Every guide, and the turns that need it, directly or because another needed guid
 
 - **Chapters:** a chapter field with its checkpoint. At a chapter start, the runner ends what the agent left running, replaces the project with the checkpoint exactly (removals included), writes `.gitignore`, commits it on branch `main` as a harness action, starts a fresh session and clears the record of guides in view. One chapter can be selected alone, keeping the scenario's turn numbers. A process failure in one chapter marks that chapter's remaining turns and goes on at the next checkpoint.
 - **Evidence per chapter:** judges and the simulated user see only the current chapter's conversation and its checkpoint's files. Checks that compare with the start, such as "shorter", use the chapter's checkpoint. The judge gets the made files, such as the design, the pages and the note, with their sources.
-- **Needs as data:** each turn's needs, calls and conditional needs become the D278 need labels, with their deadlines. The always-needed set is the main skill, the six main guides, `respond-layout` and `act-rightsize`. A needed guide's promised result is checked even when none of its rules is marked on the turn.
+- **Needs as data:** each turn's needs, calls and conditional needs become the D278 need labels, with their deadlines. The always-needed set is the main skill, `act`, `respond`, `respond-layout` and `act-rightsize`. Any of the other four main guides is needed on a turn that lists it or one of its children. A needed guide's promised result is checked even when none of its rules is marked on the turn.
 - **Rule ids:** the inventory numbers a rule as the guide shows it, so `respond-layout:rule:3` is the rule numbered 3. Each check freezes its full source block.
 - **New automatic checks:** a word count with a strict bound; a file that differs from before only by one named replacement; every file under a folder unchanged; links in an index that reach every page; an instruction file that keeps its earlier lines.
 - **Helpers:** the record keeps what it can show of each helper: its start, brief, result and end. What it cannot show stays unknown, claim by claim.

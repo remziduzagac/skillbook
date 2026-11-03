@@ -4198,6 +4198,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 > **Amended by D280 (2026-11-01):** the files under the main skill are guides, the map is the guide map with each guide's path, all six main guides are read on every request, and the six steps become "Instructions": step 0 and one stage per main guide, with the approach in devise's stage.
 
+> **Amended by D298 (2026-11-03):** `act` and `respond` stay read on every request; `understand`, `devise`, `organize` and `coordinate` are read at their stage, when a test written in that stage says it has work.
+
 ## D280: guides, a guide map with paths, and one stage per main guide (2026-11-01)
 
 **Decision:** Only a set's main skill is called a skill. Every file under its `references/` is a guide, and the six first-level guides are the main guides. Guides name each other by name, with the word "guide" where a bare name could be read as a skill, such as "the `act` guide". Paths appear only in the main skill's guide map: one per entry, under the exact name rule, now worded "a guide named `a-b-c`". All six main guides are read on every request. "Instructions", the section name every guide uses, replaces the step list: guidelines, not a fixed procedure, fitted into the harness's own flow, with one instruction to prepare by step 0 and then go through the stages in order. Step 0 picks guides from the map for every part of the request and reads them, the main guides and respond-layout whole, by their paths, in one turn, then checks each picked guide's boundary. One stage per main guide follows, in natural order: understand, devise, organize, coordinate, act, respond. The approach, the agent's choice of which guide shapes which part, belongs to devise's stage, beside design and plan; a plan of steps is devise-plan's, which keeps it across turns.
@@ -4209,6 +4211,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 > **Amended by D290 (2026-11-02):** a delegated worker reads `act`, `act-rightsize`, `respond`, `respond-layout` and the guides its brief names. Reading all six main guides now holds only for the main agent.
 
 > **Amended by D294 (2026-11-02):** a delegated worker reads act, act-rightsize, respond, respond-layout and the guides its brief names, not all six main guides.
+
+> **Amended by D298 (2026-11-03):** the main agent no longer reads all six main guides on every request. It reads the same four guides as a worker, `act`, `act-rightsize`, `respond` and `respond-layout`, plus the guides picked from the map, and reads the other four main guides at their stage.
 
 ## D281: essentials names no other set (2026-11-01)
 
@@ -4247,6 +4251,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 **Tested:** Not yet.
 
 > **Amended by D294 (2026-11-02):** the fork line is no longer kept word for word; it becomes its own advice item, and a departure's reason goes in the final answer.
+
+> **Amended by D298 (2026-11-03):** the delegation advice, with its three exceptions and the fork when unsure, moves to stage 4 of the main skill, because the `coordinate` guide is no longer read on every request. The `coordinate` guide points to it.
 
 ## D285: the final check is the last step of Instructions (2026-11-01)
 
@@ -4371,6 +4377,8 @@ The exit's conditions are exact because agents take an exit eagerly. A test such
 - No model reached the deeper clarify guides or the research guide at the turns that needed them. Luna skipped fanout at turn 17.
 
 **Tested:** not yet run; the single test pass after the review covers it.
+
+> **Amended by D298 (2026-11-03):** a delegated worker and the main agent now read the same four base guides; the main agent adds the guides it picks and the main guides whose stage test fires. The worker applies no stage test.
 
 ## D291: the clarify, discuss, frame and brainstorm guides after the review (2026-11-02)
 
@@ -4560,3 +4568,31 @@ The exit's conditions are exact because agents take an exit eagerly. A test such
 **Why:** The four verdicts had no word for a claim the sources show is wrong, and the guide said that neither unsupported nor unknown proves a claim false. Festival turn 12 expects "not true for this festival", because a newer council rule replaced the one the claim rests on, so a correct answer could only fail the rule or reach past it. A model left with "unsupported" tells the user less than the sources show.
 
 **Tested:** not yet run; the next gate and test pass cover it.
+
+## D298: read act and respond by default, and the other main guides at their stage (2026-11-03)
+
+**Decision:** On every request that a direct answer does not finish, the main agent reads the main skill, `act`, `act-rightsize`, `respond` and `respond-layout`, plus the guides picked from the guide map for the request. This is the base a delegated worker already reads (D290). The other four main guides are read at their stage, when the stage has work, by a test written in that stage of the main skill's Instructions:
+
+- **`understand` (stage 1):** the request leaves a choice or an unknown that would change the result, or needs a sourced fact.
+- **`devise` (stage 2):** there is more than one plausible way to do the work, or it has several parts (more than one step or part, by the `act` guide's rule 13), or its shape is open.
+- **`organize` (stage 3):** the work divides, merges or groups things, or plans the parts of something not yet written. This is the stage's earlier condition.
+- **`coordinate` (stage 4):** any part may go to another agent, that is, any part left after the three exceptions to delegation by default.
+
+Each stage keeps the musts that hold when its guide is not read:
+
+- **Stage 1:** the who-decides rule: choices the user left to the agent go in one "Going with" message that ends the turn before any change, or in the final answer when the user said to choose or has just answered.
+- **Stage 2:** every request gets an approach in thinking, one line for a small request.
+- **Stage 4:** delegation by default as strong advice, with its three exceptions, the fork when unsure whether a part is too small, and the reason for a departure in the final answer. The exceptions and the fork advice move from the `coordinate` guide's Advice into stage 4, their one home, so an agent can decide that a part is too small without reading `coordinate`. The guide points to stage 4.
+- **Stage 3:** none. Its test and its work are the same, and the approval stop belongs to the work.
+
+A delegated worker reads the base and the guides its brief names, and applies no stage test. The picked guides still bring their parents by the name rule, so a request that picks `understand-clarify` reads `understand` too. The tests mark a main guide as needed on a festival turn only where its stage test fires and no child of that guide is already listed. The always-needed set in the runner becomes the main skill, `act`, `respond`, `respond-layout` and `act-rightsize`.
+
+**Why:**
+
+- **Cost:** the four guides are about 4,500 words. Reading them on every request puts that at the start of every new session, and the conversation carries it again on every later turn. Most small requests use none of them.
+- **What stays up front:** `act`'s rules hold from the first action, such as searching each file for text aimed at an agent as it is read, and `respond`'s hold for every message. Everything made or returned is sized, and every response is laid out.
+- **One base:** the main agent and a delegated worker read the same base, so a brief names only what the task adds.
+- **Known risk, skipping:** when loading was left to Sonnet in an earlier run, it read guides a third as often as Sol. So each stage test is something the agent can apply to the request, with an example that qualifies and one that does not, not "if needed" (skillbook-design check 13), and the musts that matter most stay in the stage text where they are read every time.
+- **Reverses and amends:** this reverses the part of D279 and D280 that reads all six main guides on every request, and amends D290's worker-reading rule and D284's home for the delegation advice.
+
+**Tested:** not yet run; the gate and the chapter runs after this change cover it.

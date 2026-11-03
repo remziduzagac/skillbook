@@ -2,15 +2,15 @@
 
 ## Purpose
 
-Chooses an approach in thinking for every request before work starts. Uses design or planning where the work needs them.
+Chooses how to do the work, in thinking, before it starts, when the way is not obvious. Uses design or planning where the work needs them.
 
 ## When to use
 
-Use on every request, before starting work. A small edit still needs a one-line approach in thinking.
+Use before starting work that has more than one plausible way, several parts or an open shape. For example, planning a trip with flights, lodging and a budget has several parts. Several parts means more than one step or part, by the `act` guide's rule 13 test of multipart work.
 
 ## When not
 
-Every request needs an approach. When neither design nor planning fits, use your judgment under the `act` guide.
+Work with one obvious way and one part: the main skill's one-line approach in thinking is enough. When neither design nor planning fits, use your judgment under the `act` guide.
 
 ## Gives back
 
@@ -18,7 +18,7 @@ The approach stays in thinking. Return any used child’s result to the active t
 
 ## Instructions
 
-Every request gets an approach before work starts: which way to go, which guides shape each part, and how the result will be checked. Going the wrong way costs rework, and the first idea is not always the best one. **Think the approach through before you start, and use design or planning where the work needs them.**
+Work needs an approach before it starts: which way to go, which guides shape each part, and how the result will be checked. Going the wrong way costs rework, and the first idea is not always the best one. **Think the approach through before you start, and use design or planning where the work needs them.**
 
 Design and plan may call each other for a different part of the work. A guide called this way returns its result to its caller. It does not start the caller again.
 

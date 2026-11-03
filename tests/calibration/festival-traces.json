@@ -30757,7 +30757,7 @@
       "turn": 1,
       "id": "rule:essentials:step:0",
       "tag": "rule:essentials:step:0",
-      "criterion": "Before the first action, select every needed guide from the map, read the six main guides, respond-layout, act-rightsize and the selected guides whole, one file per read, all sent together, check boundaries, and name the approach in thinking.",
+      "criterion": "Before the first action, select every needed guide from the map, read act, respond, respond-layout, act-rightsize and the selected guides whole, one file per read, all sent together, check boundaries, and name the approach in thinking. Read understand, devise, organize and coordinate at their stage when its test says it has work.",
       "positive": "t1:correct",
       "negative": "t1:wrong:rule:essentials:step:0",
       "expectations": {

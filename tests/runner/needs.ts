@@ -1,8 +1,9 @@
 import { check } from "./checks";
 import type { Event, SkillNeed, Turn } from "./types";
 
-export const ALWAYS_NEEDED = ["essentials", "act", "understand", "devise", "organize", "coordinate", "respond",
-  "respond-layout", "act-rightsize"];
+// The base every request that a direct answer does not finish reads. The other main guides (understand, devise,
+// organize, coordinate) are read at their stage, so a turn lists them in its own needs (D298).
+export const ALWAYS_NEEDED = ["essentials", "act", "respond", "respond-layout", "act-rightsize"];
 export interface ResolvedNeed extends SkillNeed {
   needed: boolean | null;
   origin: string;

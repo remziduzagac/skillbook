@@ -14,6 +14,14 @@ test("need labels keep direct and called needs and inherit deadlines along every
   expect(needs.filter(n => n.origin === "also called").map(n => n.skill)).toEqual(["act", "act-verify"]);
   for (const skill of ALWAYS_NEEDED) expect(needs.some(n => n.skill === skill && n.origin === "always needed")).toBe(true);
 });
+test("the always-needed base is the main skill and four guides, and the stage guides come only from a turn's own needs", () => {
+  expect(ALWAYS_NEEDED).toEqual(["essentials", "act", "respond", "respond-layout", "act-rightsize"]);
+  const plain = resolvedNeeds({prompt: "Inspect"}, {}, true);
+  for (const skill of ["understand", "devise", "organize", "coordinate"]) expect(plain.some(n => n.skill === skill)).toBe(false);
+  const staged = resolvedNeeds({prompt: "Inspect", skill_needs: [{skill: "devise", deadline: "first change"}]}, {}, true);
+  expect(staged.filter(n => n.skill === "devise").map(n => [n.origin, n.deadline, n.needed])).toEqual([["needs", "first change", true]]);
+  expect(staged.some(n => n.skill === "coordinate" || n.skill === "organize" || n.skill === "understand")).toBe(false);
+});
 test("conditional needs count only taken paths, retaining unsupported applicability as unknown", () => {
   const turn: Turn = {prompt: "Inspect", if_taken: [{skill: "understand-discuss", deadline: "first change",
     path: "ask about a new open choice"}]};

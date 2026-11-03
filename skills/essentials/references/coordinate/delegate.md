@@ -8,7 +8,7 @@ Needs: a permitted way to start agents. Without one, do the work in this convers
 
 ## When to use
 
-Use when starting another agent now, or when several agents should answer, search or change things. For example, separate work or an independent check may need a worker. Follow the `coordinate` guide’s advice.
+Use when starting another agent now, or when several agents should answer, search or change things. For example, separate work or an independent check may need a worker. Follow the main skill's step 4 on delegating by default.
 
 ## When not
 
@@ -22,7 +22,7 @@ The actual work and check results, task status, cost where needed and cleanup re
 
 ## Rules
 
-1. **Keep conversation, tracking and user decisions in the main session.** Follow the `coordinate` guide's advice for whether work should leave it. Large tool output distracts from the user's thread.
+1. **Keep conversation, tracking and user decisions in the main session.** Follow the main skill's step 4 for whether work should leave it. Large tool output distracts from the user's thread.
 2. **Use a fresh worker when independence is required.** A fork shares the writer's history and blind spots. Do not use a fork for a review, a second check or a council member. Follow the `act-verify` guide's rule 2 to check whether a helper is available and what evidence the check needs.
 3. **Choose a fresh worker's tier by the cost of being wrong.** Use the `act-stakes` guide when the applicable row is not plain. If rows overlap, take the higher tier.
 
@@ -48,7 +48,7 @@ The actual work and check results, task status, cost where needed and cleanup re
   - long work with a short list: a fresh worker, on a lighter model when the work is mechanical or checked later;
   - long work with a long list, or one that needs the discussion behind it: a fork. If the harness shows its window nearly full, write the list to a file for a fresh worker instead;
   - a short task that reads or produces a lot: a fork;
-  - a short task that leaves little behind: do it here, by the `coordinate` guide's advice;
+  - a short task that leaves little behind: do it here, by the main skill's step 4;
   - a review, a second check or a council member: a fresh worker, by rule 2.
 - Search before a reading fanout. Give a broad reading task to light workers only when what is left after the search is much larger than the workers' startup, briefs and reports together, such as hundreds of source files or a year of meeting minutes. Judge this from the material's shape; do not count tokens. A stronger model can help self-contained hard work.
 - Use the main skill's progress rule for messages while workers run. Put results and ordinary notices in the final answer. Keep required notices and approval questions at their own timing.
@@ -64,7 +64,7 @@ Obtain checked results from workers while user decisions and authority stay with
 
 Read [cost data](delegate/assets/prices.md) only when needed. Read [other-harness rules](delegate/assets/other-harnesses.md) only when another program is named or an allowed one fits.
 
-1. **Choose the work pattern under rule 1 and the `coordinate` guide's advice.** Extra workers can cost more than they save when a search or one worker settles the task.
+1. **Choose the work pattern under rule 1 and the main skill's step 4.** Extra workers can cost more than they save when a search or one worker settles the task.
    - When the user or the guide that called this one names a pattern, such as one agent per supplier contract, use it within their authority.
    - Otherwise, consider one worker first, and search before splitting large reading work. Use several workers for large separate parts, independence, different lenses, time savings the user accepts, or work too big for one worker's context.
    - Whenever several workers will run, read the matching guide above whole before you start them, whoever chose the pattern. Its rules shape the briefs and what you report. Run it inside this call, after controls and approval are settled.
