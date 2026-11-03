@@ -1,0 +1,2442 @@
+{
+  "annotation": "Historical access labels checked against matched Git blobs where available. Unmatched historical whole-file claims remain unknown. current_reader_expected stores only the fields that differ when comparing with today; other fields inherit the main label. Git source versions are stored once per session; unmatched recorded variants are stored once by skill. Timing is reader-assisted except the three explicitly recorded manual timing corrections; user checks remain pending.",
+  "agreement": {
+    "matched": 63,
+    "total": 120,
+    "basis": "Default access-3 reader using today’s skills versus historical labels; source-version differences explain the extent disagreements."
+  },
+  "claude": "Pending native recordings.",
+  "sessions": [
+    {
+      "recording": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17feb-8bee-7932-939f-5befe76615fc",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "understand-clarify",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand",
+          "understand-clarify"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-4faa-79a3-a88c-c96865f75e5c",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "after",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "after",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-9f6a-7623-8b5f-59900196116a",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notes--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-cd4f-7eb3-9423-855b851768f0",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-notice--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-ff06-78b0-a22f-6d6c5ea3d898",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "coordinate",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "coordinate-carryover",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 12,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:13",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 12,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:13",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-ask",
+          "event": 14,
+          "call": "item_7",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:15",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 18,
+          "call": "item_9",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-note--codex--gpt-6-luna--1--turn1.jsonl:19",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "coordinate": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "cd66f120a46e54b04f43a969f64df00781abaa82",
+            "file": "skills/essentials/references/coordinate.md",
+            "lines": 31
+          },
+          "coordinate-carryover": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "2c0caecdfc2789e53d9453bfa488207666e76586",
+            "file": "skills/essentials/references/coordinate/carryover.md",
+            "lines": 48
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "respond-ask": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "c32094d63379def310a5c3215d6de8e00feb128c",
+            "file": "skills/essentials/references/respond/ask.md",
+            "lines": 43
+          },
+          "act-verify": {
+            "commit": "e079b5706a2a9d77c88424d1623157b586b6a42c",
+            "blob": "fa5ef156fa8f21d4739cd423d9b5bf71d43a1a3c",
+            "file": "skills/essentials/references/act/verify.md",
+            "lines": 62
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe7-62f4-7343-916c-49bdd444019e",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond-layout",
+          "event": 12,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:13",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act-cleanup",
+          "event": 12,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-review--codex--gpt-6-luna--1--turn1.jsonl:13",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          },
+          "act-cleanup": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "a6fb8610eb44f6106bc821696d6ad9bd2c905163",
+            "file": "skills/essentials/references/act/cleanup.md",
+            "lines": 66
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe7-c53e-75c0-a5e6-8cfd16d3d70f",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 13,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-evidence-run--codex--gpt-6-luna--1--turn1.jsonl:14",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "after",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          },
+          "act-verify": {
+            "commit": "e079b5706a2a9d77c88424d1623157b586b6a42c",
+            "blob": "fa5ef156fa8f21d4739cd423d9b5bf71d43a1a3c",
+            "file": "skills/essentials/references/act/verify.md",
+            "lines": 62
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe8-26f7-7e83-aff9-2374d4d8b979",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-lessons--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe9-1693-70c2-8cdc-30329808f1db",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-intent-summary--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe9-7642-7221-807e-517162d41e78",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act-cleanup",
+          "event": 17,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-result--codex--gpt-6-luna--1--turn1.jsonl:18",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          },
+          "act-cleanup": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "a6fb8610eb44f6106bc821696d6ad9bd2c905163",
+            "file": "skills/essentials/references/act/cleanup.md",
+            "lines": 66
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe9-e0bf-7d73-b7bb-e4561962c73b",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 16,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:17",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 16,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:17",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond-layout",
+          "event": 16,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-retry--codex--gpt-6-luna--1--turn1.jsonl:17",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "unknown",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "act-verify": {
+            "commit": "e079b5706a2a9d77c88424d1623157b586b6a42c",
+            "blob": "fa5ef156fa8f21d4739cd423d9b5bf71d43a1a3c",
+            "file": "skills/essentials/references/act/verify.md",
+            "lines": 62
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fea-5faa-7953-be85-c44e752286ea",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "act-verify",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-process-skip--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "act-verify": {
+            "commit": "e079b5706a2a9d77c88424d1623157b586b6a42c",
+            "blob": "fa5ef156fa8f21d4739cd423d9b5bf71d43a1a3c",
+            "file": "skills/essentials/references/act/verify.md",
+            "lines": 62
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe6-588f-7751-8ca6-dca0d01e9703",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "understand-research",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 8,
+          "call": "item_3",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-05/essentials--scenario-05-newsletter--codex--gpt-6-luna--1--turn1.jsonl:9",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "understand-research": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "22ee38e02930155f19045a4890134e466bc27f5e",
+            "file": "skills/essentials/references/understand/research.md",
+            "lines": 50
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fe9-5a0a-71d3-ab59-06603a974c30",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "organize",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "organize-split",
+          "event": 10,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:11",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 13,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:14",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 13,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:14",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 13,
+          "call": "item_6",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:14",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-ask",
+          "event": 26,
+          "call": "item_13",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-06/essentials--scenario-06-handbook--codex--gpt-6-luna--1--turn1.jsonl:27",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "after",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "organize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "037d7304b9ea071f3e519c3f300b314d29df50de",
+            "file": "skills/essentials/references/organize.md",
+            "lines": 65
+          },
+          "organize-split": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "6b5f0243f402daa477523c7301e95d46f70b6afa",
+            "file": "skills/essentials/references/organize/split.md",
+            "lines": 26
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          },
+          "act-verify": {
+            "commit": "e079b5706a2a9d77c88424d1623157b586b6a42c",
+            "blob": "fa5ef156fa8f21d4739cd423d9b5bf71d43a1a3c",
+            "file": "skills/essentials/references/act/verify.md",
+            "lines": 62
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          },
+          "respond-ask": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "c32094d63379def310a5c3215d6de8e00feb128c",
+            "file": "skills/essentials/references/respond/ask.md",
+            "lines": 43
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17feb-6c22-7210-8bb0-01994649b134",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "organize",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "coordinate",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "devise",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "coordinate-delegate",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "coordinate-brief",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "understand-clarify",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "coordinate-delegate-fanout",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "organize-compose",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-guardrails",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "act-verify",
+          "event": 17,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:18",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act-rightsize",
+          "event": 17,
+          "call": "item_8",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-08/essentials--scenario-08-parking--codex--gpt-6-luna--1--turn1.jsonl:18",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "organize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "037d7304b9ea071f3e519c3f300b314d29df50de",
+            "file": "skills/essentials/references/organize.md",
+            "lines": 65
+          },
+          "coordinate": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "cd66f120a46e54b04f43a969f64df00781abaa82",
+            "file": "skills/essentials/references/coordinate.md",
+            "lines": 31
+          },
+          "devise": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "f3a7e77b639a123b7648fbe19265df3069e14540",
+            "file": "skills/essentials/references/devise.md",
+            "lines": 20
+          },
+          "coordinate-delegate": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "475c42fa757bf09d2fbe218f656e57e7e46a3f80",
+            "file": "skills/essentials/references/coordinate/delegate.md",
+            "lines": 63
+          },
+          "coordinate-brief": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "b2c5b9ae9bf431e677edd6d2b13b72344d6b5590",
+            "file": "skills/essentials/references/coordinate/brief.md",
+            "lines": 36
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          },
+          "coordinate-delegate-fanout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "2dc12801b839f09da98d97a6e7728b3d303d1ae1",
+            "file": "skills/essentials/references/coordinate/delegate/fanout.md",
+            "lines": 29
+          },
+          "organize-compose": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "72cbe533c2d17f61c982972a602c9640b00afb86",
+            "file": "skills/essentials/references/organize/compose.md",
+            "lines": 18
+          },
+          "act-guardrails": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "6eab76d69fd7214781ec1bacf5c4d0cfeee7937a",
+            "file": "skills/essentials/references/act/guardrails.md",
+            "lines": 50
+          },
+          "act-verify": {
+            "commit": "e079b5706a2a9d77c88424d1623157b586b6a42c",
+            "blob": "fa5ef156fa8f21d4739cd423d9b5bf71d43a1a3c",
+            "file": "skills/essentials/references/act/verify.md",
+            "lines": 62
+          },
+          "act-rightsize": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a385f902e2049815a7dc85717c0cdab08506970",
+            "file": "skills/essentials/references/act/rightsize.md",
+            "lines": 70
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand",
+          "understand-clarify"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl",
+      "session": "01a17fee-6cb3-7153-9f8b-bf6f7c6fc46c",
+      "labels": [
+        {
+          "skill": "essentials",
+          "event": 4,
+          "call": "item_1",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:5",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending."
+        },
+        {
+          "skill": "understand",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond",
+          "event": 6,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "unknown",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:7",
+          "reason": "The returned file block differs from today and every Git version checked. Its complete historical source cannot be independently confirmed.",
+          "timing": "before",
+          "timing_reason": "The read result precedes the first opaque command and every recorded write attempt. Reader-assisted timing; user review remains pending.",
+          "current_reader_expected": {
+            "extent": "partial"
+          }
+        },
+        {
+          "skill": "respond-layout",
+          "event": 9,
+          "call": "item_4",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:10",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Manual raw-event check: all earlier commands only read or list files; the first write command starts at event 12. The reader conservatively treats the earlier conditional read as opaque.",
+          "current_reader_expected": {
+            "timing": "unknown"
+          }
+        },
+        {
+          "skill": "act-verify",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "before",
+          "timing_reason": "Manual raw-event check: all earlier commands only read or list files; the first write command starts at event 12. The reader conservatively treats the earlier conditional read as opaque.",
+          "current_reader_expected": {
+            "extent": "partial",
+            "timing": "unknown"
+          }
+        },
+        {
+          "skill": "act",
+          "event": 11,
+          "call": "item_5",
+          "operation": "read",
+          "extent": "partial",
+          "success": true,
+          "evidence": "after-scenario-10/essentials--scenario-10-project--codex--gpt-6-luna--1--turn1.jsonl:12",
+          "reason": "The range returned lines 100–106 of the 106-line recorded act variant; no Git blob matches that variant.",
+          "timing": "before",
+          "timing_reason": "Manual raw-event check: all earlier commands only read or list files; the first write command starts at event 12. The reader conservatively treats the earlier conditional read as opaque.",
+          "current_reader_expected": {
+            "timing": "unknown"
+          }
+        }
+      ],
+      "version_match": {
+        "status": "mixed",
+        "sources": {
+          "essentials": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "1a15ef336cc6a1d495d6ea86682f464c71748f58",
+            "file": "skills/essentials/SKILL.md",
+            "lines": 72
+          },
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          },
+          "act-verify": {
+            "commit": "e079b5706a2a9d77c88424d1623157b586b6a42c",
+            "blob": "fa5ef156fa8f21d4739cd423d9b5bf71d43a1a3c",
+            "file": "skills/essentials/references/act/verify.md",
+            "lines": 62
+          }
+        },
+        "unmatched_skills": [
+          "act",
+          "respond",
+          "understand"
+        ],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--1--turn2.jsonl",
+      "session": "01a17feb-8bee-7932-939f-5befe76615fc",
+      "labels": [],
+      "version_match": {
+        "status": "no skill reads",
+        "sources": {},
+        "unmatched_skills": [],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--2--turn2.jsonl",
+      "session": "01a17feb-8bfa-7420-9919-9ea6d1fc1c0c",
+      "labels": [],
+      "version_match": {
+        "status": "no skill reads",
+        "sources": {},
+        "unmatched_skills": [],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    },
+    {
+      "recording": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--3--turn2.jsonl",
+      "session": "01a17feb-8c0f-7763-a78f-d854a68eb4d0",
+      "labels": [
+        {
+          "skill": "respond-layout",
+          "event": 3,
+          "call": "item_0",
+          "operation": "read",
+          "extent": "unknown",
+          "success": false,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--3--turn2.jsonl:4",
+          "reason": "The named path was missing. No skill text was returned.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        },
+        {
+          "skill": "respond-layout",
+          "event": 7,
+          "call": "item_2",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-audience-final/essentials--four-fixes-intent-message--codex--gpt-6-luna--3--turn2.jsonl:8",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "matched observed files",
+        "sources": {
+          "respond-layout": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "3413ebf7539d0057301769405e7d33dfbffebff5",
+            "file": "skills/essentials/references/respond/layout.md",
+            "lines": 37
+          }
+        },
+        "unmatched_skills": [],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      },
+      "supporting_actions": [
+        {
+          "event": 5,
+          "operation": "search",
+          "extent": "unknown",
+          "target": "skill file names",
+          "reason": "One matching layout path; no skill contents. Not part of the 120 content-access labels."
+        }
+      ]
+    },
+    {
+      "recording": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn2.jsonl",
+      "session": "01a17fe6-4faa-79a3-a88c-c96865f75e5c",
+      "labels": [
+        {
+          "skill": "respond-ask",
+          "event": 3,
+          "call": "item_0",
+          "operation": "read",
+          "extent": "whole",
+          "success": true,
+          "evidence": "after-cases/essentials--four-fixes-approval-function--codex--gpt-6-luna--1--turn2.jsonl:4",
+          "reason": "Complete text of the matched Git version was delivered; an overall compound-call failure does not erase it.",
+          "timing": "no change",
+          "timing_reason": "Conservative native action order; opaque shell effects keep timing unknown. Timing labels require user review; not included in extent agreement."
+        }
+      ],
+      "version_match": {
+        "status": "matched observed files",
+        "sources": {
+          "respond-ask": {
+            "commit": "343d4a7700464835108bcdb7a004e540ad0d38cc",
+            "blob": "c32094d63379def310a5c3215d6de8e00feb128c",
+            "file": "skills/essentials/references/respond/ask.md",
+            "lines": 43
+          }
+        },
+        "unmatched_skills": [],
+        "reason": "Only literal Git-blob matches are assigned a commit. No single commit is claimed for mixed recordings."
+      }
+    }
+  ],
+  "reader_version": "access-3",
+  "revalidation": {
+    "prior_reader": "access-1",
+    "initial_agreement": {
+      "matched": 92,
+      "total": 120
+    },
+    "corrected_access_labels": 28,
+    "corrected_timing_labels": 41,
+    "timing": "120/120 after corrections; reader-assisted, not independent agreement.",
+    "basis": "Raw command operands, literal complete-source comparison and native event order; no reader bug found in these 20 recordings. User spot-check remains pending.",
+    "latest_replay": {
+      "reader": "access-3",
+      "basis": "Historical Git versions; full results and default/current-snapshot comparisons are in version_replay.",
+      "matched": 69,
+      "total": 69,
+      "unscored_version_accesses": 51,
+      "timing_disagreements": 3
+    }
+  },
+  "version_replay": {
+    "reader": "access-3",
+    "fully_matched_recordings": 2,
+    "mixed_recordings": 16,
+    "recordings_without_skill_reads": 2,
+    "git_matched_accesses": 68,
+    "failed_delivery_accesses": 1,
+    "unmatched_version_accesses": 51,
+    "matched_version_agreement": {
+      "matched": 69,
+      "total": 69,
+      "basis": "68 Git-matched deliveries plus 1 failed delivery; operation, extent and success. Timing excluded."
+    },
+    "default_reader_agreement": {
+      "matched": 63,
+      "total": 120
+    },
+    "current_snapshot_agreement": {
+      "matched": 120,
+      "total": 120,
+      "label_field": "current_reader_expected"
+    },
+    "extent_changes": {
+      "partial_to_whole": 7,
+      "partial_to_unknown": 50
+    },
+    "timing_changes": {
+      "unknown_to_before": 3
+    },
+    "default_timing_disagreements": 3,
+    "git_search": "Reachable and reflog history, 44 unreachable commits and 19 unreachable blobs were read; no branch changed."
+  },
+  "recorded_variants": {
+    "understand": {
+      "sha256": "92e0dff96d55eabf2db2673d08f1bd77be301e89bf9c263b49e92a1bf79a8e48",
+      "returned_file_block_lines": 83,
+      "git_match": false
+    },
+    "act": {
+      "sha256": "124bab674562ddbbf717552cf7622490dde51a73b9cb448fe4c37b07aaf139de",
+      "returned_file_block_lines": 106,
+      "git_match": false
+    },
+    "respond": {
+      "sha256": "334bfbc37767404d3e0009887e2a125e146c27cb4bf72cbf8582c4252abc9cd2",
+      "returned_file_block_lines": 53,
+      "git_match": false
+    },
+    "understand-clarify": {
+      "sha256": "8fd9624dcb760521b408bef4a6e1d38a7d63203f7b49ce7aac46a04417aecdc0",
+      "returned_file_block_lines": 54,
+      "git_match": false
+    }
+  }
+}

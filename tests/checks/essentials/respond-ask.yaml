@@ -1,0 +1,99 @@
+{
+  "skill": "respond-ask",
+  "checks": [
+    {
+      "id": "respond-ask:rule:2",
+      "key": "respond-ask:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/respond/ask.md",
+        "line": 24,
+        "text": "2. **Number each question with a recommended answer and short reason.** Give one wherever you have a basis: it lets the user settle the question with one word.\n   - Word the recommended answer so that \"yes\" accepts it as it stands: \"Recommended answer: two 45-minute sessions\", not \"whatever suits your team\". Call it \"Recommended answer\" every time.\n   - Give none for a fact only the user knows, such as which versions they support. Say that it has none, and why. \"Go ahead\" leaves it open, and rule 4 parks it. A recommendation with no basis is a guess that \"go ahead\" would turn into a decision.\n   - Before you ask about a consequential recommendation, one hard to undo or shaping much of the work, challenge it with the `understand-challenge` guide. Put its verdict, in that guide's terms, on one line beside the recommendation, such as \"Challenge: holds with changes: keep the old server for a week\". Routine questions need no challenge."
+      },
+      "applicability": "scenario",
+      "required_skill": "respond-ask",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of respond-ask:rule:2: Number each question with a recommended answer and short reason. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "respond-ask:rule:3",
+      "key": "respond-ask:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/respond/ask.md",
+        "line": 28,
+        "text": "3. **Put each question under its own numbered heading.** Example: \"### 2. How a round is laid out\". The user can answer by number and find it again. In the question tool, follow its form as instruction 1 says."
+      },
+      "applicability": "scenario",
+      "required_skill": "respond-ask",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of respond-ask:rule:3: Put each question under its own numbered heading. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "respond-ask:rule:4",
+      "key": "respond-ask:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/respond/ask.md",
+        "line": 29,
+        "text": "4. **List parked and assumed questions.** Open choices stay visible only if they are listed. When the user says \"go ahead\" or stops, give each question's status with one of these labels:\n   - **Accepted:** the user said yes, or said \"go ahead\" to a question that has your recommended answer.\n   - **Changed:** the user gave an answer of their own: a different one from your recommended answer, or one to a question that had none.\n   - **Assumed:** the user stopped without answering, and the question has your recommended answer. Only a recommended answer you gave can be assumed.\n   - **Parked:** the user set the question aside, or it has no recommended answer when the user says \"go ahead\" or stops. Give why.\n   - Stopping means saying so, such as \"let's leave the questions there\", or starting different work without answering. Not replying yet is not stopping.\n   - Keep assumed and parked questions listed until the user answers them.\n   - Never take a proposal as approved. Park an open proposal and apply nothing it covers: approval must be given."
+      },
+      "applicability": "scenario",
+      "required_skill": "respond-ask",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of respond-ask:rule:4: List parked and assumed questions. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "respond-ask:rule:6",
+      "key": "respond-ask:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/respond/ask.md",
+        "line": 38,
+        "text": "6. **End the turn after a question round or proposal.** Never answer it yourself. Do no work in that turn that an answer could change. Your own answer would make a choice for the user. Take their reply by instruction 3 and rule 4.\n   - If the question tool returns the user's answers in the same turn, continue the work those answers settle. The turn has not ended on the question.\n   - An empty or cancelled result is no answer, and never an approval."
+      },
+      "applicability": "scenario",
+      "required_skill": "respond-ask",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of respond-ask:rule:6: End the turn after a question round or proposal. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The round of questions or the proposal, shown to the user, with the turn ended on it. When the user replies, each answer said back as accepted, changed, assumed or parked, by rule 4.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/respond/ask.md",
+        "line": 19,
+        "text": "The round of questions or the proposal, shown to the user, with the turn ended on it. When the user replies, each answer said back as accepted, changed, assumed or parked, by rule 4."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "respond-ask",
+      "deadline": "caller return or final answer",
+      "expected": "The round of questions or the proposal, shown to the user, with the turn ended on it. When the user replies, each answer said back as accepted, changed, assumed or parked, by rule 4.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "respond-ask:rule:2",
+    "respond-ask:rule:3",
+    "respond-ask:rule:4",
+    "respond-ask:rule:6",
+    "result:respond-ask:0"
+  ]
+}

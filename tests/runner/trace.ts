@@ -1,6 +1,4 @@
-import { readFileSync } from "node:fs";
-import { command_effect, fullPath, reads_in_command, skill_name } from "./shell";
-import { skillFiles } from "./inventory";
+import { command_effect } from "./shell";
 import type { Agent, Event } from "./types";
 export function parse_events(stdout: string): Event[] {
   return stdout.split(/\r?\n/).flatMap((line) => {
@@ -22,63 +20,14 @@ export function message_blocks(event: Event): Event[] {
     ? event.message.content.filter((x: unknown) => x && typeof x === "object")
     : [];
 }
-const ends = Object.fromEntries(
-  skillFiles().flatMap(([name, path]) => {
-    const lines = readFileSync(path, "utf8")
-      .split(/\r?\n/)
-      .map((x) => x.trimEnd())
-      .filter((x) => x.trim());
-    const heading = lines.find((x) => x.startsWith("# "));
-    return heading ? [[name, [heading, lines.at(-1)!]]] : [];
-  }),
-);
-export function skills_printed(output: string) {
-  const lines = new Set(output.split(/\r?\n/).map((x) => x.trimEnd()));
-  return new Set(
-    Object.entries(ends)
-      .filter(([, e]) => e.every((x) => lines.has(x)))
-      .map(([n]) => n),
-  );
-}
-export function skills_read(agent: Agent, events: Event[][], _home: unknown, set: string) {
-  const found = new Set<string | null>(),
-    all = events.flat(),
-    succeeded = new Set(),
-    outputs: Record<string, string> = {};
-  for (const e of all)
-    if (agent === "claude" && e.type === "user")
-      for (const b of message_blocks(e))
-        if (b.type === "tool_result" && !b.is_error) {
-          succeeded.add(b.tool_use_id);
-          outputs[b.tool_use_id] =
-            typeof b.content === "string" ? b.content : (b.content ?? []).map((x: Event) => x.text ?? "").join("\n");
-        }
-  for (const e of all) {
-    if (agent === "claude" && e.type === "assistant")
-      for (const b of message_blocks(e)) {
-        if (b.type !== "tool_use" || !succeeded.has(b.id)) continue;
-        if (b.name === "Skill") found.add((b.input?.skill ?? "").split(":").at(-1));
-        else if (b.name === "Bash") {
-          for (const n of reads_in_command(b.input?.command ?? "", set)) found.add(n);
-          for (const n of skills_printed(outputs[b.id] ?? "")) found.add(n);
-        } else if (["Read", "View"].includes(b.name))
-          for (const m of JSON.stringify(b.input).matchAll(fullPath)) found.add(skill_name(m[1]!, m[2]!));
-      }
-    if (agent === "codex" && e.type === "item.completed" && e.item?.type === "command_execution") {
-      if (e.item.exit_code === 0) for (const n of reads_in_command(e.item.command ?? "", set)) found.add(n);
-      for (const n of skills_printed(e.item.aggregated_output ?? "")) found.add(n);
-    }
-  }
-  found.delete(null);
-  found.delete("");
-  return new Set([...found] as string[]);
-}
+// Legacy assertions are deliberately excluded from measurement attribution.
+export { skills_read, skills_printed } from "./legacy-reads";
 export function agents_started(agent: Agent, events: Event[][]) {
   const all = events.flat();
   if (agent === "claude") {
     const failed = new Set(),
       answered = new Set();
-    for (const e of all)
+    for (const e of all.filter(e => !e.parent_tool_use_id))
       for (const b of message_blocks(e))
         if (b.type === "tool_result") {
           answered.add(b.tool_use_id);
@@ -96,41 +45,38 @@ export function agents_started(agent: Agent, events: Event[][]) {
         0,
       );
   }
-  let spawns = 0;
-  const named = new Set();
-  for (const e of all)
-    if (e.type === "item.completed" && e.item?.type === "collab_tool_call" && e.item.status !== "failed") {
-      spawns += Number(String(e.item.tool ?? "").includes("spawn"));
-      if (Array.isArray(e.item.receiver_thread_ids))
-        for (const id of e.item.receiver_thread_ids) if (id) named.add(String(id));
-    }
-  return Math.max(spawns, named.size);
+  return all.filter(e => e.type === "item.completed" && e.item?.type === "collab_tool_call" &&
+    e.item.status === "completed" && String(e.item.tool ?? "").includes("spawn")).length;
 }
 export function agents_unseen(agent: Agent, events: Event[][], unexplained = false) {
   return agent === "codex" && (unexplained || events.flat().some((e) => e.item?.type === "collab_tool_call"));
 }
 export const TARGET_KEYS = ["command", "file_path", "path", "pattern", "url"];
+export const sameClaudeAgent = (action: Event, event: Event) =>
+  (action.parent_tool_use_id ?? null) === (event.parent_tool_use_id ?? null);
 export function action_evidence(agent: Agent, events: Event[]) {
   const actions: Event[] = [],
     outcomes: Record<string, string> = {};
   if (agent === "claude")
     for (const e of events)
       for (const b of message_blocks(e))
-        if (b.type === "tool_result") outcomes[b.tool_use_id] = b.is_error ? "failed" : "succeeded";
+        if (b.type === "tool_result") outcomes[JSON.stringify([e.parent_tool_use_id ?? null,b.tool_use_id])] = b.is_error ? "failed" : "succeeded";
   for (const e of events) {
     if (agent === "claude" && e.type === "assistant") {
       for (const b of message_blocks(e))
         if (b.type === "tool_use") {
-          const action: Event = { tool: b.name, id: b.id ?? null, status: outcomes[b.id] ?? "unknown" };
+          const action: Event = { tool: b.name, id: b.id ?? null, parent_tool_use_id: e.parent_tool_use_id ?? null,
+            status: outcomes[JSON.stringify([e.parent_tool_use_id ?? null,b.id])] ?? "unknown" };
           for (const k of TARGET_KEYS) if (k in (b.input ?? {})) action[k] = b.input[k];
+          if (["Agent", "Task"].includes(b.name)) action.input = b.input ?? null;
           actions.push(action);
         }
     } else if (agent === "codex" && ["item.started", "item.completed"].includes(e.type)) {
       const item = e.item ?? {};
       if (["agent_message", "reasoning"].includes(item.type)) continue;
-      const action: Event = { tool: item.type ?? null, phase: e.type };
+      const action: Event = { ...(item.id ? { id: item.id } : {}), tool: item.type ?? null, phase: e.type };
       if (item.type === "collab_tool_call") {
-        for (const k of ["receiver_thread_ids", "agents_states", "status"]) if (k in item) action[k] = item[k];
+        for (const k of ["receiver_thread_ids", "sender_thread_id", "agents_states", "status", "prompt", "fork_context"]) if (k in item) action[k] = item[k];
         action.call = item.tool ?? null;
       } else for (const k of ["command", "exit_code", "changes", "server", "tool"]) if (k in item) action[k] = item[k];
       actions.push(action);
@@ -142,7 +88,7 @@ export function text_before_change(agent: Agent, events: Event[][]): [string, bo
   const said: string[] = [];
   const answer = (changed = false, unknown = ""): [string, boolean, string] => [said.join("\n\n"), changed, unknown];
   for (const e of events.flat()) {
-    if (agent === "claude" && e.type === "assistant")
+    if (agent === "claude" && e.type === "assistant" && !e.parent_tool_use_id)
       for (const b of message_blocks(e)) {
         if (b.type === "text") said.push(b.text ?? "");
         else if (b.type === "tool_use") {
@@ -192,7 +138,16 @@ export function text_before_change(agent: Agent, events: Event[][]): [string, bo
 }
 export function turn_texts(agent: Agent, events: Event[]): [string, boolean][] {
   const texts: [string, boolean][] = [];
+  // Claude wakes the session again for each finished background helper, and each wake starts with a new init.
+  // The user saw each earlier wake's text as its own message, so only the last wake's text can be the answer.
+  let woke = false;
   for (const e of events) {
+    if (agent === "claude" && e.type === "system" && e.subtype === "init" && !e.parent_tool_use_id && texts.length)
+      woke = true;
+    if (agent === "claude" && e.type === "assistant" && !e.parent_tool_use_id) {
+      if (woke) for (const t of texts) t[1] = true;
+      woke = false;
+    }
     if (agent === "claude" && e.type === "assistant" && !e.parent_tool_use_id)
       for (const b of message_blocks(e)) {
         if (b.type === "text" && b.text) texts.push([b.text, false]);
@@ -223,7 +178,7 @@ export const turn_parts = (a: Agent, e: Event[]) => {
 };
 export function sessionId(agent: Agent, events: Event[]): string | undefined {
   for (const e of events) {
-    if (agent === "claude" && e.session_id) return e.session_id;
+    if (agent === "claude" && !e.parent_tool_use_id && e.session_id) return e.session_id;
     if (agent === "codex" && e.type === "thread.started") return e.thread_id;
   }
   return undefined;

@@ -1,0 +1,63 @@
+{
+  "skill": "coordinate-instruct",
+  "checks": [
+    {
+      "id": "coordinate-instruct:rule:4",
+      "key": "coordinate-instruct:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/instruct.md",
+        "line": 26,
+        "text": "4. **Write reasons and plain positive instructions.** A reason lets later agents apply the rule to cases it does not name. Capitals and a bare \"never\" do not. When the user gives a rule without its reason, propose one in the draft and mark it as your suggestion, so they can correct it. Give at most one example per rule, and only where the rule is hard to apply without one: agents copy a list of examples instead of following the rule. Use the project's terms, one word for each concept. Make sure every reference points to something that exists, such as a file path or a named role. Shared files name no tool available to only one agent."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-instruct",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-instruct:rule:4: Write reasons and plain positive instructions. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-instruct:rule:6",
+      "key": "coordinate-instruct:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/instruct.md",
+        "line": 28,
+        "text": "6. **Save changes only after the user approves them.** Ask through the `respond-ask` guide. End the turn. An instruction document changes later sessions. A draft is not a saved change. Follow the `act-rightsize-lean` guide's rule to get approval for the list of changes to existing material. Use earlier approval again only if the work and the facts behind it have not changed."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-instruct",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of coordinate-instruct:rule:6: Save changes only after the user approves them. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The proposed or approved instruction document, its location and whether it was actually saved.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/coordinate/instruct.md",
+        "line": 19,
+        "text": "The proposed or approved instruction document, its location and whether it was actually saved."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "coordinate-instruct",
+      "deadline": "caller return or final answer",
+      "expected": "The proposed or approved instruction document, its location and whether it was actually saved.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "coordinate-instruct:rule:4",
+    "coordinate-instruct:rule:6",
+    "result:coordinate-instruct:0"
+  ]
+}

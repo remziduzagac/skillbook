@@ -1,0 +1,99 @@
+{
+  "skill": "understand-research",
+  "checks": [
+    {
+      "id": "understand-research:rule:2",
+      "key": "understand-research:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research.md",
+        "line": 38,
+        "text": "2. **Give each finding a source exact enough to check.** Use a path and line, a link or a reference. Include quoted words where the claim rests on them. A source nobody can locate cannot support the answer."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research:rule:2: Give each finding a source exact enough to check. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research:rule:3",
+      "key": "understand-research:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research.md",
+        "line": 39,
+        "text": "3. **Mark how each finding was obtained.** Rank it as seen or measured, read at its source, inferred, or only said. Mark recalled knowledge \"from memory\" and only said until checked at a source. A snippet or recollection is not a source read. Beside each finding’s strength, say which cases it applies to and where it is limited."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research:rule:3: Mark how each finding was obtained. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research:rule:5",
+      "key": "understand-research:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research.md",
+        "line": 42,
+        "text": "5. **Match evidence to the case being answered.** Check the version, platform and date where they matter. A true claim about another version can be the wrong answer here."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research:rule:5: Match evidence to the case being answered. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research:rule:6",
+      "key": "understand-research:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research.md",
+        "line": 43,
+        "text": "6. **Show conflicting findings side by side.** Explain which has stronger evidence and why. Do not silently resolve a conflict or count repeated copies as independent support."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research:rule:6: Show conflicting findings side by side. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "Sourced findings and their limits: an answer or claim verdict, compared candidates, or evidence for possible causes, returned to the task that asked for the research. The limits include what was looked for and not found, what was not covered and why, and what would change the answer.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/research.md",
+        "line": 23,
+        "text": "Sourced findings and their limits: an answer or claim verdict, compared candidates, or evidence for possible causes. Return them to the task that asked for the research, in this default shape:\n\n```text\nQuestion:     the question, as framed\nAnswer:       a few sentences; for a claim, the verdict: supported, mixed, unsupported, contradicted or unknown\nFindings:     one per line, in the findings format; for a claim, grouped under For and Against\nNot found:    what was looked for, and where\nNot covered:  what was skipped or cut short, and why\nOpen:         what would change the answer, and what would settle it\nNext:         what comes next\n```"
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-research",
+      "deadline": "caller return or final answer",
+      "expected": "Sourced findings and their limits: an answer or claim verdict, compared candidates, or evidence for possible causes, returned to the task that asked for the research. The limits include what was looked for and not found, what was not covered and why, and what would change the answer.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-research:rule:2",
+    "understand-research:rule:3",
+    "understand-research:rule:5",
+    "understand-research:rule:6",
+    "result:understand-research:0"
+  ]
+}

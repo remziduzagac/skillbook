@@ -1,54 +1,58 @@
 # understand-clarify
 
-Finds the user's meaning before acting. Decides what to ask, what to choose and show, and how deep to go. Routes to the part that asks. Asks nothing itself.
+## Purpose
+
+Finds which choices need answers before work starts, who should decide, and how deep to question.
+
+## When to use
+
+Use before acting if two likely answers would lead to different work or results. This includes choices left open in a plan, answers held by someone else, and a request for an interview to find open choices. For example, “Clean up the old branches” leaves which ones go and which stay.
+
+## When not
+
+- An exact question supplied by the user: use the `respond-ask` guide. The question has already been chosen.
+- Facts already in files: read them first, by the `understand` guide’s rule 4. The user need not supply what you can find.
+- A topic to decide together: use the `understand-discuss` guide. The goal is a joint decision rather than finding the user’s meaning. If the user also asks you to ask what only they can decide, use this guide first. One round settles what they already hold. Discussion then takes the parts still open.
+- The user did not follow you: use the `respond-explain` guide. The gap is in your explanation.
+- A view such as “What do you think?”: follow the `act` guide’s rule 2. Give the view without treating it as a task.
+- Generating options: use the `understand-brainstorm` guide for new ideas.
+- Likely answers all lead to the same work: decide and continue. “Rename `foo` to `bar` in this file” and “fix the typo in the README” leave no choice that changes the result.
+
+## Gives back
+
+The visible “Going with” line and assumptions, the summary from the `understand-clarify-deep` guide, or a questionnaire for the person who holds the answers.
 
 ## Rules
 
 1. **Ask only what is the user's to decide and would change the work.** An unneeded question costs the user a turn, and an unstated choice is one they cannot correct.
-   - Test likely answers. If all lead to the same work, decide and continue. If two lead to different work or results, use the `understand` skill's who-decides rule. It also settles choices of both kinds:
+   - For the choices this request leaves open, follow the `understand` guide's who-decides rule:
      - the user's: ask. "Write the project overview" (for whom) and "clean up the old branches" (which ones go) ask.
-     - yours: make it. Show it before work in a "going with" line, by the `understand` skill's who-decides rule. "Add retries to the API client" can use the project's HTTP library and three tries, shown first.
-   - "Rename `foo` to `bar` in this file" and "fix the typo in the README" leave no such choice.
+     - yours: make it. Show it before work in a "going with" line, by the `understand` guide's who-decides rule. "Add retries to the API client" can use the project's HTTP library and three tries, shown first.
    - The result is not always code or files. It can be a document, a decision, an action or anything else.
 2. **Act on nothing an open question could change until the answers are in.**
    - Reading and finding facts go on meanwhile.
-   - Work that no answer would change may go ahead; say so in a line.
-   - "Go ahead" accepts the recommended answers, as `respond-ask` says.
-   - This is stricter than the `understand` skill's ban on lasting changes while understanding. It varies that rule because it is the user's own wish.
-
-**Use `respond-ask` when the user supplies the exact question to ask.** Shallow and deep find the request’s open choices; a preselected question needs neither.
-
-Follow the `understand` skill for facts first, who decides, keeping nothing, result shape and marked guesses. Use `respond-ask` for questions and recommended answers. Return the `understand` shape with assumptions left unconfirmed. Each part's own form is in its file.
+   - Work that no answer would change may go ahead. Report that work in one line in the final answer.
+   - "Go ahead" accepts the recommended answers, as the `respond-ask` guide says.
+   - This is stricter than the `understand` guide's ban on lasting changes while understanding. It varies that rule because it is the user's own wish.
 
 ## Advice
 
-- Start shallow. Load deep directly when the user asks for an interview to find open choices. Depth becomes clear only after seeing the whole level. One round costs little. Many small tasks end there.
-- Use dependence to trigger deep, never question count. An answer must open questions that would change the work. Plans and designs usually have dependent parts. Usually offer deep after shallow for those.
+- Use dependence to trigger deep, never question count. An answer must open questions that would change the work. Plans and designs usually have dependent parts. Usually offer deep for those, in the shallow round or after it.
 - When, after the shallow round, you are unsure whether a part needs depth, offer deep rather than going deep.
 
 ## Instructions
 
-- **shallow** (`understand-clarify-shallow`): **Read `understand-clarify-shallow` when clarify starts finding open choices without a request for an interview, or deep reaches a new level inside a part.**
-  - Not for: a user-supplied exact question (`respond-ask`), the user asking for an interview or a part whose answers depend on each other (deep), or questions only someone else can answer (questionnaire).
-  - Gives back: the "going with" line, with an offer of deep for a part whose answers depend on each other.
-- **deep** (`understand-clarify-deep`): **Read `understand-clarify-deep` when the user accepts shallow’s offer to explore a part whose answers open questions that would change the work, or asks for an interview to find open choices.** When the user asks for an interview to find open choices, read it at once without another offer. Example: “question me on this plan”.
-  - Not for: a user-supplied exact question (`respond-ask`), a level not yet seen whole (shallow first), a topic still to be decided together (`understand-discuss`), or questions only someone else can answer (questionnaire).
-  - Gives back: the summary the user confirmed, or saw after telling you to start the work: decided, parked, accepted and assumed.
-- **questionnaire** (`understand-clarify-questionnaire`): **Read `understand-clarify-questionnaire` when questions remain that only someone other than the user can answer, after the user has answered theirs.** The user may say that someone else holds the answer. If you see it instead, ask the user rather than deciding alone.
-  - Not for: a user-supplied exact question (`respond-ask`), anything the user can answer, or anything the files say.
-  - Gives back: the document, in the response by default, for the user to send. Later, its answers, taken back here.
-- **Ask whether independent work should proceed while a questionnaire is out.** Ask through `respond-ask` only if independent work remains. Otherwise say what waits for answers. Park the questionnaire's questions until answers return. Start no dependent work.
+Settle the choices that would change the result before the work they affect starts. Each child guide asks in its own way, so read the right one before your first question. **Read the child guide that fits, ask through it, then check readiness before you act.**
 
-Not here:
-
-- The user not following you goes to `respond-explain`.
-- "What do you think?" goes to the `act` skill's rule that an opinion is not a task.
-- A topic to decide together goes to `understand-discuss`. Options wanted go to `understand-brainstorm`.
-
-## The last instruction
-
-Before you act on anything an open question could change, check:
-
-- Every question that is the user's to decide is answered, taken with its recommended answer by the user's acceptance, parked, or in a questionnaire.
-- "Going with" is said, with the choices the work rests on, or the summary is confirmed, or it is shown where the user told you to start the work.
-- The `understand` skill's rules hold.
+1. **Read the child guide that fits before your first question: the `understand-clarify-shallow` guide by default.** A round asked without its guide misses parts of the request, and the user finds the unasked choices only in the result.
+   - The `understand-clarify-shallow` guide sees a whole level of choices in one round. Read it in every case not listed below. Which part needs depth shows only once the whole level is seen. One round costs little, and many small tasks end there.
+   - The `understand-clarify-deep` guide resolves choices that depend on each other. Read it at once when the user asks you to interview them about their open choices, such as "quiz me on this course outline". Read it for a part after the user accepts your offer of deeper questions on it.
+   - The `understand-clarify-questionnaire` guide writes questions for someone else. Read it when only someone other than the user can answer, such as a landlord.
+2. **While a questionnaire is out, start no work that depends on its answers.** A missing reply turned into a guess decides for the user.
+   - Park its questions until the answers return.
+   - Name in your answer the choices that wait for the answers.
+   - If work that does not depend on them is left, and the user has not asked for it already, ask through the `respond-ask` guide whether it goes ahead. Then end the turn.
+3. **Check readiness against “Gives back” and the `understand` guide before acting.** Always do this last. An unanswered choice can send the work in a direction the user never chose.
+   - Check each user-owned question is answered, accepted with its recommended answer, parked, or in a questionnaire. Under rule 2, start no work that an open answer could change. While a questionnaire is out, check that your answer names the choices that wait for it.
+   - Check the user has seen the choices the work rests on in “Going with”, or confirmed the deep summary. Follow the `understand` guide's who-decides rule when the user already told you to start.
+   - Check the chosen child's result and final step. Keep unconfirmed assumptions visible. Fix any missing answer, disclosure or status before handing the result back.

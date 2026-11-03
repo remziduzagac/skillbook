@@ -100,7 +100,7 @@ After essentials: softeng (D166), starting with the person's own idea for softwa
 - Codex's reference file is unwritten: its models, effort levels, forks, plan mode, task list, question tool and compaction.
 - Calling another set's main skill and then its hidden skill is tested only in halves; two skills complementing each other across sets (doer in one, keeper in another) is untested; whether a fresh agent loads skills inside a subagent is untested.
 - The link checker: lychee is missing here, so links go unchecked until it is installed; installing it, or adding a checker to the repository, is the person's call.
-- `roadmap.md` line 13 and `ideas/` history still say "conduct" where they record what was true then; the name lives on only in history and in source names such as loomcraft's conduct rules.
+- `roadmap.md` line 13 and `ideas/` history still say "conduct" where they record what was true then; the name lives on only in history and in source names such as a private documentation system's conduct rules.
 
 ## 8. References
 

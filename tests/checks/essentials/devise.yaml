@@ -1,0 +1,25 @@
+{
+  "skill": "devise",
+  "checks": [],
+  "results": [
+    {
+      "part": "The approach stays in thinking. Return any used child’s result to the active task.",
+      "kind": "internal",
+      "source": {
+        "file": "skills/essentials/references/devise.md",
+        "line": 17,
+        "text": "The approach stays in thinking. Return any used child’s result to the active task."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "devise",
+      "deadline": "caller return or final answer",
+      "expected": "The approach stays in thinking. Return any used child’s result to the active task.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown.",
+      "exclusion": "The approach stays in thinking. Used child results are measured under their own guides."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": []
+}

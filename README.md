@@ -33,7 +33,7 @@ skillbook is a book of skills for AI agents such as Claude Code and Codex: instr
 [ca-idea]: docs/cadence/idea.md
 [co-idea]: docs/compendium/idea.md
 
-Only each set's main skill sits in an agent's context; every other skill loads when a flow reaches it, so a set can grow without filling the context. Each set works alone, and uses another when it is installed.
+Each set is installed as one skill in the agent’s skill list. Its files under `references/` are guides. Essentials reads five guides on every request, reads its other main guides when their stage has work, and uses a guide map to choose any further guides the work needs. Its guides shape how the agent works; other available skills and tools do the work itself. Essentials works on its own and names no other set.
 
 ## Installing
 
@@ -43,7 +43,7 @@ Coming with the first release: one install script, `install.sh`, copies the sets
 
 - `skills/<set>/`: one folder per set, once built.
 - [docs/](docs/README.md): one page per skill, for people.
-- [docs/essentials/](docs/essentials/README.md): what essentials is for, how it works, and a line on each of its skills.
+- [docs/essentials/](docs/essentials/README.md): what essentials is for, how it works, and a line on each of its guides.
 - [docs/blueprint/idea.md](docs/blueprint/idea.md): the first idea of the blueprint method, with [a worked example](docs/blueprint/idea.md#a-worked-example-worktree-groups).
 - `docs/<set>/idea.md`: the first idea of each other set, such as [softeng](docs/softeng/idea.md).
 

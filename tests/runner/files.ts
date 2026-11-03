@@ -26,6 +26,7 @@ import {
   TARGET_KEYS,
 } from "./trace";
 import type { Agent, Checks, Event, Observation } from "./types";
+import { CODEX_REASONING_SUMMARY } from "./routing-notes";
 export { skill_name } from "./shell";
 const IGNORED = new Set([".claude", ".codex", ".agents", "__pycache__", ".git"]);
 export function projectPaths(root: string): string[] {
@@ -131,10 +132,14 @@ export function observe(
     said = "";
     uncertain = "a change no action shows";
   }
-  const paths = new Set([...Object.keys(checks.file_contains ?? {}), ...(checks.shorter ?? [])]),
+  const paths = new Set([...Object.keys(checks.file_contains ?? {}), ...(checks.shorter ?? []),
+    ...Object.keys(checks.words_under ?? {}), ...Object.keys(checks.only_replacement ?? {}),
+    ...Object.keys(checks.index_links ?? {}).filter(p => p !== "*"), ...(checks.keeps_lines ?? [])]),
     folders = Object.keys(checks.folder_lacks ?? {});
+  if (checks.index_links?.["*"]) for (const p of written(delta)) if (/\.md$/i.test(p)) paths.add(p);
   for (const p of written(delta)) if (folders.some((f) => p.startsWith(f))) paths.add(p);
   return {
+    project_snapshot: snapshot(work),
     reads: [...skills_read(agent, events, null, set)].sort(),
     changes: delta,
     answer: events
@@ -165,15 +170,18 @@ export const ownLogin = (agent: Agent) =>
 export function prepareHome(
   home: string,
   agent: Agent,
-  c: { set: string; pointer: boolean; project_skills?: string[] },
+  c: { set: string; pointer: boolean; project_skills?: string[]; no_skill?: boolean },
   login: boolean,
   instruction = "",
 ) {
   // Refuse a real agent home even if a caller accidentally passes it here.
   if (resolve(home) === resolve(homedir()) || [".codex", ".claude", ".agents"].includes(home.split("/").at(-1)!))
     throw Error("home must be a throwaway root");
+  if (c.no_skill && [".agents/skills", ".claude/skills", ".codex/skills", ".claude/plugins", ".codex/plugins"].some(p => existsSync(join(home,p))))
+    throw Error("no-skill home contains inherited skills or plugins; use a fresh home");
   const dir = join(home, agent === "claude" ? ".claude" : ".codex");
   mkdirSync(dir, { recursive: true });
+  if (!c.no_skill) {
   const installed = spawnSync(join(REPO, "install.sh"), ["--agents", agent], {
     env: { ...process.env, HOME: home },
     encoding: "utf8",
@@ -185,6 +193,7 @@ export function prepareHome(
       recursive: true,
       filter: (p) => !p.split("/").at(-1)!.startsWith("."),
     });
+  }
   if (agent === "claude")
     writeFileSync(
       join(dir, "settings.json"),
@@ -211,10 +220,11 @@ export function prepareHome(
   else
     writeFileSync(
       join(dir, "config.toml"),
-      "[features]\napps = false\nplugins = false\nremote_plugin = false\n" +
+      `model_reasoning_summary = "${CODEX_REASONING_SUMMARY}"\n\n` +
+        "[features]\napps = false\nplugins = false\nremote_plugin = false\n" +
         "\n[sandbox_workspace_write]\nexclude_slash_tmp = true\n",
     );
-  const lines = [...(c.pointer ? [POINTER] : []), ...(instruction ? [instruction] : [])];
+  const lines = [...(c.pointer && !c.no_skill ? [POINTER] : []), ...(instruction ? [instruction] : [])];
   if (lines.length) writeFileSync(join(dir, agent === "claude" ? "CLAUDE.md" : "AGENTS.md"), lines.join("\n\n") + "\n");
   if (login) copyFileSync(ownLogin(agent), join(dir, agent === "claude" ? ".credentials.json" : "auth.json"));
 }

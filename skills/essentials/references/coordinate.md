@@ -1,31 +1,37 @@
 # coordinate
 
-Routes delegation, brief writing, carryovers, agent instructions, skillbook setup and session lessons.
+## Purpose
+
+Helps agents work together, pass work to later sessions, and keep instructions and lessons in the right place.
+
+## When to use
+
+Use when work involves other agents, a later session, agent instructions, skillbook setup or lessons from a session. For example, a later agent may need a note to continue the work.
+
+## When not
+
+- A skill’s design or files: use the project’s skill-making method, otherwise your judgment. These methods cover working with agents and sessions.
+- Other work outside these methods: use your judgment under the `act` guide.
+
+## Gives back
+
+Each used method’s result and its actual status, returned to the task that asked for it.
 
 ## Instructions
 
-- **delegate** (`coordinate-delegate`): **Read `coordinate-delegate` when you start another agent now, or several agents should answer, search or change things.** Follow the main skill’s delegation advice.
-  - Not for: writing the brief (`coordinate-brief`), continuing later (`coordinate-carryover`), or choosing whether an independent check is needed (`act-verify`, which calls delegate to start it).
-  - Gives back: actual work and verification status, cost where needed, task status and cleanup results.
-- **brief** (`coordinate-brief`): **Read `coordinate-brief` when you write instructions for an agent you are starting now, whether forked or fresh.**
-  - Not for: choosing the agent, model or cost (`coordinate-delegate`), or recording state for later or an agent the user starts (`coordinate-carryover`).
-  - Gives back: the brief and the report it asks the worker to return.
-- **carryover** (`coordinate-carryover`): **Read `coordinate-carryover` when the user asks for a note, says work will continue in a fresh session, after a break or with another agent, or you resume a note or offer one at a boundary in a long continuing session.**
-  - Not for: a worker you start now (`coordinate-delegate` and `coordinate-brief`) or recording a lasting lesson (`coordinate-learn`).
-  - Gives back: the note with its actual review and approval status, or the differences checked on resumption and the authorized work that continues.
+Coordinating keeps this conversation small and the work moving. Other agents do the tasks, later sessions pick up where this one stopped, and instructions and lessons go where the next agent will find them. Every file read and every output printed here is carried again on every later turn, so work done elsewhere saves tokens and keeps this conversation free for the user. **Decide who does each part, use the method that part needs, and check what comes back.**
 
-- **instruct** (`coordinate-instruct`): **Read `coordinate-instruct` when you add, update or prune instructions that agents read.**
-  - Not for: skill files or designs (the project's skill-making method), installed pointer placement (`coordinate-setup`), or a later-session note (`coordinate-carryover`).
-  - Gives back: the proposed or approved document, its location and actual save status.
-- **setup** (`coordinate-setup`): **Read `coordinate-setup` when the user asks to set up skillbook on a machine or project, check its setup, or move its installed pointer.**
-  - Not for: adding an ordinary instruction rule (`coordinate-instruct`) or making skills (the project's skill-making method).
-  - Gives back: approved changes, checked loading, recommendations and pending work.
-- **learn** (`coordinate-learn`): **Read `coordinate-learn` when the user asks what a session taught, or accepts the lesson part of the stopping offer.**
-  - Not for: unasked recording, a decision recorded as work happens (the caller), or carrying state forward (`coordinate-carryover`).
-  - Gives back: approved promotions and their destinations, dropped highlights and pending decisions.
-
-For a skill's design or files, use the project's method for making skills, otherwise judgment. A request fitting no route uses judgment under the `act` skill. Return each result to its active caller.
-
-## The last instruction
-
-Apply the last instruction of each child used. Report the actual status of the child's work. Return the result without restarting the caller's work.
+1. **Decide, for each part of the approach, whether another agent should do it.** Work done here fills this conversation with reading and output the user never needs.
+   - Follow the main skill's step 4 for delegating by default, its three exceptions and what to do when you are unsure whether a part is too small. Do a part yourself only for one of those exceptions.
+2. **Hand the work over with the method it needs.** The wrong way wastes tokens or weakens the result.
+   - the `coordinate-delegate` guide: choose and manage workers, from a fork to several agents, with each worker's model and effort matched to the risk. Track them, check what they return and clean up after them.
+   - the `coordinate-brief` guide: write a starting worker's context, with pointers instead of pasted files, and ask for a short report.
+   - the `coordinate-carryover` guide: write or resume the context for a later session, or for an agent the user starts.
+3. **Keep instructions, setup and lessons where the next agent will find them.** An instruction or a lesson in the wrong place is not read when it is needed.
+   - the `coordinate-instruct` guide: prepare agent instruction documents.
+   - the `coordinate-setup` guide: prepare approved skillbook setup.
+   - the `coordinate-learn` guide: find homes for reusable lessons.
+4. **Check each result before you use it, and return its actual status.** Always do this last. A worker's report of success is not the work itself, and an unchecked result passes its faults on as yours.
+   - Follow the final step of each child guide you used.
+   - Report the actual status of each child's work, such as finished and checked, finished but unchecked, or still running.
+   - Return each result to its active caller without restarting the caller's work.

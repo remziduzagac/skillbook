@@ -1,4 +1,5 @@
 import { scoreRuns } from "./scoring";
+import { lengthSummary } from "./answers";
 import { readFileSync } from "node:fs";
 import { walk } from "./inventory";
 import type { Event } from "./types";
@@ -46,6 +47,21 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
     "Results are per agent and model. Automatic checks leave semantic review pending.",
     "",
   ];
+  const validations=new Map(results.filter(r=>r.rubric_validation).map(r=>
+    [r.rubric_validation.fixture_hash,r.rubric_validation]));
+  if (validations.size) lines.push("## Judge validation", "");
+  for (const validation of validations.values()) {
+    const f=validation.flip_rate;
+    lines.push(`- Contract ${validation.fixture_hash}: ${validation.validated} candidates validated; ` +
+      `measured flips ${f.changed}/${f.compared} (${(100*f.rate).toFixed(1)}%) at ${f.revision}.`);
+    lines.push(...(validation.noise_candidates.length ? validation.noise_candidates.map((c:Event)=>
+      `- Nonblocking noise: ${c.check}, trace ${c.ref}; initial ${c.initial}; expected ${c.expected}; ` +
+        `reruns ${c.reruns.map(String).join(", ")}.`) :
+      ["- Nonblocking noise: none."]));
+    lines.push(...(validation.blocking_candidates ?? []).map((c:Event)=>
+      `- Tolerated blocking miss (limit ${validation.blocking_limit}): ${c.check}, trace ${c.ref}; initial ${c.initial}; ` +
+        `expected ${c.expected}; reruns ${c.reruns.map(String).join(", ")}.`), "");
+  }
   for (const [group, scores] of Object.entries(scoreRuns(results as any))) {
     lines.push(`## Scores: ${group}`, "", "95% Wilson intervals over scored checks; correlated turns are not independent trials.", "");
     for (const [tag, s] of Object.entries(scores))
@@ -54,6 +70,11 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
         `${s.unknown} unknown; ${s.not_reached} not reached`);
     lines.push("");
   }
+  const lengths = results.filter(r => r.turns?.length).map(r => ({ r, ...lengthSummary(r.turns) }));
+  if (lengths.length) lines.push("## Final-answer length", "",
+    "Words in each turn's final answer. A number to read beside the scores, never a verdict.", "",
+    ...lengths.map(({ r, turns, median, total }) => `- ${r.case}, ${r.agent} (${r.model}), run ${r.run}: ` +
+      `median ${median} words, total ${total} words, over ${turns} turns`), "");
   const fits: Record<string, { off: number; unknown: number; total: number }> = {};
   for (const r of results) if (r.user_mode === "fixed") {
     const counts = fits[r.case] ??= { off: 0, unknown: 0, total: 0 };
@@ -96,6 +117,8 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
     for (const r of runs) {
       lines.push(`- run ${r.run}: ${runStatus(r)}`);
       if (r.error) lines.push(`- error: ${r.error}`);
+      if (r.unreached_turns?.length) lines.push("- turns not run: " + r.unreached_turns.map((t: Event) =>
+        `${t.turn}${t.chapter ? ` (chapter ${t.chapter})` : ""}`).join(", "));
       if (r.changes?.length) lines.push(`- changed: ${r.changes.join(", ")}`);
       for (const [name, value] of Object.entries(r.checks ?? {}))
         lines.push(`- ${name}: ${value === null ? "0 of 1; 1 unknown" : value ? "1 of 1" : "0 of 1"}`);
@@ -108,7 +131,7 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
         for (const item of r.review) lines.push(`- [ ] ${item}`);
       }
       for (const [i, t] of (r.turns ?? []).entries()) {
-        lines.push("", `Run ${r.run}, turn ${i + 1}, final answer:`, "", t.final_answer ?? t.answer ?? "(No answer.)");
+        lines.push("", `Run ${r.run}, turn ${t.turn ?? i + 1}${t.chapter ? ` (chapter ${t.chapter})` : ""}, final answer:`, "", t.final_answer ?? t.answer ?? "(No answer.)");
         lines.push("", "Scripted message: " + (t.scripted_message ?? ""),
           "Sent message: " + (t.sent_message ?? ""), "Steered: " + String(t.steered ?? false));
         if (t.fit) lines.push("Fit: " + JSON.stringify(t.fit));

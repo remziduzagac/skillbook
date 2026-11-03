@@ -3,7 +3,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, existsSync, symlinkSync, linkSyn
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { prepareHome, agentEnv, snapshot, fixtureText, observe } from "./files";
-import { runTurn, endRun, owned } from "./process";
+import { runTurn, endRun, owned, addedTmpPaths } from "./process";
 import { check } from "./checks";
 import { cost } from "./cost";
 import { score, evaluateTagged } from "./scoring";
@@ -19,6 +19,14 @@ function temporary(fn: (root: string) => void) {
     rmSync(root, { recursive: true, force: true });
   }
 }
+test("temporary cleanup checks use paths added this turn, including children of existing directories",()=>{
+  const baseline=["cc-socks/","claude-501/","node-compile-cache/","native-token/","native-token/lock"];
+  expect(addedTmpPaths(baseline,baseline)).toEqual([]);
+  const delta=addedTmpPaths(baseline,[...baseline,"analysis/","analysis/notes.json","claude-501/left-by-agent"]);
+  expect(check({tmp_lacks:["."]},{},null,delta)["temporary folder lacks /./"]).toBe(false);
+  expect(delta).toContain("claude-501/left-by-agent");
+  expect(addedTmpPaths(null,[])).toBeNull();expect(addedTmpPaths([],null)).toBeNull();
+});
 test("home installs only into the supplied sandbox and suppresses account features", () =>
   temporary((root) => {
     const home = join(root, "home");
@@ -64,6 +72,23 @@ test("costs preserve zero, invalid usage and unknown model prices", () => {
     cost("codex", "unpriced", [[{ type: "turn.completed", usage: { input_tokens: 0, output_tokens: 0 } }]]),
   ).toBeNull();
 });
+test("Sol costs count uncached, cached and output tokens across completed turns", () => {
+  const events = [
+    [{
+      type: "turn.completed",
+      usage: { input_tokens: 1_000_000, cached_input_tokens: 800_000, output_tokens: 100_000 },
+    }],
+    [{
+      type: "turn.completed",
+      usage: { input_tokens: 500_000, cached_input_tokens: 100_000, output_tokens: 20_000 },
+    }],
+  ];
+  // $1.48 for the first turn and $1.01 for the second; cached tokens are included in input.
+  expect(cost("codex", "gpt-6.1-sol", events,[{fresh:true},{fresh:true}])).toBeCloseTo(2.49, 8);
+  expect(cost("codex", "gpt-6.1-sol", [[{
+    type: "turn.completed", usage: { input_tokens: 1, cached_input_tokens: 2, output_tokens: 0 },
+  }]])).toBeNull();
+});
 test("tag scores exclude unknown and not reached and retain a 95 percent interval", () => {
   const result = score([
     { tag: "habit", verdict: true },
@@ -83,7 +108,12 @@ test("tag scores exclude unknown and not reached and retain a 95 percent interva
   ).toEqual([{ id: "b", tag: "habit", verdict: "not reached" }]);
 });
 test("YAML is validated before filtering and unknown checks fail", () => {
-  expect(loadCases("route-").length).toBe(62);
+  temporary(root => {
+    writeFileSync(join(root, "route-test.yaml"), Bun.YAML.stringify({ fixture: "routing-studio",
+      routing_only: true, checks: { reads: ["act"] }, turns: [{ prompt: "Inspect" }] }));
+    expect(loadCases("route-", root)).toHaveLength(1);
+    expect(loadCases("missing", root)).toHaveLength(0);
+  });
   expect(() => validateCase({ fixture: "routing-studio", turns: [{ prompt: "x" }], checks: { reed: [] } })).toThrow();
   expect(() => validateCase({ fixture: "routing-studio", turns: [] })).toThrow();
 });
@@ -153,7 +183,7 @@ test("agent adapters preserve sandbox and resume controls", async () => {
 test("aspect inventory includes routes, exclusions and project checks", async () => {
   const { aspects } = await import("./inventory");
   const inventory = aspects();
-  for (const id of ["act:rule:5", "act:route:act-rightsize", "essentials:step:1", "skillbook-design:check:13"])
+  for (const id of ["act:rule:5", "act:step:4", "essentials:step:1", "skillbook-design:check:13"])
     expect(inventory[id]).toBeDefined();
 });
 
@@ -208,3 +238,15 @@ test("reports expose runner errors and failures shared by models", () => {
   expect(report).toContain("Failed on more than one model");
   expect(report).toContain("every automatic check passed in 0 of 1 runs");
 });
+test("no-skill home omits installations, project skills and startup pointers for both agents", () =>
+  temporary(root => {
+    for (const agent of ["codex", "claude"] as const) {
+      const home=join(root,agent);
+      prepareHome(home,agent,{set:"essentials",pointer:true,project_skills:["skillbook-write"],no_skill:true},false);
+      expect(existsSync(join(home,".agents/skills"))).toBe(false);
+      expect(existsSync(join(home,".claude/skills"))).toBe(false);
+      expect(existsSync(join(home,agent === "codex" ? ".codex/AGENTS.md" : ".claude/CLAUDE.md"))).toBe(false);
+      const env=agentEnv(home,agent,true,join(root,"tmp"));
+      expect(env.HOME).toBe(home);expect(env.CLAUDE_CONFIG_DIR).toBeUndefined();
+    }
+  }));

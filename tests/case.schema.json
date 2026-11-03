@@ -24,14 +24,67 @@
         "source": {
           "type": "string"
         },
+        "source_snapshots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
         "fixture": {
           "type": "string"
+        },
+        "chapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Chapter"
+          }
+        },
+        "gitignore": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "agents": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Agent"
           }
+        },
+        "models": {
+          "type": "object",
+          "properties": {
+            "claude": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "codex": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
         },
         "runs": {
           "type": "number"
@@ -130,6 +183,47 @@
       ],
       "additionalProperties": false
     },
+    "Chapter": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "number"
+        },
+        "start_turn": {
+          "type": "number"
+        },
+        "checkpoint": {
+          "type": "object",
+          "properties": {
+            "fixture": {
+              "type": "string"
+            },
+            "overlays": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "remove": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "fixture"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "number",
+        "start_turn",
+        "checkpoint"
+      ],
+      "additionalProperties": false
+    },
     "Agent": {
       "type": "string",
       "enum": [
@@ -200,6 +294,71 @@
             "type": "string"
           }
         },
+        "words_under": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "only_replacement": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "unchanged_under": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "index_links": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "folder": {
+                    "type": "string"
+                  },
+                  "contains": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "folder"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "keeps_lines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "states_before_change": {
           "anyOf": [
             {
@@ -235,6 +394,15 @@
           }
         },
         "folder_lacks": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "folder_contains": {
           "type": "object",
           "additionalProperties": {
             "type": "array",
@@ -282,6 +450,74 @@
     "Turn": {
       "type": "object",
       "properties": {
+        "timeout": {
+          "type": "number"
+        },
+        "skill_needs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkillNeed"
+          }
+        },
+        "also_called": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkillNeed"
+          }
+        },
+        "if_taken": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConditionalNeed"
+          }
+        },
+        "rule_marks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "applies": {
+                "type": "boolean"
+              },
+              "deadline": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string",
+                    "const": "first change"
+                  },
+                  {
+                    "type": "string",
+                    "const": "answer"
+                  }
+                ]
+              },
+              "near_miss": {
+                "type": "boolean"
+              },
+              "missing_piece": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "applies",
+              "deadline"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "judge_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "prompt": {
           "type": "string"
         },
@@ -309,6 +545,60 @@
       },
       "required": [
         "prompt"
+      ],
+      "additionalProperties": false
+    },
+    "SkillNeed": {
+      "type": "object",
+      "properties": {
+        "skill": {
+          "type": "string"
+        },
+        "deadline": {
+          "$ref": "#/definitions/Deadline"
+        }
+      },
+      "required": [
+        "skill",
+        "deadline"
+      ],
+      "additionalProperties": false
+    },
+    "Deadline": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "const": "first change"
+        },
+        {
+          "type": "string",
+          "const": "answer"
+        }
+      ]
+    },
+    "ConditionalNeed": {
+      "type": "object",
+      "properties": {
+        "skill": {
+          "type": "string"
+        },
+        "deadline": {
+          "$ref": "#/definitions/Deadline"
+        },
+        "path": {
+          "type": "string"
+        },
+        "taken_when": {
+          "$ref": "#/definitions/Checks"
+        }
+      },
+      "required": [
+        "deadline",
+        "path",
+        "skill"
       ],
       "additionalProperties": false
     },
@@ -351,6 +641,9 @@
     "Rubric": {
       "type": "object",
       "properties": {
+        "source_check": {
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },

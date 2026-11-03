@@ -14,6 +14,7 @@ Status: **Design**, the initial design is open (D27): changes go straight into t
 - [ ] **The parts:** a design document and an ideas document per root and for the main skill (D80), filled in this order: essentials first, act, respond, understand, organize, coordinate and devise, until it is complete, then softeng's implement, test, review, ship and maintain, and authoring, then the main skill (D166). design starts from the blueprint method, maintain's repo from greenrepo.
 - [x] **Review essentials against the new checks (D211):** a fresh agent reports judgment-word triggers, wide exits, missing boundary examples and vague verbs, changing nothing; its findings fixed in two batches (D212, D215), 2026-10-20.
 - [x] **essentials' layout,** generic layout rules for essentials' outputs: authoring's markdown's structure layer, moved into a skill under respond, designed before the baseline is built (D154, D158), 2026-10-17.
+- [ ] **The guide map (D279, D280):** the main skill as rules, a guide map with paths and one stage per main guide, each guide's boundary at the top of its file; one shape for every guide (D283, D285); the main guides as flows of their own, and every Instructions section written like the main skill's stages (D286, D287); then tested.
 - [ ] **The glossary and SCOPE.md,** brought in line with the tree.
 
 ## Build: later
@@ -25,7 +26,7 @@ Starts with the baseline (D108); the rest once the person declares the initial d
 
 - [ ] **The test setup** (D208, [design/testing.md](design/testing.md)), built in this order:
   1. Install tests in CI: `just test-install` for `install.sh`, run in GitHub CI on Linux and macOS. Built: 16 tests in `tests/install-test.sh`.
-  2. The runner `tests/run.py`, run by `just test-agents`. Built: 48 cases, 67 scripted turns per agent, covering every built essentials and project skill, most with normal, boundary and edge scenarios, with per-turn assertions and semantic review rubrics (D219); `just test-coverage` reports the inventory. Twenty-five account-free runner tests join `just check`, covering retained evidence, unknown sequencing and interrupted spending as well as case checks. The expanded scenarios have not run on models yet. Earlier results remain in the decisions' Tested lines; they do not validate the new cases.
+  2. The runner, now `tests/run.ts` on Bun, run by `just test-agents-ts`, with account-free unit tests in `just check` (D219, D268). Every earlier case is retired, tagged `essentials-old-tests`; [the festival scenario](design/scenarios/festival.md) replaces them, built and run in full on Claude Code with Sonnet and Codex with GPT-6.1 Sol (D288). Earlier results remain in the decisions' Tested lines; they do not validate the new scenario.
   3. `just try claude` and `just try codex`, the manual sandbox.
 - [ ] **The repository's checks:** the check script (names matching paths, every dashed name a skill uses resolving to a file, the head of a plain skill file, D188, D190), release-please (D192).
 - [ ] **The first skills,** as their parts are designed.
@@ -49,7 +50,7 @@ Skill names stay dashed: slashed names were tried and lowered Luna's routing fro
 
 Sets are agent-agnostic: plan, delegate, carryover and setup use the current agent’s controls with generic fallbacks; agent-specific install locations stay in the installer design and docs (D267).
 
-The test runner moves to TypeScript on pinned Bun, with YAML checked by a generated schema and a conversation model ready for scenarios; Python and TOML stay for comparison, and a terminal view is a later idea (D268).
+The test runner uses TypeScript on pinned Bun, with YAML checked by a generated schema. Python stays for replay and assertion comparison; its TOML cases are retired (D268, D288). A terminal view is a later idea.
 
 The main behavioral layer becomes fifteen realistic conversations, with fixed and constrained simulated users, calibrated rubric judging and pooled scores with intervals (D269).
 
@@ -59,4 +60,4 @@ Explicit requests to see or confirm a change first require a proposal and an end
 
 Judge validation separates tuning from blind held-out ratings, reports agreement on human passes and fails, splits mixed checks and adds pass^3 beside averages (D273).
 
-Before further skill changes, build validated per-agent skill-use records, shared and rule checks from skill text, result checks from promised returns, loading/outcome grids and outcome/result views, with trigger/near-miss cases and no-skill comparisons, following the attribution build order and settled choices in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) (D278).
+The festival scenario is built as five chapters and 28 turns, with authored correct/alternative/wrong traces; its judging passes a gate over those traces, and it has full runs on Sonnet and Sol (D288). Before further skill changes, build validated per-agent skill-use records, shared and rule checks from skill text, result checks from promised returns, loading/outcome grids and outcome/result views, with trigger/near-miss cases and no-skill comparisons, following the attribution build order and settled choices in [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) (D278).

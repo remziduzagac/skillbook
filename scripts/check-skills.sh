@@ -9,6 +9,7 @@ set -eu
 main() {
 	repo="$(cd "$(dirname "$0")/.." && pwd)"
 	limit=120         # about 100 lines is the advice; past this a file is reported
+	main_limit=160    # a main skill holds the guide map, so it may pass about 100 lines where the map needs it
 	start_limit=20000 # about 20,000 characters (about 5,000 tokens) for the start files, carried on every turn
 	problems=0
 
@@ -33,8 +34,10 @@ main() {
 		for file in "$set_dir/SKILL.md" $(find "$refs" -name '*.md' 2>/dev/null | sort); do
 			rel="${file#"$repo"/}"
 			lines=$(wc -l <"$file")
-			if [ "$lines" -gt "$limit" ]; then
-				echo "$rel: $lines lines, past $limit; trim or split it"
+			file_limit=$limit
+			[ "$file" = "$set_dir/SKILL.md" ] && file_limit=$main_limit
+			if [ "$lines" -gt "$file_limit" ]; then
+				echo "$rel: $lines lines, past $file_limit; trim or split it"
 				problems=$((problems + 1))
 			fi
 			case "$file" in
@@ -83,6 +86,13 @@ main() {
 	if [ -n "$copied" ]; then
 		echo "$copied"
 		problems=$((problems + $(echo "$copied" | wc -l)))
+	fi
+
+	# YAML is the active corpus. Its parser also covers block and folded prompts.
+	if [ -f "$repo/tests/check-examples.ts" ]; then
+		if ! bun "$repo/tests/check-examples.ts" "$repo"; then
+			problems=$((problems + 1))
+		fi
 	fi
 
 	if [ "$problems" -gt 0 ]; then

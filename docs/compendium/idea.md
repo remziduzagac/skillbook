@@ -18,7 +18,7 @@ A compendium is a collection that sums up what is known about a subject. The com
 - **distill:** turns notes and sources into short insights, each linked back to where it came from.
 - **find:** searches what you keep, and writes a short briefing on a topic from it.
 - **tidy:** keeps a collection healthy: broken links, notes nothing links to, missing tags and fields.
-- **vault:** sets up or reorganises a notes folder, such as an Obsidian vault.
+- **vault:** sets up or reorganises a notes folder, such as a notes-app vault.
 - **teach:** helps you learn a topic over several sessions.
 
 ## How it fits

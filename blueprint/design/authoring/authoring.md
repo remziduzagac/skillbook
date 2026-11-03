@@ -149,7 +149,7 @@ authoring/
   1. **Structure:** essentials' layout, or the fallback above where essentials is not installed.
   2. **The file rules** in `references/files.md`.
   3. **Checking a file** (D115): writing a file is done when the project's markdown linter passes on it, a claim that goes through act's verify. A linter that has to be downloaded is fetched code, proposed first as act's guardrails says. With no linter, a search for the mechanical rules, such as lines over 120 characters in tables and headings, trailing spaces, tabs and bare links, replaces reading the file back; with a linter, it runs once, after the last file written (D149). A linter that cannot run is said so. Failures on lines the agent did not write are reported, not fixed, as act's rule on doing exactly what was asked says.
-  4. **Last instruction, before a file is returned:** the structure holds, by layout or the fallback; act's rightsize's check run; the linter passed, or why it could not run is said (D145, D158).
+  4. **Check the file before returning it.** Always do this last. the structure holds, by layout or the fallback; act's rightsize's check run; the linter passed, or why it could not run is said (D145, D158).
 - **Result:** none of its own; it shapes every markdown file.
 - **Files:** `SKILL.md`: the pointer to essentials' layout with its fallback, which rules win, the instructions and a pointer to the file rules; `references/files.md`: the file rules and the advice for fitting a table (D107, D111, D158).
 - **Material:** the person's markdown-style skill; this repository's lint configuration and its table-width rule (D110).

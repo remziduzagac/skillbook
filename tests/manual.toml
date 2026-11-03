@@ -1,106 +1,38 @@
-# Aspects that a headless run cannot test. A person tests each by hand in a live session.
-# Everything else a skill states belongs to a case in tests/cases/, named in its `covers` field.
+# Behaviours requiring a live interface, compaction, external writer or large material.
+# Missing scenario coverage belongs in the coverage report, not in this manual list.
 
 [[aspect]]
-id = "respond-ask:rule:10"
-reason = "The harness's question tool: a headless run has no question tool, so only a live session shows when the agent uses it, how it marks the recommended option and what it does with an empty or cancelled answer."
+id = "respond-ask:step:1"
+reason = "The live question tool, including cancellation and empty answers, is absent from headless runs. Text question rounds are checked by the festival."
 
 [[aspect]]
 id = "understand-clarify-deep:advice:2"
-reason = "The offer to record decisions rests on real signs that a session is long: the harness saying its context is filling up, or a summary replacing earlier turns. A scripted run reaches neither without a real compaction."
-
-[[aspect]]
-id = "essentials:advice:1"
-reason = "Delegating by default means starting a real agent or fork and taking its report back. The runner records reads and file changes, not agents it started, so a case cannot show that the agent delegated or why it did not."
+reason = "The offer to record depends on real context pressure or compaction. The festival starts fresh at checkpoints and does not create a real compaction."
 
 [[aspect]]
 id = "act-guardrails:rule:6"
-reason = "Safe writes guard against a file that changes between the agent's read and its write, and against a write that empties a file by mistake. The first needs an outside writer during the turn, and the runner changes no file while an agent runs; the second is a slip no prompt can bring about on purpose, so a case built to cause it would test the prompt, not the rule."
+reason = "A concurrent outside write between reading and writing needs an external writer. The runner does not interleave such writes. Ordinary preservation is checked automatically."
 
 [[aspect]]
 id = "act-cleanup:advice:2"
-reason = "Preferring the harness's own worktree, background-task and scratch tools needs a session where those tools are offered and visible; headless runs differ by agent, and the runner records file changes, not which harness tool kept track of what."
+reason = "Native scratch, worktree and background-task controls vary with the live interface. The festival checks actual cleanup, not preference among controls absent from the record."
 
 [[aspect]]
 id = "act-cleanup:advice:3"
-reason = "Checking the size before a large copy needs a tree large enough to matter, gigabytes, which no fixture can hold, since the runner copies every fixture whole into each run's throwaway folder."
+reason = "Checking a gigabyte-scale copy requires large material. Copying it into every throwaway fixture would make the ordinary suite impractical."
 
 [[aspect]]
 id = "act-cleanup:advice:5"
-reason = "Keeping the record in a file so it survives compaction shows only after a real compaction in a long session, which a scripted run does not reach."
-
-[[aspect]]
-id = "organize:rule:3"
-reason = "The cases check self-inventory and reporting a required unavailable independent check. A real fresh helper, its independent judgment and its actual return need a live permitted delegation session; the Codex trace may not expose them. Never infer absence from missing events."
-
-[[aspect]]
-id = "organize:rule:6"
-reason = "The rollback fixture tests a known later edit. A new concurrent write between the actual pre-write read and undo needs an outside writer during a live session; the scenario runner does not interleave external writes."
-
-[[aspect]]
-id = "organize:rule:8"
-reason = "The cases exercise generic code-preservation and the absent-specialist fallback. Actual architecture/implementation delegation to an installed external softeng set needs that set in a live session; its design is not a fixture substitute."
-
-[[aspect]]
-id = "coordinate-delegate:step:6"
-reason = "Actual worker startup/identity/state is not established by proposal-only scenarios; Codex tool events may omit spawned workers. Check live, without treating a missing event as proof of no worker."
-
-[[aspect]]
-id = "coordinate-delegate:step:7"
-reason = "Actual returned work verification and cleanup need a real worker result and observation. Proposal scenarios test ownership and requested evidence only."
-
-[[aspect]]
-id = "coordinate-delegate:step:3"
-reason = "Selecting current native worker controls requires their live exposure; documentation inspection is not that exposure."
-
-[[aspect]]
-id = "coordinate-carryover:step:2"
-reason = "The pre-note cleanup of real prior session artifacts requires a live lifecycle; a fixture cannot establish what the earlier writer actually started."
-
-[[aspect]]
-id = "act-rightsize-lean:step:2"
-reason = "The restored large-material delegation needs an actual over-one-read item and permitted worker lifecycle. Proposal-only coordinate cases cannot prove that listing execution or its no-nested-delegation limit."
-
-[[aspect]]
-id = "coordinate-delegate-council:step:4"
-reason = "Collecting real member results, waits, runtime failures and cleanup needs a permitted worker lifecycle. Supplied-report cases do not establish that lifecycle."
-
-[[aspect]]
-id = "coordinate-delegate-fanout:step:4"
-reason = "Actual independent validation needs a fresh permitted worker and observed result; proposed missing-validator cases do not establish a live check."
+reason = "A cleanup ledger surviving a real compaction requires a live long session. Chapter resets are not compaction evidence."
 
 [[aspect]]
 id = "coordinate-setup:step:7"
-reason = "Applying real approved settings and checking fresh-session loading is deferred. This build changes no real configuration; fixture proposals are not live setup."
-
-[[aspect]]
-id = "coordinate-delegate-crew:step:3"
-reason = "Actual parallel writers and their lifecycle are deferred. A proposal can test ownership and nesting policy, not concurrent execution."
-
-[[aspect]]
-id = "coordinate-delegate-crew:step:4"
-reason = "The final serial integration after real concurrent changes needs live workers; a one-item exclusion case cannot prove integration execution."
-
-[[aspect]]
-id = "coordinate-delegate-crew:rule:3"
-reason = "The post-write reread during real concurrency needs another writer; hypothetical safe-write cases test policy only."
-
-[[aspect]]
-id = "understand-research-analyze:step:2"
-reason = "Actual permitted reproduction, instrumentation and probe observations require an isolated live investigation. Supplied traces and proposed tests establish interpretation and probe policy only."
-
-[[aspect]]
-id = "understand-research-analyze:step:6"
-reason = "Actual cleanup of the investigation's own processes, temporary edits and permitted retained evidence requires a live lifecycle. Unresolved and cancelled proposal cases cannot establish execution."
+reason = "Applying approved settings and observing fresh-session loading requires a live install. Festival turn 25 requests discovery only and changes no setup."
 
 [[aspect]]
 id = "devise-plan:step:4"
-reason = "Live plan and task controls vary by agent and session. Automated plan-only scenarios test the useful plan and honest fallback, not actual mode approval or task-tool operation."
+reason = "Native plan and task controls and approval transitions vary by live interface. The festival checks the plan and its approval status, not unavailable UI controls."
 
 [[aspect]]
-id = "coordinate-carryover:step:6"
-reason = "Fresh-session command availability varies by agent and interface. Automated instructions are not evidence that a transition happened or that a command is supported in every interface."
-
-[[aspect]]
-id = "coordinate-setup:step:2"
-reason = "Actual install discovery and supported loading need an approved live install. Hypothetical selected-path scenarios validate proposals only, not live installation or loading."
+id = "coordinate-carryover:step:5"
+reason = "An actual transition to a fresh interactive session and its supported command needs a live interface. The festival checks the saved note, outline and honest command fallback."

@@ -8,23 +8,23 @@ Both sat under a group named productivity (D48), in the sample tree ([../ideas/s
 
 **knowledge:** what is known, in plain files.
 
-- **capture:** get it down now, sort it later (VaultOps, slipbox, workslate, alirezarezvani/claude-skills).
-- **ingest:** keep the source first, card it, extract from it (VaultOps, workslate).
-- **distill:** atomic insights linked back to their sources (VaultOps, workslate).
-- **find:** search lenses and topic briefings (workslate, slipbox, loomcraft and infoloom).
-- **tidy:** links, orphans, frontmatter, tags (slipbox, loomcraft and infoloom).
-- **vault:** set up or reorganise a notes folder or an Obsidian vault, an idea (VaultOps, slipbox).
+- **capture:** get it down now, sort it later (a private notes system, slipbox, a private agent-workflow project, alirezarezvani/claude-skills).
+- **ingest:** keep the source first, card it, extract from it (the private notes system, the private agent-workflow project).
+- **distill:** atomic insights linked back to their sources (the private notes system, the private agent-workflow project).
+- **find:** search lenses and topic briefings (the private agent-workflow project, slipbox, two private documentation systems).
+- **tidy:** links, orphans, frontmatter, tags (slipbox, the two private documentation systems).
+- **vault:** set up or reorganise a notes folder or a notes-app vault, an idea (the private notes system, slipbox).
 - **teach:** learn a topic over several sessions (mattpocock/skills).
 
 **routines:** the person's daily work: meetings, reviews, tasks.
 
-- **meetings:** decisions and actions with owner, due date and a quote; hands notes to knowledge's capture (workslate, VaultOps).
-- **reflect:** daily, weekly and monthly reviews; chronicles (VaultOps, slipbox, gstack, alirezarezvani/claude-skills).
-- **close-out:** keep what matters, wrap up, clean, retire; hands over to distill, to conduct's handoff and to conduct's learning from a session (workslate, VaultOps).
-- **tasks:** personal tasks: parents, waiting or blocked, today, an idea (VaultOps).
+- **meetings:** decisions and actions with owner, due date and a quote; hands notes to knowledge's capture (the private agent-workflow project, the private notes system).
+- **reflect:** daily, weekly and monthly reviews; chronicles (the private notes system, slipbox, gstack, alirezarezvani/claude-skills).
+- **close-out:** keep what matters, wrap up, clean, retire; hands over to distill, to conduct's handoff and to conduct's learning from a session (the private agent-workflow project, the private notes system).
+- **tasks:** personal tasks: parents, waiting or blocked, today, an idea (the private notes system).
 - **triage:** incoming issues turned into agent-ready briefs, as a routine, an idea (mattpocock/skills, gstack).
 - **focus:** a focused work session, an idea (alirezarezvani/claude-skills).
-- **people:** one-to-ones, hiring rubrics, onboarding, feedback, an idea (workslate).
+- **people:** one-to-ones, hiring rubrics, onboarding, feedback, an idea (the private agent-workflow project).
 
 ## Decided earlier, still standing
 
@@ -41,11 +41,11 @@ Both sat under a group named productivity (D48), in the sample tree ([../ideas/s
    - the knowledge folder holds sources and insights, often private, since copied sources cannot always be published;
    - the person's own notes use the same layout without a blueprint, in place of a vault;
    - this repository keeps its `blueprint/` where it is, beside the plugin's `skills/skillbook/`.
-3. **The knowledge folder's name:** not "library", too common. "study" if it holds active study as well as results, "knowledge" if it holds mostly what is already known. Other candidates from the earlier projects: loom (workslate's info loom), slipbox, vault (suggests Obsidian), crate, shelf, catalog (each names one part only).
+3. **The knowledge folder's name:** not "library", too common. "study" if it holds active study as well as results, "knowledge" if it holds mostly what is already known. Other candidates from the earlier projects: loom (from the private agent-workflow project), slipbox, vault (suggests a notes app), crate, shelf, catalog (each names one part only).
 4. **The boundary with blueprint's research:** research notes answer one project's questions and cite their sources; the knowledge folder keeps the sources and insights themselves, and research notes link to it rather than copy it.
-5. **Work in progress lives with what it produces:** work that ends in a design or code for a project goes in blueprint, as a workstream; work that ends in knowledge goes in the knowledge folder; meetings and personal tasks go in routines. VaultOps' words then map onto existing ones instead of standing beside them:
+5. **Work in progress lives with what it produces:** work that ends in a design or code for a project goes in blueprint, as a workstream; work that ends in knowledge goes in the knowledge folder; meetings and personal tasks go in routines. The private notes system's words then map onto existing ones instead of standing beside them:
 
-   | VaultOps | In blueprint | In the knowledge folder |
+   | The private notes system | In blueprint | In the knowledge folder |
    | --- | --- | --- |
    | track | a workstream | a topic being studied |
    | thread | an open question in the discussion notes | a study thread, if one is needed |
@@ -54,10 +54,10 @@ Both sat under a group named productivity (D48), in the sample tree ([../ideas/s
    | harvest | consolidate | distill |
 
 6. **Where learn's highlights wait:** highlights from a session wait in a home of their own until learn judges them (D66): one per project, for highlights about that project, and one for the person, for how they work with agents. Both depend on the project folder.
-7. **Routines and knowledge together or apart:** VaultOps kept its calendar (tasks, meetings, logs, chronicles) in the same room as knowledge; whether routines share the knowledge folder or get their own is open.
+7. **Routines and knowledge together or apart:** the private notes system kept its calendar (tasks, meetings, logs, chronicles) in the same room as knowledge; whether routines share the knowledge folder or get their own is open.
 
 ## Material to read first
 
 - [draft-ideas.md](draft-ideas.md), "Knowledge" and "Productivity", and "Vocabulary worth keeping".
-- VaultOps' layout, from the person's Obsidian sandbox: a "Study Room" with Inbox (new, review, processed, a drop folder, daily rollover), Crate (raw sources), Card Catalog (resource cards in 12 types; atomic evergreen insights), Shelf (compendia), Desk (tracks and threads, each with input, slate, traces and output), Calendar (tasks, meetings, logs, chronicles), Navigate and Cabinet (templates, prompts, schemas, trash). Five pillars: Capture, Storage, Library, Workspace, Time. Pipelines: Ingest; Refine (extract, then distill); Process (the desk's dialogue loop). It removed its Folio, Subject and Topic types and let tags carry the taxonomy.
+- The private notes system's layout: a "Study Room" with Inbox (new, review, processed, a drop folder, daily rollover), Crate (raw sources), Card Catalog (resource cards in 12 types; atomic evergreen insights), Shelf (compendia), Desk (tracks and threads, each with input, slate, traces and output), Calendar (tasks, meetings, logs, chronicles), Navigate and Cabinet (templates, prompts, schemas, trash). Five pillars: Capture, Storage, Library, Workspace, Time. Pipelines: Ingest; Refine (extract, then distill); Process (the desk's dialogue loop). It removed its Folio, Subject and Topic types and let tags carry the taxonomy.
 - [../ideas/open.md](../ideas/open.md), "The project folder".

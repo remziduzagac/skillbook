@@ -13,7 +13,10 @@ describe("ported Python unit contracts", () => {
   for (const [index, vector] of vectors.entries()) {
     test(`${vector.function} ${index}`, () => {
       const actual = functions[vector.function]!(...vector.args);
-      expect(actual instanceof Set ? [...actual].sort() : actual).toEqual(vector.expected);
+      // The frozen Python vectors predate actor attribution and contain only main-agent actions.
+      const expected = vector.function === "action_evidence" && vector.args[0] === "claude" && Array.isArray(vector.expected) ?
+        vector.expected.map(action => ({...action as object,parent_tool_use_id:null})) : vector.expected;
+      expect(actual instanceof Set ? [...actual].sort() : actual).toEqual(expected);
     });
   }
 });

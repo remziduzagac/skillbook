@@ -1,0 +1,135 @@
+{
+  "skill": "organize",
+  "checks": [
+    {
+      "id": "organize:rule:1",
+      "key": "organize:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/organize.md",
+        "line": 35,
+        "text": "1. **Use one dividing principle at a time.** One question sorts the items. Mixing principles creates overlaps."
+      },
+      "applicability": "scenario",
+      "required_skill": "organize",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of organize:rule:1: Use one dividing principle at a time. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "organize:rule:2",
+      "key": "organize:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/organize.md",
+        "line": 36,
+        "text": "2. **Give each part a boundary in one sentence.** Follow the `act-rightsize` guide for parts that cover everything without overlap. An unstated boundary hides overlaps."
+      },
+      "applicability": "scenario",
+      "required_skill": "organize",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of organize:rule:2: Give each part a boundary in one sentence. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "organize:rule:3",
+      "key": "organize:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/organize.md",
+        "line": 37,
+        "text": "3. **Preserve meaning when rearranging existing material.** Nothing substantive may be lost, added or changed. A statement lost in a move is hard to see once the move is done.\n   - Before any change, map every original statement, or each section that moves unchanged, to its new place. This map is the inventory, and it is the map you show for approval.\n   - After the change, check the result against the inventory, by step 6. A count alone does not check meaning: the same number of lines can hide one changed rule.\n   - Call the check independent only by the `act-verify` guide's rule 2. If a required independent check cannot run, report it as still open, with who should arrange it. The user's confirmation does not replace it."
+      },
+      "applicability": "scenario",
+      "required_skill": "organize",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of organize:rule:3: Preserve meaning when rearranging existing material. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "organize:rule:4",
+      "key": "organize:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/organize.md",
+        "line": 41,
+        "text": "4. **Get the user's approval before changing any item or view.** Meaning is at stake.\n   - Show the map by step 4. Ask through the `respond-ask` guide. End the turn before applying.\n   - Reuse approval only for the work the user approved, while the facts behind it still hold.\n   - Both checkpoints, this approval and the confirmation in rule 5, still apply when the user gives the steps, when the `act` guide's rule 13 allows work to proceed, or when the `act-rightsize` guide requires one approval.\n   - A mode change, task box or unanswered question is not approval.\n   - A delegated worker returns questions to its caller."
+      },
+      "applicability": "scenario",
+      "required_skill": "organize",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of organize:rule:4: Get the user's approval before changing any item or view. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "organize:rule:5",
+      "key": "organize:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/organize.md",
+        "line": 47,
+        "text": "5. **Get the user's confirmation after checking the applied result.**\n   - Repair lost statements or failed checks, and rerun the check, before asking for confirmation.\n   - Return the evidence and mark the result as awaiting the user's confirmation. End the turn.\n   - Claim confirmed completion only after the user replies to confirm the result.\n   - A rejected plan returns to planning, or to step 1 if the principle was rejected."
+      },
+      "applicability": "scenario",
+      "required_skill": "organize",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of organize:rule:5: Get the user's confirmation after checking the applied result. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "organize:rule:7",
+      "key": "organize:rule:7",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/organize.md",
+        "line": 53,
+        "text": "7. **Keep retired items marked with where their content went.** Links and history may still lead there. Use a notice such as \"merged into …\". Deleting them is a separate action through the `act-guardrails` guide."
+      },
+      "applicability": "scenario",
+      "required_skill": "organize",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of organize:rule:7: Keep retired items marked with where their content went. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The grouping principle, each part’s boundary, each item’s place, and any missing or overlapping parts. After a change, also return the before-and-after map, checks, approvals and what was moved, changed or marked as replaced.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/organize.md",
+        "line": 23,
+        "text": "The grouping principle, each part’s boundary, each item’s place, and any missing or overlapping parts. After a change, also return the before-and-after map, checks, approvals and what was moved, changed or marked as replaced.\n\n```text\nsplit       A               → A1 A2 A3\nmerge       A A' A\"          → A\ncompose     A B C            → P over A, B, C\nnormalize   A[x] B[x]        → A[→X] B[→X] X\ncluster     A B C            → view over A, B, C\n```"
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "organize",
+      "deadline": "caller return or final answer",
+      "expected": "The grouping principle, each part’s boundary, each item’s place, and any missing or overlapping parts. After a change, also return the before-and-after map, checks, approvals and what was moved, changed or marked as replaced.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "organize:rule:1",
+    "organize:rule:2",
+    "organize:rule:3",
+    "organize:rule:4",
+    "organize:rule:5",
+    "organize:rule:7",
+    "result:organize:0"
+  ]
+}

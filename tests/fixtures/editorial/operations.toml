@@ -1,3 +1,0 @@
-status_file = "state/build-status.json"
-resume_command = "beacon resume --from-checkpoint"
-failed_checkpoint_action = "contact the duty engineer before resuming"

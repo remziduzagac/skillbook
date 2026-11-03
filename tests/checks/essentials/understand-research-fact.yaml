@@ -1,0 +1,81 @@
+{
+  "skill": "understand-research-fact",
+  "checks": [
+    {
+      "id": "understand-research-fact:rule:1",
+      "key": "understand-research-fact:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/fact.md",
+        "line": 24,
+        "text": "1. **Search against a claim as seriously as for it.** Searching only for support rewards confirmation. Keep the actual evidence found on each side, including no evidence found."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-fact",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-fact:rule:1: Search against a claim as seriously as for it. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-fact:rule:2",
+      "key": "understand-research-fact:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/fact.md",
+        "line": 25,
+        "text": "2. **Judge by relevant evidence strength rather than the number of findings.** One current applicable primary statement can outweigh many copies. Stale authority or evidence for another case does not override the actual case."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-fact",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-fact:rule:2: Judge by relevant evidence strength rather than the number of findings. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-fact:rule:3",
+      "key": "understand-research-fact:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/fact.md",
+        "line": 26,
+        "text": "3. **Keep verdicts distinct from missing checks.** Use one of five verdicts:\n   - supported: the relevant evidence supports the claim;\n   - mixed: relevant evidence both supports and challenges it;\n   - unsupported: you finished the check and found no adequate support;\n   - contradicted: relevant evidence that applies to the case shows the claim is false, such as a newer rule that replaces the one the claim rests on;\n   - unknown: access, coverage or evidence kept you from a reliable verdict.\n\n   When applicable evidence outweighs the rest by rule 2, the verdict is supported or contradicted, not mixed. Stale or inapplicable evidence on the other side does not make it mixed.\n\n   Only contradicted shows the claim false. A check that found no support is not evidence against the claim, so unsupported and unknown never do. Give the evidence, its limits and what would change the verdict."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-fact",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-fact:rule:3: Keep verdicts distinct from missing checks. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The answer or claim verdict, supporting and opposing evidence, limits and missing checks.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/research/fact.md",
+        "line": 20,
+        "text": "The answer or claim verdict, supporting and opposing evidence, limits and missing checks."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-research-fact",
+      "deadline": "caller return or final answer",
+      "expected": "The answer or claim verdict, supporting and opposing evidence, limits and missing checks.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-research-fact:rule:1",
+    "understand-research-fact:rule:2",
+    "understand-research-fact:rule:3",
+    "result:understand-research-fact:0"
+  ]
+}

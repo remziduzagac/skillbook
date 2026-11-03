@@ -25,10 +25,10 @@ export function skillFiles(): [string, string][] {
     out.push([path.split("/").at(-2)!, path]);
   return out;
 }
-export function aspects() {
+export function aspects(files: [string, string][] = skillFiles()) {
   const found: Record<string, string> = {},
     kinds: Record<string, string> = { Rules: "rule", Advice: "advice", Names: "names", "The checklist": "check" };
-  for (const [name, path] of skillFiles()) {
+  for (const [name, path] of files) {
     let section = "",
       index = 0,
       current = "";
@@ -45,10 +45,10 @@ export function aspects() {
         s = s.replace(/[*`]/g, "").trim();
         return s.slice(0, 70) + (s.length > 70 ? "…" : "");
       };
-      if (top && kinds[section]) found[`${name}:${kinds[section]}:${++index}`] = summary(top[1]!);
+      if (top && kinds[section]) found[`${name}:${kinds[section]}:${line.match(/^(\d+)\./)?.[1] ?? ++index}`] = summary(top[1]!);
       else if (top && section === "Instructions") {
         const route = top[1]!.match(/\(`([a-z][a-z0-9-]*)`\)/);
-        index++;
+        index = Number(line.match(/^(\d+)\./)?.[1] ?? index + 1);
         current = route?.[1] ?? `step-${index}`;
         found[`${name}:${route ? "route:" + current : "step:" + index}`] = summary(top[1]!);
       } else if (current && section === "Instructions" && line.trim().startsWith("- Not for:"))

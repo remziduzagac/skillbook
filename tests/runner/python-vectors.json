@@ -1007,7 +1007,10 @@
         "agents_states": {},
         "status": "completed",
         "call": "wait",
-        "tool": "collab_tool_call"
+        "tool": "collab_tool_call",
+        "id": "item_7",
+        "sender_thread_id": "s1",
+        "prompt": null
       }
     ]
   },
@@ -1241,7 +1244,10 @@
         "agents_states": {},
         "status": "completed",
         "call": "wait",
-        "tool": "collab_tool_call"
+        "tool": "collab_tool_call",
+        "id": "item_7",
+        "sender_thread_id": "s1",
+        "prompt": null
       },
       {
         "phase": "item.completed",
@@ -1249,7 +1255,10 @@
         "agents_states": {},
         "status": "completed",
         "call": "wait",
-        "tool": "collab_tool_call"
+        "tool": "collab_tool_call",
+        "id": "item_7",
+        "sender_thread_id": "s1",
+        "prompt": null
       }
     ]
   },
@@ -1721,7 +1730,7 @@
         ]
       ]
     ],
-    "expected": 1
+    "expected": 0
   },
   {
     "function": "redact",
@@ -2773,7 +2782,13 @@
         ]
       ],
       null,
-      "essentials"
+      "essentials",
+      {
+        "understand-clarify": [
+          "# understand-clarify",
+          "- The `understand` skill's rules hold."
+        ]
+      }
     ],
     "expected": [
       "understand-clarify"
@@ -2797,7 +2812,13 @@
         ]
       ],
       null,
-      "essentials"
+      "essentials",
+      {
+        "understand-clarify": [
+          "# understand-clarify",
+          "- The `understand` skill's rules hold."
+        ]
+      }
     ],
     "expected": []
   },
@@ -2843,7 +2864,13 @@
         ]
       ],
       null,
-      "essentials"
+      "essentials",
+      {
+        "understand-clarify": [
+          "# understand-clarify",
+          "- The `understand` skill's rules hold."
+        ]
+      }
     ],
     "expected": [
       "understand-clarify"

@@ -1,25 +1,71 @@
 import type { Agent, Event } from "./types";
 export const DEFAULT_MODELS = { claude: "haiku", codex: "gpt-6-luna" };
-export const CODEX_PRICES: Record<string, [number, number, number]> = { "gpt-6-luna": [0.1, 0.01, 0.5] };
-export function cost(agent: Agent, model: string, events: Event[][]): number | null {
-  let total = 0,
-    seen = false;
-  for (const e of events.flat()) {
-    if (agent === "claude" && e.type === "result") {
-      const value = e.total_cost_usd;
-      if (typeof value !== "number" || !Number.isFinite(value) || value < 0) return null;
-      total += value;
-      seen = true;
-    }
-    if (agent === "codex" && e.type === "turn.completed") {
-      seen = true;
-      const p = CODEX_PRICES[model],
-        u = e.usage;
-      if (!p || !u || typeof u !== "object") return null;
-      const counts = [u.input_tokens, u.output_tokens, u.cached_input_tokens ?? 0];
-      if (counts.some((n) => !Number.isInteger(n) || n < 0) || counts[2] > counts[0]) return null;
-      total += ((counts[0] - counts[2]) * p[0] + counts[2] * p[1] + counts[1] * p[2]) / 1e6;
-    }
+// USD per 1M tokens: input, cached input, output (Standard rates; not billing totals).
+// Sol verified 2026-10-29: https://developers.openai.com/api/docs/models/gpt-6.1-sol
+export const CODEX_PRICES: Record<string, [number, number, number]> = {
+  "gpt-6-luna": [0.1, 0.01, 0.5],
+  "gpt-6.1-sol": [2, 0.1, 10],
+};
+export interface CostContext { fresh: boolean; expectedSession?: string }
+interface Counter { session?: string; values: number[] }
+function counter(agent: Agent, events: Event[]): Counter | undefined {
+  const main = events.filter(e => !e.parent_tool_use_id);
+  const sessions = [...new Set(main.map(e => agent === "claude" ? e.session_id :
+    e.type === "thread.started" ? e.thread_id : undefined).filter(s => typeof s === "string" && s))];
+  if (sessions.length > 1) return;
+  const results = main.filter(e => e.type === (agent === "claude" ? "result" : "turn.completed"));
+  // Claude wakes the session again for each finished background helper; every wake ends with a result
+  // carrying the session total, so the last one counts once.
+  if (!results.length || agent === "codex" && results.length !== 1) return;
+  const result = results.at(-1)!;
+  if (agent === "claude") {
+    const values = results.map(r => r.total_cost_usd);
+    if (values.some((v,i) => typeof v !== "number" || !Number.isFinite(v) || v < 0 || i > 0 && v < values[i - 1]))
+      return;
+    const value = values.at(-1) as number;
+    if (value === 0 && result.subtype === "error_during_execution") return;
+    return {session:sessions[0],values:[value]};
   }
-  return seen ? total : null;
+  const u = result.usage;
+  if (!u || typeof u !== "object") return;
+  const values = [u.input_tokens,u.cached_input_tokens ?? 0,u.output_tokens];
+  if (values.some(n => !Number.isSafeInteger(n) || n < 0) || values[1] > values[0]) return;
+  return {session:sessions[0],values};
+}
+
+// Both supported CLIs expose cumulative session/thread counters, including on resume.
+// Claude's root total already includes helper spending. Do not add child result totals.
+export class CostTracker {
+  private previous?: Counter;
+  private started = false;
+  constructor(private agent: Agent, private model: string) {}
+  next(events: Event[], context: CostContext = {fresh:!this.started}): number | null {
+    const before = context.fresh ? undefined : this.previous, current = counter(this.agent,events);
+    this.started = true;
+    // A missing result breaks the baseline. A later valid result can establish the next baseline,
+    // but cannot allocate spend across the missing turn.
+    this.previous = current;
+    if (!current || !context.fresh && (!before?.session || !current.session || before.session !== current.session ||
+      context.expectedSession !== undefined && current.session !== context.expectedSession)) return null;
+    const delta = current.values.map((n,i) => n - (before?.values[i] ?? 0));
+    if (delta.some(n => n < 0)) return null;
+    if (this.agent === "claude") return delta[0]!;
+    const prices = CODEX_PRICES[this.model];
+    if (!prices || delta[1]! > delta[0]!) return null;
+    return ((delta[0]! - delta[1]!) * prices[0] + delta[1]! * prices[1] + delta[2]! * prices[2]) / 1e6;
+  }
+}
+
+// A complete history starts fresh; later fresh sessions require explicit saved boundaries.
+// A single fresh auxiliary query uses the same path, with no inherited counter to subtract.
+export function cost(agent: Agent, model: string, events: Event[][], contexts?: CostContext[]): number | null {
+  if (!events.length) return null;
+  const tracker = new CostTracker(agent,model);
+  let total = 0, unknown = false;
+  for (const [i,turn] of events.entries()) {
+    const amount = tracker.next(turn,contexts?.[i] ?? {fresh:i === 0});
+    unknown ||= amount === null;
+    total += amount ?? 0;
+  }
+  return unknown ? null : total;
 }

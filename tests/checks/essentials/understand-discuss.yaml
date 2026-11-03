@@ -1,0 +1,117 @@
+{
+  "skill": "understand-discuss",
+  "checks": [
+    {
+      "id": "understand-discuss:rule:1",
+      "key": "understand-discuss:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/discuss.md",
+        "line": 26,
+        "text": "1. **Show the whole before the first item.** List the items, from the user's own list where they gave one. Frame the topic first with the `understand-frame` guide when its problem, goal or way to judge a good result is missing. A later item can undo an earlier decision. The list lets the user reorder or drop items."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-discuss",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-discuss:rule:1: Show the whole before the first item. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-discuss:rule:2",
+      "key": "understand-discuss:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/discuss.md",
+        "line": 27,
+        "text": "2. **Discuss one item in each item turn.** Discussing several items at once blurs which answer belongs where. Show the remaining items as a default. Follow the user's request to see more at once. When you close the discussion, invent no extra discussion item, question or recommendation."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-discuss",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-discuss:rule:2: Discuss one item in each item turn. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-discuss:rule:3",
+      "key": "understand-discuss:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/discuss.md",
+        "line": 28,
+        "text": "3. **Give a recommended answer for each question when the files or conversation give a basis.** Give its reason through the `respond-ask` guide. Otherwise the user does all the thinking.\n   - Give no recommendation for a fact only the user knows. Explain why it has none, by the `respond-ask` guide's rule 2.\n   - Count an item as decided only after the user agrees. An unagreed choice would become a decision."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-discuss",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-discuss:rule:3: Give a recommended answer for each question when the files or conversation give a basis. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-discuss:rule:4",
+      "key": "understand-discuss:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/discuss.md",
+        "line": 31,
+        "text": "4. **Close every item.** Mark the item decided, parked with its reason, or handed on with its destination. An item left silently open becomes an assumption later."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-discuss",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-discuss:rule:4: Close every item. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-discuss:rule:7",
+      "key": "understand-discuss:rule:7",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/discuss.md",
+        "line": 34,
+        "text": "7. **When a topic is complete, give each decision with its reason.** Give this summary in your answer, even when you also save it. The user checks the result there, and a file shows them nothing until they open it.\n   - Give the reason someone gave for each decision. Put the decisions with no stated reason in one line, such as \"Reason not given: the launch week, the colour scheme.\" Invent no reason: a later reader takes it as fact.\n   - Give each parked item with why, and what would reopen it.\n   - Give the next step.\n   - If the user has not asked for a record, offer one through the `respond-ask` guide. Then end the turn."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-discuss",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-discuss:rule:7: When a topic is complete, give each decision with its reason. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "What was decided, set aside or passed to another task, with reasons. Include side topics and next steps; give the user the agreed summary.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/discuss.md",
+        "line": 22,
+        "text": "What was decided, set aside or passed to another task, with reasons. Include side topics and next steps; give the user the agreed summary."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-discuss",
+      "deadline": "caller return or final answer",
+      "expected": "What was decided, set aside or passed to another task, with reasons. Include side topics and next steps; give the user the agreed summary.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-discuss:rule:1",
+    "understand-discuss:rule:2",
+    "understand-discuss:rule:3",
+    "understand-discuss:rule:4",
+    "understand-discuss:rule:7",
+    "result:understand-discuss:0"
+  ]
+}

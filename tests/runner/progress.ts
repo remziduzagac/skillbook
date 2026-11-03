@@ -14,6 +14,6 @@ export function progressFindings(turns: Event[]): ProgressFinding[] {
     if (names_skill(text)) flags.push("internal-skill");
     if (/\b(?:do|handle|check|fix|sort out)\s+(?:it|things|stuff|the thing)\b|\bas (?:above|before)\b/i.test(text))
       flags.push("unclear-reference");
-    return flags.length ? [{ turn: index + 1, text, flags, scored: false as const }] : [];
+    return flags.length ? [{ turn: turn.turn ?? index + 1, text, flags, scored: false as const }] : [];
   }));
 }

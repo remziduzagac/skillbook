@@ -1,0 +1,81 @@
+{
+  "skill": "devise-design",
+  "checks": [
+    {
+      "id": "devise-design:rule:3",
+      "key": "devise-design:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/design.md",
+        "line": 28,
+        "text": "3. **Give every decision its reason.** A builder can then revisit a decision when its basis changes, and see which values move with it.\n   - A value you chose, such as a timeout, a page size or a retry count, is a decision too.\n   - One stated basis can cover many values, such as \"match the existing API's naming\" for every field name.\n   - A value the user or a source already settled needs only its source, such as \"from the brand guide\"."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-design",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of devise-design:rule:3: Give every decision its reason. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "devise-design:rule:4",
+      "key": "devise-design:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/design.md",
+        "line": 32,
+        "text": "4. **Settle the design before building it.** When building disproves it, revise the design first. Silent drift leaves the record wrong."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-design",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of devise-design:rule:4: Settle the design before building it. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "devise-design:rule:6",
+      "key": "devise-design:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/design.md",
+        "line": 34,
+        "text": "6. **Write for a builder without this conversation.** Use a skill in the harness’s list that checks a document from its reader’s point of view, if one fits. Otherwise check it yourself: could a builder build from it without asking again?"
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-design",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of devise-design:rule:6: Write for a builder without this conversation. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "A short or full design with its actual approval status, such as \"not yet approved\", or ranked review findings. A full design also gives what its review found, how each finding was resolved, and any check still open.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/devise/design.md",
+        "line": 22,
+        "text": "A short or full design with its actual approval status, such as \"not yet approved\", or ranked review findings. A full design also gives what its review found, how each finding was resolved, and any check still open."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "devise-design",
+      "deadline": "caller return or final answer",
+      "expected": "A short or full design with its actual approval status, such as \"not yet approved\", or ranked review findings. A full design also gives what its review found, how each finding was resolved, and any check still open.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "devise-design:rule:3",
+    "devise-design:rule:4",
+    "devise-design:rule:6",
+    "result:devise-design:0"
+  ]
+}

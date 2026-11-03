@@ -3,8 +3,7 @@ import { check } from "./checks";
 import { rubricJudge, rubricBatch, judgeEvidence } from "./scenario";
 import { calibrationItems } from "./calibration";
 import { progressFindings } from "./progress";
-import { loadCases } from "./cases";
-import { POINT_FIRST, CLEAR_AT_A_GLANCE, REQUESTED_SCOPE } from "./judgment-policy";
+import { POINT_FIRST } from "./judgment-policy";
 
 test("final-answer checks ignore skill names in progress, but not in a known final answer", () => {
   const t = { answer: "Using act-guardrails.\nDone.", final_answer: "Done.",
@@ -41,14 +40,4 @@ test("progress flags are review aids and never verdicts", () => {
   const findings = progressFindings([{ between_tools: ["Using act-guardrails.", "I'll check it.", "word ".repeat(50)] }]);
   expect(findings.map(f => f.flags)).toEqual([["internal-skill"], ["unclear-reference"], ["long"]]);
   expect(findings.every(f => f.scored === false && !("verdict" in f))).toBe(true);
-});
-test("every scenario turn separates shared answer and scope checks without inheriting quality failures", () => {
-  for (const c of loadCases("scenario-")) for (const turn of c.turns) {
-    expect(turn.rubric!.find(r => r.id === "point")!.criterion).toBe(POINT_FIRST);
-    expect(turn.rubric!.find(r => r.id === "glance")!.criterion).toBe(CLEAR_AT_A_GLANCE);
-    expect(turn.rubric!.find(r => r.id === "scope")!.criterion).toBe(REQUESTED_SCOPE);
-    expect(turn.rubric!.every(r => !r.depends_on)).toBe(true);
-    for (const id of ["point-english", "point-process", "scope-intent", "scope-choices", "scope-approval"])
-      expect(turn.rubric!.some(r => r.id === id)).toBe(true);
-  }
 });

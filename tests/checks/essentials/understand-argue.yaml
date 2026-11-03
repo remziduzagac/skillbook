@@ -1,0 +1,117 @@
+{
+  "skill": "understand-argue",
+  "checks": [
+    {
+      "id": "understand-argue:rule:1",
+      "key": "understand-argue:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/argue.md",
+        "line": 38,
+        "text": "1. **Give the precise position through the `understand-frame` guide.** Give its claim, goal and constraints. A vague position can be defended against anything and proves nothing.\n   - Get the audience from the caller or known context.\n   - **If an unknown audience would change the case, ask through the `understand-clarify` guide.** Then end the turn.\n   - If the unknown audience would not change the case, mark it unknown. Invent no audience concerns."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-argue",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-argue:rule:1: Give the precise position through the `understand-frame` guide. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-argue:rule:2",
+      "key": "understand-argue:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/argue.md",
+        "line": 42,
+        "text": "2. **Support each reason with evidence or mark it as an assumption.** Give its source, strength and limits. A reason from memory counts as unchecked until a source confirms it. State nothing false or overstated. False premises fail when relied on."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-argue",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-argue:rule:2: Support each reason with evidence or mark it as an assumption. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-argue:rule:3",
+      "key": "understand-argue:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/argue.md",
+        "line": 43,
+        "text": "3. **Meet the strongest objections.** Answer each one with evidence, concede it, or narrow the position. Say which you did for each, and what you narrowed and why. Answering only weak objections is a strawman turned around.\n   - Find the objections with the `understand-challenge` guide, or reuse a current challenge the caller gave you, by that guide's rule 7. A narrowed position or new evidence needs a new challenge.\n   - Use the challenge's weaknesses as objections, and keep its verdict out of the case."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-argue",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-argue:rule:3: Meet the strongest objections. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-argue:rule:4",
+      "key": "understand-argue:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/argue.md",
+        "line": 46,
+        "text": "4. **Admit weaknesses.** Name objections still standing and thin reasons. Hidden weaknesses are found later at a worse time."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-argue",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-argue:rule:4: Admit weaknesses. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-argue:rule:5",
+      "key": "understand-argue:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/argue.md",
+        "line": 47,
+        "text": "5. **Label the result one-sided.** Put one line beside the case, such as \"This is the case for, not a verdict.\" The choice stays with the user or the `understand-weigh` guide. An unlabelled case reads as a recommendation."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-argue",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-argue:rule:5: Label the result one-sided. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The case, labelled one-sided: the precise position, reasons with their evidence and strength or marked as assumptions, the strongest objections each answered, conceded or met by narrowing, the weaknesses that still stand, how strong the case is and why, and the evidence that would strengthen or break it. The challenge's verdict is never part of the case.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/argue.md",
+        "line": 21,
+        "text": "The case, labelled one-sided, in this default shape:\n\n```text\nPosition:    stated precisely; if narrowed, from what and why\nArgued for:  the goal, constraints and audience\nReasons:     strongest first, each with its evidence and strength, or marked as an assumption\nObjections:  the strongest, each answered, conceded, or met by narrowing\nWeaknesses:  what still stands against it\nStrength:    strong, moderate or weak, from the evidence, and why\nNext:        the evidence that would strengthen or break the case\nOne-sided:   the case for, not a verdict\n```\n\nA direct request gets the full shape. The `understand-weigh` guide uses each option's strongest reasons and weaknesses, and gets the challenge separately for reuse. A document-writing task turns the case into its argument and keeps weaknesses where readers need them. The light reflection path needs one or two faithful lines, not this shape. The skill that saves records gets the chosen option's case and its open weaknesses. The challenge's verdict is never part of the case."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-argue",
+      "deadline": "caller return or final answer",
+      "expected": "The case, labelled one-sided: the precise position, reasons with their evidence and strength or marked as assumptions, the strongest objections each answered, conceded or met by narrowing, the weaknesses that still stand, how strong the case is and why, and the evidence that would strengthen or break it. The challenge's verdict is never part of the case.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-argue:rule:1",
+    "understand-argue:rule:2",
+    "understand-argue:rule:3",
+    "understand-argue:rule:4",
+    "understand-argue:rule:5",
+    "result:understand-argue:0"
+  ]
+}

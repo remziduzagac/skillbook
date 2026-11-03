@@ -81,7 +81,7 @@ blueprint/
 - **Flow:**
 - **Result:**
 - **Files:**
-- **Material:** VaultOps' "converge": commit to a path, recording its reasons and tradeoffs.
+- **Material:** a private notes system's "converge": commit to a path, recording its reasons and tradeoffs.
 - **Tests:**
 - **Open:** converge, a decision recorded with its reasons, takes understand's weigh's result: the decision's "why" names the options weighed and why the chosen one beat the next best; the full comparison goes in the session notes; an option set aside for later goes to the topic's ideas file (D121).
 

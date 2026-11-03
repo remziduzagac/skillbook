@@ -1,0 +1,80 @@
+[
+  {
+    "name": "mention before the deadline",
+    "deadline": 1,
+    "events": [
+      {
+        "type": "item.completed",
+        "item": {
+          "id": "n",
+          "type": "reasoning",
+          "text": "Consider act-verify before reporting the result."
+        }
+      },
+      {
+        "type": "item.completed",
+        "item": {
+          "id": "t",
+          "type": "command_execution",
+          "command": "true",
+          "exit_code": 0
+        }
+      }
+    ],
+    "expected": "considered"
+  },
+  {
+    "name": "mention after the deadline",
+    "deadline": 0,
+    "events": [
+      {
+        "type": "item.completed",
+        "item": {
+          "id": "t",
+          "type": "command_execution",
+          "command": "true",
+          "exit_code": 0
+        }
+      },
+      {
+        "type": "item.completed",
+        "item": {
+          "id": "n",
+          "type": "reasoning",
+          "text": "I skipped act-verify."
+        }
+      }
+    ],
+    "expected": "not mentioned"
+  },
+  {
+    "name": "no thinking events",
+    "deadline": 9,
+    "events": [
+      {
+        "type": "item.completed",
+        "item": {
+          "id": "final",
+          "type": "agent_message",
+          "text": "Done."
+        }
+      }
+    ],
+    "expected": "no thinking available"
+  },
+  {
+    "name": "mention of a different skill",
+    "deadline": 9,
+    "events": [
+      {
+        "type": "item.completed",
+        "item": {
+          "id": "n",
+          "type": "reasoning",
+          "text": "Use understand-clarify first."
+        }
+      }
+    ],
+    "expected": "not mentioned"
+  }
+]

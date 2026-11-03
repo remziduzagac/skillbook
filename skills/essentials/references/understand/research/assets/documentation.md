@@ -1,6 +1,6 @@
 # Documentation as a source
 
-Use this guide for official documentation, changelogs and release notes, including pages delivered over the web. Match the documented version and platform to the question before relying on a statement.
+Use this file for official documentation, changelogs and release notes, including pages delivered over the web. Match the documented version and platform to the question before relying on a statement.
 
 Open the page that owns the statement. A snippet, summary or recollection is a lead, not a direct read. Give the section or location precise enough to check. Follow a quoted claim to the original source where available.
 

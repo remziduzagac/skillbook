@@ -32,18 +32,19 @@ export function actionList(turn: Event): string[] {
 export function ratingItem(run: Event, index: number, check: Event, set: "tuning" | "heldout") {
   const turn = run.turns[index];
   return {
-    id: `${run.case}|${run.model}|${run.run}|${run.user_mode}|${index + 1}|${check.id}`,
+    id: `${run.case}|${run.model}|${run.run}|${run.user_mode}|${turn.turn ?? index + 1}|${check.id}`,
     set, scenario: run.case, model: run.model, run: run.run, user_mode: run.user_mode,
-    turn: index + 1, prompt: turn.sent_message ?? turn.scripted_message,
-    conversation_so_far: run.turns.slice(0, index).map((t: Event, i: number) => ({
-      turn: i + 1, prompt: t.sent_message ?? t.scripted_message,
+    turn: turn.turn ?? index + 1, prompt: turn.sent_message ?? turn.scripted_message,
+    conversation_so_far: run.turns.slice(0, index).filter((t: Event) => turn.chapter === undefined || t.chapter === turn.chapter).map((t: Event, i: number) => ({
+      turn: t.turn ?? i + 1, prompt: t.sent_message ?? t.scripted_message,
       answer_excerpt: finalAnswer(t).length > 500 ? finalAnswer(t).slice(0, 500) + "… [excerpt]" : finalAnswer(t),
     })),
     answer: finalAnswer(turn),
     actions: actionList(turn),
     action_evidence: { trace_complete: turn.trace_complete ?? null, helpers_unseen: turn.agents_unseen ?? null },
     file_changes: { paths: turn.changes ?? [], diffs: turn.file_diffs ?? {}, files: turn.files ?? {} },
-    source_files: run.fixture_sources ?? {},
+    source_files: run.chapter_checkpoints?.[turn.chapter]?.sources ?? run.fixture_sources ?? {},
+    helpers: turn.helpers ?? null,
     check: { id: check.id, tag: check.tag, ...(check.criterion ? { criterion: check.criterion } : {}),
       ...(check.assert ? { assert: check.assert } : {}) },
   };
@@ -61,14 +62,17 @@ export function walkChecks(checks: Event[], turn: number): Event[] {
   }
   return selected;
 }
-export function isHeldoutScenario(id: string) { return /\/scenario-(03|07|14)-/.test(id); }
-export function heldoutRuns(runs: Event[]) {
+export const HISTORICAL_HOLDOUT = { cases: ["essentials/scenario-03-records", "essentials/scenario-07-board",
+  "essentials/scenario-14-quick"], model: "gpt-6-luna", mode: "fixed" };
+export function isHeldoutScenario(id: string, cases: string[] = HISTORICAL_HOLDOUT.cases) { return cases.includes(id); }
+export function heldoutRuns(runs: Event[], selection = HISTORICAL_HOLDOUT) {
   const selected = new Map<string, Event>();
   for (const run of runs) {
-    if (!isHeldoutScenario(run.case) || run.model !== "gpt-6-luna" || run.user_mode !== "fixed") continue;
+    if (!isHeldoutScenario(run.case, selection.cases) || run.model !== selection.model || run.user_mode !== selection.mode) continue;
     const prior = selected.get(run.case);
     if (!prior || run.run < prior.run) selected.set(run.case, run);
   }
-  if (selected.size !== 3) throw Error("need one fixed Luna run for each held-out scenario");
+  if (!selection.cases.length || selected.size !== new Set(selection.cases).size)
+    throw Error("need one matching run for each configured held-out scenario");
   return [...selected.values()].sort((a, b) => a.case.localeCompare(b.case));
 }

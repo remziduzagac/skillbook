@@ -8,7 +8,7 @@ lint-markdown:
 
 # Every local link and anchor resolves.
 links:
-    lychee --offline --include-fragments --no-progress --exclude-path node_modules '**/*.md'
+    lychee --offline --include-fragments --no-progress --exclude-path node_modules --exclude-path tmp '**/*.md'
 
 # Shell scripts: ShellCheck, and shfmt with the settings in .editorconfig.
 lint-shell:
@@ -28,9 +28,9 @@ check-skills:
 test-install:
     tests/install-test.sh
 
-# AI test cases in throwaway homes, on small models by default; see tests/run.py --help. It asks before spending.
+# AI scenarios in throwaway homes; see tests/run.ts --help. It asks before spending.
 test-agents *args:
-    python3 tests/run.py {{args}}
+    bun tests/run.ts {{args}}
 
 # Test the scenario runner and all case definitions without a model, account or network access.
 test-runner:
@@ -38,11 +38,11 @@ test-runner:
 
 # Every aspect a case must name in `covers` still exists, and how many aspects nothing covers yet (a warning only).
 check-coverage:
-    python3 tests/run.py --coverage --summary
+    bun tests/run.ts --coverage --summary
 
 # Count executable normal, boundary and edge scenarios, and list the aspects no case covers; not a model pass rate.
 test-coverage:
-    python3 tests/run.py --coverage
+    bun tests/run.ts --coverage
 
 # Turn on this repository's git hooks, which refuse a commit message that credits an AI tool; once per clone.
 hooks:
@@ -63,6 +63,6 @@ check-runner-ts:
     bun tests/runner/schema.ts --check
     bun tests/run.ts --validate
 
-# The Bun runner runs beside the Python runner during the port comparison.
+# Explicit alias for the active Bun scenario runner.
 test-agents-ts *args:
     bun tests/run.ts {{args}}

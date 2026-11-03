@@ -1,0 +1,117 @@
+{
+  "skill": "devise-plan",
+  "checks": [
+    {
+      "id": "devise-plan:rule:3",
+      "key": "devise-plan:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/plan.md",
+        "line": 29,
+        "text": "3. **Expand only until every step is obvious.** A step is obvious when you can do it now, know how to check it, and have no open choice or missing fact that would change it. Split parts whose steps are unknown. Use the `understand-clarify` guide when the goal or what counts as done is unclear. Use the `understand-research` guide for missing facts that need sources. Return its result to this active plan. Reapply this test to each new step. Expanding an obvious step wastes attention."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-plan",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of devise-plan:rule:3: Expand only until every step is obvious. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "devise-plan:rule:5",
+      "key": "devise-plan:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/plan.md",
+        "line": 31,
+        "text": "5. **Make a full plan for high stakes or long or wide work.** A one-line plan for such work hides the steps, risks and checks that matter most. Judge stakes through the `act-stakes` guide. Advice says what long or wide means.\n   - Otherwise give one line: the way to do the work, the steps in order and the check.\n   - Divide a full plan into parts and phases that do not overlap, through the `organize` guide.\n   - Challenge a full plan through the `understand-challenge` guide before you show it, and put what it found in the plan's \"Challenge\" field. Reuse an earlier challenge only as that guide's rule 7 allows."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-plan",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of devise-plan:rule:5: Make a full plan for high stakes or long or wide work. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "devise-plan:rule:6",
+      "key": "devise-plan:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/plan.md",
+        "line": 35,
+        "text": "6. **Track three or more steps in a checklist.** Use the available harness list, otherwise plain text. Work in dependency order. Check a step through the `act-verify` guide before ticking it and advancing dependent work. An unnoticed failure invalidates later steps. Independent parts may share a phase."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-plan",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of devise-plan:rule:6: Track three or more steps in a checklist. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "devise-plan:rule:7",
+      "key": "devise-plan:rule:7",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/plan.md",
+        "line": 36,
+        "text": "7. **Get actual user approval before executing a high-stakes plan.** This is stricter than the `act` guide's rule 13's given-steps exception. Steps the user listed may not show what could go wrong, and high-stakes work is hard to undo. Given steps alone are not approval. A request for a plan authorizes no execution. Reuse approval only for the work the user approved, while the facts behind it still hold. Plan approval does not waive a separate guardrail."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-plan",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of devise-plan:rule:7: Get actual user approval before executing a high-stakes plan. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "devise-plan:rule:9",
+      "key": "devise-plan:rule:9",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/plan.md",
+        "line": 40,
+        "text": "9. **Revise the current plan after a failed step, a changed fact it depends on, or new user input in a later turn.** Start from the existing plan so open work is not lost. Keep its open items. Add what the new input asks for. Change or remove what it replaces. Mark an item finished only after its check, by rule 6. Revise even if the old step text is unchanged. Obtain renewed approval when the original required it. Ask the user about proposed changes to the steps they gave. If the design failed, revise it through the `devise-design` guide first. Continuing on a false basis multiplies rework."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-plan",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of devise-plan:rule:9: Revise the current plan after a failed step, a changed fact it depends on, or new user input in a later turn. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed. A full plan also shows what its challenge found.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/devise/plan.md",
+        "line": 23,
+        "text": "The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed. A full plan also shows what its challenge found."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "devise-plan",
+      "deadline": "caller return or final answer",
+      "expected": "The one-line or full plan, its actual approval status, and the checklist showing which steps were checked when execution was allowed. A full plan also shows what its challenge found.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "devise-plan:rule:3",
+    "devise-plan:rule:5",
+    "devise-plan:rule:6",
+    "devise-plan:rule:7",
+    "devise-plan:rule:9",
+    "result:devise-plan:0"
+  ]
+}

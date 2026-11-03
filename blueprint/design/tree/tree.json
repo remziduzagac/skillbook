@@ -297,7 +297,7 @@
      "src": "vo",
      "tail": [],
      "kids": [],
-     "desc": "one item, written or still planned, into several parts that do not overlap and cover it; each part readable on its own and sized to how it is read; VaultOps' decompose (D85, D148)"
+     "desc": "one item, written or still planned, into several parts that do not overlap and cover it; each part readable on its own and sized to how it is read; a private notes system's decompose (D85, D148)"
     },
     {
      "path": [
@@ -1483,7 +1483,7 @@
   "author-updates": "author-business",
   "conduct-answer": "conduct-respond"
  },
- "main": "essentials, essentials' main skill, listed to the model like every set's main skill and the one loaded first for any work: four rules for every request (every skill a request needs is used, delegation by default, the wrap-up offer, the name rule), then six steps, each loading its group when its step comes: understand the request, act's rules throughout, devise, organize and coordinate when needed, and do it under act's rules; respond always, as its last instruction; of the other sets, authoring's markdown for now (D56, D152, D153, D171, D177, D178, D179, D203)",
+ "main": "essentials, essentials' main skill, the only skill its set lists to the model and loaded first for every request: rules, a guide map with paths, and Instructions; read act, act-rightsize, respond, respond-layout, devise and the guides picked from the map before work, and understand, organize and coordinate at their stage; stage 4 holds the strong advice to delegate by default; the final numbered step checks the result, then answers through respond (D279, D280, D284, D285, D298, D300)",
  "sets": [
   {
    "name": "essentials",
@@ -1507,7 +1507,7 @@
    "name": "later",
    "main": null,
    "notes": [
-    "a knowledge base, once vaultops; its skills as ideas in ideas/later.md (D152, D167)",
+    "a knowledge base; its skills as ideas in ideas/later.md (D152, D167)",
     "routines; its skills as ideas in ideas/later.md (D152, D167)"
    ]
   }

@@ -44,5 +44,5 @@
   },
   "customRules": ["./scripts/table-width.cjs"],
   "globs": ["**/*.md"],
-  "ignores": ["node_modules/**", ".claude/skills/**"]   // .claude/skills is a link to .agents/skills
+  "ignores": ["node_modules/**", ".claude/skills/**", "tmp/**"]   // .claude/skills is a link to .agents/skills
 }

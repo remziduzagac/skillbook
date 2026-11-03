@@ -1,0 +1,117 @@
+{
+  "skill": "understand-research-analyze",
+  "checks": [
+    {
+      "id": "understand-research-analyze:rule:1",
+      "key": "understand-research-analyze:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/analyze.md",
+        "line": 30,
+        "text": "1. **Give the symptom exactly before testing causes.** Say what happened, where, since when and how often, with the actual error where one exists. Mark missing details unknown. A vague symptom fits many stories."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-analyze",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-analyze:rule:1: Give the symptom exactly before testing causes. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-analyze:rule:3",
+      "key": "understand-research-analyze:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/analyze.md",
+        "line": 32,
+        "text": "3. **Confirm a cause through evidence rather than fit.** Reproduce it, observe it through a probe or show that removing it removes the symptom. Until supported, label it a hypothesis. A familiar explanation is not an observation."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-analyze",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-analyze:rule:3: Confirm a cause through evidence rather than fit. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-analyze:rule:4",
+      "key": "understand-research-analyze:rule:4",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/analyze.md",
+        "line": 33,
+        "text": "4. **Trace the chain back to its trigger.** Give evidence for each link. If a link cannot be traced further, say so. A change where the symptom appears can leave its cause intact."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-analyze",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-analyze:rule:4: Trace the chain back to its trigger. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-analyze:rule:5",
+      "key": "understand-research-analyze:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/analyze.md",
+        "line": 34,
+        "text": "5. **Return the cause before offering a fix as the answer.** The main task owns any fix. Without a confirmed cause, return hypotheses, missing evidence and what would settle them rather than inventing a fix or a completed chain."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-analyze",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-analyze:rule:5: Return the cause before offering a fix as the answer. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-research-analyze:rule:7",
+      "key": "understand-research-analyze:rule:7",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/research/analyze.md",
+        "line": 36,
+        "text": "7. **Clean investigation scaffolding when its actual lifecycle ends.** Use the `act-cleanup` guide for unresolved and cancelled investigations as well as confirmed ones. Stop your own no-longer-needed processes and remove your probes or temporary edits. Preserve the caller's work and requested evidence. Keep only what cleanup permits, with where and why. Missing confirmation is not a reason to leave scaffolding running."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-research-analyze",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-research-analyze:rule:7: Clean investigation scaffolding when its actual lifecycle ends. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "The symptom, supported causes or marked hypotheses, rejected causes, and who should investigate or fix it next: the symptom with where, since when and how often it is seen; the chain from the symptom back to the trigger, each link with its evidence, confirmed or marked as a hypothesis; each cause ruled out with its evidence; and where a fix belongs, handed to the caller.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/understand/research/analyze.md",
+        "line": 19,
+        "text": "The symptom, supported causes or marked hypotheses, rejected causes, and who should investigate or fix it next, in this default shape:\n\n```text\nSymptom:    what is seen, where, since when, how often\nCause:      the chain from the symptom back to the trigger, each link with its evidence, confirmed or hypothesis\nRuled out:  each cause tested and rejected, with the evidence\nFix:        where a fix belongs, at the trigger, handed to the caller\n```"
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "understand-research-analyze",
+      "deadline": "caller return or final answer",
+      "expected": "The symptom, supported causes or marked hypotheses, rejected causes, and who should investigate or fix it next: the symptom with where, since when and how often it is seen; the chain from the symptom back to the trigger, each link with its evidence, confirmed or marked as a hypothesis; each cause ruled out with its evidence; and where a fix belongs, handed to the caller.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "understand-research-analyze:rule:1",
+    "understand-research-analyze:rule:3",
+    "understand-research-analyze:rule:4",
+    "understand-research-analyze:rule:5",
+    "understand-research-analyze:rule:7",
+    "result:understand-research-analyze:0"
+  ]
+}

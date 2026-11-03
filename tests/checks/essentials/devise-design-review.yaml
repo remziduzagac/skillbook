@@ -1,0 +1,63 @@
+{
+  "skill": "devise-design-review",
+  "checks": [
+    {
+      "id": "devise-design-review:rule:2",
+      "key": "devise-design-review:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/design/review.md",
+        "line": 27,
+        "text": "2. **Use an independent reviewer.** Follow the `act-verify` guide's rule 2. Use the `coordinate-delegate` guide to start a permitted fresh reviewer for this check; the writer's second look and a fork sharing its context do not count. They share blind spots.\n   - For a large review, start one fresh agent per lens through the `coordinate-delegate-fanout` guide. Each one follows this guide's rules.\n   - If no independent reviewer is available, return findings with the independent check still pending. Name the unfinished independent check and who should arrange it. A delegated worker asks its caller to arrange that check. A log that records no helper does not prove that no helper was available."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-design-review",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of devise-design-review:rule:2: Use an independent reviewer. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "devise-design-review:rule:3",
+      "key": "devise-design-review:rule:3",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/design/review.md",
+        "line": 30,
+        "text": "3. **Propose changes only.** The design owner decides what to fix, accept or park. Editing during a review would decide for them."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-design-review",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of devise-design-review:rule:3: Propose changes only. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    }
+  ],
+  "results": [
+    {
+      "part": "Ranked findings with fixes, or a list of checks run when no problem was found. Mark unfinished checks. The design owner resolves findings before approval.",
+      "kind": "visible",
+      "source": {
+        "file": "skills/essentials/references/devise/design/review.md",
+        "line": 22,
+        "text": "Ranked findings with fixes, or a list of checks run when no problem was found. Mark unfinished checks. The design owner resolves findings before approval."
+      },
+      "applicability": "When this guide is needed, evaluate the return for this stage, including a proposal, an early question or a disclosed limitation. Do not require later work before approval.",
+      "required_skill": "devise-design-review",
+      "deadline": "caller return or final answer",
+      "expected": "Ranked findings with fixes, or a list of checks run when no problem was found. Mark unfinished checks. The design owner resolves findings before approval.",
+      "rejected": "The applicable promised return is missing or contradicted; merely naming a file or refusing the work does not supply it.",
+      "evidence": "Answer, made file with sources, or visible worker report; unavailable evidence remains unknown."
+    }
+  ],
+  "validation": "Frozen sources and authored correct/alternative/wrong traces; no observed model results.",
+  "trace_book": "tests/calibration/festival-traces.json",
+  "trace_checks": [
+    "devise-design-review:rule:2",
+    "devise-design-review:rule:3",
+    "result:devise-design-review:0"
+  ]
+}
