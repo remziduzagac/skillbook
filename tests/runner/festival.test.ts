@@ -4,12 +4,15 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { loadCases } from "./cases";
-import { parseArgs } from "./cli";
+import { parseArgs, selectCases } from "./cli";
 import { runOne, planRuns } from "./run";
 import { ruleChecks, resultChecks } from "./rule-checks";
 import { activeRubricBook, rubricCandidates, validateRubricFixtures, resolveRubricTrace, rubricTrace } from "./rubric-fixtures";
 import { judgeEvidence } from "./scenario";
 import { check } from "./checks";
+import { traceObservation } from "./trace-checks";
+import { uncoveredRules, uncoveredReturns } from "./library-coverage";
+import { reachableGuides } from "./needs";
 import { recheckScenario, requireSavedCases } from "./recheck";
 import { aspectCoverage } from "./inventory";
 import { putCheckpoint } from "./chapters";
@@ -19,19 +22,21 @@ import { wordCount } from "./answers";
 import { summarize } from "./reports";
 import type { Event, Checks } from "./types";
 const path = "tests/calibration/festival-traces.json";
-const festival = () => loadCases("essentials/festival")[0]!;
+// The festival is selected by id; other case files may sit beside it.
+const festival = () => loadCases().find(c => c.id === "essentials/festival")!;
 const encode = (text: string, events: Event[] = []) => ({stdout: [...events,
   {type: "item.completed", item: {type: "agent_message", text}},
   {type: "turn.completed", usage: {input_tokens: 10, output_tokens: 2}},
 ].map(e => JSON.stringify(e)).join("\n"), stderr: "", status: 0, left: [], left_why: null, tmp: null, tmp_paths: []});
 
-test("the active inventory is exactly the five-chapter, 28-turn festival with four permitted models", () => {
-  const all = loadCases(); expect(all.map(c => c.id)).toEqual(["essentials/festival"]);
-  const c = all[0]!; expect(c.turns).toHaveLength(28); expect(c.chapters!.map(ch => ch.start_turn)).toEqual([1,7,12,23,27]);
-  const plan = planRuns(all, parseArgs(["--dry-run"]));
+test("the festival is the five-chapter, 28-turn case with four permitted models, selected by id", () => {
+  const all = loadCases(); expect(all.map(c => c.id)).toContain("essentials/festival");
+  expect(selectCases(all, parseArgs(["--case", "festival"])).map(c => c.id)).toEqual(["essentials/festival"]);
+  const c = festival(); expect(c.turns).toHaveLength(28); expect(c.chapters!.map(ch => ch.start_turn)).toEqual([1,7,12,23,27]);
+  const plan = planRuns(selectCases(all, parseArgs(["--case", "festival"])), parseArgs(["--dry-run"]));
   expect(plan.map(([, a, m]) => [a, m])).toEqual([["claude","sonnet"],["claude","haiku"],["codex","gpt-6.1-sol"],["codex","gpt-6-luna"]]);
   for (const model of ["claude=opus", "claude=fable", "codex=gpt-6-astra"])
-    expect(() => planRuns(all, parseArgs(["--model", model]))).toThrow("not allowed");
+    expect(() => planRuns([c], parseArgs(["--model", model]))).toThrow("not allowed");
   expect(aspectCoverage(all).unknown).toEqual([]);
   expect(c.user!.facts.approvals).toContain("turn 22");
   const design = readFileSync("blueprint/design/scenarios/festival.md", "utf8");
@@ -44,9 +49,12 @@ test("the active inventory is exactly the five-chapter, 28-turn festival with fo
 test("the active trace gate covers source rules, visible returns and distinct wrong/alternative candidates", () => {
   const c = festival(), b = activeRubricBook(path, [c]);
   expect(validateRubricFixtures(b, [c])).toBe(b.checks.length + b.library!.length);
-  const keys = new Set(c.turns.flatMap(t => (t.rubric ?? []).map(r => r.source_check)));
-  for (const rule of ruleChecks()) expect(keys.has(rule.key)).toBe(true);
-  expect(b.library!.length).toBe(resultChecks().filter(p => !p.exclusion).length);
+  // The festival's turns reach every guide with a visible return today, so its own library holds each one. Whole-library
+  // coverage of rules and returns is the union over every active case and book (library-coverage.test.ts).
+  const reach = new Set(c.turns.flatMap(t => [...reachableGuides(t, ruleChecks())]));
+  const reached = resultChecks().filter(p => !p.exclusion && reach.has(p.skill)).map(p => p.id);
+  expect(new Set(b.library!.map(r => r.id))).toEqual(new Set(reached));
+  expect(uncoveredReturns([b])).toEqual([]);
   for (const candidate of rubricCandidates(b)) {
     const {turns} = resolveRubricTrace(candidate.ref, b);
     expect(turns.length).toBeGreaterThan(0);
@@ -56,7 +64,11 @@ test("the active trace gate covers source rules, visible returns and distinct wr
   const changed = structuredClone(b); changed.library!.pop();
   expect(() => validateRubricFixtures(changed, [c])).toThrow("uncovered result");
   const missing = structuredClone(c); missing.turns[0]!.rubric = missing.turns[0]!.rubric!.filter(r => r.source_check !== "route-act");
-  expect(() => validateRubricFixtures(b, [missing])).toThrow("uncovered rule");
+  expect(uncoveredRules([missing])).toEqual(expect.arrayContaining(ruleChecks().filter(rule => rule.key === "route-act")
+    .map(rule => rule.id)));
+  expect(uncoveredRules([c])).not.toEqual(expect.arrayContaining(ruleChecks().filter(rule => rule.key === "route-act")
+    .map(rule => rule.id)));
+  expect(() => validateRubricFixtures(b, [missing])).toThrow("current criterion");
   const stale=structuredClone(b);stale.traces["t17:correct"]!.chapter=4;
   expect(()=>validateRubricFixtures(stale,[c])).toThrow("current chapter");
 });
@@ -189,12 +201,8 @@ test("every festival file assertion accepts its correct trace and rejects a plau
   const c = festival(), book = activeRubricBook(path, [c]);
   let assertions = 0;
   for (const [i, t] of c.turns.entries()) {
-    const trace = resolveRubricTrace(`t${i+1}:correct`, book), row = trace.turns.at(-1)!;
-    const before = row.files_before as Record<string,string>, after = row.files_after as Record<string,string>;
-    const changes = Object.keys({...before, ...after}).filter(p => before[p] !== after[p]).map(p => `${!(p in after) ? "removed" : p in before ? "changed" : "added"} ${p}`);
-    const observation: Event = {files: after, baseline_files: trace.sources, baseline_snapshot: trace.sources,
-      project_snapshot: after, changes, paths_present: Object.fromEntries([...Object.keys(after), ...(t.checks?.absent ?? [])].map(p => [p, p in after])),
-      answer: row.final_answer, left_running: [], tmp_listing: ""};
+    // The shared trace observation is what the live checks read, including the trace's own recorded evidence.
+    const observation: Event = traceObservation(`t${i+1}:correct`, book, t.checks);
     const atom = (config: Checks, mutate: (wrong: Event) => void, wrongTmp: string[] = []) => {
       assertions++;
       expect(Object.values(check(config, observation, null, [])), `turn ${i+1}: ${JSON.stringify(config)}`).toEqual([true]);

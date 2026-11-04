@@ -2,6 +2,23 @@
   "skill": "devise-design",
   "checks": [
     {
+      "id": "devise-design:rule:2",
+      "key": "devise-design:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/devise/design.md",
+        "line": 27,
+        "text": "2. **Correct a problem at the level that caused it.** A lower patch leaves its cause in place."
+      },
+      "applicability": "scenario",
+      "required_skill": "devise-design",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of devise-design:rule:2: Correct a problem at the level that caused it. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
       "id": "devise-design:rule:3",
       "key": "devise-design:rule:3",
       "kind": "rule",

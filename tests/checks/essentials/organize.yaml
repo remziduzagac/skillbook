@@ -87,6 +87,23 @@
       "no_skill_eligible": true
     },
     {
+      "id": "organize:rule:6",
+      "key": "organize:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/organize.md",
+        "line": 52,
+        "text": "6. **Undo only this operation's changes when its result is rejected.** Check for later edits first. Preserve later and unrelated work. If safe undo cannot be shown or needs a risky new action, report the state and ask about recovery through the `act-guardrails` guide. Do not overwrite others' work to restore an old snapshot. After safe undo, plan again."
+      },
+      "applicability": "scenario",
+      "required_skill": "organize",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of organize:rule:6: Undo only this operation's changes when its result is rejected. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
       "id": "organize:rule:7",
       "key": "organize:rule:7",
       "kind": "rule",
@@ -99,6 +116,23 @@
       "required_skill": "organize",
       "deadline": "answer",
       "expected": "Apply all applicable parts of organize:rule:7: Keep retired items marked with where their content went. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "organize:rule:8",
+      "key": "organize:rule:8",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/organize.md",
+        "line": 54,
+        "text": "8. **Use the whole code-preservation check for code and packages.**\n   - Use a skill in the harness’s list that covers software architecture and code changes, if one fits.\n   - Without one, propose generic parts and connections, then make only approved changes directly. Claim no specialist architecture review from this fallback.\n   - Run project tests before and after. Keep public interfaces, documented behavior and untested requirements, by the `act-rightsize` guide’s code rule.\n   - Passing tests alone do not prove that public interfaces, documented behavior and untested requirements were preserved.\n   - Report unavailable checks."
+      },
+      "applicability": "scenario",
+      "required_skill": "organize",
+      "deadline": "first change",
+      "expected": "Apply all applicable parts of organize:rule:8: Use the whole code-preservation check for code and packages. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
       "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
       "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
       "no_skill_eligible": true

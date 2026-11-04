@@ -14,7 +14,8 @@ import { join, relative, resolve, dirname } from "node:path";
 import { homedir } from "node:os";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
-import { REPO, POINTER, MARKER } from "./paths";
+import { REPO, POINTER, MARKER, cached } from "./paths";
+export { cached } from "./paths";
 import { written } from "./checks";
 import {
   skills_read,
@@ -32,7 +33,7 @@ const IGNORED = new Set([".claude", ".codex", ".agents", "__pycache__", ".git"])
 export function projectPaths(root: string): string[] {
   if (!existsSync(root)) return [];
   return readdirSync(root, { withFileTypes: true })
-    .filter((e) => !IGNORED.has(e.name))
+    .filter((e) => !IGNORED.has(e.name) && !(!e.isDirectory() && cached(e.name)))
     .flatMap((e) => (e.isDirectory() ? projectPaths(join(root, e.name)) : [join(root, e.name)]));
 }
 const digest = (data: string | Buffer) => createHash("sha256").update(data).digest("hex");

@@ -46,9 +46,11 @@ export function putCheckpoint(work: string, ch: Chapter, gitignore: string[] = [
   }
   writeFileSync(join(work, ".gitignore"), gitignore.join("\n") + (gitignore.length ? "\n" : ""));
 }
-export function commitCheckpoint(work: string, chapter: number) {
+// Paths named `untracked` stay in the project but out of the checkpoint's commit, as a file the user never added.
+export function commitCheckpoint(work: string, chapter: number, untracked: string[] = []) {
   const env = { PATH: process.env.PATH, HOME: work, GIT_CONFIG_GLOBAL: "/dev/null", GIT_CONFIG_NOSYSTEM: "1" };
   for (const args of [["init", "-q", "-b", "main"], ["add", "-A"],
+    ...(untracked.length ? [["rm", "-r", "-q", "--cached", "--ignore-unmatch", "--", ...untracked]] : []),
     ["-c", "user.name=Test harness", "-c", "user.email=test@example.invalid", "commit", "-q", "--allow-empty",
       "-m", `checkpoint chapter ${chapter}`]]) {
     const ran = spawnSync("git", ["-c", "core.hooksPath=/dev/null", ...args], { cwd: work, env });

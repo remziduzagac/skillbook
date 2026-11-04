@@ -1,0 +1,48 @@
+[ ] renew passport (due 2027-03-31)
+[x] fix bike
+call mum fri #family
+[ ] water the tomatoes every day #garden
+[ ] prune the roses (due 2027-03-20) #garden
+[x] order compost #garden
+[ ] buy bulbs for autumn (due 2027-04-10) #garden
+[ ] clean the gutters sat #garden
+[ ] put the bins out every monday #home
+[ ] pay council tax (due 2027-03-10) #admin
+----
+[ ] book dentist #health
+[x] send Dad's birthday card #family
+[ ] back up the laptop every friday
+[ ] return library books (due 2027-03-04)
+[ ] email landlord about the boiler (due 2027-03-02) #admin
+pay rent (due 2027-02-30)
+[ ] learn about Python packaging #learn
+[x] read chapter 4 of the Python book #learn
+[ ] finish chapter 5 of the Python book (due 2027-03-26) #learn
+[ ] buy a present for Priya's birthday (due 2027-04-02) #friends
+[x] cancel the old gym membership #admin
+[ ] go for a run every tuesday #health
+[ ] plan the week every sunday
+[ ] fix the squeaky door #home
+[ ] paint the spare room (due 2027-04-17) #home
+[x] buy light bulbs #home
+[ ] call the bank about the card thu
+[ ] take the old monitor to the recycling centre sat #home
+[ ] sort out photos from last summer
+[ ] write a thank-you note to Aunt Mary #family
+[ ] sharpen the garden shears #garden
+[ ] sow carrots (due 2027-03-27) #garden
+[ ] check the shed roof #garden
+[x] book train tickets for Easter (due 2027-02-20)
+[ ] renew bike insurance (due 2027-04-05) #admin
+[ ] organise the bookshelf #home
+[ ] buy a new phone charger
+[x] file the tax return (due 2027-01-31) #admin
+[ ] clear out the loft (due 2027-05-01) #home
+[ ] tidy the desk every friday #home
+[ ] send photos to Leo wed
+[ ] try the new pasta recipe #cooking
+[ ] make a list of books to read #learn
+[x] call the plumber
+[ ] check the tyre pressure on the car (due 2027-03-08)
+[ ] tell the council about the pothole #admin
+[ ] decide where to go this summer #travel

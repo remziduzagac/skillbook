@@ -7,7 +7,7 @@ import { rubricTrace,fixtureJudgeEvidence,activeRubricBook,rubricCandidates,reso
 import { loadCases } from "./cases";
 import { fixtureEntries,fixtureBatches,fixturePayload,loadingFixtureResults } from "./fixture-validation";
 import { structuredPrompt,FIXTURE_INSTRUCTION } from "./judge-protocol";
-const cases=loadCases(),book=activeRubricBook("tests/calibration/festival-traces.json",cases),c=cases[0]!;
+const cases=loadCases().filter(x=>x.id==="essentials/festival"),book=activeRubricBook("tests/calibration/festival-traces.json",cases),c=cases[0]!;
 const observation=(ref:string)=>rubricTrace(ref,book).observation;
 test("correct helper traces run the workers, while fallback alternatives retain the failed start",()=>{
   const design=fixtureJudgeEvidence("t7:correct",book,c).turns.at(-1)!;

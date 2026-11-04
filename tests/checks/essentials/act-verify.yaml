@@ -71,6 +71,33 @@
       "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
       "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
       "no_skill_eligible": true
+    },
+    {
+      "id": "act-verify:rule:5",
+      "key": "act-verify:rule:5",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/act/verify.md",
+        "line": 53,
+        "text": "5. **Run four more checks before calling a plan's task, commit or pull request done:**\n   - **contradiction:** with a decision or another part of the work;\n   - **duplication:** of something that already exists, through the `organize` guide's gap-and-overlap check;\n   - **drift:** from the design and the plan;\n   - **coverage:** every requirement met, shown with the checklist from rule 1.\n\n   Search for the item's names and decision terms. Read hits in parts, not whole designs. Use the `coordinate-delegate` guide for large reading by a fresh agent on the standard tier, neither lightest nor strongest. Contradiction and drift need judgment.\n\n   Scale checks by the `act-stakes` guide. A full search on a small change costs more than it finds. For plainly low work such as a typo, give about one line on what you checked. Stay inside the task. Report outside problems as one-line follow-ups by the `act` guide's rule 3. A findings report costs more than a one-line change. The whole answer is a few lines: claim and evidence, check line, follow-ups. If the project lacks a design, plan or decisions, say so. Skip checks that need the missing item."
+      },
+      "applicability": "scenario",
+      "required_skill": "act-verify",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of act-verify:rule:5: Run four more checks before calling a plan's task, commit or pull request done: Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true,
+      "source_context": [
+        {
+          "id": "act-verify:rule:1",
+          "source": {
+            "file": "skills/essentials/references/act/verify.md",
+            "line": 23,
+            "text": "1. **Choose evidence that would fail if the claim were false.** An unchecked claim reads as true:\n\n   | Claim | Evidence | Not enough |\n   | --- | --- | --- |\n   | tests pass | the test run: 0 failures | an earlier run, \"should pass\" |\n   | bug fixed | the original symptom, now gone | the code changed |\n   | requirements met | a line-by-line checklist | tests passing |\n   | another agent's work done | its changes, seen | its own report of success |\n   | a step marked done | its result, seen in the files or confirmed by its owner | the tick, or a note saying so |\n   | nothing lost in a merge or split | each original item in its new place | \"looks complete\", keyword or link checks |\n   | something made is correct | each part against its source, or each figure worked out again | \"reads right\" |"
+          }
+        }
+      ]
     }
   ],
   "results": [

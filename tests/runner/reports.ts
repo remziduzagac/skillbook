@@ -1,4 +1,4 @@
-import { scoreRuns } from "./scoring";
+import { scoresByCase } from "./scoring";
 import { lengthSummary } from "./answers";
 import { readFileSync } from "node:fs";
 import { walk } from "./inventory";
@@ -62,7 +62,7 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
       `- Tolerated blocking miss (limit ${validation.blocking_limit}): ${c.check}, trace ${c.ref}; initial ${c.initial}; ` +
         `expected ${c.expected}; reruns ${c.reruns.map(String).join(", ")}.`), "");
   }
-  for (const [group, scores] of Object.entries(scoreRuns(results as any))) {
+  for (const [group, scores] of Object.entries(scoresByCase(results))) {
     lines.push(`## Scores: ${group}`, "", "95% Wilson intervals over scored checks; correlated turns are not independent trials.", "");
     for (const [tag, s] of Object.entries(scores))
       lines.push(`- ${tag}: ${s.passed}/${s.total}; ${s.rate === null ? "unknown" : (100*s.rate).toFixed(1)+"%"}; ` +

@@ -6,6 +6,7 @@ import { progressFindings } from "./progress";
 import { check } from "./checks";
 import { finalAnswer, wordCount } from "./answers";
 import { evaluateTagged, score } from "./scoring";
+import { needsTurnStart } from "./project-evidence";
 import type { Case, Event, Verdict } from "./types";
 
 function requireSavedLayout(run: Event, c: Case) {
@@ -49,6 +50,12 @@ export function recheckScenario(original: Event, c: Case): Event {
     const checkpoint = original.chapter_checkpoints?.[chapter!];
     observation.baseline_files ??= checkpoint?.sources ?? result.fixture_sources;
     observation.baseline_snapshot ??= checkpoint?.snapshot;
+    if (needsTurnStart([turn.checks, ...(turn.tagged_checks ?? []).map(t => t.assert)])) {
+      // A turn starts where the previous turn of its chapter ended, or at the chapter's checkpoint.
+      const prior = index > 0 && result.turns[index - 1].chapter === observation.chapter ? result.turns[index - 1] : undefined;
+      observation.start_snapshot ??= prior ? prior.project_snapshot : checkpoint?.snapshot;
+      observation.start_files ??= prior ? prior.files : checkpoint?.sources;
+    }
     complete &&= observation.trace_complete !== false;
     observation.final_words ??= wordCount(finalAnswer(observation));
     for (const change of observation.changes ?? []) {

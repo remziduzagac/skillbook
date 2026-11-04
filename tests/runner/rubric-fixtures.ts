@@ -4,6 +4,7 @@ import { action_evidence } from "./trace";
 import { helperEvidence } from "./helpers";
 import { fixtureDiffs } from "./files";
 import { chapterAt } from "./chapters";
+import { reachableGuides } from "./needs";
 import { readFileSync } from "node:fs";
 import { ruleChecks, resultChecks } from "./rule-checks";
 import type { Case, Event } from "./types";
@@ -81,13 +82,14 @@ export function validateRubricFixtures(book: RubricBook = rubricFixtures, cases?
   if (!book.checks.length) throw Error("rubric book has no checks");
   if (book.library) {
     if (!expected) throw Error("library validation requires current cases");
-    for (const part of resultChecks().filter(p => !p.exclusion)) {
+    // A book covers what its own cases need: every promised return a turn can reach through its needed guides.
+    // Whole-library coverage is the festival's own test, not a rule for every book.
+    const rules = ruleChecks(), reachable = new Set(cases!.flatMap(c => c.turns.flatMap(t => [...reachableGuides(t, rules)])));
+    for (const part of resultChecks().filter(p => !p.exclusion && reachable.has(p.skill))) {
       const row = book.library.find(r => r.id === part.id);
       if (!row || !cases!.some(c => c.id === row.case)) throw Error("library has uncovered result checks: " + part.id);
       expected.set(`${row.case}:${row.turn}:${row.id}`, {tag: `result:${part.skill}`, criterion: part.expected});
     }
-    const keys = new Set(cases!.flatMap(c => c.turns.flatMap(t => (t.rubric ?? []).map(r => r.source_check))));
-    for (const rule of ruleChecks()) if (!keys.has(rule.key)) throw Error("library has uncovered rule checks: " + rule.id);
   }
   if (cases?.some(c => c.chapters) && !book.library) throw Error("chaptered active books need library validation");
   const seen = new Set<string>();

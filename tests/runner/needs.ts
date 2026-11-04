@@ -29,3 +29,16 @@ export function resolvedNeeds(turn: Turn, evidence: Event, always = false): Reso
   return labels.flatMap(n => n.skill === "essentials" ? [n] : n.skill.split("-").map((_, i, all) =>
     ({ ...n, skill: all.slice(0, i + 1).join("-") })));
 }
+// Every guide a turn can need: its labels, including conditional paths whether or not taken, and the guides of rules
+// it states as criteria or marks as applying, unless marked as a near miss or not applying, as measurementPlan judges
+// them. Parents come with their children, as in resolvedNeeds.
+export function reachableGuides(turn: Turn, rules: { id: string; key: string; required_skill: string }[] = []): Set<string> {
+  const guides = new Set(resolvedNeeds({ ...turn, if_taken: [] }, {}, true).map(n => n.skill));
+  const add = (skill: string) => skill.split("-").forEach((_, i, all) => guides.add(all.slice(0, i + 1).join("-")));
+  for (const need of turn.if_taken ?? []) add(need.skill);
+  const ids = new Set([...(turn.rule_marks ?? []).filter(m => m.applies && !m.near_miss).map(m => m.id),
+    ...rules.filter(r => turn.rubric?.some(c => c.source_check === r.key)).map(r => r.id)]);
+  for (const rule of rules) if (ids.has(rule.id) &&
+    !(turn.rule_marks ?? []).some(m => m.id === rule.id && (m.near_miss || !m.applies))) add(rule.required_skill);
+  return guides;
+}

@@ -18,6 +18,8 @@ export function validateCase(data: unknown): asserts data is CaseFile {
   const fixture = resolve(FIXTURES, c.fixture);
   if (relative(FIXTURES, fixture).startsWith("..") || !existsSync(fixture))
     throw Error(`no fixture named ${c.fixture}`);
+  for (const program of c.requires ?? [])
+    if (!/^[A-Za-z0-9][\w.+-]*$/.test(program)) throw Error(`requires names a program, not a path or command: ${program}`);
   for (const [agent, models] of Object.entries(c.models ?? {}))
     if (!c.agents?.includes(agent as any) || !models.length || new Set(models).size !== models.length || models.some(m => !m.trim()))
       throw Error("models must name nonempty unique choices for a case agent");
@@ -35,9 +37,9 @@ export function validateCase(data: unknown): asserts data is CaseFile {
         throw Error("chapters need ordered consecutive numbers and increasing start turns");
       for (const path of [ch.checkpoint.fixture, ...(ch.checkpoint.overlays ?? [])])
         if (!existsSync(inside(FIXTURES, path))) throw Error(`no checkpoint fixture named ${path}`);
-      for (const path of ch.checkpoint.remove ?? []) {
+      for (const path of [...ch.checkpoint.remove ?? [], ...ch.checkpoint.untracked ?? []]) {
         inside(FIXTURES, path);
-        if (path.split("/").includes(".git")) throw Error("checkpoint removal cannot name .git");
+        if (path.split("/").includes(".git")) throw Error("checkpoint removal or untracked path cannot name .git");
       }
     }
   }
@@ -106,8 +108,17 @@ export function validateCase(data: unknown): asserts data is CaseFile {
     ] as const)
       for (const p of checks[key] ?? []) regex(p);
     if (Array.isArray(checks.states_before_change)) for (const p of checks.states_before_change) regex(p);
-    for (const p of [...Object.values(checks.file_contains ?? {}), ...Object.values(checks.folder_contains ?? {}), ...Object.values(checks.folder_lacks ?? {})].flat())
+    for (const p of [...Object.values(checks.file_contains ?? {}), ...Object.values(checks.folder_contains ?? {}), ...Object.values(checks.folder_lacks ?? {}),
+      ...Object.values(checks.tree_lacks ?? {}), checks.paths_lack ?? [], checks.only_new_files ? [checks.only_new_files.matching] : []].flat())
       regex(p);
+    if (checks.tests_pass !== undefined && !checks.tests_pass.trim()) throw Error("tests_pass needs a command");
+    if (checks.only_new_files && (!Number.isInteger(checks.only_new_files.at_most) || checks.only_new_files.at_most < 0))
+      throw Error("only_new_files needs a whole number at_most");
+    if (checks.heading_once && (!checks.heading_once.heading.trim() || !checks.heading_once.in.length))
+      throw Error("heading_once needs a heading and the files or folders to look in");
+    if ((checks.tag_at_head ?? []).some(t => !t.trim())) throw Error("tag_at_head needs tag names");
+    for (const item of checks.unchanged_under ?? []) if (typeof item !== "string" && (item.except ?? []).some(p =>
+      !p.startsWith(item.folder.replace(/\/$/, "") + "/"))) throw Error("unchanged_under exceptions must lie under its folder");
     for (const spec of Object.values(checks.index_links ?? {}))
       if (typeof spec !== "string") for (const p of spec.contains ?? []) regex(p);
     for (const limit of Object.values(checks.words_under ?? {}))
@@ -117,7 +128,9 @@ export function validateCase(data: unknown): asserts data is CaseFile {
     for (const p of [
       ...Object.keys(checks.words_under ?? {}), ...Object.keys(checks.only_replacement ?? {}),
       ...Object.keys(checks.index_links ?? {}), ...Object.values(checks.index_links ?? {}).map(s => typeof s === "string" ? s : s.folder),
-      ...(checks.keeps_lines ?? []), ...(checks.unchanged_under ?? []),
+      ...(checks.keeps_lines ?? []),
+      ...(checks.unchanged_under ?? []).flatMap(item => typeof item === "string" ? [item] : [item.folder, ...item.except ?? []]),
+      ...(checks.never_committed ?? []), ...(checks.heading_once?.in ?? []), ...Object.keys(checks.tree_lacks ?? {}),
       ...Object.keys(checks.written_under ?? {}), ...Object.keys(checks.folder_lacks ?? {}), ...Object.keys(checks.folder_contains ?? {}),
       ...(checks.changed ?? []),
       ...(checks.unchanged ?? []),

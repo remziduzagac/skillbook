@@ -74,6 +74,13 @@ export function scoreRuns(
   return Object.fromEntries(Object.entries(groups).map(([key, rows]) => [key, score(rows)]));
 }
 
+// Each scenario's totals stay apart when results cover several cases; results for one case keep their usual keys.
+export function scoresByCase(runs: any[]) {
+  const ids = [...new Set(runs.map(r => r.case))].sort();
+  if (ids.length <= 1) return scoreRuns(runs);
+  return Object.fromEntries(ids.flatMap(id => Object.entries(scoreRuns(runs.filter(r => r.case === id)))
+    .map(([group, scores]) => [`${id}, ${group}`, scores])));
+}
 export function scenarioReliability(runs: any[]) {
   const groups = new Map<string, any[]>();
   for (const run of runs) {

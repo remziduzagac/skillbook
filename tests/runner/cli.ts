@@ -10,7 +10,8 @@ import { coverage, aspectCoverage } from "./inventory";
 import { runsToJudge } from "./reports";
 import { loginProblem } from "./agents";
 import { planRuns, runPlan } from "./run";
-import type { Agent, Options } from "./types";
+import { missingPrograms, missingMessage } from "./project-evidence";
+import type { Agent, Case, Options } from "./types";
 export function parseArgs(argv: string[]): Options {
   // Match Python's --to-judge FOLDER [FOLDER ...] as well as repeated flags.
   const expanded: string[] = [];
@@ -93,6 +94,9 @@ export function parseArgs(argv: string[]): Options {
     to_judge: v["to-judge"]!,
   };
 }
+// --case matches part of a case id, such as `festival` or `todo-app`; runs, dry runs and coverage use the same selection.
+export const selectCases = (all: Case[], args: Pick<Options, "case" | "suite">) =>
+  all.filter((c) => c.id.includes(args.case) && (!args.suite || c.suite === args.suite));
 export async function main(argv = Bun.argv.slice(2)): Promise<number> {
   if (argv.includes("--help")) {
     console.log(
@@ -108,7 +112,7 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
     return 0;
   }
   const all = loadCases(),
-    cases = all.filter((c) => c.id.includes(args.case) && (!args.suite || c.suite === args.suite));
+    cases = selectCases(all, args);
   if (args.validate) {
     console.log(`${all.length} YAML cases valid; ${compareConversions()} TOML conversions identical`);
     return 0;
@@ -127,10 +131,13 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
       `up to ${args.jobs} running calls finish. Claude has a per-call cap; ` +
       "Codex has no hard spending cap. Unknown cost stays unknown.",
   );
+  const missing = missingPrograms([...new Set(plan.map(([c]) => c))]);
   if (args.dry_run) {
     for (const [c, a, m, n] of plan) console.log(`  ${c.id} ${a} ${m} run ${n}`);
-    return 0;
+    if (missing.length) console.log(missingMessage(missing) + "\na real run stops here, before any agent call");
+    return missing.length ? 1 : 0;
   }
+  if (missing.length) throw Error(missingMessage(missing));
 
   if (args.judge) {
     console.log("Judge calibration:", requireCalibration(args.calibration));

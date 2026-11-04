@@ -50,6 +50,12 @@
         "fixture": {
           "type": "string"
         },
+        "requires": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "chapters": {
           "type": "array",
           "items": {
@@ -209,6 +215,12 @@
               "items": {
                 "type": "string"
               }
+            },
+            "untracked": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           },
           "required": [
@@ -322,7 +334,29 @@
         "unchanged_under": {
           "type": "array",
           "items": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "folder": {
+                    "type": "string"
+                  },
+                  "except": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "folder"
+                ],
+                "additionalProperties": false
+              }
+            ]
           }
         },
         "index_links": {
@@ -443,6 +477,78 @@
           "items": {
             "type": "string"
           }
+        },
+        "tests_pass": {
+          "type": "string"
+        },
+        "never_committed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "heading_once": {
+          "type": "object",
+          "properties": {
+            "heading": {
+              "type": "string"
+            },
+            "in": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "in"
+          ],
+          "additionalProperties": false
+        },
+        "tag_at_head": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tree_lacks": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "paths_lack": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "only_new_files": {
+          "type": "object",
+          "properties": {
+            "matching": {
+              "type": "string"
+            },
+            "at_most": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "matching",
+            "at_most"
+          ],
+          "additionalProperties": false
+        },
+        "compare_to": {
+          "type": "string",
+          "enum": [
+            "checkpoint",
+            "turn"
+          ]
         }
       },
       "additionalProperties": false

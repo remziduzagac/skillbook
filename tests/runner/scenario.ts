@@ -1,7 +1,7 @@
 import { JUDGE_INSTRUCTION, structuredPrompt, judgeData, checkedBatch, loadingOnly, loadingJudgment } from "./judge-protocol";
 import { chapterAt } from "./chapters";
 import { ruleChecks } from "./rule-checks";
-import { MARKER } from "./paths";
+import { MARKER, cached } from "./paths";
 import { currentFinal } from "./answers";
 import { JUDGING_RULES } from "./judgment-policy";
 import { agentCommand } from "./agents";
@@ -94,11 +94,13 @@ export function judgeEvidence(turns: Event[], sources: Record<string, string> = 
   const chapter = turns.at(-1)?.chapter;
   const visible = chapter === undefined ? turns : turns.filter(t => t.chapter === chapter);
   const changed = new Set(Object.keys(visible.at(-1)?.file_diffs ?? {}));
-  const wanted = (path: string) => selected === undefined || changed.has(path) ||
-    selected.some(p => p.endsWith("/") ? path.startsWith(p) : path === p);
+  const wanted = (path: string) => !cached(path) && (selected === undefined || changed.has(path) ||
+    selected.some(p => p.endsWith("/") ? path.startsWith(p) : path === p));
   const keep = (files: Record<string, unknown>) => Object.fromEntries(Object.entries(files).filter(([p]) => wanted(p)));
+  const listed = (changes: unknown) => Array.isArray(changes) ?
+    changes.filter(c => typeof c !== "string" || !cached(c.slice(c.indexOf(" ") + 1))) : changes;
   return { sources: keep(sources), current_turn: turns.at(-1)?.turn ?? turns.length, progress_role: "unscored evidence", turns: visible.map(t => Object.fromEntries(keys.filter(k => k in t).map(k =>
-    [k, ["files", "file_diffs"].includes(k) ? keep(t[k]) : t[k]]))) };
+    [k, ["files", "file_diffs"].includes(k) ? keep(t[k]) : k === "changes" ? listed(t[k]) : t[k]]))) };
 }
 
 export async function rubricBatch(call: StructuredCall, requests: JudgeRequest[]): Promise<JudgeResult[]> {

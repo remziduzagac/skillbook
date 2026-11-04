@@ -11,12 +11,12 @@ import { recheckScenario, requireSavedCases } from "./runner/recheck";
 import { ownLogin, agentEnv } from "./runner/files";
 import { structuredCall, rubricBatch, judgeEvidence } from "./runner/scenario";
 import { claudeStructuredCall } from "./runner/claude-judge";
-import { score, scoreRuns, evaluateTagged, scenarioReliability } from "./runner/scoring";
+import { score, scoresByCase, evaluateTagged, scenarioReliability } from "./runner/scoring";
 import { endRun } from "./runner/process";
 import type { Event, Verdict, JudgeRequest } from "./runner/types";
 
 const { values, positionals } = parseArgs({ args: Bun.argv.slice(2), allowPositionals: true, options: {
-  "rubric-book": { type: "string" },
+  "rubric-book": { type: "string" }, case: { type: "string", default: "" },
   login: { type: "boolean", default: false }, "judge-timeout": { type: "string" }, "judge-model": { type: "string" },
 } });
 // The validated judge is Sol on Codex. --judge-model claude=MODEL adds an unvalidated second opinion.
@@ -25,11 +25,14 @@ if (values["judge-model"] !== undefined && !claudeJudge) throw Error("--judge-mo
 const [source, output, calibration, validation] = positionals;
 const timeout = judgeTimeout(values["judge-timeout"]);
 if (!source || !output || source === output || !values.login)
-  throw Error("usage: bun tests/judge-scenarios.ts SOURCE NEW_OUTPUT CALIBRATION RUBRIC_VALIDATION --login [--judge-timeout SECONDS] [--judge-model claude=MODEL]");
+  throw Error("usage: bun tests/judge-scenarios.ts SOURCE NEW_OUTPUT CALIBRATION RUBRIC_VALIDATION --login [--case TEXT] [--judge-timeout SECONDS] [--judge-model claude=MODEL]");
 const calibrated = requireCalibration(calibration);
 if (!validation) throw Error("rubric validation file required");
 const cases = new Map(loadCases().map(c => [c.id, c]));
-const original: Event[] = JSON.parse(readFileSync(join(source, "summary.json"), "utf8"));
+// Each case is judged with its own trace book, so --case selects one case's runs from a mixed result folder.
+const original: Event[] = (JSON.parse(readFileSync(join(source, "summary.json"), "utf8")) as Event[])
+  .filter(r => r.case.includes(values.case!));
+if (!original.length) throw Error(`no saved run matches --case ${values.case}`);
 requireSavedCases(original, cases);
 const book = activeRubricBook(values["rubric-book"], [...cases.values()].filter(c => original.some(r => r.case === c.id)));
 const validationSummary=rubricValidationSummary(JSON.parse(readFileSync(validation, "utf8")), book);
@@ -89,7 +92,7 @@ try {
   }
   writeFileSync(join(output, "summary.json"), JSON.stringify(results, null, 2) + "\n");
   writeFileSync(join(output, "reliability.json"), JSON.stringify(scenarioReliability(results), null, 2) + "\n");
-  writeFileSync(join(output, "scores.json"), JSON.stringify(scoreRuns(results as any), null, 2) + "\n");
+  writeFileSync(join(output, "scores.json"), JSON.stringify(scoresByCase(results), null, 2) + "\n");
   writeFileSync(join(output, "judging-cost.json"), JSON.stringify({ known, unknown_calls: unknown }) + "\n");
 } finally {
   await endRun(groups, join(root, "tmp"));

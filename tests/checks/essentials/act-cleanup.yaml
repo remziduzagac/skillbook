@@ -51,6 +51,23 @@
       "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
       "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
       "no_skill_eligible": true
+    },
+    {
+      "id": "act-cleanup:rule:6",
+      "key": "act-cleanup:rule:6",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/act/cleanup.md",
+        "line": 49,
+        "text": "6. **Check cleanup through the `act-verify` guide.** Confirm the process is gone and the path no longer exists. A kill can fail silently. A watcher can restart a stopped process."
+      },
+      "applicability": "scenario",
+      "required_skill": "act-cleanup",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of act-cleanup:rule:6: Check cleanup through the `act-verify` guide. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
     }
   ],
   "results": [

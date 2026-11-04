@@ -2,6 +2,40 @@
   "skill": "coordinate-instruct",
   "checks": [
     {
+      "id": "coordinate-instruct:rule:1",
+      "key": "coordinate-instruct:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/instruct.md",
+        "line": 23,
+        "text": "1. **Keep shared rules in their proper home.** Put preferences in the user's own instruction files. Put facts every tool needs in the project's shared file. Use the `coordinate-setup` guide for where an installed skillbook pointer belongs. For a skill's design or files, use the project's method for making skills. Use your judgment when the project has no such method. When the project keeps the same instructions in two files for different agents, change both alike, or only the one the other points to, and say which in the proposal."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-instruct",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-instruct:rule:1: Keep shared rules in their proper home. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "coordinate-instruct:rule:2",
+      "key": "coordinate-instruct:rule:2",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/instruct.md",
+        "line": 24,
+        "text": "2. **Write pointers with the key word first.** Say what the linked material is and when the reader needs it. An agent scanning the document must be able to find the right line."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-instruct",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-instruct:rule:2: Write pointers with the key word first. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
       "id": "coordinate-instruct:rule:4",
       "key": "coordinate-instruct:rule:4",
       "kind": "rule",

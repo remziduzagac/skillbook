@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "next_id": 47,
+  "tasks": [
+    {
+      "id": 1,
+      "title": "renew passport",
+      "done": false,
+      "due": "2027-03-31",
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 2,
+      "title": "fix bike",
+      "done": true,
+      "due": null,
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 3,
+      "title": "call mum",
+      "done": false,
+      "due": "2027-03-19",
+      "tags": [
+        "family"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 4,
+      "title": "water the tomatoes",
+      "done": false,
+      "due": "2027-03-15",
+      "tags": [
+        "garden"
+      ],
+      "repeat": "daily",
+      "scheduled": "2027-03-15"
+    },
+    {
+      "id": 5,
+      "title": "prune the roses",
+      "done": false,
+      "due": "2027-03-20",
+      "tags": [
+        "garden"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 6,
+      "title": "order compost",
+      "done": true,
+      "due": null,
+      "tags": [
+        "garden"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 7,
+      "title": "buy bulbs for autumn",
+      "done": false,
+      "due": "2027-04-10",
+      "tags": [
+        "garden"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 8,
+      "title": "clean the gutters",
+      "done": false,
+      "due": "2027-03-20",
+      "tags": [
+        "garden"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 9,
+      "title": "put the bins out",
+      "done": false,
+      "due": "2027-03-22",
+      "tags": [
+        "home"
+      ],
+      "repeat": "weekly",
+      "scheduled": "2027-03-22"
+    },
+    {
+      "id": 10,
+      "title": "pay council tax",
+      "done": false,
+      "due": "2027-03-10",
+      "tags": [
+        "admin"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 11,
+      "title": "book dentist",
+      "done": false,
+      "due": null,
+      "tags": [
+        "health"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 12,
+      "title": "send Dad's birthday card",
+      "done": true,
+      "due": null,
+      "tags": [
+        "family"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 13,
+      "title": "back up the laptop",
+      "done": false,
+      "due": "2027-03-19",
+      "tags": [],
+      "repeat": "weekly",
+      "scheduled": "2027-03-19"
+    },
+    {
+      "id": 14,
+      "title": "return library books",
+      "done": false,
+      "due": "2027-03-04",
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 15,
+      "title": "email landlord about the boiler",
+      "done": false,
+      "due": "2027-03-02",
+      "tags": [
+        "admin"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 16,
+      "title": "learn about Python packaging",
+      "done": false,
+      "due": null,
+      "tags": [
+        "learn"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 17,
+      "title": "read chapter 4 of the Python book",
+      "done": true,
+      "due": null,
+      "tags": [
+        "learn"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 18,
+      "title": "finish chapter 5 of the Python book",
+      "done": false,
+      "due": "2027-03-26",
+      "tags": [
+        "learn"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 19,
+      "title": "buy a present for Priya's birthday",
+      "done": false,
+      "due": "2027-04-02",
+      "tags": [
+        "friends"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 20,
+      "title": "cancel the old gym membership",
+      "done": true,
+      "due": null,
+      "tags": [
+        "admin"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 21,
+      "title": "go for a run",
+      "done": false,
+      "due": "2027-03-16",
+      "tags": [
+        "health"
+      ],
+      "repeat": "weekly",
+      "scheduled": "2027-03-16"
+    },
+    {
+      "id": 22,
+      "title": "plan the week",
+      "done": false,
+      "due": "2027-03-21",
+      "tags": [],
+      "repeat": "weekly",
+      "scheduled": "2027-03-21"
+    },
+    {
+      "id": 23,
+      "title": "fix the squeaky door",
+      "done": false,
+      "due": null,
+      "tags": [
+        "home"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 24,
+      "title": "paint the spare room",
+      "done": false,
+      "due": "2027-04-17",
+      "tags": [
+        "home"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 25,
+      "title": "buy light bulbs",
+      "done": true,
+      "due": null,
+      "tags": [
+        "home"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 26,
+      "title": "call the bank about the card",
+      "done": false,
+      "due": "2027-03-18",
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 27,
+      "title": "take the old monitor to the recycling centre",
+      "done": false,
+      "due": "2027-03-20",
+      "tags": [
+        "home"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 28,
+      "title": "sort out photos from last summer",
+      "done": false,
+      "due": null,
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 29,
+      "title": "write a thank-you note to Aunt Mary",
+      "done": false,
+      "due": null,
+      "tags": [
+        "family"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 30,
+      "title": "sharpen the garden shears",
+      "done": false,
+      "due": null,
+      "tags": [
+        "garden"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 31,
+      "title": "sow carrots",
+      "done": false,
+      "due": "2027-03-27",
+      "tags": [
+        "garden"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 32,
+      "title": "check the shed roof",
+      "done": false,
+      "due": null,
+      "tags": [
+        "garden"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 33,
+      "title": "book train tickets for Easter",
+      "done": true,
+      "due": "2027-02-20",
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 34,
+      "title": "renew bike insurance",
+      "done": false,
+      "due": "2027-04-05",
+      "tags": [
+        "admin"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 35,
+      "title": "organise the bookshelf",
+      "done": false,
+      "due": null,
+      "tags": [
+        "home"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 36,
+      "title": "buy a new phone charger",
+      "done": false,
+      "due": null,
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 37,
+      "title": "file the tax return",
+      "done": true,
+      "due": "2027-01-31",
+      "tags": [
+        "admin"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 38,
+      "title": "clear out the loft",
+      "done": false,
+      "due": "2027-05-01",
+      "tags": [
+        "home"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 39,
+      "title": "tidy the desk",
+      "done": false,
+      "due": "2027-03-19",
+      "tags": [
+        "home"
+      ],
+      "repeat": "weekly",
+      "scheduled": "2027-03-19"
+    },
+    {
+      "id": 40,
+      "title": "send photos to Leo",
+      "done": false,
+      "due": "2027-03-17",
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 41,
+      "title": "try the new pasta recipe",
+      "done": false,
+      "due": null,
+      "tags": [
+        "cooking"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 42,
+      "title": "make a list of books to read",
+      "done": false,
+      "due": null,
+      "tags": [
+        "learn"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 43,
+      "title": "call the plumber",
+      "done": true,
+      "due": null,
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 44,
+      "title": "check the tyre pressure on the car",
+      "done": false,
+      "due": "2027-03-08",
+      "tags": [],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 45,
+      "title": "tell the council about the pothole",
+      "done": false,
+      "due": null,
+      "tags": [
+        "admin"
+      ],
+      "repeat": null,
+      "scheduled": null
+    },
+    {
+      "id": 46,
+      "title": "decide where to go this summer",
+      "done": false,
+      "due": null,
+      "tags": [
+        "travel"
+      ],
+      "repeat": null,
+      "scheduled": null
+    }
+  ]
+}

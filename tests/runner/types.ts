@@ -8,7 +8,7 @@ export interface ConditionalNeed extends SkillNeed {
 export interface Chapter {
   number: number;
   start_turn: number;
-  checkpoint: { fixture: string; overlays?: string[]; remove?: string[] };
+  checkpoint: { fixture: string; overlays?: string[]; remove?: string[]; untracked?: string[] };
 }
 export interface Checks {
   reads?: string[];
@@ -23,7 +23,7 @@ export interface Checks {
   shorter?: string[];
   words_under?: Record<string, number>;
   only_replacement?: Record<string, { from: string; to: string }>;
-  unchanged_under?: string[];
+  unchanged_under?: (string | { folder: string; except?: string[] })[];
   index_links?: Record<string, string | {folder: string; contains?: string[]}>;
   keeps_lines?: string[];
   states_before_change?: boolean | string[];
@@ -39,6 +39,14 @@ export interface Checks {
   agent_started_or_answer?: string[];
   answer_path_has?: string[];
   actions_lack?: string[];
+  tests_pass?: string;
+  never_committed?: string[];
+  heading_once?: { heading: string; in: string[] };
+  tag_at_head?: string[];
+  tree_lacks?: Record<string, string[]>;
+  paths_lack?: string[];
+  only_new_files?: { matching: string; at_most: number };
+  compare_to?: "checkpoint" | "turn";
 }
 export interface TaggedCheck {
   id: string;
@@ -75,6 +83,7 @@ export interface CaseFile {
   source?: string;
   source_snapshots?: { path: string; sha256: string; text: string }[];
   fixture: string;
+  requires?: string[];
   chapters?: Chapter[];
   gitignore?: string[];
   agents?: Agent[];
@@ -134,7 +143,23 @@ export interface Observation {
   files: Record<string, string | null>;
   paths_present?: Record<string, boolean | null>;
   left_running?: string[] | null;
+  test_runs?: TestRun[];
+  commits?: { sha: string; paths: string[] }[] | null;
+  tags?: Record<string, string> | null;
+  head?: string | null;
   [key: string]: any;
+}
+// The runner's own run of a turn's test command; never an agent action or judge evidence.
+export interface TestRun {
+  command: string;
+  status: number | null;
+  timed_out?: boolean;
+  tests_run?: number | null;
+  failures?: number | null;
+  errors?: number | null;
+  failed?: string[];
+  output_tail?: string;
+  error?: string;
 }
 export interface Options {
   no_skill?: boolean;

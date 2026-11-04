@@ -2,6 +2,23 @@
   "skill": "understand-naming",
   "checks": [
     {
+      "id": "understand-naming:rule:1",
+      "key": "understand-naming:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/naming.md",
+        "line": 45,
+        "text": "1. **Keep one word per concept and one concept per word.** Add no synonym for an existing term or word already meaning something else in the project or nearby field. Readers could not tell which meaning is meant."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-naming",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-naming:rule:1: Keep one word per concept and one concept per word. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
       "id": "understand-naming:rule:4",
       "key": "understand-naming:rule:4",
       "kind": "rule",
@@ -48,6 +65,40 @@
       "required_skill": "understand-naming",
       "deadline": "first change",
       "expected": "Apply all applicable parts of understand-naming:rule:6: Write and rename nothing. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-naming:rule:7",
+      "key": "understand-naming:rule:7",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/naming.md",
+        "line": 54,
+        "text": "7. **Propose one glossary definition per term.** Use one sentence, words to avoid and an example where needed. Duplicate definitions drift. The caller writes approved entries."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-naming",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-naming:rule:7: Propose one glossary definition per term. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
+      "id": "understand-naming:rule:8",
+      "key": "understand-naming:rule:8",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/understand/naming.md",
+        "line": 55,
+        "text": "8. **Flag a term used two ways.** Propose splitting it or holding it to one meaning. Until settled, list it under flagged ambiguities with both meanings, so it is not forgotten."
+      },
+      "applicability": "scenario",
+      "required_skill": "understand-naming",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of understand-naming:rule:8: Flag a term used two ways. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
       "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
       "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
       "no_skill_eligible": true

@@ -86,7 +86,7 @@ test("whole-guide checks have no semantic model call, while native access is kep
   expect(fixtureBatches([e])).toEqual([]);
 });
 test("fixture evidence uses native helper extraction and the live allowlist", () => {
-  const c=loadCases()[0]!, book=JSON.parse(readFileSync("tests/calibration/festival-traces.json","utf8")) as RubricBook;
+  const c=loadCases().find(x=>x.id==="essentials/festival")!, book=JSON.parse(readFileSync("tests/calibration/festival-traces.json","utf8")) as RubricBook;
   const proof=fixtureJudgeEvidence("t23:correct",book,c), turn=proof.turns.at(-1)!;
   expect(turn).not.toHaveProperty("access");expect(turn).not.toHaveProperty("helper_controls");
   expect(turn).not.toHaveProperty("files_before");expect(turn).not.toHaveProperty("files_after");
@@ -131,7 +131,7 @@ test("a batch retries a busy judge a bounded number of times and never retries o
 });
 test("explicit unknown expectations survive the structural gate without being called semantic passes", () => {
   const b=JSON.parse(readFileSync("tests/calibration/festival-traces.json","utf8")) as RubricBook;
-  const c=loadCases(), entries=fixtureEntries(b,c), direct=loadingFixtureResults(entries);
+  const c=loadCases().filter(x=>x.id==="essentials/festival"), entries=fixtureEntries(b,c), direct=loadingFixtureResults(entries);
   expect(direct.length).toBeGreaterThan(0);
   expect(direct.every(r=>r.expected===null && r.matches)).toBe(true);
   expect(b.scope).toBe("active");

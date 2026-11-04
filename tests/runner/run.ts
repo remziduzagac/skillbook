@@ -11,6 +11,7 @@ import { CallLimits } from "./call-limits";
 import { accessTurn, frozenSkills, retainAccess } from "./access";
 import { inspectCodexRetention, withCodexRetention } from "./codex-retention";
 import { collectRoutingNotes, CODEX_REASONING_SUMMARY } from "./routing-notes";
+import { gitTips, gitEvidence, testCommands, runTestCommands, needsTurnStart } from "./project-evidence";
 import {
   mkdtempSync,
   mkdirSync,
@@ -33,7 +34,7 @@ import { CostTracker, DEFAULT_MODELS } from "./cost";
 import { check } from "./checks";
 import { progressFindings } from "./progress";
 import { structuredCall, simulate, fit, rubricBatch, judgeEvidence } from "./scenario";
-import { evaluateTagged, score, scoreRuns, scenarioReliability } from "./scoring";
+import { evaluateTagged, score, scoresByCase, scenarioReliability } from "./scoring";
 import { runStatus, summarize } from "./reports";
 import type { Agent, Case, Options, Event, Verdict } from "./types";
 export async function runOne(
@@ -140,7 +141,7 @@ export async function runOne(
         putCheckpoint(work, chapter, c.gitignore);
         if (agent === "claude" && existsSync(join(work, "AGENTS.md")) && !existsSync(join(work, "CLAUDE.md")))
           copyFileSync(join(work, "AGENTS.md"), join(work, "CLAUDE.md"));
-        commitCheckpoint(work, chapter.number);
+        commitCheckpoint(work, chapter.number, chapter.checkpoint.untracked);
         previous = baseline = snapshot(work); previousText = baselineText = sourceSnapshots(work, fixtureText(work), c.source_snapshots, true);
         if (!result.turns.length) {
           before = baseline; result.initial_paths = Object.keys(before); result.fixture_sources = baselineText;
@@ -162,7 +163,7 @@ export async function runOne(
       if (turn.fresh_session) session = undefined;
       const sent = mode === "simulated" ? await simulate(call, c, index, chapterTurns, baselineText) :
         { message: turn.prompt, steered: false };
-      const beforeTmp = tmpPaths(tmp), timeout = turn.timeout ?? args.timeout;
+      const beforeTmp = tmpPaths(tmp), timeout = turn.timeout ?? args.timeout, tipsBefore = gitTips(work);
       limits?.dispatch("agent");
       const ran = await driver(
           agentCommand(agent, model, sent.message, remaining, session),
@@ -201,6 +202,10 @@ export async function runOne(
         tmp_lacks: tmpAssertions.flatMap(c => c?.tmp_lacks ?? [])}, observation, c.fixture, turnTmp);
       observation.baseline_files = baselineText;
       observation.baseline_snapshot = baseline;
+      Object.assign(observation, gitEvidence(work, tipsBefore));
+      const commands = testCommands(tmpAssertions);
+      if (commands.length) observation.test_runs = await runTestCommands(commands, work, home, root);
+      if (needsTurnStart(tmpAssertions)) { observation.start_snapshot = previous; observation.start_files = previousText; }
       const currentText = sourceSnapshots(work, fixtureText(work), c.source_snapshots),
         [final, between] = turn_parts(agent, turnEvents);
       observation.files = currentText;
@@ -421,7 +426,7 @@ export async function runPlan(
   writeFileSync(join(out, "summary.md"), summarize(results, spent, unknown));
   writeFileSync(join(out, "measurement.json"), JSON.stringify(measurementReport(results), null, 2) + "\n");
   writeFileSync(join(out, "reliability.json"), JSON.stringify(scenarioReliability(results), null, 2) + "\n");
-  writeFileSync(join(out, "scores.json"), JSON.stringify(scoreRuns(results as any), null, 2) + "\n");
+  writeFileSync(join(out, "scores.json"), JSON.stringify(scoresByCase(results), null, 2) + "\n");
   const sharedAfter = readdirSync("/tmp").filter((n) => !sharedBefore.has(n));
   if (sharedAfter.length)
     console.log("new shared /tmp names during run (may belong to other processes): " + sharedAfter.join(", "));

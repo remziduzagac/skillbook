@@ -1,0 +1,2 @@
+This list has moved. Jotdown keeps your tasks in ~/.jotdown/tasks.json now, wherever you run `jd`. Run `jd list` to see them.
+Nothing reads this file any more.

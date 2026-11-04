@@ -2,6 +2,23 @@
   "skill": "coordinate-learn",
   "checks": [
     {
+      "id": "coordinate-learn:rule:1",
+      "key": "coordinate-learn:rule:1",
+      "kind": "rule",
+      "source": {
+        "file": "skills/essentials/references/coordinate/learn.md",
+        "line": 24,
+        "text": "1. **Draw each lesson from what happened in this session, with its evidence.** Name the correction, mistake or result it comes from. A lesson without a case from the session is a generic tip, and the user cannot judge whether it is worth keeping."
+      },
+      "applicability": "scenario",
+      "required_skill": "coordinate-learn",
+      "deadline": "answer",
+      "expected": "Apply all applicable parts of coordinate-learn:rule:1: Draw each lesson from what happened in this session, with its evidence. Use the full source, including its conditions, exceptions and deadlines. Missing observable evidence stays unknown.",
+      "rejected": "A required part is contradicted by the answer, files or ordered actions. A claim alone does not prove execution.",
+      "evidence": "Cite an answer quote, file and line, or recorded action. Unseen helper facts and unavailable ordering remain unknown.",
+      "no_skill_eligible": true
+    },
+    {
       "id": "coordinate-learn:rule:2",
       "key": "coordinate-learn:rule:2",
       "kind": "rule",

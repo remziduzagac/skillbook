@@ -6,3 +6,5 @@ export const MARKER = "SKILLBOOK_TEST_RUN";
 export const POINTER =
   "Before any work, load the essentials skill and follow it; " +
   "load it again whenever its text is no longer in view, such as after compaction.";
+// Python's caches appear whenever code runs; no snapshot, change list, file check or judge evidence sees them.
+export const cached = (path: string) => /(?:^|\/)__pycache__(?:\/|$)|\.pyc$/.test(path);
