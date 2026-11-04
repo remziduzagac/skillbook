@@ -26,17 +26,30 @@ function git(work: string, args: string[], input?: string) {
     { cwd: work, env, input, encoding: "utf8", maxBuffer: 256 * 1024 * 1024, timeout: 60_000 });
   return ran.status === 0 ? ran.stdout : null;
 }
-// Every ref tip and HEAD before a turn; null when the project has no readable repository.
-export function gitTips(work: string): string[] | null {
+export interface GitState { tips: string[]; commits: string[]; reflog: string[] }
+const commitObjects = (work: string) => git(work, ["cat-file", "--batch-all-objects",
+  "--batch-check=%(objectname) %(objecttype)"])?.split("\n").flatMap(line => {
+  const [sha, type] = line.split(" ");
+  return type === "commit" ? [sha!] : [];
+}).sort() ?? null;
+// HEAD's reflog, newest first; empty when the repository keeps none.
+const headReflog = (work: string) =>
+  git(work, ["reflog", "show", "--format=%H", "HEAD", "--"])?.split("\n").filter(Boolean) ?? [];
+// Before a turn: every ref tip and HEAD, every commit object and HEAD's reflog; null without a readable repository.
+export function gitState(work: string): GitState | null {
   if (!existsSync(join(work, ".git"))) return null;
-  const refs = git(work, ["for-each-ref", "--format=%(objectname)"]);
-  if (refs === null) return null;
-  const head = git(work, ["rev-parse", "--verify", "-q", "HEAD"]);
-  return [...new Set([...refs.split("\n"), head ?? ""].map(s => s.trim()).filter(Boolean))].sort();
+  const refs = git(work, ["for-each-ref", "--format=%(objectname)"]), commits = commitObjects(work);
+  if (refs === null || commits === null) return null;
+  const head = git(work, ["rev-parse", "--verify", "-q", "HEAD"]) ?? "";
+  const tips = [...new Set([...refs.split("\n"), head].map(s => s.trim()).filter(Boolean))].sort();
+  return { tips, commits, reflog: headReflog(work) };
 }
-// Commits reachable from a ref after the turn and from none before it, each with the paths in its tree;
-// tags with the commits they point at; and HEAD. A field the repository cannot supply stays absent, so unknown.
-export function gitEvidence(work: string, before: string[] | null): Pick<Observation, "commits" | "tags" | "head"> {
+// The commits made during the turn: every commit reachable after it from a ref or a reflog, and every commit object
+// new to the repository, that was not there before it. So a commit amended or reset away still counts. Each comes
+// with the paths in its tree. The list is complete only if the repository keeps reflogs, HEAD's earlier reflog
+// entries remain and no earlier commit object is gone; otherwise `commits` stays absent, so the check is unknown.
+// Tags come with the commits they point at.
+export function gitEvidence(work: string, before: GitState | null): Pick<Observation, "commits" | "tags" | "head"> {
   if (before === null || !existsSync(join(work, ".git"))) return {};
   const evidence: Pick<Observation, "commits" | "tags" | "head"> = {};
   const head = git(work, ["rev-parse", "--verify", "-q", "HEAD^{commit}"])?.trim();
@@ -46,14 +59,21 @@ export function gitEvidence(work: string, before: string[] | null): Pick<Observa
     const [name, object, peeled] = line.split("\0");
     return [name!, peeled || object!];
   }));
-  const made = git(work, ["rev-list", "--all", "--ignore-missing", "--stdin"], before.map(sha => `^${sha}\n`).join(""));
-  if (made !== null) {
-    const commits = made.split("\n").filter(Boolean).map(sha => {
-      const tree = git(work, ["ls-tree", "-r", "--name-only", "-z", sha]);
-      return tree === null ? null : { sha, paths: tree.split("\0").filter(Boolean).sort() };
-    });
-    if (!commits.includes(null)) evidence.commits = commits as { sha: string; paths: string[] }[];
-  }
+  const objects = commitObjects(work), reflog = headReflog(work), earlier = before.reflog.length;
+  const logged = git(work, ["config", "--bool", "--get", "core.logAllRefUpdates"])?.trim() !== "false" && earlier > 0 &&
+    reflog.length >= earlier && reflog.slice(reflog.length - earlier).every((sha, i) => sha === before.reflog[i]);
+  if (!logged || objects === null) return evidence;
+  const present = new Set(objects), known = new Set([...before.tips, ...before.commits, ...before.reflog]);
+  if (before.commits.some(sha => !present.has(sha))) return evidence;
+  const reached = git(work, ["rev-list", "--all", "--reflog", "--ignore-missing", "--stdin"],
+    [...known].map(sha => `^${sha}\n`).join(""));
+  if (reached === null) return evidence;
+  const made = [...new Set([...reached.split("\n").filter(Boolean), ...objects.filter(sha => !known.has(sha))])].sort();
+  const commits = made.map(sha => {
+    const tree = git(work, ["ls-tree", "-r", "--name-only", "-z", sha]);
+    return tree === null ? null : { sha, paths: tree.split("\0").filter(Boolean).sort() };
+  });
+  if (!commits.includes(null)) evidence.commits = commits as { sha: string; paths: string[] }[];
   return evidence;
 }
 
@@ -67,14 +87,16 @@ export function unittestCounts(output: string): Pick<TestRun, "tests_run" | "fai
   return { tests_run: ran ? Number(ran[1]) : null, failures: count("failures"), errors: count("errors"),
     failed: [...output.matchAll(/^(?:FAIL|ERROR): (.+)$/gm)].map(m => m[1]!.trim()) };
 }
-// The runner's own check runs in a copy of the project as the turn left it, so it changes nothing the agent sees.
-export async function runTestCommands(commands: string[], work: string, home: string, scratch: string,
+// The runner's own check runs in a copy of the project as the turn left it, with its own fresh, empty home and
+// temporary folder, all removed afterwards; so it changes nothing the agent sees, in the project or in the home.
+export async function runTestCommands(commands: string[], work: string, scratch: string,
   timeout = TEST_TIMEOUT): Promise<TestRun[]> {
   const runs: TestRun[] = [];
   for (const command of commands) {
-    const root = mkdtempSync(join(scratch, "test-run-")), project = join(root, "project"), tmp = join(root, "tmp");
+    const root = mkdtempSync(join(scratch, "test-run-")), project = join(root, "project"), tmp = join(root, "tmp"),
+      home = join(root, "home");
     try {
-      mkdirSync(tmp);
+      mkdirSync(tmp); mkdirSync(home);
       cpSync(work, project, { recursive: true, verbatimSymlinks: true, filter: source => {
         const stat = lstatSync(source);
         return !cached(source) && (stat.isFile() || stat.isDirectory() || stat.isSymbolicLink());

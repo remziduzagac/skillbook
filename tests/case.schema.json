@@ -221,12 +221,19 @@
               "items": {
                 "type": "string"
               }
+            },
+            "home": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           },
           "required": [
             "fixture"
           ],
-          "additionalProperties": false
+          "additionalProperties": false,
+          "description": "`home`: fixture folders copied in order into the throwaway home when the checkpoint is put in place."
         }
       },
       "required": [

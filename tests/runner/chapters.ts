@@ -46,6 +46,21 @@ export function putCheckpoint(work: string, ch: Chapter, gitignore: string[] = [
   }
   writeFileSync(join(work, ".gitignore"), gitignore.join("\n") + (gitignore.length ? "\n" : ""));
 }
+// The agent's own settings, skills and login live under these names in its home; checkpoint files never touch them.
+export const AGENT_HOME = [".agents", ".claude", ".claude.json", ".codex"];
+// The names a checkpoint's home folders place at the top of the home.
+export const homeEntries = (ch: Chapter) =>
+  (ch.checkpoint.home ?? []).flatMap(folder => readdirSync(inside(FIXTURES, folder)));
+// A checkpoint's home folders are copied in order into the throwaway home, before the chapter's first agent call.
+// First every top-level entry that any chapter's home folders place is removed, so files from an earlier chapter, and
+// the agent's changes to them, never cross into a later one, whichever chapter the run starts at.
+export function putHome(home: string, ch: Chapter, chapters: Chapter[] = [ch]) {
+  for (const name of new Set(chapters.flatMap(homeEntries))) {
+    if (AGENT_HOME.includes(name)) throw Error(`checkpoint home cannot supply ${name}`);
+    rmSync(join(home, name), { recursive: true, force: true });
+  }
+  for (const folder of ch.checkpoint.home ?? []) copyTree(inside(FIXTURES, folder), home);
+}
 // Paths named `untracked` stay in the project but out of the checkpoint's commit, as a file the user never added.
 export function commitCheckpoint(work: string, chapter: number, untracked: string[] = []) {
   const env = { PATH: process.env.PATH, HOME: work, GIT_CONFIG_GLOBAL: "/dev/null", GIT_CONFIG_NOSYSTEM: "1" };

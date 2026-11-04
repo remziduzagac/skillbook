@@ -56,7 +56,8 @@ OUTCOME_LIMIT = ("Judge only the result the user asked for, the facts it must ge
 NEAR_MISS_TAIL = "Reading the guide is allowed; judge the action, not an absent read."
 SHARED = [
     {"id": "point", "tag": "habit:point-first",
-     "criterion": "Put the main answer, result or needed question in the first line or two."},
+     "criterion": ("Lead with the main answer, result or needed question, before any background, process or preamble. "
+                   "Judge the order of the content, never a count of lines.")},
     {"id": "scope", "tag": "habit:requested-scope",
      "criterion": "Keep within the current approval. Missing or substituted work is judged by the outcomes criterion "
                   "and act's rule 3, not here."},
@@ -183,7 +184,7 @@ TURNS = {
                    "understand-research-analyze:rule:4 understand-research-analyze:rule:5 "
                    "understand-research-analyze:rule:7 act:rule:9",
              checks={**QUIET, "tmp_lacks": ["."], **RUNNING},
-             files=["friends/reports.md", "jotdown/store.py", "DESIGN.md"]),
+             files=["friends/reports.md", "jotdown/store.py", "jotdown/cli.py", "DESIGN.md"]),
     24: dict(needs="act-verify devise-design respond-ask coordinate",
              rules="act-verify:rule:1 act-verify:rule:3 act-verify:rule:4 devise-design:rule:2 devise-design:rule:4 "
                    "act:rule:3",
@@ -199,17 +200,17 @@ TURNS = {
              rules="understand-research:rule:2 understand-research:rule:3 understand-research:rule:6 "
                    "understand-research:rule:5 understand-research-fact:rule:2 understand-research-fact:rule:1 "
                    "understand-research-fact:rule:3",
-             checks=QUIET, files=["friends/setups.md", "research/storage-notes.md"]),
+             checks=QUIET, files=["friends/setups.md", "friends/answers/", "research/storage-notes.md"]),
     27: dict(needs="coordinate-delegate-council coordinate-brief act-cleanup",
              rules="coordinate-delegate-council:rule:1 coordinate-delegate-council:rule:2 "
                    "coordinate-delegate-council:rule:3",
              checks={**QUIET, **RUNNING}, files=["DESIGN.md", "friends/setups.md", "friends/answers/"]),
     28: dict(needs="act-stakes", rules="act-stakes:rule:1 act-stakes:rule:2 act-stakes:rule:4",
-             checks=QUIET, files=["friends/setups.md", ".gitignore", "DESIGN.md"]),
+             checks=QUIET, files=["friends/setups.md", ".gitignore", "DESIGN.md", "plan.md", "jotdown/store.py"]),
     29: dict(needs="understand-argue", also="understand-frame understand-challenge",
              rules="understand-argue:rule:1 understand-argue:rule:2 understand-argue:rule:3 understand-argue:rule:4 "
                    "understand-argue:rule:5",
-             checks=QUIET, files=["decisions.md", "friends/answers/", "friends/setups.md"]),
+             checks=QUIET, files=["decisions.md", "friends/answers/", "friends/setups.md", "plan.md", "notes/idea.md"]),
     30: dict(needs="organize organize-split respond-ask",
              rules="organize:rule:1 organize:rule:2 organize:rule:4 organize:rule:8",
              checks=QUIET, files=["jotdown/", "tests/"]),
@@ -253,7 +254,8 @@ TURNS = {
     39: dict(needs="respond-ask", rules="respond-ask:rule:6", checks=QUIET, files=[]),
     40: dict(needs="coordinate-learn respond-ask", rules="coordinate-learn:rule:1 coordinate-learn:rule:2",
              checks=QUIET,
-             files=["carryover.md", "CHANGELOG.md", "DESIGN.md", "friends/reports.md", "vendor/tinydate/README.md"]),
+             files=["carryover.md", "CHANGELOG.md", "DESIGN.md", "friends/reports.md", "vendor/tinydate/README.md",
+                    "AGENTS.md", "plan.md"]),
 }
 
 
@@ -411,6 +413,9 @@ def build(root=REPO / "tests/checks"):
             checkpoint["overlays"] = list(overlays)
         if REMOVE.get(number):
             checkpoint["remove"] = REMOVE[number]
+        if number >= 5:
+            # The user moved their tasks to ~/.jotdown in chapter 5; the runner copies them into the throwaway home.
+            checkpoint["home"] = ["scenarios/todo-app-home"]
         if number == 3:
             # The password file stays out of the checkpoint commit, so it is untracked as the scenario says.
             checkpoint["untracked"] = ["config/reminders.env"]

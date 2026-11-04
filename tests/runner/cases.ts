@@ -1,7 +1,7 @@
-import { inside, chapterAt } from "./chapters";
+import { inside, chapterAt, homeEntries, AGENT_HOME } from "./chapters";
 import { resolveCriterion, ruleChecks } from "./rule-checks";
 import Ajv from "ajv";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, lstatSync } from "node:fs";
 import { relative, dirname, basename, join, resolve } from "node:path";
 import schema from "../case.schema.json";
 import { CASES, FIXTURES } from "./paths";
@@ -35,8 +35,12 @@ export function validateCase(data: unknown): asserts data is CaseFile {
       if (ch.number !== i + 1 || !Number.isInteger(ch.start_turn) || ch.start_turn > c.turns.length ||
         (i > 0 && ch.start_turn <= c.chapters[i - 1]!.start_turn))
         throw Error("chapters need ordered consecutive numbers and increasing start turns");
-      for (const path of [ch.checkpoint.fixture, ...(ch.checkpoint.overlays ?? [])])
+      for (const path of [ch.checkpoint.fixture, ...(ch.checkpoint.overlays ?? []), ...(ch.checkpoint.home ?? [])])
         if (!existsSync(inside(FIXTURES, path))) throw Error(`no checkpoint fixture named ${path}`);
+      for (const path of ch.checkpoint.home ?? []) if (!lstatSync(inside(FIXTURES, path)).isDirectory())
+        throw Error(`checkpoint home must name a fixture folder: ${path}`);
+      for (const name of homeEntries(ch))
+        if (AGENT_HOME.includes(name) || name === ".git") throw Error(`checkpoint home cannot supply ${name}`);
       for (const path of [...ch.checkpoint.remove ?? [], ...ch.checkpoint.untracked ?? []]) {
         inside(FIXTURES, path);
         if (path.split("/").includes(".git")) throw Error("checkpoint removal or untracked path cannot name .git");

@@ -6,13 +6,15 @@ import { tmpdir } from "node:os";
 import { loadCases } from "./cases";
 import { parseArgs, selectCases } from "./cli";
 import { runOne, planRuns } from "./run";
-import { ruleChecks, resultChecks } from "./rule-checks";
+import { ruleChecks, resultChecks, declaredRules } from "./rule-checks";
+import { measurementPlan, offeredRules } from "./measure-turn";
+import { accessTurn } from "./access";
 import { activeRubricBook, rubricCandidates, validateRubricFixtures, resolveRubricTrace, rubricTrace } from "./rubric-fixtures";
 import { judgeEvidence } from "./scenario";
 import { check } from "./checks";
 import { traceObservation } from "./trace-checks";
 import { uncoveredRules, uncoveredReturns } from "./library-coverage";
-import { reachableGuides } from "./needs";
+import { reachableGuides, resolvedNeeds } from "./needs";
 import { recheckScenario, requireSavedCases } from "./recheck";
 import { aspectCoverage } from "./inventory";
 import { putCheckpoint } from "./chapters";
@@ -115,6 +117,7 @@ test("generated five-chapter checkpoints and trace sources match the design, inc
 
 for (const no_skill of [false, true]) test(`festival runs all chapters with an injected transport (${no_skill ? "no skill" : "installed"})`, async () => {
   const c = festival(), book = activeRubricBook(path, [c]), out = mkdtempSync(join(tmpdir(), "festival-unit-"));
+  const declared = declaredRules(c), declaredKeys = new Set(declared.map(r => r.key)), offeredKeys: string[] = [];
   let count = 0, fits = 0, outcomes = 0;
   const sizes: Event[] = [], inputs: Event[] = [];
   try {
@@ -126,6 +129,7 @@ for (const no_skill of [false, true]) test(`festival runs all chapters with an i
             input.includes("Mark only paths") ? "conditional-path" : data.criteria ? "outcomes" : "fit",
             input_bytes: new TextEncoder().encode(input).length});
           if (input.includes("Mark claims")) {
+            offeredKeys.push(...data.checks.map((r: Event) => r.key));
             if (count === 21) expect(data.checks.some((r: Event) => r.key === "approval")).toBe(true);
             if (count === 1) expect(data.checks.some((r: Event) => r.key === "approval")).toBe(false);
             return encode(JSON.stringify({claims: [], marks: []}));
@@ -180,6 +184,14 @@ for (const no_skill of [false, true]) test(`festival runs all chapters with an i
     expect(result.turns[26].baseline_files["council-summary.md"].split(/\s+/).length).toBeGreaterThan(150);
     expect(result.turns[26].changes).toEqual([]); expect(result.unreached_turns).toEqual([]);
     expect(result.turns.every((t: Event) => t.judgments.every((j: Event) => j.verdict === null))).toBe(true);
+    // Only the festival's own rule definitions are offered, measured and scored, whatever else the library holds.
+    expect(offeredKeys.length).toBeGreaterThan(28);
+    expect(offeredKeys.filter(key => !declaredKeys.has(key))).toEqual([]);
+    const ids = new Set(declared.map(r => r.id));
+    for (const t of result.turns) {
+      for (const o of t.opportunities) expect(ids.has(o.id), o.id).toBe(true);
+      for (const j of t.judgments.filter((j: Event) => j.tag.startsWith("rule:"))) expect(ids.has(j.tag.slice(5)), j.tag).toBe(true);
+    }
     const replay = recheckScenario(result, c).checks;
     for (const [name, verdict] of Object.entries(replay))
       expect(verdict).toBe(result.checks[name]);
@@ -187,6 +199,34 @@ for (const no_skill of [false, true]) test(`festival runs all chapters with an i
     writeFileSync(join(out, "status.json"), JSON.stringify({turns: count, checks: result.checks}));
   } finally { rmSync(out, {recursive: true, force: true}); }
 }, 30000);
+
+test("library entries the festival does not declare never change its offered, measured or scored rules", () => {
+  const c = festival(), library = ruleChecks(), access = accessTurn("codex", [], 1, {});
+  // Without other cases' entries the library is exactly what the festival declares. The entries added for other
+  // cases are all scenario rules; add them and one synthetic scenario rule whose guide every festival turn needs.
+  const own = library.filter(r => (c.covers ?? []).includes(r.id)), added = library.filter(r => !own.includes(r));
+  expect(added.length).toBeGreaterThan(0);
+  expect(added.filter(r => r.applicability !== "scenario")).toEqual([]);
+  const needed = library.find(r => r.required_skill === "respond")!;
+  const grown = [...library, {...needed, id: "respond:rule:902", key: "unit-new-scenario", applicability: "scenario"}];
+  expect(declaredRules(c, grown).map(r => r.id)).toEqual(own.map(r => r.id));
+  // A case that declares nothing still gets every rule that is not a scenario rule.
+  expect(declaredRules({turns: []}, grown)).toEqual(grown.filter(r => r.applicability !== "scenario"));
+  for (const [i, t] of c.turns.entries()) {
+    const needs = resolvedNeeds(t, {}, true);
+    const offered = (rules: Event[]) => offeredRules(declaredRules(c, rules), t, needs).map(r => r.id);
+    expect(offered(grown), `turn ${i + 1}`).toEqual(offered(own));
+    // A judge that marks every library key applicable, with a change and a claim, still reaches only declared rules.
+    const turn = {claim_text: "Done.", final_answer: "Done.", sent_message: t.prompt, changes: ["changed a.md"],
+      author_rule_marks: t.rule_marks ?? [], claim_applicability: [{quote: "Done.", action: null}],
+      rule_applicability: grown.map(r => ({key: r.key, applicable: true, quote: "Done.", action: null}))};
+    const measured = (rules: Event[]) => {
+      const plan = measurementPlan(turn, t.rubric ?? [], access, declaredRules(c, rules));
+      return [plan.inventory.map(o => o.definition.id), plan.rubrics.map(r => r.id), plan.result_parts.map(p => p.id)];
+    };
+    expect(measured(grown), `turn ${i + 1}`).toEqual(measured(own));
+  }
+});
 
 test("judge selection keeps named sources and current edits while excluding unrelated earlier made files", () => {
   const data = judgeEvidence([{chapter: 2, turn: 7, files: {"design.md":"design", "old.md":"old"}, file_diffs:{"old.md":"made earlier"}},

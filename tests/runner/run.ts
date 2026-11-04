@@ -1,17 +1,17 @@
 import { resultRubric } from "./judge-protocol";
 import { wordCount } from "./answers";
-import { selectedTurns, putCheckpoint, commitCheckpoint } from "./chapters";
+import { selectedTurns, putCheckpoint, putHome, commitCheckpoint } from "./chapters";
 import { resolvedNeeds } from "./needs";
 import { sourceSnapshots } from "./source-snapshots";
 import { helperEvidence } from "./helpers";
-import { ruleChecks } from "./rule-checks";
+import { declaredRules } from "./rule-checks";
 import { measurementReport } from "./measurement-report";
-import { applicableClaims, assessedResults, measuredOpportunities, measurementPlan } from "./measure-turn";
+import { applicableClaims, assessedResults, measuredOpportunities, measurementPlan, offeredRules } from "./measure-turn";
 import { CallLimits } from "./call-limits";
 import { accessTurn, frozenSkills, retainAccess } from "./access";
 import { inspectCodexRetention, withCodexRetention } from "./codex-retention";
 import { collectRoutingNotes, CODEX_REASONING_SUMMARY } from "./routing-notes";
-import { gitTips, gitEvidence, testCommands, runTestCommands, needsTurnStart } from "./project-evidence";
+import { gitState, gitEvidence, testCommands, runTestCommands, needsTurnStart } from "./project-evidence";
 import {
   mkdtempSync,
   mkdirSync,
@@ -48,7 +48,7 @@ export async function runOne(
   driver: typeof runTurn = runTurn,
   limits?: CallLimits,
 ): Promise<Event> {
-  const selected = selectedTurns(c, args.chapter);
+  const selected = selectedTurns(c, args.chapter), definitions = declaredRules(c);
   const costs = new CostTracker(agent,model);
   const noSkill = c.condition === "no-skill" || args.no_skill;
   const mode = args.user_mode ?? c.user?.mode ?? "fixed";
@@ -142,6 +142,7 @@ export async function runOne(
         if (agent === "claude" && existsSync(join(work, "AGENTS.md")) && !existsSync(join(work, "CLAUDE.md")))
           copyFileSync(join(work, "AGENTS.md"), join(work, "CLAUDE.md"));
         commitCheckpoint(work, chapter.number, chapter.checkpoint.untracked);
+        putHome(home, chapter, c.chapters);
         previous = baseline = snapshot(work); previousText = baselineText = sourceSnapshots(work, fixtureText(work), c.source_snapshots, true);
         if (!result.turns.length) {
           before = baseline; result.initial_paths = Object.keys(before); result.fixture_sources = baselineText;
@@ -163,7 +164,7 @@ export async function runOne(
       if (turn.fresh_session) session = undefined;
       const sent = mode === "simulated" ? await simulate(call, c, index, chapterTurns, baselineText) :
         { message: turn.prompt, steered: false };
-      const beforeTmp = tmpPaths(tmp), timeout = turn.timeout ?? args.timeout, tipsBefore = gitTips(work);
+      const beforeTmp = tmpPaths(tmp), timeout = turn.timeout ?? args.timeout, gitBefore = gitState(work);
       limits?.dispatch("agent");
       const ran = await driver(
           agentCommand(agent, model, sent.message, remaining, session),
@@ -202,9 +203,9 @@ export async function runOne(
         tmp_lacks: tmpAssertions.flatMap(c => c?.tmp_lacks ?? [])}, observation, c.fixture, turnTmp);
       observation.baseline_files = baselineText;
       observation.baseline_snapshot = baseline;
-      Object.assign(observation, gitEvidence(work, tipsBefore));
+      Object.assign(observation, gitEvidence(work, gitBefore));
       const commands = testCommands(tmpAssertions);
-      if (commands.length) observation.test_runs = await runTestCommands(commands, work, home, root);
+      if (commands.length) observation.test_runs = await runTestCommands(commands, work, root);
       if (needsTurnStart(tmpAssertions)) { observation.start_snapshot = previous; observation.start_files = previousText; }
       const currentText = sourceSnapshots(work, fixtureText(work), c.source_snapshots),
         [final, between] = turn_parts(agent, turnEvents);
@@ -264,15 +265,14 @@ export async function runOne(
       evidence.resolved_needs = resolvedNeeds(turn, evidence, true);
       if (args.judge && !failed) {
         try {
-          const applicability = await applicableClaims(call, evidence.claim_text, evidence.actions, sent.message, ruleChecks().filter(def => def.applicability !== "scenario" ||
-            turn.rule_marks?.some(mark => mark.id === def.id) ||
-            evidence.resolved_needs.some((need: Event) => need.needed === true && need.skill === def.required_skill)), evidence.claim_messages);
+          const applicability = await applicableClaims(call, evidence.claim_text, evidence.actions, sent.message,
+            offeredRules(definitions, turn, evidence.resolved_needs), evidence.claim_messages);
           evidence.claim_applicability = applicability.claims;
           evidence.rule_applicability = applicability.marks;
         }
         catch (error) { evidence.claim_applicability_unknown = String(error); }
       }
-      const measurement = measurementPlan(evidence, turn.rubric ?? [], evidence.access);
+      const measurement = measurementPlan(evidence, turn.rubric ?? [], evidence.access, definitions);
       evidence.opportunity_inventory = measurement.inventory;
       const activeRubrics = measurement.rubrics;
       evidence.result_parts = measurement.result_parts;

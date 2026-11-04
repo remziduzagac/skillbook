@@ -8,7 +8,8 @@ export interface ConditionalNeed extends SkillNeed {
 export interface Chapter {
   number: number;
   start_turn: number;
-  checkpoint: { fixture: string; overlays?: string[]; remove?: string[]; untracked?: string[] };
+  /** `home`: fixture folders copied in order into the throwaway home when the checkpoint is put in place. */
+  checkpoint: { fixture: string; overlays?: string[]; remove?: string[]; untracked?: string[]; home?: string[] };
 }
 export interface Checks {
   reads?: string[];

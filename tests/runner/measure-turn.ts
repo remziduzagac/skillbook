@@ -75,8 +75,14 @@ export function inventoryRubrics(rubrics: Rubric[], inventory: TurnOpportunity[]
   return [...rubrics.filter(r => !r.source_check), ...inventory.flatMap(o => o.rubrics.map(r => ({ ...r,
     measurement: { applies: o.applies, deadline: o.deadline, claims: o.claims, author_marks: o.author_marks, observed_marks: o.observed_marks } })))];
 }
-export function measurementPlan(turn: Event, rubrics: Rubric[], access: AccessTurn) {
-  const inventory = opportunityInventory(turn, rubrics, access);
+// The definitions a turn's applicability call offers, from those the case may use: a scenario rule only when the
+// author marks it on this turn or its guide is needed on this turn.
+export function offeredRules(definitions: Event[], turn: { rule_marks?: { id: string }[] }, needs: Event[]) {
+  return definitions.filter(def => def.applicability !== "scenario" || turn.rule_marks?.some(mark => mark.id === def.id) ||
+    needs.some(need => need.needed === true && need.skill === def.required_skill));
+}
+export function measurementPlan(turn: Event, rubrics: Rubric[], access: AccessTurn, definitions = ruleChecks()) {
+  const inventory = opportunityInventory(turn, rubrics, access, definitions);
   const needed = new Set([...(turn.resolved_needs ?? []).filter((n: Event) => n.needed === true).map((n: Event) => n.skill), ...inventory.filter(o => o.applies !== false && o.trigger !== "near-miss").map(o => o.definition.required_skill)]);
   return { inventory, rubrics: inventoryRubrics(rubrics, inventory), result_parts: resultChecks().filter(p => needed.has(p.skill)) };
 }

@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { aspects, walk } from "./inventory";
 import { REPO } from "./paths";
+import type { Case } from "./types";
 export function validateSource(check: any) {
   if (!Number.isInteger(check.source?.line) || check.source.line < 1 || !check.source.text?.trim())
     throw Error(`invalid source: ${check.id ?? check.part}`);
@@ -58,4 +59,12 @@ export function resultChecks() {
       return { ...part, skill: doc.skill, id: `result:${doc.skill}:${index}` };
     });
   });
+}
+// A case offers and measures a `scenario` rule definition only if it declares it: in its covers, as a criterion or as
+// an author's mark. So a scenario rule added to the library for another case never reaches this case's judging or
+// scores. Definitions of the other applicabilities apply to every case, as before.
+export function declaredRules(c: Pick<Case, "covers" | "turns">, rules = ruleChecks()) {
+  const ids = new Set([...(c.covers ?? []), ...c.turns.flatMap(t => (t.rule_marks ?? []).map(m => m.id))]);
+  const keys = new Set(c.turns.flatMap(t => (t.rubric ?? []).map(r => r.source_check).filter(Boolean)));
+  return rules.filter(rule => rule.applicability !== "scenario" || ids.has(rule.id) || keys.has(rule.key));
 }
