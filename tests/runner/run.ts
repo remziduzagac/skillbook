@@ -203,7 +203,7 @@ export async function runOne(
         tmp_lacks: tmpAssertions.flatMap(c => c?.tmp_lacks ?? [])}, observation, c.fixture, turnTmp);
       observation.baseline_files = baselineText;
       observation.baseline_snapshot = baseline;
-      Object.assign(observation, gitEvidence(work, gitBefore));
+      Object.assign(observation, gitEvidence(work, gitBefore, action_evidence(agent, turnEvents)));
       const commands = testCommands(tmpAssertions);
       if (commands.length) observation.test_runs = await runTestCommands(commands, work, root);
       if (needsTurnStart(tmpAssertions)) { observation.start_snapshot = previous; observation.start_files = previousText; }
