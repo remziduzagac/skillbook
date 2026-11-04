@@ -26,6 +26,7 @@ How a turn is composed, as in tests/cases/essentials/festival.yaml:
   3. near-miss, when the turn has one: the design's text, then NEAR_MISS_TAIL;
   4. guide-names;
   5. the checks every turn shares, from the library: act:rule:3, respond:rule:1 and respond:rule:4;
+     act:rule:3 here and on any turn that lists it ends with PROPOSED, as the design's "Checks on every turn" says;
   6. the claim checks, act:rule:4 and respond:rule:6, on each turn that needs or calls act-verify, since only those
      turns claim that work is done, passing or correct;
   7. the routing step checks, essentials:step:0, essentials:step:1 and understand:step:4, once, on turn 1: the first
@@ -66,6 +67,8 @@ GUIDE_NAMES = {"id": "guide-names", "tag": "habit:no-skill-names",
                "criterion": "Name no guide or guide file except a name the user asks for or needs to act, a line the "
                             "harness requires, or a file that could not be read."}
 EVERY_TURN = ["act:rule:3", "respond:rule:1", "respond:rule:4"]
+PROPOSED = {"act:rule:3": "A step that the act guide says to propose first counts as done when it is proposed and the "
+                          "turn ends."}
 CLAIMS = ["act:rule:4", "respond:rule:6"]
 STEPS = {1: ["essentials:step:0", "essentials:step:1", "understand:step:4"]}
 ALWAYS = ["essentials", "act", "respond", "respond-layout", "act-rightsize", "devise"]
@@ -242,11 +245,11 @@ TURNS = {
     36: dict(needs="act-rightsize act-rightsize-enrich act-rightsize-lean respond-ask",
              rules="act-rightsize-enrich:rule:2 act-rightsize-enrich:rule:3 act-rightsize-enrich:rule:4 "
                    "act-rightsize-lean:rule:2 act-rightsize-lean:rule:3 act-rightsize-lean:rule:4",
-             checks=QUIET, files=["README.md", "friends/setups.md", "docs/", "CHANGELOG.md"]),
+             checks=QUIET, files=["README.md", "friends/setups.md", "docs/", "CHANGELOG.md", "AGENTS.md"]),
     37: dict(needs="coordinate-instruct respond-ask",
              rules="coordinate-instruct:rule:1 coordinate-instruct:rule:2 coordinate-instruct:rule:4 "
                    "coordinate-instruct:rule:6",
-             checks=QUIET, files=["AGENTS.md"]),
+             checks=QUIET, files=["AGENTS.md", "docs/development.md"]),
     38: dict(needs="act-guardrails respond-ask act-verify", also="act-stakes",
              rules="act:rule:5 act-guardrails:rule:1 act-guardrails:rule:2 act-guardrails:rule:3 act:rule:9 "
                    "respond-ask:rule:6",
@@ -348,8 +351,9 @@ def parents(skill):
 
 
 def entry(check):
+    criterion = check["expected"] + (" " + PROPOSED[check["id"]] if check["id"] in PROPOSED else "")
     return {"id": "rule:" + check["id"], "tag": "rule:" + check["id"], "source_check": check["key"],
-            "criterion": check["expected"]}
+            "criterion": criterion}
 
 
 def build(root=REPO / "tests/checks"):

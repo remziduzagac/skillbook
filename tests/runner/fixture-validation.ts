@@ -1,6 +1,7 @@
 import { rubricCandidates, resolveRubricTrace, fixtureJudgeEvidence, rubricMisses, combineRubricReports, type RubricBook } from "./rubric-fixtures";
 import { resultChecks, ruleChecks } from "./rule-checks";
 import { FIXTURE_INSTRUCTION, structuredPrompt, judgeCriterion, resultRubric, checkedJudgment, loadingOnly, loadingJudgment } from "./judge-protocol";
+import { JudgeReplyError } from "./scenario";
 import type { Case, Event, JudgeRequest } from "./types";
 
 export interface FixtureEntry { id: string; ref: string; check: string; expected: import("./types").Verdict; request: JudgeRequest }
@@ -115,8 +116,10 @@ export function loadingFixtureResults(entries:FixtureEntry[]) {
 }
 
 export const FIXTURE_RETRY_POLICY = {max_attempts:3,delay_ms:2_000};
-export interface FixtureRetry {failed_attempt:number;next_attempt:number;delay_ms:number;error:string}
+export interface FixtureRetry {failed_attempt:number;next_attempt:number;delay_ms:number;error:string;raw_reply?:string}
+export const rawReply=(error:unknown)=>error instanceof JudgeReplyError ? {raw_reply:error.raw} : {};
 function transientJudgeError(error:unknown) {
+  if (error instanceof JudgeReplyError) return true;
   const message=error instanceof Error ? error.message : String(error);
   return /^scenario model failed \(exit \d+\):/i.test(message) &&
     !/insufficient.quota|quota exceeded|authentication|invalid.api.key|permission denied/i.test(message) &&
@@ -132,7 +135,7 @@ export async function runFixtureBatch(call:(instruction:string,data:unknown)=>Pr
     catch(error) {
       if(attempt>=FIXTURE_RETRY_POLICY.max_attempts || !transientJudgeError(error))throw error;
       const delay_ms=FIXTURE_RETRY_POLICY.delay_ms*attempt;
-      retry.onRetry?.({failed_attempt:attempt,next_attempt:attempt+1,delay_ms,error:String(error)});
+      retry.onRetry?.({failed_attempt:attempt,next_attempt:attempt+1,delay_ms,error:String(error),...rawReply(error)});
       await (retry.wait ?? Bun.sleep)(delay_ms);
     }
   }

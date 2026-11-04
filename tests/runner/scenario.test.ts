@@ -100,7 +100,9 @@ test("structured model transport rejects tools, bad JSON and unsuccessful calls"
       return result(text, status, action);
     });
   expect(await caller('{"ok":true}')('test', {})).toEqual({ ok: true });
-  await expect(caller("not JSON")("test", {})).rejects.toThrow();
+  const broken = await caller("not JSON")("test", {}).catch(error => error);
+  expect(broken.message).toStartWith("judge reply is not valid JSON");
+  expect(broken.raw).toBe("not JSON");
   await expect(caller('{"ok":true}', 1)("test", {})).rejects.toThrow();
   await expect(caller('{"ok":true}', 0, true)("test", {})).rejects.toThrow();
   expect(accounts).toEqual([0.00004, 0.00004, 0.00004, 0.00004]);

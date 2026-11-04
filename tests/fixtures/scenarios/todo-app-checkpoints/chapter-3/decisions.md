@@ -71,4 +71,4 @@ Settled on 8 March 2027. The first three are the owner's choices; the rest were 
 3. Editing one repeating task changes only that task, unless the owner says all. Reason: not given.
 4. A repeat is daily or weekly. A repeating task always has a due date; if none is given, it is today.
 5. Finishing a repeating task makes the next task at once. The finished one stays in the file as done. Reason: the file then shows what was done.
-6. How a task repeats cannot be edited in version 1. To change it, add a new task. Reason: it keeps the rules above small.
+6. How a task repeats cannot be edited in version 1. To change it, remove its open task from `data/tasks.json` by hand, then add a new task with the new repeat; finishing the old task would make another with the old repeat. Reason: it keeps the rules above small.

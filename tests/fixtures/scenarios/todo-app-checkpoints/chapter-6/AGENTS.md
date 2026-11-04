@@ -9,3 +9,5 @@ Python's standard library only. Ask before installing anything.
 Tests: run `python3 -m unittest` from the project folder. Running it needs no question.
 
 Helper agents are welcome. Work that costs under US$5 a request needs no cost question.
+
+Keep the Licence section in README.md. The MIT licence asks that its notice go with every copy.

@@ -1,4 +1,4 @@
-import { fixtureEntries, fixtureBatches, fixtureManifest, candidateKey, rerunFixtureMisses, previewEntries, loadingFixtureResults, runFixtureBatch, FIXTURE_RETRY_POLICY } from "./runner/fixture-validation";
+import { fixtureEntries, fixtureBatches, fixtureManifest, candidateKey, rerunFixtureMisses, previewEntries, loadingFixtureResults, runFixtureBatch, FIXTURE_RETRY_POLICY, rawReply } from "./runner/fixture-validation";
 import { parseArgs } from "node:util";
 import { judgeTimeout } from "./runner/judge-options";
 import { mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync, readFileSync } from "node:fs";
@@ -87,7 +87,7 @@ try {
           checkpoint(report());
         }}));}
         catch(error) {results.push({batch:index+1,ids:batch.map(e=>e.id),
-          candidates:batch.map(e=>({check:e.check,ref:e.ref})),error:String(error),matches:false});}
+          candidates:batch.map(e=>({check:e.check,ref:e.ref})),error:String(error),...rawReply(error),matches:false});}
         checkpoint(report());
       }
     }

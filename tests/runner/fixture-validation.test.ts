@@ -113,7 +113,7 @@ test("an actual dispatch checks the complete request before calling and stays at
   await expect(runFixtureBatch(call,[e],10)).rejects.toThrow("complete prompt");expect(calls).toBe(0);
   expect((await runFixtureBatch(call,[e]))[0]!.judgment.verdict).toBeNull();expect(calls).toBe(1);
 });
-test("a batch retries a busy judge a bounded number of times and never retries other failures", async () => {
+test("a batch retries a busy judge or a broken reply a bounded number of times and never retries other failures", async () => {
   const {runFixtureBatch,FIXTURE_RETRY_POLICY}=await import("./fixture-validation");
   const e=entry(),busy=Error("scenario model failed (exit 1): Selected model is at capacity. Please try a different model.");
   const flaky=(failures:number,error=busy)=>{let calls=0;return {count:()=>calls,call:async()=>{
@@ -125,6 +125,10 @@ test("a batch retries a busy judge a bounded number of times and never retries o
   const always=flaky(99);
   await expect(runFixtureBatch(always.call,[e],undefined,{wait})).rejects.toThrow("at capacity");
   expect(always.count()).toBe(FIXTURE_RETRY_POLICY.max_attempts);
+  const {JudgeReplyError}=await import("./scenario"),broken=flaky(1,new JudgeReplyError("SyntaxError: Expected ']'",'{"results":['));
+  const brokenRetries:any[]=[];
+  expect((await runFixtureBatch(broken.call,[e],undefined,{onRetry:r=>brokenRetries.push(r),wait}))[0]!.judgment.verdict).toBeNull();
+  expect(broken.count()).toBe(2);expect(brokenRetries[0].raw_reply).toBe('{"results":[');
   const denied=flaky(1,Error("scenario model failed (exit 1): authentication failed"));
   await expect(runFixtureBatch(denied.call,[e],undefined,{wait})).rejects.toThrow("authentication");
   expect(denied.count()).toBe(1);

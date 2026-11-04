@@ -52,6 +52,12 @@ Python's standard library only. Ask before installing anything.
 Tests: run `python3 -m unittest` from the project folder. Running it needs no question.
 
 Helper agents are welcome. Work that costs under US$5 a request needs no cost question.
+""" + (LICENCE_RULE if chapter >= 5 else "")
+
+
+# From chapter 5 the README has parts to cut, and this rule names the one that must stay.
+LICENCE_RULE = """
+Keep the Licence section in README.md. The MIT licence asks that its notice go with every copy.
 """
 
 
@@ -433,7 +439,7 @@ Settled on 8 March 2027. The first three are the owner's choices; the rest were 
 3. Editing one repeating task changes only that task, unless the owner says all. Reason: not given.
 4. A repeat is daily or weekly. A repeating task always has a due date; if none is given, it is today.
 5. Finishing a repeating task makes the next task at once. The finished one stays in the file as done. Reason: the file then shows what was done.
-6. How a task repeats cannot be edited in version 1. To change it, add a new task. Reason: it keeps the rules above small.
+6. How a task repeats cannot be edited in version 1. To change it, remove its open task from `data/tasks.json` by hand, then add a new task with the new repeat; finishing the old task would make another with the old repeat. Reason: it keeps the rules above small.
 """
 put(3, "decisions.md", DECISIONS_SETTLED.replace("## Still open\n\n- Repeat details: what a missed repeat does, what finishing early does, and what editing one repeat does. Parked until the design is written.\n", REPEAT_RULES).replace("The details are parked: see \"Still open\".", "The rules are under \"Repeat rules\"."))
 

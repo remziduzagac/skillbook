@@ -43,8 +43,13 @@ export function structuredCall(
     }
     if (action_evidence("codex", events).length) throw Error("scenario model used tools");
     const [answer] = turn_parts("codex", events);
-    return JSON.parse(answer.trim().replace(/^```json\s*|\s*```$/g, ""));
+    try { return JSON.parse(answer.trim().replace(/^```json\s*|\s*```$/g, "")); }
+    catch (error) { throw new JudgeReplyError(String(error), answer); }
   };
+}
+// A reply that does not parse carries no verdict; the raw text is kept so the report shows what broke.
+export class JudgeReplyError extends Error {
+  constructor(reason: string, readonly raw: string) { super(`judge reply is not valid JSON: ${reason}`); }
 }
 
 export async function simulate(call: StructuredCall, c: Case, index: number, history: Event[], sources: Record<string, string> = {}) {
