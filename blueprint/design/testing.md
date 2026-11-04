@@ -141,7 +141,7 @@ Later: a terminal view, possibly using OpenTUI, can watch runs and browse turns,
 
 ## Scenario layer
 
-Long scenarios are the behavioral layer (D269, D288). The first is [the festival scenario](scenarios/festival.md): five chapters and 28 turns that need every essentials guide at least once. It tests late loading, reuse of guides still in view, near misses and continuity through files. The fifteen earlier scenarios and every single-prompt case were retired; the last commit holding them is tagged `essentials-old-tests`.
+Long scenarios are the behavioral layer (D269, D288). The first is [the festival scenario](scenarios/festival.md): five chapters and 28 turns that need every essentials guide at least once. It tests late loading, reuse of guides still in view, near misses and continuity through files. The second is [the todo app scenario](scenarios/todo-app.md): six chapters and 40 turns of code work, built as the confirmation scenario (D305). The fifteen earlier scenarios and every single-prompt case were retired; the last commit holding them is tagged `essentials-old-tests`.
 
 Each scenario has a goal, a user description, a facts sheet and an ordered fixed script. Fixed mode is the default. A run-wide `--user-mode` setting overrides the scenario setting. In simulated mode GPT-6.1-Sol starts from each fixed message and changes only what the actual reply needs. It answers from the facts sheet, keeps each turn's purpose and order, and steers back without adding facts, requests or approvals. Record the scripted and sent message and whether it steered. In fixed mode a fit judge checks whether the next message answers the agent's questions and still fits. Report off-script and unknown-fit counts per scenario.
 
@@ -316,7 +316,7 @@ For clarification, label whether the request needs a question and identify the m
 
 Freeze development and measurement banks before skill tuning. Use development scenario results and no-skill disagreements to choose diagnostic case families. Measure unseen variants. Keep important safeguards even when the no-skill runs already pass. Record held-out attempts and never tune on held-out answers or labels.
 
-The festival scenario is for development: failures there drive fixes, so it is not unseen evidence of a skill's effect. A second, different scenario, written before a fix is called proven, checks that the fix is not tuned to the festival (D288). A measuring bank of unseen scenarios comes once more scenarios exist. Keep it in its own folder; agents fixing skills do not open it and receive only grid totals from it: no prompts, answers or judge reasons. Whoever briefs a fixing agent keeps this rule. Judge-calibration holdouts and skill-effect holdouts have separate purposes.
+The festival scenario is for development: failures there drive fixes, so it is not unseen evidence of a skill's effect. A second, different scenario, written before a fix is called proven, checks that the fix is not tuned to the festival (D288). That scenario is [the todo app](scenarios/todo-app.md) (D305). A measuring bank of unseen scenarios comes once more scenarios exist. Keep it in its own folder; agents fixing skills do not open it and receive only grid totals from it: no prompts, answers or judge reasons. Whoever briefs a fixing agent keeps this rule. Judge-calibration holdouts and skill-effect holdouts have separate purposes.
 
 ### The no-skill comparison
 

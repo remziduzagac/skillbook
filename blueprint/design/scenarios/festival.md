@@ -577,13 +577,13 @@ Every guide, and the turns that need it, directly or because another needed guid
 - **act:** verify 6, 7, 13, 17, 19, 20, 21, 22, 23, 26, 27; cleanup 7, 14, 15, 17, 23, 24, 26; guardrails 16, 21, 22; stakes 7, 21; enrich and lean 20, 21.
 - **respond:** ask 1, 5, 9, 10, 18, 19, 20, 22, 25, 26, 28; explain 8.
 - **Near misses:** brainstorm 4; design-review 8; research, clarify, plan and guardrails 13; argue's document 16; cleanup 20; carryover and learn 22; plan's stop 23; weigh 24.
-- **Not covered yet:** undoing a rejected organize result, `organize:rule:6`; a later scenario covers it.
+- **Not covered here:** undoing a rejected organize result, `organize:rule:6`, which [the todo app scenario](todo-app.md) covers.
 
 ## Fixing what fails
 
 - Read the failing answer before changing a guide. Check that the turn tests the rule and that the runner recorded what happened.
 - Fix only patterns shared by failures, never one turn. A rule written for one turn makes the guide a script and stops the scenario measuring anything.
-- A fix counts as proven only after it also holds on a second, different scenario. That scenario is written before the first fix is called proven, so the fix is not tuned to the festival.
+- A fix counts as proven only after it also holds on a second, different scenario. That scenario is written before the first fix is called proven, so the fix is not tuned to the festival. The second scenario is [the todo app](todo-app.md).
 
 ## What the runner needs
 

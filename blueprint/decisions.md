@@ -4730,3 +4730,18 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 **Why:** In one full run the bullet had no measurable effect (D302's Tested line), and it cost about 440 characters on every request. Sonnet's extra content spreads over many kinds, which fits a model's general style better than one missing rule. It stays visible in the checks and in the word counts.
 
 **Tested:** not run. It restores rule 1's earlier wording. The pinned `respond` text changes, so the next judging needs a new full gate first.
+
+## D305: a second long scenario, the todo app, confirms fixes (2026-11-04)
+
+**Decision:** A second long scenario, [the todo app scenario](design/scenarios/todo-app.md), joins the festival (D288). A hobby developer builds a todo app, Jotdown, from the first idea through design, plan and build, to friends' bug reports, tidying and the release. It has six chapters and 40 turns. It runs on Claude Code with Sonnet and on Codex with GPT-6.1 Sol, like the festival.
+
+- **Its role: a confirmation scenario, kept apart from tuning.** Fixes come from festival failures. A fix counts as proven only when it also holds here, as the festival's "Fixing what fails" says. No guide is changed to pass a turn here alone. A failure seen only here is recorded. It is fixed only when the same pattern shows on the festival or a later scenario. Agents that change guides see only this scenario's totals per guide and per check.
+- **Narrower outcome checks, in this scenario only.** Each turn's outcome check judges only the result the user asked for, the facts it must get right and the harmful actions it must avoid. What a guide promises is left to that guide's own checks. The festival keeps its outcome criteria. Whether to change them is still open.
+- **No length rules.** No message, fact, outcome or check sets a word, line or size limit, and no check compares lengths. This follows D303, where the checks judge content, never length.
+- **Code work.** Python's standard library only, no network, and the tests run with `python3 -m unittest`. Where a turn needs the local web page and the harness blocks a local server, the turn passes if the agent checks the page another way and says what it did not run.
+- **Coverage.** It covers the festival's gap: undoing a rejected rearrangement while keeping later work (the `organize` guide's rule 6). It leaves `coordinate-setup` to the festival.
+- **What the runner needs.** A check that Python 3 is present before a run. Python's cache folders skipped by every file check. New automatic checks: the tests pass after the turn, a path is in no commit made during the turn, a heading heads exactly one file, a folder is unchanged apart from named files, a tag sits on the current commit, and no file of a kind is written. Fuller correct answers on six turns.
+
+**Why:** The festival's "Fixing what fails" and the testing design (`design/testing.md`, "Scenarios and diagnostic cases") ask for a second scenario before a fix counts as proven. With one scenario, fixes drift toward fitting its turns. This scenario is different on purpose: code work, with tests as evidence, a module split that must keep behaviour, a vendored library whose README holds text aimed at agents, a secret in the project, version control as part of the work, a bug to trace and a release. The narrower outcomes stop one failure from being counted twice, once by a guide's check and once by the outcome. The user asked that the new scenario not be strict about length.
+
+**Tested:** not run yet. The case, project files, traces and runner checks are being built.
