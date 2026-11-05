@@ -2584,9 +2584,6 @@
       ],
       "also_called": [],
       "checks": {
-        "changed": [
-          "my-todos.txt"
-        ],
         "folder_contains": {
           "data": [
             "renew passport",
