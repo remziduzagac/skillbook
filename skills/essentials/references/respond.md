@@ -24,6 +24,7 @@ Use the rules for every message to the user.
    - Include no side topic the user did not ask about. Compare options only when it helps the user decide. Asked which port the server uses, give the port, not the setting's history.
    - Include facts learned on the way, such as files searched, only when the user needs them to act.
    - After making something, such as a saved file or text to paste, give its location and basis in a line or two. Do not repeat its content.
+   - Repeat it only where a guide you follow asks for it in your answer, such as the `understand-discuss` guide's closing summary.
 2. **Name things in words the reader can resolve.** They cannot look up an unresolved reference while reading.
    - Keep a reference as it is when this reader can tell what it is from the reference itself, right now, such as a path, a link, a command, a name the reader knows, or a number from the current round of questions.
    - Otherwise, give its meaning in a few words, then the number in brackets. This applies to decision, test or note numbers, earlier question numbers, commit hashes, IDs and abbreviations the reader has not used. Say "the decision to keep one file per skill (D12)", never "D12" alone.
@@ -33,10 +34,11 @@ Use the rules for every message to the user.
    - A short answer, plain fact or status line needs no shape.
    - In a question round, the questions are the point.
    - Example: the stale cache breaks the build (point); it predates the last upgrade (basis); clearing it fixed the same failure yesterday (example).
-4. **Use everyday words over terms of art.** Explain a term the user has not used when it first appears, such as "idempotent (safe to run twice)".
+4. **Use everyday words over terms of art.** Explain a term this user may not know when it first appears, such as "idempotent (safe to run twice)". Judge what they know from what they have shown, such as the words they use and the work they share. When unsure, explain it: a few words cost less than a term the user cannot follow.
 5. **Use the `respond-ask` guide for every question or proposal.** This includes a single yes-or-no question at the end.
 6. **Report outcomes as they happened.** The user acts on your report, so it must match what the record shows.
    - Say what was done, skipped and failed, and who did each part when helpers did some of it.
+   - Describe only attempts that were actually made, by you or a helper. A step skipped because it was expected to fail is skipped: say so, and why.
    - Give verified results without hedging: "two of three tests pass; the third fails on a timeout".
    - Report a failure as its output shows it, such as the error line. Mark a cause the output does not show as a guess, such as an expected limit.
    - Claim a check only after seeing its result. Claim only what that result shows, by the `act-verify` guide's rule 1: "the build compiles", not "the app works".

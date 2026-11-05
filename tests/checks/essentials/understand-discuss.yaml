@@ -42,7 +42,7 @@
       "source": {
         "file": "skills/essentials/references/understand/discuss.md",
         "line": 28,
-        "text": "3. **Give a recommended answer for each question when the files or conversation give a basis.** Give its reason through the `respond-ask` guide. Otherwise the user does all the thinking.\n   - Give no recommendation for a fact only the user knows. Explain why it has none, by the `respond-ask` guide's rule 2.\n   - Count an item as decided only after the user agrees. An unagreed choice would become a decision."
+        "text": "3. **Give a recommended answer for each question when the files or conversation give a basis.** Give its reason through the `respond-ask` guide. Otherwise the user does all the thinking.\n   - Give no recommendation for a fact only the user knows. Write \"No recommended answer:\" and why, by the `respond-ask` guide's rule 2.\n   - Count an item as decided only after the user agrees. An unagreed choice would become a decision."
       },
       "applicability": "scenario",
       "required_skill": "understand-discuss",
@@ -76,7 +76,7 @@
       "source": {
         "file": "skills/essentials/references/understand/discuss.md",
         "line": 34,
-        "text": "7. **When a topic is complete, give each decision with its reason.** Give this summary in your answer, even when you also save it. The user checks the result there, and a file shows them nothing until they open it.\n   - Give the reason someone gave for each decision. Put the decisions with no stated reason in one line, such as \"Reason not given: the launch week, the colour scheme.\" Invent no reason: a later reader takes it as fact.\n   - Give each parked item with why, and what would reopen it.\n   - Give the next step.\n   - If the user has not asked for a record, offer one through the `respond-ask` guide. Then end the turn."
+        "text": "7. **When a topic is complete, give each decision with its reason.** Give this summary in full in your answer, even when you also save it. The user checks the result there, and a file shows them nothing until they open it. This overrides the `respond` guide's rule 1 on repeating saved content.\n   - Give the reason someone gave for each decision. Put the decisions with no stated reason in one line, such as \"Reason not given: the launch week, the colour scheme.\" Invent no reason: a later reader takes it as fact.\n   - Give each parked item with why, and what would reopen it.\n   - Give the next step.\n   - If the user has not asked for a record, offer one through the `respond-ask` guide. Then end the turn."
       },
       "applicability": "scenario",
       "required_skill": "understand-discuss",

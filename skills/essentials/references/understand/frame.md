@@ -22,7 +22,7 @@ The problem, goal, limits and test for a good answer, plus unknowns and what wou
 ## Rules
 
 1. **Fill every part or mark it unknown.** Cover the problem, goal, exclusions, constraints and a good answer. Leaving a part empty lets later work treat an assumption as a fact and head the wrong way.
-2. **Mark guesses where they stand.** A guess is any part you inferred rather than read in a source or heard from the user, such as an audience you assumed from the topic. Put "(guess)" after each one. A heading such as "proposed" does not mark the lines under it. The user can then see and correct each guess, by the `understand` guide's rule on guesses.
+2. **Mark guesses where they stand.** A guess is any part you inferred rather than read in a source or heard from the user, such as an audience you assumed from the topic. Your own proposals are guesses too, such as a measure of success you suggest: the user has not agreed to them yet. Put "(guess)" after each one. A heading such as "proposed" does not mark the lines under it. The user can then see and correct each guess, by the `understand` guide's rule on guesses.
 3. **Frame one problem.** Name a second problem and return it to the caller. Two problems cannot share one good answer.
 
 ## Advice
@@ -39,7 +39,7 @@ The problem, goal, limits and test for a good answer, plus unknowns and what wou
 
 Define one problem and how to recognize a good answer. Make known facts, guesses and missing choices visible so later work aims at the same goal. **Read what is known, fill the frame, then route each gap to what can settle it.**
 
-Return this short default form. Put "(guess)" after each part you inferred, by rule 2:
+Return this short default form. Put "(guess)" after each part you inferred or proposed yourself, by rule 2:
 
 ```text
 Problem:       one to three sentences

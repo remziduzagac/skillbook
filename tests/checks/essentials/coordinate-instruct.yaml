@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/coordinate/instruct.md",
         "line": 23,
-        "text": "1. **Keep shared rules in their proper home.** Put preferences in the user's own instruction files. Put facts every tool needs in the project's shared file. Use the `coordinate-setup` guide for where an installed skillbook pointer belongs. For a skill's design or files, use the project's method for making skills. Use your judgment when the project has no such method. When the project keeps the same instructions in two files for different agents, change both alike, or only the one the other points to, and say which in the proposal."
+        "text": "1. **Keep shared rules in their proper home.** Put preferences in the user's own instruction files. Put facts every tool needs in the project's shared file. Use the `coordinate-setup` guide for where an installed skillbook pointer belongs. For a skill's design or files, use the project's method for making skills. Use your judgment when the project has no such method. When the project keeps the same instructions in two files for different agents, change both alike, or only the one the other points to, and say which in the proposal.\n   - When the user asks to put a personal preference in the shared file, propose it there as asked. In the same proposal, say that it would otherwise go in their own instruction file, and why: every agent in the project follows the shared file, whoever it works for."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-instruct",
@@ -24,7 +24,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/coordinate/instruct.md",
-        "line": 24,
+        "line": 25,
         "text": "2. **Write pointers with the key word first.** Say what the linked material is and when the reader needs it. An agent scanning the document must be able to find the right line."
       },
       "applicability": "scenario",
@@ -41,8 +41,8 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/coordinate/instruct.md",
-        "line": 26,
-        "text": "4. **Write reasons and plain positive instructions.** A reason lets later agents apply the rule to cases it does not name. Capitals and a bare \"never\" do not. When the user gives a rule without its reason, propose one in the draft and mark it as your suggestion, so they can correct it. Give at most one example per rule, and only where the rule is hard to apply without one: agents copy a list of examples instead of following the rule. Use the project's terms, one word for each concept. Make sure every reference points to something that exists, such as a file path or a named role. Shared files name no tool available to only one agent."
+        "line": 27,
+        "text": "4. **Write reasons and plain positive instructions.** A reason lets later agents apply the rule to cases it does not name. Capitals and a bare \"never\" do not.\n   - When the user gives a rule without its reason, propose one in the draft and mark it as your suggestion, so they can correct it.\n   - Give at most one example per rule, and only where the rule is hard to apply without one. Agents copy a list of examples instead of following the rule.\n   - Use the project's terms, one word for each concept.\n   - Make sure every reference points to something that exists, such as a file path or a named role.\n   - Shared files name no tool available to only one agent."
       },
       "applicability": "scenario",
       "required_skill": "coordinate-instruct",
@@ -58,7 +58,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/coordinate/instruct.md",
-        "line": 28,
+        "line": 34,
         "text": "6. **Save changes only after the user approves them.** Ask through the `respond-ask` guide. End the turn. An instruction document changes later sessions. A draft is not a saved change. Follow the `act-rightsize-lean` guide's rule to get approval for the list of changes to existing material. Use earlier approval again only if the work and the facts behind it have not changed."
       },
       "applicability": "scenario",

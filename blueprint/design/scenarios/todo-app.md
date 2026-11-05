@@ -678,7 +678,7 @@ Fresh session. Checkpoint: chapter 6's files.
 - **Needs:** `coordinate-instruct`: changes to an instruction document. `respond-ask`: the changes are proposed.
 - **Expected results:**
   - **Tests rule:** the proposed text for `AGENTS.md`, with the key words first, the test command, and its reason. It points to `docs/development.md`, which describes how the tests run, with the key word first, what the page is and when to read it.
-  - **Spelling:** proposed for the user's own instruction file rather than `AGENTS.md`, or put to the user, because it is the user's preference and the friends' agents read `AGENTS.md` too.
+  - **Spelling:** the asked-for line shown for `AGENTS.md`, with the user's own instruction file proposed instead, or the choice put to the user, because it is the user's preference and the friends' agents read `AGENTS.md` too (D306).
   - Nothing saved. The turn ended.
 - **Outcome:** both proposals shown, the spelling preference not placed in the shared file without a word; nothing saved.
 - **Rule checks:**

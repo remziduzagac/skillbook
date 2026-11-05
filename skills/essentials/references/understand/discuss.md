@@ -26,12 +26,12 @@ What was decided, set aside or passed to another task, with reasons. Include sid
 1. **Show the whole before the first item.** List the items, from the user's own list where they gave one. Frame the topic first with the `understand-frame` guide when its problem, goal or way to judge a good result is missing. A later item can undo an earlier decision. The list lets the user reorder or drop items.
 2. **Discuss one item in each item turn.** Discussing several items at once blurs which answer belongs where. Show the remaining items as a default. Follow the user's request to see more at once. When you close the discussion, invent no extra discussion item, question or recommendation.
 3. **Give a recommended answer for each question when the files or conversation give a basis.** Give its reason through the `respond-ask` guide. Otherwise the user does all the thinking.
-   - Give no recommendation for a fact only the user knows. Explain why it has none, by the `respond-ask` guide's rule 2.
+   - Give no recommendation for a fact only the user knows. Write "No recommended answer:" and why, by the `respond-ask` guide's rule 2.
    - Count an item as decided only after the user agrees. An unagreed choice would become a decision.
 4. **Close every item.** Mark the item decided, parked with its reason, or handed on with its destination. An item left silently open becomes an assumption later.
 5. **Place side topics.** Discuss a side topic now if it is small or blocks the current item. Otherwise list it as open with where it belongs. Return to the item. Side topics bring useful ideas and forgotten decisions. The caller owns lasting records.
 6. **Name the earlier decision when a new one changes it.** Mark it superseded. Conflicting decisions let work follow the old one.
-7. **When a topic is complete, give each decision with its reason.** Give this summary in your answer, even when you also save it. The user checks the result there, and a file shows them nothing until they open it.
+7. **When a topic is complete, give each decision with its reason.** Give this summary in full in your answer, even when you also save it. The user checks the result there, and a file shows them nothing until they open it. This overrides the `respond` guide's rule 1 on repeating saved content.
    - Give the reason someone gave for each decision. Put the decisions with no stated reason in one line, such as "Reason not given: the launch week, the colour scheme." Invent no reason: a later reader takes it as fact.
    - Give each parked item with why, and what would reopen it.
    - Give the next step.
@@ -81,8 +81,8 @@ Keep no lasting record while you discuss. When the user asks for a record, writi
    - Return even an action requested midway. The caller follows the `act` guide's plan rule and the `act-guardrails` guide. Resume discussion from its result.
 7. **Offer recording through the `respond-ask` guide when decisions risk being lost.** A long discussion can lose decisions at compaction even when they seemed settled.
    - End the turn with the offer.
-   - For a completed topic, give the closing summary in your answer, by rule 7.
+   - For a completed topic, give the full closing summary in your answer, even when you save it, by rule 7.
 8. **Check each turn and “Gives back” before returning it.** Always do this last. The user needs a clear current question or an accurate closing summary, rather than empty fields.
    - For an item turn, check a useful agreed line, one item, actual open questions, grounded recommendations and remaining items. Follow a request to see more at once.
-   - For a completed topic, check that the closing summary is in your answer, with decisions, reasons and the next step, that every item is closed and every side topic placed. Invent no extra item, question or recommendation.
+   - For a completed topic, check that the full closing summary is in your answer, even when it is also saved: decisions with reasons, the "Reason not given" line, parked items with what would reopen them, and the next step. Check that every item is closed and every side topic placed. Invent no extra item, question or recommendation.
    - Fix omissions before returning under the `understand` guide's rules. Make no lasting change and end the closing turn as rule 7 requires.
