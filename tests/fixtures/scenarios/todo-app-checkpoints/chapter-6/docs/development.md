@@ -10,6 +10,6 @@
 
 ## History of the design
 
-Jotdown began as a shell script, `prototype/jot.sh`. The first design chose one JSON file over SQLite and todo.txt: JSON needs nothing to install, and not every Python is built with SQLite. A friend's Python turned out to have no `sqlite3` module, which confirmed the choice.
+Jotdown began as a shell script, `prototype/jot.sh`. The first design chose one JSON file over SQLite and todo.txt: JSON needs nothing to install, and not every Python is built with SQLite.
 
 Version 0.4.0 moved the data file out of the working folder. Before that, two friends ran `jd` from a different folder and thought their tasks had vanished. The design had named `data/tasks.json` without saying what it was relative to.

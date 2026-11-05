@@ -120,7 +120,6 @@ export function validateCase(data: unknown): asserts data is CaseFile {
       throw Error("only_new_files needs a whole number at_most");
     if (checks.heading_once && (!checks.heading_once.heading.trim() || !checks.heading_once.in.length))
       throw Error("heading_once needs a heading and the files or folders to look in");
-    if ((checks.tag_at_head ?? []).some(t => !t.trim())) throw Error("tag_at_head needs tag names");
     for (const item of checks.unchanged_under ?? []) if (typeof item !== "string" && (item.except ?? []).some(p =>
       !p.startsWith(item.folder.replace(/\/$/, "") + "/"))) throw Error("unchanged_under exceptions must lie under its folder");
     for (const spec of Object.values(checks.index_links ?? {}))
@@ -134,7 +133,7 @@ export function validateCase(data: unknown): asserts data is CaseFile {
       ...Object.keys(checks.index_links ?? {}), ...Object.values(checks.index_links ?? {}).map(s => typeof s === "string" ? s : s.folder),
       ...(checks.keeps_lines ?? []),
       ...(checks.unchanged_under ?? []).flatMap(item => typeof item === "string" ? [item] : [item.folder, ...item.except ?? []]),
-      ...(checks.never_committed ?? []), ...(checks.heading_once?.in ?? []), ...Object.keys(checks.tree_lacks ?? {}),
+      ...(checks.heading_once?.in ?? []), ...Object.keys(checks.tree_lacks ?? {}),
       ...Object.keys(checks.written_under ?? {}), ...Object.keys(checks.folder_lacks ?? {}), ...Object.keys(checks.folder_contains ?? {}),
       ...(checks.changed ?? []),
       ...(checks.unchanged ?? []),

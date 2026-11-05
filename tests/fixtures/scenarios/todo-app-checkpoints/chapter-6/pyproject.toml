@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jotdown"
-version = "1.0.0"
+version = "0.4.0"
 description = "A small task list for the command line and a page in your browser."
 readme = "README.md"
 requires-python = ">=3.12"

@@ -11,7 +11,7 @@ import { CallLimits } from "./call-limits";
 import { accessTurn, frozenSkills, retainAccess } from "./access";
 import { inspectCodexRetention, withCodexRetention } from "./codex-retention";
 import { collectRoutingNotes, CODEX_REASONING_SUMMARY } from "./routing-notes";
-import { gitState, gitEvidence, testCommands, runTestCommands, needsTurnStart } from "./project-evidence";
+import { testCommands, runTestCommands, needsTurnStart } from "./project-evidence";
 import {
   mkdtempSync,
   mkdirSync,
@@ -164,7 +164,7 @@ export async function runOne(
       if (turn.fresh_session) session = undefined;
       const sent = mode === "simulated" ? await simulate(call, c, index, chapterTurns, baselineText) :
         { message: turn.prompt, steered: false };
-      const beforeTmp = tmpPaths(tmp), timeout = turn.timeout ?? args.timeout, gitBefore = gitState(work);
+      const beforeTmp = tmpPaths(tmp), timeout = turn.timeout ?? args.timeout;
       limits?.dispatch("agent");
       const ran = await driver(
           agentCommand(agent, model, sent.message, remaining, session),
@@ -203,7 +203,6 @@ export async function runOne(
         tmp_lacks: tmpAssertions.flatMap(c => c?.tmp_lacks ?? [])}, observation, c.fixture, turnTmp);
       observation.baseline_files = baselineText;
       observation.baseline_snapshot = baseline;
-      Object.assign(observation, gitEvidence(work, gitBefore, action_evidence(agent, turnEvents)));
       const commands = testCommands(tmpAssertions);
       if (commands.length) observation.test_runs = await runTestCommands(commands, work, root);
       if (needsTurnStart(tmpAssertions)) { observation.start_snapshot = previous; observation.start_files = previousText; }

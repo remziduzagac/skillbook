@@ -488,12 +488,6 @@
         "tests_pass": {
           "type": "string"
         },
-        "never_committed": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "heading_once": {
           "type": "object",
           "properties": {
@@ -512,12 +506,6 @@
             "in"
           ],
           "additionalProperties": false
-        },
-        "tag_at_head": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         },
         "tree_lacks": {
           "type": "object",

@@ -1,6 +1,6 @@
 # Skill tests
 
-The runner holds two chaptered scenarios side by side. The festival, [festival.yaml](cases/essentials/festival.yaml), has five chapters and 28 turns from [its design](../blueprint/design/scenarios/festival.md); it is a development scenario, not unseen evidence of skill effectiveness. The todo app, `cases/essentials/todo-app.yaml`, has six chapters and 40 turns from [its design](../blueprint/design/scenarios/todo-app.md); it is code work and a confirmation scenario. Each chapter starts a fresh session from an authored checkpoint. Executable checks and authored traces are not observed model results.
+The runner holds two chaptered scenarios side by side. The festival, [festival.yaml](cases/essentials/festival.yaml), has five chapters and 28 turns from [its design](../blueprint/design/scenarios/festival.md); it is a development scenario, not unseen evidence of skill effectiveness. The todo app, `cases/essentials/todo-app.yaml`, has six chapters and 37 turns from [its design](../blueprint/design/scenarios/todo-app.md); it is code work and a confirmation scenario. Each chapter starts a fresh session from an authored checkpoint. Executable checks and authored traces are not observed model results.
 
 `--case` matches part of a case id, so `--case festival` and `--case todo-app` each select one scenario. The same selection works for runs, dry runs, coverage, `judge-scenarios.ts --case` and `recheck-scenarios.ts --case`. Each case has its own active trace book: `calibration/festival-traces.json` and, once written, `calibration/todo-app-traces.json`. Select it with `--rubric-book` in the runner and saved-answer judge, and with `--book` in the fixture validator. A book is checked against its own case only, so judge one case's runs at a time. When results cover several cases, scores and summaries keep each case's totals apart; results for one case keep their usual keys.
 
@@ -59,41 +59,35 @@ Automatic assertions include strict `words_under` bounds, `only_replacement`, `u
 Code turns have their own checks:
 
 - `tests_pass: "python3 -m unittest"`: after the turn, the runner runs the command with `sh -c`, with `PYTHONDONTWRITEBYTECODE=1` and a 300-second limit. It runs in a copy of the project as the turn left it, with its own fresh, empty home as `HOME` and its own temporary folder, all removed afterwards. So its own run changes nothing the agent sees, in the project or in the agent's home, even when a test uses the default data path. It records the exit status, the tests run, the failures and errors, the failing tests' names and the output's last 2,000 characters. It passes when the command exits 0. It is the runner's check, not an agent action, and never enters judge evidence.
-- `never_committed: [path]`: no commit made during the turn has the path, or a file under it, in its tree. A commit made during the turn is one that was not in the repository before the turn and is in it after the turn, reachable from a ref or a reflog or only stored as an object. So a commit amended or reset away during the turn still counts. The list is complete only if nothing can have removed a commit made during the turn. So the check is unknown, not a pass, when the repository keeps no reflogs, a reflog file from before the turn was rewritten or deleted, HEAD's earlier reflog entries are gone, a reflog names an object that no longer exists, a commit from before the turn is gone, the pack files changed, or a recorded command rewrote history or pruned objects: `git gc`, `git prune`, `git repack`, `git maintenance`, `git reflog expire` or `delete`, `git filter-branch`, `git filter-repo`, `git replace` or BFG. Amending, rebasing and resetting keep the old commits, so they leave the verdict definite.
-- `tag_at_head: [tag]`: each tag, if present, points at HEAD's commit. A missing tag passes.
 - `heading_once: {heading, in}`: exactly one file has a Markdown ATX heading, of any level, whose trimmed text is `heading`. `in` lists files and folders; a folder means every `.md` file under it. Headings inside fenced code do not count.
-- `tree_lacks: {folder: [pattern]}`: no file under the folder after the turn matches, whether or not the turn wrote it.
+- `tree_lacks: {path: [pattern]}`: no named file or file under the named folder after the turn matches, whether or not the turn wrote it.
 - `paths_lack: [pattern]`: no path the turn added or changed matches. A removed path does not count.
 - `only_new_files: {matching, at_most}`: the turn adds at most `at_most` files, each matching, and changes or removes nothing else. No new file passes.
 
-Patterns are case-insensitive regular expressions, as everywhere in a case. A `(?-i:...)` group makes part of one exact, such as `(?-i:Overdue)`. After every turn the runner also records the commits made during the turn with the paths in each commit's tree, every tag with its commit, and HEAD. A check whose evidence is missing gives unknown, never a pass.
+Patterns are case-insensitive regular expressions, as everywhere in a case. A `(?-i:...)` group makes part of one exact, such as `(?-i:Overdue)`. A check whose evidence is missing gives unknown, never a pass.
 
 Python's caches, `__pycache__/` folders and `*.pyc` files, are skipped by every snapshot, change list, file check and judge evidence, so a test run leaves "no changes" true. Files that the project's `.gitignore` ignores, such as the todo app's `my-todos.txt` and `data/`, stay in snapshots, so `unchanged`, `unchanged_under` and `folder_contains` see them.
 
 Turn-level `tmp_has` and `tmp_lacks` inspect paths added since a complete listing immediately before the turn. Existing runtime files do not count as leftovers; new children of existing folders do. Either missing listing leaves the check unknown. The full paths stay in memory; saved results retain the check verdicts for replay. Old short listings cannot establish the before/after difference.
 
-Guide-name exceptions are judged per turn, including the requested setup inspection at turn 25. Near misses check that an inappropriate action was skipped; they never punish reading a guide's boundary.
+Guide-name exceptions are judged per turn, including the requested setup inspection at turn 24. Near misses check that an inappropriate action was skipped; they never punish reading a guide's boundary.
 
 ## Trace evidence for automatic checks
 
 A trace's `observation` holds the turn's `files_changed`, `files_removed` and `final_answer`, with the project before the turn from its history and the chapter's sources. From these, `runner/trace-checks.ts` builds the same record a live run checks: the project after the turn, the checkpoint, the turn's start and the change list. Evidence that only a live run can observe goes in these fields, in the shape the live run saves:
 
 - `test_runs`: a list of the runner's test runs, each `{command, status, tests_run, failures, errors}`. `status` is the exit status; `null` means it timed out or was stopped, which fails.
-- `commits`: the commits made during the turn, each `{sha, paths}`, where `paths` lists every file in that commit's tree. It includes commits amended or reset away during the turn. An empty list means none was made.
-- `tags`: each tag with the commit it points at.
-- `head`: HEAD's commit.
 - `left_running`: the processes still running when the turn ended; an empty list means none.
 - `tmp_paths`: the temporary paths the turn added.
 
-A field the trace leaves out gives unknown for the checks that need it, never a pass. A trace with `base` inherits its base's fields and may replace any of them. For example, the correct trace of a release turn:
+A field the trace leaves out gives unknown for the checks that need it, never a pass. A trace with `base` inherits its base's fields and may replace any of them. For example, a correct trace of a code turn:
 
 ```json
-{"case": "essentials/todo-app", "chapter": 6, "prior": [], "observation": {"turn": 38, "chapter": 6,
-  "final_answer": "Version 1.0.0 is tagged v1.0 on the release commit. All 24 tests pass.",
-  "files_changed": {"CHANGELOG.md": "# Changelog\n\n## 1.0.0\n"},
+{"case": "essentials/todo-app", "chapter": 5, "prior": [], "observation": {"turn": 30, "chapter": 5,
+  "final_answer": "Changed the summary heading to Late. All 24 tests pass.",
+  "files_changed": {"jotdown/cli.py": "HEADING = 'Late'\n"},
   "test_runs": [{"command": "python3 -m unittest", "status": 0, "tests_run": 24, "failures": 0, "errors": 0}],
-  "commits": [{"sha": "4f2c9e1", "paths": ["CHANGELOG.md", "README.md", "jotdown/cli.py"]}],
-  "tags": {"v1.0": "4f2c9e1"}, "head": "4f2c9e1", "left_running": [], "tmp_paths": []}}
+  "left_running": [], "tmp_paths": []}}
 ```
 
 ## Retained tools and historical evidence

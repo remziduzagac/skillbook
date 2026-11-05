@@ -253,13 +253,6 @@ export function check(
     const run = result.test_runs?.find((r: TestRun) => r.command === checks.tests_pass);
     out[`tests pass: ${checks.tests_pass}`] = !run || run.error ? null : run.status === 0;
   }
-  for (const p of checks.never_committed ?? []) {
-    const folder = p.replace(/\/$/, "") + "/";
-    const held = (result.commits ?? []).map((c: { paths?: string[] }) =>
-      Array.isArray(c.paths) ? c.paths.some(x => x === p || x.startsWith(folder)) : null);
-    out[`no commit made during the turn has ${p}`] = !Array.isArray(result.commits) ? null :
-      held.includes(true) ? false : held.includes(null) ? null : true;
-  }
   if (checks.heading_once) {
     const { heading, in: places } = checks.heading_once, snapshot = result.project_snapshot;
     const key = `exactly one file in ${places.join(", ")} has the heading ${JSON.stringify(heading)}`;
@@ -272,12 +265,9 @@ export function check(
       out[key] = count > 1 ? false : found.includes(null) ? null : count === 1;
     }
   }
-  for (const tag of checks.tag_at_head ?? [])
-    out[`tag ${tag} is absent or on HEAD`] = result.tags == null || result.head == null ? null :
-      !(tag in result.tags) || result.tags[tag] === result.head;
   for (const [folder, patterns] of Object.entries(checks.tree_lacks ?? {})) {
     const prefix = folder.replace(/\/$/, "") + "/", snapshot = result.project_snapshot;
-    const under = snapshot ? Object.keys(snapshot).filter(p => p.startsWith(prefix) && !cached(p)) : [];
+    const under = snapshot ? Object.keys(snapshot).filter(p => (p === folder || p.startsWith(prefix)) && !cached(p)) : [];
     for (const pattern of patterns) {
       const found = under.map(p => availableFile(p) ? matches(pattern, result.files![p]!) : null);
       out[`every file under ${folder} lacks /${pattern}/`] = !snapshot || !result.files ? null :

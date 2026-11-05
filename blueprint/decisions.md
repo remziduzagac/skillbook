@@ -4759,6 +4759,9 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 
 > **Amended by D307 (2026-11-05):** a failure seen here on both models and on the festival on one model counts as shown on the festival, and is fixed from the festival's answers. A failure seen only here that still fails in the next run gets a festival turn written from its rule, not from the turn here, and is fixed from that turn.
 
+> **Amended by D308 (2026-11-05):** turns 20, 26 and 38 are dropped, with version control, the release and the three operating systems; the scenario has 37 turns.
+
+
 ## D306: six fixes from the todo app's first live run (2026-11-05)
 
 **Decision:** Six patterns that failed on both models, under both judges, in the todo app's first live run (D305) are fixed in the guides.
@@ -4805,3 +4808,13 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 - **Left for the next run:** four rules failed on both models on the todo app only, and passed on the festival: the `respond-layout` guide's rule 3, the `understand-weigh` guide's rule 2, the `coordinate-delegate-crew` guide's rule 3 and the `act-rightsize-enrich` guide's rule 3. They stay recorded. If the next todo-app run still fails them, the festival gets a turn written from each rule, and the fix comes from that turn.
 
 **Tested:** not run. The user asked for every fix before the next run, to save time and cost. The pinned text of the changed rules and steps changed, and the `respond` guide's rule 1 check changed in both scenarios' cases and trace books, so both trace books need a new full gate before the next judging. Three authored correct traces were fixed for the sharper wording: the festival's turn 4 and the todo app's turn 5 now give each name check with where it looked and what it found, and gained the matching search actions, and the todo app's turn 23 opens with the symptom before the cause. The next live run covers both scenarios in full.
+
+## D308: trim the todo app to local guide work (2026-11-05)
+
+**Decision:** Drop turns 20, 26 and 38: committing the work, checking SQLite across three operating systems, and tagging and publishing a release. The scenario has 37 turns in chapters of 7, 7, 6, 7, 7 and 3 turns. Replace install and release material with the friends trying the app, finding their task file and keeping a copy. Keep the name collision on Leo's Mac, the data outside version control and the runner's checkpoint commits. Allow the approved glossary on turn 6, preserve test checks while permitting moved references during the split, check stale data-location guidance directly, narrow turn 2's outcome, and judge turn 16's plan-update rule only when the plan changes. Remove unused commit and tag checks from the runner. Keep the secret-response check and its password-exposure negative on the retained carryover turn.
+
+**Why:** The removed turns test harness access to version control and outward actions more than the guides; Codex's sandbox blocks commits and tags. The first live run also failed good answers on four automatic checks and two judged checks. Both trace books need a new full gate before the next live run, so the scenario and its authored traces change first.
+
+**Turn map:** old 20, 26 and 38 dropped; 21→20, 22→21, 23→22, 24→23, 25→24, 27→25, 28→26, 29→27, 30→28, 31→29, 32→30, 33→31, 34→32, 35→33, 36→34, 37→35, 39→36, 40→37. Turns 1–19 keep their numbers.
+
+**Tested:** not run; the traces were changed to match, and the todo trace book needs a new full gate.

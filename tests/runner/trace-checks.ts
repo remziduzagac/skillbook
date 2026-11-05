@@ -5,7 +5,7 @@ import type { Checks, Event, Observation, Verdict } from "./types";
 
 // Trace observation fields that carry the evidence a live run records after a turn. A field the trace leaves out
 // stays absent, so the checks that need it give unknown, never a pass.
-export const TRACE_EVIDENCE = ["test_runs", "commits", "tags", "head", "left_running"] as const;
+export const TRACE_EVIDENCE = ["test_runs", "left_running"] as const;
 
 // One trace turn as the observation live checks read: the project after the turn, the chapter's checkpoint and
 // the turn's start, the change list, the answer and the recorded evidence. Python's caches are skipped, as live.

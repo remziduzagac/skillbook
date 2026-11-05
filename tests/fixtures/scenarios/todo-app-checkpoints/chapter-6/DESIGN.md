@@ -98,4 +98,4 @@ The commands and the page read and save through the store, and they share the sa
 ## Open questions
 
 - Whether the page and the commands need a lock if they are used at the same time.
-- Whether Windows needs anything special for the data folder. It has not been tried.
+- How the friends will keep a copy of their tasks. It has not been tried.

@@ -2,7 +2,7 @@
 
 Status: approved on 8 March 2027. Progress updated on 17 May 2027.
 
-Goal: Jotdown version 1 as `DESIGN.md` describes it, working for the owner and installable by three friends.
+Goal: Jotdown version 1 as `DESIGN.md` describes it, working for the owner and usable by three friends.
 
 ## Steps
 
@@ -11,7 +11,7 @@ Goal: Jotdown version 1 as `DESIGN.md` describes it, working for the owner and i
 - [x] 3. The browser page. Evidence: `jotdown/web.py` and `tests/test_web.py`.
 - [x] 4. The import of `my-todos.txt`. Evidence: the 46 tasks are in the owner's data file; the 2 lines left out were the separator `----` and `pay rent (due 2027-02-30)`.
 - [x] 5. The README. Evidence: `README.md` and `docs/`.
-- [ ] 6. A friend installs it. In progress. The owner set up Sam, Priya and Leo in person, not from the README. The check, a friend setting it up from the README alone, waits for the release.
+- [ ] 6. The friends try it. In progress. The README now describes the task file and keeping a copy; the friends still need to try that guidance.
 
 ## Out
 

@@ -4,7 +4,7 @@ What is settled for Jotdown. Anything not written here is still open.
 
 ## Who it is for
 
-For the owner first, then three friends, Sam, Priya and Leo, each on their own computer. Sam has a Linux server, Priya a Windows laptop and Leo a Mac.
+For the owner first, then three friends, Sam, Priya and Leo, each on their own computer.
 
 Reason: the owner builds it for their own use; the friends may join later (`notes/idea.md`).
 
