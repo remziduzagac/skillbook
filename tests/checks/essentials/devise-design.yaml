@@ -25,7 +25,7 @@
       "source": {
         "file": "skills/essentials/references/devise/design.md",
         "line": 28,
-        "text": "3. **Give every decision its reason.** A builder can then revisit a decision when its basis changes, and see which values move with it.\n   - A value you chose, such as a timeout, a page size or a retry count, is a decision too.\n   - One stated basis can cover many values, such as \"match the existing API's naming\" for every field name.\n   - A value the user or a source already settled needs only its source, such as \"from the brand guide\"."
+        "text": "3. **Give every decision its reason.** A builder can then revisit a decision when its basis changes, and see which values move with it.\n   - A value you chose, such as a timeout, a page size or a retry count, is a decision too.\n   - One stated basis can cover many values, such as \"match the existing API's naming\" for every field name.\n   - A value the user or a source already settled needs only its source, such as \"from the brand guide\".\n   - A value you can base on nothing is not settled: mark it as an assumption, with what would settle it, such as a supplier's quote for a delivery time. A full design lists it under Open. A made-up reason would read as a basis."
       },
       "applicability": "scenario",
       "required_skill": "devise-design",
@@ -41,7 +41,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/devise/design.md",
-        "line": 32,
+        "line": 33,
         "text": "4. **Settle the design before building it.** When building disproves it, revise the design first. Silent drift leaves the record wrong."
       },
       "applicability": "scenario",
@@ -58,7 +58,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/devise/design.md",
-        "line": 34,
+        "line": 35,
         "text": "6. **Write for a builder without this conversation.** Use a skill in the harness’s list that checks a document from its reader’s point of view, if one fits. Otherwise check it yourself: could a builder build from it without asking again?"
       },
       "applicability": "scenario",

@@ -51,5 +51,6 @@ Fill the reader’s remaining gaps from checked sources. Distinguish an answer y
    - Use the `act-verify` guide for project facts, such as install steps checked against the current build file or tried. Use current authoritative sources for outside facts.
    - Point to the approved list for each source, and give the check's result. Remove padding that answers no reader question.
 6. **Check additions, gaps and “Gives back” before returning.** Always do this last. A fuller document still fails if its new material is unsupported.
-   - Check nothing is invented, every addition has an applicable current source and was checked, unresolved gaps are listed with what would settle each, and no unnecessary part was added.
+   - Check nothing is invented, every addition has an applicable current source and was checked, and no unnecessary part was added.
+   - Check each reader question from step 2 is in the approval list, as an addition or as a gap with what would settle it, by rule 4.
    - Check the list was approved where others' work changed, and code tests pass. Fix unsupported or missing parts before reporting the actual additions and gaps.

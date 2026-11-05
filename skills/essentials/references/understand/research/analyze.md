@@ -28,6 +28,8 @@ Fix:        where a fix belongs, at the trigger, handed to the caller
 ## Rules
 
 1. **Give the symptom exactly before testing causes.** Say what happened, where, since when and how often, with the actual error where one exists. Mark missing details unknown. A vague symptom fits many stories.
+   - Name the symptom in a progress line before your first test, such as "Checking why the backup ran twice on Monday".
+   - Open your result with the symptom in a sentence or two, then give the cause at once, even when the cause is the point. The reader checks the cause against it. This is an exception to the `respond` guide's rule 3, point first.
 2. **Test one cause at a time.** Give a testable hypothesis, such as "X because Y", and change one variable per test. Stacked changes hide which one mattered.
 3. **Confirm a cause through evidence rather than fit.** Reproduce it, observe it through a probe or show that removing it removes the symptom. Until supported, label it a hypothesis. A familiar explanation is not an observation.
 4. **Trace the chain back to its trigger.** Give evidence for each link. If a link cannot be traced further, say so. A change where the symptom appears can leave its cause intact.
@@ -70,5 +72,6 @@ Find what causes the symptom and show the evidence for each link back to its tri
    - Use the `act-cleanup` guide when the investigation's lifecycle ends. Preserve caller work and requested evidence; report permitted kept material with where and why.
    - Give symptom, supported or hypothetical chains, rejected causes with evidence, missing checks and the next owner. Return fixes to the main task. For a direct request, give a next investigation or fix step without applying it.
 7. **Check causal evidence and “Gives back” before returning.** Always do this last. An unsupported link can invalidate the caller's whole explanation.
+   - Check the result opens with the symptom, then the cause, by rule 1, with each missing detail marked unknown.
    - Check every causal link has evidence or a hypothesis label. Check rejected causes, unresolved limits, cleanup and next owner.
    - Correct unsupported causes or missing limits before returning. Apply the `understand-research` guide's final step and make no fix here.

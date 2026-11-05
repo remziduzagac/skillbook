@@ -30,7 +30,10 @@ The round of questions or the proposal, shown to the user, with the turn ended o
    - **Accepted:** the user said yes, or said "go ahead" to a question that has your recommended answer.
    - **Changed:** the user gave an answer of their own: a different one from your recommended answer, or one to a question that had none.
    - **Assumed:** the user stopped without answering, and the question has your recommended answer. Only a recommended answer you gave can be assumed.
-   - **Parked:** the user set the question aside, or it has no recommended answer when the user says "go ahead" or stops. Give why.
+   - **Parked:** the user set the question aside, or it has no recommended answer when the user says "go ahead" or stops. Give why. A question the user declined, such as "skip the colour question", is parked even when it has your recommended answer.
+   - Use only these four labels. Another label, such as "unresolved" or "confirmed", hides which choices the user made.
+   - Add no choice the user did not make and you did not recommend. A detail their answer leaves open, such as which night a weekly backup runs, is parked with why.
+   - When the user stops an interview, ask them to confirm these statuses, by the `understand-clarify-deep` guide's rule 1.
    - Stopping means saying so, such as "let's leave the questions there", or starting different work without answering. Not replying yet is not stopping.
    - Keep assumed and parked questions listed until the user answers them.
    - Never take a proposal as approved. Park an open proposal and apply nothing it covers: approval must be given.
@@ -59,5 +62,5 @@ Ask questions in a form the user can answer and keep every choice accounted for.
    - Before you rely on a consequential decision the user made without a recommendation, or against one, challenge it with the `understand-challenge` guide.
 4. **Check the round, answers and “Gives back” before returning.** Always do this last. A tidy question list can still conceal an unanswered choice or unapproved action.
    - Check numbering and form. Check that each question has a grounded recommended answer or a "No recommended answer:" line, and each consequential recommendation its challenge verdict. In the tool, check the recommended option is first and marked.
-   - Check partial answers are named back, statuses remain distinct and proposed approval was not assumed. Fix missing questions or incorrect statuses.
+   - Check partial answers are named back, each status uses one of rule 4's four labels, only your recommended answers are assumed, no choice is added that nobody made, and proposed approval was not assumed. Fix missing questions or incorrect statuses.
    - Check that the turn ends with the round or proposal, and that nothing an answer could change was done, by rule 6.

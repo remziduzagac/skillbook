@@ -73,6 +73,7 @@ If no honest case exists, show the best found and rate it weak. Invent nothing.
 5. **Admit remaining weaknesses and rate the case, by rule 4.** A confident label without the open objections gives the caller no way to judge its limits.
    - Name thin reasons and objections still standing. Rate strong, moderate or weak from the evidence, with why and what could strengthen or break it.
 6. **Check the case and “Gives back” before returning it.** Always do this last. A one-sided case must remain honest about its evidence and purpose.
-   - Check fidelity, any narrowing, goal, constraints, audience, reasons, evidence or assumption labels, objections met, open weaknesses, strength and next evidence. Fix omissions first.
+   - Check fidelity, any narrowing, goal, constraints, audience, objections met, open weaknesses, strength and next evidence. Fix omissions first.
+   - Check each claim in the case, answers to objections included, has its evidence or an assumption label, and says no more than its source, by rule 2.
    - Keep the one-sided line in the answer, and leave the choice to the user or the `understand-weigh` guide. Keep the challenge's verdict out of the case.
    - Apply the `understand` guide's rules and the caller's needed result shape. A light reflection needs fidelity and no unsupported new claim, rather than a new investigation.

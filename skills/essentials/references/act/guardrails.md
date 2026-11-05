@@ -71,4 +71,5 @@ Keep a risky action within the user’s approved action, scope and means. The pr
    - Check the result against approved scope and report observed outcomes with evidence, including declined or unfinished work.
 7. **Check scope, safety and “Gives back” before returning.** Always do this last. Both the action and its report must stay within the required limits.
    - Check whether it was applied exactly and verified, declined or still awaiting approval with nothing changed. Check nothing outside scope changed.
+   - For a step applied on an earlier approval, check the final answer names that approval, by rule 3.
    - Fix shortfalls through the approved scope or step 5's question. Apply the `act` guide's never-rules and instructions-and-data rule to work and response alike.

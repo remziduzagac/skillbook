@@ -47,7 +47,7 @@ Propose the existing glossary as destination. With no existing glossary, propose
 3. **Use a plain word where one works.** Coin only when none works and give the reason. Plain words are understood; coined words must be learned.
 4. **Leave a shared name to the user’s choice.** Readers will rely on the chosen term.
    - **For a supplied name, check the glossary, existing usage and potential collisions.**
-   - **For a supplied name, report the check results in `Checked`, even when nothing clashes.** The caller needs to know what was checked.
+   - **For a supplied name, report the check results in `Checked`, even when nothing clashes.** The caller needs to know what was checked. Give each check, where you looked and what it found, such as "glossary: none in the project". Claim no check wider than the search you ran.
    - **When a supplied name has a real conflict, ask the user through the `respond-ask` guide whether to keep it, then end the turn.** In the question, name the clash and how serious it is, such as a well-known tool with the same name in the same field. This is the `act` guide's concern rule. When the user has settled the name, start no new candidate or approval round.
 5. **Return rejected words and reasons.** Do this whether or not a name is chosen yet. A word left out for a clash counts. The caller can record them, so they are not proposed again.
 6. **Write and rename nothing.** The caller applies approved names and glossary entries under the `act` guide. A wide rename follows the `act-guardrails` guide. Propose the old word under Avoid. Half a rename leaves two words for one thing. For a direct request, the main work flow owns the change.
@@ -80,4 +80,5 @@ Find a shared name or glossary entry that fits the project’s existing words. A
    - Leave every write and rename to the caller, or the main work flow for a direct request. A wide rename follows the `act-guardrails` guide.
 4. **Check the proposal and “Gives back” before returning it.** Always do this last. A plausible name is insufficient if its meaning or checked scope is unclear.
    - Check terminology, collisions, naming criteria, reasons, rejected words and proposed definitions. Respect a supplied name without hiding a real conflict.
+   - For a supplied name, check that `Checked` gives each check, the glossary, existing usage and collisions, with where you looked and its result, by rule 4.
    - Fix missing checks or unclear meanings before returning under the `understand` guide's rules. Report unresolved ambiguities and write or rename nothing here.

@@ -56,5 +56,6 @@ Compare named options on common terms and recommend one, or explain what would s
    - Explain why it beats the next best, or give “no clear winner” with what would settle it. Include exclusions and what would change the result.
    - Return a caller's comparison without starting its choice round. For a direct request, give the recommendation as the recommended answer for the user's choice. Preserve council disagreements.
 5. **Check the comparison and “Gives back” before returning it.** Always do this last. The caller needs a grounded basis for choice, including its limits.
-   - Check common terms, evidence, downside searches, current challenges and deciding unknowns. Return a recommendation, a tie or a specific development need preventing comparison.
+   - Check common terms, evidence, downside searches and current challenges. Return a recommendation, a tie or a specific development need preventing comparison.
+   - Check each deciding unknown has what would settle it, by rule 3.
    - Fix unsupported or unequal parts before returning under the `understand` guide's rules. Leave decisions and lasting changes with their owner.

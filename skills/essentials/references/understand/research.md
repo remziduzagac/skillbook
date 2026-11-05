@@ -72,7 +72,7 @@ Return sourced findings that answer the actual question and show their limits. T
    - Use several methods for separate needs.
 4. **Return the result with traceable findings under rules 2–4 and 6–8.** A source link alone cannot tell the reader what was checked or how strongly it supports the answer.
    - For each finding, give its claim, exact source, quoted words when needed, how it was obtained and the cases it applies to. These fields are the findings format: they say what a finding holds, not a required file format for every answer.
-   - Put answer or verdict first, then supporting findings. Group evidence for and against claims, keep conflicts side by side and explain evidence strength rather than counting copies.
+   - Put answer or verdict first, then supporting findings. A cause investigation opens with a sentence or two on the symptom, then the cause, by the `understand-research-analyze` guide's rule 1. Group evidence for and against claims, keep conflicts side by side and explain evidence strength rather than counting copies.
    - Add negative results, where you looked, coverage limits, open gaps and what would settle them to the `understand` guide's result shape. With many findings, give the supporting ones and a path to the full list.
    - Stop when new sources no longer change the answer. Follow the `act` guide's failure rule after repeated tool failures. Keep records with their owner and make no lasting change here.
 5. **Check the sourced result and “Gives back” before returning it.** Always do this last. An answer can sound complete while hiding missing coverage or unsupported findings.

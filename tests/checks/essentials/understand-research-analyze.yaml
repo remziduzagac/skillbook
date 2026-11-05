@@ -8,7 +8,7 @@
       "source": {
         "file": "skills/essentials/references/understand/research/analyze.md",
         "line": 30,
-        "text": "1. **Give the symptom exactly before testing causes.** Say what happened, where, since when and how often, with the actual error where one exists. Mark missing details unknown. A vague symptom fits many stories."
+        "text": "1. **Give the symptom exactly before testing causes.** Say what happened, where, since when and how often, with the actual error where one exists. Mark missing details unknown. A vague symptom fits many stories.\n   - Name the symptom in a progress line before your first test, such as \"Checking why the backup ran twice on Monday\".\n   - Open your result with the symptom in a sentence or two, then give the cause at once, even when the cause is the point. The reader checks the cause against it. This is an exception to the `respond` guide's rule 3, point first."
       },
       "applicability": "scenario",
       "required_skill": "understand-research-analyze",
@@ -24,7 +24,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/research/analyze.md",
-        "line": 32,
+        "line": 34,
         "text": "3. **Confirm a cause through evidence rather than fit.** Reproduce it, observe it through a probe or show that removing it removes the symptom. Until supported, label it a hypothesis. A familiar explanation is not an observation."
       },
       "applicability": "scenario",
@@ -41,7 +41,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/research/analyze.md",
-        "line": 33,
+        "line": 35,
         "text": "4. **Trace the chain back to its trigger.** Give evidence for each link. If a link cannot be traced further, say so. A change where the symptom appears can leave its cause intact."
       },
       "applicability": "scenario",
@@ -58,7 +58,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/research/analyze.md",
-        "line": 34,
+        "line": 36,
         "text": "5. **Return the cause before offering a fix as the answer.** The main task owns any fix. Without a confirmed cause, return hypotheses, missing evidence and what would settle them rather than inventing a fix or a completed chain."
       },
       "applicability": "scenario",
@@ -75,7 +75,7 @@
       "kind": "rule",
       "source": {
         "file": "skills/essentials/references/understand/research/analyze.md",
-        "line": 36,
+        "line": 38,
         "text": "7. **Clean investigation scaffolding when its actual lifecycle ends.** Use the `act-cleanup` guide for unresolved and cancelled investigations as well as confirmed ones. Stop your own no-longer-needed processes and remove your probes or temporary edits. Preserve the caller's work and requested evidence. Keep only what cleanup permits, with where and why. Missing confirmation is not a reason to leave scaffolding running."
       },
       "applicability": "scenario",

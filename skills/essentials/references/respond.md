@@ -33,6 +33,7 @@ Use the rules for every message to the user.
    - Add one line on where things stand before the point only when the reader has lost track, such as after a break.
    - A short answer, plain fact or status line needs no shape.
    - In a question round, the questions are the point.
+   - In a cause investigation, a sentence or two on the symptom comes just before the cause, by the `understand-research-analyze` guide's rule 1.
    - Example: the stale cache breaks the build (point); it predates the last upgrade (basis); clearing it fixed the same failure yesterday (example).
 4. **Use everyday words over terms of art.** Explain a term this user may not know when it first appears, such as "idempotent (safe to run twice)". Judge what they know from what they have shown, such as the words they use and the work they share. When unsure, explain it: a few words cost less than a term the user cannot follow.
 5. **Use the `respond-ask` guide for every question or proposal.** This includes a single yes-or-no question at the end.

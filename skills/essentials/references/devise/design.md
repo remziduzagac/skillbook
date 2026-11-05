@@ -29,6 +29,7 @@ A short or full design with its actual approval status, such as "not yet approve
    - A value you chose, such as a timeout, a page size or a retry count, is a decision too.
    - One stated basis can cover many values, such as "match the existing API's naming" for every field name.
    - A value the user or a source already settled needs only its source, such as "from the brand guide".
+   - A value you can base on nothing is not settled: mark it as an assumption, with what would settle it, such as a supplier's quote for a delivery time. A full design lists it under Open. A made-up reason would read as a basis.
 4. **Settle the design before building it.** When building disproves it, revise the design first. Silent drift leaves the record wrong.
 5. **Keep one home for each decision.** Put decision history where the skill that saves records says. If no skill saves records, put it in the design's decisions part. The design holds current truth. Copies drift.
 6. **Write for a builder without this conversation.** Use a skill in the harness’s list that checks a document from its reader’s point of view, if one fits. Otherwise check it yourself: could a builder build from it without asking again?
@@ -91,5 +92,6 @@ Keep the design where the caller or a loaded skill that saves records says.
     - For a direct whole-design-and-build request, hand on once to the `devise-plan` guide after approval. End a design-only request with its result.
     - When building disproves the design, return to analysis or discussion, revise the design first and then the plan before continuing.
 13. **Check the design and “Gives back” before returning it.** Always do this last. A design's approval and review status matter as much as its written contents.
-    - Check the shape was open, supplied additions are marked, reasons and unknowns are present, and a builder can act without asking again. Fix missing or unsupported parts.
+    - Check the shape was open, supplied additions are marked, and a builder can act without asking again. Fix missing or unsupported parts.
+    - Check each decision has its reason, each value you chose included, such as a count, a size or a limit, by rule 3. A shared basis may cover several. A value with no basis is marked as an assumption instead. Check each assumption and unknown has what would settle it.
     - Report actual full-design findings, unresolved checks and approval status. Preserve caller ownership and obtain required approval before execution.
