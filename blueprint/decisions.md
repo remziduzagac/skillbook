@@ -4134,6 +4134,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 ## D269: realistic conversations are the main behavioral test layer (2026-10-26)
 
+> **Amended by D311 (2026-11-06):** the long scenarios are frozen and no longer the main test layer. Small cases per guide take their place.
+
 > **Amended by D278 (2026-10-28):** Measure whole-skill availability and per-rule outcomes with a no-skill baseline before further skill changes; the attribution build order takes priority over earlier run schedules.
 
 > **Amended by D270 (2026-10-26):** Final answers are scored separately from progress; current-turn applicability and the new clarity habit refine scenario checks.
@@ -4177,6 +4179,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 ## D273: validate the judge on blind labels and report three-run reliability (2026-10-26)
 
+> **Amended by D311 (2026-11-06):** judge tuning, held-out ratings, trace books and gates are retired with the long scenarios. Small cases trust the judge by a good-and-bad check on saved answers and by reading every fail.
+
 **Decision:** Follow the judge-validation and reliability rules in the testing design: existing ratings tune the judge; blind ratings on scenarios 03, 07 and 14 are held out for one final quality estimate. Record held-out attempts. Report human-pass and human-fail agreement with counts and 95% ranges, tuning self-agreement, and scenario/check pass^3 beside averages. Give each check one purpose, retain rating provenance and list unmappable labels. Use a configurable 600-second judge timeout.
 
 **Why:** One percentage hides failure detection when most labels pass. Tuning and measuring on the same evidence overstates quality. Mixed checks hide the cause of a failure. Average success hides whether a scenario works on all three attempts.
@@ -4184,6 +4188,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 **Tested:** `just check` passes with 91 Python and 670 TypeScript tests, schema freshness, 95 valid YAML cases and 74 unchanged conversions. The Sol availability probe answered correctly within 8.83 seconds. After one paired criterion replacement, tuning run 1 agrees on 22/129 human passes and 2/7 human fails, with 112 unresolved items affected by timeouts and shared-worker cleanup. A generic per-call isolation fix passes a concurrent-process regression test. Run 2 agrees on 126/129 human passes and 4/7 human fails, with no unknowns and six disagreements. Both runs agree on all 24 comparable Boolean pairs; 112 pairs remain unresolved. The 712 rubric checks have authored correct/wrong trace pairs, without AI fixture validation. Rating walks contain 30 failure candidates and 119 blind held-out check items. One old handbook point rating cannot map to the split parts; its concern already has a separate glance label. Actual cost is unknown across 39 calls. Reports and per-item reasons are in `/tmp/skillbook-calibration3/`; held-out scoring and broader answer judging did not run. Judge quality remains unvalidated.
 
 ## D278: separate skill loading, rule outcomes and skill results (2026-10-28)
+
+> **Amended by D311 (2026-11-06):** the rule checks in `tests/checks/` and the coverage ids are retired, so small cases produce no rule grid or four-box report. Loading stays as a diagnostic, and the comparison with a no-skill run stays.
 
 **Decision:** Follow [design/testing.md](design/testing.md#skill-loading-and-rule-outcomes-d278) for issue #26 before further skill changes. Needed skills come from scenario labels and rules that become applicable from the log or answer; record unexpected needs separately and use the applicable deadlines in both views. Exclusion checks do not make excluded children needed. Scenarios mark situation-triggered rules; code finds action-triggered applicability, with quoted claims marked by the judge; validated per-agent records establish whole loading and timing. Reuse shared and rule checks drawn from skill text beside coverage ids, and result checks from “Gives back” lines and named shapes. Check visible results and internal results required in later visible steps; otherwise exclude internal parts with reasons and counts. Code scores observable outcomes and order; other checks require a judge’s yes/no verdict with quoted answer or action evidence, otherwise unknown; code verifies quotes and action ids. Report per-skill needed/loaded counts and unneeded-read costs. Keep the four-box loading/outcome grid; add a rule-outcome/skill-result view and compare both outcomes and results in matched no-skill runs. Loading and routing stay installed-only. An unneeded read costs tokens; rightly skipping its action is allowed, while acting on an inapplicable rule fails its exclusion check. Start with checks and mapped criteria for the four failure families; other criteria keep running outside the grid and move over later, family by family. Keep unmapped habits outside the grid; update checks with their source rules. The user spot-checks verdicts against quotes; judge calibration continues.
 
@@ -4296,6 +4302,8 @@ The six main guides gain their own flows, with each child's line under the step 
 > **Amended by D292 (2026-11-02):** in weigh, challenge and argue, an advice item that a step says in words lives only in that step.
 
 ## D288: one long scenario built from promised results replaces every earlier test case (2026-11-01)
+
+> **Amended by D311 (2026-11-06):** the festival is frozen, with the todo app. The calibration tools, the rule-check machinery and the coverage report named below are retired. Small cases replace the long runs.
 
 **Decision:** Every earlier test case is removed: the single-prompt cases, the routing cases, the fifteen scenarios and the project-skill cases. They tested wording and step ids that D283 to D287 replaced. The last commit that holds them is tagged `essentials-old-tests`. In their place, one long scenario, [the festival scenario](design/scenarios/festival.md), extends the old festival story into six chapters and 28 turns that need every essentials guide at least once and many guides several times. More scenarios follow later, each built the same way.
 
@@ -4733,6 +4741,8 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 
 ## D305: a second long scenario, the todo app, confirms fixes (2026-11-04)
 
+> **Amended by D311 (2026-11-06):** the todo app is frozen with the festival. A fix is now proven by a held-out small case, by the merge rule, not by a second scenario.
+
 **Decision:** A second long scenario, [the todo app scenario](design/scenarios/todo-app.md), joins the festival (D288). A hobby developer builds a todo app, Jotdown, from the first idea through design, plan and build, to friends' bug reports, tidying and the release. It has six chapters and 40 turns. It runs on Claude Code with Sonnet and on Codex with GPT-6.1 Sol, like the festival.
 
 - **Its role: a confirmation scenario, kept apart from tuning.** Fixes come from festival failures. A fix counts as proven only when it also holds here, as the festival's "Fixing what fails" says. No guide is changed to pass a turn here alone. A failure seen only here is recorded. It is fixed only when the same pattern shows on the festival or a later scenario. Agents that change guides see only this scenario's totals per guide and per check.
@@ -4811,6 +4821,8 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 
 ## D308: trim the todo app to local guide work (2026-11-05)
 
+> **Amended by D311 (2026-11-06):** the gates are retired. The trace books stay only as a record of the frozen scenarios.
+
 **Decision:** Drop turns 20, 26 and 38: committing the work, checking SQLite across three operating systems, and tagging and publishing a release. The scenario has 37 turns in chapters of 7, 7, 6, 7, 7 and 3 turns. Replace install and release material with the friends trying the app, finding their task file and keeping a copy. Keep the name collision on Leo's Mac, the data outside version control and the runner's checkpoint commits. Allow the approved glossary on turn 6, preserve test checks while permitting moved references during the split, check stale data-location guidance directly, narrow turn 2's outcome, and judge turn 16's plan-update rule only when the plan changes. Remove unused commit and tag checks from the runner. Keep the secret-response check and its password-exposure negative on the retained carryover turn.
 
 **Why:** The removed turns test harness access to version control and outward actions more than the guides; Codex's sandbox blocks commits and tags. The first live run also failed good answers on four automatic checks and two judged checks. Both trace books need a new full gate before the next live run, so the scenario and its authored traces change first.
@@ -4838,6 +4850,8 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 
 ## D309: a full gate with errored batches is filled from a preview (2026-11-06)
 
+> **Amended by D311 (2026-11-06):** the gates and this fill are retired; the code leaves in a later build commit.
+
 **Decision:** A judge batch that still has no verdict after its three tries no longer voids a full gate report. Its candidates are judged alone in a preview on the same contract and model, and a new script fills the full report from that preview.
 
 - **Command:** `bun tests/fill-rubric-gate.ts FULL_REPORT PREVIEW_REPORT OUTPUT`. It writes a new file and leaves both inputs unchanged.
@@ -4863,3 +4877,100 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 - **First test:** a preview of a full report's errored candidate completes that report. The mode stays full, no error row is left, the preview's verdict follows the full report's own rows, the cost is the sum of both, and `filled` records the source, the candidate and the batch error.
 - **Second test:** the fill refuses a preview on another contract, a report that is not a full one, a candidate whose fingerprint changed, a preview with no judgment, a candidate judged twice and a full report with nothing to fill. The model check shares one condition with the contract check and has no test of its own.
 - **Its one use:** the todo app's second full gate, as D308's Tested line records.
+
+## D310: the live run after the gates showed no progress, and was stopped (2026-11-06)
+
+**Decision:** Stop the long-scenario method after this run. It could not show what any single fix achieved, at about $47 per gate and $60 per live run. Testing moves to small cases (D311).
+
+- **The run:** both gates had passed (D308's gates and D309's fill). The full live run then started: Sonnet (Claude Code) and Sol (Codex, GPT-6.1 Sol) on the todo app's chapters 1 to 6 and the festival's chapters 1 to 5, each judged by the Sol judge and the Sonnet judge.
+- **Stopped during the festival's judging.** The festival's results are partial. The todo app's results are complete.
+
+**Why:** The todo app's results, set against its previous live run (D305), show no progress.
+
+- **Fails did not move.** The fails that both judges agreed on were 37 before and 37 after for the Sonnet judge, and 25 before and 25 after for the Sol judge. Only 16 and 11 of them were the same checks. Fails moved around; they did not go away.
+- **Loading was not the cause.** Most fails happened with the right guide read. Sol read the needed main stage guides 48 of 51 times and their child guides 47 of 47. Sonnet read them 44 of 51 and 39 of 47.
+- **Some fails were stable** on both runs and under both judges: the frame's guess marking (`understand-frame` rule 2, turn 2), the `understand-discuss` guide's rule 7 (turn 7), and several checks of the `respond` guide's rules 1 and 4.
+- **Conclusion:** the method could not show what any single fix achieved.
+
+**Spending:** about $60 known for the run, after gates of about $47 each.
+
+## D311: small cases replace the long scenarios (2026-11-06)
+
+**Decision:** Test each guide with small cases. Run every case against a comparison, check it with scripts first and then one judge, and keep a guide change only if it beats the old text. The two long scenarios are frozen, and the machinery that judged them is retired. This follows D310.
+
+The method is adapted from three outside approaches. Each idea is rewritten for skillbook and nothing is copied:
+
+- Addy Osmani's agent-skills evals: <https://github.com/addyosmani/agent-skills/tree/main/evals>.
+- Philipp Schmid's talk "Don't ship skills without evals": <https://www.ai.engineer/talks/0vphxNt4wyk-dont-ship-skills-without-evals>. It gave the merge rule: a change must beat the old text.
+- Anthropic's skill-creator: <https://raw.githubusercontent.com/anthropics/skills/main/skills/skill-creator/SKILL.md>. It gave the comparison of a run with the skill against a run without it, reading the outputs, and dropping evals that pass everywhere.
+
+**The method:**
+
+- **Small cases per guide,** in `tests/cases/essentials/small/`, named `<guide>--<topic>.yaml`, with fixtures in `tests/fixtures/small/<name>/`. There are three kinds:
+  - **should-load:** a request the guide covers. It checks that the guide is read (`reads`).
+  - **should-not-load:** a near miss. It checks that the guide stays closed (`reads_not`), and that nothing else changes (`no_changes` or `only_changed`).
+  - **behaviour:** a request with a few yes-or-no questions in the turn's `rubric`.
+  - Every case starts from the main skill, as a real user's session does.
+- **Every run has a comparison:** the skill against no skill (`--no-skill`), or the old guide text against the new. The cases and the judging stay the same.
+- **Models and runs:** Sonnet (Claude Code) and Sol (Codex, `gpt-6.1-sol`), about 3 runs per case on each, because single runs vary. The command is in `tests/README.md`; `--case` takes one substring.
+- **Scripts first, then one judge:** the runner's automatic checks (`reads`, `reads_not`, `no_changes`, `only_changed`, `file_contains`, `answer_contains`) decide what they can. Then Sol answers each turn's questions with `tests/judge-small.ts`: pass, fail or unknown, with a quote from the answer. The questions come from the current case files, so a changed question is judged again on saved answers, with no new runs.
+- **Each question names one thing.** "Is 'DPF' explained where it first appears?" is a good question. "Is every hard term explained?" is not: a broad question lets the judge apply its own standard, so it measures the judge and not the agent. A question that does not apply to an answer, such as a term the answer never uses, is answered unknown and left out of the counts.
+- **Trusting the judge:** read every fail before anything changes. Each new question is checked once. It must pass a saved good answer and fail a saved bad one, such as a with-skill and a no-skill run of the same case.
+- **The report** gives pass counts per check, per model and per condition (skill or no skill). It flags two kinds of check:
+  - **passes everywhere:** it passes with no skill too, so it measures nothing. Rewrite the case or drop it.
+  - **unstable:** the results are mixed over 3 or more runs.
+- **Loading is a diagnostic, not a pass.** A guide that was read and gave a wrong result is a fail.
+- **The merge rule:** a guide change stays only if it beats the old text on its cases and on a held-out case written apart from the change. Otherwise it is reverted. A gap of one or two runs is noise: the same saved answers, judged twice, moved by one.
+- **Fix patterns shared by failures,** never a single case.
+
+**The four choices:**
+
+1. **The long scenarios are frozen.** `tests/cases/essentials/todo-app.yaml` and `festival.yaml`, their traces and their saved runs stay as a record. They are not run again.
+2. **The long runs' judging machinery is retired:** the second judge; judge tuning against hand-written traces (calibration and trace books); the gates; the gap fill (D309); the frozen copy of every rule in `tests/checks/`; the contract hash; and judging every rule at every turn. Its code leaves in a later build commit, and git history keeps it. Until then the runner still validates `tests/checks/` at start, so a rule edit still needs its frozen copy updated.
+3. **The judge is trusted** by the good-and-bad check above and by reading every fail. There is no second judge and no tuning.
+4. **The coverage list is retired:** the `covers` field, `bun tests/run.ts --coverage`, `just test-coverage` and the `check-coverage` step in `just check`. Tests cover new, changed or failing behaviour only, as skillbook-write already says: "Do not test every existing rule at once."
+
+**Build list,** for the later build commit. The build follows the imports from `tests/run.ts` and `tests/judge-small.ts` to confirm each file, and keeps what they use, such as `runner/recheck.ts`, `runner/scenario.ts` and `runner/files.ts`.
+
+- **Judging scripts in `tests/`:** `judge-scenarios.ts` (both judges, every rule at every turn), `calibrate.ts`, `check-rubric-fixtures.ts` (the gate), `fill-rubric-gate.ts`, `recheck-scenarios.ts`, `compare-scenarios.ts`, `compare-runs.ts` and the judge brief `judge.md`.
+- **Runner modules and their tests:**
+  - the gap fill: `runner/gate-fill.ts` and `runner/gate-fill.test.ts`;
+  - calibration and trace books: `runner/calibration.ts`, `runner/rubric-fixtures.ts`, `runner/fixture-validation.ts`, `runner/rating-walk.ts` and `runner/library-coverage.ts`;
+  - the second judge and judge settings: `runner/claude-judge.ts`, `runner/judge-options.ts` and `runner/judgment-policy.ts`;
+  - rule-check loading and the contract hash: `runner/rule-checks.ts`, `runner/rule-outcomes.ts` and `rubricFixtureHash`;
+  - the coverage report: `runner/inventory.ts`;
+  - the long scenarios' own tests: `runner/festival.test.ts`, `runner/festival-trace-patterns.test.ts` and `runner/todo-app.test.ts`.
+- **Runner options and fields:** `--coverage`, `--judge`, `--calibration`, `--rubric-validation` and `--rubric-book` in `runner/cli.ts`; the `covers` field in `runner/types.ts` and `tests/case.schema.json`; and `tests/manual.toml`, which only feeds the coverage report.
+- **Folders:** `tests/calibration/` and `tests/checks/`.
+- **The `justfile`:** `test-coverage`, `check-coverage` and the `check-coverage` step in `check`.
+- **D278's measurement report** (`runner/measurement.ts`, `runner/measurement-report.ts`, `runner/measure-turn.ts` and `runner/needs.ts`): the build keeps what the `reads` check and the loading diagnostic of small cases need, and removes the rest.
+- **The frozen scenarios must stay readable.** The build may move them, with their fixtures under `tests/fixtures/scenarios/`, their scenario designs and the two trace books in `tests/calibration/`, to an archive folder outside the runner's validation.
+
+**Why:**
+
+- **The long method could not show what one fix did** (D310). Fails moved around and did not go away, loading was high, and some fails were stable.
+- **The cost per round was high.** One round of gates cost $111.69 (D308), and a live run cost about $60 more. Neither showed what one fix did.
+- **A small case is cheap,** so each change to a guide can run against the old text on the same cases, about 3 times, and be judged the same way.
+- **A comparison shows what the skill adds.** A check that passes with no skill measures the model, not the skill.
+- **A broad question measures the judge.** In the trial, the broad plain-words question failed answers that did explain their terms. Questions that name one term gave quotes that could be checked.
+- **Tests cover what is new, changed or failing,** as skillbook-write already says, so a list of every rule that no case covers yet has no use.
+
+**Tested:** a trial on three guides, `understand-frame`, `respond` and `organize`, with Sonnet and Sol, 3 runs each. The numbers are with the skill against without it.
+
+- **Loading:** the guide was read in every should-load run, 6 of 6 per case, and not read in every near miss, 6 of 6 per case.
+- **The skill clearly helps:**
+  - the frame's five parts filled: 12 of 12 against 3 of 12;
+  - a "(guess)" mark present: 11 of 12 against 0 of 12;
+  - `organize` shows its plan before changing files (map-first): Sonnet 6 of 6 and Sol 4 of 6 against 0 of 12;
+  - `organize` checks the result, then asks before going on: Sonnet 6 of 6 and Sol 2 of 6 against 0 of 12;
+  - retired-file notices kept: 12 of 12 against 1 of 12.
+- **Weak spots found:**
+  - each guess marked one by one in the frame: 3 of 12 with the skill (Sol 2 of 6, Sonnet 1 of 6) against 0 of 12;
+  - in `organize`, Sol changed files before asking in 2 of 3 recipe runs, and named a guide or skill file in its answer in 4 of 6 runs.
+- **Plain words (`respond` rule 4):** two guide changes, each tested old text against new, were both reverted by the merge rule.
+  - Naming tools and services as terms, plus a term-by-term check step: the broad plain-words question passed 2 of 18 runs on the new text against 3 of 18 on the old. A count of unexplained terms per answer did not change (garage case: Sonnet 8.0 to 7.3, Sol 6.0 to 6.0).
+  - Explaining a term at its first appearance, even in the opening point: named-term questions passed 29 of 46 on the new text against 25 of 43 on the old. "Timing belt" passed 0 of 6 against 1 of 6, and every new fail was still in the opening line.
+  - Reading the answers showed that the broad question failed answers that did explain their terms.
+- **One case was dropped:** a Python beginner's KeyError passed every question with and without the skill. A mortgage-letter case replaced it as the held-out case.
+
+**Spending:** $17.69 for the trial, runs and judging included.

@@ -2,6 +2,8 @@
 
 One long conversation in software work that exercises essentials guides across planning, code and documents. A hobby developer builds a todo app, Jotdown, from the first idea through design, plan and build, to friends' bug reports, tidying and a review of how the agent works. It is the second scenario that the festival's "Fixing what fails" asks for: a fix made from festival failures counts as proven only when it also holds here. Each turn's checks come from what its guides promise in "Gives back" and from their rules, as in the festival.
 
+> **Frozen (D310, D311):** this scenario is no longer run. It stays, with its fixtures, traces and saved runs, as a record. Guides are tested with small cases, as [the testing design](../testing.md) says.
+
 ## Its role
 
 - **A confirmation scenario, kept apart from tuning.** Failures on the festival drive fixes. This scenario shows whether those fixes hold on different work. So no guide is changed to pass a turn here alone. A failure seen only here is recorded; it is fixed only when the same pattern shows on the festival or a later scenario.

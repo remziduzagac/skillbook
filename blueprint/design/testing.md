@@ -1,6 +1,6 @@
 # Testing
 
-How skillbook is tested, as a whole: what runs where, what a test needs, and where the files live. Each skill's own tests are in its design section, in the Tests list; this file says how they are run (D208). The install tests and the automated AI test runner are built; `just try` is not yet.
+How skillbook is tested, as a whole: what runs where, what a test needs, and where the files live. Each skill's own tests are in its design section, in the Tests list; this file says how they are run (D208). Skills are tested with small cases: each run is compared with another (no skill, or the old text), checked by scripts first and then judged by one judge, and a change stays only if it beats the old text ([D311](../decisions.md#d311-small-cases-replace-the-long-scenarios-2026-11-06)). The two long scenarios that came before are frozen ([D310](../decisions.md#d310-the-live-run-after-the-gates-showed-no-progress-and-was-stopped-2026-11-06)). The install tests and the automated AI test runner are built; `just try` is not yet.
 
 ## Three kinds of test
 
@@ -14,64 +14,96 @@ How skillbook is tested, as a whole: what runs where, what a test needs, and whe
 
    They need no agent and no key. They run locally and in GitHub CI on every pull request, on Linux and macOS.
 3. **AI tests, local only.** No AI test runs on GitHub. The user's personal accounts are never used in GitHub CI, and no free quota fits (see "Why AI tests stay local").
-   - **Automated:** `just test-agents-ts` runs scenarios through the TypeScript runner. The user sets when model tests run, by the schedule below. An agent may also guide a run: start cases, read the summaries and judge what a script cannot check.
+   - **Automated:** `just test-agents-ts` runs small cases through the TypeScript runner, and `tests/judge-small.ts` judges their answers. The user sets when model tests run. An agent may also guide a run: start cases, read the summaries and read every fail.
    - **Manual:** `just try claude` or `just try codex` opens that agent in a toy project, with a sandbox home that has skillbook installed in link mode, so edits show at once. The user logs in once inside the sandbox. The user's real agent setup, and the agent session that develops the skills, stay apart from the skills under test. The command runs in whatever terminal or pane the user picks; nothing imposes a layout.
+
+## Small cases (D311)
+
+A small case tests one guide with a short request. It is cheap enough to run about 3 times on each model, so a change to a guide can be compared with the old text on the same cases. The method is adapted from three outside approaches, as D311 lists; nothing is copied.
+
+- **Three kinds,** by what the case checks:
+  - **should-load:** a request the guide covers. It checks that the guide is read (`reads`).
+  - **should-not-load:** a near miss, a request that looks like the guide's job but is not. It checks that the guide stays closed (`reads_not`) and that nothing else changes (`no_changes` or `only_changed`).
+  - **behaviour:** a request with a few yes-or-no questions in the turn's `rubric`.
+- **Every case starts from the main skill,** as a real user's session does. The prompt does not name the guide.
+- **A few varied cases per rule, one held out.** The cases differ in kind of work and wording. One is written apart from any fix, as the held-out case of the merge rule. Each case is run about 3 times on each model, because single runs vary.
+- **Every run has a comparison:** the skill against no skill (`--no-skill`), or the old guide text against the new. The cases and the judging stay the same.
+- **Scripts first, then one judge.** The runner's automatic checks (`reads`, `reads_not`, `no_changes`, `only_changed`, `file_contains`, `answer_contains`) decide what they can. Then Sol answers each turn's questions. It answers pass, fail or unknown, with a quote from the answer. The questions come from the current case files, so a changed question is judged again on saved answers without new runs.
+- **Each question names one thing.** "Is 'DPF' explained where it first appears?" is a good question. "Is every hard term explained?" is not: a broad question lets the judge apply its own standard, so it measures the judge and not the agent. A question that does not apply to an answer, such as a term the answer never uses, is answered unknown and left out of the counts. No question counts words or lines (D303).
+- **Trusting the judge.** Read every fail before anything changes. Check each new question once: it must pass a saved good answer and fail a saved bad one, such as a with-skill and a no-skill run of the same case. There is no second judge and no tuning.
+- **The report** gives pass counts per check, per model and per condition (skill or no skill). It flags two kinds of check:
+  - **passes everywhere:** it passes with no skill too, so it measures nothing. Rewrite the case or drop it.
+  - **unstable:** the results are mixed over 3 or more runs.
+- **Loading is a diagnostic, not a pass.** A guide that was read and gave a wrong result is a fail.
+- **The merge rule:** a guide change stays only if it beats the old text on its cases and on a held-out case written apart from the change. Otherwise it is reverted. A gap of one or two runs is noise: the same saved answers, judged twice, moved by one.
+- **Fix patterns shared by failures,** never a single case.
+
+The commands, with the cost given first and `--budget` set:
+
+```sh
+bun tests/run.ts --case PATTERN --agents claude,codex \
+  --model claude=sonnet --model codex=gpt-6.1-sol \
+  --runs 3 --login --jobs 6 --budget N --yes --out DIR [--no-skill]
+bun tests/judge-small.ts RESULTS_DIR... --out JUDGED.json (--login | --report-only) [--jobs 6]
+```
+
+`--case` takes one substring of the case id. `--report-only` prints the report from saved judgments without a judge call.
 
 ## Routing layer
 
-Routing is measured inside scenarios (D263, D288). Each scenario turn marks the guides it needs, and the loading view of D278 shows whether each was read whole before its deadline, read late, read without need or not read. Near misses inside the story test the boundaries: a request that looks like a guide's job but is not passes when the guide's action is skipped.
+Routing is tested by the should-load and should-not-load cases. Check such a case with `reads` and `reads_not` and no rubric. The rules for a read:
 
-The single-prompt routing cases are retired with the other old cases. The format keeps `routing_only = true` for a later focused case: one short read-only turn whose only assertions are `reads` and `reads_not`, with no rubric or judging. Check such a case against a correct and a plausible wrong read trace before running it. For a grandchild, require successful reads of its parent path and child. A filename merely mentioned is not a read. Unknown evidence stays unknown. A read proves observed loading, not answer quality, whole-file reading or which parent selected it.
+- For a grandchild, require successful reads of its parent path and of the child. A filename merely mentioned is not a read.
+- Unknown evidence stays unknown.
+- A read proves observed loading. It does not prove answer quality, whole-file reading or which parent selected the guide.
+- The account-free tests try each read check on a correct and a plausible wrong synthetic trace.
 
 ## Where things live
 
 All in `tests/` (D190), except the commands, which are in the `justfile`.
 
-- **`tests/fixtures/<name>/`:** small toy projects, each a known situation, such as a vague request or a plan whose parts depend on each other. Automated and manual tests share them. A fixture's project instruction file is `AGENTS.md` only; the runner copies it to `CLAUDE.md` for Claude Code, so both agents get the same instructions and the repository holds no nested `CLAUDE.md` that would load into a developer's own session.
-- **`tests/cases/<set>/<case>.yaml`:** one scenario or focused case per file, in the format `tests/runner/types.ts` defines (D268). A scenario's chapters each name a checkpoint: the fixture state the runner puts in place at the chapter's first turn, which starts a fresh session (D288). Its fields:
-  - the design test it comes from: the design file and the test's number;
-  - the fixture, and `version_control = true` for a case whose project starts under version control with one commit, since whether a change can be undone the user's usual way can depend on it;
+- **`tests/fixtures/<name>/` and `tests/fixtures/small/<name>/`:** small toy projects, each a known situation, such as a vague request or a plan whose parts depend on each other. Automated and manual tests share them. A fixture's project instruction file is `AGENTS.md` only; the runner copies it to `CLAUDE.md` for Claude Code, so both agents get the same instructions and the repository holds no nested `CLAUDE.md` that would load into a developer's own session.
+- **`tests/cases/<set>/small/<guide>--<topic>.yaml`:** one small case per file, in the format `tests/runner/types.ts` defines (D268). Its fields:
+  - `about`: the wrong behaviour it rejects, or what it shows;
+  - `goal`, and the fixture;
+  - `version_control = true` for a case whose project starts under version control with one commit, since whether a change can be undone the user's usual way can depend on it;
   - `uses_skill_example = true` for a case that tests one of the skill's own examples on purpose; every other prompt is checked by `just check` against the set's text (D213);
   - the prompt for each turn;
-  - the agents it runs in;
-  - the number of runs, 1 by default: a rule is covered by several different cases rather than by repeating one, since varied prompts show more for the same cost; a case is repeated only when it fails or its results disagree (D213);
+  - the agents it runs in, and the number of runs, 1 by default; small cases are run with `--runs 3`;
   - whether the pointer is in the user's instruction file, yes by default;
   - `skills`, the implemented skills whose behaviour or routing boundary it exercises; `category`, normal, boundary or edge; `rejects`, the plausible wrong behaviour;
-  - `covers`, the aspects of the skills it tests, by the ids `bun tests/run.ts --coverage` names from the skill files: each rule, piece of advice, step, route, "Not for" line, checklist item and final check step, such as `act:rule:5` or `organize:rule:6`; only what its checks or review can fail on;
-  - `routing_only = true`, the reads-only, one-turn routing layer described above;
-  - `review`, semantic acceptance criteria for behavioral cases; automatic success leaves these pending, and the summary includes each turn's answer for review. After each behavioral run, passed or failed, it is judged against them by fresh agents on Sonnet, another model only with the person's approval (D247), as `tests/judge.md` says, and the person spot-checks unclear verdicts and those the automatic checks disagree with;
   - `project_skills`, the repository's own skills copied into the isolated agent skill folder for a project-skill exercise only, never added to the shipped set;
+  - the questions a judge answers, in `turns[].rubric`: each has an `id`, a `tag` and a `criterion` that names one thing;
   - the checks a script can make from the event log, for the whole run in `checks`, or for one turn in `turns[].checks`, judged on that turn's answer and changes (D216):
     - the skills read or not read (`reads`, `reads_not`), by name, for the run or one turn: a read counts only with a successful matching tool result or a supported reading command that exits 0; a path merely named, as by `echo` or `ls`, does not count; a step counts only where a zero exit proves it ran and succeeded: every step of `a && b`, and only what follows the last `;`, new line or `||`; a step holding a pipe or a redirection, and a command with a command substitution or a background job, is left uncounted; a command that exits non-zero proves no read, even where a later step such as a search found nothing;
-    - nothing changed in the toy project (`no_changes`), named files changed or created (`changed`), or named files left unchanged (`unchanged`);
+    - nothing changed in the toy project (`no_changes`), named files changed or created (`changed`), named files left unchanged (`unchanged`), or only the named files changed (`only_changed`);
     - a file that still holds given facts (`file_contains`) or got shorter (`shorter`);
     - at least a number of files written under a folder (`written_under`), and no file written there matching a pattern (`folder_lacks`), for files whose names the agent chooses, such as new test cases;
     - something said before the first change (`states_before_change`): the runner combines file-state changes with event order and checks for a statement before the first definite or potential mutation; an opaque command whose timing cannot be established leaves this assertion unknown, never passing by assuming no change, while a step that only sets a shell variable or changes folder counts as a read, since it touches no file (D236); what the statement says is judged by reading the summary (D218);
-    - patterns the answer must or must not contain, the answer being everything the agent said in the turn, and in every turn for the whole run, so a pattern no turn may hold is checked in each (D236);
+    - patterns the answer must or must not contain (`answer_contains`, `answer_not_contains`), the answer being everything the agent said in the turn, and in every turn for the whole run, so a pattern no turn may hold is checked in each (D236);
     - nothing the agent started still running when the turn ended (`nothing_left_running`), unknown where the process list cannot be read or the system does not show a process's environment, since a process that left its group could then go unseen (D233);
-    - a path added in the run's own temporary folder during the turn that matches a pattern (`tmp_has`) or none that does (`tmp_lacks`), such as an unpacked copy the agent should have removed or was asked to keep: compare complete listings before and after the turn, so existing harness files do not count. Check every new path, including new children of existing directories, not the short summary listing. Keep the derived verdicts for replay, never the full path lists; unknown where either listing could not be read (D235).
+    - a path added in the run's own temporary folder during the turn that matches a pattern (`tmp_has`) or none that does (`tmp_lacks`), such as an unpacked copy the agent should have removed or was asked to keep: compare complete listings before and after the turn, so existing harness files do not count. Check every new path, including new children of existing directories, not the short summary listing. Keep the derived verdicts for replay, never the full path lists; unknown where either listing could not be read (D235);
     - a file the agent was asked to remove (`removed`), passing only when it is gone (D240);
     - an agent started (`agent_started_or_answer`): Codex's exec record shows neither an agent it starts nor that agent's actions, so on Codex any call about agents, or a change no recorded action explains, leaves the check unknown, not failed; the summary says an agent may have run unseen, and judges follow skillbook-write's record-limit lesson (D242, D254);
     - no skill named in the answer: Codex's harness tells it to say which skills it uses, so only a short line that says it loads, uses, reads or follows essentials and gives no reason is left out; a line with a reason, such as "because the essentials skill prohibits…", counts as naming a skill (D242);
 
-    Whether a file was read whole or in part, and which tools ran, are not checked yet. Each case's `about` names the wrong behaviour it rejects, and a case is checked against a correct trace and a plausible wrong one before its result is trusted, as skillbook-write says (D217).
-- **`tests/run.ts` and `tests/runner/`:** the runner. The Python runner, `tests/run.py`, stays for replaying saved runs and comparing assertions; it has no cases of its own (D288). The runner runs up to four runs at a time (`--jobs`), sharing only the budget; nothing is shared between runs, such as a home, a session or a fixture copy, since a shared one would carry one case's history into another. For each case, agent and run it:
+    Whether a file was read whole or in part, and which tools ran, are not checked yet. Each case's `about` names the wrong behaviour it rejects.
+- **`tests/run.ts` and `tests/runner/`:** the runner. The Python runner, `tests/run.py`, stays for replaying saved runs and comparing assertions; it has no cases of its own (D288). The runner runs several runs at a time (`--jobs`), sharing only the budget; nothing is shared between runs, such as a home, a session or a fixture copy, since a shared one would carry one case's history into another. For each case, agent and run it:
   1. makes a throwaway home outside the repository, with the run's own temporary folder inside it, set as the agent's `TMPDIR`, so nothing an agent leaves there outlives the run, after a short listing of its paths and sizes is kept in the turn's evidence (D233);
-  2. installs skillbook there with `install.sh`;
+  2. installs skillbook there with `install.sh`, unless the run is a no-skill run;
   3. copies the fixture in, and commits it when the case asks for version control;
   4. runs the agent headless, each turn in a process group of its own, with a marker in its environment for a process that leaves the group;
   5. records what the agent left running when each turn ended, then, when the run ends or a turn times out, ends it, so a leftover the model caused is still observed and nothing keeps running on the user's machine (D233);
   6. checks the event log;
   7. writes a short summary.
+- **`tests/judge-small.ts`:** the judge and the report for small cases, as "Small cases" describes. It reads the runner's result folders and the current case files, and saves its judgments in one file.
 - **`tests/install-test.sh`:** the install tests. Each test copies `install.sh` and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched.
-- **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model. `just test-coverage` reports executable scenario counts, not observed success, and lists each aspect that no case covers and `tests/manual.toml` does not name.
-- **`tests/manual.toml`:** the aspects only a person can test in a live session, such as the harness's question tool, real compaction or publishing, each with its reason.
-- **`just check-coverage`,** inside `just check`: warns with the number of uncovered aspects, and fails only when a case or `tests/manual.toml` names an aspect that does not exist.
+- **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model.
 - **Review evidence:** before deleting each sandbox, the runner retains per-turn fixture diffs, observed file contents requested by assertions, answers and an ordered action ledger of tool names, commands and target paths. Tool outputs and credential-home contents are not copied into that ledger. Failed or timed-out turns retain the evidence available, marked incomplete. Evidence grading follows skillbook-write's test-case rules. Raw events may be kept explicitly when needed.
 
-## Project skill scenarios
+## Project skill cases
 
-The project skills have no shipped-set design sections. These designed scenarios apply their existing contracts, with small fixture drafts, without changing their rules. Their executable cases were retired with the others (D288); they return as a scenario of their own:
+The project skills have no shipped-set design sections. These designed cases apply their existing contracts, with small fixture drafts, without changing their rules. Their executable cases were retired (D288); they return as small cases:
 
 1. skillbook-design reviews overlapping routes: it reports the actual conflicting lines and a general fix, changing nothing.
 2. skillbook-design reviews a leaf: it applies the relevant checklist without inventing a requirement for child-routing sections.
@@ -79,28 +111,23 @@ The project skills have no shipped-set design sections. These designed scenarios
 4. skillbook-write finds a requested behaviour absent from the design: it proposes the design change through skillbook-design before changing either file.
 5. skillbook-write finds the requested behaviour already present: it reports the evidence and leaves the files alone.
 
-## Build validation schedule
-
-Build the scenario, its fixture and its checks before any model test, and validate every check against correct and wrong evidence without a model. Then pilot one chapter on Codex with GPT-6.1 Sol and GPT-6 Luna, with its cost given first. Then run the whole scenario once on each of the four selected models: Claude Code with Sonnet and Haiku, Codex with GPT-6.1-Sol and GPT-6 Luna. Investigate patterns both models share, fix those patterns, and rerun only the affected chapters. A fix counts as proven only after it also holds on a second, different scenario (D253, D288).
-
 ## The runner's rules
 
-- **Models:** small by default, Claude Haiku (`claude -p --model haiku`) and GPT-6 Luna (`codex exec -m gpt-6-luna`). A skill that works on a small model is clear, and small models are cheap enough for three or more runs a case. `--model` runs larger models, for example before a release.
-  - A failure on one small model is noted, not acted on. When more than one model fails the same case, or a larger model fails it, the failure is looked into, what fails and why, before anything changes, since the cause is then likely the skill. Text added for one small model costs every user tokens on every turn. The summary flags a case that more than one model failed (D214).
-- **Login:** an API key from the environment, or the user's own login copied into the throwaway home only when the user asks, and deleted afterwards. A copied login reaches none of the user's accounts: Claude Code loads no claude.ai connector (such as Gmail or Google Drive), no skill or plugin claude.ai syncs and no MCP server, and its account tools (cloud routines, phone notifications, designs) are denied; Codex gets a throwaway `config.toml` that turns off the ChatGPT apps and plugins (recorded after round 5, where it was done).
+- **Models:** the models the user names for tests: now Sonnet (`claude -p --model sonnet`) and Sol (`codex exec -m gpt-6.1-sol`), about 3 runs per case on each (D311). `--model` selects them.
+  - A failure on one model is noted, not acted on. When both models fail the same case, the failure is looked into, what fails and why, before anything changes, since the cause is then likely the skill. Text added for one model costs every user tokens on every turn. The summary flags a case that more than one model failed (D214).
+- **Login:** an API key from the environment, or the user's own login copied into the throwaway home only when the user asks (`--login`), and deleted afterwards. A copied login reaches none of the user's accounts: Claude Code loads no claude.ai connector (such as Gmail or Google Drive), no skill or plugin claude.ai syncs and no MCP server, and its account tools (cloud routines, phone notifications, designs) are denied; Codex gets a throwaway `config.toml` that turns off the ChatGPT apps and plugins (recorded after round 5, where it was done).
   - **Codex and `/tmp`:** its `workspace-write` sandbox would also let a run write the machine's real `/tmp`, so the throwaway `config.toml` sets `exclude_slash_tmp`; the run's own `TMPDIR` stays writable. As a backstop, a round with Codex runs lists the names new in `/tmp` once it ends, never their contents (D242).
-- **Cost:** give an estimate based on observed pilot usage before a run, with what the budget guarantees (D216). The runner prints the workload and reports its own estimate as unavailable until token usage, helper work and auxiliary calls can be forecast:
+- **Cost:** give an estimate based on observed usage before a run, with what the budget guarantees (D216). The runner prints the workload and reports its own estimate as unavailable until token usage, helper work and auxiliary calls can be forecast:
   - no new run starts once known spending reaches the budget, so a run already started can pass it;
   - each Claude call is also capped at the budget left after completed calls, by `--max-budget-usd`; within one run, another Claude turn does not start when that remainder is exhausted or that run's cost became unknown; an unknown cost in an earlier run does not stop later runs, which are capped at the budget minus known spending;
   - Codex cost is estimated from its token counts and is not capped;
   - both CLIs report cumulative session or thread counters: subtract the preceding counter for a resumed call and restart from zero only at an explicitly fresh session; fresh auxiliary calls count independently. Claude's root total includes helper spending, so child totals are not added. A Claude turn whose background helpers wake the session again ends with one result per wake, each carrying the session total; the last counts. Each wake starts with a new init, and the user sees the text of each earlier wake as its own message, so that text counts as progress text and only the last wake's text is the final answer. Replay uses the same accounting and saved session boundaries;
   - a missing or decreasing counter, or an unexpected session change, leaves the call's cost unknown. A valid later counter can establish a new baseline, but cannot recover the missing call's spending;
-  - a model with no known price counts as unknown, not as zero, and the summary says how many runs had an unknown cost.
+  - a model with no known price counts as unknown, not as zero, and the summary says how many runs had an unknown cost;
   - a failed or timed-out call does not erase completed spending: known spending remains a lower bound, and any unquantified remainder is reported separately.
-- **Privacy:** raw event logs and credentials stay outside the repository and are deleted afterwards, unless the user asks to keep the logs. Local review summaries retain the fixture and action evidence described above, never the separate credential home or raw tool outputs. What a run showed goes into the design's test result or an evidence entry, as skillbook-write says.
-- **Judging:** scripts check behaviour. What only judgment can check, such as whether an explanation is clear, is judged by the agent that guides the run or by the user, and the result says which.
-- **Scenarios come from the guides' promised results and rules,** as each scenario's design says (D288). The designs' Tests lists stay as ideas for later scenarios and focused cases.
-- **Case-writing rules:** follow [skillbook-write's Test cases instruction](../../.agents/skills/skillbook-write/SKILL.md), including prompt/check agreement, advice relevant to the result, strength versus choice, and unknown evidence. Its test-first rule follows the user's schedule; the build schedule above defers model runs (D253, D254).
+- **Privacy:** raw event logs and credentials stay outside the repository and are deleted afterwards, unless the user asks to keep the logs. Local review summaries retain the fixture and action evidence described above, never the separate credential home or raw tool outputs. What a run showed goes into the decision's Tested line, as skillbook-write says.
+- **Judging:** scripts check behaviour. What only judgment can check, such as whether an explanation is clear, is judged by `tests/judge-small.ts` on questions that each name one thing, and a person reads every fail. The judge's cost is given and counted like a run's, and an unknown cost stays unknown.
+- **Case-writing rules:** follow [skillbook-write's Test cases instruction](../../.agents/skills/skillbook-write/SKILL.md), including prompt/check agreement, advice relevant to the result, strength versus choice, and unknown evidence. Its test-first rule follows the user's schedule.
 
 ## Open, settled when building
 
@@ -117,246 +144,50 @@ Build the scenario, its fixture and its checks before any model test, and valida
   - Anthropic's Claude for Open Source gives one person 6 months of Claude Max 20x, for individual use only, with no API credits found; whether it is open is unclear.
   - OpenAI's Codex for Open Source gives 6 months of ChatGPT Pro with Codex, and API credits from its fund for core open-source work, with no amount stated. It is personal and not transferable.
   - These are personal plans, so they fit local tests by the user and never GitHub CI.
-- **Paid small models cost about half a cent a run** (inferred from the published prices): Haiku 5.5 is $0.10 per million input tokens and $0.50 per million output tokens, and GPT-6 Luna is the same.
+- **Small cases cost little:** the trial of D311 ran three guides on Sonnet and Sol, 3 runs each, with judging, for $17.69.
 - **Both agents can run apart from the user's setup:** `CLAUDE_CONFIG_DIR` and `CODEX_HOME` set a separate config root, and both log in with an API key in a headless run.
 
 ## Related
 
 - [how-it-works.md](how-it-works.md): the install script the install tests check, and how a skill is written.
 - skillbook-write's "Test cases" instruction, in `.agents/skills/skillbook-write/SKILL.md`: how a design's tests are run and what a result holds.
+- `tests/README.md`: how to run and judge small cases.
 
 ## TypeScript runner
 
 The runner is TypeScript on Bun, pinned through mise and in CI (D268). It reads the YAML cases. The Python runner stays for replaying saved runs and comparing assertions; its TOML cases were retired (D288).
 
-The modules under `tests/runner/` separate case loading and validation, sandbox homes and files, process ownership, agent commands, trace parsing, assertions, scoring, reports and the command line. Plain functions take data and return observations or verdicts. File access and agent processes stay at the edges. Each module has account-free tests. Bun supplies YAML parsing, subprocess support and the test runner. Exact package versions and their lockfile keep schema generation, validation and type checking reproducible.
+The modules under `tests/runner/` separate case loading and validation, sandbox homes and files, process ownership, agent commands, trace parsing, assertions, reports and the command line. Plain functions take data and return observations or verdicts. File access and agent processes stay at the edges. Each module has account-free tests. Bun supplies YAML parsing, subprocess support and the test runner. Exact package versions and their lockfile keep schema generation, validation and type checking reproducible.
 
-`types.ts` defines the case format. A generated JSON Schema checks every YAML file before any run starts and supplies editor completion. Unknown fields and invalid checks fail early. Schema freshness, type checking and unit tests join `just check`, with a check that the active scenarios load.
+`types.ts` defines the case format. A generated JSON Schema checks every YAML file before any run starts and supplies editor completion. Unknown fields and invalid checks fail early. Schema freshness, type checking and unit tests join `just check`, with a check that the cases load.
 
-A case is a conversation, including a single-message case. It holds a user description and facts sheet, a fixed or simulated user mode, and ordered turns with messages and purposes. Fixed mode sends the written messages. The simulated mode follows the fixed script under the scenario rules below. Turns can hold tagged assertions and rubric criteria. A tagged assertion may depend on an earlier turn's check. An unmet actual prerequisite gives `not reached`; an unknown prerequisite stays unknown, separate from failure. Results preserve the scripted and sent messages, observations, tagged verdicts and rubric judgments as JSON. Scores group checks by habit or skill across runs, with counts and a Wilson 95% interval; unknown and not-reached checks have their own counts and do not enter the pass rate. A rubric judge interface accepts a fresh judgment without mixing it with automatic results. Judge calibration and model execution belong to the scenario layer.
+A case is a conversation, including a single-message case. Its turns hold a message, checks and questions. Results preserve the sent messages, observations and verdicts as JSON. Isolated homes, explicit login copies with cleanup, agent account restrictions, per-turn timeouts and evidence, process cleanup, scheduling by jobs and known spending, unknown costs and kept event logs are the runner's. Codex cost remains an estimate from token usage, without a hard API spending cap.
 
-The port preserves isolated homes, explicit login copies with cleanup, agent account restrictions, per-turn timeouts and evidence, process cleanup, scheduling by jobs and known spending, unknown costs, kept event logs, coverage and the list of runs needing judgment. Codex cost remains an estimate from token usage, without a hard API spending cap. Saved-log replay compares the new assertions with the Python assertions before a bounded live comparison. A live disagreement can be model variation; replaying the same evidence distinguishes that from a runner difference.
+Later: a terminal view, possibly using OpenTUI, can watch runs and browse turns, checks and scores from the same JSON results. The runner builds no terminal interface.
 
-Later: a terminal view, possibly using OpenTUI, can watch runs and browse turns, checks and scores from the same JSON results. The port builds no terminal interface.
+## The no-skill run
 
-## Scenario layer
-
-Long scenarios are the behavioral layer (D269, D288). The first is [the festival scenario](scenarios/festival.md): five chapters and 28 turns that need every essentials guide at least once. It tests late loading, reuse of guides still in view, near misses and continuity through files. The second is [the todo app scenario](scenarios/todo-app.md): six chapters and 40 turns of code work, built as the confirmation scenario (D305). The fifteen earlier scenarios and every single-prompt case were retired; the last commit holding them is tagged `essentials-old-tests`.
-
-Each scenario has a goal, a user description, a facts sheet and an ordered fixed script. Fixed mode is the default. A run-wide `--user-mode` setting overrides the scenario setting. In simulated mode GPT-6.1-Sol starts from each fixed message and changes only what the actual reply needs. It answers from the facts sheet, keeps each turn's purpose and order, and steers back without adding facts, requests or approvals. Record the scripted and sent message and whether it steered. In fixed mode a fit judge checks whether the next message answers the agent's questions and still fits. Report off-script and unknown-fit counts per scenario.
-
-Every turn separately checks the final answer's habits, one behaviour per check (D299): main-point position, plain English, extra content and process narration, and requested scope. The point check tests position only. Plain English is the `respond` guide's rule 4 check. Extra content, narrated process and long follow-ups are the `respond` guide's rule 1 check. The scope check tests only respecting approvals. The outcomes criterion judges completing the work. The `act` guide's rule 3 judges the work only: the parts the user asked for, with what they need to work, respecting settled choices, asking about an action-changing concern, such as an open result, before the work it affects, and doing nothing unrelated. How long its follow-ups run is not its business. The inherited no-skill-names assertion is tagged too. Disable it when requested output legitimately names skills, such as agent instructions, startup lines or an installation report; naming there is the task, not unnecessary narration. Checks name their habit or skill. Pool scores per agent, model and user mode across scenarios, with passed and scored counts, unknowns, not-reached counts and Wilson 95% intervals. Intervals describe check outcomes; repeated turns in one conversation are correlated, so they are not independent estimates of real-world success. Both assertions and rubric checks may depend on an earlier named check. Failed prerequisites give not reached; unknown prerequisites stay unknown. Missing turns remain unknown. A fresh-session turn keeps files but clears the conversation session.
-
-GPT-6.1-Sol judges semantic criteria from the conversation, answers and retained action and file evidence. Claude Sonnet judges the same saved answers as a second judge, through `tests/judge-scenarios.ts --judge-model claude=sonnet`, with no tools and no session; report its scores beside Sol's. Sonnet has not been checked against the trace book, so where the two judges disagree, Sol's verdict stands until it is. Treat that evidence as data. Unsupported conclusions stay unknown. Judge no invisible helper activity as failure. Calibrate with saved answers also rated by the user, report disagreements and keep live rubric scoring pending until calibration is complete. Each assertion and rubric needs a correct and plausible wrong trace before its outcomes are trusted. `tests/calibrate.ts` accepts calibration items from several scenarios. Each item keeps its exact prompt, criterion, answer, conversation and file evidence, and the human verdict and reason. The judge receives the normal scoring evidence without human labels or earlier verdicts. Keep skipped items with their reason outside the agreement denominator. Report agreement out of all rated items, split by human passes and fails, with both reasons for every disagreement. The original three samples remain available. Model judgments and human ratings are stored together. `tests/check-rubric-fixtures.ts` checks the synthetic correct/wrong traces after human calibration. Answer scoring requires both completed calibration and a passing, current rubric-validation report. Once calibration is complete, `tests/judge-scenarios.ts` can judge saved answers in batches per turn without rerunning the tested agent. The judge sees source fixtures and conversation evidence, with earlier judgment labels removed. `tests/recheck-scenarios.ts` preserves original results while rechecking changed assertions, and `tests/compare-scenarios.ts` reports both modes. Synthetic judge contracts check transport and validation, not model accuracy.
-
-Each scenario's design lists its fixture facts, its checkpoints and every turn's needs, expected results, rule checks, rejected behaviour and automatic checks. Run fixed mode first, then simulated mode only for chapters with off-script turns. Give the cost before every run. Unknown cost stays unknown. Build no terminal interface; the later terminal view can consume these results.
-
-## Final answers and calibration (D270)
-
-Score point-first on the final answer only. Progress remains evidence for claims backed by actions, not scored output. The automatic no-skill-names check also uses final answers only. Separately report progress that is long, unclear or names internal skills for human review; those observations never enter a pass rate. Review heuristics may flag a line over about 200 characters or 40 words, vague references and internal names. These are review aids, not new scored rules.
-
-Every scenario turn has a point-first check with a concrete test: it tests position only, the main answer, result or needed question in the first line or two. There is no clear-at-a-glance check (D301): point-first covers where the result goes, the `respond-layout` guide's own checks cover layout, and the `respond` guide's rule 1 check covers extra content. Plain English is the `respond` guide's rule 4 check, and process narration and extra content are its rule 1 check. No check scores a form that fits the reader or excess internal explanation, because neither has a measure.
-
-Judge the current turn's work and answer. Earlier turns establish context and actual prerequisites, not inherited failures. A post-work review question is allowed after approved work is done. Mark not reached only when the current check cannot meaningfully be evaluated because a needed prior artifact or state is absent. Do not use a failed earlier quality score as a substitute for that test. A missing carryover note has a valid recovery path: report its absence, inspect actual files and give the next step without redoing work.
-
-A recommended answer beside a question is allowed while the user keeps the choice. A request for reasons accepts grounded reasons or a plain explanation of why the available facts give no basis for one. If the request leaves the kind of result open and plausible interpretations require different results, ask about that intent before choosing. Apply these boundaries across all scenarios, including lesson requests.
-
-For this calibration comparison, add clear-at-a-glance passes for turns the user rated good overall and a fail for handbook turn 1. Infer no other new human labels. Keep original human ratings identifiable, including any rating whose concern now belongs to a different check. Compare two fresh judge passes with the same frozen evidence and labels, report each one's agreement split by human pass/fail, and report self-agreement. Broader rubric-pair and saved-run scoring remains a separate user decision. D301 later dropped the clear-at-a-glance check. The clear-at-a-glance labels this comparison added, 16 items in `tests/calibration/human-scenarios-v2.json` (15 tuning, 1 held-out), stay there as the record of how the judge read that check, and no active check uses them. The gate reads a calibration file only to see that it is complete (`requireCalibration`, `tests/runner/calibration.ts:138`), so they neither fail the gate nor reach the trace book; they still count in the agreement figures that a report copies from the file.
-
-## One check per behaviour, and style is never a failure (D299)
-
-A review of one Sonnet run found that one behaviour failed up to four checks: a long answer with a side topic failed point-first, clear-at-a-glance, the `respond` guide's rule 1 and the `act` guide's rule 3 together. D301 later dropped clear-at-a-glance. Of 35 length and scope failures, 16 turns held all of them, and 7 of those failed three or four checks. Several checks also mixed tests, and style was scored as failure.
-
-- **One home per behaviour.**
-  - Point-first: position only.
-  - Clear-at-a-glance: no check since D301. Point-first covers where the result goes, the `respond-layout` guide's checks cover layout, and the `respond` guide's rule 1 check covers extra content.
-  - Plain English: the `respond` guide's rule 4 check.
-  - Internal skill names: the guide-names check and the `respond` guide's rule 1 check.
-  - Extra content: the `respond` guide's rule 1 check. It covers side topics, offers of more work (D302, D304), unasked plans, fixes or alternatives written into the answer, repeated deliverables, narrated process, and an outside follow-up or concern worked out beyond what it is and where, such as with its cause, a check or a fix. It judges content, never length (D303). It keeps the location and basis of saved work, and never counts a part another rule requires, such as the stopping offer.
-  - The work done: the `act` guide's rule 3 check, which judges what was done or changed and nothing about how long the answer runs.
-  - Scope: approvals only, unchanged.
-- **Style is never a failure, and no check counts lines or words (D303).** Saying the needed things in more words or lines is a model's style. The guides keep their own limits, such as "in a line or two", as advice to the agent; a check fails a part only for what it holds. The scenario's own limits, such as turn 20's and 21's "under 150 words", stay in their outcomes criteria. Adding content nobody asked for is behaviour the guides forbid. A check about extra or unclear content fails only when the judge can quote the part and say what makes it extra.
-- **Length is a number, never a verdict.** Each turn's final-answer word count is saved in the run results. The summary prints the median and total per run beside the scores. `tests/compare-runs.ts` takes two judged run files of the same agent and model and reports, over the turns both cover, fails, passes and undecided per judge, overall and per check, the checks that changed to or from fail, the flip share (changed checks over checks decided in both) and the word counts. It compares a model with its own earlier run and ranks no model. It reads one file at a time, since a judged run file can pass 100 MB.
-- **Traces follow the checks.** A wrong trace shows the fault its own check names and no other, so it still fails that check under the new text. About six turns, spread over the five chapters, also carry a fuller correct answer: the same things in the same order in about three to four times the words, with a short reason beside each point and no new topic, plan, repetition or process story. Every habit check must pass it. Re-judging saved answers and the gate cover the change; neither has run yet.
-
-## Judge validation and reliability (D273)
-
-Each check has one purpose. Split independent requirements into separate checks, with a correct and a plausible wrong trace for each. A human pass maps to every split part. A human fail maps only to the part named by the reason; leave other parts unrated and list ambiguous mappings rather than inventing labels. Preserve the original rating and the mapping source.
-
-Existing human ratings are the tuning set. Checks and the judge may be fixed against them. They come from the retired scenarios, and their saved items stay as calibration data. Scenarios 03 (records), 07 (board) and 14 (quick help) supplied a fresh held-out set rated blind by the user. Make only generic check fixes there. Do not read their saved answers for tuning. Nobody tunes against held-out labels. Judge them once at the end; report that result as judge quality. A later check or judge fix needs a fresh held-out set.
-
-Each calibration item carries `set: tuning` or `set: heldout`. Refuse held-out items without explicit `--heldout`. Before a held-out call, append its UTC date to the source file's held-out run history. Preserve that history across output files so another use is visible, including an interrupted attempt.
-
-Report agreement separately for each set: the share of human passes the judge passes and the share of human fails it fails. Show numerator, denominator and Wilson 95% interval for both. Unknown judgments remain in the human-label denominator. Compare two frozen-evidence tuning runs for self-agreement over pairs with Boolean judgments in both runs. Show its count and interval, and list unresolved pairs separately. Aim for about 90% in each human class before trusting the judge; this is a working target, not proof of validity. Never use a tuning result as the held-out quality estimate.
-
-Scenario reports show the average alongside pass^3, per scenario and per turn/check, grouped by agent, model and user mode. Pass^3 asks whether all three runs pass. Fewer than three runs, missing turns or unknown checks leave reliability unknown; a known failure makes the three-run result false. Keep not-reached checks separate. Do not infer three-run reliability from a single Sol run.
-
-### Helper unavailability in validation traces
-
-The correct trace for a turn whose user asks for helpers shows those helpers running and returning their work. A failed-startup fallback is an alternative. Outcomes judges delivery of the user's request, including a required method or check before delivery. The requested-work rule judges only the parts the user asked for, including a method or check the user named; a part that only a guide or the turn's expected results require is judged by its own criteria. Scope judges approval only. An undelivered requested part fails outcomes and the requested-work rule even when the limitation is disclosed. Shared criterion wording applies this distinction in fixture and live judging. A guide's `result:*` criterion separately judges its own “Gives back”, including a blocked or unfinished stage's honest status where the guide permits it. That result can pass while the user-request criteria fail. Judge the handling of the missing capability by the source guide: say so, stop that step, offer a fallback, and never silently substitute the requested method. An observable attempted brief is judged whether or not startup succeeds; its visible requirements get pass or fail, while only facts the record cannot establish stay unknown. A guide may explicitly allow a provisional result with a pending independent check when the user did not request a helper outcome; judge the delivered work and that fallback by their own source requirements. Keep those cases distinct from a request for independent or parallel work.
-
-Preview validation judges only selected candidate names and cannot authorize scoring, even when all selected judgments match. Select prior misses and candidates whose evidence, criterion or expectation changed; keep fingerprints in reports so the next preview can identify them. A historical report without fingerprints needs the exact book from its revision. Only a complete full report under the current contract starts gate validation. Judge every missed candidate twice more on that same contract. A miss matching in both reruns is nonblocking noise. A miss in either rerun is a blocking miss. Scoring may start with blocking misses up to 2% of the candidates, rounded down, each named in the combined report and the run summary; one more blocks scoring. Five full gates of 1,040 candidates each found 3 to 5 such misses, mostly on traces nobody had changed, where the judge reads borderline evidence both ways; a rule allowing none never let scoring start. The limit is 2%, not 1%, so a gate that follows a large change of criteria is not blocked by the extra borderline flips the new wording brings. A missing result or a stale contract always blocks scoring. Keep both reruns, list every noise candidate and retain the measured flip rate in the combined report and run summary. Preview reports never authorize scoring. This rule follows the repeated 239-candidate preview at `94fd856`: 3 verdicts changed (3/239, 1.3%), and 21 of the 22 misses repeated. The flip measurement describes repeatability, not semantic accuracy. A perfect initial full report needs no reruns. Preserve the judge's raw response beside verified verdicts so rejected citations remain visible. A batch whose judge call fails with a passing service error, such as "at capacity", or whose reply is not valid JSON, is tried up to three times in all, with a short wait between tries, and each retry is recorded in the report. A reply that does not parse holds no verdict, so trying again cannot pick a preferred one; its raw text is kept in the report. Other failures are not retried. One busy moment or one broken reply otherwise voids a whole full report: the todo-app's first two full gates lost 11 and 44 candidates to replies that did not parse, and the next, with retries, lost none. A batch can still end with no verdict after three tries: the todo-app's second full gate had two such batches of one candidate each, whose replies never closed their results list (D309). Such a batch does not void the full report. Judge only its candidates in a preview on the same contract and model, then fill the full report from that preview with `tests/fill-rubric-gate.ts`. The fill copies the preview's verdicts into the full report and drops the error rows, so no result is missing. It refuses a preview on another contract or model, a report that is not a full one, a candidate whose fingerprint changed since the full report, a candidate the preview does not judge or judges twice, and a full report with nothing to fill. The filled report records what it filled and adds the preview's cost. It is a full report, so its misses are rerun twice as usual. A preview alone still never authorizes scoring. The fill judges nothing new: it places verdicts that the same judge gave on the same contract, and the fingerprints show that each candidate is unchanged, so the gate checks the same candidates the same way. It costs far less than a new full gate: the todo-app's two candidates cost $0.58, against about $49.
-
-All three judge commands accept `--judge-timeout SECONDS`, default 600 seconds. Validate the value before starting calls. Cost remains unknown when token prices or usage are unavailable. Calibration does not authorize fixture-model validation or broader saved-answer judging.
-
-Calibration walks show a compact action list for each turn: commands with exit status, observed file reads, and helper calls with available results. Keep one line per action and cut long output. Retain full evidence separately. Blind walk selection uses scenario, run, turn and check metadata, never answers or verdicts. A smaller held-out walk uses one fixed Luna run per reserved scenario, every turn, and at most three judge-decided checks per turn, aiming for about forty items. Rotate habit checks beside task checks to cover different concerns.
-
-Judge reports about requested helpers, results and verification limits as accountability, not unnecessary process. Internal skill names and rule explanations remain unnecessary unless requested; only the guide-names check and the `respond` guide's rule 1 check fail them. A required notice of text aimed at an agent, naming where it is and what it asked, an outside follow-up that says what and where, and a challenge verdict beside a recommended answer, which the `respond-ask` guide's rule 2 requires (D307), are never excess or a side topic; only the `respond` guide's rule 1 check judges whether such a part holds more than it needs, by its content, never its length. Style and length are not failures: more words or lines for needed content, or a fuller explanation, pass every check; layout is judged only by the `respond-layout` guide's own checks; and a check about extra or unclear content fails only when the judge can quote the part and say what makes it extra. A rule part that tells the agent to read a guide belongs to the loading view: rule judging returns no part for it and never fails a rule for a missing or helper-only read. Claims of completed checks or independent work need recorded actions and results; the claim alone cannot pass. A genuinely missing recording stays unknown. A complete trace lacking the claimed action or actions contradicting it can fail. Reading sources oneself does not prove independent review. Brief orientation to the task can lead with the point, and scope can be expressed through the goal, constraints and exclusions without a dedicated heading. A broad request for lessons does not resolve an open choice between project results and working methods.
-
-Fact-finding and selection checks test whether each reported fact matches both the source and the requested subject. A source-backed fact about another subject is not a matching result. Keep pass improvement notes separate from failure reasons and never turn them into failing human labels.
-
-Held-out result, 2026-10-27: GPT-6.1-Sol judged the 30 blind-rated items once with a 600-second call timeout. It passed 27/27 human passes (100%; Wilson 95% range 87.5–100%) and failed 2/3 human fails (66.7%; 20.8–93.9%). Unknown judgments: 0. Three fails give a very wide range for fail detection. The one disagreement was scenario 14, turn 2, `point` (walk index 23): the human rating failed because the audience question should have come first (an inferred reason, with none supplied by the user); the judge passed because the answer opened with “v1 is here: saved searches,” naming the release and feature without preamble. Cost is unknown for all 10 calls. Ratings, evidence, judgments and run history are in `tests/calibration/human-scenarios-v2.json`. No checks, judge instructions or tuning items changed.
+`bun tests/run.ts --no-skill` makes a fresh home without installations, project-skill copies, startup pointers or skill registrations. Account features stay disabled. It keeps the task facts, the project's normal constraints, the model, permissions, account isolation, timeouts and the number of runs. Both conditions use fresh conversations and homes. Eligible checks are scored the same way in both; routing and loading checks have no no-skill equivalent. A check that passes in the no-skill run too measures nothing and is flagged (see "Small cases").
 
 ## Skill loading and rule outcomes (D278)
 
-Measure how skills are used through scenarios and what skillbook contributes. Show whether each needed skill was loaded, whether each applicable rule’s outcome happened, and whether the skill gave back its promised result. Compare rule outcomes and skill results with skillbook installed versus absent. Scenarios are the main vehicle. Focused cases explain scenario results. The four-box grid below is the centre of the report.
+Retired by D311. Small cases produce no rule grid or four-box report. Loading is read from the `reads` and `reads_not` checks and kept as a diagnostic, and the comparison with a no-skill run stays (see "The no-skill run"). The full D278 design is in git history before D311.
 
-Build this measurement before further skill changes (issue #26). Its build order takes priority over earlier run schedules. This is a design; implementation and model runs follow separately.
+## Frozen long scenarios (D310, D311)
 
-### The first build: skill-use records
+The festival ([festival.md](scenarios/festival.md): five chapters, 28 turns) and the todo app ([todo-app.md](scenarios/todo-app.md): six chapters, 37 turns) were the behavioural test layer (D269, D288, D305). They are frozen. `tests/cases/essentials/festival.yaml` and `todo-app.yaml`, their fixtures, traces and saved runs stay as a record and are not run again. The fifteen earlier scenarios and every single-prompt case were retired before them; the last commit holding those is tagged `essentials-old-tests`.
 
-For each skill and turn, ask: was it needed, loaded whole, and loaded in time? A skill is needed where the scenario marks it or one of its rules becomes applicable from the log or answer. An applicable exclusion or near-miss check does not make the excluded child needed. Files required at every conversation start always count as needed. Record the author's labels and unexpected action-triggered needs separately; use both in the loading view and rule grid. Each applicable rule supplies its loading deadline; use the earliest needed deadline for the skill's loading view. Scenario-only needs name their deadline. Code answers loading, extent and timing from an ordered session record, shared by Codex and Claude Code.
+The last full live run on both scenarios showed no progress: the fails both judges agreed on did not move, most fails happened with the right guide read, and a gate cost about $47 (D310).
 
-- Identify the scenario, repetition, agent, model, user mode, installed/no-skill condition, session and turn.
-- Record the skill file, tool and call id, event order, success or error, read/search operation, whole/partial/unknown extent, and truncation.
-- Keep the supporting event reference, reader version and reason for any unknown. Save the tested skill files with the results so later edits cannot change their meaning.
-- Record before/after/unknown timing against the first attempted project change. Also record whether a change was confirmed by results or file evidence. A failed write is still an attempt.
+The judging machinery of those runs is retired, and its code leaves in a later build commit (the build list is in D311):
 
-Count a whole read only when the returned text proves the complete file was delivered. Supported line ranges may combine when they cover the same file without gaps. A partial read proves only the returned part. A search remains a search even if it finds the tested rule. A filename, a heading plus a last line, or the agent's claim proves no whole read.
+- the second judge, and judge tuning against hand-written traces (calibration and trace books);
+- the gates, the gap fill (D309) and the contract hash;
+- the frozen copy of every rule in `tests/checks/`, and judging every rule at every turn;
+- the rule grid and four-box report of D278, and the coverage list (the `covers` field, `--coverage`, `just test-coverage` and the `check-coverage` step).
 
-Count an explicit Skill load as whole only when its recorded delivery establishes the complete text. An acknowledgement alone leaves extent unknown. Apply the same test to text injected at startup; a catalogue description is insufficient.
+Until the build, the runner still validates `tests/checks/` at start, so a rule edit still needs its frozen copy updated there.
 
-A skill read in an earlier turn still counts if its whole text is still in the conversation. Record the turn it was read and show reused versus newly opened text. Do not require another read. If the record cannot show that the whole text remains available, mark availability unknown. The first build may leave these cases unknown before a pilot.
+What the retired method left, kept in the decisions: the check designs for final answers (D270), one check per behaviour (D299) and judge validation (D273), the festival's no-skill comparison (D288) and the live-run results (D305 to D310). On 2026-10-27, Sol judged 30 blind-rated items once: it passed 27 of 27 human passes and failed 2 of 3 human fails, a very wide range for fail detection.
 
-A read becomes available when its result arrives. Use the first attempted change as the deadline for rules that must apply before changes. Use the answer for response rules. Other checks name their action deadline. Keep late reads visible; they cannot repair an earlier missed deadline. A turn without changes records that fact.
-
-### Readers and validation
-
-Build on the native event records. Validate each reader before trusting its supported observations.
-
-- **Codex:** `tests/runner/agents.ts:38` requests JSON events. `tests/runner/trace.ts:67` reads completed commands and aggregated output. Match command starts and results, resolve actual skill paths, distinguish reads from searches, and inspect returned text and truncation. Replace the heading/last-line shortcut at line 35. Unsupported commands stay unknown.
-- **Claude Code:** `tests/runner/agents.ts:24` requests verbose stream JSON. `tests/runner/trace.ts:48` joins tool calls and results. Add Read/View returned ranges, Grep searches, Skill delivery evidence and Bash output handling. Lines 60–65 currently accept successful calls without establishing extent. Errors and missing results prove no successful delivery.
-- **Both:** replace the flattened set at `tests/runner/trace.ts:43` with per-turn access records for attribution. Keep legacy read assertions identifiable. Extend the conservative change detection at line 141 with result evidence. Save normalized access evidence before sandbox cleanup; the compact action ledger alone is insufficient.
-
-Use events when they establish delivery and order. Add an observational hook only for a demonstrated recording gap that the harness can expose. A filesystem-open hook proves access, not complete delivery. Hooks must not add instructions or change task behavior. Otherwise keep the observation unknown.
-
-Validate against about 20 recorded sessions per agent, selected for varied tools and misleading cases. This is a starting size, not a statistical guarantee. Cover whole/partial reads, searches, failed and truncated calls, compound commands, late reads, no-change turns and ordinary reuse. Add synthetic fixtures for parser branches, including missing middle text with matching first and last lines.
-
-**Annotation, settled with the user:** an agent labels access, extent and timing from raw events; the user checks about five sessions per agent, including uncertain cases. Keep labels and evidence pointers. Resolve disagreements before trusting the affected observation; unsupported cases remain unknown. Recheck after reader or event-format changes. Existing Codex recordings can seed this work. Claude needs suitable recordings before its reader is trusted; creating new sessions requires separate run authorization.
-
-### Edge cases and later additions
-
-Keep uncertain cases unknown in the first build. Add deeper handling only when a scenario result needs it.
-
-- **Compaction and resumed sessions:** a session id alone does not prove retained text; a summary is not the whole skill. Add context-retention inspection when this blocks useful measurements. A fresh session clears prior availability.
-- **Helpers:** a helper's read does not load the parent. Claude actions keep `parent_tool_use_id`, with null identifying the main agent. Preserve helper actions for judging, but exclude helper reads, session IDs and context boundaries from main-agent loading and retention. Keep missing helper evidence unknown.
-- **Concurrent or opaque actions:** unordered reads and writes, unexplained file diffs and unknown shell effects leave timing unknown. Add finer ordering when it matters.
-- **Finer comparisons:** byte-level ranges and cross-version id mappings can follow a demonstrated need. The first build freezes one rule inventory and does not pool incompatible versions.
-
-### Checks come from rules and promised results
-
-Write each rule’s checks once in `tests/checks/<set>/<skill>.yaml`, beside its coverage id from `just test-coverage`. Scenario turns and focused cases reference these definitions wherever the named rule applies. Case-level `covers` and skill tags alone cannot support a rule grid.
-
-- **Rule checks** describe the observable outcomes of a skill’s own rules. **Shared checks** do the same for widely applicable parent rules in essentials, `act` and `respond`. Use existing ids for rules, advice, routes, exclusions, steps, including their final checks; parent routing has its own id.
-- Each check names its source text, applicability, required skill text, deadline, exact expected outcome, rejected behavior and evidence. Name choices the agent must leave to the user. For `understand-clarify:rule:1`, expect a question about the user’s open choice before dependent work; pair it with rule 2’s check that no affected file changes before the answer.
-- The scenario author marks situation-triggered rules, such as clarifying open intent. For action-triggered rules, code finds applicability from the action log or answer, such as a project change or deletion; for claims, the judge marks each claim with a quote. These opportunities count even in unmarked turns. An absence such as “change nothing until answered” counts only where applicability is established. Reading an unneeded skill to apply its “when not” test is legitimate; rightly skipping its action passes. Acting on an inapplicable rule fails the exclusion or near-miss check, such as asking an unneeded question.
-- Code scores outcomes visible in files or the action log, including order: evidence before a claim requires a recorded read before that claim. Otherwise a judge answers yes/no with an answer quote or recorded action id. Code verifies every quote verbatim against the answer and every action id against the log, including claim-applicability evidence. Missing or unmatched evidence leaves the verdict unknown; count these cases separately. An observed outcome proves behavior, not that the skill caused it. Loading and matched no-skill runs address that question.
-- Count one applicable rule per turn as one opportunity. All applicable parts must pass; a known failure fails; otherwise an unknown part leaves the outcome unknown. Classify availability at the earliest applicable deadline. Retain each part’s verdict, deadline and availability; later reads remain late.
-- Move existing per-scenario criteria into rule or shared checks for the current failure family’s source rules; other criteria keep running unchanged outside the grid until their family moves over. Split independent requirements and replace repeated criteria with references. Useful habits with no source rule keep their own score outside the grid, with a reason. A check is a second copy of its rule: update it and affected scenarios whenever the rule changes, following skillbook-design’s boundary-change check.
-- Freeze ids and full source text with results. The ids are positional (`tests/run.py:331`, `tests/runner/inventory.ts:28`); reject absent ids and compare the same inventory. Declared coverage is not an observed pass.
-
-**Skill results:** a skill that applied means a needed skill under the definition above, including unexpected action-triggered needs. Classify every promised part of its “Gives back” line and named result shape as visible or internal. Visible means in an answer, file or delegated report. Check visible parts with the same code-first scoring and quoted judge evidence. Check an internal part only where a later visible step must show it; name that step, its evidence and deadline. Otherwise exclude the part with a reason, rather than fail it or mark it unknown. For example, `understand-frame` returns a frame and unknowns to its caller (`skills/essentials/references/understand.md:56`); that return alone requires no visible output. Keep definitions and exclusions in the same per-skill check file, tied to their source lines. Report missing parts, unknowns and excluded parts separately, with counts and reasons.
-
-The user spot-checks the judge’s yes/no verdicts against their quotes, rather than rating whole answers. Continue judge calibration under the validation rules above: failure detection remains unproven. Check each definition against correct and plausible wrong evidence before trusting it.
-
-### The four-box report
-
-First report loading per skill and turn: needed and loaded; needed but not loaded (a miss); not needed but loaded (a cost); not needed and not loaded. Loaded means whole text available by the needed deadline, or by turn end when unneeded; retain late and partial reads separately. Show counts, unknowns apart, and tokens for unneeded reads where known. An unneeded load is never itself a failure; it may suggest that “when to use” is too wide.
-
-Report the installed grid per rule, agent and model. Identify the tested skill version and user mode. Split trigger and near-miss opportunities. Beside each eligible rule's grid, show its matched no-skill rule-outcome pass rate with passes and scored opportunities. Keep unknowns and counts of checks with no no-skill equivalent visible.
-
-“Opened” means the whole file that holds the rule was available by the rule's earliest applicable deadline in that turn. A read in an earlier turn counts if the whole text is still in the conversation. Each parent file owns its own rules; score those rules and parent routing separately. A child file's read does not prove its parents were read. A complete record proving no whole read means “not opened.” Keep partial, search-only and late-read counts beside it. Missing evidence means unknown.
-
-| Availability by deadline | Rule outcome passed | Rule outcome failed |
-| --- | --- | --- |
-| Whole skill available | Opened and followed: works | Opened and not followed: wording |
-| Whole skill not available | Not opened and passed: model default or weak test | Not opened and failed: routing |
-
-When the installed not-opened and matched no-skill pass rates have overlapping 95% ranges, investigate model default if the check rejected its wrong-evidence fixture; a check that accepted wrong evidence is weak, and an unvalidated check leaves this interpretation unknown. If the opened pass rate is no higher than its matched no-skill rate, the sample shows no measured gain for that rule.
-
-Use these labels to guide investigation. They do not establish cause. Before changing wording or routing, check whether the prompt tests the rule. Check whether the agent saw part of the rule, whether the runner could record what happened, and what evidence supports the judge's verdict. For a near miss, following the rule may mean skipping a child’s action after reading its exclusion. Mandatory start-of-conversation files remain needed.
-
-- Show each cell's count and share of classified opportunities, with a Wilson 95% range. Give explicit numerators and denominators; empty rows have no rate or range.
-- Show unknown loading only, unknown behavior only, both unknown, and not reached separately. These groups do not overlap. Preserve whichever side is known outside the grid.
-- A judge timeout leaves behavior unknown. An incomplete access record leaves loading unknown. Not reached requires a missing prerequisite, not an earlier quality failure.
-- Show distinct cases and conversations, reused reads and partial/search/late counts. Keep automatic checks and rubric results identifiable. Retain pass^3 where three repetitions exist.
-- Report **rules ever exercised** per agent/model and condition. Count distinct rules that applied at least once and received a behavior pass or fail. Divide by all rules in the frozen in-scope inventory. Count each rule once, whether passed or failed. List rules with only unknown verdicts and rules never reached. Opening alone does not exercise a rule.
-
-Add a second view for each applicable rule and its skill’s observable promised result: rule outcome passed/failed against result present/missing, retaining unknowns on either side. A result is present when all applicable, non-excluded promised parts pass; a known missing part makes it missing, and otherwise an unknown part leaves it unknown. If every applicable part is excluded, report the result as excluded, outside this view's denominator. Passed rules with a missing result suggest the rules do not deliver the promise; a result present without the required rule outcome suggests the rule may be unneeded. These are reasons to investigate, not proof of cause. Show counts, missing parts and exclusions beside the loading grid.
-
-Repeated turns and checks are correlated. The ranges describe the observed sample; they do not establish real-world reliability. Keep untested rules and unmapped habits visible.
-
-### Routing notes: diagnostic hints
-
-Collect thinking text or reasoning summaries that the harness already records, plus progress messages between tool calls, with their order in the turn. Add no request for extra agent output and change no skill. A note mentions a skill or rule when it names the skill, its file or a recognisable phrase of the rule before that rule's deadline. Keep the quoted lines and their source and order. An unknown deadline or unresolved order cannot establish a mention before the deadline.
-
-Beside each grid opportunity, show “considered” for a mention before the deadline, “not mentioned” when thinking was available but no such mention was found, or “no thinking available”. A recorded progress message can supply a mention even when thinking is missing. Keep later mentions visible as late. These hints are most useful for opened-and-not-followed rows (considered and rejected, or never noticed) and not-opened rows (considered and skipped, or never considered). A mention alone establishes neither a decision nor its execution. It never changes a cell, verdict or loading label and never supplies judge evidence.
-
-Use the same thinking settings in installed and no-skill runs. Summaries are partial and can be absent or redacted. “Not mentioned” is weak evidence; it does not prove the agent never considered the rule.
-
-### Scenarios and diagnostic cases
-
-Start with checks from the rules and promised results behind four recent failure families: claims without recorded evidence, applying approved work, clarifying open intent, and useful final reporting. Include their parent routes. Then investigate normalization, explanations, narrow layouts, carryover recovery and factual selection.
-
-Past runs also found snapshot-check errors and a clarification prompt that did not require asking. Repair these measurement errors before treating a result as a skill failure. Preserve selected raw events and expected verdicts with fixtures so validation does not depend on temporary reports.
-
-Add focused trigger and near-miss cases where a scenario cannot explain a failure or boundary. Each rejects plausible wrong behavior. Test an always-required rule with contrasting compliant/violating behavior rather than inventing a skip. Check automatic and semantic criteria against correct and wrong evidence before using them.
-
-For clarification, label whether the request needs a question and identify the missing piece. Check whether the question targets that piece. Pair it with a request whose result is already settled. This adapts a useful idea from [LHAW](https://huggingface.co/datasets/ScaleAI/lhaw), whose card was read and whose licence is CC BY 4.0. LHAW is not a gold standard for our rules. Import none of its tasks, scoring or environments; no dataset items are required. If later importing adapted items, record exclusions, changes and source attribution, including MCP-Atlas where applicable.
-
-Freeze development and measurement banks before skill tuning. Use development scenario results and no-skill disagreements to choose diagnostic case families. Measure unseen variants. Keep important safeguards even when the no-skill runs already pass. Record held-out attempts and never tune on held-out answers or labels.
-
-The festival scenario is for development: failures there drive fixes, so it is not unseen evidence of a skill's effect. A second, different scenario, written before a fix is called proven, checks that the fix is not tuned to the festival (D288). That scenario is [the todo app](scenarios/todo-app.md) (D305). A measuring bank of unseen scenarios comes once more scenarios exist. Keep it in its own folder; agents fixing skills do not open it and receive only grid totals from it: no prompts, answers or judge reasons. Whoever briefs a fixing agent keeps this rule. Judge-calibration holdouts and skill-effect holdouts have separate purposes.
-
-### The no-skill comparison
-
-Run the same scenarios with skillbook installed and absent. Add an explicit no-skill option: `tests/runner/files.ts:177` installs unconditionally, while `pointer: false` at line 217 removes only the pointer.
-
-- Skip installation, project-skill copies, startup pointers and skill registrations in no-skill runs. Verify no inherited path or plugin supplies skillbook.
-- Preserve task facts, normal project constraints, model, permissions, account isolation, timeouts and repetitions. Remove fixture skillbook references only through a documented variant.
-- Use fresh conversations and homes for both conditions. Alternate their order. A matched pair shares scenario, repetition and settings, not identical random sampling.
-- Report per-rule and per-scenario pass rates, counts, Wilson ranges, percentage-point differences, paired pass/fail transitions, regressions and unknown pairs. Compare both rule outcomes and skill results, which an agent without skills can still show. No-skill loading is absent; eligible checks are scored normally.
-- Blind semantic judges to condition labels while retaining evidence needed to judge the rule. Mark tasks without a no-skill equivalent ineligible. Keep routing and loading checks in installed grids only; label them “no no-skill equivalent” with reasons and counts. Compare the behavior they lead to instead, such as asking about a missing audience.
-
-### Basis
-
-Adapt the measurement ideas, not published performance claims, to skillbook.
-
-- [Skill Coverage](https://shuaijiumei.github.io/skillcoverage/) labels observable behavior constraints pass or fail. Its reported coverage is about 39–46%, with about 89% human/judge agreement. This motivates reporting rules exercised beside the grid; its judge accuracy does not transfer to ours.
-- [SRA-Bench](https://arxiv.org/abs/2604.24594) separates retrieval, incorporation and task execution. This supports keeping access evidence and behavior outcomes distinct.
-- [SkillsBench](https://arxiv.org/abs/2602.12670) and [SWE-Skills-Bench](https://arxiv.org/abs/2603.15401) compare matched runs with and without skills. This supports measuring contribution and regressions through our scenarios.
-- The [2026 survey](https://arxiv.org/html/2606.11435v1) supplies the broader evaluation context. The primary sources above support the specific methods. These sources were read; they do not validate skillbook's implementation.
-
-### Build order and cost
-
-Build the smallest measurement that answers the scenario question.
-
-1. Build per-turn access records and readers from existing recordings and fixtures; building needs no user choice. Validation uses the annotation workflow above. Validate supported observations before trusting them; new Claude recordings need separate run authorization.
-2. Write reusable rule, shared and result checks for the four failure families above and migrate only criteria that map to them; leave other criteria running unchanged and migrate later, family by family. Add coverage ids, the per-skill loading view, both outcome views and the no-skill home option; no user choice is needed. Account-free fixtures verify both views, quoted-evidence requirements, eligible no-skill rates, unknowns and isolation. Reject a report counting an unavailable no-skill read as a regression. With a complete record, two passing checks of one rule and its first read between their deadlines, assert “not opened and passed” and a denominator of one. Add a fixture where an unmarked action creates a rule opportunity: assert that both the loading view and rule grid use its need and deadline. Test observable internal results and exclusions without counting excluded parts as missing or as passes.
-3. Build the festival scenario: its fixture and checkpoints, its rule and result checks for every guide it needs, and correct and wrong evidence for each check. Freeze the checks, source mappings and skill files. Run a pilot of one chapter in both conditions; check recording quality, judging and actual cost.
-4. Run the whole scenario in both conditions. Report the loading grid, rule-outcome/result view and no-skill comparisons before proposing skill changes. Add focused cases where results need explanation.
-
-Keep later work driven by measured gaps. Defer byte ranges, full context-retention proofs, unsupported helper attribution and reordered-id comparisons as described above. Cut matched-pair resampling and missing-data bounds from this design: counts, explicit unknowns and ordinary ranges answer the present question. They are not prerequisites for the pilot.
-
-A full measurement names its scenario bank, diagnostic cases, model matrix and repetitions. With S scenarios, C diagnostic conversations and R repetitions, one agent/model combination needs 2 × R × (S + C) conversations. Sum over combinations; count actual turns and judging separately.
-
-One festival run is 28 agent turns per agent, model and condition, plus judging. Earlier runs left most judge calls unpriced, so the total stays unknown until the pilot measures it.
-
-Use pilot usage and known prices to estimate the full measurement. Report agent, judge, retry and unknown costs separately. Unknown costs are not zero. Replay and static checks make no paid model calls.
-
-Models and limits, settled with the user:
-
-- **Models:** Codex with Sol and Luna, three repetitions each. Add Claude Code with Sonnet and Haiku, three repetitions each, once the user's Claude quota allows. No other models.
-- **Known spend:** stop new calls at about US$5 for the pilot and about US$30 for the full measurement, at API prices.
-- **Pilot workload:** one festival chapter, fixed mode, Codex Sol and Luna, installed and no-skill. Its repetitions and call caps are calculated from the chapter's turns before the pilot and agreed with the user. Batch judging per turn: at most one claim-applicability call and one semantic-outcome call. Failed calls consume their slots and leave affected verdicts unknown; do not retry them. Count all calls before dispatch, including calls with unknown price. Stop new calls in a category at its cap, and all new calls at the known-spend threshold; report unfinished work.
-- **Unknown spend and full-run caps:** unknown costs do not stop calls, since most judge calls report no price; call caps do. Before the full run, publish separate agent, judge, simulated-user and retry caps from its frozen workload and the pilot's observed calls per turn and transition. List the calculation and any allowance for work the pilot did not exercise. Keep Claude's existing call cap. These caps supplement the full-run known-spend threshold.
+Outside sources read for the retired measurement design, adapted and not copied: [Skill Coverage](https://shuaijiumei.github.io/skillcoverage/) (rules exercised), [SRA-Bench](https://arxiv.org/abs/2604.24594) (retrieval apart from use), [SkillsBench](https://arxiv.org/abs/2602.12670) and [SWE-Skills-Bench](https://arxiv.org/abs/2603.15401) (matched runs with and without skills), the [2026 survey](https://arxiv.org/html/2606.11435v1), and [LHAW](https://huggingface.co/datasets/ScaleAI/lhaw) (CC BY 4.0; no tasks, scoring or environments imported), whose idea of labelling whether a request needs a question still informs clarification cases.

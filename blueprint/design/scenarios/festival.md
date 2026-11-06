@@ -2,6 +2,8 @@
 
 One long conversation that needs every essentials guide at least once, and several guides many times. A residents' group plans a neighbourhood festival, Common Ground, from the first idea to the lessons after the day. It replaces all earlier test cases (D288). Each turn's checks come from what its guides promise in "Gives back" and from their rules.
 
+> **Frozen (D310, D311):** this scenario is no longer run. It stays, with its fixtures, traces and saved runs, as a record. Guides are tested with small cases, as [the testing design](../testing.md) says.
+
 ## How it runs
 
 - **Five chapters, 28 turns.** Each chapter is one working session. Its first turn starts a fresh session, so the agent must find what was settled in the files, not in the conversation.
