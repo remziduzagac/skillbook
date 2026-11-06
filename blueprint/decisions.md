@@ -4971,9 +4971,25 @@ The method is adapted from three outside approaches. Each idea is rewritten for 
   - Naming tools and services as terms, plus a term-by-term check step: the broad plain-words question passed 2 of 18 runs on the new text against 3 of 18 on the old. A count of unexplained terms per answer did not change (garage case: Sonnet 8.0 to 7.3, Sol 6.0 to 6.0).
   - Explaining a term at its first appearance, even in the opening point: named-term questions passed 29 of 46 on the new text against 25 of 43 on the old. "Timing belt" passed 0 of 6 against 1 of 6, and every new fail was still in the opening line.
   - Reading the answers showed that the broad question failed answers that did explain their terms.
+- **Guess marking (`understand-frame` rule 2):** two guide changes, each tested old text against new, were both reverted by the merge rule.
+  - Reading every failing answer showed one pattern. The agent marked the frame's own lines. It listed its proposed measures outside the form, under one label such as "all guesses", or in a table under one mark. It left each item unmarked. Once it used its own words, "suggested criteria; not yet agreed", instead of "(guess)".
+  - Change 1 turned the form's "A good answer" line into two lines, one check per line and one way it could work yet fail per line. The lead-in said to keep the checks, and the ways the result could fail, inside the form. Rule 2 said to mark each item of a list or table on its own.
+    - Measures marked: 12 of 18 runs on the new text against 6 of 18 on the old.
+    - The held-out book-club case: 3 of 6 against 2 of 6. That is noise.
+    - The lists under one label went away, but Sonnet left the new "fails if" lines unmarked.
+  - Change 2 added "or a way it could fail" to rule 2's examples of proposals. It dropped the quoted "all guesses" example, because Sonnet once copied it as "(all guesses)".
+    - Measures marked: 11 of 18 against 6 of 18.
+    - The book-club case: 2 of 6 against 2 of 6.
+    - Sonnet still left its ways it could fail unmarked in 6 of its 9 runs.
+  - With no skill, measures were marked in 0 of 12 runs. Out-of-scope lines were marked in 18 of 18 runs on the old text.
+  - The test cases changed. The broad guess question was replaced, in both frame cases, by two questions that each name one thing:
+    - whether each proposed measure is marked, where a way it could work yet fail counts as a measure;
+    - whether each out-of-scope choice is marked.
+    - A limit taken straight from the notes needs no mark, and questions to the user are not judged.
+  - A held-out case was added: a book club losing members (`understand-frame--book-club`).
 - **One case was dropped:** a Python beginner's KeyError passed every question with and without the skill. A mortgage-letter case replaced it as the held-out case.
 
-**Spending:** $17.69 for the trial, runs and judging included.
+**Spending:** $17.69 for the trial, runs and judging included. The guess-marking tests cost $7.97: $5.33 for 42 runs and $2.64 for judging.
 
 **Built:** the build list is done. Each file was confirmed by following the imports from `tests/run.ts`, `tests/judge-small.ts`, `tests/check-examples.ts` and `tests/runner/schema.ts`.
 
