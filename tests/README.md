@@ -56,11 +56,11 @@ Each result records final answers, ordered actions, file diffs, relevant content
 ## Judge
 
 ```sh
-bun tests/judge-small.ts RESULTS_DIR... --out JUDGED.json --login
+bun tests/judge-small.ts RESULTS_DIR... --out JUDGED.json --login [--judges sol,sonnet]
 bun tests/judge-small.ts RESULTS_DIR... --out JUDGED.json --report-only
 ```
 
-`RESULTS_DIR` is a runner `--out` folder. The script reads the runner's results and the current case files. Sol answers each turn's questions with pass, fail or unknown and a quote from the answer. Judgments are saved in `JUDGED.json`. A question changed in a case file is judged again on the saved answers, with no new run. `--report-only` prints the report without a judge call.
+`RESULTS_DIR` is a runner `--out` folder. The script reads the runner's results and the current case files. Sol and Sonnet each answer every turn's questions with pass, fail or unknown and a quote from the answer. A verdict counts where they agree. A disagreement is a split: the report shows it as `+N split` and lists each one in `JUDGED-splits.txt`, to be read. Judgments are saved in `JUDGED.json`; `--judges sol` uses one judge. A question changed in a case file is judged again on the saved answers, with no new run. `--report-only` prints the report without a judge call.
 
 The report gives pass counts per check, per model and per condition (skill or no skill). It flags two kinds of check:
 
@@ -73,6 +73,6 @@ Read every fail before anything changes. Check each new question once: it must p
 
 [run.py](run.py) is an assertion and replay oracle for saved runs. It has no cases of its own. The old TOML and YAML cases are retired; the `essentials-old-tests` tag keeps them.
 
-The judging machinery of the long scenarios is retired, and its code is removed (D311): the second judge, calibration and trace books, the gates and the gap fill, the frozen rule copies in `checks/`, the coverage list and the judge brief `judge.md`. Git history keeps them. The frozen scenarios stay readable in [archive/](archive/README.md).
+The judging machinery of the long scenarios is retired, and its code is removed (D311): judge tuning, calibration and trace books, the gates and the gap fill, the frozen rule copies in `checks/`, the coverage list and the judge brief `judge.md`. Git history keeps them. The frozen scenarios stay readable in [archive/](archive/README.md).
 
 The dependency versions are exact in [package.json](../package.json) and [bun.lock](../bun.lock). Regenerate the schema with `bun run schema`. Python contracts, Bun unit tests and schema validation run without an account, model or network. Static checks also cover Markdown, local links, shell scripts and workflows; [install-test.sh](install-test.sh) tests installs in throwaway homes.

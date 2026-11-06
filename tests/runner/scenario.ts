@@ -45,6 +45,29 @@ export function structuredCall(
     catch (error) { throw new JudgeReplyError(String(error), answer); }
   };
 }
+// The same call on Claude, for the second judge. It gets no tools, settings or session, so it judges only its prompt.
+export function claudeStructuredCall(model: string, work: string, env: NodeJS.ProcessEnv, timeout: number,
+  groups: number[], account: (amount: number | null) => void, driver: typeof runTurn = runTurn): StructuredCall {
+  return async (instruction, data) => {
+    const prompt = structuredPrompt(instruction, data);
+    const command = ["claude", "-p", "--model", model, "--output-format", "stream-json", "--verbose",
+      "--tools", "", "--strict-mcp-config", "--setting-sources", "", "--no-session-persistence"];
+    const callGroups: number[] = [], push = callGroups.push.bind(callGroups);
+    callGroups.push = (...pids: number[]) => { groups.push(...pids); return push(...pids); };
+    const callEnv = { ...env, [MARKER]: `${env[MARKER] ?? "judge"}-${crypto.randomUUID()}` };
+    let ran: Awaited<ReturnType<typeof runTurn>>;
+    try { ran = await driver(command, work, callEnv, timeout, callGroups, prompt); }
+    catch (error) { account(null); throw error; }
+    const events = parse_events(ran.stdout);
+    account(cost("claude", model, [events]));
+    if (ran.status !== 0) throw Error(`judge model failed (exit ${ran.status ?? "timeout"}): ` +
+      redact(ran.stderr || "no diagnostic output").slice(-400));
+    if (action_evidence("claude", events).length) throw Error("judge model used tools");
+    const [answer] = turn_parts("claude", events);
+    try { return JSON.parse(answer.trim().replace(/^```json\s*|\s*```$/g, "")); }
+    catch (error) { throw new JudgeReplyError(String(error), answer); }
+  };
+}
 // A reply that does not parse carries no verdict; the raw text is kept so the report shows what broke.
 export class JudgeReplyError extends Error {
   constructor(reason: string, readonly raw: string) { super(`judge reply is not valid JSON: ${reason}`); }

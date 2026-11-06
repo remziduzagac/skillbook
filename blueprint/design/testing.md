@@ -28,9 +28,9 @@ A small case tests one guide with a short request. It is cheap enough to run abo
 - **Every case starts from the main skill,** as a real user's session does. The prompt does not name the guide.
 - **A few varied cases per rule, one held out.** The cases differ in kind of work and wording. One is written apart from any fix, as the held-out case of the merge rule. Each case is run about 3 times on each model, because single runs vary.
 - **Every run has a comparison:** the skill against no skill (`--no-skill`), or the old guide text against the new. The cases and the judging stay the same.
-- **Scripts first, then one judge.** The runner's automatic checks (`reads`, `reads_not`, `no_changes`, `only_changed`, `file_contains`, `answer_contains`) decide what they can. Then Sol answers each turn's questions. It answers pass, fail or unknown, with a quote from the answer. The questions come from the current case files, so a changed question is judged again on saved answers without new runs.
+- **Scripts first, then two judges.** The runner's automatic checks (`reads`, `reads_not`, `no_changes`, `only_changed`, `file_contains`, `answer_contains`) decide what they can. Then Sol and Sonnet each answer every turn's questions. Each answers pass, fail or unknown, with a quote from the answer. A verdict counts where the two judges agree. Where they disagree, the question is a split: it is counted apart, listed in a file, and read. The questions come from the current case files, so a changed question is judged again on saved answers without new runs.
 - **Each question names one thing.** "Is 'DPF' explained where it first appears?" is a good question. "Is every hard term explained?" is not: a broad question lets the judge apply its own standard, so it measures the judge and not the agent. A question that does not apply to an answer, such as a term the answer never uses, is answered unknown and left out of the counts. No question counts words or lines (D303).
-- **Trusting the judge.** Read every fail before anything changes. Check each new question once: it must pass a saved good answer and fail a saved bad one, such as a with-skill and a no-skill run of the same case. There is no second judge and no tuning.
+- **Trusting the judge.** Read every fail before anything changes. Check each new question once: it must pass a saved good answer and fail a saved bad one, such as a with-skill and a no-skill run of the same case. There is no judge tuning.
 - **The report** gives pass counts per check, per model and per condition (skill or no skill). It flags two kinds of check:
   - **passes everywhere:** it passes with no skill too, so it measures nothing. Rewrite the case or drop it.
   - **unstable:** the results are mixed over 3 or more runs.
@@ -44,7 +44,7 @@ The commands, with the cost given first and `--budget` set:
 bun tests/run.ts --case PATTERN --agents claude,codex \
   --model claude=sonnet --model codex=gpt-6.1-sol \
   --runs 3 --login --jobs 6 --budget N --yes --out DIR [--no-skill]
-bun tests/judge-small.ts RESULTS_DIR... --out JUDGED.json (--login | --report-only) [--jobs 6]
+bun tests/judge-small.ts RESULTS_DIR... --out JUDGED.json (--login | --report-only) [--jobs 6] [--judges sol,sonnet]
 ```
 
 `--case` takes one substring of the case id. `--report-only` prints the report from saved judgments without a judge call.
@@ -98,7 +98,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   5. records what the agent left running when each turn ended, then, when the run ends or a turn times out, ends it, so a leftover the model caused is still observed and nothing keeps running on the user's machine (D233);
   6. checks the event log;
   7. writes a short summary.
-- **`tests/judge-small.ts`:** the judge and the report for small cases, as "Small cases" describes. It reads the runner's result folders and the current case files, and saves its judgments in one file.
+- **`tests/judge-small.ts`:** the two judges and the report for small cases, as "Small cases" describes. It reads the runner's result folders and the current case files, saves both judges' verdicts in one file, and lists the splits in a file beside it.
 - **`tests/install-test.sh`:** the install tests. Each test copies `install.sh` and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched.
 - **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model.
 - **`tests/archive/`:** the frozen long scenarios, kept as a record and not run (see "Frozen long scenarios").
@@ -184,7 +184,7 @@ The last full live run on both scenarios showed no progress: the fails both judg
 
 The judging machinery of those runs is retired, and its code is removed (D311):
 
-- the second judge, and judge tuning against hand-written traces (calibration and trace books);
+- judge tuning against hand-written traces (calibration and trace books);
 - the gates, the gap fill (D309) and the contract hash;
 - the frozen copy of every rule in `tests/checks/`, and judging every rule at every turn;
 - the rule grid and four-box report of D278, and the coverage list (the `covers` field, `--coverage`, `just test-coverage` and the `check-coverage` step).
