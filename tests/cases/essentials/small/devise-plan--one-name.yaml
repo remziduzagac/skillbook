@@ -1,0 +1,12 @@
+about: >-
+  Near miss for the devise-plan guide: one change the user named exactly, which appears in a few places in the one file.
+  It goes ahead at once with no plan, and the plan guide stays closed. Rejects: a plan and a stop for approval, or reading the plan guide.
+goal: Respell a place name everywhere it appears in one page.
+fixture: small/walks-page
+turns:
+  - prompt: Please change "Harrow Dale" to "Harrowdale" in walks.md. It is one word.
+    checks:
+      reads_not: [devise-plan]
+      only_changed: [walks.md]
+      file_contains:
+        walks.md: ['around Harrowdale', 'car park in Harrowdale', 'cafe in Harrowdale']

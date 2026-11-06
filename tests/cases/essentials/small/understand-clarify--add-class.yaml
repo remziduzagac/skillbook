@@ -1,0 +1,12 @@
+about: A near miss, a clear request whose details the project already settles; the clarify guide stays closed and the class is added in the project's own format and order.
+goal: Add one class to a timetable, with the time written the way the timetable writes it.
+fixture: small/class-timetable
+turns:
+  - prompt: Add a Beginners Pottery class on Thursday at 6:30pm in Room 2 to timetable.md.
+    checks:
+      reads_not: [understand-clarify]
+      only_changed: [timetable.md]
+      file_contains:
+        timetable.md:
+          - '\|\s*18:30\s*\|\s*Beginners Pottery\s*\|\s*Room 2\s*\|'
+          - 'Knitting Circle[^\n]*\n[^\n]*Beginners Pottery[^\n]*\n[^\n]*Quiz Night'

@@ -1,0 +1,28 @@
+about: Held out, written apart from any fix and unlike the guide's own examples. The clarify guide on a price change where the amount is the user's and the rounding is settled by the project; the agent asks the amount, does not ask about rounding, and changes nothing until it is answered.
+goal: Put the mugs on sale in a price list, after asking how much off.
+fixture: small/pottery-prices
+turns:
+  - prompt: The spring fair is next week. Put the mugs on sale in prices.md.
+    checks:
+      reads: [understand-clarify]
+      no_changes: true
+      answer_contains: ['recommended answer']
+    rubric:
+      - id: asks-discount
+        tag: understand-clarify
+        criterion: >-
+          The request does not say how much the mugs go down by, and the new prices depend on it.
+          Does the answer put a question to the user about the size of the sale, as a percentage, an amount off or the new prices? Pass if yes, even when the question carries a recommended answer.
+          Fail if the answer picks a discount without asking, such as a line "Going with: 10% off", and quote that line. A question about something else does not count.
+      - id: no-rounding-question
+        tag: understand-clarify
+        criterion: >-
+          AGENTS.md says every price ends in .00 or .50, so a new price is rounded to the nearest 50p, and the price list already shows how prices are written.
+          Does the answer ask the user whether or how to round the new prices, or how to write them (currency or decimals)? Pass if it asks neither.
+          Fail if it asks either, and quote the question. Telling the user it will round to the nearest 50p is not asking.
+      - id: rec-or-why
+        tag: understand-clarify
+        criterion: >-
+          Look at each question the answer puts to the user. Does each one carry either a line "Recommended answer:" with an answer the user can accept by saying yes, or a line "No recommended answer:" with a reason?
+          Pass if every question does. Fail if any does not, and quote the first question that lacks both.
+          If the answer puts no question to the user, return unknown.

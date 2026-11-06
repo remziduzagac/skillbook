@@ -1,0 +1,21 @@
+about: The verify guide on a budget the user made, asked whether its totals are right; each total is added up again, so the wrong Food total and the whole-trip total that carries it are found, with the sums shown.
+goal: Check the totals of a small budget by adding them up again, and report what was found with the sums.
+fixture: small/cabin-budget
+turns:
+  - prompt: I made budget.md for our cabin weekend. Are the totals right?
+    checks:
+      reads: [act-verify]
+      no_changes: true
+      answer_contains: ['114\.50?', '483\.50?']
+    rubric:
+      - id: food-sum-shown
+        tag: act-verify
+        criterion: >-
+          Does the answer show the amounts it added up to get its own Food total? Pass if it lists the amounts that make up the Food total (64.20, 38.80 and 11.50), or writes a sum from them, such as "64.20 + 38.80 + 11.50 = 114.50".
+          Fail if it gives its own Food total with no amounts behind it, and quote that part. If the answer never gives its own Food total, return unknown.
+      - id: other-totals-checked
+        tag: act-verify
+        criterion: >-
+          Does the answer say that the Travel total (£129.00) and the Cabin total (£240.00) are right?
+          Pass if it says, in any wording, that both are correct, such as "the other totals check out".
+          Fail if the answer says nothing about one of them, or says one of them is wrong, and quote the part.

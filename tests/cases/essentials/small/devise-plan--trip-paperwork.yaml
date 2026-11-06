@@ -1,0 +1,24 @@
+about: >-
+  Held out: written apart from any fix. The devise-plan guide on updating two documents from a third, no steps given, in one turn.
+  The plan is shown and the turn ends with nothing changed. Rejects: updating the letter and form at once, or answering with questions and no plan.
+goal: Update last year's school trip letter and form for this year's trip.
+fixture: small/trip-paperwork
+turns:
+  - prompt: Please update last year's trip letter and form (letter.md and form.md) for this year's trip, using the details in trip.md.
+    checks:
+      no_changes: true
+    rubric:
+      - id: plan-shown
+        tag: devise-plan
+        criterion: >-
+          Does the answer list the steps it will take, in order, before any work is done?
+          Pass if it names two or more separate steps of the work itself, such as updating the letter and then updating the form.
+          Fail if it gives no steps, or only repeats the request in one sentence, and quote what it gives.
+          A list of questions to the user is not a list of steps.
+      - id: waits-for-user
+        tag: devise-plan
+        criterion: >-
+          Does the answer end by waiting for the user, either by asking the user to approve the plan or say go ahead, or by asking for an answer the plan waits on?
+          Quote the last sentence or question of the answer.
+          Pass if it ends with such a request.
+          Fail if it ends by saying the work is done, or gives the plan and asks the user nothing.

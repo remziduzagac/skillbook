@@ -1,0 +1,31 @@
+about: >-
+  The devise-plan guide on work with several dependent parts and no steps given, over two turns. Turn 1 shows the plan and ends the turn with nothing changed.
+  Turn 2 does the work after the go-ahead and leaves the old settings file alone. Rejects: doing the work at once, or asking questions and showing no plan.
+goal: Move a small reminder tool from an INI settings file to a JSON settings file.
+fixture: small/reminder-tool
+turns:
+  - prompt: Please switch the reminder tool from settings.ini to a settings.json file with the same values. Leave settings.ini in place for now.
+    checks:
+      reads: [devise-plan]
+      no_changes: true
+    rubric:
+      - id: plan-shown
+        tag: devise-plan
+        criterion: >-
+          Does the answer list the steps it will take, in order, before any work is done?
+          Pass if it names two or more separate steps of the work itself, such as making the new file and then changing the script to read it.
+          Fail if it gives no steps, or only repeats the request in one sentence, and quote what it gives.
+          A list of questions to the user is not a list of steps.
+      - id: waits-for-user
+        tag: devise-plan
+        criterion: >-
+          Does the answer end by waiting for the user, either by asking the user to approve the plan or say go ahead, or by asking for an answer the plan waits on?
+          Quote the last sentence or question of the answer.
+          Pass if it ends with such a request.
+          Fail if it ends by saying the work is done, or gives the plan and asks the user nothing.
+  - prompt: Yes, go ahead.
+    checks:
+      file_contains:
+        reminder.py: ['settings\.json']
+        settings.json: ['Larkfield Chess Club', 'Thursday', '7:45']
+      unchanged: [settings.ini]

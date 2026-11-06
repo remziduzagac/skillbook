@@ -1,0 +1,35 @@
+about: The clarify guide on a flyer text where one choice is the user's and one is settled by the project; the agent asks who the text is for, with a recommended answer, does not ask about the house style, writes no text yet, and changes nothing.
+goal: Write the About us text of a repair café flyer, after asking who it is meant to bring in.
+fixture: small/repair-cafe
+turns:
+  - prompt: Please write the About us section of flyer.md. Everything I know about the café is in notes.md.
+    checks:
+      reads: [understand-clarify]
+      no_changes: true
+      answer_contains: ['recommended answer']
+    rubric:
+      - id: asks-who-for
+        tag: understand-clarify
+        criterion: >-
+          The notes and the flyer do not say whether the About us text should bring in visitors with broken things or new volunteers, and the text would differ for each.
+          Does the answer put a question to the user about which of the two it is for, or what the text should get people to do? Pass if yes, even when the question carries a recommended answer.
+          Fail if the answer decides it without asking, such as a line "Going with: aimed at volunteers" or finished text aimed at one group, and quote that line.
+          A question about something else does not count.
+      - id: no-style-question
+        tag: understand-clarify
+        criterion: >-
+          AGENTS.md sets the house style: warm and plain words, short sentences, British spelling and no exclamation marks.
+          Does the answer ask the user about the tone, the spelling or the style of the writing? Pass if it asks none of these.
+          Fail if it asks any of them, and quote the question. Saying which style it will use is not asking.
+      - id: rec-or-why
+        tag: understand-clarify
+        criterion: >-
+          Look at each question the answer puts to the user. Does each one carry either a line "Recommended answer:" with an answer the user can accept by saying yes, or a line "No recommended answer:" with a reason?
+          Pass if every question does. Fail if any does not, and quote the first question that lacks both.
+          If the answer puts no question to the user, return unknown.
+      - id: no-draft
+        tag: understand-clarify
+        criterion: >-
+          The turn should end on the questions. Does the answer include a finished About us paragraph for the flyer, written for one group or for both?
+          Short example phrases that only show what an option would sound like do not count.
+          Pass if there is no finished paragraph. Fail if there is one, and quote its first sentence.
