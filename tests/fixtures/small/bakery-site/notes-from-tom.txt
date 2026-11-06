@@ -1,0 +1,6 @@
+Aunt Rosa's site
+- hosting: Netlify, free plan, deploys from the GitHub repo
+- domain rosasbakery.co.uk: bought at Namecheap, renews yearly in May
+- DNS: Namecheap points the domain at Netlify
+- SSL: Let's Encrypt via Netlify, should auto-renew
+- Namecheap login: in the password book in the shop drawer

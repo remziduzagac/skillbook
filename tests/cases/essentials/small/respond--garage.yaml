@@ -1,0 +1,27 @@
+about: The respond guide's plain-words rule, for a car owner who knows nothing about cars; held out from fixing the rule.
+goal: Explain a garage estimate in everyday words and say what matters most.
+fixture: small/garage-quote
+turns:
+  - prompt: The garage gave me this estimate (quote.txt) and wants an answer today. I know nothing about cars. What are they saying, which parts matter, and is any of it urgent?
+    checks:
+      reads: [respond]
+      no_changes: true
+    rubric:
+      - id: term-timing-belt
+        tag: respond
+        criterion: >-
+          If the answer uses "timing belt", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a belt inside the engine that keeps its moving parts in step"?
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+      - id: term-dpf
+        tag: respond
+        criterion: >-
+          If the answer uses "DPF", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a filter in the exhaust that catches soot"?
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+      - id: term-cv-boot
+        tag: respond
+        criterion: >-
+          If the answer uses "CV boot", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a rubber cover that keeps grease in a joint near the wheel"?
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+      - id: helps
+        tag: outcome
+        criterion: The answer says what each item of the estimate is about and which items are urgent and which can wait.

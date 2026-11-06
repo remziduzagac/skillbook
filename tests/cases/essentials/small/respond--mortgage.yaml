@@ -1,0 +1,27 @@
+about: The respond guide's plain-words rule, for a first-time buyer who says money is not their thing; held out from fixing the rule.
+goal: Explain a mortgage offer in everyday words and say what to watch out for.
+fixture: small/mortgage-offer
+turns:
+  - prompt: We got this mortgage offer (offer.txt) for our first home and have to sign by the 20th. Money stuff is really not my thing. What does it actually say, and is there anything we should watch out for before signing?
+    checks:
+      reads: [respond]
+      no_changes: true
+    rubric:
+      - id: term-svr
+        tag: respond
+        criterion: >-
+          If the answer uses "SVR" or "standard variable rate", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "the lender's normal rate, which it can change at any time"?
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+      - id: term-ltv
+        tag: respond
+        criterion: >-
+          If the answer uses "LTV" or "loan to value", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "you are borrowing 85% of what the house is worth"?
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+      - id: term-erc
+        tag: respond
+        criterion: >-
+          If the answer uses "early repayment charge" or "ERC", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a fee if you pay off the loan or move it to another lender early"?
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+      - id: helps
+        tag: outcome
+        criterion: The answer says what the main parts of the offer mean for the user and names at least one point to check or watch out for before signing.

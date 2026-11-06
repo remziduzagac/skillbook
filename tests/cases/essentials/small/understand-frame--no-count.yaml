@@ -1,0 +1,8 @@
+about: A plain factual question; the frame guide stays closed.
+goal: Answer a count.
+fixture: small/street-newsletter
+turns:
+  - prompt: How many bullet points are in notes.md?
+    checks:
+      reads_not: [understand-frame]
+      no_changes: true

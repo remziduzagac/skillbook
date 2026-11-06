@@ -1,0 +1,11 @@
+about: The frame guide on a community project with no code; every inferred or proposed part is marked as a guess.
+goal: Frame the problem before writing, with guesses marked one by one.
+fixture: small/street-newsletter
+turns:
+  - prompt: Our street wants a monthly newsletter. The meeting notes are in notes.md. Before I write anything, help me frame what it is for and how we would know it works.
+    checks:
+      reads: [understand-frame]
+      answer_contains: ['\(guess\)']
+    rubric:
+      - {id: guesses-marked, tag: understand-frame, criterion: 'Within the frame''s five parts (the problem, the goal, what is out of scope, the constraints and what a good result looks like), every statement that the agent inferred or proposed itself, rather than read in the project files or heard from the user, carries its own "(guess)" mark on the same line or item. Examples: a measure of success it suggests, an audience, a platform or a limit the notes do not state. Next steps, recommendations and questions outside the five parts are not judged here. A heading such as "Proposed" or one label over a whole list does not mark the lines under it. Pass if every such part is marked. Fail if any is not, and quote one unmarked part.'}
+      - {id: parts-filled, tag: understand-frame, criterion: 'The answer covers the problem, the goal, what is out of scope, the constraints and what a good result looks like. A part the agent cannot fill is marked unknown, not left out. Pass if all five are there, filled or marked unknown.'}

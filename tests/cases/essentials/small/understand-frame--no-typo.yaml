@@ -1,0 +1,8 @@
+about: A request with nothing to frame; the frame guide stays closed.
+goal: Fix spelling only.
+fixture: small/plant-notes
+turns:
+  - prompt: Fix the spelling mistakes in notes/idea.md and change nothing else.
+    checks:
+      reads_not: [understand-frame]
+      only_changed: [notes/idea.md]

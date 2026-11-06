@@ -1,0 +1,16 @@
+about: The organize guide on a merge, over two turns, propose then apply; approval first, then a checked result and a confirmation request.
+goal: Merge two FAQ files into one, losing nothing and marking the retired file.
+fixture: small/chess-faq
+turns:
+  - prompt: Merge questions.md into faq.md so the club has one FAQ.
+    checks:
+      reads: [organize]
+      no_changes: true
+    rubric:
+      - {id: map-first, tag: organize, criterion: 'Before changing any file, the answer shows where each item will go and asks the user to approve. Pass if no file is changed in this turn and both the map and the approval question are there.'}
+  - prompt: Yes, do it.
+    checks:
+      file_contains:
+        questions.md: ['faq']
+    rubric:
+      - {id: checked-then-confirm, tag: organize, criterion: 'After applying the change, the answer reports how the agent checked the result, such as comparing the old and new text or counting items, and what that check found. It then asks the user to confirm the result and does not call the work confirmed or finished before the user replies. Pass if both the check and the request for confirmation are there. Fail if either is missing.'}

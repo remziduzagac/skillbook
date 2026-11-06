@@ -1,0 +1,8 @@
+about: Adding one line is not a rearrangement; the organize guide stays closed.
+goal: Add a tip to one recipe.
+fixture: small/recipe-notes
+turns:
+  - prompt: 'Add my pancake tip to recipes.md: let the batter rest for 10 minutes before frying.'
+    checks:
+      reads_not: [organize]
+      only_changed: [recipes.md]
