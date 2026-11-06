@@ -1,0 +1,19 @@
+about: The organize guide on giving a repeated section one home, with the steps given, over two turns; approval first, then a checked result and a confirmation request.
+goal: Move the emergency contacts repeated on three trip pages into one contacts file, each page linking to it, losing nothing.
+fixture: small/trip-pages
+turns:
+  - prompt: Our three trip pages all repeat the same emergency contacts. Put that section in a new contacts.md, and replace each page's copy with a link to contacts.md.
+    checks:
+      reads: [organize]
+      no_changes: true
+    rubric:
+      - {id: map-first, tag: organize, criterion: 'Before changing any file, the answer shows where each item will go and asks the user to approve. Pass if no file is changed in this turn and both the map and the approval question are there.'}
+  - prompt: Yes, go ahead.
+    checks:
+      file_contains:
+        contacts.md: ['07700 900456']
+        lakes-weekend.md: ['contacts\.md']
+        snowdon-day.md: ['contacts\.md']
+        peak-walk.md: ['contacts\.md']
+    rubric:
+      - {id: checked-then-confirm, tag: organize, criterion: 'After applying the change, the answer reports how the agent checked the result, such as comparing the old and new text or counting items, and what that check found. It then asks the user to confirm the result and does not call the work confirmed or finished before the user replies. Pass if both the check and the request for confirmation are there. Fail if either is missing.'}

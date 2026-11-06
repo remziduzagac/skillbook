@@ -1,0 +1,8 @@
+about: The act guide's given-steps case, three listed edits to one file, made at once without a stop for a plan; a guard that organize's approval does not spread to ordinary listed changes.
+goal: Make three listed changes to a running club's rules.
+fixture: small/club-rules
+turns:
+  - prompt: 'Please make three changes to rules.md: change the meeting time from 6:30pm to 7pm, raise the yearly fee from £20 to £25, and add a safety rule that dogs must be on a lead.'
+    checks:
+      file_contains:
+        rules.md: ['7(:00)? ?pm', '£25', 'lead']

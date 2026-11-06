@@ -4987,9 +4987,27 @@ The method is adapted from three outside approaches. Each idea is rewritten for 
     - whether each out-of-scope choice is marked.
     - A limit taken straight from the notes needs no mark, and questions to the user are not judged.
   - A held-out case was added: a book club losing members (`understand-frame--book-club`).
+- **Organize stops (`organize` rules 4 and 5, `act` rule 13):** two guide changes, tested together as old text against new, were both reverted by the merge rule.
+  - Change 1 was meant to stop the agent from changing files before it asked. It added one line to the `act` guide's rule 13, among its go-ahead cases. The line said that rearranging existing material, which the `organize` guide covers, is an exception: given steps or a go-ahead do not replace the user's approval of that guide's map.
+  - Change 2 was meant to stop the agent from naming a guide in its answers. It gave each stop a reason that is a fact about the work.
+    - The main skill's arrange step said "a part lost in a move is hard to see once the move is done" in place of "as the `organize` guide requires".
+    - The `organize` guide's rule 5 gained "The user knows best whether the new arrangement still says what they meant."
+  - Results for Sol, new text against old, 3 runs per case:
+    - No change before approval: the recipe split 3 of 3 against 1 of 3. The held-out trip-contacts case 1 of 3 against 1 of 3. The FAQ merge 3 of 3 against 3 of 3.
+    - A guide or skill file named in the answer: 7 of 9 runs against 5 of 9. It went up, not down.
+    - The result checked, then confirmation asked: recipes 1 of 3 against 0 of 3, trip contacts 0 of 3 against 1 of 3, FAQ 2 of 3 against 2 of 3.
+  - Sonnet passed every check on the old text. On the new text, one held-out run did not read the `organize` guide and changed the files in the first turn.
+  - The guard case passed everywhere. All 12 runs, old and new, made the three listed edits at once without stopping.
+  - Reading the answers showed where the rule is written is not the cause.
+    - Sol named a guide only when it stopped. Its last line quoted the rule as the reason, such as "The essentials organize guide explicitly requires: 'Get the user's approval before changing any item or view.' That is why I'm pausing." It did this with the new reasons in view.
+    - In the held-out runs that went ahead, Sol had read the `organize` guide, its `organize-normalize` guide and the `act` guide with the new line. It then changed the files and asked for no confirmation.
+  - Two cases were added:
+    - a held-out case (`organize--trip-contacts`): three trip pages repeat the same emergency contacts, and the user gives the steps to move them into one `contacts.md`;
+    - a guard case (`act--listed-changes`): three listed edits to a running club's rules, which should be made at once without a stop.
+  - The old answers for the recipe and FAQ cases were reused from the trial, with their verdicts.
 - **One case was dropped:** a Python beginner's KeyError passed every question with and without the skill. A mortgage-letter case replaced it as the held-out case.
 
-**Spending:** $17.69 for the trial, runs and judging included. The guess-marking tests cost $7.97: $5.33 for 42 runs and $2.64 for judging.
+**Spending:** $17.69 for the trial, runs and judging included. The guess-marking tests cost $7.97: $5.33 for 42 runs and $2.64 for judging. The organize tests cost $5.55 for 36 runs, of which $1.80 was the old text on the two new cases. The judging cost was not captured.
 
 **Built:** the build list is done. Each file was confirmed by following the imports from `tests/run.ts`, `tests/judge-small.ts`, `tests/check-examples.ts` and `tests/runner/schema.ts`.
 
