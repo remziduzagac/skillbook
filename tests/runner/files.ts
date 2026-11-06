@@ -27,8 +27,9 @@ import {
   TARGET_KEYS,
 } from "./trace";
 import type { Agent, Checks, Event, Observation } from "./types";
-import { CODEX_REASONING_SUMMARY } from "./routing-notes";
 export { skill_name } from "./shell";
+// Codex writes reasoning summaries in the same way in every run, with or without the skill.
+export const CODEX_REASONING_SUMMARY = "auto";
 const IGNORED = new Set([".claude", ".codex", ".agents", "__pycache__", ".git"]);
 export function projectPaths(root: string): string[] {
   if (!existsSync(root)) return [];
@@ -133,11 +134,8 @@ export function observe(
     said = "";
     uncertain = "a change no action shows";
   }
-  const paths = new Set([...Object.keys(checks.file_contains ?? {}), ...(checks.shorter ?? []),
-    ...Object.keys(checks.words_under ?? {}), ...Object.keys(checks.only_replacement ?? {}),
-    ...Object.keys(checks.index_links ?? {}).filter(p => p !== "*"), ...(checks.keeps_lines ?? [])]),
+  const paths = new Set([...Object.keys(checks.file_contains ?? {}), ...(checks.shorter ?? [])]),
     folders = Object.keys(checks.folder_lacks ?? {});
-  if (checks.index_links?.["*"]) for (const p of written(delta)) if (/\.md$/i.test(p)) paths.add(p);
   for (const p of written(delta)) if (folders.some((f) => p.startsWith(f))) paths.add(p);
   return {
     project_snapshot: snapshot(work),
@@ -159,10 +157,6 @@ export function observe(
     before_change: said,
     changed_files: changed || delta.length > 0,
     sequencing_unknown: uncertain,
-    paths_present: Object.fromEntries((checks.absent ?? []).map(p => {
-      try { lstatSync(join(work, p)); return [p, true]; }
-      catch (error: any) { return [p, error.code === "ENOENT" ? false : null]; }
-    })),
     files: Object.fromEntries([...paths].map((p) => [p, safeContent(work, p)])),
   };
 }

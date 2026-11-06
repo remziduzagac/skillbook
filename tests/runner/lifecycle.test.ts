@@ -2,11 +2,10 @@ import { test, expect } from "bun:test";
 import { mkdtempSync, mkdirSync, writeFileSync, existsSync, symlinkSync, linkSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { prepareHome, agentEnv, snapshot, fixtureText, observe } from "./files";
+import { prepareHome, agentEnv, snapshot, changes, fixtureText, observe } from "./files";
 import { runTurn, endRun, owned, addedTmpPaths } from "./process";
 import { check } from "./checks";
 import { cost } from "./cost";
-import { score, evaluateTagged } from "./scoring";
 import { loadCases, validateCase } from "./cases";
 import { parseArgs } from "./cli";
 import { summarize, runsToJudge } from "./reports";
@@ -89,24 +88,6 @@ test("Sol costs count uncached, cached and output tokens across completed turns"
     type: "turn.completed", usage: { input_tokens: 1, cached_input_tokens: 2, output_tokens: 0 },
   }]])).toBeNull();
 });
-test("tag scores exclude unknown and not reached and retain a 95 percent interval", () => {
-  const result = score([
-    { tag: "habit", verdict: true },
-    { tag: "habit", verdict: false },
-    { tag: "habit", verdict: null },
-    { tag: "habit", verdict: "not reached" },
-  ]);
-  expect(result.habit).toMatchObject({ passed: 1, total: 2, unknown: 1, not_reached: 1, rate: 0.5 });
-  expect(result.habit!.interval[0]).toBeLessThan(0.5);
-  expect(result.habit!.interval[1]).toBeGreaterThan(0.5);
-  expect(
-    evaluateTagged(
-      [{ id: "b", tag: "habit", depends_on: { turn: 1, check: "a" }, assert: { no_changes: true } }],
-      {},
-      { "1:a": false },
-    ),
-  ).toEqual([{ id: "b", tag: "habit", verdict: "not reached" }]);
-});
 test("YAML is validated before filtering and unknown checks fail", () => {
   temporary(root => {
     writeFileSync(join(root, "route-test.yaml"), Bun.YAML.stringify({ fixture: "routing-studio",
@@ -180,13 +161,6 @@ test("agent adapters preserve sandbox and resume controls", async () => {
   expect(claude).toContain("0.25000000");
 });
 
-test("aspect inventory includes routes, exclusions and project checks", async () => {
-  const { aspects } = await import("./inventory");
-  const inventory = aspects();
-  for (const id of ["act:rule:5", "act:step:4", "essentials:step:1", "skillbook-design:check:13"])
-    expect(inventory[id]).toBeDefined();
-});
-
 test("kept paths include nested folders and reject merely named missing paths", () =>
   temporary((root) => {
     const kept = join(root, "recipes-x", "old-recipes");
@@ -201,21 +175,6 @@ test("kept paths include nested folders and reject merely named missing paths", 
       [false],
     );
   }));
-
-test("scores keep agents and models separate and include rubric judgments", async () => {
-  const { scoreRuns, judgeRubric } = await import("./scoring");
-  const rubric = { id: "clear", tag: "plain-answer", criterion: "Lead with the point" };
-  const judgment = await judgeRubric(
-    async () => ({ id: "clear", tag: "plain-answer", verdict: false, reason: "The point is missing." }),
-    { rubric, answer: "Preamble only", evidence: {} },
-  );
-  const scores = scoreRuns([
-    { agent: "codex", model: "one", turns: [{ judgments: [judgment] }] },
-    { agent: "codex", model: "two", turns: [{ tagged_checks: [{ tag: "plain-answer", verdict: true }] }] },
-  ]);
-  expect(scores["codex/one"]!["plain-answer"]!.rate).toBe(0);
-  expect(scores["codex/two"]!["plain-answer"]!.rate).toBe(1);
-});
 
 test("judge CLI accepts several folders after one flag", () => {
   expect(parseArgs(["--to-judge", "/tmp/one", "/tmp/two"]).to_judge).toEqual(["/tmp/one", "/tmp/two"]);
@@ -249,4 +208,18 @@ test("no-skill home omits installations, project skills and startup pointers for
       const env=agentEnv(home,agent,true,join(root,"tmp"));
       expect(env.HOME).toBe(home);expect(env.CLAUDE_CONFIG_DIR).toBeUndefined();
     }
+  }));
+test("snapshots skip Python caches and keep files the project's .gitignore ignores", () =>
+  temporary((work) => {
+    for (const [p, text] of Object.entries({".gitignore": "my-todos.txt\ndata/\n__pycache__/\n", "my-todos.txt": "[ ] fix bike\n",
+      "data/tasks.json": "[]\n", "jotdown/cli.py": "pass\n", "jotdown/__pycache__/cli.cpython-312.pyc": "cache",
+      "stray.pyc": "cache", ".git/config": "x"})) {
+      mkdirSync(join(work, p, ".."), {recursive: true}); writeFileSync(join(work, p), text);
+    }
+    const before = snapshot(work);
+    expect(Object.keys(before).sort()).toEqual([".gitignore", "data/tasks.json", "jotdown/cli.py", "my-todos.txt"]);
+    writeFileSync(join(work, "jotdown/__pycache__/store.cpython-312.pyc"), "new cache");
+    writeFileSync(join(work, "jotdown/__pycache__/cli.cpython-312.pyc"), "changed cache");
+    expect(changes(before, snapshot(work))).toEqual([]);
+    expect(check({no_changes: true}, {changes: changes(before, snapshot(work))})).toEqual({"no changes": true});
   }));

@@ -1,6 +1,6 @@
 # Skill tests
 
-Skills are tested with small cases: one guide, a short request, a comparison and a few plain questions (D311, [the testing design](../blueprint/design/testing.md)). The two long scenarios, the festival (`cases/essentials/festival.yaml`) and the todo app (`cases/essentials/todo-app.yaml`), are frozen. They stay as a record with their fixtures, traces and saved runs, and are not run again (D310). Executable checks and authored cases are not observed model results.
+Skills are tested with small cases: one guide, a short request, a comparison and a few plain questions (D311, [the testing design](../blueprint/design/testing.md)). The two long scenarios, the festival and the todo app, are frozen. They stay as a record in [archive/](archive/README.md), with their fixtures and traces, and are not run again (D310). Executable checks and authored cases are not observed model results.
 
 ## Small cases
 
@@ -73,6 +73,6 @@ Read every fail before anything changes. Check each new question once: it must p
 
 [run.py](run.py) is an assertion and replay oracle for saved runs. It has no cases of its own. The old TOML and YAML cases are retired; the `essentials-old-tests` tag keeps them.
 
-The judging machinery of the long scenarios is retired (D311): the second judge, calibration and trace books, the gates and the gap fill, the frozen rule copies in [checks/](checks/README.md), the coverage list and [judge.md](judge.md). Its code leaves in a later build commit. Until then the runner still validates `tests/checks/` at start, so a rule edit still needs its frozen copy updated there. The frozen scenarios stay readable.
+The judging machinery of the long scenarios is retired, and its code is removed (D311): the second judge, calibration and trace books, the gates and the gap fill, the frozen rule copies in `checks/`, the coverage list and the judge brief `judge.md`. Git history keeps them. The frozen scenarios stay readable in [archive/](archive/README.md).
 
 The dependency versions are exact in [package.json](../package.json) and [bun.lock](../bun.lock). Regenerate the schema with `bun run schema`. Python contracts, Bun unit tests and schema validation run without an account, model or network. Static checks also cover Markdown, local links, shell scripts and workflows; [install-test.sh](install-test.sh) tests installs in throwaway homes.

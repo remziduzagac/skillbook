@@ -2821,7 +2821,7 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - **Where:**
   - [../tests/run.py](../tests/run.py): `aspects`, `aspect_coverage`, `--summary` and the `AGENTS.md` copy;
   - [../tests/test_runner.py](../tests/test_runner.py): class `AspectCoverage`;
-  - [../tests/manual.toml](../tests/manual.toml);
+  - `tests/manual.toml`;
   - the `covers` field in all cases in `tests/cases/`, 24 new essentials cases and the new fixture `tests/fixtures/garden-club/`, 12 new project cases and new drafts in `tests/fixtures/skill-lab/`;
   - the [justfile](../justfile) (`check-coverage`, `test-coverage`);
   - [../.agents/skills/skillbook-design/SKILL.md](../.agents/skills/skillbook-design/SKILL.md) and [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md);
@@ -2925,7 +2925,7 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
   - when an answer it needs is one only someone else holds, such as a supplier or another team;
   - or when the user asks to be questioned.
 - **Where:**
-  - [../tests/judge.md](../tests/judge.md), [../tests/run.py](../tests/run.py), [../tests/test_runner.py](../tests/test_runner.py), [../tests/README.md](../tests/README.md) and [design/testing.md](design/testing.md);
+  - `tests/judge.md`, [../tests/run.py](../tests/run.py), [../tests/test_runner.py](../tests/test_runner.py), [../tests/README.md](../tests/README.md) and [design/testing.md](design/testing.md);
   - [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md);
   - the cases `route-shallow-before-deep`, `instruction-project-keeps-result` and `write-test-cases-baseline`;
   - [../skills/essentials/references/understand.md](../skills/essentials/references/understand.md) and [design/essentials/understand.md](design/essentials/understand.md).
@@ -4974,3 +4974,18 @@ The method is adapted from three outside approaches. Each idea is rewritten for 
 - **One case was dropped:** a Python beginner's KeyError passed every question with and without the skill. A mortgage-letter case replaced it as the held-out case.
 
 **Spending:** $17.69 for the trial, runs and judging included.
+
+**Built:** the build list is done. Each file was confirmed by following the imports from `tests/run.ts`, `tests/judge-small.ts`, `tests/check-examples.ts` and `tests/runner/schema.ts`.
+
+- **Removed, by group:**
+  - the judging scripts and the judge brief `tests/judge.md`, as listed;
+  - the runner modules on the list and their tests. With them went the rule and result checks the runner added to every turn, and the runner's own judge calls (`runner/judge-protocol.ts`);
+  - the rest of D278's records, not on the list: the guide-access records (`runner/access.ts`, `runner/access-shell.ts`), Codex context retention (`runner/codex-retention.ts`), the routing notes and the call caps;
+  - the runner features only the long scenarios used: chapters and checkpoints, the simulated user and its fit check, source snapshots, `requires` and the runner's own test run, tagged checks with tag scores and three-run reliability, the run comparisons, and the checks no other case used, such as `words_under`, `index_links` and `tests_pass`;
+  - the options `--coverage`, `--summary`, `--judge`, `--calibration`, `--rubric-validation`, `--rubric-book`, `--chapter`, `--suite` and `--user-mode`; the `covers` field and the other scenario fields in `runner/types.ts` and `tests/case.schema.json`; and `tests/manual.toml`;
+  - `tests/checks/`, `tests/calibration/`, the `justfile`'s `test-coverage` and `check-coverage`, and fixture files that nothing used.
+- **Archived:** `tests/archive/` holds the two cases, their fixtures, their trace books and the scripts that wrote them. The runner does not load it, and `just check` only lints its markdown and checks its links.
+- **Nothing on the list was kept.** The `reads` check reads from `runner/trace.ts`, so none of D278's four modules was needed.
+- **Kept, though near the list:** each run still saves the text of every skill file, as a record of the text tested. Codex keeps its reasoning-summary setting, so new runs match saved ones. The Python runner stays, and its own coverage report still runs without `tests/manual.toml`. The `answer_path_has` and `actions_lack` checks stay, because the Python contract vectors test them.
+
+The small cases' report from the trial's saved results is the same before and after the build.

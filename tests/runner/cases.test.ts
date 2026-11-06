@@ -13,31 +13,19 @@ test("invalid input is rejected rather than dropping intended checks", () => {
     { ...base(), runs: 0 },
     { ...base(), project_skills: ["unknown"] },
     { ...base(), routing_only: true, review: ["Judge this"], checks: { reads: ["act"] } },
-    { ...base(), turns: [{ prompt: "x", tagged_checks: [{ id: "a", tag: "habit", assert: {} }] }] },
+    { ...base(), turns: [{ prompt: "x", tagged_checks: [{ id: "a", tag: "habit", assert: { no_changes: true } }] }] },
+    { ...base(), turns: [{ prompt: "x", rubric: [{ id: "a", tag: "habit", criterion: " " }] }] },
     {
       ...base(),
-      turns: [
-        {
-          prompt: "x",
-          tagged_checks: [{ id: "a", tag: "habit", assert: { no_changes: true }, depends_on: { turn: 1, check: "a" } }],
-        },
-      ],
+      turns: [{ prompt: "x", rubric: [{ id: "a", tag: "habit", criterion: "One" }, { id: "a", tag: "habit", criterion: "Two" }] }],
     },
   ])
     expect(() => validateCase(value)).toThrow();
 });
-test("earlier-turn dependencies and explicit default overrides are kept", () => {
-  const value = {
-    ...base(),
-    turns: [
-      { prompt: "x", tagged_checks: [{ id: "a", tag: "habit", assert: { no_changes: true } }] },
-      {
-        prompt: "y",
-        tagged_checks: [{ id: "b", tag: "habit", assert: { no_changes: true }, depends_on: { turn: 1, check: "a" } }],
-      },
-    ],
-  };
-  expect(() => validateCase(value)).not.toThrow();
+test("one rubric id per turn may repeat in another turn, and explicit default overrides are kept", () => {
+  const question = { id: "a", tag: "habit", criterion: "The answer leads with the point." };
+  expect(() => validateCase({ ...base(), turns: [{ prompt: "x", rubric: [question] }, { prompt: "y", rubric: [question] }] }))
+    .not.toThrow();
   expect(normalize({ ...base(), checks: { names_no_skill: false } }, "essentials/x").checks.names_no_skill).toBe(false);
 });
 test("a malformed unmatched YAML file still prevents running any cases", () => {

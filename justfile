@@ -1,6 +1,6 @@
 # Every check, the same way CI runs it. Tools: markdownlint-cli2 (through npx), lychee, ShellCheck, shfmt,
 # actionlint and zizmor.
-check: lint-markdown links lint-shell lint-workflows check-skills test-runner check-runner-ts check-coverage
+check: lint-markdown links lint-shell lint-workflows check-skills test-runner check-runner-ts
 
 # Markdown style, with the rules in .markdownlint-cli2.jsonc.
 lint-markdown:
@@ -28,21 +28,13 @@ check-skills:
 test-install:
     tests/install-test.sh
 
-# AI scenarios in throwaway homes; see tests/run.ts --help. It asks before spending.
+# AI test cases in throwaway homes; see tests/run.ts --help. It asks before spending.
 test-agents *args:
     bun tests/run.ts {{args}}
 
-# Test the scenario runner and all case definitions without a model, account or network access.
+# Python unit tests of the replay runner, the skill-file check and the skills' scripts; no model, account or network.
 test-runner:
     PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py'
-
-# Every aspect a case must name in `covers` still exists, and how many aspects nothing covers yet (a warning only).
-check-coverage:
-    bun tests/run.ts --coverage --summary
-
-# Count executable normal, boundary and edge scenarios, and list the aspects no case covers; not a model pass rate.
-test-coverage:
-    bun tests/run.ts --coverage
 
 # Turn on this repository's git hooks, which refuse a commit message that credits an AI tool; once per clone.
 hooks:
@@ -63,6 +55,6 @@ check-runner-ts:
     bun tests/runner/schema.ts --check
     bun tests/run.ts --validate
 
-# Explicit alias for the active Bun scenario runner.
+# Explicit alias for the TypeScript runner.
 test-agents-ts *args:
     bun tests/run.ts {{args}}

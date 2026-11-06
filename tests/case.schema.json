@@ -11,62 +11,8 @@
         "goal": {
           "type": "string"
         },
-        "suite": {
-          "type": "string",
-          "enum": [
-            "short",
-            "master"
-          ]
-        },
-        "design": {
-          "type": "string"
-        },
-        "source": {
-          "type": "string"
-        },
-        "source_snapshots": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "path": {
-                "type": "string"
-              },
-              "sha256": {
-                "type": "string"
-              },
-              "text": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "path",
-              "sha256",
-              "text"
-            ],
-            "additionalProperties": false
-          }
-        },
         "fixture": {
           "type": "string"
-        },
-        "requires": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "chapters": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Chapter"
-          }
-        },
-        "gitignore": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         },
         "agents": {
           "type": "array",
@@ -124,12 +70,6 @@
         "rejects": {
           "type": "string"
         },
-        "covers": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "review": {
           "type": "array",
           "items": {
@@ -154,92 +94,11 @@
           "items": {
             "$ref": "#/definitions/Turn"
           }
-        },
-        "user": {
-          "type": "object",
-          "properties": {
-            "description": {
-              "type": "string"
-            },
-            "facts": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "mode": {
-              "type": "string",
-              "enum": [
-                "fixed",
-                "simulated"
-              ]
-            }
-          },
-          "required": [
-            "description",
-            "facts",
-            "mode"
-          ],
-          "additionalProperties": false
         }
       },
       "required": [
         "fixture",
         "turns"
-      ],
-      "additionalProperties": false
-    },
-    "Chapter": {
-      "type": "object",
-      "properties": {
-        "number": {
-          "type": "number"
-        },
-        "start_turn": {
-          "type": "number"
-        },
-        "checkpoint": {
-          "type": "object",
-          "properties": {
-            "fixture": {
-              "type": "string"
-            },
-            "overlays": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "remove": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "untracked": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "home": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "required": [
-            "fixture"
-          ],
-          "additionalProperties": false,
-          "description": "`home`: fixture folders copied in order into the throwaway home when the checkpoint is put in place."
-        }
-      },
-      "required": [
-        "number",
-        "start_turn",
-        "checkpoint"
       ],
       "additionalProperties": false
     },
@@ -286,12 +145,6 @@
             "type": "string"
           }
         },
-        "absent": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "only_changed": {
           "type": "array",
           "items": {
@@ -308,93 +161,6 @@
           }
         },
         "shorter": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "words_under": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "number"
-          }
-        },
-        "only_replacement": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "properties": {
-              "from": {
-                "type": "string"
-              },
-              "to": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "from",
-              "to"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "unchanged_under": {
-          "type": "array",
-          "items": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "folder": {
-                    "type": "string"
-                  },
-                  "except": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "required": [
-                  "folder"
-                ],
-                "additionalProperties": false
-              }
-            ]
-          }
-        },
-        "index_links": {
-          "type": "object",
-          "additionalProperties": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "folder": {
-                    "type": "string"
-                  },
-                  "contains": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "required": [
-                  "folder"
-                ],
-                "additionalProperties": false
-              }
-            ]
-          }
-        },
-        "keeps_lines": {
           "type": "array",
           "items": {
             "type": "string"
@@ -443,15 +209,6 @@
             }
           }
         },
-        "folder_contains": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
         "nothing_left_running": {
           "type": "boolean"
         },
@@ -484,66 +241,6 @@
           "items": {
             "type": "string"
           }
-        },
-        "tests_pass": {
-          "type": "string"
-        },
-        "heading_once": {
-          "type": "object",
-          "properties": {
-            "heading": {
-              "type": "string"
-            },
-            "in": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "required": [
-            "heading",
-            "in"
-          ],
-          "additionalProperties": false
-        },
-        "tree_lacks": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "paths_lack": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "only_new_files": {
-          "type": "object",
-          "properties": {
-            "matching": {
-              "type": "string"
-            },
-            "at_most": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "matching",
-            "at_most"
-          ],
-          "additionalProperties": false
-        },
-        "compare_to": {
-          "type": "string",
-          "enum": [
-            "checkpoint",
-            "turn"
-          ]
         }
       },
       "additionalProperties": false
@@ -554,75 +251,7 @@
         "timeout": {
           "type": "number"
         },
-        "skill_needs": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/SkillNeed"
-          }
-        },
-        "also_called": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/SkillNeed"
-          }
-        },
-        "if_taken": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ConditionalNeed"
-          }
-        },
-        "rule_marks": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "applies": {
-                "type": "boolean"
-              },
-              "deadline": {
-                "anyOf": [
-                  {
-                    "type": "number"
-                  },
-                  {
-                    "type": "string",
-                    "const": "first change"
-                  },
-                  {
-                    "type": "string",
-                    "const": "answer"
-                  }
-                ]
-              },
-              "near_miss": {
-                "type": "boolean"
-              },
-              "missing_piece": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "id",
-              "applies",
-              "deadline"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "judge_files": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "prompt": {
-          "type": "string"
-        },
-        "purpose": {
           "type": "string"
         },
         "fresh_session": {
@@ -630,12 +259,6 @@
         },
         "checks": {
           "$ref": "#/definitions/Checks"
-        },
-        "tagged_checks": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaggedCheck"
-          }
         },
         "rubric": {
           "type": "array",
@@ -649,102 +272,9 @@
       ],
       "additionalProperties": false
     },
-    "SkillNeed": {
-      "type": "object",
-      "properties": {
-        "skill": {
-          "type": "string"
-        },
-        "deadline": {
-          "$ref": "#/definitions/Deadline"
-        }
-      },
-      "required": [
-        "skill",
-        "deadline"
-      ],
-      "additionalProperties": false
-    },
-    "Deadline": {
-      "anyOf": [
-        {
-          "type": "number"
-        },
-        {
-          "type": "string",
-          "const": "first change"
-        },
-        {
-          "type": "string",
-          "const": "answer"
-        }
-      ]
-    },
-    "ConditionalNeed": {
-      "type": "object",
-      "properties": {
-        "skill": {
-          "type": "string"
-        },
-        "deadline": {
-          "$ref": "#/definitions/Deadline"
-        },
-        "path": {
-          "type": "string"
-        },
-        "taken_when": {
-          "$ref": "#/definitions/Checks"
-        }
-      },
-      "required": [
-        "deadline",
-        "path",
-        "skill"
-      ],
-      "additionalProperties": false
-    },
-    "TaggedCheck": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "tag": {
-          "type": "string"
-        },
-        "depends_on": {
-          "type": "object",
-          "properties": {
-            "turn": {
-              "type": "number"
-            },
-            "check": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "turn",
-            "check"
-          ],
-          "additionalProperties": false
-        },
-        "assert": {
-          "$ref": "#/definitions/Checks"
-        }
-      },
-      "required": [
-        "id",
-        "tag",
-        "assert"
-      ],
-      "additionalProperties": false
-    },
     "Rubric": {
       "type": "object",
       "properties": {
-        "source_check": {
-          "type": "string"
-        },
         "id": {
           "type": "string"
         },
@@ -753,22 +283,6 @@
         },
         "criterion": {
           "type": "string"
-        },
-        "depends_on": {
-          "type": "object",
-          "properties": {
-            "turn": {
-              "type": "number"
-            },
-            "check": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "turn",
-            "check"
-          ],
-          "additionalProperties": false
         }
       },
       "required": [

@@ -26,6 +26,7 @@ const INSTRUCTION = "You judge one turn of an AI agent's work against plain yes-
 const cases = new Map(loadCases("small/").map(c => [c.id, c]));
 const results: Event[] = positionals.flatMap(dir =>
   (JSON.parse(readFileSync(join(dir, "summary.json"), "utf8")) as Event[])
+    .filter(r => cases.has(r.case)) // a dropped case's saved results are left out
     .map(r => ({ ...recheckScenario(r, cases.get(r.case)!), source: dir.replace(/\/$/, "") })));
 const questions = (r: Event, turn: number): Event[] => cases.get(r.case)!.turns[turn - 1]?.rubric ?? [];
 const current = (r: Event, turn: number, rows?: Event[]) => !!rows && questions(r, turn).every(q =>

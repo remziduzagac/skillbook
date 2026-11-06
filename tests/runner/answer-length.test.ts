@@ -18,17 +18,15 @@ test("length summary uses the recorded count when present and counts the text fo
     { final_words: 100, final_answer: "z" }])).toEqual({ turns: 4, total: 116, median: 7 });
 });
 
-test("the report prints each run's median and total beside the scores and never judges length", () => {
+test("the report prints each run's median and total beside the checks and never judges length", () => {
   const run = (n: number, answers: string[]) => ({ case: "unit", agent: "codex", model: "m", run: n, cost: 0, checks: {},
-    user_mode: "fixed", turns: answers.map(final_answer => ({ final_answer, tagged_checks: [{ id: "a", tag: "habit:x", verdict: true }] })) });
+    turns: answers.map(final_answer => ({ final_answer })) });
   const report = summarize([run(1, ["a b", "c d e f", "g"]), run(2, [])], 0);
-  const scores = report.indexOf("## Scores: codex/m/fixed"), length = report.indexOf("## Final-answer length"),
-    fit = report.indexOf("## Fixed-script fit");
-  expect(scores).toBeGreaterThan(-1);
-  expect(length).toBeGreaterThan(scores);
-  expect(fit).toBeGreaterThan(length);
+  const length = report.indexOf("## Final-answer length"), checks = report.indexOf("## Automatic checks");
+  expect(length).toBeGreaterThan(-1);
+  expect(checks).toBeGreaterThan(length);
   expect(report).toContain("- unit, codex (m), run 1: median 2 words, total 7 words, over 3 turns");
   // A run with no turns has no length to report.
   expect(report).not.toContain("run 2: median");
-  expect(report.slice(length, fit)).not.toMatch(/pass|fail|too long|too short/i);
+  expect(report.slice(length, checks)).not.toMatch(/pass|fail|too long|too short/i);
 });

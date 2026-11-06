@@ -1,7 +1,6 @@
 import { expect, test } from "bun:test";
 import { helperEvidence } from "./helpers";
 import { action_evidence } from "./trace";
-import { judgeEvidence } from "./scenario";
 const call = (id: string, tool: string, extra = {}) => ({type: "item.completed", item: {
   id, type: "collab_tool_call", tool, receiver_thread_ids: ["helper"], status: "completed", ...extra}});
 
@@ -41,9 +40,6 @@ test("Claude helper brief and returned report remain available without inventing
   expect(h.start).not.toBeNull(); expect(h.brief).toBe("Read sources"); expect(h.result).toBe("Read all sources");
   expect(h.actions![0]!.id).toBe("r"); expect(h.fresh).toBeNull(); expect(h.end).toBeNull();
   expect(action_evidence("claude", rows)[0]!.input).toEqual({prompt: "Read sources"});
-  const evidence = judgeEvidence([{helpers: {helpers: [h]}, judgments: [{verdict: true}]}]);
-  expect(evidence.turns[0]!.helpers.helpers[0].result).toBe("Read all sources");
-  expect(JSON.stringify(evidence)).not.toContain("verdict");
 });
 
 test("an interrupted helper start retains the known brief without claiming success", () => {

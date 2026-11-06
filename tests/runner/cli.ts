@@ -1,16 +1,10 @@
-import { selectedTurns } from "./chapters";
-import { readFileSync } from "node:fs";
-import { activeRubricBook, rubricValidationSummary } from "./rubric-fixtures";
-import { requireCalibration } from "./calibration";
 import { parseArgs as parse } from "node:util";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { loadCases, compareConversions } from "./cases";
-import { coverage, aspectCoverage } from "./inventory";
 import { runsToJudge } from "./reports";
 import { loginProblem } from "./agents";
 import { planRuns, runPlan } from "./run";
-import { missingPrograms, missingMessage } from "./project-evidence";
 import type { Agent, Case, Options } from "./types";
 export function parseArgs(argv: string[]): Options {
   // Match Python's --to-judge FOLDER [FOLDER ...] as well as repeated flags.
@@ -28,14 +22,7 @@ export function parseArgs(argv: string[]): Options {
   const { values: v } = parse({
     args: expanded,
     options: {
-      chapter: { type: "string" },
-      suite: { type: "string" },
-      "user-mode": { type: "string" },
-      "rubric-book": { type: "string" },
-      "rubric-validation": { type: "string" },
-      calibration: { type: "string" },
       "no-skill": { type: "boolean", default: false },
-      judge: { type: "boolean", default: false },
       case: { type: "string", default: "" },
       agents: { type: "string", default: "claude,codex" },
       runs: { type: "string", default: "0" },
@@ -48,8 +35,6 @@ export function parseArgs(argv: string[]): Options {
       keep: { type: "boolean", default: false },
       out: { type: "string" },
       "dry-run": { type: "boolean", default: false },
-      coverage: { type: "boolean", default: false },
-      summary: { type: "boolean", default: false },
       yes: { type: "boolean", default: false },
       validate: { type: "boolean", default: false },
       "to-judge": { type: "string", multiple: true, default: [] },
@@ -63,18 +48,8 @@ export function parseArgs(argv: string[]): Options {
     if (!Number.isFinite(n) || n < minimum || (integer && !Number.isInteger(n))) throw Error(`invalid --${name}`);
     return n;
   };
-  if (v.chapter && (!Number.isInteger(Number(v.chapter)) || Number(v.chapter) < 1)) throw Error("invalid --chapter");
-  if (v.suite && !["short", "master"].includes(v.suite)) throw Error("invalid --suite");
-  if (v["user-mode"] && !["fixed", "simulated"].includes(v["user-mode"])) throw Error("invalid --user-mode");
   return {
-    chapter: v.chapter ? Number(v.chapter) : undefined,
-    suite: v.suite as Options["suite"],
-    user_mode: v["user-mode"] as Options["user_mode"],
     no_skill: v["no-skill"],
-    judge: v.judge,
-    calibration: v.calibration,
-    rubric_book: v["rubric-book"],
-    rubric_validation: v["rubric-validation"],
     case: v.case!,
     agents,
     runs: number("runs", 0, true),
@@ -87,22 +62,19 @@ export function parseArgs(argv: string[]): Options {
     keep: v.keep!,
     out: v.out,
     dry_run: v["dry-run"]!,
-    coverage: v.coverage!,
-    summary: v.summary!,
     yes: v.yes!,
     validate: v.validate!,
     to_judge: v["to-judge"]!,
   };
 }
-// --case matches part of a case id, such as `festival` or `todo-app`; runs, dry runs and coverage use the same selection.
-export const selectCases = (all: Case[], args: Pick<Options, "case" | "suite">) =>
-  all.filter((c) => c.id.includes(args.case) && (!args.suite || c.suite === args.suite));
+// --case matches part of a case id, such as `small/respond`; runs and dry runs use the same selection.
+export const selectCases = (all: Case[], args: Pick<Options, "case">) => all.filter((c) => c.id.includes(args.case));
 export async function main(argv = Bun.argv.slice(2)): Promise<number> {
   if (argv.includes("--help")) {
     console.log(
-      "bun tests/run.ts [--case TEXT] [--chapter N] [--agents claude,codex] [--model agent=model] " +
+      "bun tests/run.ts [--case TEXT] [--agents claude,codex] [--model agent=model] " +
         "[--runs N] [--jobs N] [--budget USD] [--timeout SECONDS] [--login] [--keep] [--out DIR] " +
-        "[--no-skill] [--suite short|master] [--user-mode fixed|simulated] [--judge --calibration FILE --rubric-validation FILE --rubric-book FILE] [--dry-run] [--yes] [--validate] [--coverage] [--summary] [--to-judge DIR]",
+        "[--no-skill] [--instruction TEXT] [--dry-run] [--yes] [--validate] [--to-judge DIR]",
     );
     return 0;
   }
@@ -117,13 +89,9 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
     console.log(`${all.length} YAML cases valid; ${compareConversions()} TOML conversions identical`);
     return 0;
   }
-  if (args.coverage) {
-    console.log(coverage(args.summary ? all : cases, args.summary));
-    return aspectCoverage(all).unknown.length ? 1 : 0;
-  }
   if (!cases.length) throw Error(`no case matches ${args.case}`);
   const plan = planRuns(cases, args),
-    turns = plan.reduce((n, [c]) => n + selectedTurns(c, args.chapter).length, 0);
+    turns = plan.reduce((n, [c]) => n + c.turns.length, 0);
   console.log(`${plan.length} runs, ${turns} turns; cost estimate unavailable: ` +
     "token usage, helper work and auxiliary calls are not forecast.");
   console.log(
@@ -131,20 +99,9 @@ export async function main(argv = Bun.argv.slice(2)): Promise<number> {
       `up to ${args.jobs} running calls finish. Claude has a per-call cap; ` +
       "Codex has no hard spending cap. Unknown cost stays unknown.",
   );
-  const missing = missingPrograms([...new Set(plan.map(([c]) => c))]);
   if (args.dry_run) {
     for (const [c, a, m, n] of plan) console.log(`  ${c.id} ${a} ${m} run ${n}`);
-    if (missing.length) console.log(missingMessage(missing) + "\na real run stops here, before any agent call");
-    return missing.length ? 1 : 0;
-  }
-  if (missing.length) throw Error(missingMessage(missing));
-
-  if (args.judge) {
-    console.log("Judge calibration:", requireCalibration(args.calibration));
-    if (!args.rubric_validation) throw Error("--judge needs --rubric-validation FILE");
-    args.rubric_validation_summary = rubricValidationSummary(JSON.parse(readFileSync(args.rubric_validation, "utf8")),
-      activeRubricBook(args.rubric_book, cases));
-    console.log("Rubric trace judgments:", args.rubric_validation_summary);
+    return 0;
   }
   const usable = plan.filter(([, a]) => {
     const problem = loginProblem(a, args.login);

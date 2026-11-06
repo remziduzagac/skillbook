@@ -1,18 +1,14 @@
-import { scoresByCase } from "./scoring";
 import { lengthSummary } from "./answers";
 import { readFileSync } from "node:fs";
 import { walk } from "./inventory";
 import type { Event } from "./types";
 export function runStatus(r: Event) {
-  const semantic = (r.turns ?? []).flatMap((t: Event) => [...(t.tagged_checks ?? []), ...(t.judgments ?? [])]);
   const failed = Object.entries(r.checks ?? {})
       .filter(([, v]) => v === false)
       .map(([n]) => n),
     unknown = Object.entries(r.checks ?? {})
       .filter(([, v]) => v === null)
       .map(([n]) => n);
-  failed.push(...semantic.filter((s: Event) => s.verdict === false).map((s: Event) => `${s.tag}/${s.id}`));
-  unknown.push(...semantic.filter((s: Event) => s.verdict === null).map((s: Event) => `${s.tag}/${s.id}`));
   let status = r.error
     ? "error"
     : failed.length
@@ -44,54 +40,17 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
     "",
     `Spent: $${spent.toFixed(3)}${unknown ? `, plus unquantified spending in ${unknown} runs` : ""}`,
     "",
-    "Results are per agent and model. Automatic checks leave semantic review pending.",
+    "Results are per agent and model. Automatic checks only: tests/judge-small.ts answers the rubric questions.",
     "",
   ];
-  const validations=new Map(results.filter(r=>r.rubric_validation).map(r=>
-    [r.rubric_validation.fixture_hash,r.rubric_validation]));
-  if (validations.size) lines.push("## Judge validation", "");
-  for (const validation of validations.values()) {
-    const f=validation.flip_rate;
-    lines.push(`- Contract ${validation.fixture_hash}: ${validation.validated} candidates validated; ` +
-      `measured flips ${f.changed}/${f.compared} (${(100*f.rate).toFixed(1)}%) at ${f.revision}.`);
-    lines.push(...(validation.noise_candidates.length ? validation.noise_candidates.map((c:Event)=>
-      `- Nonblocking noise: ${c.check}, trace ${c.ref}; initial ${c.initial}; expected ${c.expected}; ` +
-        `reruns ${c.reruns.map(String).join(", ")}.`) :
-      ["- Nonblocking noise: none."]));
-    lines.push(...(validation.blocking_candidates ?? []).map((c:Event)=>
-      `- Tolerated blocking miss (limit ${validation.blocking_limit}): ${c.check}, trace ${c.ref}; initial ${c.initial}; ` +
-        `expected ${c.expected}; reruns ${c.reruns.map(String).join(", ")}.`), "");
-  }
-  for (const [group, scores] of Object.entries(scoresByCase(results))) {
-    lines.push(`## Scores: ${group}`, "", "95% Wilson intervals over scored checks; correlated turns are not independent trials.", "");
-    for (const [tag, s] of Object.entries(scores))
-      lines.push(`- ${tag}: ${s.passed}/${s.total}; ${s.rate === null ? "unknown" : (100*s.rate).toFixed(1)+"%"}; ` +
-        `95% ${(100*s.interval[0]).toFixed(1)}–${(100*s.interval[1]).toFixed(1)}%; ` +
-        `${s.unknown} unknown; ${s.not_reached} not reached`);
-    lines.push("");
-  }
   const lengths = results.filter(r => r.turns?.length).map(r => ({ r, ...lengthSummary(r.turns) }));
   if (lengths.length) lines.push("## Final-answer length", "",
-    "Words in each turn's final answer. A number to read beside the scores, never a verdict.", "",
+    "Words in each turn's final answer. A number to read beside the checks, never a verdict.", "",
     ...lengths.map(({ r, turns, median, total }) => `- ${r.case}, ${r.agent} (${r.model}), run ${r.run}: ` +
       `median ${median} words, total ${total} words, over ${turns} turns`), "");
-  const fits: Record<string, { off: number; unknown: number; total: number }> = {};
-  for (const r of results) if (r.user_mode === "fixed") {
-    const counts = fits[r.case] ??= { off: 0, unknown: 0, total: 0 };
-    const before = counts.total;
-    for (const t of r.turns ?? []) if (t.fit) {
-      counts.total++;
-      counts.off += Number(t.fit.off_script === true);
-      counts.unknown += Number(t.fit.off_script === null);
-    }
-    const missing = Math.max(0, (r.expected_turns ?? r.turns.length) - 1 - (counts.total - before));
-    counts.total += missing;
-    counts.unknown += missing;
-  }
-  lines.push("## Fixed-script fit", "", ...Object.entries(fits).map(([id, s]) =>
-    `- ${id}: ${s.off} off-script / ${s.total} transitions; ${s.unknown} unknown`), "");
   const pairs = [...new Set(results.map((r) => JSON.stringify([r.agent, r.model])))].sort();
   const failures: Record<string, Set<string>> = {};
+  lines.push("## Automatic checks", "");
   for (const pair of pairs) {
     const [agent, model] = JSON.parse(pair),
       mine = results.filter((r) => r.agent === agent && r.model === model);
@@ -117,8 +76,7 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
     for (const r of runs) {
       lines.push(`- run ${r.run}: ${runStatus(r)}`);
       if (r.error) lines.push(`- error: ${r.error}`);
-      if (r.unreached_turns?.length) lines.push("- turns not run: " + r.unreached_turns.map((t: Event) =>
-        `${t.turn}${t.chapter ? ` (chapter ${t.chapter})` : ""}`).join(", "));
+      if (r.unreached_turns?.length) lines.push("- turns not run: " + r.unreached_turns.map((t: Event) => t.turn).join(", "));
       if (r.changes?.length) lines.push(`- changed: ${r.changes.join(", ")}`);
       for (const [name, value] of Object.entries(r.checks ?? {}))
         lines.push(`- ${name}: ${value === null ? "0 of 1; 1 unknown" : value ? "1 of 1" : "0 of 1"}`);
@@ -127,15 +85,12 @@ export function summarize(results: Event[], spent: number, unknown = 0): string 
       if (r.progress_findings?.length) lines.push("", "Unscored progress review:",
         ...r.progress_findings.map((f: Event) => `- Turn ${f.turn} (${f.flags.join(", ")}): ${f.text}`));
       if (r.review?.length) {
-        lines.push("", "Semantic review pending; passing automatic checks is not a full scenario verdict.");
+        lines.push("", "Semantic review pending; passing automatic checks is not a full verdict.");
         for (const item of r.review) lines.push(`- [ ] ${item}`);
       }
       for (const [i, t] of (r.turns ?? []).entries()) {
-        lines.push("", `Run ${r.run}, turn ${t.turn ?? i + 1}${t.chapter ? ` (chapter ${t.chapter})` : ""}, final answer:`, "", t.final_answer ?? t.answer ?? "(No answer.)");
-        lines.push("", "Scripted message: " + (t.scripted_message ?? ""),
-          "Sent message: " + (t.sent_message ?? ""), "Steered: " + String(t.steered ?? false));
-        if (t.fit) lines.push("Fit: " + JSON.stringify(t.fit));
-        if (t.judgments?.length) lines.push("Rubric results: " + JSON.stringify(t.judgments));
+        lines.push("", `Run ${r.run}, turn ${t.turn ?? i + 1}, final answer:`, "", t.final_answer ?? t.answer ?? "(No answer.)");
+        lines.push("", "Message: " + (t.sent_message ?? ""));
         if (t.between_tools?.length)
           lines.push("", "Text written between tool calls (also visible to the user):", "", ...t.between_tools);
         if (t.trace_complete === false) lines.push("", "Trace incomplete; absence of an action is not established.");

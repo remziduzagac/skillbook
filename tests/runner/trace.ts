@@ -20,7 +20,7 @@ export function message_blocks(event: Event): Event[] {
     ? event.message.content.filter((x: unknown) => x && typeof x === "object")
     : [];
 }
-// Legacy assertions are deliberately excluded from measurement attribution.
+// The read checks (`reads`, `reads_not`) use these readers, which the Python contract vectors also test.
 export { skills_read, skills_printed } from "./legacy-reads";
 export function agents_started(agent: Agent, events: Event[][]) {
   const all = events.flat();

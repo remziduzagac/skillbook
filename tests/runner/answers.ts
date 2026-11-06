@@ -15,7 +15,3 @@ export function lengthSummary(turns: Event[]): { turns: number; total: number; m
   return { turns: counts.length, total: counts.reduce((sum, n) => sum + n, 0),
     median: !counts.length ? null : counts.length % 2 ? counts[mid]! : (counts[mid - 1]! + counts[mid]!) / 2 };
 }
-export function currentFinal(answer: string, evidence: unknown): string {
-  const turns = (evidence as Event | undefined)?.turns;
-  return Array.isArray(turns) && turns.length ? finalAnswer(turns.at(-1)!) : answer;
-}

@@ -62,7 +62,7 @@ Routing is tested by the should-load and should-not-load cases. Check such a cas
 
 All in `tests/` (D190), except the commands, which are in the `justfile`.
 
-- **`tests/fixtures/<name>/` and `tests/fixtures/small/<name>/`:** small toy projects, each a known situation, such as a vague request or a plan whose parts depend on each other. Automated and manual tests share them. A fixture's project instruction file is `AGENTS.md` only; the runner copies it to `CLAUDE.md` for Claude Code, so both agents get the same instructions and the repository holds no nested `CLAUDE.md` that would load into a developer's own session.
+- **`tests/fixtures/small/<name>/`:** small toy projects, each a known situation, such as a vague request or a plan whose parts depend on each other. Automated and manual tests share them. A fixture's project instruction file is `AGENTS.md` only; the runner copies it to `CLAUDE.md` for Claude Code, so both agents get the same instructions and the repository holds no nested `CLAUDE.md` that would load into a developer's own session. The other fixtures serve the account-free unit tests: the toy projects `tests/fixtures/tiny-weather/` and `routing-studio/`, and recorded agent events in `access/` and `cost-counters.json`.
 - **`tests/cases/<set>/small/<guide>--<topic>.yaml`:** one small case per file, in the format `tests/runner/types.ts` defines (D268). Its fields:
   - `about`: the wrong behaviour it rejects, or what it shows;
   - `goal`, and the fixture;
@@ -74,6 +74,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   - `skills`, the implemented skills whose behaviour or routing boundary it exercises; `category`, normal, boundary or edge; `rejects`, the plausible wrong behaviour;
   - `project_skills`, the repository's own skills copied into the isolated agent skill folder for a project-skill exercise only, never added to the shipped set;
   - the questions a judge answers, in `turns[].rubric`: each has an `id`, a `tag` and a `criterion` that names one thing;
+  - other fields: `models`, the models a case allows; `review`, points a person checks by reading the answer; `routing_only`, for a one-turn case with only `reads` and `reads_not`; and for a turn, `timeout` in seconds and `fresh_session` for a turn that starts a new conversation;
   - the checks a script can make from the event log, for the whole run in `checks`, or for one turn in `turns[].checks`, judged on that turn's answer and changes (D216):
     - the skills read or not read (`reads`, `reads_not`), by name, for the run or one turn: a read counts only with a successful matching tool result or a supported reading command that exits 0; a path merely named, as by `echo` or `ls`, does not count; a step counts only where a zero exit proves it ran and succeeded: every step of `a && b`, and only what follows the last `;`, new line or `||`; a step holding a pipe or a redirection, and a command with a command substitution or a background job, is left uncounted; a command that exits non-zero proves no read, even where a later step such as a search found nothing;
     - nothing changed in the toy project (`no_changes`), named files changed or created (`changed`), named files left unchanged (`unchanged`), or only the named files changed (`only_changed`);
@@ -85,6 +86,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
     - a path added in the run's own temporary folder during the turn that matches a pattern (`tmp_has`) or none that does (`tmp_lacks`), such as an unpacked copy the agent should have removed or was asked to keep: compare complete listings before and after the turn, so existing harness files do not count. Check every new path, including new children of existing directories, not the short summary listing. Keep the derived verdicts for replay, never the full path lists; unknown where either listing could not be read (D235);
     - a file the agent was asked to remove (`removed`), passing only when it is gone (D240);
     - an agent started (`agent_started_or_answer`): Codex's exec record shows neither an agent it starts nor that agent's actions, so on Codex any call about agents, or a change no recorded action explains, leaves the check unknown, not failed; the summary says an agent may have run unseen, and judges follow skillbook-write's record-limit lesson (D242, D254);
+    - a path in the temporary folders that the answer names and that holds a pattern (`answer_path_has`), and no recorded action target, such as a command or a file path, that matches a pattern (`actions_lack`); the Python runner checks both the same way;
     - no skill named in the answer: Codex's harness tells it to say which skills it uses, so only a short line that says it loads, uses, reads or follows essentials and gives no reason is left out; a line with a reason, such as "because the essentials skill prohibits…", counts as naming a skill (D242);
 
     Whether a file was read whole or in part, and which tools ran, are not checked yet. Each case's `about` names the wrong behaviour it rejects.
@@ -99,6 +101,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 - **`tests/judge-small.ts`:** the judge and the report for small cases, as "Small cases" describes. It reads the runner's result folders and the current case files, and saves its judgments in one file.
 - **`tests/install-test.sh`:** the install tests. Each test copies `install.sh` and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched.
 - **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model.
+- **`tests/archive/`:** the frozen long scenarios, kept as a record and not run (see "Frozen long scenarios").
 - **Review evidence:** before deleting each sandbox, the runner retains per-turn fixture diffs, observed file contents requested by assertions, answers and an ordered action ledger of tool names, commands and target paths. Tool outputs and credential-home contents are not copied into that ledger. Failed or timed-out turns retain the evidence available, marked incomplete. Evidence grading follows skillbook-write's test-case rules. Raw events may be kept explicitly when needed.
 
 ## Project skill cases
@@ -175,18 +178,18 @@ Retired by D311. Small cases produce no rule grid or four-box report. Loading is
 
 ## Frozen long scenarios (D310, D311)
 
-The festival ([festival.md](scenarios/festival.md): five chapters, 28 turns) and the todo app ([todo-app.md](scenarios/todo-app.md): six chapters, 37 turns) were the behavioural test layer (D269, D288, D305). They are frozen. `tests/cases/essentials/festival.yaml` and `todo-app.yaml`, their fixtures, traces and saved runs stay as a record and are not run again. The fifteen earlier scenarios and every single-prompt case were retired before them; the last commit holding those is tagged `essentials-old-tests`.
+The festival ([festival.md](scenarios/festival.md): five chapters, 28 turns) and the todo app ([todo-app.md](scenarios/todo-app.md): six chapters, 37 turns) were the behavioural test layer (D269, D288, D305). They are frozen and are not run again. Their cases, fixtures, trace books and the scripts that wrote them stay as a record in `tests/archive/`, outside the runner's validation; its README lists what is there. The fifteen earlier scenarios and every single-prompt case were retired before them; the last commit holding those is tagged `essentials-old-tests`.
 
 The last full live run on both scenarios showed no progress: the fails both judges agreed on did not move, most fails happened with the right guide read, and a gate cost about $47 (D310).
 
-The judging machinery of those runs is retired, and its code leaves in a later build commit (the build list is in D311):
+The judging machinery of those runs is retired, and its code is removed (D311):
 
 - the second judge, and judge tuning against hand-written traces (calibration and trace books);
 - the gates, the gap fill (D309) and the contract hash;
 - the frozen copy of every rule in `tests/checks/`, and judging every rule at every turn;
 - the rule grid and four-box report of D278, and the coverage list (the `covers` field, `--coverage`, `just test-coverage` and the `check-coverage` step).
 
-Until the build, the runner still validates `tests/checks/` at start, so a rule edit still needs its frozen copy updated there.
+The runner features only these scenarios used are removed too: chapters and checkpoints, the simulated user and its fit check, and the checks only they used, such as `words_under`, `index_links` and `tests_pass`. Git history before the D311 build keeps all of it.
 
 What the retired method left, kept in the decisions: the check designs for final answers (D270), one check per behaviour (D299) and judge validation (D273), the festival's no-skill comparison (D288) and the live-run results (D305 to D310). On 2026-10-27, Sol judged 30 blind-rated items once: it passed 27 of 27 human passes and failed 2 of 3 human fails, a very wide range for fail detection.
 

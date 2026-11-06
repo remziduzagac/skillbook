@@ -1,11 +1,11 @@
-import { finalAnswer, wordCount } from "./answers";
+import { finalAnswer } from "./answers";
 import { readFileSync, existsSync, statSync, realpathSync, readdirSync } from "node:fs";
-import { join, resolve, relative, posix } from "node:path";
+import { join, resolve, relative } from "node:path";
 import { tmpdir } from "node:os";
 import { matches, regex } from "./regex";
 import { skillFiles, walk } from "./inventory";
-import { REPO, FIXTURES, cached } from "./paths";
-import type { Checks, Observation, TestRun, Verdict } from "./types";
+import { REPO, FIXTURES } from "./paths";
+import type { Checks, Observation, Verdict } from "./types";
 const words = new Set<string>(),
   parents = new Set<string>();
 for (const [name, path] of skillFiles())
@@ -60,19 +60,6 @@ export function names_skill(answer: string, agent?: string | null) {
   }
   return talk.test(answer);
 }
-// ATX headings outside fenced code, with any closing hashes removed; the text is trimmed.
-export function headings(text: string): string[] {
-  const found: string[] = [];
-  let fence: string | null = null;
-  for (const line of text.split(/\r?\n/)) {
-    const marker = line.match(/^ {0,3}(`{3,}|~{3,})/)?.[1];
-    if (fence) { if (marker && marker[0] === fence[0] && marker.length >= fence.length) fence = null; continue; }
-    if (marker) { fence = marker; continue; }
-    const heading = line.match(/^ {0,3}#{1,6}(?:[ \t]+(.*?))?[ \t]*$/);
-    if (heading) found.push((heading[1] ?? "").replace(/(?:^|[ \t]+)#+$/, "").trim());
-  }
-  return found;
-}
 export const written = (changes: string[]) =>
   changes.filter((c) => c.startsWith("changed ") || c.startsWith("added ")).map((c) => c.slice(c.indexOf(" ") + 1));
 export function named_paths(answer: string, cap = 200): string[] {
@@ -116,15 +103,7 @@ export function check(
   for (const n of checks.reads_not ?? [])
     out[`no supported read observed for ${n}`] = !(result.reads ?? []).includes(n);
   if (checks.no_changes) out["no changes"] = !delta.length;
-  // Comparisons default to their usual basis; compare_to names the chapter's checkpoint or the turn's start for all.
-  const basis = checks.compare_to, against = basis === "checkpoint" ? " (against the checkpoint)" :
-    basis === "turn" ? " (against the turn's start)" : "";
-  for (const p of checks.unchanged ?? []) {
-    const before = result.baseline_snapshot, after = result.project_snapshot;
-    out[`unchanged ${p}${against}`] = basis !== "checkpoint" ? !delta.some((c) => c.slice(c.indexOf(" ") + 1) === p) :
-      !before || !after ? null : before[p] === after[p];
-  }
-  for (const p of checks.absent ?? []) out[`absent ${p}`] = result.paths_present?.[p] == null ? null : !result.paths_present[p];
+  for (const p of checks.unchanged ?? []) out[`unchanged ${p}`] = !delta.some((c) => c.slice(c.indexOf(" ") + 1) === p);
   for (const p of checks.removed ?? []) out[`removed ${p}`] = delta.includes(`removed ${p}`);
   for (const p of checks.changed ?? []) out[`changed ${p}`] = paths.includes(p);
   const stated = checks.states_before_change;
@@ -150,87 +129,9 @@ export function check(
     for (const pattern of patterns) out[`${p} keeps /${pattern}/`] = matches(pattern, result.files?.[p] ?? "");
   for (const p of checks.shorter ?? []) {
     const text = result.files?.[p],
-      original = basis === "turn" ? result.start_files?.[p] : result.baseline_files ? result.baseline_files[p] :
+      original = result.baseline_files ? result.baseline_files[p] :
         fixture ? readFileSync(join(FIXTURES, fixture, p), "utf8") : undefined;
-    out[`${p} shorter${against}`] = text == null || original == null ? null : text.length < original.length;
-  }
-  const baseline = (p: string): string | undefined => {
-    if (basis === "turn") return result.start_files?.[p];
-    if (result.baseline_files) return result.baseline_files[p];
-    try { return fixture ? readFileSync(join(FIXTURES, fixture, p), "utf8") : undefined; }
-    catch { return undefined; }
-  };
-  const beforeSnapshot: Record<string, string> | undefined = basis === "turn" ? result.start_snapshot : result.baseline_snapshot;
-  const availableFile = (p: string) => result.files?.[p] != null &&
-    !/^\((?:content withheld:|binary file,|symlink to )/.test(result.files[p]!);
-  const missingFile = (p: string) => result.project_snapshot && !(p in result.project_snapshot) ? false : null;
-  for (const [p, limit] of Object.entries(checks.words_under ?? {})) {
-    const text = availableFile(p) ? result.files![p] : null;
-    out[`${p} has fewer than ${limit} words`] = text == null ? missingFile(p) :
-      wordCount(text) < limit;
-  }
-  for (const [p, replacement] of Object.entries(checks.only_replacement ?? {})) {
-    const before = baseline(p), after = result.files?.[p];
-    out[`${p} changes only ${JSON.stringify(replacement.from)} to ${JSON.stringify(replacement.to)}${against}`] =
-      before == null || !availableFile(p) ? missingFile(p) : before.includes(replacement.from) &&
-        before !== after && after === before.split(replacement.from).join(replacement.to);
-  }
-  for (const item of checks.unchanged_under ?? []) {
-    const folder = typeof item === "string" ? item : item.folder, except = typeof item === "string" ? [] : item.except ?? [];
-    const prefix = folder.replace(/\/$/, "") + "/";
-    const before = beforeSnapshot, after = result.project_snapshot;
-    out[`every file under ${folder} unchanged${except.length ? ` except ${except.join(", ")}` : ""}${against}`] =
-      !before || !after ? null :
-      Object.keys(before).some(p => p.startsWith(prefix)) && [...new Set([...Object.keys(before), ...Object.keys(after)])].filter(p => p.startsWith(prefix))
-        .every(p => except.includes(p) || before[p] === after[p]);
-  }
-  for (const [index, spec] of Object.entries(checks.index_links ?? {})) {
-    const folder = typeof spec === "string" ? spec : spec.folder;
-    const key = `${index} links reach every page under ${folder}`;
-    const candidates = index === "*" ? paths.filter(p => /\.md$/i.test(p)) : [index];
-    if (!result.project_snapshot || index === "*" && !result.changes) { out[key] = null; continue; }
-    const verdicts = candidates.map((index): Verdict => {
-      const text = availableFile(index) ? result.files![index] : null, snapshot = result.project_snapshot;
-      const prefix = folder.replace(/\/$/, "") + "/";
-      if (text == null) return missingFile(index);
-      if (typeof spec !== "string" && !(spec.contains ?? []).every(pattern => matches(pattern,text))) return false;
-      const markdown = text.replace(/<!--[\s\S]*?-->/g, "")
-        .replace(/^ {0,3}(`{3,}|~{3,})[^\n]*\n[\s\S]*?^ {0,3}\1[^\n]*$/gm, "")
-        .replace(/(`+)[^`]*?\1/g, "");
-      const references = new Map([...markdown.matchAll(/^\s{0,3}\[([^\]]+)\]:\s*<?([^\s>]+)>?/gm)]
-        .map(m => [m[1]!.toLowerCase(), m[2]!]));
-      const body = markdown.replace(/!\[[^\]]*\](?:\([^)]*\)|\[[^\]]*\])?/g, "")
-        .replace(/^\s{0,3}\[[^\]]+\]:[^\n]*$/gm, "")
-        .replace(/^(?: {4}|\t)[^\n]*$/gm, "");
-      const destinations = [...body.matchAll(/(?<!!)\[[^\]]*\]\(<?([^\s)>]+)>?(?:\s+["'][^"']*["'])?\)/g)]
-        .map(m => m[1]!);
-      for (const m of body.matchAll(/(?<!!)\[([^\]]+)\](?:\[([^\]]*)\])?(?!\()/g)) {
-        const ref = references.get((m[2] || m[1]!).toLowerCase());
-        if (ref) destinations.push(ref);
-      }
-      const reached = new Set(destinations.flatMap(href => {
-        if (/^(?:[a-z]+:|\/)/i.test(href)) return [];
-        try { return [posix.normalize(posix.join(posix.dirname(index), decodeURIComponent(href.split(/[?#]/)[0]!)))]; }
-        catch { return []; }
-      }));
-      const pages = Object.keys(snapshot).filter(p => p.startsWith(prefix) && p !== index && /\.md$/i.test(p));
-      return pages.length > 0 && pages.every(p => reached.has(p));
-    });
-    out[key] = verdicts.includes(true) ? true : verdicts.includes(null) ? null : false;
-  }
-  for (const p of checks.keeps_lines ?? []) {
-    const before = baseline(p), after = result.files?.[p];
-    let position = 0;
-    const lines = after?.split("\n") ?? [];
-    out[`${p} keeps its earlier lines${against}`] = before == null || !availableFile(p) ? missingFile(p) :
-      before.replace(/\n$/, "").split("\n").every(line => {
-        const found = lines.indexOf(line, position); position = found + 1; return found >= 0;
-      });
-  }
-  for (const [folder, patterns] of Object.entries(checks.folder_contains ?? {})) {
-    const texts = Object.entries(result.files ?? {}).filter(([p]) => p.startsWith(folder.replace(/\/$/, "") + "/"));
-    for (const pattern of patterns) out[`pages under ${folder} contain /${pattern}/`] = !result.files ? null :
-      texts.some(([, value]) => matches(pattern, value ?? ""));
+    out[`${p} shorter`] = text == null || original == null ? null : text.length < original.length;
   }
   for (const [folder, least] of Object.entries(checks.written_under ?? {}))
     out[`at least ${least} files written under ${folder}`] = paths.filter((p) => p.startsWith(folder)).length >= least;
@@ -248,39 +149,6 @@ export function check(
   for (const p of checks.tmp_lacks ?? []) {
     const key = `temporary folder lacks /${p}/`;
     out[key] = tmp === null ? result.tmp_checks?.[key] ?? null : !tmp.some((x) => matches(p, x));
-  }
-  if (checks.tests_pass !== undefined) {
-    const run = result.test_runs?.find((r: TestRun) => r.command === checks.tests_pass);
-    out[`tests pass: ${checks.tests_pass}`] = !run || run.error ? null : run.status === 0;
-  }
-  if (checks.heading_once) {
-    const { heading, in: places } = checks.heading_once, snapshot = result.project_snapshot;
-    const key = `exactly one file in ${places.join(", ")} has the heading ${JSON.stringify(heading)}`;
-    if (!snapshot || !result.files) out[key] = null;
-    else {
-      const named = [...new Set(places.flatMap(place => place in snapshot ? [place] : Object.keys(snapshot)
-        .filter(p => p.startsWith(place.replace(/\/$/, "") + "/") && /\.md$/i.test(p))))].filter(p => !cached(p));
-      const found = named.map(p => availableFile(p) ? headings(result.files![p]!).includes(heading.trim()) : null);
-      const count = found.filter(x => x === true).length;
-      out[key] = count > 1 ? false : found.includes(null) ? null : count === 1;
-    }
-  }
-  for (const [folder, patterns] of Object.entries(checks.tree_lacks ?? {})) {
-    const prefix = folder.replace(/\/$/, "") + "/", snapshot = result.project_snapshot;
-    const under = snapshot ? Object.keys(snapshot).filter(p => (p === folder || p.startsWith(prefix)) && !cached(p)) : [];
-    for (const pattern of patterns) {
-      const found = under.map(p => availableFile(p) ? matches(pattern, result.files![p]!) : null);
-      out[`every file under ${folder} lacks /${pattern}/`] = !snapshot || !result.files ? null :
-        found.includes(true) ? false : found.includes(null) ? null : true;
-    }
-  }
-  for (const p of checks.paths_lack ?? [])
-    out[`no path made or changed matches /${p}/`] = result.changes == null ? null :
-      !paths.filter(x => !cached(x)).some(x => matches(p, x));
-  if (checks.only_new_files) {
-    const { matching, at_most } = checks.only_new_files, made = delta.filter(c => !cached(c.slice(c.indexOf(" ") + 1)));
-    out[`only new files matching /${matching}/, at most ${at_most}`] = result.changes == null ? null :
-      made.length <= at_most && made.every(c => c.startsWith("added ") && matches(matching, c.slice(6)));
   }
   for (const p of checks.answer_contains ?? []) out[`answer has /${p}/`] = matches(p, answer);
   for (const p of checks.answer_not_contains ?? []) out[`answer lacks /${p}/`] = !matches(p, answer);
