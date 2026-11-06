@@ -69,3 +69,11 @@ bun tests/check-rubric-fixtures.ts /tmp/combined.json /tmp/calibration.json \
 ```
 
 The command judges only the full report's misses, twice, in separate fresh calls. Both reruns must match each missed candidate; either repeated miss blocks scoring. Incomplete, duplicated, extra or stale rounds cannot open the gate. The combined report retains original judgments, both rounds, noise candidates and the measured 3/239 (1.3%) flip rate at `94fd856`. Live and saved-run summaries keep the accepted noise list and that measurement. Add `--dry-run` to write a non-authorizing two-round plan without login or calibration. Rerun output must differ from the original full report; a preview cannot be its source.
+
+A full report can hold error rows: judge batches with no valid reply after three tries. `--rerun-misses` refuses such a report. Judge only those candidates in a preview on the same contract and model. Then fill the full report from the preview:
+
+```sh
+bun tests/fill-rubric-gate.ts /tmp/full.json /tmp/preview.json /tmp/filled.json
+```
+
+The fill copies the preview's verdicts for the errored candidates into the full report and drops the error rows. It writes a new file and leaves both inputs unchanged. It refuses a preview on another contract or model, a report that is not a full one, a candidate whose fingerprint changed since the full report, a candidate the preview does not judge or judges twice, and a full report with nothing to fill. The filled report records `filled: {from, candidates, errors}` and adds the preview's cost. It is a full report again: run the `--rerun-misses` command above on it. The fill judges nothing, and it sits outside the contract hash, so it expires no report.

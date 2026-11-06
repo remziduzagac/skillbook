@@ -4807,7 +4807,7 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 - **The verdict:** the Sol judge failed Sol's turn 4 verdict line as narrated process, though the question guide requires it.
 - **Left for the next run:** four rules failed on both models on the todo app only, and passed on the festival: the `respond-layout` guide's rule 3, the `understand-weigh` guide's rule 2, the `coordinate-delegate-crew` guide's rule 3 and the `act-rightsize-enrich` guide's rule 3. They stay recorded. If the next todo-app run still fails them, the festival gets a turn written from each rule, and the fix comes from that turn.
 
-**Tested:** not run. The user asked for every fix before the next run, to save time and cost. The pinned text of the changed rules and steps changed, and the `respond` guide's rule 1 check changed in both scenarios' cases and trace books, so both trace books need a new full gate before the next judging. Three authored correct traces were fixed for the sharper wording: the festival's turn 4 and the todo app's turn 5 now give each name check with where it looked and what it found, and gained the matching search actions, and the todo app's turn 23 opens with the symptom before the cause. The next live run covers both scenarios in full.
+**Tested:** not run. The user asked for every fix before the next run, to save time and cost. The pinned text of the changed rules and steps changed, and the `respond` guide's rule 1 check changed in both scenarios' cases and trace books, so both trace books need a new full gate before the next judging. Three authored correct traces were fixed for the sharper wording: the festival's turn 4 and the todo app's turn 5 now give each name check with where it looked and what it found, and gained the matching search actions, and the todo app's turn 23 opens with the symptom before the cause. The next live run covers both scenarios in full. Both trace books passed new full gates on 2026-11-06, as D308's Tested line records.
 
 ## D308: trim the todo app to local guide work (2026-11-05)
 
@@ -4818,3 +4818,48 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 **Turn map:** old 20, 26 and 38 dropped; 21→20, 22→21, 23→22, 24→23, 25→24, 27→25, 28→26, 29→27, 30→28, 31→29, 32→30, 33→31, 34→32, 35→33, 36→34, 37→35, 39→36, 40→37. Turns 1–19 keep their numbers.
 
 **Tested:** not run; the traces were changed to match, and the todo trace book needs a new full gate.
+
+**2026-11-06 gates:** both trace books passed new full gates, under the contract that holds D306, D307 and D308.
+
+- **Festival:** 997 candidates, 17 misses in the full report. After two reruns, 13 misses were noise and 4 were blocking, against a limit of 19 (2%, rounded down). Cost $10.80. Passed. The blocking misses:
+  - the library's wrong trace for the `respond-layout` guide's result check;
+  - turn 16's correct trace on the `understand-argue` guide's rule 3;
+  - turn 17's correct trace on the `coordinate-delegate-fanout` guide's rule 4, missed in both reruns;
+  - turn 17's correct trace on the `act` guide's rule 9.
+- **Todo app, first gate:** 1,177 candidates, 30 misses, over the limit of 23. Cost $48.03. Failed.
+  - 20 of the 30 misses came from traces that still held project text from before the trim (D308): install and release wording, turn 16's `plan.md` and the open question in `DESIGN.md` that later turns carry.
+  - Those traces were fixed and six weak traces were sharpened (commit `937a500`).
+  - A preview of the 30 named misses matched 29. It cost $1.77.
+- **Todo app, second gate:** 1,177 candidates, 14 misses. Cost $49.24. Passed.
+  - Two batches of one candidate each had no valid reply after three tries: turn 24's wrong trace for the `act` guide's rule 3 and turn 32's wrong trace for the `organize` guide's rule 4. A preview of those 2 candidates cost $0.58 and filled the report (D309).
+  - After two reruns, 10 misses were noise and 4 were blocking, against a limit of 23. All 4 are on the `respond` guide's rule 1: turn 8's correct trace (missed in both reruns), turn 8's alternative trace, turn 16's fuller trace and turn 29's correct trace.
+  - The gate cost $51.09 with the fill and the reruns.
+- **Spending:** $111.69 for the round ($10.80 + $48.03 + $1.77 + $51.09).
+
+## D309: a full gate with errored batches is filled from a preview (2026-11-06)
+
+**Decision:** A judge batch that still has no verdict after its three tries no longer voids a full gate report. Its candidates are judged alone in a preview on the same contract and model, and a new script fills the full report from that preview.
+
+- **Command:** `bun tests/fill-rubric-gate.ts FULL_REPORT PREVIEW_REPORT OUTPUT`. It writes a new file and leaves both inputs unchanged.
+- **What it does:** it takes the candidates of the full report's errored batches, copies the preview's verdicts for them into the full report and drops the error rows. The filled report records `filled: {from, candidates, errors}` and adds the preview's cost.
+- **What it refuses:**
+  - a preview on another contract (fixture hash) or another model;
+  - a report that is not a full one;
+  - a candidate whose fingerprint changed since the full report;
+  - a candidate the preview does not judge, or judges twice;
+  - a full report with nothing to fill.
+- **After the fill:** the report is a full report. Its misses are rerun twice with `--rerun-misses`, as usual. A preview alone still never authorizes scoring.
+- **Files:** `tests/fill-rubric-gate.ts` reads and writes the files. `tests/runner/gate-fill.ts` holds the merge. Neither is part of the contract hash.
+- **Where the rule is written:** [the testing design](design/testing.md), in the paragraph on preview validation, and `tests/checks/README.md`.
+
+**Why:**
+
+- **The case:** on the todo app's second full gate, two batches of one candidate each got replies that never closed their results list, three times each. The report had error rows, and `--rerun-misses` refuses such a report. Under the old rule it was void, and a new full gate costs about $49. The preview of the two candidates cost $0.58.
+- **The gate stays the same:** the fill judges nothing new. It places verdicts that the same judge gave on the same contract, and the fingerprints show that each candidate is unchanged since the full report. The gate checks the same candidates the same way.
+- **A separate script, not a resume option:** a first attempt added a resume option to `tests/check-rubric-fixtures.ts`. That file is in the contract hash, because `rubricFixtureHash` in `tests/runner/rubric-fixtures.ts` covers the gate script's own source. The change expired the very report it was meant to resume. The fill sits outside the hash, so adding it expired no report.
+
+**Tested:** the account-free tests in `tests/runner/gate-fill.test.ts` run no model call.
+
+- **First test:** a preview of a full report's errored candidate completes that report. The mode stays full, no error row is left, the preview's verdict follows the full report's own rows, the cost is the sum of both, and `filled` records the source, the candidate and the batch error.
+- **Second test:** the fill refuses a preview on another contract, a report that is not a full one, a candidate whose fingerprint changed, a preview with no judgment, a candidate judged twice and a full report with nothing to fill. The model check shares one condition with the contract check and has no test of its own.
+- **Its one use:** the todo app's second full gate, as D308's Tested line records.
