@@ -4896,7 +4896,9 @@ Sol already passes the rule, so the risk is a dropped needed step. The sub-bulle
 
 ## D311: small cases replace the long scenarios (2026-11-06)
 
-**Decision:** Test each guide with small cases. Run every case against a comparison, check it with scripts first and then one judge, and keep a guide change only if it beats the old text. The two long scenarios are frozen, and the machinery that judged them is retired. This follows D310.
+**Decision:** Test each guide with small cases. Run every case against a comparison, check it with scripts first and then two judges, Sol and Sonnet, and keep a guide change only if it beats the old text. The two long scenarios are frozen, and the machinery that judged them is retired. This follows D310.
+
+> **Corrected (2026-11-07):** the small cases have two judges, Sol and Sonnet, not one. The user never decided on one judge; the record said so by mistake. D311 retired judge tuning, not the second judge.
 
 The method is adapted from three outside approaches. Each idea is rewritten for skillbook and nothing is copied:
 
@@ -4913,7 +4915,7 @@ The method is adapted from three outside approaches. Each idea is rewritten for 
   - Every case starts from the main skill, as a real user's session does.
 - **Every run has a comparison:** the skill against no skill (`--no-skill`), or the old guide text against the new. The cases and the judging stay the same.
 - **Models and runs:** Sonnet (Claude Code) and Sol (Codex, `gpt-6.1-sol`), about 3 runs per case on each, because single runs vary. The command is in `tests/README.md`; `--case` takes one substring.
-- **Scripts first, then one judge:** the runner's automatic checks (`reads`, `reads_not`, `no_changes`, `only_changed`, `file_contains`, `answer_contains`) decide what they can. Then Sol answers each turn's questions with `tests/judge-small.ts`: pass, fail or unknown, with a quote from the answer. The questions come from the current case files, so a changed question is judged again on saved answers, with no new runs.
+- **Scripts first, then two judges:** the runner's automatic checks (`reads`, `reads_not`, `no_changes`, `only_changed`, `file_contains`, `answer_contains`) decide what they can. Then Sol and Sonnet each answer every turn's questions with `tests/judge-small.ts`: pass, fail or unknown, with a quote from the answer. A verdict counts where they agree. Where they disagree, the question is a split: it is counted apart, listed and read. The questions come from the current case files, so a changed question is judged again on saved answers, with no new runs.
 - **Each question names one thing.** "Is 'DPF' explained where it first appears?" is a good question. "Is every hard term explained?" is not: a broad question lets the judge apply its own standard, so it measures the judge and not the agent. A question that does not apply to an answer, such as a term the answer never uses, is answered unknown and left out of the counts.
 - **Trusting the judge:** read every fail before anything changes. Each new question is checked once. It must pass a saved good answer and fail a saved bad one, such as a with-skill and a no-skill run of the same case.
 - **The report** gives pass counts per check, per model and per condition (skill or no skill). It flags two kinds of check:
@@ -4926,8 +4928,8 @@ The method is adapted from three outside approaches. Each idea is rewritten for 
 **The four choices:**
 
 1. **The long scenarios are frozen.** `tests/cases/essentials/todo-app.yaml` and `festival.yaml`, their traces and their saved runs stay as a record. They are not run again.
-2. **The long runs' judging machinery is retired:** the second judge; judge tuning against hand-written traces (calibration and trace books); the gates; the gap fill (D309); the frozen copy of every rule in `tests/checks/`; the contract hash; and judging every rule at every turn. Its code leaves in a later build commit, and git history keeps it. Until then the runner still validates `tests/checks/` at start, so a rule edit still needs its frozen copy updated.
-3. **The judge is trusted** by the good-and-bad check above and by reading every fail. There is no second judge and no tuning.
+2. **The long runs' judging machinery is retired:** judge tuning against hand-written traces (calibration and trace books); the gates; the gap fill (D309); the frozen copy of every rule in `tests/checks/`; the contract hash; and judging every rule at every turn. Its code leaves in a later build commit, and git history keeps it. Until then the runner still validates `tests/checks/` at start, so a rule edit still needs its frozen copy updated.
+3. **The judge is trusted** by the good-and-bad check above and by reading every fail. There is no tuning.
 4. **The coverage list is retired:** the `covers` field, `bun tests/run.ts --coverage`, `just test-coverage` and the `check-coverage` step in `just check`. Tests cover new, changed or failing behaviour only, as skillbook-write already says: "Do not test every existing rule at once."
 
 **Build list,** for the later build commit. The build follows the imports from `tests/run.ts` and `tests/judge-small.ts` to confirm each file, and keeps what they use, such as `runner/recheck.ts`, `runner/scenario.ts` and `runner/files.ts`.
@@ -4936,7 +4938,7 @@ The method is adapted from three outside approaches. Each idea is rewritten for 
 - **Runner modules and their tests:**
   - the gap fill: `runner/gate-fill.ts` and `runner/gate-fill.test.ts`;
   - calibration and trace books: `runner/calibration.ts`, `runner/rubric-fixtures.ts`, `runner/fixture-validation.ts`, `runner/rating-walk.ts` and `runner/library-coverage.ts`;
-  - the second judge and judge settings: `runner/claude-judge.ts`, `runner/judge-options.ts` and `runner/judgment-policy.ts`;
+  - the second judge and judge settings: `runner/claude-judge.ts`, `runner/judge-options.ts` and `runner/judgment-policy.ts`. The second judge came back on 2026-11-07, as a function in `runner/scenario.ts`;
   - rule-check loading and the contract hash: `runner/rule-checks.ts`, `runner/rule-outcomes.ts` and `rubricFixtureHash`;
   - the coverage report: `runner/inventory.ts`;
   - the long scenarios' own tests: `runner/festival.test.ts`, `runner/festival-trace-patterns.test.ts` and `runner/todo-app.test.ts`.
@@ -5031,9 +5033,15 @@ The method is adapted from three outside approaches. Each idea is rewritten for 
     - No run followed the planted request, with or without the skill, 24 of 24.
     - The agent named it to the user, with what it asked and where: Sol 5 of 6 against 0 of 6; Sonnet 5 of 6 against 6 of 6.
   - **Judge questions fixed after reading the fails:** the guardrails question on asking for approval first asked whether the answer *ends* with the request. Sonnet asked and then added a closing note, so five good answers failed. The question now accepts the request anywhere in the answer, and the saved answers were judged again.
+- **Two judges on all saved answers (2026-11-07):** Sonnet judged every saved answer behind the current results, beside Sol's saved verdicts.
+  - The judges agreed on 429 of 475 judged questions, 90%.
+  - Splits gathered in the checks that need the most judgment: the plain-words terms of the `respond` guide (23) and the guess marks of the frame (16). Checks with a clear yes or no, such as the organize map, the plan stop and the planted text, had almost none.
+  - Neither judge was stricter overall: Sol passed and Sonnet failed in 21 splits, and the other way round in 16. In the other splits, one judge answered unknown.
+  - A sample of 12 splits showed Sonnet missing conditions that the questions state. On "timing belt", Sol failed answers whose first use had no explanation, as the question asks, and Sonnet passed them because the explanation came later. On the book-club frame, Sonnet asked for a guess mark on a line that only restated a limit from the notes, which the question exempts.
+  - With both judges, the share of checks passed was: Sonnet 81% with the skill against 28% without; Sol 59% against 16%. With Sol alone it had been 74% against 33% and 59% against 18%.
 - **One case was dropped:** a Python beginner's KeyError passed every question with and without the skill. A mortgage-letter case replaced it as the held-out case.
 
-**Spending:** $17.69 for the trial, runs and judging included. The guess-marking tests cost $7.97: $5.33 for 42 runs and $2.64 for judging. The organize tests cost $5.55 for 36 runs, of which $1.80 was the old text on the two new cases. The judging cost was not captured. The `respond-ask` test cost $3.15 for 18 runs, with no judging. The five-guide coverage cost $17.25: $15.83 for 183 runs, the approval-setting check and the flyer rerun included, and $1.42 for judging.
+**Spending:** $17.69 for the trial, runs and judging included. The guess-marking tests cost $7.97: $5.33 for 42 runs and $2.64 for judging. The organize tests cost $5.55 for 36 runs, of which $1.80 was the old text on the two new cases. The judging cost was not captured. The `respond-ask` test cost $3.15 for 18 runs, with no judging. The five-guide coverage cost $17.25: $15.83 for 183 runs, the approval-setting check and the flyer rerun included, and $1.42 for judging. The second judge on all saved answers cost $3.67.
 
 **Built:** the build list is done. Each file was confirmed by following the imports from `tests/run.ts`, `tests/judge-small.ts`, `tests/check-examples.ts` and `tests/runner/schema.ts`.
 
