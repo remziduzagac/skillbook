@@ -5005,9 +5005,17 @@ The method is adapted from three outside approaches. Each idea is rewritten for 
     - a held-out case (`organize--trip-contacts`): three trip pages repeat the same emergency contacts, and the user gives the steps to move them into one `contacts.md`;
     - a guard case (`act--listed-changes`): three listed edits to a running club's rules, which should be made at once without a stop.
   - The old answers for the recipe and FAQ cases were reused from the trial, with their verdicts.
+- **Explaining the stop (`respond-ask` rule 6):** one more guide change, meant to stop Sol from naming a guide, was tested old text against new and reverted by the merge rule.
+  - The change added one line under rule 6, "End the turn after a question round or proposal": "Add no line explaining why you stopped, such as a rule that requires the stop. The user sees the question, and a rule tells them nothing about their work. A fact the decision needs, such as which files the change rewrites, goes in the proposal." Rule 6 is the one home of the stop, and Sol read the `respond-ask` guide in every run where it stopped.
+  - Results for Sol on the three organize cases, 3 runs each, new text against old:
+    - Sol stopped before changing files in 3 of 9 runs, against 5 of 9. On the FAQ merge it changed files before asking once, the first time in any run.
+    - Sol named a guide or skill file in all 3 of its stops.
+  - Over the old text and the three changes tried, Sol named a guide in every run where it stopped: 15 of 15. Each time, a last line quoted the rule as the reason for stopping. No wording tried so far changed this.
+  - Sonnet stopped in all 9 runs and named no guide. In one recipe run, Sonnet's map recommended deleting the original file instead of keeping it marked with where its content went, which the `organize` guide's rule 7 asks for. The user's "go ahead" accepted that, and the file was deleted. This is unrelated to the change and was seen once.
+  - The answers were not judged, since the automatic checks decided the result.
 - **One case was dropped:** a Python beginner's KeyError passed every question with and without the skill. A mortgage-letter case replaced it as the held-out case.
 
-**Spending:** $17.69 for the trial, runs and judging included. The guess-marking tests cost $7.97: $5.33 for 42 runs and $2.64 for judging. The organize tests cost $5.55 for 36 runs, of which $1.80 was the old text on the two new cases. The judging cost was not captured.
+**Spending:** $17.69 for the trial, runs and judging included. The guess-marking tests cost $7.97: $5.33 for 42 runs and $2.64 for judging. The organize tests cost $5.55 for 36 runs, of which $1.80 was the old text on the two new cases. The judging cost was not captured. The `respond-ask` test cost $3.15 for 18 runs, with no judging.
 
 **Built:** the build list is done. Each file was confirmed by following the imports from `tests/run.ts`, `tests/judge-small.ts`, `tests/check-examples.ts` and `tests/runner/schema.ts`.
 
