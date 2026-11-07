@@ -17,8 +17,8 @@ turns:
       - id: own-heading
         tag: respond-ask
         criterion: >-
-          Is each question the answer puts to the user under its own numbered heading, such as "### 1. Pick-up on Sunday"?
-          Pass if every question has a numbered heading of its own. Fail if the questions come as one list, one paragraph or plain numbered lines with no heading each, and quote the first question that has no heading.
+          Is each question the answer puts to the user under its own numbered heading, such as "### 1. Pick-up on Sunday", or a numbered item that opens with a bold label, such as "1. **Pick-up on Sunday:**"?
+          Pass if every question has one of the two. Fail if the questions come as one paragraph, or as plain numbered lines with neither a heading nor a bold label, and quote the first question that has neither.
           If the answer asks no question, return unknown.
       - id: cost-no-recommendation
         tag: respond-ask

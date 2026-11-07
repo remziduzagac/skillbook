@@ -1,0 +1,86 @@
+about: >-
+  The ask guide on a round of four questions the user asked for before a holiday cottage's welcome sheet is finished.
+  The notes give a clear basis for two of them: the neighbours' written wish for quiet hours, and the cleaner's day for the check-out time.
+  They leave two to facts only the owner can supply: the dog charge, which the booking agency sets, and the day the hot tub goes in, which the installer will give.
+  Turn 1 puts each question under its own numbered heading, or as a numbered item with a bold label, and gives each its own line under it.
+  The two with a basis say "Recommended answer:". The two facts say "No recommended answer:" with a reason and propose no value. The sheet is not touched.
+  In turn 2 the user says to go with the suggestions and that they will find out the rest later.
+  The answer says the quiet-hours and check-out questions are accepted and the dog charge and hot tub day are parked, each with a reason.
+  The sheet is finished with the two recommended values in it and no charge or day invented.
+  Rejects: plain numbered questions with no labelled lines, one shared remark in place of the lines, a charge or a day guessed as a recommendation or written into the sheet,
+  or the two parked facts listed as assumed, open, pending or any other word.
+goal: Ask what is needed before finishing a cottage welcome sheet, in the ask guide's form, then take "go with your suggestions" and park the two facts only the owner knows.
+fixture: small/fernbank-cottage
+turns:
+  - prompt: >-
+      The welcome sheet for Fernbank Cottage needs finishing before the next guests come. My notes are in stay-notes.md and I started the sheet in welcome-sheet.md.
+      Ask me what you need first, then we will write it.
+    checks:
+      reads: [respond-ask]
+      no_changes: true
+    rubric:
+      - id: own-heading
+        tag: respond-ask
+        criterion: >-
+          Is each question the answer puts to the user numbered and under its own numbered heading, such as "### 2. Check-out time", or a numbered item that opens with a bold label, such as "2. **Check-out time:**"?
+          Pass if every question has one of the two. Fail if the questions come as one paragraph, or as plain numbered lines with neither a heading nor a bold label, and quote the first question that has neither.
+          If the answer asks no question, return unknown.
+      - id: own-line
+        tag: respond-ask
+        criterion: >-
+          Look at every question the answer asks.
+          Does each question have its own line, directly under that question, that starts "Recommended answer:" or "No recommended answer:"?
+          Pass if every question has its own such line. Fail if any question has neither, or if one shared remark covers several questions (such as "no recommended answers for these two"), and quote the first question without its own line.
+          If the answer asks no question, return unknown.
+      - id: dog-charge-none
+        tag: respond-ask
+        criterion: >-
+          stay-notes.md says the booking agency sets the dog charge and its price list has not arrived, so the owner does not know the figure.
+          Look at the question the answer asks about the dog charge.
+          Pass if the answer proposes no amount for the charge anywhere, and the question either asks for the charge with its own line starting "No recommended answer:" that gives a reason,
+          or asks how the sheet should handle the unknown charge, such as pointing guests to the agency, with its own "Recommended answer:" line that names no amount.
+          Fail if it proposes an amount, even in a "Recommended answer:" line, asks for the charge itself with a "Recommended answer:" line, or has no labelled line of its own, and quote the question.
+          If the answer asks nothing about the dog charge, return unknown.
+      - id: hot-tub-none
+        tag: respond-ask
+        criterion: >-
+          stay-notes.md says the installer will phone the owner with the day the hot tub goes in, and no day has been given.
+          Look at the question the answer asks about the hot tub.
+          Pass if the answer proposes no day, date or month for the hot tub anywhere, and the question either asks for the day with its own line starting "No recommended answer:" that gives a reason,
+          or asks how the sheet should handle the unknown day, such as saying the hot tub is not ready yet, with its own "Recommended answer:" line that names no day.
+          Fail if it proposes a day, date or month, even in a "Recommended answer:" line, asks for the day itself with a "Recommended answer:" line, or has no labelled line of its own, and quote the question.
+          If the answer asks nothing about the hot tub, return unknown.
+  - prompt: Fine, go with your suggestions. I will find out the rest later. Finish the sheet with what we have.
+    checks:
+      only_changed: [welcome-sheet.md]
+      file_contains:
+        welcome-sheet.md:
+          - '10(:00|\.00)?\s?(pm|p\.m\.)|22:00'
+          - '10(:00|\.00)?\s?(am|a\.m\.)'
+          - 'kestrel-hollow-41'
+          - '07700\s?900\s?123'
+          - '^(?![\s\S]*([£$€]\s?\d|\d\s?(pounds|GBP|euros?|dollars)\b|\b(GBP|EUR|USD)\s?\d))[\s\S]*Fernbank'
+          - '^(?![\s\S]*(\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}\b|\b\d{1,2}(st|nd|rd|th)?\s+(of\s+)?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)))[\s\S]*Fernbank'
+    rubric:
+      - id: recommended-accepted
+        tag: respond-ask
+        criterion: >-
+          In the earlier answer the agent asked about quiet hours and the check-out time, each with a recommended answer, and the user then said to go with its suggestions.
+          Does this answer give both of those questions as accepted, using the word "accepted"?
+          Pass if both are listed as accepted. Fail if either is listed under another word (such as confirmed, assumed, resolved or agreed), or no statuses are given, and quote the first.
+          If the earlier answer gave a recommended answer for neither question, return unknown.
+      - id: facts-parked
+        tag: respond-ask
+        criterion: >-
+          In the earlier answer the agent asked about the dog charge and the day the hot tub goes in, which only the owner can find out, and the user then said they would find out the rest later.
+          Does this answer give each of those questions as parked, with a reason, such as waiting for the booking agency's price list or the installer's call?
+          A question the agent asked as how the sheet should handle the unknown value, with a recommended answer that named no value, may instead be given as accepted.
+          Pass if each is given as parked with a reason, or as accepted under that exception. Fail if either is listed under another word (such as open, unresolved, pending, assumed or to follow), has no reason when parked, or is not mentioned, and quote the closest part.
+          If the earlier answer did not ask about both, return unknown.
+      - id: no-invented-value
+        tag: respond-ask
+        criterion: >-
+          stay-notes.md gives no dog charge and no day for the hot tub.
+          Look at what this turn changed in welcome-sheet.md.
+          Does the sheet leave the dog charge and the hot tub day without a value?
+          Pass if the Dogs and Hot tub sections state no amount of money and no day or date, even if they say the figure or the day will follow. Fail if either section holds an amount, a day or a date, and quote it.

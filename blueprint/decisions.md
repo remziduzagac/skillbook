@@ -5350,3 +5350,20 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 - **Held-out stop side, written apart from the change** (a residents' minutes folder that syncs to every member at once, with no version control): Sol stopped to ask in 0 of 3 runs before and 3 of 3 after, with the warning and both parts of the text; Sonnet stopped on both texts.
 - **Near misses:** the ordinary-rule case stayed with the instruct guide, and the check-only case changed nothing, on both models.
 - **Cost:** $4.10 for runs and $1.57 for judging, with no calls of unknown cost. One judging pass lost every Sonnet verdict to a judge error with no output; those verdicts were dropped and judged again.
+
+## D322: A question's own heading gives way to the harness, and each question keeps its own labelled line (2026-11-07)
+
+**Decision:** two changes to the `respond-ask` guide.
+
+- **The heading is a default:** each question still gets its own numbered heading, but where the harness's instructions say to avoid headings, a numbered item that opens with a bold label serves the same purpose: the user can answer by number and find the question again. The checklist already makes heading levels a default that gives way to the medium; the person's rule of a heading per question now does the same.
+- **Each question's own labelled line:** every question carries its own "Recommended answer:" or "No recommended answer:" line, under that question. One shared remark for several questions, such as "no recommended answers for these", does not replace the lines.
+
+- **Why:** in the small cases, Sol read the guide and still asked plain numbered questions, with no headings and no labelled lines, in 2 of 3 runs. Asked why in the same session, it said in both runs that Codex's instructions to avoid headings took precedence over the heading rule, and that nothing stopped the labelled lines: it had compressed them, once into a single remark for all the questions. Without the lines, "go with your suggestions" found none, and the letter was left unfinished.
+- **Changed:** rules 2 and 3, Instructions step 4 and Tests 1 and 22 of the ask section in `blueprint/design/essentials/respond.md`, and the `respond-ask` guide. The parent-letter small case's heading question accepts a numbered item with a bold label.
+
+**Tested:** small cases on Sonnet (Claude Code) and Sol (Codex with GPT-6.1 Sol), 3 runs each, old text against new, each pass agreed by both judges. The diagnosis was a second turn in the same session, asking Sol why it wrote its questions as it did, in 2 runs. The heading question accepts a bold-labelled numbered item on both texts alike, so it adds no gain of its own.
+
+- **Target case** (a camp letter's question round): on Sol, a heading or bold label for each question went from 1 of 3 to 3 of 3, the cost question's "No recommended answer:" line from 0 of 1 (two splits) to 3 of 3, and the other questions' labelled lines from 1 of 2 (one split) to 3 of 3. Sonnet passed all three on both texts.
+- **Held-out case, written apart from the change** (a cottage welcome sheet): on Sol, each question's own labelled line went from 1 of 3 to 3 of 3, and the two facts only the owner knows were handled without a guessed value in 2 of 3 before and 3 of 3 after. Both models often asked how the sheet should handle an unknown value, such as pointing guests to the agency, with a recommended answer that named no value; the case's questions first failed that, which the design allows, and were corrected and judged again on both texts.
+- **Unchanged:** after "go with your suggestions", neither model said the answers back as accepted or parked on either text, in both two-turn cases; and in 2 of 3 runs on the new text, against 1 of 3 on the old, Sol asked again about the questions it had parked instead of finishing the letter, taking the reply as a partial answer. Both are rule 4 and step 3 matters, outside this change.
+- **Cost:** $6.43 for runs and $2.88 for judging, with no calls of unknown cost.
