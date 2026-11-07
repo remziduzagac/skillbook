@@ -1,0 +1,13 @@
+TARNSIDE MRC - SHED SERVICE CHART (typed up from the board)
+
+Loco                      Next check due
+L01 Edith                 Jan 2027
+L02 Tarn Valley pannier   May 2027
+L03 Black Five            Mar 2027
+L04 Class 08 shunter      Jul 2027
+L05 Jinty 47406           Feb 2027
+L06 Duchess of Tarn       Dec 2026
+L07 Saddle tank "Percy"   Apr 2027
+L08 Brake van tender      Jun 2027
+
+Rub out and rewrite each date after the check.

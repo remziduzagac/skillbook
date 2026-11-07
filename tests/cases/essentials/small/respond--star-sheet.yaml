@@ -1,0 +1,23 @@
+about: >-
+  A short sheet written from notes and saved under a name the user gave. The user does not ask to see it, so the answer says where the file is and what it rests on, and does not repeat the sheet.
+  Rejects: the saved sheet pasted back into the answer.
+goal: Write a short first-timers sheet from the notes and save it as first-timers.md.
+fixture: small/star-evening-notes
+turns:
+  - prompt: >-
+      Our stargazing evenings get the same questions every time. Turn my notes (notes.txt) into a short sheet for first-timers, around 20 lines, and save it as first-timers.md.
+    checks:
+      only_changed: [first-timers.md]
+      file_contains:
+        first-timers.md:
+          - '\bred\b.{0,25}(torch|light)|(torch|light).{0,25}\bred\b'
+          - '10 ?pm|10[.:]00|22[.:]?00'
+          - '\b5([.:]00)? ?pm|17[.:]?00'
+    rubric:
+      - id: pointer-not-paste
+        tag: respond
+        criterion: >-
+          The agent wrote first-timers.md, a sheet of about 20 lines made from notes.txt, and the user did not ask to see it in the answer.
+          Does the answer give where the file is and what it rests on in a few lines, without repeating the sheet's content?
+          Pass if the answer does not reproduce the sheet or most of its lines. Quoting one line or a heading to identify the sheet, or naming the topics it covers in a clause, is not a repeat.
+          Fail if the answer pastes the sheet or most of it, even under a heading such as "Here is the sheet", and quote the start of the pasted part.

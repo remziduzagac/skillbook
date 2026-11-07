@@ -1,0 +1,50 @@
+about: >-
+  A user who hands a bounded job to a fresh helper agent and asks the final report to carry the exact instructions given to it.
+  The user asks to see this content, so the answer gives the instructions as text, in full, even though a pointer would do for anything else made in the turn.
+  Two facts are in no file: a committee decision that changes the dates for plastic-gearbox locos, and a way that was tried and failed, with its reason.
+  Held out from the fix.
+  Rejects: a final report that gives the helper's results and leaves the instructions out, gives only a paraphrase of them, or says they were shown in an earlier message.
+goal: Hand the blank "Next check" entries to a helper and report back with the exact instructions the helper was given.
+fixture: small/club-loco-register
+checks:
+  names_no_skill: false
+turns:
+  - prompt: >-
+      Please give the blank "Next check" entries in locos.md to a fresh helper agent. In your final report, put the exact instructions you gave the helper, word for word.
+      Two things are in no file. The committee decided last Thursday that any loco with a plastic gearbox is now checked every 6 months, not every 12.
+      And I first tried copying the dates from wall-chart.txt, but that chart was drawn for an old 10-month rota, so every date on it is wrong for us. I dropped that way.
+    checks:
+      only_changed: [locos.md]
+      file_contains:
+        locos.md:
+          - 'L01[^\n]*(2027-03|Mar(ch)? 2027)'
+          - 'L02[^\n]*(2027-01|Jan(uary)? 2027)'
+          - 'L03[^\n]*(2027-05|May 2027)'
+          - 'L04[^\n]*(2027-03|Mar(ch)? 2027)'
+          - 'L05[^\n]*(2027-04|Apr(il)? 2027)'
+          - 'L06[^\n]*2027-02'
+          - 'L07[^\n]*2027-06'
+          - 'L08[^\n]*2027-08'
+    rubric:
+      - id: instructions-as-text
+        tag: respond
+        criterion: >-
+          The user asked the final report to include the exact instructions given to the helper agent, word for word.
+          Does the final answer itself contain those instructions as text, not only a summary of them?
+          Pass if the answer reproduces the instructions in a quote, a code block or plain paragraphs, enough to be what the helper was told (the job, the file, and what to do or avoid).
+          Fail if the answer only summarises the instructions, gives a short paraphrase of them, only reports the helper's results, or says the instructions were shown or sent earlier (in an earlier message or in text written between tool calls).
+          A note that they were shown before does not count, even beside a paraphrase. Quote the closest line.
+      - id: states-decision
+        tag: respond
+        criterion: >-
+          The user gave a decision that no file holds: any loco with a plastic gearbox is now checked every 6 months, not every 12.
+          Do the instructions the answer shows for the helper state this decision?
+          Pass if they tell the helper that the next check of a plastic-gearbox loco is 6 months after its last check, or that 6 months applies to plastic gearboxes while the others stay at 12.
+          Fail if the decision is missing or changed, or if the answer shows no instructions at all, and quote the closest line.
+      - id: rules-out-wall-chart
+        tag: respond
+        criterion: >-
+          The user said that copying the dates from wall-chart.txt was tried and dropped, because the chart was drawn for an old 10-month rota and so all its dates are wrong.
+          Do the instructions the answer shows for the helper tell it not to take the dates from the wall chart, and say why?
+          Pass if both the way that is ruled out and the reason (the chart is old, or built on a different interval, so its dates are wrong) appear.
+          Fail if the way is not ruled out, or is ruled out with no reason, or if the answer shows no instructions at all, and quote the closest line.
