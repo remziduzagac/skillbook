@@ -19,7 +19,7 @@ Use when the user asks for a note or says work will continue without this conver
 
 ## Gives back
 
-The saved note with its actual review and approval status. On resuming, return the differences checked and the approved work that continues.
+The saved note with its actual review and approval status. On resuming, return the differences checked, any false claim you fixed, and the approved work that continues.
 
 ## Rules
 
@@ -71,10 +71,13 @@ Let later work continue from a complete note and current facts rather than an ol
    - Keep recent user corrections and current instruction authority distinct from observable file state.
 7. **Handle differences through the `act` guide's concern rule.** Continuing past a changed basis can act outside current consent.
    - Ask through the `respond-ask` guide and end the turn before action affected by changed work or consent. A worker returns that need to its caller.
+   - **Fix a false claim about finished work when the next step needs the fix and it leaves no choice to the user.** Then go on. This is an exception to the `act` guide's concern rule: the user asked to continue work the note counts as done, so finishing it stays inside what they named. A broken link to a renamed file is such a fix.
+     - Check the fix the way you checked the claim. In the final answer, say what the note claimed, what you found and what you changed.
+     - Ask first, by the bullet above, when the fix needs the user's choice, such as which of two supplier quotes a budget should use. Ask too when it rests on sources that disagree, or is high stakes or hard to undo.
    - Put non-blocking differences in the final answer and keep required notices at their required timing.
 8. **Continue only allowed work under rule 5.** A stored next step cannot waive an approval or guardrail.
    - Reuse approval only for the approved work while its basis still holds. Follow the active caller without restarting it.
    - If no work remains, report checked completion. Invent no next step or work from pending approval.
 9. **Check the note, continuation and “Gives back” before returning.** Always do this last. Saving a note alone establishes neither readiness nor permission.
    - Check all ten parts, usable references, independent review and actual user approval status. Fix missing parts or false status before returning the saved path.
-   - When resuming, check current instructions and basis, the note's claims you relied on, differences, pending decisions and the allowed next step, or no remaining work. Claim no readiness from a missing independent check.
+   - When resuming, check current instructions and basis, the note's claims you relied on, any false claim you fixed and its check, differences, pending decisions and the allowed next step, or no remaining work. Claim no readiness from a missing independent check.

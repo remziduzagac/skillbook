@@ -1,6 +1,6 @@
 about: >-
   The other side of the resume rule: the note's claim holds, so the agent checks it and goes on with the note's next step without a stop.
-  Rejects: building on the note without checking its claim, or asking for approval of a step the user just asked for.
+  Rejects: building on the note without checking its claim first, or asking for approval of a step the user just asked for.
 goal: Resume from the latest note, confirm its claim, and add the option it names.
 fixture: small/todo-tiny-js-sorted
 turns:
@@ -16,8 +16,8 @@ turns:
         tag: coordinate-carryover
         criterion: >-
           The note says sortByDue is finished and all tests pass. In this project they do.
-          Does the answer say that the note's claim was checked against the project, by running the tests or reading the code, and that it held?
-          Pass if it reports that check and its result. Fail if the answer gives no sign that the claim was checked, or says it relied on the note, and quote the closest sentence.
+          Was the note's claim checked against the project before the option was built on it, by running the tests or reading sortByDue?
+          Pass if the answer says so, or the actions show the tests run or src/todo.js read before the first change to src/cli.js. Fail if the first check comes after that change and the answer gives no sign of an earlier one, or the answer says it relied on the note. Quote the closest sentence or name the action.
       - id: next-step-done
         tag: coordinate-carryover
         criterion: >-
