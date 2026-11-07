@@ -2350,7 +2350,7 @@ The lifecycle is no longer general: essentials holds design and plan, which any 
 
 > **Amended by D218 (2026-10-20):** skillbook-write copies word for word only the text a rule requires word for word, such as the name rule; the other shared rules are pointed to.
 
-**Decision:** skillbook-write is a short project skill of its own, `.agents/skills/skillbook-write/SKILL.md`, not built over the harness's `skill-creator`; the useful ideas of `skill-creator` and of the other writing guides are adapted in its own words. It holds only writing advice: how a design becomes a skill's files, the head of a plain skill file, about 100 lines per file (D195), testing through the harness, and the last checks. Locations and shared rules, where sets and designs live, the name rule, a parent that only routes and the checklist, it takes from skillbook-tree; it names no path, tool or command of its own, so a change to the layout or a rule is made once, where it lives. A plain skill file opens with a `#` heading holding its dashed name, and one line saying what it does, then a `Needs:` line, naming a capability and the fallback without it, only when the skill needs one; when to use it, when not and what it gives back stay in its parent's line. A main skill keeps its frontmatter, with `compatibility` for what it needs. The check script compares a plain file's heading with the name its path gives. The layout of `tests/` is settled with the baseline's first test.
+**Decision:** skillbook-write is a short project skill of its own, `.agents/skills/skillbook-guide-write/SKILL.md`, not built over the harness's `skill-creator`; the useful ideas of `skill-creator` and of the other writing guides are adapted in its own words. It holds only writing advice: how a design becomes a skill's files, the head of a plain skill file, about 100 lines per file (D195), testing through the harness, and the last checks. Locations and shared rules, where sets and designs live, the name rule, a parent that only routes and the checklist, it takes from skillbook-tree; it names no path, tool or command of its own, so a change to the layout or a rule is made once, where it lives. A plain skill file opens with a `#` heading holding its dashed name, and one line saying what it does, then a `Needs:` line, naming a capability and the fallback without it, only when the skill needs one; when to use it, when not and what it gives back stay in its parent's line. A main skill keeps its frontmatter, with `compatibility` for what it needs. The check script compares a plain file's heading with the name its path gives. The layout of `tests/` is settled with the baseline's first test.
 
 **Why:** a comparison of the two `skill-creator` versions, Anthropic's (485 lines, which Claude Code gets as a skill synced from the account) and Codex's built-in one (229 lines), found them at odds with skillbook's rules on most points that matter: `SKILL.md` up to 500 lines against about 100 per file, "pushy" descriptions holding every "when to use" against a parent's line for each child, flat examples with the entry file holding content, no name rule, a Codex validator that rejects `compatibility` and a scaffolder that writes the settings file of a hidden skill, and test runners that hand the skill's path to the agent, so they never test the installed skill being found; what is left, general writing advice and a run without the skill to compare against, fits in a few lines. Both are Apache 2.0, so ideas rewritten in skillbook's words need no notice. The person asked that skillbook-write not refer to the design folder directly but stay general enough to survive changes. The head repeats nothing: the agent reads the parent first, top-down, so its line for the child is already in view, and one home for each fact is the checklist's rule.
 
@@ -2824,7 +2824,7 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
   - `tests/manual.toml`;
   - the `covers` field in all cases in `tests/cases/`, 24 new essentials cases and the new fixture `tests/fixtures/garden-club/`, 12 new project cases and new drafts in `tests/fixtures/skill-lab/`;
   - the [justfile](../justfile) (`check-coverage`, `test-coverage`);
-  - [../.agents/skills/skillbook-design/SKILL.md](../.agents/skills/skillbook-design/SKILL.md) and [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md);
+  - [../.agents/skills/skillbook-guide-design/SKILL.md](../.agents/skills/skillbook-guide-design/SKILL.md) and [../.agents/skills/skillbook-guide-write/SKILL.md](../.agents/skills/skillbook-guide-write/SKILL.md);
   - [design/testing.md](design/testing.md) and [../tests/README.md](../tests/README.md).
 
 **Tested:** no AI run yet. None of the 36 new cases has run on a model. Coverage after the change: 229 aspects. 177 are covered: 174 by a case and 3 by hand. 52 have nothing. There are 88 cases, 71 for essentials and 17 for the project skills. `just check` passes, with 31 runner tests.
@@ -2868,8 +2868,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
   - New `--jobs` (default 4): runs go at the same time, each in its own throwaway home, sharing only the budget, under a lock. No new run starts once known spending reaches the budget. Runs already started finish, so spending can pass the budget by up to that many runs. Ctrl+C starts no new run and lets each running run delete its home.
   - **Setup is not shared between cases.** Setup takes about 0.02 s, and the time is all in agent turns. A shared home or session would carry history or memory from one case into the next.
 - **Where:**
-  - [../.agents/skills/skillbook-design/SKILL.md](../.agents/skills/skillbook-design/SKILL.md): the instruction for trimming or filling;
-  - [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md): rule 1, "Judge by behaviour" and "Changing a built skill";
+  - [../.agents/skills/skillbook-guide-design/SKILL.md](../.agents/skills/skillbook-guide-design/SKILL.md): the instruction for trimming or filling;
+  - [../.agents/skills/skillbook-guide-write/SKILL.md](../.agents/skills/skillbook-guide-write/SKILL.md): rule 1, "Judge by behaviour" and "Changing a built skill";
   - the three cases above in `tests/cases/essentials/`;
   - [../tests/run.py](../tests/run.py), [../tests/test_runner.py](../tests/test_runner.py), [../tests/README.md](../tests/README.md) and [design/testing.md](design/testing.md).
 
@@ -2926,7 +2926,7 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
   - or when the user asks to be questioned.
 - **Where:**
   - `tests/judge.md`, [../tests/run.py](../tests/run.py), [../tests/test_runner.py](../tests/test_runner.py), [../tests/README.md](../tests/README.md) and [design/testing.md](design/testing.md);
-  - [../.agents/skills/skillbook-write/SKILL.md](../.agents/skills/skillbook-write/SKILL.md);
+  - [../.agents/skills/skillbook-guide-write/SKILL.md](../.agents/skills/skillbook-guide-write/SKILL.md);
   - the cases `route-shallow-before-deep`, `instruction-project-keeps-result` and `write-test-cases-baseline`;
   - [../skills/essentials/references/understand.md](../skills/essentials/references/understand.md) and [design/essentials/understand.md](design/essentials/understand.md).
 
@@ -5164,3 +5164,17 @@ Outward actions, such as a push or a send the user names exactly, follow the new
 - Cycle 3: $5.53 for runs and $1.18 for judging.
 - Judging saved answers again after the corrected questions: $2.07.
 - The interactive Codex checks ran on the user's subscription. Their cost is unknown.
+
+## D313: Three project skills: guide design, guide writing and test writing (2026-11-07)
+
+**Decision:**
+
+- **Renamed:** the project skills and their folders, `skillbook-design` to `skillbook-guide-design`, and `skillbook-write` to `skillbook-guide-write`.
+- **New:** `skillbook-test-write`, for writing, running and judging a skill's small test cases. It holds what skillbook-guide-write's step 3 held: the test-case rules, regrouped into rules, advice and steps, with their meaning unchanged. skillbook-guide-write's step 3 now says to write the tests with it before the files they test, and keeps that order firm.
+- **Keeps the old name:** past decisions, notes and finished roadmap items, since they record what was true then, as D230 did.
+- **Where:** `.agents/skills/`, [AGENTS.md](../AGENTS.md), [design/how-it-works.md](design/how-it-works.md), [design/testing.md](design/testing.md) with two new designed cases for skillbook-test-write, the ideas and design files that name the skills, and the runner's list of project skills (`tests/runner/types.ts`, its schema and `tests/run.py`).
+
+**Why:**
+
+- Testing became a method of its own with small cases (D311) and the test cycles of D312: case kinds, held-out cases, two judges, the merge rule and test fixes. It filled a fifth of skillbook-write and grows with each cycle. A skill of its own gives it one home and keeps guide writing short.
+- The names say what each skill makes: a guide's design, a guide's files, a test.

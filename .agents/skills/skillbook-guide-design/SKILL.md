@@ -1,9 +1,9 @@
 ---
-name: skillbook-design
-description: "How skillbook's skills are placed in the skill tree, named, designed and reviewed: the shape every skill's design takes and the checklist it is reviewed against. Use when adding, moving, naming, designing or reviewing a skill in this repository, recording wording already agreed included, or checking designs against how skillbook's skills are made; not for writing a skill's files, which is skillbook-write's."
+name: skillbook-guide-design
+description: "How skillbook's skills are placed in the skill tree, named, designed and reviewed: the shape every skill's design takes and the checklist it is reviewed against. Use when adding, moving, naming, designing or reviewing a skill in this repository, recording wording already agreed included, or checking designs against how skillbook's skills are made; not for writing a skill's files, which is skillbook-guide-write's, or its test cases, which are skillbook-test-write's."
 ---
 
-# skillbook-design
+# skillbook-guide-design
 
 ## Purpose
 
@@ -34,7 +34,7 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
 - Copy this name rule word for word into every main skill: "Names: a guide named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer." Put it in the main skill's guide map, beside every first- and second-level guide's path. Guides name each other by name, with the word "guide" where a bare name could be read as a skill, such as "the `act` guide"; paths appear only in the map. For `organize-merge`, read `references/organize.md` then `references/organize/merge.md`. A parent holds rules shared by everything below it.
 - Each set's folder is `skills/<set>/` in the repository.
 - Install the four main skills under their set names without prefixes. The install script catches clashes with personal skills. It never overwrites a folder it did not install.
-- How a guide's file opens, and how a design becomes files, are skillbook-write's.
+- How a guide's file opens, and how a design becomes files, are skillbook-guide-write's. How a design's tests become cases, and how they are run and judged, are skillbook-test-write's.
 
 ## The checklist
 
@@ -113,13 +113,13 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
       - Stop for the user's decisions, not for leave. Their request approves the exact work it names; a skill cannot make it "not approval", since some harnesses rank the user's request above any skill. Stop when the work goes beyond what they named, or rests on something they likely do not know.
       - Judge undo by consequences, not just files.
       - Show choices the result rests on, not every minor one;
-    - **one action:** give each trigger one visible action, such as "end the turn", as skillbook-write's Sharp instructions rule says. Search the skill for a message paired with going on, such as "say … then go ahead", "show … and start" or "write the line and continue". Report each one, with a fix in one of two shapes: show it and end the turn, or put it in the final answer. Pairing soft and strong actions loses the soft one;
+    - **one action:** give each trigger one visible action, such as "end the turn", as skillbook-guide-write's Sharp instructions rule says. Search the skill for a message paired with going on, such as "say … then go ahead", "show … and start" or "write the line and continue". Report each one, with a fix in one of two shapes: show it and end the turn, or put it in the final answer. Pairing soft and strong actions loses the soft one;
     - **proportion:** scale questions, confirmations and checks to stakes, undo and whether work is a deliverable or intermediate. Use a light path for routine work. Heavy paths everywhere cost turns and attention for little. Keep mandatory checks, such as secrets and irreversible actions, cheap on every path. Scale only the rest;
     - **varied examples:** draw from varied work, not just code. Give a different example at each repetition of a rule. Repeated examples teach the example, not the rule.
 
 ## Instructions
 
-These steps take a skill from its place in the tree to a design a builder can follow, and check it against the checklist above. They are guidelines, not a fixed procedure: use the steps your task needs, in this order, and fit them into your harness's own flow. A review needs steps 1, 5 and 6. Writing the files comes after the design, with skillbook-write. **Read what the skill touches first, then go through each step your task needs.**
+These steps take a skill from its place in the tree to a design a builder can follow, and check it against the checklist above. They are guidelines, not a fixed procedure: use the steps your task needs, in this order, and fit them into your harness's own flow. A review needs steps 1, 5 and 6. Writing the files comes after the design, with skillbook-guide-write. **Read what the skill touches first, then go through each step your task needs.**
 
 1. **Read the skill and what surrounds it before you place, design or review it.** A design or review built on part of the picture misses rules that live elsewhere, and the builder or the user pays for it later.
    - Read its section in `blueprint/design/<set>/<group>.md`, if it has one, and its files, if it is built.
@@ -132,8 +132,8 @@ These steps take a skill from its place in the tree to a design a builder can fo
 3. **Write its design section in `blueprint/design/<set>/<group>.md`, so a builder can write the files from it alone.** A builder who has to guess writes a different skill.
    - Use the fields every section in that file has.
    - Write it to the checklist: a boundary by check 9, a reason for each restriction by check 4, the shape by check 8, and a test for every aspect by check 7.
-   - Write in plain English, by skillbook-write's Plain English rule: the user and other readers may not be native speakers.
-   - Review the design next, by step 5. When it is agreed, write the files with skillbook-write.
+   - Write in plain English, by skillbook-guide-write's Plain English rule: the user and other readers may not be native speakers.
+   - Review the design next, by step 5. When it is agreed, write the files with skillbook-guide-write.
 4. **Trim or fill an existing skill: show the change list, then end the turn.** This step must not move. Unseen cuts can drop requirements, and unseen additions can lack design support. Apply only the changes the user approves, by the approval rule of essentials' `act-rightsize` guide.
    - For a grown skill, list what goes and why.
    - For a skill that leaves questions, list additions with their design sources. Mark unsourced additions as gaps for the user to settle in the design. Write no rule or default for a gap meanwhile.

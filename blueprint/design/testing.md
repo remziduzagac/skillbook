@@ -85,7 +85,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
     - nothing the agent started still running when the turn ended (`nothing_left_running`), unknown where the process list cannot be read or the system does not show a process's environment, since a process that left its group could then go unseen (D233);
     - a path added in the run's own temporary folder during the turn that matches a pattern (`tmp_has`) or none that does (`tmp_lacks`), such as an unpacked copy the agent should have removed or was asked to keep: compare complete listings before and after the turn, so existing harness files do not count. Check every new path, including new children of existing directories, not the short summary listing. Keep the derived verdicts for replay, never the full path lists; unknown where either listing could not be read (D235);
     - a file the agent was asked to remove (`removed`), passing only when it is gone (D240);
-    - an agent started (`agent_started_or_answer`): Codex's exec record shows neither an agent it starts nor that agent's actions, so on Codex any call about agents, or a change no recorded action explains, leaves the check unknown, not failed; the summary says an agent may have run unseen, and judges follow skillbook-write's record-limit lesson (D242, D254);
+    - an agent started (`agent_started_or_answer`): Codex's exec record shows neither an agent it starts nor that agent's actions, so on Codex any call about agents, or a change no recorded action explains, leaves the check unknown, not failed; the summary says an agent may have run unseen, and judges follow skillbook-test-write's record-limit rule (D242, D254);
     - a path in the temporary folders that the answer names and that holds a pattern (`answer_path_has`), and no recorded action target, such as a command or a file path, that matches a pattern (`actions_lack`); the Python runner checks both the same way;
     - no skill named in the answer: Codex's harness tells it to say which skills it uses, so only a short line that says it loads, uses, reads or follows essentials and gives no reason is left out; a line with a reason, such as "because the essentials skill prohibits…", counts as naming a skill (D242);
 
@@ -102,17 +102,19 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
 - **`tests/install-test.sh`:** the install tests. Each test copies `install.sh` and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched.
 - **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model.
 - **`tests/archive/`:** the frozen long scenarios, kept as a record and not run (see "Frozen long scenarios").
-- **Review evidence:** before deleting each sandbox, the runner retains per-turn fixture diffs, observed file contents requested by assertions, answers and an ordered action ledger of tool names, commands and target paths. Tool outputs and credential-home contents are not copied into that ledger. Failed or timed-out turns retain the evidence available, marked incomplete. Evidence grading follows skillbook-write's test-case rules. Raw events may be kept explicitly when needed.
+- **Review evidence:** before deleting each sandbox, the runner retains per-turn fixture diffs, observed file contents requested by assertions, answers and an ordered action ledger of tool names, commands and target paths. Tool outputs and credential-home contents are not copied into that ledger. Failed or timed-out turns retain the evidence available, marked incomplete. Evidence grading follows skillbook-test-write's rules. Raw events may be kept explicitly when needed.
 
 ## Project skill cases
 
 The project skills have no shipped-set design sections. These designed cases apply their existing contracts, with small fixture drafts, without changing their rules. Their executable cases were retired (D288); they return as small cases:
 
-1. skillbook-design reviews overlapping routes: it reports the actual conflicting lines and a general fix, changing nothing.
-2. skillbook-design reviews a leaf: it applies the relevant checklist without inventing a requirement for child-routing sections.
-3. skillbook-write corrects one spelling error: it preserves the design and required fallback, changing nothing unrelated.
-4. skillbook-write finds a requested behaviour absent from the design: it proposes the design change through skillbook-design before changing either file.
-5. skillbook-write finds the requested behaviour already present: it reports the evidence and leaves the files alone.
+1. skillbook-guide-design reviews overlapping routes: it reports the actual conflicting lines and a general fix, changing nothing.
+2. skillbook-guide-design reviews a leaf: it applies the relevant checklist without inventing a requirement for child-routing sections.
+3. skillbook-guide-write corrects one spelling error: it preserves the design and required fallback, changing nothing unrelated.
+4. skillbook-guide-write finds a requested behaviour absent from the design: it proposes the design change through skillbook-guide-design before changing either file.
+5. skillbook-guide-write finds the requested behaviour already present: it reports the evidence and leaves the files alone.
+6. skillbook-test-write is asked to test a changed rule: it writes a case the guide covers, a near miss and a behaviour case whose questions each name one thing, one of them held out, and runs them on the old text before the change.
+7. skillbook-test-write sees a change beat the old text by one run: it reports the gap as noise and reverts the change, claiming no gain.
 
 ## The runner's rules
 
@@ -128,9 +130,9 @@ The project skills have no shipped-set design sections. These designed cases app
   - a missing or decreasing counter, or an unexpected session change, leaves the call's cost unknown. A valid later counter can establish a new baseline, but cannot recover the missing call's spending;
   - a model with no known price counts as unknown, not as zero, and the summary says how many runs had an unknown cost;
   - a failed or timed-out call does not erase completed spending: known spending remains a lower bound, and any unquantified remainder is reported separately.
-- **Privacy:** raw event logs and credentials stay outside the repository and are deleted afterwards, unless the user asks to keep the logs. Local review summaries retain the fixture and action evidence described above, never the separate credential home or raw tool outputs. What a run showed goes into the decision's Tested line, as skillbook-write says.
+- **Privacy:** raw event logs and credentials stay outside the repository and are deleted afterwards, unless the user asks to keep the logs. Local review summaries retain the fixture and action evidence described above, never the separate credential home or raw tool outputs. What a run showed goes into the decision's Tested line, as skillbook-test-write says.
 - **Judging:** scripts check behaviour. What only judgment can check, such as whether an explanation is clear, is judged by `tests/judge-small.ts` on questions that each name one thing, and a person reads every fail. The judge's cost is given and counted like a run's, and an unknown cost stays unknown.
-- **Case-writing rules:** follow [skillbook-write's Test cases instruction](../../.agents/skills/skillbook-write/SKILL.md), including prompt/check agreement, advice relevant to the result, strength versus choice, and unknown evidence. Its test-first rule follows the user's schedule.
+- **Case-writing rules:** follow [skillbook-test-write](../../.agents/skills/skillbook-test-write/SKILL.md), including prompt/check agreement, advice relevant to the result, strength versus choice, and unknown evidence. Its test-first rule follows the user's schedule.
 
 ## Open, settled when building
 
@@ -153,7 +155,7 @@ The project skills have no shipped-set design sections. These designed cases app
 ## Related
 
 - [how-it-works.md](how-it-works.md): the install script the install tests check, and how a skill is written.
-- skillbook-write's "Test cases" instruction, in `.agents/skills/skillbook-write/SKILL.md`: how a design's tests are run and what a result holds.
+- skillbook-test-write, in `.agents/skills/skillbook-test-write/SKILL.md`: how a design's tests become cases, how they are run and judged, and what a result holds.
 - `tests/README.md`: how to run and judge small cases.
 
 ## TypeScript runner

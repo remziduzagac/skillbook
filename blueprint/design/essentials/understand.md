@@ -869,7 +869,7 @@ understand/
   - the `understand` guide itself, from the main map, with its parent path read first (D279);
   - the `understand-frame` guide, when a term the work depends on needs defining;
   - the `devise-design` guide for a new concept or part; the `organize-normalize` guide for a shared definition; a skill in the harness’s list for code or documents, if one fits, for names and consistent terms (D252, D281);
-  - this repository's skillbook-design, for the word in a new skill's name, its folder rules staying its own;
+  - this repository's skillbook-guide-design, for the word in a new skill's name, its folder rules staying its own;
   - the person, typing it.
 
   It uses the `understand-brainstorm` guide for candidates only. It applies naming criteria through the `understand-weigh` guide once. The `respond-ask` guide handles an open naming choice (D252).

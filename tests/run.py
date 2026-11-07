@@ -288,13 +288,13 @@ def validate_case(case):
             for pattern in patterns:
                 re.compile(pattern)
     for skill in case.get("project_skills", []):
-        if skill not in {"skillbook-design", "skillbook-write"}:
+        if skill not in {"skillbook-guide-design", "skillbook-guide-write", "skillbook-test-write"}:
             raise ValueError(f"{case['id']}: unknown project skill {skill}")
 
 
 def coverage(cases):
     """Count declared scenario coverage; this says nothing about observed model success."""
-    names = {"essentials", "skillbook-design", "skillbook-write"}
+    names = {"essentials", "skillbook-guide-design", "skillbook-guide-write"}
     names.update(skill_name("essentials", str(p.relative_to(REPO / "skills" / "essentials")))
                  for p in (REPO / "skills" / "essentials" / "references").rglob("*.md"))
     lines = ["# Scenario coverage", "", "Executable cases, not observed results. Counts can overlap across skills.", "",

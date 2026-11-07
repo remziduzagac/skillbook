@@ -49,7 +49,7 @@ export interface CaseFile {
   category?: "normal" | "boundary" | "edge";
   rejects?: string;
   review?: string[];
-  project_skills?: ("skillbook-design" | "skillbook-write")[];
+  project_skills?: ("skillbook-guide-design" | "skillbook-guide-write" | "skillbook-test-write")[];
   checks?: Checks;
   turns: Turn[];
 }

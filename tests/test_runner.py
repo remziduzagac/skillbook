@@ -1010,7 +1010,7 @@ class AspectCoverage(unittest.TestCase):
     def test_aspects_come_from_the_skill_text(self):
         names = runner.aspects()
         for aspect in ("act:rule:5", "act:step:4", "essentials:step:0", "essentials:step:1",
-                       "respond-ask:step:1", "skillbook-design:check:13"):
+                       "respond-ask:step:1", "skillbook-guide-design:check:13"):
             self.assertIn(aspect, names)
 
     def test_unknown_and_uncovered_aspects_are_reported(self):

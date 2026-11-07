@@ -1,6 +1,6 @@
 #!/bin/sh
 # Checks every set in skills/: each plain skill file opens with a heading holding the name its path gives, each file
-# stays near the length skillbook-write advises, and every skill named in backticks whose group exists in the set
+# stays near the length skillbook-guide-write advises, and every skill named in backticks whose group exists in the set
 # resolves to a file. Prints one line per problem and exits non-zero when there is any. Also prints, for each set, the
 # characters of its start files (the main SKILL.md and the files its "Read `references/...`" line names), and warns,
 # without failing, past the advised size.

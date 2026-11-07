@@ -201,7 +201,7 @@ test("no-skill home omits installations, project skills and startup pointers for
   temporary(root => {
     for (const agent of ["codex", "claude"] as const) {
       const home=join(root,agent);
-      prepareHome(home,agent,{set:"essentials",pointer:true,project_skills:["skillbook-write"],no_skill:true},false);
+      prepareHome(home,agent,{set:"essentials",pointer:true,project_skills:["skillbook-guide-write"],no_skill:true},false);
       expect(existsSync(join(home,".agents/skills"))).toBe(false);
       expect(existsSync(join(home,".claude/skills"))).toBe(false);
       expect(existsSync(join(home,agent === "codex" ? ".codex/AGENTS.md" : ".claude/CLAUDE.md"))).toBe(false);

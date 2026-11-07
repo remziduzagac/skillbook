@@ -81,8 +81,9 @@
           "items": {
             "type": "string",
             "enum": [
-              "skillbook-design",
-              "skillbook-write"
+              "skillbook-guide-design",
+              "skillbook-guide-write",
+              "skillbook-test-write"
             ]
           }
         },

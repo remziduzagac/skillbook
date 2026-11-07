@@ -65,3 +65,5 @@ The festival scenario is built as five chapters and 28 turns, with authored corr
 The live run after both gates showed no progress and was stopped (D310). Small cases per guide replace the long scenarios: each run is compared with no skill or with the old text, checked by scripts first and then judged by two judges, Sol and Sonnet, on plain questions, and a change stays only if it beats the old text. The long scenarios are frozen and kept in `tests/archive/` as a record. The judging machinery of the long runs, the rule copies and the coverage list are retired, and their code is removed (D311, [design/testing.md](design/testing.md)).
 
 The small cases led to a design change: the user's request is the go-ahead for the work it names, and the agent ends the turn before a change only when the user must decide something first (D312). After three test cycles, each tested guide passes at least 85% of its checks on both Sonnet and Sol.
+
+The project skills became three: skillbook-guide-design and skillbook-guide-write, renamed, and skillbook-test-write, which holds the test-case rules (D313).

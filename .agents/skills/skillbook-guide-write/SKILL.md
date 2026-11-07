@@ -1,0 +1,81 @@
+---
+name: skillbook-guide-write
+description: "Writes and changes the files of skillbook's skills from their designs: a set's main skill, the guide files under it, their size and their wording. Use when building a skill or changing a built skill's files. Not for placing, naming, designing or reviewing a skill (skillbook-guide-design), writing, running or judging its test cases (skillbook-test-write), or instruction files such as AGENTS.md."
+---
+
+# skillbook-guide-write
+
+## Purpose
+
+Helps you turn a design into a skill's files: the main skill and its guides. The goal is files an agent follows as intended, in plain English, at a size it reads whole, and true to the design. This is a project skill. It is never shipped in a set.
+
+## Rules
+
+- **Write from the design.** Find it where skillbook-guide-design says designs live.
+  - **List missing rules, cases, routes or fallbacks for the user, then end the turn.** Invent none in files or design. The user settles gaps through skillbook-guide-design before you write them.
+  - If the files already do what was asked, report the line that shows it and change nothing.
+  - Choose wording, examples and order that keep the design's intent.
+  - If file and design disagree, ask the user which is wrong.
+  - Before reporting, account for every required rule, route and fallback in the files. Name deferred behaviour and the fallback covering it.
+- **Point to shared rules where they live.** Read skillbook-guide-design for set and design locations, name-to-file mapping, exact name rule, how parents open (its checks 8 to 10) and checklist. Copy only text explicitly required word for word, such as the name rule. Do not retype from memory. Duplicate rules drift.
+- **Plain English: use common words and short sentences.** Many readers, people and agents, are not native speakers. Plain text is just as exact for agents:
+  - Use short sentences with one idea each;
+  - Use active voice: "read the file whole", not "the file is read whole";
+  - Use normal word order and common words;
+  - Use lists instead of clauses chained by semicolons;
+  - Use the same word for the same thing, following skillbook's glossary;
+  - Call the human "the user", as harnesses do. Call people using the project's output "the project's users" or "end users";
+  - Write "the `act` skill" for bare names that look like ordinary words, such as `act` or `respond`. Dashed names such as `respond-ask` need no qualifier.
+- **Sharp instructions: give each instruction one clear action.** Models follow short rules and drop soft parts of long or mixed ones:
+  - Never pair a message with going on in one instruction, such as "say the plan, then go ahead" or "show a one-line plan and start". The model goes on and writes the message only in its private thinking, which the user never sees. Pick one shape: show it, then end the turn; or put it in the final answer, after the work. "Show the plan. Then end the turn." works;
+  - Use visible actions: end the turn, ask, propose, send a message, or write it in the final answer. Avoid "state", "note" and "keep in mind" for what the user must see before the work goes on;
+  - Start a flow, a list of steps or a section with its goal, in a sentence or two. Give each step its action, then why it matters. Bare commands tell the reader what to do but not what for, so neither the user nor an agent can follow the flow or adapt it to a new case;
+  - Put the must first as one short bold sentence. Give its reason in a separate sentence. Put each exception on its own line;
+  - Keep one idea per sentence. Split sentences containing "but", "unless" or lists of cases;
+  - Keep a rule's conditions and numbers in its bold must when you split it, such as "after about three attempts" or "as far as you know". Moved to a later sentence, they read as explanation;
+  - Keep a rule's bold label when you rewrite it, and put the action after it. Other files and decisions name the rule by its label;
+  - Check the shape of a failing rule before adding words. Extra clauses do not fix mixed instructions.
+- **Concrete wording: name actions the agent can take.** An agent follows what it can act on:
+  - Name the visible action for user-dependent verbs such as wait, ask, stop or confirm. Write "end the turn with the questions; never answer them yourself", not "wait";
+  - Name things as tools see them. Call a registered skill by its name, such as `essentials` or `softeng`. Call a guide by its name with the word "guide", such as "the `act` guide" or "the `act-verify` guide": called a skill, a guide makes the agent look for it in its skill list, then search or give up. Give paths only in the main skill's guide map. skillbook-guide-design's Names turns names into files;
+  - Give the general term before narrow examples: "a different result, such as code, a document, a decision or an action", not "different code or files";
+  - Vary examples across kinds of work, not just code. Give a different example wherever a rule repeats. Repeating one teaches the example, not the rule.
+- **Keep each file to about 100 lines.** Count files separately, not the whole skill. Agents may preview longer files instead of reading them whole. Every loaded line costs tokens again. Trim an oversized file first. Then split it into a child or reference at its name's path. Cut no reason, "when not" case or fallback for size. Give the reason for unavoidable extra length in the design's Length field, not in the file: the loading agent does not need it.
+- **Write about the job, not skillbook's progress.** Omit "for now", "not built yet" and "until X exists". Name no skill for a step without a built skill. The agent uses judgment where none is named. Progress notes cost tokens and go stale.
+- **Block only where continuing would cause harm.** Needless blocks stop requested work. Do not use "stop", "wait", "never", "only" or "must" where a note or judgment would serve. An absolute's reason must cover every forbidden case. Write advice as advice. Use skillbook-guide-design's check 4.
+- **Rewrite outside ideas for skillbook,** as skillbook-guide-design's rule on outside material says.
+
+## Advice
+
+- Write for an agent that has only this file and the files above it. Use plain steps and the words the user and the other skills use.
+- Give one clear default rather than a list of options. Name an alternative only for the case that needs it.
+- A short text diagram helps with a loop, a decision that is easy to miss, or a before-and-after. A long flow can offer a checklist the agent copies and ticks off.
+
+## Instructions
+
+These steps turn a design into a skill's files. They are guidelines, not a fixed procedure: use the steps your task needs, in this order, and fit them into your harness's own flow. What matters is that the files say what the design says, in a form an agent follows. **Read the design first, then go through each step your task needs.**
+
+1. **Read the design and the files it touches before you write.** Files written from memory drift from the design, and the drift shows only when an agent fails.
+   - Find the design where skillbook-guide-design says designs live, with the decisions it cites and the notes under them.
+   - Read the files you will change, and the guides that name them.
+   - Compare files and design, and act on what you find by the rule "Write from the design": list gaps for the user and end the turn, change nothing where the files already do what was asked, and ask which is wrong when they disagree.
+2. **Change a built skill's design before its files.** This step must not move. A file changed beyond its design leaves the design wrong, and the next builder copies it.
+   - If the change alters what the design says, agree the design change with the user first, through skillbook-guide-design. Then change the design, then the files.
+   - A fix that keeps the design true, such as a typo or a lint error, goes to the files only.
+   - To trim or fill a skill, follow skillbook-guide-design's "Trim or fill an existing skill" step.
+3. **Write the tests with skillbook-test-write before you write the files they test.** A rule that no case can fail can break unseen. When model runs are due, this order is firm: write the cases and see them fail before steps 4 and 5, then rerun them after. A case written after the change cannot show that the change made it pass.
+4. **Write the main skill so the harness loads it for the right requests and the agent finds every guide.** A description that misses the request leaves the skill unloaded. A map without the name rule leaves guides unread.
+   - Start with frontmatter:
+     - `name`: the set's name;
+     - `description`: what it does and when to load it, in at most 1,024 characters, with no angle brackets and no overlap with another main skill;
+     - `compatibility`: a capability the set needs, if any.
+   - Write the body in the order of skillbook-guide-design's check 8. Put the guide map, with the exact name rule at its top, between the advice and the instructions.
+5. **Write each guide in the shape of skillbook-guide-design's check 8.** The same shape in every guide lets a reader find each part in the same place.
+   - Give it a `#` heading with its dashed name, `## Purpose`, `Needs:` if needed, and the three boundary sections by check 9. Then add Rules and Advice where it has them, and Instructions, whose last step is the final check.
+   - Write the Instructions as check 8 says: an opening that ends in one clear instruction, then steps that each give the action, why it matters and what doing it well means.
+   - Apply the wording rules above to every line, and keep the file to about 100 lines.
+   - Turn the design's Files into scripts and templates at skillbook-guide-design's paths. Leave Callers and Material in the design: the loading agent does not need them.
+6. **Check every file before you report.** Always do this last. A file that fails the checks or drifts from its design reaches every agent that loads it.
+   - Run the repository checks and skillbook-guide-design's checklist on every file you wrote.
+   - Account for every required rule, route and fallback, as the rule "Write from the design" says.
+   - List differences from the design with file and line. Change the design only with the user.
