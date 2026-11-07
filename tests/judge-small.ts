@@ -42,6 +42,8 @@ const current = (r: Event, turn: number, rows?: Event[]) => !!rows && questions(
   rows.some(x => x.id === q.id && x.question === q.criterion));
 const cut = (text: unknown, n = 4000) => typeof text === "string" && text.length > n ? text.slice(0, n) + " …[cut]" : text;
 const action = (a: Event) => ({ tool: a.tool, command: cut(a.command, 300), path: a.path ?? a.file_path, status: a.status });
+// The instructions each helper was started with, where the run recorded them: an answer may show them only mid-turn.
+const briefs = (t: Event) => (t.helpers?.helpers ?? []).map((h: Event) => cut(h.brief)).filter(Boolean);
 // Sol's keys predate the second judge and stay as they were, so its saved verdicts are reused.
 const key = (r: Event, turn: number, judge = "sol") =>
   `${r.source}|${r.case}|${r.agent}|${r.model}|${r.condition}|${r.run}|${turn}` + (judge === "sol" ? "" : `|${judge}`);
@@ -75,6 +77,7 @@ if (!values["report-only"]) {
         project_files_before: Object.fromEntries(Object.entries(r.fixture_sources ?? {}).map(([p, v]) => [p, cut(v)])),
         earlier_turns: r.turns.slice(0, i).map((e: Event) => ({ request: e.sent_message, answer: cut(e.final_answer) })),
         request: t.sent_message, answer: t.final_answer, actions: (t.actions ?? []).map(action),
+        ...(briefs(t).length ? { helper_briefs: briefs(t) } : {}),
         changed_files: Object.fromEntries(Object.entries(t.file_diffs ?? {}).map(([p, v]) => [p, cut(v)])),
         questions: questions(r, t.turn).map(q => ({ id: q.id, question: q.criterion })),
       };

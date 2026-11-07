@@ -16,22 +16,26 @@ turns:
       - id: asks-cleanup
         tag: coordinate-brief
         criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
           The check starts a web server with npm run serve, which keeps running, and needs a todos.json that does not exist in the project yet.
-          Do the instructions the answer shows tell the helper to stop the server and remove the todos.json it creates, and to say in its report what it cleaned up?
+          Do the instructions tell the helper to stop the server and remove the todos.json it creates, and to say in its report what it cleaned up?
           Pass if they ask for both the cleanup, even in general words such as "remove anything you created", and a line about it in the report. Fail if cleanup is not mentioned, or is asked for with no word in the report. Quote the closest line.
       - id: bulk-to-file
         tag: coordinate-brief
         criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
           The project has three tests, so the full test log is short, but the server log and the page output can run long.
           Do the instructions ask for whole logs or the whole page in the report?
           Pass if what they ask back is bounded, such as the order seen, the test counts and the text of any failure, or if they ask for longer output in a named file with its path; no separate line forbidding logs is needed. Fail if they ask for the full test log, the server log or the whole page output in the report. Quote the closest line.
       - id: marks-delegated
         tag: coordinate-brief
         criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
           Do the instructions tell the helper that its work was handed over by another agent, and tell it to load the essentials skill before it starts?
           Pass if both are there. Fail if either is missing, and say which. Quote the closest line.
       - id: report-parts
         tag: coordinate-brief
         criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
           Do the instructions ask for a report that gives the outcome, any decision the helper needs from the user, and anything it could not do or find?
           Pass if all three are asked for. Fail if the instructions ask only for a summary or a pass or fail, and say what is missing.

@@ -17,19 +17,22 @@ turns:
       - id: states-ruling
         tag: coordinate-brief
         criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
           The user gave a ruling that no file holds: where the German says only "die Glocke", the English still reads "the flood bell".
-          Do the instructions the answer shows for the helper state this ruling?
+          Do the instructions state this ruling?
           Pass if the instructions tell the helper to write "the flood bell" for a passage that says only "die Glocke" or "the bell".
           Fail if the ruling is missing or changed, and quote the closest line.
       - id: states-ruled-out
         tag: coordinate-brief
         criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
           The user said a find-and-replace of the glossary terms over the whole file was tried and reverted because it made nonsense sentences.
-          Do the instructions the answer shows tell the helper not to do a blind find-and-replace, and say why?
+          Do the instructions tell the helper not to do a blind find-and-replace, and say why?
           Pass if both the approach and the reason appear. Fail if the approach is not ruled out, or is ruled out with no reason, and quote the closest line.
       - id: points-not-pastes
         tag: coordinate-brief
         criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
           glossary.md holds a table of terms and style-guide.md holds a list of rules, and the helper can read both.
           Do the instructions point to these files by path without reproducing the glossary table or the list of style rules as a block?
           Naming one term as an example of what to fix is not a copy.
@@ -37,6 +40,7 @@ turns:
       - id: first-step-and-done
         tag: coordinate-brief
         criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
           Do the instructions give the helper a first step and a way to know the pass is finished?
           Pass if both are there: where to start, such as reading glossary.md and english/ch03.md, and a finish condition, such as every glossary term in the chapter rendered as the glossary says.
           Fail if either is missing, and say which.
