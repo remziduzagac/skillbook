@@ -1,0 +1,22 @@
+about: >-
+  The brief guide on a fresh helper that files five scanned receipts into folders by a short list of rules, where one receipt fits two folders and the rules forbid splitting it.
+  The report the instructions ask for must leave a place for what only the user can settle, so the helper does not pick the folder alone.
+  Rejects: a brief whose report request asks only for results or changes, such as which files were moved and where, with no place for the user's decisions.
+goal: Write the instructions for a fresh helper that files the boat receipts.
+fixture: small/narrowboat-receipts
+checks:
+  names_no_skill: false
+turns:
+  - prompt: >-
+      Hand the filing of the boat receipts to a fresh helper agent. It should move each file in inbox/ into the folder for its kind of spending and name it the way filing-rules.md says.
+      When you report back, include the exact instructions you gave it.
+    checks:
+      reads: [coordinate-brief]
+    rubric:
+      - id: asks-decisions
+        tag: coordinate-brief
+        criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
+          The inbox holds one receipt, scan-0415.txt, with diesel and a pump impeller kit on one total, so it fits both the fuel/ rule and the repairs/ rule, and filing-rules.md says to file a receipt whole and never split it. Only the user can say which folder it belongs in.
+          Do the instructions ask the helper to report any decision or choice it needs from the user, rather than settle it alone?
+          Pass if they ask for it in any words, such as "list anything you need me to decide" or "flag what you could not settle", or if they tell the helper to leave an unclear receipt in inbox/ and report it. Fail if they ask only for results, changes or a summary, such as "tell me which files you moved and where", or if they tell the helper to pick a folder for such a receipt itself. Quote the closest line.

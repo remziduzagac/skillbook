@@ -1,0 +1,3 @@
+2026-09-14-bisque.csv: peak 1000 C at minute 540
+2026-09-28-glaze.csv: peak 1240 C at minute 630
+note from Marit: the 28 Sep peak reads too high, the probe was touching the element. Chart it as 1215 C.

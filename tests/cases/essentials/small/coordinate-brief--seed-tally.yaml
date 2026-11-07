@@ -1,0 +1,29 @@
+about: >-
+  The brief guide on a fresh helper that tidies a seed catalogue and may find that two files disagree on a figure the project cannot settle.
+  The instructions ask the helper for a report that gives any decision it needs from the user, and what it could not do, check or find, so the helper does not settle the figure alone or stay silent about it.
+  Rejects: a brief whose report request asks only for results, with no place for the user's decisions or for what was left undone.
+goal: Write the instructions for a fresh helper that sorts a seed catalogue and checks its totals.
+fixture: small/seed-swap-catalogue
+checks:
+  names_no_skill: false
+turns:
+  - prompt: >-
+      Pass the seed catalogue tidy to a fresh helper agent. In herbs.md, vegetables.md and flowers.md it should put the entries in alphabetical order, and it should check the packet totals in index.md against the three files.
+      When you report back, include the exact instructions you gave it.
+    checks:
+      reads: [coordinate-brief]
+    rubric:
+      - id: asks-decisions
+        tag: coordinate-brief
+        criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
+          In the project, index.md gives 14 herb packets but the entries in herbs.md add up to 12, and no file says which figure is right, so the helper may meet a choice that is the user's.
+          Do the instructions ask the helper to report any decision or choice it needs from the user, rather than settle it alone?
+          Pass if they ask for it in any words, such as "list anything you need me to decide" or "flag entries you could not settle for the user". Fail if they do not, and quote the closest line.
+      - id: asks-not-done
+        tag: coordinate-brief
+        criterion: >-
+          Judge the instructions the helper was started with: helper_briefs where the data has it, otherwise the instructions the answer shows.
+          The helper sorts three files and checks three totals, and one total may not match its file.
+          Do the instructions ask the helper to report what it could not do, check or find?
+          Pass if they do, in any words, such as "say what you could not check". Fail if they ask only for a summary or a result, and quote the closest line.

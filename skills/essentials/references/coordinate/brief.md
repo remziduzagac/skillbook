@@ -25,7 +25,19 @@ The worker’s starting instructions and the report it must return. The task tha
 4. **Give the first step and a success criterion.** Otherwise the worker can stop early or continue indefinitely.
 5. **Point to references instead of pasting their contents.** Give file paths, line numbers and the location of recorded decisions. Pasting file contents costs output tokens when you write the brief and input tokens when the worker reads it. Check the references are usable by that reader. Report an inaccessible input rather than claiming the brief is sufficient.
 6. **Name no tool available only to the writer.** Describe the action so another harness can perform it. Follow a user-chosen tool through its own skill or documentation where available.
-7. **Ask for a report sized for its main-agent reader.** Use the `act-rightsize` guide to size the report. Ask for the task outcome, decisions needed from the user, proposals, paths to evidence, and missing or unfinished work. Ask the worker to report cleanup under cleaned, kept and proposed. Put a changed or narrowed task first. Ask for a line on what was asked and why when tasks run together, the work is long, or the report will be kept for later. Put longer detail in a named scratch file. Ask the worker to return its path and the summary the caller needs.
+7. **Ask for a report sized for its main-agent reader, with every line of this request.** Use the `act-rightsize` guide to size the report. Put each line in the brief; word it for the task and add what the task needs. A part left out is one the worker never reports, such as a choice it then settles alone.
+
+   ```text
+   Report back, in this order:
+   - Task: say first if it changed or narrowed.
+   - Outcome: what you did and found, naming the task.
+   - Decisions for the user: each choice you could not settle alone, with any proposal.
+   - Evidence: paths to the files or output that show it, not pasted.
+   - Not done or not found: what you could not do, check or find, and why.
+   - Cleanup: what you cleaned, kept and why, and propose to remove.
+   ```
+
+   Ask for a line on what was asked and why when tasks run together, the work is long, or the report will be kept for later. Put longer detail in a named scratch file. Ask the worker to return its path and the summary the caller needs.
 8. **Bootstrap a fresh worker through the actual essentials folder.** Mark the task as delegated work. Give the worker the essentials folder's absolute path. Tell it to load the `essentials` skill and use its guide map and name rule; the main skill says which guides a delegated worker reads. Name every guide its task needs beyond the `act`, `act-rightsize`, `respond` and `respond-layout` guides, such as `act-verify` when it must show that a fix works. The worker reads each named guide with its parents, and a guide you do not name is not read. A settled brief can still meet an unknown that would change the result, so the worker may read the `understand` guide when one appears. Rule 10 of the `act` guide bounds every step. Do not copy it into the brief.
 9. **Ask the worker to clean up before reporting.** Ask the worker to follow the `act-cleanup` guide: remove its temporary material, stop what it started and respect its limits. Ask it to report what it cleaned, kept or proposes to remove, and to check the cleanup result. A read-only task can still create a report or a process. Do not infer no leftovers from its label.
 
@@ -45,7 +57,7 @@ Give a worker starting now enough context to act without guessing and return a r
    - Give the first step and success criterion. Point to readable paths and lines rather than pasting their contents; mark missing or inaccessible inputs as gaps.
    - Describe actions without tools available only to you. Follow a user-chosen tool through its skill or documentation.
 3. **Request a usable report and checked cleanup, by rules 7 and 9.** A success sentence can hide unfinished work and leave the caller with forgotten processes or files.
-   - Ask for outcome, user decisions, proposals, evidence paths and missing work. Put a changed or narrowed task first and request task context when work is long, combined or kept later.
+   - Put every line of rule 7's report request in the brief, decisions for the user and what was not done included. Request task context when work is long, combined or kept later.
    - Size the report through the `act-rightsize` guide. Put bulk detail in a named scratch file and request its path and useful summary.
    - Explicitly ask the worker to use the `act-cleanup` guide: remove temporary material, stop what it started, check removal and report cleaned, kept and proposed items.
 4. **Include the missing operating baseline under rule 8.** A task brief without authority limits can make a worker treat a called guide as permission to exceed its task.
@@ -58,4 +70,4 @@ Give a worker starting now enough context to act without guessing and return a r
    - Leave sending and startup with the caller. Start no worker from this guide.
 7. **Check the brief and “Gives back” before returning.** Always do this last. A readable brief can still be unusable if an essential reference is inaccessible.
    - Check inputs, missing decisions, constraints, rejected approaches, first step and success criterion. Check the baseline is visible or explicitly requested, the guides its task needs are named, and the guide map can be reached.
-   - Check report and cleanup requests are explicit. Fix omissions through the `act-rightsize` guide and report remaining gaps rather than claiming the worker can start without asking.
+   - Check the brief carries every line of rule 7's report request and an explicit cleanup request. Fix omissions through the `act-rightsize` guide and report remaining gaps rather than claiming the worker can start without asking.
