@@ -55,7 +55,7 @@ Make each part easy for its reader to find, read and copy. Match the destination
 
 1. **Check the output against “Gives back” and all seven layout rules.** Always do this last. A sound answer can still be hard to use if its sections cannot be found or its text cannot be copied cleanly.
    - Follow the destination and user preferences under the opening Rules. Use navigable headings for sections readers seek, and bold only for labels or key phrases within them.
-   - Use lists by default. Keep tables for short compared values and rows within the applicable width; turn wide content into lists. Keep prose on one line per paragraph or item.
+   - Use lists by default. Keep tables for short compared values. Count the characters of the longest table row; if it passes the applicable width, such as 120, turn the table into a list. Rows look shorter than they are. Keep prose on one line per paragraph or item.
    - Number ordered or referable items. Fence copied or grouped blocks with a language and put names inside sentences in inline backticks. Give paste-ready text whole, with notes outside it.
    - Check heading order, code-line width and nesting against the medium and Advice. Say when departing from strong advice.
    - For files, use a fitting skill in the harness's list for Markdown conventions and linting. Otherwise run the project's linter, if it has one, through the `act-verify` guide. Fix layout or lint failures before returning; the wording check remains with the `respond` guide.

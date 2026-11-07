@@ -5257,3 +5257,30 @@ Raw runs and reports are in `tmp/small-trial/check/` and `tmp/small-trial/check-
 Raw runs are in `tmp/small-trial/claim-old/`, `tmp/small-trial/claim-new/` and `tmp/small-trial/claim-judged.json` (not committed).
 
 **Spending:** test runs $1.40 ($0.29 on the old text, $1.11 on the new), judging $0.94, by the reported costs.
+
+## D317: Fixes for the gaps both test models showed in the small cases (2026-11-07)
+
+**Decision:** a fix cycle for the cases both Sonnet and Sol failed in the check run of D315. Each failure was read first. Two causes cover most of them: the agent never read the guide that holds the rule, or it read the guide and did not apply a rule that had no concrete action. Four changes stay, because they beat the old text; the rest were tried and reverted.
+
+- **Table width** (`respond-layout`, last step): count the characters of the longest table row, and turn a table over the width into a list. The rule was there; nothing asked the agent to measure.
+- **Constraints first** (`understand-weigh`, step 1): find the constraints in the request and the project's own files before comparing, so an option that breaks one is dropped. A constraint the agent never looked for cannot drop anything.
+- **Boundary in the parent** (`organize-compose`, step 3): the parent itself, such as its README, says what belongs and what does not, so a later reader can place a new item.
+- **Short drafts and routing** (`understand` rule 5 and step 4, main skill): "short" in the short-draft exception gets a test, one piece of a few lines or paragraphs; work in several parts is long, so the user's choices are asked first. The understand guide's method step says to read each part's guide before working on it. The main skill's understand test also fires for a request that asks for options or the agent's recommendation, or asks it to write questions for someone else.
+
+**Tried and reverted,** with no gain over the old text: a "Recommended answer:" line for a direct weigh request and a last-step check that every point has a value for every option (`understand-weigh`); marking a worked-out link between sources as inferred, and a firm step to read research's child guide (`understand-research`); each part's boundary in the final answer even for parts the user named (`organize`); and a concrete check for how an index stays current in the final answer (`organize-cluster`).
+
+**Left out:** the two delegation cases (`coordinate-delegate--paper-digest`, `coordinate--wide-check`). Neither model delegated or gave a reason, and neither read the `coordinate` guide. Their fixtures are small enough that the main skill's "too small" exception may apply, so the cause needs a live-session question before any text changes.
+
+**Tested:** Sonnet (Claude Code) and Sol (Codex, `gpt-6.1-sol`), scripts first, then both judges; a verdict counts where they agree. The old text is the check run of D315, 1 run per case. The new text ran 3 times per case on the 13 target cases and on 9 held-out cases written apart from the changes, from the guides at the commit before them; the held-out cases also ran once on the old text. Results below are old, then new, as passing runs.
+
+- **Table width:** target `respond-layout--floor-options` Sonnet 0/1 to 3/3, Sol 0/1 to 0/3; held-out `respond-layout--island-crossings` Sonnet 1/1 to 3/3, Sol 0/1 to 0/3.
+- **Constraints first:** target `understand-weigh--settings-storage` Sonnet 0/1 to 3/3, Sol 0/1 to 0/3; held-out `understand-weigh--rehearsal-room` already dropped the over-budget room on both, old and new.
+- **Boundary in the parent:** target `organize-compose--jacket-folder` Sol 0/1 to 2/3, Sonnet 0/1 to 3/3; held-out `organize-compose--winter-prep` Sol 0/1 to 3/3, Sonnet 0/1 to 0/3.
+- **Short drafts and routing:** target `understand-clarify-shallow--exhibit-round` asks the audience Sol 0/1 to 3/3 and Sonnet 0/1 to 1/3, asks the focus Sol 0/1 to 3/3 and Sonnet 0/1 to 0/2 with 1 split; held-out `understand-clarify-shallow--induction-focus` 3/3 on both. Reads rose where routing changed: Sonnet read the weigh guide in `understand-brainstorm--bad-rows` 3/3 (was 0/1) and the questionnaire guide in `understand-clarify-questionnaire--archive-questions` 3/3 (was 0/1); Sol read the shallow guide in the exhibit case 3/3 (was 0/1).
+- **No overreach:** 16 cases at 1 run per model on the new text: 12 near misses that must not read the understand guide, which none did, and 4 short drafts or stops, which kept their old behaviour. Two old patterns remain: Sol writes no "Going with" line naming a short draft's readers, and asks for a value only the user knows without a "No recommended answer:" line, as in the earlier cycles' runs.
+- **Still failing on both:** points given for some options only (`understand-weigh--two-cars`, `understand-brainstorm--bad-rows`, held-out `rehearsal-room`), the "Recommended answer:" line, what a survey did not search, the questionnaire's reason per question and who holds the answers, the deep offer in `understand-clarify-shallow--depth-offer` (Sonnet still writes the plan), a worked-out link marked inferred, boundaries for named parts, and an index's staying-current check. In the held-out short draft `understand--fence-note`, both wrote the note, but neither named its tone, old or new.
+- **Where the gains come from:** better guide text for the four kept changes; no case or question changed in this cycle.
+
+Raw runs and verdicts are in `tmp/fix-cycle/` (not committed). The first three target runs of `understand-weigh--settings-storage` used a weigh example close to that case and were set aside; the case was rerun after the example changed.
+
+**Spending:** test runs $25.35 (target $11.16, overreach checks $3.80, held-out on the new text $8.02, held-out on the old text $2.37), judging $4.90, by the reported costs. The held-out cases were written by one Sonnet agent, about 190,000 tokens, cost not reported.

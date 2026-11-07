@@ -1,0 +1,16 @@
+about: >-
+  The layout guide on a side-by-side comparison whose values are long: each crossing's luggage and cancellation rules run to a sentence or two.
+  Wide content goes into a list with sub-items, not into a table whose rows run past 120 characters.
+  A table with short values is allowed, so the check is only on the width of a table row.
+  Rejects: a table row wider than 120 characters, or an answer that leaves one of the three crossings out.
+goal: Set three ways to reach an island side by side on four points, in a form that stays readable in a terminal.
+fixture: small/island-crossings
+turns:
+  - prompt: >-
+      We are choosing how to get to Scarra, and the three ways are in crossings.md.
+      Please set them side by side for me on price, crossing time, luggage rules and cancellation terms.
+    checks:
+      reads: [respond-layout]
+      no_changes: true
+      answer_contains: ['Harbourline', 'Skerry', 'Tidewater']
+      answer_not_contains: ['(?m)^[ \t]*\|[^\n]{120,}$']

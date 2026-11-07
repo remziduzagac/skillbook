@@ -43,7 +43,8 @@ A short table or a list may carry it, by the `respond-layout` guide.
 Compare named options on common terms and recommend one, or explain what would settle a tie. Evidence and an honest search for downsides matter more than a score that merely looks exact. **Set the terms first, compare every option, then return the recommendation or unresolved choice.**
 
 1. **Set comparison terms from the `understand-frame` guide before scoring.** Terms chosen after a favorite appears can make the comparison justify it rather than test it.
-   - Reuse the frame's good-answer terms, otherwise what matters to the question. Drop options that break a constraint, by rule 1.
+   - Reuse the frame's good-answer terms, otherwise what matters to the question.
+   - Find the constraints before you compare: read the request and the project's own files for limits, such as the platforms it must run on or a rule in its instructions. Drop options that break one, by rule 1. A constraint you never looked for cannot drop anything.
    - Scale depth with the `act-stakes` guide. Include the cost of being wrong and how easily the choice can be undone.
 2. **Compare every option on every term, by rules 1 and 2.** Unequal scrutiny can make the least examined option look safest.
    - Give benefits, costs, risks and unknowns, including later costs. Search for real downsides; if none is found, say where you looked rather than inventing one.

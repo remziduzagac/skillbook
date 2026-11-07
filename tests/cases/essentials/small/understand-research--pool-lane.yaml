@@ -1,0 +1,25 @@
+about: >-
+  The research guide on a question that rests on a link between two files which neither file states.
+  The incident note gives the date, the time (about 19:35) and the place (beside lane 3) but no group, and the booking sheet shows the Masters squad had lane 3 on Thursdays from 19:00 to 20:00 but never mentions the incident.
+  The answer names the Masters squad as the lead, and marks that the woman was with them as inferred from the matching time and lane, not stated. Nothing changes.
+  Rejects: stating as fact that she was in the Masters squad, or leaving out the booking that gives the lead.
+goal: Say which group an injured swimmer was probably with, and mark that the link is inferred.
+fixture: small/pool-lane-notes
+turns:
+  - prompt: >-
+      The pool's insurer wants to know which group the woman who cut her foot on 19 February was with.
+      Can you tell from the files in this folder?
+    checks:
+      reads: [understand-research]
+      no_changes: true
+      answer_contains: ['Masters']
+    rubric:
+      - id: marks-inference
+        tag: understand-research
+        criterion: >-
+          incident-note.txt gives the date, the time (about 19:35) and the place (beside lane 3), and names no group.
+          lane-bookings.csv shows the Masters squad had lane 3 on Thursdays from 19:00 to 20:00, and never mentions the incident.
+          So that the woman was with the Masters squad is the agent's own link, made by matching the time and the lane.
+          Does the answer say this link is inferred and not stated by either file, for example with "probably", "likely", "inferred", "matches", or by noting that nothing says she was one of them or that other swimmers were beside lane 3?
+          Pass if it marks the link as inferred. Fail if it states as fact that she was with the Masters squad, and quote it.
+          If the answer draws no link to any group, return unknown.

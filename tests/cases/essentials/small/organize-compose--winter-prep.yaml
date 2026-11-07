@@ -1,0 +1,36 @@
+about: >-
+  The compose guide on three notes the user names, which share one thing none of them says alone: each is a job for getting the colony through winter, done after the honey is off.
+  The other three notes (spring inspection, swarm control, queen marking) are spring and summer work.
+  In one turn the three move into the new folder, nothing else moves, and the folder's README says what belongs in it and what stays out.
+  Rejects: moving a note nobody named, changing the notes' contents, or a README that only lists the three notes or says "bee notes".
+goal: Put three notes under a new folder with a README that says what belongs there and what does not.
+fixture: small/apiary-notes
+version_control: true
+turns:
+  - prompt: The winter-feeding, varroa-treatment and closing-up-hives notes belong together. Please put them in a new folder called winter-prep, with a README.md in it for the folder.
+    checks:
+      reads: [organize-compose]
+      removed: [winter-feeding.md, varroa-treatment.md, closing-up-hives.md]
+      changed:
+        - winter-prep/README.md
+        - winter-prep/winter-feeding.md
+        - winter-prep/varroa-treatment.md
+        - winter-prep/closing-up-hives.md
+      only_changed:
+        - winter-feeding.md
+        - varroa-treatment.md
+        - closing-up-hives.md
+        - winter-prep/README.md
+        - winter-prep/winter-feeding.md
+        - winter-prep/varroa-treatment.md
+        - winter-prep/closing-up-hives.md
+      file_contains:
+        winter-prep/winter-feeding.md: ['2:1 sugar syrup', '10 litres']
+        winter-prep/varroa-treatment.md: ['thymol strips', 'six weeks']
+        winter-prep/closing-up-hives.md: ['mouse guards', '7 cm']
+    rubric:
+      - id: boundary-stated
+        tag: organize-compose
+        criterion: >-
+          Does winter-prep/README.md say what belongs in the folder and what does not, in terms that would place a new note, such as "jobs that get a colony through the winter; notes for the rest of the year stay out"?
+          Pass if it gives both a rule for what belongs and a statement of what stays out. Fail if it only lists the three notes, gives only what is in, or says only that they are bee notes. Quote the sentences.

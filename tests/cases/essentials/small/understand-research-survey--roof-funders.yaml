@@ -1,0 +1,21 @@
+about: >-
+  The survey guide on what a set of local notes covers, compared on the user's three points, from notes copied from each funder's website on 2 November 2026.
+  The user limited the search to the notes, so the answer must still name a kind of source it did not search, such as the funders' own pages now, the council, or funders not in the notes, and not present the four funders as the whole field.
+  Rejects: coverage left unsaid, saying only that it used the notes in grants/ (that says where it looked, not what it did not search), or a deadline guessed for the parish council.
+goal: Compare the four funders in the notes on the most they give, the deadline and match funding, and say what was not searched.
+fixture: small/hall-roof-grants
+turns:
+  - prompt: >-
+      I am raising money for the village hall roof. Which funders do my notes in grants/ cover,
+      and how do they compare on the most they give, the application deadline and whether we have to raise match funding?
+    checks:
+      reads: [understand-research-survey]
+      no_changes: true
+      answer_contains: ['Eastfield', 'Marsh', 'Roofs for Halls', 'Parish']
+    rubric:
+      - id: not-searched
+        tag: understand-research-survey
+        criterion: >-
+          Does the answer name at least one kind of source it did not search, such as the funders' own websites today, other funders that are not in the notes, the district council, or a grant-finder service, so that the comparison does not read as the whole field?
+          Saying only that it used the notes in grants/ names where it looked, not what it left out.
+          Pass if it names a kind of source it did not search. Fail if it presents the four funders as all there is, or says nothing about what it did not search, and quote the closest part.

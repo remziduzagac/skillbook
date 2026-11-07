@@ -1,0 +1,62 @@
+about: >-
+  The split guide on loose items sorted into three folders the user named, in one turn: the request names the folders, and each handout says when it is used, so all eight are moved with their contents intact and nothing else changes.
+  The answer says what belongs in each folder as a rule that would place a new handout.
+  Rejects: a handout left loose, in the wrong folder or changed, a fourth folder or an extra file, or folders listed by their files with no rule for what belongs.
+goal: Sort eight loose handouts into three folders, and say what belongs in each.
+fixture: small/year4-handouts
+version_control: true
+turns:
+  - prompt: My Year 4 maths handouts are all loose in this folder. Please sort them into three folders, warm-ups, class-tasks and take-home.
+    checks:
+      reads: [organize-split]
+      removed:
+        - times-tables-sprint.txt
+        - number-of-the-day.txt
+        - quick-doubling.txt
+        - fraction-strips.txt
+        - playground-perimeter.txt
+        - shop-role-play.txt
+        - fractions-sheet.txt
+        - weekend-puzzles.txt
+      changed:
+        - warm-ups/times-tables-sprint.txt
+        - warm-ups/number-of-the-day.txt
+        - warm-ups/quick-doubling.txt
+        - class-tasks/fraction-strips.txt
+        - class-tasks/playground-perimeter.txt
+        - class-tasks/shop-role-play.txt
+        - take-home/fractions-sheet.txt
+        - take-home/weekend-puzzles.txt
+      only_changed:
+        - times-tables-sprint.txt
+        - number-of-the-day.txt
+        - quick-doubling.txt
+        - fraction-strips.txt
+        - playground-perimeter.txt
+        - shop-role-play.txt
+        - fractions-sheet.txt
+        - weekend-puzzles.txt
+        - warm-ups/times-tables-sprint.txt
+        - warm-ups/number-of-the-day.txt
+        - warm-ups/quick-doubling.txt
+        - class-tasks/fraction-strips.txt
+        - class-tasks/playground-perimeter.txt
+        - class-tasks/shop-role-play.txt
+        - take-home/fractions-sheet.txt
+        - take-home/weekend-puzzles.txt
+      file_contains:
+        warm-ups/times-tables-sprint.txt: ['7 x 8', '11 x 7']
+        warm-ups/number-of-the-day.txt: ['4,372']
+        warm-ups/quick-doubling.txt: ['double 68', 'halve 142']
+        class-tasks/fraction-strips.txt: ['6/8']
+        class-tasks/playground-perimeter.txt: ['sandpit', 'netball court']
+        class-tasks/shop-role-play.txt: ['£1\.20']
+        take-home/fractions-sheet.txt: ['2/9 \+ 5/9']
+        take-home/weekend-puzzles.txt: ['magic square', '662']
+    rubric:
+      - id: boundaries-given
+        tag: organize-split
+        criterion: >-
+          The eight handouts were sorted into warm-ups/, class-tasks/ and take-home/.
+          Does the answer say, for each of the three folders, what belongs in it, as a rule that would place a new handout, such as "sheets pupils use in the first minutes, before the main teaching"?
+          Pass if all three folders have such a sentence. Fail if any folder is only listed by the files it holds or by its name. Quote the folder that fails.

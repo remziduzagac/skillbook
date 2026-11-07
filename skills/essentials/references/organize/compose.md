@@ -30,7 +30,7 @@ Add a parent that explains what selected items share. The parent should earn its
 2. **Require at least two items and a useful shared statement before adding the parent.** A redundant parent adds navigation cost for every reader.
    - Check it says something no item says alone. If it does not, add no parent.
 3. **Name the parent and give its one-sentence boundary by the `organize` guide.** A broad or unclear parent can pull unrelated items into the arrangement.
-   - Say what belongs and what does not. Follow the `understand` guide's who-decides rule for the name and the choice of parent.
+   - Say what belongs and what does not, in the parent itself, such as its README or opening note, so a later reader can place a new item. Follow the `understand` guide's who-decides rule for the name and the choice of parent.
 4. **Prepare where each selected item goes, for the `organize` guide's map.** Moving beyond the selected set can disturb work the user did not ask to rearrange.
    - Include every selected item that belongs and no other item. Leave unselected items where they are, and keep every item's content.
    - Where folders hold the arrangement, such as files in a folder tree, map the selected items to move under the parent.

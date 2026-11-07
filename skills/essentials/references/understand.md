@@ -31,7 +31,8 @@ Decisions and their reasons, questions set aside and why, and next steps. Give t
 4. **Read the facts before asking or assuming.** Read what can settle a question, such as which version, plan or provider is meant. Asking what the files already say wastes the user's time and hides what only they know.
 5. **Who decides:** some choices are the user's, and some are yours.
    - The user's: their intent, taste or preferences, anything hard to undo, and what only they know. Ask through the `respond-ask` guide, with a recommended answer.
-   - One exception: a preference in a short draft, such as the tone of a thank-you card or who a short notice is for. Write the likely version, name the choice in a "Going with" line and offer the other. A draft the user can react to costs less than a round of questions. Ask first when the work is long.
+   - One exception: a preference in a short draft, such as the tone of a thank-you card or who a short notice is for. Write the likely version, name the choice in a "Going with" line and offer the other. A draft the user can react to costs less than a round of questions.
+   - Short means one piece of a few lines or paragraphs. Work in several parts, such as a week's itinerary or a handbook chapter, is long: ask about the user's choices first, because a guess repeats through every part.
    - The exception never covers a fact or decision only the user can supply, such as a fee or a club rule. Ask for it however quick the edit, because a guessed value reads as settled.
    - Yours: what the project's conventions settle, and a default easy to undo. Make these choices yourself.
    - **Show the choices the result rests on in one "Going with: …" line.** When the work is quick to redo, such as a short draft or an edit under version control, do the work and put the line in your final answer. When it is slow or hard to undo, show the line first and end the turn. Change nothing until the user replies, because a choice seen only after such work is too late to correct.
@@ -64,7 +65,7 @@ Understanding comes before acting, so the work answers what the user meant, not 
    - After each answer, ask again only about what is still open.
    - If the result rests on choices you made yourself, show them in one "Going with" line, before the work or in your final answer, by rule 5.
    - A request with nothing open after steps 1 and 2 needs no questions.
-4. **Use the method each open part needs.** Each guide below does one kind of understanding well. A request may need several, in any order. A part that fits none is your own judgment, under the rules above.
+4. **Read the guide for each open part's method before you work on that part.** Each guide below does one kind of understanding well, with checks this guide does not repeat. A request may need several, in any order. A part that fits none is your own judgment, under the rules above.
    - With the user: the `understand-discuss` guide works through the open parts of a topic. The `understand-clarify` guide settles choices that change the result: in a round of questions, in an interview the user asks for, or in questions for someone else who holds the answers.
    - Options: the `understand-brainstorm` guide generates distinct options.
    - Thinking it through: the `understand-frame` guide defines the problem and goal. The `understand-weigh` guide compares named options. The `understand-challenge` guide finds weaknesses in an idea. The `understand-argue` guide makes an honest one-sided case.

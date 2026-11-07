@@ -1,0 +1,35 @@
+about: >-
+  The weigh guide on three rooms the user names, where the project's README sets a rule that one of them breaks, in one turn.
+  The grant pays at most £60 a rehearsal, so Mill Studio at £85 is dropped with that limit named.
+  The two rooms left are compared on the same points, and the pick is put to the user as the recommended answer.
+  Rejects: weighing Mill Studio as a live option, dropping it for a reason the README does not give, points given for only one of the two rooms left, or a pick with no recommended-answer line.
+goal: Compare three rehearsal rooms, dropping the one that breaks the grant's limit, and recommend between the rest.
+fixture: small/youth-strings
+turns:
+  - prompt: >-
+      We need a Sunday room for the youth orchestra from September, and I cannot decide between St Aidan's Hall, the Oakfield School music room and Mill Studio.
+      Which one should we book?
+    checks:
+      reads: [understand-weigh]
+      no_changes: true
+    rubric:
+      - id: drops-studio
+        tag: understand-weigh
+        criterion: >-
+          README.md says the grant pays for the room up to £60 a rehearsal and that members' families will not pay the difference. Mill Studio costs £85 a rehearsal.
+          Does the answer drop Mill Studio because its cost is over what the grant pays, naming that limit or the £60?
+          Pass if Mill Studio is dropped for that reason. Fail if it is still weighed as a live option, such as being recommended or kept as a contender, or if it is dropped for another reason, such as its bus stop. Quote the part that decides.
+      - id: same-points
+        tag: understand-weigh
+        criterion: >-
+          Two rooms are left once Mill Studio is dropped: St Aidan's Hall and the Oakfield School music room.
+          Look at the points the answer sets side by side for these two, such as cost, space, piano, parking or the bus.
+          Is every such point given for both rooms? A point marked as not in the notes for one room counts as given.
+          A remark about one room's own extra, such as the kitchen or the caretaker's hours, is not a point unless the answer sets it beside the other room.
+          Pass if each point is given for both rooms. Fail if a point appears for one room only, and quote it.
+      - id: recommended-answer-line
+        tag: understand-weigh
+        criterion: >-
+          Does the answer put the choice to the user with a line that starts "Recommended answer:" and names St Aidan's Hall or the Oakfield School music room,
+          or a line that starts "No recommended answer:" with a reason, if it finds no clear winner?
+          Pass if it has such a line. Fail if it recommends only in other words, with no such line, and quote the closest part.

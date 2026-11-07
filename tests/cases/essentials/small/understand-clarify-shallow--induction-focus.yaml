@@ -1,0 +1,29 @@
+about: >-
+  The shallow guide on a long request, a four-morning programme with many parts, where the notes settle the dates, the room, the teachers and who it is for, but not what the programme should centre on.
+  Four mornings cannot teach dog walking, the cattery and the front desk, so which the first weeks prepare the volunteers for is the user's choice.
+  The agent asks that before writing, and the programme is not written in the files or in the answer.
+  Rejects: writing the programme with a "Going with" guess about its centre, such as an even split over the three places, or asking for what the notes already give.
+goal: Ask what the induction programme should centre on, before writing any of it.
+fixture: small/shelter-induction
+turns:
+  - prompt: >-
+      Please write the full induction programme for our April volunteers into programme.md:
+      all four mornings, session by session, with who teaches each part and what handouts they get.
+    checks:
+      reads: [understand-clarify-shallow]
+      no_changes: true
+    rubric:
+      - id: asks-centre
+        tag: understand-clarify-shallow
+        criterion: >-
+          notes.md says the shelter needs help in three places (walking dogs, the cattery, the front desk and phones) and that four mornings cannot teach all three properly.
+          It does not say which of them the programme should centre on or prepare the volunteers for.
+          Does the answer put a question to the user about what the programme should centre on, such as which of the three places the volunteers should be ready for first?
+          Pass if yes, even when the question carries a recommended answer.
+          Fail if the answer settles it without asking, such as by giving each place an equal share or a "Going with" line that picks one, and quote where it does.
+      - id: programme-not-written
+        tag: understand-clarify-shallow
+        criterion: >-
+          Does the answer contain the programme itself, such as a morning-by-morning schedule of sessions with teachers or handouts?
+          Pass if it holds no such schedule; naming the fixed facts it will use, or listing questions, is not writing the programme.
+          Fail if it gives a schedule for the mornings, and quote the first part of it.
