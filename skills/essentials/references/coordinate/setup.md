@@ -23,9 +23,11 @@ Approved changes and observed loading checks, recommendations, declined work and
 ## Rules
 
 1. **Recommend existing skills.** Making a new skill belongs to the project's skill-making method, otherwise judgment.
-2. **Discover changes before applying them.** Setup changes can affect later sessions. Apply only approved work through the skill that owns it. Reuse approval only for the work the user approved, while the facts behind it still hold.
+2. **Discover changes before applying them.** Setup changes can affect later sessions. Apply only approved work through the skill that owns it. Reuse approval only for the work the user approved, while the facts behind it still hold. A pointer the user asked for in a named shared file under version control is approved work, by rule 4.
 3. **Put the pointer where the install belongs.** Personal installs use the user's own instruction files. Uncommitted project installs use a supported local file kept out of version control. An install committed for the team uses the shared instruction file. Use supported instruction files that preserve current project instructions. The installer does not write the pointer.
-4. **Change a shared instruction file only when asked.** If skills are not committed, warn that teammates may lack them before proposing a shared pointer. Keep shared files to project facts every tool needs.
+4. **Change a shared instruction file only when asked.** If skills are not committed, warn that teammates and their agents may lack them. Keep shared files to project facts every tool needs.
+   - When the user names the shared file for the pointer and the project keeps it under version control, write the pointer there. Put the warning in your final answer. The request approves that exact work, and the edit stays in the user's copy until they commit it.
+   - Without version control, such as a folder that syncs to others at once, warn and propose the pointer before writing. The change would reach teammates at once.
 5. **Preserve existing settings and instructions.** Read them before preparing a merge. Recheck before writing. Add only approved entries and avoid duplicates. Remove only identified skillbook entries when asked. A managed restriction is not permission to bypass it.
 6. **Call setup complete only after observing the required loading checks.** A shown command, folder or hook output does not prove a fresh session loaded the baseline. Return pending checks, declined changes and the next owner honestly.
 
@@ -52,6 +54,7 @@ Prepare the requested machine, project or pointer setup from the actual installa
    - Include removal of the old pointer only within the approved move. Preserve unrelated instructions and leave no duplicate pointer.
 7. **Obtain approval for the combined scope before applying, by rule 2.** This order is firm: setup changes what future sessions read and may affect the machine.
    - Finish discovery, prepare one combined proposal and follow current plan and choice rules. Ask through the `respond-ask` guide and end the turn for required approval.
+   - A pointer the user asked for in a named shared file under version control is already approved, by rule 4. Write it, and give the warning in your final answer. Other parts of the setup still wait for approval.
    - Apply only approved work through its owner. Recheck settings and instructions before writing. Check the result through the `act-verify` guide.
    - Use only permitted controls for fresh-session checks, otherwise ask the user to start the session. Keep checks pending until observed. Offer other hooks only for recurring failure; approved essentials baseline reload support is the exception.
 

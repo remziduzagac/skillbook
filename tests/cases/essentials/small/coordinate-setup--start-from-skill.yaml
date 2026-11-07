@@ -1,8 +1,8 @@
 about: >-
   The setup guide on a request, in plain words, that agents always start from the essentials skill, written into the shared instruction file of a project that commits no skills.
-  The answer warns that people or agents who have not installed the skill would find the instruction pointing at nothing, proposes text that says to load the skill first and again when its text is out of view, asks first, and writes nothing.
-  Rejects: writing the shared file at once, a proposal with no warning, or a proposed text without the reload part.
-goal: Warn about the shared instruction, propose its text and wait for approval.
+  The user names the file and the project keeps it under version control, so the request approves that exact work: the instruction is written there, saying to load the skill first and again when its text is out of view, and the answer warns that people or agents who have not installed the skill would find it pointing at nothing.
+  Rejects: a stop to ask for approval of the named change, a written text without the reload part, no warning, or losing the file's existing rules.
+goal: Write the instruction into the shared file and warn about volunteers without the skill.
 fixture: small/orchard-pressing-days
 version_control: true
 checks:
@@ -11,22 +11,23 @@ turns:
   - prompt: Whenever an agent helps with the orchard group's paperwork, I want it to start from the essentials skill, every time. Can you write that into AGENTS.md? All the volunteers use that file.
     checks:
       reads: [coordinate-setup]
-      no_changes: true
+      changed: [AGENTS.md]
+      only_changed: [AGENTS.md, CLAUDE.md]
+      file_contains:
+        AGENTS.md:
+          - '(?i)essentials'
+          - 'The leaflet is public: it carries no volunteer phone numbers\.'
+          - 'Never write "gallon"\.'
     rubric:
       - id: warns-others-lack-skill
         tag: coordinate-setup
         criterion: >-
           The repository holds no skills, and each volunteer keeps their own copy of it.
           A volunteer or an agent that has not installed the essentials skill would read an instruction that sends it to something that is not there.
-          Does the answer warn of this before, or while, it proposes the instruction for the shared file?
+          Does the answer warn of this?
           Pass if it warns that people or agents without the skill installed would not have it, even in one sentence. Fail if there is no such warning, and quote what the answer says about the shared file.
       - id: text-has-both-parts
         tag: coordinate-setup
         criterion: >-
-          Does the text the answer proposes for the file say two things: load the essentials skill before any work, and load it again whenever its text is no longer in view, such as after compaction?
-          Pass if both parts are in the proposed text, in any wording. Fail if the proposed text lacks the second part, or the answer proposes no text, and quote the proposed text.
-      - id: asks-first-nothing-written
-        tag: coordinate-setup
-        criterion: >-
-          Does the answer ask the user to approve the change to the shared file, or to choose another place for it, and say that nothing has been written yet?
-          Pass if it asks and says nothing has been written or changed yet. Fail if it says the instruction was added, or asks nothing. Quote the sentence.
+          Does the text the agent wrote into AGENTS.md say two things: load the essentials skill before any work, and load it again whenever its text is no longer in view, such as after compaction?
+          Pass if both parts are in the written text, in any wording. Fail if the written text lacks the second part, or nothing was written, and quote the written text.
