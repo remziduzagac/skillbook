@@ -5178,3 +5178,37 @@ Outward actions, such as a push or a send the user names exactly, follow the new
 
 - Testing became a method of its own with small cases (D311) and the test cycles of D312: case kinds, held-out cases, two judges, the merge rule and test fixes. It filled a fifth of skillbook-write and grows with each cycle. A skill of its own gives it one home and keeps guide writing short.
 - The names say what each skill makes: a guide's design, a guide's files, a test.
+
+## D314: The project skills take what the test cycles taught (2026-11-07)
+
+**Decision:** the three project skills gain what the test cycles of D312 showed, so a guide and its tests are written the way those cycles found works.
+
+- **skillbook-guide-design:**
+  - Check 13's stop list is completed from D312. The agent stops when the work goes beyond what the user named, rests on an unsettled fact (such as two sources that disagree, even inside the user's own files), rests on something they likely do not know, or is high stakes with no approved plan. Naming the exact work waives none of these.
+  - Check 7 asks for tests of new, changed or failing behaviour and its boundaries: a case on each side of each trigger, such as a stop and a go-ahead near miss. It no longer asks for a test of every rule, which D311 retired.
+  - Check 10 puts a rule needed on work that looks simple where every request reads it: the main skill or a guide read before all work. The full method stays in its own guide.
+- **skillbook-guide-write:** its concrete-wording rule gives looking its own instruction where a safeguard needs facts the agent must first see, placed before the change that would hide them. It also takes no example from a test case.
+- **skillbook-test-write:**
+  - Find why a case failed before changing anything: a guide never read, a step the guide lacks, a wrong check, or a harness limit. For a harness limit, ask the model in a live session and record a known limit.
+  - Look into a failure that repeats across runs on a test model, not only one that both models share. testing.md's runner rule changes with it.
+  - Fix the test when the test is wrong. Correct the question, check it still fails a wrong answer, and judge every condition's saved answers again.
+  - Check complete results. For work that goes ahead, check every requested output and the facts that must survive, and try each file check on a plausibly incomplete result. For a stop, check that nothing changed and that the question names the real decision.
+  - The last step checks the report: each claim matches a run, results per model, each gain by where it came from (a design change, a corrected question or guide text), and the cost.
+- **Designed cases:** three more in [design/testing.md](design/testing.md), one per skill.
+
+**Why:**
+
+- The cycles of D312 showed each point:
+  - Sonnet picked one of two clashing trip dates, an unsettled fact the stop list did not name.
+  - Sonnet read `devise-plan` in 3 of 12 runs, so fixes for it went into the main skill and the `act` guide.
+  - "Look at what the action would remove" took the refund case from 1 of 3 to 3 of 3.
+  - Cycle 1 copied case examples into the guides, which hid a failure until they were replaced.
+  - Three questions stricter than the design failed good answers until they were corrected.
+  - A recipe check passed on a pointer, and a contacts check passed after contacts were lost.
+  - A live Codex session showed a harness rule no skill overrides.
+- Two of the cycles' fixes were for Sonnet alone, the sale discount and the trip dates, and both passed 3 of 3 afterwards. The old rule, a failure on one model noted and not acted on, would have skipped them. A fix for one model still has to beat the old text, since text added for one model costs every user tokens on every turn.
+- Codex and Claude reviewed the skills apart and agreed on every point.
+
+**Tested:** not run. The project skills' cases are designed only (D288).
+
+**Spending:** the Codex review ran on the user's subscription; its cost is unknown.

@@ -59,7 +59,9 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
     - **told apart:** test each "when to use" against its "when not". Cover near misses, not just obvious triggers;
     - **held out:** use prompts unlike skill examples. A pass must show the rule, not an example match;
     - **can fail:** name a plausible wrong behaviour each test rejects. A test that cannot fail measures nothing;
-    - **every aspect:** design a test for every rule, advice item, step, boundary line and final check. Otherwise give a reason, such as behaviour visible only in a live session. Untested aspects can break unseen;
+    - **what to test:** design tests for new, changed or failing behaviour and its boundaries. Testing every unchanged rule costs runs that show nothing new. For a new guide, all of it is new;
+    - **both sides:** test each trigger from both sides, such as a case where the agent should stop and a near miss where it should go ahead. A rule tested on one side can overreach unseen;
+    - **live only:** name behaviour that only a live session shows, instead of testing it;
     - **kinds kept apart:** distinguish designed tests (design's Tests list), executable cases (`tests/cases/`) and observed results (decision's Tested line). Never report one as another.
 8. **Give every guide the same shape,** so a reader finds each part in the same place:
     - `# <name>`, then `## Purpose`: what the guide is for and what it achieves, in a sentence or two. `Needs:` follows, only if the guide needs a capability, with its fallback;
@@ -88,6 +90,7 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
     - Give each direct child one line: its name and its purpose. Introduce no grandchildren there.
     - Use if-then-else only to impose order. Leave child internals to the child. A parent doing the child's work makes the agent stop there. Turn complicated instructions into children.
     - Any guide may use any other guide when needed.
+    - Put a rule needed on work that looks simple where every request reads it: the main skill or a guide read before all work. Agents skip other guides on such work, so a rule there never reaches it. Keep the full method in its own guide.
     - A main skill holds the guide map: one entry per main guide and per guide under it, with its path, what it is for, when to use it and when not. It may pass about 100 lines where the map needs it, with the reason in its design.
 11. **Spend tokens only where they buy quality.** Every turn carries the whole context again:
     - **reading:** search first, read needed parts and follow pointers. Read nothing twice;
@@ -110,7 +113,11 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
       - If the user told you to choose or just answered your questions, go ahead. Put the line in the final answer.
       - A preference in a short draft, such as a card's tone, may be guessed, named and offered back. A fact or decision only the user can supply never is.
       - Give mixed choices to the user. Reversibility settles only what they left to the agent.
-      - Stop for the user's decisions, not for leave. Their request approves the exact work it names; a skill cannot make it "not approval", since some harnesses rank the user's request above any skill. Stop when the work goes beyond what they named, or rests on something they likely do not know.
+      - Stop for the user's decisions, not for leave. Their request approves the exact work it names. A skill cannot make it "not approval", since some harnesses rank the user's request above any skill. Naming the exact work waives none of these stops. Stop when the work:
+        - goes beyond what they named;
+        - rests on an unsettled fact, such as two sources that disagree, even inside the user's own files;
+        - rests on something they likely do not know;
+        - is high stakes and has no approved plan.
       - Judge undo by consequences, not just files.
       - Show choices the result rests on, not every minor one;
     - **one action:** give each trigger one visible action, such as "end the turn", as skillbook-guide-write's Sharp instructions rule says. Search the skill for a message paired with going on, such as "say … then go ahead", "show … and start" or "write the line and continue". Report each one, with a fix in one of two shapes: show it and end the turn, or put it in the final answer. Pairing soft and strong actions loses the soft one;
@@ -131,7 +138,7 @@ These steps take a skill from its place in the tree to a design a builder can fo
    - Name it by "Names" above. Other skills point to its home instead of repeating it.
 3. **Write its design section in `blueprint/design/<set>/<group>.md`, so a builder can write the files from it alone.** A builder who has to guess writes a different skill.
    - Use the fields every section in that file has.
-   - Write it to the checklist: a boundary by check 9, a reason for each restriction by check 4, the shape by check 8, and a test for every aspect by check 7.
+   - Write it to the checklist: a boundary by check 9, a reason for each restriction by check 4, the shape by check 8, and tests by check 7.
    - Write in plain English, by skillbook-guide-write's Plain English rule: the user and other readers may not be native speakers.
    - Review the design next, by step 5. When it is agreed, write the files with skillbook-guide-write.
 4. **Trim or fill an existing skill: show the change list, then end the turn.** This step must not move. Unseen cuts can drop requirements, and unseen additions can lack design support. Apply only the changes the user approves, by the approval rule of essentials' `act-rightsize` guide.
