@@ -5322,3 +5322,17 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 - **Held-out cases, written apart from the change:** in a mixer choice that turns on how often the user bakes bread, Sol picked one and named the need in 3 of 3, against 1 of 3 on the old text, which stopped with questions; the labelled line went from 0 of 6 runs to 2 clear passes and 2 splits. In a broadband choice with an installation charge that applies only if the line fails, Sol's labelled line went from 0 of 3 to 2 of 3 (one split); Sonnet never read the weigh guide there and gave no line on either text.
 - **Unchanged:** every unknown with its own settle line still fails on both models in the car choice; Sol still never opens the README in the settings case, so it keeps the server that breaks its offline rule. The parser choice and the two-named brainstorm pass on both texts.
 - **Cost:** $6.08 for runs and $3.91 for judging, with no calls of unknown cost.
+
+## D320: The pointer is named in the user's words where setup is chosen (2026-11-07)
+
+**Decision:** the boundary between the `coordinate-setup` and `coordinate-instruct` guides says what the pointer is in plain words: the instruction that tells agents to load the essentials skill, in whatever words the user asks for it and in whatever file. Setup's "When to use", instruct's "When not" and the main map's setup line all say it, so a request to make agents load the skill reaches setup, its warning and its fixed pointer sentence.
+
+- **Why:** in the small cases, a request to make every agent load the essentials skill, written into a shared instruction file, went to the instruct guide on both models; neither read setup. Sol wrote the shared file at once, with no warning that teammates may lack the skill and no approval. Sonnet stopped and warned, but proposed a pointer without its reload part, which only setup holds. "Pointer" is skillbook's word, and the route never said what it means in the user's terms.
+- **Changed:** setup's "When to use" and instruct's "When not" in `blueprint/design/essentials/coordinate.md`, setup's Test 26, and the matching guide files and map line.
+
+**Tested:** small cases on Sonnet (Claude Code) and Sol (Codex with GPT-6.1 Sol), 3 runs each, old text against new, each pass agreed by both judges.
+
+- **Target case** (a shared pointer for a podcast's show notes): the setup guide was read in 0 of 6 runs on the old text and 6 of 6 on the new. Sol's proposed or written pointer kept its reload part in 1 of 3 (two splits) before and 2 of 3 (one split) after; Sonnet passed every question on both texts.
+- **Held-out case, written apart from the change** (an orchard group's paperwork, asked in the user's own words): setup was read in 0 of 6 runs before and 6 of 6 after. Sol's warning that volunteers need the skill installed went from 0 of 3 to 3 of 3, and Sonnet's pointer text from 2 of 3 to 3 of 3.
+- **Unchanged:** Sol wrote the shared file at once in all 6 runs on both texts, treating the request that names the file as approval, and gave no warning in the podcast case. The ordinary-rule near miss stayed with the instruct guide in 6 of 6 runs.
+- **Cost:** $4.56 for runs and $1.15 for judging, with no calls of unknown cost.

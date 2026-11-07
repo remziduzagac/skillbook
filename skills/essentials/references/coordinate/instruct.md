@@ -11,7 +11,7 @@ Use when adding, changing or removing instructions that agents read, such as a p
 ## When not
 
 - Skill files or designs: use the project’s skill-making method, otherwise your judgment. Those files have their own rules.
-- Placing an installed pointer: use the `coordinate-setup` guide. Placement depends on where skillbook is installed.
+- Placing an installed pointer, the instruction that tells agents to load the essentials skill, in any words and any file: use the `coordinate-setup` guide. Placement depends on where skillbook is installed, and setup holds the pointer's wording.
 - A later-session note: use the `coordinate-carryover` guide. It records work state rather than rules for every session.
 
 ## Gives back

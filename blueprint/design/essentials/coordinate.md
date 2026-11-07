@@ -596,7 +596,7 @@ coordinate/
 - **When not** (D279):
 
   - Skill files or designs: use the project’s skill-making method, otherwise your judgment. Those files have their own rules.
-  - Placing an installed pointer: use the `coordinate-setup` guide. Placement depends on where skillbook is installed.
+  - Placing an installed pointer, the instruction that tells agents to load the essentials skill, in any words and any file: use the `coordinate-setup` guide. Placement depends on where skillbook is installed, and setup holds the pointer's wording (D320).
   - A later-session note: use the `coordinate-carryover` guide. It records work state rather than rules for every session.
 - **Callers:** the `coordinate` guide itself, from the main map, with its parent path read first (D279). Its other callers: the person, at any time ("add a rule to our `CLAUDE.md`", "this `AGENTS.md` has grown too long"); setup, when it writes into an instruction document (D94); learn, promoting a lesson into a rule (D98).
 - **Flow** (D261; supersedes the earlier approval and capability shortcuts):
@@ -658,7 +658,7 @@ coordinate/
 - **Guide purpose:** Checks skillbook installs and prepares approved pointers, settings and project setup, so agents can load the intended skills.
 - **Guide shape** (D283): The Instructions section opens with its goal and one clear instruction. Its existing seven steps keep their order and gain bold actions and reasons. Combined-proposal preparation, the approval request and ending the turn move from built rule 2 to step 7, before applying any change. Rule 2 keeps discovery before application, scoped approval and the owning skill requirement. Rule numbers stay unchanged. The final numbered step of Instructions is the complete check before returning, marked “Always do this last” (D285). Identify scope and actual installs, inspect machine or project needs, prepare a fitting record or requested pointer move, then approve one combined proposal before applying. Keep eight steps; finish with preserved settings, exact pointer, actual loading evidence and honest pending checks. Each step gives its action, concrete failure cost and sourced method; the final step checks “Gives back” and fixes shortfalls before return (D287).
 - **Description:** "Setting skillbook up on a machine or in a project, on request: the install checked, the pointer added where the skills are installed or moved between local and shared, a project’s design record prepared through a matching skill in the harness’s list, its instruction files checked, skills recommended. Use when skillbook is to be set up on a machine or in a project, or its pointer moved; a rule written into an instruction document is instruct's." A draft (D117, D165).
-- **When to use** (D279): Use when the user asks to set up skillbook on a machine or project, check its setup, or move its installed pointer. Moving a pointer from a local file to a shared file is one example.
+- **When to use** (D279, D320): Use when the user asks to set up skillbook on a machine or project, check its setup, or add or move its pointer. The pointer is the instruction that tells agents to load the essentials skill, in whatever words the user asks for it and in whatever file. Moving a pointer from a local file to a shared file is one example.
 - **When not** (D279):
 
   - An ordinary instruction rule: use the `coordinate-instruct` guide. It changes what agents follow, not how skillbook is installed.
@@ -720,6 +720,7 @@ coordinate/
   23. Uses the user-selected install and supported instruction destination. Reject: Substitutes a guessed personal/provider path, replaces existing instructions, or claims unobserved loading succeeded. (D267).
   24. Proposes only an actual-install read permission where the agent needs one. Reject: Adds broad or unnecessary read permissions, relaxes managed restrictions, changes settings, or claims an unperformed loading test. (D267).
   25. "Is skillbook set up right here?": reads the install folders and the pointer's instruction files only, changes nothing, and names who can run each pending check and what access it needs. Reject: reads the project's sources as for a project setup, changes a file, or leaves a pending check without an owner (D294).
+  26. A request in the user's own words to make agents load the essentials skill, written into an instruction file, with no word "pointer" or "setup": setup is read, and its placement, warning and pointer sentence with the reload part apply. Reject: Handles it as an ordinary rule through instruct, or proposes a pointer without the reload part (D320).
 - **Open:** live operations remain unverified under D253. No unresolved policy question in this batch.
 
 ## learn

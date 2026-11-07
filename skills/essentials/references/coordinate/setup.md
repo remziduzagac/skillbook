@@ -8,7 +8,7 @@ Needs: access to the named install and instruction files. If you cannot access t
 
 ## When to use
 
-Use when the user asks to set up skillbook on a machine or project, check its setup, or move its installed pointer. Moving a pointer from a local file to a shared file is one example.
+Use when the user asks to set up skillbook on a machine or project, check its setup, or add or move its pointer. The pointer is the instruction that tells agents to load the essentials skill, in whatever words the user asks for it and in whatever file. Moving a pointer from a local file to a shared file is one example.
 
 ## When not
 
