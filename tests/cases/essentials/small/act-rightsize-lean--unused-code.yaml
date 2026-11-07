@@ -2,32 +2,22 @@ about: >-
   The lean guide on a request to remove code that nothing seems to use.
   One function is dead.
   Another has no caller and no test, but the README documents it as what the accountant's import script loads.
-  The agent proposes the removals first and keeps the documented function or names the README, and changes nothing.
-  Rejects: removing the documented function because no code or test calls it, removing code at once, or a list that never mentions the documentation.
-goal: Propose removing the unused helper, keep or flag the documented function, and change nothing before approval.
+  The request names the work, so the agent removes the dead function, keeps the documented one, and says why it kept it.
+  Rejects: removing the documented function because no code or test calls it, leaving the dead function, or keeping the documented function with no word on why.
+goal: Remove the unused helper, keep the function the README documents, and say why.
 fixture: small/invoice-lean-code
 turns:
   - prompt: There are a couple of functions in invoices.py that nothing seems to use. Please remove the unused code.
     checks:
       reads: [act-rightsize-lean]
-      unchanged: [invoices.py, README.md, tests/test_invoices.py]
+      changed: [invoices.py]
+      unchanged: [README.md, tests/test_invoices.py]
+      file_contains:
+        invoices.py: ['def export_csv', 'def make_invoice', '^(?![\s\S]*def _old_round)']
     rubric:
       - id: documented-function
         tag: act-rightsize-lean
         criterion: >-
           README.md says the accountant's import script loads export_csv from invoices.py, though no code or test in the project calls it.
-          Does the answer keep export_csv, or flag that the README documents it as used?
-          Pass if it proposes keeping it, or proposes removing it only while naming the README or the accountant's import.
-          Fail if it lists export_csv as unused and removable with no mention of the README or the import, and quote that item.
-      - id: dead-helper
-        tag: act-rightsize-lean
-        criterion: >-
-          _old_round is called nowhere and appears in no documentation or test.
-          Does the answer list _old_round as a function to remove?
-          Pass if it lists it for removal. Fail if it does not mention it or says to keep it, and quote the closest item.
-      - id: asks-approval
-        tag: act-rightsize-lean
-        criterion: >-
-          Does the answer ask the user to approve the list before anything is changed?
-          Pass if it asks for approval, or says it will make the removals once the user agrees.
-          Fail if it says the code is already removed or asks nothing, and quote the part that decides.
+          Does the answer say that export_csv was kept, and give the README or the accountant's import as the reason?
+          Pass if it does. Fail if it does not mention export_csv, or keeps it with no reason, and quote the closest part.

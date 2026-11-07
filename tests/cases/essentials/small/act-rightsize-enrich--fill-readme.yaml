@@ -29,7 +29,7 @@ turns:
       - id: source-each
         tag: act-rightsize-enrich
         criterion: >-
-          Does each proposed addition name its source, a file with a line or section, or a command?
+          Does each proposed addition name where it comes from, such as a project file, a section of one, or a command that was run? A file named for each addition is enough.
           Pass if every addition names one.
           Fail if any addition has no source, and quote the first one without.
       - id: asks-approval
@@ -46,4 +46,4 @@ turns:
         README.md:
           - '3\.11'
           - '--month'
-          - '^(?![\s\S]*(easy_install|reportlab))'
+          - '(?i)^(?![\s\S]*(easy_install|install\s+reportlab))'

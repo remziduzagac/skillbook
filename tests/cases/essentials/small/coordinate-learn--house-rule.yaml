@@ -14,7 +14,7 @@ turns:
       Also cut the last paragraph, the weather one, from the English draft. The publisher wants it out of chapter 4 only.
     checks:
       changed: [english/ch04.md]
-      only_changed: [english/ch04.md, progress.md, queries.md]
+      only_changed: [english/ch04.md, progress.md, queries.md, style-guide.md]
       file_contains:
         english/ch04.md:
           - 'Herr Brandt'

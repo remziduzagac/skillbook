@@ -40,7 +40,7 @@ turns:
         tag: coordinate-carryover
         criterion: >-
           Does the final answer say whether a fresh reader checked the note cold?
-          Pass if it says a fresh agent read the note and what that reader still needed, or says the note was not independently checked and names who will arrange the check.
+          Pass if it says a fresh agent read the note cold, or says the note was not independently checked and names who will arrange the check.
           Fail if it calls the note ready or reviewed with neither, or counts its own re-read as the independent check. Quote the sentence.
       - id: asks-approval-last
         tag: coordinate-carryover

@@ -1,6 +1,6 @@
 about: >-
   The normalize guide on a notice repeated in four album notes, where the user's wording covers all four but one note says something different: the wedding album may not be reused at all.
-  In one turn the three notes that mean the same, one of them worded differently, point to reuse.md and keep their own details, the wedding note stays whole, and the answer says why it was left out.
+  In one turn the three notes that mean the same, one of them worded differently, point to reuse.md and keep their own details, the wedding note keeps its own stricter rule, and the answer says why it differs.
   Rejects: replacing the wedding note's stricter rule with the shared notice, leaving a note alone only because its words differ, or dropping the harbour note's line about the children's prints.
 goal: Move the shared reuse notice into reuse.md for the notes that carry it, leave the note whose rule differs, and say so.
 fixture: small/album-reuse-notes
@@ -9,8 +9,7 @@ turns:
   - prompt: Every album note repeats the same reuse notice. Put it in one reuse.md and link to it from each note.
     checks:
       reads: [organize-normalize]
-      unchanged: [wedding-commission.md]
-      only_changed: [reuse.md, lighthouse-walk.md, harbour-regatta.md, market-day.md]
+      only_changed: [reuse.md, lighthouse-walk.md, harbour-regatta.md, market-day.md, wedding-commission.md]
       file_contains:
         reuse.md: ['club website', 'credited', 'written permission']
         lighthouse-walk.md: ['38 prints', '^(?![\s\S]*written permission)[\s\S]*reuse\.md']
@@ -19,10 +18,11 @@ turns:
           - 'Prints 8 to 11'
           - '^(?![\s\S]*written permission)[\s\S]*reuse\.md'
         market-day.md: ['52 prints', '^(?![\s\S]*written permission)[\s\S]*reuse\.md']
+        wedding-commission.md: ['may not reuse them in any form', 'Ask the family before showing them', '^(?![\s\S]*written permission)']
     rubric:
       - id: differing-note-listed
         tag: organize-normalize
         criterion: >-
           wedding-commission.md has a Reuse section that says the club may not reuse the photos at all, which differs in meaning from the notice the other three notes carry.
-          Does the answer tell the user that wedding-commission.md was left as it is because its reuse rule is different, and say how it differs?
-          Pass if it names that note, says it was not changed, and gives the difference. Fail if it says all four notes now link to reuse.md, or never mentions the wedding note. Quote what it says.
+          Does the answer tell the user that wedding-commission.md keeps its own rule because its rule is different, and say how it differs?
+          Pass if it names that note and gives the difference, whether the note was left alone or only given a line saying the shared notice does not apply to it. Fail if it says the wedding note now follows the shared notice, or never mentions the wedding note. Quote what it says.

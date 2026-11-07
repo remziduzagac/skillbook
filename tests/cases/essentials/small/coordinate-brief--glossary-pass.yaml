@@ -8,7 +8,7 @@ checks:
   names_no_skill: false
 turns:
   - prompt: >-
-      Hand the glossary pass on chapter 3 (english/ch03.md) to a fresh helper agent, and show me the exact instructions you give it.
+      Hand the glossary pass on chapter 3 (english/ch03.md) to a fresh helper agent. When you report back, include the exact instructions you gave it.
       Two things are in no file. Our editor ruled last week that any passage where the German says only "die Glocke" still reads "the flood bell" in English.
       And I already tried a find-and-replace of the glossary terms over the whole file, which turned "Closing time was drawing near" into nonsense, so I reverted it. The helper should not do that.
     checks:

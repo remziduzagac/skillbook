@@ -15,9 +15,9 @@ turns:
       - id: pending-check-has-owner
         tag: coordinate-setup
         criterion: >-
-          Whether a new session really loads the essentials skill can only be seen by starting one.
-          Does the answer name that check as still to do, and say who can run it and what it needs, for example that the user starts a new session in this folder?
-          Pass if the pending check and who runs it are named. Fail if the answer calls the setup working from the files and folders it saw alone, lists no pending check, or names no one to run it. Quote the sentence.
+          Files and folders alone do not show that a session loads the essentials skill.
+          Does the answer rest "working" on more than the files it saw: a session it saw load the skill, such as its own, or a check it names as still to do, with who can run it?
+          Pass if it does either. Fail if it calls the setup working from the files and folders it saw alone. Quote the sentence.
       - id: reads-only-install-and-pointer
         tag: coordinate-setup
         criterion: >-

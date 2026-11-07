@@ -34,6 +34,6 @@ turns:
       - id: basis-shown
         tag: understand-clarify-shallow
         criterion: >-
-          Does the answer, in the same response as its questions, show what the plan would rest on: a "Going with" line or a list of the choices and assumptions it makes itself, such as using the 8 panels and 2 cases in the notes?
-          Pass if such a basis is shown with the questions.
+          Does the answer show what the plan rests on or would rest on: a "Going with" line or a list of the choices and assumptions it makes itself, such as using the 8 panels and 2 cases in the notes?
+          Pass if such a basis is shown, with or without questions.
           Fail if the answer holds only questions, or only promises to say its choices later, and quote the closest part.
