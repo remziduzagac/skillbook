@@ -1,0 +1,39 @@
+about: >-
+  The weigh guide on two broadband offers the user names in a file, where one offer has a cost that holds only if something is true, in one turn.
+  Tern Broadband charges £120 for installation only if the engineer finds the flat's existing line cannot carry the service,
+  and the file does not say whether it can. With the charge Tern costs £12 more than Larkfield over the contract, and without it £108 less.
+  The answer names whether the charge applies as an unknown that could change the pick, says what would settle it (such as who to ask or what to check),
+  compares both offers on the same points, and ends with the choice as a labelled line.
+  Rejects: the charge given only as "if it applies" with no way to find out, a pick in prose only with no labelled line,
+  or points given for one offer only.
+goal: Compare two broadband offers and recommend one, or say what would settle the choice.
+fixture: small/flat-broadband-offers
+turns:
+  - prompt: I'm choosing a broadband deal for my new flat, and both offers are in broadband.md. Which one should I take?
+    checks:
+      no_changes: true
+    rubric:
+      - id: open-charge-unknown
+        tag: understand-weigh
+        criterion: >-
+          Tern's £120 installation charge applies only if the engineer finds the flat's existing line cannot carry the service,
+          and broadband.md does not say whether the line is fine. With the charge Tern costs £498 over the contract against Larkfield's £486; without it, £378.
+          Does the answer name whether that charge will apply as something that could change the choice, and say what would settle it,
+          such as asking Tern for a line check on the address before signing, asking the landlord or the last tenant about the line, or looking for a working socket in the flat?
+          Pass if it names the open charge and gives a concrete way to find out, a person to ask or a thing to check.
+          Fail if the charge is named only as "if it applies" or "if the line is bad" with no way to find out, or if the charge is not named as open, and quote the closest part.
+      - id: recommended-answer-line
+        tag: understand-weigh
+        criterion: >-
+          Does the answer end with a line that starts "Recommended answer:" and names Larkfield Fibre (A) or Tern Broadband (B),
+          or a line that starts "No recommended answer:" with a reason, if it finds no clear winner?
+          Markdown bold around the line or its label is fine, and so is a condition after the pick, such as "X, unless …", as long as the line names one option first.
+          Pass if such a line is at the end of the answer, and a short closing sentence after it is fine.
+          Fail if it recommends only in other words, with no such line, and quote the closest part.
+      - id: same-points
+        tag: understand-weigh
+        criterion: >-
+          Look at the points the answer sets side by side for the two offers, such as monthly price, speed, installation, router, contract total or price rises.
+          Is every such point given for both A and B? A relative value, such as "slower than Larkfield", gives the point for both.
+          A remark about one offer's own benefit or risk is not a point unless the answer sets it beside the other offer.
+          Pass if each point is given for both offers. Fail if a point appears for one offer only, and quote it.

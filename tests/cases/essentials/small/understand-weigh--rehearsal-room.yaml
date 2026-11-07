@@ -25,6 +25,7 @@ turns:
           Two rooms are left once Mill Studio is dropped: St Aidan's Hall and the Oakfield School music room.
           Look at the points the answer sets side by side for these two, such as cost, space, piano, parking or the bus.
           Is every such point given for both rooms? A point marked as not in the notes for one room counts as given.
+          A relative value, such as "cheaper than the hall", gives the point for both.
           A remark about one room's own extra, such as the kitchen or the caretaker's hours, is not a point unless the answer sets it beside the other room.
           Pass if each point is given for both rooms. Fail if a point appears for one room only, and quote it.
       - id: recommended-answer-line
@@ -32,4 +33,5 @@ turns:
         criterion: >-
           Does the answer put the choice to the user with a line that starts "Recommended answer:" and names St Aidan's Hall or the Oakfield School music room,
           or a line that starts "No recommended answer:" with a reason, if it finds no clear winner?
+          Markdown bold around the line or its label is fine, and so is a condition after the pick, such as "X, unless …", as long as the line names one option first.
           Pass if it has such a line. Fail if it recommends only in other words, with no such line, and quote the closest part.

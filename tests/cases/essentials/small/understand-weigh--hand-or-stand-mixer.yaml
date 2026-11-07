@@ -1,0 +1,46 @@
+about: >-
+  The weigh guide on two mixers the user names in a file and asks to choose between, in one turn.
+  The file settles the facts, and the cheaper, smaller hand mixer wins on most points under the likelier reading of a casual home baker.
+  The stand mixer wins if the user often kneads bread or other heavy dough, which the file does not say.
+  The answer compares both mixers, recommends one, names how often the user makes heavy dough as the need that would change the pick and to which mixer,
+  and ends with the choice as a labelled recommended-answer line.
+  Rejects: stopping with questions about the user's baking and no comparison or pick, a pick in prose only with no labelled line,
+  the heavy-dough need left unnamed or named with no pick it would change, or points given for one mixer only.
+goal: Compare a hand mixer and a stand mixer and recommend one, saying what the missing baking habit would change.
+fixture: small/mixer-two-models
+turns:
+  - prompt: The two mixers I've been looking at are written up in mixers.md. Which one should I buy?
+    checks:
+      no_changes: true
+    rubric:
+      - id: picks-one
+        tag: understand-weigh
+        criterion: >-
+          mixers.md does not say how often the user makes bread or other heavy dough.
+          Does the answer compare the two mixers and recommend one of them, under a reading of the user's baking that it states or assumes?
+          Pass if it names one mixer as its pick, even when it says the pick would change for another kind of baking.
+          Fail if it stops with questions about the user's baking and gives no comparison and no pick, or only says it depends, and quote the part that decides.
+      - id: names-heavy-dough-need
+        tag: understand-weigh
+        criterion: >-
+          The hand mixer's booklet limits dough to 500 g of flour and 3 minutes at a time, and the stand mixer kneads 1.2 kg with no time limit.
+          mixers.md does not say how often the user makes bread or other heavy dough.
+          Does the answer name that missing need (how often the user makes bread or heavy dough) as something that could change the choice,
+          together with the mixer it would favour instead of its pick?
+          Pass if it names the need and says which mixer a strong (or weak) need would favour. Fail if it never names the need,
+          or names it only as a question to the user with no pick it would change, and quote the closest part.
+      - id: recommended-answer-line
+        tag: understand-weigh
+        criterion: >-
+          Does the answer end with a line that starts "Recommended answer:" and names the Nordhaven hand mixer (A) or the Valdemar stand mixer (B),
+          or a line that starts "No recommended answer:" with a reason, if it finds no clear winner?
+          Markdown bold around the line or its label is fine, and so is a condition after the pick, such as "X, unless …", as long as the line names one option first.
+          Pass if such a line is at the end of the answer, and a short closing sentence after it is fine.
+          Fail if it recommends only in other words, with no such line, and quote the closest part.
+      - id: same-points
+        tag: understand-weigh
+        criterion: >-
+          Look at the points the answer sets side by side for the two mixers, such as price, size, weight, washing, hands-free running, dough or guarantee.
+          Is every such point given for both A and B? A relative value, such as "much lighter than the stand mixer", gives the point for both.
+          A remark about one mixer's own benefit or risk is not a point unless the answer sets it beside the other mixer.
+          Pass if each point is given for both mixers. Fail if a point appears for one mixer only, and quote it.

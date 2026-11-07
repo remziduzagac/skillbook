@@ -14,8 +14,10 @@ turns:
       - id: same-points
         tag: understand-weigh
         criterion: >-
-          Does the answer compare the two cars on the same list of points, so that every point it uses is given for both A and B?
-          Pass if each point is stated for both cars. Fail if a point appears for only one car, and quote it.
+          Look at the points the answer sets side by side for the two cars, such as price, mileage, service history, MOT or boot.
+          Is every such point given for both A and B? A relative value, such as "a bigger boot than the Jazz", gives the point for both.
+          A remark about one car's own benefit or risk is not a point unless the answer sets it beside the other car.
+          Pass if each point is given for both cars. Fail if a point appears for one car only, and quote it.
       - id: belt-unknown
         tag: understand-weigh
         criterion: >-
@@ -35,4 +37,5 @@ turns:
         criterion: >-
           Does the answer put the choice to the user with a line that starts "Recommended answer:" and names car A or car B,
           or a line that starts "No recommended answer:" with a reason, if it finds no clear winner?
+          Markdown bold around the line or its label is fine, and so is a condition after the pick, such as "X, unless …", as long as the line names one option first.
           Pass if it has such a line. Fail if it recommends only in other words, with no such line, and quote the closest part.
