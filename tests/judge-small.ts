@@ -27,10 +27,16 @@ const INSTRUCTION = "You judge one turn of an AI agent's work against plain yes-
   "Quote the words of the answer or action that decide the verdict; for something missing, quote nothing and say what is missing. " +
   'Return only JSON: {"results":[{"id":string,"verdict":"pass"|"fail"|"unknown","quote":string,"reason":string}]}, one row per question.';
 const cases = new Map(loadCases("small/").map(c => [c.id, c]));
+// A saved run longer than its case now is judged on the case's turns only, so a case cut to fewer turns still compares.
+const fit = (r: Event): Event => {
+  const n = cases.get(r.case)!.turns.length;
+  return { ...r, turns: r.turns.filter((t: Event, i: number) => (t.turn ?? i + 1) <= n),
+    ...(r.selected_turns ? { selected_turns: r.selected_turns.filter((x: number) => x <= n) } : {}) };
+};
 const results: Event[] = positionals.flatMap(dir =>
   (JSON.parse(readFileSync(join(dir, "summary.json"), "utf8")) as Event[])
     .filter(r => cases.has(r.case)) // a dropped case's saved results are left out
-    .map(r => ({ ...recheckScenario(r, cases.get(r.case)!), source: dir.replace(/\/$/, "") })));
+    .map(r => ({ ...recheckScenario(fit(r), cases.get(r.case)!), source: dir.replace(/\/$/, "") })));
 const questions = (r: Event, turn: number): Event[] => cases.get(r.case)!.turns[turn - 1]?.rubric ?? [];
 const current = (r: Event, turn: number, rows?: Event[]) => !!rows && questions(r, turn).every(q =>
   rows.some(x => x.id === q.id && x.question === q.criterion));

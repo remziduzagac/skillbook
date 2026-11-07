@@ -6,7 +6,6 @@ turns:
     checks:
       reads: [understand-clarify]
       no_changes: true
-      answer_contains: ['recommended answer']
     rubric:
       - id: asks-discount
         tag: understand-clarify

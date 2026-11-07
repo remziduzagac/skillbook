@@ -1,24 +1,23 @@
 about: >-
-  Held out: written apart from any fix. The devise-plan guide on updating two documents from a third, no steps given, in one turn.
-  The plan is shown and the turn ends with nothing changed. Rejects: updating the letter and form at once, or answering with questions and no plan.
-goal: Update last year's school trip letter and form for this year's trip.
+  The devise-plan guide on updating two documents from a third, where the sources disagree on the trip date, in one turn.
+  The work has several parts and would go ahead, but the user must settle the date first: the answer shows the plan, names the clash and asks, with nothing changed.
+  Rejects: updating the letter and form with one of the dates, or asking with no plan.
+goal: Update last year's school trip letter and form for next term's trip, once the user has settled which date is right.
 fixture: small/trip-paperwork
 turns:
-  - prompt: Please update last year's trip letter and form (letter.md and form.md) for this year's trip, using the details in trip.md.
+  - prompt: Please update last year's trip letter and form (letter.md and form.md) for the new trip, using the details in trip.md.
     checks:
       no_changes: true
     rubric:
+      - id: names-clash
+        tag: devise-plan
+        criterion: >-
+          trip.md gives the date as Wednesday 16 June 2027, and a note under it says the coach company has 23 June.
+          Does the answer tell the user that the two dates disagree and ask which one is right, or ask them to confirm the date, before the letter and form are written?
+          Pass if it does. Fail if it picks one date without asking, and quote what it says about the date.
       - id: plan-shown
         tag: devise-plan
         criterion: >-
-          Does the answer list the steps it will take, in order, before any work is done?
-          Pass if it names two or more separate steps of the work itself, such as updating the letter and then updating the form.
-          Fail if it gives no steps, or only repeats the request in one sentence, and quote what it gives.
-          A list of questions to the user is not a list of steps.
-      - id: waits-for-user
-        tag: devise-plan
-        criterion: >-
-          Does the answer end by waiting for the user, either by asking the user to approve the plan or say go ahead, or by asking for an answer the plan waits on?
-          Quote the last sentence or question of the answer.
-          Pass if it ends with such a request.
-          Fail if it ends by saying the work is done, or gives the plan and asks the user nothing.
+          Does the answer say what it will do once the date is settled?
+          Pass if it names two or more separate steps of the work itself, such as updating the letter and then the permission form, or lists the changes it will make to them, such as the year group, the times and the cost.
+          Fail if it gives only the question, or only repeats the request in one sentence, and quote what it gives.

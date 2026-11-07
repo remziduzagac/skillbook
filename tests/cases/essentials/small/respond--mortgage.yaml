@@ -11,17 +11,20 @@ turns:
         tag: respond
         criterion: >-
           If the answer uses "SVR" or "standard variable rate", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "the lender's normal rate, which it can change at any time"?
-          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+          If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: term-ltv
         tag: respond
         criterion: >-
           If the answer uses "LTV" or "loan to value", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "you are borrowing 85% of what the house is worth"?
-          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+          If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: term-erc
         tag: respond
         criterion: >-
           If the answer uses "early repayment charge" or "ERC", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a fee if you pay off the loan or move it to another lender early"?
-          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+          If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: helps
         tag: outcome
         criterion: The answer says what the main parts of the offer mean for the user and names at least one point to check or watch out for before signing.

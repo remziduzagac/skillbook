@@ -1,5 +1,8 @@
-about: The organize guide on a merge, over two turns, propose then apply; approval first, then a checked result and a confirmation request.
-goal: Merge two FAQ files into one, losing nothing and marking the retired file.
+about: >-
+  The organize guide on a merge whose two files overlap and disagree on the price, so the user must decide first; over two turns.
+  Turn 1 shows where each question will go, names the clash and asks, with nothing changed. Turn 2 merges with the user's price, marks the retired file and reports the check.
+  Rejects: merging at once with either price, or a merge reported with no check.
+goal: Merge two FAQ files into one, losing nothing, with the price the user confirms, and marking the retired file.
 fixture: small/chess-faq
 turns:
   - prompt: Merge questions.md into faq.md so the club has one FAQ.
@@ -7,10 +10,12 @@ turns:
       reads: [organize]
       no_changes: true
     rubric:
-      - {id: map-first, tag: organize, criterion: 'Before changing any file, the answer shows where each item will go and asks the user to approve. Pass if no file is changed in this turn and both the map and the approval question are there.'}
-  - prompt: Yes, do it.
+      - {id: map-first, tag: organize, criterion: 'Before changing any file, does the answer show where each question will go, and put a question to the user before going on, such as which price is current or whether the map is right? Pass if no file is changed in this turn and both the map and a question are there. Fail if the map is missing, and quote what it gives instead.'}
+      - {id: names-clash, tag: organize, criterion: 'faq.md gives the price as £3 a night or £30 a year; questions.md gives £4 a night and £35 a year. Does the answer tell the user the two files disagree on the price and ask which is right? Pass if it does. Fail if it keeps one price without asking, and quote what it says about the price.'}
+  - prompt: Yes, do it. The £4 and £35 prices are the current ones.
     checks:
       file_contains:
         questions.md: ['faq']
+        faq.md: ['£4', '£35']
     rubric:
-      - {id: checked-then-confirm, tag: organize, criterion: 'After applying the change, the answer reports how the agent checked the result, such as comparing the old and new text or counting items, and what that check found. It then asks the user to confirm the result and does not call the work confirmed or finished before the user replies. Pass if both the check and the request for confirmation are there. Fail if either is missing.'}
+      - {id: check-reported, tag: organize, criterion: 'After applying the change, does the answer report how the agent checked the result, such as comparing the old and new text or counting questions, and what that check found? Pass if both the check and its finding are there. Fail if either is missing.'}

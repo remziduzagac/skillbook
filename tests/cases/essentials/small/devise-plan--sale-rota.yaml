@@ -1,0 +1,34 @@
+about: >-
+  The devise-plan guide on work with several parts and new files only, no steps given, in one turn.
+  Nothing needs the user's decision first, so the work goes ahead; the answer gives each part with its result, the check and what it found, and the choices made.
+  Rejects: stopping to ask leave for the work, a rota that misses a key holder, or a report with no check.
+goal: Make a volunteer rota for a three-day book sale and a note to each volunteer with their shifts.
+fixture: small/book-sale
+turns:
+  - prompt: >-
+      Could you turn the volunteer sign-ups into a rota for the book sale, and write each volunteer a short note with their shifts?
+      Put all the notes in one file so I can copy them into emails.
+    checks:
+      reads: [devise-plan]
+    rubric:
+      - id: parts-reported
+        tag: devise-plan
+        criterion: >-
+          Does the answer report the parts of the work it did, each with what it produced, such as the rota and the file of notes?
+          Pass if it names two or more parts with what each produced. Fail if it only says the work is done, or asks leave to start it, and quote what it gives.
+      - id: check-reported
+        tag: devise-plan
+        criterion: >-
+          Does the answer say how the finished rota was checked against the sale's needs, and what that check found?
+          Pass if it names the check and its result, such as "every shift has two free volunteers and a key holder each morning".
+          Fail if it names no check, or asks leave to start the work.
+      - id: names-choices
+        tag: devise-plan
+        criterion: >-
+          Does the answer name at least one choice it made that the user may want to change, such as who covers a shift several people could take, or who gets two shifts?
+          Pass if it names one as its own choice. Fail if it names none.
+      - id: key-holders
+        tag: devise-plan
+        criterion: >-
+          In the rota written in this turn, does each of the three morning shifts include Ana Silva or Tom Reid?
+          Quote the morning shifts. Answer unknown if no rota was written in this turn.

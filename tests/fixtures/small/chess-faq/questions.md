@@ -2,7 +2,7 @@
 
 ## What does membership cost?
 
-It is £3 each club night. A year costs £30.
+It is £4 each club night. A year costs £35.
 
 ## Is there parking?
 

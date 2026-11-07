@@ -1,0 +1,34 @@
+about: >-
+  The devise-plan guide on getting a mailing ready from three sources, no steps given, in one turn.
+  Nothing needs the user's decision first and every file is new, so the work goes ahead; the answer gives each part with its result, the check and what it found, and the choices made.
+  Rejects: stopping to ask leave for the work, or reporting only that it is done.
+goal: Get next year's allotment plot renewals ready to send, by email where possible and by post otherwise.
+fixture: small/plot-renewals
+turns:
+  - prompt: >-
+      We're doing the plot renewals by email this year. Using the member list, last year's letter and the committee notes,
+      can you get everything ready so I can send them out this weekend?
+    checks:
+      reads: [devise-plan]
+    rubric:
+      - id: parts-reported
+        tag: devise-plan
+        criterion: >-
+          Does the answer report the parts of the work it did, each with what it produced, such as the emails written and the letters for members with no email?
+          Pass if it names two or more parts with what each produced. Fail if it only says the work is done, or asks leave to start it, and quote what it gives.
+      - id: check-reported
+        tag: devise-plan
+        criterion: >-
+          Does the answer say how the finished renewals were checked against the member list or the notes, and what that check found?
+          Pass if it names a check and its result, such as each member's rent matching their plot size.
+          Fail if it names no check, or asks leave to start the work.
+      - id: names-choices
+        tag: devise-plan
+        criterion: >-
+          Does the answer name at least one choice it made that the user may want to change, such as how the emails are laid out, how files are split, or wording added to last year's letter?
+          Pass if it names one as its own choice. Fail if it names none.
+      - id: paper-letters
+        tag: devise-plan
+        criterion: >-
+          Do the files written in this turn give a paper letter, or a list for paper letters, that covers all three members with no email: Ian Ford, Bill Turner and Len Shaw?
+          Answer unknown if no file was written in this turn.

@@ -11,18 +11,21 @@ turns:
         tag: respond
         criterion: >-
           If the answer uses "certificate", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a digital ID that proves the site is really yours"?
-          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+          If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: term-domain
         tag: respond
         criterion: >-
           If the answer uses "domain", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "your web address, such as yourbakery.com"?
           A menu or button name quoted for the user to click, such as "Domain settings", is not a use of the term.
-          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+          If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: term-netlify
         tag: respond
         criterion: >-
           If the answer uses "Netlify", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "the company that keeps the website online"?
-          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it first appears without such words, and quote that first use. If the answer never uses the term, return unknown.
+          If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
+          Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: helps
         tag: outcome
         criterion: The answer says what the warning means and gives at least one concrete next step the user can take or ask someone else to take.

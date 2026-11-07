@@ -1,0 +1,42 @@
+about: >-
+  Held out: written apart from the fix by a second reviewer.
+  The devise-plan guide on a specified conversion and aggregation into two new files, in one turn.
+  All values and ordering rules are given. Rejects: stopping for approval, losing a score, miscalculating a total,
+  or reporting completion without the check and its finding.
+goal: Export every round score and calculate each player's total without changing the source.
+fixture: small/tabletop-scores
+version_control: true
+turns:
+  - prompt: >-
+      Turn scores.tsv into scores.csv with the columns round,player,points, keeping every score in its current order.
+      Also make totals.csv with the columns player,total_points, summing each player's points across both rounds.
+      Put the highest total first; break equal totals by player name in alphabetical order.
+      Keep scores.tsv as it is. These are local files for me to review.
+    checks:
+      changed: [scores.csv, totals.csv]
+      only_changed: [scores.csv, totals.csv]
+      unchanged: [scores.tsv]
+      file_contains:
+        scores.csv:
+          - '\A[^\r\n]+(?:\r?\n[^\r\n]+){6}\r?\n?\Z'
+          - '\A"?round"?,"?player"?,"?points"?\r?\n"?1"?,"?Zuri"?,"?9"?\r?\n'
+          - '(?m)^"?1"?,"?Zuri"?,"?9"?\r?\n"?1"?,"?Noah"?,"?4"?\r?\n'
+          - '(?m)^"?1"?,"?Noah"?,"?4"?\r?\n"?1"?,"?Ela"?,"?7"?\r?\n'
+          - '(?m)^"?1"?,"?Ela"?,"?7"?\r?\n"?2"?,"?Noah"?,"?8"?\r?\n'
+          - '(?m)^"?2"?,"?Noah"?,"?8"?\r?\n"?2"?,"?Ela"?,"?5"?\r?\n'
+          - '(?m)^"?2"?,"?Ela"?,"?5"?\r?\n"?2"?,"?Zuri"?,"?1"?\r?\n?\Z'
+        totals.csv:
+          - '\A"?player"?,"?total_points"?\r?\n"?Ela"?,"?12"?\r?\n"?Noah"?,"?12"?\r?\n"?Zuri"?,"?10"?\r?\n?\Z'
+    rubric:
+      - id: parts-reported
+        tag: devise-plan
+        criterion: >-
+          Does the final answer report the result of both requested parts: exporting the round scores to scores.csv
+          and calculating the player totals in totals.csv? Pass if it says what each output contains or what was
+          completed for each. Fail if either part is omitted or is only proposed as future work. Quote the report.
+      - id: check-reported
+        tag: devise-plan
+        criterion: >-
+          Does the final answer identify a check of the output against the source scores and say what it found?
+          Pass for a check with its finding, such as all six scores preserved or the totals agreeing with both rounds.
+          Fail for only "checked" or "done", a future check, or a check with no finding. Quote the check report.
