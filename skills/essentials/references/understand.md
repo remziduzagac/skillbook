@@ -36,7 +36,7 @@ Decisions and their reasons, questions set aside and why, and next steps. Give t
    - The exception never covers a fact or decision only the user can supply, such as a fee or a club rule. Ask for it however quick the edit, because a guessed value reads as settled.
    - Yours: what the project's conventions settle, and a default easy to undo. Make these choices yourself.
    - **Show the choices the result rests on in one "Going with: …" line.** When the work is quick to redo, such as a short draft or an edit under version control, do the work and put the line in your final answer. When it is slow or hard to undo, show the line first and end the turn. Change nothing until the user replies, because a choice seen only after such work is too late to correct.
-   - If the user told you to choose, or has just answered your questions, go ahead. Put the "Going with" line in your final answer, with the work.
+   - If the user told you to choose, or has just answered your questions, go ahead. Put the "Going with" line in your final answer, with the work. After a question round, give each question its status label there, by the `respond-ask` guide's rule 4.
    - This holds for a change made by a command too, such as one that rewrites, moves or renames files.
    - Minor choices need no line. Give the reason if the user asks.
    - Easy to undo means the effects, not just the file: a change that sends messages, migrates data or reaches users is hard to undo.

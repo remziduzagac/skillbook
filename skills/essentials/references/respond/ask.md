@@ -34,6 +34,7 @@ The round of questions or the proposal, shown to the user, with the turn ended o
    - **Assumed:** the user stopped without answering, and the question has your recommended answer. Only a recommended answer you gave can be assumed.
    - **Parked:** the user set the question aside, or it has no recommended answer when the user says "go ahead" or stops. Give why. A question the user declined, such as "skip the colour question", is parked even when it has your recommended answer.
    - Use only these four labels. Another label, such as "unresolved" or "confirmed", hides which choices the user made.
+   - Put each parked or assumed question on its own line, starting with its label, such as "Parked: the deposit, until the landlord replies". These are the choices still open. Accepted or changed questions may share a line, such as "Accepted: 1, 2 and 4". Where your final answer has a "Going with" line, these lines go in it.
    - Add no choice the user did not make and you did not recommend. A detail their answer leaves open, such as which night a weekly backup runs, is parked with why.
    - When the user stops an interview, ask them to confirm these statuses, by the `understand-clarify-deep` guide's rule 1.
    - Stopping means saying so, such as "let's leave the questions there", or starting different work without answering. Not replying yet is not stopping.

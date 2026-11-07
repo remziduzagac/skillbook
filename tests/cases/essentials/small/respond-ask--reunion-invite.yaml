@@ -1,0 +1,74 @@
+about: >-
+  The ask guide on a go-ahead after a round of four questions, asked before a family reunion invitation is finished.
+  The notes give a clear basis for two of them: the great-aunt's written reason for the venue, and the toddlers' nap hours for the start time.
+  They leave two to facts only the user can supply: the caterer's price per adult, which the quote will give, and the reply-by date, which Dilys will pick on her return.
+  Turn 1 asks all four, each with its own labelled answer line, and does not touch the invitation.
+  In turn 2 the user says to go with the suggestions on the rest, that the price and the reply-by date will come later, and to finish now.
+  The answer finishes the invitation in that turn, says the price and the reply-by date back each on its own "Parked:" line with a reason, and the venue and the start time as accepted, on a shared line or their own,
+  and the invitation carries the two recommended values and marks the two facts as still to come, with no amount and no date.
+  Rejects: asking the price and the date again in place of finishing the invitation, the four questions said back as "going with", "as agreed", "confirmed" or any word but accepted and parked,
+  or a price or a reply-by date guessed into the invitation.
+goal: Ask what is needed before an invitation is finished, then take "go with your suggestions" with two facts set aside, finishing the invitation and saying each question back on a labelled line.
+fixture: small/hallbeck-reunion
+turns:
+  - prompt: >-
+      The invitation for the Hallbeck family reunion has to go out soon. My notes are in reunion-notes.md and I began the invitation in invitation.md.
+      Do not write it yet. List what you need from me first, and I will answer.
+    checks:
+      reads: [respond-ask]
+      no_changes: true
+    rubric:
+      - id: four-labelled
+        tag: respond-ask
+        criterion: >-
+          reunion-notes.md leaves four points open: where the reunion is held, when it starts, the caterer's price per adult, and the reply-by date.
+          Does the answer ask about each of the four points, each with its own line under it that starts "Recommended answer:" or "No recommended answer:"?
+          Pass if all four are asked and every one has its own such line. Fail if any point is not asked, any question has neither line, or one shared remark covers several questions (such as "no recommended answers for the last two"), and quote the first question without its own line.
+  - prompt: >-
+      Go with your suggestions on the rest. The caterer's price and Dilys's reply-by date will come later, so do not wait for them.
+      Finish the invitation now.
+    checks:
+      only_changed: [invitation.md]
+      file_contains:
+        invitation.md:
+          - 'Tern Lake'
+          - '^(?![\s\S]*Aldric)[\s\S]*Hallbeck'
+          - 'noon|midday|12(:00|\.00)?\s?(pm|p\.m\.|o.?clock)|12:00'
+          - '\b8(st|nd|rd|th)?\s+(of\s+)?August|August\s+8(st|nd|rd|th)?\b'
+          - 'replies@hallbeck-reunion\.example'
+          - 'photo'
+          - '^(?![\s\S]*([£$€]\s?\d|\d\s?(pounds|GBP|euros?|dollars|USD|EUR|each|per\s+(adult|head|person))\b|\b(GBP|EUR|USD)\s?\d))[\s\S]*Hallbeck'
+          - '^(?![\s\S]*(\b(?!8(st|nd|rd|th)?[ \t]+(of[ \t]+)?Aug)\d{1,2}(st|nd|rd|th)?[ \t]+(of[ \t]+)?(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(t(ember)?)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\b|\b(?!Aug(ust)?\b\.?[ \t]+8(st|nd|rd|th)?\b)(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(t(ember)?)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\b\.?[ \t]+\d{1,2}(st|nd|rd|th)?\b))[\s\S]*Hallbeck'
+    rubric:
+      - id: finishes-now
+        tag: respond-ask
+        criterion: >-
+          In the earlier answer the agent asked four questions, and the user then said to go with its suggestions on the rest, that the caterer's price and Dilys's reply-by date would come later, and to finish the invitation now.
+          Look at what this turn changed in invitation.md and at how the answer ends.
+          Does this answer finish the invitation in this turn, without asking again for the price or the reply-by date, or for another round of answers, in place of finishing it?
+          Pass if the sections of the invitation are filled in this turn. A closing note that the two facts are still to come is not asking again.
+          Fail if the invitation is left unwritten or unfinished, or the answer asks the user for either fact, or for confirmation, before it will finish, and quote the closest part.
+      - id: facts-parked-lines
+        tag: respond-ask
+        criterion: >-
+          In the earlier answer the agent asked about the caterer's price per adult and the reply-by date, which only the user can find out.
+          The user then said to go with its suggestions on the rest, and that the price and the date would come later.
+          Is each of these two questions said back on its own line that starts "Parked:", with a reason? Lines inside a "Going with" section count.
+          Pass if both have such a line, each with a reason, such as waiting for the caterer's quote or for Dilys.
+          Fail if either has no line of its own, has no reason, is given under another word (such as open, pending, to follow, still to fill in or as agreed), or is not said back, and quote the closest part.
+          If the earlier answer did not ask about both, return unknown.
+      - id: choices-accepted
+        tag: respond-ask
+        criterion: >-
+          In the earlier answer the agent asked where the reunion is held and when it starts, each with a recommended answer, and the user then said to go with its suggestions on the rest.
+          Does this answer give both of those questions as accepted, using the word "accepted"? They may share one line.
+          Pass if both are given as accepted. Fail if either is given under another word (such as confirmed, going with or as agreed), or no status is given for it, and quote the closest part.
+          If the earlier answer gave a recommended answer for neither question, return unknown.
+      - id: facts-marked
+        tag: respond-ask
+        criterion: >-
+          reunion-notes.md gives no price per adult and no reply-by date.
+          Look at invitation.md as this turn left it.
+          Does the invitation say, where a guest would look for each, that the price per adult is still to come and that the reply-by date is still to come, with no amount and no reply-by date written in?
+          A mark can be a bracketed placeholder or a line such as "price to follow". The day of the reunion, 8 August, is not a reply-by date.
+          Pass if the invitation holds a mark for the price and a mark for the reply-by date, and no amount and no reply-by date. Fail if either is left out without a mark, or has an amount or a date written in, and quote the closest part.

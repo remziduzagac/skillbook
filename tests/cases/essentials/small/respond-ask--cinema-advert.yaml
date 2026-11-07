@@ -1,0 +1,73 @@
+about: >-
+  The ask guide on a go-ahead that says nothing about two of the questions, asked before a part-time job advert is finished.
+  The notes give a clear basis for two of the four: what the two earlier holders called the job, for the job title, and the board's wish to train, for the experience asked.
+  They leave two to facts only the user can supply: the hourly rate, which the board has not set, and the start date, which waits for the supplier to give an installation date.
+  Turn 1 asks all four and does not touch the advert.
+  In turn 2 the user says only to go with the suggestions and to finish the advert, and does not mention the rate or the start date.
+  The answer finishes the advert in that turn, says the title and the experience back as accepted, on a shared line or their own, and the rate and the start date each on its own "Parked:" line with a reason,
+  and the advert carries the two recommended values and marks the rate and the start date as still to come, with no amount and no date.
+  Rejects: asking for the rate and the start date again, or for another round of answers, in place of finishing the advert;
+  the rate or the start date said back under another word (open, pending, to follow, as agreed) or not at all;
+  or an amount or a date guessed into the advert.
+goal: Ask what is needed before a job advert is finished, then take "go with your suggestions" with two facts left unmentioned, finishing the advert and saying each parked fact back on a labelled line.
+fixture: small/greywick-cinema
+turns:
+  - prompt: >-
+      The assistant job at Greywick Community Cinema has to go on the noticeboard soon. Maeve's notes are in hiring-notes.md and I began the advert in job-advert.md.
+      Before you write any of it, list what you need from me, and I will reply.
+    checks:
+      reads: [respond-ask]
+      no_changes: true
+  - prompt: Go with your suggestions and finish the advert.
+    checks:
+      only_changed: [job-advert.md]
+      file_contains:
+        job-advert.md:
+          - 'Cinema Assistant'
+          - '\bno\s+(\w+\s+){0,3}experience|(do(es)?n.t|do(es)?\s+not|need\s+not|without)\s+(\w+\s+){0,3}experience|experience[^.\n]{0,40}(not|n.t)\s+(needed|necessary|required|essential)|we\s+(will|.ll)\s+train|will\s+be\s+trained|train(ing)?\s+(is\s+|will\s+be\s+)?(given|provided|offered)|train\s+you|on.the.job\s+training|training\s+on\s+the\s+job'
+          - 'Fridays?'
+          - 'Saturdays?'
+          - 'jobs@greywick-cinema\.example'
+          - '^(?![\s\S]*\[Job title\])[\s\S]*Greywick'
+          - '^(?![\s\S]*([£$€]\s?\d|\b\d[\d,.]*\s?(pounds|GBP|euros?|dollars|USD|EUR|p/h|/h(ou)?r|per\s+(hour|hr)|an\s+hour)\b))[\s\S]*Greywick'
+          - '^(?![\s\S]*(\b(January|February|March|April|June|July|August|September|October|November|December)\b|\b(Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept?|Oct|Nov|Dec)\.?[ \t]+\d|\bMay[ \t]+\d|\d(st|nd|rd|th)?[ \t]+(of[ \t]+)?May\b|\b\d{1,2}[/.-]\d{1,2}[/.-]\d{2,4}\b|\b20\d\d\b|\bnext[ \t]+(week|month|year)\b))[\s\S]*Greywick'
+    rubric:
+      - id: finishes-now
+        tag: respond-ask
+        criterion: >-
+          In the earlier answer the agent asked four questions: the job title, the experience asked for, the hourly rate and the start date.
+          The user then said only to go with its suggestions and to finish the advert, and did not mention the rate or the start date.
+          Look at what this turn changed in job-advert.md and at how the answer ends.
+          Does this answer finish the advert in this turn, without asking the user for the rate or the start date, or for another round of answers, in place of finishing it?
+          Pass if the sections of the advert are filled in this turn. A closing note that the rate and the start date are still to come is not asking again.
+          Fail if the advert is left unwritten or unfinished, or the answer asks the user for either fact, or for confirmation or a reply, before it will finish, and quote the closest part.
+      - id: parked-lines
+        tag: respond-ask
+        criterion: >-
+          hiring-notes.md gives no hourly rate and no installation date for the new projector, and only the user can find them out.
+          The user then said only to go with the agent's suggestions and to finish the advert.
+          Look at how this answer says back what happened to the rate and to the start date.
+          Is each of the two said back on its own line that starts "Parked:", with a reason?
+          Lines inside a "Going with" section count.
+          Pass if both lines start with "Parked:" and each gives a reason, such as the board has not set the rate or the supplier has not given a date.
+          Fail if either has no line of its own, is given under another word (such as open, pending, to follow, to be confirmed, unresolved or as agreed), or has no reason, and quote the first.
+          If the earlier answer gave a recommended answer for the rate or for the start date, return unknown.
+      - id: recommended-accepted
+        tag: respond-ask
+        criterion: >-
+          In the earlier answer the agent asked about the job title and about the experience asked for, and the user then said to go with its suggestions.
+          Look at how this answer says back what happened to those two questions.
+          Are the job title and the experience each said back as accepted, using the word "accepted"?
+          They may share one line, and lines inside a "Going with" section count.
+          Pass if both are said back with the word "accepted", such as "Accepted: Cinema Assistant, and no experience asked".
+          Fail if either is given under another word (such as going with, as agreed, confirmed, assumed or resolved) or is not said back, and quote the first.
+          If the earlier answer gave no recommended answer for the title or for the experience, return unknown.
+      - id: facts-marked
+        tag: respond-ask
+        criterion: >-
+          hiring-notes.md gives no hourly rate and no start date.
+          Look at job-advert.md as this turn left it.
+          Does the advert say, where a reader would look for each, that the rate is still to come and that the start date is still to come, with no amount and no date written in?
+          A mark can be a bracketed placeholder or a line such as "to be confirmed". A start tied to the projector's installation, as the notes give it, is not a date.
+          Pass if the advert holds a mark for the rate and a mark for the start date, and no amount and no date.
+          Fail if either is left out without a mark, or has an amount, a date or a time such as "next month" written in, and quote the closest part.

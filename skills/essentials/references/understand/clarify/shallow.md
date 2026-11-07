@@ -53,7 +53,7 @@ See the whole level before exploring any part more deeply. Ask the smallest roun
    - Keep accepted, changed, assumed and parked answers distinct, as the `respond-ask` guide labels them, and keep questionnaire items apart.
    - When an answer opens choices that depend on each other and would change the work, offer deep on that part, as step 4 says. Then end the turn.
    - After a yes, hand the part to the `understand-clarify` guide for deep. If deep called this guide, return the part to deep without another offer.
-   - If the user declines deep, take that part's questions with their recommended answers, park those without one, and supply no fact only the user knows. List both in "Going with" in your final answer, with the work. The user has just answered, so the line only needs to be seen.
+   - If the user declines deep, take that part's questions with their recommended answers, park those without one, and supply no fact only the user knows. List both in "Going with" in your final answer, with the work, with their statuses by the `respond-ask` guide's rule 4. The user has just answered, so the line only needs to be seen.
 7. **Check every question's status and "Gives back" before handing back the level.** Always do this last. The user cannot correct a basis they have not seen.
    - After the answers, check that every question in the round is answered, taken with its recommended answer, parked or in a questionnaire, or that its part was offered to deep and the user said yes or no.
    - Check that "Going with" shows the decisions, assumptions, parked questions and questionnaire items the work rests on, without repeating the latest answers except where you interpreted them.
