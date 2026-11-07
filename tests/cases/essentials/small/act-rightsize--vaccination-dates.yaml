@@ -1,0 +1,32 @@
+about: >-
+  The rightsize guide on a fill with nothing to choose: a vaccination card has eight empty date cells, and the vet's record the user names gives every one of them.
+  Each date is the record's own (the rabies booster is three years out, not one), so the fill is the edit itself and goes ahead in one turn with no list of values for approval.
+  Rejects: stopping with a list of the dates for approval, a booster date worked out as one year when the record says otherwise, or changing the filled row, the heading or the record.
+goal: Fill the empty cells of a card from the record the user names, in one turn, with no list of values to approve.
+fixture: small/pet-vaccination-card
+turns:
+  - prompt: >-
+      Biscuit's vaccination card (card.md) has empty dates.
+      Please fill them in from the vet's record, vet-record.txt.
+    checks:
+      changed: [card.md]
+      only_changed: [card.md]
+      unchanged: [vet-record.txt]
+      file_contains:
+        card.md:
+          - 'Distemper, hepatitis, parvovirus\s*\|\s*12 Mar(ch)? 2025\s*\|\s*12 Mar(ch)? 2026\s*\|'
+          - 'Leptospirosis\s*\|\s*12 Mar(ch)? 2025\s*\|\s*12 Mar(ch)? 2026\s*\|'
+          - 'Kennel cough\s*\|\s*9 Sep(t|tember)? 2025\s*\|\s*9 Sep(t|tember)? 2026\s*\|'
+          - 'Rabies\s*\|\s*21 Oct(ober)? 2025\s*\|\s*21 Oct(ober)? 2028\s*\|'
+          - '# Biscuit: vaccination card'
+          - 'Flea and worm treatment\s*\|\s*2 June 2025\s*\|\s*2 September 2025'
+          - 'Keep this card with the pet passport'
+          - 'Next check-up: ask at the front desk of Elm Vets'
+    rubric:
+      - id: no-approval-ask
+        tag: act-rightsize
+        criterion: >-
+          The user named the record to fill the card from, and the record gives every date.
+          Does the answer ask the user to approve the dates before they are written, or say that nothing has been changed yet and wait for a reply?
+          Pass if the answer reports the card as filled and asks for no approval of the dates.
+          Fail if it lists the dates it would write and asks whether to go ahead, or says it has changed nothing, and quote the part that decides.

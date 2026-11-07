@@ -1,0 +1,30 @@
+about: >-
+  The rightsize guide on new work written from existing material: the user asks for a one-page notice drawn from their longer moving plan.
+  The notice is a new file, so it is not a fill of the plan, and the plan stays as it is.
+  The notice is written in one turn and holds the facts a neighbour needs: the date, the lorry time, the parking bay and the number to ring.
+  Rejects: stopping with a list of additions to the plan for approval, a notice missing the date, times or phone number, or editing the plan itself.
+goal: Write a new notice from the plan in one turn, with no list of additions to the plan for approval.
+fixture: small/moving-day-plan
+turns:
+  - prompt: >-
+      We are moving out of 14 Orchard Lane on 21 March.
+      Write a one-page notice for the neighbours from moving-plan.md, telling them what to expect that day, and save it as neighbour-notice.md.
+    checks:
+      changed: [neighbour-notice.md]
+      only_changed: [neighbour-notice.md]
+      unchanged: [moving-plan.md]
+      file_contains:
+        neighbour-notice.md:
+          - '21 March'
+          - '8[:.]30'
+          - 'Orchard Lane'
+          - '07700 900142'
+          - '17[:.]00|5 ?pm|5[:.]00'
+    rubric:
+      - id: no-additions-list
+        tag: act-rightsize
+        criterion: >-
+          The user asked for a new notice written from moving-plan.md, not for changes to the plan.
+          Does the answer stop to ask the user to approve a list of what it would add or change in the plan, or a list of what the notice would hold, before writing the notice?
+          Pass if the answer reports the notice as written and asks for no approval of such a list.
+          Fail if it ends with a list of proposed additions or contents for approval and no notice written, and quote the part that decides.

@@ -11,6 +11,7 @@ Use when existing material leaves its reader unable to understand or act without
 ## When not
 
 - Writing from scratch: use a skill in the harness’s list that makes that kind of thing, if one fits. Otherwise use your judgment under the `act` guide. Enrich fills gaps in existing material.
+- Writing new work from existing material: use the guide for that kind of work, as for writing from scratch. The material itself stays as it is.
 - Finding out for its own sake: use the `understand-research` guide for sourced investigation, otherwise read directly. There is no existing work to fill.
 - Checking whether work is correct: use the `act-verify` guide for evidence.
 
@@ -30,7 +31,7 @@ The material with missing parts added, and the gaps that could not be filled. Th
    - Use a source only if it is current and authoritative for the addition. An outdated wiki page, or a comment the code contradicts, proves nothing.
    - Give each source in the approval list: file and line, command or page showing it.
    - Add nothing the reader would not ask for, by the `act-rightsize` guide's final step of Instructions. Enriching must not become padding.
-4. **Get approval for the list first.** Follow the `act-rightsize` guide's approval rule through the `respond-ask` guide. List each addition with its source and reason. List each gap too, with what would settle it, since the user may know the answer. Report the result and the gaps that remain.
+4. **Get approval for the list first, when the `act-rightsize` guide's approval rule asks for one.** That rule also says when a fill needs none. Follow it through the `respond-ask` guide. List each addition with its source and reason. List each gap too, with what would settle it, since the user may know the answer. Report the result and the gaps that remain.
 5. **Follow the `act-rightsize` guide's code rule for proposed code changes.** Examples: a missing error path or test.
 
 ## Instructions

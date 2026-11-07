@@ -1,0 +1,14 @@
+Elm Vets, 14 Kingsbridge Road
+Patient record for Biscuit, springer spaniel, microchip 9560 1200 4471
+
+12 March 2025, seen by Dr Ansah
+  Distemper, hepatitis, parvovirus vaccine given. Booster due 12 March 2026.
+  Leptospirosis vaccine given. Booster due 12 March 2026.
+  Weight 18.4 kg. Teeth fine.
+
+9 September 2025, seen by Nurse Okoro
+  Kennel cough vaccine (nose drops) given. Booster due 9 September 2026.
+
+21 October 2025, seen by Dr Ansah
+  Rabies vaccine given for the trip to France. Booster due 21 October 2028 (three-year vaccine).
+  Passport stamped.

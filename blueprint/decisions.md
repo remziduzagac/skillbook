@@ -5284,3 +5284,23 @@ Raw runs are in `tmp/small-trial/claim-old/`, `tmp/small-trial/claim-new/` and `
 Raw runs and verdicts are in `tmp/fix-cycle/` (not committed). The first three target runs of `understand-weigh--settings-storage` used a weigh example close to that case and were set aside; the case was rerun after the example changed.
 
 **Spending:** test runs $25.35 (target $11.16, overreach checks $3.80, held-out on the new text $8.02, held-out on the old text $2.37), judging $4.90, by the reported costs. The held-out cases were written by one Sonnet agent, about 190,000 tokens, cost not reported.
+
+## D318: A fill with nothing to choose, and new work written from material, need no approval list (2026-11-07)
+
+**Decision:** the `act-rightsize` guide's approval rule for filling existing material covers only fills where the agent chooses what goes in. Two kinds of work are outside it:
+
+- **A fill with nothing to choose:** the user names the source, and every value is copied or worked out from it, such as totals copied from an agreed budget sheet. It is a named change, the edit itself. Choosing what to say, or how to word it, is choosing.
+- **New work written from existing material,** such as a handbook from meeting notes: it does not fill that material, which stays as it is. The guide for that kind of work decides any approval, such as the `devise-design` guide's approval before building.
+
+Unasked fills, and fills where the agent picks the content, such as completing a README or a volunteer sheet, still start with an approved list. Adding to a document that already exists is filling that document, even when what goes in comes from other files.
+
+- **Why:** in the small cases, Sol worked out all seven quantities of a shopping list from the agreed design the user named, then wrote nothing and asked to apply them, quoting this rule. It also stopped a bathroom design the user asked for, to approve a scope list, quoting the enrich guide. The go-ahead decision (D312) kept this list for others' writing "where the agent chooses what to cut"; a list where nothing is chosen only costs the user a turn.
+- **Changed:** the approval rule in `blueprint/design/essentials/act.md` and the `act-rightsize` guide's rule 9; the enrich guide's rule 4 now follows that rule, and its "When not" sends new work from existing material to the guide for that work. A first version without the line on existing documents let both models fill a bare README at once, reading it as new work written from the code, so the line was added.
+
+**Tested:** small cases on Sonnet (Claude Code) and Sol (Codex with GPT-6.1 Sol), each pass agreed by both judges; old text first, then new.
+
+- **Target cases:** the shopping list went from 0 of 1 to 5 of 5 on Sol, and the bathroom design from 0 of 1 to 5 of 5. Sonnet passed both before and after. Sonnet's design files kept all three spec values in every run; the judge marked some unknown because it saw the file cut short.
+- **Held-out go-ahead cases, written apart from the change:** a quilt cutting list counted from an agreed layout went from 2 of 3 to 3 of 3 on Sol; the old text's failure stopped with all seven counts right, quoting the enrich guide's approval step. A parade running order from a brief, vaccination dates copied from a record, a moving-day notice from a plan, and loan lengths from lending rules passed on both texts and both models. The loan-length case first expected a full stop, but both models rightly copied the four settled lengths and left the two open ones, so it became a go-ahead that rejects a guessed length.
+- **The stop side:** the bare README went from 1 of 3 to 2 of 3 on Sonnet and from 3 of 3 to 2 of 3 on Sol, both within noise. The locked shed gap and the volunteer sheet still stop on both models, and the go-ahead rain plan and README from scratch still pass.
+- **Kept:** the held-out gain is one run, which counts as noise; the person chose to keep the change, since that failure is the stop the change removes.
+- **Cost:** $14.74 for runs and $3.45 for judging, with no calls of unknown cost.

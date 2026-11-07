@@ -38,7 +38,10 @@ The output or work plan fitted to its reader, with the point first. For reworked
    - Why: every read and every call is paid for again on later turns. What to do stays with the `act` guide's rule 3: exactly what was asked.
 8. **Use the `act-rightsize-lean` or `act-rightsize-enrich` guide to rework material that existed before this task, on request.** Propose the rework when you notice the need. Never do it unasked beyond the task, by the `act` guide's rule 3.
 9. **Get approval for a list before trimming or filling existing material.** This covers work in the `act-rightsize-lean` and `act-rightsize-enrich` guides whether you load them or not.
-   - A named change, such as a given section to add, is the edit itself and needs no such approval. Filling, completing or making something sufficient is filling even if the request names what is lacking: you still find what goes in.
+   - A named change, such as a given section to add, is the edit itself and needs no such approval. Filling, completing or making something sufficient is filling even if the request names what is lacking: you still choose what goes in.
+   - A fill with nothing to choose is a named change too: the user names the source, and every value is copied or worked out from it, such as totals copied from an agreed budget sheet. Choosing what to say, or how to word it, is choosing.
+   - New work written from existing material, such as a handbook written from meeting notes, does not fill that material. The material stays as it is, and the guide for that kind of work decides any approval.
+   - Adding to a document that already exists, such as a sparse onboarding page, is filling that document, even when what goes in comes from other files.
    - For work written by the user or others, put the change list through the `respond-ask` guide. Give each change's reason or source. End the turn. Apply nothing before approval.
    - After applying the approved list, report the result and its check. Point to the list for each change's reason or source instead of repeating them: the user already has it.
    - Your own draft in this conversation needs no approval. It is still being made and the final step of Instructions covers it.

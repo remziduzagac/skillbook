@@ -1,0 +1,32 @@
+about: >-
+  Held out: written apart from the guide text, for a fill with nothing to choose.
+  The user names quilt-layout.md as the source for the empty To cut column, and every number follows from it by counting: 34 nine-patch blocks (35 minus the label block), each with 4 blue, 4 white and 1 yellow square, one label square, four border strips, one backing and one wadding.
+  No rounding, option or wording is left open, so the fill is a named change and goes ahead at once, with no list to approve.
+  Rejects: stopping with the worked-out numbers for approval, a wrong count (35 blocks instead of 34, or the label square counted with the white squares), editing the layout, or changing other files.
+goal: Count the pieces to cut from the agreed quilt layout and write them into the cutting list in one turn.
+fixture: small/baby-quilt-layout
+turns:
+  - prompt: Mum and I settled the baby quilt in quilt-layout.md. Please fill the empty To cut column in cutting-list.md from it.
+    checks:
+      changed: [cutting-list.md]
+      only_changed: [cutting-list.md]
+      unchanged: [quilt-layout.md]
+      file_contains:
+        cutting-list.md:
+          - '(?m)^# Baby quilt: cutting list$'
+          - '\|\s*Blue square\s*\|\s*3\.5 in\s*\|\s*136\s*\|'
+          - '\|\s*White square\s*\|\s*3\.5 in\s*\|\s*136\s*\|'
+          - '\|\s*Yellow square\s*\|\s*3\.5 in\s*\|\s*34\s*\|'
+          - '\|\s*Label square\s*\|\s*9\.5 in\s*\|\s*1\s*\|'
+          - '\|\s*Border strip\s*\|\s*4\.5 in wide\s*\|\s*4\s*\|'
+          - '\|\s*Backing\s*\|\s*to fit the top\s*\|\s*1\s*\|'
+          - '\|\s*Wadding\s*\|\s*to fit the top\s*\|\s*1\s*\|'
+          - 'Wash and press all the fabric before cutting\.'
+    rubric:
+      - id: no-approval-ask
+        tag: act-rightsize
+        criterion: >-
+          The user named quilt-layout.md as the source, and every number to cut follows from it by counting, with nothing left for the agent to choose.
+          Does the answer ask the user to approve the worked-out numbers, or a list of them, before or instead of writing them into cutting-list.md?
+          Pass if it writes the numbers without asking for approval first; a note saying how they were counted is not a request.
+          Fail if it ends the turn with the numbers for the user to approve, or offers to write them once the user agrees, and quote the question or offer.
