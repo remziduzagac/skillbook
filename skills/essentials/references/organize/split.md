@@ -47,7 +47,7 @@ Divide a written or planned whole so every required item has one place. The inve
 7. **Check gaps and overlaps through the `organize` guide's gap-and-overlap check.** A proposed map can still duplicate responsibility or miss a requirement.
    - Return here after that check, without restarting the operation chooser.
 8. **Apply only the approved map, by the `organize` guide's step 5.** A split beyond the map moves content the user never saw placed.
-   - For existing material, show the map and end the turn first. Planning a whole not yet written uses its creating guide's approvals instead.
+   - For existing material, show the map and end the turn first when the `organize` guide's rule 4 needs approval. Planning a whole not yet written uses its creating guide's approvals instead.
    - Write each part, move each item to its mapped part, and update links to moved items.
    - Mark the original whole with where its content went, by the `organize` guide's rule 7.
 9. **Check parts and “Gives back” before returning to the parent.** Always do this last. A partially placed collection is not a completed arrangement.

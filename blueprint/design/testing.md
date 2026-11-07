@@ -1,6 +1,6 @@
 # Testing
 
-How skillbook is tested, as a whole: what runs where, what a test needs, and where the files live. Each skill's own tests are in its design section, in the Tests list; this file says how they are run (D208). Skills are tested with small cases: each run is compared with another (no skill, or the old text), checked by scripts first and then judged by one judge, and a change stays only if it beats the old text ([D311](../decisions.md#d311-small-cases-replace-the-long-scenarios-2026-11-06)). The two long scenarios that came before are frozen ([D310](../decisions.md#d310-the-live-run-after-the-gates-showed-no-progress-and-was-stopped-2026-11-06)). The install tests and the automated AI test runner are built; `just try` is not yet.
+How skillbook is tested, as a whole: what runs where, what a test needs, and where the files live. Each skill's own tests are in its design section, in the Tests list; this file says how they are run (D208). Skills are tested with small cases: each run is compared with another (no skill, or the old text), checked by scripts first and then judged by two judges, Sol and Sonnet, and a change stays only if it beats the old text ([D311](../decisions.md#d311-small-cases-replace-the-long-scenarios-2026-11-06)). The two long scenarios that came before are frozen ([D310](../decisions.md#d310-the-live-run-after-the-gates-showed-no-progress-and-was-stopped-2026-11-06)). The install tests and the automated AI test runner are built; `just try` is not yet.
 
 ## Three kinds of test
 

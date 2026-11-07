@@ -3369,6 +3369,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 > **Amended by D238 (2026-10-24):** its cases ran once each on Claude Code with Opus and on Codex with GPT-6.1 Sol; the results are in D238. Act's rule 5 now itself says that a risky action is proposed and the turn ends, a copy the agent makes no longer counts as undoable, and stakes counts what the action does to an existing problem, such as hiding it from the people who see a check.
 
+> **Amended by D312 (2026-11-07):** a request is approval for the exact action, target and means it names. It is not approval for what it did not name, such as content it would also remove. A wide change the user named exactly goes ahead; one the agent's own search decides is still listed first.
+
 **Decision:**
 
 - **The run:** round 2, the 31 cases D236 changed and the act cases its rules drive, ran once each on Claude Code with Opus, in throwaway homes, with Claude Code running its commands inside its own sandbox. Every run was judged against its case's rubric, as `tests/judge.md` says.
@@ -3497,6 +3499,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 ## D240: Round 5, and a request that names exactly what a risky action touches is still not its approval (2026-10-24)
 
+> **Amended by D312 (2026-11-07):** a request that names exactly what a risky action touches is its approval, unless the action would also remove content the user never mentioned or lose something they may not know about. Codex ranks the user's request above a skill, so the old rule could not hold there.
+
 **Decision:**
 
 - **The run:** round 5, every essentials case (143 on Opus, 7 of them new), each once, judged against its rubric as `tests/judge.md` says.
@@ -3573,6 +3577,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - The person chose this (A) over trimming now (B) or dropping the advice (C).
 
 ## D244: Round 6, and the agent shows its plan or its own choices and ends the turn before any change (2026-10-24)
+
+> **Amended by D312 (2026-11-07):** the "Going with" line goes first and ends the turn only when the work is slow or hard to undo. For work quick to redo, the line goes in the final answer. A plan or a list ends the turn only when the user must decide something first.
 
 **Decision:**
 
@@ -3711,6 +3717,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 ## D250: No instruction pairs a message with going on; multipart work that changes anything stops at its plan (2026-10-24)
 
 > **Amended by D257 (2026-10-25):** D257 adds the stricter high-stakes plan approval variation: given steps alone are not actual approval.
+
+> **Amended by D312 (2026-11-07):** multipart work stops at its plan only when the user must decide something first. Otherwise it goes ahead, and the final answer gives each step and its result. The rule that no message is paired with going on stays.
 
 **Decision:**
 
@@ -3931,6 +3939,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 ## D259: Settle and build organize with explicit approvals and preserved meaning (2026-10-25)
 
 > **Amended by D260 (2026-10-25):** D260 restores coordinate-delegate for optional inventory judgment while retaining self-check fallback and pending required independence.
+
+> **Amended by D312 (2026-11-07):** the map is approved first only when the arrangement rests on choices the user did not make, or the agent found something they may not know. When the user named the exact arrangement, their request is the approval. The result is reported with its map and the user is asked to look it over.
 
 
 **Decision:**
@@ -5057,3 +5067,100 @@ The method is adapted from three outside approaches. Each idea is rewritten for 
 - **Kept, though near the list:** each run still saves the text of every skill file, as a record of the text tested. Codex keeps its reasoning-summary setting, so new runs match saved ones. The Python runner stays, and its own coverage report still runs without `tests/manual.toml`. The `answer_path_has` and `actions_lack` checks stay, because the Python contract vectors test them.
 
 The small cases' report from the trial's saved results is the same before and after the build.
+
+## D312: Ask for decisions, not permission (2026-11-07)
+
+**Decision:** The user's request is their go-ahead for the work it names. The agent ends the turn before a change only when the user must decide something first:
+
+- a choice that is theirs would change the result. A preference in a short draft is the exception: the agent drafts the likely version, names the choice and offers the other. A fact or value only the user can supply, such as a fee or a deadline, is never guessed, however quick the edit;
+- the work goes beyond what they named, such as content it would lose that they never mentioned;
+- a fact the work needs is unsettled, such as two sources that disagree on it, even inside the files the user pointed to; or the agent found something they likely do not know, such as an open item in a file they asked to delete;
+- the work is high stakes and they have not approved the plan.
+
+Otherwise the agent goes ahead. Its final answer gives each step and its result, the files changed, and a "Going with" line for its choices.
+
+This replaces four earlier rules that stopped for leave: a request is never approval of a risky action (D237, D240); multipart work that changes anything stops at its plan (D250); the "Going with" line always comes first and ends the turn (D244); and every change to existing material needs an approved map (D259).
+
+**Why:**
+
+- **Sol deleted a named file at once, even in an interactive Codex session.** Asked why, it quoted its developer instructions: "You don't need user permission for … anything for which authorization is provided earlier in the session or implied from the task instruction", "Do not request permission again when the user has already authorized an action in an earlier turn", and "The user's instructions take precedence over guidelines provided in a skill." A skill cannot make a user's own request "not approval" on such a harness.
+- **Both models already stopped where a decision was missing, and went ahead on named work.** Sol asked for the sale discount in 3 of 3 runs and stopped before merging two FAQs with overlapping questions in 3 of 3. It went ahead on a split into one file per recipe and on a move of a repeated section into one file. Sonnet named a loss and asked in 3 of 3 runs on the plot list.
+- **The old stops cost turns for routine work that is easy to undo.** The design's own proportion rule asks for a light path there. On the first small cases with the old text, `act-guardrails` passed 14 of 15 checks on Sonnet and 0 of 15 on Sol, and `devise-plan` passed none on either model, because both did new-file work at once and reported its steps well.
+- **An independent review (Codex) found six faults in the first change list, and all six were taken:**
+  - a quick edit does not make a missing fact or business decision the agent's. The rule keeps the sale discount with the user, however quick the edit, and the flyer draft goes ahead;
+  - the change list missed direct contradictions in `act` rule 5, the `organize` rule 4 and the split child, `understand` rule 5, the clarify rule 1 and final check, and the shallow guide. They are in the list below;
+  - other approval gates had to be named as consistent instances, or the agent would choose which absolute wins;
+  - several revised cases passed without the promised behaviour, so the recipe case needs five files under `recipes/` and the contacts case needs all four contacts in `contacts.md` with each page keeping its own line;
+  - the frame scripts still required the literal "(guess)";
+  - regrading cases cannot prove a gain, so the old text and no skill are judged with the same new questions, and rubric corrections are reported apart from behaviour gains.
+
+**What changed, by guide:**
+
+- **Main skill (`essentials`):** stage 1 says when the "Going with" line goes first and when it goes in the final answer, with the short-draft exception and its limit; stage 3 stops on the map only when the arrangement rests on choices the user did not make; stage 5 follows `act` rules 5 and 13. The line on giving a rule's reason as a fact about the work now also covers explaining why the agent did not do what the user asked.
+- **`act`:** rule 5 proposes a risky action first "unless the user's request names that exact action", with two example bullets: a named file is deleted at once, and a request does not cover content or targets it did not name. Rule 13 stops only when the user must decide something first, in the cases above. It drops "Not multipart: a change the user named exactly". Instruction 1 points to guardrails for risky actions and to rule 13 for plans.
+- **`act-guardrails`:** the kind table says "propose first" for outward actions and "list everything touched" for wide changes. Rule 2 says the request approves the exact action, target and means it names; look at what the action would remove before taking it; a request does not approve what it did not name; a wide change the agent chose is listed first, and one the user named exactly goes ahead with every file changed in the final answer. Instruction 2 says harness permission, silence or another action's approval is not approval, and the user's request is, for what it names exactly.
+- **`understand`:** rule 5 says who decides, with the short-draft exception, its limit (a fee, a deadline, a quantity or a club rule is never guessed) and where the "Going with" line goes. Its instruction 3 and rule 7 follow. The wedding toast example is gone.
+- **`understand-clarify`:** rule 1 and the final check follow rule 5 of `understand`. **`understand-clarify-shallow`:** rule 3 puts the line with the round, or in the final answer when no question is left; step 4 puts everything the user must see in the response only when a round is asked.
+- **`organize`:** rule 4 asks for approval only when the arrangement rests on choices the user did not make, or the agent found something they may not know. When the user named the exact arrangement, their request is the approval. Rule 5 reports the checked result with its map and asks the user to look it over. Rule 7 says the retirement notice is part of the arrangement. Instructions 4 and 5 and the split child follow. The compose, merge, normalize and cluster children still point to rule 4, and their text did not change.
+- **`devise-plan`:** rule 7 (high stakes) is unchanged, now worded as stricter than the go-ahead in `act` rule 13. Rule 8 and the approval instruction stop only when the user must decide something first.
+- **`coordinate-delegate-crew` and `organize-compose`:** the crew's plan stop ends the turn only when `act` rule 13 says the user must decide something first, and the compose map stop only when `organize` rule 4 needs approval. Both had still stopped every time.
+- **`respond`:** rule 4 lets a short summary at the top name a term first if the part of the answer about it explains it. **`respond-ask`:** rule 2 says to write the "No recommended answer:" line for a fact only the user knows.
+- **`skillbook-design`, check 13:** "who decides" now separates a short-draft preference from a fact only the user can supply, and says to stop for the user's decisions, not for leave.
+- **Cases:** go-ahead cases for deleting a named file, one phone number changed on three pages, a named split, a named move of shared contacts, a rota, renewal letters, a settings switch, and a held-out score fix. New stop cases for a refund still owed, two trip dates that disagree and two FAQ prices that disagree, and a held-out museum catalogue merge with a filename clash.
+
+**Consistent instances that stay as they are:**
+
+- the `act-rightsize` guide's approval of a change list for others' writing, where the agent chooses what to cut;
+- the `devise-design` guide's approval of a full design, which is slow to redo and rests on the user's intent;
+- `act` rule 14, where the user asked to see the change first;
+- the `devise-plan` guide's rule 7, for high stakes.
+
+Outward actions, such as a push or a send the user names exactly, follow the new rule but were not in the trial. The tests for them are marked untested in the design.
+
+**Tested:** Sonnet (Claude Code) and Sol (Codex, `gpt-6.1-sol`), 3 runs per case, scripts first, then both judges. A verdict counts where they agree. The old text and no skill were judged with the same current questions. The final numbers take each case's latest run on the new text. Reads rows are left out of the scores, as D311 says. Raw runs and reports are in `tmp/small-trial/` (not committed).
+
+- **Share of checks passed per guide, Sonnet then Sol:**
+  - `act-guardrails`: new text 100% and 85%; old text 81% and 71%; no skill 62% and 59%.
+  - `devise-plan`: 98% and 91%; old 91% and 87%; no skill 78% and 61%.
+  - `organize`: 98% and 93%; old 59% and 78%; no skill 50% and 42%.
+  - `respond`: 94% and 96%; old 90% and 96%; no skill 67% and 69%.
+  - `understand-clarify`: 100% and 87%; old 97% and 85%; no skill 67% and 50%.
+  - `understand-frame`: 92% and 92%; old 91% and 94%; no skill 6% and 0%. The frame text is the old text again.
+- **What the gains rest on, and what they do not:**
+  - **The design change itself.** The go-ahead cases now expect the work done: deleting a named file, one phone number changed on three pages, a named split, a named move of shared contacts, a rota, renewal letters, a settings switch, and a held-out score fix. The old text stopped there by design. So most of the gain over the old text in `organize` and `act-guardrails` comes from the changed design, not from following the same rule better.
+  - **Corrected test questions.** They raised the old text and the new text alike, since both were judged with them. The corrections: the FAQ merge now passes on a map plus a question, without requiring a request to approve the map; a list of changes the agent will make now counts as the plan in the trip paperwork case; the flyer question passes an answer that says the text leaves out volunteers and offers a line for them; the frame cases accept a label over a list whose items are all guesses; the respond term questions accept an explanation where the answer first deals with the term; the sale-prices question drops a literal "recommended answer" pattern; and the frame scripts accept "guesses" as well as "(guess)". The saved answers of every condition were judged again with the new wording.
+  - **The guide text, on questions that did not change:**
+    - Sol stops on something the user may not know: the refund still owed 3 of 3, the held-out museum catalogue clash 3 of 3, the trip-date clash 3 of 3, the FAQ price clash 3 of 3.
+    - Sonnet stopped guessing a sale discount: changed nothing 0 of 3 in cycle 1, 3 of 3 in cycle 2.
+    - Sonnet stopped picking one of two trip dates: 0 of 3 in cycle 1, 3 of 3 in cycle 2.
+    - Sonnet on the refund still owed: 3 of 3 in cycle 1, while the guides used that refund as their example. After the example was replaced it fell to 1 of 3 in cycle 2, because two runs deleted the file without opening it. It came back to 3 of 3 in cycle 3, after "look at what the action would remove before you take it".
+  - **No clear gain:**
+    - Sol giving a "Recommended answer:" or "No recommended answer:" line on the sale question: 0 of 3, then 0 of 2 with 1 split.
+    - Sol avoiding the skill's name when it stops on the refund: 0 of 3, 0 of 3, then 1 of 3.
+    - Sonnet marking the old recipe file with where its recipes went: 2 of 3, 1 of 3, 2 of 3. This is noise.
+- **Cycle 1 put test-case examples into the guides word for word.** The trip-deposits file, the refund still owed, the phone number, one file per recipe, the section moved with links, two copies that disagree, the flyer's readers and the newsletter welcome were all in the guide text. A pass could then come from matching the example. Cycle 2 replaced each with a different example and reran the cases they matched.
+- **Held out** (written by Codex apart from any fix):
+  - a score fix that should go ahead passed every script check, 3 of 3 on both models;
+  - a museum catalogue merge with a clash the user may not know about stopped, named it and asked, 3 of 3 on both models, and turn 2 placed every file right, 3 of 3.
+- **Near misses** all passed, 3 of 3 on both models: one price changed, one name changed, a recipe added, a class added, a count asked, a typo fixed, and the named file deleted after "look first".
+- **Reverted by the merge rule:**
+  - the cycle 1 frame sentence that allowed one label over a list of guesses: Sol 76% against 94% on the old text. The frame guide is the old text again, so the design's frame section does not change;
+  - a sharper `act` rule 5 line saying that an edit which removes content the user did not mention is risky even in a named file: Sol still overwrote the plot list in an interactive session.
+- **Known limits:**
+  - Sol replaced `plots.md` and lost its waiting list, 0 of 3. In an interactive session it quoted the skill line telling it to propose first, and said it read "replace plots.md" as approval to replace all of it. The Codex harness ranks the user's request above a skill.
+  - Sol never says who the flyer text was written for, 0 of 3, with the old text and with no skill too.
+  - Sol's final answers are short. On the recipe split it names the folder, not each recipe's file (0 of 3). When it stops, it asks its question without the plan (trip letter, 1 of 3) or the map (FAQ merge, 0 of 3 in cycle 2).
+  - Sonnet read `devise-plan` in 3 of 12 runs and `understand-clarify` in 3 of 9. A fix for Sonnet must sit in the guides it always reads: the main skill, `act`, `act-rightsize`, `respond`, `respond-layout` and `devise`.
+  - The corrected flyer question passes Sonnet with no skill too, 3 of 3, so it no longer measures the skill for Sonnet.
+- **Judges** agreed on 271 of 315 judged questions in the final set, 86%.
+
+**Spending:** $59.66 known.
+
+- Tailored `devise-plan` cases: $3.29 for runs and $1.30 for judging.
+- Old-text and no-skill baselines: $4.76 for runs and $5.01 for judging.
+- Held-out cases: $3.74.
+- Cycle 1: $20.09 for runs and $3.88 for judging.
+- Cycle 2: $7.39 for runs and $1.42 for judging.
+- Cycle 3: $5.53 for runs and $1.18 for judging.
+- Judging saved answers again after the corrected questions: $2.07.
+- The interactive Codex checks ran on the user's subscription. Their cost is unknown.

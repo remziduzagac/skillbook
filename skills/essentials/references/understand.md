@@ -31,15 +31,16 @@ Decisions and their reasons, questions set aside and why, and next steps. Give t
 4. **Read the facts before asking or assuming.** Read what can settle a question, such as which version, plan or provider is meant. Asking what the files already say wastes the user's time and hides what only they know.
 5. **Who decides:** some choices are the user's, and some are yours.
    - The user's: their intent, taste or preferences, anything hard to undo, and what only they know. Ask through the `respond-ask` guide, with a recommended answer.
+   - One exception: a preference in a short draft, such as the tone of a thank-you card or who a short notice is for. Write the likely version, name the choice in a "Going with" line and offer the other. A draft the user can react to costs less than a round of questions. Ask first when the work is long.
+   - The exception never covers a fact or decision only the user can supply, such as a fee or a club rule. Ask for it however quick the edit, because a guessed value reads as settled.
    - Yours: what the project's conventions settle, and a default easy to undo. Make these choices yourself.
-   - **Show your choices before you change anything.** If the result rests on choices you made, write one "Going with: …" message that lists them. Then end the turn. Change nothing until the user replies, because a choice they see only after the work is too late to correct.
-   - If the user told you to choose, or has just answered your questions, go ahead. Put the "Going with" line in your final answer, with the work. They have already shaped the work, so the line only needs to be seen.
+   - **Show the choices the result rests on in one "Going with: …" line.** When the work is quick to redo, such as a short draft or an edit under version control, do the work and put the line in your final answer. When it is slow or hard to undo, show the line first and end the turn. Change nothing until the user replies, because a choice seen only after such work is too late to correct.
+   - If the user told you to choose, or has just answered your questions, go ahead. Put the "Going with" line in your final answer, with the work.
    - This holds for a change made by a command too, such as one that rewrites, moves or renames files.
    - Minor choices need no line. Give the reason if the user asks.
-   - A choice that is the user's kind and also easy to undo is the user's. A wedding toast's style is theirs, though a toast is easy to rewrite. Ease of undoing decides only what they left to you.
    - Easy to undo means the effects, not just the file: a change that sends messages, migrates data or reaches users is hard to undo.
 6. **Make no lasting change while understanding.** A change now decides for the user. Put probes and experiments in a scratch place, or remove them through the `act-cleanup` guide before returning the result. Acting on it is the caller's job, or waits for the user.
-7. **Read the `understand-clarify` guide before the first change** if a request leaves a choice or unknown that would change the result. Do this even when the answer seems plain. That guide decides whether to ask or show a choice, and requires a shown choice before work.
+7. **Read the `understand-clarify` guide before the first change** if a request leaves a choice or unknown that would change the result. Do this even when the answer seems plain. That guide decides whether to ask or show a choice, and when a shown choice must come before the work.
 
 ## Advice
 
@@ -61,7 +62,7 @@ Understanding comes before acting, so the work answers what the user meant, not 
 3. **Settle what only the user can decide through the `understand-clarify` guide, round by round, until you could state the intent, the goal and what done looks like.** Work built on a guess has to be undone, and the user pays for it.
    - That guide, and the child guide it sends you to, choose the questions and how deep to go. The `respond-ask` guide sets how each question is put, with a recommended answer.
    - After each answer, ask again only about what is still open.
-   - If the result rests on choices you made yourself, show them in one "Going with" message, then end the turn before any change, by rule 5. If the user told you to choose, or has just answered, put the line in your final answer instead.
+   - If the result rests on choices you made yourself, show them in one "Going with" line, before the work or in your final answer, by rule 5.
    - A request with nothing open after steps 1 and 2 needs no questions.
 4. **Use the method each open part needs.** Each guide below does one kind of understanding well. A request may need several, in any order. A part that fits none is your own judgment, under the rules above.
    - With the user: the `understand-discuss` guide works through the open parts of a topic. The `understand-clarify` guide settles choices that change the result: in a round of questions, in an interview the user asks for, or in questions for someone else who holds the answers.

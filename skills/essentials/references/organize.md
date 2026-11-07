@@ -35,22 +35,24 @@ cluster     A B C            → view over A, B, C
 1. **Use one dividing principle at a time.** One question sorts the items. Mixing principles creates overlaps.
 2. **Give each part a boundary in one sentence.** Follow the `act-rightsize` guide for parts that cover everything without overlap. An unstated boundary hides overlaps.
 3. **Preserve meaning when rearranging existing material.** Nothing substantive may be lost, added or changed. A statement lost in a move is hard to see once the move is done.
-   - Before any change, map every original statement, or each section that moves unchanged, to its new place. This map is the inventory, and it is the map you show for approval.
+   - Before any change, map every original statement, or each section that moves unchanged, to its new place. This map is the inventory, and it is the map you show for approval or report after the change.
    - After the change, check the result against the inventory, by step 6. A count alone does not check meaning: the same number of lines can hide one changed rule.
    - Call the check independent only by the `act-verify` guide's rule 2. If a required independent check cannot run, report it as still open, with who should arrange it. The user's confirmation does not replace it.
-4. **Get the user's approval before changing any item or view.** Meaning is at stake.
+4. **Get the user's approval before an arrangement that rests on choices they did not make.** Meaning is at stake, and a choice seen only after the move is hard to undo.
+   - Such choices include which of two overlapping items to keep, where an unclear item goes, and a dividing principle you chose.
+   - Something you found that the user may not know needs their decision too, such as an entry that looks out of date.
    - Show the map by step 4. Ask through the `respond-ask` guide. End the turn before applying.
+   - When the user named the exact arrangement, such as one file per month of minutes, or the glossary moved out of each chapter into one shared file, their request is the approval. Build the map, apply it and check it.
    - Reuse approval only for the work the user approved, while the facts behind it still hold.
-   - Both checkpoints, this approval and the confirmation in rule 5, still apply when the user gives the steps, when the `act` guide's rule 13 allows work to proceed, or when the `act-rightsize` guide requires one approval.
    - A mode change, task box or unanswered question is not approval.
    - A delegated worker returns questions to its caller.
-5. **Get the user's confirmation after checking the applied result.**
-   - Repair lost statements or failed checks, and rerun the check, before asking for confirmation.
+5. **Report the checked result, with its map, after applying.**
+   - Repair lost statements or failed checks, and rerun the check, before you report.
    - Return the evidence and mark the result as awaiting the user's confirmation. End the turn.
    - Claim confirmed completion only after the user replies to confirm the result.
    - A rejected plan returns to planning, or to step 1 if the principle was rejected.
 6. **Undo only this operation's changes when its result is rejected.** Check for later edits first. Preserve later and unrelated work. If safe undo cannot be shown or needs a risky new action, report the state and ask about recovery through the `act-guardrails` guide. Do not overwrite others' work to restore an old snapshot. After safe undo, plan again.
-7. **Keep retired items marked with where their content went.** Links and history may still lead there. Use a notice such as "merged into …". Deleting them is a separate action through the `act-guardrails` guide.
+7. **Keep retired items marked with where their content went.** Links and history may still lead there. Use a notice such as "merged into …". The notice is part of the arrangement, so add it with the change. Deleting them is a separate action through the `act-guardrails` guide.
 8. **Use the whole code-preservation check for code and packages.**
    - Use a skill in the harness’s list that covers software architecture and code changes, if one fits.
    - Without one, propose generic parts and connections, then make only approved changes directly. Claim no specialist architecture review from this fallback.
@@ -72,7 +74,7 @@ cluster     A B C            → view over A, B, C
 
 ## Instructions
 
-Organizing gives every required part one clear place without changing what it means. What matters most is the map: built and checked before anything moves, and approved by the user, because a part lost or changed is hard to see once the work is done. **Build the map first, then change only what the user approved.**
+Organizing gives every required part one clear place without changing what it means. What matters most is the map: built and checked before anything moves, and approved by the user, because a part lost or changed is hard to see once the work is done. **Build the map first, then change only what the user approved or named exactly.**
 
 1. **Find the whole, its purpose, the unit and one dividing principle.** Two principles mixed, or one changed halfway, leave parts that overlap, by rule 1.
    - Name the unit: sentences, sections, files, skills, functions, modules or system components.
@@ -88,14 +90,14 @@ Organizing gives every required part one clear place without changing what it me
    - the `organize-normalize` guide: give repeated parts one home.
    - the `organize-cluster` guide: build a view for finding items.
    - Use several when needed, such as normalize then cluster. A request that fits none uses judgment under the `act` guide.
-4. **Show the before-and-after map, then end the turn.** This step must not move: nothing changes until the user approves, by rule 4. The user can judge a change only from its map, and a part lost unseen is hard to find later.
+4. **Build the before-and-after map. When rule 4 needs approval, show it and end the turn.** Nothing changes until the user approves. The user can judge a change only from its map, and a part lost unseen is hard to find later. When the user named the exact arrangement, check the map the same way and go on to step 5: the map goes in your final answer, by step 6.
    - Include every item's destination, each part's boundary in one sentence, reference changes, retirements and exclusions.
    - Check the map against the source: every original statement or unchanged section has one place, with the same meaning. Then check the map for gaps and overlaps.
    - Say what the gap and overlap check found, or that it found none.
    - Run step 7's check before you show the map.
    - Show the map whole when it fits on a screen. Otherwise put it in a named file and give the path, parts, counts and exceptions.
    - Ask through the `respond-ask` guide. When you only plan a whole not yet written, return the proposed parts to the active caller instead, by rule 10.
-5. **Apply the approved map through the chosen operation's guide.** A change beyond the approval is one the user never judged.
+5. **Apply the approved or named map through the chosen operation's guide.** A change beyond the approval is one the user never judged.
    - Keep to the work the user approved and the facts behind that approval. Follow rule 8 for code.
 6. **Check the applied result through the `act-verify` guide, then return it and end the turn for the user's confirmation.** A change looks complete before anyone has checked that nothing was lost, and the user can confirm only what they can see.
    - Check with a script what text can show, such as each sentence of an unchanged section found once in the new files, and every number and link. For code, run rule 8's checks instead.

@@ -363,7 +363,7 @@ coordinate/
 
   1. **Assign one writer to each item.** Parallel writes to the same item overwrite work. Give every shared item one owner. Other workers send that owner proposals, or leave them for the final pass.
   2. **Apply the current plan and choice approvals before changing anything.** Parallel workers change several items at once, so a wrong plan costs several undos.
-     - Show the plan and end the turn before workers start, by the `act` guide's rule 13. Go ahead without that stop only in the cases that rule names. Then put each worker's item with its result, and the final pass, in your final answer, by the same rule.
+     - Show the plan and end the turn before workers start when the `act` guide's rule 13 says the user must decide something first. Otherwise go ahead. Put each worker's item with its result, and the final pass, in your final answer, by the same rule (D312).
      - High-stakes work still needs the `devise-plan` guide's own approval. Settle open choices through the `understand` guide first. Reuse an approval only for the work it covered.
      - A request for a plan authorizes no execution. Keep cost and other guardrails separate.
 

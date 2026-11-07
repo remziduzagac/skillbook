@@ -24,8 +24,8 @@ The visible “Going with” line, plus an offer of deep questions for parts who
    - Ask the smallest round that sets direction. It covers every part that the sources leave open and the user owns, not only the first.
    - Ask later questions when their answers are needed. Long routine rounds cost more than they settle.
 2. **Ask one round through the `respond-ask` guide.** The user answers at once and sees the whole level.
-3. **Show "Going with: …" before work.** Sum up decisions, assumptions and open questions the work rests on. The user must see that basis.
-   - Show it with the round, which ends the turn. When the user has just answered, put it in your final answer instead.
+3. **Show "Going with: …" for the basis the work rests on.** Sum up decisions, assumptions and open questions. The user must see that basis.
+   - Show it with the round, which ends the turn. When no question is left and the `understand` guide's who-decides rule lets the work go ahead, or the user has just answered, put it in your final answer instead.
    - Do not repeat their latest answers except where you interpreted them. Omit minor choices by the `understand` guide's who-decides rule. Repeating everything hides what matters.
 
 ## Advice
@@ -44,7 +44,7 @@ See the whole level before exploring any part more deeply. Ask the smallest roun
    - If no user choice remains, ask nothing. Handle visible choices by the `understand` guide's who-decides rule.
 3. **Ask one round through the `respond-ask` guide, with grounded recommended answers.** A round without reasons leaves the user to work out the trade-offs alone.
    - Keep the round to what rule 1 says. Save questions that are not needed yet.
-4. **Put in the same response everything the user must see before work starts.** A basis the user sees only after the work is too late to correct.
+4. **When you ask a round, put in the same response everything the user must see before work starts.** A basis the user sees only after slow or hard-to-undo work is too late to correct.
    - Show "Going with: …" for your own choices that the work rests on, by rule 3.
    - For a part whose answers would depend on each other and change the work, or where you are unsure whether they would, add one question to the round: whether to question the user on that part in depth. Recommend yes, with the reason. Ask no deep question before a yes.
    - Make no offer when deep called this guide. The user has said yes already.

@@ -26,8 +26,8 @@ The visible “Going with” line and assumptions, the summary from the `underst
 
 1. **Ask only what is the user's to decide and would change the work.** An unneeded question costs the user a turn, and an unstated choice is one they cannot correct.
    - For the choices this request leaves open, follow the `understand` guide's who-decides rule:
-     - the user's: ask. "Write the project overview" (for whom) and "clean up the old branches" (which ones go) ask.
-     - yours: make it. Show it before work in a "going with" line, by the `understand` guide's who-decides rule. "Add retries to the API client" can use the project's HTTP library and three tries, shown first.
+     - the user's: ask. "Write the project overview" (for whom) and "clean up the old branches" (which ones go) ask. A preference in a short draft is that rule's exception: "write a short notice about the hall's new hours" can be written for its regular users, with that choice named.
+     - yours: make it, and show it in a "Going with" line, by the `understand` guide's who-decides rule. "Add retries to the API client" can use the project's HTTP library and three tries, named in the final answer.
    - The result is not always code or files. It can be a document, a decision, an action or anything else.
 2. **Act on nothing an open question could change until the answers are in.**
    - Reading and finding facts go on meanwhile.
@@ -54,5 +54,5 @@ Settle the choices that would change the result before the work they affect star
    - If work that does not depend on them is left, and the user has not asked for it already, ask through the `respond-ask` guide whether it goes ahead. Then end the turn.
 3. **Check readiness against “Gives back” and the `understand` guide before acting.** Always do this last. An unanswered choice can send the work in a direction the user never chose.
    - Check each user-owned question is answered, accepted with its recommended answer, parked, or in a questionnaire. Under rule 2, start no work that an open answer could change. While a questionnaire is out, check that your answer names the choices that wait for it.
-   - Check the user has seen the choices the work rests on in “Going with”, or confirmed the deep summary. Follow the `understand` guide's who-decides rule when the user already told you to start.
+   - Check the choices the work rests on are shown in “Going with”, before the work or in the final answer as the `understand` guide's who-decides rule says, or that the user confirmed the deep summary.
    - Check the chosen child's result and final step. Keep unconfirmed assumptions visible. Fix any missing answer, disclosure or status before handing the result back.

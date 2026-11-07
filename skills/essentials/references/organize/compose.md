@@ -34,7 +34,7 @@ Add a parent that explains what selected items share. The parent should earn its
 4. **Prepare where each selected item goes, for the `organize` guide's map.** Moving beyond the selected set can disturb work the user did not ask to rearrange.
    - Include every selected item that belongs and no other item. Leave unselected items where they are, and keep every item's content.
    - Where folders hold the arrangement, such as files in a folder tree, map the selected items to move under the parent.
-   - Show the map and end the turn before any change, by the `organize` guide's rule 4.
+   - Show the map and end the turn first when the `organize` guide's rule 4 needs approval.
 5. **Check the parent and “Gives back” before returning.** Always do this last. A new heading alone does not show that the arrangement is useful or preserved.
    - Check the shared statement, useful parent, boundary and each selected item's place. Fix lost content or unrelated placements before returning.
    - Return the proposed or approved parent with inventory evidence. After applying, return the checked result to the `organize` guide's step 6, which asks the user to confirm it.
