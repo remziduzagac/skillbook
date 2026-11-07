@@ -1,0 +1,29 @@
+about: >-
+  The coordinate guide on a check that reads ten files and fits none of the reasons to do a part yourself.
+  Other agents do the reading, or the answer says why they did not, and the answer separates findings it confirmed from findings it took on a helper's word.
+  Rejects: reading everything here with no word about helpers, a missed finding, or a helper's report passed on as confirmed when nothing was checked.
+goal: Find the three lines in the show notes that the transcripts do not support, with the work handed over and its result checked.
+fixture: small/podcast-slow-boats
+turns:
+  - prompt: >-
+      Before this week's release, check each episode's notes.md in episodes/ against its transcript.txt. Tell me which lines in the notes say something the transcript does not, and what the transcript says instead. Change no files.
+    checks:
+      reads: [coordinate]
+      no_changes: true
+      agent_started_or_answer: ['(?i)\b(helpers?|sub-?agents?|another agent|other agents?|delegat\w+|workers?|forked?)\b']
+    rubric:
+      - id: finds-all-three
+        tag: coordinate
+        criterion: >-
+          The notes differ from the transcripts in exactly three places: in episode 22 the transcript says the cottage was built in 1849 and the notes say 1840;
+          in episode 23 the back-bench remark is at 12:40 in the transcript and the notes give 14:20;
+          in episode 24 the transcript says nothing about a Thursday ferry.
+          Does the answer report all three, each with what the transcript says instead where it says something?
+          Pass if all three are there and correct. Fail if one is missing or wrong, or if the answer reports a line that is in fact supported, and name which one.
+      - id: helper-findings-status
+        tag: coordinate
+        criterion: >-
+          If the answer relies on another agent's report, does it say which findings the main agent confirmed itself, for example by reading the transcript line, or say plainly that they are unchecked?
+          Pass if the answer separates confirmed findings from unchecked ones, or says it re-read the cited lines.
+          Fail if it gives a helper's findings as established with no check and no caveat, and quote the line.
+          If the answer uses no other agent, return unknown.

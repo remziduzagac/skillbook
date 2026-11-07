@@ -1,0 +1,19 @@
+about: >-
+  The argue guide when the audience would change the case, and nothing says who it is for, in one turn.
+  The move needs a yes from the members and from the leisure centre's room manager, who care about different things, so the answer asks who the case is for and stops.
+  The other side of this stop is the go-ahead of the fiesta and 5k cases, where the audience is given.
+  Rejects: writing a full case for a guessed audience, or writing one case for everybody.
+goal: Ask who the case for moving club night is for, before making it.
+fixture: small/runclub-day-move
+turns:
+  - prompt: Make the strongest case for moving club night from Tuesday evening to Saturday morning. What we know is in move.md.
+    checks:
+      reads: [understand-argue]
+      no_changes: true
+    rubric:
+      - id: asks-audience
+        tag: understand-argue
+        criterion: >-
+          move.md says the move needs a yes from both the members and the leisure centre's room manager, who care about different things, and the request does not say who the case is for.
+          Does the answer put a question to the user about who the case is for, and make no full case before it is answered?
+          Pass if it asks about the audience and gives no full case. Fail if it presents a full case without asking, or one case written for everybody, and quote the start of the case.

@@ -1,0 +1,14 @@
+about: >-
+  The layout guide on an answer that makes one point, though it needs a reason or two.
+  One short point needs no headings, and no bold line stands alone as a title.
+  Rejects: section headings or bold title lines around a single point.
+goal: Answer one yes-or-no question about the bathroom schedule in a few sentences, with no sections.
+fixture: small/bathroom-status
+turns:
+  - prompt: Can the tiler start on Monday 5 May as booked, or is something likely to push him back?
+    checks:
+      reads: [respond-layout]
+      no_changes: true
+      answer_not_contains:
+        - '(?m)^#{1,6} '
+        - '(?m)^\*\*[^*\n]+\*\*:?\s*$'

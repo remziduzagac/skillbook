@@ -1,0 +1,12 @@
+about: >-
+  The delegate guide on a question one search settles, asked over four supplier sheets.
+  The agent searches the sheets itself and answers with all four prices; no helper agent is started and nothing changes.
+  Rejects: handing a one-search lookup to a helper agent, or leaving a supplier's price out.
+goal: Give each supplier's price for dried yeast, found with one search.
+fixture: small/supplier-price-sheets
+turns:
+  - prompt: Which of the sheets in suppliers/ list dried yeast, and what does each one charge for it?
+    checks:
+      reads_not: [coordinate-delegate]
+      no_changes: true
+      answer_contains: ['4\.00', '3\.80', '4\.20', '4\.50']

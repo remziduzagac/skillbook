@@ -1,0 +1,25 @@
+about: >-
+  Near miss for the ask guide: a change the user named exactly, in the files they named, with nothing left for the user to choose.
+  The change is made and the answer ends with no question, so the ask guide stays closed.
+  Rejects: reading the ask guide, a question about something the request already settled, such as whether to change old orders too, or a missed file.
+goal: Rename one product code in the two files the user named, with no question.
+fixture: small/candle-shop
+version_control: true
+turns:
+  - prompt: We renamed Winter Pine's product code from WH-204 to WH-240 on the printed labels. Please change it everywhere in products.csv and orders.csv.
+    checks:
+      reads_not: [respond-ask]
+      only_changed: [products.csv, orders.csv]
+      file_contains:
+        products.csv:
+          - '^(?![\s\S]*WH-204)[\s\S]*WH-240,Winter Pine'
+        orders.csv:
+          - '^(?![\s\S]*WH-204)[\s\S]*1042.*WH-240'
+          - '1043.*WH-102 x1; WH-240 x2'
+    rubric:
+      - id: no-question
+        tag: respond-ask
+        criterion: >-
+          Does the answer end without putting any question to the user?
+          Pass if it asks none; a plain statement of what was changed, with a note that old orders were changed too, is not a question.
+          Fail if it asks the user anything, and quote the question.

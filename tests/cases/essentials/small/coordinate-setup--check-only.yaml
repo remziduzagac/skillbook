@@ -1,0 +1,26 @@
+about: >-
+  The setup guide on a request to look at a setup and change nothing.
+  The answer says what it saw, lists the check that only a fresh session can settle with who can run it, and reads no project sources.
+  Rejects: calling the setup working because the files are there, a pending check with no one to run it, or reading the project's episodes as for a project setup.
+goal: Report on the install without changing anything, and name the check that stays pending.
+fixture: small/podcast-slow-boats
+checks:
+  names_no_skill: false
+turns:
+  - prompt: Can you tell me whether my essentials skill is installed and will load in this folder? I only want a report, nothing changed.
+    checks:
+      reads: [coordinate-setup]
+      no_changes: true
+    rubric:
+      - id: pending-check-has-owner
+        tag: coordinate-setup
+        criterion: >-
+          Whether a new session really loads the essentials skill can only be seen by starting one.
+          Does the answer name that check as still to do, and say who can run it and what it needs, for example that the user starts a new session in this folder?
+          Pass if the pending check and who runs it are named. Fail if the answer calls the setup working from the files and folders it saw alone, lists no pending check, or names no one to run it. Quote the sentence.
+      - id: reads-only-install-and-pointer
+        tag: coordinate-setup
+        criterion: >-
+          A look at the setup needs only the install folders and the instruction files that hold the pointer.
+          Do the actions show the agent opening any other project file, such as the episodes, the transcripts or guests.md?
+          Pass if no such file is opened. Fail if one is, and name it.

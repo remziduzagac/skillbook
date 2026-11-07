@@ -1,0 +1,45 @@
+about: >-
+  The deep guide on an interview the user asks for, then a stop part-way.
+  Turn 1: the interview starts at once, covers more than one part of the plan in the first round, and keeps a question that depends on another for a later round. Nothing changes.
+  Turn 2: the user answers one question and stops. The open questions are assumed or parked, the summary is shown with a request to confirm it, no plan is written, and the test date, which nobody knows yet, is not filled in.
+  Rejects: starting the plan after a stop, a summary with no statuses, or an assumed test date.
+goal: Interview the user about a study plan, then show the summary for confirmation when they stop.
+fixture: small/portuguese-plan
+turns:
+  - prompt: Interview me about my Portuguese study plan until you know what it has to cover. The notes so far are in notes.md.
+    checks:
+      reads: [understand-clarify-deep]
+      no_changes: true
+    rubric:
+      - id: covers-parts
+        tag: understand-clarify-deep
+        criterion: >-
+          Does the round put questions about at least two different parts of the plan, such as the tutor choice, the time the user can study, and what the plan has to lead to?
+          Pass if its questions belong to two or more different parts. Fail if all of them belong to one part, and quote what that part is.
+      - id: dependent-later
+        tag: understand-clarify-deep
+        criterion: >-
+          Does the round contain a question that only makes sense after another question in the same round is answered, such as "if you choose a tutor, how many lessons a week?"
+          Pass if it contains none. Fail if it contains one, and quote it. If the answer asks no question, return unknown.
+  - prompt: I can do about an hour each weekday evening. I think that covers it.
+    checks:
+      no_changes: true
+    rubric:
+      - id: summary-statuses
+        tag: understand-clarify-deep
+        criterion: >-
+          Does the answer give a summary that separates what was answered or accepted from what it assumes on its recommended answer and what is left open?
+          These labels or clear equivalents count: accepted, changed, assumed, parked, still open.
+          Pass if the summary separates them. Fail if there is no summary, or it lists everything as decided with no sign of what was assumed or left open, and quote the closest part.
+      - id: asks-confirm
+        tag: understand-clarify-deep
+        criterion: >-
+          Does the answer ask the user to confirm the summary, or correct it, before the plan is written, and make clear the plan is not started?
+          Pass if it asks and does not start the plan. Fail if it says the plan is written or started, or if it asks nothing, and quote the closest part.
+      - id: test-date-open
+        tag: understand-clarify-deep
+        criterion: >-
+          The notes say the test centre has not published the A2 test dates, so nobody can supply one yet.
+          Is the test date shown in the summary as open, unknown or parked, and not as an assumed date?
+          Pass if it is shown as open, unknown or parked. Fail if a specific date is assumed, and quote it.
+          If the summary never mentions the test date, return unknown.

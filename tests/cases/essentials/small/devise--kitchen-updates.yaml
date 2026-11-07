@@ -1,0 +1,31 @@
+about: >-
+  The devise guide on work with three parts whose shape is settled: every value is given, so the plan guide fits and the design guide does not.
+  The work goes ahead in one turn and the answer gives each step with its result.
+  Rejects: a design for settled work, a stop for approval, a line lost from the tracker, or a wrong total.
+goal: Make three given updates to a renovation tracker, including a new budget line and the corrected total.
+fixture: small/kitchen-tracker
+version_control: true
+turns:
+  - prompt: >-
+      Three updates to kitchen-tracker.md. Painting is done. Second-fix plumbing is booked for Wednesday 19 March.
+      And add the painter's invoice, £780, to the budget and fix the total.
+    checks:
+      reads: [devise, devise-plan]
+      reads_not: [devise-design]
+      only_changed: [kitchen-tracker.md]
+      file_contains:
+        kitchen-tracker.md:
+          - 'Painting: done'
+          - 'Second-fix plumbing: booked[^\n]*19 March'
+          - 'paint\w*[^\n]*780'
+          - 'Total: £?8,?980'
+          - 'Fit units: booked Monday 17 March'
+          - 'Units: 4200'
+    rubric:
+      - id: steps-reported
+        tag: devise
+        criterion: >-
+          The request had three updates: painting done, second-fix plumbing booked for Wednesday 19 March, and the painter's invoice of £780 added with the total fixed.
+          The old total was 8200, so the new one is 8980.
+          Does the final answer report each of the three as done, with its result, including the new total of 8980?
+          Pass if all three are reported with their results and the right total. Fail if one is missing, or the total is missing or wrong, and quote the gap.

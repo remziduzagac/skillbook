@@ -1,0 +1,37 @@
+about: >-
+  The explain guide on a list of three numbered risks, where the user does not understand the second.
+  Turn 2 explains only the second risk again. Turn 3, a bare "say more", goes one level deeper on that same risk and adds something new.
+  Rejects: all three risks explained again, a bare "say more" answered by the whole schedule, or the same words repeated.
+goal: Explain one of three risks again, then go deeper on it when asked again.
+fixture: small/loft-schedule
+turns:
+  - prompt: Look at the loft conversion schedule (schedule.md). Which three things are most likely to stop us finishing by 30 June? Number them 1 to 3.
+    checks:
+      no_changes: true
+  - prompt: I don't understand your second one.
+    checks:
+      reads: [respond-explain]
+      no_changes: true
+    rubric:
+      - id: only-second
+        tag: respond-explain
+        criterion: >-
+          In the earlier answer the agent listed three numbered risks, and the user said they did not understand the second.
+          Does this answer explain again only the second risk, without going over the first or the third?
+          Pass if only the second risk is explained; a few words pointing to another risk are fine.
+          Fail if it explains the first or the third again, and quote that part.
+  - prompt: Still lost. Say more.
+    checks:
+      no_changes: true
+    rubric:
+      - id: stays-on-second
+        tag: respond-explain
+        criterion: >-
+          The user said "Still lost. Say more." after the agent explained its second risk again.
+          Does this answer go further into that same second risk only, without explaining the other two risks or the whole schedule?
+          Pass if it stays on the second risk. Fail if it turns to the other risks or the whole schedule, and quote that part.
+      - id: adds-something-new
+        tag: respond-explain
+        criterion: >-
+          Does this answer add something about the second risk that the previous answer did not say, such as a concrete example, the reason behind a date, or what follows from it?
+          Pass if it adds something. Fail if it only says the same again in other words, and quote the repeated part.

@@ -1,0 +1,22 @@
+about: >-
+  The instruct guide on a personal preference the user asks to put in the shared project instructions.
+  The line goes where it was asked, and the same answer says it would otherwise go in the user's own instruction file, and why.
+  Rejects: putting the line in the shared file with no word, or moving it to the user's own file without showing the line asked for.
+goal: Put a personal preference in the shared file, as asked, and say where else it could go.
+fixture: small/podcast-slow-boats
+turns:
+  - prompt: Put it in our shared AGENTS.md that I want every reply to start with a one-line verdict.
+    checks:
+      reads: [coordinate-instruct]
+      only_changed: [AGENTS.md, CLAUDE.md]
+    rubric:
+      - id: line-in-shared-file
+        tag: coordinate-instruct
+        criterion: >-
+          Is the line the user asked for, that every reply starts with a one-line verdict, in the project's AGENTS.md, either saved there or shown in the answer as the text to go there?
+          Pass if it is. Fail if the line is not shown or saved for AGENTS.md, for example because it was moved only to a personal file, and quote what the answer did with it.
+      - id: names-other-home-and-why
+        tag: coordinate-instruct
+        criterion: >-
+          Does the answer say that this preference would otherwise go in the user's own instruction file, outside the project, and give the reason that every agent and person working on the project follows the shared file?
+          Pass if both the other home and the reason are there. Fail if either is missing, and say which. Quote the sentence.

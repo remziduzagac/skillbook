@@ -1,0 +1,38 @@
+about: >-
+  The ask guide on taking the answers to a round.
+  Turn 1 asks the questions and changes nothing.
+  In turn 2 the user accepts the suggestions on the rest and sets the cost question aside until the treasurer answers.
+  The answer says the cost question is parked, with a reason, and says each question that had a recommended answer is accepted. The letter is finished with no cost in it.
+  Rejects: the cost listed as assumed, open or unresolved, accepted questions listed under another word, or an amount invented for the cost.
+goal: Ask before finishing a camp letter, then take "go ahead" with one question set aside, saying each question's status.
+fixture: small/hollin-camp
+turns:
+  - prompt: >-
+      Parents need the camp letter this week. The facts are in camp-notes.md and I started parent-letter.md.
+      List what you need from me first, and wait for my reply before you finish it.
+    checks:
+      reads: [respond-ask]
+      no_changes: true
+  - prompt: Go with your suggestions on the rest. I will ask the treasurer about the cost on Thursday, so leave that for now. Finish the letter.
+    checks:
+      only_changed: [parent-letter.md]
+      file_contains:
+        parent-letter.md:
+          - '11 July'
+          - '13 July'
+          - 'Hollin Wood'
+          - '^(?![\s\S]*£\s?\d)[\s\S]*Hollin'
+    rubric:
+      - id: cost-parked
+        tag: respond-ask
+        criterion: >-
+          In the earlier answer the agent asked about the cost of camp, and the user then set that question aside until the treasurer answers.
+          Does this answer give the cost question's status as parked, with a reason such as waiting for the treasurer?
+          Pass if the word "parked" is used for it and a reason is given. Fail if the cost question is listed under another word (such as assumed, accepted, open or unresolved), has no reason, or is not mentioned, and quote the closest part.
+      - id: others-accepted
+        tag: respond-ask
+        criterion: >-
+          In the earlier answer the agent asked other questions, and the user then said to go with its suggestions on the rest.
+          Does this answer give each question that had a recommended answer as accepted, using the word "accepted"?
+          Pass if every such question is listed as accepted. Fail if any is listed under another word (such as confirmed, assumed or resolved), or no statuses are given, and quote the first.
+          If no question had a recommended answer, return unknown.

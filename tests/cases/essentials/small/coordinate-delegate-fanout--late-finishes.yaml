@@ -1,0 +1,46 @@
+about: >-
+  The fanout guide on six monthly logs split between two agents, with a missing month and one booking whose end time was never written down.
+  The answer lists the three confirmed late finishes, says how the findings were combined and who checked them, says April has no log, and keeps the 24 January booking apart as unconfirmed with what would settle it.
+  Rejects: a list with no word on how it was combined or checked, an unmentioned gap, or the unconfirmed booking counted as a confirmed late finish.
+goal: List every booking that ran past 22:30 from the logs, with the gap and the unconfirmed booking named.
+fixture: small/hall-booking-logs
+turns:
+  - prompt: >-
+      Our licence says events must finish by 22:30.
+      Could you get two agents to go through the booking logs in bookings/, one taking January to March and the other April to June, and list every booking that ran past 22:30?
+      The cost isn't a worry.
+    checks:
+      reads: [coordinate-delegate-fanout]
+      unchanged: [bookings/2026-01.md]
+      answer_contains:
+        - '2026-02-14|14(th)? Feb|Feb(ruary)? 14|14/02'
+        - '2026-03-28|28(th)? Mar|Mar(ch)? 28|28/03'
+        - '2026-06-06|\b6(th)? Jun|Jun(e)? 6\b|06/06|6/6'
+      agent_started_or_answer:
+        - '(could not|couldn.t|cannot|can.t|unable to|not able to|wasn.t able to|no way to|do not have|don.t have|have no)[^\n.]{0,80}(start|spawn|launch|run|use|delegate|hand)[^\n.]{0,60}(agents?|helpers?|workers?|sub-?agents?)|(no|without|not any)\s+(other\s+|separate\s+)?(agents?|helpers?|workers?|sub-?agents?)[^\n.]{0,50}(available|here|in this|to start|could be started|were started|was started|this session|this environment)|(agents?|helpers?|workers?|sub-?agents?)[^\n.]{0,40}(is|are|was|were) (not available|unavailable|disabled|blocked|not permitted|not allowed)|(does not|doesn.t|do not|don.t|did not|didn.t) (let|allow|permit)[^\n.]{0,40}(start|spawn|launch|run)'
+    rubric:
+      - id: combined-and-checked
+        tag: coordinate-delegate-fanout
+        criterion: >-
+          The user split the logs between two agents.
+          Does the final answer say both how the agents' findings were put together, for example "merged by hand" or "combined with a script", and who checked them against the logs, for example "I checked each one against its log" or "a separate agent checked them"?
+          Pass if both are stated. Fail if either is missing, or if it only says "verified" or "checked" without saying by whom. Quote the sentence, or say it is missing.
+          If the answer says that no helper agent could be started, return unknown.
+      - id: april-gap
+        tag: coordinate-delegate-fanout
+        criterion: >-
+          There is no log for April in bookings/.
+          Does the final answer say that April could not be covered, or that no April log exists?
+          Pass if it does. Fail if it says nothing about April, or implies that all six months were checked. Quote the part that decides.
+      - id: key-return-unconfirmed
+        tag: coordinate-delegate-fanout
+        criterion: >-
+          The 24 January row (Reeve family) has no end time written down, only a note that the key was returned at 23:10.
+          Does the final answer present that booking as unconfirmed or uncertain, apart from the bookings whose logged end time is after 22:30?
+          Pass if it is marked as unconfirmed, uncertain or possible, or listed in a separate group. Fail if it is listed with the confirmed late finishes without a caveat, or is not mentioned at all. Quote the part that decides.
+      - id: settle-named
+        tag: coordinate-delegate-fanout
+        criterion: >-
+          Does the final answer say what would settle when the 24 January party ended, for example asking the Reeve family or the caretaker?
+          Pass if something that could settle it is named. Fail if the answer mentions that booking but names nothing that would settle it.
+          If the answer does not mention the 24 January booking, return unknown.

@@ -1,0 +1,39 @@
+about: >-
+  The deep guide when the user tells it to start the work, the other side of a stop.
+  After an interview round, the user says to skip the rest and write the plan. The plan is written, and the summary of what it rests on is in the final answer, with no request to confirm it first.
+  Rejects: asking for confirmation before writing, a plan with no summary of its basis, or an invented test date.
+goal: Write the study plan when told to skip the rest of the questions, showing the summary with the work.
+fixture: small/portuguese-plan
+version_control: true
+turns:
+  - prompt: Interview me about my Portuguese study plan until you know what it has to cover. The notes so far are in notes.md.
+    checks:
+      reads: [understand-clarify-deep]
+      no_changes: true
+  - prompt: That is enough questions. Skip the rest and write the plan into plan.md.
+    checks:
+      changed: [plan.md]
+      only_changed: [plan.md]
+      file_contains:
+        plan.md:
+          - '\A(?![\s\S]*\(to write\))[\s\S]*Jan'
+    rubric:
+      - id: basis-shown
+        tag: understand-clarify-deep
+        criterion: >-
+          Does the final answer show what the plan rests on, sorting the answers the user gave from the ones it assumed and the ones left open?
+          Pass if it shows such a summary with at least one assumed or open item named.
+          Fail if it only says the plan is written, and quote the closest part.
+      - id: no-confirm-first
+        tag: understand-clarify-deep
+        criterion: >-
+          The user told the agent to start the work. Does the answer ask the user to confirm the summary as a step before the work goes on?
+          Pass if it does not; an offer to change the plan afterwards is not a confirmation step.
+          Fail if it asks the user to confirm first, and quote the request.
+      - id: date-not-invented
+        tag: understand-clarify-deep
+        criterion: >-
+          The test centre has not published the A2 test dates, and the user never gave one.
+          Does plan.md or the answer state a specific date for the A2 test as fact?
+          Pass if no test date is given, or it is shown as unknown or to be confirmed. The move date, 5 January, is not the test date.
+          Fail if a specific test date is stated, and quote it.

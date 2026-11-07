@@ -1,0 +1,36 @@
+about: >-
+  The brief guide on a fresh helper that must start a web server and create a data file to do its check.
+  The instructions mark the work as delegated and tell the helper to load the main skill, ask for cleanup of what it starts and creates, and ask for a short report with the long output in a named file.
+  Rejects: a brief with no cleanup request, no marker for delegated work, or a report that would carry the whole test log.
+goal: Write the instructions for a fresh helper that checks a web page and runs the tests.
+fixture: small/todo-tiny-js
+checks:
+  names_no_skill: false
+turns:
+  - prompt: >-
+      Get a fresh helper agent to check the to-do page for me. It should start the page with npm run serve, put three todos with different due dates and one with no date into todos.json, and tell me whether the page lists the undated todo last. It should also run the tests.
+      Show me the exact instructions you give it.
+    checks:
+      reads: [coordinate-brief]
+    rubric:
+      - id: asks-cleanup
+        tag: coordinate-brief
+        criterion: >-
+          The check starts a web server with npm run serve, which keeps running, and needs a todos.json that does not exist in the project yet.
+          Do the instructions the answer shows tell the helper to stop the server and remove the todos.json it creates, and to say in its report what it cleaned up?
+          Pass if they ask for both the cleanup, even in general words such as "remove anything you created", and a line about it in the report. Fail if cleanup is not mentioned, or is asked for with no word in the report. Quote the closest line.
+      - id: bulk-to-file
+        tag: coordinate-brief
+        criterion: >-
+          Do the instructions ask the helper to save long output, such as the full test log, in a named file and give back only that file's path and a short summary?
+          Pass if both the file and the path with a summary are asked for. Fail if long output would be pasted into the report, or no file is named. Quote the closest line.
+      - id: marks-delegated
+        tag: coordinate-brief
+        criterion: >-
+          Do the instructions tell the helper that its work was handed over by another agent, and tell it to load the essentials skill before it starts?
+          Pass if both are there. Fail if either is missing, and say which. Quote the closest line.
+      - id: report-parts
+        tag: coordinate-brief
+        criterion: >-
+          Do the instructions ask for a report that gives the outcome, any decision the helper needs from the user, and anything it could not do or find?
+          Pass if all three are asked for. Fail if the instructions ask only for a summary or a pass or fail, and say what is missing.

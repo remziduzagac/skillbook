@@ -1,0 +1,14 @@
+about: >-
+  A near miss for the fanout guide: the same whole question put to three agents over the same logs is a council, not a split of the reading.
+  The fanout guide stays closed and nothing changes.
+  Rejects: treating every request for several agents as a fanout.
+goal: Collect three separate views on one question about the logs.
+fixture: small/hall-booking-logs
+turns:
+  - prompt: >-
+      Do you think our 22:30 finish is realistic for the people who hire the hall?
+      Please ask three agents separately to look through the logs in bookings/ and tell me what they think, so I can compare their views.
+      Don't worry about the cost.
+    checks:
+      reads_not: [coordinate-delegate-fanout]
+      no_changes: true

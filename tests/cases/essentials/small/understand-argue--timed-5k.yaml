@@ -1,0 +1,33 @@
+about: >-
+  The argue guide on a position stronger than its evidence, in one turn: the chair's line is that a monthly timed 5k always draws more runners,
+  but the notes show one dry night with 23 and one rainy night with 8 against a usual 11 to 14.
+  The case narrows the position and says why, says how little two nights show, and meets the members who dislike being timed.
+  Rejects: arguing "always" as given, leaving the rainy night out, presenting two nights as proof, or ignoring the poll.
+goal: Make the strongest honest case that a timed 5k draws a bigger crowd, narrowing the claim to what the numbers support.
+fixture: small/runclub-timed-5k
+turns:
+  - prompt: >-
+      At Thursday's committee our chair wants to keep the monthly timed 5k, and I'm the one who has to speak for it.
+      The line I've been given is that the timed 5k always draws a bigger crowd than a normal Tuesday. The numbers are in attendance.md. Make the case for that.
+    checks:
+      reads: [understand-argue]
+      no_changes: true
+    rubric:
+      - id: narrowed
+        tag: understand-argue
+        criterion: >-
+          attendance.md shows the timed 5k drew 23 runners on a dry night in March and only 8 in heavy rain in May, against 11 to 14 on a normal Tuesday.
+          Does the answer argue a position narrower than "always" (for example "on a dry evening") and say that it narrowed the position, with the May night as the reason?
+          Pass if both the narrower position and its reason are stated. Fail if it argues "always" as given, or never mentions the May night, and quote the position it argues.
+      - id: thin-evidence
+        tag: understand-argue
+        criterion: >-
+          The notes hold two timed 5ks, one dry and one wet.
+          Does the answer say that two nights is little evidence, or that only one of them was dry, rather than presenting the trial as having proved the draw?
+          Pass if it states the limit of the evidence. Fail if it presents the two nights as settled proof, and quote the sentence.
+      - id: poll-objection
+        tag: understand-argue
+        criterion: >-
+          The June poll shows 4 of 19 members dislike being timed.
+          Does the answer treat those members as an objection to keeping the timed 5k and say how it meets it: answered with the poll figures, conceded, or met by narrowing the case?
+          Pass if it raises the objection and says how it deals with it. Fail if the poll's dislike is left out, or mentioned with no answer, and quote the closest part.

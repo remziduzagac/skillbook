@@ -1,0 +1,29 @@
+about: >-
+  The analyze guide on an association that the files cannot turn into a cause: after the gauge was moved in March 2024, Tarn Hollow's rain for March to December rose 38 percent over the year before, while Cold Beck, which was not moved, rose 14 percent.
+  The answer separates the part of the rise that both stations show from the excess at Tarn Hollow, labels the move as a hypothesis for that excess, and names a test that would settle it without saying it was run. Nothing changes.
+  Rejects: saying the move caused the rise, saying the whole rise is the weather, or a test described as done.
+goal: Say how far the rise can be traced to the move of the gauge, and what would settle the rest.
+fixture: small/rain-gauge-move
+turns:
+  - prompt: Tarn Hollow has recorded a lot more rain since March 2024 than the year before. Was it because we moved the gauge?
+    checks:
+      reads: [understand-research-analyze]
+      no_changes: true
+    rubric:
+      - id: regional-part
+        tag: understand-research-analyze
+        criterion: >-
+          Cold Beck, which was not moved, rose by about 14 percent over the same months, against about 38 percent at Tarn Hollow.
+          Does the answer use Cold Beck to show that part of the rise is regional, and set the larger rise at Tarn Hollow apart from it?
+          Pass if it does both. Fail if it blames the whole rise on the move, or the whole rise on the weather, and quote the closest part.
+      - id: move-is-hypothesis
+        tag: understand-research-analyze
+        criterion: >-
+          The log records the move and says the hall roof sheltered the old spot from the west wind, but nothing in the files shows the move caused the extra rain.
+          Does the answer give the move as a hypothesis for the extra rise, not as an established cause?
+          Pass if it does. Fail if it states that the move caused the rise, and quote it.
+      - id: names-test
+        tag: understand-research-analyze
+        criterion: >-
+          Does the answer name a test that would settle whether the move explains the extra rise, such as reading a second gauge at the old spot beside the new one, and not say that the test was already run?
+          Pass if it names a test and does not claim it ran. Fail if it names none, or reports a test as done, and quote the closest part.

@@ -1,0 +1,39 @@
+about: >-
+  The argue guide on a request for the best case for buying a used car, with the audience given (the user's brother), in one turn.
+  The case is labelled one-sided, the timing belt that the listing shows as due is met as an objection, the strength of the case is rated,
+  and no claim about the car model rests on memory without a mark.
+  Rejects: a case that reads as advice to buy, a belt left out or shown only as a plus, no rating of the case, or unmarked claims from memory.
+goal: Make the strongest honest case for buying a used Fiesta, ready for a talk with the user's brother.
+fixture: small/usedcar-fiesta-listing
+turns:
+  - prompt: >-
+      I want to buy the Fiesta in listing.md and my brother thinks it's a mistake. Make the best case for buying it; I'll put it to him tonight.
+    checks:
+      reads: [understand-argue]
+      no_changes: true
+    rubric:
+      - id: one-sided-line
+        tag: understand-argue
+        criterion: >-
+          Does the answer say in plain words that it is the case for buying, one side of the question, and not a verdict or a recommendation to buy,
+          such as "This is the case for, not a verdict"?
+          Pass if such a line is there. Fail if the answer presents itself as the advice or the conclusion, or has no such line, and quote the closest part.
+      - id: belt-met
+        tag: understand-argue
+        criterion: >-
+          The listing shows that the oil-bath timing belt is due by age this year, that the service book records no change, and that a garage quoted £680.
+          Does the answer raise the belt as an objection and say how the case meets it: answered with evidence (for example using the £680 to bargain the price down),
+          conceded, or met by narrowing the case?
+          Pass if it raises the belt and says how it deals with it. Fail if it leaves the belt out, mentions it with no way of meeting it, or shows it only as a plus, and quote the part.
+      - id: strength-rated
+        tag: understand-argue
+        criterion: >-
+          Does the answer rate how strong the case is as strong, moderate or weak (or a plain equivalent), with a reason?
+          Pass if it gives such a rating with a reason. Fail if it gives no rating of the case as a whole, and quote the closest part.
+      - id: memory-marked
+        tag: understand-argue
+        criterion: >-
+          The listing says nothing about how the Fiesta model or its 1.0 engine rates for reliability, running costs or insurance.
+          Does the answer state any such claim as plain fact, with no source and without saying it is general knowledge, an assumption or unchecked?
+          Pass if every claim about the model or engine beyond the listing is marked as general knowledge, an assumption or unchecked.
+          Fail if one is stated flatly, and quote it. If the answer makes no such claim, return unknown.

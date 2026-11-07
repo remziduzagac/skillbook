@@ -1,0 +1,11 @@
+about: >-
+  A near miss: one option is already chosen, and the user asks whether it was a good call.
+  There are no alternatives to compare, so the job is finding weak points, and the weigh guide stays closed. Nothing changes.
+  Rejects: reading the weigh guide, inventing alternatives to compare, or changing the project.
+goal: Say whether a past choice of option parser was sound, without weighing alternatives.
+fixture: small/cli-tally
+turns:
+  - prompt: We settled on argparse for reading tally's options back in March. Was that a good call?
+    checks:
+      reads_not: [understand-weigh]
+      no_changes: true

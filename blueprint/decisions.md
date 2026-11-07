@@ -5212,3 +5212,21 @@ Outward actions, such as a push or a send the user names exactly, follow the new
 **Tested:** not run. The project skills' cases are designed only (D288).
 
 **Spending:** the Codex review ran on the user's subscription; its cost is unknown.
+
+## D315: Small cases for every essentials guide (2026-11-07)
+
+**Decision:** every essentials guide now has small cases. 112 new cases, with 69 new fixtures, cover the 36 guides that had none, about 3 per guide, in the shape the existing cases use (D311).
+
+- **Kinds:** for each guide, a behaviour case on its main promise, and the other side of its main trigger: a near miss that keeps the guide closed, or a stop case and a go-ahead case where the guide says when to stop. A third case where a second rule matters as much.
+- **Source:** each guide's Tests list in its design section, put in other words, with prompts unlike the guides' examples. The stops follow D312: a case expects a stop only for a choice that is the user's, work beyond what they named, an unsettled fact or something they likely do not know, or high stakes with no approved plan.
+- **Written by:** seven agents, one per group of guides, from one brief, with varied kinds of work so the cases do not repeat one setting. Claude checked the cases' shape and the stops against the guides.
+- **Left untested,** each with its reason in the agents' reports: behaviour that needs a long session (a session near compaction, about three failed hypotheses, a discussion that supersedes a decision), behaviour that needs the user's real home or settings (setup's settings merge and hooks), what a brief or a fork holds, which neither the answer nor Codex's record shows (D242), and workers that must misbehave on cue.
+
+**To watch on the first run:**
+
+- Stop cases whose stop rests on a reading of the guide: `organize-split--quiz-tiebreaker`, `organize-normalize--shared-log`, `organize-cluster--place-tags`, `understand-argue--audience-unknown`, `coordinate-setup--shared-pointer` and `coordinate-delegate--budget-stop`. A run that goes ahead and names the issue in its answer fails them; read those fails before changing the case or the guide.
+- Questions their writers expect to pass with no skill, such as `understand-challenge--keep-fee` and `coordinate-brief--glossary-pass`: drop or rewrite them if the report flags them.
+
+**Tested:** not run. The cases validate (`bun tests/run.ts --validate`, 145 cases) and `just check` passes. Their questions have not been tried on saved answers yet, as skillbook-test-write's step 4 asks before they are trusted.
+
+**Spending:** writing the cases used seven Sonnet agents, about 1.6 million tokens in all; no model test ran.

@@ -1,0 +1,18 @@
+about: >-
+  Near miss for the devise guide's design and plan steps: one change in one place, though the file is a camp programme.
+  The approach is one line in thinking, so the design and plan guides stay closed and the change is made.
+  Rejects: a design or a plan for a one-line change, or Saturday's lights out changed along with Friday's.
+goal: Move Friday night's lights out to 22:15 in the camp programme.
+fixture: small/camp-programme
+version_control: true
+turns:
+  - prompt: The leaders agreed Friday night's lights out is later this year. Please put 22:15 in the programme.
+    checks:
+      reads: [devise]
+      reads_not: [devise-design, devise-plan]
+      only_changed: [programme.md]
+      file_contains:
+        programme.md:
+          - '^(?![\s\S]*## Friday[\s\S]*?21:45 Lights out[\s\S]*## Saturday)[\s\S]*22:15'
+          - '## Saturday[\s\S]*?21:45 Lights out[\s\S]*## Sunday'
+          - '14:00 Pick-up at the site gate'

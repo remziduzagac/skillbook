@@ -1,0 +1,34 @@
+about: >-
+  The rightsize guide on a short recommendation for a reader who has to act on it: which supplier to order from, given three quotes.
+  One quote delivers too late and has a minimum above the need, and one has no price yet.
+  The answer puts the pick first, says which quote could not be compared, and ends on its content.
+  Rejects: starting with the method or a restated question, dropping the unpriced quote, or ending with an offer of more help.
+goal: Recommend one supplier for 80 inner tubes by 14 June, pick first, and say which quote could not be compared.
+fixture: small/coop-tube-quotes
+turns:
+  - prompt: We need 80 inner tubes at the workshop before the sale on 14 June. Which supplier in quotes.csv should I order from?
+    checks:
+      reads: [act-rightsize]
+      no_changes: true
+      answer_contains: ['Canal Row']
+    rubric:
+      - id: point-first
+        tag: act-rightsize
+        criterion: >-
+          Does the first sentence of the answer name the supplier to order from, Canal Row Parts?
+          Pass if the first sentence names Canal Row Parts as the pick.
+          Fail if the first sentence restates the question, says what was read or compared, or gives background, and quote the first sentence.
+      - id: unpriced-kept
+        tag: act-rightsize
+        criterion: >-
+          Northgate Bike Supply's quote has no price yet.
+          Does the answer say that Northgate could not be compared because its price is missing?
+          Pass if it says Northgate has no price, anywhere in the answer.
+          Fail if it leaves Northgate out with no reason or says nothing about it, and quote the closest sentence.
+      - id: no-closing-offer
+        tag: act-rightsize
+        criterion: >-
+          Does the answer end with an offer of more help or an invitation to ask more, such as "Want me to draft the order email?" or "Let me know if you need anything else"?
+          A next step the user should take, such as asking Northgate for its price, is not an offer.
+          Pass if the last sentence states a fact, the reason or a next step for the user.
+          Fail if the last sentence offers to do more work or invites further questions, and quote it.

@@ -1,0 +1,39 @@
+about: >-
+  The shallow guide on a long request that leaves two parts open which belong to the user: what the exhibit centres on and who it is for.
+  The notes settle the venue, the dates and the number of panels and cases.
+  The guide reads the whole level, asks one round that covers both open parts, shows the basis the plan would rest on in the same response, and changes nothing.
+  Rejects: a round about one part only, a question the notes already answer, or questions with no basis shown.
+goal: Plan a whole exhibit after one round of questions that covers every open part.
+fixture: small/harbour-exhibit
+turns:
+  - prompt: Please plan the whole harbour exhibit for me, panel by panel, with what goes in the two glass cases.
+    checks:
+      reads: [understand-clarify-shallow]
+      no_changes: true
+    rubric:
+      - id: asks-focus
+        tag: understand-clarify-shallow
+        criterion: >-
+          The notes list four kinds of material the society holds and say not everything will fit, but they do not say what the exhibit should centre on.
+          Does the answer put a question to the user about what the exhibit should centre on or which material to feature?
+          Pass if yes, even when the question carries a recommended answer.
+          Fail if the answer chooses the focus without asking, such as by listing panels on a story of its own, and quote where it does.
+      - id: asks-audience
+        tag: understand-clarify-shallow
+        criterion: >-
+          The notes do not say who the exhibit is mainly for, such as school groups, local families or visitors from outside.
+          Does the answer put a question to the user about who the exhibit is mainly for?
+          Pass if yes, even when the question carries a recommended answer.
+          Fail if the answer does not ask, and quote the closest part.
+      - id: no-settled-question
+        tag: understand-clarify-shallow
+        criterion: >-
+          The notes give the venue, the dates, 8 panels and 2 glass cases.
+          Does the answer ask the user for any of these? Pass if it asks for none; telling the user it will use them is not asking.
+          Fail if it asks for any, and quote the question.
+      - id: basis-shown
+        tag: understand-clarify-shallow
+        criterion: >-
+          Does the answer, in the same response as its questions, show what the plan would rest on: a "Going with" line or a list of the choices and assumptions it makes itself, such as using the 8 panels and 2 cases in the notes?
+          Pass if such a basis is shown with the questions.
+          Fail if the answer holds only questions, or only promises to say its choices later, and quote the closest part.

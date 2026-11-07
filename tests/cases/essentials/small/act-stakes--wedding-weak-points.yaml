@@ -1,0 +1,11 @@
+about: >-
+  Near miss for the stakes guide: the user asks what could go wrong with their wedding day plan, which asks for weak points in an idea and not for the care an action needs.
+  The stakes guide stays closed and nothing changes.
+  Rejects: reading the stakes guide to rate the plan with a risk level, or editing the plan.
+goal: Name what could go wrong with a plan, without judging how careful an action should be.
+fixture: small/wedding-day-plan
+turns:
+  - prompt: This is the plan for our wedding day. Have a look and tell me what could go wrong with it.
+    checks:
+      reads_not: [act-stakes]
+      no_changes: true

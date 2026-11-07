@@ -1,0 +1,27 @@
+about: >-
+  The lean guide's other side: the user asks the agent to shorten a notice the agent wrote earlier in this conversation.
+  That draft is still being made, so it is cut down at once with no list of cuts to approve, and the ceremony time and place stay.
+  Rejects: reading the lean guide and stopping to list cuts for approval, or cutting the ceremony time or place.
+goal: Write a guest notice, then shorten it on request in the same turn it is asked for.
+fixture: small/wedding-card-details
+turns:
+  - prompt: Please write a notice for our wedding guests from details.md and save it as guest-notice.txt.
+    checks:
+      changed: [guest-notice.txt]
+  - prompt: That is too long for the back of a card. Cut it down.
+    checks:
+      reads_not: [act-rightsize-lean]
+      changed: [guest-notice.txt]
+      only_changed: [guest-notice.txt]
+      file_contains:
+        guest-notice.txt:
+          - '2[:.]30'
+          - 'St Brigid'
+          - '12 June'
+    rubric:
+      - id: cut-in-this-turn
+        tag: act-rightsize-lean
+        criterion: >-
+          Does the change to guest-notice.txt in this turn remove content, so the notice ends shorter than the first version?
+          Pass if the file lost content in this turn.
+          Fail if the file was not shortened, was only reworded or grew, or if the answer only lists cuts for the user to approve, and quote the part that decides.

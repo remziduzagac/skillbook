@@ -1,0 +1,21 @@
+about: >-
+  Near miss for the design guide: the layout is already agreed in design.md, and the request only fills the quantities of a shopping list from it.
+  The design guide stays closed, since a second design would reopen what is settled.
+  Rejects: reading the design guide, changing other files, or quantities that do not follow from the agreed layout.
+goal: Fill the Qty column of a shopping list from an agreed layout without redesigning anything.
+fixture: small/utility-room
+version_control: true
+turns:
+  - prompt: The utility room design is agreed (design.md). Fill in the Qty column of shopping-list.md from it.
+    checks:
+      reads_not: [devise-design]
+      only_changed: [shopping-list.md]
+      file_contains:
+        shopping-list.md:
+          - '\|\s*Tall housing unit \(600 mm\)\s*\|\s*1\b'
+          - '\|\s*Base unit \(600 mm\)\s*\|\s*2\b'
+          - '\|\s*Wall cupboard \(600 mm\)\s*\|\s*1\b'
+          - '\|\s*Belfast sink \(600 mm\)\s*\|\s*1\b'
+          - '\|\s*Mixer tap\s*\|\s*1\b'
+          - '\|\s*Worktop\s*\|\s*1\b'
+          - '\|\s*Bar handle\s*\|\s*5\b'

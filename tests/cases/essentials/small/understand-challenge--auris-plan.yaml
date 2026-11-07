@@ -1,0 +1,44 @@
+about: >-
+  The challenge guide on a plan the user is about to carry out, in one turn.
+  The plan pays the full price by bank transfer before the seller's log book arrives, and drives the car home before it is insured.
+  The answer lists the plan's assumptions marked as checked or unchecked, ranks the weakness that stops the plan, gives a remedy for each weakness,
+  ends with a verdict, and leaves the plan file alone.
+  Rejects: a list of worries with no ranking or remedies, assumptions left unmarked, no verdict, or rewriting the plan.
+goal: Find where a used-car buying plan is weak before the user commits, and give a verdict.
+fixture: small/usedcar-auris-plan
+turns:
+  - prompt: >-
+      I'm going to see a used Auris on Saturday. My plan is in plan.md and the advert is in listing.md.
+      Before I commit, tell me where the plan is weak.
+    checks:
+      reads: [understand-challenge]
+      no_changes: true
+    rubric:
+      - id: pay-before-logbook
+        tag: understand-challenge
+        criterion: >-
+          plan.md pays the full £6,300 by bank transfer on Saturday, and listing.md says the seller will post the log book (V5C) only once the money has cleared.
+          Does the answer name paying in full before holding the log book as a weakness, and rank it as one that stops the plan or must change first, not as minor?
+          Pass if it names this and ranks it as serious. Fail if it leaves it out or calls it minor, and quote the part.
+      - id: assumptions-marked
+        tag: understand-challenge
+        criterion: >-
+          The plan rests on things it does not check, such as the seller's word that there were never any problems.
+          Does the answer list the assumptions the plan rests on and mark each one as checked or unchecked?
+          Pass if there is such a list and each assumption carries a mark. Fail if it lists no assumptions, or lists them with no mark, and quote the closest part.
+      - id: seriousness-each
+        tag: understand-challenge
+        criterion: >-
+          Does every weakness the answer lists begin with, or clearly carry, how serious it is: that it stops the plan, that it costs something, or that it is minor
+          (or a plain equivalent such as blocker, serious or small)?
+          Pass if each weakness carries a seriousness. Fail if any is listed with none, and quote the first one without it.
+      - id: remedy-each
+        tag: understand-challenge
+        criterion: >-
+          Does every weakness the answer lists come with something to do about it?
+          Pass if each weakness has a remedy. Fail if any is listed with none, and quote the first one without a remedy.
+      - id: verdict-form
+        tag: understand-challenge
+        criterion: >-
+          Does the answer give a verdict that the plan holds, holds with changes (naming them), or does not hold (saying why)?
+          Pass if it gives one of these three. Fail if it gives only a list of risks or a vague overall judgement, and quote the closest part.

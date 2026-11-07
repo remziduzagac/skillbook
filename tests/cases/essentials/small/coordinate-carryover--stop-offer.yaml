@@ -1,0 +1,16 @@
+about: >-
+  A near miss for the carryover guide: a plain "that's enough for today" with steps left is answered with an offer to write a note, not with the note.
+  Rejects: writing the note unasked, or ending the session with no offer although steps are left.
+goal: Offer a note for the next session, and write nothing.
+fixture: small/podcast-slow-boats
+turns:
+  - prompt: That's enough for today, thanks. Episodes 21 and 22 are checked against their transcripts, and 23 to 25 still need that check.
+    checks:
+      no_changes: true
+    rubric:
+      - id: offers-note
+        tag: coordinate-carryover
+        criterion: >-
+          Steps are left: episodes 23 to 25 are not checked yet.
+          Does the answer ask the user, as a question, whether to write a note for the next session, without writing the note itself?
+          Pass if it offers a note, alone or with a fresh session, and the note's contents are not in the answer. Fail if the answer already contains the note, or does not offer one. Quote the offer.

@@ -1,0 +1,38 @@
+about: >-
+  The weigh guide on two named options that each leave unknowns which could change the choice, in one turn.
+  The answer compares both cars on the same points, names the missing timing-belt record as an unknown with what would settle it,
+  gives every unknown it names its own line on what would settle it, and puts its recommendation as the recommended answer for the user's choice.
+  Rejects: points given for one car only, an unknown named with no way to settle it, or a pick with no recommended-answer line.
+goal: Compare two used cars and recommend one, or say what would settle the choice.
+fixture: small/usedcar-two-listings
+turns:
+  - prompt: I've got it down to two cars, both in compare.md. Which one should I buy?
+    checks:
+      reads: [understand-weigh]
+      no_changes: true
+    rubric:
+      - id: same-points
+        tag: understand-weigh
+        criterion: >-
+          Does the answer compare the two cars on the same list of points, so that every point it uses is given for both A and B?
+          Pass if each point is stated for both cars. Fail if a point appears for only one car, and quote it.
+      - id: belt-unknown
+        tag: understand-weigh
+        criterion: >-
+          compare.md has no record of car A's timing belt being changed, and a garage quotes £520 if it is due.
+          Does the answer name this missing record as something that could change the recommendation, and say what would settle it
+          (such as asking the seller for the invoice, or having a garage check)?
+          Pass if it names the unknown and a way to settle it. Fail if the belt is not named as an unknown, or no way to settle it is given, and quote the closest part.
+      - id: each-unknown-settled
+        tag: understand-weigh
+        criterion: >-
+          Look at every unknown the answer names: a missing fact, or a preference of the user's, that could change the choice.
+          Does each one come with its own line on what would settle it?
+          Pass if every unknown does. Fail if one is named with no such line, and quote it.
+          If the answer names no unknown, return unknown.
+      - id: recommended-answer-line
+        tag: understand-weigh
+        criterion: >-
+          Does the answer put the choice to the user with a line that starts "Recommended answer:" and names car A or car B,
+          or a line that starts "No recommended answer:" with a reason, if it finds no clear winner?
+          Pass if it has such a line. Fail if it recommends only in other words, with no such line, and quote the closest part.

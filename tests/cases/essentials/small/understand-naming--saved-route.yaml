@@ -1,0 +1,24 @@
+about: >-
+  The naming guide on a name the user has supplied that clashes with the glossary, in one turn.
+  The glossary already uses "run" for a club session, so the answer names the clash and asks whether to keep the name, then stops. Nothing is written or renamed.
+  Rejects: approving the name unseen, choosing another name without asking, or never mentioning what the glossary says "run" means.
+goal: Raise the clash between a supplied name and the project's glossary, and ask whether to keep the name.
+fixture: small/cli-routes-glossary
+turns:
+  - prompt: >-
+      I'm adding a save command to routes, and I plan to call each saved course a "run" in its menus and docs. Is that a good name for it?
+    checks:
+      reads: [understand-naming]
+      no_changes: true
+    rubric:
+      - id: names-clash
+        tag: understand-naming
+        criterion: >-
+          GLOSSARY.md defines "Run" as one scheduled club session, and "Route" as a fixed course.
+          Does the answer name the clash with the user's name: that "run" already means a club session in this project?
+          Pass if it names the existing meaning of "run". Fail if it does not mention it, or only says the word is vague or common, and quote the closest part.
+      - id: asks-keep
+        tag: understand-naming
+        criterion: >-
+          Does the answer put a question to the user about whether to keep "run" or change it, and leave the choice to them?
+          Pass if it asks. Fail if it decides the name itself, or gives an opinion with no question to the user, and quote the closest part.

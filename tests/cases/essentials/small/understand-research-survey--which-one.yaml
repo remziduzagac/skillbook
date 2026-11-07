@@ -1,0 +1,13 @@
+about: >-
+  A near miss: the three options are known and the user asks which one to choose, with a budget and free time given.
+  Choosing between named options is the weigh guide's job, so the survey guide stays closed and nothing changes.
+  Rejects: starting a new survey of what exists for a request to choose.
+goal: Recommend one of three named options, without surveying what exists.
+fixture: small/portuguese-courses
+turns:
+  - prompt: >-
+      Lingo Loop, Tutor Hub or the Radio Route podcast: which one should I choose?
+      I can spend about £40 a month and have four evenings a week free.
+    checks:
+      reads_not: [understand-research-survey]
+      no_changes: true

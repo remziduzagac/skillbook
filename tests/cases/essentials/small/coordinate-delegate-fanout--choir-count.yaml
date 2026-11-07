@@ -1,0 +1,12 @@
+about: >-
+  A near miss for the fanout guide: a count across six logs that one search settles.
+  The agent searches the logs itself, answers five, and starts no workers.
+  Rejects: splitting a one-search count between agents.
+goal: Count one group's bookings across the logs with a single search.
+fixture: small/hall-booking-logs
+turns:
+  - prompt: How many times did the Millbrook Choir book the hall between January and June? Count them from the logs in bookings/.
+    checks:
+      reads_not: [coordinate-delegate-fanout]
+      no_changes: true
+      answer_contains: ['\b(5|five)\b']

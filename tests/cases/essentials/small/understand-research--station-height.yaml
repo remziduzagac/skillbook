@@ -1,0 +1,11 @@
+about: >-
+  A near miss: one local file answers the question by itself, so the research guide stays closed and the answer is read from the file.
+  Rejects: starting a sourced investigation for a single lookup, or changing a file.
+goal: Read the station's height from its sheet.
+fixture: small/rain-sources
+turns:
+  - prompt: How high above sea level is the Tarn Hollow gauge?
+    checks:
+      reads_not: [understand-research]
+      no_changes: true
+      answer_contains: ['214']

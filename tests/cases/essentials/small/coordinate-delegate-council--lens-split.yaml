@@ -1,0 +1,14 @@
+about: >-
+  A near miss for the council guide: one agent per review angle is a split of the work, not the same question put to every agent.
+  The council guide stays closed and nothing changes.
+  Rejects: calling three different lenses a council.
+goal: Review the hire rules from three angles, one agent for each.
+fixture: small/hall-booking-logs
+turns:
+  - prompt: >-
+      I want the hire rules in rules.md looked over before the committee meets.
+      Please get three agents to review it, one looking only at safety, one only at access for disabled visitors, and one only at noise and the neighbours.
+      I don't mind what it costs.
+    checks:
+      reads_not: [coordinate-delegate-council]
+      no_changes: true

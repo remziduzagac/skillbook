@@ -1,0 +1,47 @@
+about: >-
+  The shallow guide on a study plan whose parts plainly depend on each other: the notes say the choice between a tutor and only apps changes the hours studied alone, and so the materials.
+  Turn 1: one round that offers a deeper look at that part, naming it and the reason, with no follow-up question before a yes. Nothing changes.
+  Turn 2: the user declines the deeper questions, so the plan is written on the suggested answers and the answer shows what it rests on, without a test date the user never gave.
+  Rejects: follow-up questions asked at once, no offer, or an invented test date.
+goal: Offer a deeper look at the part whose answers depend on each other, then write the plan when the user declines it.
+fixture: small/portuguese-plan
+version_control: true
+turns:
+  - prompt: Please make me a study plan for learning Portuguese before we move. My notes are in notes.md, and the plan goes in plan.md.
+    checks:
+      reads: [understand-clarify-shallow]
+      no_changes: true
+    rubric:
+      - id: offers-depth
+        tag: understand-clarify-shallow
+        criterion: >-
+          notes.md says the choice between a tutor and only apps changes how much the user studies alone, which changes the weekly hours and the materials.
+          Does the answer offer to question the user in more depth on one part, naming the part and giving as the reason that its answers depend on each other?
+          Pass if the offer names a part, such as the tutor choice, and gives that reason, as a question the user can answer yes or no.
+          Fail if there is no such offer, or the offer names no part or no reason, and quote the closest part.
+      - id: no-follow-ups
+        tag: understand-clarify-shallow
+        criterion: >-
+          Does the answer ask any question that only makes sense after another question in the same answer is answered, such as "if you choose a tutor, how many lessons a week?"
+          Pass if it asks none. Fail if it asks any, and quote it. If the answer asks no question, return unknown.
+  - prompt: Skip the deeper questions on that. Use your suggested answers for the rest and write the plan into plan.md.
+    checks:
+      changed: [plan.md]
+      only_changed: [plan.md]
+      file_contains:
+        plan.md:
+          - '\A(?![\s\S]*\(to write\))[\s\S]*Jan'
+    rubric:
+      - id: basis-listed
+        tag: understand-clarify-shallow
+        criterion: >-
+          Does the final answer list the answers it took for the earlier questions as the basis for the plan, such as whether the plan uses a tutor, and name anything it left open?
+          Pass if it shows at least the tutor choice, or the equivalent main choice, as taken or left open.
+          Fail if it only says the plan is written, and quote the closest part.
+      - id: date-not-invented
+        tag: understand-clarify-shallow
+        criterion: >-
+          The test centre has not published the A2 test dates, and the user never gave one.
+          Does plan.md or the answer state a specific date for the A2 test as fact?
+          Pass if no test date is given, or it is shown as unknown or to be confirmed. The move date, 5 January, is not the test date.
+          Fail if a specific test date is stated, and quote it.

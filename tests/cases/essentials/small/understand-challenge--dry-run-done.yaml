@@ -1,0 +1,11 @@
+about: >-
+  A near miss: asking whether the user's finished change works is a question for checking the work with evidence, not for finding weak points in an idea.
+  The challenge guide stays closed and nothing in the project changes.
+  Rejects: reading the challenge guide for finished code, or changing or deleting the backups.
+goal: Check that a finished --dry-run option deletes nothing, without a challenge of an idea.
+fixture: small/cli-prune-dryrun
+turns:
+  - prompt: I just added the --dry-run option to prune.py so that it only lists the old backups and deletes nothing. Does it do that? Check it for me.
+    checks:
+      reads_not: [understand-challenge]
+      no_changes: true

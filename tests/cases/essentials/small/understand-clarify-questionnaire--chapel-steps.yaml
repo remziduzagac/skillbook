@@ -1,0 +1,25 @@
+about: >-
+  The questionnaire guide when the user has not said who holds the answers.
+  The notes say nobody knows who took or donated the chapel steps photographs, so the agent cannot tell who to write to.
+  It asks who may hold the answers before writing a document for anyone. Nothing changes.
+  Rejects: a finished set of questions addressed to a guessed reader, or a checklist that treats the user as the one who can answer.
+goal: Ask who holds the answers about the photographs' rights, and write no questions yet.
+fixture: small/exhibit-donor-box
+turns:
+  - prompt: I'd like to print the best of the chapel steps photographs large for the exhibit. Write up what we would need to find out before we do.
+    checks:
+      reads: [understand-clarify-questionnaire]
+      no_changes: true
+    rubric:
+      - id: asks-who
+        tag: understand-clarify-questionnaire
+        criterion: >-
+          The notes say nothing records who took the photographs or who gave them to the society, so the user has not said who could answer questions about printing them.
+          Does the answer ask the user who might hold the answers, such as who donated the photographs, who owns the rights, or who the questions should go to?
+          Pass if it asks this, even with a recommended answer. Fail if it does not ask, and quote the closest part.
+      - id: no-document-yet
+        tag: understand-clarify-questionnaire
+        criterion: >-
+          Does the answer contain a finished set of questions written for an outside reader, such as a letter or message to a named or unnamed person or body?
+          Pass if it contains none; a short list of what is unknown, given as the reason for asking, is not a finished document.
+          Fail if it contains one, and quote its opening.

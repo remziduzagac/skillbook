@@ -1,0 +1,11 @@
+about: >-
+  Near miss for the explain guide: the user asks what a term in a kit list means, and the agent has said nothing about it before.
+  A new topic to explain is ordinary work, not an earlier point that did not land, so the explain guide stays closed and nothing is changed.
+  Rejects: reading the explain guide, or editing the kit list.
+goal: Explain two camping terms from a kit list to a first-time camper, changing nothing.
+fixture: small/camp-kit
+turns:
+  - prompt: The kit list says each tent needs a fly sheet and a ground sheet. I have never camped. What are they, and does it matter if we leave one out?
+    checks:
+      reads_not: [respond-explain]
+      no_changes: true

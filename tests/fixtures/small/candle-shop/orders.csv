@@ -1,0 +1,4 @@
+order_id,date,customer,items,ship_to,status
+1041,2026-11-02,Hana Berg,WH-101 x2,"14 Marsh Lane, Ely",packed
+1042,2026-11-03,Tom Reyes,WH-204 x1,"3 Park Row, Leeds",new
+1043,2026-11-03,Ines Duarte,WH-102 x1; WH-204 x2,"88 Quay Road, Poole",new

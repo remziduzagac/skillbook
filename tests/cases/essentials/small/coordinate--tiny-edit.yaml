@@ -1,0 +1,16 @@
+about: >-
+  The other side of the coordinate guide: a one-line heading change in a file the user names is too small to hand to another agent, so the guide stays closed.
+  Rejects: reading the coordinate guide for a change of a few tool calls, or changing anything beyond the title line.
+goal: Change one title line and nothing else.
+fixture: small/podcast-slow-boats
+turns:
+  - prompt: >-
+      Change the title line of episodes/ep25/notes.md to "Episode 25: The floating shop".
+    checks:
+      reads_not: [coordinate]
+      only_changed: [episodes/ep25/notes.md]
+      file_contains:
+        episodes/ep25/notes.md:
+          - '\A# Episode 25: The floating shop\r?\n'
+          - 'Guest: Tomas Hale, floating shopkeeper\.'
+          - '11:40 Boaters ask for coal in winter and ice cream in summer\.'

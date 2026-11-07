@@ -1,0 +1,26 @@
+about: >-
+  The design guide on a design built from a spec the user supplies, where the spec leaves a gap.
+  The spec's own values are kept as they are, and what the spec lacks is added and marked as an addition, or listed as open.
+  Rejects: replacing the spec's values with the agent's own, or filling the gap without saying it was not in the spec.
+goal: Turn a bathroom spec into a design the builders can work from, keeping the spec and marking what is added.
+fixture: small/bathroom-spec
+turns:
+  - timeout: 900
+    prompt: Our bathroom spec is in spec.md. Write it up as a design the builders can work from, and cover what the spec leaves out.
+    checks:
+      reads: [devise-design]
+    rubric:
+      - id: spec-kept
+        tag: devise-design
+        criterion: >-
+          spec.md fixes three things: the shower tray at 900 x 900 mm, the floor tiles at 300 x 600 mm and the budget of £6,500.
+          Look at the design in the answer and in any file the answer says it wrote.
+          Does the design keep all three as the spec states them?
+          Pass if all three appear unchanged. Fail if any is changed, replaced or left out, and quote it.
+      - id: gap-marked
+        tag: devise-design
+        criterion: >-
+          The room has no window, and spec.md says nothing about ventilation.
+          Look at the design in the answer and in any file the answer says it wrote.
+          Does it deal with ventilation either as an addition clearly marked as added, proposed or not in the spec, or as a gap listed as open?
+          Pass if it does. Fail if it never mentions ventilation, or includes it as though the spec had said so, and quote what it says.

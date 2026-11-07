@@ -1,0 +1,46 @@
+about: >-
+  The devise guide on a whole thing to design, where the shape is open and another builder will rely on the result.
+  Turn 1 asks only for the design, so the answer sets it out, says it is not yet approved, and the order files stay as they are.
+  Turn 2 gives the approval and asks for the set-up, so the files are changed to match.
+  Rejects: changing the order files in turn 1, a list of questions with no design, a design with no word on approval, or an order file that loses an order in turn 2.
+goal: Design how gift orders work in a small candle shop for the website freelancer, then set up the order files after approval.
+fixture: small/candle-shop
+turns:
+  - timeout: 900
+    prompt: >-
+      More of our customers want to send candles as gifts: wrapped, with a card message, to an address other than their own.
+      Work out how gift orders should work, written so that Priya, who looks after our website, can build her side from it. Wrapping costs £4.
+    checks:
+      reads: [devise, devise-design]
+      unchanged: [orders.csv, products.csv]
+    rubric:
+      - id: design-shown
+        tag: devise
+        criterion: >-
+          The user asked for a design of gift orders that the website freelancer, Priya, can build from. Look at the answer and at any file it says it wrote.
+          Does that material set out what a gift order is: what the customer chooses or enters (wrapping, a card message, the delivery address) and what goes into the order files?
+          Pass if it does. Fail if it gives only a list of questions, or a bare to-do list with no design, and quote what it gave.
+      - id: approval-status
+        tag: devise
+        criterion: >-
+          Does the answer say that the design is not yet approved, or ask the user to approve it before anything is built from it?
+          Pass if it does either. Fail if it presents the design as final with no word on approval, or says the order files are already set up, and quote the closest part.
+  - timeout: 600
+    prompt: Approved. Please set up the order files here to match the design.
+    checks:
+      file_contains:
+        orders.csv:
+          - '1041.*Hana Berg'
+          - '1042.*Tom Reyes'
+          - '1043.*Ines Duarte'
+    rubric:
+      - id: gift-fields-set-up
+        tag: devise
+        criterion: >-
+          Look at the files changed in this turn. Do they give a gift order a place for all three of the wrapping choice, the card message and the delivery address (in the existing order file or in a new file)?
+          Pass if all three have a place. Fail if any of the three is missing, or no file was changed, and name the missing one.
+      - id: price-recorded
+        tag: devise
+        criterion: >-
+          The user said wrapping costs £4. Do the files changed in this turn record that price (as 4, 4.00 or £4) as the wrapping price?
+          Pass if a changed file holds it. Fail if the price is missing or different, and quote what the file holds instead.

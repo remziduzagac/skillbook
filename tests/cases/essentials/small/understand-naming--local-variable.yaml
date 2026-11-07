@@ -1,0 +1,16 @@
+about: >-
+  A near miss: the name of a variable inside one function belongs to the project's own conventions, not to a shared name.
+  The naming guide stays closed, the variable is renamed in tally.py everywhere it is used, and no other file changes.
+  Rejects: reading the naming guide for a local name, a round of candidates, a rename that misses a use, or touching other files.
+goal: Rename one unclear local variable in a small script.
+fixture: small/cli-tally
+turns:
+  - prompt: In load_rows in tally.py the list is just called d, which is hard to read. Please give it a clearer name.
+    checks:
+      reads_not: [understand-naming]
+      only_changed: [tally.py]
+      file_contains:
+        tally.py:
+          - '^(?![\s\S]*\bd\b)[\s\S]*def load_rows\('
+          - '(\w+) = \[\][\s\S]*\1\.append\(\(row\[0\], to_seconds\(row\[1\]\)\)\)[\s\S]*return \1\b'
+          - 'def to_seconds\(text\)'

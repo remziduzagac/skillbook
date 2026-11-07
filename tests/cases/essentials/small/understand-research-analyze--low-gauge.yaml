@@ -1,0 +1,38 @@
+about: >-
+  The analyze guide on a cause that the local files hold: Tarn Hollow read almost nothing in July and August 2024 while Cold Beck stayed normal, and the log shows a wasp nest packed into the funnel, cleared on 2 September, after which the gauge read normally.
+  The log does not say that the missing mesh guard let the wasps in.
+  The answer opens with the symptom and gives the cause at once, rules out a dry spell with the other station, names the nest with its log entry, and marks the link to the missing guard as a hypothesis. No figure is changed.
+  Rejects: a cause stated with no source, a dry spell accepted, the guard link stated as proved, or the data edited.
+goal: Find why a gauge read almost nothing for two months, with the evidence for each link.
+fixture: small/rain-gauge-log
+turns:
+  - prompt: Tarn Hollow's rainfall for July and August 2024 looks far too low. Can you find out why? Everything we have is in this folder.
+    checks:
+      reads: [understand-research-analyze]
+      no_changes: true
+      unchanged: [rainfall-2024.csv]
+      answer_contains: ['nest']
+    rubric:
+      - id: opens-with-symptom
+        tag: understand-research-analyze
+        criterion: >-
+          Do the first sentences of the answer state the symptom, what was seen, where and when (Tarn Hollow reading almost nothing in July and August 2024), and then give the cause?
+          Pass if the opening states the symptom and then the cause. Fail if it opens with the cause and states the symptom later or never, or opens with something else, and quote the first two sentences.
+      - id: cause-with-source
+        tag: understand-research-analyze
+        criterion: >-
+          Does the answer name the wasp nest in the funnel as the cause and give the log entry of 2 September 2024 as its source?
+          Pass if it names both. Fail if it names another cause, or the nest without the log entry, and quote the closest part.
+      - id: rules-out-dry-spell
+        tag: understand-research-analyze
+        criterion: >-
+          The log of 31 July guesses at a dry spell. Cold Beck, the other station, read 61.4 and 74.0 mm in the same two months.
+          Does the answer rule out a dry spell, using the other station's readings as the evidence?
+          Pass if it does. Fail if it accepts a dry spell, or does not address it, and quote the closest part.
+      - id: guard-is-hypothesis
+        tag: understand-research-analyze
+        criterion: >-
+          The log shows the mesh guard was left off on 18 June but does not say the wasps got in because of that.
+          Does the answer label any link between the missing guard and the nest as a hypothesis or an inference, and not as an established fact?
+          Pass if it does. Fail if it states that the missing guard caused the nest as fact, and quote it.
+          If the answer never links the guard to the nest, return unknown.

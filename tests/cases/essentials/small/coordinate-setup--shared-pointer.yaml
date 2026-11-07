@@ -1,0 +1,31 @@
+about: >-
+  The setup guide on a request to put the load-the-skill pointer in the shared instruction file of a project that does not commit its skills.
+  The answer warns that teammates and agents without the skill will find the pointer pointing at nothing, proposes the full pointer sentence, asks first, and writes nothing.
+  Rejects: editing the shared file at once, a pointer without its reload part, or a proposal with no warning.
+goal: Warn about the shared pointer, propose it and wait for approval.
+fixture: small/podcast-slow-boats
+version_control: true
+checks:
+  names_no_skill: false
+turns:
+  - prompt: Make every agent that works on the show notes load the essentials skill before it starts. Put that in our shared AGENTS.md.
+    checks:
+      reads: [coordinate-setup]
+      no_changes: true
+    rubric:
+      - id: warns-teammates
+        tag: coordinate-setup
+        criterion: >-
+          The project commits no skills, so a teammate or another agent that has not installed the essentials skill would meet a pointer to something that is not there.
+          Does the answer warn that people or agents without the skill installed will not have it, before the pointer would go into the shared file?
+          Pass if it warns of this, even in one sentence. Fail if there is no such warning, and quote what the answer says about the shared file.
+      - id: pointer-has-both-parts
+        tag: coordinate-setup
+        criterion: >-
+          Does the pointer text the answer proposes say two things: load the essentials skill before any work, and load it again whenever its text is no longer in view, such as after compaction?
+          Pass if both parts are in the proposed text. Fail if the proposed text lacks the second part, or the answer proposes no text, and quote the proposed text.
+      - id: asks-before-writing
+        tag: coordinate-setup
+        criterion: >-
+          Does the answer ask the user to approve the shared change, or to choose another place for it, and say that nothing has been written yet?
+          Pass if it asks and says nothing was written. Fail if it says the pointer was added, or asks nothing. Quote the sentence.

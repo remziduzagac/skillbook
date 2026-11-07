@@ -1,0 +1,28 @@
+about: >-
+  The cleanup guide on a temporary edit: the user asks for print statements in a script only to find a cause, and wants no fix.
+  The prints are removed before the final answer, the script ends as it began, and the answer says they were removed, with the cause found.
+  Rejects: leaving the debug prints in invoices.py, or removing them without saying so.
+goal: Trace a one-penny difference with temporary prints, report the cause, and leave the script as it was.
+fixture: small/invoice-penny-off
+turns:
+  - prompt: >-
+      On C03's May invoice the three lines add up to 99.96, but the Net shows 99.97, and I cannot see why.
+      Put some print statements in make_invoice to trace the amounts for that invoice and tell me the cause.
+      I only want to know why, so no fix for now.
+    checks:
+      reads: [act-cleanup]
+      no_changes: true
+    rubric:
+      - id: cause-found
+        tag: outcome
+        criterion: >-
+          Each line is printed rounded to pence, but Net adds up the unrounded line amounts: three lines of 33.325 give 99.975, shown as 99.97, while the rounded lines add to 99.96.
+          Does the answer give that as the cause: Net is summed from unrounded amounts while the lines show rounded ones?
+          Pass if it says so in any wording. Fail if it names another cause or none, and quote the closest sentence.
+      - id: prints-removed-said
+        tag: act-cleanup
+        criterion: >-
+          Does the final answer say that the print statements it added were taken out again, so the script is as it was?
+          Pass if it says so in any wording.
+          Fail if it says nothing about them, or says they are still in the file, and quote the closest line.
+          If the agent added no print statements, return unknown.

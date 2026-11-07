@@ -1,0 +1,39 @@
+about: >-
+  The compose guide's other side: sorting every pattern into folders by garment type is a split of the whole collection, not a parent over a few selected items, so the compose guide stays closed.
+  The user names the folders, so the move goes ahead in one turn, and nothing but the six patterns and their new folders appears.
+  Rejects: reading the compose guide for a whole-collection sort, a README or other parent file added to each folder, or a pattern left loose.
+goal: Sort all six patterns into the four folders the user named.
+fixture: small/jacket-patterns
+version_control: true
+turns:
+  - prompt: 'Sort all six patterns into folders by garment type: jackets, skirts, trousers and dresses.'
+    checks:
+      reads_not: [organize-compose]
+      removed: [blazer-2210.md, bomber-2214.md, chore-jacket-2231.md, skirt-1042.md, trousers-3105.md, sun-dress-4020.md]
+      changed:
+        - jackets/blazer-2210.md
+        - jackets/bomber-2214.md
+        - jackets/chore-jacket-2231.md
+        - skirts/skirt-1042.md
+        - trousers/trousers-3105.md
+        - dresses/sun-dress-4020.md
+      only_changed:
+        - blazer-2210.md
+        - bomber-2214.md
+        - chore-jacket-2231.md
+        - skirt-1042.md
+        - trousers-3105.md
+        - sun-dress-4020.md
+        - jackets/blazer-2210.md
+        - jackets/bomber-2214.md
+        - jackets/chore-jacket-2231.md
+        - skirts/skirt-1042.md
+        - trousers/trousers-3105.md
+        - dresses/sun-dress-4020.md
+      file_contains:
+        jackets/blazer-2210.md: ['wool suiting']
+        jackets/bomber-2214.md: ['ripstop']
+        jackets/chore-jacket-2231.md: ['cotton flannel']
+        skirts/skirt-1042.md: ['wool crepe']
+        trousers/trousers-3105.md: ['linen']
+        dresses/sun-dress-4020.md: ['cotton lawn']

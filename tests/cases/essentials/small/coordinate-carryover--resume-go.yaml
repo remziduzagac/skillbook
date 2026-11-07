@@ -1,0 +1,26 @@
+about: >-
+  The other side of the resume rule: the note's claim holds, so the agent checks it and goes on with the note's next step without a stop.
+  Rejects: building on the note without checking its claim, or asking for approval of a step the user just asked for.
+goal: Resume from the latest note, confirm its claim, and add the option it names.
+fixture: small/todo-tiny-js-sorted
+turns:
+  - prompt: Pick up from the latest note in carryovers/ and carry on with its next step.
+    checks:
+      reads: [coordinate-carryover]
+      changed: [src/cli.js]
+      file_contains:
+        src/cli.js:
+          - '--soon'
+    rubric:
+      - id: claim-checked-and-held
+        tag: coordinate-carryover
+        criterion: >-
+          The note says sortByDue is finished and all tests pass. In this project they do.
+          Does the answer say that the note's claim was checked against the project, by running the tests or reading the code, and that it held?
+          Pass if it reports that check and its result. Fail if the answer gives no sign that the claim was checked, or says it relied on the note, and quote the closest sentence.
+      - id: next-step-done
+        tag: coordinate-carryover
+        criterion: >-
+          The note's next step is a list --soon option in src/cli.js that shows only the todos due soon, built on sortByDue.
+          Does the answer report that the option was added, and say what "due soon" was taken to mean?
+          Pass if both are there. Fail if the answer reports a plan or a question instead of the finished option, or does not say what due soon means, and quote the closest sentence.

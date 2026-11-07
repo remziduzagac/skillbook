@@ -1,0 +1,29 @@
+about: >-
+  The discuss guide opening a talk through three open points, in one turn.
+  The answer shows all three points, takes up only one of them, gives each question a recommended answer with a reason from the notes (or says why it has none), and changes nothing.
+  Rejects: asking about every point at once, showing only the first point, or questions with no recommended answers.
+goal: Open a talk through three open points for the next season, one point at a time.
+fixture: small/runclub-season-points
+turns:
+  - prompt: Can we work through the open points in season.md together? I'd like to settle as many as we can today.
+    checks:
+      reads: [understand-discuss]
+      no_changes: true
+    rubric:
+      - id: whole-list
+        tag: understand-discuss
+        criterion: >-
+          season.md holds three open points: the day of the long run, club vests and a monthly social run.
+          Does the answer show all three, by name, in this one answer?
+          Pass if all three are listed, as the point being discussed or as what remains. Fail if one is missing, and quote the list it gives.
+      - id: one-item
+        tag: understand-discuss
+        criterion: >-
+          Does the answer ask questions about only one of the three points, leaving the others as a list of what is still to come?
+          Pass if all its questions belong to one point. Fail if it asks questions about two or more points, and quote the first question that belongs to a second point.
+      - id: grounded-recommendation
+        tag: understand-discuss
+        criterion: >-
+          Take the point the answer opens with.
+          Does each question about it carry either a recommended answer with a reason drawn from season.md or the conversation, or a "No recommended answer" line that says why?
+          Pass if every question does. Fail if a question has neither, or a recommended answer with no reason, and quote the first.

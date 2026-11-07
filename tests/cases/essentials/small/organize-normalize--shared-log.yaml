@@ -1,0 +1,23 @@
+about: >-
+  The normalize guide on a log function copied into five scripts, with no home named, where one of the five runs on another machine: nightly.sh sends remote-prune.sh over ssh, so it cannot load a shared file kept in this folder.
+  The answer proposes one home for the function, says the remote script cannot use it as the others would, and changes nothing before the user agrees.
+  Rejects: writing the shared file at once, or making remote-prune.sh source a local file that will not exist on the vault box.
+goal: Propose one home for a repeated function and catch the one script that cannot reach it.
+fixture: small/backup-log-scripts
+turns:
+  - prompt: All five of my backup scripts define the same log function. Keep it in one place instead of five copies.
+    checks:
+      reads: [organize-normalize]
+      no_changes: true
+    rubric:
+      - id: home-proposed
+        tag: organize-normalize
+        criterion: >-
+          Does the answer propose one named place for the shared log function, such as a file in this folder, and ask the user to agree to it before anything is written?
+          Pass if it names the place and asks. Fail if it says the function was already moved, names no place, or only says it could be shared. Quote the proposal.
+      - id: remote-script-caught
+        tag: organize-normalize
+        criterion: >-
+          nightly.sh sends remote-prune.sh to another machine over ssh, so remote-prune.sh cannot simply load a shared file kept in this folder.
+          Does the answer say that remote-prune.sh cannot use the shared file in the same way as the other four, and either leave it out or propose a way that works there?
+          Pass if it names remote-prune.sh with the ssh or remote reason and does not plan a plain source of a local file for it. Fail if it plans for all five scripts to load the shared file the same way, or never mentions remote-prune.sh. Quote what it says.

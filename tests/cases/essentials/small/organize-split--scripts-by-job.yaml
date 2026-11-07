@@ -1,0 +1,60 @@
+about: >-
+  The split guide on loose items sorted into folders the user named, in one turn: the request names the principle and the folders, so the six scripts are moved,
+  the two files that point at them are updated, and the answer says what belongs in each folder.
+  Rejects: scripts left loose, a link or cron line that still points to a moved script, or folders listed by their files with no rule for what belongs.
+goal: Sort six loose scripts into three folders, keeping the README links and cron lines working.
+fixture: small/loose-shell-scripts
+version_control: true
+turns:
+  - prompt: My scripts folder has got messy. Sort the six scripts into backup/, cleanup/ and photos/ folders by what each one does.
+    checks:
+      reads: [organize-split]
+      removed: [backup-home.sh, backup-music.sh, clear-tmp.sh, rotate-logs.sh, resize-photos.sh, rename-by-date.sh]
+      changed:
+        - backup/backup-home.sh
+        - backup/backup-music.sh
+        - cleanup/clear-tmp.sh
+        - cleanup/rotate-logs.sh
+        - photos/resize-photos.sh
+        - photos/rename-by-date.sh
+      only_changed:
+        - backup-home.sh
+        - backup-music.sh
+        - clear-tmp.sh
+        - rotate-logs.sh
+        - resize-photos.sh
+        - rename-by-date.sh
+        - backup/backup-home.sh
+        - backup/backup-music.sh
+        - cleanup/clear-tmp.sh
+        - cleanup/rotate-logs.sh
+        - photos/resize-photos.sh
+        - photos/rename-by-date.sh
+        - README.md
+        - crontab.txt
+      file_contains:
+        backup/backup-home.sh: ['/mnt/backup/documents']
+        backup/backup-music.sh: ['/mnt/backup/music']
+        cleanup/clear-tmp.sh: ['-mtime \+7']
+        cleanup/rotate-logs.sh: ['gzip', '-mtime \+365']
+        photos/resize-photos.sh: ['1600x1600']
+        photos/rename-by-date.sh: ['exiftool']
+        README.md:
+          - '\]\(backup/backup-home\.sh\)'
+          - '\]\(backup/backup-music\.sh\)'
+          - '\]\(cleanup/clear-tmp\.sh\)'
+          - '\]\(cleanup/rotate-logs\.sh\)'
+          - '\]\(photos/resize-photos\.sh\)'
+          - '\]\(photos/rename-by-date\.sh\)'
+          - '^(?![\s\S]*\]\((backup-home|backup-music|clear-tmp|rotate-logs|resize-photos|rename-by-date)\.sh\))'
+        crontab.txt:
+          - 'backup/backup-home\.sh|scripts/backup\b.*backup-home\.sh'
+          - 'backup/backup-music\.sh|scripts/backup\b.*backup-music\.sh'
+          - 'cleanup/rotate-logs\.sh|scripts/cleanup\b.*rotate-logs\.sh'
+    rubric:
+      - id: boundaries-given
+        tag: organize-split
+        criterion: >-
+          The six scripts were sorted into backup/, cleanup/ and photos/.
+          Does the answer say, for each of the three folders, what belongs in it, as a rule that would place a new script, such as "scripts that copy data to the backup drive"?
+          Pass if all three folders have such a sentence. Fail if any folder is only listed by the files it holds or by its name. Quote the folder that fails.

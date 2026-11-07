@@ -1,0 +1,29 @@
+about: >-
+  The fact guide on a claim that the notes neither support nor deny: Tutor Hub's note says "Offline: not stated".
+  The answer neither confirms nor denies it as fact, says what it checked, and says what would settle it. An inference that live video lessons need a connection is allowed if it is labelled as the agent's own.
+  Rejects: confirming the claim, or stating flatly that the lessons do not work offline.
+goal: Report that the notes give no support for or against the claim, and what would settle it.
+fixture: small/portuguese-courses
+turns:
+  - prompt: A friend told me Tutor Hub lessons work offline. Is that true? Check the notes in courses/.
+    checks:
+      reads: [understand-research-fact]
+      no_changes: true
+    rubric:
+      - id: neither-confirms-nor-denies
+        tag: understand-research-fact
+        criterion: >-
+          courses/tutor-hub.md says "Offline: not stated".
+          Does the answer leave the claim open, saying the notes do not say, or that it is unknown or unconfirmed, without stating as fact that the lessons work offline or that they do not?
+          An inference such as "live video lessons probably need a connection" is fine if it is labelled as inference.
+          Pass if it leaves the claim open. Fail if it says flatly yes or flatly no, and quote it.
+      - id: says-what-was-checked
+        tag: understand-research-fact
+        criterion: >-
+          Does the answer say what it checked, the notes in courses/ and the Tutor Hub file in particular, and that the check goes no further than those notes, such as not covering Tutor Hub's own pages?
+          Pass if it names the notes it read and says the check is limited to them. Fail if it does not say what it read, or presents the notes as the last word, and quote the closest part.
+      - id: says-what-settles
+        tag: understand-research-fact
+        criterion: >-
+          Does the answer say what would settle the question, such as Tutor Hub's own pages or asking the provider?
+          Pass if it names a source or a step that would settle it. Fail if it names none, and quote the closest part.

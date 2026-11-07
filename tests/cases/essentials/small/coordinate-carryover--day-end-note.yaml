@@ -1,0 +1,49 @@
+about: >-
+  The carryover guide on a user who stops for the day and carries on in a fresh session, in a project with an older note and no version control.
+  The note is saved as a new file beside the old one, stands alone, holds a ruling that no file records, dates the state by files, and the answer says whether a fresh reader checked it and asks for approval last.
+  Rejects: a note that sends the reader to the old note, a lost ruling, a branch or commit that does not exist, a self-review called independent, or a note called ready with no approval request.
+goal: Save a standalone note for tomorrow's session and ask the user to approve it.
+fixture: small/novel-river-paper
+turns:
+  - prompt: >-
+      I'm stopping for today and I'll carry on in a fresh session tomorrow, so please write the note that lets that session pick this up.
+      Where we are: chapter 3 is drafted, but its glossary pass isn't done, and chapter 4 isn't started.
+      One thing is in no file: our editor ruled that the river, "die Aue", is always "the Aue" in English, never "the river Aue".
+    checks:
+      reads: [coordinate-carryover]
+      written_under:
+        carryovers/: 1
+      unchanged: [carryovers/2026-11-03-1715-chapters-1-2.md]
+      folder_lacks:
+        carryovers/:
+          - '\bsee\b[^.\n]{0,30}\b(previous|earlier|older|prior|last)\b[^.\n]{0,20}\b(note|carryover)|\b(described|covered|recorded|listed|explained|found|given)\s+in\s+the\s+(previous|earlier|older|prior)\s+(note|carryover)'
+    rubric:
+      - id: keeps-ruling
+        tag: coordinate-carryover
+        criterion: >-
+          The user gave a ruling that no file holds: the river "die Aue" is always "the Aue" in English, never "the river Aue".
+          Does the saved note state this ruling? The note is among the changed files.
+          Pass if the note says the river is always "the Aue". Fail if the ruling is missing or changed, and say so.
+      - id: stands-alone
+        tag: coordinate-carryover
+        criterion: >-
+          The carryovers folder already holds a note from 2026-11-03 that covers chapters 1 and 2.
+          Does the new note's done part cover what came since, the chapter 3 draft, without sending the reader to the older note to learn what was done?
+          Pass if the new note stands alone. Fail if it tells the reader to see the older note for the done work, or leaves out the chapter 3 draft. Quote the line that decides.
+      - id: state-without-version-control
+        tag: coordinate-carryover
+        criterion: >-
+          The project has no version control.
+          Does the saved note end with the date it was written and the state of the files it was written against, such as the files changed and when, instead of a branch or a commit?
+          Pass if it gives a date and names files, or says there is no version control and lists the state by files. Fail if it names a branch or commit, or has no state part. Quote the part.
+      - id: review-status
+        tag: coordinate-carryover
+        criterion: >-
+          Does the final answer say whether a fresh reader checked the note cold?
+          Pass if it says a fresh agent read the note and what that reader still needed, or says the note was not independently checked and names who will arrange the check.
+          Fail if it calls the note ready or reviewed with neither, or counts its own re-read as the independent check. Quote the sentence.
+      - id: asks-approval-last
+        tag: coordinate-carryover
+        criterion: >-
+          Does the final answer give the saved note's path and how to continue, and then end by asking the user to approve the note?
+          Pass if the request for approval comes after the path and the way to continue. Fail if there is no request for approval, or the answer only reports that the note is saved. Quote the last request.

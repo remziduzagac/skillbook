@@ -1,0 +1,21 @@
+about: >-
+  A boundary of the discuss guide: the user asks what the agent needs to know about a job with two open parts, the new start point and the new time.
+  One round of questions covers both parts at once; discussing one part while the other waits is wrong. Nothing changes.
+  Rejects: asking about only one part and holding the other back, or laying the parts out to take one at a time.
+goal: Ask what is needed for a moved run, covering both open parts in one round.
+fixture: small/runclub-saturday-move
+turns:
+  - prompt: >-
+      The Saturday long run has to move because the boathouse car park is closing; the details are in plan.md.
+      I'd like it organised properly. What do you need to know from me?
+    checks:
+      reads: [understand-clarify]
+      no_changes: true
+    rubric:
+      - id: one-round
+        tag: understand-discuss
+        criterion: >-
+          plan.md leaves two parts open: where the run starts and what time it starts.
+          Does the answer ask its questions about both parts in this one answer?
+          Pass if questions about the start point and about the time both appear. Fail if it asks about only one and holds the other back,
+          or lays the parts out to take one at a time, and quote the closest part.

@@ -1,0 +1,11 @@
+about: >-
+  Near miss for the design-review guide: the work is finished, and the user asks whether it matches what was agreed.
+  Checking built work against its spec belongs to the verify guide, so the design-review guide stays closed and nothing is changed.
+  Rejects: reading the design-review guide, or editing either file.
+goal: Check an electrician's finished-work note against the agreed spec, changing nothing.
+fixture: small/kitchen-sockets
+turns:
+  - prompt: The electrician says the kitchen electrics are finished. Does his note (electrician-report.md) match what we agreed in spec.md?
+    checks:
+      reads_not: [devise-design-review]
+      no_changes: true

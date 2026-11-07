@@ -1,0 +1,25 @@
+about: >-
+  A near miss: the user supplies the exact question to ask, with other choices open around it.
+  The question is put as it is, with nothing added, and the shallow and deep guides stay closed. Nothing changes.
+  Rejects: widening the question into a round about the summary's format, period or rounding, or answering the question itself.
+goal: Ask exactly the question the user supplied and nothing else.
+fixture: small/rain-gauge-log
+turns:
+  - prompt: >-
+      I will ask you for a yearly summary of rainfall-2024.csv later.
+      For now, ask me exactly this and nothing else: should the summary cover both stations or only Tarn Hollow?
+    checks:
+      reads_not: [understand-clarify-shallow, understand-clarify-deep]
+      no_changes: true
+    rubric:
+      - id: asks-exact
+        tag: understand-clarify-shallow
+        criterion: >-
+          Does the answer ask the user whether the yearly summary should cover both stations or only Tarn Hollow?
+          Pass if yes, even when the question carries a recommended answer. Fail if it does not ask this, or answers it itself, and quote the closest part.
+      - id: nothing-else
+        tag: understand-clarify-shallow
+        criterion: >-
+          Apart from that question, does the answer put any other question to the user, or offer a list of other choices to settle, such as the summary's format, the period or the rounding?
+          Pass if it asks nothing else; a recommended answer or a reason attached to that one question is not another question.
+          Fail if it asks anything else, and quote the first extra question.

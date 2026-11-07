@@ -1,0 +1,24 @@
+about: >-
+  The cleanup guide on a task that starts a local web server to read a page and compare it with a list.
+  The server is stopped before the final answer, no file is left in the project, and the answer says the server was stopped, with the result of the comparison.
+  Rejects: leaving the server running, leaving a log file in the project, ending the process by name with pkill or killall, or an answer that never says the server was stopped.
+goal: Start the shop page's server, compare the page with the stock list, then stop the server and say so.
+fixture: small/coop-stock-page
+turns:
+  - prompt: >-
+      Please start the shop page with ./serve.sh and read what the page says about how many bikes are for sale. Then tell me whether that matches the status column in stock.csv.
+    checks:
+      reads: [act-cleanup]
+      nothing_left_running: true
+      no_changes: true
+      actions_lack: ['pkill', 'killall']
+      answer_contains: ['\b7\b', '\b6\b']
+    rubric:
+      - id: server-stopped-said
+        tag: act-cleanup
+        criterion: >-
+          The agent started a local web server to read the page.
+          Does the final answer say that the server was stopped, or is no longer running?
+          Pass if it says so in any wording, such as "I stopped the server" or "Cleaned: server stopped, port free".
+          Fail if it says nothing about the server, or says it is still running, and quote the closest line.
+          If the agent started no server, return unknown.

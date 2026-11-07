@@ -1,0 +1,24 @@
+about: >-
+  The instruct guide on a request to trim an instruction file, where the agent decides what to cut.
+  The answer lists the changes first and changes nothing, moves the occasional publishing steps to a linked file instead of deleting them, and keeps the rules every session needs.
+  Rejects: cutting at once, deleting the publishing steps, or dropping a rule that every session needs.
+goal: Propose a trim of AGENTS.md that keeps the content and changes nothing before approval.
+fixture: small/podcast-slow-boats
+turns:
+  - prompt: AGENTS.md is carrying more than it should. Trim it so that it holds only what every session needs.
+    checks:
+      reads: [coordinate-instruct]
+      no_changes: true
+    rubric:
+      - id: moves-not-drops
+        tag: coordinate-instruct
+        criterion: >-
+          AGENTS.md has a six-step "Publishing an episode" procedure that is needed once per release, not in every session.
+          Does the proposal keep those steps by moving them into a linked file, and say where the file would be and how AGENTS.md points to it?
+          Pass if the steps survive in a named file that AGENTS.md links to. Fail if the proposal deletes the steps, or keeps them in AGENTS.md while cutting something else. Quote the proposal's line about the steps.
+      - id: keeps-session-rules
+        tag: coordinate-instruct
+        criterion: >-
+          The Rules section holds four facts every session needs: notes come from the transcript only, timestamps are mm:ss, guest names follow guests.md, and episode folders are named epNN.
+          Does the proposal keep all four in AGENTS.md?
+          Pass if all four stay. Fail if any one is proposed for removal or moved out, and name it.

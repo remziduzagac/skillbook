@@ -1,0 +1,19 @@
+about: >-
+  The instruct guide on a rule the user gives without its reason.
+  The draft carries a reason marked as the agent's own suggestion, so the user can correct it.
+  Rejects: the user's words saved with no reason, or a reason given as if the user had said it.
+goal: Add a rule to the project's instructions with a reason marked as the agent's suggestion.
+fixture: small/todo-tiny-js
+turns:
+  - prompt: Add a rule to the project's AGENTS.md saying that the tests get run before every push.
+    checks:
+      reads: [coordinate-instruct]
+      only_changed: [AGENTS.md, CLAUDE.md]
+    rubric:
+      - id: reason-suggested
+        tag: coordinate-instruct
+        criterion: >-
+          The user gave the rule with no reason.
+          Does the proposed or saved rule come with a reason, and does the answer mark that reason as the agent's own suggestion for the user to correct?
+          Pass if a reason is given and the answer says it is a suggestion, in words such as "my suggested reason" or "change it if I got it wrong".
+          Fail if the rule has no reason, or the reason is given as if the user had said it. Quote the reason and the words that mark it.

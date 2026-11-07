@@ -1,0 +1,33 @@
+about: >-
+  The design-review guide on a design written for a freelancer, with two planted faults.
+  The Parts and Behaviour sections lower a product's stock count when an order is paid, while the Decisions section says counts change only when an order is packed.
+  No part handles an order that is cancelled after payment.
+  The review reports findings with a rank and a fix, leaves the design as it is, and names its independent check.
+  Rejects: editing design.md, findings with no rank or fix, or a self-read presented as the independent check.
+goal: Review a stock-tracking design before it goes to the builder, changing nothing.
+fixture: small/shop-stock-design
+turns:
+  - timeout: 900
+    prompt: I wrote design.md for how our shop will track stock. Please review it before I send it to the freelancer who will build it.
+    checks:
+      reads: [devise-design-review]
+      unchanged: [design.md]
+      agent_started_or_answer: ['independent']
+    rubric:
+      - id: finds-conflict
+        tag: devise-design-review
+        criterion: >-
+          design.md says in Parts and in Behaviour that Stock lowers the count when an order is paid, and in Decisions that counts change only when an order is packed.
+          Does the answer report this conflict and point to both places?
+          Pass if both statements are named, by section or by quote. Fail if the conflict is not reported or only one place is named, and quote the closest part.
+      - id: finds-cancel-gap
+        tag: devise-design-review
+        criterion: >-
+          design.md describes no case where an order is cancelled or refunded after it has been paid.
+          Does the answer report that such an order has no handling, for example that the stock count is never restored or that no part owns the case?
+          Pass if it does. Fail if the answer does not report it, and quote the nearest finding.
+      - id: ranked-fixes
+        tag: devise-design-review
+        criterion: >-
+          Does each finding in the answer carry a rank (such as must fix, should fix or note) and a suggested fix?
+          Pass if every finding has both. Fail if any finding lacks one of them, and quote the first such finding.

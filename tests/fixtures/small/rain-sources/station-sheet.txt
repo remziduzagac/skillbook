@@ -1,0 +1,4 @@
+Station: Tarn Hollow
+Elevation: 214 m above sea level
+Gauge: standard 5-inch copper gauge, installed May 2019
+Read by: the parish hall volunteers, 9am each day

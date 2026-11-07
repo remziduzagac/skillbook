@@ -1,0 +1,39 @@
+about: >-
+  The cluster guide on an index the user named, grouped by a principle the user gave, in one turn.
+  Every round file is listed once under the right difficulty, the round files stay exactly as they were, and the answer names a check that finds both a round missing from the index and an entry whose file is gone.
+  Rejects: writing tags or headers into the round files, a round in the wrong group, or "keep it up to date" with no check named.
+goal: Write an index of six quiz rounds grouped by difficulty, leave the rounds alone, and say how the index stays right.
+fixture: small/quiz-night-rounds
+version_control: true
+turns:
+  - prompt: Make an index.md for the quiz rounds, grouped by difficulty, so I can pick rounds quickly.
+    checks:
+      reads: [organize-cluster]
+      changed: [index.md]
+      unchanged:
+        - round1-general.md
+        - round2-music.md
+        - round3-film.md
+        - round4-science.md
+        - round5-picture.md
+        - round6-sport.md
+      file_contains:
+        index.md:
+          - 'round1-general\.md'
+          - 'round2-music\.md'
+          - 'round3-film\.md'
+          - 'round4-science\.md'
+          - 'round5-picture\.md'
+          - 'round6-sport\.md'
+    rubric:
+      - id: grouped-right
+        tag: organize-cluster
+        criterion: >-
+          The round files give their difficulty: round 1 and round 5 are easy, round 2 and round 3 are medium, round 4 and round 6 are hard.
+          Does index.md list each of the six rounds once under the difficulty its own file gives?
+          A "see also" link under a second group is not a second home. Pass if every round has one home and it is the right one. Fail if any round is missing, listed twice as a home, or under the wrong difficulty. Quote the entry that fails.
+      - id: stays-current
+        tag: organize-cluster
+        criterion: >-
+          Does the answer say how the index will stay right as rounds change, by naming a concrete check, such as a script or a command, that finds a round file missing from index.md and also an index entry whose file no longer exists?
+          Pass if a specific check is named and it covers both problems. Fail if the answer only says to update the index when rounds change, or the check covers only one of the two. Quote what it says.

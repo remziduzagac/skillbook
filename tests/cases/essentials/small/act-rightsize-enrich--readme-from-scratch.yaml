@@ -1,0 +1,18 @@
+about: >-
+  Near miss for the enrich guide: the script has no README at all, so the user asks for one to be written.
+  There is no existing material to fill, so the agent writes the new file in one turn from the project's files, with no list to approve first.
+  Rejects: reading the fill guide and stopping to propose additions, or a README with a wrong command or missing files.
+goal: Write a new README for the invoice script from its code and settings in one turn.
+fixture: small/invoice-no-readme
+turns:
+  - prompt: This invoice script has no README yet. Please write one so I can hand it to a friend.
+    checks:
+      reads_not: [act-rightsize-enrich]
+      changed: [README.md]
+      unchanged: [invoices.py, pyproject.toml, clients.csv, jobs.csv]
+      file_contains:
+        README.md:
+          - '3\.11'
+          - '--month'
+          - 'clients\.csv'
+          - 'jobs\.csv'

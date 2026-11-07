@@ -1,0 +1,33 @@
+about: >-
+  The research guide on a figure that two local sources give differently: a report prepared in January 2025 says 848.0 mm, and the monthly file, corrected by a log entry of March 2025, sums to 812.4 mm.
+  The gap, 35.6 mm, is exactly the February correction in the log, but the report never says which February figure it used.
+  The answer gives both totals with their files, says which to quote and why, ties the gap to the log entry, and marks that link as inferred. Nothing changes.
+  Rejects: one total with the other dropped, the gap left unexplained, or the report's use of the old figure stated as fact.
+goal: Give the 2024 total from sources that disagree, with the evidence and its limits.
+fixture: small/rain-sources
+turns:
+  - prompt: What was the total rainfall at Tarn Hollow in 2024? I want to quote it at the parish meeting, so I need to be sure of it.
+    checks:
+      reads: [understand-research]
+      no_changes: true
+      answer_contains: ['812\.4', '848']
+    rubric:
+      - id: stronger-evidence
+        tag: understand-research
+        criterion: >-
+          The report (prepared 14 January 2025) says 848.0 mm, provisional. The monthly file sums to 812.4 mm and was updated on 14 March 2025 after a correction.
+          Does the answer say which total to quote and give a reason from the sources, such as the monthly file being the later, corrected record?
+          Pass if it names one total and gives a source-based reason. Fail if it gives both with no view, or names one with no reason, and quote the closest part.
+      - id: explains-gap
+        tag: understand-research
+        criterion: >-
+          The log says February 2024 was corrected from 61.2 to 25.6 mm, a difference of 35.6 mm, which is the gap between the two totals.
+          Does the answer link the gap between the totals to this correction, naming the log entry or the February figures?
+          Pass if it does. Fail if it leaves the gap unexplained or explains it some other way, and quote the closest part.
+      - id: marks-inference
+        tag: understand-research
+        criterion: >-
+          The report does not say which February figure it used.
+          Does the answer say that the report using the old February figure is inferred, such as from the matching difference, and not stated by the report?
+          Pass if it marks the link as inferred, likely or consistent with the figures. Fail if it states as fact that the report used the old figure, and quote it.
+          If the answer never links the report to the correction, return unknown.

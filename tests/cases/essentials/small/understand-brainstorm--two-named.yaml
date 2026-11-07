@@ -1,0 +1,14 @@
+about: >-
+  A near miss: the committee has already named two options, so they need comparing, not new ideas.
+  The brainstorm guide stays closed, the weigh guide is read, and nothing changes.
+  Rejects: generating more options when two are named, or editing the notes.
+goal: Choose between two named options for keeping newcomers.
+fixture: small/runclub-newcomers
+turns:
+  - prompt: >-
+      The committee has it down to two: the buddy scheme or the Saturday beginners' group.
+      Both are described in newcomers.md. Which one should we go for?
+    checks:
+      reads: [understand-weigh]
+      reads_not: [understand-brainstorm]
+      no_changes: true

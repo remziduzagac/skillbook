@@ -1,0 +1,35 @@
+about: >-
+  The delegate guide on a folder of papers to summarise, which is not a small task.
+  The work goes to helper agents, or the answer says plainly that none could be started, and the final answer says how each helper ended and what it left behind.
+  Rejects: reading all eight papers in this conversation with no reason given, or reporting the summaries with no word on whether the helpers ended.
+goal: Summarise eight papers in one line each and name the two that disagree, with the work handed to other agents.
+fixture: small/sleep-reading-list
+turns:
+  - prompt: >-
+      papers/ holds the eight papers on my reading list.
+      Please give me a one-line summary of what each one found, and tell me which of them disagree with each other.
+      The cost isn't a worry on this one.
+    checks:
+      reads: [coordinate-delegate]
+      agent_started_or_answer:
+        - '(could not|couldn.t|cannot|can.t|unable to|not able to|wasn.t able to|no way to|do not have|don.t have|have no)[^\n.]{0,80}(start|spawn|launch|run|use|delegate|hand)[^\n.]{0,60}(agents?|helpers?|workers?|sub-?agents?)|(no|without|not any)\s+(other\s+|separate\s+)?(agents?|helpers?|workers?|sub-?agents?)[^\n.]{0,50}(available|here|in this|to start|could be started|were started|was started|this session|this environment)|(agents?|helpers?|workers?|sub-?agents?)[^\n.]{0,40}(is|are|was|were) (not available|unavailable|disabled|blocked|not permitted|not allowed)|(does not|doesn.t|do not|don.t|did not|didn.t) (let|allow|permit)[^\n.]{0,40}(start|spawn|launch|run)'
+    rubric:
+      - id: helpers-ended
+        tag: coordinate-delegate
+        criterion: >-
+          If the actions show that one or more helper agents were started, does the final answer say whether each helper finished and whether any left files or running processes behind?
+          One line such as "both helpers finished and left no files" is enough.
+          Pass if the answer states how the helpers ended and what they left, or says nothing was left.
+          Fail if it reports the summaries but says nothing about whether the helpers ended or left anything, and quote the closest part.
+          If no helper was started, or the answer says none was, return unknown.
+      - id: finds-conflict
+        tag: coordinate-delegate
+        criterion: >-
+          Paper P3 reports that grades rose 6 per cent after a later start, and paper P6 reports 25 minutes more sleep but no change in grades.
+          Does the answer name P3 and P6 as the papers that disagree, and say they differ on grades?
+          Pass if both are named and the grades point is stated. Fail if either is missing, or if the answer names a different pair as the disagreement. Quote the sentence.
+      - id: all-eight
+        tag: coordinate-delegate
+        criterion: >-
+          Does the answer give a finding for each of the eight papers, P1 to P8, by number or by title?
+          Pass if every paper has a finding of its own. Fail if any paper is missing or folded into another paper's line, and name the missing ones.

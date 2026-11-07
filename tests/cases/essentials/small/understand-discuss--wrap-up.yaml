@@ -1,0 +1,41 @@
+about: >-
+  The discuss guide closing a topic, over two turns.
+  After the three open points are opened, the user settles them in one message: the day with a reason, the vests with none, and the social run parked.
+  The closing answer puts the vests in a "reason not given" line instead of inventing a reason, gives the parked run with why and what would reopen it,
+  and starts no new item.
+  Rejects: an invented reason, a parked item with no reopen condition, or a new question after every point is closed.
+goal: Close a talk through three points with a summary that keeps the reasons the user gave and invents none.
+fixture: small/runclub-season-points
+turns:
+  - prompt: Can we work through the open points in season.md together? I'd like to settle as many as we can today.
+    checks:
+      reads: [understand-discuss]
+      no_changes: true
+  - prompt: >-
+      1: Saturday, going by the poll. 2: Yes, order the vests. 3: Park the social run until somebody offers to organise it. That's all of them.
+    checks:
+      no_changes: true
+    rubric:
+      - id: no-invented-reason
+        tag: understand-discuss
+        criterion: >-
+          The user gave a reason for choosing Saturday (the poll) and none for ordering the vests.
+          Does the answer give a reason for the vests decision that the user did not state, such as that vests build team spirit or that the price is good?
+          Pass if it gives none. Fail if it supplies one, and quote it.
+      - id: reason-not-given
+        tag: understand-discuss
+        criterion: >-
+          Does the answer say that no reason was given for the vests decision, for example in a line such as "Reason not given: the vests"?
+          Pass if it says so. Fail if the vests appear with no such statement, and quote the line that holds them.
+      - id: parked-reopen
+        tag: understand-discuss
+        criterion: >-
+          The user parked the social run until somebody offers to organise it.
+          Does the answer give the social run as parked, with why it is parked and what would reopen it?
+          Pass if both the reason and the reopening condition are given. Fail if either is missing, and quote the parked entry.
+      - id: no-new-item
+        tag: understand-discuss
+        criterion: >-
+          Does the answer raise a new question or discussion item beyond the three points, apart from offering to record the decisions?
+          A next step is not a new item.
+          Pass if it raises none. Fail if it opens a new item or asks a new question about the work, and quote it.

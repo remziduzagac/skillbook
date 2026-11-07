@@ -1,0 +1,43 @@
+about: >-
+  The questionnaire guide on questions only an outside body can answer, with the user sending them.
+  The document is written for the archive, so it needs no conversation to be understood, gives each question a reason, names no reply date the user never gave, and offers no sending.
+  The guide is read directly, with no round of questions to the user first. Nothing is written to a file.
+  Rejects: a document that leans on the conversation, questions with no reasons, an invented deadline, or an offer to send it.
+goal: Write the questions for the county archive about printing its photographs, for the user to email.
+fixture: small/exhibit-photos
+turns:
+  - prompt: I don't know what the county archive lets us do with the Quay photographs. Please write the questions for them. I'll email them myself.
+    checks:
+      reads: [understand-clarify-questionnaire]
+      reads_not: [understand-clarify-shallow]
+      no_changes: true
+    rubric:
+      - id: no-conversation-refs
+        tag: understand-clarify-questionnaire
+        criterion: >-
+          The archive was not in this conversation.
+          Does the document for the archive avoid any reference to the conversation, such as "as we discussed", "as you said above", "the earlier question" or "from your message"?
+          Pass if it has none. Fail if it has any, and quote it.
+      - id: context-for-reader
+        tag: understand-clarify-questionnaire
+        criterion: >-
+          Does the document tell the archive what the society plans, printing Quay Collection photographs at A1 size for a free exhibition in December, and which photographs, by their QC references or by the count of six?
+          Pass if it gives the plan and names the photographs. Fail if either is missing, and say which.
+      - id: reason-per-question
+        tag: understand-clarify-questionnaire
+        criterion: >-
+          Does every numbered question in the document carry a short reason why the answer matters to the society?
+          Pass if every question does. Fail if any does not, and quote the first question without a reason.
+      - id: no-invented-deadline
+        tag: understand-clarify-questionnaire
+        criterion: >-
+          The user gave no date for the reply.
+          Does the document ask for a reply by a given date or within a stated time, such as "by 1 December" or "within two weeks"?
+          Pass if it sets none; asking how long the archive needs is not a deadline.
+          Fail if it sets a date or a time limit, and quote it.
+      - id: no-send-offer
+        tag: understand-clarify-questionnaire
+        criterion: >-
+          The user said they will email the questions themselves.
+          Does the answer offer or ask to send, post or email the document?
+          Pass if it does not. Fail if it offers or asks, and quote it.

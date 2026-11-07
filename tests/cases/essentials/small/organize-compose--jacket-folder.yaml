@@ -1,0 +1,41 @@
+about: >-
+  The compose guide on three named patterns that share something none of the files says alone: all three use sleeve block S2 and a full lining, and no other pattern in the folder does.
+  In one turn the three are moved into the folder the user named, nothing else moves, and the README states what they share and where the folder's edge is.
+  Rejects: moving a pattern nobody named, or a README that only says "these are jackets".
+goal: Put three patterns under a new folder with a README that says what they really share.
+fixture: small/jacket-patterns
+version_control: true
+turns:
+  - prompt: The blazer, bomber and chore jacket patterns belong together. Move them into a new jackets/ folder, with a README.md in it saying what they have in common.
+    checks:
+      reads: [organize-compose]
+      removed: [blazer-2210.md, bomber-2214.md, chore-jacket-2231.md]
+      changed:
+        - jackets/README.md
+        - jackets/blazer-2210.md
+        - jackets/bomber-2214.md
+        - jackets/chore-jacket-2231.md
+      only_changed:
+        - blazer-2210.md
+        - bomber-2214.md
+        - chore-jacket-2231.md
+        - jackets/README.md
+        - jackets/blazer-2210.md
+        - jackets/bomber-2214.md
+        - jackets/chore-jacket-2231.md
+      file_contains:
+        jackets/blazer-2210.md: ['2\.2 m of 150 cm wool suiting', 'pieces 14 to 19']
+        jackets/bomber-2214.md: ['ripstop', 'pieces 11 to 16']
+        jackets/chore-jacket-2231.md: ['cotton flannel', 'pieces 12 to 15']
+    rubric:
+      - id: shared-trait
+        tag: organize-compose
+        criterion: >-
+          The blazer, bomber and chore jacket patterns all use sleeve block S2 and a full lining; the skirt, trousers and sun dress use neither.
+          Does jackets/README.md state something these three share beyond being jackets, such as the sleeve block S2 or the full lining?
+          Pass if it names a shared trait taken from the pattern files. Fail if it only says they are jackets or coats, or lists the three files. Quote the sentence.
+      - id: boundary-stated
+        tag: organize-compose
+        criterion: >-
+          Does jackets/README.md say what belongs in the folder and what does not, in terms that would place a new pattern, such as "patterns with sleeve block S2 and a full lining; unlined garments and sleeveless ones stay out"?
+          Pass if it gives both a rule for what belongs and a statement of what stays out. Fail if it gives only what is in the folder, or neither. Quote the sentences.

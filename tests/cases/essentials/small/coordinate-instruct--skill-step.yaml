@@ -1,0 +1,18 @@
+about: >-
+  A near miss for the instruct guide: a step added to a skill's own file is skill-file work, not an instruction document, so the instruct guide stays closed.
+  The step is added after the tagging step, and the file's other steps and header stay.
+  Rejects: reading the instruct guide for a skill file, or dropping a step or the header.
+goal: Add one step to the release skill's steps.
+fixture: small/todo-tiny-js
+turns:
+  - prompt: >-
+      Add a step to our release-tag skill: after tagging, post the new version number in the team chat.
+    checks:
+      reads_not: [coordinate-instruct]
+      only_changed: [skills/release-tag/SKILL.md]
+      file_contains:
+        skills/release-tag/SKILL.md:
+          - '\A---\r?\nname: release-tag\r?\n'
+          - 'git tag vX\.Y\.Z[\s\S]*team chat'
+          - 'Run `npm test` and stop if anything fails'
+          - 'Add the changelog entry'

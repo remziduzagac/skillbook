@@ -1,0 +1,32 @@
+about: >-
+  The naming guide on an open name that the committee will choose later, in one turn.
+  Each candidate comes with why it fits, the words rejected for clashing with the club's own terms each get their own reason,
+  the answer says what it checked the candidates against, and no name is picked or ranked.
+  Rejects: a favourite name, rejected words grouped under one reason or not shown at all, or no report of what was checked.
+goal: Give name candidates for a new beginners' group, with rejected words and checks, leaving the pick to the committee.
+fixture: small/runclub-terms
+turns:
+  - prompt: >-
+      We're starting a group for adults who have never run before, and the committee will pick its name at next week's meeting,
+      so I only need a list of candidates from you. The words we already use for the club's groups are in rules.md.
+    checks:
+      reads: [understand-naming]
+      no_changes: true
+    rubric:
+      - id: no-pick
+        tag: understand-naming
+        criterion: >-
+          Does the answer pick, recommend or rank one name above the others (for example "my favourite", "I'd go with" or a numbered ranking)?
+          Pass if it gives each candidate with why it fits and leaves the pick to the committee. Fail if it picks or ranks, and quote it.
+      - id: rejected-own-reasons
+        tag: understand-naming
+        criterion: >-
+          rules.md already uses "Starters" for the under-16 members and "Pacers" for the members who run at the back.
+          Does the answer list the words it rejected, including at least one of those two, each with a reason that fits that word
+          (for example "Starters already means the under-16s")?
+          Pass if rejected words are listed and each has its own reason. Fail if no rejected words are listed, or they share one reason such as "too common", and quote the part.
+      - id: checked-where
+        tag: understand-naming
+        criterion: >-
+          Does the answer say what it checked the candidates against, and what it found (for example the club's terms in rules.md, with no clash for the candidates it offers)?
+          Pass if it names where it looked and the result. Fail if it reports no check, and quote the closest part.

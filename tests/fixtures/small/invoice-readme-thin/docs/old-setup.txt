@@ -1,0 +1,4 @@
+Setup notes (2021, written on Dana's old laptop)
+
+Needs Python 2.7. Install the PDF library first: easy_install reportlab
+Run it with: python2 make_invoices.py March

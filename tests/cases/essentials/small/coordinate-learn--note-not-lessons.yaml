@@ -1,0 +1,21 @@
+about: >-
+  A near miss for the learn guide: a request for a note that another agent can continue from is a carryover, even when the user mentions a correction they keep repeating.
+  The note holds the repeated correction as a working rule, and the project's instruction file is left alone.
+  Rejects: reading the learn guide for a state note, or writing the repeated correction into AGENTS.md unasked.
+goal: Write a handover note at the named path and keep lessons out of the instruction file.
+fixture: small/podcast-slow-boats
+turns:
+  - prompt: >-
+      I'm away for a week and another agent takes over the show notes. Please write the note it needs to carry on, and save it as handoff/week-away.md.
+      Episodes 21 and 22 are checked against their transcripts, and 23 to 25 are not.
+      I also keep having to remind you that episode titles are in sentence case.
+    checks:
+      reads: [coordinate-carryover]
+      reads_not: [coordinate-learn]
+      changed: [handoff/week-away.md]
+      unchanged: [AGENTS.md, CLAUDE.md]
+      file_contains:
+        handoff/week-away.md:
+          - 'sentence[- ]case'
+          - 'ep23'
+          - 'ep25'

@@ -1,0 +1,13 @@
+about: >-
+  The layout guide on options that each come with a long description.
+  Wide content goes into a list with sub-items, not into a table whose rows run past 120 characters.
+  A table with short values is allowed, so the check is only on the width of a table row.
+  Rejects: a table row wider than 120 characters.
+goal: Compare three floor options with long notes, in a form that stays readable in a terminal.
+fixture: small/floor-options
+turns:
+  - prompt: Compare the three floor options in options.md for me. I care most about grip, upkeep and cost.
+    checks:
+      reads: [respond-layout]
+      no_changes: true
+      answer_not_contains: ['(?m)^\|[^\n]{120,}$']

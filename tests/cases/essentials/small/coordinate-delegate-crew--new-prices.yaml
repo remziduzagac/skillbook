@@ -1,0 +1,56 @@
+about: >-
+  The crew guide on a job the user split themselves: three supplier sheets updated by one agent each, then the shared comparison table brought up to date once all three are done.
+  The work goes ahead without a stop for a plan, the table's cheapest column is worked out from the new prices, the fourth supplier is left alone, and the final answer accounts for each sheet and for the last pass over the table.
+  Rejects: a stop for approval, a stale cheapest column, a changed Dunmore sheet, or a final answer that only says the files were updated.
+goal: Put new supplier prices into three sheets and then into the comparison table, with a final account.
+fixture: small/supplier-price-sheets
+turns:
+  - prompt: >-
+      Three of our suppliers are changing their prices from next month.
+      Alder Mill is putting everything up by 5%, Birch Farm by 10%, and Cedar Wholesale has cut its rolled oats to £0.90 and its yeast to £3.60. Dunmore Foods hasn't changed anything.
+      Please put the new prices into the three sheets in suppliers/, with a separate agent on each sheet and all working at the same time, and then bring comparison.md up to date, cheapest column included.
+      Don't worry about the cost.
+    checks:
+      reads: [coordinate-delegate-crew]
+      only_changed: [suppliers/alder-mill.md, suppliers/birch-farm.md, suppliers/cedar-wholesale.md, comparison.md]
+      unchanged: [suppliers/dunmore-foods.md]
+      file_contains:
+        suppliers/alder-mill.md:
+          - '^(?![\s\S]*£(?:1\.20|1\.40|1\.00|4\.00)\b)'
+          - '£1\.26'
+          - '£1\.47'
+          - '£1\.05'
+          - '£4\.20'
+        suppliers/birch-farm.md:
+          - '^(?![\s\S]*£(?:1\.30|1\.50|1\.20|3\.80|2\.40)\b)'
+          - '£1\.43'
+          - '£1\.65'
+          - '£1\.32'
+          - '£4\.18'
+          - '£2\.64'
+        suppliers/cedar-wholesale.md:
+          - '^(?![\s\S]*£(?:1\.10|4\.20)\b)'
+          - '£0\.90'
+          - '£3\.60'
+          - '£1\.40'
+          - '£2\.20'
+        comparison.md:
+          - '(?m)^\|[^\n]*Strong white flour[^\n]*£1\.26[^\n]*£1\.43[^\n]*£1\.40[^\n]*£1\.25[^\n]*Dunmore'
+          - '(?m)^\|[^\n]*Wholemeal flour[^\n]*£1\.47[^\n]*£1\.65[^\n]*£1\.60[^\n]*Alder'
+          - '(?m)^\|[^\n]*Rolled oats[^\n]*£1\.05[^\n]*£1\.32[^\n]*£0\.90[^\n]*£1\.05[^\n]*Cedar'
+          - '(?m)^\|[^\n]*Dried yeast[^\n]*£4\.20[^\n]*£4\.18[^\n]*£3\.60[^\n]*£4\.50[^\n]*Cedar'
+          - '(?m)^\|[^\n]*Sunflower oil[^\n]*£2\.64[^\n]*£2\.20[^\n]*£2\.30[^\n]*Cedar'
+      agent_started_or_answer:
+        - '(could not|couldn.t|cannot|can.t|unable to|not able to|wasn.t able to|no way to|do not have|don.t have|have no)[^\n.]{0,80}(start|spawn|launch|run|use|delegate|hand)[^\n.]{0,60}(agents?|helpers?|workers?|sub-?agents?)|(no|without|not any)\s+(other\s+|separate\s+)?(agents?|helpers?|workers?|sub-?agents?)[^\n.]{0,50}(available|here|in this|to start|could be started|were started|was started|this session|this environment)|(agents?|helpers?|workers?|sub-?agents?)[^\n.]{0,40}(is|are|was|were) (not available|unavailable|disabled|blocked|not permitted|not allowed)|(does not|doesn.t|do not|don.t|did not|didn.t) (let|allow|permit)[^\n.]{0,40}(start|spawn|launch|run)'
+    rubric:
+      - id: account-per-sheet
+        tag: coordinate-delegate-crew
+        criterion: >-
+          Does the final answer account for each of the three changed sheets (Alder Mill, Birch Farm and Cedar Wholesale) separately, saying what was changed in it, and say that the Dunmore Foods sheet was left as it was?
+          It does not matter whether helpers or the main agent made the edits.
+          Pass if each of the three has its own account and Dunmore Foods is reported unchanged. Fail if the answer only says the sheets were updated, or leaves one of the three out. Quote the closest part.
+      - id: final-pass-reported
+        tag: coordinate-delegate-crew
+        criterion: >-
+          Does the final answer report the last step on comparison.md, after the three sheets were done: the prices copied in and the cheapest column worked out again from the new prices?
+          Pass if it says comparison.md was brought up to date from the new sheet prices, including the cheapest column. Fail if it does not mention comparison.md, or says its cheapest column was left as it was. Quote the part that decides.

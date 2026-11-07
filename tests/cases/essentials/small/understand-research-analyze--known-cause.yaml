@@ -1,0 +1,23 @@
+about: >-
+  A near miss: the cause is already known (the log says the funnel was blocked) and the user asks for an exact change to the data.
+  The analyze guide stays closed; the two Tarn Hollow figures are replaced with the word blocked, and nothing else in the file changes.
+  Rejects: investigating a cause the user already has, or changing other figures.
+goal: Replace two figures with the word blocked and leave everything else alone.
+fixture: small/rain-gauge-log
+version_control: true
+turns:
+  - prompt: >-
+      The gauge log explains the low Tarn Hollow figures for July and August: the funnel was blocked.
+      In rainfall-2024.csv, put the word blocked in place of those two Tarn Hollow figures and leave everything else as it is.
+    checks:
+      reads_not: [understand-research-analyze]
+      changed: [rainfall-2024.csv]
+      only_changed: [rainfall-2024.csv]
+      file_contains:
+        rainfall-2024.csv:
+          - '(?m)^2024-07,blocked,61\.4\s*$'
+          - '(?m)^2024-08,blocked,74\.0\s*$'
+          - '(?m)^2024-06,44\.2,47\.3\s*$'
+          - '(?m)^2024-09,64\.0,59\.8\s*$'
+          - '(?m)^2024-01,98\.2,104\.0\s*$'
+          - '(?m)^2024-12,66\.2,70\.1\s*$'

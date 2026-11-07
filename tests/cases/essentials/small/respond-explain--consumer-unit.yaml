@@ -1,0 +1,37 @@
+about: >-
+  The explain guide on something the agent said about an electrician's quote that the user did not follow.
+  The answer states the main idea first, puts any technical term it uses into everyday words, stays on the one item the user named, and ends when the point is made.
+  Rejects: the earlier wording repeated, an unexplained term, the other items of the quote explained again, or a closing offer to explain more.
+goal: Explain one item of a kitchen electrics quote again, after the user says they did not follow it.
+fixture: small/electrician-quote
+turns:
+  - prompt: >-
+      Here is the electrician's quote for our kitchen (electrician-quote.txt).
+      In plain terms, what is he going to do, and is there anything I should ask him before saying yes?
+    checks:
+      no_changes: true
+  - prompt: I didn't follow what you said about the consumer unit. What did you mean?
+    checks:
+      reads: [respond-explain]
+      no_changes: true
+    rubric:
+      - id: term-rcd
+        tag: respond-explain
+        criterion: >-
+          If the answer uses "RCD", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a switch that cuts the power in a split second when it senses a fault"?
+          Spelling out the letters (residual current device) is not an explanation.
+          Pass if yes. Fail if it is used without an explanation in either place, and quote its first use.
+          If the answer never uses the term, return unknown.
+      - id: stays-on-unit
+        tag: respond-explain
+        criterion: >-
+          The user asked only about the consumer unit.
+          Does the answer stay on the consumer unit, without explaining again the other items of the quote (the cabling, the cooker circuit, the second-fix work or the certificate)?
+          Pass if it stays on the consumer unit; a few words naming another item as part of the explanation are fine.
+          Fail if it explains another item of the quote, and quote it.
+      - id: no-closing-offer
+        tag: respond-explain
+        criterion: >-
+          Does the answer end without offering to explain more or asking whether it is clear now?
+          Examples of an offer: "Let me know if you want more detail", "Does that make sense?", "Happy to go further".
+          Pass if the answer closes with no such offer or question. Fail if it has one, and quote it.

@@ -1,0 +1,11 @@
+{
+  "name": "tiny-todo",
+  "version": "0.3.0",
+  "private": true,
+  "description": "A small to-do list tool for the command line and one web page.",
+  "scripts": {
+    "test": "node --test",
+    "lint": "node --check src/todo.js && node --check src/cli.js && node --check src/serve.js",
+    "serve": "node src/serve.js"
+  }
+}

@@ -1,0 +1,47 @@
+about: >-
+  The lean guide on a request to trim a file the user wrote, in two turns.
+  First it lists each cut with its reason and changes nothing: the opening-times paragraph that appears twice goes to one home, and the Safety section stays.
+  After the user approves, the approved cuts are made and nothing else changes.
+  Rejects: trimming the file at once, a list with no reasons, cutting the Safety section, or keeping both copies of the repeated paragraph.
+goal: Propose cuts to a volunteer sheet with reasons, then apply them after approval.
+fixture: small/coop-volunteer-notes
+turns:
+  - prompt: volunteer-notes.md has got too long for people to read before their first night. Please trim it.
+    checks:
+      reads: [act-rightsize-lean]
+      no_changes: true
+    rubric:
+      - id: list-with-reasons
+        tag: act-rightsize-lean
+        criterion: >-
+          Does the answer list each proposed cut, or replacement, with a reason for it?
+          Pass if every cut it lists comes with a reason.
+          Fail if any listed cut has no reason, or if the answer only shows trimmed text with no list of the cuts, and quote the closest item.
+      - id: repeat-found
+        tag: act-rightsize-lean
+        criterion: >-
+          The opening-times paragraph appears twice, word for word, under "Opening times" and again under "Opening times (again)".
+          Does the list propose keeping it once, by cutting or merging one of the two copies?
+          Pass if it proposes removing one copy.
+          Fail if it does not mention the repeat or proposes keeping both, and quote the closest item.
+      - id: safety-kept
+        tag: act-rightsize-lean
+        criterion: >-
+          The notes have a Safety section: eye protection at the grinder and wire wheel, and nobody under 16 without a family adult.
+          Does the answer leave the whole Safety section in the notes?
+          Pass if no proposed cut touches it.
+          Fail if the list proposes cutting or removing any part of it, and quote that item.
+      - id: asks-approval
+        tag: act-rightsize-lean
+        criterion: >-
+          Does the answer ask the user to approve the list before anything is changed?
+          Pass if it asks for approval, or says it will apply the cuts once the user agrees.
+          Fail if it says the file is already trimmed or asks nothing, and quote the part that decides.
+  - prompt: Yes, make those changes.
+    checks:
+      only_changed: [volunteer-notes.md]
+      file_contains:
+        volunteer-notes.md:
+          - '\A(?:(?!6pm to 9pm)[\s\S])*6pm to 9pm(?:(?!6pm to 9pm)[\s\S])*\Z'
+          - 'eye protection'
+          - 'under 16'

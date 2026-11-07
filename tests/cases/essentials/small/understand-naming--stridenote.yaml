@@ -1,0 +1,30 @@
+about: >-
+  The naming guide on a name the user has settled, with no clash, in one turn.
+  The answer checks the name and reports each check with where it looked and what it found, including that the project has no glossary,
+  offers no other candidates, and claims nothing wider than the search it ran. Nothing is renamed.
+  Rejects: a new candidate list, "no clashes anywhere" after one search, or no report of what was checked.
+goal: Check a settled project name and report the checks without reopening the choice.
+fixture: small/cli-stridenote-project
+turns:
+  - prompt: >-
+      I've settled on `stridenote` as the name for this tool, which is just called splits at the moment.
+      Before I rename anything, check that it's a sensible name for the project.
+    checks:
+      reads: [understand-naming]
+      no_changes: true
+    rubric:
+      - id: checks-listed
+        tag: understand-naming
+        criterion: >-
+          Does the answer list what it checked the name against, with where it looked and what each check found (for example "glossary: none in the project")?
+          Pass if at least two checks each say where it looked and what it found. Fail if it only says there is no clash, or lists one check, and quote the closest part.
+      - id: no-new-round
+        tag: understand-naming
+        criterion: >-
+          Does the answer offer other names, or ask the user to choose a name again?
+          Pass if it does neither. Offering to apply the name is fine. Fail if it proposes other candidates or reopens the choice, and quote it.
+      - id: no-wide-claim
+        tag: understand-naming
+        criterion: >-
+          Does the answer claim the name is unique or free beyond the places it says it searched, such as "no other tool uses this name" or "it is not taken on PyPI"?
+          Pass if every claim is limited to where the answer says it looked. Fail if one goes wider, and quote it.

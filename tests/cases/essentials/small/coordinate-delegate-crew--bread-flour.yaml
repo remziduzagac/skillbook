@@ -1,0 +1,17 @@
+about: >-
+  A near miss for the crew guide: one item renamed in five files is a find-and-replace the user named exactly, not a job to split between writing agents.
+  The crew guide stays closed, the name changes in all five files and nothing else does.
+  Rejects: starting a crew for a mechanical rename, or missing a file.
+goal: Rename one item in the four sheets and the comparison table.
+fixture: small/supplier-price-sheets
+turns:
+  - prompt: We're calling it bread flour from now on, not strong white flour. Please change the name wherever it appears in suppliers/ and in comparison.md.
+    checks:
+      reads_not: [coordinate-delegate-crew]
+      only_changed: [suppliers/alder-mill.md, suppliers/birch-farm.md, suppliers/cedar-wholesale.md, suppliers/dunmore-foods.md, comparison.md]
+      file_contains:
+        suppliers/alder-mill.md: ['^(?![\s\S]*strong white flour)[\s\S]*bread flour']
+        suppliers/birch-farm.md: ['^(?![\s\S]*strong white flour)[\s\S]*bread flour']
+        suppliers/cedar-wholesale.md: ['^(?![\s\S]*strong white flour)[\s\S]*bread flour']
+        suppliers/dunmore-foods.md: ['^(?![\s\S]*strong white flour)[\s\S]*bread flour']
+        comparison.md: ['^(?![\s\S]*strong white flour)[\s\S]*bread flour']

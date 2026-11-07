@@ -1,0 +1,11 @@
+about: >-
+  A near miss for the setup guide: an ordinary rule for the project's instruction file is the instruct guide's job, so the setup guide stays closed.
+  Rejects: reading the setup guide for a rule, or changing any file but the project's instruction file.
+goal: Add one project rule to AGENTS.md.
+fixture: small/novel-river-paper
+turns:
+  - prompt: Add a rule to AGENTS.md saying that every chapter draft gets a spelling check against the style guide before it is marked final in progress.md.
+    checks:
+      reads: [coordinate-instruct]
+      reads_not: [coordinate-setup]
+      only_changed: [AGENTS.md, CLAUDE.md]

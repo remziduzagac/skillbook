@@ -1,0 +1,42 @@
+about: >-
+  The brief guide on a fresh helper that needs a ruling recorded in no file and a way that was already tried and failed.
+  The instructions point to the glossary and the style guide by path and say how to start and when to stop.
+  Rejects: a brief that leaves out the ruling or the failed way, or that copies the glossary and style rules into itself.
+goal: Write the instructions for a fresh helper that does a glossary pass on one chapter.
+fixture: small/novel-river-paper
+checks:
+  names_no_skill: false
+turns:
+  - prompt: >-
+      Hand the glossary pass on chapter 3 (english/ch03.md) to a fresh helper agent, and show me the exact instructions you give it.
+      Two things are in no file. Our editor ruled last week that any passage where the German says only "die Glocke" still reads "the flood bell" in English.
+      And I already tried a find-and-replace of the glossary terms over the whole file, which turned "Closing time was drawing near" into nonsense, so I reverted it. The helper should not do that.
+    checks:
+      reads: [coordinate-brief]
+    rubric:
+      - id: states-ruling
+        tag: coordinate-brief
+        criterion: >-
+          The user gave a ruling that no file holds: where the German says only "die Glocke", the English still reads "the flood bell".
+          Do the instructions the answer shows for the helper state this ruling?
+          Pass if the instructions tell the helper to write "the flood bell" for a passage that says only "die Glocke" or "the bell".
+          Fail if the ruling is missing or changed, and quote the closest line.
+      - id: states-ruled-out
+        tag: coordinate-brief
+        criterion: >-
+          The user said a find-and-replace of the glossary terms over the whole file was tried and reverted because it made nonsense sentences.
+          Do the instructions the answer shows tell the helper not to do a blind find-and-replace, and say why?
+          Pass if both the approach and the reason appear. Fail if the approach is not ruled out, or is ruled out with no reason, and quote the closest line.
+      - id: points-not-pastes
+        tag: coordinate-brief
+        criterion: >-
+          glossary.md holds a table of terms and style-guide.md holds a list of rules, and the helper can read both.
+          Do the instructions point to these files by path without reproducing the glossary table or the list of style rules as a block?
+          Naming one term as an example of what to fix is not a copy.
+          Pass if they point to the files. Fail if they copy the table or the rules, and quote the copied part.
+      - id: first-step-and-done
+        tag: coordinate-brief
+        criterion: >-
+          Do the instructions give the helper a first step and a way to know the pass is finished?
+          Pass if both are there: where to start, such as reading glossary.md and english/ch03.md, and a finish condition, such as every glossary term in the chapter rendered as the glossary says.
+          Fail if either is missing, and say which.

@@ -1,0 +1,53 @@
+about: >-
+  The learn guide after a session in which the user gave one rule for the whole book and one fix for a single chapter.
+  The rule is proposed with the correction it came from and a destination in the project, the one-off is not proposed as a rule, and nothing is saved before the user approves.
+  Rejects: generic tips with no case from the session, a rule made from the one-off cut, a destination only in the user's own files, or lessons saved unasked.
+goal: Draft a chapter, take two corrections, then propose the one lasting rule and save nothing.
+fixture: small/novel-river-paper
+turns:
+  - prompt: Translate source/ch04.de.txt into english/ch04.md, following the glossary and the style guide.
+    checks:
+      changed: [english/ch04.md]
+      only_changed: [english/ch04.md, progress.md, queries.md]
+  - prompt: >-
+      That works, but here is a rule for the whole book: leave titles like Herr and Frau untranslated, never Mr or Mrs. Please fix chapter 4 to match.
+      Also cut the last paragraph, the weather one, from the English draft. The publisher wants it out of chapter 4 only.
+    checks:
+      changed: [english/ch04.md]
+      only_changed: [english/ch04.md, progress.md, queries.md]
+      file_contains:
+        english/ch04.md:
+          - 'Herr Brandt'
+          - 'Frau Lindner'
+          - '\A(?![\s\S]*\b(?:Mr|Mrs|Ms|Miss)\b\.?\s)'
+          - '\A(?![\s\S]*\b(?:rain|rained|raining|grey|gray)\b)'
+          - 'flood bell'
+  - prompt: Looking back over this session, is there anything worth keeping so that a later session does not need the same corrections?
+    checks:
+      reads: [coordinate-learn]
+      no_changes: true
+    rubric:
+      - id: cites-the-correction
+        tag: coordinate-learn
+        criterion: >-
+          In this session the user corrected the chapter 4 draft: titles such as Herr and Frau stay untranslated for the whole book.
+          Does the answer propose keeping that as a lesson and say that it comes from the user's correction in this session?
+          Pass if the lesson is tied to that correction. Fail if the lessons are general tips with no case from the session, and quote the lesson.
+      - id: one-off-not-a-rule
+        tag: coordinate-learn
+        criterion: >-
+          The user had the weather paragraph cut from chapter 4 only, for the publisher. That is a one-off, not a rule for later chapters.
+          Does the answer avoid proposing it as a lasting rule?
+          Pass if the cut is left out, or is listed as dropped with a reason such as that it applies to chapter 4 only.
+          Fail if the answer proposes a lasting rule from it, such as cutting weather paragraphs, and quote that rule.
+      - id: destination-in-project
+        tag: coordinate-learn
+        criterion: >-
+          The Herr and Frau rule is about this book.
+          Does the answer name a file in this project as the place for it, such as AGENTS.md, glossary.md or style-guide.md?
+          Pass if a project file is named. Fail if the only place named is the user's own or a global instruction file, or no place is named. Quote the place.
+      - id: asks-before-saving
+        tag: coordinate-learn
+        criterion: >-
+          Does the answer ask the user whether to keep the proposed lesson, without saying it has been saved?
+          Pass if it asks and treats the lesson as pending. Fail if it says the lesson was recorded or added, or asks nothing. Quote the sentence.

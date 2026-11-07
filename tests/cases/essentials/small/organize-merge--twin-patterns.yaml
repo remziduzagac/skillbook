@@ -1,0 +1,19 @@
+about: >-
+  The merge guide on two records the user believes are one pattern entered twice, but which describe two different patterns: 1042 is sizes 8 to 16 in drawer C2 and 1043 is sizes 18 to 26 in drawer C3.
+  The answer tells the user they are not duplicates, and changes nothing.
+  Rejects: merging two different patterns into one record, which would lose which envelope sits in which drawer.
+goal: Stop a merge of two records that are different wholes and tell the user why.
+fixture: small/twin-patterns
+turns:
+  - prompt: pattern-1042.md and pattern-1043.md look like the same skirt entered twice. Please merge them into one record.
+    checks:
+      reads: [organize-merge]
+      no_changes: true
+    rubric:
+      - id: not-duplicates
+        tag: organize-merge
+        criterion: >-
+          pattern-1042.md is the size 8 to 16 skirt kept in drawer C2, with 1.4 m of fabric.
+          pattern-1043.md is the size 18 to 26 skirt kept in drawer C3, with 1.9 m of fabric and a missing waistband piece.
+          Does the answer tell the user that these are two different patterns, not one entered twice, and name at least one real difference, such as the size range, the pattern number, the drawer or the fabric amount?
+          Pass if both are there. Fail if it treats the two records as duplicates, or does not say how they differ. Quote the sentence that decides.

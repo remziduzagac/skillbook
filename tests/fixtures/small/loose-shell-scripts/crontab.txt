@@ -1,0 +1,4 @@
+# My cron lines. The scripts folder is ~/scripts.
+30 2 * * *  cd ~/scripts && ./backup-home.sh
+45 2 * * *  cd ~/scripts && ./backup-music.sh
+0 4 * * 0   cd ~/scripts && ./rotate-logs.sh

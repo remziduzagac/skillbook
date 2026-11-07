@@ -1,0 +1,11 @@
+about: >-
+  A near miss: a request to play devil's advocate on a purchase the user is about to make asks what could go wrong, which is finding weak points,
+  not a one-sided case for a position. The argue guide stays closed and nothing changes.
+  Rejects: reading the argue guide for the case against, or changing the listing.
+goal: Tell the user what could go wrong with a used-car purchase, without building a case.
+fixture: small/usedcar-fiesta-listing
+turns:
+  - prompt: I'm about to buy the Fiesta in listing.md on Saturday. Play devil's advocate for me and tell me what could go wrong.
+    checks:
+      reads_not: [understand-argue]
+      no_changes: true

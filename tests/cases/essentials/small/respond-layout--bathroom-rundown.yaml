@@ -1,0 +1,14 @@
+about: >-
+  The layout guide on a rundown with four parts the user may want to jump to.
+  Each part gets a heading, and no part is introduced by a bold line standing alone as a title.
+  Rejects: bold lines as section titles, or an answer with no headings.
+goal: Give a four-part rundown of a bathroom job, laid out with headings.
+fixture: small/bathroom-status
+turns:
+  - prompt: >-
+      Give me a rundown of the bathroom job from status.md: where it stands, what is holding it up, what each trade does next, and what I have to decide.
+    checks:
+      reads: [respond-layout]
+      no_changes: true
+      answer_contains: ['(?m)^#{2,4} \S']
+      answer_not_contains: ['(?m)^\*\*[^*\n]+\*\*:?\s*$']

@@ -1,0 +1,3 @@
+# Settings for the gallery website build.
+# Every album carrying one of these tags is published on the public gallery.
+public_tags = ["harbour", "market", "lighthouse"]

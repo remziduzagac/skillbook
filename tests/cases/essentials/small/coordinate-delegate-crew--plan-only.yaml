@@ -1,0 +1,37 @@
+about: >-
+  The crew guide on a request for a plan only: several agents working on separate sheets and one shared table.
+  The answer gives the plan with one writer for the shared table, updated after the sheets, and a check; it says nothing has started and changes no file.
+  Rejects: starting the agents or editing the files because a plan was asked for, two writers on the table, the table updated while the sheets are still changing, or a plan with no check.
+goal: Plan who would update the supplier sheets and the comparison table, without starting anything.
+fixture: small/supplier-price-sheets
+turns:
+  - prompt: >-
+      Next month's prices will need to go into the sheets in suppliers/ and into comparison.md: Alder Mill up 5%, Birch Farm up 10%, and Cedar Wholesale cutting its rolled oats to £0.90 and its yeast to £3.60.
+      I'd like several agents working on it at the same time.
+      Please don't change or start anything yet. I only want to see the plan: who would do what, and in what order.
+    checks:
+      reads: [coordinate-delegate-crew]
+      no_changes: true
+    rubric:
+      - id: table-one-writer
+        tag: coordinate-delegate-crew
+        criterion: >-
+          Does the plan give comparison.md to a single writer, one named worker or the main agent, with the sheet workers not editing it?
+          Pass if exactly one writer is named for comparison.md, or the plan says the sheet workers hand their figures on and one later pass updates the table.
+          Fail if two or more workers are given the table to edit, or the plan does not say who updates it. Quote the part that decides.
+      - id: table-after-sheets
+        tag: coordinate-delegate-crew
+        criterion: >-
+          The cheapest column in comparison.md depends on the new prices in all three sheets.
+          Does the plan update comparison.md only after the three sheets are done?
+          Pass if the table is updated in a later step than the sheets, or in one pass after the sheet workers finish. Fail if the plan has the table updated at the same time as the sheets, or gives no order. Quote the step that decides.
+      - id: names-a-check
+        tag: coordinate-delegate-crew
+        criterion: >-
+          Does the plan say how the finished work would be checked, for example comparing each sheet's new figures with the old ones and the percentages, or checking the table against the sheets?
+          Pass if at least one check is named. Fail if the plan ends with the edits and names no check. Quote the check, or say none is named.
+      - id: not-started
+        tag: coordinate-delegate-crew
+        criterion: >-
+          Does the final answer say that nothing has been started or changed yet, or end by waiting for the user's go-ahead?
+          Pass if it does either. Fail if it says that agents have started or files are changed, or if it never says that the work has not begun and does not wait for the user. Quote the part that decides.

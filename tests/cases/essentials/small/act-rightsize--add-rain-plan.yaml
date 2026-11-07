@@ -1,0 +1,21 @@
+about: >-
+  The rightsize guide's other side for existing material: the user names exactly what to add to their wedding plan, so the addition is the edit itself.
+  It goes ahead in one turn with no list of changes for approval, and the rest of the plan stays as it was.
+  Rejects: reading the trim or fill guides and stopping to list changes first, or changing other parts of the plan.
+goal: Add a named rain-plan section to an existing plan in one turn.
+fixture: small/wedding-day-plan
+turns:
+  - prompt: >-
+      Please add a section called "If it rains" to plan.md.
+      It should say that the ceremony moves into the barn at Foxglove House, that the ushers set out the hire chairs there by 1pm, and that drinks and photos move under the marquee.
+    checks:
+      reads_not: [act-rightsize-lean, act-rightsize-enrich]
+      only_changed: [plan.md]
+      file_contains:
+        plan.md:
+          - 'If it rains'
+          - 'barn'
+          - 'ushers'
+          - '1 ?pm|13[:.]00'
+          - '14:30 Ceremony on the lawn'
+          - 'The one taxi is booked for midnight'

@@ -1,0 +1,24 @@
+about: >-
+  The learn guide after a session with nothing to learn: one requested line added, with no correction and no mistake.
+  The answer says nothing reusable came up and proposes no lesson.
+  Rejects: a lesson or rule invented to fill the answer, or any file changed to record one.
+goal: Add one line to a notes file, then say plainly that nothing is worth keeping.
+fixture: small/podcast-slow-boats
+turns:
+  - prompt: Add the line "- 00:00 Welcome to a boatyard in Stoke." as the first item of the list in episodes/ep21/notes.md.
+    checks:
+      changed: [episodes/ep21/notes.md]
+      only_changed: [episodes/ep21/notes.md]
+      file_contains:
+        episodes/ep21/notes.md:
+          - '- 00:00 Welcome to a boatyard in Stoke\.\r?\n- 01:10 Marta starts restoring'
+  - prompt: Is there anything from this session worth keeping for next time?
+    checks:
+      no_changes: true
+    rubric:
+      - id: no-invented-lesson
+        tag: coordinate-learn
+        criterion: >-
+          The session was one requested edit to a notes file. The user made no correction and the agent made no mistake.
+          Does the answer say that nothing reusable came up, and propose no lesson, tip or rule to keep?
+          Pass if it says nothing is worth keeping and proposes none. Fail if it proposes any lesson, tip or rule to keep, even a mild one such as checking timestamps, and quote it.

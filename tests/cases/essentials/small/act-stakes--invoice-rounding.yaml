@@ -1,0 +1,41 @@
+about: >-
+  The stakes guide on a risk question about a change to a script whose invoices go straight to clients and into a VAT return, with no tests.
+  The user is told a risk level and the answers behind it in plain words, and nothing is changed.
+  Rejects: cautions and consequences with no level, a level below high for a change nothing would catch, or a judgment that never says what would catch a mistake.
+goal: Rate the risk of changing how the invoice script works out VAT, from what the project shows.
+fixture: small/invoice-vat-rounding
+turns:
+  - prompt: >-
+      invoices.py works out the VAT once on each invoice's net amount. My accountant would rather I worked it out line by line. How risky would that change be for me?
+    checks:
+      reads: [act-stakes]
+      unchanged: [invoices.py]
+    rubric:
+      - id: gives-level
+        tag: act-stakes
+        criterion: >-
+          The user asked how risky the change is.
+          Does the answer name one overall risk level for the change, as low, medium or high?
+          Pass if it states a single level in those words, such as "high risk" or "Level: high".
+          Fail if it only describes consequences or cautions and names no level, and quote the closest sentence.
+      - id: level-high
+        tag: act-stakes
+        criterion: >-
+          README.md says every invoice is emailed to its client straight after it is made, the VAT figures go into the quarterly VAT return, and there are no tests.
+          Nothing would catch a wrong figure before it is sent, so the right level is high.
+          Does the answer rate the change high?
+          Pass if the level it names is high. Fail if it names low or medium, and quote the level.
+          If the answer names no level, return unknown.
+      - id: catch-nothing
+        tag: act-stakes
+        criterion: >-
+          The project has no tests, and the README says the invoices are emailed straight after they are made.
+          Does the answer say that nothing in the project would catch a wrong figure before it reaches a client?
+          Pass if it says there are no tests or no check before sending, in any wording that nothing catches a mistake in time.
+          Fail if it says nothing about what would catch a mistake, or says a test or review would catch it, and quote the closest sentence.
+      - id: undo-sent
+        tag: act-stakes
+        criterion: >-
+          Does the answer say that an invoice already emailed to a client cannot simply be taken back, so a mistake there needs a corrected invoice or a credit note and not only a revert of the code?
+          Pass if it says a sent invoice cannot be unsent or needs a correction.
+          Fail if it treats undoing as reverting the code, or says nothing about undoing a mistake, and quote the closest sentence.

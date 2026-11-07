@@ -1,0 +1,34 @@
+about: >-
+  The brainstorm guide on a requested choice with no options named, in one turn.
+  The user asks for a recommendation on what tally.py should do with rows it cannot read, so the answer sets out several ways that differ in kind,
+  compares them on the same points and recommends one with why it beats the next best, and changes nothing.
+  Rejects: a single idea with no alternatives, ways compared on different points, a recommendation that never sets it against another way,
+  or editing tally.py before the user has chosen.
+goal: Recommend how a small tool should treat rows it cannot read, after setting out and comparing the ways.
+fixture: small/cli-tally
+turns:
+  - prompt: >-
+      tally.py quietly skips any row it can't read, and last week that made one runner's total look far too low without me noticing.
+      I haven't decided how it should treat those rows. What would you recommend?
+    checks:
+      reads: [understand-brainstorm, understand-weigh]
+      no_changes: true
+    rubric:
+      - id: three-kinds
+        tag: understand-brainstorm
+        criterion: >-
+          Does the answer set out at least three ways tally could treat a row it cannot read that differ in kind
+          (for example stop with an error, skip the row and warn, or write the bad rows to a report), and not one way in several wordings?
+          Pass if three or more ways differ in kind. Fail if there are fewer than three, or some are the same way reworded, and quote the ways it gives.
+      - id: same-points
+        tag: understand-brainstorm
+        criterion: >-
+          Does the answer compare the ways on the same points for every way
+          (for example the effect on the totals, the effect on a long run, or the ease of use in a script)?
+          Pass if each point it uses is given for every way. Fail if a point is given for some ways and left out for others, and quote one such point.
+      - id: beats-next-best
+        tag: understand-brainstorm
+        criterion: >-
+          Does the answer recommend one way and say why it beats the next best way?
+          Pass if it names a recommended way and says why it is better than a named other way.
+          Fail if it recommends none, or gives a reason that does not set the recommended way against another, and quote the recommendation.

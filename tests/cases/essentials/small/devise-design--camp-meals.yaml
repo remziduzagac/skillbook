@@ -1,0 +1,28 @@
+about: >-
+  The design guide on a design that leaders will follow without the user.
+  The brief gives the numbers of people, the money and the kitchen, but not the numbers the design has to choose itself.
+  Every number the design picks carries a reason or an assumption mark, and the answer says where the design stands on approval.
+  Rejects: bare chosen numbers, or a design handed over as final with no word on approval.
+goal: Design meals and allergy safety for a scout camp, with a reason or an assumption mark for every value the design picks.
+fixture: small/camp-meals
+turns:
+  - timeout: 900
+    prompt: Design how meals and allergy safety will run at our summer camp, so the leaders can follow it without me there. Everything I know is in brief.md.
+    checks:
+      reads: [devise-design]
+      unchanged: [brief.md]
+    rubric:
+      - id: chosen-values-basis
+        tag: devise-design
+        criterion: >-
+          brief.md gives these numbers: 22 Scouts, 4 leaders, £7 per person per day, a standpipe 60 m from the kitchen tent, two gas rings and one oven.
+          Look at each number the design picks itself, such as how many cooks work a meal, a start time, a quantity of food, a cool box temperature or a number of hand-washing points.
+          Does each one carry a reason, or share a stated basis with others, or is it marked as an assumption with what would settle it?
+          A number taken from brief.md needs only that source.
+          Pass if every picked number does. Fail if any is given bare, with no reason and no assumption mark, and quote the first one.
+          If the design picks no number of its own, return unknown.
+      - id: approval-status
+        tag: devise-design
+        criterion: >-
+          Does the answer state the design's approval status: that it is not yet approved, that it awaits the user's approval, or why none is needed?
+          Pass if the status is stated. Fail if the design is handed over as final with no word on approval, and quote the closest part.

@@ -1,0 +1,31 @@
+about: >-
+  The fact guide on a claim of "always", checked against four years of local figures.
+  October was wettest in 2021 and 2022 and not in 2023 (November) or 2024 (December), so the search against the claim finds what the first rows hide.
+  The answer says the claim does not hold as worded, shows the years on both sides, and says the check covers only these four years. Nothing changes.
+  Rejects: a verdict built on the first years only, a list of counterexamples with no supporting years, or a verdict that goes beyond the four years.
+goal: Check a village guide's claim that October is always the wettest month against the monthly figures.
+fixture: small/rain-years
+turns:
+  - prompt: The village guide says October is always our wettest month. Is that true? The monthly figures are in monthly-rainfall.csv.
+    checks:
+      reads: [understand-research-fact]
+      no_changes: true
+      answer_contains: ['(Nov|Dec)']
+    rubric:
+      - id: claim-fails
+        tag: understand-research-fact
+        criterion: >-
+          In 2023 November was the wettest month (138 mm) and in 2024 December was (142 mm), so October was not wettest in every year.
+          Does the answer conclude that "always" does not hold, naming at least one year in which another month was wetter?
+          Pass whichever verdict word it uses. Fail if it concludes the claim is true or "mostly true" without naming such a year, and quote the verdict.
+      - id: both-sides
+        tag: understand-research-fact
+        criterion: >-
+          Does the answer show the years in which October was the wettest month (2021 and 2022) as well as the years in which it was not?
+          Pass if it shows both. Fail if it shows only one side, and say which.
+      - id: states-coverage
+        tag: understand-research-fact
+        criterion: >-
+          The table covers 2021 to 2024 only.
+          Does the answer say that its check covers only those years, or that it did not check other years?
+          Pass if it says so. Fail if it speaks of all years without that limit, and quote the closest part.

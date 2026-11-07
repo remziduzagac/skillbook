@@ -1,0 +1,19 @@
+about: >-
+  A near miss for the brief guide: a getting-started section for new human contributors is a document, not instructions for a worker started now, so the brief guide stays closed.
+  Rejects: reading the brief guide for README text, or changing any file but the README.
+goal: Add a getting-started section to the README.
+fixture: small/todo-tiny-js
+turns:
+  - prompt: >-
+      Add a "Getting started" section to README.md for a new contributor who has never seen this project: how to run the tests, how to start the page, and where the code and the tests live.
+    checks:
+      reads_not: [coordinate-brief]
+      only_changed: [README.md]
+      file_contains:
+        README.md:
+          - 'Getting started'
+          - 'npm test'
+          - 'npm run serve'
+          - 'src/'
+          - 'test/'
+          - 'Due dates are written as YYYY-MM-DD'

@@ -1,0 +1,37 @@
+about: >-
+  The ask guide on a round of questions the user asked for before a letter is finished.
+  The notes leave three things open: the cost, which only the treasurer knows, a pick-up place and a date for the medical forms.
+  Each question sits under its own numbered heading. The cost question says "No recommended answer:" with a reason and suggests no amount.
+  The others carry a recommended answer or a no-answer line with a reason. The turn ends on the questions and the letter is not touched.
+  Rejects: questions in one run of prose, an invented cost as a recommendation, or a letter finished with guesses.
+goal: Ask what is needed before finishing a parents' camp letter, in the ask guide's form.
+fixture: small/hollin-camp
+turns:
+  - prompt: >-
+      I need to send the parents their letter for the summer camp. The facts are in camp-notes.md and I started the letter in parent-letter.md.
+      Before you finish it, ask me what you need to know.
+    checks:
+      reads: [respond-ask]
+      no_changes: true
+    rubric:
+      - id: own-heading
+        tag: respond-ask
+        criterion: >-
+          Is each question the answer puts to the user under its own numbered heading, such as "### 1. Pick-up on Sunday"?
+          Pass if every question has a numbered heading of its own. Fail if the questions come as one list, one paragraph or plain numbered lines with no heading each, and quote the first question that has no heading.
+          If the answer asks no question, return unknown.
+      - id: cost-no-recommendation
+        tag: respond-ask
+        criterion: >-
+          camp-notes.md says the troop treasurer sets what each Scout pays, and gives no amount.
+          Look at the question the answer asks about the cost of camp.
+          Pass if that question has a line starting "No recommended answer:" that gives a reason, and the answer proposes no amount as the cost.
+          Fail if it proposes an amount, even in a "Recommended answer:" line, or has no such line, and quote the question.
+          If the answer asks nothing about the cost, return unknown.
+      - id: other-questions-labelled
+        tag: respond-ask
+        criterion: >-
+          Look at every question the answer asks except the one about the cost.
+          Does each carry either a line "Recommended answer:" with an answer the user can accept by saying yes, or a line "No recommended answer:" with a reason?
+          Pass if every one carries one of the two. Fail if any carries neither, or only a vague suggestion such as "whatever suits you", and quote the first.
+          If the answer asks no other question, return unknown.

@@ -1,0 +1,30 @@
+about: >-
+  The fact guide on a claim that a newer, applicable source replaces: the newsletter and a social post (which repeats it) say the exhibit opens at 10:00 on Friday, and the hall's later booking says the hall is cleaned until noon, so it opens at 12:00.
+  The answer says the claim is wrong, gives the booking as the reason, does not count the post as a second confirmation, and shows the dates of the sources. Nothing changes.
+  Rejects: calling the claim mixed or unsupported, or letting the repeated announcement outweigh the booking.
+goal: Check the Friday opening time against a newsletter, a post and the hall's later booking.
+fixture: small/exhibit-hours
+turns:
+  - prompt: One of our volunteers says the exhibit opens at 10:00 on Friday 12 December. Can you check that? The newsletter, a social post and the hall booking are in this folder.
+    checks:
+      reads: [understand-research-fact]
+      no_changes: true
+      answer_contains: ['(12:00|noon|12 noon|12 ?pm)']
+    rubric:
+      - id: verdict-wrong
+        tag: understand-research-fact
+        criterion: >-
+          hall-booking.txt, sent on 28 October, has the hall cleaned until noon and open to the society from 12:00 on Friday, after the older announcements of 10:00.
+          Does the answer say the 10:00 opening is wrong and give 12:00 as the time, with the booking as its source?
+          Pass if both. Fail if it calls the claim right, mixed or unsure, or gives no source for 12:00, and quote the verdict.
+      - id: copy-not-counted
+        tag: understand-research-fact
+        criterion: >-
+          social-post.txt repeats the newsletter's 10:00 and is dated 20 September.
+          Does the answer avoid weighing the newsletter and the post as two confirmations against the one booking?
+          Pass if it treats them as the same older announcement, or as outweighed by the later booking. Fail if it counts them as two sources against one, or calls the evidence evenly split, and quote it.
+      - id: dates-shown
+        tag: understand-research-fact
+        criterion: >-
+          Does the answer give the dates of the sources it relies on, the booking's 28 October and the announcements' September, so the reader can see which is newer?
+          Pass if it gives the booking's date and says the announcements are older. Fail if it gives no dates, and quote the closest part.

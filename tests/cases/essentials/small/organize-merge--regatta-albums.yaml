@@ -1,0 +1,36 @@
+about: >-
+  The merge guide on two records of one photo album, with the survivor named by the user, in one turn.
+  Each record holds details the other lacks and they share a date, so the survivor must hold every detail once, the retired record must say where its content went, and the index must point to the survivor.
+  The society website's link to the retired record is outside the folder and cannot be checked.
+  Rejects: a lost detail, a repeated date, a deleted record, a link in the index that still points to the retired record, or a claim that every link was updated.
+goal: Fold one album record into the other, keeping every detail, and report which links could not be checked.
+fixture: small/regatta-albums
+version_control: true
+turns:
+  - prompt: Fold regatta-87-notes.md into regatta-1987.md. They are two records of the same album and I only want one.
+    checks:
+      reads: [organize-merge]
+      only_changed: [regatta-1987.md, regatta-87-notes.md, index.md]
+      file_contains:
+        regatta-1987.md:
+          - 'Hana Voss'
+          - 'Pentax K1000'
+          - 'Commodore Pell'
+          - 'Harker twins'
+          - 'trophy'
+          - 'grey box'
+          - '46 prints'
+          - 'nos\. 17 and 31'
+          - '^(?![\s\S]*13 June 1987[\s\S]*13 June 1987)[\s\S]*13 June 1987'
+        regatta-87-notes.md: ['regatta-1987\.md']
+        index.md:
+          - 'lighthouse-1991\.md'
+          - '\]\(regatta-1987\.md\)'
+          - '^(?![\s\S]*\]\(regatta-87-notes\.md\))'
+    rubric:
+      - id: website-link-unverified
+        tag: organize-merge
+        criterion: >-
+          index.md says the society website's Archive page links straight to regatta-87-notes.md, and that page lives on the web host, outside this folder.
+          Does the answer say that link was not changed or could not be checked, and that it still points to the retired record?
+          Pass if the answer names the website link as not updated or unchecked. Fail if it says all links or references were updated, or never mentions the website link. Quote what it says.

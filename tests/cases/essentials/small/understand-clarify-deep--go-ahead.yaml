@@ -1,0 +1,26 @@
+about: >-
+  The deep guide on "go ahead" after the first round of an interview: it accepts that round's recommended answers, but it is not a start.
+  The recommended answers are taken as accepted, and the interview goes on with a next round or a summary to confirm. The plan is not written.
+  Rejects: reading "go ahead" as a start and writing the plan.
+goal: Take the recommended answers on "go ahead" and keep interviewing, writing nothing.
+fixture: small/portuguese-plan
+turns:
+  - prompt: Interview me about my Portuguese study plan until you know what it has to cover. The notes so far are in notes.md.
+    checks:
+      reads: [understand-clarify-deep]
+      no_changes: true
+  - prompt: Yes, go ahead.
+    checks:
+      no_changes: true
+    rubric:
+      - id: takes-recommended
+        tag: understand-clarify-deep
+        criterion: >-
+          Does the answer treat the recommended answers of the previous round as accepted, such as by saying it takes them or listing them as accepted?
+          Pass if it does. Fail if it ignores them or asks the same questions again, and quote the closest part.
+          If the previous round had no recommended answers, return unknown.
+      - id: not-a-start
+        tag: understand-clarify-deep
+        criterion: >-
+          Does the answer go on with a further round of questions, or ask the user to confirm a summary, rather than saying it is writing the study plan or has written it?
+          Pass if it continues the questions or asks for confirmation. Fail if it says it is starting, writing or has written the plan, and quote the closest part.

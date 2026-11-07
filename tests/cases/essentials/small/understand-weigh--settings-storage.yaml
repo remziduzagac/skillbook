@@ -1,0 +1,27 @@
+about: >-
+  The weigh guide on three named options where one breaks a rule in the README, in one turn.
+  The tool must work offline with nothing to install, so the shared settings server is dropped with that rule named as the reason,
+  yet because the user named it the answer still gives how it fares on the points used for the other two.
+  Rejects: weighing the server as a live option, dropping it for no stated rule, or dropping it without showing how it fares.
+goal: Compare three ways for a small tool to remember options, dropping the one that breaks the tool's rules.
+fixture: small/cli-tally
+turns:
+  - prompt: >-
+      I want tally to remember a person's usual options, like --sort total. I'm torn between three ways:
+      a hidden file in their home folder, environment variables, or a settings server the whole club shares. Which should I go with?
+    checks:
+      reads: [understand-weigh]
+      no_changes: true
+    rubric:
+      - id: drops-server
+        tag: understand-weigh
+        criterion: >-
+          README.md says tally is one Python file with no dependencies that works offline, with nothing to install and no accounts.
+          Does the answer drop the shared settings server because it breaks that rule, naming the offline or nothing-to-install rule as the reason?
+          Pass if the server is dropped for that rule. Fail if the server is still weighed as a live option, or dropped for another reason, and quote the part.
+      - id: dropped-values
+        tag: understand-weigh
+        criterion: >-
+          The user named the shared settings server.
+          Does the answer still show how it fares on the same points it uses for the other two options (for example effort to set up, or ease for the user)?
+          Pass if it gives the server's values on at least one of those points. Fail if it says only that the server is ruled out, and quote the part.

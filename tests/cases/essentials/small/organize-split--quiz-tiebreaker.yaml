@@ -1,0 +1,49 @@
+about: >-
+  The split guide on a split the user named by file, where one item fits none of the named files: the quiz bank's tiebreaker question belongs to neither music, geography nor history.
+  Over two turns. Turn 1 names the item that has no home and asks where it goes, with nothing changed.
+  Turn 2 puts every question in exactly one file, the tiebreaker where the user said, and marks the old list with where its questions went.
+  Rejects: filing the tiebreaker under a round it does not fit, dropping it, or starting a fourth file without asking.
+goal: Split one question list into the files the user named, after the user decides where the one question that fits none of them goes.
+fixture: small/quiz-night-bank
+turns:
+  - prompt: Our quiz question bank is one long list in bank.md. Make it one file per round, music.md, geography.md and history.md.
+    checks:
+      reads: [organize-split]
+      no_changes: true
+    rubric:
+      - id: homeless-item-named
+        tag: organize-split
+        criterion: >-
+          bank.md holds twelve questions that fit music, geography or history, and a thirteenth, a tiebreaker about the number of bones in the adult human body, that fits none of the three files the user named.
+          Does the answer tell the user that the tiebreaker has no home among music.md, geography.md and history.md?
+          Pass if it says the tiebreaker (or the bones question) fits none of the three, or asks where it should go.
+          Fail if it never mentions the tiebreaker, or places it in one of the three as if it belonged there. Quote what the answer says about it.
+      - id: asks-where
+        tag: organize-split
+        criterion: >-
+          Does the answer put the tiebreaker's placement to the user as a question before any question is moved, such as a file of its own, one of the three files, or leaving it in bank.md?
+          A proposal with a request to approve counts. Pass if the placement is asked. Fail if the answer says the questions are already moved, or asks nothing about the tiebreaker. Quote the question.
+  - prompt: Give the tiebreaker its own tiebreaker.md, and go ahead with the rest.
+    checks:
+      only_changed: [bank.md, music.md, geography.md, history.md, tiebreaker.md]
+      file_contains:
+        music.md:
+          - 'Vivaldi'
+          - 'concert harp'
+          - 'Fleetwood Mac'
+          - 'Beethoven'
+          - '^(?![\s\S]*(Nile|Canberra|Gibraltar|Sahara|Berlin Wall|Elizabeth I|Augustus|Mayflower|bones))'
+        geography.md:
+          - 'Nile'
+          - 'Canberra'
+          - 'Gibraltar'
+          - 'Sahara'
+          - '^(?![\s\S]*(Vivaldi|concert harp|Fleetwood Mac|Beethoven|Berlin Wall|Elizabeth I|Augustus|Mayflower|bones))'
+        history.md:
+          - 'Berlin Wall'
+          - 'Elizabeth I'
+          - 'Augustus'
+          - 'Mayflower'
+          - '^(?![\s\S]*(Vivaldi|concert harp|Fleetwood Mac|Beethoven|Nile|Canberra|Gibraltar|Sahara|bones))'
+        tiebreaker.md: ['bones', '206']
+        bank.md: ['music\.md', 'geography\.md', 'history\.md', 'tiebreaker\.md']

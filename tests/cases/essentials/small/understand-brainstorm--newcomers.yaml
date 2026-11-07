@@ -1,0 +1,33 @@
+about: >-
+  The brainstorm guide on one question with ideas already on file, in one turn.
+  The answer lists the two ideas the committee already proposed first and marks them as earlier, offers further ideas that differ in kind and not in wording,
+  and names none of them as the one to do, since the user asked for ideas and not a choice.
+  Rejects: presenting the earlier ideas as new, ideas that are one idea reworded, or picking a winner nobody asked for.
+goal: List ideas for getting more newcomers to stay, with the earlier proposals first and no pick.
+fixture: small/runclub-newcomers
+turns:
+  - prompt: >-
+      Only 5 of the 19 newcomers we had last year came back. I'd like a spread of ideas for getting more of them to stay.
+      What we know is in newcomers.md.
+    checks:
+      reads: [understand-brainstorm]
+      no_changes: true
+    rubric:
+      - id: earlier-first
+        tag: understand-brainstorm
+        criterion: >-
+          newcomers.md lists two ideas the committee already proposed in March: a buddy scheme and a Saturday beginners' group.
+          Does the answer list both of them first, before any new idea, and mark them as already proposed?
+          Pass if both come first and are marked as earlier proposals. Fail if either is missing, comes after new ideas, or is presented as a new idea, and quote the part.
+      - id: distinct-kinds
+        tag: understand-brainstorm
+        criterion: >-
+          Look at the new ideas the answer offers, and at the two earlier ones.
+          Are any two of them the same idea in different words, such as a "mentor" that is a buddy by another name, or two ways of pairing a newcomer with a regular?
+          Pass if every idea differs in kind from the others. Fail if two are the same idea reworded, and quote both.
+      - id: no-pick
+        tag: understand-brainstorm
+        criterion: >-
+          Does the answer name one idea as the one to go with, such as "I'd start with", "my pick" or "I recommend"?
+          Saying that an idea costs nothing or takes little time is not naming a pick.
+          Pass if it lists the ideas and leaves the choice open. Fail if it names one to go with, and quote it.

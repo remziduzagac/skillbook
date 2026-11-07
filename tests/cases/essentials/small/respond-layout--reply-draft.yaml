@@ -1,0 +1,25 @@
+about: >-
+  The layout guide on text the user will paste into their mail app.
+  The reply to the customer comes whole and on its own, in email form, and any note about a choice the agent made comes after it.
+  The scent swap is the owner's call, and the order has already been posted, so the draft has to decide how to handle it.
+  Rejects: a "Going with" line or an assumption before or inside the reply, or Markdown symbols in the message.
+goal: Write a reply for the owner to paste into an email, with any note placed after it.
+fixture: small/candle-mail
+turns:
+  - prompt: Please reply to Pauline Okafor's email (customer-email.txt) for me. I want to paste your reply straight into my mail app.
+    checks:
+      reads: [respond-layout]
+      no_changes: true
+    rubric:
+      - id: note-after-draft
+        tag: respond-layout
+        criterion: >-
+          The reply has to decide what to say about swapping the scent after the candle was posted, which is the owner's call, so the agent may add a note about the choice it made.
+          Is the message to the customer kept whole and on its own, with every note, assumption or "Going with" line after it and none inside it or before it?
+          A short lead-in such as "Here is the reply:" is not a note.
+          Pass if the message holds only text to the customer and any note comes after it, or there is no note. Fail if a note or assumption sits inside the message or before it, and quote it.
+      - id: email-form
+        tag: respond-layout
+        criterion: >-
+          Is the message in plain email form: a greeting, short paragraphs and a sign-off that names Dee at Wick & Hollow, with no Markdown symbols such as ** or # inside it?
+          Pass if all of these hold. Fail if the message has Markdown symbols, or no greeting, or no sign-off, and quote the failing part.
