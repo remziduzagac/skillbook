@@ -1,0 +1,35 @@
+about: >-
+  The brainstorm guide on one question with two stalled proposals on file, each easy to offer again in a lighter form, in one turn.
+  The answer lists the two proposals the parish council already made first and marks them as earlier,
+  gives any changed or lighter form of one of them under that proposal or leaves it out and does not list it as a new idea,
+  and names no idea as the one to do, since the user asked for ideas and not a choice.
+  Rejects: a lighter form of an earlier proposal listed as a new idea, earlier proposals presented as new, or a pick nobody asked for.
+goal: List ideas for filling a half-empty minibus, with the earlier proposals first, versions kept under them and no pick.
+fixture: small/minibus-thursday
+turns:
+  - prompt: >-
+      Our Thursday minibus carried only 4 people a trip last year, and it needs 9 to cover its fuel.
+      I'd like a spread of ideas for filling it. What we know is in minibus-notes.md.
+    checks:
+      reads: [understand-brainstorm]
+      no_changes: true
+    rubric:
+      - id: earlier-first
+        tag: understand-brainstorm
+        criterion: >-
+          minibus-notes.md lists two ideas the parish council already proposed in May: a Saturday run to the pool and market, and door-to-door pickups by booking.
+          Does the answer list both of them first, before any new idea, and mark them as already proposed?
+          Pass if both come first and are marked as earlier proposals. Fail if either is missing, comes after new ideas, or is presented as a new idea, and quote the part.
+      - id: variants-under-earlier
+        tag: understand-brainstorm
+        criterion: >-
+          Look at each idea the answer lists as its own new idea, apart from the two earlier proposals.
+          Is any of them a changed version of an earlier proposal, such as a Saturday run only once a month or as a trial, or pickups from a few fixed stops or for a short list of riders?
+          A changed version given under the earlier proposal it belongs to is not a new idea, and neither is leaving such versions out.
+          Pass if no idea listed as new is a version of an earlier proposal. Fail if one is, and quote it and the earlier proposal it changes.
+      - id: no-pick
+        tag: understand-brainstorm
+        criterion: >-
+          Does the answer name one idea as the one to go with, such as "I'd start with", "my pick" or "I recommend"?
+          Saying that an idea costs nothing or fits the limits is not naming a pick.
+          Pass if it lists the ideas and leaves the choice open. Fail if it names one to go with, and quote it.

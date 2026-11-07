@@ -23,7 +23,7 @@ The requested options or candidates. Add a comparison and a decision, or why the
 
 ## Rules
 
-1. **Make options differ in kind.** Rewordings of one idea are one option.
+1. **Make options differ in kind.** Rewordings of one idea are one option. So is a changed version of an option already listed, such as a lighter or trial form of an earlier proposal: develop it under that option.
 2. **Use the `understand-weigh` guide only for a requested choice.** Compare the options on the same terms there. Return a requested list of options or candidates without a choice. Choosing for a caller that asked only for candidates takes over a decision it still owns.
 3. **Follow the `understand` guide's who-decides rule.** A choice that belongs to the user stays theirs, and your own choices stay visible. For a requested choice, give the recommendation as the recommended answer, or park the choice with why and what would settle it. Use the same rule for showing the choices you make yourself.
 

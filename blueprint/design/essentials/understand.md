@@ -534,7 +534,7 @@ understand/
   - the `devise-design` guide, the `devise-plan` guide, and any other caller that needs new options, such as a skill in the harness’s list for changing code (D252, D281);
   - the person, typing it.
 - **Flow** (D118). Rules, each with its reason:
-  1. **Options differ in kind, not in wording:** three phrasings of one idea are one option.
+  1. **Options differ in kind, not in wording:** three phrasings of one idea are one option, and a changed version of an option already listed, such as a lighter or trial form of an earlier proposal, is developed under that option, not offered as a new one, since both test models offered a lighter form of an earlier proposal as a new idea while step 3 asks to develop and combine options (D325).
   2. **Use the `understand-weigh` guide when a choice was requested.** Compare the options on the same terms. A requested list of options or candidates is returned without a choice. Choosing for a caller that asked only for candidates takes over a decision it still owns (D252). "Candidates only" has its one home here (D291).
   3. **Who decides follows the `understand` guide's rule.** A choice that belongs to the user stays theirs, and the agent's own choices stay visible. For a requested choice, use the recommendation as the recommended answer, or park it with why and what would settle it. For an agent-made choice, use that rule for disclosure (D252, D291).
 
@@ -564,7 +564,7 @@ understand/
   1. options requested for one question: the question named, and framed through the `understand-frame` guide only when its goal or test is missing; distinct options listed before judgment and developed as needed; options returned without a forced selection question; wrong: making a choice the user did not ask for (D252);
   2. a request where the person likely has a picture of their own: asked to describe it before any option is offered;
   3. "which database, and how do we deploy it": two questions, named and taken one at a time, or one parked;
-  4. options that are rewordings of one idea: folded into one;
+  4. options that are rewordings of one idea: folded into one; a lighter or trial form of an earlier proposal: given under that proposal, not as a new idea (D325);
   5. an agent-made choice inside a task: disclosure follows the `understand` guide's who-decides rule; a minor choice is omitted unless asked; wrong: a compulsory announcement for every internal choice (D252);
   6. "show me all the options": every option shown, not only the comparison;
   7. a question with options already proposed where the project keeps them: those options listed first, marked as earlier;

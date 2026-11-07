@@ -1,0 +1,25 @@
+about: >-
+  The layout guide on a comparison of four insurance quotes where one of the three points the user names, what must be done to keep theft cover valid, is a sentence or two for each quote.
+  The price and the excess are short and may sit in a table, but the theft conditions are long, so they go in a list with sub-items or in text, and no table row runs past 120 characters.
+  The answer must still carry the conditions, not drop them to keep a table narrow.
+  Rejects: a table row wider than 120 characters, or a narrow table or short summary that leaves out the theft conditions the user asked to compare.
+goal: Compare four insurance quotes on price, excess and theft conditions, in a form that stays readable in a terminal and still gives the conditions.
+fixture: small/contents-cover-quotes
+turns:
+  - prompt: >-
+      We have to pick contents insurance this week, and the four quotes are in cover-notes.md.
+      Please compare them for me on yearly price, excess, and what we must do to keep the theft cover valid.
+    checks:
+      reads: [respond-layout]
+      no_changes: true
+      answer_contains: ['Kestrel', 'Birchfold', 'Quillon', 'Aldermoor']
+      answer_not_contains: ['(?m)^[ \t]*\|[^\n]{120,}$']
+    rubric:
+      - id: long-detail-kept
+        tag: respond-layout
+        criterion: >-
+          The user asked to compare the four quotes on what must be done to keep theft cover valid.
+          In cover-notes.md each quote gives this as a sentence or two: a lock type or a serviced alarm, the days away after which cover is cut or stops (Kestrel 30 days, Birchfold 14 and 60, Aldermoor 90, Quillon none), and what happens to a claim if a rule is broken.
+          Does the answer still give these conditions for all four quotes, in a list or in text, and not drop them to keep a table narrow?
+          Pass if, for each quote, the answer states the specific requirement the notes give (such as the type of lock, the serviced alarm, or the days away), in a list, in text or in a table that is not wide.
+          A shortened form is fine if the lock or alarm rule and the days-away limit are still there. Fail if any quote's conditions are missing, or are reduced to a label such as "has lock rules", "conditions apply" or "see notes". Quote what replaced them.

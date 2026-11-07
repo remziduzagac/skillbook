@@ -1,0 +1,24 @@
+about: >-
+  The understand guide's who-decides rule on a short message where the tone is open: the user has not said whether the message to a furniture shop should be polite, formal or firm.
+  A message of a few lines is quick to redo, so this is the short-draft exception: the message is written in message.txt with the facts from the file, and the answer names the tone it chose in a "Going with" line.
+  Rejects: stopping to ask about the tone before writing, or a finished message that never says what tone it took.
+goal: Write a short message to a shop about a late sofa, naming the tone chosen.
+fixture: small/sofa-delivery
+turns:
+  - prompt: >-
+      Please write a short email to the shop about my sofa that has not come, using what is in order.md.
+      Save it as message.txt and I will paste it into my mail.
+    checks:
+      reads: [understand]
+      changed: [message.txt]
+      only_changed: [message.txt]
+      file_contains:
+        message.txt: ['BM-20417', '20(th)? (November|Nov)|(November|Nov) 20', '180']
+      answer_contains: ['Going with']
+    rubric:
+      - id: names-open-choice
+        tag: understand
+        criterion: >-
+          order.md gives the facts of the late sofa but says nothing about the tone of the email, such as polite, formal or firm.
+          Does the answer have a "Going with" line that names the tone chosen, such as "a firm but polite tone", and so lets the user ask for the other?
+          Pass if such a line names the tone. Fail if there is no "Going with" line, or the line names only other choices, such as the date or the subject line, and not the tone. Quote the closest part.
