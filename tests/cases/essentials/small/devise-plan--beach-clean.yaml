@@ -1,0 +1,63 @@
+about: >-
+  The devise-plan guide on work with several parts, then a later turn that changes one finished part and adds a new one.
+  Turn 1 makes an invitation and a briefing sheet from two sources, no steps given, and the work goes ahead.
+  Turn 2 moves the date and adds a group, so the agent revises the work: it keeps the finished briefings, redoes and checks the invitation's date, adds the new group, and says what changed.
+  Rejects: starting again and dropping a finished group, the old date left in, the new group missing, or new input applied with no check named.
+goal: Get a beach clean ready, then move its date and add one more group.
+fixture: small/beach-clean
+version_control: true
+turns:
+  - timeout: 900
+    prompt: >-
+      Can you get the beach clean ready? From the sign-ups and the beach notes I need the invitation in invite.md, and a briefing for each group in briefings.md giving its leader, its volunteers and its stretch of beach.
+    checks:
+      reads: [devise-plan]
+      file_contains:
+        invite.md:
+          - '\b6(th)? November|November 6\b'
+          - 'slipway car park|lifeboat station'
+          - 'gloves'
+        briefings.md:
+          - 'Okafor'
+          - 'Lindqvist'
+          - 'Tanner'
+          - 'Ashby'
+          - 'Petrov'
+          - 'Khoury'
+          - 'Harbour wall'
+          - 'old pier'
+  - timeout: 900
+    prompt: >-
+      Change of plan: the clean is now on Saturday 13 November, and the Dune Walkers are joining.
+      Mo Pearce leads them, with Lena Voss and Bram Eke, and they take the dune path. Please bring everything up to date.
+    checks:
+      file_contains:
+        invite.md:
+          - '\b13(th)? November|November 13\b'
+          - '^(?![\s\S]*(\b6(th)? November|November 6\b))[\s\S]+'
+        briefings.md:
+          - '^(?![\s\S]*(\b6(th)? November|November 6\b))[\s\S]+'
+          - '(?s)Pearce.{0,300}dune path|dune path.{0,300}Pearce'
+          - 'Voss'
+          - 'Eke'
+          - 'Okafor'
+          - 'Lindqvist'
+          - 'Tanner'
+          - 'Ashby'
+          - 'Petrov'
+          - 'Khoury'
+          - 'Harbour wall'
+          - 'old pier'
+    rubric:
+      - id: changes-reported
+        tag: devise-plan
+        criterion: >-
+          The user moved the clean to Saturday 13 November and added the Dune Walkers.
+          Does the final answer say what changed in this turn, giving the changed part (the invitation's date) and the added part (the Dune Walkers' briefing), each with its result?
+          Pass if it names both with what was done to each. Fail if it only says everything is up to date, gives only one of the two, or asks leave first, and quote what it gives.
+      - id: change-checked
+        tag: devise-plan
+        criterion: >-
+          Does the final answer name a check of the changed part, the invitation with its new date, and say what that check found?
+          Pass if it names such a check and its result, such as the old date no longer appearing or the invitation now reading 13 November.
+          Fail if it names no check of the changed part, or only says "checked" or "done", and quote the closest part.

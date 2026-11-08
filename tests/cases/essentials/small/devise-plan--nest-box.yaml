@@ -1,0 +1,19 @@
+about: >-
+  Near miss for the devise-plan guide: one kind of change, inches to centimetres, made wherever it applies in one page.
+  It sounds like a big job, but it is one step in one file from one source, so it goes ahead at once with no plan, and the plan guide stays closed.
+  Rejects: reading the plan guide, stopping to ask leave, a measurement left in inches, or a metric line changed.
+goal: Convert every measurement in a nest box build sheet from inches to centimetres.
+fixture: small/nestbox-build
+turns:
+  - prompt: Please convert every measurement in nestbox.md from inches to centimetres, to the nearest centimetre.
+    checks:
+      reads_not: [devise-plan]
+      only_changed: [nestbox.md]
+      file_contains:
+        nestbox.md:
+          - '\b46 ?(cm|centimet)'
+          - '\b30 ?(cm|centimet)'
+          - '\b25 ?(cm|centimet)'
+          - '\b8 ?(cm|centimet)'
+          - 'The entrance hole is 28 mm across'
+          - 'weather for 2 weeks'

@@ -1,0 +1,37 @@
+about: >-
+  The devise-plan guide on work that sounds like one job but has several parts: two sheets made from three source files, no steps given, in one turn.
+  Nothing needs the user's decision first and both files are new, so the work goes ahead; the answer reports each part with what it produced, then the check against the sources and what it found.
+  Rejects: writing only one of the two sheets, a bill with a wrong total, such as the Thursday night charged the Easter supplement, a diet or medicine note lost from the staff sheet, or a report with no check.
+goal: Get a dog kennel's Easter weekend boarding ready, with a sheet for the kennel team and a bill for each owner.
+fixture: small/boarding-weekend
+turns:
+  - prompt: >-
+      Please get Easter weekend's boarding ready: staff-sheet.md for the kennel team, and bills.md for the owners.
+    checks:
+      reads: [devise-plan]
+      unchanged: [bookings.csv, dog-notes.md, prices.md]
+      file_contains:
+        staff-sheet.md:
+          - 'Biscuit'
+          - '(?s)Juno.{0,300}ear drops?|ear drops?.{0,300}Juno'
+          - '(?s)Moss.{0,300}chicken|chicken.{0,300}Moss'
+          - '(?s)Pip.{0,300}tablet|tablet.{0,300}Pip'
+          - '(?s)Pip.{0,300}0?9[:.]30|0?9[:.]30.{0,300}Pip'
+        bills.md:
+          - '(?s)Hale.{0,400}?\b72\b'
+          - '(?s)Oyelaran.{0,400}?\b120\b'
+          - '(?s)Castellano.{0,400}?\b48\b'
+          - '(?s)Whitfield.{0,400}?\b114\b'
+    rubric:
+      - id: parts-reported
+        tag: devise-plan
+        criterion: >-
+          The user asked for two things: a sheet for the kennel team and a bill for each owner.
+          Does the final answer report both parts, each with what it produced, such as the dogs, arrival times and care notes on the staff sheet and the total for each owner on the bills?
+          Pass if it names both parts with what each holds. Fail if it only says the boarding is ready, reports only one part, or asks leave to start, and quote what it gives.
+      - id: check-reported
+        tag: devise-plan
+        criterion: >-
+          Does the final answer name a check of the finished sheets against the bookings, the dog notes or the prices, and say what that check found?
+          Pass if it names a check and its result, such as every dog from the bookings appearing on the staff sheet or each total matching the nights and the Easter supplement.
+          Fail if it names no check, or only says "checked" or "done", and quote the closest part.
