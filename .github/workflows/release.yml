@@ -125,8 +125,9 @@ jobs:
               echo "- ${set%.sh}: \`curl -fsSL $download/$name | sh\`"
             done
             echo
-            echo "Then ask your agent to set up skillbook. To check the files, run \`sha256sum -c SHA256SUMS\`, or"
-            echo "\`gh attestation verify <file> --repo $GITHUB_REPOSITORY\`. The README covers updating and uninstalling."
+            printf '%s %s %s\n' "Then ask your agent to set up skillbook." \
+              "To check the files, run \`sha256sum -c SHA256SUMS\`, or \`gh attestation verify <file> --repo $GITHUB_REPOSITORY\`." \
+              "The README covers updating and uninstalling."
           } >> notes.md
       - name: Publish the release
         run: |
