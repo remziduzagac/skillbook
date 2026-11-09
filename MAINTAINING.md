@@ -67,7 +67,7 @@ GitHub runs a workflow by hand only once it is on the default branch, `main`. Be
 git fetch origin && git push origin origin/dev:main
 ```
 
-That push deploys the site, with empty channels. Until the first release, a set's install line says it has no release yet and points to `--preview`; `--check` and `--uninstall` use the preview.
+That push deploys the site, with empty channels. The first push to `test` creates the branch, which Git does only with its full name: `git push origin origin/dev:refs/heads/test`. Until the first release, a set's install line says it has no release yet and points to `--preview`; `--check` and `--uninstall` use the preview.
 
 ## Releasing
 
