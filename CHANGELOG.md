@@ -4,6 +4,8 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-09
+
 ### Added
 
 - repository: a weekly health check that keeps one issue on what needs attention, the expected settings and rulesets in `.github/upkeep/`, and a spelling check.
