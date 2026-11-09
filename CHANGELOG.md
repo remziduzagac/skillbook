@@ -8,6 +8,10 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 - repository: a weekly health check that keeps one issue on what needs attention, the expected settings and rulesets in `.github/upkeep/`, and a spelling check.
 
+### Changed
+
+- docs: the README, the docs home page, the essentials page and the install page show the preview's install line in full, beside the release's.
+
 ## [0.1.0] - 2026-11-09
 
 ### Added
