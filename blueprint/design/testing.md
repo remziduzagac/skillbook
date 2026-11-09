@@ -4,16 +4,20 @@ How skillbook is tested, as a whole: what runs where, what a test needs, and whe
 
 ## Three kinds of test
 
-1. **Static checks:** `just check`, as today. It runs the markdown lint, the link check, ShellCheck, shfmt, actionlint, zizmor and the skill-file check. It runs locally and in GitHub CI on every pull request. CI also checks every commit message for AI credit lines, and `just hooks` turns the same check on locally (D225).
-2. **Install tests:** `just test-install`. They check `install.sh` in a throwaway home:
+1. **Static checks:** `just check`, as today. It runs the markdown lint, the link check, ShellCheck, shfmt, actionlint, zizmor and the skill-file check. It runs locally and in GitHub CI on pull requests and on pushes to `dev`, `test` and `main`, where CI also builds the docs site (D332). CI also checks every commit message for AI credit lines, and `just hooks` turns the same check on locally (D225).
+2. **Install tests:** `just test-install`. They check `install.sh` and the scripts that release it, in a throwaway home:
    - copy mode and link mode;
    - the marker file, with a checksum per file;
    - refusing a folder it did not install, and stopping before replacing or removing files the user changed;
    - `--sets`, `--project`, `--check`, `--force` and `--uninstall`;
    - running it twice;
-   - a release packed by `scripts/pack-release.sh`, installed by its `install-<set>.sh` as `curl … | sh` runs it, with a wrong checksum refused (D331).
+   - a release packed by `scripts/pack-release.sh`, installed by its `install-<set>.sh` as `curl … | sh` runs it, with a wrong checksum refused, the release tag used for downloads and a `skills/` folder beside the script ignored (D331);
+   - a preview packed with its version and tag, and `scripts/preview-version.sh`: the next patch after the highest tag, `0.1.0` before any, no version for a commit a release tag points at (D332);
+   - the Pages site's files from `scripts/site-files.sh`: the `stable` and `preview` channel files, the preview published last or a later release named by the preview channel, and empty channels before any release (D332);
+   - the install line, `scripts/bootstrap.sh` with the set filled in, with and without `--preview`: a changed script and a malformed channel tag refused, and `--check`, `--uninstall` and `--help` working with only a preview (D332);
+   - `--check` showing the installed version, the latest release and the newest preview.
 
-   They need no agent and no key. They run locally and in GitHub CI on every pull request, on Linux and macOS.
+   They need no agent and no key. They run locally and in GitHub CI on pull requests and on pushes to `dev`, `test` and `main`, on Linux and macOS, and the Release and Preview workflows run them again before they publish.
 3. **AI tests, local only.** No AI test runs on GitHub. The user's personal accounts are never used in GitHub CI, and no free quota fits (see "Why AI tests stay local").
    - **Automated:** `just test-agents-ts` runs small cases through the TypeScript runner, and `tests/judge-small.ts` judges their answers. The user sets when model tests run. An agent may also guide a run: start cases, read the summaries and read every fail.
    - **Manual:** `just try claude` or `just try codex` opens that agent in a toy project, with a sandbox home that has skillbook installed in link mode, so edits show at once. The user logs in once inside the sandbox. The user's real agent setup, and the agent session that develops the skills, stay apart from the skills under test. The command runs in whatever terminal or pane the user picks; nothing imposes a layout.
@@ -100,7 +104,7 @@ All in `tests/` (D190), except the commands, which are in the `justfile`.
   6. checks the event log;
   7. writes a short summary.
 - **`tests/judge-small.ts`:** the two judges and the report for small cases, as "Small cases" describes. It reads the runner's result folders and the current case files, saves both judges' verdicts in one file, and lists the splits in a file beside it.
-- **`tests/install-test.sh`:** the install tests. Each test copies `install.sh` and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched.
+- **`tests/install-test.sh`:** the install tests. Each test copies `install.sh`, the release, preview and Pages scripts and `skills/` into a fresh temporary folder and runs there with a throwaway home, so the working copy and the real home are never touched. Releases and the site are folders reached by `file://` addresses.
 - **`tests/test_runner.py`:** account-free tests of the evidence and case inventory, run by `just test-runner` inside `just check`. Correct and wrong synthetic traces exercise the assertions without spending on a model.
 - **`tests/archive/`:** the frozen long scenarios, kept as a record and not run (see "Frozen long scenarios").
 - **Review evidence:** before deleting each sandbox, the runner retains per-turn fixture diffs, observed file contents requested by assertions, answers and an ordered action ledger of tool names, commands and target paths. Tool outputs and credential-home contents are not copied into that ledger. Failed or timed-out turns retain the evidence available, marked incomplete. Evidence grading follows skillbook-test-write's rules. Raw events may be kept explicitly when needed.
