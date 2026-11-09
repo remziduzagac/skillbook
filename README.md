@@ -40,10 +40,11 @@ Each set is installed as one skill in the agent’s skill list. Its files under 
 Each set installs on its own, with one line, on Linux and macOS; on Windows, use WSL. For essentials:
 
 ```sh
-curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh
+curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh                   # the latest release
+curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh -s -- --preview   # the newest preview
 ```
 
-Then ask your agent to **set up skillbook**: with your approval, it adds the line that tells the agent to load essentials before any work, and what your agent needs to read the installed files. Run the same line again to update. [Installing skillbook](docs/install.md) covers the options, checking the files, previews and removing.
+Then ask your agent to **set up skillbook**: with your approval, it adds the line that tells the agent to load essentials before any work, and what your agent needs to read the installed files. Run the same line again to update. A preview is what the next release will hold, published to try it first. [Installing skillbook](docs/install.md) covers the options, checking the files, previews and removing.
 
 ## Documentation
 

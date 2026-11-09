@@ -7,7 +7,14 @@
 
 Essentials is skillbook’s base skill. It guides how an AI agent does any piece of work, whatever the project: understand what you want, act with care, and tell you plainly what it did. You can install it on its own. Other sets may build on it; essentials names no other set.
 
-To install it, run `curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh`, then ask your agent to set up skillbook. [Installing skillbook](../install.md) covers checking, updating, previews and removing it.
+To install it, run one of these lines, then ask your agent to set up skillbook:
+
+```sh
+curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh                   # the latest release
+curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh -s -- --preview   # the newest preview
+```
+
+[Installing skillbook](../install.md) covers checking, updating, previews and removing it.
 
 Essentials uses the current agent’s own controls. Missing controls use the skill’s text or main-session fallback; required independent checks remain pending.
 

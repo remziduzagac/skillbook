@@ -3,10 +3,11 @@
 Each set installs on its own, with one line, on Linux and macOS; on Windows, use WSL. For essentials:
 
 ```sh
-curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh
+curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh                   # the latest release
+curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh -s -- --preview   # the newest preview
 ```
 
-The line installs the latest release. It copies the set into `~/.claude/skills/essentials` for Claude Code, when `~/.claude` exists, and into `~/.agents/skills/essentials` for Codex, when `~/.codex` exists. It needs no root, checks every download against its checksum, and never overwrites a folder it did not install.
+The first line installs the latest release; the second installs the newest preview, as [Previews](#previews) says. Each line copies the set into `~/.claude/skills/essentials` for Claude Code, when `~/.claude` exists, and into `~/.agents/skills/essentials` for Codex, when `~/.codex` exists. It needs no root, checks every download against its checksum, and never overwrites a folder it did not install.
 
 ## Setting up your agent
 
@@ -61,7 +62,13 @@ Run the same line again. It installs the latest release, and the new copy replac
 
 A preview is what is being prepared for the next release, published to try it before it is released. Each one is a pre-release on the releases page, tagged `preview-<time>-<commit>`, with a version such as `0.1.1-preview.202611091530.g1a2b3c4`.
 
-- **Install the newest preview:** add `--preview` to the line. It installs the preview published last, or the latest release when that was published after every preview.
+- **Install the newest preview:** add `--preview` to the line. It installs the preview published last, or the latest release when that was published after every preview:
+
+  ```sh
+  curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh -s -- --preview
+  ```
+
+- **Update a preview:** run the same line again; it installs whatever preview is newest then.
 - **Go back to releases:** run the line without `--preview`. It replaces the preview with the latest release.
 
 Previews may change or break between one and the next, and only the newest ten are kept.
