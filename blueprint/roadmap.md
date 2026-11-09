@@ -32,7 +32,7 @@ Starts with the baseline (D108); the rest once the person declares the initial d
 - [ ] **The first skills,** as their parts are designed.
 - [ ] **This repository's `AGENTS.md`,** cut down to the project's facts once act and respond exist; the pointer goes where the skills are installed (D78, D165).
 - [x] **The first release:** `0.1.0`, essentials only. Built: the release script (`scripts/release.sh`, run with `just release`), the release workflow (the install tests on Linux and macOS, `scripts/pack-release.sh`, attestation, a draft release, then publishing), `install-<set>.sh` for each released set, previews published from a push to `test` (`.github/workflows/preview.yml`), the install line and the docs on the Pages site (`.github/workflows/pages.yml`, the docs site in `site/`), `CHANGELOG.md`, the README, `docs/install.md`, the community files and `MAINTAINING.md` (D190–D192, D331, D332). The person applied the repository settings, `main` moved to `dev` once, the preview `preview-202611090856-e81c48a` was tried in a throwaway home, and `just release 0.1.0` published `v0.1.0`, which the install line installs (D332). Left for later: an SBOM and native Windows (D331). 2026-11-09.
-- [ ] **slipbox's upkeep,** after the first release: expected settings and rulesets in `.github/upkeep/`, deviations and renewals, a weekly health workflow and issue, a weekly external link check and a spelling check (D190, D332).
+- [x] **slipbox's upkeep:** expected settings and rulesets in `.github/upkeep/`, deviations and renewals, a weekly health workflow and issue, a weekly external link check and a spelling check (D190, D332, D333). 2026-11-09.
 
 ## Later
 

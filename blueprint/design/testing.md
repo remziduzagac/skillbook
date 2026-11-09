@@ -4,7 +4,7 @@ How skillbook is tested, as a whole: what runs where, what a test needs, and whe
 
 ## Three kinds of test
 
-1. **Static checks:** `just check`, as today. It runs the markdown lint, the link check, ShellCheck, shfmt, actionlint, zizmor and the skill-file check. It runs locally and in GitHub CI on pull requests and on pushes to `dev`, `test` and `main`, where CI also builds the docs site (D332). CI also checks every commit message for AI credit lines, and `just hooks` turns the same check on locally (D225).
+1. **Static checks:** `just check`, as today. It runs the markdown lint, the link check, the spelling check, ShellCheck, shfmt, actionlint, zizmor, the skill-file check and the health check's tests. It runs locally and in GitHub CI on pull requests and on pushes to `dev`, `test` and `main`, where CI also builds the docs site (D332). CI also checks every commit message for AI credit lines, and `just hooks` turns the same check on locally (D225).
 2. **Install tests:** `just test-install`. They check `install.sh` and the scripts that release it, in a throwaway home:
    - copy mode and link mode;
    - the marker file, with a checksum per file;

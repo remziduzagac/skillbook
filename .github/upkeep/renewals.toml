@@ -1,0 +1,14 @@
+# Every credential and renewal the repository depends on (greenrepo SET-08, UPK-03, UPK-09). The weekly health check
+# (scripts/health.ts) lists in the health issue each one due within 30 days, and comments once when one is due within
+# 7; the monthly admin comparison (`bun scripts/health.ts --admin`) checks that every secret and deploy key on GitHub
+# is listed here, and prints its age.
+#
+# None yet: releases are attested through GitHub's own signing, and the Pages site has no domain of its own, so there
+# is no secret, deploy key, domain or registry account to renew (MAINTAINING.md, "Access continuity"). One added later
+# is listed here first.
+#
+# An entry: `name`; `kind` (token, deploy-key, domain, certificate, account); `what` it is; its `purpose`; where it
+# `lives`; `secret = { name, environment }` for a secret Actions holds (no environment: the repository's), or
+# `deploy_key` (its title) for a deploy key; `status`: planned (not created yet, so no date), active, or retired (kept
+# until it's revoked); its date, quoted, since Bun 1.3's TOML parser reads no bare dates: `expires` for what expires,
+# `rotate_by` for a deploy key; and what's `due` then.

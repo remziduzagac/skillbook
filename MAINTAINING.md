@@ -117,11 +117,11 @@ It runs when a push to `main` changes the docs or the site, and by hand on `main
 
 - **Dependabot** (`.github/dependabot.yml`) opens grouped pull requests once a month, into `dev`, for the workflows' actions and the `bun` packages of the test runner and the docs site, each version at least seven days old. Read what each update changes, run the checks, and merge it like any change.
 - **The docs site's install** runs under `site/bunfig.toml`'s gates: no package's install script runs, a version is taken only once it is a week old, and `bun add` pins the exact version. `site/package.json` puts a placeholder in place of `sharp`, so no image library is installed.
-- **Pins Dependabot does not see,** reviewed twice a year, in April and October: Bun in `mise.toml` and the workflows' `bun-version`, the tools CI installs in `.github/workflows/ci.yml`, and markdownlint-cli2 in the justfile.
+- **Pins Dependabot does not see,** reviewed twice a year, in April and October: Bun and typos in `mise.toml` and the workflows' `bun-version`, the tools the workflows install with `taiki-e/install-action`, and markdownlint-cli2 in the justfile.
 
 ## Repository settings
 
-The settings the repository should have. The maintainer changes them by hand; agents never do.
+The settings the repository should have. The maintainer changes them by hand; agents never do. `.github/upkeep/settings.json` and `.github/upkeep/rulesets/` hold the same, by GitHub's own field names, for the health check to compare ("Upkeep"); a setting changed is written there in the same session.
 
 - **Branches:** `main` is the default branch. The ruleset "Long-lived branches" stops `dev`, `test` and `main` from being deleted or force-pushed, for everyone. The ruleset "Release tags" lets only repository admins create, move or delete `v*` tags, so nothing else can start a release.
 - **Merging:** squash, merge or rebase, as the change needs; merged branches are deleted.
@@ -133,6 +133,37 @@ The settings the repository should have. The maintainer changes them by hand; ag
 - **The front page:** the description, the topics and the docs site as the homepage.
 
 To get past a ruleset in an emergency, disable it under Settings, then Rules, and turn it back on.
+
+## Upkeep
+
+### The health issue
+
+`.github/workflows/health.yml` runs `scripts/health.ts` every Monday and keeps one issue, labelled `repository-health`, rewritten only when what it says changes. It lists:
+
+- **What needs the maintainer:** settings or rulesets that differ from `.github/upkeep/`, workflows switched off, open pull requests, renewals due, and deviations whose review date has come.
+- **What an agent can propose a fix for:** Dependabot and code scanning alerts, counted; workflows whose last run on `dev`, `test` or `main` failed; links outside the repository that broke, checked online; mistakes in the upkeep files.
+- **The accepted deviations,** each with its reason and review date.
+- **What the workflow's token cannot read,** left to the monthly comparison.
+
+Its first line gives the date of the last run. A last run more than eight days old counts as red, since a broken or switched-off workflow cannot report itself. Each run also switches on again any scheduled workflow GitHub switched off after 60 days without activity, itself first. Run it by hand with `gh workflow run health.yml`.
+
+### The upkeep files
+
+`.github/upkeep/` holds what the health check compares against. It reports a difference and never applies anything: changing a setting is the maintainer's.
+
+- `settings.json`: the expected settings, by GitHub's own field names. Each group says whose login can read it: the workflow's token, weekly, or an admin, monthly.
+- `rulesets/`: the expected rulesets, as GitHub exports them.
+- `deviations.toml`: the rules skillbook does not meet on purpose, each with its reason and a date to look again. Most need a second maintainer; one is that `dev` takes commits directly, with no pull request.
+- `renewals.toml`: every credential and renewal the repository depends on. It is empty, since there is no secret, deploy key or domain to renew ("Access continuity"); one added later is listed there first.
+
+### The calendar
+
+- **Each new issue:** brought to an end: accepted, waiting for its reporter, a duplicate, or not to be done.
+- **Each agent session:** the health issue read first, and flagged if its last run is more than eight days old.
+- **Weekly, on Mondays:** the health check.
+- **Monthly, in a session:** Dependabot's pull requests reviewed and merged; `bun scripts/health.ts --admin` run with the maintainer's own login, which compares what only an admin reads, such as the merge settings, the security switches, the Actions policy, CodeQL's setup, webhooks, secrets and deploy keys, and prints secret scanning's open alerts. Its two-factor check needs the `read:user` scope: `gh auth refresh -s read:user`.
+- **Each release:** the changelog's entry, the docs kept current, and the roadmap and decisions recording what was tried.
+- **April and October:** a review against greenrepo, the standard named in AGENTS.md: whether its scope still fits, the pins Dependabot does not see ("Dependencies"), the upkeep files against GitHub's current options, the rulesets' bypass list, the accepted deviations and the renewals.
 
 ## A vulnerability report
 

@@ -1,0 +1,75 @@
+# The accepted deviations (greenrepo UPK-16): each rule skillbook doesn't meet on purpose, with the reason and a date
+# to look again. The weekly health issue shows them in a section of their own rather than red every week, and lists
+# one whose review date has passed under what needs the maintainer.
+#
+# An entry: the `rule`'s ID; the `standard` it's from (greenrepo, or an outside one an audit reports against:
+# Scorecard, the OSPS Baseline, the Best Practices badge); `what` the rule asks; the `reason`; what stands in its
+# place (`instead`), where something does; the `decision` behind it, where one was recorded; the `review` date,
+# quoted, since Bun 1.3's TOML parser reads no bare dates.
+#
+# Most are a solo project's: they need a second person. They are looked at again in the twice-yearly review, or as
+# soon as a second maintainer joins.
+
+[[deviation]]
+rule = "SET-04"
+standard = "greenrepo"
+what = "Changes reach the default branch through a pull request with zero approvals and the aggregator check."
+reason = """One maintainer, working with agents on `dev`, which takes commits directly. `main`, the default branch, \
+moves only with a release, by fast-forward to a `dev` whose CI passed."""
+instead = """CI (`required`) on every push to `dev`, `test` and `main`; the `Long-lived branches` ruleset forbids \
+deleting or forcing them back; releases made by CI from tags only an admin can push."""
+review = "2027-04-01"
+
+[[deviation]]
+rule = "Code-Review"
+standard = "Scorecard"
+what = "Every change approved by someone other than its author; bot and AI reviews don't count."
+reason = "One maintainer: there is no one else to approve."
+instead = """CI on every push and pull request; the workflows checked by zizmor and actionlint; releases made by CI \
+from tags only an admin can push, attested, immutable once published."""
+review = "2027-04-01"
+
+[[deviation]]
+rule = "Contributors"
+standard = "Scorecard"
+what = "Contributors from at least three organisations."
+reason = "One maintainer, and a young project."
+review = "2027-04-01"
+
+[[deviation]]
+rule = "Branch-Protection"
+standard = "Scorecard"
+what = "Tiers above the first: at least one approving review before merging, and the stricter ones after it."
+reason = """One maintainer: a required approval would block their own changes. The first tier (no force push, no \
+deletion) is met by the `Long-lived branches` ruleset."""
+review = "2027-04-01"
+
+[[deviation]]
+rule = "Gold"
+standard = "Best Practices badge"
+what = "The badge's gold level: two-person review and a bus factor of two."
+reason = "One maintainer."
+review = "2027-04-01"
+
+[[deviation]]
+rule = "OSPS-QA-07.01"
+standard = "OSPS Baseline"
+what = "A human other than the author approves every change to the main branch."
+reason = "One maintainer: there is no one else to approve."
+instead = "CI on every push to `main`, which moves only with a release."
+review = "2027-04-01"
+
+[[deviation]]
+rule = "OSPS-LE-01.01"
+standard = "OSPS Baseline"
+what = "Every commit's author asserts they may contribute it: a DCO sign-off, or a CLA."
+reason = """No sign-off is asked: the control's own recommendation allows for a platform's terms of service, as \
+GitHub's license contributions under the repository's licence, and Apache-2.0's section 5 does the same."""
+review = "2027-04-01"
+
+[[deviation]]
+rule = "Maintained"
+standard = "Scorecard"
+what = "Commits every week over the last 90 days, in a repository more than 90 days old."
+reason = "The repository is new on GitHub: Scorecard scores a repository younger than 90 days 0 whatever its activity."
+review = "2027-01-20"

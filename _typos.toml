@@ -1,0 +1,35 @@
+# typos's config for the spelling check, which `just check` runs over the files git tracks: the skills, the docs, the
+# blueprint and the scripts alike. typos knows misspellings, not words, so what it flags is a misspelling or one of the
+# project's own words; a word is allowed here only once it's been read where it stands.
+
+[files]
+extend-exclude = [
+  # Test data: the messages, files and traces the AI tests use, with misspellings planted for the agent to find,
+  # people's names, German text and regular expressions.
+  "tests/cases/",
+  "tests/fixtures/",
+  "tests/archive/",
+  # Commands the runner's Python and TypeScript halves must classify alike, `nl -ba` among them.
+  "tests/runner/python-vectors.json",
+]
+
+[default]
+extend-ignore-re = [
+  # The festival scenario's planted typo, quoted where the scenario describes it.
+  "[\"']recieve[\"']",
+  # `nl -ba`: a flag, not a word.
+  "-ba\\b",
+]
+
+# The project's own words, and words quoted from others, each where it's from.
+[default.extend-words]
+cach = "cach" # a regular expression's stem, `cach(e|ing)` (blueprint/decisions.md)
+fpt = "fpt" # GitHub docs' feature flag for github.com (blueprint/research/repository-health-automation/)
+intoto = "intoto" # in-toto's file names, `*.intoto.jsonl` (blueprint/research/open-source-repository-standard/)
+mis = "mis" # the prefix, as in "mis-merges" (blueprint/research/design-documentation-approaches/)
+ratatui = "ratatui" # a Rust library for terminal interfaces
+superceding = "superceding" # adr-tools' own output, quoted (blueprint/research/design-documentation-approaches/)
+
+[default.extend-identifiers]
+FND = "FND" # a step's code in the blueprint method's example roadmap (docs/blueprint/idea.md)
+Pn = "Pn" # a placeholder for a numbered item, `(Pn)` (blueprint/research/design-documentation-approaches/)

@@ -1,6 +1,6 @@
-# Every check, the same way CI runs it. Tools: markdownlint-cli2 (through npx), lychee, ShellCheck, shfmt,
+# Every check, the same way CI runs it. Tools: markdownlint-cli2 (through npx), lychee, typos, ShellCheck, shfmt,
 # actionlint and zizmor.
-check: lint-markdown links lint-shell lint-workflows check-skills test-runner check-runner-ts
+check: lint-markdown links spelling lint-shell lint-workflows check-skills test-runner check-runner-ts test-health
 
 # Markdown style, with the rules in .markdownlint-cli2.jsonc.
 lint-markdown:
@@ -10,6 +10,10 @@ lint-markdown:
 links:
     lychee --offline --include-fragments --no-progress --exclude-path node_modules --exclude-path tmp \
         --exclude-path site/src/content '**/*.md'
+
+# Spelling, over the files git tracks, with the project's own words in _typos.toml.
+spelling:
+    typos
 
 # Shell scripts: ShellCheck, and shfmt with the settings in .editorconfig.
 lint-shell:
@@ -68,6 +72,10 @@ check-runner-ts:
     bun test tests/runner
     bun tests/runner/schema.ts --check
     bun tests/run.ts --validate
+
+# The weekly health check's pure parts: the upkeep files, the comparisons, the issue and the workflow's shape.
+test-health:
+    bun test tests/health.test.ts
 
 # Explicit alias for the TypeScript runner.
 test-agents-ts *args:
