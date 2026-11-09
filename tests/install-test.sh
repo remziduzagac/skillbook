@@ -44,10 +44,12 @@ run() {
 	"$root/src/install.sh" "$@" >"$out" 2>&1
 }
 
+# Ends the test as failed. Each test runs in its own subshell, so exiting here stops it at the first failed check,
+# whatever follows.
 fail() {
 	echo "$1"
 	[ -f "$out" ] && sed 's/^/  install.sh: /' "$out"
-	return 1
+	exit 1
 }
 
 same_tree() {
@@ -75,6 +77,12 @@ pack() {
 # Runs the packed install-<set>.sh as `curl … | sh` does: read from standard input, so it has no file of its own.
 run_release() {
 	SKILLBOOK_RELEASES="file://$root/releases" sh -s -- "$@" <"$release/install-$set_name.sh" >"$out" 2>&1
+}
+
+# Runs the packed install-<set>.sh like run_release, with checksum tools that always fail first on the PATH.
+broken_tool_release() {
+	PATH="$root/fakebin:$PATH" SKILLBOOK_RELEASES="file://$root/releases" sh -s \
+		<"$release/install-$set_name.sh" >"$out" 2>&1
 }
 
 sha256_check() {
@@ -250,14 +258,78 @@ test_uninstall_stops_before_removing_a_changed_file() {
 	[ ! -e "$dest" ] || fail "uninstall --force left the folder"
 }
 
-test_replaces_an_install_without_checksums() {
+test_stops_for_an_install_without_checksums() {
 	mkdir "$HOME/.claude"
 	dest="$HOME/.claude/skills/$set_name"
-	run || fail "install failed" || return 1
+	run || fail "install failed"
 	echo "copy old" >"$dest/.skillbook-install"
-	echo changed >>"$dest/references/act.md"
-	run || fail "an install whose marker holds no checksums was refused" || return 1
+	echo "my note" >>"$dest/references/act.md"
+	if run; then fail "an update replaced an install whose marker holds no checksums"; fi
+	grep -q -- "--force" "$out" || fail "no message naming --force"
+	grep -q "my note" "$dest/references/act.md" || fail "the user's change was lost"
+	run --force || fail "install --force failed"
 	same_tree "$src" "$dest"
+}
+
+test_stops_for_links_in_a_copied_set() {
+	mkdir "$HOME/.claude"
+	dest="$HOME/.claude/skills/$set_name"
+	run || fail "install failed"
+	ln -s "$dest/references/act.md" "$dest/references/mine.md"
+	cp "$dest/references/respond.md" "$root/same.md"
+	rm "$dest/references/respond.md"
+	ln -s "$root/same.md" "$dest/references/respond.md"
+	ln -s "$root/nowhere" "$dest/references/broken.md"
+	if run; then fail "an update replaced a set holding links the user made"; fi
+	for file in mine.md respond.md broken.md; do
+		grep -q "references/$file" "$out" || fail "references/$file was not named"
+	done
+	if run --uninstall; then fail "uninstall removed a set holding links the user made"; fi
+	[ -L "$dest/references/mine.md" ] || fail "the user's link was removed"
+}
+
+test_failed_copy_keeps_the_old_install() {
+	[ "$(id -u)" -ne 0 ] || return 0 # root reads files whatever their mode
+	mkdir "$HOME/.claude"
+	dest="$HOME/.claude/skills/$set_name"
+	run || fail "install failed"
+	cp -R "$dest" "$root/before"
+	chmod 000 "$src/references/respond.md"
+	if run; then fail "an update succeeded although a file could not be read"; fi
+	chmod 644 "$src/references/respond.md"
+	diff -r "$root/before" "$dest" >/dev/null || fail "the failed update changed the installed set"
+	run || fail "a second try after the failure was refused"
+	same_tree "$src" "$dest"
+}
+
+test_failing_checksum_tool_stops_everything() {
+	mkdir "$HOME/.claude" "$root/fakebin"
+	dest="$HOME/.claude/skills/$set_name"
+	for tool in sha256sum shasum; do
+		printf '#!/bin/sh\nexit 1\n' >"$root/fakebin/$tool"
+		chmod +x "$root/fakebin/$tool"
+	done
+	if PATH="$root/fakebin:$PATH" "$root/src/scripts/pack-release.sh" 9.9.9 "$root/broken" >"$out" 2>&1; then
+		fail "packing succeeded without a working checksum tool"
+	fi
+	pack 9.9.9
+	if broken_tool_release; then fail "a release installed without a working checksum tool"; fi
+	[ ! -e "$dest" ] || fail "something was installed without a working checksum tool"
+	run_release || fail "the release's install failed"
+	cp -R "$dest" "$root/before"
+	if broken_tool_release; then fail "an update ran without a working checksum tool"; fi
+	diff -r "$root/before" "$dest" >/dev/null || fail "the failed update changed the installed set"
+}
+
+test_recovers_an_interrupted_update() {
+	mkdir "$HOME/.claude"
+	dest="$HOME/.claude/skills/$set_name"
+	run || fail "install failed"
+	echo "my note" >>"$dest/references/act.md"
+	mkdir "$HOME/.claude/.skillbook-staging"
+	mv "$dest" "$HOME/.claude/.skillbook-staging/$set_name.old"
+	if run; then fail "an update replaced the kept copy of an interrupted update without checking it"; fi
+	grep -q "my note" "$dest/references/act.md" || fail "the interrupted update's kept copy was not put back"
 }
 
 test_another_set_names_essentials_when_missing() {
@@ -269,6 +341,8 @@ test_another_set_names_essentials_when_missing() {
 	run --sets "$set_name" || fail "install --sets $set_name failed" || return 1
 	run --sets garden || fail "install --sets garden failed again" || return 1
 	if grep -q "builds on essentials" "$out"; then fail "the note showed although essentials is installed"; fi
+	run --project --sets garden || fail "install --project --sets garden failed"
+	if grep -q "builds on essentials" "$out"; then fail "the note showed although essentials is in the home"; fi
 }
 
 test_working_copy_script_needs_its_own_file() {

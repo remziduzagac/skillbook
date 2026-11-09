@@ -59,7 +59,7 @@ Each release carries a `SHA256SUMS` file, and its files are attested, so you can
 
 ### Updating
 
-Run the same line again: it installs the latest release. If you changed a guide by hand, it lists the changed files and stops; add `--force` to replace them. Start new agent sessions afterwards, since an open session keeps the text it has already read.
+Run the same line again: it installs the latest release. The new copy replaces the old one only once it is complete. If you changed a guide by hand, it lists the changed files and stops; add `--force` to replace them. Start new agent sessions afterwards, since an open session keeps the text it has already read.
 
 - **Your version and the latest:** add `--check`, as in `curl -fsSL …/install-essentials.sh | sh -s -- --check`. It changes nothing.
 - **New releases:** watch the repository's releases on GitHub (Watch, then Custom, then Releases), or follow the [releases feed](https://github.com/remziduzagac/skillbook/releases.atom). The [changelog](CHANGELOG.md) says what changed.

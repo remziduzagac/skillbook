@@ -20,7 +20,7 @@ The whole repository has one version, tagged `v<version>`. A release packs every
 ## Releasing
 
 1. **Write the changelog.** `CHANGELOG.md`'s Unreleased section says what changed for users, each entry naming its set, with any known limits.
-2. **Rehearse, if the release changes the install script or the workflow.** Run the Release workflow by hand: `gh workflow run release.yml --ref dev -f version=<version>`. It builds a private draft release, `v<version>-rehearsal.<run>`. Download it with `gh release download v<version>-rehearsal.<run> -D <folder>`, try it as "Trying a release" says, then delete it with `gh release delete v<version>-rehearsal.<run> --yes`.
+2. **Rehearse, if the release changes the install script or the workflow.** Run the Release workflow by hand: `gh workflow run release.yml --ref dev -f version=<version>`. GitHub runs a workflow by hand only once it is on the default branch, so before the first release, fast-forward main to dev first: `git push origin dev:main`. It builds a private draft release, `v<version>-rehearsal.<run>`. Download it with `gh release download v<version>-rehearsal.<run> -D <folder>`, try it as "Trying a release" says, then delete it with `gh release delete v<version>-rehearsal.<run> --yes`.
 3. **Release.** On dev, with everything committed and pushed, run `just release <version>`. It runs `just check` and the install tests, dates the changelog section, commits, tags, and pushes dev, main and the tag together.
 4. **Watch the workflow.** The tag starts the Release workflow: the install tests on Linux and macOS, then packing, attestation and publishing. `gh run watch` follows it.
 5. **Check the published release.** Install it into a throwaway home with the README's line, and run it again with `--check`.

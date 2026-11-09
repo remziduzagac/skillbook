@@ -27,10 +27,12 @@ main() {
 		cp -R "$repo/skills/$set" "$stage/$set"
 		find "$stage/$set" \( -name .skillbook-install -o -name .DS_Store \) -exec rm -f {} +
 		find "$stage/$set" -name __pycache__ -prune -exec rm -rf {} +
+		[ -z "$(find "$stage/$set" -type l)" ] || err "skills/$set holds a link; a release packs only regular files"
 		add_version "$stage/$set/SKILL.md"
 		archive="$set-$version.tar.gz"
 		(cd "$stage" && tar -czf "$out/$archive" "$set")
-		sum=$(sha256 "$out/$archive")
+		sha256 "$out/$archive"
+		sum="$digest"
 		sed -e "s/^release_version=\"\"$/release_version=\"$version\"/" \
 			-e "s/^release_set=\"\"$/release_set=\"$set\"/" \
 			-e "s/^release_sum=\"\"$/release_sum=\"$sum\"/" "$repo/install.sh" >"$out/install-$set.sh"
@@ -41,9 +43,11 @@ main() {
 	done
 
 	printf '%s\n' "$version" >"$out/version.txt"
-	(cd "$out" && for file in *; do
-		printf '%s  %s\n' "$(sha256 "$file")" "$file"
-	done) >"$stage/SHA256SUMS"
+	: >"$stage/SHA256SUMS"
+	for file in "$out"/*; do
+		sha256 "$file"
+		printf '%s  %s\n' "$digest" "$(basename "$file")" >>"$stage/SHA256SUMS"
+	done
 	mv "$stage/SHA256SUMS" "$out/SHA256SUMS"
 	echo "wrote version.txt and SHA256SUMS in $out"
 }
@@ -70,8 +74,14 @@ find_sha256() {
 	fi
 }
 
+# Sets $digest to a file's SHA-256, or stops: a failed or malformed checksum must never reach a release.
 sha256() {
-	$sha256_tool "$1" | cut -d ' ' -f 1
+	digest=$($sha256_tool "$1" 2>/dev/null) || err "could not compute the checksum of $1"
+	digest=${digest%% *}
+	[ ${#digest} -eq 64 ] || err "could not compute the checksum of $1"
+	case $digest in
+	*[!0-9a-f]*) err "could not compute the checksum of $1" ;;
+	esac
 }
 
 err() {

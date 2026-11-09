@@ -3,7 +3,7 @@
 # ~/.claude/skills/<set> for Claude Code, when ~/.claude exists, and ~/.agents/skills/<set>, read by Codex and others,
 # when ~/.codex exists. Nothing runs as root, and it never overwrites a folder it did not install: each folder it
 # installs holds a .skillbook-install marker with the version and a checksum of every file, and it stops before
-# replacing or removing a file you changed.
+# replacing or removing a file you changed. A new copy replaces the old one only once it is complete.
 #
 # A release carries one install-<set>.sh per set: this script with the version, the set and the archive's checksum
 # filled in. It downloads that archive, checks it and installs it. Run from a working copy, this script installs the
@@ -63,12 +63,13 @@ main() {
 	done
 
 	work=$(mktemp -d "${TMPDIR:-/tmp}/skillbook-install.XXXXXX")
-	trap 'rm -rf "$work"' EXIT
+	trap cleanup EXIT
 	trap 'exit 1' INT TERM
 	find_sha256
 
 	if [ -n "$release_version" ]; then
 		[ "$mode" = copy ] || err "--link needs a working copy; this script installs from a release"
+		is_digest "$release_sum" || err "this script holds no valid checksum; download it again"
 		for set in $sets; do
 			[ "$set" = "$release_set" ] || err "this script installs $release_set only; $set has its own install-$set.sh"
 		done
@@ -100,7 +101,10 @@ main() {
 		[ -n "$agents" ] || err "found neither ~/.claude nor ~/.codex; name the agents with --agents claude,codex"
 	fi
 	for agent in $agents; do
-		folder_of "$agent" >/dev/null
+		case "$agent" in
+		claude | codex) ;;
+		*) err "unknown agent: $agent (claude or codex)" ;;
+		esac
 	done
 
 	if [ "$action" = "check" ]; then
@@ -112,15 +116,13 @@ main() {
 	fi
 
 	for agent in $agents; do
-		dest=$(folder_of "$agent")
+		dest=$(folder_of "$agent" "$base")
 		for set in $sets; do
 			if [ "$action" = "uninstall" ]; then
 				uninstall_one "$dest/$set"
 			else
 				install_one "$src/$set" "$dest/$set"
-				if [ "$set" != essentials ] && [ ! -d "$dest/essentials" ]; then
-					log "note: $set builds on essentials, which is not installed in $dest; install it with install-essentials.sh"
-				fi
+				note_missing_essentials "$agent" "$set"
 			fi
 		done
 	done
@@ -138,10 +140,16 @@ all_sets() {
 
 folder_of() {
 	case "$1" in
-	claude) echo "$base/.claude/skills" ;;
-	codex) echo "$base/.agents/skills" ;;
-	*) err "unknown agent: $1 (claude or codex)" ;;
+	claude) echo "$2/.claude/skills" ;;
+	codex) echo "$2/.agents/skills" ;;
 	esac
+}
+
+note_missing_essentials() {
+	[ "$2" = essentials ] && return 0
+	[ -d "$(folder_of "$1" "$base")/essentials" ] && return 0
+	[ -d "$(folder_of "$1" "$HOME")/essentials" ] && return 0
+	log "note: $2 builds on essentials, which is not installed for $1; install it with install-essentials.sh"
 }
 
 # Downloads the release's archive of the set, checks it against the checksum filled in at release, and unpacks it
@@ -150,8 +158,8 @@ download_release() {
 	archive="$release_set-$release_version.tar.gz"
 	fetch "$releases/download/v$release_version/$archive" "$work/$archive" ||
 		err "could not download $archive from $releases"
-	[ "$(sha256 "$work/$archive")" = "$release_sum" ] ||
-		err "$archive does not match its checksum; nothing was installed"
+	sha256 "$work/$archive"
+	[ "$digest" = "$release_sum" ] || err "$archive does not match its checksum; nothing was installed"
 	src="$work/src"
 	mkdir "$src"
 	tar -xzf "$work/$archive" -C "$src"
@@ -160,7 +168,7 @@ download_release() {
 
 check_versions() {
 	for agent in $agents; do
-		dest=$(folder_of "$agent")
+		dest=$(folder_of "$agent" "$base")
 		for set in $sets; do
 			if owned "$dest/$set"; then
 				log "$dest/$set: $(head -n 1 "$dest/$set/.skillbook-install")"
@@ -183,74 +191,115 @@ owned() {
 	return 1
 }
 
+# Sets $staging, a folder beside the agent's skills folder and on the same disk, where a new copy is made whole
+# before it replaces the old one, and where the old one waits until the new one is in place. Agents never load from
+# it. An old copy left there by an interrupted run goes back in place, so it is checked like any install.
+stage_for() {
+	staging="$(dirname "$(dirname "$1")")/.skillbook-staging"
+	new="$staging/$(basename "$1").new"
+	old="$staging/$(basename "$1").old"
+	if [ ! -e "$1" ] && [ ! -L "$1" ] && { [ -e "$old" ] || [ -L "$old" ]; }; then
+		mv "$old" "$1"
+		log "put back $1, kept by an earlier run that was interrupted"
+	fi
+	rm -rf "$new" "$old"
+}
+
 install_one() {
 	from="$1"
 	to="$2"
+	stage_for "$to"
 	if [ -e "$to" ] || [ -L "$to" ]; then
 		owned "$to" || err "$to exists and was not installed by skillbook; move it away first"
-		unchanged_or_forced "$to" "replace"
-		rm -rf "$to"
+		unchanged_or_forced "$to" replace
 	fi
-	mkdir -p "$(dirname "$to")"
+	mkdir -p "$(dirname "$to")" "$staging"
 	if [ "$mode" = "link" ]; then
 		printf 'link %s\n' "$version" >"$from/.skillbook-install"
-		ln -s "$from" "$to"
+		ln -s "$from" "$new"
+	else
+		cp -R "$from" "$new" || err "could not copy $from; $to is unchanged"
+		rm -f "$new/.skillbook-install"
+		write_marker "$new"
+	fi
+	if [ -e "$to" ] || [ -L "$to" ]; then
+		mv "$to" "$old" || err "could not move $to aside; it is unchanged"
+	fi
+	if ! mv "$new" "$to"; then
+		if [ -e "$old" ] || [ -L "$old" ]; then
+			mv "$old" "$to"
+		fi
+		err "could not put the new copy in place; $to is unchanged"
+	fi
+	rm -rf "$old"
+	rmdir "$staging" 2>/dev/null || true
+	if [ "$mode" = "link" ]; then
 		log "linked $to -> $from"
 	else
-		cp -R "$from" "$to"
-		rm -f "$to/.skillbook-install"
-		write_marker "$to"
 		log "copied $to ($version)"
 	fi
 }
 
 uninstall_one() {
 	to="$1"
+	stage_for "$to"
 	if [ ! -e "$to" ] && [ ! -L "$to" ]; then
 		return 0
 	fi
 	owned "$to" || err "$to was not installed by skillbook; leaving it"
-	unchanged_or_forced "$to" "remove"
-	rm -rf "$to"
+	unchanged_or_forced "$to" remove
+	mkdir -p "$staging"
+	mv "$to" "$old" || err "could not remove $to"
+	rm -rf "$old"
+	rmdir "$staging" 2>/dev/null || true
 	log "removed $to"
+}
+
+# Every file and link in a copied folder, by path, leaving out the marker and files the system or Python adds.
+inventory() {
+	(cd "$1" && find . ! -type d ! -name .skillbook-install ! -name .DS_Store ! -path '*/__pycache__/*' |
+		sed 's|^\./||' | LC_ALL=C sort)
 }
 
 # The marker's first line is the mode and version; each line after it is a file's checksum and path.
 write_marker() {
-	(cd "$1" && find . -type f ! -name .DS_Store ! -path '*/__pycache__/*' | sed 's|^\./||' | LC_ALL=C sort) >"$work/files"
-	{
-		printf 'copy %s\n' "$version"
-		while IFS= read -r file; do
-			printf '%s %s\n' "$(sha256 "$1/$file")" "$file"
-		done <"$work/files"
-	} >"$work/marker"
+	inventory "$1" >"$work/files"
+	printf 'copy %s\n' "$version" >"$work/marker"
+	while IFS= read -r file; do
+		sha256 "$1/$file"
+		printf '%s %s\n' "$digest" "$file" >>"$work/marker"
+	done <"$work/files"
 	mv "$work/marker" "$1/.skillbook-install"
 }
 
-# Stops when files in a copied folder differ from its marker, unless --force. A link, or a marker without checksums,
-# has nothing to compare.
+# Stops when a copied folder's files differ from its marker, unless --force. A link has nothing to compare; a copy
+# whose marker holds no checksums, made by an older install script, cannot be compared, so it stops too.
 unchanged_or_forced() {
 	[ -L "$1" ] && return 0
-	marker="$1/.skillbook-install"
-	sed 1d "$marker" >"$work/sums"
-	[ -s "$work/sums" ] || return 0
+	sed 1d "$1/.skillbook-install" >"$work/sums"
+	if [ ! -s "$work/sums" ]; then
+		[ "$force" = yes ] && return 0
+		err "$1 has no checksums to find files you changed; keep a copy of any you changed, then run again with --force"
+	fi
 	: >"$work/changes"
 	while IFS= read -r line; do
 		sum=${line%% *}
 		file=${line#* }
-		if [ ! -f "$1/$file" ]; then
+		if [ -L "$1/$file" ]; then
+			echo "changed  $file, now a link" >>"$work/changes"
+		elif [ ! -f "$1/$file" ]; then
 			echo "removed  $file" >>"$work/changes"
-		elif [ "$(sha256 "$1/$file")" != "$sum" ]; then
-			echo "changed  $file" >>"$work/changes"
+		else
+			sha256 "$1/$file"
+			[ "$digest" = "$sum" ] || echo "changed  $file" >>"$work/changes"
 		fi
 	done <"$work/sums"
 	cut -d ' ' -f 2- "$work/sums" | LC_ALL=C sort >"$work/was"
-	(cd "$1" && find . -type f ! -name .skillbook-install ! -name .DS_Store ! -path '*/__pycache__/*' |
-		sed 's|^\./||' | LC_ALL=C sort) >"$work/now"
+	inventory "$1" >"$work/now"
 	LC_ALL=C comm -13 "$work/was" "$work/now" | sed 's/^/added    /' >>"$work/changes"
 	[ -s "$work/changes" ] || return 0
 	if [ "$force" = yes ]; then
-		log "--force: replacing $(wc -l <"$work/changes" | tr -d ' ') files you changed in $1"
+		log "--force: going on to $2 $(wc -l <"$work/changes" | tr -d ' ') files you changed in $1"
 		return 0
 	fi
 	printf '  ! %s has files you changed:\n' "$1" >&2
@@ -268,8 +317,18 @@ find_sha256() {
 	fi
 }
 
+# Sets $digest to a file's SHA-256, or stops: a failed or malformed checksum must never pass as a match.
 sha256() {
-	$sha256_tool "$1" | cut -d ' ' -f 1
+	digest=$($sha256_tool "$1" 2>/dev/null) || err "could not compute the checksum of $1"
+	digest=${digest%% *}
+	is_digest "$digest" || err "could not compute the checksum of $1"
+}
+
+is_digest() {
+	[ ${#1} -eq 64 ] || return 1
+	case $1 in
+	*[!0-9a-f]*) return 1 ;;
+	esac
 }
 
 fetch() {
@@ -279,6 +338,15 @@ fetch() {
 		wget -q -O "$2" "$1"
 	else
 		err "needs curl or wget to download the release"
+	fi
+}
+
+# Removes the temporary folder, and a new copy that was not put in place.
+cleanup() {
+	rm -rf "$work"
+	if [ -n "${new:-}" ] && { [ -e "$new" ] || [ -L "$new" ]; }; then
+		rm -rf "$new"
+		rmdir "$staging" 2>/dev/null || true
 	fi
 }
 
