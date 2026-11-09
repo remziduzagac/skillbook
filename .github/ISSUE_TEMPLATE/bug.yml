@@ -14,6 +14,15 @@ body:
     validations:
       required: true
   - type: input
+    id: version
+    attributes:
+      label: skillbook version
+      description: >-
+        The version in the set's SKILL.md, or what the install line shows with --check, such as 0.1.0. For a set
+        linked from a working copy, its commit.
+    validations:
+      required: true
+  - type: input
     id: agent
     attributes:
       label: Agent and version

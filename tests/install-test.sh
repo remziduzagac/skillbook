@@ -1,7 +1,8 @@
 #!/bin/sh
-# Tests install.sh. Each test copies the script and the skills/ folder into a fresh temporary folder and runs it there,
-# with HOME pointing at a throwaway home, so the working copy and the real home are never touched. Prints one line per
-# test and exits non-zero when any fails.
+# Tests install.sh and the scripts that release it: the packing, the Pages site's channel files and install lines,
+# and preview versions. Each test copies them and the skills/ folder into a fresh temporary folder and runs them there,
+# with HOME pointing at a throwaway home, so the working copy and the real home are never touched. Releases and the
+# site are folders reached by file:// addresses. Prints one line per test and exits non-zero when any fails.
 set -u
 
 main() {
@@ -19,7 +20,10 @@ main() {
 		cp "$repo/install.sh" "$root/src/install.sh"
 		cp -R "$repo/skills" "$root/src/skills"
 		mkdir "$root/src/scripts"
-		cp "$repo/scripts/pack-release.sh" "$root/src/scripts/pack-release.sh" 2>/dev/null
+		for script in pack-release.sh bootstrap.sh site-files.sh preview-version.sh; do
+			cp "$repo/scripts/$script" "$root/src/scripts/$script"
+		done
+		published=0
 		rm -f "$root/src/skills/"*/.skillbook-install
 		src="$root/src/skills/$set_name"
 		HOME="$root/home"
@@ -65,24 +69,61 @@ marker_is() {
 	esac
 }
 
-# Packs the copied sets at version $1 into a folder laid out like GitHub's release downloads, as the release
-# workflow would, with version.txt also under latest/. Sets $release to that version's folder.
+# Packs the copied sets at version $1 into a folder laid out like GitHub's release downloads, as the release and
+# preview workflows would, and lists it in releases.tsv as published after every earlier pack, as the Pages workflow
+# lists GitHub's releases. Sets $release to its folder and $tag to its tag.
 pack() {
-	release="$root/releases/download/v$1"
-	"$root/src/scripts/pack-release.sh" "$1" "$release" >"$out" 2>&1 || fail "pack-release.sh failed" || return 1
-	mkdir -p "$root/releases/latest/download"
-	cp "$release/version.txt" "$root/releases/latest/download/version.txt"
+	case $1 in
+	*-preview.*) tag=$(printf '%s\n' "$1" | sed 's/^.*-preview\.\([0-9]*\)\.g\([0-9a-f]*\)$/preview-\1-\2/') ;;
+	*) tag="v$1" ;;
+	esac
+	release="$root/releases/download/$tag"
+	"$root/src/scripts/pack-release.sh" "$1" "$release" >"$out" 2>&1 || fail "pack-release.sh failed"
+	published=$((published + 1))
+	case $tag in
+	preview-*) prerelease=true ;;
+	*) prerelease=false ;;
+	esac
+	printf '%s\t%s\t2026-11-09T10:%02d:00Z\n' "$tag" "$prerelease" "$published" >>"$root/releases.tsv"
+}
+
+# Writes the Pages site's files from releases.tsv into $root/site, as the Pages workflow does.
+site() {
+	SKILLBOOK_RELEASES="file://$root/releases" "$root/src/scripts/site-files.sh" "$root/releases.tsv" "$root/site" \
+		>"$out" 2>&1 || fail "site-files.sh failed"
 }
 
 # Runs the packed install-<set>.sh as `curl … | sh` does: read from standard input, so it has no file of its own.
 run_release() {
-	SKILLBOOK_RELEASES="file://$root/releases" sh -s -- "$@" <"$release/install-$set_name.sh" >"$out" 2>&1
+	SKILLBOOK_RELEASES="file://$root/releases" SKILLBOOK_SITE="file://$root/site" sh -s -- "$@" \
+		<"$release/install-$set_name.sh" >"$out" 2>&1
+}
+
+# Runs the install line: the site's install-<set>.sh, read from standard input.
+run_line() {
+	SKILLBOOK_RELEASES="file://$root/releases" SKILLBOOK_SITE="file://$root/site" sh -s -- "$@" \
+		<"$root/site/install-$set_name.sh" >"$out" 2>&1
 }
 
 # Runs the packed install-<set>.sh like run_release, with checksum tools that always fail first on the PATH.
 broken_tool_release() {
 	PATH="$root/fakebin:$PATH" SKILLBOOK_RELEASES="file://$root/releases" sh -s \
 		<"$release/install-$set_name.sh" >"$out" 2>&1
+}
+
+# Makes a git repository in $root/git holding preview-version.sh, with one commit made at 2026-11-09 15:30 UTC.
+preview_repo() {
+	mkdir -p "$root/git/scripts"
+	cp "$root/src/scripts/preview-version.sh" "$root/git/scripts/"
+	git -C "$root/git" init -q
+	commit_at "2026-11-09T15:30:00Z"
+}
+
+commit_at() {
+	echo "$1" >>"$root/git/file"
+	git -C "$root/git" add -A
+	GIT_COMMITTER_DATE="$1" GIT_AUTHOR_DATE="$1" git -C "$root/git" -c user.name=test -c user.email=test@example.com \
+		commit -q -m "change at $1"
 }
 
 sha256_check() {
@@ -353,11 +394,24 @@ test_working_copy_script_needs_its_own_file() {
 
 test_pack_writes_the_release_files() {
 	pack 9.9.9 || return 1
-	for f in "$set_name-9.9.9.tar.gz" "install-$set_name.sh" version.txt SHA256SUMS; do
+	for f in "$set_name-9.9.9.tar.gz" "install-$set_name.sh" SHA256SUMS; do
 		[ -f "$release/$f" ] || fail "the release has no $f" || return 1
 	done
-	[ "$(cat "$release/version.txt")" = 9.9.9 ] || fail "version.txt does not hold 9.9.9" || return 1
+	grep -q '^release_tag="v9.9.9"$' "$release/install-$set_name.sh" || fail "install-$set_name.sh holds no tag v9.9.9"
 	(cd "$release" && sha256_check SHA256SUMS) >"$out" 2>&1 || fail "SHA256SUMS does not match the files"
+}
+
+test_pack_a_preview() {
+	pack 9.9.10-preview.202611091530.g1a2b3c4
+	[ "$tag" = preview-202611091530-1a2b3c4 ] || fail "the test's own tag is wrong: $tag"
+	grep -q '^release_tag="preview-202611091530-1a2b3c4"$' "$release/install-$set_name.sh" ||
+		fail "install-$set_name.sh holds no preview tag"
+	for version in 9.9 9.9.9-rc.1 9.9.9-preview.2026.g1a2b3c4 "9.9.9-preview.202611091530.g1a2b3c4x"; do
+		if "$root/src/scripts/pack-release.sh" "$version" "$root/bad" >"$out" 2>&1; then
+			fail "packing accepted the version $version"
+		fi
+		rm -rf "$root/bad"
+	done
 }
 
 test_pack_leaves_out_unreleased_sets() {
@@ -411,17 +465,106 @@ test_release_help_when_piped() {
 	grep -q "install" "$out" || fail "--help printed no usage"
 }
 
-test_check_shows_installed_and_latest() {
+test_check_shows_installed_latest_and_preview() {
 	mkdir "$HOME/.claude"
 	marker="$HOME/.claude/skills/$set_name/.skillbook-install"
-	pack 9.9.9 || return 1
-	run_release || fail "the release's install failed" || return 1
-	echo 9.9.10 >"$root/releases/latest/download/version.txt"
+	pack 9.9.9
+	site
+	run_release || fail "the release's install failed"
 	before=$(cat "$marker")
-	run_release --check || fail "--check failed" || return 1
-	grep -q "9\.9\.9" "$out" || fail "--check did not show the installed version" || return 1
-	grep -q "9\.9\.10" "$out" || fail "--check did not show the latest version" || return 1
+	run_release --check || fail "--check failed"
+	grep -q "copy 9\.9\.9" "$out" || fail "--check did not show the installed version"
+	grep -q "latest release: v9\.9\.9" "$out" || fail "--check did not show the latest release"
+	grep -q "newest preview: v9\.9\.9" "$out" || fail "--check did not show the release as the newest preview"
+	pack 9.9.10
+	pack 9.9.11-preview.202611091530.g1a2b3c4
+	site
+	run_release --check || fail "--check failed"
+	grep -q "latest release: v9\.9\.10" "$out" || fail "--check did not show the newer release"
+	grep -q "newest preview: preview-202611091530-1a2b3c4" "$out" || fail "--check did not show the preview"
 	[ "$(cat "$marker")" = "$before" ] || fail "--check changed the install"
+	rm -rf "$root/site"
+	run_release --check || fail "--check failed without a site"
+	grep -q "latest release: unknown" "$out" || fail "--check did not say the site could not be read"
+}
+
+test_site_names_each_channel() {
+	pack 0.9.0
+	pack 0.10.0-preview.202611091000.g1111111
+	pack 0.10.0
+	pack 0.10.1-preview.202611091200.g2222222
+	site
+	sum=$(awk '/  install-essentials.sh$/ { print $1 }' "$root/releases/download/v0.10.0/SHA256SUMS")
+	[ "$(cat "$root/site/stable")" = "v0.10.0 $sum install-$set_name.sh" ] ||
+		fail "stable does not name v0.10.0's install script: $(cat "$root/site/stable")"
+	grep -q '^preview-202611091200-2222222 ' "$root/site/preview" || fail "preview does not name the newest preview"
+	grep -q '^set_name="essentials"$' "$root/site/install-$set_name.sh" || fail "the install line names no set"
+	grep -q 'docs/' "$root/site/index.html" || fail "index.html does not send visitors to the docs"
+	pack 0.10.1
+	site
+	grep -q '^v0.10.1 ' "$root/site/preview" || fail "preview fell behind a release published after it"
+}
+
+test_site_without_releases() {
+	: >"$root/releases.tsv"
+	site
+	[ -f "$root/site/stable" ] && [ ! -s "$root/site/stable" ] || fail "stable is not an empty file"
+	[ -f "$root/site/preview" ] && [ ! -s "$root/site/preview" ] || fail "preview is not an empty file"
+	[ ! -e "$root/site/install-$set_name.sh" ] || fail "an install line was written with no release"
+	pack 0.1.0-preview.202611091530.g1a2b3c4
+	site
+	[ ! -s "$root/site/stable" ] || fail "stable names a preview"
+	grep -q '^preview-202611091530-1a2b3c4 ' "$root/site/preview" || fail "preview does not name the preview"
+	mkdir "$HOME/.claude"
+	if run_line; then fail "the install line installed with no release"; fi
+	grep -q -- "--preview" "$out" || fail "no message pointing to --preview"
+	run_line --preview || fail "the install line with --preview failed"
+	marker_is "$HOME/.claude/skills/$set_name" "copy 0.1.0-preview.202611091530.g1a2b3c4"
+}
+
+test_install_line_installs_the_latest_release_or_the_newest_preview() {
+	mkdir "$HOME/.claude"
+	dest="$HOME/.claude/skills/$set_name"
+	pack 9.9.9
+	pack 9.9.10-preview.202611091530.g1a2b3c4
+	site
+	run_line || fail "the install line failed"
+	grep -q "stable channel's release: v9.9.9" "$out" || fail "the install line did not name the release"
+	marker_is "$dest" "copy 9.9.9"
+	run_line --preview --agents claude || fail "the install line with --preview failed"
+	marker_is "$dest" "copy 9.9.10-preview.202611091530.g1a2b3c4"
+	grep -q '^  version: "9.9.10-preview.202611091530.g1a2b3c4"$' "$dest/SKILL.md" || fail "SKILL.md holds no preview"
+	run_line --help || fail "--help through the install line failed"
+	grep -q -- "--preview" "$out" || fail "--help did not reach the release's script"
+}
+
+test_install_line_refuses_a_changed_script() {
+	mkdir "$HOME/.claude"
+	pack 9.9.9
+	site
+	echo "echo planted" >>"$release/install-$set_name.sh"
+	if run_line; then fail "the install line ran a script that does not match its channel"; fi
+	grep -q "checksum" "$out" || fail "no message naming the checksum"
+	[ ! -e "$HOME/.claude/skills/$set_name" ] || fail "something was installed"
+	pack 9.9.10
+	sum=$(awk '/  install-essentials.sh$/ { print $1 }' "$release/SHA256SUMS")
+	printf 'v9.9.10/../v9.9.10 %s install-%s.sh\n' "$sum" "$set_name" >"$root/site/stable"
+	if run_line; then fail "the install line accepted a tag that is not a tag"; fi
+	grep -q "not a channel's file" "$out" || fail "no message naming the malformed channel file"
+}
+
+test_preview_version() {
+	preview_repo
+	hash=$(git -C "$root/git" rev-parse HEAD | cut -c 1-7)
+	[ "$("$root/git/scripts/preview-version.sh")" = "0.1.0-preview.202611091530.g$hash preview-202611091530-$hash" ] ||
+		fail "before any release: $("$root/git/scripts/preview-version.sh")"
+	git -C "$root/git" tag v0.9.0
+	git -C "$root/git" tag v0.10.0
+	[ -z "$("$root/git/scripts/preview-version.sh")" ] || fail "a released commit got a preview version"
+	commit_at "2026-11-10T08:05:00Z"
+	hash=$(git -C "$root/git" rev-parse HEAD | cut -c 1-7)
+	[ "$("$root/git/scripts/preview-version.sh")" = "0.10.1-preview.202611100805.g$hash preview-202611100805-$hash" ] ||
+		fail "after v0.10.0: $("$root/git/scripts/preview-version.sh")"
 }
 
 main "$@"

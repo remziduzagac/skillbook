@@ -5,32 +5,38 @@
 # installs holds a .skillbook-install marker with the version and a checksum of every file, and it stops before
 # replacing or removing a file you changed. A new copy replaces the old one only once it is complete.
 #
-# A release carries one install-<set>.sh per set: this script with the version, the set and the archive's checksum
-# filled in. It downloads that archive, checks it and installs it. Run from a working copy, this script installs the
-# copy's skills/ folder instead. scripts/pack-release.sh fills in the three values below; they stay empty here.
+# A release or a preview carries one install-<set>.sh per set: this script with the version, its release's tag, the
+# set and the archive's checksum filled in. It downloads that archive, checks it and installs it. The install line's
+# address, on the Pages site, runs scripts/bootstrap.sh, which picks a release and runs its install-<set>.sh. Run from
+# a working copy, this script installs the copy's skills/ folder instead. scripts/pack-release.sh fills in the four
+# values below; they stay empty here.
 set -eu
 
 release_version=""
+release_tag=""
 release_set=""
 release_sum=""
 
+# Where releases are downloaded from, laid out as GitHub's are, and the Pages site whose channel files, stable and
+# preview, name the latest release and the newest preview. A mirror or a test's folder can stand in for either.
 releases="${SKILLBOOK_RELEASES:-https://github.com/remziduzagac/skillbook/releases}"
+site="${SKILLBOOK_SITE:-https://remziduzagac.github.io/skillbook}"
 
 usage() {
 	cat <<'EOF'
 Installs skillbook's skill sets for Claude Code and Codex.
 
-  install-<set>.sh [--agents claude,codex] [--project] [--check] [--uninstall] [--force]
-  install.sh [--sets essentials,blueprint] [--agents claude,codex] [--project] [--link] [--check] [--uninstall]
-             [--force]
+  curl -fsSL https://remziduzagac.github.io/skillbook/install-<set>.sh | sh -s -- [options]
+  install.sh [--sets essentials,blueprint] [--link] [options]
 
-A release's install-<set>.sh installs that set from the release; install.sh installs from a working copy.
+The install line installs one set from the latest release; install.sh installs from a working copy.
 
+  --preview    install the newest preview instead of the latest release; read by the install line's address
   --sets       the sets to install from a working copy; every set by default
   --agents     the agents to install for; by default those whose folder exists, ~/.claude or ~/.codex
   --project    install into the current folder's .claude/skills and .agents/skills instead of your home
   --link       link the working copy's sets instead of copying them, for developing skillbook
-  --check      show the installed version and the latest release's version; changes nothing
+  --check      show the installed version, the latest release and the newest preview; changes nothing
   --uninstall  remove what this script installed
   --force      replace or remove files you changed in an installed set
 EOF
@@ -70,6 +76,7 @@ main() {
 	if [ -n "$release_version" ]; then
 		[ "$mode" = copy ] || err "--link needs a working copy; this script installs from a release"
 		is_digest "$release_sum" || err "this script holds no valid checksum; download it again"
+		is_tag "$release_tag" || err "this script holds no valid release tag; download it again"
 		for set in $sets; do
 			[ "$set" = "$release_set" ] || err "this script installs $release_set only; $set has its own install-$set.sh"
 		done
@@ -156,7 +163,7 @@ note_missing_essentials() {
 # into $work, which becomes the source.
 download_release() {
 	archive="$release_set-$release_version.tar.gz"
-	fetch "$releases/download/v$release_version/$archive" "$work/$archive" ||
+	fetch "$releases/download/$release_tag/$archive" "$work/$archive" ||
 		err "could not download $archive from $releases"
 	sha256 "$work/$archive"
 	[ "$digest" = "$release_sum" ] || err "$archive does not match its checksum; nothing was installed"
@@ -177,11 +184,25 @@ check_versions() {
 			fi
 		done
 	done
-	if fetch "$releases/latest/download/version.txt" "$work/version.txt" &&
-		latest=$(head -n 1 "$work/version.txt") && printf '%s\n' "$latest" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
-		log "latest release: $latest; to update, run the set's install line again"
+	log "latest release: $(channel_tag stable)"
+	log "newest preview: $(channel_tag preview)"
+	log "to update, run the set's install line again; add --preview for previews"
+}
+
+# The tag a channel's file on the site names: one line per set, "<tag> <checksum> install-<set>.sh", the same tag on
+# each. "none" when the site has no file for the channel, and "unknown" when it cannot be read.
+channel_tag() {
+	if ! fetch "$site/$1" "$work/$1" 2>/dev/null; then
+		echo "unknown, $site/$1 could not be read"
+		return 0
+	fi
+	read -r tag _ <"$work/$1" || true
+	if [ -z "${tag:-}" ]; then
+		echo "none"
+	elif is_tag "$tag"; then
+		echo "$tag"
 	else
-		log "latest release: unknown, $releases could not be reached"
+		echo "unknown, $site/$1 is not a channel's file"
 	fi
 }
 
@@ -331,9 +352,14 @@ is_digest() {
 	esac
 }
 
+# A release's tag, v<x.y.z>, or a preview's, preview-<12-digit UTC time>-<7-hex commit>; it goes into an address.
+is_tag() {
+	printf '%s\n' "$1" | grep -Eq '^(v[0-9]+\.[0-9]+\.[0-9]+|preview-[0-9]{12}-[0-9a-f]{7})$'
+}
+
 fetch() {
 	if command -v curl >/dev/null 2>&1; then
-		curl -fsSL -o "$2" "$1"
+		curl --proto '=https,file' --proto-redir '=https' -fsSL -o "$2" "$1"
 	elif command -v wget >/dev/null 2>&1; then
 		wget -q -O "$2" "$1"
 	else

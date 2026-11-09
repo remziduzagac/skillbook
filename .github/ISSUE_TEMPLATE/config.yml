@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Documentation
+    url: https://remziduzagac.github.io/skillbook/docs/
+    about: Installing, setting up your agent, updating and removing, and what each set does.
   - name: Report a security problem
     url: https://github.com/remziduzagac/skillbook/security/advisories/new
-    about: Report it privately; see SECURITY.md.
+    about: Report it privately; see SECURITY.md. Never in a public issue.

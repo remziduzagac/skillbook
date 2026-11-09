@@ -8,7 +8,8 @@ lint-markdown:
 
 # Every local link and anchor resolves.
 links:
-    lychee --offline --include-fragments --no-progress --exclude-path node_modules --exclude-path tmp '**/*.md'
+    lychee --offline --include-fragments --no-progress --exclude-path node_modules --exclude-path tmp \
+        --exclude-path site/src/content '**/*.md'
 
 # Shell scripts: ShellCheck, and shfmt with the settings in .editorconfig.
 lint-shell:
@@ -24,7 +25,8 @@ lint-workflows:
 check-skills:
     scripts/check-skills.sh
 
-# install.sh in throwaway homes: copy, link and release modes, the marker, protected edits, --check, uninstalling.
+# install.sh in throwaway homes: copy, link and release modes, the marker, protected edits, --check, uninstalling; and
+# the packing, the Pages site's channel files and install lines, and preview versions.
 test-install:
     tests/install-test.sh
 
@@ -44,13 +46,17 @@ hooks:
 check-commits range="origin/main..HEAD":
     scripts/check-commit-message.sh --range '{{range}}'
 
-# Cut a release: date the changelog, commit, tag, and push dev, main and the tag; see scripts/release.sh.
+# Cut a release: date the changelog, commit, tag, and push dev, test, main and the tag; see scripts/release.sh.
 release version:
     scripts/release.sh {{version}}
 
 # Pack a release into a folder the way the release workflow does, to look at it before releasing.
 pack version folder:
     scripts/pack-release.sh {{version}} {{folder}}
+
+# Build the docs site from docs/ into site/dist, as CI and the Pages workflow do; fails on a link that does not land.
+site:
+    cd site && bun install --frozen-lockfile && bun run build
 
 # Link this working copy's sets into the folders agents read, for a machine where skills are edited.
 link:

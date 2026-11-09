@@ -5,8 +5,9 @@
 #
 # Run it in the main working copy, on dev, with every change committed and pushed. It runs just check and the install
 # tests, turns CHANGELOG.md's "## [Unreleased]" section into "## [<version>] - <date>" under a new empty Unreleased
-# section, commits "chore(release): v<version>", tags it, and pushes dev, main and the tag together; main only
-# fast-forwards. The tag starts the Release workflow, which tests, packs, attests and publishes the release.
+# section, commits "chore(release): v<version>", tags it, and pushes dev, test, main and the tag together; test and
+# main only fast-forward. The tag starts the Release workflow, which tests, packs, attests and publishes the release,
+# then deploys the Pages site, whose stable channel then names it. test's preview workflow skips a released commit.
 set -eu
 
 main() {
@@ -19,7 +20,11 @@ main() {
 	[ -z "$(git status --porcelain --untracked-files=no)" ] || die "commit or stash your changes first"
 	git fetch -q --tags origin
 	[ "$(git rev-parse dev)" = "$(git rev-parse origin/dev)" ] || die "dev must match origin/dev; push or pull first"
-	git merge-base --is-ancestor origin/main dev || die "main has commits dev lacks; merge main into dev first"
+	for branch in test main; do
+		if git rev-parse -q --verify "refs/remotes/origin/$branch" >/dev/null; then
+			git merge-base --is-ancestor "origin/$branch" dev || die "$branch has commits dev lacks; fix that on dev first"
+		fi
+	done
 	! git rev-parse -q --verify "refs/tags/v$version" >/dev/null || die "v$version already exists"
 	newest=$(git tag -l 'v*' | sed -n 's/^v\([0-9]*\.[0-9]*\.[0-9]*\)$/\1/p' |
 		sort -t . -k 1,1n -k 2,2n -k 3,3n | tail -n 1)
@@ -43,7 +48,7 @@ main() {
 	mv CHANGELOG.md.new CHANGELOG.md
 	git commit -q -m "chore(release): v$version" CHANGELOG.md
 	git tag -a "v$version" -m "skillbook $version"
-	git push --atomic origin dev dev:main "v$version"
+	git push --atomic origin dev dev:test dev:main "v$version"
 	echo "pushed v$version; the Release workflow publishes it: gh run list --workflow release.yml"
 }
 

@@ -2,7 +2,8 @@ name: Release
 
 # A pushed tag vX.Y.Z publishes a release. The install tests run on Linux and macOS first; then
 # scripts/pack-release.sh packs every set named in skills/released, the files are attested, and a draft release with
-# the CHANGELOG.md section as notes is published once every file is uploaded. scripts/release.sh makes the tag.
+# the CHANGELOG.md section as notes is published once every file is uploaded. Last, it runs pages.yml by hand on main,
+# so the site's stable channel names the new release. scripts/release.sh makes the tag.
 #
 # Running it by hand rehearses a version instead: a private draft release, without attestation. Delete the draft
 # afterwards.
@@ -114,20 +115,22 @@ jobs:
             echo "::error::CHANGELOG.md's section for $VERSION is empty"
             exit 1
           fi
+          owner=${GITHUB_REPOSITORY%%/*}
+          site="https://$owner.github.io/${GITHUB_REPOSITORY#*/}"
           download="https://github.com/$GITHUB_REPOSITORY/releases/download/v$VERSION"
           {
             echo
-            echo "### Installing this release"
+            echo "### Installing"
             echo
             for script in dist/install-*.sh; do
               name=$(basename "$script")
               set=${name#install-}
-              echo "- ${set%.sh}: \`curl -fsSL $download/$name | sh\`"
+              echo "- ${set%.sh}: \`curl -fsSL $site/$name | sh\`, or this release exactly: \`curl -fsSL $download/$name | sh\`"
             done
             echo
             printf '%s %s %s\n' "Then ask your agent to set up skillbook." \
               "To check the files, run \`sha256sum -c SHA256SUMS\`, or \`gh attestation verify <file> --repo $GITHUB_REPOSITORY\`." \
-              "The README covers updating and uninstalling."
+              "[Installing]($site/docs/install/) covers updating, previews and removing."
           } >> notes.md
       - name: Publish the release
         run: |
@@ -138,3 +141,17 @@ jobs:
             gh release create "v$VERSION" dist/* --draft --verify-tag --title "skillbook $VERSION" --notes-file notes.md
             gh release edit "v$VERSION" --draft=false
           fi
+
+  pages:
+    name: deploy the site
+    needs: [version, publish]
+    if: needs.version.outputs.draft == 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write # run pages.yml by hand on main
+    steps:
+      - name: Run pages.yml on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main

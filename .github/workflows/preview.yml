@@ -1,0 +1,132 @@
+name: Preview
+
+# A push to test publishes a preview: what dev had when it was moved to test, tested on Linux and macOS, packed by
+# scripts/pack-release.sh as a release is, attested, and published as the pre-release preview-<time>-<commit>. Then
+# it runs pages.yml by hand on main, so the site's preview channel names it, and `--preview` on a set's install line
+# installs it. scripts/preview-version.sh gives the version, the next patch after the latest release with the
+# commit's UTC time and hash, such as 0.1.1-preview.202611091530.g1a2b3c4. A commit a release already tags gets no
+# preview: scripts/release.sh moves test with every release. Only the newest ten previews are kept.
+
+on:
+  push:
+    branches: [test]
+
+permissions: {}
+
+concurrency:
+  group: preview
+  cancel-in-progress: false
+
+jobs:
+  version:
+    name: version
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read # check out the repository with its tags
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: The preview's version
+        id: version
+        run: |
+          line=$(scripts/preview-version.sh "$GITHUB_SHA")
+          if [ -z "$line" ]; then
+            echo "a release tags $GITHUB_SHA already; no preview"
+            exit 0
+          fi
+          echo "version=${line% *}" >> "$GITHUB_OUTPUT"
+          echo "tag=${line#* }" >> "$GITHUB_OUTPUT"
+          echo "preview ${line% *}, tagged ${line#* }"
+
+  test-install:
+    name: install tests (${{ matrix.os }})
+    needs: version
+    if: needs.version.outputs.tag != ''
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    permissions:
+      contents: read # check out the repository
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: tests/install-test.sh
+
+  publish:
+    name: publish
+    needs: [version, test-install]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write # create the pre-release, upload its files and delete old previews
+      id-token: write # sign the attestation
+      attestations: write # store the attestation
+    env:
+      GH_TOKEN: ${{ github.token }}
+      VERSION: ${{ needs.version.outputs.version }}
+      TAG: ${{ needs.version.outputs.tag }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Pack the preview
+        run: scripts/pack-release.sh "$VERSION" dist
+      - name: Attest the files
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: dist/*
+      - name: Write the notes
+        run: |
+          owner=${GITHUB_REPOSITORY%%/*}
+          site="https://$owner.github.io/${GITHUB_REPOSITORY#*/}"
+          {
+            echo "A preview of skillbook $VERSION: what \`dev\` had at $GITHUB_SHA when it moved to \`test\`."
+            echo "Previews are for trying changes before a release; the next preview or release replaces this one."
+            echo
+            echo "### Installing"
+            echo
+            for script in dist/install-*.sh; do
+              name=$(basename "$script")
+              set=${name#install-}
+              echo "- ${set%.sh}: \`curl -fsSL $site/$name | sh -s -- --preview\`"
+            done
+            echo
+            echo "[Installing]($site/docs/install/) covers going back to the latest release."
+          } > notes.md
+      - name: Publish the preview
+        run: |
+          gh release create "$TAG" dist/* --draft --prerelease --target "$GITHUB_SHA" \
+            --title "skillbook $VERSION" --notes-file notes.md
+          gh release edit "$TAG" --draft=false
+      - name: Keep the newest ten previews
+        run: |
+          gh release list --limit 200 --json tagName,isPrerelease,isDraft \
+            --jq '.[] | select(.isPrerelease and (.isDraft | not)) | .tagName' |
+            grep -E '^preview-[0-9]{12}-[0-9a-f]{7}$' | LC_ALL=C sort -r | tail -n +11 |
+            while IFS= read -r old; do
+              gh release delete "$old" --yes --cleanup-tag
+              echo "deleted $old"
+            done
+
+  pages:
+    name: deploy the site
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write # run pages.yml by hand on main
+    steps:
+      - name: Run pages.yml on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main

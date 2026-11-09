@@ -7,8 +7,9 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 ### Added
 
 - essentials: the first release of the base set. It guides how an agent does any piece of work: understand what you want, decide how to do it, act with care, check before claiming, and answer plainly. Five guides are read on every request, and a guide map leads to the other 51 when the work needs them.
-- install: `install-essentials.sh` installs essentials for Claude Code and Codex with one line. It checks the download against its checksum, never overwrites a folder it did not install, stops before replacing files you changed, and shows the installed and latest versions with `--check`.
-- repository: the design in `blueprint/`, the checks, the install tests and the AI test runner.
+- install: one line installs essentials for Claude Code and Codex, from `https://remziduzagac.github.io/skillbook/install-essentials.sh`. It checks every download against its checksum, never overwrites a folder it did not install, stops before replacing files you changed, and shows the installed version, the latest release and the newest preview with `--check`. `--preview` installs the newest preview instead of the latest release.
+- docs: the documentation website, <https://remziduzagac.github.io/skillbook/docs/>, with installing, versions and a page for each set, built from `docs/`.
+- repository: the design in `blueprint/`, the checks, the install tests, the AI test runner, previews published from the `test` branch, and the contributing, conduct, security and maintaining files.
 
 ### Known limits
 

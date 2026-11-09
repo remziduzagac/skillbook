@@ -1,11 +1,37 @@
+# Dependency updates, as monthly grouped pull requests into dev, each version at least seven days old: the workflows'
+# actions, the test runner's packages and the docs site's. Security alerts and updates are on in the repository's
+# settings, as MAINTAINING.md lists.
 version: 2
 updates:
   - package-ecosystem: github-actions
     directory: /
+    target-branch: dev
     schedule:
       interval: monthly
     cooldown:
       default-days: 7
     groups:
       github-actions:
+        patterns: ["*"]
+
+  - package-ecosystem: bun
+    directory: /
+    target-branch: dev
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
+    groups:
+      test-runner:
+        patterns: ["*"]
+
+  - package-ecosystem: bun
+    directory: /site
+    target-branch: dev
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
+    groups:
+      docs-site:
         patterns: ["*"]

@@ -1,0 +1,112 @@
+name: Pages
+
+# The GitHub Pages site, https://remziduzagac.github.io/skillbook/:
+#   - docs/: the documentation, built by the Starlight site in site/ from the Markdown in docs/;
+#   - install-<set>.sh: each released set's install line, scripts/bootstrap.sh with the set filled in;
+#   - stable and preview: the channel files those lines read, naming the latest release and the newest preview;
+#   - index.html, which sends visitors to the docs.
+# scripts/site-files.sh writes all but the docs, from the releases as they are when it runs. The Release and Preview
+# workflows run this by hand on main once they publish; a push to main that changes the docs or the site runs it too.
+# Each deployment is read back: it passes once the site serves the run's own marker.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "site/**"
+      - "scripts/bootstrap.sh"
+      - "scripts/site-files.sh"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions: {}
+
+# One deployment at a time, each finishing: the site is made from the releases as they are when it runs, so a newer
+# run waits for the one before it rather than an older one deploying over it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: build the site
+    if: ${{ !github.event.repository.fork }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read # check out main and list the releases
+    outputs:
+      deployment: ${{ steps.marker.outputs.deployment }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.3.13
+      - name: The channels and install lines
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --paginate "repos/$GITHUB_REPOSITORY/releases" \
+            --jq '.[] | select(.draft | not) | [.tag_name, (.prerelease | tostring), .published_at] | @tsv' \
+            > releases.tsv
+          scripts/site-files.sh releases.tsv _site
+      - name: The docs
+        working-directory: site
+        run: |
+          bun install --frozen-lockfile
+          bun run build
+          cp -R dist "$GITHUB_WORKSPACE/_site/docs"
+      # The run's own mark on the site, which no other deployment has, so `deploy` can tell this one is served.
+      - name: Marker
+        id: marker
+        run: |
+          echo "$GITHUB_RUN_ID.$GITHUB_RUN_ATTEMPT" > _site/deployment
+          echo "deployment=$(cat _site/deployment)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+
+  deploy:
+    name: deploy
+    needs: build
+    runs-on: ubuntu-latest
+    # deploy-pages waits about ten minutes at most; the read-back waits eleven more.
+    timeout-minutes: 25
+    permissions:
+      pages: write # deploy the site
+      id-token: write # prove to Pages which workflow and ref the deployment comes from
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url || steps.redeploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        continue-on-error: true
+      # GitHub sometimes leaves a deployment at "updating_pages" until the action gives up; a second one goes through.
+      - id: redeploy
+        if: steps.deploy.outcome == 'failure'
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+      # A deployment can be reported a success and not be served, so the marker is read back for eleven minutes, past
+      # the ten the site's cache keeps a file.
+      - name: Served
+        env:
+          SITE: ${{ steps.deploy.outputs.page_url || steps.redeploy.outputs.page_url }}
+          DEPLOYMENT: ${{ needs.build.outputs.deployment }}
+        run: |
+          deadline=$(($(date +%s) + 660))
+          while :; do
+            served=$(curl -fsS --connect-timeout 5 --max-time 10 "${SITE}deployment" 2>/dev/null || true)
+            if [ "$served" = "$DEPLOYMENT" ]; then
+              echo "the site serves this deployment, $DEPLOYMENT"
+              exit 0
+            fi
+            [ "$(date +%s)" -lt "$deadline" ] || break
+            sleep 10
+          done
+          echo "::error::after eleven minutes the site serves \"$served\", not this deployment, $DEPLOYMENT;" \
+            "run pages.yml by hand on main"
+          exit 1

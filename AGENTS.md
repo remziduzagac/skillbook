@@ -6,12 +6,13 @@ skillbook is a public repository of agent skills, organised as sets of skills, e
 
 - [blueprint/](blueprint/README.md): the design (current truth), its decisions and research. Start with its README and roadmap. The method it follows, until the design skill exists, is [docs/blueprint/idea.md](docs/blueprint/idea.md).
 - `skills/<set>/`: one folder per set, such as `skills/essentials/`.
-- [docs/](docs/README.md): one page per main skill, for people.
+- [docs/](docs/README.md): the documentation for people, one page per main skill among them; `site/` builds it into the documentation website.
+- [MAINTAINING.md](MAINTAINING.md): branches, previews, releases, the docs site and the repository's settings.
 - [GLOSSARY.md](GLOSSARY.md): the words skillbook uses, one per concept.
 
 ## Before proposing a commit
 
-Run `just check`: markdown lint, link check, ShellCheck, shfmt, actionlint and zizmor.
+Run `just check`: markdown lint, link check, ShellCheck, shfmt, actionlint, zizmor and the skill-file check. Run `just test-install` too when the install, packing or site scripts change, and `bun run build` in `site/` when the docs or the site change.
 
 ## Working on skills
 
@@ -40,4 +41,4 @@ The three project skills in `.agents/skills/` (linked from `.claude/skills/`), n
 ## Skills
 
 - blueprint: public, at `blueprint/`.
-- greenrepo: Shared; Markdown, Bash, Artifacts.
+- greenrepo: Shared, Users, Artifacts; Markdown, Bash, TypeScript (docs site).

@@ -1,0 +1,6 @@
+# The site's install gates: no package's install script runs, a version is taken only once it has been published a
+# week, `bun add` pins the exact version and bun.lock pins the rest.
+[install]
+ignoreScripts = true
+minimumReleaseAge = 604800
+exact = true
