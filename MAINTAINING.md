@@ -54,9 +54,20 @@ The push starts `.github/workflows/preview.yml`. It runs the install tests on Li
 
 - **The version** comes from `scripts/preview-version.sh`: the next patch after the latest release, then the commit's UTC time and short hash, such as `0.1.1-preview.202611091530.g1a2b3c4`. It is written into the packed files only, never committed.
 - **A released commit gets no preview:** `just release` moves `test` with every release, and the preview channel then names the release, since it was published later.
+- **Which preview:** the one published last, or the latest release when it was published after every preview.
 - **Who it reaches:** whoever adds `--preview` to a set's install line. Stable installs and the releases feed's latest release are untouched.
 
 What trying a preview finds is fixed on `dev`, and `test` moves again. `test` only moves forward.
+
+### The first time
+
+GitHub runs a workflow by hand only once it is on the default branch, `main`. Before the first preview or release, Pages must be on, built by GitHub Actions ("Repository settings"), and `main` must hold `pages.yml` and what it builds, or neither workflow can deploy the site. So, once, fast-forward `main` to `dev` before the first preview:
+
+```sh
+git fetch origin && git push origin origin/dev:main
+```
+
+That push deploys the site, with empty channels. Until the first release, a set's install line says it has no release yet and points to `--preview`; `--check` and `--uninstall` use the preview.
 
 ## Releasing
 

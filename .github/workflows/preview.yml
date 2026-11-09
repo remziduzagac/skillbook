@@ -5,7 +5,7 @@ name: Preview
 # it runs pages.yml by hand on main, so the site's preview channel names it, and `--preview` on a set's install line
 # installs it. scripts/preview-version.sh gives the version, the next patch after the latest release with the
 # commit's UTC time and hash, such as 0.1.1-preview.202611091530.g1a2b3c4. A commit a release already tags gets no
-# preview: scripts/release.sh moves test with every release. Only the newest ten previews are kept.
+# preview: scripts/release.sh moves test with every release. Only the ten previews published last are kept.
 
 on:
   push:
@@ -108,11 +108,11 @@ jobs:
           gh release create "$TAG" dist/* --draft --prerelease --target "$GITHUB_SHA" \
             --title "skillbook $VERSION" --notes-file notes.md
           gh release edit "$TAG" --draft=false
-      - name: Keep the newest ten previews
+      - name: Keep the ten previews published last
         run: |
-          gh release list --limit 200 --json tagName,isPrerelease,isDraft \
-            --jq '.[] | select(.isPrerelease and (.isDraft | not)) | .tagName' |
-            grep -E '^preview-[0-9]{12}-[0-9a-f]{7}$' | LC_ALL=C sort -r | tail -n +11 |
+          gh release list --limit 200 --json tagName,isPrerelease,isDraft,publishedAt \
+            --jq '.[] | select(.isPrerelease and (.isDraft | not)) | "\(.publishedAt) \(.tagName)"' |
+            grep -E ' preview-[0-9]{12}-[0-9a-f]{7}$' | LC_ALL=C sort -r | tail -n +11 | sed 's/^.* //' |
             while IFS= read -r old; do
               gh release delete "$old" --yes --cleanup-tag
               echo "deleted $old"

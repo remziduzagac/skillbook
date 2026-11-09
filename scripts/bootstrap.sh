@@ -7,8 +7,9 @@
 #
 # It installs nothing itself. It reads the channel's file from the site, stable or preview, whose line for the set
 # names a release's tag and the checksum of that release's install-<set>.sh. It downloads that script, checks it, and
-# runs it with the other options. SKILLBOOK_SITE and SKILLBOOK_RELEASES read from elsewhere, such as a mirror or a
-# test's folder.
+# runs it with the other options. --check, --uninstall and --help need no particular release: when the stable channel
+# has none for the set yet, they use the preview's. SKILLBOOK_SITE and SKILLBOOK_RELEASES read from elsewhere, such as
+# a mirror or a test's folder.
 set -eu
 
 set_name=""
@@ -20,12 +21,17 @@ main() {
 	[ -n "$set_name" ] || err "this script names no set; use a set's install line from the Pages site"
 	# --preview picks the preview channel; every other option goes to the release's script, in order.
 	channel=stable
+	manage=no
 	n=$#
 	while [ "$n" -gt 0 ]; do
 		arg=$1
 		shift
 		n=$((n - 1))
-		if [ "$arg" = --preview ]; then channel=preview; else set -- "$@" "$arg"; fi
+		case "$arg" in
+		--preview) channel=preview ;;
+		--check | --uninstall | -h | --help) manage=yes && set -- "$@" "$arg" ;;
+		*) set -- "$@" "$arg" ;;
+		esac
 	done
 
 	work=$(mktemp -d "${TMPDIR:-/tmp}/skillbook-bootstrap.XXXXXX")
@@ -33,8 +39,11 @@ main() {
 	trap 'exit 1' INT TERM
 	find_sha256
 
-	fetch "$site/$channel" "$work/channel" || err "could not read the $channel channel from $site"
-	line=$(grep " install-$set_name\.sh\$" "$work/channel" || true)
+	line=$(channel_line "$channel")
+	if [ -z "$line" ] && [ "$channel" = stable ] && [ "$manage" = yes ]; then
+		channel=preview
+		line=$(channel_line preview)
+	fi
 	if [ -z "$line" ]; then
 		[ "$channel" = stable ] || err "there is no preview of $set_name now; install the latest release without --preview"
 		err "$set_name has no release yet; the newest preview installs with --preview"
@@ -52,6 +61,12 @@ main() {
 	sha256 "$work/install.sh"
 	[ "$digest" = "$sum" ] || err "install-$set_name.sh of $tag does not match its checksum; nothing was installed"
 	sh "$work/install.sh" "$@"
+}
+
+# The channel's line for this set, "<tag> <checksum> install-<set>.sh", or nothing.
+channel_line() {
+	fetch "$site/$1" "$work/$1" || err "could not read the $1 channel from $site"
+	grep " install-$set_name\.sh\$" "$work/$1" || true
 }
 
 find_sha256() {

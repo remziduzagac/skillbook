@@ -61,7 +61,7 @@ Run the same line again. It installs the latest release, and the new copy replac
 
 A preview is what is being prepared for the next release, published to try it before it is released. Each one is a pre-release on the releases page, tagged `preview-<time>-<commit>`, with a version such as `0.1.1-preview.202611091530.g1a2b3c4`.
 
-- **Install the newest preview:** add `--preview` to the line. When a release is newer than every preview, `--preview` installs that release.
+- **Install the newest preview:** add `--preview` to the line. It installs the preview published last, or the latest release when that was published after every preview.
 - **Go back to releases:** run the line without `--preview`. It replaces the preview with the latest release.
 
 Previews may change or break between one and the next, and only the newest ten are kept.

@@ -2,8 +2,9 @@
 # Writes the Pages site's own files into a folder, beside the docs the site's build adds under docs/:
 #
 #   - stable and preview, the channel files: one line per released set, "<tag> <checksum> install-<set>.sh", from
-#     that release's SHA256SUMS. stable names the highest release; preview names the newest preview, or the latest
-#     release when it was published later, so previews never fall behind. A channel with no release is an empty file.
+#     that release's SHA256SUMS. stable names the highest release; preview names the preview published last, or the
+#     latest release when it was published later, so previews never fall behind. A channel with no release is an
+#     empty file.
 #   - install-<set>.sh for each set a channel names: scripts/bootstrap.sh with the set filled in, the install line's
 #     address.
 #   - index.html, which sends a visitor to the docs.
@@ -30,11 +31,13 @@ main() {
 	trap 'exit 1' INT TERM
 
 	tab=$(printf '\t')
-	stable=$(awk -F "$tab" '$2 == "false" && $1 ~ /^v[0-9]+\.[0-9]+\.[0-9]+$/ { print substr($1, 2) }' "$list" |
-		sort -t . -k 1,1n -k 2,2n -k 3,3n | tail -n 1)
+	# grep checks the forms: not every awk takes counts such as {12}.
+	stable=$(awk -F "$tab" '$2 == "false" { print $1 }' "$list" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' |
+		sed 's/^v//' | sort -t . -k 1,1n -k 2,2n -k 3,3n | tail -n 1 || true)
 	[ -z "$stable" ] || stable="v$stable"
-	preview=$(awk -F "$tab" '$2 == "true" && $1 ~ /^preview-[0-9]{12}-[0-9a-f]{7}$/ { print $1 }' "$list" |
-		LC_ALL=C sort | tail -n 1)
+	# The preview published last: a tag's time is its commit's, to the minute, which need not follow publishing.
+	preview=$(awk -F "$tab" '$2 == "true" { print $3 " " $1 }' "$list" |
+		grep -E ' preview-[0-9]{12}-[0-9a-f]{7}$' | LC_ALL=C sort | tail -n 1 | sed 's/^.* //' || true)
 	if [ -n "$stable" ] && [ -n "$preview" ] && later "$(published "$stable")" "$(published "$preview")"; then
 		preview="$stable"
 	fi
@@ -76,8 +79,8 @@ channel() {
 		return 0
 	fi
 	fetch "$releases/download/$2/SHA256SUMS" "$work/SHA256SUMS" || err "could not download SHA256SUMS of $2"
-	awk -v tag="$2" '$1 ~ /^[0-9a-f]{64}$/ && $2 ~ /^install-[a-z][a-z0-9-]*\.sh$/ { print tag " " $1 " " $2 }' \
-		"$work/SHA256SUMS" >"$out/$1"
+	awk '{ print $1 " " $2 }' "$work/SHA256SUMS" | grep -E '^[0-9a-f]{64} install-[a-z][a-z0-9-]*\.sh$' |
+		sed "s/^/$2 /" >"$out/$1" || true
 	[ -s "$out/$1" ] || err "$2's SHA256SUMS lists no install script"
 	echo "$1: $2"
 }

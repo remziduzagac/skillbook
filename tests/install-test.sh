@@ -503,6 +503,11 @@ test_site_names_each_channel() {
 	pack 0.10.1
 	site
 	grep -q '^v0.10.1 ' "$root/site/preview" || fail "preview fell behind a release published after it"
+	pack 0.10.2-preview.202611091530.gfffffff
+	pack 0.10.2-preview.202611091530.g1111111
+	site
+	grep -q '^preview-202611091530-1111111 ' "$root/site/preview" ||
+		fail "preview does not name the preview published last: $(cat "$root/site/preview")"
 }
 
 test_site_without_releases() {
@@ -520,6 +525,10 @@ test_site_without_releases() {
 	grep -q -- "--preview" "$out" || fail "no message pointing to --preview"
 	run_line --preview || fail "the install line with --preview failed"
 	marker_is "$HOME/.claude/skills/$set_name" "copy 0.1.0-preview.202611091530.g1a2b3c4"
+	run_line --check || fail "--check through the install line failed with no release"
+	grep -q "newest preview: preview-202611091530-1a2b3c4" "$out" || fail "--check did not name the preview"
+	run_line --uninstall || fail "--uninstall through the install line failed with no release"
+	[ ! -e "$HOME/.claude/skills/$set_name" ] || fail "--uninstall left the preview installed"
 }
 
 test_install_line_installs_the_latest_release_or_the_newest_preview() {
