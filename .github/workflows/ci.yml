@@ -7,8 +7,11 @@ on:
 
 permissions: {}
 
+# A pull request's superseded run is cancelled. Each push runs in a group of its own and is never cancelled, even when
+# the release pushes one commit to dev, test and main at once: the commit-message check covers only the commits that
+# push added.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
