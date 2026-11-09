@@ -7,10 +7,11 @@ How skillbook is tested, as a whole: what runs where, what a test needs, and whe
 1. **Static checks:** `just check`, as today. It runs the markdown lint, the link check, ShellCheck, shfmt, actionlint, zizmor and the skill-file check. It runs locally and in GitHub CI on every pull request. CI also checks every commit message for AI credit lines, and `just hooks` turns the same check on locally (D225).
 2. **Install tests:** `just test-install`. They check `install.sh` in a throwaway home:
    - copy mode and link mode;
-   - the marker file;
-   - refusing a folder it did not install;
-   - `--sets`, `--project` and `--uninstall`;
-   - running it twice.
+   - the marker file, with a checksum per file;
+   - refusing a folder it did not install, and stopping before replacing or removing files the user changed;
+   - `--sets`, `--project`, `--check`, `--force` and `--uninstall`;
+   - running it twice;
+   - a release packed by `scripts/pack-release.sh`, installed by its `install-<set>.sh` as `curl … | sh` runs it, with a wrong checksum refused (D331).
 
    They need no agent and no key. They run locally and in GitHub CI on every pull request, on Linux and macOS.
 3. **AI tests, local only.** No AI test runs on GitHub. The user's personal accounts are never used in GitHub CI, and no free quota fits (see "Why AI tests stay local").

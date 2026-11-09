@@ -18,6 +18,8 @@ main() {
 		mkdir -p "$root/src" "$root/home" "$root/project"
 		cp "$repo/install.sh" "$root/src/install.sh"
 		cp -R "$repo/skills" "$root/src/skills"
+		mkdir "$root/src/scripts"
+		cp "$repo/scripts/pack-release.sh" "$root/src/scripts/pack-release.sh" 2>/dev/null
 		rm -f "$root/src/skills/"*/.skillbook-install
 		src="$root/src/skills/$set_name"
 		HOME="$root/home"
@@ -54,10 +56,33 @@ same_tree() {
 
 marker_is() {
 	[ -f "$1/.skillbook-install" ] || fail "no marker in $1" || return 1
-	case $(cat "$1/.skillbook-install") in
-	"$2 "*) return 0 ;;
-	*) fail "marker in $1 is '$(cat "$1/.skillbook-install")', expected '$2 ...'" ;;
+	first=$(head -n 1 "$1/.skillbook-install")
+	case $first in
+	"$2" | "$2 "*) return 0 ;;
+	*) fail "marker in $1 starts '$first', expected '$2 ...'" ;;
 	esac
+}
+
+# Packs the copied sets at version $1 into a folder laid out like GitHub's release downloads, as the release
+# workflow would, with version.txt also under latest/. Sets $release to that version's folder.
+pack() {
+	release="$root/releases/download/v$1"
+	"$root/src/scripts/pack-release.sh" "$1" "$release" >"$out" 2>&1 || fail "pack-release.sh failed" || return 1
+	mkdir -p "$root/releases/latest/download"
+	cp "$release/version.txt" "$root/releases/latest/download/version.txt"
+}
+
+# Runs the packed install-<set>.sh as `curl … | sh` does: read from standard input, so it has no file of its own.
+run_release() {
+	SKILLBOOK_RELEASES="file://$root/releases" sh -s -- "$@" <"$release/install-$set_name.sh" >"$out" 2>&1
+}
+
+sha256_check() {
+	if command -v sha256sum >/dev/null 2>&1; then
+		sha256sum -c "$1"
+	else
+		shasum -a 256 -c "$1"
+	fi
 }
 
 test_copy_into_both_agents() {
@@ -179,6 +204,150 @@ test_bad_options() {
 	if run --sets; then fail "--sets without a value was accepted"; fi
 	run --help || fail "--help failed" || return 1
 	grep -q "install.sh" "$out" || fail "--help printed no usage"
+}
+
+test_stops_before_replacing_a_changed_file() {
+	mkdir "$HOME/.claude"
+	dest="$HOME/.claude/skills/$set_name"
+	run || fail "install failed" || return 1
+	echo "my note" >>"$dest/references/act.md"
+	if run; then fail "an update replaced a file the user changed"; fi
+	grep -q "references/act.md" "$out" || fail "the changed file was not named" || return 1
+	grep -q "my note" "$dest/references/act.md" || fail "the user's change was lost" || return 1
+	run --force || fail "install --force failed" || return 1
+	same_tree "$src" "$dest"
+}
+
+test_stops_before_replacing_added_or_removed_files() {
+	mkdir "$HOME/.claude"
+	dest="$HOME/.claude/skills/$set_name"
+	run || fail "install failed" || return 1
+	echo mine >"$dest/references/mine.md"
+	rm "$dest/references/respond.md"
+	if run; then fail "an update replaced a folder with files the user added and removed"; fi
+	grep -q "references/mine.md" "$out" || fail "the added file was not named" || return 1
+	grep -q "references/respond.md" "$out" || fail "the removed file was not named" || return 1
+	[ -f "$dest/references/mine.md" ] || fail "the user's added file was lost"
+}
+
+test_ignores_finder_files() {
+	mkdir "$HOME/.claude"
+	dest="$HOME/.claude/skills/$set_name"
+	run || fail "install failed" || return 1
+	echo finder >"$dest/references/.DS_Store"
+	run || fail "a .DS_Store file stopped the update"
+}
+
+test_uninstall_stops_before_removing_a_changed_file() {
+	mkdir "$HOME/.claude"
+	dest="$HOME/.claude/skills/$set_name"
+	run || fail "install failed" || return 1
+	echo "my note" >>"$dest/references/act.md"
+	if run --uninstall; then fail "uninstall removed a file the user changed"; fi
+	grep -q "references/act.md" "$out" || fail "the changed file was not named" || return 1
+	[ -f "$dest/references/act.md" ] || fail "the user's changed file was removed" || return 1
+	run --uninstall --force || fail "uninstall --force failed" || return 1
+	[ ! -e "$dest" ] || fail "uninstall --force left the folder"
+}
+
+test_replaces_an_install_without_checksums() {
+	mkdir "$HOME/.claude"
+	dest="$HOME/.claude/skills/$set_name"
+	run || fail "install failed" || return 1
+	echo "copy old" >"$dest/.skillbook-install"
+	echo changed >>"$dest/references/act.md"
+	run || fail "an install whose marker holds no checksums was refused" || return 1
+	same_tree "$src" "$dest"
+}
+
+test_another_set_names_essentials_when_missing() {
+	mkdir "$HOME/.claude"
+	mkdir "$root/src/skills/garden"
+	printf -- '---\nname: garden\ndescription: a test set\n---\n' >"$root/src/skills/garden/SKILL.md"
+	run --sets garden || fail "install --sets garden failed" || return 1
+	grep -q "builds on essentials" "$out" || fail "no note that essentials is missing" || return 1
+	run --sets "$set_name" || fail "install --sets $set_name failed" || return 1
+	run --sets garden || fail "install --sets garden failed again" || return 1
+	if grep -q "builds on essentials" "$out"; then fail "the note showed although essentials is installed"; fi
+}
+
+test_working_copy_script_needs_its_own_file() {
+	mkdir "$HOME/.claude"
+	if sh -s <"$root/src/install.sh" >"$out" 2>&1; then fail "a working copy's script ran without its own file"; fi
+	grep -q "install-" "$out" || fail "no message pointing to a set's own install script"
+}
+
+test_pack_writes_the_release_files() {
+	pack 9.9.9 || return 1
+	for f in "$set_name-9.9.9.tar.gz" "install-$set_name.sh" version.txt SHA256SUMS; do
+		[ -f "$release/$f" ] || fail "the release has no $f" || return 1
+	done
+	[ "$(cat "$release/version.txt")" = 9.9.9 ] || fail "version.txt does not hold 9.9.9" || return 1
+	(cd "$release" && sha256_check SHA256SUMS) >"$out" 2>&1 || fail "SHA256SUMS does not match the files"
+}
+
+test_pack_leaves_out_unreleased_sets() {
+	mkdir "$root/src/skills/garden"
+	printf -- '---\nname: garden\ndescription: a test set\n---\n' >"$root/src/skills/garden/SKILL.md"
+	pack 9.9.9 || return 1
+	[ ! -e "$release/install-garden.sh" ] || fail "a set missing from skills/released was packed"
+}
+
+test_release_installs_its_set() {
+	mkdir "$HOME/.claude" "$HOME/.codex"
+	pack 9.9.9 || return 1
+	run_release || fail "the release's install failed" || return 1
+	for dest in "$HOME/.claude/skills/$set_name" "$HOME/.agents/skills/$set_name"; do
+		diff -r -x .skillbook-install -x SKILL.md "$src" "$dest" >/dev/null || fail "$dest differs from the set" || return 1
+		grep -q '^  version: "9.9.9"$' "$dest/SKILL.md" || fail "$dest/SKILL.md holds no version 9.9.9" || return 1
+		sed -e '/^metadata:$/d' -e '/^  version: "9.9.9"$/d' "$dest/SKILL.md" | diff - "$src/SKILL.md" >/dev/null ||
+			fail "$dest/SKILL.md differs from the set beyond its version" || return 1
+		marker_is "$dest" "copy 9.9.9" || return 1
+	done
+}
+
+test_release_ignores_a_skills_folder_beside_it() {
+	mkdir "$HOME/.claude"
+	pack 9.9.9 || return 1
+	mkdir -p "$PWD/skills/$set_name"
+	echo planted >"$PWD/skills/$set_name/SKILL.md"
+	run_release || fail "the release's install failed" || return 1
+	if grep -q planted "$HOME/.claude/skills/$set_name/SKILL.md"; then fail "it installed the current folder's skills"; fi
+}
+
+test_release_refuses_a_wrong_checksum() {
+	mkdir "$HOME/.claude"
+	pack 9.9.9 || return 1
+	echo extra >>"$release/$set_name-9.9.9.tar.gz"
+	if run_release; then fail "it installed an archive that does not match its checksum"; fi
+	grep -q "checksum" "$out" || fail "no message naming the checksum" || return 1
+	[ ! -e "$HOME/.claude/skills/$set_name" ] || fail "something was installed"
+}
+
+test_release_installs_only_its_set() {
+	mkdir "$HOME/.claude"
+	pack 9.9.9 || return 1
+	if run_release --sets garden; then fail "a set's script accepted another set"; fi
+	grep -q "install-garden.sh" "$out" || fail "no message naming the other set's script"
+}
+
+test_release_help_when_piped() {
+	pack 9.9.9 || return 1
+	run_release --help || fail "--help failed when piped" || return 1
+	grep -q "install" "$out" || fail "--help printed no usage"
+}
+
+test_check_shows_installed_and_latest() {
+	mkdir "$HOME/.claude"
+	marker="$HOME/.claude/skills/$set_name/.skillbook-install"
+	pack 9.9.9 || return 1
+	run_release || fail "the release's install failed" || return 1
+	echo 9.9.10 >"$root/releases/latest/download/version.txt"
+	before=$(cat "$marker")
+	run_release --check || fail "--check failed" || return 1
+	grep -q "9\.9\.9" "$out" || fail "--check did not show the installed version" || return 1
+	grep -q "9\.9\.10" "$out" || fail "--check did not show the latest version" || return 1
+	[ "$(cat "$marker")" = "$before" ] || fail "--check changed the install"
 }
 
 main "$@"

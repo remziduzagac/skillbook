@@ -13,7 +13,7 @@ skillbook is a book of skills for AI agents such as Claude Code and Codex: instr
     src="assets/skillbook-robot.webp" width="600">
 </p>
 
-**Status:** the essentials set is built and being tested; the other sets are still being designed. There is no release yet.
+**Status:** essentials is released, at an early 0.x version, for use and feedback; the other sets are still being designed.
 
 ## The plan
 
@@ -37,7 +37,37 @@ Each set is installed as one skill in the agent’s skill list. Its files under 
 
 ## Installing
 
-Coming with the first release: one install script, `install.sh`, copies the sets you choose into the skill folders of Claude Code and Codex; each set is installed on its own, and turned off by removing it.
+Each set installs on its own, with one line, on Linux and macOS; on Windows, use WSL. For essentials:
+
+```sh
+curl -fsSL https://github.com/remziduzagac/skillbook/releases/latest/download/install-essentials.sh | sh
+```
+
+The script copies the set into `~/.claude/skills/essentials` for Claude Code, when `~/.claude` exists, and into `~/.agents/skills/essentials` for Codex, when `~/.codex` exists. It needs no root, checks the download against its checksum, and never overwrites a folder it did not install. Options go after `sh -s --`, such as `sh -s -- --agents codex`, or `sh -s -- --project` to install into the current project instead of your home.
+
+Then ask your agent to **set up skillbook**. With your approval, it adds the line that tells the agent to load essentials before any work, and what your agent needs to read the installed files. In Claude Code, that is the rule `Read(~/.claude/skills/**)` in `permissions.allow` of `~/.claude/settings.json`; without it, Claude Code asks before it reads each guide. You can add it yourself instead.
+
+To read the script before you run it:
+
+```sh
+curl -fsSLO https://github.com/remziduzagac/skillbook/releases/latest/download/install-essentials.sh
+less install-essentials.sh
+sh install-essentials.sh
+```
+
+Each release carries a `SHA256SUMS` file, and its files are attested, so you can check them with `gh attestation verify install-essentials.sh --repo remziduzagac/skillbook`.
+
+### Updating
+
+Run the same line again: it installs the latest release. If you changed a guide by hand, it lists the changed files and stops; add `--force` to replace them. Start new agent sessions afterwards, since an open session keeps the text it has already read.
+
+- **Your version and the latest:** add `--check`, as in `curl -fsSL …/install-essentials.sh | sh -s -- --check`. It changes nothing.
+- **New releases:** watch the repository's releases on GitHub (Watch, then Custom, then Releases), or follow the [releases feed](https://github.com/remziduzagac/skillbook/releases.atom). The [changelog](CHANGELOG.md) says what changed.
+- **A given version:** use its own address instead of `latest`, such as `releases/download/v0.1.0/install-essentials.sh`.
+
+### Removing
+
+Run the line with `sh -s -- --uninstall`. It removes only what it installed, and stops before removing files you changed unless you add `--force`. The pointer and settings that setup added stay; ask your agent to remove them.
 
 ## How it is organised
 

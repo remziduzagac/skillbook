@@ -28,10 +28,10 @@ Starts with the baseline (D108); the rest once the person declares the initial d
   1. Install tests in CI: `just test-install` for `install.sh`, run in GitHub CI on Linux and macOS. Built: 16 tests in `tests/install-test.sh`.
   2. The runner, now `tests/run.ts` on Bun, run by `just test-agents-ts`, with account-free unit tests in `just check` (D219, D268). Every earlier case is retired, tagged `essentials-old-tests`; [the festival scenario](design/scenarios/festival.md) replaces them, built and run in full on Claude Code with Sonnet and Codex with GPT-6.1 Sol (D288). Earlier results remain in the decisions' Tested lines; they do not validate the new scenario. A second scenario, [the todo app](design/scenarios/todo-app.md), was built as the confirmation scenario (D305). Both scenarios are now frozen, and skills are tested with small cases against a comparison (D310, D311).
   3. `just try claude` and `just try codex`, the manual sandbox.
-- [ ] **The repository's checks:** the check script (names matching paths, every dashed name a skill uses resolving to a file, the head of a plain skill file, D188, D190), release-please (D192).
+- [ ] **The repository's checks:** the check script (names matching paths, every dashed name a skill uses resolving to a file, the head of a plain skill file, D188, D190), the release script and the release workflow (D331).
 - [ ] **The first skills,** as their parts are designed.
 - [ ] **This repository's `AGENTS.md`,** cut down to the project's facts once act and respond exist; the pointer goes where the skills are installed (D78, D165).
-- [ ] **The first release:** `install.sh` with its template and the release workflow (archives, `SHA256SUMS`, attestation), `CHANGELOG.md`, docs pages, install instructions, `MAINTAINING.md` and greenrepo's upkeep files, and removing the one-plugin files and the link script (D190–D192).
+- [ ] **The first release:** `0.1.0`, essentials only: the release script (`scripts/release.sh`, run with `just release`), the release workflow (the install tests on Linux and macOS, `scripts/pack-release.sh`, attestation, a draft release, then publishing), `install-<set>.sh` for each released set, `CHANGELOG.md`, the README's install and update sections and `MAINTAINING.md` (D190–D192, D331). Left for later: greenrepo's upkeep files, GitHub's immutable-releases setting and a tag ruleset, an SBOM and native Windows (D331).
 
 ## Later
 
@@ -41,6 +41,8 @@ Agreed, but not scheduled.
 - [ ] **knowledge and routines,** set aside on 2026-10-11 (D64): their design starts from what was known then, in [notes/knowledge-and-routines.md](notes/knowledge-and-routines.md): the skills they held, the decisions that still stand, the folder proposal (`skillbook/` with `blueprint/` and a knowledge folder), where learn's highlights wait, and the open questions.
 - [ ] **More repository profiles:** containers, mobile, deploy targets, frameworks, each after a short research round.
 - [ ] **Wider install routes:** skills.sh and other routes beyond the install script (D189), once the sets are stable; with them the later harnesses, another agent program, pi and Hermes Agent (D184), and the manager CLI idea, of which the script is the natural first step ([ideas/open.md](ideas/open.md)).
+- [ ] **An update notice at session start:** offered by setup as an opt-in hook that checks for a new release at most once a day. It waits because it makes a network call at session start, how each agent shows a hook's output still needs checking, and setup has not yet been checked in a live session (D331).
+- [ ] **An install-everything script:** one script that installs every released set, once a second set is released (D331).
 
 Essentials reads needed methods before each request’s work, routes with explicit read instructions and keeps only the three approved duplicate cuts; local lookups and exact supplied questions have separate routing boundaries, tested with the matched Luna/Sol sample (D264).
 

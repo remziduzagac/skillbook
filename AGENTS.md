@@ -40,4 +40,4 @@ The three project skills in `.agents/skills/` (linked from `.claude/skills/`), n
 ## Skills
 
 - blueprint: public, at `blueprint/`.
-- greenrepo: Shared; Markdown, Bash.
+- greenrepo: Shared; Markdown, Bash, Artifacts.

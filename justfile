@@ -24,7 +24,7 @@ lint-workflows:
 check-skills:
     scripts/check-skills.sh
 
-# install.sh in throwaway homes: copy and link modes, the marker, refusing a folder it did not install, uninstalling.
+# install.sh in throwaway homes: copy, link and release modes, the marker, protected edits, --check, uninstalling.
 test-install:
     tests/install-test.sh
 
@@ -43,6 +43,14 @@ hooks:
 # No commit in the range credits an AI tool; by default, the commits not yet on origin/main.
 check-commits range="origin/main..HEAD":
     scripts/check-commit-message.sh --range '{{range}}'
+
+# Cut a release: date the changelog, commit, tag, and push dev, main and the tag; see scripts/release.sh.
+release version:
+    scripts/release.sh {{version}}
+
+# Pack a release into a folder the way the release workflow does, to look at it before releasing.
+pack version folder:
+    scripts/pack-release.sh {{version}} {{folder}}
 
 # Link this working copy's sets into the folders agents read, for a machine where skills are edited.
 link:
