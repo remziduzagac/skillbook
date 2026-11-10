@@ -4,6 +4,8 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-10
+
 ### Changed
 
 - essentials: the guide map now tells the agent when to read three guides it often skipped on small jobs. It reads `act-verify` whenever its result is built from files or figures you gave it, such as a notice made from an hours table. It reads `act-rightsize-enrich` before changing anything when you ask it to fill in what is missing from something that already exists, such as a bare README. It reads `understand-research-survey` whenever you ask which options exist and how they compare, even when every option is in your own files.
