@@ -5621,3 +5621,24 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 - **Results, Sonnet:** a check reported on the library notice in 5 of 6 runs (0 of 6 old, 5 of 6 read on every request), on the boarding bills in 1 of 6 (0 and 2), on the plot renewals in 2 of 5 with 1 split (1 of 5 and 3 of 4). After writing, it worked the bill totals out again with a command in 1 of 6 runs (0 and 2 of 6); on the other two cases no run on any text opened or ran anything after writing, so those checks are made by eye, as it says.
 - **Sol:** it read the verify guide in every run, as on both earlier texts; its check verdicts were within a run of them.
 - **Cost:** per Sonnet run over the 14 cases, $0.172 old, $0.187 read on every request and $0.178 with the trigger; on the six cases that did not read it, $0.166, $0.181 and $0.163. Spending $11.89 known: runs $10.32, judging $1.57.
+
+## D338: The clarify guide read by a trigger in its entry: tried and dropped (2026-11-10)
+
+**Decision:** no change to the main skill or the clarify guide. Two wordings were tried in the clarify guide's map entry and its own "When to use", as D337 did for the verify guide. Neither beat the old text on the held-out case, so both were reverted.
+
+- **First:** "Read it whenever you are asked to make a whole plan, programme or text for other people, such as an open-day talk or a week of staff training, and the request does not say who it is for or what it should centre on, however clear the request looks. Read it too when you are asked for questions or unknowns that someone must answer, and the request does not say who."
+- **Second, broader:** "Read it whenever you are asked to write or plan something that other people will read or use, such as an open-day talk or a week of staff training, and the request does not say who they are or what it should centre on, however clear the request looks." The questionnaire sentence was dropped, since it had changed nothing.
+
+**Why tried:** in saved runs whose checks expect it, Sonnet read the clarify guide in 7% and Sol in 52%. On the old text Sonnet skipped it on the exhibit plan and the chapel photographs, and asked none of the questions those requests leave open. The verify trigger had worked (D337).
+
+**Why dropped:**
+
+- **It fired only on a request to plan.** Both wordings made Sonnet read the clarify guide in every run on "plan the whole harbour exhibit", and it then asked about the focus and the audience in every run, against none on the old text. On the two other cases the wording covers, "make the strongest case for moving club night" and the About us section of a flyer, it read the guide in no run on either wording. On the exhibit Sonnet already read the understand guide on the old text, so the trigger only moved it one level down. It did not make Sonnet see an audience the request leaves unnamed, and the gain may come from the word "plan" as much as from the rule.
+- **The questionnaire sentence never fired.** Asked to "write up what we would need to find out" about the chapel photographs, Sonnet wrote a checklist for the user in every run, as on the old text, and asked no one who holds the answers. The request's "we" told it who would find out.
+- **Reading a guide is not following it.** On the club-night case Sonnet read the argue guide in every run on all three texts. That guide says to ask through clarify when an unknown audience would change the case, and Sonnet assumed an audience instead.
+
+**Tested:** 2026-11-10, Claude Code with Sonnet only, 3 runs per case and text, judged by Sonnet and Sol, only agreed verdicts counted. The old text is the text of D337. The cases: the exhibit plan and the chapel photographs, which expect the guide; the club-night case, written apart from the change, as the held-out case; the flyer, where the guide fits but the text should still be written in one turn; and adding one class to a timetable, the near miss.
+
+- **Reads, Sonnet (old, first, second):** the clarify guide on the exhibit in 0, 3 and 3 of 3 runs; on the chapel photographs 0 and 0, the second not run; on the club-night case 0, 0 and 0; on the flyer 0 and 0 on the two new texts, and in none of 10 saved runs on earlier texts; on the timetable class 0 and 0.
+- **Results, Sonnet:** on the exhibit, the focus asked in 0, 3 and 3 runs and the audience in 0, 3 and 3. On the chapel photographs, who holds the answers asked in 0 and 0 runs, with 1 split. On the club-night case, who the case is for asked in 0, 0 and 0. The flyer was written in every run, and named its readers in 1 of 1 agreed run with 2 splits, then 3 of 3. The class was added in the timetable's own format and order in every run.
+- **Cost:** per Sonnet run on the exhibit, $0.191 old, $0.209 and $0.208; on the cases where the guide was not read, within a cent of the old text. $7.11 known: runs $6.26, judging $0.85. One Sol judging pass's cost was not recorded.
