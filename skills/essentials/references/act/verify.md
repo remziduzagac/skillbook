@@ -6,7 +6,7 @@ Checks claims that work is done or correct, using fresh evidence and a clear cho
 
 ## When to use
 
-Use before claiming that work is done, fixed, passing, correct or meets its requirements, and when the user asks whether it does. Read it before work starts so needed evidence can be kept. For example, a report’s original numbers may be lost when it is rewritten. Run the checks before making the claim.
+Use before claiming that work is done, fixed, passing, correct or meets its requirements, and when the user asks whether it does. Read it whenever your result is built from files or figures you were given, such as a summary of survey answers or a timetable made from a booking sheet, however small the job. Read it before work starts so needed evidence can be kept. For example, a report’s original numbers may be lost when it is rewritten. Run the checks before making the claim.
 
 ## When not
 

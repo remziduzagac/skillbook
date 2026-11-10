@@ -5572,6 +5572,8 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 
 ## D335: The verify guide is read on every request (2026-11-10)
 
+> **Amended by D337 (2026-11-10):** the verify guide is no longer read on every request. A trigger in its map entry and its own boundary gets most of the gain at less than half the cost.
+
 **Decision:** act-verify joins the guides the main skill reads on every request that a direct answer does not finish, which become six: act, act-rightsize, act-verify, respond, respond-layout and devise. The first rule gives its reason: every claim that work is done or correct is checked. A delegated worker's base stays as it was, without act-verify and devise: its claims go to its caller, which checks what it returns, and its brief names act-verify where the task needs it. The act guide's pointers to the verify guide stay, since they say when its rules apply. The near-miss case `act-verify--swap-idea` now checks that the challenge guide is read, since the verify guide is read on every request.
 
 **Why:**
@@ -5603,3 +5605,19 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 - **Reads:** Sonnet read the plan guide in 0 of 18 runs that need it on both texts, and no guide beyond the six base guides but the two it read on the old text too, the guardrails guide on the family copy and the understand guide with its challenge on the swap idea. Sol read the plan guide in every run that needs it on both texts; its other reads varied by a run or two.
 - **Results:** no agreed verdict moved by more than two runs, and not in one direction: Sonnet's check reported on the boarding bills 1 of 3 and 0 of 3, on the library notice 2 of 3 and 1 of 3, on the plot renewals 1 of 2 and 3 of 3. Every file check passed on both texts, but one Sol bill total in one new run.
 - **Cost:** $14.73 known: runs $12.11, judging $1.98, and the three why runs $0.64.
+
+## D337: The verify guide is read by a trigger Sonnet can see, not on every request (2026-11-10)
+
+**Decision:** the verify guide comes off the list read on every request, which is five guides again, and its map entry and its own "When to use" gain one sentence: "Read it whenever your result is built from files or figures you were given, such as a summary of survey answers or a timetable made from a booking sheet, however small the job." The trigger is a fact the agent can see in the work, where Sonnet's misses came from judging the work's size (D334). The near-miss case `act-verify--swap-idea` checks again that the verify guide stays unread, beside the challenge guide's read.
+
+**Why:**
+
+- **Most of the gain, at less than half the cost.** Over the same three cases, 6 Sonnet runs each, Sonnet reported a check against the sources in 1 of 17 runs on the old text, 10 of 16 with the guide read on every request (D335) and 8 of 17 with the trigger. It cost about 9% more per Sonnet run read on every request, and about 4% more with the trigger, nothing where the guide was not needed.
+- **A fact works where a size judgment did not.** The line saying size is no reason to skip a guide changed no read (D334). The trigger made Sonnet read the guide on all 8 cases built from files, and on none of the 6 that are not.
+
+**Tested:** 2026-11-10, Claude Code with Sonnet on the 14 cases of D334, 6 runs each on the three cases that test a check of work built from sources and 3 on the rest, and Codex with GPT-6.1 Sol, 3 runs on those three; judged by Sonnet and Sol, only agreed verdicts counted; compared with the saved runs of D334 and D335.
+
+- **Reads, Sonnet:** the verify guide in 5 of 6 runs on the library notice, 6 of 6 on the boarding bills, 3 of 6 on the plot renewals, and 3 of 3 on each of the kitchen updates, beach clean, sale rota, budget totals and nest box; in none on the appointment time, the one-name change, the lights-out note, the settings switch, the swap idea and the family copy.
+- **Results, Sonnet:** a check reported on the library notice in 5 of 6 runs (0 of 6 old, 5 of 6 read on every request), on the boarding bills in 1 of 6 (0 and 2), on the plot renewals in 2 of 5 with 1 split (1 of 5 and 3 of 4). After writing, it worked the bill totals out again with a command in 1 of 6 runs (0 and 2 of 6); on the other two cases no run on any text opened or ran anything after writing, so those checks are made by eye, as it says.
+- **Sol:** it read the verify guide in every run, as on both earlier texts; its check verdicts were within a run of them.
+- **Cost:** per Sonnet run over the 14 cases, $0.172 old, $0.187 read on every request and $0.178 with the trigger; on the six cases that did not read it, $0.166, $0.181 and $0.163. Spending $11.89 known: runs $10.32, judging $1.57.
