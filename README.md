@@ -51,7 +51,7 @@ cd my-project
 curl -fsSL https://remziduzagac.github.io/skillbook/install-essentials.sh | sh -s -- --project
 ```
 
-Then ask your agent to **set up skillbook**: with your approval, it adds the line that tells the agent to load essentials before any work, and what your agent needs to read the installed files. Run the same line again to update. A preview is what the next release will hold, published to try it first. [Installing skillbook](https://remziduzagac.github.io/skillbook/docs/install/) covers the options, installing for one project, checking the files, previews and removing.
+The install ends with a setup line: start a new session of your agent and paste it. With your approval, the agent adds the line that tells it to load essentials before any work, and what it needs to read the installed files. Run the same line again to update. A preview is what the next release will hold, published to try it first. [Installing skillbook](https://remziduzagac.github.io/skillbook/docs/install/) covers the options, installing for one project, checking the files, previews and removing.
 
 ## Documentation
 

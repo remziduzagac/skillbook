@@ -6,6 +6,7 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ### Changed
 
+- install: the install ends with a line to paste into a new session of your agent, such as "Set up skillbook on this machine: essentials is installed in ~/.claude/skills for Claude Code and ~/.agents/skills for Codex." It names the folders the install filled, so the agent sets up the copy you have.
 - docs: the README and the install page show how to install a set for one project with `--project`, next to the install lines. The install page says what changes with it: where the files go, later runs, setup, and a copy in your home beside the project's.
 
 ## [0.2.0] - 2026-11-10

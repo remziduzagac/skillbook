@@ -27,7 +27,11 @@ This copies the set into the project's `.claude/skills/essentials` for Claude Co
 
 ## Setting up your agent
 
-After installing, ask your agent to **set up skillbook**. With your approval, it adds the line that tells the agent to load essentials before any work, and what your agent needs to read the installed files. For a project install, it puts that line in the project's instruction files: the shared one when the set is committed, a local one kept out of version control when it is not.
+The install ends with a line to copy. Start a new session of your agent, in the project's folder for a project install, and paste it. For an install in your home, it reads:
+
+> Set up skillbook on this machine: essentials is installed in ~/.claude/skills for Claude Code and ~/.agents/skills for Codex.
+
+The line names the folders the install filled, so the agent sets up the copy you have. With your approval, the agent adds the line that tells it to load essentials before any work, and what it needs to read the installed files. Without the line at hand, ask your agent to **set up skillbook**. For a project install, it puts that line in the project's instruction files: the shared one when the set is committed, a local one kept out of version control when it is not.
 
 To read a set installed in your home, Claude Code needs the rule `Read(~/.claude/skills/**)` in `permissions.allow` of `~/.claude/settings.json`. Without it, Claude Code asks before it reads each guide. You can add it yourself instead. A project install needs no such rule: Claude Code reads files in the folder you start it in without asking.
 

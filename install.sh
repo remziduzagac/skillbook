@@ -135,8 +135,64 @@ main() {
 	done
 
 	if [ "$action" = "install" ]; then
-		log "next: ask your agent to set up skillbook; it adds the pointer and any read permission, with your approval"
+		show_setup_line
 	fi
+}
+
+# Ends an install with a line to paste into a new session of the agent: a request to set skillbook up that names the
+# sets and the folders the install filled, so setup checks those folders instead of guessing them. The line has no
+# prefix, so it copies cleanly.
+show_setup_line() {
+	set --
+	for set in $sets; do
+		set -- "$@" "$set"
+	done
+	if [ $# -gt 1 ]; then
+		installed="$(and_list "$@") are installed"
+	else
+		installed="$1 is installed"
+	fi
+	set --
+	for agent in $agents; do
+		case "$agent" in
+		claude) set -- "$@" "$(shown_folder claude) for Claude Code" ;;
+		codex) set -- "$@" "$(shown_folder codex) for Codex" ;;
+		esac
+	done
+	if [ "$scope" = "project" ]; then
+		when="once in this project: start a new session of your agent in this folder"
+		line="Set up skillbook in this project: $installed in its $(and_list "$@")."
+	else
+		when="once on this machine: start a new session of your agent"
+		line="Set up skillbook on this machine: $installed in $(and_list "$@")."
+	fi
+	log "next, $when and paste the line below. It proposes the pointer and any read permission for your approval."
+	printf '\n%s\n' "$line"
+}
+
+# An agent's skill folder as the setup line shows it: from the home, as ~/..., or from the project's folder.
+shown_folder() {
+	folder=$(folder_of "$1" "")
+	folder=${folder#/}
+	if [ "$scope" = "project" ]; then
+		printf '%s' "$folder"
+	else
+		printf '%s/%s' '~' "$folder"
+	fi
+}
+
+# Joins its arguments as words do: "a", "a and b", "a, b and c".
+and_list() {
+	list="$1"
+	shift
+	while [ $# -gt 1 ]; do
+		list="$list, $1"
+		shift
+	done
+	if [ $# -eq 1 ]; then
+		list="$list and $1"
+	fi
+	printf '%s' "$list"
 }
 
 all_sets() {

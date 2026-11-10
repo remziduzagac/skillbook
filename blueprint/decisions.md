@@ -5743,3 +5743,19 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 
 - **Results, Sonnet (old, new):** on the exhibit, the audience asked in 0 and 2 of 3 runs and the focus in 0 and 1 of 2 with 1 split; on the seed library, the audience asked in 0 and 0 of 3. The flyer was written and named its readers in 3 of 3 runs, as on the second wording of D338, with no style question; the class was added with every file check passed.
 - **Cost:** per Sonnet run on the seed library $0.179 old and $0.182 new, on the exhibit $0.191 and $0.204. $3.00 known: runs $2.64, judging $0.36.
+
+## D345: The install ends with a setup line to paste (2026-11-10)
+
+**Decision:** an install no longer ends with "ask your agent to set up skillbook". It ends with a line to paste into a new session of the agent, printed without the log prefix so it copies cleanly:
+
+- on the home: "Set up skillbook on this machine: essentials is installed in ~/.claude/skills for Claude Code and ~/.agents/skills for Codex.";
+- with `--project`: "Set up skillbook in this project: essentials is installed in its .claude/skills for Claude Code and .agents/skills for Codex.".
+
+The line names the sets and only the agents the run installed for. The log line before it says to start a new session, in the project's folder for a project install, and that setup proposes the pointer and any read permission for approval. An uninstall prints no such line. The install still writes no pointer (D165, D191).
+
+**Why:**
+
+- **The person asked for a line to copy.** "Ask your agent to set up skillbook" left them to find the words.
+- **The line hands setup the facts the install knows.** "On this machine" or "in this project" match setup's two kinds of setup, and the folders let setup check the install the run made instead of guessing where the agent keeps skills, which setup's step 2 warns against.
+
+**Tested:** 2026-11-10, the install tests: a new test checks the line for a home install for both agents, for a project install for Codex only, and that an uninstall prints none; all 42 install tests pass. Not tested in a live agent session.

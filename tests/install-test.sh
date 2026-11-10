@@ -233,6 +233,19 @@ test_uninstall_when_nothing_is_installed() {
 	run --uninstall || fail "uninstall failed with nothing installed"
 }
 
+test_ends_with_the_setup_line() {
+	mkdir "$HOME/.claude" "$HOME/.codex"
+	run --sets "$set_name" || fail "install failed" || return 1
+	line="Set up skillbook on this machine: $set_name is installed in ~/.claude/skills for Claude Code"
+	grep -Fqx "$line and ~/.agents/skills for Codex." "$out" ||
+		fail "no setup line naming both agents' folders in the home" || return 1
+	run --sets "$set_name" --project --agents codex || fail "install --project failed" || return 1
+	grep -Fqx "Set up skillbook in this project: $set_name is installed in its .agents/skills for Codex." "$out" ||
+		fail "no setup line naming the project's folder" || return 1
+	run --uninstall || fail "uninstall failed" || return 1
+	if grep -q "Set up skillbook" "$out"; then fail "uninstall printed a setup line"; fi
+}
+
 test_project_scope() {
 	mkdir "$HOME/.claude"
 	run --project || fail "install --project failed" || return 1
