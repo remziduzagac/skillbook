@@ -5587,3 +5587,17 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 - **Sol:** no change beyond noise; it read the guide in every run on both texts. Its check verdict on the plot renewals fell from 3 of 3 to 1 of 3, from answers that said "Prepared and checked all nine renewals" with no detail.
 - **Near misses:** on the appointment time, both models changed the one line with no question, and read no plan or guardrails guide, on both texts. The swap-idea case's check that the verify guide stays unread failed by design, and was changed.
 - **Cost:** per run, Sonnet $0.173 old and $0.187 new on average over the 14 cases, Sol $0.101 and $0.100. Spending $18.14 known: runs $12.08, and the extra Sonnet runs $1.73 new and $1.54 old; judging $2.05 and $0.74.
+
+## D336: A second look at the guide map once the work is seen: tried and dropped (2026-11-10)
+
+**Decision:** no change to the main skill. Step 2 gained a bullet after "Look at what the work touches": once the agent has looked, it goes through the guide map again, since it picked guides in step 0 before it saw the work, and reads each guide whose entry fits a part it found, before that part starts, such as `devise-plan` when the files show the work has several parts. It gave no gain and was reverted. This was the last of the three changes of D334.
+
+**Why tried:** Sonnet said it reads the base guides before it opens any of the work's files, so it cannot yet see that the work has several parts, and then goes to work without going back (D329).
+
+**Why dropped:** Sonnet read no further guide with the bullet in place. Asked in a second turn on the plot renewals, it quoted the bullet in all 3 runs, said the files showed several parts, and said it went straight to writing after reading them, with no second pass. Like the size line of D334, a rule about how to choose guides does not change Sonnet's choice; only a guide read on every request does (D335).
+
+**Tested:** 2026-11-10, the 14 cases of D334 on the text of D335 as the old text, its saved runs reused, 3 runs per model, Claude Code with Sonnet and Codex with GPT-6.1 Sol, judged by Sonnet and Sol, only agreed verdicts counted. The plan cases were written before the bullet, so they serve as held-out cases.
+
+- **Reads:** Sonnet read the plan guide in 0 of 18 runs that need it on both texts, and no guide beyond the six base guides but the two it read on the old text too, the guardrails guide on the family copy and the understand guide with its challenge on the swap idea. Sol read the plan guide in every run that needs it on both texts; its other reads varied by a run or two.
+- **Results:** no agreed verdict moved by more than two runs, and not in one direction: Sonnet's check reported on the boarding bills 1 of 3 and 0 of 3, on the library notice 2 of 3 and 1 of 3, on the plot renewals 1 of 2 and 3 of 3. Every file check passed on both texts, but one Sol bill total in one new run.
+- **Cost:** $14.73 known: runs $12.11, judging $1.98, and the three why runs $0.64.
