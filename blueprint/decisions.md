@@ -5727,3 +5727,19 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 - **Near miss:** "which one should I choose?" of three named courses was not run again. The trigger sentence is the one of D340, where Sonnet read the weigh guide and not the survey guide in every run, and the survey guide's changes reach only runs that read it.
 - **Dates stay weak:** the README's date was given in 3 of 9 runs. Left open.
 - **Cost:** per Sonnet run, the courses $0.161 old and $0.214 new, the roof funders $0.171 and $0.222, the kennels $0.172 and $0.215, the piano tuners $0.159 and $0.209, about 30% more where the guide is read. $3.06 known for runs: new $2.58, the held-out baseline $0.48. Judging cost was not recorded.
+
+## D344: Settling an unnamed reader in the rightsize guide: tried and dropped (2026-11-10)
+
+**Decision:** no change to the rightsize guide. Its rule 1 gained, for a run, the understand guide's who-decides rule applied to the reader, since every request reads rightsize: when the request does not say who the result is for, ask who it is for and end the turn for work in several parts, such as a whole plan, a programme or a set of web pages; for one short piece, write for the likely reader and name it in a "Going with" line. A guide for the work that asks about the reader, such as the argue guide, came first. It did not beat the old text on the held-out case and was reverted. The held-out case, `understand-clarify-shallow--seed-library`, stays in the suite.
+
+**Why tried:** Sonnet asked about the reader on none of the requests that leave it open, and read the clarify guide on few of them; a trigger in clarify's entry did not fire on them (D338). A rule needed on work that looks simple belongs where every request reads it.
+
+**Why dropped:**
+
+- **Sonnet judged "several parts" its own way.** On five library sessions, the held-out case, it read rightsize in every run, treated the write-up as one short piece, wrote it for a mixed audience and named that reader in its final answer. It asked in no run on either text. The rule's test, work in several parts, is a judgment, not a fact Sonnet can see in the request, which D337 and D338 found does not work as a trigger.
+- **It helped only where the request says "plan the whole".** On the exhibit, the audience was asked in 2 of 3 runs, against 0 of 3.
+
+**Tested:** 2026-11-10, Claude Code with Sonnet only, 3 runs per case and text, judged by Sonnet and Sol, only agreed verdicts counted. The old text is the text of D340 for the seed library, and the text of D337 for the exhibit's saved old runs of D338; the new text also carried D342 and D343, which these cases do not use. The cases: the exhibit; the seed library, written apart from the change by a fresh agent, as the held-out case; and the flyer and the timetable class, the near misses, which should go ahead.
+
+- **Results, Sonnet (old, new):** on the exhibit, the audience asked in 0 and 2 of 3 runs and the focus in 0 and 1 of 2 with 1 split; on the seed library, the audience asked in 0 and 0 of 3. The flyer was written and named its readers in 3 of 3 runs, as on the second wording of D338, with no style question; the class was added with every file check passed.
+- **Cost:** per Sonnet run on the seed library $0.179 old and $0.182 new, on the exhibit $0.191 and $0.204. $3.00 known: runs $2.64, judging $0.36.

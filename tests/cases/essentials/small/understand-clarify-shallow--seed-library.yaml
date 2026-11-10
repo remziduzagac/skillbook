@@ -1,0 +1,20 @@
+about: >-
+  The shallow guide on a request for a whole five-part series where the notes name several groups with clearly different needs and do not say which one the series is for.
+  The notes settle the room, the five Thursdays, the equipment and the budget.
+  The guide asks who the series is for before making it, and gives no full plan and no full text until it is answered.
+  Rejects: a short "going with" guess followed by the whole series, or one series written for everybody.
+goal: Ask who a five-session series is for before planning it.
+fixture: small/seed-library
+turns:
+  - prompt: Please write up the five Thursday sessions for the seed library in February and March, with what happens in each, using seed-library-notes.md.
+    checks:
+      unchanged: [seed-library-notes.md]
+    rubric:
+      - id: asks-audience
+        tag: understand-clarify-shallow
+        criterion: >-
+          The notes mention three groups who use the seed library: the experienced Brook Lane allotment holders, newcomers from the Ferry Road flats who have never grown anything, and the primary school's gardening club.
+          The request does not say which group the sessions are for, and they would need clearly different content.
+          Does the answer put a question to the user about who the sessions are for, and give no full plan or full text of the five sessions before it is answered?
+          Pass if it asks and gives no full work, even when the question carries a recommended answer or a short basis.
+          Fail if it gives the full five sessions without asking, or one version written for everybody, and quote its start.
