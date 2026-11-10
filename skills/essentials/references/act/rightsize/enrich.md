@@ -6,7 +6,7 @@ Adds missing parts to existing material from checked sources and marks answers t
 
 ## When to use
 
-Use when existing material leaves its reader unable to understand or act without asking again. Examples include a README without install steps, a report without evidence or a next step, or a guide missing its “when not” cases.
+Use when existing material leaves its reader unable to understand or act without asking again. Examples include a README without install steps, a report without evidence or a next step, or a guide missing its “when not” cases. Read it before the first change whenever the user asks you to add what is missing to something that already exists, such as filling in a thin packing list or completing a half-written handover note, however small it is.
 
 ## When not
 
