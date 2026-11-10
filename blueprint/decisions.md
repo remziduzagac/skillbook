@@ -5677,3 +5677,21 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 - **Reads, Sonnet (old, new):** the survey guide on the courses in 0 and 3 of 3 runs, the roof funders 0 and 3, the kennels 0 and 3; on the near miss it read the weigh guide and not the survey guide in every run.
 - **Results, Sonnet (old, new):** a source not searched named on the courses in 0 of 3 and 0 of 1 agreed run with 2 splits, the roof funders 0 and 2 of 3, the kennels 0 and 0 of 3. The notes' date given on the courses in 0 and 1 of 3, the kennels 0 and 0. The other questions passed in every run on both texts, apart from 1 split on the courses' no-pick question on the old text.
 - **Cost:** per Sonnet run, the courses $0.161 old and $0.206 new, the roof funders $0.171 and $0.217, the kennels $0.171 and $0.206. $4.62 known: runs $4.04, judging $0.58.
+
+## D341: A reasons check among the design review's lenses: tried and dropped (2026-11-10)
+
+**Decision:** no change to the design review guide. Its builder walk-through gained one bullet for a run: check that each decision, and each value the design picks, such as a count, a time or a limit, has its reason, its source or an assumption mark, by the design guide's rule 3. It did not reach the reviewer's brief, so it was reverted. A held-out case written for it, `devise-design--cold-night-shelter`, stays in the suite; it has not been run.
+
+**Why tried:** on camp meals Sonnet read the design guide in every run and still gave picked values with no reason, such as "label-checked by two people" or "at least a week ahead", although the design guide asks for a reason in its rule 3, step 8 and its final check. Every run started a fresh reviewer, and in one run the reviewer's brief copied the review guide's lenses, none of which checked reasons. A check among the lenses looked like the place that work actually reaches.
+
+**Why dropped:**
+
+- **It did not reach the brief.** On the new text, one run of three read the design and review guides and started a reviewer; its brief named its own lenses, with no reasons check.
+- **The guide was read less, not more.** The other two runs read neither guide and started no reviewer, against 3 of 3 reads on the old text. With 3 runs this is likely noise, but it left nothing to measure.
+- **The held-out case was not run,** which saved about $5, since a change that never reaches the reviewer's brief cannot pass it.
+
+**Tested:** 2026-11-10, Claude Code with Sonnet only, 3 runs on `devise-design--camp-meals`, judged by Sonnet and Sol, only agreed verdicts counted. The old text's runs are the three saved earlier the same day on the text of D340.
+
+- **Reads, Sonnet (old, new):** the design guide in 3 and 1 of 3 runs, the review guide in 3 and 1.
+- **Results, Sonnet (old, new):** every picked value backed or marked in 0 of 2 agreed runs with 1 split, and 0 of 2 with 1 unknown. The approval status stated in 3 of 3, and 1 of 2 with 1 split.
+- **Cost:** per Sonnet run, $0.838 old and $0.891 new. $2.81 known: runs $2.67, judging $0.14.

@@ -1,0 +1,28 @@
+about: >-
+  The design guide on a design that volunteers will follow overnight without the user.
+  The brief gives the beds, the volunteers, the money and the distances, but not the numbers the design has to choose itself.
+  Every number the design picks carries a reason or an assumption mark, and the answer says where the design stands on approval.
+  Rejects: bare chosen numbers, or a design handed over as final with no word on approval.
+goal: Design how a winter night shelter in a church hall will run overnight, with a reason or an assumption mark for every value the design picks.
+fixture: small/cold-night-shelter
+turns:
+  - timeout: 900
+    prompt: Design how the overnight shelter at the hall will run, so the volunteers can follow it when I'm not there. Everything I know is in brief.md.
+    checks:
+      reads: [devise-design]
+      unchanged: [brief.md]
+    rubric:
+      - id: chosen-values-basis
+        tag: devise-design
+        criterion: >-
+          brief.md gives these numbers: 30 camp beds, 30 blankets, 12 sleeping bags, up to 6 volunteers a night, 14 trained volunteers at about 4 nights a month each, a £38 evening electric bill, £600 for the season with £90 spent, A&E 11 km and the ambulance station 6 km away, a last bus at 23:10, two fire exits and one front door, and December to the end of February.
+          Look at each number the design picks itself, such as a door-opening or lights-out time, how many volunteers are awake at once, a watch interval, a guest limit, a room temperature, a budget per night or an alarm threshold.
+          Does each one carry a reason, or share a stated basis with others, or is it marked as an assumption with what would settle it?
+          A number taken from brief.md needs only that source.
+          Pass if every picked number does. Fail if any is given bare, with no reason and no assumption mark, and quote the first one.
+          If the design picks no number of its own, return unknown.
+      - id: approval-status
+        tag: devise-design
+        criterion: >-
+          Does the answer state the design's approval status: that it is not yet approved, that it awaits the user's approval, or why none is needed?
+          Pass if the status is stated. Fail if the design is handed over as final with no word on approval, and quote the closest part.
