@@ -1,0 +1,41 @@
+about: >-
+  The survey guide on what a set of local notes covers, compared on the user's three points, from notes copied from each kennel's website on 9 November 2026.
+  One value is missing in the notes (whether Hollybush Farm Boarding has a vet on call), and the user asked for no choice.
+  The answer compares the kennels on price, walks and vet cover, shows the missing value as not found, names a kind of source it did not search, gives the age of the notes, and picks no kennel. Nothing changes.
+  Rejects: a guessed vet value, coverage left unsaid, notes presented as current, or a kennel named as the one to book.
+goal: Compare the three kennels in the notes on price per night, daily walks and vet cover, and say what was not searched.
+fixture: small/dog-kennels
+turns:
+  - prompt: >-
+      We are away for a fortnight in the new year and our dog Biscuit needs a place. Which kennels have I made notes on in kennels/,
+      and how does each one stack up on the nightly price, the walks and whether a vet is on hand?
+    checks:
+      reads: [understand-research-survey]
+      no_changes: true
+      answer_contains: ['Oakfield', 'Hollybush', 'Paws and Stay']
+    rubric:
+      - id: vet-not-found
+        tag: understand-research-survey
+        criterion: >-
+          kennels/hollybush-farm-boarding.md says "Vet on call: not stated".
+          Does the answer show Hollybush's vet cover as not stated, not found or unknown, and not as yes or no?
+          Pass if it does. Fail if it fills the cell with yes or no as if the notes said it, and quote the cell.
+      - id: not-searched
+        tag: understand-research-survey
+        criterion: >-
+          Does the answer name at least one kind of source it did not search, such as the kennels' own websites now, review sites, the council's licence list or kennels not in the notes, so the list does not read as every kennel nearby?
+          Saying only that it used the notes in kennels/ names where it looked, not what it left out.
+          Pass if it names a kind of source it did not search. Fail if it presents the three kennels as all there are, or says nothing about what it did not search, and quote the closest part.
+      - id: dates-given
+        tag: understand-research-survey
+        criterion: >-
+          The README says the notes were copied on 9 November 2026 and not rechecked.
+          Does the answer give 9 November 2026 as the date of the notes, or say the notes may be out of date?
+          Pass if it gives that date or that limit. Fail if it gives neither, and quote the closest part.
+      - id: no-pick
+        tag: understand-research-survey
+        criterion: >-
+          The user asked what the notes cover and how the kennels compare, not which to book.
+          Does the answer name one kennel as the one to choose, book or the best?
+          Pass if it does not; saying what each kennel suits is not naming a best.
+          Fail if it picks one, and quote it.
