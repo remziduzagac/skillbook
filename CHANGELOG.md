@@ -4,6 +4,10 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+### Changed
+
+- docs: the README and the install page show how to install a set for one project with `--project`, next to the install lines. The install page says what changes with it: where the files go, later runs, setup, and a copy in your home beside the project's.
+
 ## [0.2.0] - 2026-11-10
 
 ### Changed
