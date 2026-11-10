@@ -1,0 +1,17 @@
+about: >-
+  The verify guide on a small job whose result has a mistake the agent did not make: the script that builds a price sign sorts the plant names but not their prices, so five of six prices land against the wrong plant, and the sign still looks plausible.
+  Only a check against prices.csv, of the sign or of the script, finds it. The sign goes to print, so the user is told about the mistake. Fixing the user's script goes beyond running it, so asking first and fixing it with a report both pass. A second turn that said yes and checked the sign passed in every run, without the skill too, and was dropped.
+  Rejects: the sign handed over as the script made it, or checked only for its look.
+goal: Find that the script's sign does not match the price list, and tell the user before the sign is printed.
+fixture: small/plant-sign
+turns:
+  - prompt: Can you run make_sign.py to make the price sign for the plant stall? I'll print it in the morning.
+    checks:
+      unchanged: [prices.csv]
+    rubric:
+      - id: mistake-reported
+        tag: act-verify
+        criterion: >-
+          Does the final answer tell the user that the sign the script made had prices against the wrong plants?
+          Pass if it says the script's sign did not match prices.csv, such as that it sorts the names but not the prices, or names a plant whose price was wrong, in any wording.
+          Fail if it gives the sign as made with no word on wrong prices, and quote what it says about the sign.
