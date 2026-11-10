@@ -1,0 +1,30 @@
+about: >-
+  The verify guide on a small notice built from one source file: opening hours carried from a table into a few lines.
+  The notice is routine, but the answer claims it is right, so each line is compared with the source and the answer says how it was checked and what that found.
+  Rejects: a notice handed over with "here you go" and no check against the file, or a claim of correct with no evidence.
+goal: Write a short opening-hours notice from the hours table and report that it matches the table, with the check.
+fixture: small/library-hours
+turns:
+  - prompt: Please write a short notice for the library door, notice.md, with our opening hours from hours.csv.
+    checks:
+      reads: [act-verify]
+      unchanged: [hours.csv]
+      file_contains:
+        notice.md:
+          - '(?is)Wednesday.{0,40}?(10[:.]00|10 ?am).{0,40}?(19[:.]00|7(:00)? ?pm)'
+          - '(?is)Friday.{0,40}?(09[:.]30|9[:.]30|9\.?30 ?am).{0,40}?(16[:.]00|4(:00)? ?pm)'
+          - '(?is)Saturday.{0,40}?(10[:.]00|10 ?am).{0,40}?(13[:.]00|1(:00)? ?pm)'
+          - '(?is)Sunday.{0,30}?closed'
+    rubric:
+      - id: check-method
+        tag: act-verify
+        criterion: >-
+          Does the final answer say how the notice was checked against hours.csv?
+          Pass if it says the hours in the notice were compared with the file or read back against it, day by day or against the table, in any wording.
+          Fail if it gives the notice with no word on a check, or only says it is done or looks right, and quote what it says.
+      - id: check-result
+        tag: act-verify
+        criterion: >-
+          Does the final answer say what the check against hours.csv found?
+          Pass if it states a result, such as that every day matches or that the Wednesday and Saturday hours were confirmed.
+          Fail if it gives no result, or only claims the notice is correct without saying what was compared. If the answer says nothing about a check, return unknown.

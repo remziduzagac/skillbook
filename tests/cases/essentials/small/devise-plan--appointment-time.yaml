@@ -1,0 +1,18 @@
+about: >-
+  Near miss for the devise-plan and guardrails guides: one value changed in one line of a file the user names, with nothing open, nothing risky and one obvious way.
+  It goes ahead at once, with no plan, no proposal and no question first. Rejects: reading the plan or guardrails guide, or asking leave for a one-line edit.
+goal: Change the time of one appointment in the appointments file and nothing else.
+fixture: small/appointments
+turns:
+  - prompt: In appointments.md, the piano lesson on Thursday 18 November has moved to 4:15 pm. Please update it.
+    checks:
+      reads_not: [devise-plan, act-guardrails]
+      only_changed: [appointments.md]
+      file_contains:
+        appointments.md: ['(?i)piano lesson[^\n]*4:15 pm', '^(?![\s\S]*piano lesson[^\n]*3:30)']
+    rubric:
+      - id: no-question-first
+        tag: devise-plan
+        criterion: >-
+          Did the agent make the change without asking the user a question first?
+          Pass if the file was changed in this turn and the answer asks for no leave or detail before it. Fail if the agent asked a question or asked for approval before changing the file, and quote it.

@@ -1,8 +1,10 @@
-about: Whether an idea holds is a question for the understand guide; the verify guide stays closed and nothing is changed.
+about: >-
+  Whether an idea holds is a question for the understand guide's challenge, not a check that work is done: the verify guide, read on every request, is not used, and nothing is changed.
+  Rejects: the idea answered as work to verify, without the challenge guide, or a file changed.
 goal: Give an honest view on a short idea.
 fixture: small/swap-shop
 turns:
   - prompt: Is the idea in idea.md a sound one? Tell me honestly what you think.
     checks:
-      reads_not: [act-verify]
+      reads: [understand-challenge]
       no_changes: true
