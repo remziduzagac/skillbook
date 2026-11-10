@@ -4,6 +4,8 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-11-10
+
 ### Changed
 
 - install: the install ends with a line to paste into a new session of your agent, such as "Set up skillbook on this machine: essentials is installed in ~/.claude/skills for Claude Code and ~/.agents/skills for Codex." It names the folders the install filled, so the agent sets up the copy you have.
