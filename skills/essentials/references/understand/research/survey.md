@@ -6,7 +6,7 @@ Finds existing candidates and compares them on common terms without taking over 
 
 ## When to use
 
-Use when the user needs to know what already exists on a subject, compared on the same terms. Examples include existing tools, papers or alternatives.
+Use when the user needs to know what already exists on a subject, compared on the same terms. Examples include existing tools, papers or alternatives. Read it whenever you are asked which options of some kind exist, or which ones a set of notes or pages covers, and how they compare, even when every option is in the user's own files.
 
 ## When not
 
@@ -33,7 +33,11 @@ Coverage:      where you searched, what you did not search, the survey's date an
 3. **Compare every fully examined candidate on every term.** Give evidence or "not found" for each value. Use no guess or score without a meaningful measure.
 4. **Name screened-out candidates with their reasons.** List an unexamined long tail separately as not compared, with the reason and coverage limit. A names-only list is not a completed comparison or an evidence-backed rejection.
 5. **Treat the user's own option like every other candidate.** Give each candidate's supported strengths and weaknesses. Favoring one candidate hides information needed for the later choice.
-6. **Report search coverage and its date.** Say where you searched, and name the kinds of source you did not search, even when the user limited where to look. Give the date you searched, and each source's own date where it has one. Say what remains unverified. A survey is a snapshot, not proof that nothing else exists.
+6. **Report search coverage and its date, in a Coverage line that ends the answer.** Without it, a short list reads as everything that exists, and old notes read as current. A survey is a snapshot, not proof that nothing else exists.
+   - In the line, give where you searched and at least one kind of source you did not search, even when the user limited where to look. Give each source's own date, or say it has none, and the date you searched.
+   - Look for a date in every file you read, a README included, before you write the line.
+   - Say what remains unverified.
+   - For example: "Coverage: the three supplier price lists in quotes/, dated 3 March. Not searched: the suppliers' current sites, trade directories or suppliers not in the folder."
 7. **Add no survey-only approval checkpoint.** A survey reads and compares; it changes nothing. Ask first only for a choice the user owns, by the `understand` guide's rule 5, or for a worker cost that needs approval, by the `coordinate-delegate` guide's rule 8. Then end the turn. Otherwise put the scope, the terms and how you searched in the final answer.
 8. **Return the comparison to its active caller.** That is the guide or task that asked for the survey, and it owns the choice. When the user asked you to choose, compare the candidates with the `understand-weigh` guide after the survey. When the `understand-weigh` guide asked for this survey, return to it; do not start it again. Start no new candidate generation. A request for existing options alone starts no choice round and gets no recommendation.
 
@@ -64,7 +68,8 @@ Find existing candidates and compare them on terms chosen before the search. Kee
    - Treat themes with few independent origins as anecdotes to investigate, not a vote. Use no score without a meaningful measure.
    - Use a short table or list that fits the medium. When refreshing a survey, report changes and recheck facts needed for the current answer.
 5. **Return the comparison to its owner under rules 6–8.** A survey that silently chooses can bypass the caller's decision and conceal incomplete coverage.
-   - Give scope, terms, comparison, exclusions, unexamined candidates, where you searched, the kinds of source you did not search, the survey's date, each source's date and unverified findings. Add these to the parent's result shape.
+   - Give scope, terms, comparison, exclusions and unexamined candidates. Add these to the parent's result shape.
+   - End with the Coverage line of rule 6, even for a short comparison from the user's own files.
    - For a direct request that includes choosing, use the `understand-weigh` guide after comparison. Otherwise return to the guide or task that asked, without starting weighing or generation again.
    - With no user decision needed, put scope, terms and how you searched in the final answer. Keep lasting records with their owner.
 6. **Check the survey and “Gives back” before returning it.** Always do this last. A names-only list cannot stand in for a completed comparison.

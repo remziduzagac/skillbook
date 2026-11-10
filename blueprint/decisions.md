@@ -5662,6 +5662,8 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 
 ## D340: The survey guide named, with a trigger, in research's map entry: tried and dropped (2026-11-10)
 
+> **Amended by D343 (2026-11-10):** the trigger is back in research's map entry, together with a sharper coverage rule in the survey guide. With both, Sonnet named a source it had not searched in every run.
+
 **Decision:** no change to the main skill. The understand-research entry gained one sentence for a run, in the shape of D339: "Read `understand-research-survey` too whenever you are asked which options of some kind exist, or which ones a set of notes or pages covers, and how they compare, such as campsites for a school trip or printers for a club magazine, even when every option is in the user's own files. Choosing one of them is a job for `understand-weigh`." Sonnet then read the survey guide every time, but its answers did not improve, and each run cost about a quarter more, so the sentence was reverted. A held-out case written for this test, `understand-research-survey--dog-kennels`, stays in the suite.
 
 **Why tried:** on two survey cases Sonnet read no understand guide at all, and in every saved run it compared the options without naming any kind of source it did not search, which the survey guide's rule 6 asks for.
@@ -5708,3 +5710,20 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 - **Sol:** 0 of 12 on both texts. It read the split guide in every run and answered with one principle, such as "by their next firing", and each folder's files. The change does not reach Sol's short answers; that is left open.
 - **Other checks:** every file check passed on both texts and models: each item moved once, with its contents.
 - **Cost:** per Sonnet run about $0.19 on both texts, per Sol run $0.11 old and $0.12 new. $7.43 known for runs: old $2.73 and $0.91 for the held-out case, new $3.79. Judging cost was not recorded.
+
+## D343: The survey guide is named, with a trigger, in research's map entry, and ends with a Coverage line (2026-11-10)
+
+**Decision:** two changes, tested together. Research's entry in the main skill's map gets back the trigger sentence of D340, and the survey guide's "When to use" gets the same trigger. The survey guide's rule 6 becomes one must with one visible place: end the answer with a Coverage line that gives where you searched, at least one kind of source you did not search, and each source's own date or that it has none. It also says to look for a date in every file read, a README included, and gives an example line. Instructions step 5 points to that line, even for a short comparison from the user's own files.
+
+**Why:**
+
+- **The trigger alone gave reads, not results** (D340): the old rule 6 held four asks in one sentence, and with the guide read, Sonnet named a source it had not searched in 2 of 9 runs.
+- **The two together changed what Sonnet tells the user.** It now ends each comparison with what it did not search, which the user needs to tell a short list from everything that exists.
+
+**Tested:** 2026-11-10, Claude Code with Sonnet only, 3 runs per case and text, judged by Sonnet and Sol, only agreed verdicts counted. The old text is the text of D340, with the saved runs noted there; the new text also carried D341's trial line and D342, which these cases do not use. The cases: the courses and the roof funders; the kennels, the held-out case of D340; and `understand-research-survey--piano-tuners`, written apart from this change by a fresh agent, as its held-out case. Its fixture was corrected before any run, so that only one tuner leaves out the travel charge.
+
+- **Reads, Sonnet (old, new):** the survey guide in 0 and 3 of 3 runs on each of the four cases.
+- **Results, Sonnet (old, new):** a source not searched named in 0 and 3 of 3 runs on each of the four cases: 0 of 12 and 12 of 12. With the trigger alone it was 2 of 7 agreed runs, with 2 splits (D340). The notes' date given on the courses in 0 and 1 of 3, the kennels 0 and 1 of 2 with 1 split, the piano tuners 0 and 1 of 2 with 1 split. On the piano tuners, no tuner chosen for the user in 0 and 2 of 2 with 1 split, and the missing travel charge marked as not given in 3 and 3. Every other question passed on both texts.
+- **Near miss:** "which one should I choose?" of three named courses was not run again. The trigger sentence is the one of D340, where Sonnet read the weigh guide and not the survey guide in every run, and the survey guide's changes reach only runs that read it.
+- **Dates stay weak:** the README's date was given in 3 of 9 runs. Left open.
+- **Cost:** per Sonnet run, the courses $0.161 old and $0.214 new, the roof funders $0.171 and $0.222, the kennels $0.172 and $0.215, the piano tuners $0.159 and $0.209, about 30% more where the guide is read. $3.06 known for runs: new $2.58, the held-out baseline $0.48. Judging cost was not recorded.

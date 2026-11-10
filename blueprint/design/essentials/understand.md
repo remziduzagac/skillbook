@@ -1165,7 +1165,7 @@ understand/
 - **Guide purpose** (D283): Finds existing candidates and compares them on common terms without taking over the caller's choice.
 - **Shape** (D283, D285): No method moved from Rules. Keep the existing steps, with a goal and clear instruction at the start and a bold action, reason and method in each step. The final check is Instructions step 6, marked to come last, always. Set scope and terms, search widely, screen explicitly, compare all terms with evidence and return coverage and date to the choice owner. Keep six steps; distinguish exclusions from the unexamined tail, preserve cost approvals and repair overstated coverage at the end. Each step gives its action, concrete failure cost and sourced method; the final step checks “Gives back” and fixes shortfalls before return (D287).
 - **Description:** "What exists on a subject, found widely and compared on the same terms, such as tools, libraries, approaches, products, prior art or papers, with what was screened out and what was not covered. Use when asked what's out there, for existing alternatives or competitors, or for an overview of a field." A draft (D128).
-- **When to use** (D279): Use when the user needs to know what already exists on a subject, compared on the same terms. Examples include existing tools, papers or alternatives.
+- **When to use** (D279, D343): Use when the user needs to know what already exists on a subject, compared on the same terms. Examples include existing tools, papers or alternatives. Read it whenever you are asked which options of some kind exist, or which ones a set of notes or pages covers, and how they compare, even when every option is in the user's own files. The research entry in the main skill's map names it with the same trigger, since Sonnet read no survey guide on such requests without it (D340, D343).
 - **When not** (D279):
 
   - Inventing options: use the `understand-brainstorm` guide. A survey finds options that already exist.
@@ -1181,7 +1181,11 @@ understand/
   3. **Compare every fully examined candidate on every term.** Give evidence or "not found" for each value. Use no guess or score without a meaningful measure.
   4. **Name screened-out candidates with their reasons.** List an unexamined long tail separately as not compared, with the reason and coverage limit. A names-only list is not a completed comparison or an evidence-backed rejection.
   5. **Treat the user's own option like every other candidate.** Give each candidate's supported strengths and weaknesses. Favoring one candidate hides information needed for the later choice.
-  6. **Report search coverage and its date.** Say where you searched, and name the kinds of source you did not search, even when the user limited where to look. Give the date you searched, and each source's own date where it has one. Say what remains unverified. A survey is a snapshot, not proof that nothing else exists (D292).
+  6. **Report search coverage and its date, in a Coverage line that ends the answer.** Without it, a short list reads as everything that exists, and old notes read as current. A survey is a snapshot, not proof that nothing else exists (D292).
+     - The line gives where you searched, at least one kind of source you did not search, even when the user limited where to look, and each source's own date or that it has none, with the date you searched.
+     - Look for a date in every file you read, a README included, before you write the line.
+     - Say what remains unverified.
+     - The rule was one sentence of four asks. With the guide read, Sonnet named a source it had not searched in 2 of 9 runs and the notes' date in 1 of 6 (D340). One line in one place keeps the asks together (D343).
   7. **Add no survey-only approval checkpoint.** A survey reads and compares; it changes nothing. Ask first only for a choice the user owns, by the `understand` guide's rule 5, or for a worker cost that needs approval, by the `coordinate-delegate` guide's rule 8. Then end the turn. Otherwise put the scope, the terms and how you searched in the final answer (D292).
   8. **Return the comparison to its active caller.** That is the guide or task that asked for the survey, and it owns the choice. When the user asked you to choose, compare the candidates with the `understand-weigh` guide after the survey. When the `understand-weigh` guide asked for this survey, return to it; do not start it again. Start no new candidate generation. A request for existing options alone starts no choice round and gets no recommendation (D292).
 
@@ -1200,7 +1204,7 @@ understand/
   2. **Search wide before deep.** Use the `coordinate-delegate` guide with the `coordinate-delegate-fanout` guide only for separate large parts that search cannot narrow enough. Otherwise search serially. Keep fanout's common worker limits and actual validation states.
   3. **Screen each candidate against scope.** Name the reason for each exclusion and distinguish unexamined candidates.
   4. **Compare on the agreed terms with evidence.** Give every compared candidate each term or an honest gap. A short table may help; use a list when the medium, width or user preference favors it.
-  5. **Return the requested comparison by rule 8.** Add scope, terms, screened-out candidates, the unexamined long tail, search coverage and date to the parent's result shape. Keep findings and unknowns with their actual evidence status.
+  5. **Return the requested comparison by rule 8.** Add scope, terms, screened-out candidates and the unexamined long tail to the parent's result shape, and end with the Coverage line of rule 6, even for a short comparison from the user's own files (D343). Keep findings and unknowns with their actual evidence status.
 
   6. **Check the comparison before returning it.** Always do this last. Check all compared candidates use the same terms and traceable evidence. Report exclusions, unexamined candidates, negative results, coverage and date honestly. Keep any choice and lasting record with its owner. Follow the final step of Instructions in the `understand-research` guide and return without recursively calling the caller.
 - **Gives back** (D279, D292), in this shape, which the file holds in its "Gives back": Candidates compared on the same terms, with sources, excluded and unexamined candidates, search coverage and dates.
@@ -1238,6 +1242,7 @@ understand/
   19. Compares source-backed values or gaps without fabricated confidence scores. Reject: Invents arbitrary numerical weights or ratings.
   20. Rechecks the needed current fact and reports the update rather than copying a stale value. Reject: Keeps the old cell as current without checking.
   21. Reports none found in scope, names screening evidence and actual coverage, and invents no winner. Reject: Fabricates a candidate to complete a table.
+  22. Options compared from a few notes in the user's folder, whose README dates them: the answer ends with a Coverage line naming the notes, a kind of source not searched and the README's date. Reject: A comparison that ends with no word on what was not searched or how old the notes are (D343).
 
 - **Open:** trailscout, in Material, not read yet.
 

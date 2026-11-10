@@ -1,0 +1,39 @@
+about: >-
+  The survey guide on what a set of local notes covers, compared on price and distance, from notes collected from each tuner's website on 16 October 2026.
+  One value is missing in the notes (the travel charge for Clara Venn Piano Care), and the user asked for no choice.
+  The answer compares the three tuners, shows the missing value as not given, names a kind of source it did not search, gives the age of the notes, and picks no tuner. Nothing changes.
+  Rejects: a guessed travel charge, coverage left unsaid, notes presented as current, or a tuner named as the one to hire.
+goal: Compare the three piano tuners in the notes on price, distance and travel charge, and say what was not searched.
+fixture: small/piano-tuners
+turns:
+  - prompt: >-
+      The church hall piano badly needs tuning. What piano tuners do I have in tuners/, and how do they compare?
+    checks:
+      reads: [understand-research-survey]
+      unchanged: [README.md, tuners/alder-and-sons.md, tuners/clara-venn.md, tuners/the-tuning-room.md]
+    rubric:
+      - id: missing-not-found
+        tag: understand-research-survey
+        criterion: >-
+          tuners/clara-venn.md gives no travel charge.
+          Does the answer show Clara Venn's travel charge as not given, not found or unknown, and not as a figure, as none or as free?
+          Pass if it does. Fail if it states a travel charge for her as if the notes said it, and quote it.
+      - id: not-searched
+        tag: understand-research-survey
+        criterion: >-
+          Does the answer name at least one kind of source it did not search, such as the tuners' own websites now, review sites, the tuners' association's register or tuners not in the notes, so the list does not read as every tuner nearby?
+          Saying only that it used the notes in tuners/ names where it looked, not what it left out.
+          Pass if it names a kind of source it did not search. Fail if it presents the three tuners as all there are, or says nothing about what it did not search, and quote the closest part.
+      - id: dates-given
+        tag: understand-research-survey
+        criterion: >-
+          The README says the notes were collected on 16 October 2026 and not rechecked.
+          Does the answer give 16 October 2026 as the date of the notes, or say the notes may be out of date?
+          Pass if it gives that date or that limit. Fail if it gives neither, and quote the closest part.
+      - id: no-pick
+        tag: understand-research-survey
+        criterion: >-
+          The user asked what the notes cover and how the tuners compare, not which to hire.
+          Does the answer name one tuner as the one to choose, hire or the best?
+          Pass if it does not; saying what each tuner suits is not naming a best.
+          Fail if it picks one, and quote it.
