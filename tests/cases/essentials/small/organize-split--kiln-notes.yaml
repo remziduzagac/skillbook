@@ -1,0 +1,57 @@
+about: >-
+  The split guide on loose items sorted into three folders the user named, in one turn: the request names the folders, and each kiln note says which firing it is for, so all seven are moved with their contents intact and nothing else changes.
+  The answer says what belongs in each folder as a rule that would place a new note.
+  Rejects: a note left loose, in the wrong folder or changed, a fourth folder or an extra file, or folders listed by their files with no rule for what belongs.
+goal: Sort seven loose kiln notes into three folders, and say what belongs in each.
+fixture: small/kiln-notes
+version_control: true
+turns:
+  - prompt: The kiln notes for the pottery studio are all loose in this folder. Can you sort them into bisque, glaze and raku?
+    checks:
+      reads: [organize-split]
+      removed:
+        - mug-batch.txt
+        - planter-set.txt
+        - celadon-bowls.txt
+        - tea-set.txt
+        - tall-vases.txt
+        - raku-bowls.txt
+        - copper-tiles.txt
+      changed:
+        - bisque/mug-batch.txt
+        - bisque/planter-set.txt
+        - glaze/celadon-bowls.txt
+        - glaze/tea-set.txt
+        - glaze/tall-vases.txt
+        - raku/raku-bowls.txt
+        - raku/copper-tiles.txt
+      only_changed:
+        - mug-batch.txt
+        - planter-set.txt
+        - celadon-bowls.txt
+        - tea-set.txt
+        - tall-vases.txt
+        - raku-bowls.txt
+        - copper-tiles.txt
+        - bisque/mug-batch.txt
+        - bisque/planter-set.txt
+        - glaze/celadon-bowls.txt
+        - glaze/tea-set.txt
+        - glaze/tall-vases.txt
+        - raku/raku-bowls.txt
+        - raku/copper-tiles.txt
+      file_contains:
+        bisque/mug-batch.txt: ['twelve thrown mugs', 'cone 06']
+        bisque/planter-set.txt: ['terracotta planters']
+        glaze/celadon-bowls.txt: ['celadon']
+        glaze/tea-set.txt: ['tenmoku']
+        glaze/tall-vases.txt: ['white satin glaze']
+        raku/raku-bowls.txt: ['sawdust']
+        raku/copper-tiles.txt: ['newspaper', 'metallic crackle']
+    rubric:
+      - id: boundaries-given
+        tag: organize-split
+        criterion: >-
+          The seven kiln notes were sorted into bisque/, glaze/ and raku/.
+          Does the answer say, for each of the three folders, what belongs in it, as a rule that would place a new note, such as "notes for raw, dry clay going into its first firing, before any glaze"?
+          Pass if all three folders have such a sentence. Fail if any folder is only listed by the files it holds or by its name. Quote the folder that fails.

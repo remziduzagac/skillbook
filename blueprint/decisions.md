@@ -5695,3 +5695,16 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 - **Reads, Sonnet (old, new):** the design guide in 3 and 1 of 3 runs, the review guide in 3 and 1.
 - **Results, Sonnet (old, new):** every picked value backed or marked in 0 of 2 agreed runs with 1 split, and 0 of 2 with 1 unknown. The approval status stated in 3 of 3, and 1 of 2 with 1 split.
 - **Cost:** per Sonnet run, $0.838 old and $0.891 new. $2.81 known: runs $2.67, judging $0.14.
+
+## D342: Each part's boundary is given after a split, unless the user approved a map that showed it (2026-11-10)
+
+**Decision:** the organize guide's step 6 no longer lets the boundaries go unsaid because they are "as approved" when the user only named the parts. The answer gives the principle and each part's boundary in one sentence, as a rule that would place a new item; a part's name, or the items it now holds, does not say where the next one goes. The boundaries are "as approved" only when the user approved a map that already showed them. The design of the organize guide's step 6 and its test 51 say the same.
+
+**Why:** on sorting loose items into folders the user named, both models listed each folder by its files and said nothing about what belongs there, in most saved runs since the check run of D315, although the guide's step 4 and step 6 ask for boundaries. The step's exit, "or say they are as approved", fits any request that names the parts.
+
+**Tested:** 2026-11-10, Claude Code with Sonnet and Codex with GPT-6.1 Sol, 3 runs per case, model and text, judged by Sonnet and Sol, only agreed verdicts counted. The old text is the text of D340; the new text also carried D341's trial line, which these cases do not use. The cases: `organize-split--maths-handouts` and `organize-split--scripts-by-job`, `organize-compose--jacket-folder`, which fails the same way through the same step, and `organize-split--kiln-notes`, written apart from the change by a fresh agent, as the held-out case.
+
+- **Results, Sonnet (old, new):** each folder's boundary given on the handouts in 0 and 3 of 3 runs, the scripts 0 and 1, the jacket folder 2 and 3, the held-out kiln notes 1 and 3; 3 of 12 and 10 of 12 over the four cases. On the held-out case alone the gap is 2 runs, within noise; the change is kept on the four cases together.
+- **Sol:** 0 of 12 on both texts. It read the split guide in every run and answered with one principle, such as "by their next firing", and each folder's files. The change does not reach Sol's short answers; that is left open.
+- **Other checks:** every file check passed on both texts and models: each item moved once, with its contents.
+- **Cost:** per Sonnet run about $0.19 on both texts, per Sol run $0.11 old and $0.12 new. $7.43 known for runs: old $2.73 and $0.91 for the held-out case, new $3.79. Judging cost was not recorded.

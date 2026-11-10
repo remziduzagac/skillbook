@@ -104,7 +104,9 @@ Organizing gives every required part one clear place without changing what it me
    - Compare by meaning each statement whose wording changed, such as a merged paragraph. Rereading for this is fine. Compare part by part rather than carrying the whole collection twice.
    - Choose who compares by the `coordinate` guide. Use a fresh agent when the `act-verify` guide's rule 2 asks for an independent check. Report a comparison you made yourself as self-checked.
    - Return the checked inventory as the before-and-after map: each original statement or unchanged section, its new place and the result of its check. Show it whole when it fits on a screen. Otherwise save it in a named file, and give the path and any exceptions.
-   - Give the principle and boundaries, or say they are as approved. Name what was retired, edited or relinked, and which approvals the user gave.
+   - Give the principle, and each part's boundary in one sentence as a rule that would place a new item, such as "invoices/: bills sent to customers, one file per bill". A part's name, or the items it now holds, does not say where the next one goes.
+   - Say the boundaries are as approved only when the user approved a map that already showed them. Folders the user named are not boundaries they approved.
+   - Name what was retired, edited or relinked, and which approvals the user gave.
    - Run step 7's check.
    - Then ask the user to confirm the result, together with any other question that ends the turn. End the turn, by rule 5.
    - Follow rule 6 if the user rejects it.
