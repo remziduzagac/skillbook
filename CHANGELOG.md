@@ -4,6 +4,18 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+### Changed
+
+- essentials: the guide map now tells the agent when to read three guides it often skipped on small jobs. It reads `act-verify` whenever its result is built from files or figures you gave it, such as a notice made from an hours table. It reads `act-rightsize-enrich` before changing anything when you ask it to fill in what is missing from something that already exists, such as a bare README. It reads `understand-research-survey` whenever you ask which options exist and how they compare, even when every option is in your own files.
+- essentials: a survey now ends with a Coverage line. It says where the agent looked, at least one kind of source it did not search, and how old its sources are, so a short list does not read as everything that exists.
+- essentials: after sorting or dividing things into parts, the answer says what belongs in each part, as a rule that would place a new item. Folder names you gave are no longer a reason to leave this out.
+
+### Known limits
+
+- In tests, Claude Code with Sonnet now says it checked work made from your files in about half of runs, up from almost none. Most of those checks are its own reading, not a recount.
+- A survey with the guide read costs about 30% more. In tests Sonnet gave the date of the notes it compared in about a third of runs.
+- In tests, Codex with GPT-6.1 Sol still listed each folder by its files after a sort, without saying what belongs in it.
+
 ## [0.1.1] - 2026-11-09
 
 ### Added
