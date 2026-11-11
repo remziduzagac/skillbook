@@ -9,9 +9,12 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 - essentials: every request now reads one file of about 36,500 characters, instead of six files of about 70,000. The rules for understanding, deciding, acting and answering are in that file, and a guide is read only when an instruction in it calls for that guide. The guide map is gone, and there is no shortcut for short answers any more.
 - essentials: the advice to hand work to other agents by default now lives in the `coordinate-delegate` guide, and the offer of a record when you stop lives in the `coordinate-carryover` guide. You can keep delegation as your own default in your instruction file. The guide no longer carries a price list: it takes prices from the provider's official pricing page and gives the date.
 
+- essentials: an answer that changes nothing and makes no file, such as three questions about a lease, no longer starts a plan, however many points it covers.
+
 ### Known limits
 
-- This version has not yet been tested on Claude Code or Codex.
+- Tested on a few small cases only, on Claude Code with Sonnet and Codex with GPT-6.1 Sol. The answers matched the previous version's, with the same known failures: neither model hands a wide check to other agents. Sonnet's runs cost about 15 to 25% less.
+- On a question that changes nothing, Codex with GPT-6.1 Sol may still read several guides it does not need, such as `coordinate-delegate`, so such answers can cost it more than before.
 
 ## [0.2.1] - 2026-11-10
 
