@@ -4,6 +4,8 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-11-11
+
 ### Changed
 
 - essentials: every request now reads one file of about 36,500 characters, instead of six files of about 70,000. The rules for understanding, deciding, acting and answering are in that file, and a guide is read only when an instruction in it calls for that guide. The guide map is gone, and there is no shortcut for short answers any more.
