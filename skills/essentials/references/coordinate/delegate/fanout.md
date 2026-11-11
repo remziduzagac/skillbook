@@ -34,7 +34,7 @@ In these rules, a small set has sources you could read yourself in one or two to
 
 ## Advice
 
-- Keep each light worker's part below the input size at which its model's price rises, where the price data gives one. Read the parent's price data only when cost matters. If that size is unknown, say so with the cost estimate rather than guessing one. Judgment still needs the tier the parent requires.
+- Keep each light worker's part below the input size at which its model's price rises, where the provider's official pricing page gives one. Read that page only when cost matters, and give the date you read it. If that size is unknown, say so with the cost estimate rather than guessing one. Judgment still needs the tier the parent requires.
 
 ## Instructions
 

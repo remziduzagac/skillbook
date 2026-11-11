@@ -12,7 +12,7 @@ Use when a shared or public name is open, a new concept needs a term, terms clas
 
 - Local names in code: follow project conventions. They do not need a shared terminology decision.
 - Repeated definitions: return them to the work arranging those files. A new name would not remove the duplication.
-- Wording: use the `respond` guide or the document-writing task. Naming settles the concept’s term.
+- Wording: use the main skill's step 6 or the document-writing task. Naming settles the concept’s term.
 - An unclear subject: use the `understand-frame` guide or the `understand-clarify` guide first. The concept must be understood before it is named.
 - Applying a rename or glossary edit: return it to the main task. This guide proposes and checks names without writing them.
 
@@ -48,9 +48,9 @@ Propose the existing glossary as destination. With no existing glossary, propose
 4. **Leave a shared name to the user’s choice.** Readers will rely on the chosen term.
    - **For a supplied name, check the glossary, existing usage and potential collisions.**
    - **For a supplied name, report the check results in `Checked`, even when nothing clashes.** The caller needs to know what was checked. Give each check, where you looked and what it found, such as "glossary: none in the project". Claim no check wider than the search you ran.
-   - **When a supplied name has a real conflict, ask the user through the `respond-ask` guide whether to keep it, then end the turn.** In the question, name the clash and how serious it is, such as a well-known tool with the same name in the same field. This is the `act` guide's concern rule. When the user has settled the name, start no new candidate or approval round.
+   - **When a supplied name has a real conflict, ask the user through the `respond-ask` guide whether to keep it, then end the turn.** In the question, name the clash and how serious it is, such as a well-known tool with the same name in the same field. This is the main skill's step 5 on raising a concern. When the user has settled the name, start no new candidate or approval round.
 5. **Return rejected words and reasons.** Do this whether or not a name is chosen yet. A word left out for a clash counts. The caller can record them, so they are not proposed again.
-6. **Write and rename nothing.** The caller applies approved names and glossary entries under the `act` guide. A wide rename follows the `act-guardrails` guide. Propose the old word under Avoid. Half a rename leaves two words for one thing. For a direct request, the main work flow owns the change.
+6. **Write and rename nothing.** The caller applies approved names and glossary entries under the main skill's step 5. A wide rename follows the `act-guardrails` guide. Propose the old word under Avoid. Half a rename leaves two words for one thing. For a direct request, the main work flow owns the change.
 7. **Propose one glossary definition per term.** Use one sentence, words to avoid and an example where needed. Duplicate definitions drift. The caller writes approved entries.
 8. **Flag a term used two ways.** Propose splitting it or holding it to one meaning. Until settled, list it under flagged ambiguities with both meanings, so it is not forgotten.
 
@@ -81,4 +81,4 @@ Find a shared name or glossary entry that fits the project’s existing words. A
 4. **Check the proposal and “Gives back” before returning it.** Always do this last. A plausible name is insufficient if its meaning or checked scope is unclear.
    - Check terminology, collisions, naming criteria, reasons, rejected words and proposed definitions. Respect a supplied name without hiding a real conflict.
    - For a supplied name, check that `Checked` gives each check, the glossary, existing usage and collisions, with where you looked and its result, by rule 4.
-   - Fix missing checks or unclear meanings before returning under the `understand` guide's rules. Report unresolved ambiguities and write or rename nothing here.
+   - Fix missing checks or unclear meanings before returning under the main skill's step 1 rules. Report unresolved ambiguities and write or rename nothing here.

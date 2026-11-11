@@ -29,7 +29,7 @@ Fix:        where a fix belongs, at the trigger, handed to the caller
 
 1. **Give the symptom exactly before testing causes.** Say what happened, where, since when and how often, with the actual error where one exists. Mark missing details unknown. A vague symptom fits many stories.
    - Name the symptom in a progress line before your first test, such as "Checking why the backup ran twice on Monday".
-   - Open your result with the symptom in a sentence or two, then give the cause at once, even when the cause is the point. The reader checks the cause against it. This is an exception to the `respond` guide's rule 3, point first.
+   - Open your result with the symptom in a sentence or two, then give the cause at once, even when the cause is the point. The reader checks the cause against it. This is an exception to the main skill's step 6 on fitting the answer to the question, point first.
 2. **Test one cause at a time.** Give a testable hypothesis, such as "X because Y", and change one variable per test. Stacked changes hide which one mattered.
 3. **Confirm a cause through evidence rather than fit.** Reproduce it, observe it through a probe or show that removing it removes the symptom. Until supported, label it a hypothesis. A familiar explanation is not an observation.
 4. **Trace the chain back to its trigger.** Give evidence for each link. If a link cannot be traced further, say so. A change where the symptom appears can leave its cause intact.
@@ -39,7 +39,7 @@ Fix:        where a fix belongs, at the trigger, handed to the caller
 
 ## Advice
 
-- Follow the `act` guide's failure limits too. The framing or the evidence may be wrong.
+- Follow the main skill's step 5 on stopping after failed attempts too. The framing or the evidence may be wrong.
 - For a regression, inspect recent changes first, then the path the failure takes and a reproduction.
 - Compare with a working case and list the differences. Inspect inputs and outputs at component boundaries to locate the break.
 - Bisect changes, steps or inputs when that can isolate the trigger.
@@ -57,7 +57,7 @@ Find what causes the symptom and show the evidence for each link back to its tri
    - Use the `understand-frame` guide only for missing framing, without reopening a settled question.
 2. **Gather evidence for the hypothesis under the `understand-research` guide.** Testing a familiar explanation before inspecting the actual path can miss where the failure starts.
    - For a regression, inspect recent changes first, then the execution path and a reproduction. Compare a working case and inspect inputs and outputs at boundaries.
-   - Keep probes within the `understand` guide's temporary-work limits and the `act` guide's rules, including guardrails. Make no lasting change.
+   - Keep probes within the main skill's step 1 limit on lasting change and the main skill's step 5 with the `act-guardrails` guide. Make no lasting change.
    - Before an outside search, strip internal names and details. Sanitizing a query does not grant approval for remaining outward data.
 3. **Test one cause and one variable at a time, by rules 2 and 3.** Stacked changes prevent the caller from knowing which one mattered.
    - Give a testable hypothesis. Reproduce it, observe it through a probe or show that removing the cause removes the symptom before calling it confirmed.
@@ -66,7 +66,7 @@ Find what causes the symptom and show the evidence for each link back to its tri
    - Give evidence for each link and separate chains for contributing causes. Use a scoped bisect when it can isolate the trigger.
    - Mark where tracing stops. Say what is not understood rather than inventing branches or an external cause.
 5. **Ask through the `respond-ask` guide when hypotheses fail without a new lead, by rule 6.** Repeating guesses uses the user's time without improving the evidence.
-   - After about three failed hypotheses without a lead, ask whether to continue, instrument further or reframe. Follow the `act` guide's failure limits too.
+   - After about three failed hypotheses without a lead, ask whether to continue, instrument further or reframe. Follow the main skill's step 5 on stopping after failed attempts too.
    - End the turn before dependent investigation. A delegated worker returns this need to its caller.
 6. **Return the investigation after cleanup under rules 5 and 7.** Unresolved or cancelled work can leave the same running probes as a confirmed cause.
    - Use the `act-cleanup` guide when the investigation's lifecycle ends. Preserve caller work and requested evidence; report permitted kept material with where and why.

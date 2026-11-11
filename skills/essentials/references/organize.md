@@ -12,9 +12,9 @@ Use when existing or planned parts need arranging without changing what they mea
 
 ## When not
 
-- Changing what the content says: use a skill in the harness’s list for editing documents or code, if one fits. Otherwise return the edit to the main task under the `act` guide. The `organize` guide preserves meaning.
+- Changing what the content says: use a skill in the harness’s list for editing documents or code, if one fits. Otherwise return the edit to the main task under the main skill's step 5. The `organize` guide preserves meaning.
 - Choosing the order of work steps: use the `devise-plan` guide. An arrangement of parts is not an execution plan.
-- Renaming, reordering or moving one item: do it as ordinary work under the `act` guide. One item has no parts to arrange.
+- Renaming, reordering or moving one item: do it as ordinary work under the main skill's step 5. One item has no parts to arrange.
 - Deleting items: use the `act-guardrails` guide. A deletion can lose what cannot be brought back.
 - Your own leftovers from the task: use the `act-cleanup` guide. They are not the user's material.
 
@@ -79,7 +79,7 @@ Organizing gives every required part one clear place without changing what it me
 1. **Find the whole, its purpose, the unit and one dividing principle.** Two principles mixed, or one changed halfway, leave parts that overlap, by rule 1.
    - Name the unit: sentences, sections, files, skills, functions, modules or system components.
    - Choose one question that sorts every item, such as topic, reader or time.
-   - Follow rule 5 of the `understand` guide for who chooses and when choices are shown. The same rule decides which item survives a merge, which parent to add and where a shared part belongs.
+   - Follow the main skill's step 1 on who decides for who chooses and when choices are shown. The same rule decides which item survives a merge, which parent to add and where a shared part belongs.
 2. **For a gap-and-overlap check only, return the findings and change nothing.** The user asked to see the state of the parts, not to change them.
    - Compare the written or planned parts with everything they must cover. Report gaps, overlaps, mixed levels and conflicting terms. Check a proposed new item against content already placed too.
    - Ask for no approval before a change and no confirmation after it. Return to the active caller without choosing an operation again.
@@ -89,7 +89,7 @@ Organizing gives every required part one clear place without changing what it me
    - the `organize-compose` guide: add a shared parent.
    - the `organize-normalize` guide: give repeated parts one home.
    - the `organize-cluster` guide: build a view for finding items.
-   - Use several when needed, such as normalize then cluster. A request that fits none uses judgment under the `act` guide.
+   - Use several when needed, such as normalize then cluster. A request that fits none uses judgment under the main skill's step 5.
 4. **Build the before-and-after map. When rule 4 needs approval, show it and end the turn.** Nothing changes until the user approves. The user can judge a change only from its map, and a part lost unseen is hard to find later. When the user named the exact arrangement, check the map the same way and go on to step 5: the map goes in your final answer, by step 6.
    - Include every item's destination, each part's boundary in one sentence, reference changes, retirements and exclusions.
    - Check the map against the source: every original statement or unchanged section has one place, with the same meaning. Then check the map for gaps and overlaps.
@@ -102,7 +102,7 @@ Organizing gives every required part one clear place without changing what it me
 6. **Check the applied result through the `act-verify` guide, then return it and end the turn for the user's confirmation.** A change looks complete before anyone has checked that nothing was lost, and the user can confirm only what they can see.
    - Check with a script what text can show, such as each sentence of an unchanged section found once in the new files, and every number and link. For code, run rule 8's checks instead.
    - Compare by meaning each statement whose wording changed, such as a merged paragraph. Rereading for this is fine. Compare part by part rather than carrying the whole collection twice.
-   - Choose who compares by the `coordinate` guide. Use a fresh agent when the `act-verify` guide's rule 2 asks for an independent check. Report a comparison you made yourself as self-checked.
+   - Choose who compares by the main skill's step 4 and the `coordinate-delegate` guide. Use a fresh agent when the `act-verify` guide's rule 2 asks for an independent check. Report a comparison you made yourself as self-checked.
    - Return the checked inventory as the before-and-after map: each original statement or unchanged section, its new place and the result of its check. Show it whole when it fits on a screen. Otherwise save it in a named file, and give the path and any exceptions.
    - Give the principle, and each part's boundary in one sentence as a rule that would place a new item, such as "invoices/: bills sent to customers, one file per bill". A part's name, or the items it now holds, does not say where the next one goes.
    - Say the boundaries are as approved only when the user approved a map that already showed them. Folders the user named are not boundaries they approved.

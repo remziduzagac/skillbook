@@ -30,24 +30,23 @@ An agent without guidance often guesses what you meant, does more or less than y
 ## How it works
 
 - **Essentials is the skill in the agent’s skill list.** The files inside it are guides, rather than separate skills to look for in that list.
-- **Five guides are read on every request:** `act` and `respond`, which shape how the agent acts and answers from its first action and in every message, and with them `respond-layout`, since every answer is laid out, `act-rightsize`, since everything made is sized, and `devise`, since every request gets an approach before the work starts. A short direct answer, such as a fact already said in the conversation, reads none. An agent started by another agent reads all of these except `devise`, and the guides its brief names.
-- **The other three main guides are read when their stage has work:** `understand` when the request leaves a choice open or needs a sourced fact, `organize` when the work divides or groups things, and `coordinate` when a part may go to another agent. A small request that fits none of these reads none of them.
-- **The guide map helps the agent choose further guides.** Each entry in the essentials skill gives a guide’s path, what it helps with, when to use it and what fits better in a nearby case. A guide’s own file gives its full boundary and the result it returns.
+- **One file is read on every request:** the essentials skill itself, about 34,000 characters. It holds the rules for every request and the steps for understanding, deciding, arranging, handing out work, acting and answering. The key rules of what were the `understand`, `devise`, `coordinate`, `act` and `respond` guides are now its steps. An agent started by another agent follows the same rules and the guides its brief names.
+- **Other guides are read when an instruction calls for them.** Each step names its guides, with a link, and says when to read them: for example `understand-clarify` when a choice or unknown would change the result, or `act-rightsize` before reworking material that already exists. A guide's own file gives its full boundary and the result it returns.
 - **Guides are read whole before the work that needs them.** The agent reads the chosen guides and their parents together, and reuses their text while it remains in view. If the text drops out, it reads them again.
 
-The guide map gives this exact name rule:
+The essentials skill gives this exact name rule:
 
-Names: a guide named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Read each file on the path you have not read yet, top-down. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer.
+Names: a guide named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Before it, read each guide above it on its path that has a file, top-down, if you have not read it yet: `act-rightsize-lean` needs `act-rightsize` first, and each `organize-` guide needs `organize` first. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer.
 
-For example, `act-rightsize-lean` follows the `act` guide and `act-rightsize`. A parent holds rules shared by the guides under it, so a guide read without its parents misses them.
+For example, `act-rightsize-lean` needs `act-rightsize` first. A parent holds rules shared by the guides under it, so a guide read without its parent misses them.
 
-The work moves through six stages: understand the request, decide how to do it, arrange its parts, hand work to other agents or later sessions, act, and answer. The agent picks guides before its first action, then fits those stages into its own controls, such as a plan mode or task list. Its approach belongs in the devise stage; a plan for several steps stays in use across turns.
+The work moves through six stages: understand the request, decide how to do it, arrange its parts, hand work to other agents or later sessions, act, and answer. The agent picks the guides its steps name before its first action, then fits those stages into its own controls, such as a plan mode or task list. Its approach belongs in the devise stage; a plan for several steps stays in use across turns.
 
 Other skills in the agent’s skill list and its tools do the work itself, such as writing code or a document. Essentials does not need to know their names or methods. When nothing covers the work, the agent uses its own judgment under essentials’ rules.
 
 ## The guides
 
-Each line says in brief what a guide does. The six main guides are the top-level entries. The [guide map](../../skills/essentials/SKILL.md#guide-map) gives their paths and helps the agent choose which further guides the work needs.
+Each line says in brief what a guide does. The top-level entries are the six stages; all except `organize` are steps of the essentials skill itself, and their entries list the guides under them. The [instructions](../../skills/essentials/SKILL.md#instructions) name each guide with a link.
 
 - **understand:** understanding before acting, with the user and from sources. Further guides help with open choices, facts and decisions.
   - **clarify:** finds what the user means before acting, and decides what to ask and how deep to go.
@@ -85,7 +84,7 @@ Each line says in brief what a guide does. The six main guides are the top-level
   - **instruct:** proposes instruction documents for agents, such as `AGENTS.md`.
   - **setup:** checks skillbook's install and prepares its pointers and settings.
   - **learn:** finds what a session taught and proposes where each lasting lesson should be kept.
-- **act:** how the agent acts on every request, and the guides a step needs.
+- **act:** how the agent acts, and the guides a step needs.
   - **stakes:** judges how much care an action needs: low, medium or high.
   - **guardrails:** what a risky action needs: a proposal with its exact scope, your approval, and a check afterwards.
   - **verify:** checks a claim that work is done or correct, with evidence that would fail if the claim were false.

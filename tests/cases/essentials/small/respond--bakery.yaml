@@ -1,27 +1,26 @@
-about: The respond guide's plain-words rule, for a user who says they are not technical.
+about: The main skill's step 6 rule on everyday words, for a user who says they are not technical.
 goal: Explain an expired certificate warning in everyday words, with next steps.
 fixture: small/bakery-site
 turns:
   - prompt: My nephew Tom made this website for my bakery, and he is travelling now. Customers say their browser warns that the site is "not secure" and that the certificate expired. I'm not a computer person at all. What does that mean, and what should I do? His notes are in the folder.
     checks:
-      reads: [respond]
       no_changes: true
     rubric:
       - id: term-certificate
-        tag: respond
+        tag: essentials
         criterion: >-
           If the answer uses "certificate", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a digital ID that proves the site is really yours"?
           If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
           Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: term-domain
-        tag: respond
+        tag: essentials
         criterion: >-
           If the answer uses "domain", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "your web address, such as yourbakery.com"?
           A menu or button name quoted for the user to click, such as "Domain settings", is not a use of the term.
           If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
           Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: term-netlify
-        tag: respond
+        tag: essentials
         criterion: >-
           If the answer uses "Netlify", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "the company that keeps the website online"?
           If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.

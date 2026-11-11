@@ -1,4 +1,4 @@
-"""The skill-size check counts startup files independently of Markdown emphasis."""
+"""The skill-size check counts what every request reads: the main skill alone."""
 import shutil
 import subprocess
 import tempfile
@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 class SkillChecksTest(unittest.TestCase):
-    def test_start_size_counts_plain_and_bold_startup_reads(self):
+    def test_start_size_counts_the_main_skill_alone(self):
         source = Path(__file__).resolve().parents[1] / "scripts" / "check-skills.sh"
         for bold in (False, True):
             with self.subTest(bold=bold), tempfile.TemporaryDirectory(prefix="skill-check-") as tmp:
@@ -24,10 +24,7 @@ class SkillChecksTest(unittest.TestCase):
                 (skill / "SKILL.md").write_text(main)
                 total = len(main.encode())
                 for name in ("understand", "act", "respond", "extra"):
-                    text = "# " + name + "\n\n" + name * 20 + "\n"
-                    (refs / (name + ".md")).write_text(text)
-                    if name != "extra":
-                        total += len(text.encode())
+                    (refs / (name + ".md")).write_text("# " + name + "\n\n" + name * 20 + "\n")
                 run = subprocess.run(["sh", str(script)], capture_output=True, text=True, check=True)
                 self.assertIn(f"demo: start files {total} characters\n", run.stdout)
 

@@ -6,13 +6,13 @@ Lays out responses and Markdown so readers can find, read and copy each part.
 
 ## When to use
 
-Use when preparing any response, writing Markdown, or answering a layout question. This includes files, pull-request or issue text, and briefs. Example: “use headings, not bold lines”.
+Use before you write or change a Markdown file, and when the user asks a layout question. This includes files, pull-request or issue text, and briefs. Example: “use headings, not bold lines”.
 
 ## When not
 
-Every response and Markdown output still follows these layout rules. For the parts layout does not cover, use what each line below names.
+The main skill's step 6 holds the layout lines every answer needs, and these rules go further. For the parts layout does not cover, use what each line below names.
 
-- Wording, order or length, such as “make this reply shorter”: use the `respond` guide’s rules. Layout handles the written structure.
+- Wording, order or length, such as “make this reply shorter”: use the main skill's step 6. Layout handles the written structure.
 - A question round: use the `respond-ask` guide for question numbering and answers.
 - Markdown file conventions and linting: use a skill in the harness’s list for that work, if one fits. Otherwise run the project’s linter, if any, as the final step of Instructions says. File rules go beyond response layout.
 - Commit messages and code comments: follow project conventions. They are not Markdown response sections.
@@ -23,7 +23,7 @@ The response or Markdown material, laid out for its reader.
 
 ## Rules
 
-To match the destination, follow the `act` guide's rule on which instruction wins:
+To match the destination, follow the main skill's rule on taking instructions only from the user, the loaded instruction files and the skill, which sets which instruction wins:
 
 - In a markdown file, the project's lint configuration wins over these rules, the prose rule included.
 - The user's instruction in the conversation wins over both.
@@ -58,4 +58,4 @@ Make each part easy for its reader to find, read and copy. Match the destination
    - Use lists by default. Keep tables for short compared values. Count the characters of the longest table row; if it passes the applicable width, such as 120, turn the table into a list. Rows look shorter than they are. Keep prose on one line per paragraph or item.
    - Number ordered or referable items. Fence copied or grouped blocks with a language and put names inside sentences in inline backticks. Give paste-ready text whole, with notes outside it.
    - Check heading order, code-line width and nesting against the medium and Advice. Say when departing from strong advice.
-   - For files, use a fitting skill in the harness's list for Markdown conventions and linting. Otherwise run the project's linter, if it has one, through the `act-verify` guide. Fix layout or lint failures before returning; the wording check remains with the `respond` guide.
+   - For files, use a fitting skill in the harness's list for Markdown conventions and linting. Otherwise run the project's linter, if it has one, through the `act-verify` guide. Fix layout or lint failures before returning; the wording check remains with the main skill's step 6.

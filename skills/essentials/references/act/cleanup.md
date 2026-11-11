@@ -12,8 +12,8 @@ Use before ending a task if you created or started anything. Also use when writi
 
 - Tidying the user’s work, such as “clean up this code”, or undoing a change: use a skill in the harness’s list for that work, if one fits. Otherwise return it to the main task. These are work changes, not your task leftovers.
 - Things you did not create: use the `act-guardrails` guide, because they may hold the user’s work.
-- Things the project’s tools keep, such as installed dependencies: handle them as project work under the `act` guide. They are not disposable task leftovers.
-- Freeing space in general: follow the `act` guide’s rule 5. The material may not be yours to remove.
+- Things the project’s tools keep, such as installed dependencies: handle them as project work under the main skill's step 5. They are not disposable task leftovers.
+- Freeing space in general: follow the main skill's step 5 (propose a risky action first). The material may not be yours to remove.
 
 ## Gives back
 
@@ -38,13 +38,13 @@ What counts, when you created or started it in this task:
    - your own temporary edit in the work, which shows in the diff;
    - a local branch or worktree you made with nothing uncommitted or unmerged in it.
 
-   Propose everything else through the `act-guardrails` guide: things you did not create, things that may hold the user's work, and anything outside the machine. You know what you made. Anything else may be someone's work. For delegated work, follow the `act` guide's rule 10 for removal and reporting.
+   Propose everything else through the `act-guardrails` guide: things you did not create, things that may hold the user's work, and anything outside the machine. You know what you made. Anything else may be someone's work. For delegated work, follow the main skill's rule on limits for a delegated worker for removal and reporting.
 2. **Record each thing as you create or start it.** Give its identity, location and process ID where relevant. Untracked things get forgotten. Finding them later means guessing and risks removing others' work.
 3. **Remove only exact paths or IDs from your record.** Never match a pattern beyond what you created, such as everything in a temporary folder or processes sharing a name. Wildcards and name matches can hit the user's files or processes.
 4. **Clean each thing when it is no longer needed.** Do so by the response ending the task: answer, report or claim of done. Leftovers pile up in long tasks. A task is not done with its scaffolding running.
 5. **Report what you keep, where and why.** Examples: a cache, a clone needed tomorrow or a server the user wants running. Unexplained leftovers look forgotten.
    - Keep only what the user asked to keep or a later step of this task will use again soon. That step must be one you do yourself.
-   - Remove copies made for another agent or a later check, unless the user asked to keep them, by the `act` guide's rule 9. Say how to recreate them. They would outlive the task.
+   - Remove copies made for another agent or a later check, unless the user asked to keep them, by the main skill's rule on taking instructions only from the user, the loaded instruction files and the skill. Say how to recreate them. They would outlive the task.
    - Remove temporary edits in the user's work except when they ask to keep them. Say how to add them back. Keeping them changes their work.
 6. **Check cleanup through the `act-verify` guide.** Confirm the process is gone and the path no longer exists. A kill can fail silently. A watcher can restart a stopped process.
 

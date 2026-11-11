@@ -15,6 +15,8 @@ devise/
 
 ## devise
 
+> Folded into the main skill (D346): this guide's own file is gone. Its key rules are the main skill's step 2. The sections of its child guides below stay.
+
 - **Purpose:** an approach in thinking for every request before work starts, with design for an open shape and planning for several parts or an open earlier plan (D280, D286, D298, D300). Its own file holds the approach and each child’s part; the approach names the guides, skills and tools, order and checks. The main agent reads this guide with the other base guides on every request that a direct answer does not finish, since a stage test left it unread on turns where it fires (D300). A request with one obvious way and one part gets a one-line approach from it, with no design and no plan; a delegated worker does not read it by default, since its caller already planned the work (D290, D300).
 - **Guide purpose** (D283, D298, D300): Chooses how to do the work, in thinking, before it starts. Uses design or planning where the work needs them.
 - **Guide shape** (D283, D285, D286, D287): Instructions opens with its goal and one clear instruction. Four steps: settle the approach in thinking (the intent, goal and a good result; what the work touches; more than one way when the way is open, judged by goal, risk and cost; for each part the guide, skills and tools, order and checks, the checks named early so their evidence can be kept; one line for small work); design when what will be made is still open; plan for several parts or an open earlier plan, kept current as the work and the user's input change; the check, always last.

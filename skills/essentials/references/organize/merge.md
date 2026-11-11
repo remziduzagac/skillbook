@@ -27,7 +27,7 @@ Combine duplicate accounts of one whole without losing compatible details. A sta
 
 1. **Compare the duplicate accounts, by the `organize` guide's rule 3.** Similar headings can hide unique facts that disappear in a quick merge.
    - Identify what repeats, what appears once and what conflicts. Confirm these are accounts of the same whole rather than items sharing a theme.
-2. **Choose the survivor by the `understand` guide's who-decides rule.** An arbitrary survivor can discard the account readers already find or rely on.
+2. **Choose the survivor by the main skill's step 1 on who decides.** An arbitrary survivor can discard the account readers already find or rely on.
    - Consider completeness, existing links and the user's choice. Follow the same rule for showing choices before changes.
 3. **Prepare combined content part by part, by the `organize` guide's rule 3.** Silent choices between contradictions can change meaning without the user's knowledge.
    - Keep repeats once, each compatible unique detail and the union of lists.

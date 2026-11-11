@@ -32,7 +32,7 @@ The proposed or approved instruction document, its location and whether it was a
    - Shared files name no tool available to only one agent.
 5. **Keep only what every session needs in the document.** Put occasional procedures in a skill or linked file one level away. Leave out repeated skillbook rules only when the whole team uses skillbook. Otherwise those repeats may be needed by teammates without it.
 6. **Save changes only after the user approves them.** Ask through the `respond-ask` guide. End the turn. An instruction document changes later sessions. A draft is not a saved change. Follow the `act-rightsize-lean` guide's rule to get approval for the list of changes to existing material. Use earlier approval again only if the work and the facts behind it have not changed.
-7. **Keep instruction documents out of folders copied into other projects.** Otherwise their rules travel to projects whose users never chose them. Follow the user's explicit instructions under the `act` guide's hierarchy.
+7. **Keep instruction documents out of folders copied into other projects.** Otherwise their rules travel to projects whose users never chose them. Follow the user's explicit instructions under the main skill's rule on taking instructions only from the user, the loaded instruction files and the skill.
 
 ## Advice
 
@@ -52,7 +52,7 @@ Prepare instructions that give later agents the guidance they need in every sess
    - Put preferences in personal instructions and shared project facts in the shared file. When the user names the shared file for a preference, propose it there and say where else it would go, by rule 1. Use the `coordinate-setup` guide for pointer placement and the project's method for skills.
    - Use the `organize` guide for a new document's parts. Write key-word-first pointers and plain positive instructions, each with a reason. Mark a reason you supplied as your suggestion. Use project terms and at most one example per rule.
    - Resolve references and name each step's end or next step. Shared guidance names no tool available to only one agent.
-   - Keep instruction documents outside folders copied into other projects, by rule 7, so their rules do not travel to users who never chose them. Follow an explicit user instruction under the `act` guide's hierarchy.
+   - Keep instruction documents outside folders copied into other projects, by rule 7, so their rules do not travel to users who never chose them. Follow an explicit user instruction under the main skill's rule on taking instructions only from the user, the loaded instruction files and the skill.
 5. **Remove extras through the appropriate `act-rightsize` method.** Dropping an occasional procedure entirely can lose needed guidance while leaving it inline costs every session.
    - Check a new draft through the `act-rightsize` guide and existing material through the `act-rightsize-lean` guide. Propose moving occasional procedures one link away instead of losing their content.
 6. **Check against step 2 and obtain approval before saving, by rule 6.** This order is firm: a saved instruction changes what later sessions follow.

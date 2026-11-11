@@ -1483,7 +1483,7 @@
   "author-updates": "author-business",
   "conduct-answer": "conduct-respond"
  },
- "main": "essentials, essentials' main skill, the only skill its set lists to the model and loaded first for every request: rules, a guide map with paths, and Instructions; read act, act-rightsize, respond, respond-layout, devise and the guides picked from the map before work, and understand, organize and coordinate at their stage; stage 4 holds the strong advice to delegate by default; the final numbered step checks the result, then answers through respond (D279, D280, D284, D285, D298, D300)",
+ "main": "essentials, essentials' main skill, the only skill its set lists to the model and loaded first for every request: the rules every request reads and Instructions with one step per stage, each instruction naming its guide with a link; no other file is read by default, and the key rules of act, respond, devise, understand and coordinate are its steps (D346); the final numbered step checks the result, then answers",
  "sets": [
   {
    "name": "essentials",

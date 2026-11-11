@@ -11,7 +11,7 @@ Use when the user asks to trim or shorten existing material, or you notice parts
 ## When not
 
 - Your own draft from this conversation: use the `act-rightsize` guide’s final check. The draft is still being made.
-- Rewording within a sentence: use the `respond` guide, or a skill in the harness’s list for editing documents, if one fits. That changes wording rather than removing extra parts.
+- Rewording within a sentence: use the main skill's step 6, or a skill in the harness’s list for editing documents, if one fits. That changes wording rather than removing extra parts.
 - Dividing or merging across files: use the `organize` guide, because each original part needs a place.
 - Your own leftovers: use the `act-cleanup` guide to remove task material no longer needed.
 - Deleting whole files: use the `act-guardrails` guide, because deletion is a separate risky action.

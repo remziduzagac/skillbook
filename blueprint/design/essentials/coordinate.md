@@ -22,6 +22,8 @@ coordinate/
 
 ## coordinate
 
+> Folded into the main skill (D346): this guide's own file is gone. Its key rules are the main skill's step 4, and the delegation default and the stopping offer sit in the `coordinate-delegate` and `coordinate-carryover` guides. The sections of its child guides below stay.
+
 - **Purpose:** working with agents not in this conversation: another agent now (delegate, brief), a later session (carryover), and every session, through the instruction documents it reads (instruct), skillbook set up in them (setup) and a session's lessons kept (learn) (D164). Its own plain file has no rules or advice of its own: the delegation default, its exceptions and the fork-when-unsure advice are stage 4 of the main skill's Instructions, and the file points to them (D284, D298). It holds each child’s name and purpose (D279).
 - **Guide purpose:** Helps agents work together, pass work to later sessions, and keep instructions and lessons in the right place.
 - **Guide shape** (D283, D284, D287): Instructions opens with its goal, a small, token-efficient conversation, and one clear instruction. Four steps: decide for each part whether another agent does it, by the main skill's stage 4, which holds delegate-by-default and its exceptions (D298); hand the work over with delegate, brief or carryover; keep instructions, setup and lessons where the next agent finds them, with instruct, setup and learn; the check, always last, with each result's actual status. Each child keeps its one name-and-purpose line, now under the step that uses it. No rule moves.
@@ -117,7 +119,7 @@ coordinate/
   6. **The work is checked through verify,** since an agent's report of success is not evidence (D89). When verify itself started the agent, to check work, the report goes back to verify as that check, not through verify again (D137).
   7. **A question or approval prompt shown inside a delegated agent is reported to the person, never answered for them,** since the answer is theirs (D138).
   8. **The harness's limits on delegating hold,** a variation of the `act` guide's rule on which instruction wins: a mode that needs the person's opt-in, limits on agents starting agents, how many run at once, which kinds of agent exist. delegate guides within them; the harness's habits about when to delegate are what delegate refines; and no tool is brought in that neither the harness nor the person chose, since guides stay generic and impose no outside tool (D139).
-  9. **Apply the `act-guardrails` guide's whole cost rule before every worker starts.** A single short worker is not proof of trivial cost. Reuse an actual accepted cost within its kind and scope. Otherwise give the estimate, uncertain amounts, quota usage and any enforced cap separately. Unknown cost is not zero. Read prices only when cost needs stating. Ask through the `respond-ask` guide when approval is needed. End the turn before starting (D260).
+  9. **Apply the `act-guardrails` guide's whole cost rule before every worker starts.** A single short worker is not proof of trivial cost. Reuse an actual accepted cost within its kind and scope. Otherwise give the estimate, uncertain amounts, quota usage and any enforced cap separately. Unknown cost is not zero. When a cost must be stated, take current prices from the provider's official pricing page and give the date read; never state a price from memory (D346). Ask through the `respond-ask` guide when approval is needed. End the turn before starting (D260).
 
   Advice (D138):
   - **fork or fresh** (D142): before delegating, list what the agent needs from this conversation to do the task well: decisions made, files already read, constraints, what the person wants. Then judge two things:
@@ -157,7 +159,7 @@ coordinate/
   - the `coordinate-delegate-crew` guide: coordinate parallel changes.
   - Methods run inside the active parent call. Single-worker starts reuse its current controls, approvals, baseline, tracking and cleanup. They do not restart selection or authorize nested delegation.
 - **Files:** `references/coordinate/delegate.md`; optional permitted delegation declared in `Needs:`. Without helper controls, do ordinary work in the main session and report the limitation (D267). Required independent checks follow the `act-verify` guide's rule 2 and remain pending with their next owner. No installation, alternative process or opt-in bypass fills the gap. A missing log alone proves no unavailable helper (D260).
-  - Supporting data: `references/coordinate/delegate/assets/prices.md`, read only when cost needs stating; `references/coordinate/delegate/assets/other-harnesses.md`, read only for another named or permitted harness. Prices are dated official API observations, not subscription bills or enforced caps. Unknown price steps and live access remain unknown. The four roles stay light, standard, strong and strongest-model escalation after strong fails. Price changes affect cost/approval, never redefine those roles (D260).
+  - Supporting data: `references/coordinate/delegate/assets/other-harnesses.md`, read only for another named or permitted harness. There is no price file (D346): prices come from the provider's official pricing page, with the date read, and are API prices, not subscription bills or enforced caps. Unknown price steps and live access remain unknown. The four roles stay light, standard, strong and strongest-model escalation after strong fails. Price changes affect cost/approval, never redefine those roles (D260).
 - **Material:** the person's `delegation-routing`; trailscout; a private narrative-game project; superpowers' subagent-driven development; a private notes system's supervisor and experts.
 - **Tests** (D107):
   1. a question one search answers: searched directly, too small to delegate (D138);
@@ -200,7 +202,7 @@ coordinate/
   38. the person's instruction file maps a tier to another model: that model used (D144);
   39. a single fork for a decided task with plainly trivial or accepted cost: no needless extra cost proposal; all other risk triggers still apply (D260);
   40. a fanout of five: guardrails' cost rule read, the cost stated (D149);
-  41. a delegation with no cost to state: the prices file not read; no other harness named: its file not read (D149);
+  41. a delegation with no cost to state: no price looked up; no other harness named: its file not read (D149); a cost that must be stated: the price taken from the provider's official pricing page with the date read, none from memory (D346);
   42. a design or a plan delegated: the strong tier and high effort, though its file is easy to revert (D150);
   43. the strong tier fell short on a design: the strongest escalation permitted by the user’s mapping, otherwise the session-model fallback and its limitation (D267);
   44. a short task that reads a long file, such as answering one question from a large document: delegated, a fork, not done in the main session (D142);
@@ -219,7 +221,7 @@ coordinate/
   56. Does ordinary work in the main session when helpers are not permitted. Reject: Refuses ordinary permitted work solely because helpers are forbidden, bypasses the restriction, drops recorded uncertainty, or claims an independent check. (D267).
   57. The user names the split, such as two agents sharing a folder of interview transcripts: the matching method guide is read whole before the workers start, whoever chose the pattern. Reject: workers started from delegate's steps alone (D294).
   58. Workers finished: the final answer says what happened to each and what it left behind, in one line when nothing is left. Reject: no word on whether the workers ended (D294).
-- **Open:** live worker controls, model access, cache results and cost caps require runtime validation. Dated prices remain supporting data; current controls come from the agent itself, not harness children (D267). Agents debating in rounds, one arguing each side, for weigh's debate: whether it helps is recalled from memory, not checked, and is researched before delegate takes it up; if it helps and brings rules of its own, it may become a debate part of weigh (D132).
+- **Open:** live worker controls, model access, cache results and cost caps require runtime validation. Prices are not kept in the skill (D346); current controls come from the agent itself, not harness children (D267). Agents debating in rounds, one arguing each side, for weigh's debate: whether it helps is recalled from memory, not checked, and is researched before delegate takes it up; if it helps and brings rules of its own, it may become a debate part of weigh (D132).
 
 ### council
 
@@ -303,7 +305,7 @@ coordinate/
 
   **Advice:**
 
-  - Keep each light worker's part below the input size at which its model's price rises, where the price data gives one. Read the parent's price data only when cost matters. If that size is unknown, say so with the cost estimate rather than guessing one. Judgment still needs the tier the parent requires. The unknown goes with the estimate, not the final answer, since cost is proposed before workers start (D294).
+  - Keep each light worker's part below the input size at which its model's price rises, where the provider's pricing page gives one, read only when cost matters. If that size is unknown, say so with the cost estimate rather than guessing one. Judgment still needs the tier the parent requires. The unknown goes with the estimate, not the final answer, since cost is proposed before workers start (D294).
 
   **Instructions:**
 

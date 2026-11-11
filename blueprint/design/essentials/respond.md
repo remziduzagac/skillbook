@@ -15,6 +15,8 @@ respond/
 
 ## respond
 
+> Folded into the main skill (D346): this guide's own file is gone. Its key rules are the main skill's step 6. The sections of its child guides below stay.
+
 - **Purpose:** how every response is prepared before it is returned: what goes in, how it is put together, how it is worded (D60, D81). Its rules apply to every message the agent sends: an answer, a report of work done, a question back, a summary. the `respond` guide is also the group for everything said to the person, its three children named below by their purpose (D279).
 - **Guide purpose** (D283): Prepares clear, useful replies and messages for the user.
 - **Guide shape** (D283, D287): Instructions opens with its goal and one clear instruction. Five steps: layout for every response (rule 8); every question and proposal through ask (rule 5); explain for what did not land; the content fitted to the question (rules 1, 2, 4, 6, 9); the check against every rule, always last and unchanged (D285).

@@ -15,7 +15,7 @@ turns:
           - '\b5([.:]00)? ?pm|17[.:]?00'
     rubric:
       - id: pointer-not-paste
-        tag: respond
+        tag: essentials
         criterion: >-
           The agent wrote first-timers.md, a sheet of about 20 lines made from notes.txt, and the user did not ask to see it in the answer.
           Does the answer give where the file is and what it rests on in a few lines, without repeating the sheet's content?

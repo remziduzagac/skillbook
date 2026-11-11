@@ -2855,7 +2855,7 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 
 - Such a text says what is true and why, never how the conversation got there, because its readers were not in it. The reasons stay. The story of the discussion goes, such as "as you said" or "after we changed our minds".
 - **The exception:** a record of the conversation that the user asks for, such as minutes or a handoff note. Holding the conversation is its purpose.
-- **Where:** [design/essentials/act.md](design/essentials/act.md), rule 6 and test 10; [../skills/essentials/references/act.md](../skills/essentials/references/act.md), rule 6; three new cases in `tests/cases/essentials/`:
+- **Where:** [design/essentials/act.md](design/essentials/act.md), rule 6 and test 10; `skills/essentials/references/act.md`, rule 6; three new cases in `tests/cases/essentials/`:
   - `history-out-of-committee-note`: a committee note after a talk about a fee, then minutes the user asks for, the near miss;
   - `history-out-of-email`: an email to stallholders after an opinion about setup times;
   - `history-out-of-code-comment`: a code comment after a diagnosis.
@@ -2946,7 +2946,7 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
   - `tests/judge.md`, [../tests/run.py](../tests/run.py), [../tests/test_runner.py](../tests/test_runner.py), [../tests/README.md](../tests/README.md) and [design/testing.md](design/testing.md);
   - [../.agents/skills/skillbook-guide-write/SKILL.md](../.agents/skills/skillbook-guide-write/SKILL.md);
   - the cases `route-shallow-before-deep`, `instruction-project-keeps-result` and `write-test-cases-baseline`;
-  - [../skills/essentials/references/understand.md](../skills/essentials/references/understand.md) and [design/essentials/understand.md](design/essentials/understand.md).
+  - `skills/essentials/references/understand.md` and [design/essentials/understand.md](design/essentials/understand.md).
 
 **Tested:** every run once, in throwaway homes. "Passed" means every automatic check passed.
 
@@ -2998,8 +2998,8 @@ None of the new cases has run on a model yet; earlier results in the decisions' 
 - **A test fix:** `trim-lists-first` checks for `cach(e|ing)` instead of `cache`, since "caching" kept the fact.
 - **Size:** the essentials start files are now about 24,500 characters, past the advised 20,000. Trimming them stays open.
 - **Where:**
-  - [../skills/essentials/references/act.md](../skills/essentials/references/act.md), [../skills/essentials/references/act/rightsize.md](../skills/essentials/references/act/rightsize.md) and [design/essentials/act.md](design/essentials/act.md);
-  - [../skills/essentials/references/understand.md](../skills/essentials/references/understand.md) and [design/essentials/understand.md](design/essentials/understand.md);
+  - `skills/essentials/references/act.md`, [../skills/essentials/references/act/rightsize.md](../skills/essentials/references/act/rightsize.md) and [design/essentials/act.md](design/essentials/act.md);
+  - `skills/essentials/references/understand.md` and [design/essentials/understand.md](design/essentials/understand.md);
   - the case `trim-lists-first` in `tests/cases/essentials/`.
 
 **Tested:** in throwaway homes, judged against each case's rubric by fresh Sonnet judges, as `tests/judge.md` says.
@@ -4241,6 +4241,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 
 ## D280: guides, a guide map with paths, and one stage per main guide (2026-11-01)
 
+> **Amended by D346 (2026-11-11):** the guide map is gone. Each instruction in the main skill names its guide with a link, and the main guides `act`, `respond`, `devise`, `understand` and `coordinate` are no longer files: their key rules are steps of the main skill. Only `organize` keeps a file.
+
 **Decision:** Only a set's main skill is called a skill. Every file under its `references/` is a guide, and the six first-level guides are the main guides. Guides name each other by name, with the word "guide" where a bare name could be read as a skill, such as "the `act` guide". Paths appear only in the main skill's guide map: one per entry, under the exact name rule, now worded "a guide named `a-b-c`". All six main guides are read on every request. "Instructions", the section name every guide uses, replaces the step list: guidelines, not a fixed procedure, fitted into the harness's own flow, with one instruction to prepare by step 0 and then go through the stages in order. Step 0 picks guides from the map for every part of the request and reads them, the main guides and respond-layout whole, by their paths, in one turn, then checks each picked guide's boundary. One stage per main guide follows, in natural order: understand, devise, organize, coordinate, act, respond. The approach, the agent's choice of which guide shapes which part, belongs to devise's stage, beside design and plan; a plan of steps is devise-plan's, which keeps it across turns.
 
 **Why:** An agent told to use the `act` skill looks for it in its harness's skill list, does not find it, and searches or gives up; the start files were given paths for that reason (D210). The word "guide" removes the cause, and one convention replaces paths for some files and names for others. Names stay in the guides, since a path written inside a guide can be read against the project folder or the current file; the name rule resolves from the skill's own folder. A map that shows every path lets step 0 read everything in one turn. Each harness has its own flow, such as a plan mode or a task list, and a fixed procedure would compete with it; stages with their goals let the agent fit them in. One stage per main guide gives the reader a story to follow and makes the main guides the flows they are meant to become. Reading all six main guides costs about 100 more lines on every turn than reading four; the user chose to keep organize and coordinate as stages of their own for now.
@@ -4282,6 +4284,8 @@ Tested: `just check` passes, including 91 Python tests, 621 TypeScript tests, ty
 > **Amended by D287 (2026-11-01):** how Instructions are written, opening, steps, why, how, firm steps, rules held elsewhere and the last step, lives in skillbook-design's check 8.
 
 ## D284: delegation advice moves to the coordinate guide (2026-11-01)
+
+> **Amended by D346 (2026-11-11):** delegate by default now lives in the `coordinate-delegate` guide, read when a part may go to another agent, not in the main skill.
 
 **Decision:** The main skill holds no advice section. "Delegate by default", with its exceptions (too small, the user decides as it goes, the conversation needs the content) and its fork-when-unsure line, moves word for word to the coordinate guide's Advice. Stage 4 of the main skill's instructions becomes "decide who does the work with the coordinate guide".
 
@@ -4362,6 +4366,8 @@ The runner, the judge, the calibration tools with the human ratings, the rule-ch
 
 ## D289: a short direct answer reads no guide, and each guide is read on its own (2026-11-02)
 
+> **Amended by D346 (2026-11-11):** the direct-answer rule is gone. With no guides read by default it saved little, and agents took the exit eagerly.
+
 **Decision:** The main skill's first rule gains one exception. A request that a direct answer finishes reads no guide. A reply is direct only when all of these hold:
 
 - it changes nothing, such as a file, a system or a message to someone;
@@ -4383,6 +4389,8 @@ The exit's conditions are exact because agents take an exit eagerly. A test such
 > **Amended by D290 (2026-11-02):** the exit tests the request (nothing changed, made or sent; general knowledge does not count; no choice, recommendation or question in the reply). "In one turn" becomes "sent together", and command reads take one file each.
 
 ## D290: the main skill and respond guides after the review (2026-11-02)
+
+> **Amended by D346 (2026-11-11):** a delegated worker reads the main skill, which holds the rules and steps 5 and 6, and the guides its brief names. There is no base list of guides.
 
 **Decision:** The main skill and the four respond guides change as the approved essentials review says.
 
@@ -4686,6 +4694,8 @@ Re-judging the last full pass's saved answers, all 28 turns, with the new checks
 > **Amended by D303 (2026-11-03):** no check fails an answer for its line or word count. The extra-content check judges what a part holds, and an outside follow-up is extra only when it is worked out beyond what it is and where.
 
 ## D300: read devise on every request, with act and respond (2026-11-03)
+
+> **Amended by D346 (2026-11-11):** `devise` is no longer a file read on every request. Its key rules are step 2 of the main skill, and the `devise-design` and `devise-plan` guides are read by their triggers.
 
 **Decision:** On every request that a direct answer does not finish, the main agent reads `devise` with `act`, `act-rightsize`, `respond` and `respond-layout`. This amends D298. `understand`, `organize` and `coordinate` stay at their stage, each by the test written in that stage of the main skill's Instructions. A delegated worker reads no `devise` by default: its caller already understood the request and planned the work (D290), so the worker's base stays `act`, `act-rightsize`, `respond` and `respond-layout`.
 
@@ -5572,6 +5582,8 @@ Unasked fills, and fills where the agent picks the content, such as completing a
 
 ## D335: The verify guide is read on every request (2026-11-10)
 
+> **Amended by D346 (2026-11-11):** no guide is read on every request except the main skill. The key rules of `act`, `respond` and `devise` are in the main skill, and `act-rightsize` and `respond-layout` are read only when their instruction calls for them.
+
 > **Amended by D337 (2026-11-10):** the verify guide is no longer read on every request. A trigger in its map entry and its own boundary gets most of the gain at less than half the cost.
 
 **Decision:** act-verify joins the guides the main skill reads on every request that a direct answer does not finish, which become six: act, act-rightsize, act-verify, respond, respond-layout and devise. The first rule gives its reason: every claim that work is done or correct is checked. A delegated worker's base stays as it was, without act-verify and devise: its claims go to its caller, which checks what it returns, and its brief names act-verify where the task needs it. The act guide's pointers to the verify guide stay, since they say when its rules apply. The near-miss case `act-verify--swap-idea` now checks that the challenge guide is read, since the verify guide is read on every request.
@@ -5759,3 +5771,28 @@ The line names the sets and only the agents the run installed for. The log line 
 - **The line hands setup the facts the install knows.** "On this machine" or "in this project" match setup's two kinds of setup, and the folders let setup check the install the run made instead of guessing where the agent keeps skills, which setup's step 2 warns against.
 
 **Tested:** 2026-11-10, the install tests: a new test checks the line for a home install for both agents, for a project install for Codex only, and that an uninstall prints none; all 42 install tests pass. Not tested in a live agent session.
+
+## D346: The main skill holds the rules every request reads, and names each guide in an instruction (2026-11-11)
+
+**Decision:** every request reads only the main skill, about 34,400 characters, against 70,255 before (the main skill plus five guides). The key rules of `act`, `respond`, `devise`, `understand` and `coordinate` moved into the main skill's steps, and those five files are gone. `organize.md` stays as the parent of the `organize-` guides, because its shared method is long and only needed when organizing. `act-rightsize` and `respond-layout` are read only when their instruction calls for them.
+
+- **The guide map is gone.** Each instruction opens with a bold action, gives its trigger, and names its guide with a link to its file: "Read the `x` with a link to its file guide first". Related instructions sit together.
+- **The direct-answer rule is gone.** With no guides read by default it saved little, and it was an exit agents take eagerly.
+- **Delegate by default moved into the `coordinate-delegate` guide,** read by its trigger. The user can keep it as a personal default in their own instruction file.
+- **The stopping offer moved into the `coordinate-carryover` guide.**
+- **The name rule has new wording:** "Names: a guide named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Before it, read each guide above it on its path that has a file, top-down, if you have not read it yet: `act-rightsize-lean` needs `act-rightsize` first, and each `organize-` guide needs `organize` first. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer."
+- **The prices file is gone.** `coordinate/delegate/assets/prices.md` is removed, because published model prices change too often to keep current in the skill. The `coordinate-delegate` guide says: when a cost must be stated, take current prices from the provider's official pricing page and give the date read; never state a price from memory.
+- **Parts left out, for the user to review:**
+  - from `act`: "the same step means the same goal by the same means", "if you created and started nothing, say nothing about leftovers", "other file types use no markdown rules", and the chart-labels example;
+  - from `respond`: the line on where things stand after a break, judging which words the user knows from what they have shown, the scaled final check (a quick check for a one-line answer), and the advice to reflect the user's view at its strongest before disagreeing;
+  - from `understand`: its two advice lines (the question itself may be wrong; show what the user would want to correct) and "give the reason for a minor choice if asked";
+  - the instruction sections of the five guides, which repeated their own rules;
+  - the "deeper:" lists of the old map.
+
+**Why:**
+
+- **The start load was undercounted.** The outside review found it was about 70,000 characters, more than the design said.
+- **Sonnet follows rules reliably only in files it reads on every request,** as tests showed. So the key rules live in the main skill, and the full methods stay in guides.
+- **Triggers that name a plain fact got guides read** (D337, D338), and "Read X when ..." instructions raised routing reads before.
+
+**Tested:** not yet. Planned: no skill, the previous version (tag or commit 8540c43) and this one, on Claude Code with Sonnet and Codex with GPT-6.1 Sol.

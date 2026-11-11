@@ -46,7 +46,7 @@ A direct request gets the full shape. The `understand-weigh` guide uses each opt
 4. **Admit weaknesses.** Name objections still standing and thin reasons. Hidden weaknesses are found later at a worse time.
 5. **Label the result one-sided.** Put one line beside the case, such as "This is the case for, not a verdict." The choice stays with the user or the `understand-weigh` guide. An unlabelled case reads as a recommendation.
 
-For the `respond` guide's faithful reflection of a view already in the conversation, use a light path: one or two lines that reflect it fairly, with no unsupported new claim. This is not an investigation or researched verdict. The full steps below serve a requested case or work needing evidence.
+For a faithful reflection of a view already in the conversation, by the main skill's step 6, use a light path: one or two lines that reflect it fairly, with no unsupported new claim. This is not an investigation or researched verdict. The full steps below serve a requested case or work needing evidence.
 
 ## Advice
 
@@ -76,4 +76,4 @@ If no honest case exists, show the best found and rate it weak. Invent nothing.
    - Check fidelity, any narrowing, goal, constraints, audience, objections met, open weaknesses, strength and next evidence. Fix omissions first.
    - Check each claim in the case, answers to objections included, has its evidence or an assumption label, and says no more than its source, by rule 2.
    - Keep the one-sided line in the answer, and leave the choice to the user or the `understand-weigh` guide. Keep the challenge's verdict out of the case.
-   - Apply the `understand` guide's rules and the caller's needed result shape. A light reflection needs fidelity and no unsupported new claim, rather than a new investigation.
+   - Apply the main skill's step 1 rules and the caller's needed result shape. A light reflection needs fidelity and no unsupported new claim, rather than a new investigation.

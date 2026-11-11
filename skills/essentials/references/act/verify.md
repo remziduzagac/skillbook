@@ -11,8 +11,8 @@ Use before claiming that work is done, fixed, passing, correct or meets its requ
 ## When not
 
 - Getting approval before a risky action: use the `act-guardrails` guide. Verification checks what happened, not permission to act.
-- Reviewing finished work about to land: use a skill in the harness’s list for reviewing that kind of work, if one fits. Otherwise use your judgment under the `act` guide. That review examines the work, not just a claim about it.
-- Checking whether an idea holds, an outside fact is true, or a research finding is well supported: use the `understand` guide. These are questions about reasoning or sources.
+- Reviewing finished work about to land: use a skill in the harness’s list for reviewing that kind of work, if one fits. Otherwise use your judgment under the main skill's step 5. That review examines the work, not just a claim about it.
+- Checking whether an idea holds, an outside fact is true, or a research finding is well supported: use the main skill's step 1. These are questions about reasoning or sources.
 
 ## Gives back
 
@@ -41,13 +41,13 @@ Each claim with its evidence, whether it was confirmed, and who checked it. Put 
        - A small set of findings, as the `coordinate-delegate-fanout` guide defines it, needs no fresh agent for this judgment: other agents read the sources, and you merged their findings and checked each one against its source yourself. A fresh agent would only repeat that short read. Say in your answer that you checked them yourself. High stakes or the user's request still need a fresh agent.
      - Start the agent through the `coordinate-delegate` guide. Brief it with the claim and what would show it false.
      - Count a check as independent only after you see another agent's or person's result. Your own second look does not count. Neither does starting or waiting on an agent without seeing its result.
-     - If you cannot start one, write in your report that this check is still to do, and who should do it. This includes delegated agents and harnesses without agents. Follow the `act` guide's rule 10 for your report;
+     - If you cannot start one, write in your report that this check is still to do, and who should do it. This includes delegated agents and harnesses without agents. Follow the main skill's rule on limits for a delegated worker for your report;
    - the user: for meaning, taste, irreversible results and anything no check can see. Get any required fresh agent's check first. The user's check does not replace it: asking them to reread is not independent checking.
 
    How much rides on the work, and whether it can be undone, is the `act-stakes` guide's judgment. The user's check here is of the result. Approving a risky action before it is taken is a job for the `act-guardrails` guide.
 3. **Run the check now on the current work.** Earlier runs do not count. Read what would fail if the claim were false: exit code, failure count and failing lines. Read full output only on failure. Full logs in the main session cost again on every later turn.
-4. **Report the actual result with evidence beside it.** If confirmed, give the claim. Otherwise give the actual status, by the `respond` guide's outcomes rule.
-   - Report only causes and results shown by output, by the `respond` guide's outcomes rule. Report a timed-out test as timed out, not as a guessed slow network.
+4. **Report the actual result with evidence beside it.** If confirmed, give the claim. Otherwise give the actual status, by the main skill's step 6 (report outcomes as they happened).
+   - Report only causes and results shown by output, by the main skill's step 6 (report outcomes as they happened). Report a timed-out test as timed out, not as a guessed slow network.
    - Say what a stand-in, such as a simulated setting or mocked service, actually shows. Mark the real check unverified. Give what would confirm it.
    - Leave taste to the user, by rule 2. For warmer wording, for example, say what you changed and checked. Leave the judgment to them.
 5. **Run four more checks before calling a plan's task, commit or pull request done:**
@@ -58,11 +58,11 @@ Each claim with its evidence, whether it was confirmed, and who checked it. Put 
 
    Search for the item's names and decision terms. Read hits in parts, not whole designs. Use the `coordinate-delegate` guide for large reading by a fresh agent on the standard tier, neither lightest nor strongest. Contradiction and drift need judgment.
 
-   Scale checks by the `act-stakes` guide. A full search on a small change costs more than it finds. For plainly low work such as a typo, give about one line on what you checked. Stay inside the task. Report outside problems as one-line follow-ups by the `act` guide's rule 3. A findings report costs more than a one-line change. The whole answer is a few lines: claim and evidence, check line, follow-ups. If the project lacks a design, plan or decisions, say so. Skip checks that need the missing item.
+   Scale checks by the `act-stakes` guide. A full search on a small change costs more than it finds. For plainly low work such as a typo, give about one line on what you checked. Stay inside the task. Report outside problems as one-line follow-ups by the main skill's step 5 (give a problem outside the task one line). A findings report costs more than a one-line change. The whole answer is a few lines: claim and evidence, check line, follow-ups. If the project lacks a design, plan or decisions, say so. Skip checks that need the missing item.
 
 6. **On the third time you run the same check by hand in a conversation, end your answer with a one-line offer to make it a script, a test or a lint rule.** Automation is cheaper and surer. Two runs could be chance; three show repetition.
    - The same check counts across items, such as the same format check on a second and a third file.
-   - Write nothing unasked. It is extra work, by the `act` guide's rule 3.
+   - Write nothing unasked. It is extra work, by the main skill's step 5 (do nothing unrelated).
 
 Your own evidence for a claim of done or correct is seen or measured, never only said.
 

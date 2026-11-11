@@ -12,7 +12,7 @@ Use before relying on an idea, plan or decision, or when asked to find its weak 
 
 - Several options to compare: use the `understand-weigh` guide to judge them on the same terms.
 - A design review: use the `devise-design-review` guide. It calls this guide for its attack on the design's ideas.
-- Finished work about to land: use a skill in your harness's list for reviewing that kind of work, if one fits. Otherwise use your judgment under the `act` guide. This guide attacks an idea before it is relied on.
+- Finished work about to land: use a skill in your harness's list for reviewing that kind of work, if one fits. Otherwise use your judgment under the main skill's step 5. This guide attacks an idea before it is relied on.
 - A claim that work is done: use the `act-verify` guide for evidence.
 - An unclear idea: use the `understand-clarify` guide or the `understand-frame` guide before trying to find its weak points.
 - A doubt settled by facts: use sources or a test. An objection alone is not evidence.
@@ -38,7 +38,7 @@ When you challenge an idea without being asked, such as your own plan before you
 2. **Name assumptions as checked or unchecked.** List each assumption the idea rests on in the answer, with its mark. Unchecked assumptions are where most ideas break.
 3. **Give each weakness its seriousness, evidence and remedy.** Start each weakness with its seriousness: stops it, costs, or minor. Without all three, a finding cannot be acted on.
 4. **Give an honest verdict.** Use holds, holds with changes, or does not hold. Say nothing found plainly. Soften nothing to please and invent nothing to look thorough. A flattering challenge is worse than none.
-5. **Change nothing.** The `understand` guide's rules hold. The caller develops or revises the idea. The user decides.
+5. **Change nothing.** The main skill's step 1 rules hold. The caller develops or revises the idea. The user decides.
 6. **When the `respond-ask` guide calls you, challenge only a decision that is hard to undo or shapes much of the work.** That guide's test decides which. Routine questions need no challenge just because they are in a plan or design.
    - Scale your check with the `act-stakes` guide: at low stakes, make no challenge; at medium stakes, think through the strongest one or two objections; at high stakes, make a full challenge. Show medium-stakes objections when they hold and change the recommendation or add a caveat. Put the verdict beside the recommendation as the `respond-ask` guide requires.
 7. **Reuse an earlier challenge only while the idea, goal, constraints and evidence are unchanged.** A changed input can make its findings wrong. Unchanged inputs need no second pass, whichever guide asks, such as the `respond-ask`, `understand-weigh` or `understand-argue` guide.
@@ -65,4 +65,4 @@ Test the strongest fair version of an idea against its goal and constraints. Loo
    - Return the weaknesses and how each was met, fixed or accepted as a risk, in the form "Gives back" sets. Change nothing here.
 4. **Check the challenge and “Gives back” before returning it.** Always do this last. A verdict without support or remedies cannot guide the caller's decision.
    - Check the fair idea, frame, assumption labels, evidence, seriousness and remedies. Check that reused results are current by rule 7, and that a high-stakes check came from a fresh agent.
-   - Fix weak or unsupported findings before returning under the `understand` guide's rules. Keep lasting records and revisions with their owner.
+   - Fix weak or unsupported findings before returning under the main skill's step 1 rules. Keep lasting records and revisions with their owner.

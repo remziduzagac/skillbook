@@ -37,7 +37,7 @@ Helps you turn a design into a skill's files: the main skill and its guides. The
   - Check the shape of a failing rule before adding words. Extra clauses do not fix mixed instructions.
 - **Concrete wording: name actions the agent can take.** An agent follows what it can act on:
   - Name the visible action for user-dependent verbs such as wait, ask, stop or confirm. Write "end the turn with the questions; never answer them yourself", not "wait";
-  - Name things as tools see them. Call a registered skill by its name, such as `essentials` or `softeng`. Call a guide by its name with the word "guide", such as "the `act` guide" or "the `act-verify` guide": called a skill, a guide makes the agent look for it in its skill list, then search or give up. Give paths only in the main skill's guide map. skillbook-guide-design's Names turns names into files;
+  - Name things as tools see them. Call a registered skill by its name, such as `essentials` or `softeng`. Call a guide by its name with the word "guide", such as "the `act` guide" or "the `act-verify` guide": called a skill, a guide makes the agent look for it in its skill list, then search or give up. Give paths only as links in the main skill's instructions. skillbook-guide-design's Names turns names into files;
   - Give the general term before narrow examples: "a different result, such as code, a document, a decision or an action", not "different code or files";
   - Vary examples across kinds of work, not just code. Give a different example wherever a rule repeats. Repeating one teaches the example, not the rule;
   - Take no example from a test case. A case whose words appear in the guide can pass by matching, so it no longer shows that the rule works. If an example matches a case, replace the example and rerun the case with skillbook-test-write;
@@ -66,12 +66,12 @@ These steps turn a design into a skill's files. They are guidelines, not a fixed
    - A fix that keeps the design true, such as a typo or a lint error, goes to the files only.
    - To trim or fill a skill, follow skillbook-guide-design's "Trim or fill an existing skill" step.
 3. **Write the tests with skillbook-test-write before you write the files they test.** A rule that no case can fail can break unseen. When model runs are due, this order is firm: write the cases and see them fail before steps 4 and 5, then rerun them after. A case written after the change cannot show that the change made it pass.
-4. **Write the main skill so the harness loads it for the right requests and the agent finds every guide.** A description that misses the request leaves the skill unloaded. A map without the name rule leaves guides unread.
+4. **Write the main skill so the harness loads it for the right requests and the agent finds every guide.** A description that misses the request leaves the skill unloaded. A guide without a link in an instruction, or a missing name rule, leaves it unread.
    - Start with frontmatter:
      - `name`: the set's name;
      - `description`: what it does and when to load it, in at most 1,024 characters, with no angle brackets and no overlap with another main skill;
      - `compatibility`: a capability the set needs, if any.
-   - Write the body in the order of skillbook-guide-design's check 8. Put the guide map, with the exact name rule at its top, between the advice and the instructions.
+   - Write the body in the order of skillbook-guide-design's check 8. Put the exact name rule in the rules. Write each instruction with a bold action, its trigger and the link to its guide ("Read the [`x`](path) guide first"), and keep related instructions together. There is no guide map.
 5. **Write each guide in the shape of skillbook-guide-design's check 8.** The same shape in every guide lets a reader find each part in the same place.
    - Give it a `#` heading with its dashed name, `## Purpose`, `Needs:` if needed, and the three boundary sections by check 9. Then add Rules and Advice where it has them, and Instructions, whose last step is the final check.
    - Write the Instructions as check 8 says: an opening that ends in one clear instruction, then steps that each give the action, why it matters and what doing it well means.

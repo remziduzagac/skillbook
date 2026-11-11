@@ -6,14 +6,14 @@ Judges what a session taught and proposes a home for each reusable lesson, so ap
 
 ## When to use
 
-Use when the user asks what a session taught, or accepts the lesson part of the stopping offer. A correction that a later session would otherwise miss may be worth keeping.
+Use when the user asks what a session taught, or accepts the lesson part of the offer of a record (see the `coordinate-carryover` guide). A correction that a later session would otherwise miss may be worth keeping.
 
 ## When not
 
 - Recording lessons without a request: start no lasting collection. The user decides what is kept.
 - A decision recorded as work happens: return it to the main task. This guide reviews what a session taught.
 - Carrying work state forward: use the `coordinate-carryover` guide. A lesson and a continuation note serve different needs.
-- A finished task alone: use the main skill’s stopping offer only when the user is stopping. Finishing one task does not ask for a session review.
+- A finished task alone: use the offer of a record in the `coordinate-carryover` guide only when the user is stopping. Finishing one task does not ask for a session review.
 
 ## Gives back
 
@@ -30,7 +30,7 @@ Approved lessons and where they were saved, highlights dropped with reasons, and
 Find reusable lessons within the requested session and propose where they belong. Separate approved promotions from dropped highlights and decisions still waiting for the user. **Collect, judge and propose lessons, then record only what was approved through its owning method.**
 
 1. **Collect highlights within “When to use” and the requested scope.** An unasked lasting collection can record material the user never chose to keep.
-   - Look for corrections, mistakes, decisions and methods that worked or failed. Start no collection beyond the request or accepted stopping offer.
+   - Look for corrections, mistakes, decisions and methods that worked or failed. Start no collection beyond the request or accepted offer of a record.
 2. **Judge each highlight's reusable value and home under rules 2 and 3.** A one-off event turned into a standing rule can mislead later sessions.
    - Ask what a later session would otherwise get wrong or have to rediscover. Drop a highlight that teaches nothing beyond this session, giving why.
    - Keep skill lessons as insights for the skill-making method rather than writing substitute rules into instructions.

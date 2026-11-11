@@ -8,6 +8,6 @@ Read from official documentation on 2026-10-25. No worker or model was started. 
 - [Claude model configuration](https://code.claude.com/docs/en/model-config): aliases and provider/account restrictions can affect selection. Role assignments in the children follow the design, not a provider guarantee of equivalent capability.
 - [Claude commands](https://code.claude.com/docs/en/commands): `/compact [instructions]` accepts a focus; `/clear` begins a fresh conversation. The user performs the transition after the note and its actual review status are shown.
 
-API prices and their source links are kept in [delegate's cost data](../../skills/essentials/references/coordinate/delegate/assets/prices.md). They are not account subscription charges. Missing price-step or quota information stays unknown.
+API prices are no longer kept in the skill (D346); a price comes from the provider's official pricing page, with the date read. They are not account subscription charges. Missing price-step or quota information stays unknown.
 
 Unverified live branches: worker/fork availability, custom tier overrides, actual effort, blocked approval UI, independent cold-read returns, cache hits, quota/cost enforcement and a successful compact/new-session/resume cycle. Those require later live checks, not paid per-batch model tests.

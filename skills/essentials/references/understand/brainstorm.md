@@ -25,7 +25,7 @@ The requested options or candidates. Add a comparison and a decision, or why the
 
 1. **Make options differ in kind.** Rewordings of one idea are one option. So is a changed version of an option already listed, such as a lighter or trial form of an earlier proposal: develop it under that option.
 2. **Use the `understand-weigh` guide only for a requested choice.** Compare the options on the same terms there. Return a requested list of options or candidates without a choice. Choosing for a caller that asked only for candidates takes over a decision it still owns.
-3. **Follow the `understand` guide's who-decides rule.** A choice that belongs to the user stays theirs, and your own choices stay visible. For a requested choice, give the recommendation as the recommended answer, or park the choice with why and what would settle it. Use the same rule for showing the choices you make yourself.
+3. **Follow the main skill's step 1 on who decides.** A choice that belongs to the user stays theirs, and your own choices stay visible. For a requested choice, give the recommendation as the recommended answer, or park the choice with why and what would settle it. Use the same rule for showing the choices you make yourself.
 
 ## Advice
 
@@ -51,7 +51,7 @@ Generate options that differ in kind for one question. Listing before judging ke
    - Use the `understand-research` guide for deciding facts and the `understand-research-survey` guide for existing alternatives. Return those findings here. Place side topics rather than following them.
 4. **Return options or a requested choice under rules 2 and 3.** Choosing for a caller that asked only for candidates takes over a decision it still owns.
    - Return requested options or candidates without a selection round. For a requested choice, use the `understand-weigh` guide and return the decision or why it is parked and what would settle it.
-   - Use the `understand` guide's who-decides rule for visible choices. Return a need for a whole design, or for more work on the options, to whoever asked for them. Do not call that caller yourself: it is still working and acts on what you return.
+   - Use the main skill's step 1 on who decides for visible choices. Return a need for a whole design, or for more work on the options, to whoever asked for them. Do not call that caller yourself: it is still working and acts on what you return.
 5. **Check the options and “Gives back” before returning.** Always do this last. A list of renamed duplicates or an unrequested winner does not meet the request.
    - Check distinctness, earlier proposals, factual gaps and side topics. Include developed and open or parked options, with any requested decision.
-   - Fix what falls short, follow the `understand` guide's rules and keep lasting records with their owner. Start no unrequested choice round.
+   - Fix what falls short, follow the main skill's step 1 rules and keep lasting records with their owner. Start no unrequested choice round.

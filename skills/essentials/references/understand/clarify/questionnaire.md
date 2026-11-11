@@ -20,7 +20,7 @@ The question document, in the response by default for the user to send. Later, r
 
 ## Rules
 
-1. **Write without references to this conversation.** The reader was not there. Use no decision numbers, by the `respond` guide. Go further than that rule: make no reference to the conversation at all.
+1. **Write without references to this conversation.** The reader was not there. Use no decision numbers, by the main skill's step 6 on naming things in words the reader can resolve. Go further than that rule: make no reference to the conversation at all.
 2. **Send nothing yourself before the user approves.** Sending or posting reaches people outside this work, and a sent message cannot be taken back.
    - When the user will send it, which is the default, give the document and propose nothing.
    - When you would send or post it, propose that through the `respond-ask` guide, as the `act-guardrails` guide says for outward actions. Then end the turn.
@@ -40,7 +40,7 @@ The question document, in the response by default for the user to send. Later, r
 
 Write the questions only another person can answer so they can reply without this conversation. The document needs enough context to stand alone, and its answers inform the user’s decisions. **Prepare the question document, park its unanswered choices, then return received answers to clarification.**
 
-1. **Find the context the document needs through the `understand` guide's facts-first rule.** A recipient who lacks the purpose or requested result has to ask the user for another briefing.
+1. **Find the context the document needs through the main skill's step 1 on exploring the sources first.** A recipient who lacks the purpose or requested result has to ask the user for another briefing.
    - Look in the conversation first for the reader, needed answers and destination. Ask for missing facts that matter.
    - Use the response for the user to send by default. If the answer holder is unknown, ask who holds the answers before assigning them elsewhere.
 2. **Write the document using Advice and rule 1.** References to this conversation leave its reader unable to answer on their own.

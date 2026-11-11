@@ -6,14 +6,14 @@ Judges how careful an action needs to be from the effects of a mistake and how i
 
 ## When to use
 
-Use when the user asks how risky an action is or what a mistake would cost, or when a guide needs to know how careful an action should be. For example: “how bad would it be if the price import went wrong?”
+Use when the user asks how risky an action is or what a mistake would cost, or when a guide needs to know how careful an action should be. For example: “how bad would it be if the price import went wrong?” A request that is both a risk question and an action, such as “can I archive these without checking with anyone?”, reads this guide, then the `act-guardrails` guide.
 
 ## When not
 
 - Deciding whether an action needs approval: use the `act-guardrails` guide. A risk level does not grant approval.
-- Finding weak points in an idea: use the `understand` guide. That question concerns the idea, not the care an action needs.
+- Finding weak points in an idea: use the `understand-challenge` guide. That question concerns the idea, not the care an action needs.
 - Checking whether work is done or correct: use the `act-verify` guide for evidence.
-- Reviewing code security: use a skill in the harness’s list for code security review, if one fits. Otherwise use your judgment under the `act` guide. This guide only judges the care needed.
+- Reviewing code security: use a skill in the harness’s list for code security review, if one fits. Otherwise use your judgment under the main skill's step 5. This guide only judges the care needed.
 
 ## Gives back
 
@@ -39,7 +39,7 @@ The level, from the four answers:
    - Judge the action asked about. Existing problems, such as other errors in the same spreadsheet, are not its reach or cost. They exist either way. Name them separately as findings.
    - Count what the action does to an existing problem, such as hiding a known failure from people reading a check. Hiding a problem weakens the check. The `act-guardrails` guide always requires a proposal for that, whatever the level.
 2. **Take the higher level when unsure.** An unneeded question costs a moment. An unguarded mistake cannot always be undone.
-3. **Keep care at or above every rule.** The `act` guide's never-rules, the `act-guardrails` guide's always-proposed kinds, and user or project instructions for more care hold at every level. The `act-stakes` guide can raise care, never lower it below a rule. Otherwise "low stakes" bypasses guardrails.
+3. **Keep care at or above every rule.** The main skill's never-rules, the `act-guardrails` guide's always-proposed kinds, and user or project instructions for more care hold at every level. The `act-stakes` guide can raise care, never lower it below a rule. Otherwise "low stakes" bypasses guardrails.
 4. **Return the answers and level without acting or asking.** The caller decides what the level means for its work. Judgment has one home. Each response to it stays where it is used.
 5. **Judge again when the basis changes.** Examples: a change grows, moves from a local copy to production, loses a test, or has no backup after all. The starting level goes stale.
 
@@ -60,7 +60,7 @@ A judgment that fits none of the guides under "When not" is your own, under thes
 Judge the care an action needs from the effects of a mistake, rather than its size or label. Undo, reach, catch and cost give the caller one grounded level without taking action here. **Identify the actual action, answer the four questions, then return the level and any cheap ways to lower it.**
 
 1. **Identify the action and where it lands, by rule 1.** A small edit on a public or live surface can have effects its label hides.
-   - Read facts that show callers, coverage, backups or recipients through the `understand` guide's facts-first rule.
+   - Read facts that show callers, coverage, backups or recipients by the main skill's step 1 (explore the sources before you ask or assume anything).
    - Judge effects caused by this action. Keep pre-existing problems separate, while counting an action that hides them as weaker checking.
 2. **Answer Undo, Reach, Catch and Cost from facts, by rule 1.** A feeling about risk can change from one guide to another and leave the user with inconsistent care.
    - Say how a mistake is undone, who or what it reaches, what catches it before harm and its cost in time, data, money, trust or security. Mark guesses.
@@ -68,7 +68,7 @@ Judge the care an action needs from the effects of a mistake, rather than its si
 3. **Choose low, medium or high from the definitions above, by rule 2.** Understating an uncertain level can leave a mistake uncaught when it matters.
    - Take the higher level when unsure. Judge real consequences: a sent message or a fix needing another release is harder to undo than editing its source file.
 4. **Keep care at or above guardrails and instructions, by rule 3.** A low label must not become permission to skip a required safeguard.
-   - Check the `act` guide's never-rules, always-proposed kinds in the `act-guardrails` guide, and user or project instructions requiring more care.
+   - Check the main skill's never-rules, always-proposed kinds in the `act-guardrails` guide, and user or project instructions requiring more care.
 5. **Offer cheap ways to lower stakes for work that is not plainly low, using Advice.** Reducing exposure can cost less than adding a large review to the same risky action.
    - Consider a backup, dry run, branch, feature flag or test. Offer them to the caller rather than applying them here.
 6. **Return the judgment under rule 4.** The caller needs a usable level, not a second guide making its action or approval decision.

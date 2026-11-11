@@ -37,9 +37,9 @@ Lay it out by term: one row or list item per term, with every option's value on 
 3. **Name unknowns that could change the recommendation, each with what would settle it.** Use the `understand-research` guide or a permitted test for deciding facts, and the `understand-clarify` guide for the user's preference. A cost or risk that holds only if something is true is an unknown too, such as a parking permit needed only if the site has no spaces: say how to find out whether it applies.
    - When the user asks which to pick, compare and recommend before you ask about their preference. Recommend under the likelier reading, and name the preference with the pick it would change, such as one bike unless they often ride on gravel. Asking first leaves the user with questions and no comparison to answer them from.
    - With no likelier reading, give "no clear winner" and the question that settles it, by rule 4.
-   - This varies the `understand` guide's who-decides rule for a pick the user asked for: the preference stays theirs, and the answer still asks about it, after the comparison and a pick.
+   - This varies the main skill's step 1 on who decides for a pick the user asked for: the preference stays theirs, and the answer still asks about it, after the comparison and a pick.
 4. **Recommend with why it beats the next best, or say "no clear winner".** Give what would settle a tie. Giving no recommendation leaves the decision undone. Forcing a recommendation hides a tie.
-5. **Follow the `understand` guide's who-decides rule.** When a caller asks for a comparison, return it without starting that caller's choice round. When the user asks directly, end with their choice in the `respond-ask` guide's form: a line starting "Recommended answer:" with the option and the reason, or "No recommended answer:" with why. A "yes" then accepts the pick when work follows. Apply the shared rule to agent-made choices. A bare choice cannot be judged.
+5. **Follow the main skill's step 1 on who decides.** When a caller asks for a comparison, return it without starting that caller's choice round. When the user asks directly, end with their choice in the `respond-ask` guide's form: a line starting "Recommended answer:" with the option and the reason, or "No recommended answer:" with why. A "yes" then accepts the pick when work follows. Apply the shared rule to agent-made choices. A bare choice cannot be judged.
 
 ## Instructions
 
@@ -65,4 +65,4 @@ Compare named options on common terms and recommend one, or explain what would s
    - Check common terms, evidence, downside searches and current challenges. Return a recommendation, a tie or a specific development need preventing comparison.
    - Check each deciding unknown has what would settle it, by rule 3.
    - Check that every term has every option's value, and that a direct request ends with the labelled line, by rule 5.
-   - Fix unsupported or unequal parts before returning under the `understand` guide's rules. Leave decisions and lasting changes with their owner.
+   - Fix unsupported or unequal parts before returning under the main skill's step 1 rules. Leave decisions and lasting changes with their owner.

@@ -6,11 +6,11 @@ Fits work and its results to the reader’s purpose, with nothing missing or ext
 
 ## When to use
 
-Use when deciding what to read, do, make or return for a reader. Read before changing existing material that the user asks you to trim, shorten, fill or complete, or check for missing or extra parts. Examples: “trim the meeting notes”, “complete the onboarding page” or “what is this README missing?”.
+Use before reworking material that existed before the task: when the user asks you to trim, shorten, fill or complete it, or to check it for missing or extra parts. The main skill's step 5 holds the lines every piece of work needs. Examples: “trim the meeting notes”, “complete the onboarding page” or “what is this README missing?”.
 
 ## When not
 
-The rules and final check still apply to anything made, done or returned. The alternatives below concern a rework pass, not those general rules.
+The main skill's step 5 holds the lines every piece of work needs, and these rules go further. The alternatives below concern a rework pass, not those general lines.
 
 - Your own draft from this conversation: use the final check here. It is still being made and needs no separate rework pass.
 - Checking correctness or completion: use the `act-verify` guide for evidence. Keep the sizing rules for what you return.
@@ -35,8 +35,8 @@ The output or work plan fitted to its reader, with the point first. For reworked
    - Read a file whole if you need most of it, finding the needed part would take more calls, or the whole is required, such as by the guide name rule.
    - Make independent calls together.
    - Stop when the result answers the request and you have evidence. Do not search for more of the same. Asked a library's pinned version, stop at the line that pins it.
-   - Why: every read and every call is paid for again on later turns. What to do stays with the `act` guide's rule 3: exactly what was asked.
-8. **Use the `act-rightsize-lean` or `act-rightsize-enrich` guide to rework material that existed before this task, on request.** Propose the rework when you notice the need. Never do it unasked beyond the task, by the `act` guide's rule 3.
+   - Why: every read and every call is paid for again on later turns. What to do stays with the main skill's step 5 (do all of what was asked, and nothing unrelated).
+8. **Use the `act-rightsize-lean` or `act-rightsize-enrich` guide to rework material that existed before this task, on request.** Propose the rework when you notice the need. Never do it unasked beyond the task, by the main skill's step 5 (do all of what was asked, and nothing unrelated).
 9. **Get approval for a list before trimming or filling existing material.** This covers work in the `act-rightsize-lean` and `act-rightsize-enrich` guides whether you load them or not.
    - A named change, such as a given section to add, is the edit itself and needs no such approval. Filling, completing or making something sufficient is filling even if the request names what is lacking: you still choose what goes in.
    - A fill with nothing to choose is a named change too: the user names the source, and every value is copied or worked out from it, such as totals copied from an agreed budget sheet. Choosing what to say, or how to word it, is choosing.
@@ -79,7 +79,7 @@ Fit what you read, do, make or return to the reader’s purpose. Keep necessary 
 - the `act-rightsize-lean` guide: remove extra parts.
 - the `act-rightsize-enrich` guide: add missing parts.
 
-How a response is worded is the `respond` guide's.
+How a response is worded is the main skill's step 6.
 
 1. **Check the result against “Gives back” and rules 1–10 before writing or returning it.** Always do this last. Missing parts cost the reader questions or rework; extras consume attention on every read.
    - Scale to stakes. For an intermediate probe, scratch file or note for your own next step, use questions 2 and 5 below. For another reader's result, use all five. Keep this check in thinking.
@@ -91,4 +91,4 @@ How a response is worded is the `respond` guide's.
    5. Was anything a rule requires cut? Put it back, including failures, evidence and pending proposals.
 
    - For existing material, apply only an approved change list under rule 9 through the `act-rightsize-lean` or `act-rightsize-enrich` guide. Do not turn this draft check into unapproved rework.
-   - Fix shortfalls before returning the fitted result and any rework change list. Wording belongs to the `respond` guide; the sizing check itself stays in thinking.
+   - Fix shortfalls before returning the fitted result and any rework change list. Wording belongs to the main skill's step 6; the sizing check itself stays in thinking.

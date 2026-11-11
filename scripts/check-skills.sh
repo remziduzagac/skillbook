@@ -2,14 +2,16 @@
 # Checks every set in skills/: each plain skill file opens with a heading holding the name its path gives, each file
 # stays near the length skillbook-guide-write advises, and every skill named in backticks whose group exists in the set
 # resolves to a file. Prints one line per problem and exits non-zero when there is any. Also prints, for each set, the
-# characters of its start files (the main SKILL.md and the files its "Read `references/...`" line names), and warns,
+# characters of its start files (the main SKILL.md alone, the only file every request reads), and warns,
 # without failing, past the advised size.
 set -eu
 
 main() {
 	repo="$(cd "$(dirname "$0")/.." && pwd)"
-	limit=120         # about 100 lines is the advice; past this a file is reported
-	main_limit=160    # a main skill holds the guide map, so it may pass about 100 lines where the map needs it
+	limit=120 # about 100 lines is the advice; past this a file is reported
+	# A set's main skill holds the rules every request reads, and no guide is read on every request, so it may pass
+	# the general limit by design.
+	main_limit=200
 	start_limit=20000 # about 20,000 characters (about 5,000 tokens) for the start files, carried on every turn
 	problems=0
 
@@ -21,10 +23,8 @@ main() {
 	for set_dir in "$repo"/skills/*/; do
 		[ -f "$set_dir/SKILL.md" ] || continue
 		refs="${set_dir}references"
-		start_files="$set_dir/SKILL.md $(grep -E '^(\*\*)?Read `references/' "$set_dir/SKILL.md" |
-			grep -o 'references/[a-z0-9/_-]*\.md' | sed "s|^|$set_dir|" | tr '\n' ' ')"
-		# shellcheck disable=SC2086 # the list is split on spaces on purpose
-		total=$(cat $start_files | wc -c | tr -d ' ')
+		# Every request reads the main skill alone; guides are read at their step.
+		total=$(wc -c <"$set_dir/SKILL.md" | tr -d ' ')
 		set_name=$(basename "$set_dir")
 		if [ "$total" -gt "$start_limit" ]; then
 			echo "$set_name: start files $total characters, past about $start_limit; warning only, trim when you can"

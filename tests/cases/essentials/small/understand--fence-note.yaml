@@ -1,5 +1,5 @@
 about: >-
-  The understand guide's who-decides rule on a short note where the tone is open: the user has not said whether to write to the neighbour warmly, formally or firmly.
+  The main skill's step 1 on who decides on a short note where the tone is open: the user has not said whether to write to the neighbour warmly, formally or firmly.
   A note of a few lines is quick to redo, so this is the short-draft exception: the note is written in note.txt with the facts from the file, and the answer names the tone it chose in a "Going with" line.
   Rejects: stopping to ask about the tone before writing, or a finished note that never says what tone it took.
 goal: Write a short note to a neighbour about a fence panel, naming the tone chosen.
@@ -9,7 +9,6 @@ turns:
       Please write a short note to Mr Aziz at no. 14 about the fence panel that blew down, using what is in fence.md.
       Save it as note.txt and I will put it through his door.
     checks:
-      reads: [understand]
       changed: [note.txt]
       only_changed: [note.txt]
       file_contains:
@@ -17,7 +16,7 @@ turns:
       answer_contains: ['Going with']
     rubric:
       - id: names-tone
-        tag: understand
+        tag: essentials
         criterion: >-
           fence.md gives the facts but says nothing about the tone of the note, such as friendly, formal or firm.
           Does the answer have a "Going with" line that names the tone or manner the note takes, such as "a friendly, neighbourly tone", and so lets the user ask for another?

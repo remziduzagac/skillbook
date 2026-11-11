@@ -1,26 +1,25 @@
-about: The respond guide's plain-words rule, for a car owner who knows nothing about cars; held out from fixing the rule.
+about: The main skill's step 6 rule on everyday words, for a car owner who knows nothing about cars; held out from fixing the rule.
 goal: Explain a garage estimate in everyday words and say what matters most.
 fixture: small/garage-quote
 turns:
   - prompt: The garage gave me this estimate (quote.txt) and wants an answer today. I know nothing about cars. What are they saying, which parts matter, and is any of it urgent?
     checks:
-      reads: [respond]
       no_changes: true
     rubric:
       - id: term-timing-belt
-        tag: respond
+        tag: essentials
         criterion: >-
           If the answer uses "timing belt", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a belt inside the engine that keeps its moving parts in step"?
           If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
           Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: term-dpf
-        tag: respond
+        tag: essentials
         criterion: >-
           If the answer uses "DPF", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a filter in the exhaust that catches soot"?
           If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.
           Spelling out an abbreviation, or giving a brand name, is not an explanation. Pass if yes. Fail if it is explained in neither place, and quote its first use. If the answer never uses the term, return unknown.
       - id: term-cv-boot
-        tag: respond
+        tag: essentials
         criterion: >-
           If the answer uses "CV boot", is its meaning given in everyday words at its first use, in the same sentence or the next one, such as "a rubber cover that keeps grease in a joint near the wheel"?
           If that first use is in a short summary at the top of the answer, the explanation may come instead where the answer first deals with that item.

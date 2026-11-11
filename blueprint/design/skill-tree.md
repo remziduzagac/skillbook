@@ -29,12 +29,11 @@ essentials/                              the main skill's folder, the only skill
 The tree shows each skill by its path. Each set's folder is `skills/<set>/` (D190); the tree is one block per set, each starting with a line for the set's main skill, and a part whose set differs from its root's stands in its own set's block, design's recording steps in blueprint's, design's architecture in softeng's (D152, D154).
 
 ```text
-essentials/                       essentials, essentials' main skill, the only skill its set lists to the model and
-│                                 loaded first for every request: rules, a guide map with paths, and Instructions; read
-│                                 act, act-rightsize, respond, respond-layout, devise and the guides picked from the map
-│                                 before work, and understand, organize and coordinate at their stage; stage 4 holds the
-│                                 strong advice to delegate by default; the final numbered step checks the result, then
-│                                 answers through respond (D279, D280, D284, D285, D298, D300)
+│                                 loaded first for every request: the rules every request reads and Instructions with
+│                                 one step per stage, each instruction naming its guide with a link; no other file is
+│                                 read by default, and the key rules of act, respond, devise, understand and coordinate
+│                                 are its steps (D346); the final numbered step checks the result, then answers
+│
 │
 ├── understand/                   understand: understanding before acting, with the person and from sources: its own
 │   │                             skill holds the rules for the whole scope (keeps nothing, one result shape, guesses

@@ -29,7 +29,7 @@ Give a repeated part one shared home without erasing meaningful differences. Sim
 2. **Check that each copy means the same, by the `organize` guide's rule 3.** Similar words can express different rules, and merging them would change what readers follow.
    - A copy that differs in meaning stays whole and unchanged, even where part of it matches the shared part, such as the same price inside a different refund rule. List it as left out of the normalization, with the difference.
    - A copy with the same meaning may sit beside details of its own item, such as a local note. Those details stay in the item, by step 5.
-3. **Choose one home every eligible reader can reach, by the `understand` guide's who-decides rule.** A shared definition that some readers cannot load leaves those items incomplete.
+3. **Choose one home every eligible reader can reach, by the main skill's step 1 on who decides.** A shared definition that some readers cannot load leaves those items incomplete.
    - A definition may belong in a glossary, a rule in its owning guide or skill, or code in a shared function.
    - If no home exists, propose one in the map, by the `organize` guide's step 4. The map's stop covers it, so it needs no turn of its own.
 4. **Prepare the shared part to serve all eligible copies.** A version tailored to one item can silently weaken another.

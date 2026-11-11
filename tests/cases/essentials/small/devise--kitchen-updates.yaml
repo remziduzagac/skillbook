@@ -1,5 +1,5 @@
 about: >-
-  The devise guide on work with three parts whose shape is settled: every value is given, so the plan guide fits and the design guide does not.
+  The main skill's step 2 and the devise-design guide on work with three parts whose shape is settled: every value is given, so the plan guide fits and the design guide does not.
   The work goes ahead in one turn and the answer gives each step with its result.
   Rejects: a design for settled work, a stop for approval, a line lost from the tracker, or a wrong total.
 goal: Make three given updates to a renovation tracker, including a new budget line and the corrected total.
@@ -10,7 +10,7 @@ turns:
       Three updates to kitchen-tracker.md. Painting is done. Second-fix plumbing is booked for Wednesday 19 March.
       And add the painter's invoice, £780, to the budget and fix the total.
     checks:
-      reads: [devise, devise-plan]
+      reads: [devise-plan]
       reads_not: [devise-design]
       only_changed: [kitchen-tracker.md]
       file_contains:
@@ -23,7 +23,7 @@ turns:
           - 'Units: 4200'
     rubric:
       - id: steps-reported
-        tag: devise
+        tag: essentials
         criterion: >-
           The request had three updates: painting done, second-fix plumbing booked for Wednesday 19 March, and the painter's invoice of £780 added with the total fixed.
           The old total was 8200, so the new one is 8980.

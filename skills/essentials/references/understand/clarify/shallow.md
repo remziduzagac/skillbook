@@ -25,8 +25,8 @@ The visible “Going with” line, plus an offer of deep questions for parts who
    - Ask later questions when their answers are needed. Long routine rounds cost more than they settle.
 2. **Ask one round through the `respond-ask` guide.** The user answers at once and sees the whole level.
 3. **Show "Going with: …" for the basis the work rests on.** Sum up decisions, assumptions and open questions. The user must see that basis.
-   - Show it with the round, which ends the turn. When no question is left and the `understand` guide's who-decides rule lets the work go ahead, or the user has just answered, put it in your final answer instead.
-   - Do not repeat their latest answers except where you interpreted them. Omit minor choices by the `understand` guide's who-decides rule. Repeating everything hides what matters.
+   - Show it with the round, which ends the turn. When no question is left and the main skill's step 1 on who decides lets the work go ahead, or the user has just answered, put it in your final answer instead.
+   - Do not repeat their latest answers except where you interpreted them. Omit minor choices by the main skill's step 1 on who decides. Repeating everything hides what matters.
 
 ## Advice
 
@@ -41,7 +41,7 @@ See the whole level before exploring any part more deeply. Ask the smallest roun
    - Ask first about choices that others depend on.
    - Make the choices that are yours. Put a likely value the work rests on in "Going with", such as rows per page in a new list view.
 2. **Remove questions the `understand-clarify` guide's rules exclude.** Asking what files settle or what changes nothing makes the user repeat work you can do.
-   - If no user choice remains, ask nothing. Handle visible choices by the `understand` guide's who-decides rule.
+   - If no user choice remains, ask nothing. Handle visible choices by the main skill's step 1 on who decides.
 3. **Ask one round through the `respond-ask` guide, with grounded recommended answers.** A round without reasons leaves the user to work out the trade-offs alone.
    - Keep the round to what rule 1 says. Save questions that are not needed yet.
 4. **When you ask a round, put in the same response everything the user must see before work starts.** A basis the user sees only after slow or hard-to-undo work is too late to correct.
@@ -58,4 +58,4 @@ See the whole level before exploring any part more deeply. Ask the smallest roun
    - After the answers, check that every question in the round is answered, taken with its recommended answer, parked or in a questionnaire, or that its part was offered to deep and the user said yes or no.
    - Check that "Going with" shows the decisions, assumptions, parked questions and questionnaire items the work rests on, without repeating the latest answers except where you interpreted them.
    - Check that each deep offer names its part and why its answers depend on each other.
-   - Check the `understand` guide's rules. Fix omissions before returning to clarification.
+   - Check the main skill's step 1 rules. Fix omissions before returning to clarification.

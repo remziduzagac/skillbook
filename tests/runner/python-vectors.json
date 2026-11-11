@@ -91,14 +91,6 @@
     "function": "skill_name",
     "args": [
       "essentials",
-      "references/coordinate/delegate/assets/prices.md"
-    ],
-    "expected": null
-  },
-  {
-    "function": "skill_name",
-    "args": [
-      "essentials",
       "references/coordinate/delegate/council.md"
     ],
     "expected": "coordinate-delegate-council"

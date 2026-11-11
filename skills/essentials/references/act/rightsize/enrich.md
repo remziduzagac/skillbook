@@ -10,7 +10,7 @@ Use when existing material leaves its reader unable to understand or act without
 
 ## When not
 
-- Writing from scratch: use a skill in the harness’s list that makes that kind of thing, if one fits. Otherwise use your judgment under the `act` guide. Enrich fills gaps in existing material.
+- Writing from scratch: use a skill in the harness’s list that makes that kind of thing, if one fits. Otherwise use your judgment under the main skill's step 5. Enrich fills gaps in existing material.
 - Writing new work from existing material: use the guide for that kind of work, as for writing from scratch. The material itself stays as it is.
 - Finding out for its own sake: use the `understand-research` guide for sourced investigation, otherwise read directly. There is no existing work to fill.
 - Checking whether work is correct: use the `act-verify` guide for evidence.
@@ -27,7 +27,7 @@ The material with missing parts added, and the gaps that could not be filled. Th
    - the user, when only they know;
    - outside sources, for outside facts.
    - Mark an unfound answer as a gap only after searching the project files, and outside sources for outside facts. Inventions read as true. Premature gaps send the user to find what you could have found.
-3. **Check each addition is true.** Use the `act-verify` guide for project facts, such as install steps tried or read in the current build file. Use a current, authoritative source for outside facts, under the `understand` guide's rules.
+3. **Check each addition is true.** Use the `act-verify` guide for project facts, such as install steps tried or read in the current build file. Use a current, authoritative source for outside facts, under the main skill's step 5 (get evidence before making a claim).
    - Use a source only if it is current and authoritative for the addition. An outdated wiki page, or a comment the code contradicts, proves nothing.
    - Give each source in the approval list: file and line, command or page showing it.
    - Add nothing the reader would not ask for, by the `act-rightsize` guide's final step of Instructions. Enriching must not become padding.

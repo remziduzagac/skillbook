@@ -44,7 +44,7 @@ def command_event(command, exit_code=0):
 
 class SkillResources(unittest.TestCase):
     def test_resources_are_not_callable_skills(self):
-        for rel in ["references/coordinate/delegate/assets/prices.md",
+        for rel in ["references/coordinate/delegate/assets/other-harnesses.md",
                     "references/coordinate/delegate/scripts/help.md"]:
             with self.subTest(rel=rel):
                 self.assertIsNone(runner.skill_name("essentials", rel))
@@ -1009,16 +1009,16 @@ class EvidenceChecks(unittest.TestCase):
 class AspectCoverage(unittest.TestCase):
     def test_aspects_come_from_the_skill_text(self):
         names = runner.aspects()
-        for aspect in ("act:rule:5", "act:step:4", "essentials:step:0", "essentials:step:1",
-                       "respond-ask:step:1", "skillbook-guide-design:check:13"):
+        for aspect in ("act-verify:rule:5", "act-verify:step:4", "essentials:rule:5", "essentials:step:0",
+                       "essentials:step:1", "respond-ask:step:1", "skillbook-guide-design:check:13"):
             self.assertIn(aspect, names)
 
     def test_unknown_and_uncovered_aspects_are_reported(self):
-        cases = [{"id": "x/one", "covers": ["act:rule:5", "act:rule:999"]}]
+        cases = [{"id": "x/one", "covers": ["essentials:rule:5", "essentials:rule:999"]}]
         _, unknown, uncovered = runner.aspect_coverage(cases)
-        self.assertIn("act:rule:999", unknown)
-        self.assertNotIn("act:rule:5", uncovered)
-        self.assertIn("act:rule:6", uncovered)
+        self.assertIn("essentials:rule:999", unknown)
+        self.assertNotIn("essentials:rule:5", uncovered)
+        self.assertIn("essentials:rule:6", uncovered)
 
     def test_a_committed_fixture_has_history_but_no_counted_files(self):
         with tempfile.TemporaryDirectory() as root:

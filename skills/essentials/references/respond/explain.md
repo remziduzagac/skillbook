@@ -10,8 +10,8 @@ Use when the user did not follow something you said, such as “I don’t follow
 
 ## When not
 
-- Explaining a new topic, such as a function or concept: use the `understand` guide. This guide revisits something you already said.
-- A document for readers: use a skill in the harness’s list for writing that kind of document, if one fits. Otherwise use your judgment under the `act` guide. It needs writing for that audience.
+- Explaining a new topic, such as a function or concept: use the main skill's step 1. This guide revisits something you already said.
+- A document for readers: use a skill in the harness’s list for writing that kind of document, if one fits. Otherwise use your judgment under the main skill's step 5. It needs writing for that audience.
 - A request may need this explanation and one of those other results. Use both for their own parts.
 
 ## Gives back
@@ -22,9 +22,9 @@ The earlier point, explained again to the user from the main idea to its details
 
 Make an earlier point clear where the user did not follow it. Start from the main idea and add only the detail needed for that point. **Explain the missed point in plain words, resolve its references, then stop once it is clear.**
 
-1. **Explain through the `respond` guide's shape, with the point in one plain sentence.** Repeating the same wording can leave the user with the same gap.
+1. **Explain through the main skill's step 6 shape (fit the answer to the question), with the point in one plain sentence.** Repeating the same wording can leave the user with the same gap.
    - Give context and basis as needed. Use an example for a general idea the user has not seen applied; omit one for a concrete file or failed step already in front of them.
-2. **Replace unresolved references with meanings under the `respond` guide's reference rule.** A bare decision number or unfamiliar term sends the user to another lookup before they can follow the explanation.
+2. **Replace unresolved references with meanings under the main skill's step 6 (name things in words the reader can resolve).** A bare decision number or unfamiliar term sends the user to another lookup before they can follow the explanation.
    - Keep references they can resolve now. Put an unfamiliar term or reference into words where it is used.
 3. **Stop when the point is made.** Extra explanation can bury the answer the user needed.
    - Add no closing offer to explain more. Let the user's next message show whether it landed.

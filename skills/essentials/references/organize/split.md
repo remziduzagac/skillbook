@@ -36,7 +36,7 @@ Divide a written or planned whole so every required item has one place. The inve
 2. **Inventory everything the whole contains or must cover before grouping.** Starting with groups can leave inconvenient items out of the map.
    - For existing material, list its contents. For a future whole, use its requirements as the inventory.
 3. **Choose one dividing principle by rule 1 of the `organize` guide.** Mixed principles make an item belong to several parts.
-   - Use the `understand` guide's who-decides rule for who chooses and when it must be shown. Keep the principle tied to the whole's purpose.
+   - Use the main skill's step 1 on who decides for who chooses and when it must be shown. Keep the principle tied to the whole's purpose.
 4. **Write each part's one-sentence boundary by rule 2 of the `organize` guide.** Unstated boundaries leave readers guessing which part owns a new item.
    - Make each part understandable on its own. Size it for whole reading or searching, using headings or a map where needed.
 5. **Map every item to exactly one part, by the `organize` guide's rule 3.** A count of parts does not show whether their contents survived.

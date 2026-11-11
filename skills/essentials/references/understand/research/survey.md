@@ -28,7 +28,7 @@ Coverage:      where you searched, what you did not search, the survey's date an
 
 ## Rules
 
-1. **Set the scope and comparison terms before searching.** Reuse the caller's criteria or current frame. Otherwise follow the `understand-frame` guide and the shared who-decides rule. Terms chosen afterward favor the first candidates found.
+1. **Set the scope and comparison terms before searching.** Reuse the caller's criteria or current frame. Otherwise follow the `understand-frame` guide and the main skill's step 1 on who decides. Terms chosen afterward favor the first candidates found.
 2. **Search widely before examining candidates deeply.** Use several relevant kinds of source where available. The most visible candidate need not be the best. Report unavailable coverage rather than inventing breadth.
 3. **Compare every fully examined candidate on every term.** Give evidence or "not found" for each value. Use no guess or score without a meaningful measure.
 4. **Name screened-out candidates with their reasons.** List an unexamined long tail separately as not compared, with the reason and coverage limit. A names-only list is not a completed comparison or an evidence-backed rejection.
@@ -38,7 +38,7 @@ Coverage:      where you searched, what you did not search, the survey's date an
    - Look for a date in every file you read, a README included, before you write the line.
    - Say what remains unverified.
    - For example: "Coverage: the three supplier price lists in quotes/, dated 3 March. Not searched: the suppliers' current sites, trade directories or suppliers not in the folder."
-7. **Add no survey-only approval checkpoint.** A survey reads and compares; it changes nothing. Ask first only for a choice the user owns, by the `understand` guide's rule 5, or for a worker cost that needs approval, by the `coordinate-delegate` guide's rule 8. Then end the turn. Otherwise put the scope, the terms and how you searched in the final answer.
+7. **Add no survey-only approval checkpoint.** A survey reads and compares; it changes nothing. Ask first only for a choice the user owns, by the main skill's step 1 on who decides, or for a worker cost that needs approval, by the `coordinate-delegate` guide's rule 8. Then end the turn. Otherwise put the scope, the terms and how you searched in the final answer.
 8. **Return the comparison to its active caller.** That is the guide or task that asked for the survey, and it owns the choice. When the user asked you to choose, compare the candidates with the `understand-weigh` guide after the survey. When the `understand-weigh` guide asked for this survey, return to it; do not start it again. Start no new candidate generation. A request for existing options alone starts no choice round and gets no recommendation.
 
 ## Advice

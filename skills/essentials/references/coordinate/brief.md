@@ -38,7 +38,7 @@ The worker’s starting instructions and the report it must return. The task tha
    ```
 
    Ask for a line on what was asked and why when tasks run together, the work is long, or the report will be kept for later. Put longer detail in a named scratch file. Ask the worker to return its path and the summary the caller needs.
-8. **Bootstrap a fresh worker through the actual essentials folder.** Mark the task as delegated work. Give the worker the essentials folder's absolute path. Tell it to load the `essentials` skill and use its guide map and name rule; the main skill says which guides a delegated worker reads. Name every guide its task needs beyond the `act`, `act-rightsize`, `respond` and `respond-layout` guides, such as `act-verify` when it must show that a fix works. The worker reads each named guide with its parents, and a guide you do not name is not read. A settled brief can still meet an unknown that would change the result, so the worker may read the `understand` guide when one appears. Rule 10 of the `act` guide bounds every step. Do not copy it into the brief.
+8. **Bootstrap a fresh worker through the actual essentials folder.** Mark the task as delegated work. Give the worker the essentials folder's absolute path. Tell it to load the `essentials` skill and use its name rule; the main skill's rule on limits for a delegated worker says what a delegated worker reads. Name every guide its task needs, such as `act-verify` when it must show that a fix works. The worker reads each named guide with its parents, and a guide you do not name is not read. A settled brief can still meet an unknown that would change the result, so the worker puts it in its report. The main skill's rule on limits for a delegated worker bounds every step. Do not copy it into the brief.
 9. **Ask the worker to clean up before reporting.** Ask the worker to follow the `act-cleanup` guide: remove its temporary material, stop what it started and respect its limits. Ask it to report what it cleaned, kept or proposes to remove, and to check the cleanup result. A read-only task can still create a report or a process. Do not infer no leftovers from its label.
 
 ## Advice
@@ -61,13 +61,13 @@ Give a worker starting now enough context to act without guessing and return a r
    - Size the report through the `act-rightsize` guide. Put bulk detail in a named scratch file and request its path and useful summary.
    - Explicitly ask the worker to use the `act-cleanup` guide: remove temporary material, stop what it started, check removal and report cleaned, kept and proposed items.
 4. **Include the missing operating baseline under rule 8.** A task brief without authority limits can make a worker treat a called guide as permission to exceed its task.
-   - Mark delegated work and give the absolute essentials folder. Tell the worker to load the `essentials` skill and use its guide map and name rule.
-   - Name the guides its task needs beyond `act`, `act-rightsize`, `respond` and `respond-layout`, which every worker reads. A worker reads no other main guide unless the brief names it, so include the `understand`, `devise`, `organize` or `coordinate` guide where the task needs it.
-   - Keep rule 10 of the `act` guide as the worker's authority home rather than copying another rule set. Return unresolved questions to the caller.
+   - Mark delegated work and give the absolute essentials folder. Tell the worker to load the `essentials` skill and use its name rule.
+   - Name the guides its task needs. A worker reads no guide unless the brief names it, so include the `organize` or `act-verify` guide, for example, where the task needs it.
+   - Keep the main skill's rule on limits for a delegated worker as the worker's authority home rather than copying another rule set. Return unresolved questions to the caller.
 5. **Lay out the brief through the `respond-layout` guide.** Buried scope or report requirements are easy for the worker to miss.
    - Make task, references, first step, success criterion and requested report easy to find.
 6. **Return the brief and requested report shape to the caller.** Drafting startup instructions alone does not choose or authorize a running worker.
    - Leave sending and startup with the caller. Start no worker from this guide.
 7. **Check the brief and “Gives back” before returning.** Always do this last. A readable brief can still be unusable if an essential reference is inaccessible.
-   - Check inputs, missing decisions, constraints, rejected approaches, first step and success criterion. Check the baseline is visible or explicitly requested, the guides its task needs are named, and the guide map can be reached.
+   - Check inputs, missing decisions, constraints, rejected approaches, first step and success criterion. Check the baseline is visible or explicitly requested, the guides its task needs are named, and the name rule can be reached.
    - Check the brief carries every line of rule 7's report request and an explicit cleanup request. Fix omissions through the `act-rightsize` guide and report remaining gaps rather than claiming the worker can start without asking.

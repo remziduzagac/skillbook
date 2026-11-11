@@ -10,7 +10,7 @@ Use when the problem, goal or way to judge an answer is missing, or work loops o
 
 ## When not
 
-- A request with a clear problem, goal and way to judge the answer: use your judgment under the `understand` guide. A new frame adds nothing.
+- A request with a clear problem, goal and way to judge the answer: use your judgment under the main skill's step 1. A new frame adds nothing.
 - Facts or intent only the user can supply: use the `understand-clarify` guide when the answer changes the result.
 - Several problems: return them to the main task to divide first. Each frame needs one problem.
 - Factual gaps: find sources. A frame names a missing fact; it does not prove it.
@@ -22,7 +22,7 @@ The problem, goal, limits and test for a good answer, plus unknowns and what wou
 ## Rules
 
 1. **Fill every part or mark it unknown.** Cover the problem, goal, exclusions, constraints and a good answer. Leaving a part empty lets later work treat an assumption as a fact and head the wrong way.
-2. **Mark guesses where they stand.** A guess is any part you inferred rather than read in a source or heard from the user, such as an audience you assumed from the topic. Your own proposals are guesses too, such as a measure of success you suggest: the user has not agreed to them yet. Put "(guess)" after each one. A heading such as "proposed" does not mark the lines under it. The user can then see and correct each guess, by the `understand` guide's rule on guesses.
+2. **Mark guesses where they stand.** A guess is any part you inferred rather than read in a source or heard from the user, such as an audience you assumed from the topic. Your own proposals are guesses too, such as a measure of success you suggest: the user has not agreed to them yet. Put "(guess)" after each one. A heading such as "proposed" does not mark the lines under it. The user can then see and correct each guess, by the main skill's step 1's rule on guesses.
 3. **Frame one problem.** Name a second problem and return it to the caller. Two problems cannot share one good answer.
 
 ## Advice
@@ -52,7 +52,7 @@ Unknown:       each missing fact or choice, with what would settle it
 
 Keep no lasting record yourself. Return the frame to the caller. A skill that saves records needs the frame and the discussion it opens.
 
-1. **Read known facts through the `understand` guide before asking.** Asking the user for what the project already says wastes their time and can miss a fixed constraint.
+1. **Read known facts through the main skill's step 1 before asking.** Asking the user for what the project already says wastes their time and can miss a fixed constraint.
    - Read the request, conversation and relevant project files. Include what exists now and what has already been tried.
 2. **Fill the frame's parts under rules 1–3.** An empty scope or judging term lets later work invent its own target.
    - Give one problem, its goal, exclusions, constraints and a good answer. Keep the frame at the requested level.
@@ -63,9 +63,9 @@ Keep no lasting record yourself. Return the frame to the caller. A skill that sa
    - Use the `understand-clarify` guide for user choices or knowledge that would change the result. Leave other gaps marked unknown, with what would settle them.
 4. **Put the frame in your answer, and ask no approval of it.** An unseen frame can send later work toward the wrong problem. An approval stop costs the user a turn, and they can correct a marked guess whenever they read it.
    - Include the problem and the guesses that matter.
-   - Before changes, follow the `understand` guide's who-decides rule and the `act` guide's plan rule.
+   - Before changes, follow the main skill's step 1 on who decides and the main skill's step 2 on showing the plan.
    - When the frame changes, return the updated frame and say what changed, so no two frames stand for one problem.
 5. **Check the frame against “Gives back” before returning it.** Always do this last. The caller needs a usable target rather than a form with hidden gaps.
    - Check every part is filled or unknown, guesses are marked and each gap has a way to settle it. Check the result concerns one problem.
    - Check the frame is in your answer, with no request to approve it.
-   - Fix missing parts before returning, under the `understand` guide's rules. Make no lasting change.
+   - Fix missing parts before returning, under the main skill's step 1 rules. Make no lasting change.

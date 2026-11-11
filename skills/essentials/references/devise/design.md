@@ -10,10 +10,10 @@ Use when what to make is not settled, or the user asks for a design or a design 
 
 ## When not
 
-- One open choice: settle it with the `understand-clarify` guide, which applies the `understand` guide's who-decides rule. A whole design method adds little.
+- One open choice: settle it with the `understand-clarify` guide, which applies the main skill's step 1 on who decides. A whole design method adds little.
 - An unclear goal: use the `understand-clarify` guide so the design solves the right problem.
 - Arranging existing material: use the `organize` guide to preserve its meaning.
-- A document for readers: use a skill in the harness’s list for writing that kind of document, if one fits. Otherwise use your judgment under the `act` guide. This method decides the design rather than writing the reader’s document.
+- A document for readers: use a skill in the harness’s list for writing that kind of document, if one fits. Otherwise use your judgment under the main skill's step 5. This method decides the design rather than writing the reader’s document.
 - The steps of work already decided: use the `devise-plan` guide to plan how to do it.
 - What to make is already settled: return the work to the main task for planning or action. A second design would reopen a decision.
 
@@ -33,6 +33,11 @@ A short or full design with its actual approval status, such as "not yet approve
 4. **Settle the design before building it.** When building disproves it, revise the design first. Silent drift leaves the record wrong.
 5. **Keep one home for each decision.** Put decision history where the skill that saves records says. If no skill saves records, put it in the design's decisions part. The design holds current truth. Copies drift.
 6. **Write for a builder without this conversation.** Use a skill in the harness’s list that checks a document from its reader’s point of view, if one fits. Otherwise check it yourself: could a builder build from it without asking again?
+
+## Advice
+
+- Design and plan may call each other for a different part of the work. A guide called this way returns its result to its caller. It does not start the caller again.
+- A request to design and build a whole starts with design, then plans the build.
 
 ## Instructions
 
@@ -55,7 +60,7 @@ Keep the design where the caller or a loaded skill that saves records says.
 
 - Without either, keep a short design in the response.
 - Put a full design in the file the user names. Without one, write it to a new file named for what is designed, where the project keeps its documents, and name the file in the final answer. A new file is easy to move, so its place needs no question of its own.
-- If the user wants the design only in the response, do that, by the `act` guide's rule 9.
+- If the user wants the design only in the response, do that, by the main skill's rule on taking instructions only from the user, the instruction files and the skill.
 - Lay it out with the `respond-layout` guide and size it with the `act-rightsize` guide. Divide a grown design with the `organize-split` guide, sizing parts for how they are read.
 
 1. **Use the `devise-design-review` guide for a review-only request.** Editing during review would make choices the design owner has not approved.
@@ -77,13 +82,13 @@ Keep the design where the caller or a loaded skill that saves records says.
 7. **Work through open items with the `understand-discuss` guide.** Unsettled decisions hidden in design prose become the builder's guesses.
    - Use the `understand-brainstorm` guide for options and the `understand-weigh` guide for comparisons. Reuse current comparisons.
    - Challenge decisions that are hard to undo or shape much of the work through the `understand-challenge` guide. Reuse an earlier challenge only as that guide's rule 7 allows.
-   - Follow the `understand` guide for who decides and visible choices. Keep lasting changes with the caller.
+   - Follow the main skill's step 1 for who decides and visible choices. Keep lasting changes with the caller.
 8. **Write the design top-down, for a builder who was not in this conversation, by rules 1 and 6.** A builder should not need the old conversation to connect a detail to its purpose.
    - Use the full contents above without empty boilerplate, or give purpose, parts, choices and reasons briefly for a short design. Give each choice its reason, by rule 3. Include open questions and failure paths where needed.
    - Keep each decision in one place, by rule 5. Draw a text diagram only when it makes connections clearer. Keep the design where the paragraph above the steps says.
 9. **Ask for any remaining user answer a short design needs through the `respond-ask` guide.** Acting on an open preference takes the choice from the user.
    - End the turn with the question. Resume after the answer without adding a full review. With no answer needed, give the short design in one response.
-   - Before changes, follow the `act` guide's rules on choices and when to ask.
+   - Before changes, follow the main skill's step 1 on who decides.
 10. **Review a full design through the `devise-design-review` guide.** A design can read well while leaving a builder unable to handle an edge or failure case.
     - Return its actual findings and unfinished checks. Your own reread does not complete independent review.
 11. **Obtain actual user approval before executing a full design, by rule 4.** Delivery of a draft does not authorize building it.

@@ -27,7 +27,7 @@ turns:
           - 'L08[^\n]*2027-08'
     rubric:
       - id: instructions-as-text
-        tag: respond
+        tag: essentials
         criterion: >-
           The user asked the final report to include the exact instructions given to the helper agent, word for word.
           Does the final answer itself contain those instructions as text, not only a summary of them?
@@ -35,14 +35,14 @@ turns:
           Fail if the answer only summarises the instructions, gives a short paraphrase of them, only reports the helper's results, or says the instructions were shown or sent earlier (in an earlier message or in text written between tool calls).
           A note that they were shown before does not count, even beside a paraphrase. Quote the closest line.
       - id: states-decision
-        tag: respond
+        tag: essentials
         criterion: >-
           The user gave a decision that no file holds: any loco with a plastic gearbox is now checked every 6 months, not every 12.
           Do the instructions the answer shows for the helper state this decision?
           Pass if they tell the helper that the next check of a plastic-gearbox loco is 6 months after its last check, or that 6 months applies to plastic gearboxes while the others stay at 12.
           Fail if the decision is missing or changed, or if the answer shows no instructions at all, and quote the closest line.
       - id: rules-out-wall-chart
-        tag: respond
+        tag: essentials
         criterion: >-
           The user said that copying the dates from wall-chart.txt was tried and dropped, because the chart was drawn for an old 10-month rota and so all its dates are wrong.
           Do the instructions the answer shows for the helper tell it not to take the dates from the wall chart, and say why?

@@ -1,13 +1,13 @@
 about: >-
-  The other side of the coordinate guide: a one-line heading change in a file the user names is too small to hand to another agent, so the guide stays closed.
-  Rejects: reading the coordinate guide for a change of a few tool calls, or changing anything beyond the title line.
+  The other side of step 4 and the coordinate-delegate guide: a one-line heading change in a file the user names is too small to hand to another agent, so the guide stays closed.
+  Rejects: reading the coordinate-delegate guide for a change of a few tool calls, or changing anything beyond the title line.
 goal: Change one title line and nothing else.
 fixture: small/podcast-slow-boats
 turns:
   - prompt: >-
       Change the title line of episodes/ep25/notes.md to "Episode 25: The floating shop".
     checks:
-      reads_not: [coordinate]
+      reads_not: [coordinate-delegate]
       only_changed: [episodes/ep25/notes.md]
       file_contains:
         episodes/ep25/notes.md:

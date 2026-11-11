@@ -27,9 +27,9 @@ The summary of accepted, changed, assumed and parked items. The user has confirm
    - Asking to confirm the summary is not another question round. Ask it even after the user has asked for no more questions.
    - When the user tells you to start the work, such as "skip the rest and draft the report", ask no confirmation. Put the summary in your final answer, with the work. The user chose to skip the check, so the summary only needs to be seen.
    - "Go ahead" is not a start. It accepts the current round's recommended answers, and the questioning goes on.
-2. **Record only when asked.** Recording writes to the project. The `act` guide requires exactly the work asked for.
+2. **Record only when asked.** Recording writes to the project. The main skill's step 5 requires exactly the work asked for.
 
-Follow the `understand` guide for facts and decisions: you find facts, the user decides.
+Follow the main skill's step 1 for facts and decisions: you find facts, the user decides.
 
 ## Advice
 
@@ -54,4 +54,4 @@ Resolve the choices that materially affect the agreed work, level by level. Answ
    - Record only when asked, by rule 2. Offer recording when length risks losing decisions, using the destinations in Advice.
 4. **Check the summary and “Gives back” before affected work.** Always do this last. A finished interview still leaves the user exposed if its basis was never confirmed or shown.
    - Check no unresolved level holds an assumption that would materially change the agreed work. List what remains.
-   - Check the user confirmed the summary, or got it in your final answer after telling you to start. Fix missing statuses or confirmation before handing it back in the `understand` guide's result shape.
+   - Check the user confirmed the summary, or got it in your final answer after telling you to start. Fix missing statuses or confirmation before handing it back in the main skill's step 1 result.
