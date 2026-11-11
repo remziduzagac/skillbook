@@ -1,0 +1,21 @@
+about: >-
+  Held out for the survey guide's order when a choice follows: the user asks which kennels their notes cover, how they compare, and which to book, with a nightly budget.
+  The Coverage line ends the survey part, and the recommendation comes after it, so the answer ends on the choice.
+  Rejects: a Coverage line placed after the recommendation, a missing Coverage line, or no pick.
+goal: Compare the three kennels in the notes on price, walks and vet cover, say what was not searched, then recommend one to book.
+fixture: small/dog-kennels
+turns:
+  - prompt: >-
+      Biscuit needs somewhere for a fortnight in the new year. Which kennels have I got notes on in kennels/, how do they
+      compare on price per night, walks and vet cover, and which one should we book? We can spend about £35 a night.
+    checks:
+      reads: [understand-research-survey]
+      no_changes: true
+      answer_contains: ['Oakfield', 'Hollybush', 'Paws and Stay', '(?i)coverage']
+      answer_not_contains: ['(?s)(\A|\n\s*\n)[*_ ]*coverage\b(?:(?!\n\s*\n).)*\Z']
+    rubric:
+      - id: pick-given
+        tag: understand-weigh
+        criterion: >-
+          Does the answer recommend one kennel to book, with a reason, or say there is no clear winner and what would settle it?
+          Pass if it does. Fail if it only compares, and quote its ending.

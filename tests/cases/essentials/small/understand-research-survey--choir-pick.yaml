@@ -1,0 +1,33 @@
+about: >-
+  The survey guide followed by a choice in one answer: the user asks which choirs their notes cover, how they compare, and which to join.
+  The survey's Coverage line and the weigh guide's recommendation both want to end the answer; the question to the user must come last, after the Coverage line.
+  Rejects: a Coverage line placed after the recommendation, a missing Coverage line, or no pick.
+goal: Compare the three choirs in the notes on cost, rehearsal night and audition, say what was not searched, then recommend one to join.
+fixture: small/town-choirs
+turns:
+  - prompt: >-
+      I've saved notes on a few choirs in choirs/. Which ones are there, how do they compare on cost, rehearsal night and
+      whether you have to audition, and which should I join? I work late on Wednesdays and I'd rather not audition.
+    checks:
+      reads: [understand-research-survey]
+      no_changes: true
+      answer_contains: ['Riverside', 'St Anne', 'Harbour Lights', '(?i)coverage']
+      answer_not_contains: ['(?s)(\A|\n\s*\n)[*_ ]*coverage\b(?:(?!\n\s*\n).)*\Z']
+    rubric:
+      - id: not-searched
+        tag: understand-research-survey
+        criterion: >-
+          Does the answer name at least one kind of source it did not search, such as the choirs' websites now or choirs not in the notes, so the list does not read as every choir in town?
+          Saying only that it used the notes in choirs/ names where it looked, not what it left out.
+          Pass if it names a kind of source it did not search. Fail if it does not, and quote the closest part.
+      - id: dates-given
+        tag: understand-research-survey
+        criterion: >-
+          The README says the notes were copied on 2 October 2026 and not rechecked.
+          Does the answer give 2 October 2026 as the date of the notes?
+          Pass if it does. Fail if it gives no date or calls the notes undated, and quote the closest part.
+      - id: pick-given
+        tag: understand-weigh
+        criterion: >-
+          Does the answer recommend one choir to join, with a reason, or say there is no clear winner and what would settle it?
+          Pass if it does. Fail if it only compares, and quote its ending.

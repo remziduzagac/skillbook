@@ -1184,6 +1184,7 @@ understand/
   4. **Name screened-out candidates with their reasons.** List an unexamined long tail separately as not compared, with the reason and coverage limit. A names-only list is not a completed comparison or an evidence-backed rejection.
   5. **Treat the user's own option like every other candidate.** Give each candidate's supported strengths and weaknesses. Favoring one candidate hides information needed for the later choice.
   6. **Report search coverage and its date, in a Coverage line that ends the answer.** Without it, a short list reads as everything that exists, and old notes read as current. A survey is a snapshot, not proof that nothing else exists (D292).
+     - When the same answer goes on to a choice, the Coverage line comes just before the recommendation, and the choice ends the answer, by the `understand-weigh` guide's rule 5, since a question placed above a footnote is easily missed. Both guides asked to end the answer; on a survey followed by a choice, the Coverage line came last in 9 of 12 runs before this (D348).
      - The line gives where you searched, at least one kind of source you did not search, even when the user limited where to look, and each source's own date or that it has none, with the date you searched.
      - Look for a date in every file you read, a README included, before you write the line.
      - Say what remains unverified.
@@ -1206,7 +1207,7 @@ understand/
   2. **Search wide before deep.** Use the `coordinate-delegate` guide with the `coordinate-delegate-fanout` guide only for separate large parts that search cannot narrow enough. Otherwise search serially. Keep fanout's common worker limits and actual validation states.
   3. **Screen each candidate against scope.** Name the reason for each exclusion and distinguish unexamined candidates.
   4. **Compare on the agreed terms with evidence.** Give every compared candidate each term or an honest gap. A short table may help; use a list when the medium, width or user preference favors it.
-  5. **Return the requested comparison by rule 8.** Add scope, terms, screened-out candidates and the unexamined long tail to the parent's result shape, and end with the Coverage line of rule 6, even for a short comparison from the user's own files (D343). Keep findings and unknowns with their actual evidence status.
+  5. **Return the requested comparison by rule 8.** Add scope, terms, screened-out candidates and the unexamined long tail to the parent's result shape, and end the survey with the Coverage line of rule 6, even for a short comparison from the user's own files (D343). When a choice follows in the same answer, the choice comes last, by rule 6 (D348). Keep findings and unknowns with their actual evidence status.
 
   6. **Check the comparison before returning it.** Always do this last. Check all compared candidates use the same terms and traceable evidence. Report exclusions, unexamined candidates, negative results, coverage and date honestly. Keep any choice and lasting record with its owner. Follow the final step of Instructions in the `understand-research` guide and return without recursively calling the caller.
 - **Gives back** (D279, D292), in this shape, which the file holds in its "Gives back": Candidates compared on the same terms, with sources, excluded and unexamined candidates, search coverage and dates.
@@ -1245,6 +1246,7 @@ understand/
   20. Rechecks the needed current fact and reports the update rather than copying a stale value. Reject: Keeps the old cell as current without checking.
   21. Reports none found in scope, names screening evidence and actual coverage, and invents no winner. Reject: Fabricates a candidate to complete a table.
   22. Options compared from a few notes in the user's folder, whose README dates them: the answer ends with a Coverage line naming the notes, a kind of source not searched and the README's date. Reject: A comparison that ends with no word on what was not searched or how old the notes are (D343).
+  23. Options in the user's notes, with a request to pick one: the Coverage line closes the comparison, and the answer ends on the recommendation. Reject: A Coverage line after the recommendation, ending the answer (D348).
 
 - **Open:** trailscout, in Material, not read yet.
 

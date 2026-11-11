@@ -4,6 +4,12 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+### Fixed
+
+- essentials: in a long session, the agent again considers offering a note for the next session at a natural break, such as a finished phase. The lean main skill had dropped that route.
+- essentials: for code with no matching skill in your agent's list, the agent follows your project's conventions, as before the lean main skill.
+- essentials: when you ask which options exist and which to pick, the answer now ends on the recommendation, with the line on what was searched just before it. Before, it often ended on that line.
+
 ## [0.2.3] - 2026-11-11
 
 ### Fixed

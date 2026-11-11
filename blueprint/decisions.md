@@ -5821,3 +5821,23 @@ The line names the sets and only the agents the run installed for. The log line 
 - **The other side:** on `devise-plan--boarding-weekend`, work with several parts, Sol still read the guide in 3 of 3 runs. Sonnet read it in 0 of 3, as in 0 of 21 saved runs on the earlier texts.
 - **Answers:** the mortgage answer helped in 3 of 3 runs on both models, judged by Sonnet and Sol; the lease and quote answers held the facts their checks look for in every run.
 - **Cost:** $4.65 known: runs $4.34, of which $0.40 for the why runs, and judging $0.31.
+
+## D348: Three gaps left by the lean main skill closed (2026-11-12)
+
+**Decision:**
+
+- **A natural break in a long session reads the `coordinate-carryover` guide.** The main skill's instruction to write a note adds: "Read it too at a natural break in a long session, such as a finished phase with nothing in flight: it decides whether to offer a note."
+- **Code with no matching skill follows the project's conventions.** The main skill's step 5 says: "For code, use a skill in your harness's list for its language, if one fits. Otherwise, and for any other type, follow the project's conventions and your own judgment."
+- **A survey followed by a choice ends on the choice.** The `understand-research-survey` guide's rule 6 adds: "When the same answer goes on to a choice, put the Coverage line just before the recommendation. The choice ends the answer, by the `understand-weigh` guide's rule 5, because a question placed above a footnote is easily missed." Its last step says the same.
+
+**Why:**
+
+- **The first two were lost in the move to the lean main skill (D346).** The old guide map said the `coordinate-carryover` guide "also offers a note at a natural break in a long session", and the old `act` guide's rule 7 sent code without a matching skill to the project's conventions and the agent's judgment. The guide's advice on the boundary offer, and the design's rule on code, were left with no route from the main skill.
+- **The third is older.** Since D343, the survey guide asked for a Coverage line that ends the answer, and the weigh guide asked for the user's choice at the end. A request that asks which options exist and which to pick reads both.
+
+**Tested:** 2026-11-12, small cases, 3 runs per model, Claude Code with Sonnet and Codex with GPT-6.1 Sol. Only the survey order was run: a long session cannot be built in a small case, and the code fallback restores the text the design already held.
+
+- **Answers that end on the Coverage line after a recommendation (before, after):** `understand-research-survey--choir-pick` (new, written for this change and run on the old text first) 5 of 6 and 0 of 6; `understand-research-survey--kennel-pick` (new, held out) 4 of 6 and 0 of 6. Before, Sonnet ended on it in 3 of 6 runs and Sol in 6 of 6. Checked by a pattern that fails when the last paragraph is the Coverage line, tried first on the saved answers. One Sol answer on the old text recommended without a "Recommended answer:" line, which a first pattern missed.
+- **The other side:** on `understand-research-survey--dog-kennels`, a survey with no choice, the Coverage line still ended the answer in 6 of 6 runs on the new text.
+- **What did not change:** on the choir case, judged by Sonnet and Sol with only agreed verdicts counted, every run before and after named a source it did not search and recommended a choir. One Sonnet run on the new text wrote what it did not search without a "Coverage" label. The README's date of the notes was given in 1 of 6 runs before and 0 of 6 after: most runs called the notes undated, the limit D343 recorded.
+- **Cost:** $3.38 known for runs (choir $1.32, kennels held out $0.71 before and $0.73 after, the plain survey $0.62); two rounds of judging over the 12 choir runs, of unknown cost, since their totals were not kept.

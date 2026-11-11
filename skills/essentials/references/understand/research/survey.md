@@ -38,6 +38,7 @@ Coverage:      where you searched, what you did not search, the survey's date an
    - Look for a date in every file you read, a README included, before you write the line.
    - Say what remains unverified.
    - For example: "Coverage: the three supplier price lists in quotes/, dated 3 March. Not searched: the suppliers' current sites, trade directories or suppliers not in the folder."
+   - When the same answer goes on to a choice, put the Coverage line just before the recommendation. The choice ends the answer, by the `understand-weigh` guide's rule 5, because a question placed above a footnote is easily missed.
 7. **Add no survey-only approval checkpoint.** A survey reads and compares; it changes nothing. Ask first only for a choice the user owns, by the main skill's step 1 on who decides, or for a worker cost that needs approval, by the `coordinate-delegate` guide's rule 8. Then end the turn. Otherwise put the scope, the terms and how you searched in the final answer.
 8. **Return the comparison to its active caller.** That is the guide or task that asked for the survey, and it owns the choice. When the user asked you to choose, compare the candidates with the `understand-weigh` guide after the survey. When the `understand-weigh` guide asked for this survey, return to it; do not start it again. Start no new candidate generation. A request for existing options alone starts no choice round and gets no recommendation.
 
@@ -69,7 +70,7 @@ Find existing candidates and compare them on terms chosen before the search. Kee
    - Use a short table or list that fits the medium. When refreshing a survey, report changes and recheck facts needed for the current answer.
 5. **Return the comparison to its owner under rules 6–8.** A survey that silently chooses can bypass the caller's decision and conceal incomplete coverage.
    - Give scope, terms, comparison, exclusions and unexamined candidates. Add these to the parent's result shape.
-   - End with the Coverage line of rule 6, even for a short comparison from the user's own files.
+   - End the survey with the Coverage line of rule 6, even for a short comparison from the user's own files. When a choice follows in the same answer, the choice comes last, by rule 6.
    - For a direct request that includes choosing, use the `understand-weigh` guide after comparison. Otherwise return to the guide or task that asked, without starting weighing or generation again.
    - With no user decision needed, put scope, terms and how you searched in the final answer. Keep lasting records with their owner.
 6. **Check the survey and “Gives back” before returning it.** Always do this last. A names-only list cannot stand in for a completed comparison.
