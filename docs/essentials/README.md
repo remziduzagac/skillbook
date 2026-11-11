@@ -30,7 +30,7 @@ An agent without guidance often guesses what you meant, does more or less than y
 ## How it works
 
 - **Essentials is the skill in the agent’s skill list.** The files inside it are guides, rather than separate skills to look for in that list.
-- **One file is read on every request:** the essentials skill itself, about 34,000 characters. It holds the rules for every request and the steps for understanding, deciding, arranging, handing out work, acting and answering. The key rules of what were the `understand`, `devise`, `coordinate`, `act` and `respond` guides are now its steps. An agent started by another agent follows the same rules and the guides its brief names.
+- **One file is read on every request:** the essentials skill itself, about 36,500 characters. It holds the rules for every request and the steps for understanding, deciding, arranging, handing out work, acting and answering. The key rules of what were the `understand`, `devise`, `coordinate`, `act` and `respond` guides are now its steps. An agent started by another agent follows the same rules and the guides its brief names.
 - **Other guides are read when an instruction calls for them.** Each step names its guides, with a link, and says when to read them: for example `understand-clarify` when a choice or unknown would change the result, or `act-rightsize` before reworking material that already exists. A guide's own file gives its full boundary and the result it returns.
 - **Guides are read whole before the work that needs them.** The agent reads the chosen guides and their parents together, and reuses their text while it remains in view. If the text drops out, it reads them again.
 

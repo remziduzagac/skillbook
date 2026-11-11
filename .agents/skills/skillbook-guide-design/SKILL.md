@@ -92,6 +92,7 @@ Helps you place, name, design and review skillbook's skills and guides, so each 
     - Any guide may use any other guide when needed.
     - Put a rule needed on work that looks simple where every request reads it: the main skill or a guide read before all work. Agents skip other guides on such work, so a rule there never reaches it. Keep the full method in its own guide.
     - A main skill's Instructions steps name every guide: each instruction opens with a bold action, gives its trigger, and names the guide with a link ("Read the [`x`](path) guide first"). Related instructions sit together. The main skill is long because it holds the rules every request reads; its design gives the reason.
+    - Give a deeper guide an instruction of its own in the main skill when its need is a plain fact the agent can see in the request, such as a request to be interviewed or to trim existing material. A trigger inside its parent works only once the parent is read; the name rule reads the parents first. A deeper guide its parent picks as the normal case stays with the parent.
 11. **Spend tokens only where they buy quality.** Every turn carries the whole context again:
     - **reading:** search first, read needed parts and follow pointers. Read nothing twice;
     - **turns:** combine independent calls. Read skills for the same step in one turn. Repeat no check without need;

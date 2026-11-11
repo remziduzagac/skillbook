@@ -5774,9 +5774,10 @@ The line names the sets and only the agents the run installed for. The log line 
 
 ## D346: The main skill holds the rules every request reads, and names each guide in an instruction (2026-11-11)
 
-**Decision:** every request reads only the main skill, about 34,400 characters, against 70,255 before (the main skill plus five guides). The key rules of `act`, `respond`, `devise`, `understand` and `coordinate` moved into the main skill's steps, and those five files are gone. `organize.md` stays as the parent of the `organize-` guides, because its shared method is long and only needed when organizing. `act-rightsize` and `respond-layout` are read only when their instruction calls for them.
+**Decision:** every request reads only the main skill, about 36,500 characters, against 70,255 before (the main skill plus five guides). The key rules of `act`, `respond`, `devise`, `understand` and `coordinate` moved into the main skill's steps, and those five files are gone. `organize.md` stays as the parent of the `organize-` guides, because its shared method is long and only needed when organizing. `act-rightsize` and `respond-layout` are read only when their instruction calls for them.
 
-- **The guide map is gone.** Each instruction opens with a bold action, gives its trigger, and names its guide with a link to its file: "Read the `x` with a link to its file guide first". Related instructions sit together.
+- **The guide map is gone.** Each instruction opens with a bold action, gives its trigger, and names its guide with a link to its file: "Read the `x` guide first". Related instructions sit together.
+- **A deeper guide gets an instruction of its own when its need is a plain fact the agent can see in the request.** These are `understand-clarify-deep` (the user asks to be questioned on a plan), `understand-clarify-questionnaire` (only someone else holds the answers), `understand-research-analyze` (the user asks why something happens), `devise-design-review` (the user asks for a design review), `act-rightsize-lean` (the user asks to trim existing material), and `coordinate-delegate-council`, `-fanout` and `-crew` (the user asks for that setup). `understand-research-survey` and `act-rightsize-enrich` keep the instructions they had. A trigger inside a parent works only once the parent is read, and the name rule reads the parents first, so the guides keep their levels. `understand-clarify-shallow` and `understand-research-fact`, the normal case inside their parents, stay with them.
 - **The direct-answer rule is gone.** With no guides read by default it saved little, and it was an exit agents take eagerly.
 - **Delegate by default moved into the `coordinate-delegate` guide,** read by its trigger. The user can keep it as a personal default in their own instruction file.
 - **The stopping offer moved into the `coordinate-carryover` guide.**
@@ -5787,12 +5788,13 @@ The line names the sets and only the agents the run installed for. The log line 
   - from `respond`: the line on where things stand after a break, judging which words the user knows from what they have shown, the scaled final check (a quick check for a one-line answer), and the advice to reflect the user's view at its strongest before disagreeing;
   - from `understand`: its two advice lines (the question itself may be wrong; show what the user would want to correct) and "give the reason for a minor choice if asked";
   - the instruction sections of the five guides, which repeated their own rules;
-  - the "deeper:" lists of the old map.
+  - the "deeper:" lists of the old map, except the deeper guides that now have an instruction of their own.
 
 **Why:**
 
 - **The start load was undercounted.** The outside review found it was about 70,000 characters, more than the design said.
 - **Sonnet follows rules reliably only in files it reads on every request,** as tests showed. So the key rules live in the main skill, and the full methods stay in guides.
-- **Triggers that name a plain fact got guides read** (D337, D338), and "Read X when ..." instructions raised routing reads before.
+- **Triggers that name a plain fact got guides read** (D337, D338), and "Read X when ..." instructions raised routing reads before. That held for deeper guides too: Sonnet read `act-rightsize-enrich` and `understand-research-survey` in every run once a trigger naming them sat in the main skill, against none before (D339, D343).
+- **Moving deeper guides up a level would cost more than it saves.** Their parents hold rules every child needs, such as the `coordinate-delegate` guide's rules on models, tracking and checking results; moving the children up would copy those rules into each child or into the main skill, and would rename the guides.
 
 **Tested:** not yet. Planned: no skill, the previous version (tag or commit 8540c43) and this one, on Claude Code with Sonnet and Codex with GPT-6.1 Sol.

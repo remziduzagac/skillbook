@@ -33,7 +33,7 @@ skillbook is a book of skills for AI agents such as Claude Code and Codex: instr
 [ca-idea]: https://remziduzagac.github.io/skillbook/docs/cadence/idea/
 [co-idea]: https://remziduzagac.github.io/skillbook/docs/compendium/idea/
 
-Each set is installed as one skill in the agent’s skill list. Its files under `references/` are guides. Essentials reads one file on every request, about 34,000 characters, and reads a guide only when an instruction in it calls for that guide. Its guides shape how the agent works; other available skills and tools do the work itself. Essentials works on its own and names no other set.
+Each set is installed as one skill in the agent’s skill list. Its files under `references/` are guides. Essentials reads one file on every request, about 36,500 characters, and reads a guide only when an instruction in it calls for that guide. Its guides shape how the agent works; other available skills and tools do the work itself. Essentials works on its own and names no other set.
 
 ## Installing
 

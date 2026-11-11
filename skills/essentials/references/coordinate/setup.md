@@ -42,7 +42,7 @@ Prepare the requested machine, project or pointer setup from the actual installa
    - Use the current agent's real skill location. Leave inaccessible checks pending and ask for needed access through the `respond-ask` guide; bypass no restriction.
 3. **Inspect in-scope agents for machine setup under rules 1–3 and 5.** An existing folder does not show that the selected agent can load the intended sets.
    - Follow installer detection or the user's explicit selection. Check requested sets, essentials first. Show missing-set installation instructions and obtain separate approval before installation.
-   - Prepare the pointer through the `coordinate-instruct` guide. Where the agent needs them, also prepare a setting that lets it read the install folder, and a way to reload the essentials guides after compaction. Preserve current settings and avoid duplicates.
+   - Prepare the pointer through the `coordinate-instruct` guide. Where the agent needs them, also prepare a setting that lets it read the install folder, and a way to reload the essentials skill after compaction. Preserve current settings and avoid duplicates.
    - Default to no other harnesses or allow-list entry. For a named allowed harness, propose `Allowed delegation harnesses: <names>` in personal instructions. Explain how to name one in the final result.
 4. **Read project purpose, tools and instruction files for project setup.** Generic setup can discard guidance teammates still need or recommend irrelevant skills.
    - Prepare instruction proposals through the `coordinate-instruct` guide. Keep repeated skillbook rules when team adoption is unknown and give that assumption in the final answer.

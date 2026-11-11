@@ -6,7 +6,7 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ### Changed
 
-- essentials: every request now reads one file of about 34,000 characters, instead of six files of about 70,000. The rules for understanding, deciding, acting and answering are in that file, and a guide is read only when an instruction in it calls for that guide. The guide map is gone, and there is no shortcut for short answers any more.
+- essentials: every request now reads one file of about 36,500 characters, instead of six files of about 70,000. The rules for understanding, deciding, acting and answering are in that file, and a guide is read only when an instruction in it calls for that guide. The guide map is gone, and there is no shortcut for short answers any more.
 - essentials: the advice to hand work to other agents by default now lives in the `coordinate-delegate` guide, and the offer of a record when you stop lives in the `coordinate-carryover` guide. You can keep delegation as your own default in your instruction file. The guide no longer carries a price list: it takes prices from the provider's official pricing page and gives the date.
 
 ### Known limits
