@@ -4,6 +4,8 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-11-11
+
 ### Fixed
 
 - docs: the docs site's header shows skillbook's book logo beside the title, instead of the name alone.
