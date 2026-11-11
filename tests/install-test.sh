@@ -189,9 +189,9 @@ test_runs_twice() {
 test_reinstall_drops_removed_files() {
 	mkdir "$HOME/.claude"
 	run || fail "first install failed" || return 1
-	rm "$src/references/act.md"
+	rm "$src/references/organize.md"
 	run || fail "second install failed" || return 1
-	[ ! -e "$HOME/.claude/skills/$set_name/references/act.md" ] || fail "a file removed from the set was kept"
+	[ ! -e "$HOME/.claude/skills/$set_name/references/organize.md" ] || fail "a file removed from the set was kept"
 }
 
 test_switches_between_copy_and_link() {
@@ -272,10 +272,10 @@ test_stops_before_replacing_a_changed_file() {
 	mkdir "$HOME/.claude"
 	dest="$HOME/.claude/skills/$set_name"
 	run || fail "install failed" || return 1
-	echo "my note" >>"$dest/references/act.md"
+	echo "my note" >>"$dest/references/organize.md"
 	if run; then fail "an update replaced a file the user changed"; fi
-	grep -q "references/act.md" "$out" || fail "the changed file was not named" || return 1
-	grep -q "my note" "$dest/references/act.md" || fail "the user's change was lost" || return 1
+	grep -q "references/organize.md" "$out" || fail "the changed file was not named" || return 1
+	grep -q "my note" "$dest/references/organize.md" || fail "the user's change was lost" || return 1
 	run --force || fail "install --force failed" || return 1
 	same_tree "$src" "$dest"
 }
@@ -285,10 +285,10 @@ test_stops_before_replacing_added_or_removed_files() {
 	dest="$HOME/.claude/skills/$set_name"
 	run || fail "install failed" || return 1
 	echo mine >"$dest/references/mine.md"
-	rm "$dest/references/respond.md"
+	rm "$dest/references/act/verify.md"
 	if run; then fail "an update replaced a folder with files the user added and removed"; fi
 	grep -q "references/mine.md" "$out" || fail "the added file was not named" || return 1
-	grep -q "references/respond.md" "$out" || fail "the removed file was not named" || return 1
+	grep -q "references/act/verify.md" "$out" || fail "the removed file was not named" || return 1
 	[ -f "$dest/references/mine.md" ] || fail "the user's added file was lost"
 }
 
@@ -304,10 +304,10 @@ test_uninstall_stops_before_removing_a_changed_file() {
 	mkdir "$HOME/.claude"
 	dest="$HOME/.claude/skills/$set_name"
 	run || fail "install failed" || return 1
-	echo "my note" >>"$dest/references/act.md"
+	echo "my note" >>"$dest/references/organize.md"
 	if run --uninstall; then fail "uninstall removed a file the user changed"; fi
-	grep -q "references/act.md" "$out" || fail "the changed file was not named" || return 1
-	[ -f "$dest/references/act.md" ] || fail "the user's changed file was removed" || return 1
+	grep -q "references/organize.md" "$out" || fail "the changed file was not named" || return 1
+	[ -f "$dest/references/organize.md" ] || fail "the user's changed file was removed" || return 1
 	run --uninstall --force || fail "uninstall --force failed" || return 1
 	[ ! -e "$dest" ] || fail "uninstall --force left the folder"
 }
@@ -317,10 +317,10 @@ test_stops_for_an_install_without_checksums() {
 	dest="$HOME/.claude/skills/$set_name"
 	run || fail "install failed"
 	echo "copy old" >"$dest/.skillbook-install"
-	echo "my note" >>"$dest/references/act.md"
+	echo "my note" >>"$dest/references/organize.md"
 	if run; then fail "an update replaced an install whose marker holds no checksums"; fi
 	grep -q -- "--force" "$out" || fail "no message naming --force"
-	grep -q "my note" "$dest/references/act.md" || fail "the user's change was lost"
+	grep -q "my note" "$dest/references/organize.md" || fail "the user's change was lost"
 	run --force || fail "install --force failed"
 	same_tree "$src" "$dest"
 }
@@ -329,13 +329,13 @@ test_stops_for_links_in_a_copied_set() {
 	mkdir "$HOME/.claude"
 	dest="$HOME/.claude/skills/$set_name"
 	run || fail "install failed"
-	ln -s "$dest/references/act.md" "$dest/references/mine.md"
-	cp "$dest/references/respond.md" "$root/same.md"
-	rm "$dest/references/respond.md"
-	ln -s "$root/same.md" "$dest/references/respond.md"
+	ln -s "$dest/references/organize.md" "$dest/references/mine.md"
+	cp "$dest/references/act/verify.md" "$root/same.md"
+	rm "$dest/references/act/verify.md"
+	ln -s "$root/same.md" "$dest/references/act/verify.md"
 	ln -s "$root/nowhere" "$dest/references/broken.md"
 	if run; then fail "an update replaced a set holding links the user made"; fi
-	for file in mine.md respond.md broken.md; do
+	for file in mine.md act/verify.md broken.md; do
 		grep -q "references/$file" "$out" || fail "references/$file was not named"
 	done
 	if run --uninstall; then fail "uninstall removed a set holding links the user made"; fi
@@ -348,9 +348,9 @@ test_failed_copy_keeps_the_old_install() {
 	dest="$HOME/.claude/skills/$set_name"
 	run || fail "install failed"
 	cp -R "$dest" "$root/before"
-	chmod 000 "$src/references/respond.md"
+	chmod 000 "$src/references/act/verify.md"
 	if run; then fail "an update succeeded although a file could not be read"; fi
-	chmod 644 "$src/references/respond.md"
+	chmod 644 "$src/references/act/verify.md"
 	diff -r "$root/before" "$dest" >/dev/null || fail "the failed update changed the installed set"
 	run || fail "a second try after the failure was refused"
 	same_tree "$src" "$dest"
@@ -379,11 +379,11 @@ test_recovers_an_interrupted_update() {
 	mkdir "$HOME/.claude"
 	dest="$HOME/.claude/skills/$set_name"
 	run || fail "install failed"
-	echo "my note" >>"$dest/references/act.md"
+	echo "my note" >>"$dest/references/organize.md"
 	mkdir "$HOME/.claude/.skillbook-staging"
 	mv "$dest" "$HOME/.claude/.skillbook-staging/$set_name.old"
 	if run; then fail "an update replaced the kept copy of an interrupted update without checking it"; fi
-	grep -q "my note" "$dest/references/act.md" || fail "the interrupted update's kept copy was not put back"
+	grep -q "my note" "$dest/references/organize.md" || fail "the interrupted update's kept copy was not put back"
 }
 
 test_another_set_names_essentials_when_missing() {
