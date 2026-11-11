@@ -5804,3 +5804,20 @@ The line names the sets and only the agents the run installed for. The log line 
 - **`coordinate--wide-check`:** the check was right in every run, but no run read `coordinate-delegate` or started an agent. Both models failed the same way on the earlier text.
 - **Cost:** $2.88 known: runs $2.22, judging $0.66. Per Sonnet run, $0.13 on the mortgage and $0.15 to $0.17 on the trim, against about $0.17 to $0.19 per run on the earlier text.
 - **Not yet run:** no skill and the previous version (commit 8540c43) on a wider set of cases.
+
+## D347: An answer that changes nothing needs no plan (2026-11-11)
+
+**Decision:** the main skill's step 2 says what is not work with several parts: "An answer that changes nothing and makes no file or document is not work with several parts, however many points it covers, such as three questions about a club's rules or the weak points of a draft speech." The `devise-plan` guide's "When not" says the same.
+
+**Why:**
+
+- **Sol planned answers.** On the mortgage letter, asked "what does it say, and is there anything we should watch out for?", Sol read the `devise-plan` guide in 5 of 6 runs. Asked in a second turn, it said it had treated explaining the terms and checking the risks as separate parts, and that the answer did not need the guide. The step's "If you are unsure, treat it as several" pushed it there.
+- **Its other reads on that letter fit their instructions:** `understand-challenge` for what to watch out for, `understand-research` for the outside facts it chose to add, and `act-stakes` through the `act-verify` guide's choice of who checks. Those are left as they are.
+- **A note on when to read the `coordinate-brief` guide was tried and dropped.** "Once you have decided to start one, before you write its brief" left Sol reading it, without starting an agent, in 2 of 3 runs on the letter, against 4 of 6 before.
+
+**Tested:** 2026-11-11, small cases, 3 runs per model, Claude Code with Sonnet and Codex with GPT-6.1 Sol, before and after the change.
+
+- **Reads of the `devise-plan` guide on answers that change nothing, Sol (before, after):** the mortgage letter 5 of 6 and 0 of 3, a builder's quote to review (`devise-plan--quote-review`, new) 1 of 3 and 0 of 3, three questions about a lease (`devise-plan--lease-questions`, new) 0 of 3 and 0 of 3. Sonnet read it in none, before or after. The mortgage letter was the case that showed the problem; the quote case was written for this change and run on the old text first.
+- **The other side:** on `devise-plan--boarding-weekend`, work with several parts, Sol still read the guide in 3 of 3 runs. Sonnet read it in 0 of 3, as in 0 of 21 saved runs on the earlier texts.
+- **Answers:** the mortgage answer helped in 3 of 3 runs on both models, judged by Sonnet and Sol; the lease and quote answers held the facts their checks look for in every run.
+- **Cost:** $4.65 known: runs $4.34, of which $0.40 for the why runs, and judging $0.31.

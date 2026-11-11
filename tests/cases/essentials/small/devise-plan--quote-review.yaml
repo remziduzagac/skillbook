@@ -1,0 +1,11 @@
+about: >-
+  Near miss for the devise-plan guide: a review of a builder's quote, with what it covers and what to question, answered from the file, with nothing changed or made.
+  An answer that changes and makes nothing needs no plan, however many points it covers. Rejects: reading the plan guide, or a plan shown for approval.
+goal: Explain what a kitchen quote covers and what to question before accepting it.
+fixture: small/kitchen-quote
+turns:
+  - prompt: Our builder sent this quote for the new kitchen (quote.txt). Can you go through what we'd actually be paying for, and flag anything we should question before we say yes?
+    checks:
+      no_changes: true
+      reads_not: [devise-plan]
+      answer_contains: ['(?i)VAT', '(?i)provisional']

@@ -198,6 +198,7 @@ devise/
 - **When not** (D279): Use these alternatives when the work needs no plan. If one is needed for a part of an existing plan, use it for that part and return to the plan.
 
   - An exact single-step action with no existing plan to follow or update: use the `act` guide directly. Correcting one specified accent mark may need no plan.
+  - An answer that changes nothing and makes no file or document, however many points it covers: answer by the main skill's step 6. Notes on the weak points of a draft speech need no plan (D347).
   - One risky action: use the `act-guardrails` guide for its proposal and approval.
   - One choice: use the `understand` guide to settle who decides and what information is needed.
   - A requested view: follow the `act` guide’s rule 2. A read-only plan may help the view, but it grants no permission to act.

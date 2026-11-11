@@ -5,6 +5,7 @@ turns:
   - prompt: We got this mortgage offer (offer.txt) for our first home and have to sign by the 20th. Money stuff is really not my thing. What does it actually say, and is there anything we should watch out for before signing?
     checks:
       no_changes: true
+      reads_not: [devise-plan]
     rubric:
       - id: term-svr
         tag: essentials

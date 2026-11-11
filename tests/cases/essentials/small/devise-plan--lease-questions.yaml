@@ -1,0 +1,11 @@
+about: >-
+  Near miss for the devise-plan guide: three questions about a tenancy agreement, answered from the file, with nothing changed or made.
+  Answering questions is not work with several parts, so the plan guide stays closed. Rejects: reading the plan guide, or a plan shown for approval.
+goal: Answer three questions about a tenancy agreement from the file.
+fixture: small/flat-lease
+turns:
+  - prompt: We rent this flat (lease.txt). Three quick things. How much notice do we give if we want to move out? Who pays if the boiler breaks? And can we get a cat?
+    checks:
+      no_changes: true
+      reads_not: [devise-plan]
+      answer_contains: ['two months', '(?i)landlord', '(?i)permission']
