@@ -5797,4 +5797,10 @@ The line names the sets and only the agents the run installed for. The log line 
 - **Triggers that name a plain fact got guides read** (D337, D338), and "Read X when ..." instructions raised routing reads before. That held for deeper guides too: Sonnet read `act-rightsize-enrich` and `understand-research-survey` in every run once a trigger naming them sat in the main skill, against none before (D339, D343).
 - **Moving deeper guides up a level would cost more than it saves.** Their parents hold rules every child needs, such as the `coordinate-delegate` guide's rules on models, tracking and checking results; moving the children up would copy those rules into each child or into the main skill, and would rename the guides.
 
-**Tested:** not yet. Planned: no skill, the previous version (tag or commit 8540c43) and this one, on Claude Code with Sonnet and Codex with GPT-6.1 Sol.
+**Tested:** 2026-11-11, a first check on this version only: three small cases, 3 runs each, Claude Code with Sonnet and Codex with GPT-6.1 Sol, judged by Sonnet and Sol, only agreed verdicts counted. No run of the previous version yet.
+
+- **`act-rightsize-lean--trim-volunteer-notes`:** every run read `act-rightsize`, then `act-rightsize-lean`, showed the list of cuts with reasons, kept the safety rules, changed nothing before approval, and trimmed only that file after it. Sol named the guide file to the user as the reason to ask in 3 of 3 runs. Sol's saved answers on the earlier text did the same.
+- **`respond--mortgage`:** the answer helped in every run. "Early repayment charge" was left unexplained at its first use in Sol's 2 agreed runs; Sol's saved answers on the earlier text used the same wording. Sol read seven guides on this one question, such as `act-stakes` and `coordinate-delegate`; Sonnet read only `act-verify`.
+- **`coordinate--wide-check`:** the check was right in every run, but no run read `coordinate-delegate` or started an agent. Both models failed the same way on the earlier text.
+- **Cost:** $2.88 known: runs $2.22, judging $0.66. Per Sonnet run, $0.13 on the mortgage and $0.15 to $0.17 on the trim, against about $0.17 to $0.19 per run on the earlier text.
+- **Not yet run:** no skill and the previous version (commit 8540c43) on a wider set of cases.
