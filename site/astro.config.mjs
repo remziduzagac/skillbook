@@ -18,10 +18,10 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "skillbook",
+      // The book beside the title, as herdsman's site shows its mark.
       logo: {
-        light: "./public/skillbook-logotype-dark.svg",
-        dark: "./public/skillbook-logotype-light.svg",
-        replacesTitle: true,
+        light: "./public/skillbook-logomark-dark.svg",
+        dark: "./public/skillbook-logomark-light.svg",
       },
       favicon: "/skillbook-logomark-dark.svg",
       description: DESCRIPTION,
