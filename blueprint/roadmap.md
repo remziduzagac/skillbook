@@ -1,6 +1,6 @@
 # Roadmap
 
-Status: **Design**, the initial design is open (D27): changes go straight into the root, without workstreams. Now: skillbook as a whole, from the top.
+Status: **Design**, the initial design is settled (D349): every change to requirements or design goes through a workstream, one per worktree. Now: the essentials set and the blueprint set, in parallel.
 
 ## Design: in progress
 

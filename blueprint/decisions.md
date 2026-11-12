@@ -176,6 +176,8 @@ Every decision of skillbook's initial design, in order. All were agreed by the p
 
 ## D27: The initial design is open again (2026-10-10)
 
+> **Amended by D349 (2026-11-12):** the person declared the initial design settled. Changes to requirements or design now go through workstreams.
+
 > **Amended by D108 (2026-10-12):** the baseline is built and tested before the rest of the design is settled.
 
 **Decision:** skillbook is back in its initial design. Requirements and design change directly in the root, and no workstream is created, until the person declares the design settled again. The build waits for the skill structure to be redesigned.
@@ -5841,3 +5843,18 @@ The line names the sets and only the agents the run installed for. The log line 
 - **The other side:** on `understand-research-survey--dog-kennels`, a survey with no choice, the Coverage line still ended the answer in 6 of 6 runs on the new text.
 - **What did not change:** on the choir case, judged by Sonnet and Sol with only agreed verdicts counted, every run before and after named a source it did not search and recommended a choir. One Sonnet run on the new text wrote what it did not search without a "Coverage" label. The README's date of the notes was given in 1 of 6 runs before and 0 of 6 after: most runs called the notes undated, the limit D343 recorded.
 - **Cost:** $3.38 known for runs (choir $1.32, kennels held out $0.71 before and $0.73 after, the plain survey $0.62); two rounds of judging over the 12 choir runs, of unknown cost, since their totals were not kept.
+
+## D349: The initial design is settled, and each worktree has its own workstream (2026-11-12)
+
+**Decision:**
+
+- **The initial design is settled.** The person declared it: the idea, the requirements, the design as a whole and the outline of its parts. The root's requirements and design are the baseline.
+- **Every change to requirements or design goes through a workstream,** as the method in [docs/blueprint/idea.md](../docs/blueprint/idea.md) says: its own folder in `blueprint/workstreams/`, a short key, its changes written as ADDED, MODIFIED or REMOVED entries against the root, and its decisions numbered with that key, such as `ESS-D1`. A fix, a chore, or building what the design says is a task.
+- **Each worktree has its own workstream.** Work on a set runs in its own worktree, such as `essentials` or `blueprint`, and that worktree's design changes live in one workstream. Its agent proposes the workstream's key, scope and order to the person before writing in it.
+- **This settling is recorded once, on `dev`.** Each worktree merges `dev` into its branch to work under it.
+- The person may reopen the design while nothing depends on it, recorded as a decision (D28).
+
+**Why:**
+
+- **The baseline that D27 and D108 waited for is built:** the essentials set is designed, built, tested and released (v0.2.3).
+- **Work now runs in parallel,** one worktree per set. A dedicated workstream keeps each one's proposed changes apart from the current truth, and its key keeps its decision numbers apart from every other's, so parallel branches no longer clash over the next root number.

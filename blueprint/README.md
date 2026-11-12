@@ -22,7 +22,7 @@ skillbook's own design, kept with its own blueprint method. skillbook is a publi
 
 ## How things are recorded
 
-- Requirements and design are the current truth; decisions say why. The initial design is open (D27): changes to requirements or design go straight into the root, without workstreams, until the person declares it settled.
+- Requirements and design are the current truth; decisions say why. The initial design is settled (D349): every change to requirements or design goes through a workstream, in `workstreams/` with its own key, as [the method](../docs/blueprint/idea.md) says.
 - Building what the design describes changes neither, so it is planned as tasks.
 - Decisions are append-only: a change is a new entry, and a note goes under each earlier entry it changes.
 - Work goes top-down, from the goals to the tasks; corrections go back up to the level they belong to.
