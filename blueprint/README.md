@@ -19,6 +19,7 @@ skillbook's own design, kept with its own blueprint method. skillbook is a publi
 - [evidence.md](evidence.md): every claim that was checked, with its evidence, E1 onward.
 - [requirements.md](requirements.md): what skillbook must do and be.
 - [design/](design/README.md): how skillbook works, a folder per set.
+- [workstreams/](workstreams/README.md): changes to requirements and design since the initial design was settled, one folder per workstream, each with its own key.
 
 ## How things are recorded
 
