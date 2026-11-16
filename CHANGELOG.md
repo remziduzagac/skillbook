@@ -4,6 +4,8 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+## [0.2.4] - 2026-11-16
+
 ### Fixed
 
 - essentials: in a long session, the agent again considers offering a note for the next session at a natural break, such as a finished phase. The lean main skill had dropped that route.
