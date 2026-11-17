@@ -4,6 +4,10 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+### Security
+
+- docs: the docs site is built with Astro 7.4.8, which closes two published Astro security advisories. The site was not exposed to either: it is static pages built from skillbook's own files.
+
 ## [0.2.4] - 2026-11-16
 
 ### Fixed
