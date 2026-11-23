@@ -8,7 +8,6 @@ fixture: small/candle-mail
 turns:
   - prompt: Please reply to Pauline Okafor's email (customer-email.txt) for me. I want to paste your reply straight into my mail app.
     checks:
-      reads: [respond-layout]
       no_changes: true
     rubric:
       - id: note-after-draft

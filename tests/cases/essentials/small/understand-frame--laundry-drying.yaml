@@ -1,0 +1,21 @@
+about: The frame guide's rule 2 on a shared laundry-drying routine; each proposed success measure and exclusion is marked as a guess while given facts need no mark.
+goal: Frame the drying problem before changing the routine, with guesses marked one by one.
+fixture: small/laundry-drying
+turns:
+  - prompt: Read drying-notes.md. Our shared laundry-drying routine is frustrating. Help me frame the problem before we change it, including how we would know a change helped.
+    checks:
+      reads: [understand-frame]
+    rubric:
+      - id: measures-marked
+        tag: understand-frame
+        criterion: 'The notes give no way to tell a change helped, so a measure in the answer is the agent''s own proposal, unless it only restates a limit the notes give, such as the agreed spending cap of £25. Proposals include a drying time, a count of loads waiting for the rack, or a trial over a few laundry cycles. Does each line, list item or table row that proposes a measure carry a guess mark? A guess mark is the word "guess" in brackets after the item, such as "(guess)" or "(Guess.)", or a label over it as described next; other words, such as "suggested", are not a mark. A mark covers the frame part, list item or table row it ends, even when that part wraps over several lines. A label over a list, table or section that calls its items guesses, such as "Guesses" or "all guesses", marks every item under it when every one of them is the agent''s own proposal; over a list that mixes given facts with guesses, it marks none. An anti-goal, a way the result could work yet fail, counts as a measure. The goal line, the unknowns, and questions to the user with their recommended answers are not judged here. Pass if every one is marked. Fail if any is not, and quote it. If the answer proposes no measure, return unknown.'
+      - id: scope-marked
+        tag: understand-frame
+        criterion: 'Does each line or list item that says something is out of scope or left out of the work carry a guess mark, unless the notes state that exclusion? The notes rule out installing a tumble dryer and spending more than £25; those need no mark. Anything else ruled out is the agent''s own choice, such as changing washing days, drying bedding, or buying any equipment within the budget. A guess mark is the word "guess" in brackets after the item, such as "(guess)" or "(Guess.)", or a label over it as described next; other words, such as "suggested", are not a mark. A mark covers the frame part, list item or table row it ends, even when that part wraps over several lines. A label over a list, table or section that calls its items guesses, such as "Guesses" or "all guesses", marks every item under it when every one of them is the agent''s own proposal; over a list that mixes given facts with guesses, it marks none. Questions to the user, with their recommended answers, are not judged here. Pass if every such exclusion is marked. Fail if any is not, and quote it. If the answer puts nothing else out of scope, return unknown.'
+      - id: given-facts-unmarked
+        tag: understand-frame
+        criterion: >-
+          The notes give these facts: three adults share the flat and one folding drying rack in the spare room; each washes on different days with no agreed routine for the rack; two of them often find the rack already full; a note on the washing machine was tried last winter and dropped after a few weeks; the landlord will not allow a tumble dryer; they agreed to spend no more than £25 in total.
+          Does the answer leave each of these given facts without a guess mark? A guess mark is the word "guess" in brackets after an item, such as "(guess)", or a label such as "Guesses" over a list.
+          A marked line that adds the agent's own inference or proposal to a given fact, such as a cause or a target, is not a fail.
+          Pass if no given fact, as the notes state it, is marked as a guess. Fail if one is, and quote it.

@@ -1,0 +1,46 @@
+about: >-
+  The committed understand-brainstorm guide's Instructions step 2: list earlier proposals first and mark them earlier.
+  An audio editor asks for treatment candidates, the result promised by Gives back, without asking for a choice.
+  The production notes contain two earlier proposals, but the message does not tell the agent to repeat or label them.
+  Separate questions check ordering, each proposal's earlier status, and delivery of a fresh treatment.
+  Rejects: burying earlier proposals below new ideas, presenting either as new, or returning no fresh treatment.
+goal: Return treatments for identifying speakers in an audio edit, with the recorded proposals first and marked earlier.
+fixture: small/audio-speaker-cues
+turns:
+  - prompt: >-
+      I'm auditioning treatments for a short oral-history episode. After cuts between the three speakers,
+      listeners sometimes lose track of whose voice they are hearing. production-notes.md has the setup.
+      Give me a set of possible treatments, including some fresh ones, that I could try on the same passage.
+      Keep this to ideas in your reply; leave the files alone.
+    checks:
+      reads: [understand-brainstorm]
+      no_changes: true
+    rubric:
+      - id: recorded-before-new
+        tag: understand-brainstorm
+        criterion: >-
+          The recorded proposals are a different chime for each speaker and a narrator saying a returning speaker's name.
+          Does the answer list both recorded proposals before the first fresh treatment it offers?
+          Pass if both precede every fresh treatment, in either order relative to each other.
+          A brief opening that names the problem is not a treatment.
+          Fail if either recorded proposal is absent or comes after a fresh treatment. Quote the order that decides.
+      - id: chimes-marked-earlier
+        tag: understand-brainstorm
+        criterion: >-
+          Does the answer identify assigning a different chime to each speaker as a proposal already in the notes?
+          Pass for an explicit label or a shared heading that clearly marks this treatment as previously proposed.
+          Fail if this proposal is absent or its earlier status is not stated. Quote the part that decides.
+      - id: names-marked-earlier
+        tag: understand-brainstorm
+        criterion: >-
+          Does the answer identify having the narrator say a returning speaker's name as a proposal already in the notes?
+          Pass for an explicit label or a shared heading that clearly marks this treatment as previously proposed.
+          Fail if this proposal is absent or its earlier status is not stated. Quote the part that decides.
+      - id: fresh-treatment-returned
+        tag: understand-brainstorm
+        criterion: >-
+          Does the answer offer at least one treatment for identifying speakers that is neither the speaker-specific
+          chimes nor the narrator's spoken name cues, nor a changed version of either?
+          Pass if at least one such treatment is described in the reply. No particular solution is required.
+          Fail if the reply only repeats or varies the recorded proposals, asks questions without giving treatments,
+          refuses, or points to a file without describing a fresh treatment. Quote the part that decides.

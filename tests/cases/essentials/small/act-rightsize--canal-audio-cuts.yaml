@@ -1,0 +1,38 @@
+about: >-
+  Held out for the firm-style pass, written from the committed guide before seeing the rewrite.
+  Act-rightsize rule 9 requires a cut list and approval before trimming another writer's work.
+  The second turn approves only one cut, so rules 6 and 9 also prevent a wider cleanup of the repeated welcome.
+  Rejects editing before approval, offering only replacement text, or applying unapproved cuts after a partial yes.
+goal: Propose cuts first, then remove only the paragraph the user approves.
+fixture: small/canal-audio-stop
+turns:
+  - prompt: >-
+      I wrote audio-tour.md for visitors listening beside the canal. Please trim it so it wastes less of their time.
+    checks:
+      reads: [act-rightsize]
+      no_changes: true
+    rubric:
+      - id: cuts-have-reasons
+        tag: act-rightsize
+        criterion: >-
+          Does the answer give a list of proposed cuts, each with a reason tied to the listener's needs?
+          Pass if it names at least one cut and every cut has a reason.
+          Fail if it gives only a rewritten script, no cuts or a cut with no reason. Quote the first problem.
+      - id: approval-before-cutting
+        tag: act-rightsize
+        criterion: >-
+          Does the answer leave applying the cut list for the user's approval?
+          Pass if it asks the user to approve the cuts or says it will apply them once approved.
+          Fail if it asks nothing or says the file has already been trimmed. Quote the relevant line.
+  - prompt: >-
+      Remove only the paragraph beginning "The sponsorship started in 1988."
+      Keep every other paragraph exactly as written, including both copies of the welcome. Make that one cut now.
+    checks:
+      changed: [audio-tour.md]
+      only_changed: [audio-tour.md]
+      file_contains:
+        audio-tour.md:
+          - >-
+            \A# Canal audio stop\r?\n\r?\nWelcome to Lock Seven\. This stop takes two minutes\.\r?\n\r?\nStand behind
+            the white line while the lock gates are moving\.\r?\n\r?\nWelcome to Lock Seven\. This stop takes two
+            minutes\.\r?\n\r?\nContinue east along the towpath to the red footbridge\.(?:\r?\n)?\Z

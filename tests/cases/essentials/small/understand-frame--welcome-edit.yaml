@@ -1,0 +1,18 @@
+about: >-
+  The other side of the frame trigger: an edit of named text that asks for it to be friendlier needs no frame, since the edit says what done means.
+  Rejects: reading the understand-frame guide for a one-paragraph edit, or changing anything beyond the opening paragraph.
+goal: Rewrite one paragraph to be friendlier and change nothing else, without reading the frame guide.
+fixture: small/welcome-letter
+turns:
+  - prompt: Make the opening paragraph of welcome.md friendlier. Change nothing else.
+    checks:
+      reads_not: [understand-frame]
+      only_changed: [welcome.md]
+      file_contains:
+        welcome.md:
+          - '\A# Welcome to Hazel Lane Allotments\r?\n'
+          - 'Water troughs are filled from April to September\. Please use watering cans, not hoses, and close the trough lids after use\. Bonfires are allowed only on the first weekend of each month, before 10 am\.'
+          - 'The shed code is 4417\. Tools in the shed are shared; please clean them and put them back\. Contact the secretary, Priya Nair, on 07700 900412 with any questions\.'
+          - '(?i)rent'
+          - '(?i)october'
+          - '(?i)cultivat'

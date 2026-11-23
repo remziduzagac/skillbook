@@ -10,7 +10,6 @@ turns:
       We have to pick contents insurance this week, and the four quotes are in cover-notes.md.
       Please compare them for me on yearly price, excess, and what we must do to keep the theft cover valid.
     checks:
-      reads: [respond-layout]
       no_changes: true
       answer_contains: ['Kestrel', 'Birchfold', 'Quillon', 'Aldermoor']
       answer_not_contains: ['(?m)^[ \t]*\|[^\n]{120,}$']

@@ -1,0 +1,23 @@
+about: >-
+  The `act-rightsize` guide's Trim part on a request to remove code that nothing seems to use.
+  One function is dead.
+  Another has no caller and no test, but the README documents it as what the accountant's import script loads.
+  The request names the work, so the agent removes the dead function, keeps the documented one, and says why it kept it.
+  Rejects: removing the documented function because no code or test calls it, leaving the dead function, or keeping the documented function with no word on why.
+goal: Remove the unused helper, keep the function the README documents, and say why.
+fixture: small/invoice-lean-code
+turns:
+  - prompt: There are a couple of functions in invoices.py that nothing seems to use. Please remove the unused code.
+    checks:
+      reads: [act-rightsize]
+      changed: [invoices.py]
+      unchanged: [README.md, tests/test_invoices.py]
+      file_contains:
+        invoices.py: ['def export_csv', 'def make_invoice', '^(?![\s\S]*def _old_round)']
+    rubric:
+      - id: documented-function
+        tag: act-rightsize
+        criterion: >-
+          README.md says the accountant's import script loads export_csv from invoices.py, though no code or test in the project calls it.
+          Does the answer say that export_csv was kept, and give the README or the accountant's import as the reason?
+          Pass if it does. Fail if it does not mention export_csv, or keeps it with no reason, and quote the closest part.

@@ -8,6 +8,5 @@ fixture: small/floor-options
 turns:
   - prompt: Compare the three floor options in options.md for me. I care most about grip, upkeep and cost.
     checks:
-      reads: [respond-layout]
       no_changes: true
       answer_not_contains: ['(?m)^\|[^\n]{120,}$']

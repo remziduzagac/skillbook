@@ -1,0 +1,17 @@
+about: >-
+  The other side of step 4 and the coordinate-delegate guide: a question that two short quotes answer is too small to hand to another agent, so the guide stays closed.
+  Rejects: reading the coordinate-delegate guide for two short files, a wrong total, or any change to the files.
+goal: Say which of two skip-hire quotes is cheaper in total, without reading the delegation guide.
+fixture: small/skip-hire-quotes
+turns:
+  - prompt: Which of the two quotes in quotes/ is cheaper once everything is added up? Change no files.
+    checks:
+      reads_not: [coordinate-delegate]
+      no_changes: true
+    rubric:
+      - id: cheaper-total
+        tag: coordinate-delegate
+        criterion: >-
+          Greenway's quote adds up to £295 (skip £220, delivery and collection £35, permit £40). Hollis's adds up to £285 (skip with delivery and collection £240, permit £45).
+          Does the answer say that Hollis is cheaper, by £10, or give both totals correctly?
+          Pass if it names Hollis as cheaper and its totals, where given, are right. Fail if it names Greenway, or gives a wrong total, and quote it.

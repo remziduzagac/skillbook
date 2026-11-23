@@ -1,0 +1,47 @@
+about: >-
+  The devise-plan guide on work that sounds like one job but has three parts: a supplier order, a collection list and a note to each parent, from two source files, no steps given, in one turn.
+  Nothing needs the user's decision first and all three files are new, so the work goes ahead; the answer reports each part with what it produced, then the check against the sources and what it found.
+  Rejects: writing only some of the three files, a total that charges the Reception PE bag or leaves out the badge fee, the office-collection note lost, or a report with no check.
+goal: Get the autumn school uniform order ready, with an order for the supplier, a collection list and a note to each parent.
+fixture: small/uniform-order
+turns:
+  - prompt: >-
+      Please get the autumn uniform order ready: supplier-order.md for the supplier, collection-list.md for the office, and parent-notes.md with a short note to each parent saying what they owe.
+    checks:
+      reads: [devise-plan]
+      unchanged: [orders.md, prices.md]
+      file_contains:
+        parent-notes.md:
+          - '(?s)Haddad.{0,400}?\b33\b'
+          - '(?s)Whitlow.{0,400}?\b41\b'
+          - '(?s)Nakamura.{0,400}?\b22\b'
+          - '(?s)Brook.{0,400}?\b36\b'
+        collection-list.md:
+          - '(?s)Haddad.{0,300}office|office.{0,300}Haddad'
+          - 'Whitlow'
+          - 'Nakamura'
+          - 'Brook'
+        supplier-order.md:
+          - '(?i)badge'
+          - '(?i)plain|without (a )?badge|no badge|not badged|unbadged'
+          - '(?is)PE bags?.{0,80}?\b3\b'
+    rubric:
+      - id: supplier-counts
+        tag: devise-plan
+        criterion: >-
+          The order lines give these counts for the supplier: polo shirts 2 in 7-8, 3 in 4-5, 2 in 9-10 and 2 in 5-6;
+          sweatshirts with a badge 1 in 7-8 and 1 in 4-5, and a plain sweatshirt 1 in 5-6; PE bags 3.
+          Does supplier-order.md, as the changed files show it, give every one of these counts, with badge and plain sweatshirts apart?
+          Pass if all are there and right. Fail if a count is missing or wrong, or badge and plain sweatshirts are counted together, and name which.
+      - id: parts-reported
+        tag: devise-plan
+        criterion: >-
+          The user asked for three files: the supplier order, the collection list and the notes to parents.
+          Does the final answer report each of the three, with what it produced, such as the counts per item and size, who collects what, and what each parent owes?
+          Pass if all three are named with what each holds. Fail if one is missing, or if the answer only says the work is done or asks leave to start it, and name what is missing.
+      - id: check-reported
+        tag: devise-plan
+        criterion: >-
+          Does the final answer say how the finished files were checked against orders.md and prices.md, and what that check found?
+          Pass if it names a check and its result, such as "the counts match the order lines and the four totals add up to the sum of the orders".
+          Fail if it names no check, or only says the files were written.

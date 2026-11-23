@@ -10,7 +10,6 @@ turns:
     checks:
       reads: [coordinate-delegate]
       no_changes: true
-      agent_started_or_answer: ['(?i)\b(helpers?|sub-?agents?|another agent|other agents?|delegat\w+|workers?|forked?)\b']
     rubric:
       - id: finds-all-three
         tag: coordinate-delegate
@@ -27,3 +26,9 @@ turns:
           Pass if the answer separates confirmed findings from unchecked ones, or says it re-read the cited lines.
           Fail if it gives a helper's findings as established with no check and no caveat, and quote the line.
           If the answer uses no other agent, return unknown.
+      - id: helper-or-reason
+        tag: coordinate-delegate
+        criterion: >-
+          Do the actions show that another agent did part of the reading, or does the final answer say that the work was done here and give a reason why no other agent was used?
+          A reason says why, such as "one search printed only a few lines" or "no agents can be started here". Saying only that the files were checked directly, or how they were checked, is not a reason.
+          Pass if another agent did part of the work, or such a reason is given. Fail if the work was done here with no reason, and quote the closest line.
