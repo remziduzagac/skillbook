@@ -4,6 +4,8 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-23
+
 ### Changed
 
 - essentials: the main skill, which every request reads, is about a fifth shorter: about 28,800 characters instead of about 36,900, with every rule kept. Four points that the earlier cut had dropped are back: "the same step" means the same goal by the same means, for the rule to stop after about three failed attempts; the agent judges from what you have shown whether you know a word; it states your view at its strongest before it disagrees; and it reports a problem outside the task in one line, even a serious one.
