@@ -1,0 +1,24 @@
+about: >-
+  Automatic framing when the user wants a situation to go better and names nothing that would show it worked; understand-frame's test for a good answer, with proposed measures marked as guesses.
+  Rejects: a finished plan for spring with no way named to tell whether the picks improved.
+goal: Make the missing success test visible in the answer, with any proposed measure marked as a guess, and change no files.
+fixture: small/litter-picks
+turns:
+  - prompt: Fewer people come to our Saturday litter picks every month. Read picks.md and suggest a plan for the spring.
+    checks:
+      reads: [understand-frame]
+      no_changes: true
+    rubric:
+      - id: success-test-visible
+        tag: understand-frame
+        criterion: >-
+          The notes say turnout fell from 14 to 6 but nothing says what a good spring would look like.
+          Does the answer make a way to judge whether the plan worked explicit, before or beside the plan?
+          Pass if it proposes a concrete observation the group could use, such as a turnout to aim for or families returning, or marks the success test as unknown and asks what would settle it.
+          Fail if it gives only a plan, or only says the picks should be busier, with no test or explicit unknown. Quote the closest part.
+      - id: proposed-test-marked
+        tag: understand-frame
+        criterion: >-
+          If the answer proposes a measure or target for judging whether the plan worked, is each such proposal marked as a guess or a proposal for the user to confirm, such as "(guess)"?
+          The notes give no target, so any proposed one is a guess. Questions asking the user for the target are not proposals.
+          Pass if every proposed measure is marked; fail if any is given as settled, and quote it. If there is no proposed measure, return unknown.

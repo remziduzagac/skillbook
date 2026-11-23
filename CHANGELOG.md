@@ -4,6 +4,22 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+### Changed
+
+- essentials: the main skill, which every request reads, is about a fifth shorter: about 28,800 characters instead of about 36,900, with every rule kept. Four points that the earlier cut had dropped are back: "the same step" means the same goal by the same means, for the rule to stop after about three failed attempts; the agent judges from what you have shown whether you know a word; it states your view at its strongest before it disagrees; and it reports a problem outside the task in one line, even a serious one.
+- essentials: four guides are merged into their parents, so their names are gone: `understand-clarify-shallow` into `understand-clarify`, `understand-research-fact` into `understand-research`, and `act-rightsize-lean` and `act-rightsize-enrich` into `act-rightsize`. The research guide's five notes on kinds of sources are now one file. If your own instructions name one of the four guides, name its parent instead.
+- essentials: the main skill and 31 of the 39 guides are worded firmer and plainer: most rules open with a short bold sentence that says what to do, then give the reason, with "always" and "never" where a rule has no exception. The other 8 guides keep their earlier wording, because the new wording did worse on tests.
+- essentials: three guides are read more reliably. The plan guide is read before work with several parts, even when the work looks simple. The delegation guide is read when a part means reading more than about three files, one long file such as a long log, or long output. The frame guide is read when a request names no goal or nothing that would show a good result, such as making a club's meetings go better. In tests, each was read in runs where it had not been before.
+
+### Fixed
+
+- essentials: two guides pointed to the wrong step of the main skill: the explain guide's note on explaining a new topic, and the research source notes' rule on keeping code probes temporary. They now point to the steps that hold those rules.
+
+### Known limits
+
+- essentials: tested on small cases only, on Claude Code with Sonnet and Codex with GPT-6.1 Sol. Rewording whole guides in the firm style showed no overall gain, so a guide kept the new wording only where its answers held.
+- essentials: after reading the delegation guide, agents still mostly do the work alone, and often give no reason, although the guide asks for one. On a single long file, Sonnet read the delegation guide in only 1 of 6 runs.
+
 ## [0.2.5] - 2026-11-17
 
 ### Security

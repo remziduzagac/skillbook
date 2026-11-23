@@ -2,14 +2,13 @@ about: >-
   The questionnaire guide on questions only an outside body can answer, with the user sending them.
   The document is written for the archive, so it needs no conversation to be understood, gives each question a reason, names no reply date the user never gave, and offers no sending.
   The guide is read directly, with no round of questions to the user first. Nothing is written to a file.
-  Rejects: a document that leans on the conversation, questions with no reasons, an invented deadline, or an offer to send it.
+  Rejects: a document that leans on the conversation, questions with no reasons, an invented deadline, an offer to send it, or questions to the user before the document.
 goal: Write the questions for the county archive about printing its photographs, for the user to email.
 fixture: small/exhibit-photos
 turns:
   - prompt: I don't know what the county archive lets us do with the Quay photographs. Please write the questions for them. I'll email them myself.
     checks:
       reads: [understand-clarify-questionnaire]
-      reads_not: [understand-clarify-shallow]
       no_changes: true
     rubric:
       - id: no-conversation-refs
@@ -41,3 +40,10 @@ turns:
           The user said they will email the questions themselves.
           Does the answer offer or ask to send, post or email the document?
           Pass if it does not. Fail if it offers or asks, and quote it.
+      - id: no-round-first
+        tag: understand-clarify
+        criterion: >-
+          The user asked for the questions and will email them; nothing needs settling with the user first.
+          Does the answer ask the user questions to settle before the document is final, such as about the society's plans, the photographs or what to ask the archive?
+          Pass if it asks the user none; the questions inside the document for the archive, and a closing offer to adjust the wording, do not count.
+          Fail if it asks the user any, or holds the document back until they answer, and quote the first.

@@ -1,0 +1,33 @@
+about: >-
+  The coordinate-delegate guide on a read-only comparison of ten dish sheets against one reference, which fits none of the reasons to do a part yourself.
+  Other agents do the reading, or the answer says why they did not, and the answer lists the mismatches and separates what it confirmed from what it took on a helper's word.
+  Rejects: reading all ten sheets here with no word about helpers, a missed mismatch, a mismatch reported that is not one, or a helper's report passed on as confirmed when nothing was checked.
+goal: Find the three dish sheets whose allergen line differs from the kitchen's reference, with the work handed over and its result checked, and change no files.
+fixture: small/allergen-sheets
+turns:
+  - prompt: >-
+      The menu goes to print tomorrow. Compare the allergen line on every sheet in dishes/ with reference.csv and tell me which sheets are wrong and how. Change no files.
+    checks:
+      reads: [coordinate-delegate]
+      no_changes: true
+    rubric:
+      - id: finds-exact-mismatches
+        tag: coordinate-delegate
+        criterion: >-
+          The sheets differ from the reference in exactly three places: Chicken curry says none where the reference has milk;
+          Pad thai lists egg and soy and lacks peanuts; Apple crumble adds nuts, which the reference does not list.
+          Does the answer report exactly these three, each with how it differs?
+          Pass if all three are there and correct and no other dish is called wrong. Fail if one is missing or wrong, or if it reports any other sheet as a mismatch, and name which.
+      - id: helper-findings-status
+        tag: coordinate-delegate
+        criterion: >-
+          If the answer relies on another agent's report, does it say which findings the main agent confirmed itself, for example by reading the sheet line, or say plainly that they are unchecked?
+          Pass if the answer separates confirmed findings from unchecked ones, or says it re-read the cited lines.
+          Fail if it gives a helper's findings as established with no check and no caveat, and quote the line.
+          If the answer uses no other agent, return unknown.
+      - id: helper-or-reason
+        tag: coordinate-delegate
+        criterion: >-
+          Do the actions show that another agent did part of the reading, or does the final answer say that the work was done here and give a reason why no other agent was used?
+          A reason says why, such as "one search printed only a few lines" or "no agents can be started here". Saying only that the files were checked directly, or how they were checked, is not a reason.
+          Pass if another agent did part of the work, or such a reason is given. Fail if the work was done here with no reason, and quote the closest line.

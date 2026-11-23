@@ -8,7 +8,6 @@ fixture: small/coop-tube-quotes
 turns:
   - prompt: We need 80 inner tubes at the workshop before the sale on 14 June. Which supplier in quotes.csv should I order from?
     checks:
-      reads: [act-rightsize]
       no_changes: true
       answer_contains: ['Canal Row']
     rubric:

@@ -10,7 +10,7 @@ Use when the user did not follow something you said, such as “I don’t follow
 
 ## When not
 
-- Explaining a new topic, such as a function or concept: use the main skill's step 1. This guide revisits something you already said.
+- Explaining a new topic, such as a function or concept: answer it by the main skill's steps 1 and 6. This guide revisits something you already said.
 - A document for readers: use a skill in the harness’s list for writing that kind of document, if one fits. Otherwise use your judgment under the main skill's step 5. It needs writing for that audience.
 - A request may need this explanation and one of those other results. Use both for their own parts.
 

@@ -20,7 +20,7 @@ Each claim with its evidence, whether it was confirmed, and who checked it. Put 
 
 ## Rules
 
-1. **Choose evidence that would fail if the claim were false.** An unchecked claim reads as true:
+1. **Choose evidence that would fail if the claim were false.** An unchecked claim reads as true. Use this table:
 
    | Claim | Evidence | Not enough |
    | --- | --- | --- |
@@ -47,7 +47,7 @@ Each claim with its evidence, whether it was confirmed, and who checked it. Put 
    How much rides on the work, and whether it can be undone, is the `act-stakes` guide's judgment. The user's check here is of the result. Approving a risky action before it is taken is a job for the `act-guardrails` guide.
 3. **Run the check now on the current work.** Earlier runs do not count. Read what would fail if the claim were false: exit code, failure count and failing lines. Read full output only on failure. Full logs in the main session cost again on every later turn.
 4. **Report the actual result with evidence beside it.** If confirmed, give the claim. Otherwise give the actual status, by the main skill's step 6 (report outcomes as they happened).
-   - Report only causes and results shown by output, by the main skill's step 6 (report outcomes as they happened). Report a timed-out test as timed out, not as a guessed slow network.
+   - Report only causes and results shown by output, by the same step. Report a timed-out test as timed out, not as a guessed slow network.
    - Say what a stand-in, such as a simulated setting or mocked service, actually shows. Mark the real check unverified. Give what would confirm it.
    - Leave taste to the user, by rule 2. For warmer wording, for example, say what you changed and checked. Leave the judgment to them.
 5. **Run four more checks before calling a plan's task, commit or pull request done:**
@@ -58,7 +58,7 @@ Each claim with its evidence, whether it was confirmed, and who checked it. Put 
 
    Search for the item's names and decision terms. Read hits in parts, not whole designs. Use the `coordinate-delegate` guide for large reading by a fresh agent on the standard tier, neither lightest nor strongest. Contradiction and drift need judgment.
 
-   Scale checks by the `act-stakes` guide. A full search on a small change costs more than it finds. For plainly low work such as a typo, give about one line on what you checked. Stay inside the task. Report outside problems as one-line follow-ups by the main skill's step 5 (give a problem outside the task one line). A findings report costs more than a one-line change. The whole answer is a few lines: claim and evidence, check line, follow-ups. If the project lacks a design, plan or decisions, say so. Skip checks that need the missing item.
+   Scale checks by the `act-stakes` guide. A full search on a small change costs more than it finds. For plainly low work such as a typo, give about one line on what you checked. Stay inside the task. Report outside problems as one-line follow-ups, by the main skill's step 5 (give a problem outside the task one line). A findings report costs more than a one-line change. The whole answer is a few lines: claim and evidence, check line, follow-ups. If the project lacks a design, plan or decisions, say so. Skip the checks that need the missing item.
 
 6. **On the third time you run the same check by hand in a conversation, end your answer with a one-line offer to make it a script, a test or a lint rule.** Automation is cheaper and surer. Two runs could be chance; three show repetition.
    - The same check counts across items, such as the same format check on a second and a third file.
@@ -68,28 +68,25 @@ Your own evidence for a claim of done or correct is seen or measured, never only
 
 ## Instructions
 
-Make each claim about completed or correct work rest on fresh evidence the reader can judge. Choose evidence and a checker before it is lost or the work is reported. **Name the claim, get the right check on the current result, then report only what its evidence shows.**
+Make each claim about completed or correct work rest on fresh evidence the reader can judge. Choose the evidence and the checker before the evidence is lost or the work is reported. **Name the claim, get the right check on the current result, then report only what its evidence shows.**
 
 1. **Name the exact claim you are about to make.** A broad claim such as “done” can hide an unchecked part the user will rely on.
-   - Identify whether you are claiming a passing test, fixed symptom, met requirement, preserved content or a correct result. Keep needed before-change evidence, such as original report figures or an inventory.
-2. **Choose evidence that would fail if the claim were false, by rule 1.** A changed file or plausible explanation does not prove the user's problem was solved.
-   - Use a current run for passing tests, the original symptom now gone for a fix, and a requirement checklist for coverage. Compare each made part with its source or recalculate figures.
-   - Inspect another agent's actual changes. For a merge or split, find each original item in its new place. Do not judge by appearance, keywords or working links.
-3. **Choose the checker under rule 2.** Your own second look can repeat the error, while asking the user to reread cannot replace required independence.
-   - Check what commands or files can show yourself. For high stakes, requested independence or judgment you cannot give your own work, use the `coordinate-delegate` guide for a fresh checker. Rule 2 names the two cases you check yourself: a high-stakes result a command's output shows on its face, and a small set of other agents' findings from short sources.
-   - Use the `act-stakes` guide if stakes are not settled. Count independence only after seeing another agent's or person's result. If unavailable, name the pending check and who should arrange it.
-   - Leave meaning, taste, irreversible results and things no check can see to the user, after any required fresh check.
-4. **Run the check now on the current work, by rule 3.** An earlier passing run cannot show what a later edit broke.
-   - Read the exit code, failure count and failing lines. Read full output on failure rather than carrying routine full logs in the conversation.
+   - Name its kind: a passing test, a fixed symptom, a met requirement, preserved content or a correct result. Keep the evidence you need from before the change, such as a report's original figures or an inventory.
+2. **Choose evidence that would fail if the claim were false, from rule 1's table.** A changed file or plausible explanation does not prove the user's problem was solved.
+3. **Choose the checker under rule 2.** Your own second look can repeat the error. Asking the user to reread cannot replace required independence.
+   - Check yourself what commands or files can show.
+   - Start a fresh checker through the `coordinate-delegate` guide for high stakes, requested independence or judgment you cannot give your own work. Rule 2 names the two cases you check yourself: a high-stakes result a command's output shows on its face, and a small set of other agents' findings from short sources.
+   - Leave to the user what rule 2 leaves to them, after any required fresh check.
+4. **Run the check now on the current work, and read what would fail, by rule 3.** An earlier passing run cannot show what a later edit broke.
 5. **Compare evidence with the claim and report the actual result, by rule 4.** Calling a timeout a pass or guessing its cause gives the user false confidence.
-   - Keep evidence beside each confirmed claim. Otherwise give the observed status, including failures, skips or an unverified check.
-   - Say what a simulation or mock actually shows and what remains to check in reality. Describe wording changes and checks without deciding the user's taste.
+   - Where the claim is not confirmed, give the observed status, including failures, skips or an unverified check.
 6. **Run contradiction, duplication, drift and coverage checks for a plan's task, commit or pull request, by rule 5.** Individual passing checks can miss a conflict with the rest of the work.
-   - Search names and decision terms; compare with decisions, design, plan and every requirement. Use the `organize` guide's gap-and-overlap check for duplication.
-   - Scale to stakes. Name missing design, plan or decisions and skip only checks needing them. Keep outside findings as one-line follow-ups rather than widening the task.
+   - Compare with the decisions, the design, the plan and every requirement. Scale the checks to the stakes.
 7. **Return each claim with evidence or actual status to the caller.** Evidence separated from the claim is easy to lose when the result is reported again.
-   - For results needing a lasting record, use the skill the project's instructions name; otherwise keep them in the response.
-   - On the third manual run of the same check, end the answer with rule 6's one-line offer to automate it. Write no automation unasked.
+   - For results that need a lasting record, use the skill the project's instructions name. Otherwise keep them in the response.
+   - Add rule 6's one-line offer when it is due.
 8. **Check the claims and “Gives back” before saying done or correct.** Always do this last. The user should never have to infer which claim remains unverified.
-   - Check evidence is beside every claim or its unverified status is explicit. Check actual checker identity, required independence or pending owner, and the scaled four checks where required. Where rule 2 let you skip a fresh agent, check that its case holds and that the answer shows the output or says you checked yourself.
-   - Fix unsupported claims or missing checks before reporting. Include the automation offer when due; claim no result or independent check you did not see.
+   - Check that evidence is beside every claim, or that its unverified status is explicit.
+   - Check who actually checked, the required independence or the pending owner, and the scaled four checks where required.
+   - Where rule 2 let you skip a fresh agent, check that its case holds. Check that the answer shows the output or says you checked yourself.
+   - Fix unsupported claims or missing checks before reporting. Include the automation offer when due. Claim no result or independent check you did not see.

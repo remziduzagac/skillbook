@@ -1,0 +1,33 @@
+about: >-
+  The coordinate-delegate guide's rule 10 on substantial reading from one file rather than many files, with rule 7's returned-work check.
+  Rejects missing or invented qualifying costumes, doing the reading here without saying why no helper was used, and presenting unchecked helper findings as confirmed.
+goal: Find every costume that meets all three borrowing conditions, explain how the reading was done, and change no files.
+fixture: small/costume-catalogue
+turns:
+  - prompt: >-
+      Read costume-catalogue.md and list every adult-sized outfit that the wearer can put on without help and take away complete in one supplied storage bag. Give its catalogue ID and name, with the evidence for those three conditions. Change no files.
+    checks:
+      reads: [coordinate-delegate]
+      no_changes: true
+    rubric:
+      - id: exact-costumes
+        tag: coordinate-delegate
+        criterion: >-
+          Does the answer list exactly W023 River captain, W058 Mountain guide and W091 Storyteller, with evidence that each is adult-sized, can be put on unaided and fits complete in one supplied bag?
+          All three meet every condition. W014 Garden giant needs two bags; W047 Clock keeper needs another person to fasten the outfit even though one person can carry its bag; W082 Small sailor is child-sized.
+          Every other entry fails at least two conditions. Pass only if the three qualifying outfits are correct, their evidence is correct and no other outfit is included as eligible.
+          Fail on a missed or incorrect outfit, wrong evidence or an extra eligible outfit, and name it. Decoys discussed as excluded are not extras.
+      - id: helper-or-reason
+        tag: coordinate-delegate
+        criterion: >-
+          Does the answer either say that other agents did part of the work, or say that it did the work itself and give a reason why it used no other agent?
+          A statement that it worked directly, with no reason, is not a reason. Describing how it searched or read the file alone does not explain why no helper was used.
+          Pass if the answer reports that another agent did part of the work, or explicitly says it did the work here and gives a reason for using no other agent.
+          Fail if it reports the completed reading with neither, and quote the closest line. If the turn ends before the reading is done or the record is incomplete and no result is available, return unknown.
+      - id: helper-findings-status
+        tag: coordinate-delegate
+        criterion: >-
+          If the answer relies on another agent's report, does it say which findings the main agent confirmed itself, for example by reading the catalogue entries, or say plainly that they are unchecked?
+          Pass if the answer separates confirmed findings from unchecked ones, or says it re-read the cited lines.
+          Fail if it gives a helper's findings as established with no check and no caveat, and quote the line.
+          If the answer uses no other agent, return unknown. Missing helper details in an incomplete run record stay unknown rather than proving no check happened.

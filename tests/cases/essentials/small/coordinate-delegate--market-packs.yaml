@@ -1,0 +1,41 @@
+about: >-
+  The coordinate-delegate guide on a read-only audit of sixteen substantial stallholder packs against a signed venue agreement.
+  Tests rule 10's large-reading path and rule 7's checked returned work, with an independently written fixture.
+  Rejects silent solo reading, missed or invented contradictions, and helper findings presented as confirmed without checking them.
+goal: Find the four conflicting instructions across all sixteen packs, report the agreement's corresponding terms, and change no files.
+fixture: small/market-packs
+turns:
+  - prompt: >-
+      Our craft market's stallholder packs are in packs/. Check every pack against venue-agreement.md and tell me which instructions contradict the signed agreement, with what the agreement says instead. Extra details the agreement does not cover are not errors. Change no files.
+    checks:
+      reads: [coordinate-delegate]
+      no_changes: true
+    rubric:
+      - id: all-four-contradictions
+        tag: coordinate-delegate
+        criterion: >-
+          Does the answer identify all four planted contradictions, each with the agreement's correct instruction?
+          Paper Orchard (03) says table coverings are provided, but each stallholder must bring their own;
+          Woven Weather (07) sends delivery cars to the High Street front steps, but vehicle unloading is through the Mill Lane gate;
+          Copper Finch (11) leaves used cafe mugs at the market exit, but they must go back to the cafe counter;
+          Little Lantern (16) allows setup at 07:45, but stallholders may enter only from 08:00.
+          Pass only if all four are correctly reported. Fail on a missing or incorrect one and name it.
+      - id: no-invented-contradictions
+        tag: coordinate-delegate
+        criterion: >-
+          Does the answer avoid reporting any additional instruction as contrary to the agreement?
+          Exactly the four discrepancies listed in all-four-contradictions are planted; every other covered instruction agrees, and extra details outside the agreement are not discrepancies.
+          Pass if no additional discrepancy is claimed. Fail if any is, and quote it. Repeated citations or explanations of the same discrepancy do not count as extras.
+      - id: helper-findings-status
+        tag: coordinate-delegate
+        criterion: >-
+          If the answer relies on another agent's report, does it distinguish findings the main agent checked against the pack and agreement from findings taken on the helper's word?
+          Pass if it identifies the confirmed findings, says it re-read the cited source passages, or plainly marks unchecked findings as unverified.
+          Fail if it presents helper findings as confirmed with no source check or caveat, and quote the claim.
+          If no other agent was used, return unknown. Evidence unavailable in the run record stays unknown rather than proving that a check was omitted.
+      - id: helper-or-reason
+        tag: coordinate-delegate
+        criterion: >-
+          Do the actions show that another agent did part of the reading, or does the final answer say that the work was done here and give a reason why no other agent was used?
+          A reason says why, such as "one search printed only a few lines" or "no agents can be started here". Saying only that the files were checked directly, or how they were checked, is not a reason.
+          Pass if another agent did part of the work, or such a reason is given. Fail if the work was done here with no reason, and quote the closest line.

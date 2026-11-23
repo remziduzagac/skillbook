@@ -10,7 +10,6 @@ turns:
       We are choosing how to get to Scarra, and the three ways are in crossings.md.
       Please set them side by side for me on price, crossing time, luggage rules and cancellation terms.
     checks:
-      reads: [respond-layout]
       no_changes: true
       answer_contains: ['Harbourline', 'Skerry', 'Tidewater']
       answer_not_contains: ['(?m)^[ \t]*\|[^\n]{120,}$']

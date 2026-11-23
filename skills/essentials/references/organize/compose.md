@@ -23,7 +23,7 @@ A B C → P over A, B, C
 
 ## Instructions
 
-Add a parent that explains what selected items share. The parent should earn its place by saying something useful while leaving each item’s content intact. **Find the shared statement, test whether a parent helps, then propose its boundary and placement.**
+Add a parent that explains what selected items share. The parent earns its place by saying something useful, while each item’s content stays intact. **Find the shared statement, test whether a parent helps, then propose its boundary and placement.**
 
 1. **Find what the selected items share under the `organize` guide.** A parent based only on a vague theme adds a level readers must open without learning anything.
    - Look at the selected items' purposes and content. Keep this distinct from sorting the whole collection.

@@ -39,13 +39,13 @@ What counts, when you created or started it in this task:
    - a local branch or worktree you made with nothing uncommitted or unmerged in it.
 
    Propose everything else through the `act-guardrails` guide: things you did not create, things that may hold the user's work, and anything outside the machine. You know what you made. Anything else may be someone's work. For delegated work, follow the main skill's rule on limits for a delegated worker for removal and reporting.
-2. **Record each thing as you create or start it.** Give its identity, location and process ID where relevant. Untracked things get forgotten. Finding them later means guessing and risks removing others' work.
+2. **Record each thing as you create or start it,** with its identity, location and process ID where relevant. Untracked things get forgotten. Finding them later means guessing, and risks removing others' work.
 3. **Remove only exact paths or IDs from your record.** Never match a pattern beyond what you created, such as everything in a temporary folder or processes sharing a name. Wildcards and name matches can hit the user's files or processes.
-4. **Clean each thing when it is no longer needed.** Do so by the response ending the task: answer, report or claim of done. Leftovers pile up in long tasks. A task is not done with its scaffolding running.
-5. **Report what you keep, where and why.** Examples: a cache, a clone needed tomorrow or a server the user wants running. Unexplained leftovers look forgotten.
-   - Keep only what the user asked to keep or a later step of this task will use again soon. That step must be one you do yourself.
-   - Remove copies made for another agent or a later check, unless the user asked to keep them, by the main skill's rule on taking instructions only from the user, the loaded instruction files and the skill. Say how to recreate them. They would outlive the task.
-   - Remove temporary edits in the user's work except when they ask to keep them. Say how to add them back. Keeping them changes their work.
+4. **Clean each thing when it is no longer needed, and at the latest by the response that ends the task:** an answer, a report or a claim of done. Leftovers pile up in long tasks. A task is not done with its scaffolding running.
+5. **Report what you keep, where and why.** Unexplained leftovers look forgotten. Examples: a cache, a clone needed tomorrow or a server the user wants running.
+   - Keep only what the user asked to keep, or what a later step of this task will use again soon. That step must be one you do yourself.
+   - Remove copies made for another agent or a later check. They would outlive the task. Say how to recreate them. Keep them only when the user asked, by the main skill's rule on taking instructions only from the user, the loaded instruction files and the skill.
+   - Remove temporary edits in the user's work. Keeping them changes their work. Say how to add them back. Keep them only when the user asks.
 6. **Check cleanup through the `act-verify` guide.** Confirm the process is gone and the path no longer exists. A kill can fail silently. A watcher can restart a stopped process.
 
 ## Advice
@@ -59,24 +59,23 @@ What counts, when you created or started it in this task:
 
 ## Instructions
 
-Leave a checked account of task material that was removed, deliberately kept or needs approval to remove. Track exact identities from creation so cleanup never depends on guessing what belongs to you. **Record what you create, clean it when its job ends, then verify and report its final status.**
+Leave a checked account of task material that was removed, deliberately kept or needs approval to remove. Track exact identities from creation, so cleanup never depends on guessing what belongs to you. **Record what you create, clean it when its job ends, then verify and report its final status.**
 
 1. **Choose a temporary place and check size before creating large material, using Advice.** An unexpected large copy can exhaust disk or memory before the task is finished.
-   - Prefer the harness's scratch and lifecycle tools, otherwise one task folder. Use shallow or partial clones for reading where suitable and explain a departure from the one-place advice.
-2. **Record each created or started thing under rules 2–4.** Forgotten files or processes can keep consuming resources, and later cleanup by name can hit the user's work.
-   - Record identity, exact location and process ID where relevant. Make processes findable and give them a shared lifetime or timeout where available.
-   - In long work, keep the record in the scratch place. Clean items when no longer needed rather than accumulating them until the end.
+2. **Record each created or started thing under rules 2–4.** Forgotten files or processes can keep consuming resources. Later cleanup by name can hit the user's work.
+   - Make processes findable, and keep the record in the scratch place in long work, as Advice says.
 3. **Tell each worker in its brief to clean and check its own material, through the `coordinate-brief` guide.** Report fields alone do not tell a worker to stop its server or remove a temporary copy.
-   - Explicitly ask it to remove what it made, stop what it started and report cleaned, kept and proposed items. Check the report against visible files or processes when it returns.
+   - Explicitly ask it to remove what it made, stop what it started, and report cleaned, kept and proposed items.
+   - Check its report against the files and processes you can see when it returns.
 4. **Recover an incomplete record by listing the usual task places.** A crash or forgotten entry does not make every nearby item yours to remove.
    - Identify only what you can establish as this task's material. Propose uncertain items rather than removing them.
 5. **Review the record before ending the task or stopping, under rules 1, 4 and 5.** A finished answer can leave scaffolding running and surprise the user later.
-   - Remove only exact recorded paths or IDs within your authority. Propose others' material and outward removal through the `act-guardrails` and `respond-ask` guides; end the turn for required approval.
-   - Keep only user-requested material or items your own next step will use soon. Do not keep copies for another agent or later check without the user's request; say how to recreate them.
-   - Remove temporary work edits unless the user asked to keep them, and say how to add them back.
+   - Remove only exact recorded paths or IDs within your authority, by rules 1 and 3.
+   - Propose others' material and outward removal through the `act-guardrails` and `respond-ask` guides. End the turn for required approval.
+   - Keep only what rule 5 allows. Say how to recreate each removed copy made for another agent or a later check, or add back each removed edit.
 6. **Verify removal through the `act-verify` guide, by rule 6.** A kill can fail or a watcher can restart a process after an apparent success.
-   - Check removed paths no longer exist and stopped processes are gone. Report a failed check rather than assuming cleanup succeeded.
-7. **Prepare the cleanup report at the end of the response, using “Gives back”.** Unexplained leftovers look forgotten, and proposed removal is not completed cleanup.
+   - Report a failed check rather than assume cleanup succeeded.
+7. **Put the cleanup report at the end of the response, using “Gives back”.** Unexplained leftovers look forgotten. Proposed removal is not completed cleanup.
 
    ```text
    Cleaned:   items and locations, checked as gone; sizes for large ones
@@ -84,8 +83,8 @@ Leave a checked account of task material that was removed, deliberately kept or 
    Proposed:  items needing approval and why; awaiting the user
    ```
 
-   - Say nothing if nothing was created. Use one line if all material was cleaned and none kept or proposed; otherwise use the full report.
-   - Use the same fields in a worker report. Put permitted kept items in a carryover when work continues later, rather than making a project record of session leftovers.
+   - Say nothing if nothing was created. Use one line if all material was cleaned and none kept or proposed. Otherwise use the full report.
+   - Use the same fields in a worker report. When work continues later, put permitted kept items in a carryover, not in a project record of session leftovers.
 8. **Check the record, report and “Gives back” before ending.** Always do this last. An item without a final status may still consume resources after the task closes.
-   - Check each recorded item is removed and verified, kept with location and reason, or proposed for approval. Check the report matches actual files and processes.
-   - Fix unaccounted items or failed cleanup within your authority before returning. Keep pending removal visible rather than reporting it as done.
+   - Check that each recorded item is removed and verified, kept with location and reason, or proposed for approval. Check that the report matches the actual files and processes.
+   - Fix unaccounted items or failed cleanup within your authority before returning. Keep pending removal visible. Never report it as done.

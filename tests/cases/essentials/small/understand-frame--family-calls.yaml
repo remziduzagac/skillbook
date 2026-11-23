@@ -1,0 +1,15 @@
+about: Automatic framing when a goal is given but no way to judge success; understand-frame rules 1 and 2 and step 4. Rejects a finished call routine with no success test.
+goal: Make the missing success standard visible in the answer and mark any proposed measure as a guess.
+fixture: small/family-calls
+turns:
+  - prompt: I want our family video calls to be more enjoyable. Read calls.md and tell me what we should do.
+    checks:
+      reads: [understand-frame]
+      no_changes: true
+    rubric:
+      - id: success-test-visible
+        tag: understand-frame
+        criterion: 'Does the answer make a way to judge improvement explicit before, or instead of, giving a settled call agenda or routine? Pass if it proposes a concrete observation the family could use to tell whether calls improved, or explicitly marks the success standard unknown and asks what observation would settle it. Merely saying the calls should be more enjoyable, listing activities, or asking only which activities people like does not name a success test. Fail if no such test or explicit unknown appears, including an answer that only gives a finished agenda. No particular heading, activity or numerical target is required.'
+      - id: proposed-test-marked
+        tag: understand-frame
+        criterion: 'If the answer proposes an observation or threshold for judging whether calls improved, does each such proposal carry a bracketed guess mark, such as "(guess)", on its own line or item? The notes supply no success test, so any proposed one is a guess. A heading saying "proposed" alone does not mark the individual proposals. Questions asking the user to supply the test are not proposals. Pass if every proposed test is marked; fail if any is unmarked. If there is no proposed test, return unknown.'

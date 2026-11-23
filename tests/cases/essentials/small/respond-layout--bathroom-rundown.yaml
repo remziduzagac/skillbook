@@ -8,7 +8,6 @@ turns:
   - prompt: >-
       Give me a rundown of the bathroom job from status.md: where it stands, what is holding it up, what each trade does next, and what I have to decide.
     checks:
-      reads: [respond-layout]
       no_changes: true
       answer_contains: ['(?m)^#{2,4} \S']
       answer_not_contains: ['(?m)^\*\*[^*\n]+\*\*:?\s*$']

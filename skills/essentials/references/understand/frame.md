@@ -6,10 +6,11 @@ States one problem, its goal, scope, constraints and a good answer.
 
 ## When to use
 
-Use when the problem, goal or way to judge an answer is missing, or work loops or drifts. Also use when the user asks what is being solved. For example, repeated work that does not move toward a stated goal may need a new frame.
+Use when the problem, goal or way to judge an answer is missing, such as a request to make a situation better that names nothing showing it worked, or when work loops or drifts. Also use when the user asks what is being solved. For example, repeated work that does not move toward a stated goal may need a new frame.
 
 ## When not
 
+- A change to named text that says what to change, such as making it shorter or more formal: use your judgment, or the `act-rightsize` guide for existing material. The request says what done means. A rewrite for a purpose that names no test, or one that goes in circles, still uses this guide.
 - A request with a clear problem, goal and way to judge the answer: use your judgment under the main skill's step 1. A new frame adds nothing.
 - Facts or intent only the user can supply: use the `understand-clarify` guide when the answer changes the result.
 - Several problems: return them to the main task to divide first. Each frame needs one problem.
