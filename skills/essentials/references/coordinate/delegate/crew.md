@@ -4,7 +4,7 @@
 
 Coordinates parallel changes to separate items, then joins and checks the whole result.
 
-Needs: permitted workers through the active call of the `coordinate-delegate` guide. If unavailable, return the limitation and unstarted work. Report partial changes and unfinished checks honestly.
+Needs: permitted workers through the active call of the `coordinate-delegate` guide. Without them, return the limitation and unstarted work. Report partial changes and unfinished checks honestly.
 
 ## When to use
 
@@ -23,27 +23,27 @@ The approved changes, the final pass over the whole, actual check results and un
 ## Rules
 
 1. **Assign one writer to each item.** Parallel writes to the same item overwrite work. Give every shared item one owner. Other workers send that owner proposals, or leave them for the final pass.
-2. **Apply the current plan and choice approvals before changing anything.** Parallel workers change several items at once, so a wrong plan costs several undos.
-   - Show the plan and end the turn before workers start when the main skill's step 2 (before work with several parts, show the plan) says the user must decide something first. Otherwise go ahead. Put each worker's item with its result, and the final pass, in your final answer, by the same rule.
+2. **Apply the current plan and choice approvals before changing anything.** Parallel workers change several items at once. A wrong plan costs several undos.
+   - If the main skill's step 1 says the user must decide something first, show the plan and end the turn before workers start, by its step 2 on showing the plan. Otherwise go ahead. Put each worker's item with its result, and the final pass, in your final answer, by the same step 2.
    - High-stakes work still needs the `devise-plan` guide's own approval. Settle open choices first, by the main skill's step 1. Reuse an approval only for the work it covered.
-   - A request for a plan authorizes no execution. Keep cost and other guardrails separate.
-3. **Reread each written item from disk after writing it.** Another worker may have changed nearby material. This check follows, rather than replaces, the `act-guardrails` guide's check before writing.
+   - A request for a plan approves no execution. Keep cost and other guardrails separate.
+3. **Reread each written item from disk after writing it.** Another worker may have changed nearby material. This check follows the `act-guardrails` guide's check before writing. It does not replace it.
 
 ## Instructions
 
-Join parallel changes to separate items into one checked result. Give shared items one writer so workers do not overwrite each other’s work. **Plan ownership and obtain required approvals before startup, then join the changes in sequence and check the whole.**
+Join parallel changes to separate items into one checked result. Give shared items one writer, so workers do not overwrite each other’s work. **Plan ownership and get required approvals before workers start, then join the changes in sequence and check the whole.**
 
 1. **Plan separate ownership through the `devise-plan` guide, by rule 1.** Parallel writers on the same item can erase each other's changes.
    - Name worker scopes, shared items, owners and checks. Other workers send shared-item proposals to its owner or leave them for the final pass.
-   - Use the `organize` guide for future parts and its own approvals for any rearrangement of existing material.
-2. **Return plan-only work without starting workers; obtain execution approvals under rule 2.** Planning is not the user's permission to apply changes.
+   - Use the `organize` guide for future parts. Use its own approvals for any rearrangement of existing material.
+2. **Return plan-only work without starting workers, and get execution approvals under rule 2.** Planning is not the user's permission to apply changes.
    - Apply current plan and choice approvals before the active parent starts workers. Keep worker cost and other guardrails separate.
 3. **Run allowed separate changes through the active `coordinate-delegate` guide call.** A child startup flow that restarts delegation can lose common limits or assign overlapping work.
-   - Use the parent's controls, briefs, baseline, status tracking, verification and cleanup. Workers delegate no further and return approval questions to the caller.
-   - Recheck before writes under the `act-guardrails` guide, then reread each written item from disk under rule 3. The post-write read does not replace the pre-write check.
+   - Use the parent's controls, briefs, baseline, status tracking, verification and cleanup. Workers delegate no further. They return approval questions to the caller.
+   - Recheck before writes under the `act-guardrails` guide. Then reread each written item from disk under rule 3. The post-write read does not replace the pre-write check.
 4. **Make one sequential pass over the whole after parallel changes.** Separate successful edits can still leave gaps where their parts meet.
-   - Join what the workers left separate and apply only approved shared-item proposals. Stay inside scope.
-   - Use the `coordinate-delegate-fanout` guide for several reading views before this final pass where needed.
+   - Join what the workers left separate. Apply only approved shared-item proposals. Stay inside scope.
+   - Where needed, use the `coordinate-delegate-fanout` guide for several reading views before this final pass.
 5. **Check the whole through the `act-verify` guide after the final pass.** Separate worker checks do not prove the joined result works.
    - Keep work dependent on a failed or cancelled part unfinished. Report partial changes and the next owner.
    - Do not claim completion or undo unrelated or later edits silently.

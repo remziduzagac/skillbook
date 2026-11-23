@@ -11,7 +11,7 @@ Use when the user asks why something happens and the cause needs investigation. 
 ## When not
 
 - Applying a fix: return it to the main task. Analysis finds the cause and evidence.
-- One fact: use the `understand-research-fact` guide. A cause investigation needs more than a factual answer.
+- One fact: use the `understand-research` guide’s “Check a fact” part. A cause investigation needs more than a factual answer.
 - Claims that work is done: use the `act-verify` guide for completion evidence.
 
 ## Gives back
@@ -61,7 +61,7 @@ Find what causes the symptom and show the evidence for each link back to its tri
    - Before an outside search, strip internal names and details. Sanitizing a query does not grant approval for remaining outward data.
 3. **Test one cause and one variable at a time, by rules 2 and 3.** Stacked changes prevent the caller from knowing which one mattered.
    - Give a testable hypothesis. Reproduce it, observe it through a probe or show that removing the cause removes the symptom before calling it confirmed.
-   - Use the `understand-research-fact` guide for an individual sourced fact. Keep observations separate from hypotheses; correlation alone is not cause.
+   - Use the `understand-research` guide’s “Check a fact” part for an individual sourced fact. Keep observations separate from hypotheses; correlation alone is not cause.
 4. **Trace supported causes back to their triggers, by rule 4.** A change where the symptom appears can leave the original cause intact.
    - Give evidence for each link and separate chains for contributing causes. Use a scoped bisect when it can isolate the trigger.
    - Mark where tracing stops. Say what is not understood rather than inventing branches or an external cause.

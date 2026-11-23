@@ -36,9 +36,9 @@ An agent without guidance often guesses what you meant, does more or less than y
 
 The essentials skill gives this exact name rule:
 
-Names: a guide named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Before it, read each guide above it on its path that has a file, top-down, if you have not read it yet: `act-rightsize-lean` needs `act-rightsize` first, and each `organize-` guide needs `organize` first. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer.
+Names: a guide named `a-b-c` is the file `references/a/b/c.md` inside this skill's folder; read the whole file to use it. Before it, read each guide above it on its path that has a file, top-down, if you have not read it yet: `understand-clarify-deep` needs `understand-clarify` first, and each `coordinate-delegate-` guide needs `coordinate-delegate` first. If a file cannot be read, look for it by its name in this skill's folder; if it still cannot be read, go on with your own judgment, and name the file in your final answer.
 
-For example, `act-rightsize-lean` needs `act-rightsize` first. A parent holds rules shared by the guides under it, so a guide read without its parent misses them.
+For example, `understand-clarify-deep` needs `understand-clarify` first. A parent holds rules shared by the guides under it, so a guide read without its parent misses them.
 
 The work moves through six stages: understand the request, decide how to do it, arrange its parts, hand work to other agents or later sessions, act, and answer. The agent picks the guides its steps name before its first action, then fits those stages into its own controls, such as a plan mode or task list. Its approach belongs in the devise stage; a plan for several steps stays in use across turns.
 
@@ -49,8 +49,7 @@ Other skills in the agent’s skill list and its tools do the work itself, such 
 Each line says in brief what a guide does. The top-level entries are the six stages; all except `organize` are steps of the essentials skill itself, and their entries list the guides under them. The [instructions](../../skills/essentials/SKILL.md#instructions) name each guide with a link.
 
 - **understand:** understanding before acting, with the user and from sources. Further guides help with open choices, facts and decisions.
-  - **clarify:** finds what the user means before acting, and decides what to ask and how deep to go.
-    - **shallow:** asks the smallest round of questions that sets the direction.
+  - **clarify:** finds what the user means before acting, and decides what to ask and how deep to go. It asks the smallest round of questions that sets the direction.
     - **deep:** questions a plan level by level until everything that changes the work is settled.
     - **questionnaire:** writes questions only someone else can answer, as a document they can fill in.
   - **frame:** states one problem: its goal, scope, constraints and what a good answer looks like.
@@ -60,8 +59,7 @@ Each line says in brief what a guide does. The top-level entries are the six sta
   - **challenge:** attacks an idea, plan or decision before anyone relies on it.
   - **argue:** makes the strongest honest case for one side, labelled as one-sided.
   - **naming:** proposes shared names and glossary entries.
-  - **research:** answers questions from sources, with each finding traceable to where it came from.
-    - **fact:** answers one sourced question, or gives a verdict on one claim.
+  - **research:** answers questions from sources, with each finding traceable to where it came from. It also answers one sourced question or gives a verdict on one claim.
     - **survey:** finds existing options, such as tools or libraries, and compares them.
     - **analyze:** investigates why something happens and finds the evidence for its cause.
 - **devise:** chooses how to do the work, with a design when its shape is open and a plan when it has several steps.
@@ -88,9 +86,7 @@ Each line says in brief what a guide does. The top-level entries are the six sta
   - **stakes:** judges how much care an action needs: low, medium or high.
   - **guardrails:** what a risky action needs: a proposal with its exact scope, your approval, and a check afterwards.
   - **verify:** checks a claim that work is done or correct, with evidence that would fail if the claim were false.
-  - **rightsize:** makes anything the agent gives back hold nothing missing and nothing extra for its reader.
-    - **lean:** removes extra parts from existing material.
-    - **enrich:** adds missing parts to existing material, each from a checked source.
+  - **rightsize:** makes anything the agent gives back hold nothing missing and nothing extra for its reader, and trims or fills existing material from an approved list.
   - **cleanup:** removes what the agent created or started for a task and no longer needs.
 - **respond:** how the agent prepares every answer: what goes in, how it is put together, and how it is worded.
   - **ask:** how the agent asks you anything, and how it takes your answers.

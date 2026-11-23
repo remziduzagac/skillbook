@@ -12,6 +12,11 @@ main() {
 	# A set's main skill holds the rules every request reads, and no guide is read on every request, so it may pass
 	# the general limit by design.
 	main_limit=200
+	# A guide that holds the methods of former child guides may run to about 250 lines: split again, its shared rules
+	# would sit in several files. Paths are from skills/.
+	merged_limit=260
+	merged="essentials/references/understand/clarify.md essentials/references/understand/research.md
+essentials/references/act/rightsize.md"
 	start_limit=20000 # about 20,000 characters (about 5,000 tokens) for the start files, carried on every turn
 	problems=0
 
@@ -36,6 +41,9 @@ main() {
 			lines=$(wc -l <"$file")
 			file_limit=$limit
 			[ "$file" = "$set_dir/SKILL.md" ] && file_limit=$main_limit
+			for long in $merged; do
+				[ "${file#"$repo"/skills/}" = "$long" ] && file_limit=$merged_limit
+			done
 			if [ "$lines" -gt "$file_limit" ]; then
 				echo "$rel: $lines lines, past $file_limit; trim or split it"
 				problems=$((problems + 1))

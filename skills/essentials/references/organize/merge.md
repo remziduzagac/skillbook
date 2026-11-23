@@ -28,10 +28,10 @@ Combine duplicate accounts of one whole without losing compatible details. A sta
 1. **Compare the duplicate accounts, by the `organize` guide's rule 3.** Similar headings can hide unique facts that disappear in a quick merge.
    - Identify what repeats, what appears once and what conflicts. Confirm these are accounts of the same whole rather than items sharing a theme.
 2. **Choose the survivor by the main skill's step 1 on who decides.** An arbitrary survivor can discard the account readers already find or rely on.
-   - Consider completeness, existing links and the user's choice. Follow the same rule for showing choices before changes.
+   - Weigh completeness, existing links and the user's choice. Follow the same rule for showing choices before changes.
 3. **Prepare combined content part by part, by the `organize` guide's rule 3.** Silent choices between contradictions can change meaning without the user's knowledge.
    - Keep repeats once, each compatible unique detail and the union of lists.
-   - Ask about meaning-changing contradictions through the `respond-ask` guide. End the turn before applying; choose no version silently.
+   - Ask about meaning-changing contradictions through the `respond-ask` guide. End the turn before applying. Never choose a version silently.
 4. **Map every original statement to the survivor, by the `organize` guide's rule 3.** A complete-looking survivor can still omit a statement readers need.
    - Include every reference change and retirement in the proposed map, not just where paragraphs move.
 5. **Apply only the `organize` guide's approved map.** A merge outside the map can leave readers following obsolete references.
@@ -39,4 +39,4 @@ Combine duplicate accounts of one whole without losing compatible details. A sta
    - Update known links, references and imports. Mark unknown external references unverified rather than claiming all links were checked.
 6. **Check the merge and “Gives back” before returning.** Always do this last. Tests or a readable survivor alone cannot prove every detail survived.
    - Account for every original statement, compatible detail, reference and retirement. Repair lost details and failed known references before reporting a completed result.
-   - Return the proposal and map, or the applied result with evidence and unresolved limits. The parent obtains user confirmation after checking; do not claim confirmed completion before that reply.
+   - Return the proposal and map, or the applied result with evidence and unresolved limits. The parent asks the user to confirm after checking. Claim confirmed completion only after that reply.
