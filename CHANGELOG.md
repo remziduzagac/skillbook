@@ -4,6 +4,10 @@ All notable changes to skillbook, newest first. The format follows Keep a Change
 
 ## [Unreleased]
 
+### Changed
+
+- repository: the project skills that write skillbook's sets, skillbook-guide-design and skillbook-guide-write, now ask for firm wording: a rule meant without exception says "always" or "never", and a step that applies a rule keeps that rule's action and the detail it needs, instead of a bare pointer such as "by rule 1". These skills are not shipped in any set, so installed sets do not change.
+
 ## [0.3.0] - 2026-11-23
 
 ### Changed
