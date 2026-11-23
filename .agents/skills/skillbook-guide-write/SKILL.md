@@ -17,7 +17,7 @@ Helps you turn a design into a skill's files: the main skill and its guides. The
   - Choose wording, examples and order that keep the design's intent.
   - If file and design disagree, ask the user which is wrong.
   - Before reporting, account for every required rule, route and fallback in the files. Name deferred behaviour and the fallback covering it.
-- **Point to shared rules where they live.** Read skillbook-guide-design for set and design locations, name-to-file mapping, exact name rule, how parents open (its checks 8 to 10) and checklist. Copy only text explicitly required word for word, such as the name rule. Do not retype from memory. Duplicate rules drift.
+- **Point to shared rules where they live.** Read skillbook-guide-design for set and design locations, name-to-file mapping, exact name rule, how parents open (its checks 8 to 10) and checklist. Copy only text explicitly required word for word, such as the name rule. Do not retype from memory. Duplicate rules drift. A step that repeats the action of a rule it applies is not such a duplicate: keep it, by skillbook-guide-design's check 8.
 - **Plain English: use common words and short sentences.** Many readers, people and agents, are not native speakers. Plain text is just as exact for agents:
   - Use short sentences with one idea each;
   - Use active voice: "read the file whole", not "the file is read whole";
@@ -31,6 +31,9 @@ Helps you turn a design into a skill's files: the main skill and its guides. The
   - Use visible actions: end the turn, ask, propose, send a message, or write it in the final answer. Avoid "state", "note" and "keep in mind" for what the user must see before the work goes on;
   - Start a flow, a list of steps or a section with its goal, in a sentence or two. Give each step its action, then why it matters. Bare commands tell the reader what to do but not what for, so neither the user nor an agent can follow the flow or adapt it to a new case;
   - Put the must first as one short bold sentence. Give its reason in a separate sentence. Put each exception on its own line;
+  - Write a rule meant without exception firmly, with "always" or "never". A soft word such as "consider" lets the model skip the rule on work that looks simple;
+  - At a spot where agents are known to fail, add a short pair of examples: one where the rule applies, one where it does not. Name the thought that skips the rule as a warning line, such as "This is simple, I can just do it." Use these only at known failure spots, such as skipping a guide an instruction names, claiming work done without a check, or acting on a guess;
+  - Keep capitals and words such as "critical" or "important" rare. Recent models overtrigger on them;
   - Keep one idea per sentence. Split sentences containing "but", "unless" or lists of cases;
   - Keep a rule's conditions and numbers in its bold must when you split it, such as "after about three attempts" or "as far as you know". Moved to a later sentence, they read as explanation;
   - Keep a rule's bold label when you rewrite it, and put the action after it. Other files and decisions name the rule by its label;
@@ -44,7 +47,7 @@ Helps you turn a design into a skill's files: the main skill and its guides. The
   - Give looking its own instruction when a safeguard needs facts the agent must first see, such as what a deletion would lose. Name those facts and the step that finds them, and put that step before the change that would hide them. An agent that does not look never meets the safeguard's condition.
 - **Keep each file to about 100 lines.** Count files separately, not the whole skill. Agents may preview longer files instead of reading them whole. Every loaded line costs tokens again. Trim an oversized file first. Then split it into a child or reference at its name's path. Cut no reason, "when not" case or fallback for size. Give the reason for unavoidable extra length in the design's Length field, not in the file: the loading agent does not need it.
 - **Write about the job, not skillbook's progress.** Omit "for now", "not built yet" and "until X exists". Name no skill for a step without a built skill. The agent uses judgment where none is named. Progress notes cost tokens and go stale.
-- **Block only where continuing would cause harm.** Needless blocks stop requested work. Do not use "stop", "wait", "never", "only" or "must" where a note or judgment would serve. An absolute's reason must cover every forbidden case. Write advice as advice. Use skillbook-guide-design's check 4.
+- **Block only where continuing would cause harm.** Needless blocks stop requested work. Firm wording is not blocking. Do not use "stop", "wait", "never", "only" or "must" to block work where a note or judgment would serve. An absolute's reason must cover every forbidden case. Write advice as advice. Use skillbook-guide-design's check 4.
 - **Rewrite outside ideas for skillbook,** as skillbook-guide-design's rule on outside material says.
 
 ## Advice
